@@ -1,0 +1,758 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <title>סוכרת - סיכום</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <script 
+      src="https://cdn.counter.dev/script.js" 
+      data-id="87cd2eee-d5db-43dc-9575-16e58a14c32d" 
+      data-utcoffset="3" 
+      defer 
+      referrerpolicy="no-referrer"></script>
+<!--<meta name="viewport" content="width=device-width, initial-scale=1.0">-->
+<style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f7f7f7;
+      margin: 0;
+      padding: 0 10vw;
+    }
+    .top-link {
+      position: fixed;
+      top: 0;
+      right: 0;
+      left: 0;
+      background: #1976d2;
+      color: #fff;
+      text-align: center;
+      padding: 8px 0 4px 0;
+      z-index: 101;
+      font-size: 1.1em;
+      text-decoration: none;
+      letter-spacing: 1px;
+      box-shadow: 0 2px 8px #bbb;
+    }
+    .sticky-header {
+      position: fixed;
+      top: 36px;
+      right: 0;
+      left: 0;
+      background: #fff;
+      z-index: 100;
+      text-align: center;
+      padding: 18px 0 10px 0;
+      font-size: 2em;
+      font-weight: bold;
+      box-shadow: 0 2px 8px #ddd;
+      border-bottom: 1px solid #eee;
+      /**/
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    
+    .content-wrapper {
+      margin-top: 100px;
+    }
+
+    /* מיכל PDF */
+        .pdf-container {
+            padding: 10px;
+            height: calc(100vh - 120px);
+            display: flex;
+            justify-content: center;
+        }
+
+        .pdf-frame {
+            width: 100%;
+            max-width: 1200px;
+            height: 100%;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            background: white;
+        }
+  
+    .projects a:hover, .title-link:hover {
+      text-decoration: underline;
+    }
+
+    /* הגדרות זום עבור PDF */
+        .pdf-frame {
+            overflow: auto;
+            -webkit-overflow-scrolling: touch;
+        }
+
+
+    details {
+      background: #fff;
+      border-radius: 8px;
+      margin: 16px 0;
+      box-shadow: 0 2px 8px #ddd;
+    }
+    summary {
+      font-size: 1.2em;
+      font-weight: bold;
+      cursor: pointer;
+      padding: 12px;
+      outline: none;
+    }
+
+    .content div {
+    margin: 0.3em 0;
+    line-height: 1.4;
+      }
+      .indent-1 { margin-right: 20px; }
+      .indent-2 { margin-right: 40px; }
+      .indent-3 { margin-right: 60px; }
+
+      .two-columns {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 2px;
+        max-width: 500px;
+        margin: 0.1em 0;
+        line-height: 1.4;
+        }
+        
+        .column-item {
+        margin-right: 60px;
+        }
+
+    /* סגנונות התפריט */
+        .hamburger-menu {
+            cursor: pointer;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-around;
+            width: 30px;
+            height: 25px;
+            background: transparent;
+            border: none;
+            padding: 0;
+            margin-right: 20px;
+            
+        }
+
+        .hamburger-line {
+            width: 100%;
+            height: 3px;
+            background-color: #333;
+            border-radius: 2px;
+            transition: 0.3s;
+        }
+
+        .hamburger-menu.active .hamburger-line:nth-child(1) {
+            transform: rotate(45deg) translate(8px, 8px);
+        }
+
+        .hamburger-menu.active .hamburger-line:nth-child(2) {
+            opacity: 0;
+        }
+
+        .hamburger-menu.active .hamburger-line:nth-child(3) {
+            transform: rotate(-45deg) translate(8px, -8px);
+        }
+
+        .side-menu {
+            position: fixed;
+            top: 0;
+            right: -15%;
+            width: 15%;
+            height: 100vh;
+            background-color: white;
+            box-shadow: -2px 0 10px rgba(0,0,0,0.1);
+            transition: right 0.3s ease;
+            z-index: 1000;
+            padding: 0;
+            border-left: 1px solid #ddd;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .side-menu.open {
+            right: 0;
+        }
+
+        .side-menu h3 {
+            padding: 20px;
+            background-color: #1976d2;
+            color: white;
+            margin: 0;
+            text-align: center;
+            font-size: 18px;
+            font-weight: bold;
+            flex-shrink: 0;
+        }
+
+        .side-menu-content {
+            flex: 1;
+            overflow-y: auto;
+            overflow-x: hidden;
+        }
+
+        .side-menu ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .side-menu li {
+            border-bottom: 1px solid #eee;
+        }
+
+        .side-menu a {
+            display: block;
+            padding: 15px 20px;
+            color: #0077cc;
+            text-decoration: none;
+            transition: background-color 0.3s;
+            font-size: 16px;
+        }
+
+        .side-menu a:hover {
+            background-color: #f0f0f0;
+            text-decoration: underline;
+        }
+
+        .overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.5);
+            visibility: hidden;
+            opacity: 0;
+            transition: opacity 0.3s, visibility 0.3s;
+            z-index: 999;
+        }
+
+        .overlay.active {
+            visibility: visible;
+            opacity: 1;
+        }
+
+        .menu-title {
+            flex-grow: 1;
+            text-align: center;
+            white-space: nowrap;
+            font-size: clamp(1rem, 4vw, 2rem);
+            padding: 0 5px;
+        }
+
+        .menu-spacer {
+            width: 30px;
+            margin-left: 20px;
+        }
+/* עיצוב סרגל הגלילה */
+        .side-menu-content::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        .side-menu-content::-webkit-scrollbar-track {
+            background: #f1f1f1;
+        }
+
+        .side-menu-content::-webkit-scrollbar-thumb {
+            background: #c1c1c1;
+            border-radius: 4px;
+        }
+
+        .side-menu-content::-webkit-scrollbar-thumb:hover {
+            background: #a8a8a8;
+			}
+/* כפתור חזרה בפינה השמאלית */
+    .back-button {
+      position: absolute;
+      left: 15px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: #ffffff;
+      text-decoration: none;
+      font-size: 1em;
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      cursor: pointer;
+      transition: opacity 0.2s;
+    }
+    
+    .back-button:hover {
+      opacity: 0.8;
+    }
+    
+    .back-arrow {
+      font-size: 1.2em;
+      font-weight: bold;
+      
+    }	
+    details[open] summary { color: #1976d2; }
+    .content { padding: 0 16px 16px 16px; }
+    ul { margin: 0; padding-right: 20px; }
+    li { margin-bottom: 6px; }
+    blockquote {
+      background: #e3f2fd;
+      border-right: 5px solid #1976d2;
+      margin: 12px 0;
+      padding: 10px 16px;
+      font-style: italic;
+      color: #1976d2;
+    }
+
+    /* רספונסיבי */
+        @media (max-width: 768px) {
+            .sticky-header {
+                font-size: 1.6em;
+                padding: 8px 0 8px 0;
+            }
+
+            .back-button {
+                font-size: 0.8em;
+                padding: 3px 8px;
+            }
+
+            .menu-title {
+                font-size: 0.6em;
+                margin: 0 80px;
+            }
+
+            .side-menu {
+                width: 250px;
+                right: -250px;
+            }
+
+            .content-wrapper {
+                margin-top: 50px;
+            }
+
+            .pdf-container {
+                padding: 5px;
+                height: calc(100vh - 100px);
+            }
+            html, body {
+    touch-action: manipulation;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    overflow-x: hidden;
+  }
+  
+  * {
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+  }
+
+        }
+
+        @media (max-width: 480px) {
+            .sticky-header {
+                font-size: 1.6em;
+                padding: 8px 0 6px 0;
+            }
+
+            .back-button {
+                font-size: 0.8em;
+                padding: 2px 6px;
+            }
+
+            .menu-title {
+                font-size: 0.5em;
+                margin: 0 70px;
+            }
+
+            .side-menu {
+                width: 280px;
+                right: -280px;
+            }
+
+            .content-wrapper {
+                margin-top: 30px;
+            }
+
+            .pdf-container {
+                padding: 3px;
+                height: calc(100vh - 90px);
+            }
+        }
+    @media (max-width: 600px) {
+      h2 {
+        font-size: 40px;
+      }
+  
+      .projects a, .title-link {
+        font-size: 26px;
+        margin: 25px 0;
+      }
+    }
+        /* Responsive */
+        @media (max-width: 600px) {
+            h2 {
+                font-size: 40px;
+            }
+            .projects a, .title-link {
+                font-size: 26px;
+                margin: 25px 0;
+            }
+            .side-menu {
+                width: 70%;
+                right: -70%;
+            }
+            html, body {
+    touch-action: manipulation;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    overflow-x: hidden;
+  }
+  
+  * {
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+  }
+
+        }
+    
+    @media (max-width: 600px) {
+      h2 {
+        font-size: 40px;
+      }
+  
+      .projects a, .title-link {
+        font-size: 26px;
+        margin: 25px 0;
+      }
+      /* תיקון התפריט הצדדי במסכים קטנים */
+       .side-menu {
+                width: 70%;
+                right: -70%;
+            }
+             .two-columns {
+                grid-template-columns: 1fr;
+             }
+    }
+  </style>
+</head>
+<body>
+  <a href="../../../index.html" class="top-link">
+  	חזרה לתפריט הראשי
+		   <div class="back-button" onclick="history.back()">
+			 <span class="back-arrow">←</span>
+			 <span>חזרה</span>
+		   </div>
+		 </a>
+		<div class="sticky-header">		
+		<button class="hamburger-menu" id="hamburgerBtn">
+            <div class="hamburger-line"></div>
+            <div class="hamburger-line"></div>
+            <div class="hamburger-line"></div>
+        </button>
+        <div class="menu-title">סוכרת - סיכום</div>
+        <div class="menu-spacer"></div>
+    </div>
+
+    <div class="overlay" id="overlay"></div>
+    
+    <div class="side-menu" id="sideMenu">
+        <h3>תפריט ראשי</h3>
+        <div class="side-menu-content">
+            <ul>
+    <!--            <li><a href="atan/atan_index.html">אט"ן</a></li>
+				<li><a href="bls/bls_index.html">BLS</a></li>
+				<li><a href="Bechirim/bechirim_index.html">קורס בכירים</a></li>
+                <li><a href="Bechirim/protocols/ALS2024.HTML">אוגדן ALS 2024</a></li>
+                <li><a href="Bechirim/protocols/protocols_index.html">פרוטוקולים</a></li>
+                <li><a href="Bechirim/Sikumim/Sikumim_index.html">מצגות וסיכומי מצגות</a></li>
+                <li><a href="Bechirim/Sikumim/SIKUM_LESSONS/lessons_index.html">סיכומי שיעורים</a></li>
+                <li><a href="Bechirim/Sikumim/SIKUM_LESSONS/ECG_Practice_MI.html">תרגול אק"ג - אוטם</a></li>
+                <li><a href="Bechirim/Sikumim/SIKUM_LESSONS/ECG_Practice_arrhythm.html">תרגול אק"ג - הפרעות קצב</a></li>
+                <li><a href="Bechirim/Phrases/Phrases.html">אינדקס מושגים</a></li>
+                <li><a href="Bechirim/trufot_Bait_search_site/Trufot_BAEIT.html">תרופות נפוצות בבית</a></li>
+                <li><a href="Bechirim/Sikumim/Pdf_files/pdf_index.html">ספרות</a></li> -->
+         <!--    <li><a href="#" onclick="alert('הוסף קישור לספרות')">ספרות</a></li> -->
+            </ul>
+        </div>
+	</div>
+  <div class="content-wrapper">
+
+
+    <details>
+      <summary>מבוא</summary>
+      <div class="content">
+        <div style="margin-right: 40px;"><span style="font-size: 60%;">☐</span> <strong>פעילות אקסוקרינית</strong></div> 
+        <div style="margin-right: 60px;">○ היא פעילות הפרשה של בלוטות שמפרישות את החומרים שלהן החוצה מהגוף או לתוך חללים פנימיים המחוברים לסביבה החיצונית</div>
+        <div style="margin-right: 40px;"><span style="font-size: 60%;">☐</span> <strong>פעילות אנדוקרינית</strong></div> 
+        <div style="margin-right: 60px;">○ סוג של פעילות הפרשה של בלוטות שמפרישות הורמונים ישירות לזרם הדם, ללא צינורות הפרשה</div>
+      </div>
+    </details>
+
+    <details>
+      <summary>פעולת הלבלב</summary>
+      <div class="content">
+        <div style="margin-right: 20px;">● <strong>פעילות אקסוקרינית</strong></div>
+        <div style="margin-right: 40px;"><span style="font-size: 60%;">☐</span> יצירת והפרשת מיצי עיכול המסייעים לתהליך העיכול</div>
+        <div style="margin-right: 20px;">● <strong>פעילות אנדוקרינית</strong></div>
+        <div style="margin-right: 40px;"><span style="font-size: 60%;">☐</span> הלבלב מהווה רצפטור לכמות הסוכר בדם</div> 
+        <div style="margin-right: 40px;"><span style="font-size: 60%;">☐</span> כאשר בנימי הלבלב דם עשיר בסוכר הוא יפריש אינסולין</div>
+        <div style="margin-right: 40px;"><span style="font-size: 60%;">☐</span> כאשר הדם מסביב ללבלב עני בגלוקוז, הלבלב יפסיק את הפרשת האינסולין ויפריש גלוקגון במקום זאת. גלוקגון יגרום לכבד להתחיל לפרק גליקוגן ובכך ישחרר סוכר לדם.</div>      
+      </div>
+    </details>
+
+    <details>
+      <summary>סוכרת</summary>
+      <div class="content">
+        <div>קבוצת מחלות מטבוליות המאופיינות בעלייה בערכי הגלוקוז בדם</div>
+        <div style="margin-right: 20px;">● <strong>המחלה נגרמת עקב</strong></div>
+        <div style="margin-right: 40px;"><span style="font-size: 60%;">☐</span> כשל בייצור האינסולין על ידי הלבלב או בהפרשתו או עקב בעיה בכניסת הגלוקוז לתאים</div>
+        <div style="margin-right: 40px;"><span style="font-size: 60%;">☐</span> המחלה חשוכת מרפא וקטלנית ללא טיפול, ניתנת לטיפול ולאיזון</div>
+        <div style="margin-right: 40px;"><span style="font-size: 60%;">☐</span> האקדמיה ללשון העברית - סֻכֶּרֶּת ולא סכרת    ת בלטינית נקראת המחלה Diabetes Mellitus</div>
+      </div>
+    </details>
+
+    <details>
+      <summary>סוגי סוכרת</summary>
+      <div class="content">
+        <div style="margin-right: 20px;">● על פי ארגון הבריאות העולמי ישנם ארבעה סוגים עיקריים של סוכרת:</div>
+        <div style="margin-right: 20px;">● <strong>סוכרת מסוג 1 - Type I DM</strong></div>
+        <div style="margin-right: 40px;"><span style="font-size: 60%;">☐</span> בעבר - סוכרת נעורים או IDDM</div>        
+        <div style="margin-right: 20px;">● <strong>סוכרת מסוג 2 - Type II DM</strong></div>
+        <div style="margin-right: 40px;"><span style="font-size: 60%;">☐</span> בעבר - סוכרת במבוגרים או NIDDM</div>     
+        <div style="margin-right: 20px;">● <strong>סוכרת הריונית - GDM</strong></div>
+        <div style="margin-right: 20px;">● <strong>סוגים אחרים של סוכרת</strong></div>
+        <div style="margin-right: 40px;"><span style="font-size: 60%;">☐</span> למשל עקב פגם גנטי במטבוליזם של סוכר</div>
+      </div>
+    </details>
+
+    <details>
+      <summary>סוכרת מסוג 1</summary>
+      <div class="content">
+        <div style="margin-right: 20px;">● כשל מלא / כמעט מלא באינסולין</div>
+        <div style="margin-right: 40px;"><span style="font-size: 60%;">☐</span> הלבלב אינו מייצר כלל אינסולין או שמייצר אינסולין לא תקין</div>
+        <div style="margin-right: 20px;">● <strong>שכיחות</strong></div>
+        <div style="margin-right: 40px;"><span style="font-size: 60%;">☐</span> 10% מכלל חולי הסוכרת (בישראל 5%) נפוץ בחולים צעירים, בעיקר בגיל בגרות (לפני גיל 30) הסיבה הנפוצה (90%) - פגיעה בתאים בלבלב</div>
+        <div style="margin-right: 20px;">● <strong>גורמים לסוכרת מסוג 1</strong></div>
+        <div style="margin-right: 40px;"><span style="font-size: 60%;">☐</span> <strong>גנטיקה ותורשה</strong></div>     
+        <div style="margin-right: 60px;">○ ישנה נטייה גנטית, למשל, נפוץ בקרב יוצאי תימן</div>
+        <div style="margin-right: 40px;"><span style="font-size: 60%;">☐</span> <strong>גורם סביבתי</strong></div>       
+        <div style="margin-right: 60px;">○ כיום המחקר מעיד על מספר כיוונים עיקריים הדבקה ויראלית או מחלה אוטואימיונית מרכיבים תזונתיים תרופות ורעלים</div>
+        <div style="margin-right: 40px;"><span style="font-size: 60%;">☐</span> <strong>טראומה חיצונית וגידולים עלולים לגרום לפגיעה בתפקוד הלבלב</strong></div>
+      </div>
+    </details>
+
+    <details>
+      <summary>סוכרת מסוג 2</summary>
+      <div class="content">
+        <div style="margin-right: 20px;">● <strong>תנגודת מוגברת של התאים לאינסולין</strong></div>
+        <div style="margin-right: 40px;"><span style="font-size: 60%;">☐</span> ירידה ברגישות תגובת התאים לאינסולין וקליטת סוכר ירודה</div>
+        <div style="margin-right: 40px;"><span style="font-size: 60%;">☐</span> עקב פגם גנטי או תורשתי</div>
+        <div style="margin-right: 40px;"><span style="font-size: 60%;">☐</span> עקב חשיפה ממושכת לרמות סוכר גבוהות בדם</div>
+        <div style="margin-right: 20px;">● <strong>כתוצאה מכך הרבה סוכר נשאר בדם והלבלב מפריש אינסולין ללא הרף</strong></div>
+        <div style="margin-right: 40px;"><span style="font-size: 60%;">☐</span> בהמשך - תאי הלבלב ימותו מעומס יתר ותתפתח סוכרת סוג 1</div>
+        <div style="margin-right: 20px;">● <strong>שכיחות</strong></div>
+        <div style="margin-right: 40px;"><span style="font-size: 60%;">☐</span> 90% מחולי הסוכרת</div>
+        <div style="margin-right: 40px;"><span style="font-size: 60%;">☐</span> עיקר ההופעה באנשים מבוגרים</div>
+        <div style="margin-right: 40px;"><span style="font-size: 60%;">☐</span> השמנה בטנית ועישון - גורמי סיכון עיקריים</div>
+        <div style="margin-right: 40px;"><span style="font-size: 60%;">☐</span> מופיעה באיטיות ומתגלה לרוב בבדיקת דם מקרית</div>
+        <div style="margin-right: 20px;">● <strong>גורמים לסוכרת מסוג 2</strong></div>
+        <div style="margin-right: 40px;"><span style="font-size: 60%;">☐</span> <strong>גורמים נרכשים</strong></div>     
+        <div style="margin-right: 60px;">○ השמנת יתר</div>
+        <div style="margin-right: 60px;">○ מזון מעובד רב</div>
+        <div style="margin-right: 60px;">○ חוסר פעילות גופנית</div>
+        <div style="margin-right: 60px;">○ סטרס מתמשך</div>
+        <div style="margin-right: 60px;">○ עישון</div>
+        <div style="margin-right: 20px;">● <strong>גורמים מולדים</strong></div>
+        <div style="margin-right: 40px;"><span style="font-size: 60%;">☐</span> קולטנים פגומים, קיומו של פגם כלשהו בקולטן לאינסולין</div>
+        <div style="margin-right: 20px;">● <strong>סוכרת הריונית</strong></div>
+        <div style="margin-right: 40px;"><span style="font-size: 60%;">☐</span> <strong>סוכרת המופיעה במהלך הריון ונעלמת לאחריו</strong></div>
+        <div style="margin-right: 40px;"><span style="font-size: 60%;">☐</span> תצרוכת סוכר מוגברת והשמנה במהלך ההריון</div>
+        <div style="margin-right: 40px;"><span style="font-size: 60%;">☐</span> שינויים הורמונאליים והפרשת הורמונים אחרים</div>
+        <div style="margin-right: 40px;"><span style="font-size: 60%;">☐</span> צריכת פחמימות מוגברת</div>
+        <div style="margin-right: 40px;"><span style="font-size: 60%;">☐</span> צורך בכמות אינסולין גבוהה פי 3</div>     
+        <div style="margin-right: 40px;"><span style="font-size: 60%;">☐</span> תנגודת קלה לאינסולין טרם ההיריון הופכת לסוכרת</div>
+        <div style="margin-right: 40px;"><span style="font-size: 60%;">☐</span> כ-3% מהנשים יפתחו סוכרת הריונית</div>    
+        <div style="margin-right: 40px;"><span style="font-size: 60%;">☐</span> <strong>לאחר ההיריון:</strong></div>     
+        <div style="margin-right: 40px;"><span style="font-size: 60%;">☐</span> חזרה מלאה לתפקוד תקין של הלבלב והרצפטורים</div>
+        <div style="margin-right: 40px;"><span style="font-size: 60%;">☐</span> כחצי מהנשים יפתחו סוכרת סוג 2 בשלב כלשהו במהלך חייהן (או שיאובחנו כחולות סוכרת מיד לאחר ההיריון(</div>
+      </div>
+    </details>
+
+    <details>
+      <summary>משאבת אינסולין</summary>
+      <div class="content">
+        <div style="margin-right: 20px;">● <strong>במשאבת אינסולין משתמשים באינסולין מכמה סוגים בהתאם לסוג המשאבה והתווייה</strong></div>
+        <div style="margin-right: 40px;"><span style="font-size: 60%;">☐</span> <strong>קיימות שתי תצורות של משאבות</strong></div>
+        <div style="margin-right: 60px;">○ מכונה המגדירה כמה יש להזריק</div>
+        <div style="margin-right: 60px;">○ מכונה אשר מזריקה לבד</div>
+        <div style="margin-right: 60px;">○ לעיתים ישנן תקלות במשאבות</div>
+        <div style="margin-right: 20px;">● <strong>חשוב לחפש משאבה בכל מטופל מחוסר או מעורפל הכרה</strong></div>
+      </div>
+    </details>
+
+    <details>
+      <summary>היפוגליקמיה</summary>
+      <div class="content">
+        <div style="margin-right: 40px;"><span style="font-size: 60%;">☐</span> כאשר רמת הגלוקוז בדם יורדת מתחת ל 60mg%</div>
+        <div style="margin-right: 40px;"><span style="font-size: 60%;">☐</span> <strong>הסיבות העיקריות אצל חולי סכרת.</strong></div>
+        <div style="margin-right: 60px;">○ הזרקת מינון גבוה של אינסולין או מינון גבוה של תרופות</div>
+        <div style="margin-right: 60px;">○ דילוג על ארוחה וחוסר התאמת מינונים</div>
+        <div style="margin-right: 60px;">○ פעילות גופנית, סטרס, תרופות, וזיהום</div>
+        <div style="margin-right: 40px;"><span style="font-size: 60%;">☐</span> <strong>הסיבות העיקריות אצל אנשים בריאים (נדיר):</strong></div>
+        <div style="margin-right: 60px;">○ פעילות גופנית מאומצת ביותר</div>
+        <div style="margin-right: 60px;">○ תרופות ואלכוהול</div>
+        <div style="margin-right: 60px;">○ גידול בלבלב</div>
+        <div style="margin-right: 60px;">○ צום ממושך (הרעבה)</div>
+        <div style="margin-right: 60px;">○ ילודים</div>
+      </div>
+    </details>
+
+    <details>
+      <summary>סימני היפוגליקמיה</summary>
+      <div class="content">
+        <div style="margin-right: 20px;">● הופעת הסימנים היא מיידית וקשורה בעיקר להרעבת המח מאנרגיה ולהפרשת קטכולאמינים כפיצוי</div>
+        <div style="margin-right: 20px;">● אדרנלין מעודד הפרשת אינסולין (מחמיר את הבעיה)</div>
+        <div style="margin-right: 20px;">● <strong>סימנים עיקריים:</strong></div>
+        <div style="margin-right: 60px;">○ שינויים במצב ההכרה, קומה עמוקה</div>
+        <div style="margin-right: 60px;">○ שינויים קוגנטיביים - עצבנות, תוקפנות, אי שקט, ובלבול, חרדה</div>
+        <div style="margin-right: 60px;">○ ייתכנו פרכוסים</div>
+        <div style="margin-right: 60px;">○ שינויים נוירולוגיים חדשים (עלולים להידמות לשבץ)</div>
+        <div style="margin-right: 60px;">○ דופק מהיר, פלפליטציות, נשימה מהירה, הזעה, חיוורון, עלייה בלחץ הדם</div>       
+        <div style="margin-right: 60px;">○ צימאון, רעב</div>
+      </div>
+    </details>
+
+    <details>
+      <summary>טיפול בהיפוגליקמיה</summary>
+      <div class="content">
+        <div style="margin-right: 20px;">● <strong>מטרה -&gt;&gt; העלאת רמת הסוכר בדם</strong></div>
+        <div style="margin-right: 40px;"><span style="font-size: 60%;">☐</span> <strong>מתן גלוקוג&#x27;ל (15גר&#x27;) או סוכרים לפה (כולל פחמימה מורכבת)</strong></div>
+        <div style="margin-right: 60px;">○ ניתן למרוח את הג&#x27;ל על פנים הלחי</div>
+        <div style="margin-right: 40px;"><span style="font-size: 60%;">☐</span> <strong>הזרקת גלוקוז לווריד</strong></div>
+        <div style="margin-right: 60px;">○ במד&quot;א - אמפולת Glucose 50%/50cc – 25 גר&#x27; (מנה)</div>
+        <div style="margin-right: 60px;">○ מומלץ למהול לריכוז של 25% (למניעת נזק במקרה זליגה)</div>
+        <div style="margin-right: 60px;">○ בחירת וונפלון ווריד גדולים (לוודא מיקום)</div>
+        <div style="margin-right: 60px;">○ שימוש בברז תלת כיווני מקל את העבודה</div>
+        <div style="margin-right: 60px;">○ יציאת גלוקוז מהווריד לשריר - נמק מקומי</div>
+        <div style="margin-right: 20px;">● <strong>חשוב לעודד את המטופל לאכול בהמשך גם לאחר טיפול תרופתי, להכין כריך לפינוי/לבית חולים</strong></div>
+      </div>
+    </details>
+
+    <details>
+      <summary>סיבוכים לטווח הארוך בחולי סוכרת</summary>
+      <div class="content">
+        <div style="margin-right: 20px;">● <strong>מחלות לב וכלי דם</strong></div>
+        <div style="margin-right: 60px;">○ פגיעה ישירה בתאי אנדותל והחמרת טרשת עורקים</div>
+        <div style="margin-right: 60px;">○ אוטמים, שבץ מוחי, יתר לחץ דם</div>
+        <div style="margin-right: 20px;">● <strong>נזק עצבי</strong></div>
+        <div>נזק לכלי הדם המזינים עצבים, בעיקר את הרגליים</div>
+        <div>תחושת נימול, אי-תחושה, תחושת שריפה או כאב</div>
+        <div style="margin-right: 60px;">○ Silent Acute MI</div>
+        <div style="margin-right: 20px;">● <strong>נזק לעיניים</strong></div>
+        <div style="margin-right: 60px;">○ נזק לכלי הדם של הרשתית</div>
+        <div style="margin-right: 60px;">○ יכול להוביל לעיוורון</div>
+        <div style="margin-right: 20px;">● <strong>רגל סוכרתית</strong></div>
+        <div style="margin-right: 60px;">○ נזק לעצבים ולכלי הדם ברגל - זרימת דם מואטת</div>
+        <div style="margin-right: 20px;">● <strong>מערכת החיסון</strong></div>
+        <div style="margin-right: 60px;">○ ריפוי פצעים איטי ופגיעות חיסונית</div>
+      </div>
+    </details>
+
+    <details>
+      <summary>חמצת קטוטית סוכרתית Diabetic Ketoacidosis – DKA</summary>
+      <div class="content">
+        <div style="margin-right: 20px;">● <strong>פתופיזיולוגיה:</strong></div>
+        <div style="margin-right: 60px;">○ רמות סוכר גבוהות בדם, ללא אינסולין</div>
+        <div style="margin-right: 60px;">○ הרעבת התאים והפרשת גלוקגון כתגובה</div>
+        <div style="margin-right: 60px;">○ פירוק גליקוגן והחמרת ההיפרגליקמיה</div>
+        <div style="margin-right: 60px;">○ פירוק חומצות שומן וחלבונים כמקור אנרגיה</div>
+        <div style="margin-right: 60px;">○ תוצר לוואי מהפירוק- גופי קטו</div>
+        <div style="margin-right: 60px;">○ חמצת מטבולית המשולבת בהפרעה אלקטרוליטרית</div>
+        <div style="margin-right: 60px;">○ התייבשות, היפרקלמיה, היפרנתרמיה</div>
+        <div style="margin-right: 20px;">● <strong>DKA גורמים</strong></div>
+        <div style="margin-right: 60px;">○ חוסר איזון בלקיחת אינסולין</div>
+        <div style="margin-right: 60px;">○ לרוב נפוצה בחולי סוכרת סוג 1 כפרזנטציה ראשונית למחלה</div>
+        <div style="margin-right: 60px;">○ מלווה בסיפור של ירידה במשקל, השתנה לילית וחולשה כללית</div>
+        <div style="margin-right: 60px;">○ עלולה להופיע גם בחולי סוג 2 כסימן להזנחה</div>
+        <div style="margin-right: 60px;">○ זיהומים, אוטמים (לב, ראש) ומחלות אקוטיות נוספות אשר מעלות רמות סוכר בדם</div> 
+        <div style="margin-right: 60px;">○ שימוש בסמים</div>
+        <div style="margin-right: 60px;">○ הריון</div>
+        <div style="margin-right: 20px;">● <strong>DKA סימנים</strong></div>
+        <div style="margin-right: 60px;">○ מתפתחים מהר יחסית ותוך מספר שעות-יממה</div>
+        <div style="margin-right: 60px;">○ מתחיל ברמות סוכר ממוצעות של 300-600 מ&quot;ג%</div>
+        <div style="margin-right: 60px;">○ במד הסוכר עלולה להבהב המילה &quot;Ket&quot; ליד תוצאת הבדיקה</div>
+        <div style="margin-right: 20px;">● <strong>DKA סימנים קליניים</strong></div>
+        <div style="margin-right: 60px;">○ חסכים נוירולוגיים (עייפות, ערפול חושים עד בצקת מוחית וקומה)</div>
+        <div style="margin-right: 60px;">○ סימני התייבשות, השתנה מרובה, צימאון, דופק מהיר</div>
+        <div style="margin-right: 60px;">○ עור חם ויבש, יובש בריריות</div>
+        <div style="margin-right: 60px;">○ כאבי בטן, בחילות והקאות</div>
+        <div style="margin-right: 60px;">○ ריח של אצטון מהפה - &quot;נשימה בריח פירותי&quot; (קטונים)</div>
+        <div style="margin-right: 60px;">○ נשימה מהירה ועמוקה (Kussmaul Breathing)</div>
+        <div style="margin-right: 20px;">● <strong>טיפול בחשד ל - DKA</strong></div>
+        <div style="margin-right: 40px;"><span style="font-size: 60%;">☐</span> <strong>ABC</strong></div>
+        <div style="margin-right: 60px;">○ חמצן, נוזלים ופינוי</div>
+        <div style="margin-right: 60px;">○ היפרוונטילציה וביקרבונט אינם טיפולים מקובלים ולא הוכחו כיעילים</div>
+        <div style="margin-right: 60px;">○ במידה ויש מצוקה נשימתית קשה לשקול מעבר לניהול נתיב אוויר</div>
+        <div style="margin-right: 40px;"><span style="font-size: 60%;">☐</span> <strong>בבי&quot;ח</strong></div>        
+        <div style="margin-right: 60px;">○ טיפול באינסולין IV (תזכורת - אינסולין מכניס אשלגן לתאים)</div>
+        <div style="margin-right: 60px;">○ נוזלים בכמויות גבוהות</div>
+        <div style="margin-right: 60px;">○ תיקון אלקטרוליטים (נדיר - תמיסות אשלגן)</div>
+        <div style="margin-right: 60px;">○ נדיר ביותר - ביקרבונט</div>
+        <div style="margin-right: 60px;">○ בצעירים - אשפוז בטיפול נמרץ</div>
+      </div>
+    </details>
+    
+    <details>
+          <summary style="color: red; font-weight: bold;">פרוטוקול שינוי במצב ההכרה</summary>
+          <div class="content">
+            <iframe src="../../protocols/als2024protocols/als2024C3/altered_mental_status_pdfviewer.html" style="width:100%;height:600px;border:none;"></iframe>
+          </div>
+        </details>
+        <details>
+          <summary style="color: red; font-weight: bold;">פרוטוקול דקסטרוז גלוקוז</summary>
+          <div class="content">
+            <iframe src="../../protocols/als2024protocols/als2024C10/dextrose_glucose_50_percent_pdfviewer.html" style="width:100%;height:600px;border:none;"></iframe>
+          </div>
+        </details>
+
+      </div>
+        <script>
+        const hamburgerBtn = document.getElementById('hamburgerBtn');
+        const sideMenu = document.getElementById('sideMenu');
+        const overlay = document.getElementById('overlay');
+
+        // פתיחה/סגירה של התפריט
+        hamburgerBtn.addEventListener('click', function() {
+            hamburgerBtn.classList.toggle('active');
+            sideMenu.classList.toggle('open');
+            overlay.classList.toggle('active');
+        });
+
+        // סגירה בלחיצה על האוברליי
+        overlay.addEventListener('click', function() {
+            hamburgerBtn.classList.remove('active');
+            sideMenu.classList.remove('open');
+            overlay.classList.remove('active');
+        });
+
+        // סגירה בלחיצה על ESC
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                hamburgerBtn.classList.remove('active');
+                sideMenu.classList.remove('open');
+                overlay.classList.remove('active');
+            }
+        });
+  </script>
+	<script src="/mda/js/hamburger-menu.js"></script>      
+</body>
+</html>

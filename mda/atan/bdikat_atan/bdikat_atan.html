@@ -1,0 +1,321 @@
+
+<!DOCTYPE html>
+<html lang="he">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>טופס בדיקת אטן</title>
+  <script 
+      src="https://cdn.counter.dev/script.js" 
+      data-id="87cd2eee-d5db-43dc-9575-16e58a14c32d" 
+      data-utcoffset="3" 
+      defer 
+      referrerpolicy="no-referrer"></script>
+
+<style>
+    body { font-family: Arial, sans-serif; direction: rtl; }
+
+    .top-link {
+      position: fixed;
+      top: 0;
+      right: 0;
+      left: 0;
+      background: #1976d2;
+      color: #fff;
+      text-align: center;
+      padding: 8px 0 4px 80PX;
+      z-index: 101;
+      font-size: 1.1em;
+      text-decoration: none;
+      letter-spacing: 1px;
+      box-shadow: 0 2px 8px #bbb;
+    }
+
+    .sticky-header {
+      position: fixed;
+      top: 36px;
+      right: 0;
+      left: 0;
+      background: #fff;
+      z-index: 100;
+      text-align: center;
+      padding: 18px 0 10px 80px;
+      font-size: 2em;
+      font-weight: bold;
+      box-shadow: 0 2px 8px #ddd;
+      border-bottom: 1px solid #eee;
+    }
+
+    .content-wrapper {
+      margin-top: 100px;
+      display: flex;
+      justify-content: center;
+    }
+
+    table {
+      border-collapse: collapse;
+      width: 50%;
+      margin: auto;
+    }
+
+    th, td {
+      border: 1px solid #ccc;
+      padding: 8px;
+      text-align: right;
+    }
+
+    tr.group-header {
+      background-color: #f0f0f0;
+      cursor: pointer;
+      font-weight: bold;
+    }
+
+    tr.group-item {
+      display: none;
+    }
+
+    .group-header td {
+      background-color: #f0f0f0;
+    }
+
+    .group-header .header-checkbox {
+      margin-left: 10px;
+    }
+
+    .search-container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      width: 100%;
+      max-width: 800px;
+    }
+
+    .search-container input[type="text"] {
+      width: 100%;
+      max-width: calc(100% - 100px);
+      padding: 8px;
+      margin-left: 10px;
+    }
+
+    .search-container button {
+      padding: 8px;
+    }
+
+    #clearSearch {
+      display: none;
+      color: #888;
+      font-size: 18px;
+    }
+    #clearSearch:hover {
+      color: #000;
+    }
+
+    @media (max-width: 600px) {
+      .sticky-header {
+        font-size: 1.5em;
+      }
+
+      table {
+        width: 100%;
+      }
+
+      .search-container {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .search-container input[type="text"] {
+        width: calc(100% - 40px);
+        margin-left: 0;
+      }
+
+      .search-container button {
+        width: 100%;
+        margin-top: 10px;
+      }
+
+      #clearSearch {
+        display: inline;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <a href="../../index.html" class="top-link">חזרה לתפריט הראשי</a>
+  <div class="sticky-header">רשימת עזר לבדיקת אט"ן</div>
+  <div class="content-wrapper">
+
+    <table>
+      <thead>
+        <tr>
+          <td colspan="2" style="text-align: right;">
+            <div class="search-container">
+              <div style="position: relative; width: 100%; max-width: calc(100% - 100px);">
+                <input type="text" id="searchInput" oninput="searchItems()" placeholder="חפש פריטים..." style="width: 100%; padding-right: 24px;">
+                <span id="clearSearch" onclick="clearSearch()" style="position: absolute; right: 5px; top: 50%; transform: translateY(-50%); cursor: pointer; font-weight: bold;">×</span>
+              </div>
+              <button onclick="clearAllCheckboxes()">נקה הכל</button>
+            </div>
+          </td>
+        </tr>
+      </thead>
+      <tbody>
+      </tbody>
+    </table>
+
+  </div>
+
+  <script>
+    window.onload = function () {
+      async function loadTableData() {
+        try {
+          const response = await fetch('../../json/bdikat_atan.json');
+          const data = await response.json();
+          const tbody = document.querySelector('tbody');
+
+          for (const [groupName, items] of Object.entries(data)) {
+            const groupRow = document.createElement('tr');
+            groupRow.classList.add('group-header');
+            groupRow.innerHTML = `
+              <td colspan="1">
+                <input type="checkbox" class="header-checkbox" onchange="toggleGroupCheckbox(this)">
+                <span class="group-title" onclick="toggleGroup(this)"><strong>${groupName}</strong></span>
+              </td>
+              ${groupName === 'תרופות' ? '<td>תיק</td><td>מגירות</td>' : '<td>תקן</td>'}
+            `;
+            tbody.appendChild(groupRow);
+
+            items.forEach(item => {
+              const tr = document.createElement('tr');
+              tr.classList.add('group-item');
+              tr.innerHTML = `
+                <td><input type="checkbox" onchange="toggleStatus(this)"> ${item.שם || ''}</td>
+                ${groupName === 'תרופות' ? `<td>${item.תיק || ''}</td><td>${item.מגירות || ''}</td>` : `<td>${item.כמות || ''}</td>`}
+              `;
+              tbody.appendChild(tr);
+            });
+          }
+        } catch (error) {
+          console.error('Error loading JSON data:', error);
+        }
+      }
+
+      loadTableData();
+    };
+
+    function toggleGroup(titleSpan) {
+      const headerRow = titleSpan.closest('tr');
+      let row = headerRow.nextElementSibling;
+      while (row && !row.classList.contains('group-header')) {
+        row.style.display = row.style.display === 'table-row' ? 'none' : 'table-row';
+        row = row.nextElementSibling;
+      }
+    }
+
+    function toggleStatus(cb) {
+      const row = cb.parentElement.parentElement;
+      row.style.backgroundColor = cb.checked ? "#e0ffe0" : "";
+      row.style.textDecoration = cb.checked ? "line-through" : "none";
+
+      let currentRow = row.previousElementSibling;
+      while (currentRow && !currentRow.classList.contains('group-header')) {
+        currentRow = currentRow.previousElementSibling;
+      }
+
+      if (currentRow && currentRow.classList.contains('group-header')) {
+        let header = currentRow;
+        let item = header.nextElementSibling;
+        let allChecked = true;
+        while (item && !item.classList.contains('group-header')) {
+          let checkbox = item.querySelector('input[type="checkbox"]');
+          if (checkbox && !checkbox.checked) {
+            allChecked = false;
+            break;
+          }
+          item = item.nextElementSibling;
+        }
+
+        header.style.backgroundColor = allChecked ? "#ccffcc" : "";
+      }
+    }
+
+    function clearAllCheckboxes() {
+      document.querySelectorAll("input[type='checkbox']").forEach(cb => {
+        cb.checked = false;
+        cb.dispatchEvent(new Event('change'));
+      });
+
+      // שינוי: סגירת כל האקורדיונים בעת לחיצה על הכפתור 'נקה הכל'
+      document.querySelectorAll('.group-item').forEach(item => {
+        item.style.display = 'none';
+      });
+    }
+
+    function toggleGroupCheckbox(masterCb) {
+      const headerRow = masterCb.closest('tr');
+      let item = headerRow.nextElementSibling;
+      while (item && !item.classList.contains('group-header')) {
+        let checkbox = item.querySelector('input[type="checkbox"]');
+        if (checkbox) {
+          checkbox.checked = masterCb.checked;
+          checkbox.dispatchEvent(new Event('change'));
+        }
+        item = item.nextElementSibling;
+      }
+    }
+
+    function searchItems() {
+      const input = document.getElementById('searchInput');
+      const filter = input.value.toLowerCase();
+      const clearBtn = document.getElementById('clearSearch');
+      const tbody = document.querySelector('tbody');
+      const rows = tbody.querySelectorAll('tr');
+
+      // הצגת כפתור X רק אם יש טקסט
+      clearBtn.style.display = filter ? 'inline' : 'none';
+
+      rows.forEach(row => {
+        if (row.classList.contains('group-header') || row.classList.contains('group-item')) {
+          row.style.display = 'none';
+        }
+      });
+
+      if (!filter) {
+        // אם אין טקסט – הצג את כל כותרות האקורדיונים וסגור את כל הפריטים
+        rows.forEach(row => {
+          if (row.classList.contains('group-header')) {
+            row.style.display = 'table-row';
+          }
+        });
+        return;
+      }
+
+      rows.forEach(row => {
+        if (row.classList.contains('group-header')) {
+          let groupVisible = false;
+          let nextRow = row.nextElementSibling;
+          while (nextRow && !nextRow.classList.contains('group-header')) {
+            const itemText = nextRow.textContent.toLowerCase();
+            if (itemText.includes(filter)) {
+              nextRow.style.display = 'table-row';
+              groupVisible = true;
+            }
+            nextRow = nextRow.nextElementSibling;
+          }
+          if (groupVisible) {
+            row.style.display = 'table-row';
+          }
+        }
+      });
+    }
+
+    function clearSearch() {
+      const input = document.getElementById('searchInput');
+      input.value = '';
+      searchItems(); // תפעיל את הסינון מחדש
+    }
+  </script>
+
+</body>
+</html>

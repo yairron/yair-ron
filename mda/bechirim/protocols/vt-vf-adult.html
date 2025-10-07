@@ -1,0 +1,749 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>דום לב במבוגרVT/VF</title>
+   <script 
+      src="https://cdn.counter.dev/script.js" 
+      data-id="87cd2eee-d5db-43dc-9575-16e58a14c32d" 
+      data-utcoffset="3" 
+      defer 
+      referrerpolicy="no-referrer"></script>
+
+<style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f7f7f7;
+      margin: 0;
+      padding: 0 10vw;
+    }
+    .top-link {
+      position: fixed;
+      top: 0;
+      right: 0;
+      left: 0;
+      background: #1976d2;
+      color: #fff;
+      text-align: center;
+      padding: 8px 0 4px 0;
+      z-index: 101;
+      font-size: 1.1em;
+      text-decoration: none;
+      letter-spacing: 1px;
+      box-shadow: 0 2px 8px #bbb;
+    }
+    .sticky-header {
+      position: fixed;
+      top: 36px;
+      right: 0;
+      left: 0;
+      background: #fff;
+      z-index: 100;
+      text-align: center;
+      padding: 18px 0 10px 0;
+      font-size: 2em;
+      font-weight: bold;
+      box-shadow: 0 2px 8px #ddd;
+      border-bottom: 1px solid #eee;
+      /**/
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .content-wrapper {
+      margin-top: 100px;
+    }
+    details {
+      background: #fff;
+      border-radius: 8px;
+      margin: 16px 0;
+      box-shadow: 0 2px 8px #ddd;
+    }
+/* סגנונות התפריט */
+        .hamburger-menu {
+            cursor: pointer;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-around;
+            width: 30px;
+            height: 25px;
+            background: transparent;
+            border: none;
+            padding: 0;
+            margin-right: 20px;
+            
+        }
+
+        .hamburger-line {
+            width: 100%;
+            height: 3px;
+            background-color: #333;
+            border-radius: 2px;
+            transition: 0.3s;
+        }
+
+        .hamburger-menu.active .hamburger-line:nth-child(1) {
+            transform: rotate(45deg) translate(8px, 8px);
+        }
+
+        .hamburger-menu.active .hamburger-line:nth-child(2) {
+            opacity: 0;
+        }
+
+        .hamburger-menu.active .hamburger-line:nth-child(3) {
+            transform: rotate(-45deg) translate(8px, -8px);
+        }
+
+        .side-menu {
+            position: fixed;
+            top: 0;
+            right: -15%;
+            width: 15%;
+            height: 100vh;
+            background-color: white;
+            box-shadow: -2px 0 10px rgba(0,0,0,0.1);
+            transition: right 0.3s ease;
+            z-index: 1000;
+            padding: 0;
+            border-left: 1px solid #ddd;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .side-menu.open {
+            right: 0;
+        }
+
+        .side-menu h3 {
+            padding: 20px;
+            background-color: #1976d2;
+            color: white;
+            margin: 0;
+            text-align: center;
+            font-size: 18px;
+            font-weight: bold;
+            flex-shrink: 0;
+        }
+
+        .side-menu-content {
+            flex: 1;
+            overflow-y: auto;
+            overflow-x: hidden;
+        }
+
+        .side-menu ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .side-menu li {
+            border-bottom: 1px solid #eee;
+        }
+
+        .side-menu a {
+            display: block;
+            padding: 15px 20px;
+            color: #0077cc;
+            text-decoration: none;
+            transition: background-color 0.3s;
+            font-size: 16px;
+        }
+
+        .side-menu a:hover {
+            background-color: #f0f0f0;
+            text-decoration: underline;
+        }
+
+        .overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.5);
+            visibility: hidden;
+            opacity: 0;
+            transition: opacity 0.3s, visibility 0.3s;
+            z-index: 999;
+        }
+
+        .overlay.active {
+            visibility: visible;
+            opacity: 1;
+        }
+
+        .menu-title {
+            flex-grow: 1;
+            text-align: center;
+        }
+
+        .menu-spacer {
+            width: 30px;
+            margin-left: 20px;
+        }
+/* עיצוב סרגל הגלילה */
+        .side-menu-content::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        .side-menu-content::-webkit-scrollbar-track {
+            background: #f1f1f1;
+        }
+
+        .side-menu-content::-webkit-scrollbar-thumb {
+            background: #c1c1c1;
+            border-radius: 4px;
+        }
+
+        .side-menu-content::-webkit-scrollbar-thumb:hover {
+            background: #a8a8a8;
+			}
+/* כפתור חזרה בפינה השמאלית */
+    .back-button {
+      position: absolute;
+      left: 15px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: #ffffff;
+      text-decoration: none;
+      font-size: 1em;
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      cursor: pointer;
+      transition: opacity 0.2s;
+    }
+    
+    .back-button:hover {
+      opacity: 0.8;
+    }
+    
+    .back-arrow {
+      font-size: 1.2em;
+      font-weight: bold;
+    }	
+
+    summary {
+      font-size: 1.2em;
+      font-weight: bold;
+      cursor: pointer;
+      padding: 12px;
+      outline: none;
+    }
+    details[open] summary { 
+      color: #1976d2; 
+    }
+    .content { 
+      padding: 0 16px 16px 0px; 
+    }
+    ul { 
+      margin: 0; 
+      padding-right: 20px; 
+    }
+    li { 
+        padding-top:  0px;
+        margin-right: 10px;
+        margin-bottom: 6px; 
+    }
+    blockquote {
+      background: #e3f2fd;
+      border-right: 5px solid #1976d2;
+      margin: 12px 0;
+      padding: 10px 16px;
+      font-style: italic;
+      color: #1976d2;
+    }
+    .question {
+      margin: 15px 0;
+      padding: 15px;
+      background: #f8f9fa;
+      border-radius: 8px;
+      border: 1px solid #dee2e6;
+    }
+    .question h4 {
+      margin: 0 0 10px 0;
+      color: #495057;
+    }
+    .answer-option {
+      margin: 8px 0;
+      padding: 10px;
+      background: #fff;
+      border: 1px solid #dee2e6;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+    .answer-option:hover {
+      background: #f8f9fa;
+    }
+    .answer-option.correct {
+      background: #d4edda !important;
+      border-color: #c3e6cb;
+    }
+    .answer-option.incorrect {
+      background: #f8d7da !important;
+      border-color: #f5c6cb;
+    }
+    .answer-option.correct::before {
+      content: "✓ ";
+      color: #155724;
+      font-weight: bold;
+    }
+    .answer-option.incorrect::before {
+      content: "✗ ";
+      color: #721c24;
+      font-weight: bold;
+    }
+    .loading {
+      text-align: center;
+      padding: 20px;
+      font-size: 1.2em;
+      color: #666;
+    }
+    
+    @media (max-width: 600px) {
+      .sticky-header {
+        font-size: 1.2em;
+        padding: 10px 0 6px 0;
+      }
+       /* תיקון התפריט הצדדי במסכים קטנים */
+       .side-menu {
+                width: 70%;
+                right: -70%;
+            }
+    }
+  </style>
+  </head>
+  <body>
+      <a href="../../index.html" class="top-link">
+      		חזרה לתפריט הראשי
+		   <div class="back-button" onclick="history.back()">
+			 <span class="back-arrow">←</span>
+			 <span>חזרה</span>
+		   </div>
+		 </a>
+		<div class="sticky-header">		
+		<button class="hamburger-menu" id="hamburgerBtn">
+            <div class="hamburger-line"></div>
+            <div class="hamburger-line"></div>
+            <div class="hamburger-line"></div>
+        </button>
+        <div class="menu-title">דום לב במבוגרVT/VF</div>
+        <div class="menu-spacer"></div>
+    </div>
+
+    <div class="overlay" id="overlay"></div>
+    
+    <div class="side-menu" id="sideMenu">
+        <h3>תפריט ראשי</h3>
+        <div class="side-menu-content">
+            <ul>
+    <!--            <li><a href="atan/atan_index.html">אט"ן</a></li>
+				<li><a href="bls/bls_index.html">BLS</a></li>
+				<li><a href="Bechirim/bechirim_index.html">קורס בכירים</a></li>
+                <li><a href="Bechirim/protocols/ALS2024.HTML">אוגדן ALS 2024</a></li>
+                <li><a href="Bechirim/protocols/protocols_index.html">פרוטוקולים</a></li>
+                <li><a href="Bechirim/Sikumim/Sikumim_index.html">מצגות וסיכומי מצגות</a></li>
+                <li><a href="Bechirim/Sikumim/SIKUM_LESSONS/lessons_index.html">סיכומי שיעורים</a></li>
+                <li><a href="Bechirim/Sikumim/SIKUM_LESSONS/ECG_Practice_MI.html">תרגול אק"ג - אוטם</a></li>
+                <li><a href="Bechirim/Sikumim/SIKUM_LESSONS/ECG_Practice_arrhythm.html">תרגול אק"ג - הפרעות קצב</a></li>
+                <li><a href="Bechirim/Phrases/Phrases.html">אינדקס מושגים</a></li>
+                <li><a href="Bechirim/trufot_Bait_search_site/Trufot_BAEIT.html">תרופות נפוצות בבית</a></li>
+                <li><a href="Bechirim/Sikumim/Pdf_files/pdf_index.html">ספרות</a></li> -->
+         <!--    <li><a href="#" onclick="alert('הוסף קישור לספרות')">ספרות</a></li> -->
+            </ul>
+        </div>
+	</div>
+
+  <div class="content-wrapper">
+
+  <!--  
+    <a href="../../index.html" style="display:block; text-align:center; margin-top:10px;">חזרה לעמוד הראשי</a>  
+    <div class="container">
+      <h1>פרוטוקול דום לב במבוגר – VT/VF</h1>
+  -->
+      <p style="text-align: center;"> 
+        הפרוטוקול מגיע אחרי פרוטוקול גישה כללית למטופל ופרוטוקול דום לב ונשימה
+        במבוגר.
+      </p>
+
+      <details>
+        <summary>השוק החשמלי</summary>
+        <div class="content">
+            <ul>
+        <li>מכשיר LP-12</li>
+        <ul><li>200J, 300J, 360J</li></ul>
+        <li>מכשיר Corpuls</li>
+        <ul><li>200J</li></ul>
+        <li>הקפד על מיקום נכון של מדבקות הדפיברילציה.</li>
+        <li>לאחר שלושה שוקים חשמליים ללא שינוי בקצב עבור ל־Refractory VT/VF</li>
+               </ul>
+        </div>
+      </details>
+        <details>
+        <summary>מיקום המדבקות</summary>
+         <div class="content">
+            <ul>
+            <li>מדבקה אחת מתחת לקלוויקולה ימין, השנייה בקו אקסילרי שמאל</li>
+             <ul> <li>(צד שמאל של בית החזה, קו האמצע בין השחי לצלעות).</li></ul>
+            <li>שים לב שהמדבקות לא נוגעות זו בזו, ושאין הפרעה ע"י שיער יתר או נוזלים.</li>
+            <li>מיד לאחר שוק ממשיכים בעיסויים.</li>
+            </ul>
+        </div>
+      </details>
+
+      <details>
+        <summary>מתן תרופות</summary>
+        <div class="content">
+            <ul>
+        <li>יש עדיפות למתן תוך-ורידי של תרופות במהלך החייאה.</li>
+        <li>במקרה של כישלון, יש להתקין IO ולתת את התרופות תוך־גרמית.</li>
+        <li><strong>אדרנלין</strong></li>
+         <ul>
+        <li>מנה ראשונה תנתן רק לאחר שני סבבים</li>
+        <li>מינון I.V. כל 3-5 דקות 1mg. (1 אמפולה) יש לתת מיד שטיפה 20cc סליין.</li>
+        <li>מינון E.T. 3mg (3 אמפולות), מהולים ב־5cc סליין.</li>
+        </ul>
+        <li><strong>אמיודורון</strong></li>
+        <ul>
+        <li>מנה ראשונה 300mg (2 אמפולות). מיהול 20cc  סליין. לאחר 3 סבבי עיסויים.</li>
+        <li>מנה שניה 150mg (1אמפולה) מיהול 20cc סליין. לאחר 5 סבבי עיסויים.</li>
+        </ul>
+        <li><strong>מגנזיום סולפט</strong></li>
+        <ul>
+        <li>מתן רק במקרה של טכיקרדיה רחבת קומפלקס. ופולימורפית (TDP)</li>
+        <li>מינון 1-2gr מיהול ב־10-20cc סליין</li>
+        <li>מתן ב־PUSH איטי.</li>
+         </ul>
+        <li><strong>סודיום ביקרבונט</strong></li>
+         <ul>
+        <li>אינדקציה למתן, עדות מוקדמת להיפרקלמיה או חמצת מטובלית</li>
+        <li>מינון 1meq/kg</li>
+        </ul>
+        </ul>
+      </details>
+
+      <details>
+        <summary>ROSC</summary>
+        <div class="content">
+            <ul>
+        <li>חזרת דופק מרכזי או פריפרי.</li>
+        <li>עלייה חדה בערכי ETCO2 (לרוב ערכים מעל 40mmHg).</li>
+        <li>אם נמוש דופק פריפרי יש למדוד לחץ דם.</li>
+        <li>שקול צורך בטיפול תרופתי נוסף.</li>
+        </ul>
+        </div>
+        </details>
+
+      <details>
+        <summary>טיפול בגורמים הפיכים</summary>
+        <div class="content">
+            <ul>
+        <li>הרעלת אופיאטים -- מתן נרקן.</li>
+        <li>היפוולמיה -- מתן נוזלים.</li>
+        <li>היפותרמיה -- חימום הסביבה.</li>
+        <li>היפוקסיה -- מתן חמצן בריכוז מרבי.</li>
+        <li>היפרקלמיה או חמצת מטבולית -- מתן סודיום ביקרבונט.</li>
+        <li>חזה אוויר בלחץ -- ניקוז חזה באמצעות מחט (NA).</li>
+        </ul>
+        </div>
+      </details>
+
+      <details>
+        <summary>זונדה</summary>
+        <div class="content">
+            <ul>
+        <li>הכנס זונדה למטופל שעבר הנשמה ממושכת ללא טובוס, ויש חשד קליני להתרחבות הקיבה.</li>
+         </ul>
+        </div>
+      </details>
+
+      <details>
+        <summary>עבור לפרוטוקול מתאים</summary>
+         <div class="content">
+            <ul>
+        <li>דום לב במבוגר PEA / ASYSTOLE</li>
+        <li>פינוי מטופל לבית חולים תוך כדי המשך פעולות החייאה</li>
+        <li>הימנעות מביצוע פעולות החייאה או הפסקתן</li>
+         </ul>
+        </div>
+      </details>
+
+      <details>
+        <summary>VT/VF עקשן (Refractory)</summary>
+        <div class="content">
+            <ul>
+        <li><strong>הגדרה</strong>: ללא שינוי בהפרעת הקצב לאחר 3 מכות חשמל (כולל שימוש ב־AED).</li>
+        <li><strong>טיפול</strong>: החל מסבב רביעי. ביצוע דפיברילציה בטכניקה מתקדמת (VC או DSED).</li>
+        <li><strong>DSED (Double Sequential External Defibrillation)</strong></li>
+        <ul><li>מתן 2 מכות חשמל עוקבות, בהפרש של 0.12msec, מ־2 מכשירים שונים המחוברים בוקטורים צולבים (ראה איור). זוהי הטכניקה המועדפת.</li> </ul>
+        <li><strong>Vector Change VC</strong></li>
+         <ul><li>מתן מכת חשמל בוקטור ניצב לוקטור הרגיל (קרי -- כאשר מדבקה אחת מעל האפקס מלפנים והמדבקה השניה בנקודה מקבילה בגב מאחור -- ראה איור).</li></ul>
+        <div style="display: flex; justify-content: center; gap: 20px; margin: 20px 0;">
+          <img src="../../images/vector_change_def.png" alt="Vector Change Defibrillation" style="max-width: 45%; border: 1px solid #ccc; border-radius: 8px;">
+          <img src="../../images/dsed.png" alt="DSED Defibrillation" style="max-width: 45%; border: 1px solid #ccc; border-radius: 8px;">
+        </div>
+         </ul>
+        </div>
+      </details>
+
+      <details>
+        <summary>החייאה</summary>
+        <div class="content">
+            <ul>
+        <li><strong style="color: red;">השוק הראשון ניתן מיד עם המעבר מפרוטוקול דום לב ונשימה</strong></li>
+        <li>בצע עיסויים במשך שתי דקות</li>
+        <li>השג גישה ורידית</li>
+        <li><strong>אם אין התוויה לשוק שני אחרי שתי דקות</strong></li>
+        <ul>
+        <li>בדוק האם ROSC. עבור לפרוטוקול ROSC</li>
+        <li>אם לא, עבור לפרוטוקול מתאים.</li>
+        </ul>
+        <li><strong>אם יש התויה לשוק תן שוק שני</strong></li>
+        <ul>
+        <li>בצע עיסויים במשך שתי דקות</li>
+        <li>תן אדרנלין כל 3-5 דקות</li>
+        <li>שקול ניהול מתקדם של נתיב אויר</li>
+        <li>אם אין התוויה לשוק אחרי שתי דקות</li>
+        <li>בדוק האם ROSC. אם כן, עבור לפרוטוקל ROSC</li>
+        <li>אם לא, עבור לפרוטוקול מתאים</li>
+        </ul>
+        <li><strong>אם יש התויה לשוק תן שוק שלישי</strong></li>
+        <ul>
+        <li>בצע עיסויים במשך שתי דקות</li>
+        <li>תן אמיודורון ב־IV</li>
+        <li>שקול צורך בטיפול תרופתי נוסף</li>
+        <li>טפל בגורמים הפיכים</li>
+        </ul>
+        <li><strong>חזור לבדוק אם יש התוויה לשוק ראשון והמשך שוב</strong></li>
+        </ul>
+        </div>
+      </details>
+
+          <details>
+      <summary>שאלות חזרה</summary>
+      <div class="content">
+        <div class="loading">טוען שאלות...</div>
+        <div id="quiz-container"></div>
+        
+        <div id="score-display" style="margin-top: 30px; padding: 20px; background: #e9ecef; border-radius: 8px; text-align: center; font-size: 1.2em; font-weight: bold; display: none;">
+          <div id="score-text"></div>
+          <button onclick="resetQuiz()" style="margin-top: 10px; padding: 10px 20px; background: #1976d2; color: white; border: none; border-radius: 5px; cursor: pointer;">התחל מחדש</button>
+        </div>
+      </div>
+    </details>
+
+  </div>
+
+  <script>
+    let quizData = null;
+    let shuffledQuestions = [];
+    let currentQuestionIndex = 0;
+    let correctAnswers = 0;
+    let totalQuestions = 0; // Changed to dynamic value
+
+    // Load quiz data from JSON file
+    async function loadQuizData() {
+      try {
+        const response = await fetch('../../json/vt_vf_quiz.json');
+        if (!response.ok) {
+          throw new Error('Failed to load quiz data');
+        }
+        quizData = await response.json();
+        
+        // Set total questions based on actual data length
+        totalQuestions = quizData.length || (quizData.questions ? quizData.questions.length : 0);
+        
+        return true;
+      } catch (error) {
+        console.error('Error loading quiz data:', error);
+        document.querySelector('.loading').innerHTML = 'שגיאה בטעינת השאלות. אנא ודא שקובץ asthma_quiz.json נמצא באותה תיקייה.';
+        return false;
+      }
+    }
+
+    // Shuffle array function
+    function shuffleArray(array) {
+      const shuffled = [...array];
+      for (let i = shuffled.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
+      }
+      return shuffled;
+    }
+
+    // Initialize quiz
+    async function initializeQuiz() {
+      if (!quizData) {
+        const loaded = await loadQuizData();
+        if (!loaded) return;
+      }
+      
+      // Handle both array format and object with questions property
+      const questions = Array.isArray(quizData) ? quizData : quizData.questions || [];
+      totalQuestions = questions.length;
+      
+      shuffledQuestions = shuffleArray(questions);
+      currentQuestionIndex = 0;
+      correctAnswers = 0;
+      
+      const quizContainer = document.getElementById('quiz-container');
+      const loadingDiv = document.querySelector('.loading');
+      
+      loadingDiv.style.display = 'none';
+      quizContainer.innerHTML = '';
+      
+      shuffledQuestions.forEach((question, index) => {
+        const questionDiv = createQuestionElement(question, index + 1);
+        quizContainer.appendChild(questionDiv);
+      });
+    }
+
+    // Create question element
+    function createQuestionElement(question, questionNumber) {
+      const questionDiv = document.createElement('div');
+      questionDiv.className = 'question';
+      questionDiv.id = `question-${question.id}`;
+      
+      const questionTitle = document.createElement('h4');
+      questionTitle.textContent = `${questionNumber}. ${question.question}`;
+      questionDiv.appendChild(questionTitle);
+      
+      // Shuffle options for multiple choice questions
+      const shuffledOptions = question.type === 'multiple_choice' ? 
+        shuffleArray(question.options.map((option, index) => ({text: option, originalIndex: index}))) :
+        question.options.map((option, index) => ({text: option, originalIndex: index}));
+      
+      shuffledOptions.forEach((option, index) => {
+        const optionDiv = document.createElement('div');
+        optionDiv.className = 'answer-option';
+        
+        if (question.type === 'multiple_choice') {
+          // Hebrew letters for multiple choice
+          const hebrewLetters = ['א', 'ב', 'ג', 'ד'];
+          optionDiv.textContent = `${hebrewLetters[index]}. ${option.text}`;
+        } else {
+          optionDiv.textContent = option.text;
+        }
+        
+        optionDiv.onclick = () => checkAnswer(optionDiv, option.originalIndex === question.correct, question.id, question.correct);
+        questionDiv.appendChild(optionDiv);
+      });
+      
+      return questionDiv;
+    }
+
+    // Check answer function
+    function checkAnswer(selectedElement, isCorrect, questionId, correctIndex) {
+      const questionDiv = selectedElement.parentElement;
+      const options = questionDiv.querySelectorAll('.answer-option');
+      
+      // Check if already answered
+      if (options[0].style.pointerEvents === 'none') {
+        return;
+      }
+      
+      // Remove previous markings
+      options.forEach(option => {
+        option.classList.remove('correct', 'incorrect');
+      });
+      
+      if (isCorrect) {
+        selectedElement.classList.add('correct');
+        correctAnswers++;
+      } else {
+        selectedElement.classList.add('incorrect');
+        // Find and mark the correct answer
+        const question = shuffledQuestions.find(q => q.id === questionId);
+        options.forEach((option, index) => {
+          const optionText = option.textContent;
+          const correctOptionText = question.options[correctIndex];
+          if (optionText.includes(correctOptionText)) {
+            option.classList.add('correct');
+          }
+        });
+      }
+      
+      currentQuestionIndex++;
+      
+      // Disable further clicking on this question
+      options.forEach(option => {
+        option.style.pointerEvents = 'none';
+      });
+      
+      // Show score if all questions answered
+      if (currentQuestionIndex === totalQuestions) {
+        showScore();
+      }
+    }
+
+    // Show score function
+    function showScore() {
+      const scoreDisplay = document.getElementById('score-display');
+      const scoreText = document.getElementById('score-text');
+      const percentage = Math.round((correctAnswers / totalQuestions) * 100);
+      
+      let gradeText = '';
+      if (percentage >= 90) gradeText = 'מעולה!';
+      else if (percentage >= 80) gradeText = 'טוב מאוד!';
+      else if (percentage >= 70) gradeText = 'טוב!';
+      else if (percentage >= 60) gradeText = 'מספיק!';
+      else gradeText = 'נדרשת חזרה על החומר';
+      
+      scoreText.innerHTML = `הציון שלך: ${correctAnswers}/${totalQuestions} (${percentage}%)<br>${gradeText}`;
+      scoreDisplay.style.display = 'block';
+      scoreDisplay.scrollIntoView({ behavior: 'smooth' });
+    }
+
+    // Reset quiz function
+    function resetQuiz() {
+      document.getElementById('score-display').style.display = 'none';
+      document.querySelector('.loading').style.display = 'block';
+      document.querySelector('.loading').innerHTML = 'טוען שאלות...';
+      
+      // Small delay to show loading
+      setTimeout(() => {
+        initializeQuiz();
+      }, 500);
+    }
+
+    // Initialize quiz when page loads
+    document.addEventListener('DOMContentLoaded', function() {
+      setTimeout(() => {
+        initializeQuiz();
+      }, 1000);
+    });
+    
+        const hamburgerBtn = document.getElementById('hamburgerBtn');
+        const sideMenu = document.getElementById('sideMenu');
+        const overlay = document.getElementById('overlay');
+
+        // פתיחה/סגירה של התפריט
+        hamburgerBtn.addEventListener('click', function() {
+            hamburgerBtn.classList.toggle('active');
+            sideMenu.classList.toggle('open');
+            overlay.classList.toggle('active');
+        });
+
+        // סגירה בלחיצה על האוברליי
+        overlay.addEventListener('click', function() {
+            hamburgerBtn.classList.remove('active');
+            sideMenu.classList.remove('open');
+            overlay.classList.remove('active');
+        });
+
+        // סגירה בלחיצה על ESC
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                hamburgerBtn.classList.remove('active');
+                sideMenu.classList.remove('open');
+                overlay.classList.remove('active');
+            }
+        });
+    </script>
+	  <script src="/mda/js/hamburger-menu.js"></script>
+  </script>
+  </body>
+</html>

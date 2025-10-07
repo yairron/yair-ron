@@ -1,0 +1,619 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <title>שבץ מוחי - סיכום</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <script 
+      src="https://cdn.counter.dev/script.js" 
+      data-id="87cd2eee-d5db-43dc-9575-16e58a14c32d" 
+      data-utcoffset="3" 
+      defer 
+      referrerpolicy="no-referrer"></script>
+
+<style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f7f7f7;
+      margin: 0;
+      padding: 0 10vw;
+    }
+    .top-link {
+      position: fixed;
+      top: 0;
+      right: 0;
+      left: 0;
+      background: #1976d2;
+      color: #fff;
+      text-align: center;
+      padding: 8px 0 4px 0;
+      z-index: 101;
+      font-size: 1.1em;
+      text-decoration: none;
+      letter-spacing: 1px;
+      box-shadow: 0 2px 8px #bbb;
+    }
+    .sticky-header {
+      position: fixed;
+      top: 36px;
+      right: 0;
+      left: 0;
+      background: #fff;
+      z-index: 100;
+      text-align: center;
+      padding: 18px 0 10px 0;
+      font-size: 2em;
+      font-weight: bold;
+      box-shadow: 0 2px 8px #ddd;
+      border-bottom: 1px solid #eee;
+      /**/
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    
+    .content-wrapper {
+      margin-top: 100px;
+    }
+    details {
+      background: #fff;
+      border-radius: 8px;
+      margin: 16px 0;
+      box-shadow: 0 2px 8px #ddd;
+    }
+    summary {
+      font-size: 1.2em;
+      font-weight: bold;
+      cursor: pointer;
+      padding: 12px;
+      outline: none;
+    }
+
+    .content div {
+    margin: 0.3em 0;
+    line-height: 1.4;
+      }
+      .indent-1 { margin-right: 20px; }
+      .indent-2 { margin-right: 40px; }
+      .indent-3 { margin-right: 60px; }
+
+      .two-columns {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 2px;
+        max-width: 500px;
+        margin: 0.1em 0;
+        line-height: 1.4;
+        }
+        
+        .column-item {
+        margin-right: 60px;
+        }
+
+    /* סגנונות התפריט */
+        .hamburger-menu {
+            cursor: pointer;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-around;
+            width: 30px;
+            height: 25px;
+            background: transparent;
+            border: none;
+            padding: 0;
+            margin-right: 20px;
+            
+        }
+
+        .hamburger-line {
+            width: 100%;
+            height: 3px;
+            background-color: #333;
+            border-radius: 2px;
+            transition: 0.3s;
+        }
+
+        .hamburger-menu.active .hamburger-line:nth-child(1) {
+            transform: rotate(45deg) translate(8px, 8px);
+        }
+
+        .hamburger-menu.active .hamburger-line:nth-child(2) {
+            opacity: 0;
+        }
+
+        .hamburger-menu.active .hamburger-line:nth-child(3) {
+            transform: rotate(-45deg) translate(8px, -8px);
+        }
+
+        .side-menu {
+            position: fixed;
+            top: 0;
+            right: -15%;
+            width: 15%;
+            height: 100vh;
+            background-color: white;
+            box-shadow: -2px 0 10px rgba(0,0,0,0.1);
+            transition: right 0.3s ease;
+            z-index: 1000;
+            padding: 0;
+            border-left: 1px solid #ddd;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .side-menu.open {
+            right: 0;
+        }
+
+        .side-menu h3 {
+            padding: 20px;
+            background-color: #1976d2;
+            color: white;
+            margin: 0;
+            text-align: center;
+            font-size: 18px;
+            font-weight: bold;
+            flex-shrink: 0;
+        }
+
+        .side-menu-content {
+            flex: 1;
+            overflow-y: auto;
+            overflow-x: hidden;
+        }
+
+        .side-menu ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .side-menu li {
+            border-bottom: 1px solid #eee;
+        }
+
+        .side-menu a {
+            display: block;
+            padding: 15px 20px;
+            color: #0077cc;
+            text-decoration: none;
+            transition: background-color 0.3s;
+            font-size: 16px;
+        }
+
+        .side-menu a:hover {
+            background-color: #f0f0f0;
+            text-decoration: underline;
+        }
+
+        .overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.5);
+            visibility: hidden;
+            opacity: 0;
+            transition: opacity 0.3s, visibility 0.3s;
+            z-index: 999;
+        }
+
+        .overlay.active {
+            visibility: visible;
+            opacity: 1;
+        }
+
+       .menu-title {
+            flex-grow: 1;
+            text-align: center;
+            white-space: nowrap;
+            font-size: clamp(1rem, 4vw, 2rem);
+            padding: 0 5px;
+       }
+
+        .menu-spacer {
+            width: 30px;
+            margin-left: 20px;
+        }
+/* עיצוב סרגל הגלילה */
+        .side-menu-content::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        .side-menu-content::-webkit-scrollbar-track {
+            background: #f1f1f1;
+        }
+
+        .side-menu-content::-webkit-scrollbar-thumb {
+            background: #c1c1c1;
+            border-radius: 4px;
+        }
+
+        .side-menu-content::-webkit-scrollbar-thumb:hover {
+            background: #a8a8a8;
+			}
+/* כפתור חזרה בפינה השמאלית */
+    .back-button {
+      position: absolute;
+      left: 15px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: #ffffff;
+      text-decoration: none;
+      font-size: 1em;
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      cursor: pointer;
+      transition: opacity 0.2s;
+    }
+    
+    .back-button:hover {
+      opacity: 0.8;
+    }
+    
+    .back-arrow {
+      font-size: 1.2em;
+      font-weight: bold;
+      
+    }	
+    details[open] summary { color: #1976d2; }
+    .content { padding: 0 16px 16px 16px; }
+    ul { margin: 0; padding-right: 20px; }
+    li { margin-bottom: 6px; }
+    blockquote {
+      background: #e3f2fd;
+      border-right: 5px solid #1976d2;
+      margin: 12px 0;
+      padding: 10px 16px;
+      font-style: italic;
+      color: #1976d2;
+    }
+    @media (max-width: 600px) {
+      h2 {
+        font-size: 40px;
+      }
+  
+      .projects a, .title-link {
+        font-size: 26px;
+        margin: 25px 0;
+      }
+      /* תיקון התפריט הצדדי במסכים קטנים */
+       .side-menu {
+                width: 70%;
+                right: -70%;
+            }
+             .two-columns {
+                grid-template-columns: 1fr;
+             }
+             html, body {
+    touch-action: manipulation;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    overflow-x: hidden;
+  }
+  
+  * {
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+  }
+
+    }
+  </style>
+</head>
+<body>
+  <a href="../../../index.html" class="top-link">
+  	חזרה לתפריט הראשי
+		   <div class="back-button" onclick="history.back()">
+			 <span class="back-arrow">←</span>
+			 <span>חזרה</span>
+		   </div>
+		 </a>
+		<div class="sticky-header">		
+		<button class="hamburger-menu" id="hamburgerBtn">
+            <div class="hamburger-line"></div>
+            <div class="hamburger-line"></div>
+            <div class="hamburger-line"></div>
+        </button>
+        <div class="menu-title">שבץ מוחי - סיכום</div>
+        <div class="menu-spacer"></div>
+    </div>
+
+    <div class="overlay" id="overlay"></div>
+    
+    <div class="side-menu" id="sideMenu">
+        <h3>תפריט ראשי</h3>
+        <div class="side-menu-content">
+            <ul>
+    <!--            <li><a href="atan/atan_index.html">אט"ן</a></li>
+				<li><a href="bls/bls_index.html">BLS</a></li>
+				<li><a href="Bechirim/bechirim_index.html">קורס בכירים</a></li>
+                <li><a href="Bechirim/protocols/ALS2024.HTML">אוגדן ALS 2024</a></li>
+                <li><a href="Bechirim/protocols/protocols_index.html">פרוטוקולים</a></li>
+                <li><a href="Bechirim/Sikumim/Sikumim_index.html">מצגות וסיכומי מצגות</a></li>
+                <li><a href="Bechirim/Sikumim/SIKUM_LESSONS/lessons_index.html">סיכומי שיעורים</a></li>
+                <li><a href="Bechirim/Sikumim/SIKUM_LESSONS/ECG_Practice_MI.html">תרגול אק"ג - אוטם</a></li>
+                <li><a href="Bechirim/Sikumim/SIKUM_LESSONS/ECG_Practice_arrhythm.html">תרגול אק"ג - הפרעות קצב</a></li>
+                <li><a href="Bechirim/Phrases/Phrases.html">אינדקס מושגים</a></li>
+                <li><a href="Bechirim/trufot_Bait_search_site/Trufot_BAEIT.html">תרופות נפוצות בבית</a></li>
+                <li><a href="Bechirim/Sikumim/Pdf_files/pdf_index.html">ספרות</a></li> -->
+         <!--    <li><a href="#" onclick="alert('הוסף קישור לספרות')">ספרות</a></li> -->
+            </ul>
+        </div>
+	</div>
+  <div class="content-wrapper">
+
+  </div>
+</details>
+<details>
+  <summary>אונות המוח</summary>
+  <div class="content">
+    <div style="margin-right: 20px;">● <strong>אונה קדמית Frontal lobe</strong></div>
+    <div style="margin-right: 20px;">● <strong>אונה רקתית Temporal lobe</strong></div>
+    <div style="margin-right: 20px;">● <strong>אונה קודקודית Parietal lobe</strong></div>
+    <div style="margin-right: 20px;">● <strong>אונה עורפית Occipital lobe</strong></div>
+  </div>
+</details>
+<details>
+  <summary>קרומים וחללים</summary>
+  <div class="content">
+    <div style="margin-right: 20px;">● <strong>Dura Mater</strong></div>
+    <div style="margin-right: 40px;">○ מעליו החלל האפידורלי</div>
+    <div style="margin-right: 40px;">○ מתחתיו החלל הסאבדורלי</div>
+    <div style="margin-right: 20px;">● <strong>Arachnoid Mater</strong></div>
+    <div style="margin-right: 40px;">○ מתחתיו החלל הסאב-ארכנואידאלי</div>
+    <div style="margin-right: 20px;">● <strong>Pia Mater</strong></div>
+    <div style="margin-right: 40px;">○ בחדרי המח נוצר ה-CSF</div>
+  </div>
+</details>
+<details>
+  <summary>הגדרה</summary>
+  <div class="content">
+    <div style="margin-right: 20px;">● <strong>מחלה הגורמת לחסכים נוירולוגיים עקב פגיעה בזרימת דם מוחית</strong></div>
+    <div style="margin-right: 20px;">● <strong>Stroke - שבץ מוחי, מתייחס לליקוי נוירולוגי חריף בעקבות הפרעה באספקת הדם למוח (שבץ איסכמי), או קרע של כלי דם באזור מסוים במוח (שבץ המורגי).</strong></div>
+    <div style="margin-right: 20px;">● <strong>גורמים נוספים, כגון חוסר פרפוזיה מקומית, היצרות כלי דם וכדומה - יכולים לגרום לשבץ או לתסמינים דומים</strong></div>
+  </div>
+</details>
+<details>
+  <summary>גורמי סיכון כלליים לשבץ</summary>
+  <div class="content">
+    <div style="margin-right: 20px;">● <strong>גורמי סיכון בלתי נשלטים:</strong></div>
+    <div style="margin-right: 40px;">○ גיל</div>
+    <div style="margin-right: 40px;">○ מין</div>
+    <div style="margin-right: 40px;">○ גזע</div>
+    <div style="margin-right: 40px;">○ אירוע קודם</div>
+    <div style="margin-right: 40px;">○ תורשה</div>
+    <div style="margin-right: 20px;">● <strong>גורמי סיכון הניתנים למיתון:</strong></div>
+    <div style="margin-right: 40px;">○ HTN</div>
+    <div style="margin-right: 40px;">○ עישון</div>
+    <div style="margin-right: 40px;">○ מחלות לב</div>
+    <div style="margin-right: 40px;">○ פרפור עליות</div>
+    <div style="margin-right: 40px;">○ סוכרת</div>
+    <div style="margin-right: 40px;">○ בעיות קרישה</div>
+    <div style="margin-right: 40px;">○ היצרות הקרוטיד</div>
+  </div>
+</details>
+<details>
+  <summary>סוגי שבץ</summary>
+  <div class="content">
+    <div style="margin-right: 20px;">● <strong>שבץ מחולק ל-2 קטגוריות עיקריות:</strong></div>
+    <div style="margin-right: 40px;">○ שבץ חסימתי איסכמי - Ischemic Stroke - רוב המקרים (כ-85%)</div>
+    <div style="margin-right: 60px;">○ שבץ חסימתי חולף (TIA)</div>
+    <div style="margin-right: 40px;">○ שבץ דימומי המורגי - Hemorrhagic Stroke</div>
+  </div>
+</details>
+<details>
+  <summary>שבץ איסכמי</summary>
+  <div class="content">
+    <div style="margin-right: 20px;">● <strong>חסימת כלי דם מוחי או חוסר פרפוזיה לכלי דם מוחי</strong></div>
+    <div style="margin-right: 20px;">● <strong>נגרמת בראש ובראשונה מתהליכים טרשתיים ועל כן גורמי הסיכון דומים</strong></div>
+    <div style="margin-right: 20px;">● <strong>גורמת לירידה באספקת החמצן והגלוקוז</strong></div>
+    <div style="margin-right: 20px;">● <strong>מחלות רקע שכיחות המהוות גורם סיכון:</strong></div>
+    <div style="margin-right: 40px;">○ יתר לחץ דם, יתר שומנים בדם, סוכרת, מחלת לב איסכמית, פרפור עליות</div>
+  </div>
+</details>
+<details>
+  <summary>Time Is Brain</summary>
+  <div class="content">
+    <div style="margin-right: 20px;">● <strong>אזור המח שמת - לא ניתן לשיקום</strong></div>
+    <div style="margin-right: 20px;">● <strong>האזור שניתן לשקם הוא החלק מסביב ל"נזק הגדול" שעדיין לא עבר נקרוזה – נקרא פנומברה</strong></div>
+  </div>
+</details>
+<details>
+  <summary>שבץ המורגי</summary>
+  <div class="content">
+    <div style="margin-right: 20px;">● <strong>נהוג לחלק את השבץ ההמורגי ל-2 סוגים:</strong></div>
+    <div style="margin-right: 40px;">1. כלי דם בתוך המוח נקרע, בד"כ פגיעה בעורקיקים</div>
+    <div style="margin-right: 40px;">2. דימום שנגרם כתוצאה מזליגת דם מעורק הנמצא קרוב לפני השטח של המוח</div>
+    <div style="margin-right: 20px;">● <strong>שבץ המורגי (ספונטני) עקב אנוריזמה</strong></div>
+    <div style="margin-right: 20px;">● <strong>אנוריזמה - היחלשות דופן כלי הדם</strong></div>
+  </div>
+</details>
+
+<details>
+  <summary>סימנים לשבץ מוחי</summary>
+  <div class="content">
+    <div style="margin-right: 20px;">● <strong>סימני אירוע מוחי מאוד מגוונים ותלויים במיקום האנטומי בו התרחשה הפגיעה</strong></div>
+    <div style="margin-right: 20px;">● <strong>כמו כן נהוג לחלק את הסימנים לפי אזורי המח:</strong></div>
+    <div style="margin-right: 40px;">○ המיספרה ימין</div>
+    <div style="margin-right: 40px;">○ המיספרה שמאל</div>
+    <div style="margin-right: 40px;">○ מח קטן (כלי דם גדול)</div>
+    <div style="margin-right: 40px;">○ גזע מח (כלי דם גדול)</div>
+    <div style="margin-right: 40px;">○ סימני דמם</div>
+    <div style="margin-right: 20px;">● <strong>לאחר אירוע מוחי יכולים להיות חסכים נוירולוגיים שאריים (Residual)</strong></div>
+    <div style="margin-right: 20px;">● <strong>החסכים לרוב קבועים אך ככל שההתערבות תתבצע מוקדם יותר כך הסיכוי לשימור התפקוד גבוה יותר</strong></div>
+  </div>
+</details>
+<details>
+  <summary>המיספרות</summary>
+  <div class="content">
+    <div style="margin-right: 20px;">● <strong>פגיעה בצד אחד של המיספרה יוביל להתבטאות קלינית של סימנים בצד ההפוך לה</strong></div>
+    <div style="margin-right: 20px;">● <strong>שבץ בהמיספרה ימין יציג סימנים של פגיעה בצד שמאל של הגוף ולהפך</strong></div>
+    <div style="margin-right: 20px;">● <strong>תופעה זו קיימת רק מגובה תצלובת העצבים (גזע המח)</strong></div>
+    <div style="margin-right: 20px;">● <strong>בפנים (מעל תצלובת העצבים) - חלק מהעצבים הקרניאליים מצטלבים, חלק אינם מצטלבים וחלק הם דו-צדדיים - על כן בפנים ובראש הסימנים יכולים להיות בצד הפגיעה או בצד ההופכי</strong></div>
+  </div>
+</details>
+<details>
+  <summary>סימנים נוספים</summary>
+  <div class="content">
+    <div style="margin-right: 20px;">● <strong>סימני גירוי עצב הוואגוס</strong></div>
+    <div style="margin-right: 20px;">● <strong>פרכוסים</strong></div>
+    <div style="margin-right: 20px;">● <strong>טריאדה ע"ש קושינג</strong></div>
+    <div style="margin-right: 20px;">● <strong>עקב בצקת מוחית או דמם</strong></div>
+    <div style="margin-right: 20px;">● <strong>קושינג:</strong></div>
+    <div style="margin-right: 40px;">○ עליה בלחץ דם</div>
+    <div style="margin-right: 40px;">○ ברדיקרדיה</div>
+    <div style="margin-right: 40px;">○ שינויים בדפוסי נשימה</div>
+  </div>
+</details>
+<details>
+  <summary>נקודות חשובות לאנמנזה</summary>
+  <div class="content">
+    <div style="margin-right: 20px;">● <strong>גיל המטופל</strong></div>
+    <div style="margin-right: 20px;">● <strong>מגדר</strong></div>
+    <div style="margin-right: 20px;">● <strong>זמן משוער של הופעת הסימנים</strong></div>
+    <div style="margin-right: 20px;">● <strong>אם לא ידוע - טווח מתי נראה במצב תקין לאחרונה (Last Seen Well)</strong></div>
+    <div style="margin-right: 20px;">● <strong>עבר רפואי</strong></div>
+    <div style="margin-right: 40px;">○ בדגש על גורמי סיכון/שבץ קודם</div>
+    <div style="margin-right: 20px;">● <strong>מצב תפקודי בסיסי</strong></div>
+    <div style="margin-right: 20px;">● <strong>הפרעות קרישה</strong></div>
+    <div style="margin-right: 40px;">○ כולל שימוש בנוגדי קרישה</div>
+  </div>
+</details>
+<details>
+  <summary>FAST-ED</summary>
+  <div class="content">
+    <div style="margin-right: 40px;">● לאור התקדמות בטיפול, הוכנס לסולם קריטריון הערכה נוסף על מנת לעזור להבחין בשבץ מוחי בכלי דם גדול - סטיית מבט</div>
+    <div style="margin-right: 40px;">● F - Face - פנים - האם צד אחד של הפנים נפול? בקש מהמטופל לחייך</div>
+    <div style="margin-right: 40px;">● A - Arms - זרוע - האם זרוע אחת חלשה או נם חוסר תחושה? בקש מהמטופל להרים את שתי הידים, האם כאשר העיניים עצומות יש שוויון בגובה?</div>
+    <div style="margin-right: 40px;">● S - Speech - דיבור - האם הדיבור משובש? בקש מהמטופל לחזור אחרי משפט פשוט, שמע שגיאות של המטופל</div>
+    <div style="margin-right: 40px;">● T - Time - זמן - מתי התחילו הסימנים? תעד את זמן הופעת הסימנים הופעת אחד או יותר מהסימנים דורש פינוי דחוף</div>
+    <div style="margin-right: 40px;">● ED - Eye Deviation - סטיית מבט - בדוק האם מיקוד העיניים זהה שגיאה האם יש שינויו מהמצב הרגיל של המטופל</div>
+  </div>
+</details>
+<details>
+  <summary>טיפול בבית החולים</summary>
+  <div class="content">
+    <div style="margin-right: 20px;">● <strong>טיפול פיברינוליטי, לרוב tPA הינו טיפול תרופתי הניתן ב"מרכז רפואי לטיפול בשבץ"</strong></div>
+    <div style="margin-right: 20px;">● <strong>"מרכז לטיפול בשבץ מוחי" הינו כל בית חולים שמפעיל מלר"ד 24/7</strong></div>
+    <div style="margin-right: 20px;">● <strong>הטיפול ניתן בבתי החולים בהזלפה תוך וורידית ומטרתו להמיס את הקריש שחוסם את כלי הדם במוח</strong></div>
+    <div style="margin-right: 20px;">● <strong>ניתן לתת tPA עד 4.5 שעות מרגע הופעת הסימנים</strong></div>
+    <div style="margin-right: 20px;">● <strong>ניתן לתת גם בטווח זמן החורג מ-4.5 שעות בהתאם לשיקול הדעת של הנוירולוגים בבית החולים</strong></div>
+    <div style="margin-right: 40px;">● למשל במצבים בהם המטופל קם משינה עם סימני שבץ (Wake Up Stroke) - תתבצע הערכה הכוללת מתי המטופל נראה במצב תקין לאחרונה, CT והערכת סיכון מול תועלת</div>
+  </div>
+</details>
+<details>
+  <summary>קריטריונים מקובלים לטיפול טרומבוליטי</summary>
+  <div class="content">
+    <div style="margin-right: 20px;">● <strong>עברו פחות מ-4.5 שעות מרגע הופעת הסימנים</strong></div>
+    <div style="margin-right: 20px;">● <strong>ללא אירוע של חבלת ראש או אירוע מוחי בשלושה חודשים האחרונים</strong></div>
+    <div style="margin-right: 20px;">● <strong>למטופל אין היסטוריה של דימום תוך מוחי, של גידול או מלפורמציה ווסקולרית (AVM)</strong></div>
+    <div style="margin-right: 20px;">● <strong>המטופל לא עבר ניתוח גדול או מורכב בשבועיים האחרונים</strong></div>
+    <div style="margin-right: 20px;">● <strong>לחץ הדם הסיסטולי של המטופל נמוך מ-185mmHg, ולחץ הדם הדיאסטולי נמוך מ-110mmHg</strong></div>
+    <div style="margin-right: 20px;">● <strong>המטופל אינו בעל נטייה לדימומים</strong></div>
+    <div style="margin-right: 40px;">○ למשל המופיליה, טרומבוציטופניה, טיפול בנוגדי קרישה וכדומה</div>
+    <div style="margin-right: 20px;">● <strong>טיפול אנטיאגרגנטי אינו מונע טיפול טרומבוליטי</strong></div>
+    <div style="margin-right: 20px;">● <strong>לא נמצא דימום ב-CT ראש</strong></div>
+    <div style="margin-right: 20px;">● <strong>סוכר מעל 60mg%</strong></div>
+  </div>
+</details>
+<details>
+  <summary>צנתור מוח</summary>
+  <div class="content">
+    <div style="margin-right: 20px;">● <strong>ההליך כולל הכנסת צנתר לעורק מרכזי וניתובו עד הגעה אל המוח</strong></div>
+    <div style="margin-right: 20px;">● <strong>חומר ניגוד מוזרק דרך הקתטר לאזור הרצוי אשר מצולם באמצעות קרני רנטגן, וכך מתקבלת תמונת דימות של כלי הדם</strong></div>
+    <div style="margin-right: 20px;">● <strong>יוד הוא חומר הניגוד הנפוץ ביותר</strong></div>
+  </div>
+</details>
+<details>
+  <summary>מרכזים נוירוכירורגיים</summary>
+  <div class="content">
+    <div style="margin-right: 20px;">● <strong>לא כל בתי החולים בארץ הם בעלי יכולת לבצע צנתור מוח</strong></div>
+    <div style="margin-right: 20px;">● <strong>להלן רשימה של בתי חולים בארץ עם יכולת צנתור מוח (מרכזים נוירוכירורגיים), לא כולם זמינים 24/7, ולכן יש לתאם מול בית החולים טרם הגעת המטופל:</strong></div>
+    <div style="margin-right: 40px;">○ גליל מערבי בנהריה, רמב"ם, בילינסון, איכילוב, שיבא תל השומר, אסף הרופא, שערי צדק, הדסה עין כרם, סורוקה, ברזילי אשקלון (זמינות חלקית)</div>
+  </div>
+</details>
+<details>
+  <summary>מצבים המחקים שבץ</summary>
+  <div class="content">
+    <div style="margin-right: 20px;">● <strong>היפוגליקמיה</strong></div>
+    <div style="margin-right: 40px;">○ חובה למדוד סוכר בכל שינוי במצב הכרה וחשד לשבץ</div>
+    <div style="margin-right: 20px;">● <strong>פרכוסים / מצב פוסט איקטלי</strong></div>
+    <div style="margin-right: 20px;">● <strong>מיגרנה</strong></div>
+    <div style="margin-right: 20px;">● <strong>גידול מוחי</strong></div>
+    <div style="margin-right: 20px;">● <strong>דלקת בעצב הפנים</strong></div>
+    <div style="margin-right: 20px;">● <strong>בעיות אלקטרוליטריות</strong></div>
+    <div style="margin-right: 20px;">● <strong>ספסיס</strong></div>
+    <div style="margin-right: 20px;">● <strong>מצבי חירום פסיכיאטריים</strong></div>
+    <div style="margin-right: 20px;">● <strong>לא תמיד נוכל לדעת – ועל כן יש לחשוד לשבץ אלא אם נשלל באופן חד משמעי</strong></div>
+  </div>
+</details>
+<details>
+  <summary>בדיקת בבינסקי</summary>
+  <div class="content">
+    <div style="margin-right: 20px;">● <strong>רפלקס בבינסקי מתאר תופעה תקינה אצל תינוקות בני שנה שבה גירוי כף הרגל גורם לתנועה בלתי רצונית שבה האצבעות (ובפרט הבוהן) נמתחות כלפי מעלה</strong></div>
+    <div style="margin-right: 20px;">● <strong>אצל בוגרים מצב תקין אמור לגרום לתופעה הפוכה בדיוק: גירוי כף הרגל יגרום לכיפוף של אצבעות כלפי פנים כף הרגל</strong></div>
+    <div style="margin-right: 20px;">● <strong>שינוי מהמצבים התקינים והנורמליים השייכים לחתכי הגילים הנ"ל עלול להעיד על בעיה פתולוגית (מחלתית)</strong></div>
+  </div>
+</details>
+<details>
+  <summary>Bell's Palsy</summary>
+  <div class="content">
+    <div style="margin-right: 20px;">● <strong>השיתוק ע"ש בל</strong></div>
+    <div style="margin-right: 20px;">● <strong>במקרה בו עצב הפנים מגורה מסיבה כלשהיא (דלקת, זיהום), נוצרת בצקת מקומית הפוגעת בהולכה העצבית מהמוח אל הפנים, ונוצר פציאליס</strong></div>
+    <div style="margin-right: 20px;">● <strong>הסימנים מובדלים משבץ בעיקר עקב היעדר סימנים נוירולוגיים נוספים</strong></div>
+  </div>
+</details>
+
+        <details>
+          <summary style="color: red; font-weight: bold;">פרוטוקול גישה למטופל עם חשד לשבץ מוחי</summary>
+          <div class="content">
+            <iframe src="../../protocols/als2024protocols/als2024C3/suspected_stroke_patient_approach_pdfviewer.html" style="width:100%;height:600px;border:none;"></iframe>
+          </div>
+        </details>
+        <details>
+          <summary style="color: red; font-weight: bold;">פרוטוקול לבטלול</summary>
+          <div class="content">
+            <iframe src="../../protocols/als2024protocols/als2024C10/labetalol_pdfviewer.html" style="width:100%;height:600px;border:none;"></iframe>
+          </div>
+        </details>
+
+      </div>
+  <script>
+        const hamburgerBtn = document.getElementById('hamburgerBtn');
+        const sideMenu = document.getElementById('sideMenu');
+        const overlay = document.getElementById('overlay');
+
+        // פתיחה/סגירה של התפריט
+        hamburgerBtn.addEventListener('click', function() {
+            hamburgerBtn.classList.toggle('active');
+            sideMenu.classList.toggle('open');
+            overlay.classList.toggle('active');
+        });
+
+        // סגירה בלחיצה על האוברליי
+        overlay.addEventListener('click', function() {
+            hamburgerBtn.classList.remove('active');
+            sideMenu.classList.remove('open');
+            overlay.classList.remove('active');
+        });
+
+        // סגירה בלחיצה על ESC
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                hamburgerBtn.classList.remove('active');
+                sideMenu.classList.remove('open');
+                overlay.classList.remove('active');
+            }
+        });
+  </script>
+	<script src="/mda/js/hamburger-menu.js"></script>      
+</body>
+</html>

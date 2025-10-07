@@ -1,0 +1,1127 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>פרוטוקול אסתמה</title>
+  <script 
+      src="https://cdn.counter.dev/script.js" 
+      data-id="87cd2eee-d5db-43dc-9575-16e58a14c32d" 
+      data-utcoffset="3" 
+      defer 
+      referrerpolicy="no-referrer"></script>
+
+<style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f7f7f7;
+      margin: 0;
+      padding: 0 10vw;
+    }
+    .top-link {
+      position: fixed;
+      top: 0;
+      right: 0;
+      left: 0;
+      background: #1976d2;
+      color: #fff;
+      text-align: center;
+      padding: 8px 0 4px 0;
+      z-index: 101;
+      font-size: 1.1em;
+      text-decoration: none;
+      letter-spacing: 1px;
+      box-shadow: 0 2px 8px #bbb;
+    }
+    .sticky-header {
+      position: fixed;
+      top: 36px;
+      right: 0;
+      left: 0;
+      background: #fff;
+      z-index: 100;
+      text-align: center;
+      padding: 18px 0 10px 0;
+      font-size: 2em;
+      font-weight: bold;
+      box-shadow: 0 2px 8px #ddd;
+      border-bottom: 1px solid #eee;
+    }
+    .content-wrapper {
+      margin-top: 100px;
+    }
+    details {
+      background: #fff;
+      border-radius: 8px;
+      margin: 16px 0;
+      box-shadow: 0 2px 8px #ddd;
+    }
+
+    summary {
+      font-size: 1.2em;
+      font-weight: bold;
+      cursor: pointer;
+      padding: 12px;
+      outline: none;
+    }
+    details[open] summary { 
+      color: #1976d2; 
+    }
+    .content { 
+      padding: 0 16px 16px 0px; 
+    }
+    ul { 
+      margin: 0; 
+      padding-right: 20px; 
+    }
+    li { 
+        padding-top:  0px;
+        margin-right: 10px;
+        margin-bottom: 6px; 
+    }
+    blockquote {
+      background: #e3f2fd;
+      border-right: 5px solid #1976d2;
+      margin: 12px 0;
+      padding: 10px 16px;
+      font-style: italic;
+      color: #1976d2;
+    }
+    .question {
+      margin: 15px 0;
+      padding: 15px;
+      background: #f8f9fa;
+      border-radius: 8px;
+      border: 1px solid #dee2e6;
+    }
+    .question h4 {
+      margin: 0 0 10px 0;
+      color: #495057;
+    }
+    .answer-option {
+      margin: 8px 0;
+      padding: 10px;
+      background: #fff;
+      border: 1px solid #dee2e6;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+    .answer-option:hover {
+      background: #f8f9fa;
+    }
+    .answer-option.correct {
+      background: #d4edda !important;
+      border-color: #c3e6cb;
+    }
+    .answer-option.incorrect {
+      background: #f8d7da !important;
+      border-color: #f5c6cb;
+    }
+    .answer-option.correct::before {
+      content: "✓ ";
+      color: #155724;
+      font-weight: bold;
+    }
+    .answer-option.incorrect::before {
+      content: "✗ ";
+      color: #721c24;
+      font-weight: bold;
+    }
+    .loading {
+      text-align: center;
+      padding: 20px;
+      font-size: 1.2em;
+      color: #666;
+    }
+       /* CSS לכרטיסיות הלמידה */
+* CSS לכרטיסיות הלמידה */
+.study-cards-controls {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 20px 0;
+  padding: 15px;
+  background: #f8f9fa;
+  border-radius: 8px;
+  border: 1px solid #dee2e6;
+}
+
+.card-nav-btn {
+  background: #1976d2;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+  transition: background-color 0.3s;
+}
+
+.card-nav-btn:hover:not(:disabled) {
+  background: #1565c0;
+}
+
+.card-nav-btn:disabled {
+  background: #ccc;
+  cursor: not-allowed;
+}
+
+#card-counter {
+  font-size: 18px;
+  font-weight: bold;
+  color: #495057;
+}
+
+#study-cards-container {
+  min-height: 300px;
+  margin: 20px 0;
+}
+
+.study-card {
+  background: white;
+  border: 2px solid #dee2e6;
+  border-radius: 12px;
+  padding: 30px;
+  margin: 20px 0;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  cursor: pointer;
+  transition: all 0.3s ease;
+  position: relative;
+  min-height: 200px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.study-card:hover {
+  box-shadow: 0 6px 20px rgba(0,0,0,0.15);
+  transform: translateY(-2px);
+}
+
+.study-card.flipped {
+  background: #e3f2fd;
+  border-color: #1976d2;
+}
+
+.study-card.marked-for-review {
+  border-color: #ff9800;
+  background: #fff3e0;
+}
+
+.study-card.marked-for-review.flipped {
+  background: #ffe0b2;
+  border-color: #ff9800;
+}
+
+.card-content {
+  text-align: center;
+  font-size: 18px;
+  line-height: 1.6;
+}
+
+.card-question {
+  font-weight: bold;
+  color: #495057;
+}
+
+.card-answer {
+  color: #1976d2;
+  margin-top: 20px;
+  padding-top: 20px;
+  border-top: 2px solid #1976d2;
+}
+
+.card-answer ul {
+  text-align: right;
+  margin: 15px 0;
+}
+
+.card-answer li {
+  margin: 8px 0;
+  padding: 5px 0;
+}
+
+.flip-instruction {
+  position: absolute;
+  bottom: 15px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 14px;
+  color: #666;
+  font-style: italic;
+}
+
+.study-cards-actions {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+  margin: 25px 0;
+}
+
+.action-btn {
+  background: #28a745;
+  color: white;
+  border: none;
+  padding: 12px 24px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 16px;
+  transition: background-color 0.3s;
+}
+
+.action-btn:hover {
+  background: #218838;
+}
+
+.mark-btn {
+  background: #ff9800;
+  color: white;
+}
+
+.mark-btn:hover {
+  background: #f57c00;
+}
+
+.mark-btn.marked {
+  background: #e65100;
+}
+
+.mark-btn.marked:hover {
+  background: #bf360c;
+}
+
+#shuffle-cards {
+  background: #ffc107;
+  color: #212529;
+}
+
+#shuffle-cards:hover {
+  background: #e0a800;
+}
+
+.review-status {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 15px 0;
+  padding: 10px 15px;
+  background: #fff8e1;
+  border: 1px solid #ffcc02;
+  border-radius: 6px;
+  font-size: 14px;
+}
+
+#review-counter {
+  font-weight: bold;
+  color: #e65100;
+}
+
+.clear-review-btn {
+  background: #f44336;
+  color: white;
+  border: none;
+  padding: 6px 12px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 12px;
+  transition: background-color 0.3s;
+}
+
+.clear-review-btn:hover {
+  background: #d32f2f;
+}
+
+@media (max-width: 600px) {
+  .study-cards-controls {
+    flex-direction: column;
+    gap: 10px;
+  }
+  
+  .card-nav-btn {
+    padding: 8px 16px;
+    font-size: 14px;
+  }
+  
+  .study-card {
+    padding: 20px;
+    min-height: 150px;
+  }
+  
+  .card-content {
+    font-size: 16px;
+  }
+  
+  .study-cards-actions {
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .review-status {
+    flex-direction: column;
+    gap: 8px;
+    text-align: center;
+  }
+}
+@media (max-width: 600px) {
+      .sticky-header {
+        font-size: 1.2em;
+        padding: 10px 0 6px 0;
+      }
+    }
+  </style>
+</head>
+<body>
+  <a href="../../index.html" class="top-link">חזרה לתפריט הראשי</a>
+  <div class="sticky-header">פרוטוקול אסתמה</div>
+  <div class="content-wrapper">
+
+    <details>
+      <summary>הערך את חומרת ההתקף</summary>
+      <div class="content">
+        <ul>
+          <li><strong>התקף קל או בינוני</strong></li>
+          <ul>
+            <li>תשאול - קוצר נשימה המופיע רק בזמן מאמץ/פעילות</li>
+            <li>ללא קוצר נשימה במנוחה</li>
+            <li>בדיקה גופנית - קצב הנשימה נמוך מ־30 בדקה, אין שימוש בשרירי עזר, אין רטרקציות בין צלעיות, הסטורציה מעל 92% באוויר חדר, המטופל משלים משפטים ללא בעיות</li>
+          </ul>
+          <li><strong>התקף קשה</strong></li>
+          <ul>
+            <li>תשאול - קוצר נשימה המופיע גם במנוחה</li>
+            <li>בדיקה גופנית - קצב הנשימה גבוה מ־30 בדקה, יש שימוש בשרירי עזר, יש רטרקציות בין צלעיות, הסטורציה מתחת 92% באוויר חדר, הדופק מעל 125 בדקה, המטופל מתקשה להשלים משפטים</li>
+          </ul>
+          <li><strong>אי ספיקה נשימתית מאיימת</strong></li>
+          <ul>
+            <li>תשאול סביבתי -- התדרדרות במצב המטופל במהלך השעות/היממה האחרונות/ה</li>
+            <li>בדיקה גופנית -- המטופל בהכרה מעורפלת/אגיטטיבי, נראה תשוש, מאמץ נשימתי "דל", הסטורציה מתחת 90% באוויר חדר ואינה משתפרת (או משתפרת קלות בלבד) עם חמצן</li>
+          </ul>
+          <li><strong>גורמי סיכון העלולים להעיד על צורך בהנשמה</strong></li>
+          <ul>
+            <li>המטופל נזקק בעבר להנשמה או לאשפוז ביחידה לטיפול נמרץ</li>
+            <li>בשנה האחרונה המטופל אושפז מעל פעמיים בגין אסתמה</li>
+            <li>בשנה האחרונה המטופל ביקר מעל 3 פעמים במלר"ד בגין אסתמה</li>
+            <li>המטופל משתמש ביותר מ־2 מכלי ונטולין בחודש</li>
+          </ul>
+        </ul>
+      </div>
+    </details>
+
+    <details>
+      <summary>הושב את המטופל (ככל האפשר)</summary>
+      <div class="content">
+        <ul>
+          <li>מיקום המטופל בישיבה או חצי ישיבה כדי להקל על הנשימה</li>
+        </ul>
+      </div>
+    </details>
+
+    <details>
+      <summary>שקול מתן חמצן</summary>
+      <div class="content">
+        <ul>
+          <li>לצורך שמירה על ערכי סטורציה מעל 94%</li>
+        </ul>
+      </div>
+    </details>
+
+    <details>
+      <summary>התקן עירוי תוך־ורידי או תוך־לשדי</summary>
+      <div class="content">
+        <ul>
+          <li>הכנת גישה תוך ורידית לצורך מתן תרופות</li>
+        </ul>
+      </div>
+    </details>
+
+    <details>
+      <summary>חבר מוניטור למטופל</summary>
+      <div class="content">
+        <ul>
+          <li>מוניטור קצב לב, לחץ דם וסטורציה</li>
+        </ul>
+      </div>
+    </details>
+
+    <details>
+      <summary>מטופל בהתקף קל/בינוני</summary>
+      <div class="content">
+        <ul>
+          <li><strong>אינהלציה</strong></li>
+          <ul>
+            <li>ונטולין 2.5 מ"ג. עד 3 מנות. (בקבוק 100מ"ג/20מ"ל. לשאוב 0.5cc)</li>
+            <li>אירובנט 0.5 מ"ג. מנה חד פעמית (בקבוק 5mg/20cc לשאוב 2cc)</li>
+            <li>להשלים עם סליין ל 5cc</li>
+          </ul>
+          <li><strong>סולומדרול</strong> 125 מ"ג IV מנה חד פעמית. (אמפולה 125mg\2cc)</li>
+        </ul>
+      </div>
+    </details>
+
+    <details>
+      <summary>מטופל בהתקף אסתמה קשה</summary>
+      <div class="content">
+        <ul>
+          <li><strong>שקול מתן אדרנלין</strong> 0.3mg S.C. (שאב 0.3cc למזרק 3cc)</li>
+          <li><strong>אינהלציה</strong></li>
+          <ul>
+            <li>ונטולין 5 מ"ג.עד 3 מנות (בקבוק 100mg/20cc. לשאוב 1cc)</li>
+            <li>אירובנט 0.5 מ"ג. עד 3 מנות (בקבוק 5mg/20cc לשאוב 2cc)</li>
+            <li>להשלים עם סליין ל 5cc</li>
+          </ul>
+          <li><strong>סולומדרול</strong> 125mg IV. מנה חד פעמית</li>
+        </ul>
+      </div>
+    </details>
+
+    <details>
+      <summary>מטופל באי ספיקה נשימתית</summary>
+      <div class="content">
+        <ul>
+          <li><strong>אדרנלין</strong> 0.5mg IM. (שאב 0.5cc למזרק 3cc)</li>
+          <li><strong>אינהלציה</strong></li>
+          <ul>
+            <li>ונטולין 2.5 מ"ג.עד 3 מנות</li>
+            <li>אירובנט 0.5 מ"ג. עד 3 מנות</li>
+            <li>להשלים עם סליין ל 5cc</li>
+          </ul>
+          <li><strong>מגנזיום סולפט</strong> 2 גר' ב 100 מ"ל סליין תוך 10 דקות. (אמפולה 5gr/10cc). מנה חד פעמית</li>
+          <li><strong>סולומדרול</strong> 125 מ"ג IV. מנה חד פעמית</li>
+          <li><strong>אם לא חל שיפור</strong></li>
+          <ul>
+            <li>שקול מתן סיוע נשימתי באמצעות CPAP</li>
+            <li>שקול מעבר לפרוטוקול ניהול מתקדם של נתיב אויר</li>
+          </ul>
+        </ul>
+      </div>
+    </details>
+
+    <details>
+      <summary>פינוי</summary>
+      <div class="content">
+        <ul>
+          <li>פינוי דחוף לבית חולים קרוב. </li>
+          <li>  המשך ניטור. הערכת מדדים דחופה.</li>
+          <li> סליין בקצב 20מ"ל/דקה. עד 500 מ"ל</li>
+          <li>במידת הצורך המשך אינהלציות ונטולין/אירובנט עד המקסימום.</li>
+          <li> השלם סולמדרול (אם לא ניתן קודם)</li>
+          <li>שקול דיווח מקדים לבית החולים</li>
+        </ul>
+      </div>
+    </details>
+
+    <details>
+      <summary>שאלות חזרה</summary>
+      <div class="content">
+        <div class="loading">טוען שאלות...</div>
+        <div id="quiz-container"></div>
+        
+        <div id="score-display" style="margin-top: 30px; padding: 20px; background: #e9ecef; border-radius: 8px; text-align: center; font-size: 1.2em; font-weight: bold; display: none;">
+          <div id="score-text"></div>
+          <button onclick="resetQuiz()" style="margin-top: 10px; padding: 10px 20px; background: #1976d2; color: white; border: none; border-radius: 5px; cursor: pointer;">התחל מחדש</button>
+        </div>
+      </div>
+    </details>
+
+  </div>
+
+ <!-- הוסף את האקורדיון הזה אחרי אקורדיון "שאלות חזרה" -->
+<details ontoggle="handleAccordionToggle(this)">
+  <summary>כרטיסיות למידה</summary>
+  <div class="content">
+    <div class="study-cards-controls">
+      <button id="prev-card" onclick="previousCard()" class="card-nav-btn">→ הקודם</button>
+      <span id="card-counter">1 / 0</span>
+      <button id="next-card" onclick="nextCard()" class="card-nav-btn">הבא ←</button>
+    </div>
+    
+    <div id="study-cards-container">
+      <div class="loading">טוען כרטיסיות...</div>
+    </div>
+    
+    <div class="study-cards-actions">
+      <button id="mark-for-review" onclick="toggleMarkForReview()" class="action-btn mark-btn">סמן לחזרה</button>
+      <button id="shuffle-cards" onclick="shuffleCards()" class="action-btn">ערבב כרטיסיות</button>
+      <button id="reset-cards" onclick="resetCards()" class="action-btn">התחל מחדש</button>
+    </div>
+    
+    <div class="review-status">
+      <span id="review-counter">שאלות לחזרה: 0</span>
+      <button id="clear-review" onclick="clearReviewQuestions()" class="clear-review-btn">נקה רשימת חזרה</button>
+    </div>
+  </div>
+</details>
+
+  <script>
+   let quizData = null;
+    let shuffledQuestions = [];
+    let currentQuestionIndex = 0;
+    let correctAnswers = 0;
+    let totalQuestions = 0; // Changed to dynamic value
+
+    // Load quiz data from JSON file
+    async function loadQuizData() {
+      try {
+        const response = await fetch('../../json/asthma_quiz.json');
+        if (!response.ok) {
+          throw new Error('Failed to load quiz data');
+        }
+        quizData = await response.json();
+        
+        // Set total questions based on actual data length
+        totalQuestions = quizData.length || (quizData.questions ? quizData.questions.length : 0);
+        
+        return true;
+      } catch (error) {
+        console.error('Error loading quiz data:', error);
+        document.querySelector('.loading').innerHTML = 'שגיאה בטעינת השאלות. אנא ודא שקובץ asthma_quiz.json נמצא באותה תיקייה.';
+        return false;
+      }
+    }
+
+    // Shuffle array function
+    function shuffleArray(array) {
+      const shuffled = [...array];
+      for (let i = shuffled.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
+      }
+      return shuffled;
+    }
+
+    // Initialize quiz
+    async function initializeQuiz() {
+      if (!quizData) {
+        const loaded = await loadQuizData();
+        if (!loaded) return;
+      }
+      
+      // Handle both array format and object with questions property
+      const questions = Array.isArray(quizData) ? quizData : quizData.questions || [];
+      totalQuestions = questions.length;
+      
+      shuffledQuestions = shuffleArray(questions);
+      currentQuestionIndex = 0;
+      correctAnswers = 0;
+      
+      const quizContainer = document.getElementById('quiz-container');
+      const loadingDiv = document.querySelector('.loading');
+      
+      loadingDiv.style.display = 'none';
+      quizContainer.innerHTML = '';
+      
+      shuffledQuestions.forEach((question, index) => {
+        const questionDiv = createQuestionElement(question, index + 1);
+        quizContainer.appendChild(questionDiv);
+      });
+    }
+
+    // Create question element
+    function createQuestionElement(question, questionNumber) {
+      const questionDiv = document.createElement('div');
+      questionDiv.className = 'question';
+      questionDiv.id = `question-${question.id}`;
+      
+      const questionTitle = document.createElement('h4');
+      questionTitle.textContent = `${questionNumber}. ${question.question}`;
+      questionDiv.appendChild(questionTitle);
+      
+      // Shuffle options for multiple choice questions
+      const shuffledOptions = question.type === 'multiple_choice' ? 
+        shuffleArray(question.options.map((option, index) => ({text: option, originalIndex: index}))) :
+        question.options.map((option, index) => ({text: option, originalIndex: index}));
+      
+      shuffledOptions.forEach((option, index) => {
+        const optionDiv = document.createElement('div');
+        optionDiv.className = 'answer-option';
+        
+        if (question.type === 'multiple_choice') {
+          // Hebrew letters for multiple choice
+          const hebrewLetters = ['א', 'ב', 'ג', 'ד'];
+          optionDiv.textContent = `${hebrewLetters[index]}. ${option.text}`;
+        } else {
+          optionDiv.textContent = option.text;
+        }
+        
+        optionDiv.onclick = () => checkAnswer(optionDiv, option.originalIndex === question.correct, question.id, question.correct);
+        questionDiv.appendChild(optionDiv);
+      });
+      
+      return questionDiv;
+    }
+
+    // Check answer function
+    function checkAnswer(selectedElement, isCorrect, questionId, correctIndex) {
+      const questionDiv = selectedElement.parentElement;
+      const options = questionDiv.querySelectorAll('.answer-option');
+      
+      // Check if already answered
+      if (options[0].style.pointerEvents === 'none') {
+        return;
+      }
+      
+      // Remove previous markings
+      options.forEach(option => {
+        option.classList.remove('correct', 'incorrect');
+      });
+      
+      if (isCorrect) {
+        selectedElement.classList.add('correct');
+        correctAnswers++;
+      } else {
+        selectedElement.classList.add('incorrect');
+        // Find and mark the correct answer
+        const question = shuffledQuestions.find(q => q.id === questionId);
+        options.forEach((option, index) => {
+          const optionText = option.textContent;
+          const correctOptionText = question.options[correctIndex];
+          if (optionText.includes(correctOptionText)) {
+            option.classList.add('correct');
+          }
+        });
+      }
+      
+      currentQuestionIndex++;
+      
+      // Disable further clicking on this question
+      options.forEach(option => {
+        option.style.pointerEvents = 'none';
+      });
+      
+      // Show score if all questions answered
+      if (currentQuestionIndex === totalQuestions) {
+        showScore();
+      }
+    }
+
+    // Show score function
+    function showScore() {
+      const scoreDisplay = document.getElementById('score-display');
+      const scoreText = document.getElementById('score-text');
+      const percentage = Math.round((correctAnswers / totalQuestions) * 100);
+      
+      let gradeText = '';
+      if (percentage >= 90) gradeText = 'מעולה!';
+      else if (percentage >= 80) gradeText = 'טוב מאוד!';
+      else if (percentage >= 70) gradeText = 'טוב!';
+      else if (percentage >= 60) gradeText = 'מספיק!';
+      else gradeText = 'נדרשת חזרה על החומר';
+      
+      scoreText.innerHTML = `הציון שלך: ${correctAnswers}/${totalQuestions} (${percentage}%)<br>${gradeText}`;
+      scoreDisplay.style.display = 'block';
+      scoreDisplay.scrollIntoView({ behavior: 'smooth' });
+    }
+
+    // Reset quiz function
+    function resetQuiz() {
+      document.getElementById('score-display').style.display = 'none';
+      document.querySelector('.loading').style.display = 'block';
+      document.querySelector('.loading').innerHTML = 'טוען שאלות...';
+      
+      // Small delay to show loading
+      setTimeout(() => {
+        initializeQuiz();
+      }, 500);
+    }
+
+    // Initialize quiz when page loads
+    document.addEventListener('DOMContentLoaded', function() {
+      setTimeout(() => {
+        initializeQuiz();
+      }, 1000);
+    });
+
+    // Study cards functionality
+// משתנים עבור כרטיסיות הלמידה
+let studyCards = [];
+let currentCardIndex = 0;
+let isCardFlipped = false;
+let markedForReview = new Set(); // שאלות שסומנו לחזרה
+let originalStudyCards = []; // העותק המקורי של הכרטיסיות
+
+// פונקציה חדשה לרענון רשימת הכרטיסיות
+function refreshStudyCards(keepPosition = false) {
+  const currentCardId = studyCards.length > 0 ? studyCards[currentCardIndex]?.id : null;
+  studyCards = createStudyCardsWithReviews();
+  
+  if (keepPosition && currentCardId) {
+    // נסה למצוא את הכרטיסייה הנוכחית ברשימה החדשה
+    const newIndex = studyCards.findIndex(card => card.id === currentCardId);
+    if (newIndex !== -1) {
+      currentCardIndex = newIndex;
+    } else {
+      // אם לא נמצאה, נסה למצוא את הכרטיסייה הקרובה ביותר
+      currentCardIndex = Math.min(currentCardIndex, studyCards.length - 1);
+    }
+  } else {
+    currentCardIndex = 0; // תמיד התחל מהכרטיסייה הראשונה אחרי רענון
+  }
+  
+  // ודא שהאינדקס תקין
+  if (currentCardIndex >= studyCards.length) {
+    currentCardIndex = Math.max(0, studyCards.length - 1);
+  }
+  
+  isCardFlipped = false;
+  displayCurrentCard();
+  updateCardCounter();
+  updateNavigationButtons();
+  updateReviewCounter();
+}
+
+// טעינת כרטיסיות הלמידה
+async function loadStudyCards() {
+  try {
+    // אם כבר יש נתונים מהקוויז, השתמש בהם
+    if (quizData) {
+      createStudyCardsFromQuiz();
+      return true;
+    }
+    
+    // אחרת, טען מהקובץ
+    const response = await fetch('../../json/pulmonary_edema_quiz.json');
+    if (!response.ok) {
+      throw new Error('Failed to load study cards data');
+    }
+    const data = await response.json();
+    
+    // התאם לפורמט של הנתונים
+    const questions = Array.isArray(data) ? data : data.questions || [];
+    createStudyCardsFromData(questions);
+    return true;
+  } catch (error) {
+    console.error('Error loading study cards:', error);
+    document.querySelector('#study-cards-container .loading').innerHTML = 'שגיאה בטעינת הכרטיסיות.';
+    return false;
+  }
+}
+
+// יצירת כרטיסיות מנתוני הקוויז
+function createStudyCardsFromQuiz() {
+  const questions = Array.isArray(quizData) ? quizData : quizData.questions || [];
+  createStudyCardsFromData(questions);
+}
+
+// יצירת כרטיסיות מהנתונים
+function createStudyCardsFromData(questions) {
+  originalStudyCards = questions.map(question => ({
+    id: question.id,
+    question: question.question,
+    answer: formatAnswer(question),
+    originalQuestion: question
+  }));
+  
+  // צור את רשימת הכרטיסיות הראשונית
+  refreshStudyCards();
+}
+
+// יצירת רשימת כרטיסיות כולל כרטיסיות לחזרה
+function createStudyCardsWithReviews() {
+  let cardsArray = [...originalStudyCards];
+  
+  // הוסף כרטיסיות שסומנו לחזרה מספר פעמים נוספות
+  markedForReview.forEach(cardId => {
+    const originalCard = originalStudyCards.find(card => card.id === cardId);
+    if (originalCard) {
+      // הוסף כל כרטיסייה שסומנה לחזרה 2-3 פעמים נוספות
+      const repetitions = Math.floor(Math.random() * 2) + 2; // 2-3 פעמים
+      for (let i = 0; i < repetitions; i++) {
+        cardsArray.push({
+          ...originalCard, 
+          isReview: true,
+          reviewInstance: i + 1
+        });
+      }
+    }
+  });
+  
+  return shuffleArray(cardsArray);
+}
+
+// עיצוב התשובה לכרטיסייה
+function formatAnswer(question) {
+  if (!question.options || !Array.isArray(question.options)) {
+    return 'לא זמינה תשובה';
+  }
+  
+  const correctIndices = Array.isArray(question.correct) ? question.correct : [question.correct];
+  const correctAnswers = correctIndices.map(index => question.options[index]).filter(Boolean);
+  
+  if (correctAnswers.length === 0) {
+    return 'לא זמינה תשובה נכונה';
+  }
+  
+  if (correctAnswers.length === 1) {
+    return `<strong>התשובה הנכונה:</strong><br>${correctAnswers[0]}`;
+  } else {
+    return `<strong>התשובות הנכונות:</strong><ul>${correctAnswers.map(answer => `<li>${answer}</li>`).join('')}</ul>`;
+  }
+}
+
+// הצגת הכרטיסייה הנוכחית
+function displayCurrentCard() {
+  const container = document.getElementById('study-cards-container');
+  
+  if (studyCards.length === 0) {
+    container.innerHTML = '<div class="loading">אין כרטיסיות זמינות</div>';
+    return;
+  }
+  
+  const card = studyCards[currentCardIndex];
+  const isMarkedForReview = markedForReview.has(card.id);
+  const cardClasses = ['study-card'];
+  
+  if (isMarkedForReview) cardClasses.push('marked-for-review');
+  if (isCardFlipped) cardClasses.push('flipped');
+  
+  container.innerHTML = `
+    <div class="${cardClasses.join(' ')}" onclick="flipCard()" id="current-study-card">
+      <div class="card-content">
+        <div class="card-question">
+          ${card.isReview ? '🔄 ' : ''}${card.question}
+        </div>
+        ${isCardFlipped ? `<div class="card-answer">${card.answer}</div>` : ''}
+      </div>
+      <div class="flip-instruction">
+        ${isCardFlipped ? 'לחץ לחזור לשאלה' : 'לחץ לראות תשובה'}
+      </div>
+    </div>
+  `;
+  
+  updateMarkButton();
+}
+
+// הפיכת כרטיסייה
+function flipCard() {
+  isCardFlipped = !isCardFlipped;
+  displayCurrentCard();
+}
+
+// כרטיסייה הבאה
+function nextCard() {
+  if (currentCardIndex < studyCards.length - 1) {
+    currentCardIndex++;
+    isCardFlipped = false;
+    displayCurrentCard();
+    updateCardCounter();
+    updateNavigationButtons();
+  }
+}
+
+// כרטיסייה קודמת
+function previousCard() {
+  if (currentCardIndex > 0) {
+    currentCardIndex--;
+    isCardFlipped = false;
+    displayCurrentCard();
+    updateCardCounter();
+    updateNavigationButtons();
+  }
+}
+
+// עדכון מונה הכרטיסיות
+function updateCardCounter() {
+  const counter = document.getElementById('card-counter');
+  if (studyCards.length > 0) {
+    const reviewCards = studyCards.filter(card => card.isReview).length;
+    const totalText = reviewCards > 0 ? 
+      `${currentCardIndex + 1} / ${studyCards.length} (כולל ${reviewCards} כרטיסיות חזרה)` :
+      `${currentCardIndex + 1} / ${studyCards.length}`;
+    counter.textContent = totalText;
+  } else {
+    counter.textContent = '0 / 0';
+  }
+}
+
+// עדכון כפתורי הניווט
+function updateNavigationButtons() {
+  const prevBtn = document.getElementById('prev-card');
+  const nextBtn = document.getElementById('next-card');
+  
+  prevBtn.disabled = currentCardIndex === 0;
+  nextBtn.disabled = currentCardIndex === studyCards.length - 1;
+}
+
+// ערבוב כרטיסיות - מתוקן
+function shuffleCards() {
+  if (originalStudyCards.length > 0) {
+    // צור רשימה חדשה מערובבת כולל כרטיסיות חזרה
+    refreshStudyCards();
+  }
+}
+
+// איפוס כרטיסיות
+function resetCards() {
+  if (originalStudyCards.length > 0) {
+    // נקה את רשימת השאלות לחזרה
+    markedForReview.clear();
+    
+    // חזור לסדר המקורי בלי שאלות חזרה
+    studyCards = shuffleArray([...originalStudyCards]);
+    currentCardIndex = 0;
+    isCardFlipped = false;
+    displayCurrentCard();
+    updateCardCounter();
+    updateNavigationButtons();
+    updateReviewCounter();
+  }
+}
+
+// סימון/ביטול סימון כרטיסייה לחזרה - מתוקן
+function toggleMarkForReview() {
+  if (studyCards.length === 0) return;
+  
+  const currentCard = studyCards[currentCardIndex];
+  
+  if (markedForReview.has(currentCard.id)) {
+    // בטל סימון - הסר רק כרטיסיות חזרה שעדיין לא נצפו (אחרי המיקום הנוכחי)
+    markedForReview.delete(currentCard.id);
+    
+    // הסר כרטיסיות חזרה של השאלה הזו שעדיין לא נצפו
+    const cardsToRemove = [];
+    for (let i = currentCardIndex + 1; i < studyCards.length; i++) {
+      if (studyCards[i].id === currentCard.id && studyCards[i].isReview) {
+        cardsToRemove.push(i);
+      }
+    }
+    
+    // הסר מהאחרון לראשון כדי לא לקלקל את האינדקסים
+    for (let i = cardsToRemove.length - 1; i >= 0; i--) {
+      studyCards.splice(cardsToRemove[i], 1);
+    }
+    
+  } else {
+    // הוסף סימון - הוסף כרטיסיות חזרה אחרי הכרטיסייה הנוכחית
+    markedForReview.add(currentCard.id);
+    
+    // הוסף 2-3 כרטיסיות חזרה במיקומים אקראיים אחרי הכרטיסייה הנוכחית
+    const repetitions = Math.floor(Math.random() * 2) + 2; // 2-3 פעמים
+    const remainingCards = studyCards.length - currentCardIndex - 1;
+    
+    if (remainingCards > 0) {
+      // יצור מערך של מיקומים אקראיים אחרי הכרטיסייה הנוכחית
+      const positions = [];
+      for (let i = 0; i < repetitions; i++) {
+        // בחר מיקום אקראי בין currentCardIndex+1 לסוף הרשימה
+        const randomOffset = Math.floor(Math.random() * (remainingCards + i + 1)) + 1;
+        positions.push(currentCardIndex + randomOffset);
+      }
+      
+      // מיין את המיקומים מהגדול לקטן כדי לא לקלקל את האינדקסים
+      positions.sort((a, b) => b - a);
+      
+      // הכנס את הכרטיסיות במיקומים הנבחרים
+      positions.forEach(position => {
+        const reviewCard = {
+          ...currentCard,
+          isReview: true,
+          reviewInstance: Math.random() // מזהה ייחודי לכל עותק
+        };
+        studyCards.splice(Math.min(position, studyCards.length), 0, reviewCard);
+      });
+    } else {
+      // אם אין עוד כרטיסיות אחרי הנוכחית, הוסף בסוף
+      for (let i = 0; i < repetitions; i++) {
+        const reviewCard = {
+          ...currentCard,
+          isReview: true,
+          reviewInstance: Math.random()
+        };
+        studyCards.push(reviewCard);
+      }
+    }
+  }
+  
+  // עדכן את הצגה בלי לשנות את המיקום הנוכחי
+  displayCurrentCard();
+  updateCardCounter();
+  updateNavigationButtons();
+  updateReviewCounter();
+}
+
+// עדכון כפתור "סמן לחזרה"
+function updateMarkButton() {
+  const markButton = document.getElementById('mark-for-review');
+  if (!markButton || studyCards.length === 0) return;
+  
+  const currentCard = studyCards[currentCardIndex];
+  const isMarked = markedForReview.has(currentCard.id);
+  
+  if (isMarked) {
+    markButton.textContent = 'בטל סימון לחזרה';
+    markButton.classList.add('marked');
+  } else {
+    markButton.textContent = 'סמן שאלה לחזרה';
+    markButton.classList.remove('marked');
+  }
+}
+
+// עדכון מונה שאלות לחזרה
+function updateReviewCounter() {
+  const counter = document.getElementById('review-counter');
+  if (counter) {
+    counter.textContent = `שאלות לחזרה: ${markedForReview.size}`;
+  }
+}
+
+// ניקוי רשימת שאלות לחזרה
+function clearReviewQuestions() {
+  markedForReview.clear();
+  refreshStudyCards();
+}
+
+// טיפול בפתיחה וסגירה של אקורדיון כרטיסיות הלמידה
+function handleAccordionToggle(detailsElement) {
+  // בדוק אם האקורדיון נפתח (לא נסגר)
+  if (detailsElement.open) {
+    // המתן קצת כדי לוודא שהאקורדיון נפתח לגמרי
+    setTimeout(() => {
+      // אם יש כרטיסיות, ערבב אותן והתחל מחדש
+      if (studyCards.length > 0) {
+        shuffleCards();
+      } else {
+        // אם עדיין לא נטענו הכרטיסיות, נסה לטעון אותן
+        loadStudyCards().then(() => {
+          if (studyCards.length > 0) {
+            shuffleCards();
+          }
+        });
+      }
+    }, 100);
+  }
+}
+
+// אתחול כרטיסיות הלמידה כשהדף נטען
+document.addEventListener('DOMContentLoaded', function() {
+  // המתן קצת כדי לוודא שנתוני הקוויז נטענו
+  setTimeout(() => {
+    loadStudyCards();
+  }, 1500);
+});
+
+// טיפול במקשי מקלדת לניווט
+document.addEventListener('keydown', function(e) {
+  // בדוק אם האקורדיון של כרטיסיות הלמידה פתוח
+  const studyCardsAccordion = document.querySelector('details:has(#study-cards-container)');
+  if (!studyCardsAccordion || !studyCardsAccordion.open) return;
+  
+  switch(e.key) {
+    case 'ArrowLeft':
+      e.preventDefault();
+      nextCard();
+      break;
+    case 'ArrowRight':
+      e.preventDefault();
+      previousCard();
+      break;
+    case ' ':
+    case 'Enter':
+      e.preventDefault();
+      flipCard();
+      break;
+  }
+});
+  </script>
+   <script src="/mda/js/hamburger-menu.js"></script>
+</body>
+</html>

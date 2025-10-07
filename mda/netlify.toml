@@ -1,0 +1,7 @@
+[build]
+  command = "node mda/js/build_main_quiz.js"
+  publish = "mda"
+
+# הגדרות נוספות מומלצות
+[build.environment]
+  NODE_VERSION = "18"

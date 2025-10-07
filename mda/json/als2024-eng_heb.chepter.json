@@ -1,0 +1,652 @@
+[
+  {
+    "chapter": 1,
+    "english": "general_approach_to_patient",
+    "hebrew": "גישה כללית למטופל,"
+  },
+  {
+    "chapter": 1,
+    "english": "introduction_general_guidelines",
+    "hebrew": "מבוא והנחיות כלליות,"
+  },
+  {
+    "chapter": 2,
+    "english": "adult_cardiac_respiratory_arrest",
+    "hebrew": "דום לב ונשימה במבוגר,"
+  },
+  {
+    "chapter": 2,
+    "english": "adult_cardiac_arrest_vt_vf",
+    "hebrew": "דום לב במבוגר VT / VF,"
+  },
+  {
+    "chapter": 2,
+    "english": "adult_cardiac_arrest_pea_asystole",
+    "hebrew": "דום לב במבוגר PEA / ASYSTOLE,"
+  },
+  {
+    "chapter": 2,
+    "english": "post_resuscitation_care_rosc_adults",
+    "hebrew": "טיפול בחולה לאחר החייאה (ROSC) – מבוגרים,"
+  },
+  {
+    "chapter": 2,
+    "english": "pediatric_cardiac_arrest",
+    "hebrew": "דום לב בתינוקות ובילדים,"
+  },
+  {
+    "chapter": 2,
+    "english": "pediatric_cardiac_arrest_vt_vf",
+    "hebrew": "דום לב בתינוקות וילדים VT / VF,"
+  },
+  {
+    "chapter": 2,
+    "english": "pediatric_cardiac_arrest_pea_asystole",
+    "hebrew": "דום לב בתינוקות וילדים PEA / ASYSTOLE,"
+  },
+  {
+    "chapter": 2,
+    "english": "post_resuscitation_care_rosc_pediatric",
+    "hebrew": "טיפול בחולה לאחר החייאה (ROSC) – תינוקות וילדים,"
+  },
+  {
+    "chapter": 2,
+    "english": "immediate_newborn_care",
+    "hebrew": "הטיפול המיידי ביילוד,"
+  },
+  {
+    "chapter": 2,
+    "english": "patient_transport_during_ongoing_resuscitation",
+    "hebrew": "פינוי מטופל לבית חולים תוך כדי המשך פעולות החייאה,"
+  },
+  {
+    "chapter": 2,
+    "english": "withholding_or_terminating_resuscitation",
+    "hebrew": "הימנעות מביצוע פעולות החייאה או הפסקתן,"
+  },
+  {
+    "chapter": 3,
+    "english": "advanced_airway_management",
+    "hebrew": "ניהול מתקדם של נתיב האוויר,"
+  },
+  {
+    "chapter": 3,
+    "english": "foreign_body_airway_obstruction",
+    "hebrew": "השתנקות כתוצאה משאיפת גוף זר,"
+  },
+  {
+    "chapter": 3,
+    "english": "respiratory_support_for_respiratory_failure",
+    "hebrew": "סיוע נשימתי לטיפול באי־ספיקה נשימתית,"
+  },
+  {
+    "chapter": 3,
+    "english": "pulmonary_edema",
+    "hebrew": "בצקת ריאות,"
+  },
+  {
+    "chapter": 3,
+    "english": "adult_asthma_attack",
+    "hebrew": "התקף אסתמה במבוגר,"
+  },
+  {
+    "chapter": 3,
+    "english": "copd_exacerbation",
+    "hebrew": "החמרה במחלת ריאות חסימתית כרונית,"
+  },
+  {
+    "chapter": 3,
+    "english": "allergic_reaction_anaphylaxis_adult",
+    "hebrew": "תגובה אלרגית (אנפילקסיס) מבוגר,"
+  },
+  {
+    "chapter": 3,
+    "english": "adult_tachycardia",
+    "hebrew": "טכיקרדיה במבוגר,"
+  },
+  {
+    "chapter": 3,
+    "english": "wide_complex_tachyarrhythmia_adult",
+    "hebrew": "טכיאריתמיה בקומפלקס רחב – מבוגר,"
+  },
+  {
+    "chapter": 3,
+    "english": "narrow_complex_tachyarrhythmia_adult",
+    "hebrew": "טכיאריתמיה בקומפלקס צר – מבוגר,"
+  },
+  {
+    "chapter": 3,
+    "english": "adult_bradycardia",
+    "hebrew": "ברדיקרדיה במבוגר,"
+  },
+  {
+    "chapter": 3,
+    "english": "acute_coronary_syndrome_acs",
+    "hebrew": "תסמונת כלילית חריפה (ACS),"
+  },
+  {
+    "chapter": 3,
+    "english": "decreased_perfusion_non_traumatic",
+    "hebrew": "ירידה בפרפוזיה (שלא על רקע טראומה),"
+  },
+  {
+    "chapter": 3,
+    "english": "suspected_stroke_patient_approach",
+    "hebrew": "גישה למטופל עם חשד לאירוע מוחי,"
+  },
+  {
+    "chapter": 3,
+    "english": "seizure_or_post_seizure_adult",
+    "hebrew": "פרכוס או לאחר פרכוס במבוגר,"
+  },
+  {
+    "chapter": 3,
+    "english": "altered_mental_status",
+    "hebrew": "שינויים במצב ההכרה,"
+  },
+  {
+    "chapter": 3,
+    "english": "delirium",
+    "hebrew": "דליריום,"
+  },
+  {
+    "chapter": 3,
+    "english": "nausea_or_vomiting",
+    "hebrew": "בחילות או הקאות,"
+  },
+  {
+    "chapter": 4,
+    "english": "advanced_airway_management_pediatric",
+    "hebrew": "ניהול מתקדם של נתיב האוויר בתינוקות ובילדים,"
+  },
+  {
+    "chapter": 4,
+    "english": "pediatric_stridor",
+    "hebrew": "סטרידור בילדים,"
+  },
+  {
+    "chapter": 4,
+    "english": "pediatric_asthma_attack",
+    "hebrew": "התקף אסתמה בילדים,"
+  },
+  {
+    "chapter": 4,
+    "english": "pediatric_tachycardia",
+    "hebrew": "טכיקרדיה בתינוקות ובילדים,"
+  },
+  {
+    "chapter": 4,
+    "english": "wide_complex_tachyarrhythmia_pediatric",
+    "hebrew": "טכיאריתמיה בקומפלקס רחב - תינוקות וילדים,"
+  },
+  {
+    "chapter": 4,
+    "english": "narrow_complex_tachyarrhythmia_pediatric",
+    "hebrew": "טכיאריתמיה בקומפלקס צר - תינוקות וילדים,"
+  },
+  {
+    "chapter": 4,
+    "english": "pediatric_bradycardia",
+    "hebrew": "ברדיקרדיה בילדים,"
+  },
+  {
+    "chapter": 4,
+    "english": "seizure_or_post_seizure_pediatric",
+    "hebrew": "פרכוס או לאחר פרכוס בתינוקות ובילדים,"
+  },
+  {
+    "chapter": 4,
+    "english": "altered_mental_status_pediatric",
+    "hebrew": "שינויים במצב ההכרה בתינוקות ובילדים,"
+  },
+  {
+    "chapter": 4,
+    "english": "allergic_reaction_anaphylaxis_pediatric",
+    "hebrew": "תגובה אלרגית (אנפילקסיס) ילדים,"
+  },
+  {
+    "chapter": 5,
+    "english": "trauma_patient_care",
+    "hebrew": "הטיפול בנפגע טראומה,"
+  },
+  {
+    "chapter": 5,
+    "english": "spinal_immobilization",
+    "hebrew": "קיבוע עמוד שדרה,"
+  },
+  {
+    "chapter": 5,
+    "english": "suspected_crush_syndrome",
+    "hebrew": "חשד לתסמונת מעיכה,"
+  },
+  {
+    "chapter": 5,
+    "english": "trauma_destination_guidelines",
+    "hebrew": "קווים מנחים לקביעת יעד הפינוי של נפגע טראומה,"
+  },
+  {
+    "chapter": 5,
+    "english": "traumatic_cardiopulmonary_arrest_tcpa",
+    "hebrew": "הגישה לנפגע בדום לב ונשימה עקב טראומה TRAUMATIC CARDIOPULMONARY ARREST (TCPA),"
+  },
+  {
+    "chapter": 5,
+    "english": "burn_patient_care",
+    "hebrew": "הטיפול בנפגע כוויות,"
+  },
+  {
+    "chapter": 5,
+    "english": "pain_management",
+    "hebrew": "הטיפול בכאב,"
+  },
+  {
+    "chapter": 5,
+    "english": "venomous_animal_bite_sting_care",
+    "hebrew": "הטיפול בנפגע מעקיצה או הכשה של בעל חיים ארסי,"
+  },
+  {
+    "chapter": 5,
+    "english": "smoke_inhalation_care",
+    "hebrew": "הטיפול בנפגע משאיפת עשן,"
+  },
+  {
+    "chapter": 5,
+    "english": "dead_sea_drowning_care",
+    "hebrew": "הטיפול בנפגע טביעה בים המלח,"
+  },
+  {
+    "chapter": 5,
+    "english": "organophosphate_poisoning_care",
+    "hebrew": "הטיפול בנפגע עם חשד להרעלת זרחנים אורגניים,"
+  },
+  {
+    "chapter": 5,
+    "english": "heat_related_illness_care",
+    "hebrew": "הטיפול בנפגעי חום,"
+  },
+  {
+    "chapter": 5,
+    "english": "hypothermia_patient_approach",
+    "hebrew": "גישה למטופל עם חשד להיפותרמיה,"
+  },
+  {
+    "chapter": 6,
+    "english": "delivery_management",
+    "hebrew": "קבלת לידה,"
+  },
+  {
+    "chapter": 6,
+    "english": "peripartum_hemorrhage",
+    "hebrew": "דימום סב־לידתי (PERI PARTUM HEMORRHAGE),"
+  },
+  {
+    "chapter": 6,
+    "english": "delivery_complications",
+    "hebrew": "סיבוכים בלידה,"
+  },
+  {
+    "chapter": 6,
+    "english": "pregnancy_toxemia_preeclampsia_eclampsia",
+    "hebrew": "רעלת היריון (פרה־אקלמפסיה / אקלמפסיה),"
+  },
+  {
+    "chapter": 7,
+    "english": "individual_casualty_assessment_mci_start",
+    "hebrew": "הערכת נפגע בודד באירוע רב־נפגעים – אר\\ן (S.T.A.R.T),"
+  },
+  {
+    "chapter": 7,
+    "english": "general_triage_scheme_mci_salt",
+    "hebrew": "סכימת טריאז' כללית באירוע רב־נפגעים SALT (אר\\ן),"
+  },
+  {
+    "chapter": 7,
+    "english": "key_points_mci",
+    "hebrew": "דגשים עיקריים באר\\ן,"
+  },
+  {
+    "chapter": 7,
+    "english": "tagging_documentation_mci_triage",
+    "hebrew": "סימון ורישום באמצעות תג מיון ופינוי נפגעים באר\\ן,"
+  },
+  {
+    "chapter": 7,
+    "english": "mass_toxicological_incident",
+    "hebrew": "אירוע טוקסיקולוגי המוני,"
+  },
+  {
+    "chapter": 7,
+    "english": "biological_incident_response_principles",
+    "hebrew": "עקרונות תורת הטיפול באירוע ביולוגי חריג (אבח\\ר),"
+  },
+  {
+    "chapter": 8,
+    "english": "patient_refusing_treatment_transport",
+    "hebrew": "הגישה למטופל המסרב לקבלת טיפול רפואי או לפינוי לבית חולים,"
+  },
+  {
+    "chapter": 8,
+    "english": "suicidal_patient_psychiatric_emergency_response",
+    "hebrew": "מענה רפואי למטופל אובדני או למטופל עם חשד להפרעה נפשית מגבילה,"
+  },
+  {
+    "chapter": 8,
+    "english": "psychological_first_aid_secondary_trauma_prevention",
+    "hebrew": "עזרה ראשונה נפשית למניעת טראומטיזציה משנית,"
+  },
+  {
+    "chapter": 8,
+    "english": "staff_infectious_disease_exposure_prevention_treatment",
+    "hebrew": "חשיפת אנשי צוות למחלות זיהומיות – מניעה וטיפול,"
+  },
+  {
+    "chapter": 8,
+    "english": "duty_paramedic_authorities",
+    "hebrew": "סמכויות הפראמדיק הכונן,"
+  },
+  {
+    "chapter": 8,
+    "english": "medication_injection_home_station",
+    "hebrew": "הזרקת תרופות בבית המטופל או בתחנת מד\\א,"
+  },
+  {
+    "chapter": 8,
+    "english": "patient_transport_distant_hospital",
+    "hebrew": "פינוי מטופל לבית חולים מרוחק,"
+  },
+  {
+    "chapter": 8,
+    "english": "patient_transport_non_hospital_destination",
+    "hebrew": "פינוי מטופל ליעד שאינו בית חולים,"
+  },
+  {
+    "chapter": 8,
+    "english": "helicopter_evacuation_guidelines",
+    "hebrew": "קווים מנחים להפעלת פינוי בהיטס,"
+  },
+  {
+    "chapter": 8,
+    "english": "patient_handover_between_medical_teams",
+    "hebrew": "העברת מטופל בין צוותים רפואיים לצורך המשך טיפול ופינוי,"
+  },
+  {
+    "chapter": 8,
+    "english": "inter_facility_patient_transport",
+    "hebrew": "העברת מטופל בין מוסדות רפואיים באמצעות נט\\ן או אמבולנס,"
+  },
+  {
+    "chapter": 8,
+    "english": "prehospital_emergency_medicine_quality_metrics",
+    "hebrew": "מדדי איכות ברפואת חירום טרום־אשפוזית,"
+  },
+  {
+    "chapter": 8,
+    "english": "intensive_care_unit_telemedicine_activation",
+    "hebrew": "הפעלת ניידת טיפול נמרץ בטֵלֵמדיסין,"
+  },
+  {
+    "chapter": 8,
+    "english": "medication_preparation_administration_rules",
+    "hebrew": "כללים להכנה ומתן תרופות בנט\\ן,"
+  },
+  {
+    "chapter": 9,
+    "english": "intubation",
+    "hebrew": "אינטובציה,"
+  },
+  {
+    "chapter": 9,
+    "english": "supraglottic_airway",
+    "hebrew": "נתיב אוויר סופראגלוטי,"
+  },
+  {
+    "chapter": 9,
+    "english": "cricothyrotomy",
+    "hebrew": "קריקוטומיה,"
+  },
+  {
+    "chapter": 9,
+    "english": "patient_cpap_connection",
+    "hebrew": "חיבור מטופל ל־ CPAP,"
+  },
+  {
+    "chapter": 9,
+    "english": "needle_thoracotomy",
+    "hebrew": "ניקור חזה באמצעות מחט – NEEDLE THORACOTOMY,"
+  },
+  {
+    "chapter": 9,
+    "english": "external_cardiac_massage_lucas",
+    "hebrew": "עיסוי לב חיצוני באמצעות מעסה לב אוטומטי LUCAS,"
+  },
+  {
+    "chapter": 9,
+    "english": "intraosseous_infusion_big_nio",
+    "hebrew": "התקנת עירוי תוך־גרמי (BIG/NIO),"
+  },
+  {
+    "chapter": 9,
+    "english": "external_pacing",
+    "hebrew": "קיצוב חיצוני,"
+  },
+  {
+    "chapter": 9,
+    "english": "freeze_dried_plasma_fdp_infusion",
+    "hebrew": "עירוי פלזמה קפואה מיובשת (FDP),"
+  },
+  {
+    "chapter": 9,
+    "english": "mechanical_flow_selector_use",
+    "hebrew": "שימוש בבורר זרימה מכני,"
+  },
+  {
+    "chapter": 9,
+    "english": "hydroxocobalamin_infusion",
+    "hebrew": "עירוי הידרוקסיקובלמין,"
+  },
+  {
+    "chapter": 9,
+    "english": "epipen_use",
+    "hebrew": "שימוש באפיפן,"
+  },
+  {
+    "chapter": 9,
+    "english": "hemostatic_dressing_axiostat_packing",
+    "hebrew": "חבישה המוסטטית – AXIOSTAT ו־ PACKING,"
+  },
+  {
+    "chapter": 9,
+    "english": "pelvic_binder",
+    "hebrew": "מקבע אגן,"
+  },
+  {
+    "chapter": 9,
+    "english": "advanced_tourniquet",
+    "hebrew": "חסם עורקים מתקדם,"
+  },
+  {
+    "chapter": 10,
+    "english": "adenosine",
+    "hebrew": "אדנוזין,"
+  },
+  {
+    "chapter": 10,
+    "english": "adrenaline_epinephrine",
+    "hebrew": "אדרנלין – אפינפרין,"
+  },
+  {
+    "chapter": 10,
+    "english": "optalgin",
+    "hebrew": "אופטלגין,"
+  },
+  {
+    "chapter": 10,
+    "english": "etomidate",
+    "hebrew": "אטומידאט,"
+  },
+  {
+    "chapter": 10,
+    "english": "atropine",
+    "hebrew": "אטרופין,"
+  },
+  {
+    "chapter": 10,
+    "english": "isoket",
+    "hebrew": "איזוקט,"
+  },
+  {
+    "chapter": 10,
+    "english": "airovent",
+    "hebrew": "אירובנט,"
+  },
+  {
+    "chapter": 10,
+    "english": "amiodarone",
+    "hebrew": "אמיודרון,"
+  },
+  {
+    "chapter": 10,
+    "english": "aspirin",
+    "hebrew": "אספירין,"
+  },
+  {
+    "chapter": 10,
+    "english": "acamol",
+    "hebrew": "אקמול,"
+  },
+  {
+    "chapter": 10,
+    "english": "dopamine",
+    "hebrew": "דופמין,"
+  },
+  {
+    "chapter": 10,
+    "english": "dormicum",
+    "hebrew": "דורמיקום,"
+  },
+  {
+    "chapter": 10,
+    "english": "dextrose_glucose_50_percent",
+    "hebrew": "דקסטרוז (גלוקוז) 50%,"
+  },
+  {
+    "chapter": 10,
+    "english": "droperidol",
+    "hebrew": "דרופרידול,"
+  },
+  {
+    "chapter": 10,
+    "english": "hydroxocobalamin",
+    "hebrew": "הידרוקסיקובלמין,"
+  },
+  {
+    "chapter": 10,
+    "english": "heparin",
+    "hebrew": "הפרין,"
+  },
+  {
+    "chapter": 10,
+    "english": "hexacapron",
+    "hebrew": "הקסקפרון,"
+  },
+  {
+    "chapter": 10,
+    "english": "ventolin",
+    "hebrew": "ונטולין,"
+  },
+  {
+    "chapter": 10,
+    "english": "zofran",
+    "hebrew": "זופרן,"
+  },
+  {
+    "chapter": 10,
+    "english": "tramdex",
+    "hebrew": "טרמדקס,"
+  },
+  {
+    "chapter": 10,
+    "english": "labetalol",
+    "hebrew": "לבטלול,"
+  },
+  {
+    "chapter": 10,
+    "english": "magnesium_sulfate",
+    "hebrew": "מגנזיום סולפט,"
+  },
+  {
+    "chapter": 10,
+    "english": "metoprolol",
+    "hebrew": "מטופרולול,"
+  },
+  {
+    "chapter": 10,
+    "english": "nitrolingual_spray",
+    "hebrew": "ניטרולינגואל ספריי,"
+  },
+  {
+    "chapter": 10,
+    "english": "narcan",
+    "hebrew": "נרקן,"
+  },
+  {
+    "chapter": 10,
+    "english": "sugammadex",
+    "hebrew": "סוגמדקס,"
+  },
+  {
+    "chapter": 10,
+    "english": "sodium_bicarbonate",
+    "hebrew": "סודיום ביקרבונט,"
+  },
+  {
+    "chapter": 10,
+    "english": "sodium_thiosulfate",
+    "hebrew": "סודיום תיוסולפט,"
+  },
+  {
+    "chapter": 10,
+    "english": "solumedrol",
+    "hebrew": "סולומדרול,"
+  },
+  {
+    "chapter": 10,
+    "english": "fusid",
+    "hebrew": "פוסיד,"
+  },
+  {
+    "chapter": 10,
+    "english": "fentanyl",
+    "hebrew": "פנטניל,"
+  },
+  {
+    "chapter": 10,
+    "english": "ketamine",
+    "hebrew": "קטמין,"
+  },
+  {
+    "chapter": 10,
+    "english": "calcium_gluconate",
+    "hebrew": "קלציום גלוקונט,"
+  },
+  {
+    "chapter": 10,
+    "english": "rocuronium",
+    "hebrew": "רוקורוניום,"
+  },
+  {
+    "chapter": 11,
+    "english": "suicidal_psychiatric_patient_evacuation_guidelines",
+    "hebrew": "מענה רפואי למטופל אובדני או למטופל עם חשד להפרעה נפשית מגבילה – קווים מנחים לפינוי,"
+  },
+  {
+    "chapter": 11,
+    "english": "israeli_bandage_uses",
+    "hebrew": "שימושים לתחבושת ישראלית,"
+  },
+  {
+    "chapter": 11,
+    "english": "electrical_suction",
+    "hebrew": "סקשן חשמלי"
+  }
+]

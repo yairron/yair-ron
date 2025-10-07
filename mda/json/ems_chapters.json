@@ -1,0 +1,812 @@
+[
+  {
+    "chapter": 1,
+    "english": "emergency_medicine_general_definitions",
+    "hebrew": "רפואת חירום: הגדרות כלליות"
+  },
+  {
+    "chapter": 1,
+    "english": "prehospital_emergency_medicine_systems",
+    "hebrew": "הדגמים של מערכות רפואת חירום טרום-אשפוזית"
+  },
+  {
+    "chapter": 1,
+    "english": "magen_david_adom_organization",
+    "hebrew": "מגן דוד אדום -- ארגון רפואת החירום הטרום-אשפוזית של ישראל"
+  },
+  {
+    "chapter": 2,
+    "english": "patient_assessment_introduction",
+    "hebrew": "הקדמה"
+  },
+  {
+    "chapter": 2,
+    "english": "approach_to_injured_patient",
+    "hebrew": "הגישה להערכת פצוע"
+  },
+  {
+    "chapter": 2,
+    "english": "kinematic_related_injuries",
+    "hebrew": "פגיעות אחרות הקשורות בקינמטיקה"
+  },
+  {
+    "chapter": 2,
+    "english": "approach_to_trauma_patient",
+    "hebrew": "הגישה לנפגע טראומה"
+  },
+  {
+    "chapter": 2,
+    "english": "trauma_hostile_environment",
+    "hebrew": "טראומה בסביבה עוינת"
+  },
+  {
+    "chapter": 3,
+    "english": "respiratory_system_anatomy",
+    "hebrew": "אנטומיה של מערכת הנשימה"
+  },
+  {
+    "chapter": 3,
+    "english": "respiratory_system_physiology",
+    "hebrew": "פיזיולוגיה של מערכת הנשימה"
+  },
+  {
+    "chapter": 4,
+    "english": "respiratory_system_pathophysiology",
+    "hebrew": "פתופיזיולוגיה של מערכת הנשימה"
+  },
+  {
+    "chapter": 4,
+    "english": "approach_to_respiratory_patient",
+    "hebrew": "הגישה למטופל הנשימתי"
+  },
+  {
+    "chapter": 4,
+    "english": "additional_respiratory_tract_injuries",
+    "hebrew": "פגיעות נוספות בדרכי הנשימה"
+  },
+  {
+    "chapter": 5,
+    "english": "medical_terminology_glossary",
+    "hebrew": "מילון מונחים"
+  },
+  {
+    "chapter": 5,
+    "english": "chest_injuries",
+    "hebrew": "פגיעות בבית החזה"
+  },
+  {
+    "chapter": 5,
+    "english": "additional_respiratory_system_injuries",
+    "hebrew": "פגיעות נוספות במערכת הנשימה"
+  },
+  {
+    "chapter": 6,
+    "english": "blood_system",
+    "hebrew": "מערכת הדם"
+  },
+  {
+    "chapter": 6,
+    "english": "blood_vessels",
+    "hebrew": "כלי הדם"
+  },
+  {
+    "chapter": 6,
+    "english": "blood_circulation",
+    "hebrew": "מחזור הדם בגוף"
+  },
+  {
+    "chapter": 6,
+    "english": "heart",
+    "hebrew": "הלב"
+  },
+  {
+    "chapter": 7,
+    "english": "blood_flow",
+    "hebrew": "שטף דם"
+  },
+  {
+    "chapter": 7,
+    "english": "shock",
+    "hebrew": "הלם"
+  },
+  {
+    "chapter": 7,
+    "english": "abdominal_injuries",
+    "hebrew": "פגיעות בטן"
+  },
+  {
+    "chapter": 8,
+    "english": "heart_failure_cardiomyopathy",
+    "hebrew": "אי-ספיקת לב וקרדיומיופתיה"
+  },
+  {
+    "chapter": 8,
+    "english": "inflammatory_heart_diseases",
+    "hebrew": "מחלות לב דלקתיות"
+  },
+  {
+    "chapter": 8,
+    "english": "structural_heart_disorders",
+    "hebrew": "הפרעות מבניות של הלב"
+  },
+  {
+    "chapter": 8,
+    "english": "pediatric_cardiology",
+    "hebrew": "קרדיולוגיה פדיאטרית"
+  },
+  {
+    "chapter": 8,
+    "english": "cardiology_in_trauma",
+    "hebrew": "קרדיאולוגיה בטראומה"
+  },
+  {
+    "chapter": 8,
+    "english": "resuscitation",
+    "hebrew": "החייאה"
+  },
+  {
+    "chapter": 8,
+    "english": "summary",
+    "hebrew": "סיכום"
+  },
+  {
+    "chapter": 9,
+    "english": "introduction",
+    "hebrew": "מבוא"
+  },
+  {
+    "chapter": 9,
+    "english": "cardiac_conduction_system",
+    "hebrew": "פעילות מערכת ההולכה החשמלית בלב"
+  },
+  {
+    "chapter": 9,
+    "english": "ecg_interpretation_principles",
+    "hebrew": "עקרונות הפענוח של אק\\\"ג"
+  },
+  {
+    "chapter": 9,
+    "english": "arrhythmia",
+    "hebrew": "אריתמיה"
+  },
+  {
+    "chapter": 9,
+    "english": "sinus_rhythm_disorders",
+    "hebrew": "הפרעות קצב סינוס"
+  },
+  {
+    "chapter": 9,
+    "english": "focal_arrhythmia",
+    "hebrew": "אריתמיה ממקור מוקדי"
+  },
+  {
+    "chapter": 9,
+    "english": "cardiac_conduction_blocks",
+    "hebrew": "חוסמי הולכה של הלב"
+  },
+  {
+    "chapter": 9,
+    "english": "cardiac_hypertrophy",
+    "hebrew": "היפרטרופיה של הלב"
+  },
+  {
+    "chapter": 9,
+    "english": "myocardial_infarction",
+    "hebrew": "אוטם שריר הלב"
+  },
+  {
+    "chapter": 9,
+    "english": "cardiomyopathy",
+    "hebrew": "קרדיומיופתיה"
+  },
+  {
+    "chapter": 9,
+    "english": "ecg_in_various_conditions",
+    "hebrew": "תרשים האק\\\"ג במצבים ובמחלות שונים"
+  },
+  {
+    "chapter": 9,
+    "english": "electrolyte_disorders",
+    "hebrew": "הפרעות אלקטרוליטריות"
+  },
+  {
+    "chapter": 10,
+    "english": "introduction_vascular",
+    "hebrew": "מבוא"
+  },
+  {
+    "chapter": 10,
+    "english": "blood_coagulation",
+    "hebrew": "קרישת הדם"
+  },
+  {
+    "chapter": 10,
+    "english": "ischemic_heart_disease",
+    "hebrew": "מחלת לב איסכמית"
+  },
+  {
+    "chapter": 10,
+    "english": "coronary_artery_disease",
+    "hebrew": "טרשת עורקים קורונרית"
+  },
+  {
+    "chapter": 10,
+    "english": "angina_pectoris",
+    "hebrew": "תעוקת חזה"
+  },
+  {
+    "chapter": 10,
+    "english": "acute_coronary_syndrome",
+    "hebrew": "תסמונת כלילית חריפה"
+  },
+  {
+    "chapter": 10,
+    "english": "myocardial_infarction_vascular",
+    "hebrew": "אוטם שריר הלב"
+  },
+  {
+    "chapter": 10,
+    "english": "acute_mesenteric_ischemia",
+    "hebrew": "אירוע מזנטרי"
+  },
+  {
+    "chapter": 10,
+    "english": "bleeding_management_principles",
+    "hebrew": "עקרונות הטיפול בדימומים"
+  },
+  {
+    "chapter": 10,
+    "english": "aortic_dissection",
+    "hebrew": "דיסקציה של האאורטה"
+  },
+  {
+    "chapter": 10,
+    "english": "pulmonary_embolism",
+    "hebrew": "תסחיף ריאות"
+  },
+  {
+    "chapter": 10,
+    "english": "shock_vascular",
+    "hebrew": "הלם"
+  },
+  {
+    "chapter": 11,
+    "english": "nervous_system_structure_function",
+    "hebrew": "מבנה מערכת העצבים ותפקידיה"
+  },
+  {
+    "chapter": 11,
+    "english": "central_nervous_system",
+    "hebrew": "מערכת העצבים המרכזית"
+  },
+  {
+    "chapter": 11,
+    "english": "peripheral_nervous_system",
+    "hebrew": "מערכת העצבים ההיקפית"
+  },
+  {
+    "chapter": 12,
+    "english": "seizures",
+    "hebrew": "פרכוסים"
+  },
+  {
+    "chapter": 12,
+    "english": "stroke_cerebral_event",
+    "hebrew": "שבץ מוחי, אירוע מוחי"
+  },
+  {
+    "chapter": 12,
+    "english": "syncope",
+    "hebrew": "עילפון"
+  },
+  {
+    "chapter": 12,
+    "english": "diabetic_emergencies",
+    "hebrew": "מצבי חירום סוכרתיים"
+  },
+  {
+    "chapter": 13,
+    "english": "head_injuries_introduction",
+    "hebrew": "הקדמה"
+  },
+  {
+    "chapter": 13,
+    "english": "intracranial_pressure",
+    "hebrew": "לחץ תוך-גולגולתי"
+  },
+  {
+    "chapter": 13,
+    "english": "additional_head_injuries",
+    "hebrew": "פגיעות ראש נוספות"
+  },
+  {
+    "chapter": 14,
+    "english": "abdominal_anatomy",
+    "hebrew": "אנטומיה של הבטן"
+  },
+  {
+    "chapter": 14,
+    "english": "digestive_system_physiology",
+    "hebrew": "פיזיולוגיה של מערכת העיכול"
+  },
+  {
+    "chapter": 14,
+    "english": "digestive_system_auxiliary_organs",
+    "hebrew": "איברים המסייעים במסלול העיכול"
+  },
+  {
+    "chapter": 14,
+    "english": "urinary_system_physiology",
+    "hebrew": "פיזיולוגיה של מערכת ההפרשה, מערכת השתן"
+  },
+  {
+    "chapter": 14,
+    "english": "abdominal_pain",
+    "hebrew": "כאבי בטן"
+  },
+  {
+    "chapter": 14,
+    "english": "abdominal_trauma",
+    "hebrew": "טראומת בטן"
+  },
+  {
+    "chapter": 15,
+    "english": "skin_anatomy",
+    "hebrew": "האנטומיה של העור"
+  },
+  {
+    "chapter": 15,
+    "english": "skin_system_injuries",
+    "hebrew": "פגיעות במערכת העור"
+  },
+  {
+    "chapter": 15,
+    "english": "burns",
+    "hebrew": "כוויות"
+  },
+  {
+    "chapter": 15,
+    "english": "muscle_system",
+    "hebrew": "מערכת השרירים"
+  },
+  {
+    "chapter": 15,
+    "english": "skeletal_system",
+    "hebrew": "מערכת השלד"
+  },
+  {
+    "chapter": 15,
+    "english": "fractures",
+    "hebrew": "שברים"
+  },
+  {
+    "chapter": 15,
+    "english": "compartment_syndrome",
+    "hebrew": "תסמונת המדור הסגור"
+  },
+  {
+    "chapter": 16,
+    "english": "reproductive_system_anatomy_physiology",
+    "hebrew": "האנטומיה והפיזיולוגיה של מערכת המין"
+  },
+  {
+    "chapter": 16,
+    "english": "female_reproductive_system",
+    "hebrew": "מבנה מערכת המין הנקבית"
+  },
+  {
+    "chapter": 16,
+    "english": "fetal_circulation",
+    "hebrew": "מחזור הדם העוברי"
+  },
+  {
+    "chapter": 16,
+    "english": "pregnancy_complications",
+    "hebrew": "סיבוכים אפשריים בהיריון"
+  },
+  {
+    "chapter": 16,
+    "english": "miscarriages",
+    "hebrew": "הפלות"
+  },
+  {
+    "chapter": 16,
+    "english": "third_trimester_bleeding",
+    "hebrew": "דימומים בטרימסטר השלישי"
+  },
+  {
+    "chapter": 16,
+    "english": "preeclampsia_eclampsia",
+    "hebrew": "רעלת היריון וקדם-רעלת היריון"
+  },
+  {
+    "chapter": 16,
+    "english": "eclampsia",
+    "hebrew": "רעלת, אקלמפסיה"
+  },
+  {
+    "chapter": 16,
+    "english": "supine_hypotension",
+    "hebrew": "לחץ דם נמוך בשכיבה"
+  },
+  {
+    "chapter": 16,
+    "english": "labor_delivery",
+    "hebrew": "לידה"
+  },
+  {
+    "chapter": 16,
+    "english": "delivery_management",
+    "hebrew": "קבלת לידה"
+  },
+  {
+    "chapter": 17,
+    "english": "endocrine_system",
+    "hebrew": "המערכת האנדוקרינית"
+  },
+  {
+    "chapter": 17,
+    "english": "endocrine_anatomy_physiology",
+    "hebrew": "אנטומיה ופיזיולוגיה"
+  },
+  {
+    "chapter": 17,
+    "english": "endocrine_diseases_emergencies",
+    "hebrew": "מחלות ומצבי חירום אנדוקרינולוגיים"
+  },
+  {
+    "chapter": 17,
+    "english": "thyroid_pathologies",
+    "hebrew": "פתולוגיות של התירואיד (בלוטת התריס)"
+  },
+  {
+    "chapter": 17,
+    "english": "parathyroid_pathologies",
+    "hebrew": "פתולוגיות של הפראתירואיד (בלוטת יותרת התריס)"
+  },
+  {
+    "chapter": 17,
+    "english": "adrenal_pathologies",
+    "hebrew": "פתולוגיות של האדרנל"
+  },
+  {
+    "chapter": 17,
+    "english": "pancreatic_pathologies",
+    "hebrew": "פתולוגיות של הלבלב"
+  },
+  {
+    "chapter": 17,
+    "english": "diabetic_emergency_states",
+    "hebrew": "מצבי החירום הסוכרתיים"
+  },
+  {
+    "chapter": 18,
+    "english": "elderly_patients",
+    "hebrew": "קשישים"
+  },
+  {
+    "chapter": 18,
+    "english": "disabled_patients",
+    "hebrew": "נכים"
+  },
+  {
+    "chapter": 18,
+    "english": "nursing_care_patients",
+    "hebrew": "מטופלים סיעודיים"
+  },
+  {
+    "chapter": 18,
+    "english": "cognitive_impairment_patients",
+    "hebrew": "אנשים עם מוגבלות קוגניטיבית או פיגור"
+  },
+  {
+    "chapter": 18,
+    "english": "mental_health_patients",
+    "hebrew": "פגועי נפש, מתמודדי נפש"
+  },
+  {
+    "chapter": 19,
+    "english": "clinical_approach_emergency_care",
+    "hebrew": "גישה קלינית לטיפול במצבי חירום"
+  },
+  {
+    "chapter": 19,
+    "english": "altered_consciousness",
+    "hebrew": "חוסר הכרה"
+  },
+  {
+    "chapter": 19,
+    "english": "headaches",
+    "hebrew": "כאבי ראש"
+  },
+  {
+    "chapter": 19,
+    "english": "neck_pain",
+    "hebrew": "כאבים בצוואר"
+  },
+  {
+    "chapter": 19,
+    "english": "chest_pain",
+    "hebrew": "כאבים בחזה"
+  },
+  {
+    "chapter": 19,
+    "english": "abdominal_pain_emergency",
+    "hebrew": "כאבי בטן"
+  },
+  {
+    "chapter": 19,
+    "english": "flank_pain_lumbar",
+    "hebrew": "כאבי צד, כאבים לומבריים"
+  },
+  {
+    "chapter": 19,
+    "english": "back_pain_musculoskeletal",
+    "hebrew": "כאבי גב, שלד ושרירים"
+  },
+  {
+    "chapter": 19,
+    "english": "oncology",
+    "hebrew": "אונקולוגיה"
+  },
+  {
+    "chapter": 19,
+    "english": "laboratory_tests_introduction",
+    "hebrew": "מבוא לבדיקות מעבדה"
+  },
+  {
+    "chapter": 20,
+    "english": "psychiatric_disorders",
+    "hebrew": "ההפרעות הפסיכיאטריות"
+  },
+  {
+    "chapter": 20,
+    "english": "addiction_emergencies",
+    "hebrew": "מצבי חירום בהתמכרויות"
+  },
+  {
+    "chapter": 21,
+    "english": "pediatric_anatomy_physiology",
+    "hebrew": "אנטומיה ופיזיולוגיה של ילדים"
+  },
+  {
+    "chapter": 21,
+    "english": "child_abuse",
+    "hebrew": "התעללות בילדים"
+  },
+  {
+    "chapter": 21,
+    "english": "pediatric_respiratory_emergencies",
+    "hebrew": "מצבי חירום נשימתיים בילדים"
+  },
+  {
+    "chapter": 21,
+    "english": "pediatric_cardiac_problems",
+    "hebrew": "בעיות לב אצל ילדים"
+  },
+  {
+    "chapter": 22,
+    "english": "blast_injuries",
+    "hebrew": "פגיעות הדף"
+  },
+  {
+    "chapter": 22,
+    "english": "crush_injuries",
+    "hebrew": "פגיעות מעיכה"
+  },
+  {
+    "chapter": 22,
+    "english": "environmental_injuries",
+    "hebrew": "פגיעות אקלים"
+  },
+  {
+    "chapter": 22,
+    "english": "heat_related_injuries",
+    "hebrew": "פגיעות אקלים חם"
+  },
+  {
+    "chapter": 22,
+    "english": "water_related_injuries",
+    "hebrew": "פגיעות ימיות"
+  },
+  {
+    "chapter": 23,
+    "english": "pharmacokinetics",
+    "hebrew": "פרמקוקינטיקה"
+  },
+  {
+    "chapter": 23,
+    "english": "medication_uses_ems",
+    "hebrew": "שימושים עיקריים בתרופות במד\\\"א"
+  },
+  {
+    "chapter": 24,
+    "english": "poisoning_introduction",
+    "hebrew": "הקדמה"
+  },
+  {
+    "chapter": 24,
+    "english": "ingested_poisons",
+    "hebrew": "רעלים המגיעים לגוף דרך מערכת העיכול"
+  },
+  {
+    "chapter": 24,
+    "english": "inhaled_poisons",
+    "hebrew": "רעלים המגיעים לגוף בשאיפה"
+  },
+  {
+    "chapter": 24,
+    "english": "drugs",
+    "hebrew": "סמים"
+  },
+  {
+    "chapter": 24,
+    "english": "chemical_warfare_agents",
+    "hebrew": "חומרי לחימה כימיים (חל\\\"כ)"
+  },
+  {
+    "chapter": 24,
+    "english": "mass_toxicological_event",
+    "hebrew": "אירוע טוקסולוגי המוני: אט\\\"ה"
+  },
+  {
+    "chapter": 25,
+    "english": "ems_bags_kits",
+    "hebrew": "תיקים וערכות במד\\\"א"
+  },
+  {
+    "chapter": 25,
+    "english": "airway_management",
+    "hebrew": "מנתב אוויר"
+  },
+  {
+    "chapter": 25,
+    "english": "ventilation_equipment",
+    "hebrew": "מפוח להנשמה"
+  },
+  {
+    "chapter": 25,
+    "english": "suction_equipment",
+    "hebrew": "מכשיר סקשן"
+  },
+  {
+    "chapter": 25,
+    "english": "oxygen_tank",
+    "hebrew": "מכל חמצן"
+  },
+  {
+    "chapter": 25,
+    "english": "peep_valve",
+    "hebrew": "שסתום פיפ להחייאה"
+  },
+  {
+    "chapter": 25,
+    "english": "manual_blood_pressure",
+    "hebrew": "מדידת לחץ דם ידנית"
+  },
+  {
+    "chapter": 25,
+    "english": "glucometer_blood_sugar",
+    "hebrew": "גלוקומטר ומדידת סוכר"
+  },
+  {
+    "chapter": 25,
+    "english": "pulse_oximetry",
+    "hebrew": "מד רוויון החמצן בדם"
+  },
+  {
+    "chapter": 25,
+    "english": "capnometry",
+    "hebrew": "קפנומטר"
+  },
+  {
+    "chapter": 25,
+    "english": "corpuls_3",
+    "hebrew": "קורפולס-3"
+  },
+  {
+    "chapter": 25,
+    "english": "lucas_cpr_device",
+    "hebrew": "מעסה לב אוטומטי -- לוקאס-2"
+  },
+  {
+    "chapter": 25,
+    "english": "lifepak_12",
+    "hebrew": "לייף פק-12"
+  },
+  {
+    "chapter": 25,
+    "english": "injections",
+    "hebrew": "הזרקות"
+  },
+  {
+    "chapter": 25,
+    "english": "iv_access",
+    "hebrew": "החדרת עירוי תוך-ורידי"
+  },
+  {
+    "chapter": 25,
+    "english": "intraosseous_access",
+    "hebrew": "עירוי תוך-גרמי"
+  },
+  {
+    "chapter": 25,
+    "english": "airway_skills",
+    "hebrew": "מיומנויות נתיב אוויר"
+  },
+  {
+    "chapter": 25,
+    "english": "respiratory_improvement_skills",
+    "hebrew": "מיומנויות לשיפור נשימה"
+  },
+  {
+    "chapter": 25,
+    "english": "immobilization_skills",
+    "hebrew": "מיומנויות קיבוע"
+  },
+  {
+    "chapter": 26,
+    "english": "mass_casualty_incident",
+    "hebrew": "אר\\\"ן -- אירוע רב-נפגעים"
+  },
+  {
+    "chapter": 26,
+    "english": "mega_mass_casualty",
+    "hebrew": "מגה אר\\\"ן"
+  },
+  {
+    "chapter": 26,
+    "english": "earthquake",
+    "hebrew": "רעידת אדמה (רע\\\"ד)"
+  },
+  {
+    "chapter": 26,
+    "english": "hazmat_incident",
+    "hebrew": "אירוע חומרים מסוכנים (חומ\\\"ס)"
+  },
+  {
+    "chapter": 26,
+    "english": "mass_toxicological_incident",
+    "hebrew": "אירוע טוקסולוגי המוני: אט\\\"ה"
+  },
+  {
+    "chapter": 27,
+    "english": "rescue_operations",
+    "hebrew": "מערך חילוץ והצלה"
+  },
+  {
+    "chapter": 27,
+    "english": "general_rescue_principles",
+    "hebrew": "הקרונות הכלליים לחילוץ"
+  },
+  {
+    "chapter": 27,
+    "english": "rescue_stages",
+    "hebrew": "שלבי החילוץ"
+  },
+  {
+    "chapter": 27,
+    "english": "helicopter_evacuation",
+    "hebrew": "פינוי בהיטס"
+  },
+  {
+    "chapter": 27,
+    "english": "patient_transport_methods",
+    "hebrew": "אמצעים לנשיאת מטופל"
+  },
+  {
+    "chapter": 28,
+    "english": "basics_introduction",
+    "hebrew": "הקדמה"
+  },
+  {
+    "chapter": 28,
+    "english": "body_systems",
+    "hebrew": "המערכות בגוף האדם"
+  },
+  {
+    "chapter": 28,
+    "english": "body_processes",
+    "hebrew": "התהליכים המתקיימים בגוף האדם"
+  }
+]

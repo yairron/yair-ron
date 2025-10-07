@@ -1,0 +1,840 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <title>ספסיס - סיכום</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <script 
+      src="https://cdn.counter.dev/script.js" 
+      data-id="87cd2eee-d5db-43dc-9575-16e58a14c32d" 
+      data-utcoffset="3" 
+      defer 
+      referrerpolicy="no-referrer"></script>
+
+<style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f7f7f7;
+      margin: 0;
+      padding: 0 10vw;
+    }
+    .top-link {
+      position: fixed;
+      top: 0;
+      right: 0;
+      left: 0;
+      background: #1976d2;
+      color: #fff;
+      text-align: center;
+      padding: 8px 0 4px 0;
+      z-index: 101;
+      font-size: 1.1em;
+      text-decoration: none;
+      letter-spacing: 1px;
+      box-shadow: 0 2px 8px #bbb;
+    }
+    .sticky-header {
+      position: fixed;
+      top: 36px;
+      right: 0;
+      left: 0;
+      background: #fff;
+      z-index: 100;
+      text-align: center;
+      padding: 18px 0 10px 0;
+      font-size: 2em;
+      font-weight: bold;
+      box-shadow: 0 2px 8px #ddd;
+      border-bottom: 1px solid #eee;
+      /**/
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    
+    .content-wrapper {
+      margin-top: 100px;
+    }
+    details {
+      background: #fff;
+      border-radius: 8px;
+      margin: 16px 0;
+      box-shadow: 0 2px 8px #ddd;
+    }
+    summary {
+      font-size: 1.2em;
+      font-weight: bold;
+      cursor: pointer;
+      padding: 12px;
+      outline: none;
+    }
+
+    .content div {
+    margin: 0.3em 0;
+    line-height: 1.4;
+}
+.indent-1 { margin-right: 20px; }
+.indent-2 { margin-right: 40px; }
+.indent-3 { margin-right: 60px; }
+
+
+    /* סגנונות התפריט */
+        .hamburger-menu {
+            cursor: pointer;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-around;
+            width: 30px;
+            height: 25px;
+            background: transparent;
+            border: none;
+            padding: 0;
+            margin-right: 20px;
+            
+        }
+
+        .hamburger-line {
+            width: 100%;
+            height: 3px;
+            background-color: #333;
+            border-radius: 2px;
+            transition: 0.3s;
+        }
+
+        .hamburger-menu.active .hamburger-line:nth-child(1) {
+            transform: rotate(45deg) translate(8px, 8px);
+        }
+
+        .hamburger-menu.active .hamburger-line:nth-child(2) {
+            opacity: 0;
+        }
+
+        .hamburger-menu.active .hamburger-line:nth-child(3) {
+            transform: rotate(-45deg) translate(8px, -8px);
+        }
+
+        .side-menu {
+            position: fixed;
+            top: 0;
+            right: -15%;
+            width: 15%;
+            height: 100vh;
+            background-color: white;
+            box-shadow: -2px 0 10px rgba(0,0,0,0.1);
+            transition: right 0.3s ease;
+            z-index: 1000;
+            padding: 0;
+            border-left: 1px solid #ddd;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .side-menu.open {
+            right: 0;
+        }
+
+        .side-menu h3 {
+            padding: 20px;
+            background-color: #1976d2;
+            color: white;
+            margin: 0;
+            text-align: center;
+            font-size: 18px;
+            font-weight: bold;
+            flex-shrink: 0;
+        }
+
+        .side-menu-content {
+            flex: 1;
+            overflow-y: auto;
+            overflow-x: hidden;
+        }
+
+        .side-menu ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .side-menu li {
+            border-bottom: 1px solid #eee;
+        }
+
+        .side-menu a {
+            display: block;
+            padding: 15px 20px;
+            color: #0077cc;
+            text-decoration: none;
+            transition: background-color 0.3s;
+            font-size: 16px;
+        }
+
+        .side-menu a:hover {
+            background-color: #f0f0f0;
+            text-decoration: underline;
+        }
+
+        .overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.5);
+            visibility: hidden;
+            opacity: 0;
+            transition: opacity 0.3s, visibility 0.3s;
+            z-index: 999;
+        }
+
+        .overlay.active {
+            visibility: visible;
+            opacity: 1;
+        }
+
+        .menu-title {
+            flex-grow: 1;
+            text-align: center;
+            white-space: nowrap;
+            font-size: clamp(1.5rem, 4vw, 4rem);
+            padding: 0 5px;
+          
+       }
+
+        .menu-spacer {
+            width: 30px;
+            margin-left: 20px;
+        }
+/* עיצוב סרגל הגלילה */
+        .side-menu-content::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        .side-menu-content::-webkit-scrollbar-track {
+            background: #f1f1f1;
+        }
+
+        .side-menu-content::-webkit-scrollbar-thumb {
+            background: #c1c1c1;
+            border-radius: 4px;
+        }
+
+        .side-menu-content::-webkit-scrollbar-thumb:hover {
+            background: #a8a8a8;
+			}
+/* כפתור חזרה בפינה השמאלית */
+    .back-button {
+      position: absolute;
+      left: 15px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: #ffffff;
+      text-decoration: none;
+      font-size: 1em;
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      cursor: pointer;
+      transition: opacity 0.2s;
+    }
+    
+    .back-button:hover {
+      opacity: 0.8;
+    }
+    
+    .back-arrow {
+      font-size: 1.2em;
+      font-weight: bold;
+    }	
+    details[open] summary { color: #1976d2; }
+    .content { padding: 0 16px 16px 16px; }
+    ul { margin: 0; padding-right: 20px; }
+    li { margin-bottom: 6px; }
+    blockquote {
+      background: #e3f2fd;
+      border-right: 5px solid #1976d2;
+      margin: 12px 0;
+      padding: 10px 16px;
+      font-style: italic;
+      color: #1976d2;
+    }
+    @media (max-width: 600px) {
+      h2 {
+        font-size: 40px;
+      }
+  
+      .projects a, .title-link {
+        font-size: 26px;
+        margin: 25px 0;
+      }
+      /* תיקון התפריט הצדדי במסכים קטנים */
+       .side-menu {
+                width: 70%;
+                right: -70%;
+            }
+    }
+  </style>
+</head>
+<body>
+  <a href="../../../index.html" class="top-link">
+  	חזרה לתפריט הראשי
+		   <div class="back-button" onclick="history.back()">
+			 <span class="back-arrow">←</span>
+			 <span>חזרה</span>
+		   </div>
+		 </a>
+		<div class="sticky-header">		
+		<button class="hamburger-menu" id="hamburgerBtn">
+            <div class="hamburger-line"></div>
+            <div class="hamburger-line"></div>
+            <div class="hamburger-line"></div>
+        </button>
+        <div class="menu-title">ספסיס - סיכום</div>
+        <div class="menu-spacer"></div>
+    </div>
+
+    <div class="overlay" id="overlay"></div>
+    
+    <div class="side-menu" id="sideMenu">
+        <h3>תפריט ראשי</h3>
+        <div class="side-menu-content">
+            <ul>
+    <!--            <li><a href="atan/atan_index.html">אט"ן</a></li>
+				<li><a href="bls/bls_index.html">BLS</a></li>
+				<li><a href="Bechirim/bechirim_index.html">קורס בכירים</a></li>
+                <li><a href="Bechirim/protocols/ALS2024.HTML">אוגדן ALS 2024</a></li>
+                <li><a href="Bechirim/protocols/protocols_index.html">פרוטוקולים</a></li>
+                <li><a href="Bechirim/Sikumim/Sikumim_index.html">מצגות וסיכומי מצגות</a></li>
+                <li><a href="Bechirim/Sikumim/SIKUM_LESSONS/lessons_index.html">סיכומי שיעורים</a></li>
+                <li><a href="Bechirim/Sikumim/SIKUM_LESSONS/ECG_Practice_MI.html">תרגול אק"ג - אוטם</a></li>
+                <li><a href="Bechirim/Sikumim/SIKUM_LESSONS/ECG_Practice_arrhythm.html">תרגול אק"ג - הפרעות קצב</a></li>
+                <li><a href="Bechirim/Phrases/Phrases.html">אינדקס מושגים</a></li>
+                <li><a href="Bechirim/trufot_Bait_search_site/Trufot_BAEIT.html">תרופות נפוצות בבית</a></li>
+                <li><a href="Bechirim/Sikumim/Pdf_files/pdf_index.html">ספרות</a></li> -->
+         <!--    <li><a href="#" onclick="alert('הוסף קישור לספרות')">ספרות</a></li> -->
+            </ul>
+        </div>
+	</div>
+  <div class="content-wrapper">
+<details>
+      <summary>אבחנה</summary>
+      <div class="content">
+          <ul>
+            <li><strong>בבית חולים</strong></li>
+          </ul>
+          <ul>
+            <ul>
+              <li><strong>אבחנה של אלח דם נעשית כאשר לחולה יש זיהום או חשד לזיהום ולפחות שניים מהסימנים והתסמינים הבאים (sirs)</strong></li>    
+            </ul>
+          </ul>
+          <ul>
+            <ul>
+              Systemic Inflammatory Response Score
+            </ul>
+          </ul>
+          <ul>
+            <ul>
+              <ul>
+                <li>דופק&gt;90 פעימות לדקה</li>
+              </ul>
+            </ul>
+          </ul>
+          <ul>
+            <ul>
+              <ul>
+                <li>טמפרטורת גוף חריגה מעל 38מעלות או מתחת ל-36 מעלות</li>
+              </ul>
+            </ul>
+          </ul>
+          <ul>
+            <ul>
+              <ul>
+                <li>טכיפנאה מעל 20 נשימות בדקה או PaCO2 מתחת ל-32מ&quot;מ כספית</li>
+              </ul>
+            </ul>
+          </ul>
+          <ul>
+            <ul>
+              <ul>
+                <li>ספירת תאי דם לבנים חריגה</li>
+              </ul>
+            </ul>
+          </ul>
+          <ul>
+            <li><strong>בשטח</strong></li>
+          </ul>
+          <ul>
+            <ul>
+              <li><strong>מדד qSOFA שיטה קלינית להערכת רמת סיכון למוות מספסיס.qSOFA חיובי (לפחות 2 קריטריונים):</strong></li>
+            </ul>
+          </ul>
+          <ul>
+            <ul>
+              Quick Sepsis related Organ Failure Assessment
+            </ul>
+          </ul>
+          <ul>
+            <ul>
+              <ul>
+                <li>מצב הכרה ירוד (GCS מתחת ל-15)</li>
+              </ul>
+            </ul>
+          </ul>
+          <ul>
+            <ul>
+              <ul>
+                <li>מעל 22 נשימות לדקה</li>
+              </ul>
+            </ul>
+          </ul>
+          <ul>
+            <ul>
+              <ul>
+                <li>לחץ דם סיסטולי מתחת ל-100מ&#x27;&#x27;מ כספית</li>
+              </ul>
+            </ul>
+          </ul>
+      </div>
+    </details>
+
+    <details>
+      <summary>אבחנה מבדלת</summary>
+      <div class="content">
+          <ul>
+            <li><strong>שוק קרדיוגנני</strong></li>
+          </ul>
+          <ul>
+            <ul>
+              <ul>
+                <li>הפרעות קצב</li>
+              </ul>
+            </ul>
+          </ul>
+          <ul>
+            <ul>
+              <ul>
+                <li>אי ספיקת לב</li>
+              </ul>
+            </ul>
+          </ul>
+          <ul>
+            <ul>
+              <ul>
+                <li>תסחיף ריאתי</li>
+              </ul>
+            </ul>
+          </ul>
+          <ul>
+            <ul>
+              <ul>
+                <li>טמפונדה לבבית</li>
+              </ul>
+            </ul>
+          </ul>
+          <ul>
+            <li><strong>שוק היפוולמי או המורגי</strong></li>
+          </ul>
+          <ul>
+            <ul>
+              <ul>
+                <li>הקאות</li>
+              </ul>
+            </ul>
+          </ul>
+          <ul>
+            <ul>
+              <ul>
+                <li>שלשולים</li>
+              </ul>
+            </ul>
+          </ul>
+          <ul>
+            <ul>
+              <ul>
+                <li>פוליאוריה (תפוקת שתן מוגברת)</li>
+              </ul>
+            </ul>
+          </ul>
+          <ul>
+            <ul>
+              <ul>
+                <li>דמם GI (מערכת העיכול)</li>
+              </ul>
+            </ul>
+          </ul>
+          <ul>
+            <li><strong>גורם אחר</strong></li>
+          </ul>
+          <ul>
+            <ul>
+              <ul>
+                <li>ספסיס</li>
+              </ul>
+            </ul>
+          </ul>
+          <ul>
+            <ul>
+              <ul>
+                <li>אנאפילקסיס</li>
+              </ul>
+            </ul>
+          </ul>
+          <ul>
+            <ul>
+              <ul>
+                <li>אי ספיקת אדרנל (ירידה בהורמונים חיוניים)</li>
+              </ul>
+            </ul>
+          </ul>
+      </div>
+    </details>
+
+    <details>
+      <summary>דגשים לבדיקה גופנית</summary>
+      <div class="content">
+          <ul>
+            <li><strong>סימני ספסיס</strong></li>
+          </ul>
+          <ul>
+            <ul>
+              <ul>
+                <li>חום מעל 38.5 או מתחת ל 36.5.</li>
+              </ul>
+            </ul>
+          </ul>
+          <ul>
+            <ul>
+              <ul>
+                <li>הכרה מעורפלת</li>
+              </ul>
+            </ul>
+          </ul>
+          <ul>
+            <ul>
+              <ul>
+                <li>מאמץ נשימתי</li>
+              </ul>
+            </ul>
+          </ul>
+          <ul>
+            <li><strong>סימני אי ספיקת לב</strong></li>
+          </ul>
+          <ul>
+            <ul>
+              <ul>
+                <li>גודש ורידי מצוואר</li>
+              </ul>
+            </ul>
+          </ul>
+          <ul>
+            <ul>
+              <ul>
+                <li>גודש ריאתי</li>
+              </ul>
+            </ul>
+          </ul>
+          <ul>
+            <ul>
+              <ul>
+                <li>בצקת</li>
+              </ul>
+            </ul>
+          </ul>
+          <ul>
+            <li><strong>מצב העור והריריות</strong></li>
+          </ul>
+          <ul>
+            <ul>
+              <ul>
+                <li>עור חיוור, קר ולח או עור סמוק וחם למגע</li>
+              </ul>
+            </ul>
+          </ul>
+          <ul>
+            <ul>
+              <ul>
+                <li>אורטיקרטיה</li>
+              </ul>
+            </ul>
+          </ul>
+          <ul>
+            <ul>
+              <ul>
+                <li>יובש בריריות ובלשון</li>
+              </ul>
+            </ul>
+          </ul>
+          <ul>
+            <li><strong>חשב qSOFA</strong></li>
+          </ul>
+          <ul>
+            <ul>
+              <ul>
+                <li>מצב הכרה</li>
+              </ul>
+            </ul>
+          </ul>
+          <ul>
+            <ul>
+              <ul>
+                <li>לחץ דם</li>
+              </ul>
+            </ul>
+          </ul>
+          <ul>
+            <ul>
+              <ul>
+                <li>נשימות מהירות</li>
+              </ul>
+            </ul>
+          </ul>
+          <ul>
+            <ul>
+              <ul>
+                <li>ערך גדול או שווה ל 2, מעיד על מטופל בסיכון גבוה.</li>
+              </ul>
+            </ul>
+          </ul>
+      </div>
+    </details>
+
+    <details>
+      <summary>הלם ספטי</summary>
+      <div class="content">
+          <ul>
+            <li><strong>זיהום אשר גורם לאלח דם</strong></li>
+          </ul>
+          <ul>
+            <ul>
+              <ul>
+                <li>התפשטות הזיהום בדם מעוררת תגובה חיסונית מערכתית</li>
+              </ul>
+            </ul>
+          </ul>
+          <ul>
+            <ul>
+              <ul>
+                <li>תאי חיסון ומתווכי דלקת פועלים גם ברקמות הבריאות</li>
+              </ul>
+            </ul>
+          </ul>
+          <ul>
+            <li><strong>היווצרות דלקת מפושטת</strong></li>
+          </ul>
+          <ul>
+            <li><strong>הרחבת כלי דם והגדלת החדירות שלהם</strong></li>
+          </ul>
+          <ul>
+            <ul>
+              <ul>
+                <li>ירידה בתנגודת פריפרית</li>
+              </ul>
+            </ul>
+          </ul>
+          <ul>
+            <ul>
+              <ul>
+                <li>אובדן נפח דם למדור הבין תאי</li>
+              </ul>
+            </ul>
+          </ul>
+          <ul>
+            <li><strong>ירידה סיסטמית בלחץ הדם</strong></li>
+          </ul>
+          <ul>
+            <li><strong>כשל בתפקוד האיברים</strong></li>
+          </ul>
+          <ul>
+            <ul>
+              <ul>
+                <li>מוות</li>
+              </ul>
+            </ul>
+          </ul>
+      </div>
+    </details>
+
+    <details>
+      <summary>הערכת המטופל</summary>
+      <div class="content">
+          <ul>
+            <li><strong>מנגנוני הפיצוי עובדים</strong></li>
+          </ul>
+          <ul>
+            <ul>
+              <ul>
+                <li>טכיקרדיה מגבירה את תפוקת הלב</li>
+              </ul>
+            </ul>
+          </ul>
+          <ul>
+            <ul>
+              <ul>
+                <li>טכיפניאה מגדילה את החמצון</li>
+              </ul>
+            </ul>
+          </ul>
+          <ul>
+            <ul>
+              <ul>
+                <li>הפרשת קטכולאמינים</li>
+              </ul>
+            </ul>
+          </ul>
+          <ul>
+            <li><strong>מנגנוני הפיצוי כושלים</strong></li>
+          </ul>
+          <ul>
+            <ul>
+              <ul>
+                <li>טכיקרדיה קיצונית שכבר לא מגדילה תפוקת לב</li>
+              </ul>
+            </ul>
+          </ul>
+          <ul>
+            <ul>
+              <ul>
+                <li>טכיפנאה קיצונית שפוגעת בזמן שחלוף הגזים</li>
+              </ul>
+            </ul>
+          </ul>
+          <ul>
+            <ul>
+              <ul>
+                <li>כלי הדם לא מגיבים לקטכולאמינים</li>
+              </ul>
+            </ul>
+          </ul>
+          <ul>
+            <li><strong>הלם בלתי הפיך</strong></li>
+          </ul>
+          <ul>
+            <ul>
+              <ul>
+                <li>ברדיקארדיה</li>
+              </ul>
+            </ul>
+          </ul>
+          <ul>
+            <ul>
+              <ul>
+                <li>ברדיפנאה/אפנאה</li>
+              </ul>
+            </ul>
+          </ul>
+          <ul>
+            <li><strong>מוות</strong></li>
+          </ul>
+      </div>
+    </details>
+
+    <details>
+      <summary>טיפול</summary>
+      <div class="content">
+          <ul>
+            <li><strong>ברמת האט&quot;ן הטיפול בחולה בהלם ספטי לפי פרוטוקולים:</strong></li>
+          </ul>
+          <ul>
+            <ul>
+              <ul>
+                <li>ירידה בפרפוזיה שלא כתוצאה מטראומה</li>
+              </ul>
+            </ul>
+          </ul>
+          <ul>
+            <ul>
+              <ul>
+                <li>טיפול עזר בחום גבוה (אקמול)</li>
+              </ul>
+            </ul>
+          </ul>
+          <ul>
+            <ul>
+              <ul>
+                <li>יתכן שיהיה צורך לשלב ניהול נתיב אוויר</li>
+              </ul>
+            </ul>
+          </ul>
+          <ul>
+            <li><strong>דגשים</strong></li>
+          </ul>
+          <ul>
+            <ul>
+              <ul>
+                <li>חולה בהלם ספטי בדר&quot;כ זקוק לנוזלים רבים</li>
+              </ul>
+            </ul>
+          </ul>
+          <ul>
+            <ul>
+              <ul>
+                <li>יתכן צורך להשתמש בואזופרסורים (ואזו=כלי דם. פרסור=מכווץ, לוחץ)</li>
+              </ul>
+            </ul>
+          </ul>
+          <ul>
+            <ul>
+              <ul>
+                <li>יש להיזהר בהנשמה בלחץ חיובי</li>
+              </ul>
+            </ul>
+          </ul>
+          <ul>
+            <li><strong>BLS</strong></li>
+          </ul>
+          <ul>
+            <ul>
+              <ul>
+                <li>השכבת המטופל (מלבד מקרים בהם זוהה גודש ריאתי)</li>
+              </ul>
+            </ul>
+          </ul>
+          <ul>
+            <ul>
+              <ul>
+                <li>הרמת רגליים</li>
+              </ul>
+            </ul>
+          </ul>
+      </div>
+    </details>
+
+    <details>
+          <summary style="color: red; font-weight: bold;">פרוטוקול ירידה בפרפוזיה שלא מטראומה</summary>
+          <div class="content">
+            <iframe src="../../protocols/als2024protocols/als2024C3/decreased_perfusion_non_traumatic_pdfviewer.html" style="width:100%;height:600px;border:none;"></iframe>
+          </div>
+        </details>
+    <summary style="color: red; font-size: x-large;align-content: center;">גם באט&quot;ן BLS קודם ל ALS</summary>
+  </div>
+  <script>
+        const hamburgerBtn = document.getElementById('hamburgerBtn');
+        const sideMenu = document.getElementById('sideMenu');
+        const overlay = document.getElementById('overlay');
+
+        // פתיחה/סגירה של התפריט
+        hamburgerBtn.addEventListener('click', function() {
+            hamburgerBtn.classList.toggle('active');
+            sideMenu.classList.toggle('open');
+            overlay.classList.toggle('active');
+        });
+
+        // סגירה בלחיצה על האוברליי
+        overlay.addEventListener('click', function() {
+            hamburgerBtn.classList.remove('active');
+            sideMenu.classList.remove('open');
+            overlay.classList.remove('active');
+        });
+
+        // סגירה בלחיצה על ESC
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                hamburgerBtn.classList.remove('active');
+                sideMenu.classList.remove('open');
+                overlay.classList.remove('active');
+            }
+        });
+  </script>
+	<script src="/mda/js/hamburger-menu.js"></script>      
+</body>
+</html>

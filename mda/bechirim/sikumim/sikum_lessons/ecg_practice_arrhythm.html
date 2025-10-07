@@ -1,0 +1,2328 @@
+
+<!DOCTYPE html>
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <title>הפרעות קצב</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <script 
+      src="https://cdn.counter.dev/script.js" 
+      data-id="87cd2eee-d5db-43dc-9575-16e58a14c32d" 
+      data-utcoffset="3" 
+      defer 
+      referrerpolicy="no-referrer"></script>
+
+<style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f7f7f7;
+      margin: 0;
+      padding: 0 10vw;
+      
+    }
+    .top-link {
+      position: fixed;
+      top: 0;
+      right: 0;
+      left: 0;
+      background: #1976d2;
+      color: #fff;
+      text-align: center;
+      padding: 8px 0 4px 0;
+      z-index: 101;
+      font-size: 1.1em;
+      text-decoration: none;
+      letter-spacing: 1px;
+      box-shadow: 0 2px 8px #bbb;
+    }
+    
+    .sticky-header {
+      position: fixed;
+      top: 36px;
+      right: 0;
+      left: 0;
+      background: #fff;
+      z-index: 100;
+      text-align: center;
+      padding: 18px 0 10px 0;
+      font-size: 2em;
+      font-weight: bold;
+      box-shadow: 0 2px 8px #ddd;
+      border-bottom: 1px solid #eee;/**/
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    /* סגנונות התפריט */
+        .hamburger-menu {
+            cursor: pointer;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-around;
+            width: 30px;
+            height: 25px;
+            background: transparent;
+            border: none;
+            padding: 0;
+            margin-right: 20px;
+            
+        }
+
+        .hamburger-line {
+            width: 100%;
+            height: 3px;
+            background-color: #333;
+            border-radius: 2px;
+            transition: 0.3s;
+        }
+
+        .hamburger-menu.active .hamburger-line:nth-child(1) {
+            transform: rotate(45deg) translate(8px, 8px);
+        }
+
+        .hamburger-menu.active .hamburger-line:nth-child(2) {
+            opacity: 0;
+        }
+
+        .hamburger-menu.active .hamburger-line:nth-child(3) {
+            transform: rotate(-45deg) translate(8px, -8px);
+        }
+
+        .side-menu {
+            position: fixed;
+            top: 0;
+            right: -15%;
+            width: 15%;
+            height: 100vh;
+            background-color: white;
+            box-shadow: -2px 0 10px rgba(0,0,0,0.1);
+            transition: right 0.3s ease;
+            z-index: 1000;
+            padding: 0;
+            border-left: 1px solid #ddd;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .side-menu.open {
+            right: 0;
+        }
+
+        .side-menu h3 {
+            padding: 20px;
+            background-color: #1976d2;
+            color: white;
+            margin: 0;
+            text-align: center;
+            font-size: 18px;
+            font-weight: bold;
+            flex-shrink: 0;
+        }
+
+        .side-menu-content {
+            flex: 1;
+            overflow-y: auto;
+            overflow-x: hidden;
+        }
+
+        .side-menu ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .side-menu li {
+            border-bottom: 1px solid #eee;
+        }
+
+        .side-menu a {
+            display: block;
+            padding: 15px 20px;
+            color: #0077cc;
+            text-decoration: none;
+            transition: background-color 0.3s;
+            font-size: 16px;
+        }
+
+        .side-menu a:hover {
+            background-color: #f0f0f0;
+            text-decoration: underline;
+        }
+
+        .overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.5);
+            visibility: hidden;
+            opacity: 0;
+            transition: opacity 0.3s, visibility 0.3s;
+            z-index: 999;
+        }
+
+        .overlay.active {
+            visibility: visible;
+            opacity: 1;
+        }
+
+        .menu-title {
+            flex-grow: 1;
+            text-align: center;
+        }
+
+        .menu-spacer {
+            width: 30px;
+            margin-left: 20px;
+        }
+/* עיצוב סרגל הגלילה */
+        .side-menu-content::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        .side-menu-content::-webkit-scrollbar-track {
+            background: #f1f1f1;
+        }
+
+        .side-menu-content::-webkit-scrollbar-thumb {
+            background: #c1c1c1;
+            border-radius: 4px;
+        }
+
+        .side-menu-content::-webkit-scrollbar-thumb:hover {
+            background: #a8a8a8;
+			}
+/* כפתור חזרה בפינה השמאלית */
+    .back-button {
+      position: absolute;
+      left: 15px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: #ffffff;
+      text-decoration: none;
+      font-size: 1em;
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      cursor: pointer;
+      transition: opacity 0.2s;
+    }
+    
+    .back-button:hover {
+      opacity: 0.8;
+    }
+    
+    .back-arrow {
+      font-size: 1.2em;
+      font-weight: bold;
+    }	
+
+    /* סגנונות התפריט */
+        .hamburger-menu {
+            cursor: pointer;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-around;
+            width: 30px;
+            height: 25px;
+            background: transparent;
+            border: none;
+            padding: 0;
+            margin-right: 20px;
+            
+        }
+
+        .hamburger-line {
+            width: 100%;
+            height: 3px;
+            background-color: #333;
+            border-radius: 2px;
+            transition: 0.3s;
+        }
+
+        .hamburger-menu.active .hamburger-line:nth-child(1) {
+            transform: rotate(45deg) translate(8px, 8px);
+        }
+
+        .hamburger-menu.active .hamburger-line:nth-child(2) {
+            opacity: 0;
+        }
+
+        .hamburger-menu.active .hamburger-line:nth-child(3) {
+            transform: rotate(-45deg) translate(8px, -8px);
+        }
+
+        .side-menu {
+            position: fixed;
+            top: 0;
+            right: -15%;
+            width: 15%;
+            height: 100vh;
+            background-color: white;
+            box-shadow: -2px 0 10px rgba(0,0,0,0.1);
+            transition: right 0.3s ease;
+            z-index: 1000;
+            padding: 0;
+            border-left: 1px solid #ddd;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .side-menu.open {
+            right: 0;
+        }
+
+        .side-menu h3 {
+            padding: 20px;
+            background-color: #1976d2;
+            color: white;
+            margin: 0;
+            text-align: center;
+            font-size: 18px;
+            font-weight: bold;
+            flex-shrink: 0;
+        }
+
+        .side-menu-content {
+            flex: 1;
+            overflow-y: auto;
+            overflow-x: hidden;
+        }
+
+        .side-menu ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .side-menu li {
+            border-bottom: 1px solid #eee;
+        }
+
+        .side-menu a {
+            display: block;
+            padding: 15px 20px;
+            color: #0077cc;
+            text-decoration: none;
+            transition: background-color 0.3s;
+            font-size: 16px;
+        }
+
+        .side-menu a:hover {
+            background-color: #f0f0f0;
+            text-decoration: underline;
+        }
+
+        .overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.5);
+            visibility: hidden;
+            opacity: 0;
+            transition: opacity 0.3s, visibility 0.3s;
+            z-index: 999;
+        }
+
+        .overlay.active {
+            visibility: visible;
+            opacity: 1;
+        }
+
+        .menu-title {
+            flex-grow: 1;
+            text-align: center;
+        }
+
+        .menu-spacer {
+            width: 30px;
+            margin-left: 20px;
+        }
+/* עיצוב סרגל הגלילה */
+        .side-menu-content::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        .side-menu-content::-webkit-scrollbar-track {
+            background: #f1f1f1;
+        }
+
+        .side-menu-content::-webkit-scrollbar-thumb {
+            background: #c1c1c1;
+            border-radius: 4px;
+        }
+
+        .side-menu-content::-webkit-scrollbar-thumb:hover {
+            background: #a8a8a8;
+			}
+/* כפתור חזרה בפינה השמאלית */
+    .back-button {
+      position: absolute;
+      left: 15px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: #ffffff;
+      text-decoration: none;
+      font-size: 1em;
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      cursor: pointer;
+      transition: opacity 0.2s;
+    }
+    
+    .back-button:hover {
+      opacity: 0.8;
+    }
+    
+    .back-arrow {
+      font-size: 1.2em;
+      font-weight: bold;
+    }	
+    .content-wrapper {
+      margin-top: 100px;
+      word-break: break-word;
+    }
+
+    [id^="background-"] {
+    display: block;
+    max-width: 100%;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    hyphens: auto;
+    line-height: 1.4;
+}
+    details {
+      background: #fff;
+      border-radius: 8px;
+      margin: 16px 0;
+      box-shadow: 0 2px 8px #ddd;
+      word-break: break-word;
+      overflow-wrap: break-word;
+    }
+
+    h3, h4 {
+            margin: 10px 30px 15px 0;
+            padding: 5px 0 0 0;
+        }
+        
+        h3 {
+            margin-top: 10px;
+        }
+    
+/* סטיילים כלליים */
+.img-left {
+  float: left;
+  margin: 0 15px 10px 0;
+  max-width: 45%;
+  height: auto;
+  direction: ltr; 
+}
+
+.img-right {
+  float: right;
+  margin: 0 0 10px 15px;
+  max-width: 45%;
+  height: auto;
+}
+
+.img-center {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+ max-width: 90%; /* תמונה תתאים לרוחב הקונטיינר */
+  height: auto;
+}
+
+ .center-img {
+      display: block;
+      margin-left: auto;
+      margin-right: auto;
+      width: 80%;
+      max-width: 800px; /* Optional: set a max width */
+      height: auto;
+    }
+
+.img-accordion-left {
+  display: block;         /* שורה נפרדת */
+  position: relative;     /* יחסית לקונטיינר */
+  margin-left: 0;         /* אין רווח משמאל */
+  margin-right: auto;     /* דוחף את התמונה לשמאל */
+  max-width: 100%;        /* לא תגלוש מהקונטיינר */
+  height: auto;           /* גובה יחסי */
+  box-sizing: border-box; /* לא יגלוש מהמסגרת */
+}
+/*
+.float-image {
+  float: left;
+  max-width: 30%;
+  margin: 0 20px 10px 0;
+  border-radius: 8px;
+}
+*/
+
+.bold {
+      font-weight: bold;
+      margin-top: 1em;
+    }
+    .indent {
+      margin-right: 2em;
+      list-style-type: disc;
+    }
+
+.float-image {
+  float: left;
+  width: 40%;
+  margin-left: -150px;
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+.float-image-left {
+  float: left;
+  width: 40%;
+  max-width: 300px;
+  margin: 0 16px 16px 0; /* למעלה, ימין, למטה, שמאל */
+  display: block;
+  height: auto;
+  border-radius: 8px; /* אופציונלי, לעיצוב */
+}
+
+.float-image-left2 {
+  float: left;                      /* שינוי: הצפת התמונה לשמאל */
+  width: 33%;                       /* שינוי: רוחב מופחת */
+  max-width: 300px;
+  margin-left: 0;                   /* שינוי: אין רווח מצד שמאל */
+  margin-right: 30px;              /* שינוי: רווח של 30px בין טקסט לתמונה */
+  margin-bottom: 16px;
+  display: block;
+  height: auto;
+  border-radius: 8px;
+}
+
+.img-row {
+      display: flex;
+      justify-content: center; /* Center the images horizontally */
+      align-items: center;     /* Align the images vertically */
+      gap: 20px;               /* Space between images */
+      flex-wrap: wrap;         /* Allow images to wrap on small screens */
+      padding-bottom: 12px; /* רווח פנימי בתחתית האלמנט */
+    }
+    .img-row img {
+      width: 40%;              /* Adjust as needed */
+      max-width: 350px;
+      height: auto;
+      display: block;
+    }
+
+    /* טבלאות */
+table {
+  border-collapse: collapse;
+  width: 60%;
+  margin: 18px auto;
+  background: #fff;
+}
+th, td {
+  border: 1px solid #000000;
+  padding: 8px 6px;
+  text-align: center;
+}
+th {
+  background: rgb(255, 255, 255);
+  color: #000000;
+  font-weight: bold;
+}
+
+.slide-content {
+  padding: 0px 28px 20px 20px;
+  font-size: 1.08em;
+  color: #232323;
+  line-height: 1.2;
+  /* עיצוב FLEX מאפשר שליטה על תמונה וטקסט */
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  overflow: hidden;
+  position: relative;
+  word-break: break-word;
+  overflow-wrap: anywhere;
+  word-break: break-word;
+  max-width: 100%;
+}
+.slide-content span {
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    display: inline-block;
+    max-width: 100%;
+}
+    .title1 {
+      color: red;
+      font-weight: bold;
+      margin-top: 1em;
+    }
+    .level1 {
+      margin-right: 2em;
+      background-color: yellow;
+      padding: 2px 6px;
+      display: block;
+    }
+    .level2 {
+      margin-right: 4em;
+      display: block;
+    }
+
+/* עיצוב תמונה באקורדיון */
+.slide-content .small-img {
+  width: 33%;
+  max-width: 33vw;
+  height: 25vh;
+  max-height: 25vh;
+  object-fit: contain;
+  align-self: flex-start;
+  margin-left: 18px;
+  margin-bottom: 12px;
+  border-radius: 12px;
+  box-shadow: 0 1px 6px #ccc;
+  background: #fff;
+  display: block;
+}
+
+li strong {
+  direction: rtl;
+  unicode-bidi: isolate;
+  margin: 0;
+  padding: 0;
+  display: inline;
+}
+
+
+    summary {
+      font-size: 1.2em;
+      font-weight: bold;
+      cursor: pointer;
+      padding: 12px;
+      outline: none;
+    }
+
+    
+.summary-2nd-l {
+  color: #000000;      /* צבע שונה (אדום לדוג') */
+  font-size: 0.8em;    /* גודל שונה */
+  font-weight: normal; /* ניתן להוריד הדגשה אם רוצים */
+  display: block;
+  margin-top: 2px;  /* רווח משמאל */
+}
+
+
+    details[open] summary { color: #1976d2; }
+    .content { padding: 0 16px 16px 16px; }
+    ul { margin: 0; padding-right: 20px; }
+    li { margin-bottom:6px; }
+    blockquote {
+      background: #e3f2fd;
+      border-right: 5px solid #1976d2;
+      margin: 12px 0;
+      padding: 10px 16px;
+      font-style: italic;
+      color: #1976d2;
+    }
+    .svg-center { display: flex; justify-content: center; margin: 16px 0; }
+    p {
+      margin: 0.5em 0;
+    }
+    strong {
+      display: inline-block;
+      width: 180px;
+    }
+    /* התאמה למסכים קטנים */
+@media (max-width: 600px) {
+  .img-left,
+  .img-right,
+  .img-center {
+    float: none;           /* מבטל הצפה */
+    display: block;        /* שורה נפרדת */
+    margin: 10px auto;     /* מרכז אופקית עם רווח למעלה ולמטה */
+    max-width: 70%;       /* רוחב כמעט מלא של המסך */
+    height: auto;          /* גובה מותאם */
+  }
+    .img-accordion-left {
+    width: 95vw;             /* כמעט כל הרוחב של המסך */
+    max-width: 100vw;
+    margin: 10px auto 10px auto; /* מרכז את התמונה */
+    display: block;
+    height: auto;            /* שומר על פרופורציות */
+  }
+  .img-row {
+    gap: 10px; /* Reduce gap on small screens */
+  }
+  .img-row img {
+    width: 100%;        /* Images take full width of the row */
+    max-width: 100%;    /* Remove max-width restriction */
+  }
+  .float-image {
+    width: 100%;
+    margin-left: 0;
+    max-width: 100%;
+    height: auto;
+  }
+   .side-menu {
+                width: 70%;
+                right: -70%;
+            }
+}
+  </style>
+</head>
+<body>
+  <a href="../../../index.html" class="top-link">
+  חזרה לתפריט הראשי
+   <div class="back-button" onclick="history.back()">
+     <span class="back-arrow">←</span>
+     <span>חזרה</span>
+   </div>
+ </a>
+<div class="sticky-header">
+		
+		<button class="hamburger-menu" id="hamburgerBtn">
+            <div class="hamburger-line"></div>
+            <div class="hamburger-line"></div>
+            <div class="hamburger-line"></div>
+        </button>
+        <div class="menu-title">הפרעות קצב - הסבר ותרגול</div>
+        <div class="menu-spacer"></div>
+    </div>
+
+    <div class="overlay" id="overlay"></div>
+    
+    <div class="side-menu" id="sideMenu">
+        <h3>תפריט ראשי</h3>
+        <div class="side-menu-content">
+            <ul>
+<!--                 <li><a href="../../../atan/atan_index.html">אט"ן</a></li>
+                <li><a href="../../../bls/bls_index.html">BLS</a></li>
+                <li><a href="../../../Bechirim/bechirim_index.html">קורס בכירים</a></li>
+                <li><a href="../../../Bechirim/protocols/ALS2024.HTML">אוגדן ALS 2024</a></li>
+                <li><a href="../../../Bechirim/protocols/protocols_index.html">פרוטוקולים</a></li>
+                <li><a href="../../../Bechirim/Sikumim/Sikumim_index.html">מצגות וסיכומי מצגות</a></li>
+                <li><a href="../../../Bechirim/Sikumim/SIKUM_LESSONS/lessons_index.html">סיכומי שיעורים</a></li>
+                <li><a href="../../../Bechirim/Sikumim/SIKUM_LESSONS/ECG_Practice_MI.html">תרגול אק"ג - אוטם</a></li>
+                <li><a href="../../../Bechirim/Sikumim/SIKUM_LESSONS/ECG_Practice_arrhythm.html">תרגול אק"ג - הפרעות קצב</a></li>
+                <li><a href="../../../Bechirim/Phrases/Phrases.html">אינדקס מושגים</a></li>
+                <li><a href="../../../Bechirim/trufot_Bait_search_site/Trufot_BAEIT.html">תרופות נפוצות בבית</a></li>
+                <li><a href="../../../Bechirim/Sikumim/Pdf_files/pdf_index.html">ספרות</a></li> -->
+         <!--    <li><a href="#" onclick="alert('הוסף קישור לספרות')">ספרות</a></li> -->
+            </ul>
+        </div>
+	</div>
+
+  
+<!--  <div class="sticky-header">הפרעות קצב - הסבר ותרגול</div>-->
+  <div class="content-wrapper">
+    <details>       
+            <summary>חזרה על עקרונות אק"ג - הפרעות קצב</summary>
+ <details>            
+    <summary>טיפים מעשיים הכי בקיצור</summary>                    
+    <div>
+       <!-- <h3>חזרה קצרה על תהליך ניתוח סטריפ אקג</h3>
+        
+        <h4>חזרה לידים ועורקים כליליים</h4>-->
+        
+        <ol>
+            <li><strong>מיקום הלידים</strong> - חשוב לזכור את המיקום של כל ליד על המטופל.</li>
+          <div class="img-row"> 
+            <img src="/mda/images/ecgp2.png"  style="height: 250px;" alt="מיקום האוטם">
+            <img src="/mda/images/ecgp6_limb_leads.png"  alt="מיקום האוטם">
+            </div>  
+            <li><strong>האנטומיה של העורקים והלידים התואמים לכל עורק</strong>
+            <div class="img-row"> 
+            <img src="/mda/images/ecg41-1.png"  style="height: 300px;" alt="מיקום האוטם">
+            <img src="/mda/images/Localising-arterial-territory.png"  alt="מיקום האוטם">
+            </div> 
+                <ul>
+                    <li><strong>לידים תחתונים:</strong> II, III, aVF<br>
+                        העורק הכלילי הימני (RCA) או העורק השמאלי (LCx)</li>
+                    <li><strong>לידים קדמיים:</strong> V1-V4<br>
+                        עורק יורד קדמי שמאלי (LAD)</li>
+                    <li><strong>לידים צדדים:</strong> I, aVL, V5, V6<br>
+                        עורק היקפי שמאלי (LCx) או ענפים של העורק היורד הקדמי השמאלי (LAD)</li>
+                    <li><strong>לידים אחוריים:</strong> V7-V9 (או שינויים הדדיים ב-V1-V3)<br>
+                        העורק הכלילי הימני (RCA) או העורק השמאלי (LCx)</li>
+                </ul>
+            </li>
+        </ol>
+
+        <h3 style="color: red;">שלבי סקירה שיטתית של סטריפ אקג</h3>
+        
+        <ol>
+            <li><strong style="color: red;">קצב</strong>
+                <ul>
+                    <li>נורמלי/רגיל: 60-100 פעימות לדקה</li>
+                    <li>טכיקרדיה: קצב גדול מ-100 פעימות לדקה</li>
+                    <li>ברדיקרדיה:קצב קטן מ-60 פעימות לדקה</li>
+                    <li><strong>חישוב קצב לב</strong><br>
+                        300 / מספר הקוביות הגדולות בין QRS = קצב</li>
+                </ul>
+            </li>
+
+            <li><strong style="color: red;">מיקצב</strong>
+                <ul>
+                    <li>סינוס או לא סינוס?</li>
+                    <li>סינוס פירושו שהקצב מקורו בצומת SA</li>
+                    <li><strong>כדי שיהיה קצב סינוס חייבים להיות גלי P!</strong>
+                        <ul>
+                            <li>גל P (חיובי ב-II, III ו-aVF; ושלילי ב-aVR) לפני כל קומפלקס QRS וקומפלקס QRS אחר כל גל P.</li>
+                        </ul>
+                    </li>
+                    <li><strong>מיקצב רגיל/סדיר או לא סדיר?</strong>
+                        <ul>
+                            <li>לזהות מקצב מסתכלים על המרווח בין קומפלקסי QRS.</li>
+                            <li>המרחק זהה לכל הגלים = מיקצב סדיר.</li>
+                            <li>מרחק לא זהה = מיקצב לא סדיר.</li>
+                        </ul>
+                    </li>
+                </ul>
+            </li>
+
+            <li><strong style="color: red;">ציר הלב (הציר החשמלי)</strong>
+              <img src="/mda/images/ecgp3-1.png"  style="height: 300px;" alt="מיקום האוטם">
+                <ul>
+                    <li>המעלות נמדדות בכיוון השעון. 0 מעלות בשעה 15:00.</li>
+                    <li>ציר רגיל: -30° עד +90°</li>
+                    <li>סטיית ציר שמאלי (LAD): -30° עד -90°</li>
+                    <li>סטיית ציר ימני (RAD): +90° עד +180°</li>
+                    <li>חריגות בציר יכולות להצביע על הפרעות הולכה.</li>
+                    <li><strong>שיטה לקביעת סטיית הציר:</strong>
+                        <ul>
+                            <li>הרימו את שני אגודלים בידיים.</li>
+                            <li>אגודל שמאל שלך מסמן את ליד I. אגודל ימין שלך מסמן את ליד AVF.</li>
+                            <li>אם QRS נמצא בעיקר חיובי בלידים הללו, שמור על האגודלים למעלה;</li>
+                            <li>אם באחד הלידים ה-QRS ברובו שלילי, ביד המתאימה תכוון את האגודל למטה.</li>
+                            <li>אם שני האגודלים למעלה, (I, AVF חיובים), ציר רגיל/תקין.</li>
+                            <li>אם אגודל אחד למעלה והשני למטה, הציר סוטה, לכיוון היד עם האגודל כלפי מעלה.</li>
+                        </ul>
+                    </li>
+                </ul>
+            </li>
+
+            <li><strong style="color: red;">מרווחים</strong>
+                <ul>
+                    <li><strong>מרווח PR:</strong> בדרך כלל 120-200 מילי-שניות (3-5 קוביות קטנות).
+                        <ul>
+                            <li>מרווח מאורך יותר = הולכת AV מושהית (למשל, חסימת לב מדרגה ראשונה).</li>
+                            <li>מרווח קצר יותר = הולכת AV מהירה במסלול עוקף (למשל, תסמונת WPW).</li>
+                        </ul>
+                    </li>
+                    <li><strong>מרווח QRS:</strong> בדרך כלל קטן מ-120 msec
+                        <ul>
+                            <li>קומפלקס ה-QRS אמור להיראות צר - צר פירושו שזרם הדפולריזציה עבר במהירות</li>
+                            <li>קומפלקס QRS רחב מתייחס לדפולריזציה חדרית איטית</li>
+                            <li>אם אתם רואים טכיקרדיה, שאלו את עצמכם האם היא צרה או רחבה (QRS צר או רחב)?
+                                <ul>
+                                    <li>צר - מקורו מעל החדרים (לדוגמה פרפור עליות)</li>
+                                    <li>רחב - מקורו ברמת החדר (למשל VT)</li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </li>
+                    <li><strong>מרווח QT:</strong> זמן הדפולריזציה ורפולריזציה החדרית
+                        <ul>
+                            <li>רגיל: 0.38-0.44 עד 11 משבצות</li>
+                            <li>גל ה-T אמור להגיע לפני מחצית הדרך ל-QRS הבא</li>
+                            <li>הארכה של מרווח QT: סכנת טורסאדס דה פוינטס (R on T)</li>
+                        </ul>
+                    </li>
+                </ul>
+            </li>
+
+            <li><strong style="color: red;">ממצאים נוספים</strong>
+                <ul>
+                    <li><strong>עליה או ירידת ST</strong></li>
+                    <li><strong>גלי T</strong>
+                        <ul>
+                            <li>היפוך: עשוי להצביע על איסכמיה או אוטם</li>
+                            <li>חדים וגבוהים: יכול להצביע על היפרקלמיה</li>
+                        </ul>
+                    </li>
+                    <li><strong>גלי U:</strong> בולטים בהיפוקלמיה</li>
+                </ul>
+            </li>
+
+            <li><strong style="color: red;">דפוסי א.ק.ג נפוצים</strong>
+                <ul>
+                    <li><strong>אוטם שריר הלב (MI):</strong>
+                        <ul>
+                            <li>ST ELEVATION MI (STEMI): גובה ST ב-≥2 לידים רצופים</li>
+                            <li>MI (NSTEMI): ירידות ST / גלי T הפוכים.</li>
+                        </ul>
+                    </li>
+                    <li><strong>פרפור פרוזדורים:</strong> מקצב לא סדיר/לא סדיר ללא גלי P מובהקים</li>
+                    <li><strong>רפרוף פרוזדורים:</strong> גלי "משור" מרפרפים</li>
+                    <li><strong>טכיקרדיה חדרית:</strong> גלי QRS רחבים עם מיקצב קבוע</li>
+                    <li><strong>חסימות הולכה:</strong>
+                        <ul>
+                            <li>חסימת AV מדרגה ראשונה: מרווח PR ממושך (>0.20 שניות).</li>
+                            <li>חסימת AV מדרגה שנייה (Mobitz I ו-II): נפילות (דילוג) של קומפלקס QRS.
+                                <ul>
+                                    <li>Mobitz I: PR מתארך עד לנפילת קומפלקס QRS</li>
+                                    <li>מוביץ II: ללא התארכות במרווח PR; קומפלקס QRS נופל מדי פעם.</li>
+                                </ul>
+                            </li>
+                            <li>חסימת AV מדרגה שלישית: נתק מוחלט (אין קשר) בין גלי P לקומפלקס QRS.</li>
+                        </ul>
+                    </li>
+                </ul>
+            </li>
+
+            <li><strong style="color: red;">טיפים לפרשנות מהירה. בעת קריאת א.ק.ג:</strong>
+                <ul>
+                    <li>ערוך סקירה שיטתית על פי השלבים הבאים:</li>
+                    <li>דירוג: טכיקרדיה או ברדיקרדיה?</li>
+                    <li>קצב: רגיל או לא סדיר?</li>
+                    <li>מרווחים: יש מרווחים חריגים? (R-R, PR, QT)</li>
+                    <li>QRS: צר או רחב?</li>
+                    <li>מקטעי ST: יש עליות או שקעים?</li>
+                </ul>
+            </li>
+        </ol>
+
+      </div>
+</details>
+ 
+            <details>            
+            <summary>הגדרות</summary>                     
+             <div>
+              <ul>
+                <ul>
+                  <li><strong>מרווח –</strong> המרחק על סטריפ האק"ג בין שתי נקודות, מכיל בדרך כלל, יותר מאלמנט אחד.</li>
+                  <li><strong>מקטע –</strong> המרחק על סטריפ האק"ג של אלמנט אחד (למשל מקטע ST).</li>
+                  <li><strong>קו איזואלקטרי –</strong> מתאר מצב שבו אין תנועת מטענים בשריר הלב. גל חשמלי – מתחיל בהתרוממות או ירידה מהקו האיזואלקטרי ומסתיים בחזרה של הגרף לאותו הגובה של הקו האיזואלקטרי.</li>
+                  <li><strong>קומפלקס –</strong> רישום האות החשמלי של התכווצות והרפיה של שריר הלב.</li>
+                  <li><strong>גל P –</strong> השינוי הראשון מהקו האיזואלקטרי בקומפלקס תקין.</li>
+                  <li><strong>קומפלקס QRS –</strong> המרחק בין השינוי הראשון בקו האיזואלקטרי לאחר גל P עד לחזרה מחדש לקו האיזואלקטרי. מייצג את ההתכווצות וההרפיה של החדרים.</li>
+                  <li><strong>גל T –</strong> הגל הראשון אחרי קומפלקס QRS, מייצג את שלב ההרפייה של שריר הלב.</li>
+                </ul>
+              </ul>
+
+             </div>
+        </details>
+
+
+      <details>
+        <summary>רישום הפעילות החשמלית של הלב</summary>
+        <div class="slide-content" style="direction: rtl; display: flex; flex-direction: row; align-items: flex-start; gap: 20px;">    
+        <!-- טקסט בצד ימין -->
+        <div style="flex: 1 1 50%; max-width: 50%;">
+          <ul style="margin: 0;">
+            <li>יש לשים לב לצבעים של החיצים שמתארים את תנועת המטען החשמלי.
+            הצבעים בדיאגרמת האקג מראים איפה  מופיע כל שלב של תנועת המטענים בלב.</li>
+            <li><b>גל P</b> – נוצר על ידי הקוצב הראשי SA Node</li>
+            <li><b>גל Q</b> – מציג את התנועה החשמלית במחיצה הבין חדרית</li>
+            <li><b>גל R</b> – גל חיובי חזק ומאד מהיר, מציג את התנועה החשמלית בעובי קיר החדרים</li>
+            <li><b>גל S</b> – מציג את התנועה החשמלית בקיר החדרים בחלקם העליון.</li>
+            <li><b>גל T-</b> מציג את הרפולריזציה של שריר הלב. תנועת מטעני מינוס מבחוץ פנימה לתוך תאי שריר הלב.</li>
+          </ul>
+        </div>
+          <!-- תמונה בצד שמאל -->
+          <div style="flex: 1 1 50%; max-width: 50%; padding-left: 32px; box-sizing: border-box;">
+            <img src="/mda/images/ecg_arrhy_1.png" alt="מיקום האוטם" style="width: 100%; height: auto; display: block;">
+          </div>
+
+      </div>
+  </details>
+
+<details>
+        <summary>מרווחי הולכה</summary>
+        <div class="slide-content" style="direction: rtl; display: flex; flex-direction: row; align-items: flex-start; gap: 20px;">    
+        <!-- טקסט בצד ימין -->
+        <div style="flex: 1 1 50%; max-width: 50%;">
+          <ul style="margin: 0;">
+            <ul>
+                <li><strong>מרווחי ההולכה:</strong> מרווחי זמן שבהם מתרחשת פעילות מסויימת, כמו כיווץ העליות או כיווץ החדרים.</li>
+                <li><strong>חשיבות קלינית:</strong> מרווחי ההולכה משמעותיים לאבחון הפרעות קצב לב.</li>
+                <li><strong>יחידות זמן באק"ג:</strong> בסטריפ האק"ג כל משבצת קטנה של 1 מ"מ שווה ל־0.04 שניות. משבצת גדולה של 5 משבצות קטנות שווה ל־0.2 שניות וחמש משבצות גדולות שוות ל־1 שניה.</li>
+                <li><strong>גל P:</strong> פחות מ־110 מילישניות (3 קוביות קטנות).</li>
+                <li><strong>מרווח PR (PR Interval):</strong> מתחילת גל P עד תחילת גל Q – 120–200 מילישניות (3–5 קוביות קטנות).</li>
+                <li><strong>מקטע PR (PR Segment):</strong> מסוף גל P עד תחילת גל Q. מקטע PR ארוך מלמד על השהייה ארוכה מדי של האות על ידי ה AV.</li>
+                <li><strong>מרווח PQ:</strong> מאמצע גל P ועד סוף גל Q – 120–200 מילישניות (3–5 קוביות קטנות).</li>
+                <li><strong>מרווח QRS (QRS Interval):</strong> מתחילת גל Q עד סוף גל S – מתחת ל־100 מילישניות (2.5 קוביות קטנות).</li>
+                <li><strong>מקטע ST (ST Segment):</strong> מסוף גל S עד תחילת גל T – 80–120 מילישניות (2.5 קוביות קטנות).</li>
+              </ul>
+          </ul>
+        </div>
+          <!-- תמונה בצד שמאל -->
+          <div style="flex: 1 1 50%; max-width: 50%; padding-left: 32px; box-sizing: border-box;">
+            <img src="/mda/images/ecg_arrhy_2.png" alt="מיקום האוטם" style="width: 100%; height: auto; display: block;">
+          </div>
+
+      </div>
+  </details>
+
+
+  <details>
+        <summary>חישוב קצב לב</summary>
+        <div class="slide-content" style="direction: rtl; display: flex; flex-direction: row; align-items: flex-start; gap: 20px;">    
+        <!-- טקסט בצד ימין -->
+        <div style="flex: 1 1 50%; max-width: 50%;">
+          <ul style="margin: 0;">
+            <ul>
+              <li>
+                <strong>קצב סדיר –</strong> רווח קבוע בין R ל-R. כשהקצב סדיר מחלקים את המספר 300 במספר המשבצות הגדולות בין R ל-R. המספרים הם: 300,150,100,75.60,50,43. מחלקים 300 במספר הקוביות הגדולות השלמות. (אפשר לדייק יותר ע"י החסרת החלק היחסי של הקוביה הלא שלמה האחרונה).
+              </li>
+              <li>
+                <strong>קצב לא סדיר –</strong> סופרים את מספר גלי R ב-30 קוביות גדולות (6 שניות), ומכפילים ב-10.
+              </li>
+            </ul>
+        </div>
+          <!-- תמונה בצד שמאל -->
+          <div style="flex: 1 1 50%; max-width: 50%; padding-left: 32px; box-sizing: border-box;">
+            <img src="/mda/images/ecg_arrhy_4.png" alt="מיקום האוטם" style="width: 100%; height: auto; display: block;">
+          </div>
+
+      </div>
+  </details>
+     
+
+<details>
+      <summary style="color: red;"> מקצבים מהסינוס</summary>
+      <div class="slide-content">
+<ul>
+  <LI>מקצב סינוס תקין הוא מקצב שבו לפני כל קומפלקס QRS יש גל P ואחרי כל גל P יש קומפלקס QRS.</LI>
+</ul>
+
+<details>
+  <summary>קצב סינוס  נורמלי _NSR</summary>
+  <div class="slide-content">
+    <ul>
+      <li>קצב סינוס נורמלי הוא קצב שבין 60 ל-100 פעמיות בדקה.</li>
+      <li><img src="/mda/images/arryht_strips/NSR_Normal sinus rhythm_p4.jpeg" class="img-center" alt="Normal Sinus"></li>
+    </ul>
+    
+  </div>
+</details>
+
+<details>
+  <summary>סינוס ברדיקארדיה - bradycardia</summary>
+  <div class="slide-content">
+    <ul>
+      <li> סינוס בארדיקארדיה  -  קצב סינוס תקין, פחות מ- 60 פעימות בדקה.</li>
+      <li><img src="/MDA/images/arryht_strips/Sin-bradycardia.png" class="img-center" alt="מיקום האוטם"></li>
+    </ul>
+    
+  </div>
+</details>
+        
+<details>
+  <summary>סינוס טכיקארדיה - Tachycardia</summary>
+  <div class="slide-content">
+    <ul>
+      <li> סינוס טאכיקארדיה הוא מצב סינוס תקין עם מעל 100 פעימות לדקה במנוחה</li>
+      <li><img src="/MDA/images/arryht_strips/Sinus-Tachycardia.png" class="img-center" alt="סינוס טכיכארדיה"></li>
+    </ul>
+  </div>
+</details>
+
+<details>
+  <summary>Sinus Arrhytmia - מקצב סינוס לא סדיר</summary>
+  <div class="slide-content">
+    <ul>
+      <li> מקצב סינוס רגיל בקצב משתנה. זהו ממצא תקין שנגרם עקב הנשימה או מאמץ.  </li>
+      <li><img src="/MDA/images/arryht_strips/Sinus arrhythmia_p5.jpeg" class="img-center" alt="סינוס אריטמיה"></li>
+    </ul>
+  </div>
+</details>
+<!--
+<details>
+  <summary>Sinus Arrest</summary>
+  <div class="slide-content">
+    <ul>
+      <li> Sinus Arrest הוא הפרעת קצב כשבקצב סדיר , מדי פעם, ולא בתדירות קבועה קוצב הסינוס מדחסיחסיר פעימה.</li>
+      <li><img src="/MDA/images/arryht_strips/sinus arrest_p6.png" class="img-center" alt="sinus arrest"></li>
+    </ul>   
+  </div>
+</details>
+
+
+<details>
+  <summary>Sinus Block</summary>
+  <div class="slide-content">
+    <ul>
+      <li> הסבר Sinus Block</li>
+      <li><img src="/mda/images/ECG_PRAC1.png" class="img-center" alt="מיקום האוטם"></li>
+    </ul>
+  </div>
+  </details>
+  -->
+</details>
+
+<details>
+      <summary style="color: red;">פעימות מוקדמות</summary>
+      <div class="slide-content">
+<ul>
+  <LI>פעימה מוקדמת הינה כל פעימה יחידה המגיעה ממקור שאיננו סינוס.</LI>
+  <LI>הפעימה יכולה לבוא מתא כלשהוא בשריר. לרוב הן אסימפטומטיות ולא תמיד הן מייצרות פעילות מכנית של שריר הלב.</LI>
+
+</ul>
+
+<details>
+  <summary>פעימה מוקדמת מהעליה - Atrial premature Beats</summary>
+  <div class="slide-content">
+    <ul>
+      <li>גל P לא "תקין". שונה במראהו ובצורתו מגלי P אחרים.</li>
+      <li>הסיבה לכך היא שהאות החשמלי עובר בעליות בכיוון אחר מהכיוון של קוצב הסינוס</li>
+      <li>קומפלקס QRS יהיה תקין במראהו ברוב המקרים. ויופיע לאחר הפעימה המוקדמת</li>
+      <li>לעיתים מכונה Premature Atrial constraction</li>
+      <li><img src="/mda/images/arryht_strips/PAC_premature atrial contraction_p7.jpeg" class="center-img" style="object-fit:contain;" alt="premasture atrial constraction"></li>
+    </ul>
+    
+  </div>
+</details>
+
+<details>
+  <summary>פעימה מוקדמת מהצומת - Junctional Premature Beats</summary>
+  <div class="slide-content">
+    <ul>
+      <li>גל P - לרוב אינו קיים, לעיתים רטרוגרדי (בכיוון ההפוך, מהצומת לכוון החלק העליון של העליות)</li>
+    <li>אם קיים גל P יופיע לפני או אחרי קומפלקס QRS</li>
+    <li>קומפלקס QRS ברוב המקרים יהיה תקין ויופיע אחרי גל P אבל לא תמיד</li>      
+      <li><img src="/MDA/images/arryht_strips/premature junctional contraction_type1_PJC_p11.png"
+        class="center-img" alt="פעימה מוקדמת מהצומת"></li>
+    </ul>
+    
+  </div>
+</details>
+        
+<details>
+  <summary>פעימה חדרית מוקדמת - Ventricular Premature Beats</summary>
+  <div class="slide-content">
+    <ul>
+      <li> חדרי הלב מתכווצים ללא סנכרון, הקצב לא סדיר, הפעימה מגיעה לפני אות הסינוס הבא.</li>
+      <li>גל P אינו קיים לפני הפעימה המוקדמת</li>
+      <li>QRS מוארך. וארוך יותר מ 120 מילישניות.</li>
+      <li><img src="/MDA/images/arryht_strips/VPC_Ventricular premature contractionVPB_PVC_p12.jpeg"
+        class="center-img" alt="פעימה חדרית מוקדמת"></li>
+    </ul>
+  </div>
+</details> <!--סגירה של אקורדיון פעמיה חדרית מוקדמת-->
+
+<details>
+  <summary>R on T phenomenon</summary>
+  <div class="slide-content">
+    <ul>
+      <li>מצב בו הפעימה החדרית המוקדמת נופלת על חלקו היורד של גל T </li>
+      <li>המשמעות היא שהחדר מתחיל להתכווץ לפני שהלב סיים את ההתרחבות המלאה,<BR> ולפני שהעליות התכווצו ודחפו את הדם לחדרים. </li>
+      <li>התופעה מסוכנת מאד ועלולה להוביל להפרעות קצב קטלניות VT/VF</li>
+      <li><img src="/MDA/images/arryht_strips/R_on_T_1.png" class="center-img" style="object-fit:contain;" alt="R on T"></li>
+      <li><img src="/MDA/images/arryht_strips/R_on_T_2.png" class="center-img" style="object-fit:contain;" alt="R on T"></li>
+    </ul>
+  </div>
+</details>
+<!--
+<details>
+  <summary>Sinus Arrest</summary>
+  <div class="slide-content">
+    <ul>
+      <li> Sinus Arrest הוא הפרעת קצב כשבקצב סדיר , מדי פעם, ולא בתדירות קבועה קוצב הסינוס מדחסיחסיר פעימה.</li>
+      <li><img src="/MDA/images/arryht_strips/sinus arrest_p6.png" class="img-center" alt="sinus arrest"></li>
+    </ul>   
+  </div>
+</details>
+
+
+<details>
+  <summary>Sinus Block</summary>
+  <div class="slide-content">
+    <ul>
+      <li> הסבר Sinus Block</li>
+      <li><img src="/mda/images/ECG_PRAC1.png" class="img-center" alt="מיקום האוטם"></li>
+    </ul>
+  </div>
+  </details>
+  -->
+</details>
+
+<details>
+      <summary style="color: red;">תבניות נפוצות של VPB's</summary>
+      <div class="slide-content">
+<ul>
+  <LI>פעימה מוקדמת הינה כל פעימה יחידה המגיעה ממקור שאיננו סינוס.</LI>
+  <LI>הפעימה יכולה לבוא מתא כלשהוא בשריר. לרוב הן אסימפטומטיות ולא תמיד הן מייצרות פעילות מכנית של שריר הלב.</LI>
+
+</ul>
+
+<details>
+  <summary>פעימה מוקדמת מהעליה - Atrial premature Beats</summary>
+  <div class="slide-content">
+    <ul>
+      <li>גל P לא "תקין". שונה במראהו ובצורתו מגלי P אחרים.</li>
+      <li>הסיבה לכך היא שהאות החשמלי עובר בעליות בכיוון אחר מהכיוון של קוצב הסינוס</li>
+      <li>קומפלקס QRS יהיה תקין במראהו ברוב המקרים. ויופיע לאחר הפעימה המוקדמת</li>
+      <li>לעיתים מכונה Premature Atrial constraction</li>
+      <li><img src="/mda/images/arryht_strips/PAC_premature atrial contraction_p7.jpeg" class="center-img" style="object-fit:contain;" alt="premasture atrial constraction"></li>
+    </ul>
+    
+  </div>
+</details>
+
+<details>
+  <summary>פעימה מוקדמת מהצומת - Junctional Premature Beats</summary>
+  <div class="slide-content">
+    <ul>
+      <li>גל P - לרוב אינו קיים, לעיתים רטרוגרדי (בכיוון ההפוך, מהצומת לכוון החלק העליון של העליות)</li>
+    <li>אם קיים גל P יופיע לפני או אחרי קומפלקס QRS</li>
+    <li>קומפלקס QRS ברוב המקרים יהיה תקין ויופיע אחרי גל P אבל לא תמיד</li>      
+      <li><img src="/MDA/images/arryht_strips/premature junctional contraction_type1_PJC_p11.png"
+        class="center-img" alt="פעימה מוקדמת מהצומת"></li>
+    </ul>
+    
+  </div>
+</details>
+        
+<details>
+  <summary>פעימה חדרית מוקדמת - Ventricular Premature Beats</summary>
+  <div class="slide-content">
+    <ul>
+      <li> חדרי הלב מתכווצים ללא סנכרון, הקצב לא סדיר, הפעימה מגיעה לפני אות הסינוס הבא.</li>
+      <li>גל P אינו קיים לפני הפעימה המוקדמת</li>
+      <li>QRS מוארך. וארוך יותר מ 120 מילישניות.</li>
+      <li><img src="/MDA/images/arryht_strips/VPC_Ventricular premature contractionVPB_PVC_p12.jpeg"
+        class="center-img" alt="פעימה חדרית מוקדמת"></li>
+    </ul>
+  </div>
+</details> <!--סגירה של אקורדיון פעמיה חדרית מוקדמת-->
+
+<details>
+  <summary>R on T phenomenon</summary>
+  <div class="slide-content">
+    <ul>
+      <li>מצב בו הפעימה החדרית המוקדמת נופלת על חלקו היורד של גל T </li>
+      <li>המשמעות היא שהחדר מתחיל להתכווץ לפני שהלב סיים את ההתרחבות המלאה,<BR> ולפני שהעליות התכווצו ודחפו את הדם לחדרים. </li>
+      <li>התופעה מסוכנת מאד ועלולה להוביל להפרעות קצב קטלניות VT/VF</li>
+      <li><img src="/MDA/images/arryht_strips/R_on_T_1.png" class="center-img" style="object-fit:contain;" alt="R on T"></li>
+      <li><img src="/MDA/images/arryht_strips/R_on_T_2.png" class="center-img" style="object-fit:contain;" alt="R on T"></li>
+    </ul>
+  </div>
+</details>
+<!--
+<details>
+  <summary>Sinus Arrest</summary>
+  <div class="slide-content">
+    <ul>
+      <li> Sinus Arrest הוא הפרעת קצב כשבקצב סדיר , מדי פעם, ולא בתדירות קבועה קוצב הסינוס מדחסיחסיר פעימה.</li>
+      <li><img src="/MDA/images/arryht_strips/sinus arrest_p6.png" class="img-center" alt="sinus arrest"></li>
+    </ul>   
+  </div>
+</details>
+
+
+<details>
+  <summary>Sinus Block</summary>
+  <div class="slide-content">
+    <ul>
+      <li> הסבר Sinus Block</li>
+      <li><img src="/mda/images/ECG_PRAC1.png" class="img-center" alt="מיקום האוטם"></li>
+    </ul>
+  </div>
+  </details>
+  -->
+</details>
+
+
+</details>
+
+<details> 
+  <summary>תרגול פיענוח סטריפ - הפרעות קצב</summary>
+          
+
+  <details>
+  <summary>תרגיל 1</summary>
+  <div class="slide-content">
+    <ul>
+      <li><strong>רקע התרגיל:</strong> <span id="background-1"><!-- יטען מה-JSON --></span></li>
+       <li><img id="image-1" src="" class="img-center" alt="ECG תרגיל 1" 
+               onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+          <div style="display:none; padding: 10px; background-color: #f8f9fa; border: 1px solid #ddd; border-radius: 5px; color: #721c24;">
+              <strong>שגיאה:</strong> לא ניתן לטעון את התמונה
+          </div>
+      </li>
+    </ul>
+    <details>
+      <summary>
+        <span class="first-line">ממצאים ואבחנה</span>
+      </summary>
+      <div class="slide-content" style="line-height: 1.2; margin-bottom: 5px;">
+        <div class="findings-section" style="margin-bottom: 10px;">
+          <h6 style="margin-bottom: 5px;"><strong>ממצאים:</strong></h6>
+          <ul style="margin-bottom: 5px; line-height: 1.3;" id="findings-1">
+            <!-- יטען מה-JSON -->
+          </ul>
+        </div>
+        <div class="diagnosis-section" style="margin-bottom: 5px;">
+          <h6 style="margin-bottom: 5px;"><strong>אבחנה:</strong></h6>
+          <p style="margin-bottom: 5px; line-height: 1.3;" id="diagnosis-1">
+            <!-- יטען מה-JSON -->
+          </p>
+        </div>
+      </div>
+    </details>
+  </div>
+</details>
+
+<details>
+  <summary>תרגיל 2</summary>
+  <div class="slide-content">
+    <ul>
+      <li><strong>רקע התרגיל:</strong> <span id="background-2"><!-- יטען מה-JSON --></span></li>
+      <li><img id="image-2" src="" class="img-center" alt="ECG תרגיל 2" 
+               onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+          <div style="display:none; padding: 10px; background-color: #f8f9fa; border: 1px solid #ddd; border-radius: 5px; color: #721c24;">
+              <strong>שגיאה:</strong> לא ניתן לטעון את התמונה
+          </div>
+      </li>
+    </ul>
+    <details>
+      <summary>
+        <span class="first-line">ממצאים ואבחנה</span>
+      </summary>
+      <div class="slide-content" style="line-height: 1.2; margin-bottom: 5px;">
+        <div class="findings-section" style="margin-bottom: 10px;">
+          <h6 style="margin-bottom: 5px;"><strong>ממצאים:</strong></h6>
+          <ul style="margin-bottom: 5px; line-height: 1.3;" id="findings-2">
+            <!-- יטען מה-JSON -->
+          </ul>
+        </div>
+        <div class="diagnosis-section" style="margin-bottom: 5px;">
+          <h6 style="margin-bottom: 5px;"><strong>אבחנה:</strong></h6>
+          <p style="margin-bottom: 5px; line-height: 1.3;" id="diagnosis-2">
+            <!-- יטען מה-JSON -->
+          </p>
+        </div>
+      </div>
+    </details>
+  </div>
+</details>
+
+<details>
+  <summary>תרגיל 3</summary>
+  <div class="slide-content">
+    <ul>
+      <li><strong>רקע התרגיל:</strong> <span id="background-3"><!-- יטען מה-JSON --></span></li>
+      <li><img id="image-3" src="" class="img-center" alt="ECG תרגיל 3" 
+               onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+          <div style="display:none; padding: 10px; background-color: #f8f9fa; border: 1px solid #ddd; border-radius: 5px; color: #721c24;">
+              <strong>שגיאה:</strong> לא ניתן לטעון את התמונה
+          </div>
+      </li>
+    </ul>
+    <details>
+      <summary>
+        <span class="first-line">ממצאים ואבחנה</span>
+      </summary>
+      <div class="slide-content" style="line-height: 1.2; margin-bottom: 5px;">
+        <div class="findings-section" style="margin-bottom: 10px;">
+          <h6 style="margin-bottom: 5px;"><strong>ממצאים:</strong></h6>
+          <ul style="margin-bottom: 5px; line-height: 1.3;" id="findings-3">
+            <!-- יטען מה-JSON -->
+          </ul>
+        </div>
+        <div class="diagnosis-section" style="margin-bottom: 5px;">
+          <h6 style="margin-bottom: 5px;"><strong>אבחנה:</strong></h6>
+          <p style="margin-bottom: 5px; line-height: 1.3;" id="diagnosis-3">
+            <!-- יטען מה-JSON -->
+          </p>
+        </div>
+      </div>
+    </details>
+  </div>
+</details>
+
+<details>
+  <summary>תרגיל 4</summary>
+  <div class="slide-content">
+    <ul>
+      <li><strong>רקע התרגיל:</strong> <span id="background-4"><!-- יטען מה-JSON --></span></li>
+      <li><img id="image-4" src="" class="img-center" alt="ECG תרגיל 4" 
+               onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+          <div style="display:none; padding: 10px; background-color: #f8f9fa; border: 1px solid #ddd; border-radius: 5px; color: #721c24;">
+              <strong>שגיאה:</strong> לא ניתן לטעון את התמונה
+          </div>
+      </li>
+    </ul>
+    <details>
+      <summary>
+        <span class="first-line">ממצאים ואבחנה</span>
+      </summary>
+      <div class="slide-content" style="line-height: 1.2; margin-bottom: 5px;">
+        <div class="findings-section" style="margin-bottom: 10px;">
+          <h6 style="margin-bottom: 5px;"><strong>ממצאים:</strong></h6>
+          <ul style="margin-bottom: 5px; line-height: 1.3;" id="findings-4">
+            <!-- יטען מה-JSON -->
+          </ul>
+        </div>
+        <div class="diagnosis-section" style="margin-bottom: 5px;">
+          <h6 style="margin-bottom: 5px;"><strong>אבחנה:</strong></h6>
+          <p style="margin-bottom: 5px; line-height: 1.3;" id="diagnosis-4">
+            <!-- יטען מה-JSON -->
+          </p>
+        </div>
+      </div>
+    </details>
+  </div>
+</details>
+
+<details>
+  <summary>תרגיל 5</summary>
+  <div class="slide-content">
+    <ul>
+      <li><strong>רקע התרגיל:</strong> <span id="background-5"><!-- יטען מה-JSON --></span></li>
+      <li><img id="image-5" src="" class="img-center" alt="ECG תרגיל 5" 
+               onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+          <div style="display:none; padding: 10px; background-color: #f8f9fa; border: 1px solid #ddd; border-radius: 5px; color: #721c24;">
+              <strong>שגיאה:</strong> לא ניתן לטעון את התמונה
+          </div>
+      </li>
+    </ul>
+    <details>
+      <summary>
+        <span class="first-line">ממצאים ואבחנה</span>
+      </summary>
+      <div class="slide-content" style="line-height: 1.2; margin-bottom: 5px;">
+        <div class="findings-section" style="margin-bottom: 10px;">
+          <h6 style="margin-bottom: 5px;"><strong>ממצאים:</strong></h6>
+          <ul style="margin-bottom: 5px; line-height: 1.3;" id="findings-5">
+            <!-- יטען מה-JSON -->
+          </ul>
+        </div>
+        <div class="diagnosis-section" style="margin-bottom: 5px;">
+          <h6 style="margin-bottom: 5px;"><strong>אבחנה:</strong></h6>
+          <p style="margin-bottom: 5px; line-height: 1.3;" id="diagnosis-5">
+            <!-- יטען מה-JSON -->
+          </p>
+        </div>
+      </div>
+    </details>
+  </div>
+</details>
+
+<details>
+  <summary>תרגיל 6</summary>
+  <div class="slide-content">
+    <ul>
+      <li><strong>רקע התרגיל:</strong> <span id="background-6"><!-- יטען מה-JSON --></span></li>
+      <li><img id="image-6" src="" class="img-center" alt="ECG תרגיל 6" 
+               onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+          <div style="display:none; padding: 10px; background-color: #f8f9fa; border: 1px solid #ddd; border-radius: 5px; color: #721c24;">
+              <strong>שגיאה:</strong> לא ניתן לטעון את התמונה
+          </div>
+      </li>
+    </ul>
+    <details>
+      <summary>
+        <span class="first-line">ממצאים ואבחנה</span>
+      </summary>
+      <div class="slide-content" style="line-height: 1.2; margin-bottom: 5px;">
+        <div class="findings-section" style="margin-bottom: 10px;">
+          <h6 style="margin-bottom: 5px;"><strong>ממצאים:</strong></h6>
+          <ul style="margin-bottom: 5px; line-height: 1.3;" id="findings-6">
+            <!-- יטען מה-JSON -->
+          </ul>
+        </div>
+        <div class="diagnosis-section" style="margin-bottom: 5px;">
+          <h6 style="margin-bottom: 5px;"><strong>אבחנה:</strong></h6>
+          <p style="margin-bottom: 5px; line-height: 1.3;" id="diagnosis-6">
+            <!-- יטען מה-JSON -->
+          </p>
+        </div>
+      </div>
+    </details>
+  </div>
+</details>
+
+<details>
+  <summary>תרגיל 7</summary>
+  <div class="slide-content">
+    <ul>
+      <li><strong>רקע התרגיל:</strong> <span id="background-7"><!-- יטען מה-JSON --></span></li>
+      <li><img id="image-7" src="" class="img-center" alt="ECG תרגיל 7" 
+               onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+          <div style="display:none; padding: 10px; background-color: #f8f9fa; border: 1px solid #ddd; border-radius: 5px; color: #721c24;">
+              <strong>שגיאה:</strong> לא ניתן לטעון את התמונה
+          </div>
+      </li>
+    </ul>
+    <details>
+      <summary>
+        <span class="first-line">ממצאים ואבחנה</span>
+      </summary>
+      <div class="slide-content" style="line-height: 1.2; margin-bottom: 5px;">
+        <div class="findings-section" style="margin-bottom: 10px;">
+          <h6 style="margin-bottom: 5px;"><strong>ממצאים:</strong></h6>
+          <ul style="margin-bottom: 5px; line-height: 1.3;" id="findings-7">
+            <!-- יטען מה-JSON -->
+          </ul>
+        </div>
+        <div class="diagnosis-section" style="margin-bottom: 5px;">
+          <h6 style="margin-bottom: 5px;"><strong>אבחנה:</strong></h6>
+          <p style="margin-bottom: 5px; line-height: 1.3;" id="diagnosis-7">
+            <!-- יטען מה-JSON -->
+          </p>
+        </div>
+      </div>
+    </details>
+  </div>
+</details>
+
+<details>
+  <summary>תרגיל 8</summary>
+  <div class="slide-content">
+    <ul>
+      <li><strong>רקע התרגיל:</strong> <span id="background-8"><!-- יטען מה-JSON --></span></li>
+      <li><img id="image-8" src="" class="img-center" alt="ECG תרגיל 8" 
+               onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+          <div style="display:none; padding: 10px; background-color: #f8f9fa; border: 1px solid #ddd; border-radius: 5px; color: #721c24;">
+              <strong>שגיאה:</strong> לא ניתן לטעון את התמונה
+          </div>
+      </li>
+    </ul>
+    <details>
+      <summary>
+        <span class="first-line">ממצאים ואבחנה</span>
+      </summary>
+      <div class="slide-content" style="line-height: 1.2; margin-bottom: 5px;">
+        <div class="findings-section" style="margin-bottom: 10px;">
+          <h6 style="margin-bottom: 5px;"><strong>ממצאים:</strong></h6>
+          <ul style="margin-bottom: 5px; line-height: 1.3;" id="findings-8">
+            <!-- יטען מה-JSON -->
+          </ul>
+        </div>
+        <div class="diagnosis-section" style="margin-bottom: 5px;">
+          <h6 style="margin-bottom: 5px;"><strong>אבחנה:</strong></h6>
+          <p style="margin-bottom: 5px; line-height: 1.3;" id="diagnosis-8">
+            <!-- יטען מה-JSON -->
+          </p>
+        </div>
+      </div>
+    </details>
+  </div>
+</details>
+
+<details>
+  <summary>תרגיל 9</summary>
+  <div class="slide-content">
+    <ul>
+      <li><strong>רקע התרגיל:</strong> <span id="background-9"><!-- יטען מה-JSON --></span></li>
+      <li><img id="image-9" src="" class="img-center" alt="ECG תרגיל 9" 
+               onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+          <div style="display:none; padding: 10px; background-color: #f8f9fa; border: 1px solid #ddd; border-radius: 5px; color: #721c24;">
+              <strong>שגיאה:</strong> לא ניתן לטעון את התמונה
+          </div>
+      </li>
+    </ul>
+    <details>
+      <summary>
+        <span class="first-line">ממצאים ואבחנה</span>
+      </summary>
+      <div class="slide-content" style="line-height: 1.2; margin-bottom: 5px;">
+        <div class="findings-section" style="margin-bottom: 10px;">
+          <h6 style="margin-bottom: 5px;"><strong>ממצאים:</strong></h6>
+          <ul style="margin-bottom: 5px; line-height: 1.3;" id="findings-9">
+            <!-- יטען מה-JSON -->
+          </ul>
+        </div>
+        <div class="diagnosis-section" style="margin-bottom: 5px;">
+          <h6 style="margin-bottom: 5px;"><strong>אבחנה:</strong></h6>
+          <p style="margin-bottom: 5px; line-height: 1.3;" id="diagnosis-9">
+            <!-- יטען מה-JSON -->
+          </p>
+        </div>
+      </div>
+    </details>
+  </div>
+</details>
+
+<details>
+  <summary>תרגיל 10</summary>
+  <div class="slide-content">
+    <ul>
+      <li><strong>רקע התרגיל:</strong> <span id="background-10"><!-- יטען מה-JSON --></span></li>
+      <li><img id="image-10" src="" class="img-center" alt="ECG תרגיל 10" 
+               onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+          <div style="display:none; padding: 10px; background-color: #f8f9fa; border: 1px solid #ddd; border-radius: 5px; color: #721c24;">
+              <strong>שגיאה:</strong> לא ניתן לטעון את התמונה
+          </div>
+      </li>
+    </ul>
+    <details>
+      <summary>
+        <span class="first-line">ממצאים ואבחנה</span>
+      </summary>
+      <div class="slide-content" style="line-height: 1.2; margin-bottom: 5px;">
+        <div class="findings-section" style="margin-bottom: 10px;">
+          <h6 style="margin-bottom: 5px;"><strong>ממצאים:</strong></h6>
+          <ul style="margin-bottom: 5px; line-height: 1.3;" id="findings-10">
+            <!-- יטען מה-JSON -->
+          </ul>
+        </div>
+        <div class="diagnosis-section" style="margin-bottom: 5px;">
+          <h6 style="margin-bottom: 5px;"><strong>אבחנה:</strong></h6>
+          <p style="margin-bottom: 5px; line-height: 1.3;" id="diagnosis-10">
+            <!-- יטען מה-JSON -->
+          </p>
+        </div>
+      </div>
+    </details>
+  </div>
+</details>
+
+<details>
+  <summary>תרגיל 11 </summary>
+  <div class="slide-content">
+    <ul>
+      <li><strong>רקע התרגיל:</strong> <span id="background-11"><!-- יטען מה-JSON --></span></li> 
+      <li><img id="image-11" src="" class="img-center" alt="ECG תרגיל 11"
+               onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+          <div style="display:none; padding: 10px; background-color: #f8f9fa; border: 1px solid #ddd; border-radius: 5px; color: #721c24;">
+              <strong>שגיאה:</strong> לא ניתן לטעון את התמונה
+          </div>
+      </li>
+    </ul>
+    <details>
+      <summary>
+        <span class="first-line">ממצאים ואבחנה</span>
+      </summary>
+      <div class="slide-content" style="line-height: 1.2; margin-bottom: 5px;">
+        <div class="findings-section" style="margin-bottom: 10px;">
+          <h6 style="margin-bottom: 5px;"><strong>ממצאים:</strong></h6>
+          <ul style="margin-bottom: 5px; line-height: 1.3;" id="findings-11">
+            <!-- יטען מה-JSON -->
+          </ul>
+        </div>
+        <div class="diagnosis-section" style="margin-bottom: 5px;">
+          <h6 style="margin-bottom: 5px;"><strong>אבחנה:</strong></h6>
+          <p style="margin-bottom: 5px; line-height: 1.3;" id="diagnosis-11">
+            <!-- יטען מה-JSON -->
+          </p>
+        </div>
+      </div>
+    </details>
+  </div>
+</details>
+
+<details>
+  <summary>תרגיל 12 </summary>
+  <div class="slide-content">
+    <ul>
+      <li>
+        <strong>רקע התרגיל:</strong> <br>
+        <span id="background-12"><!-- יטען מה-JSON --></span>
+      </li> 
+      <li><img id="image-12" src="" class="img-center" alt="ECG תרגיל 12"
+               onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+          <div style="display:none; padding: 10px; background-color: #f8f9fa; border: 1px solid #ddd; border-radius: 5px; color: #721c24;">
+              <strong>שגיאה:</strong> לא ניתן לטעון את התמונה
+          </div>
+      </li>
+    </ul>
+    <details>
+      <summary>
+        <span class="first-line">ממצאים ואבחנה</span>
+      </summary>
+      <div class="slide-content" style="line-height: 1.2; margin-bottom: 5px;">
+        <div class="findings-section" style="margin-bottom: 10px;">
+          <h6 style="margin-bottom: 5px;"><strong>ממצאים:</strong></h6>
+          <ul style="margin-bottom: 5px; line-height: 1.3;" id="findings-12">
+            <!-- יטען מה-JSON -->
+          </ul>
+        </div>
+        <div class="diagnosis-section" style="margin-bottom: 5px;">
+          <h6 style="margin-bottom: 5px;"><strong>אבחנה:</strong></h6>
+          <p style="margin-bottom: 5px; line-height: 1.3;" id="diagnosis-12">
+            <!-- יטען מה-JSON -->
+          </p>
+        </div>
+      </div>
+    </details>
+  </div>
+</details>
+
+<details>
+  <summary>תרגיל 13 </summary>
+  <div class="slide-content">
+    <ul>
+      <li><strong>רקע התרגיל:</strong> <span id="background-13"><!-- יטען מה-JSON --></span></li> 
+      <li><img id="image-13" src="" class="img-center" alt="ECG תרגיל 13"
+               onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+          <div style="display:none; padding: 10px; background-color: #f8f9fa; border: 1px solid #ddd; border-radius: 5px; color: #721c24;">
+              <strong>שגיאה:</strong> לא ניתן לטעון את התמונה
+          </div>
+      </li>
+    </ul>
+    <details>
+      <summary>
+        <span class="first-line">ממצאים ואבחנה</span>
+      </summary>
+      <div class="slide-content" style="line-height: 1.2; margin-bottom: 5px;">
+        <div class="findings-section" style="margin-bottom: 10px;">
+          <h6 style="margin-bottom: 5px;"><strong>ממצאים:</strong></h6>
+          <ul style="margin-bottom: 5px; line-height: 1.3;" id="findings-13">
+            <!-- יטען מה-JSON -->
+          </ul>
+        </div>
+        <div class="diagnosis-section" style="margin-bottom: 5px;">
+          <h6 style="margin-bottom: 5px;"><strong>אבחנה:</strong></h6>
+          <p style="margin-bottom: 5px; line-height: 1.3;" id="diagnosis-13">
+            <!-- יטען מה-JSON -->
+          </p>
+        </div>
+      </div>
+    </details>
+  </div>
+</details>
+
+<details>
+  <summary>תרגיל 14 </summary>
+  <div class="slide-content">
+    <ul>
+      <li><strong>רקע התרגיל:</strong> <span id="background-14"><!-- יטען מה-JSON --></span></li> 
+      <li><img id="image-14" src="" class="img-center" alt="ECG תרגיל 14"
+               onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+          <div style="display:none; padding: 10px; background-color: #f8f9fa; border: 1px solid #ddd; border-radius: 5px; color: #721c24;">
+              <strong>שגיאה:</strong> לא ניתן לטעון את התמונה
+          </div>
+      </li>
+    </ul>
+    <details>
+      <summary>
+        <span class="first-line">ממצאים ואבחנה</span>
+      </summary>
+      <div class="slide-content" style="line-height: 1.2; margin-bottom: 5px;">
+        <div class="findings-section" style="margin-bottom: 10px;">
+          <h6 style="margin-bottom: 5px;"><strong>ממצאים:</strong></h6>
+          <ul style="margin-bottom: 5px; line-height: 1.3;" id="findings-14">
+            <!-- יטען מה-JSON -->
+          </ul>
+        </div>
+        <div class="diagnosis-section" style="margin-bottom: 5px;">
+          <h6 style="margin-bottom: 5px;"><strong>אבחנה:</strong></h6>
+          <p style="margin-bottom: 5px; line-height: 1.3;" id="diagnosis-14">
+            <!-- יטען מה-JSON -->
+          </p>
+        </div>
+      </div>
+    </details>
+  </div>
+</details>
+
+<details>
+  <summary>תרגיל 15 </summary>
+  <div class="slide-content">
+    <ul>
+      <li><strong>רקע התרגיל:</strong> <span id="background-15"><!-- יטען מה-JSON --></span></li> 
+      <li><img id="image-15" src="" class="img-center" alt="ECG תרגיל 15"
+               onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+          <div style="display:none; padding: 10px; background-color: #f8f9fa; border: 1px solid #ddd; border-radius: 5px; color: #721c24;">
+              <strong>שגיאה:</strong> לא ניתן לטעון את התמונה
+          </div>
+      </li>
+    </ul>
+    <details>
+      <summary>
+        <span class="first-line">ממצאים ואבחנה</span>
+      </summary>
+      <div class="slide-content" style="line-height: 1.2; margin-bottom: 5px;">
+        <div class="findings-section" style="margin-bottom: 10px;">
+          <h6 style="margin-bottom: 5px;"><strong>ממצאים:</strong></h6>
+          <ul style="margin-bottom: 5px; line-height: 1.3;" id="findings-15">
+            <!-- יטען מה-JSON -->
+          </ul>
+        </div>
+        <div class="diagnosis-section" style="margin-bottom: 5px;">
+          <h6 style="margin-bottom: 5px;"><strong>אבחנה:</strong></h6>
+          <p style="margin-bottom: 5px; line-height: 1.3;" id="diagnosis-15">
+            <!-- יטען מה-JSON -->
+          </p>
+        </div>
+      </div>
+    </details>
+  </div>
+</details>
+
+<details>
+  <summary>תרגיל 16 </summary>
+  <div class="slide-content">
+    <ul>
+      <li><strong>רקע התרגיל:</strong> <span id="background-16"><!-- יטען מה-JSON --></span></li> 
+      <li><img id="image-16" src="" class="img-center" alt="ECG תרגיל 16"
+               onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+          <div style="display:none; padding: 10px; background-color: #f8f9fa; border: 1px solid #ddd; border-radius: 5px; color: #721c24;">
+              <strong>שגיאה:</strong> לא ניתן לטעון את התמונה
+          </div>
+      </li>
+    </ul>
+    <details>
+      <summary>
+        <span class="first-line">ממצאים ואבחנה</span>
+      </summary>
+      <div class="slide-content" style="line-height: 1.2; margin-bottom: 5px;">
+        <div class="findings-section" style="margin-bottom: 10px;">
+          <h6 style="margin-bottom: 5px;"><strong>ממצאים:</strong></h6>
+          <ul style="margin-bottom: 5px; line-height: 1.3;" id="findings-16">
+            <!-- יטען מה-JSON -->
+          </ul>
+        </div>
+        <div class="diagnosis-section" style="margin-bottom: 5px;">
+          <h6 style="margin-bottom: 5px;"><strong>אבחנה:</strong></h6>
+          <p style="margin-bottom: 5px; line-height: 1.3;" id="diagnosis-16">
+            <!-- יטען מה-JSON -->
+          </p>
+        </div>
+      </div>
+    </details>
+  </div>
+</details>
+
+<details>
+  <summary>תרגיל 17 </summary>
+  <div class="slide-content">
+    <ul>
+      <li><strong>רקע התרגיל:</strong> <span id="background-17"><!-- יטען מה-JSON --></span></li> 
+      <li><img id="image-17" src="" class="img-center" alt="ECG תרגיל 17"
+               onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+          <div style="display:none; padding: 10px; background-color: #f8f9fa; border: 1px solid #ddd; border-radius: 5px; color: #721c24;">
+              <strong>שגיאה:</strong> לא ניתן לטעון את התמונה
+          </div>
+      </li>
+    </ul>
+    <details>
+      <summary>
+        <span class="first-line">ממצאים ואבחנה</span>
+      </summary>
+      <div class="slide-content" style="line-height: 1.2; margin-bottom: 5px;">
+        <div class="findings-section" style="margin-bottom: 10px;">
+          <h6 style="margin-bottom: 5px;"><strong>ממצאים:</strong></h6>
+          <ul style="margin-bottom: 5px; line-height: 1.3;" id="findings-17">
+            <!-- יטען מה-JSON -->
+          </ul>
+        </div>
+        <div class="diagnosis-section" style="margin-bottom: 5px;">
+          <h6 style="margin-bottom: 5px;"><strong>אבחנה:</strong></h6>
+          <p style="margin-bottom: 5px; line-height: 1.3;" id="diagnosis-17">
+            <!-- יטען מה-JSON -->
+          </p>
+        </div>
+      </div>
+    </details>
+  </div>
+</details>
+
+<details>
+  <summary>תרגיל 18 </summary>
+  <div class="slide-content">
+    <ul>
+      <li><strong>רקע התרגיל:</strong> <span id="background-18"><!-- יטען מה-JSON --></span></li> 
+      <li><img id="image-18" src="" class="img-center" alt="ECG תרגיל 18"
+               onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+          <div style="display:none; padding: 10px; background-color: #f8f9fa; border: 1px solid #ddd; border-radius: 5px; color: #721c24;">
+              <strong>שגיאה:</strong> לא ניתן לטעון את התמונה
+          </div>
+      </li>
+    </ul>
+    <details>
+      <summary>
+        <span class="first-line">ממצאים ואבחנה</span>
+      </summary>
+      <div class="slide-content" style="line-height: 1.2; margin-bottom: 5px;">
+        <div class="findings-section" style="margin-bottom: 10px;">
+          <h6 style="margin-bottom: 5px;"><strong>ממצאים:</strong></h6>
+          <ul style="margin-bottom: 5px; line-height: 1.3;" id="findings-18">
+            <!-- יטען מה-JSON -->
+          </ul>
+        </div>
+        <div class="diagnosis-section" style="margin-bottom: 5px;">
+          <h6 style="margin-bottom: 5px;"><strong>אבחנה:</strong></h6>
+          <p style="margin-bottom: 5px; line-height: 1.3;" id="diagnosis-18">
+            <!-- יטען מה-JSON -->
+          </p>
+        </div>
+      </div>
+    </details>
+  </div>
+</details>
+
+<details>
+  <summary>תרגיל 19 </summary>
+  <div class="slide-content">
+    <ul>
+      <li><strong>רקע התרגיל:</strong> <span id="background-19"><!-- יטען מה-JSON --></span></li> 
+      <li><img id="image-19" src="" class="img-center" alt="ECG תרגיל 19"
+               onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+          <div style="display:none; padding: 10px; background-color: #f8f9fa; border: 1px solid #ddd; border-radius: 5px; color: #721c24;">
+              <strong>שגיאה:</strong> לא ניתן לטעון את התמונה
+          </div>
+      </li>
+    </ul>
+    <details>
+      <summary>
+        <span class="first-line">ממצאים ואבחנה</span>
+      </summary>
+      <div class="slide-content" style="line-height: 1.2; margin-bottom: 5px;">
+        <div class="findings-section" style="margin-bottom: 10px;">
+          <h6 style="margin-bottom: 5px;"><strong>ממצאים:</strong></h6>
+          <ul style="margin-bottom: 5px; line-height: 1.3;" id="findings-19">
+            <!-- יטען מה-JSON -->
+          </ul>
+        </div>
+        <div class="diagnosis-section" style="margin-bottom: 5px;">
+          <h6 style="margin-bottom: 5px;"><strong>אבחנה:</strong></h6>
+          <p style="margin-bottom: 5px; line-height: 1.3;" id="diagnosis-19">
+            <!-- יטען מה-JSON -->
+          </p>
+        </div>
+      </div>
+    </details>
+  </div>
+</details>
+
+<details>
+  <summary>תרגיל 20 </summary>
+  <div class="slide-content">
+    <ul>
+      <li><strong>רקע התרגיל:</strong> <span id="background-20"><!-- יטען מה-JSON --></span></li> 
+      <li><img id="image-20" src="" class="img-center" alt="ECG תרגיל 20"
+               onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+          <div style="display:none; padding: 10px; background-color: #f8f9fa; border: 1px solid #ddd; border-radius: 5px; color: #721c24;">
+              <strong>שגיאה:</strong> לא ניתן לטעון את התמונה
+          </div>
+      </li>
+    </ul>
+    <details>
+      <summary>
+        <span class="first-line">ממצאים ואבחנה</span>
+      </summary>
+      <div class="slide-content" style="line-height: 1.2; margin-bottom: 5px;">
+        <div class="findings-section" style="margin-bottom: 10px;">
+          <h6 style="margin-bottom: 5px;"><strong>ממצאים:</strong></h6>
+          <ul style="margin-bottom: 5px; line-height: 1.3;" id="findings-20">
+            <!-- יטען מה-JSON -->
+          </ul>
+        </div>
+        <div class="diagnosis-section" style="margin-bottom: 5px;">
+          <h6 style="margin-bottom: 5px;"><strong>אבחנה:</strong></h6>
+          <p style="margin-bottom: 5px; line-height: 1.3;" id="diagnosis-20">
+            <!-- יטען מה-JSON -->
+          </p>
+        </div>
+      </div>
+    </details>
+  </div>
+</details>
+
+<details>
+  <summary>תרגיל 21 </summary>
+  <div class="slide-content">
+    <ul>
+      <li><strong>רקע התרגיל:</strong> <span id="background-21"><!-- יטען מה-JSON --></span></li> 
+      <li><img id="image-21" src="" class="img-center" alt="ECG תרגיל 21"
+               onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+          <div style="display:none; padding: 10px; background-color: #f8f9fa; border: 1px solid #ddd; border-radius: 5px; color: #721c24;">
+              <strong>שגיאה:</strong> לא ניתן לטעון את התמונה
+          </div>
+      </li>
+    </ul>
+    <details>
+      <summary>
+        <span class="first-line">ממצאים ואבחנה</span>
+      </summary>
+      <div class="slide-content" style="line-height: 1.2; margin-bottom: 5px;">
+        <div class="findings-section" style="margin-bottom: 10px;">
+          <h6 style="margin-bottom: 5px;"><strong>ממצאים:</strong></h6>
+          <ul style="margin-bottom: 5px; line-height: 1.3;" id="findings-21">
+            <!-- יטען מה-JSON -->
+          </ul>
+        </div>
+        <div class="diagnosis-section" style="margin-bottom: 5px;">
+          <h6 style="margin-bottom: 5px;"><strong>אבחנה:</strong></h6>
+          <p style="margin-bottom: 5px; line-height: 1.3;" id="diagnosis-21">
+            <!-- יטען מה-JSON -->
+          </p>
+        </div>
+      </div>
+    </details>
+  </div>
+</details>
+
+<details>
+  <summary>תרגיל 22 </summary>
+  <div class="slide-content">
+    <ul>
+      <li><strong>רקע התרגיל:</strong> <span id="background-22"><!-- יטען מה-JSON --></span></li> 
+      <li><img id="image-22" src="" class="img-center" alt="ECG תרגיל 22"
+               onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+          <div style="display:none; padding: 10px; background-color: #f8f9fa; border: 1px solid #ddd; border-radius: 5px; color: #721c24;">
+              <strong>שגיאה:</strong> לא ניתן לטעון את התמונה
+          </div>
+      </li>
+    </ul>
+    <details>
+      <summary>
+        <span class="first-line">ממצאים ואבחנה</span>
+      </summary>
+      <div class="slide-content" style="line-height: 1.2; margin-bottom: 5px;">
+        <div class="findings-section" style="margin-bottom: 10px;">
+          <h6 style="margin-bottom: 5px;"><strong>ממצאים:</strong></h6>
+          <ul style="margin-bottom: 5px; line-height: 1.3;" id="findings-22">
+            <!-- יטען מה-JSON -->
+          </ul>
+        </div>
+        <div class="diagnosis-section" style="margin-bottom: 5px;">
+          <h6 style="margin-bottom: 5px;"><strong>אבחנה:</strong></h6>
+          <p style="margin-bottom: 5px; line-height: 1.3;" id="diagnosis-22">
+            <!-- יטען מה-JSON -->
+          </p>
+        </div>
+      </div>
+    </details>
+  </div>
+</details>
+
+<details>
+  <summary>תרגיל 23 </summary>
+  <div class="slide-content">
+    <ul>
+      <li><strong>רקע התרגיל:</strong> <span id="background-23"><!-- יטען מה-JSON --></span></li> 
+      <li><img id="image-23" src="" class="img-center" alt="ECG תרגיל 23"
+               onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+          <div style="display:none; padding: 10px; background-color: #f8f9fa; border: 1px solid #ddd; border-radius: 5px; color: #721c24;">
+              <strong>שגיאה:</strong> לא ניתן לטעון את התמונה
+          </div>
+      </li>
+    </ul>
+    <details>
+      <summary>
+        <span class="first-line">ממצאים ואבחנה</span>
+      </summary>
+      <div class="slide-content" style="line-height: 1.2; margin-bottom: 5px;">
+        <div class="findings-section" style="margin-bottom: 10px;">
+          <h6 style="margin-bottom: 5px;"><strong>ממצאים:</strong></h6>
+          <ul style="margin-bottom: 5px; line-height: 1.3;" id="findings-23">
+            <!-- יטען מה-JSON -->
+          </ul>
+        </div>
+        <div class="diagnosis-section" style="margin-bottom: 5px;">
+          <h6 style="margin-bottom: 5px;"><strong>אבחנה:</strong></h6>
+          <p style="margin-bottom: 5px; line-height: 1.3;" id="diagnosis-23">
+            <!-- יטען מה-JSON -->
+          </p>
+        </div>
+      </div>
+    </details>
+  </div>
+</details>
+
+<!-- התרגילים הקיימים עם ECG_PRAC ממשיכים כרגיל 
+<details>
+  <summary>תרגיל 1</summary>
+  <div class="slide-content">
+    <ul>
+      <li><img src="/mda/images/ECG_PRAC1.png" class="img-center" alt="מיקום האוטם"></li>
+    </ul>
+    <details>
+      <summary>
+        <span class="first-line">ממצאים ואבחנה</span>
+      </summary>
+      <div class="slide-content"></div>
+    </details>
+  </div>
+</details>
+
+<details>
+  <summary>תרגיל 2</summary>
+  <div class="slide-content">
+    <ul>
+      <li><img src="/mda/images/ECG_PRAC2.png" class="img-center" alt="מיקום האוטם"></li>
+    </ul>
+    <details>
+      <summary>
+        <span class="first-line">ממצאים ואבחנה</span>
+      </summary>
+      <div class="slide-content"></div>
+    </details>
+  </div>
+</details>
+
+<details>
+  <summary>תרגיל 3</summary>
+  <div class="slide-content">
+    <ul>
+      <li><img src="/mda/images/ECG_PRAC3.png" class="img-center" alt="מיקום האוטם"></li>
+    </ul>
+    <details>
+      <summary>
+        <span class="first-line">ממצאים ואבחנה</span>
+      </summary>
+      <div class="slide-content"></div>
+    </details>
+  </div>
+</details>
+
+<details>
+  <summary>תרגיל 4</summary>
+  <div class="slide-content">
+    <ul>
+      <li><img src="/mda/images/ECG_PRAC4.png" class="img-center" alt="מיקום האוטם"></li>
+    </ul>
+    <details>
+      <summary>
+        <span class="first-line">ממצאים ואבחנה</span>
+      </summary>
+      <div class="slide-content"></div>
+    </details>
+  </div>
+</details>
+
+<details>
+  <summary>תרגיל 5</summary>
+  <div class="slide-content">
+    <ul>
+      <li><img src="/mda/images/ECG_PRAC5.png" class="img-center" alt="מיקום האוטם"></li>
+    </ul>
+    <details>
+      <summary>
+        <span class="first-line">ממצאים ואבחנה</span>
+      </summary>
+      <div class="slide-content"></div>
+    </details>
+  </div>
+</details>
+-->
+<!-- סקריפט לתרגילי MI הקיימים -->
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+  fetch("../../../json/ecg_arryht.json")
+    .then(response => {
+      if (!response.ok) throw new Error("Network response was not ok");
+      return response.json();
+    })
+    .then(data => {
+      data.forEach(answer => {
+        const questionNumber = answer.qustion;
+
+        // חפש את details של תרגיל מתאים לפי "תרגיל X"
+        const allDetails = document.querySelectorAll("details");
+        let exercise = null;
+
+        allDetails.forEach(detail => {
+          const summary = detail.querySelector("summary");
+          if (summary && summary.textContent.includes("תרגיל " + questionNumber)) {
+            exercise = detail;
+          }
+        });
+
+        if (!exercise) return;
+
+        // מצא את details הפנימי של התשובה בתוך התרגיל
+        const innerDetails = exercise.querySelector("details");
+        if (!innerDetails) return;
+
+        // מצא את div.slide-content שבתוך התשובה
+        const contentDiv = innerDetails.querySelector(".slide-content");
+        if (!contentDiv) return;
+
+        // נקה את התוכן הקיים
+        contentDiv.innerHTML = "";
+
+        // צור את התוכן החדש
+        const fields = [
+          { label: "קצב:", value: answer.HR },
+          { label: "מקצב:", value: answer.Rythm },
+          { label: "ציר הלב:", value: answer.Axis },
+          { label: "לידים עם עליות ST:", value: answer.STE },
+          { label: "לידים עם ירידות ST:", value: answer.STD },
+          { label: "הקירות עם האוטם:", value: answer.Wall },
+          { label: "העורקים המעורבים:", value: answer.Vein }
+        ];
+
+        const wrapper = document.createElement("div");
+        wrapper.classList.add("summary-2nd-l");
+
+        const ul = document.createElement("ul");
+        fields.forEach(field => {
+          const li = document.createElement("li");
+          li.innerHTML = `<strong>${field.label}</strong> ${field.value}`;
+          ul.appendChild(li);
+        });
+
+        wrapper.appendChild(ul);
+        contentDiv.appendChild(wrapper);
+      });
+    })
+    .catch(error => {
+      console.error("שגיאה בטעינת הנתונים:", error);
+    });
+});
+</script>
+
+<!-- סקריפט מתוקן לתרגילי הפרעות קצב -->
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+  console.log("טוען JSON...");
+  fetch("../../../json/ecg_arryht.json")
+    .then(response => {
+      console.log("תגובת JSON:", response.ok);
+      if (!response.ok) throw new Error("Network response was not ok");
+      return response.json();
+    })
+    .then(data => {
+      console.log("נתוני JSON נטענו:", data);
+      data.forEach(exerciseData => {
+        const exerciseNumber = exerciseData.exercise_number;
+        console.log("מעבד תרגיל:", exerciseNumber);
+        
+        // מצא את האלמנטים לתרגיל הנוכחי
+        const backgroundElement = document.getElementById(`background-${exerciseNumber}`);
+        const imageElement = document.getElementById(`image-${exerciseNumber}`);
+        const findingsElement = document.getElementById(`findings-${exerciseNumber}`);
+        const diagnosisElement = document.getElementById(`diagnosis-${exerciseNumber}`);
+        
+        console.log("אלמנטים נמצאו:", {
+          background: !!backgroundElement,
+          image: !!imageElement,
+          findings: !!findingsElement,
+          diagnosis: !!diagnosisElement
+        });
+        
+        if (backgroundElement && imageElement && findingsElement && diagnosisElement) {
+          // מלא את הרקע
+          backgroundElement.textContent = exerciseData.background;
+          console.log("רקע נטען לתרגיל", exerciseNumber);
+          
+          // צור פונקציה ייחודית לכל תרגיל
+          (function(exerciseNum, imgElement) {
+            const possiblePaths = [
+             // `/MDA/images/ecg_oxford/ECG${exerciseNum}.jpg`,
+             // `/mda/images/ecg_oxford/ECG${exerciseNum}.jpg`,
+             // `./images/ecg_oxford/ECG${exerciseNum}.jpg`,
+             // `../images/ecg_oxford/ECG${exerciseNum}.jpg`,
+             // `../../images/ecg_oxford/ECG${exerciseNum}.jpg`,
+             // `../../../images/ecg_oxford/ECG${exerciseNum}.jpg`,
+              exerciseData.image_link || ''
+            ];
+            
+            let currentPathIndex = 0;
+            
+            function tryLoadImageForExercise() {
+              if (currentPathIndex >= possiblePaths.length) {
+                console.error("כל הנתיבים נכשלו לתרגיל", exerciseNum);
+                // הצג הודעת שגיאה
+                imgElement.style.display = 'none';
+                const errorDiv = imgElement.nextElementSibling;
+                if (errorDiv) {
+                  errorDiv.style.display = 'block';
+                }
+                return;
+              }
+              
+              const currentPath = possiblePaths[currentPathIndex];
+              console.log(`מנסה נתיב ${currentPathIndex + 1}/${possiblePaths.length} לתרגיל ${exerciseNum}:`, currentPath);
+              
+              // בדוק אם הנתיב לא ריק
+              if (!currentPath) {
+                currentPathIndex++;
+                tryLoadImageForExercise();
+                return;
+              }
+              
+              const testImg = new Image();
+              
+              testImg.onload = function() {
+                console.log("תמונה נטענה בהצלחה לתרגיל", exerciseNum, "עם נתיב:", currentPath);
+                imgElement.src = currentPath;
+                imgElement.style.display = 'block';
+                const errorDiv = imgElement.nextElementSibling;
+                if (errorDiv) {
+                  errorDiv.style.display = 'none';
+                }
+              };
+              
+              testImg.onerror = function() {
+                console.log(`נתיב נכשל לתרגיל ${exerciseNum}:`, currentPath);
+                currentPathIndex++;
+                tryLoadImageForExercise();
+              };
+              
+              testImg.src = currentPath;
+            }
+            
+            tryLoadImageForExercise();
+          })(exerciseNumber, imageElement);
+          
+          const findings = exerciseData.answers.ממצאים;
+          
+          // בדיקה אם יש הערה (תרגיל 4)
+          if (findings.הערה) {
+            findingsElement.innerHTML = `
+              <li style="margin-bottom: 10px; font-weight: bold; color: #d9534f;">${findings.הערה}</li>
+            `;
+            console.log("הערה נטענה לתרגיל", exerciseNumber);
+          } else {
+            // מלא את הממצאים הרגילים
+            let findingsHtml = '';
+            Object.keys(findings).forEach(key => {
+              if (findings[key]) {
+                const displayKey = key.replace(/_/g, ' ');
+                findingsHtml += `<li style="margin-bottom: 2px;"><strong>${displayKey}:</strong> ${findings[key]}</li>`;
+              }
+            });
+            findingsElement.innerHTML = findingsHtml;
+            console.log("ממצאים נטענו לתרגיל", exerciseNumber);
+          }
+          
+          // מלא את האבחנה
+          diagnosisElement.textContent = exerciseData.answers.אבחנה;
+          console.log("אבחנה נטענה לתרגיל", exerciseNumber);
+        } else {
+          console.error("לא נמצאו כל האלמנטים לתרגיל", exerciseNumber);
+        }
+      });
+    })
+    .catch(error => {
+      console.error("שגיאה בטעינת הנתונים:", error);
+    });
+});
+</script>
+<script>
+        const hamburgerBtn = document.getElementById('hamburgerBtn');
+        const sideMenu = document.getElementById('sideMenu');
+        const overlay = document.getElementById('overlay');
+
+        // פתיחה/סגירה של התפריט
+        hamburgerBtn.addEventListener('click', function() {
+            hamburgerBtn.classList.toggle('active');
+            sideMenu.classList.toggle('open');
+            overlay.classList.toggle('active');
+        });
+
+        // סגירה בלחיצה על האוברליי
+        overlay.addEventListener('click', function() {
+            hamburgerBtn.classList.remove('active');
+            sideMenu.classList.remove('open');
+            overlay.classList.remove('active');
+        });
+
+        // סגירה בלחיצה על ESC
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                hamburgerBtn.classList.remove('active');
+                sideMenu.classList.remove('open');
+                overlay.classList.remove('active');
+            }
+        });
+    </script>
+<script src="/mda/js/hamburger-menu.js"></script>
+  
+</body>
+</html>

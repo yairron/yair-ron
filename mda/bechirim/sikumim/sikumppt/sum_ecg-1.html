@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+<title>איסכמיה ואוטם באקג</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <script 
+      src="https://cdn.counter.dev/script.js" 
+      data-id="87cd2eee-d5db-43dc-9575-16e58a14c32d" 
+      data-utcoffset="3" 
+      defer 
+      referrerpolicy="no-referrer"></script>
+
+<style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f7f7f7;
+      margin: 0;
+      padding: 0 10vw;
+    }
+    .top-link {
+      position: fixed;
+      top: 0;
+      right: 0;
+      left: 0;
+      background: #1976d2;
+      color: #fff;
+      text-align: center;
+      padding: 8px 0 4px 0;
+      z-index: 101;
+      font-size: 1.1em;
+      text-decoration: none;
+      letter-spacing: 1px;
+      box-shadow: 0 2px 8px #bbb;
+    }
+    
+    .sticky-header {
+      position: fixed;
+      top: 36px;
+      right: 0;
+      left: 0;
+      background: #fff;
+      z-index: 100;
+      text-align: center;
+      padding: 18px 0 10px 0;
+      font-size: 2em;
+      font-weight: bold;
+      box-shadow: 0 2px 8px #ddd;
+      border-bottom: 1px solid #eee;
+    }
+    .content-wrapper {
+      margin-top: 100px;
+    }
+    details {
+      background: #fff;
+      border-radius: 8px;
+      margin: 16px 0;
+      box-shadow: 0 2px 8px #ddd;
+    }
+    
+/* סטיילים כלליים */
+.img-left {
+  float: left;
+  margin: 0 15px 10px 0;
+  max-width: 45%;
+  height: auto;
+  direction: ltr; 
+}
+
+.img-right {
+  float: right;
+  margin: 0 0 10px 15px;
+  max-width: 45%;
+  height: auto;
+}
+
+.img-center {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  max-width: 90%;
+  height: auto;
+}
+
+.center-img {
+  display: block;           /* הופך לשורה נפרדת */
+  margin: 18px auto 12px auto; /* מרכז אופקית */
+  height: 18vh;             /* גובה יחסי לחלון */
+  max-width: 320px;         /* לא תגלוש ברוחב */
+  width: 90%;               /* תתאים למסך קטן */
+  object-fit: contain;      /* לא תתעוות */
+  border-radius: 12px;
+  box-shadow: 0 1px 6px #ccc;
+  background: #fff;
+}
+
+
+.img-accordion-left {
+  display: block;         /* שורה נפרדת */
+  position: relative;     /* יחסית לקונטיינר */
+  margin-left: 0;         /* אין רווח משמאל */
+  margin-right: auto;     /* דוחף את התמונה לשמאל */
+  max-width: 100%;        /* לא תגלוש מהקונטיינר */
+  height: auto;           /* גובה יחסי */
+  box-sizing: border-box; /* לא יגלוש מהמסגרת */
+}
+
+.float-image {
+  float: left;
+  width: 40%;
+  margin-left: -150px;
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+.img-row {
+      display: flex;
+      justify-content: center; /* Center the images horizontally */
+      align-items: center;     /* Align the images vertically */
+      gap: 20px;               /* Space between images */
+      flex-wrap: wrap;         /* Allow images to wrap on small screens */
+    }
+    .img-row img {
+      width: 40%;              /* Adjust as needed */
+      max-width: 350px;
+      height: auto;
+      display: block;
+    }
+
+.slide-content {
+  padding: 20px 28px 20px 20px;
+  font-size: 1.08em;
+  color: #232323;
+  line-height: 1.7;
+  /* עיצוב FLEX מאפשר שליטה על תמונה וטקסט */
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  overflow: hidden;
+  position: relative;
+}
+
+/* עיצוב תמונה באקורדיון */
+.slide-content .small-img {
+  width: 33%;
+  max-width: 33vw;
+  height: 25vh;
+  max-height: 25vh;
+  object-fit: contain;
+  align-self: flex-start;
+  margin-left: 18px;
+  margin-bottom: 12px;
+  border-radius: 12px;
+  box-shadow: 0 1px 6px #ccc;
+  background: #fff;
+  display: block;
+}
+
+
+/* הדגשת מושגים */
+.highlight {
+  color: #b30000;
+  font-weight: bold;
+}
+
+/* טבלאות */
+table {
+  border-collapse: collapse;
+  width: 100%;
+  margin: 18px 0;
+  background: #fff;
+}
+th, td {
+  border: 1px solid #b30000;
+  padding: 8px 6px;
+  text-align: center;
+}
+th {
+  background: #ffeaea;
+  color: #b30000;
+  font-weight: bold;
+}
+
+/* הערות */
+.note {
+  background: #fff3cd;
+  border-right: 5px solid #ffe066;
+  border-radius: 4px;
+  padding: 10px 16px;
+  margin: 16px 0;
+  color: #856404;
+  font-size: 1em;
+}
+
+
+/* התאמה למסכים קטנים */
+@media (max-width: 600px) {
+  .img-left,
+  .img-right,
+  .img-center {
+    float: none;           /* מבטל הצפה */
+    display: block;        /* שורה נפרדת */
+    margin: 10px auto;     /* מרכז אופקית עם רווח למעלה ולמטה */
+    max-width: 70vw;       /* רוחב כמעט מלא של המסך */
+    height: auto;          /* גובה מותאם */
+  }
+    .img-accordion-left {
+    width: 95vw;             /* כמעט כל הרוחב של המסך */
+    max-width: 100vw;
+    margin: 10px auto 10px auto; /* מרכז את התמונה */
+    display: block;
+    height: auto;            /* שומר על פרופורציות */
+  }
+  .img-row {
+    gap: 10px; /* Reduce gap on small screens */
+  }
+  .img-row img {
+    width: 100%;        /* Images take full width of the row */
+    max-width: 100%;    /* Remove max-width restriction */
+  }
+  .float-image {
+    width: 100%;
+    margin-left: 0;
+    max-width: 100%;
+    height: auto;
+  }
+  .center-img {
+    height: 15vh;               /* Slightly reduce height on very small screens */
+    max-width: 280px;           /* Reduce max-width */
+  }
+}
+    summary {
+      font-size: 1.2em;
+      font-weight: bold;
+      cursor: pointer;
+      padding: 12px;
+      outline: none;
+    }
+    details[open] summary { color: #1976d2; }
+    .content { padding: 0 16px 16px 16px; }
+    ul { margin: 0; padding-right: 20px; }
+    li { margin-bottom: 6px; }
+    blockquote {
+      background: #e3f2fd;
+      border-right: 5px solid #1976d2;
+      margin: 12px 0;
+      padding: 10px 16px;
+      font-style: italic;
+      color: #1976d2;
+    }
+    .svg-center { display: flex; justify-content: center; margin: 16px 0; }
+  </style>
+</head>
+<body>
+  <a href="../../../index.html" class="top-link">חזרה לתפריט הראשי</a>
+  <div class="sticky-header">  אק"ג ומחלות לב כליליות</div>
+  <div class="content-wrapper">
+
+    <details>
+      <summary>חיבורי האק"ג</summary>
+      <div class="slide-content">
+        <ul>
+          <li>בהוספת 6 חיבורים נוספים <span class="highlight">V1-V6</span> ניתן לקבל תמונה תלת-מימדית של 12 לידים או יותר.</li>
+          <li>כלומר, חובה לחבר מוניטור על מנת לקבל תמונת אק"ג מלאה.</li>
+        </ul>
+     <!--   <img src="/mda/images/ecg11.jpg" alt="חיבורי אלקטרודות" class="small-img">-->
+         <img src="/mda/images/ecg11.jpg" alt="מיקום חיבורי V1-V6" class="center-img">
+      <!--   <img src="/mda/images/ecg12.jpg" alt="חיבורי אלקטרודות" class="small-img">-->
+          <img src="/mda/images/ecg12.jpg" alt="רישום אקג" class="img-center">
+      </div>
+    </details>
+
+    <details>
+      <summary>חלוקת האק"ג לקירות</summary>
+      <div class="slide-content">
+        <!-- ניתן להוסיף תמונה מתאימה כאן במידת הצורך -->    
+        <img src="/mda/images/ACS_IMG41.png" class="img-center" alt="חלוקת האלקטרודות לקירות">
+        <img src="/mda/images/ACS_IMG42.png" class="img-center" alt="חלוקת הקירות על הסטריפ" >
+      </div>
+    </details>
+
+    <details>
+      <summary>טבלה מסכמת: לידים לפי קירות הלב</summary>
+      <div class="slide-content">
+        <table>
+          <tr>
+            <th>אזור בלב</th>
+            <th>ליד באק"ג</th>
+          </tr>
+          <tr>
+            <td>Lateral (צידי)</td>
+            <td>I, aVL, V5, V6</td>
+          </tr>
+          <tr>
+            <td>Inferior (תחתון)</td>
+            <td>II, III, aVF</td>
+          </tr>
+          <tr>
+            <td>Septal (ספטלי)</td>
+            <td>V1, V2</td>
+          </tr>
+          <tr>
+            <td>Anterior (קדמי)</td>
+            <td>V3, V4</td>
+          </tr>
+          <tr>
+            <td>Right (ימני)</td>
+            <td>V3R, V4R</td>
+          </tr>
+          <tr>
+            <td>Posterior (אחורי)</td>
+            <td>V7, V8, V9</td>
+          </tr>
+        </table>
+        <div class="note">
+          <b>זכרו:</b> שינויים במקטע <span class="highlight">ST</span> צריכים להופיע בשני לידים לפחות מאותו קיר אנטומי על מנת להיחשב אבחנתיים לאיסכמיה.
+        </div>
+      </div>
+    </details>
+
+    <details>
+      <summary>שינויים במקטע ST</summary>
+      <div class="slide-content">
+        <ul>
+          <li>שינויים במקטע <span class="highlight">ST</span> מהווים כלי אבחנתי לפתולוגיות רבות, בעיקרן איסכמיה ואוטם באק"ג.</li>
+          <li>
+            <span class="highlight">J Point</span> – הנקודה בה גל S (קומפלקס QRS) חוזר לקו האיזואלקטרי.
+          </li>
+        </ul>
+         <img src="/mda/images/ecg61.png"  class="img-center"  alt="J point"
+     width="90%"    
+     height="40%"    
+     vspace="10"       
+     hspace="30"         
+     >     
+      
+      </div>
+    </details>
+
+    <details>
+      <summary>צניחת ST</summary>
+      <div class="slide-content">
+        <ul>
+          <img src="/mda/images/ACS_IMG71.png"  class="float-image"  alt="St Depression"
+     width="50%"    
+     height="100px"    
+     vspace="10px"       
+     hspace="30px"         
+     >           
+          <li>צניחות מקטע <span class="highlight">ST</span> המעידות על איסכמיה.</li> 
+          <li>ירידה של מקטע <span class="highlight">ST</span> בלפחות 1 מ"מ.</li>   
+            <br>
+            <br>
+          <li>בעת טכיקרדיות (לרוב מעל 160), מקטע <span class="highlight">ST</span> "לא יספיק" לחזור לקו האיזואלקטרי טרם הופעתו של גל T.
+            <br>
+            הדבר יתבטא בצניחות מפושטות באק"ג – אשר אינן בהכרח מעידות על איסכמיה.
+          </li>
+          <li>
+            יש לטפל באריתמיה ולבצע אק"ג חוזר לאחר הטיפול (האטה/הפיכת המקצב).
+          </li>
+        </ul>
+
+         <img src="/mda/images/ACS_IMG72.png"  class="img-accordion-left"
+         style="margin: 10px 20px; width: 90%; height: 40%;"
+         alt="abnormal ecg">     
+        
+      </div>
+    </details>
+
+    <details>
+      <summary>Hyperacute T-Waves ("חידוד גלי T")</summary>
+      <div class="slide-content">
+        <ul>
+          <li>לעתים האיסכמיה תתבטא בגלי <span class="highlight">T</span> גבוהים ומחודדים (בעיקר בלידים חזיים).</li>
+          <li>הגדרה: גלי <span class="highlight">T</span> סימטריים וגבוהים מקומפלקס QRS המקדים.</li>
+          <li>סיבה אחרת נפוצה לגלי <span class="highlight">T</span> גבוהים ומחודדים – <span class="highlight">היפרקלמיה</span>.</li>
+        </ul>
+      <img src="/mda/images/ACS_IMG81.png"  class="img-accordion-left"
+         style="margin: 10px 20px; width: 90%; height:180px;"
+         alt="Hyperacute T-Waves">  
+
+      </div>
+    </details>
+
+    <!-- המשך שיקופיות/שקפים מהמסמך יוכנסו כאן באותו פורמט (details/summary) -->
+
+  </div>
+</body>
+</html>

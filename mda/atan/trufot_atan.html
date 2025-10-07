@@ -1,0 +1,480 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>רשימת תרופות באטן</title>
+    <script 
+      src="https://cdn.counter.dev/script.js" 
+      data-id="87cd2eee-d5db-43dc-9575-16e58a14c32d" 
+      data-utcoffset="3" 
+      defer 
+      referrerpolicy="no-referrer"></script>
+
+<style>
+      body {
+        font-family: Arial, sans-serif;
+        padding: 20px;
+        background-color: #f5f5f5;
+        font-size: 1em;
+        align-items: center;
+        margin-left: 10%;
+        margin-right: 10%;
+      }
+    /* קישור חזרה קבוע למעלה */
+    .top-link {
+      position: fixed;
+      top: 0;
+      right: 0;
+      left: 0;
+      background: #1976d2;
+      color: #fff;
+      text-align: center;
+      padding: 8px 0 4px 0;
+      z-index: 101;
+      font-size: 1.1em;
+      text-decoration: none;
+      letter-spacing: 1px;
+      box-shadow: 0 2px 8px #bbb;
+    }
+    /* כותרת קבועה מתחת לקישור */
+    .sticky-header {
+      position: fixed;
+      top: 36px;
+      right: 0;
+      left: 0;
+      background: #fff;
+      z-index: 100;
+      text-align: center;
+      padding: 18px 0 10px 0;
+      font-size: 2em;
+      font-weight: bold;
+      box-shadow: 0 2px 8px #ddd;
+      border-bottom: 1px solid #eee;
+    }
+    /* ריווח לתוכן */
+    .content-wrapper {
+      margin-top: 100px; /* מספיק מקום לשני האלמנטים הקבועים */
+    }
+      AAa.back-link{
+        display: block;
+        text-align: center;
+        margin: 10px 0 20px;
+        color: #0077cc;
+        text-decoration: none;
+        font-size: 20px;
+        font-weight: bold;
+      }
+    
+      AAa.back-link:hover{
+        text-decoration: underline;
+        color: #005fa3;
+      }
+    
+      h2 {
+        text-align: right;
+        color: #0077cc;
+        margin-bottom: 20px;
+        margin-top: 0;
+        font-size: 2.5vw;
+      }
+    
+      .accordion {
+        width: 100%;
+        background-color: #fff;
+        border-top: 1px solid #ccc;
+        margin: 0;
+        padding: 0;
+        border-radius: 0;
+        overflow: hidden;
+      }
+    
+      .accordion:first-of-type {
+        border-top: none;
+      }
+    
+      details {
+        margin: 0;
+        padding: 0;
+        border: none;
+      }
+    
+      summary {
+        margin: 0;
+        padding: 12px;
+        background-color: #e0f0ff;
+        font-weight: bold;
+        list-style: none;
+        cursor: pointer;
+        border-top: 1px solid #ccc;
+        font-size: 1em;
+      }
+    
+      summary::-webkit-details-marker {
+        display: none;
+      }
+
+      /* סגנון מיוחד לאקורדיון צורות המתן */
+      .routes-accordion summary {
+  background-color: #e0f0ff;
+  color: #e70505;
+  font-weight: bold;
+}
+
+.routes-table {
+  width: 90%;
+  border-collapse: collapse;
+  margin: 10px auto;
+}
+
+.routes-table td {
+  padding: 8px 10px;
+  border-bottom: 1px solid #ddd;
+  font-size: 1em;
+  color: #000000;
+  font-weight: normal;
+}
+
+.routes-table td.route-code {
+  width: 5%;
+  background-color: #f9f9f9;
+  text-align: center;
+}
+
+.routes-table td.route-description {
+  width: 75%;
+  background-color: #fff;
+}
+    
+      .details-table {
+        width: 90%;
+        border-collapse: collapse;
+        margin: 0 auto;
+      }
+    
+      .details-table td {
+        padding: 8px 10px;
+        border-top: 0px solid #ddd;
+        font-size: 1em;
+      }
+    
+      .details-table td.title {
+        font-weight: bold;
+        background-color: #f9f9f9;
+        width: 10%;
+      }
+    
+      .details-table td.value {
+        width: 75%;
+      }
+    
+      /* התאמה למסכים קטנים */
+      @media (max-width: 768px) {
+        body {
+          font-size: 1.2em;
+        }
+    
+        h2 {
+          font-size: 6vw;
+        }
+    
+        .sticky-header22{
+          font-size: 1.2em;
+          padding: 15px;
+        }
+    
+        summary {
+          font-size: 1.3em;
+        }
+    
+        .details-table td {
+          font-size: 1.1em;
+          padding: 10px;
+        }
+    
+        .details-table td.title,
+        .details-table td.value {
+          display: block;
+          width: 100%;
+        }
+
+        .routes-table td.route-code,
+        .routes-table td.route-description {
+          display: block;
+          width: 100%;
+        }
+      }
+      .sticky-header22{
+        position: sticky;
+        top: 0;
+        background-color: white;
+        padding: 10px;
+        z-index: 1000;
+        border-bottom: 1px solid #ccc;
+        text-align: right;
+      }
+    
+      .sticky-header button {
+        margin-top: 10px;
+        font-size: 1em;
+      }
+    </style>
+  </head>
+  <body>
+  <a href="../index.html" class="top-link">חזרה לתפריט הראשי</a>
+  <div class="sticky-header">תרופות באט"ן</div>
+  <div class="content-wrapper">
+
+  <!--  <div class="sticky-header">
+    <a href="../index.html"> חזרה לעמוד הראשי</a>
+    <h2>תרופות באטן</h2>
+  -->  
+    <!-- כפתור סגירת כל התרופות -->
+    <button onclick="closeAllDrugs()" style="margin-top: 10px;">סגור את כל התרופות</button>     
+    </div>
+
+<script>
+// פונקציה ליצירת שורה בטבלה
+function createTableRow(title, value) {
+  if (title && value) {
+    return `<tr><td class="title" style="padding: 4px 8px 4px 2px; font-size: 0.9em;">${title}:</td><td class="value" style="padding: 4px 2px; font-size: 0.9em;">${value}</td></tr>`;
+  }
+  return '';
+}
+
+// פונקציה ליצירת אקורדיון צורות המתן
+function createRoutesAccordion(routesData) {
+  let routesHTML = '';
+  
+  for (const [code, description] of Object.entries(routesData.routes)) {
+    routesHTML += `
+      <tr>
+        <td class="route-code">${code}</td>
+        <td class="route-description">${description}</td>
+      </tr>
+    `;
+  }
+  
+  return `
+    <div class="accordion routes-accordion">
+      <details>
+        <summary style="margin-right: 20px; font-size: 1.1em; padding: 8px 12px;">${routesData.title}</summary>
+        <table class="routes-table">
+          ${routesHTML}
+        </table>
+      </details>
+    </div>
+  `;
+}
+
+// פונקציה ליצירת תת-אקורדיון
+function createSubAccordion(title, content) {
+  // טיפול בטקסט רב-שורות - המרת \n ל-<br>
+  let formattedContent = '';
+  
+  try {
+    if (Array.isArray(content)) {
+      console.log(`מעבד מערך עבור ${title}:`, content);
+      
+      // יצירת רשימה מעוצבת עם כותרות עם נקודה וטקסט עם עיגול חלול
+      formattedContent = content
+        .filter(item => item && typeof item === 'string' && item.trim() !== '')
+        .map((item, index, array) => {
+          const trimmedItem = item.trim();
+          
+          // זיהוי כותרות לפי סימן מיוחד בתחילת או בסוף הטקסט
+          const isBoldHeader = trimmedItem.startsWith('**') || trimmedItem.endsWith('**');    // כותרת מודגשת (בולד)
+          const isRegularHeader = trimmedItem.startsWith('--') || trimmedItem.endsWith('--'); // כותרת רגילה (לא מודגשת)
+          
+          if (isBoldHeader) {
+            // הסרת הסימן ** מהטקסט המוצג (מתחילה או מסוף)
+            const cleanText = trimmedItem.replace(/^\*\*\s*/, '').replace(/\s*\*\*$/, '');
+            return `<div style="margin-top: ${index > 0 ? '6px' : '0'}; font-weight: bold; font-size: 1.0em;">• ${cleanText}</div>`;
+          } else if (isRegularHeader) {
+            // הסרת הסימן -- מהטקסט המוצג (מתחילה או מסוף)
+            const cleanText = trimmedItem.replace(/^--\s*/, '').replace(/\s*--$/, '');
+            return `<div style="margin-top: ${index > 0 ? '6px' : '0'}; font-weight: normal; font-size: 0.9em;">• ${cleanText}</div>`;
+          } else {
+            // טקסט רגיל עם עיגול חלול ומוסט
+            return `<div style="margin-right: 20px; margin-top: 2px; font-size: 1.0em;">○ ${trimmedItem}</div>`;
+          }
+        })
+        .join('');
+        
+    } else if (typeof content === 'string') {
+      console.log(`מעבד מחרוזת עבור ${title}:`, content.substring(0, 50) + '...');
+      formattedContent = content.replace(/\n/g, '<br>').trim();
+    } else {
+      console.log(`סוג תוכן לא זוהה עבור ${title}:`, typeof content);
+      formattedContent = String(content || '');
+    }
+  } catch (error) {
+    console.error(`שגיאה בעיבוד תוכן עבור ${title}:`, error);
+    formattedContent = 'שגיאה בהצגת התוכן';
+  }
+  
+  return `
+    <div class="accordion">
+      <details>
+        <summary style="background-color: #e0ffe0; margin-right: 20px; font-size: 0.9em; padding: 3px 12px;">${title}</summary>
+        <table class="details-table">
+          <tr><td class="value" style="line-height: 1.3; padding: 4px 8px; font-size: 0.85em;">${formattedContent}</td></tr>
+        </table>
+      </details>
+    </div>
+  `;
+}
+
+// פונקציה ליצירת אקורדיון ראשי לתרופה
+function createMedicationAccordion(medication) {
+  const generalData = medication.general_data;
+  
+  // יצירת טבלת הנתונים הכלליים
+  let generalTableRows = '';
+  if (generalData) {
+    generalTableRows += createTableRow('צורת הופעה', generalData['צורת הופעה']);
+    generalTableRows += createTableRow('צורת מתן', generalData['צורת מתן']);
+    generalTableRows += createTableRow('טיפול', generalData['טיפול']);
+    generalTableRows += createTableRow('שימוש בפרוטוקול', generalData['שימוש בפרוטוקול']);
+  }
+
+  // יצירת תת-אקורדיונים - רק אם יש תוכן
+  let subAccordions = '';
+  const subFields = ['קבוצה', 'מנגנון הפעולה', 'פרמקוקינטיקה', 'התוויות לשימוש', 'התוויות נגד', 'תופעות לוואי', 'מינונים', 'מופיע בפרוטוקול'];
+  
+  subFields.forEach(field => {
+    const content = medication[field];
+    // בדיקה מחמירה יותר לתוכן
+    let hasContent = false;
+    
+    if (Array.isArray(content)) {
+      // סינון שדות הערות שמתחילים ב-_ או //
+      const filteredContent = content.filter(item => 
+        item && 
+        typeof item === 'string' && 
+        item.trim() !== '' &&
+        !item.trim().startsWith('_') &&
+        !item.trim().startsWith('//')
+      );
+      hasContent = filteredContent.length > 0;
+      
+      if (hasContent) {
+        console.log(`יוצר אקורדיון עבור ${field}:`, filteredContent);
+        subAccordions += createSubAccordion(field, filteredContent);
+      }
+    } else if (typeof content === 'string') {
+      hasContent = content.trim() !== '';
+      
+      if (hasContent) {
+        console.log(`יוצר אקורדיון עבור ${field}:`, content.substring(0, 50) + '...');
+        subAccordions += createSubAccordion(field, content);
+      }
+    }
+    
+    if (!hasContent) {
+      console.log(`מדלג על שדה ריק: ${field}`);
+    }
+  });
+
+  return `
+    <div class="accordion">
+      <details>
+        <summary style="margin-right: 20px; font-size: 0.95em; padding: 5px 12px;">${medication.name}</summary>
+        <table class="details-table" style="margin: 8px auto;">
+          ${generalTableRows}
+        </table>
+        ${subAccordions}
+      </details>
+    </div>
+  `;
+}
+
+// פונקציה לטעינת נתוני התרופות מקובץ JSON
+async function loadMedications() {
+  try {
+    console.log('מנסה לטעון את קובץ med_atan.json...');
+    const response = await fetch('../json/med_atan.json');
+    
+    if (!response.ok) {
+      throw new Error(`HTTP error! status: ${response.status}`);
+    }
+    
+    const text = await response.text();
+    console.log('קובץ JSON נטען בהצלחה, מנסה לפרש...');
+    console.log('תחילת הקובץ:', text.substring(0, 200));
+    
+    const data = JSON.parse(text);
+    console.log('JSON נפרש בהצלחה, מספר תרופות:', data.medications?.length || 0);
+    
+    return data;
+  } catch (error) {
+    console.error('שגיאה בטעינת נתוני התרופות:', error);
+    document.querySelector('.content-wrapper').innerHTML += `
+      <div style="color: red; margin: 20px; padding: 10px; border: 1px solid red;">
+        <h3>שגיאה בטעינת נתוני התרופות:</h3>
+        <p>${error.message}</p>
+        <p>בדוק את המסוף (F12) לפרטים נוספים</p>
+      </div>
+    `;
+    return { medications: [], routes_of_administration: null };
+  }
+}
+
+// פונקציה ליצירת כל האקורדיונים
+async function createMedicationsAccordions() {
+  const data = await loadMedications();
+  let accordionsHTML = '';
+  
+  // הוספת אקורדיון צורות המתן כראשון
+  if (data.routes_of_administration) {
+    accordionsHTML += createRoutesAccordion(data.routes_of_administration);
+  }
+  
+  // הוספת התרופות
+  if (data.medications) {
+    data.medications.forEach(medication => {
+      accordionsHTML += createMedicationAccordion(medication);
+    });
+  }
+  
+  return accordionsHTML;
+}
+
+// פונקציה להוספת האקורדיונים לעמוד
+async function renderMedications() {
+  console.log('מתחיל לעבד את התרופות...');
+  const contentWrapper = document.querySelector('.content-wrapper');
+  
+  if (!contentWrapper) {
+    console.error('לא נמצא אלמנט .content-wrapper');
+    return;
+  }
+  
+  const accordionsHTML = await createMedicationsAccordions();
+  console.log('HTML נוצר, אורך:', accordionsHTML.length);
+  
+  // הוספת האקורדיונים אחרי הכפתור הקיים
+  const existingButton = contentWrapper.querySelector('button');
+  if (existingButton) {
+    existingButton.insertAdjacentHTML('afterend', accordionsHTML);
+    console.log('האקורדיונים נוספו אחרי הכפתור');
+  } else {
+    contentWrapper.insertAdjacentHTML('beforeend', accordionsHTML);
+    console.log('האקורדיונים נוספו בסוף');
+  }
+}
+
+// פונקציה לסגירת כל התרופות (כבר קיימת בקוד המקורי)
+function closeAllDrugs() {
+  const allDetails = document.querySelectorAll('details[open]');
+  allDetails.forEach(detail => {
+    detail.removeAttribute('open');
+  });
+}
+
+// טעינת התרופות כאשר העמוד נטען
+document.addEventListener('DOMContentLoaded', renderMedications);
+</script>
+   
+  </body>
+</html>

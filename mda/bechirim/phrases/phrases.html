@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+  <title>מושגים וביטויים ברפואה</title>
+    <script 
+      src="https://cdn.counter.dev/script.js" 
+      data-id="87cd2eee-d5db-43dc-9575-16e58a14c32d" 
+      data-utcoffset="3" 
+      defer 
+      referrerpolicy="no-referrer"></script>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 1em;
+      box-sizing: border-box;
+    }
+
+        /* קישור חזרה קבוע למעלה */
+    .top-link {
+      position: fixed;
+      top: 0;
+      right: 0;
+      left: 0;
+      background: #1976d2;
+      color: #fff;
+      text-align: center;
+      padding: 8px 0 4px 0;
+      z-index: 101;
+      font-size: 1.1em;
+      text-decoration: none;
+      letter-spacing: 1px;
+      box-shadow: 0 2px 8px #bbb;
+    }
+    /* כותרת קבועה מתחת לקישור */
+    .sticky-header {
+      position: fixed;
+      top: 36px;
+      right: 0;
+      left: 0;
+      background: #fff;
+      z-index: 100;
+      text-align: center;
+      padding: 18px 0 10px 0;
+      font-size: 2em;
+      font-weight: bold;
+      box-shadow: 0 2px 8px #ddd;
+      border-bottom: 1px solid #eee;
+    }
+    /* ריווח לתוכן */
+    .content-wrapper {
+      margin-top: 100px; /* מספיק מקום לשני האלמנטים הקבועים */
+    }
+
+    .header-area {
+  position: sticky;
+  top: 0;
+  background: white;
+  z-index: 1000;
+  padding-bottom: 0.5em;
+  border-bottom: 1px solid #ddd;
+}
+
+.search-container {
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  background: white;
+  padding: 1em 0;
+  border-bottom: 1px solid #ddd;
+
+  max-width: 100%;
+  overflow-x: hidden;
+  box-sizing: border-box;
+}
+
+#searchInput {
+  width: 100%;
+  max-width: 100%;
+  padding: 0.5em 2.5em 0.5em 0.5em;
+  font-size: 1em;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-sizing: border-box;
+  direction: rtl;
+  text-align: right;
+}
+
+
+
+/*
+    .search-container {
+      position: relative;
+      max-width: 600px;
+      margin-bottom: 1em;
+    }
+
+    #searchInput {
+      width: 100%;
+      padding: 0.5em 2.5em 0.5em 0.5em;
+      font-size: 1em;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+
+    */
+    .clear-button {
+      position: absolute;
+      right: 0.5em;
+      top: 50%;
+      transform: translateY(-50%);
+      cursor: pointer;
+      display: none;
+      font-weight: bold;
+      color: #888;
+      font-size: 1.2em;
+    }
+
+    .details {
+      background: #f9f9f9;
+      padding: 1em;
+      border: 1px solid #ddd;
+      border-radius: 5px;
+      margin-bottom: 1em;
+    }
+
+    .Phrases-list div {
+      padding: 0.5em 0;
+      border-bottom: 1px solid #eee;
+    }
+
+    @media (max-width: 600px) {
+      body {
+        font-size: 1em;
+      }
+    }
+  </style>
+</head>
+<body>
+  <a href="../../index.html" class="top-link">חזרה לתפריט הראשי</a>
+  <div class="sticky-header">מושגים וביטויים ברפואה</div>
+  <div class="content-wrapper">
+
+<!--
+    <div class="header-area">
+        <a href="../../index.html" style="display:block; margin-bottom: 0.5em; color: #007bff; text-decoration: none;">
+            חזרה לדף הראשי
+          </a>
+          <h1>מושגים ברפואה</h1>
+        -->          
+        <div class="search-container">
+          <input type="text" id="searchInput" placeholder="חפש מושג...">
+          <span class="clear-button" id="clearBtn">✖</span>
+        </div>
+      </div>
+    
+
+  <div id="PhraseDetails" class="details" style="display:none;"></div>
+
+  <div class="Phrases-list" id="medList"></div>
+
+  <script>
+    let Phrases = [];
+
+    fetch('../../json/Phrases.json')
+      .then(response => response.json())
+      .then(data => {
+        Phrases = data;
+        displayPhrasesList(Phrases);
+      });
+
+    const searchInput = document.getElementById('searchInput');
+    const clearBtn = document.getElementById('clearBtn');
+    const medDetails = document.getElementById('PhrasesDetails');
+
+    searchInput.addEventListener('input', function () {
+  const value = this.value.trim().toLowerCase();
+  clearBtn.style.display = value ? 'block' : 'none';
+
+  const list = document.getElementById('medList');
+  list.innerHTML = ''; // ניקוי הרשימה הקיימת
+
+  if (value === '') {
+    // אם השדה ריק, מציג את כל התרופות
+    displayPhrasesList(Phrases);
+    return;
+  }
+
+  const matches = Phrases.filter(m =>
+    m.hebrew.toLowerCase().includes(value) ||
+    m.english.toLowerCase().includes(value)
+  );
+
+  if (matches.length > 0) {
+    matches.forEach(match => {
+      const item = document.createElement('div');
+      item.innerHTML = `
+        <strong>${match.hebrew} ${match.english}</strong><br>
+        ${match.Details}<br>
+        ${match.S1}
+      `;
+      list.appendChild(item);
+    });
+  } else {
+    list.innerHTML = 'לא נמצאו מושגים תואמים.';
+  }
+});
+
+clearBtn.addEventListener('click', function () {
+  searchInput.value = ''; // מוחק את הערך בשדה החיפוש
+  clearBtn.style.display = 'none'; // מסתיר את כפתור הניקוי
+  const list = document.getElementById('medList');
+  list.innerHTML = ''; // מנקה את הרשימה
+
+  // מחזיר את רשימת התרופות המקורית
+  displayPhrasesList(Phrases);
+});
+
+function displayPhrasesList(meds) {
+  const list = document.getElementById('medList');
+  meds.forEach(med => {
+    const item = document.createElement('div');
+    item.textContent = `${med.hebrew} ${med.english}`;
+    list.appendChild(item);
+  });
+}
+
+    clearBtn.addEventListener('click', function () {
+      searchInput.value = '';
+      clearBtn.style.display = 'none';
+      medDetails.style.display = 'none';
+      medDetails.innerHTML = '';
+    });
+
+    function displayPhrasesList(meds) {
+      const list = document.getElementById('medList');
+      meds.forEach(med => {
+        const item = document.createElement('div');
+        item.textContent = `${med.hebrew} ${med.english}`;
+        list.appendChild(item);
+      });
+    }
+  </script>
+</body>
+</html>

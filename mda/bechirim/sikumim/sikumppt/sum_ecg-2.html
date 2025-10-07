@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <title>פציעה באקג - אוטם חריף</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <script 
+      src="https://cdn.counter.dev/script.js" 
+      data-id="87cd2eee-d5db-43dc-9575-16e58a14c32d" 
+      data-utcoffset="3" 
+      defer 
+      referrerpolicy="no-referrer"></script>
+
+<style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f7f7f7;
+      margin: 0;
+      padding: 0 10vw;
+    }
+    .top-link {
+      position: fixed;
+      top: 0;
+      right: 0;
+      left: 0;
+      background: #1976d2;
+      color: #fff;
+      text-align: center;
+      padding: 8px 0 4px 0;
+      z-index: 101;
+      font-size: 1.1em;
+      text-decoration: none;
+      letter-spacing: 1px;
+      box-shadow: 0 2px 8px #bbb;
+    }
+    
+    .sticky-header {
+      position: fixed;
+      top: 36px;
+      right: 0;
+      left: 0;
+      background: #fff;
+      z-index: 100;
+      text-align: center;
+      padding: 18px 0 10px 0;
+      font-size: 2em;
+      font-weight: bold;
+      box-shadow: 0 2px 8px #ddd;
+      border-bottom: 1px solid #eee;
+    }
+    .content-wrapper {
+      margin-top: 100px;
+    }
+    details {
+      background: #fff;
+      border-radius: 8px;
+      margin: 16px 0;
+      box-shadow: 0 2px 8px #ddd;
+    }
+    
+/* סטיילים כלליים */
+.img-left {
+  float: left;
+  margin: 0 15px 10px 0;
+  max-width: 45%;
+  height: auto;
+  direction: ltr; 
+}
+
+.img-right {
+  float: right;
+  margin: 0 0 10px 15px;
+  max-width: 45%;
+  height: auto;
+}
+
+.img-center {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  max-width: 60%;
+  height: auto;
+}
+
+ .center-img {
+      display: block;
+      margin-left: auto;
+      margin-right: auto;
+      width: 80%;
+      max-width: 800px; /* Optional: set a max width */
+      height: auto;
+    }
+
+.img-accordion-left {
+  display: block;         /* שורה נפרדת */
+  position: relative;     /* יחסית לקונטיינר */
+  margin-left: 0;         /* אין רווח משמאל */
+  margin-right: auto;     /* דוחף את התמונה לשמאל */
+  max-width: 100%;        /* לא תגלוש מהקונטיינר */
+  height: auto;           /* גובה יחסי */
+  box-sizing: border-box; /* לא יגלוש מהמסגרת */
+}
+/*
+.float-image {
+  float: left;
+  max-width: 30%;
+  margin: 0 20px 10px 0;
+  border-radius: 8px;
+}
+*/
+
+.float-image {
+  float: left;
+  width: 40%;
+  margin-left: -150px;
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+.img-row {
+      display: flex;
+      justify-content: center; /* Center the images horizontally */
+      align-items: center;     /* Align the images vertically */
+      gap: 20px;               /* Space between images */
+      flex-wrap: wrap;         /* Allow images to wrap on small screens */
+    }
+    .img-row img {
+      width: 40%;              /* Adjust as needed */
+      max-width: 350px;
+      height: auto;
+      display: block;
+    }
+
+
+.slide-content {
+  padding: 20px 28px 20px 20px;
+  font-size: 1.08em;
+  color: #232323;
+  line-height: 1.7;
+  /* עיצוב FLEX מאפשר שליטה על תמונה וטקסט */
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  overflow: hidden;
+  position: relative;
+}
+
+/* עיצוב תמונה באקורדיון */
+.slide-content .small-img {
+  width: 33%;
+  max-width: 33vw;
+  height: 25vh;
+  max-height: 25vh;
+  object-fit: contain;
+  align-self: flex-start;
+  margin-left: 18px;
+  margin-bottom: 12px;
+  border-radius: 12px;
+  box-shadow: 0 1px 6px #ccc;
+  background: #fff;
+  display: block;
+}
+
+
+/* התאמה למסכים קטנים */
+@media (max-width: 600px) {
+  .img-left,
+  .img-right,
+  .img-center {
+    float: none;           /* מבטל הצפה */
+    display: block;        /* שורה נפרדת */
+    margin: 10px auto;     /* מרכז אופקית עם רווח למעלה ולמטה */
+    max-width: 70%;       /* רוחב כמעט מלא של המסך */
+    height: auto;          /* גובה מותאם */
+  }
+    .img-accordion-left {
+    width: 95vw;             /* כמעט כל הרוחב של המסך */
+    max-width: 100vw;
+    margin: 10px auto 10px auto; /* מרכז את התמונה */
+    display: block;
+    height: auto;            /* שומר על פרופורציות */
+  }
+  .img-row {
+    gap: 10px; /* Reduce gap on small screens */
+  }
+  .img-row img {
+    width: 100%;        /* Images take full width of the row */
+    max-width: 100%;    /* Remove max-width restriction */
+  }
+  .float-image {
+    width: 100%;
+    margin-left: 0;
+    max-width: 100%;
+    height: auto;
+  }
+}
+    summary {
+      font-size: 1.2em;
+      font-weight: bold;
+      cursor: pointer;
+      padding: 12px;
+      outline: none;
+    }
+    details[open] summary { color: #1976d2; }
+    .content { padding: 0 16px 16px 16px; }
+    ul { margin: 0; padding-right: 20px; }
+    li { margin-bottom: 6px; }
+    blockquote {
+      background: #e3f2fd;
+      border-right: 5px solid #1976d2;
+      margin: 12px 0;
+      padding: 10px 16px;
+      font-style: italic;
+      color: #1976d2;
+    }
+    .svg-center { display: flex; justify-content: center; margin: 16px 0; }
+  </style>
+</head>
+<body>
+  <a href="../../../index.html" class="top-link">חזרה לתפריט הראשי</a>
+  <div class="sticky-header">פציעה באק"ג - אוטם חריף</div>
+  <div class="content-wrapper">
+    <details>
+      <summary>פתופיזיולוגיה</summary>
+    <div class="slide-content">
+        <ul>
+          <li>אוטם חריף (Acute MI) - העורק הקורונרי מוצר או חסום לזמן ממושך</li>
+            <ul>
+               <img src="/mda/images/ACS_IMG101.png" class="float-image" alt="פתופיזיולוגיה">
+
+                <li>הרקמה בנשימה אנאירובית זמן ממושך וישנה כבר רקמה נמקית (מתה)</li>
+                <li>לא משתתפת בתהליך הכיווץ המכני</li>
+                <li>עלול להוביל להפרעות במעבר הזרם החשמלי (הפרעות קצב)</li>
+              </ul>
+          <li>מתבטאת בשינויים אופיינים באק"ג - עליות במקטע ST מעל מקודת J</li>
+              <ul>
+                <li>שינויים המתפתחים לרוב לאחר 20-40 דקות מתחילת האירוע</li>
+                <li>תגובה משתנה לטיפול תרופתי (רה-פרפוזיה)</li>
+                <li>סממנים קרדיאליים בדם בכמות גבוהה ועולה – לדוגמה טרופונין</li>
+              </ul>
+        </ul>
+      </div>
+    </details>
+
+    <details>
+      <summary>השינויים בשלב החריף</summary>
+      <div class="slide-content">
+        <ul>
+          <li>עליית מקטע ST</li>
+          <li>תתבטא בעלייה של מקטע ST בלפחות 1 מ”מ מעל הקו האיזו-אלקטרי</li>
+        </ul>
+      <img src="/mda/images/ACS_IMG111.png" class="img-center" alt="פתופיזיולוגיה">
+      </div>
+    </details>
+
+    <details>
+      <summary>עליות ST</summary>
+      <div class="slide-content">
+        <ul>
+          <li>ישנן צורות שונות (מורפולוגיות) לעליות במקטע ST</li>
+          <ul><li>ככלל, יש להתייחס לכלל סוגי עליות ST כחשודות לאירוע איסכמי חד</li></ul>
+        </ul>
+      <img src="/mda/images/ACS_IMG121.png" class="img-center" alt="עליות ST">
+      </div>
+    </details>
+<details>
+      <summary>הסכנות העיקריות בכל אוטם</summary>
+      <div class="slide-content">
+        <ul>
+          <li>קדמי  Anterior</li>
+            <ul><li>VT/VF, אי ספיקת לב</li></ul>
+        <li>צדדי Lateral</li>
+          <ul><li>אי ספיקת לב ובצקת ריאות</li></ul></ul>
+        <li>תחתי Inferior</li>
+            <ul><li> אי ספיקת לב ושוק (פגיעה המודינמית)</li></ul>
+        <li>RV</li>
+          <ul><li>ברדיקרדיות, VT ושוק</li></ul></ul>
+
+        </div>
+    </details>
+    
+<details>
+      <summary>תמונת מראה לעליות ST</summary>
+      <div class="slide-content">
+        <ul>
+          <li>רציפרוקליות (הדדיות) - צניחות ST שלא מצביעות על איסכמיה.
+          אלא מהוות תמונת מראה של עליות ST בקיר "שממול"</li>
+          <li>לעליות ST יש תמונת מראה של צניחות ST 
+            אך לצניחות ST אין תמונת מראה של עליות.</li>
+          <img src="/mda/images/ACS_IMG141.png" class="img-center" alt="צניחות ST">
+        </div>
+    </details>
+
+<details>
+      <summary>תמונה רציפרוקלית</summary>
+
+        <div class="img-row">      
+          <img src="/mda/images/ACS_IMG151.png" style="height: 250px;" alt="תמונה רציפרוקצליות">
+          <img src="/mda/images/ACS_IMG152.png" style="height: 200px;width: 60% ;" alt="2תמונה רציפרוקצליות">
+        </div>  
+        <img src="/mda/images/ACS_IMG153.png" class="img-center" alt="2תמונה רציפרוקצליות">
+
+    </details>
+
+    <details>
+      <summary>אק"ג ימני ואחורי</summary>
+      <div class="slide-content">
+    
+        <ul>
+          <li>
+            <img src="/mda/images/ACS_IMG171.png" class="float-image" alt="פתופיזיולוגי">
+          </li>  
+        <li>האק"ג הסטנדרטי אינו מראה תמונה של הקיר האחורי והימני<br>
+          ייתכן ואוטם בקירות אלו יתבטא רק בתמונת מראה של צניחות באק"ג הרגיל.</li>
+          <li>הקיר האחורי והקיר התחתון מוזנים על ידי אותם כלי הדם 
+            <br>לכן בכל עליות ST בקיר תחתון יש לבדוק האם ישנה מעורבות של קיר אחורי או ימני</li>
+          <li>חשוב! אק"ג ימני אחורי מבצעים כאשר ישנו חשד לאוטם ימני/אחורי 
+            <br>בהתבסס על אק"ג ראשוני "רגיל"</li>
+            <ul>
+              <li>אין לבצע אק"ג ימני אחורי
+                <br> על מנת "לחפש" צניחות רציפרוקליות לעליות ST שנמצאו באק"ג הרגיל </li>
+              <li>ככלל, יש לבצע אק"ג ימני ואחורי יחד ובמהלך פינוי</li>
+            </ul>
+        </div>
+      </details>
+    
+    <details>
+      <summary> מיקום האוטם בהתאם לעליות וירידות ST</summary>
+      <div class="slide-content">
+        
+          <img src="/mda/images/ACS_IMG350.png" class="img-center" alt="מיקום האוטם">
+        </div>
+    </details>
+      <!-- המשך שיקופיות/שקפים מהמסמך יוכנסו כאן באותו פורמט (details/summary) -->
+
+  </div>
+</body>
+</html>

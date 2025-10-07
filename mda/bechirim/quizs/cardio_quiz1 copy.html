@@ -1,0 +1,939 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>אט"ן</title>
+    <script 
+      src="https://cdn.counter.dev/script.js" 
+      data-id="87cd2eee-d5db-43dc-9575-16e58a14c32d" 
+      data-utcoffset="3" 
+      defer 
+      referrerpolicy="no-referrer"></script>
+
+<style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        .container {
+            max-width: 80%;
+            width: 80%;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+
+        .quiz-container {
+            padding: 30px;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+            color: #333;
+        }
+
+        .question-card {
+            background: #f8f9fa;
+            border-radius: 15px;
+            padding: 25px;
+            margin-bottom: 25px;
+            border-left: 5px solid #667eea;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+            transition: transform 0.3s ease;
+        }
+
+        .question-card:hover {
+            transform: translateY(-2px);
+        }
+
+        .question-number {
+            background: #667eea;
+            color: white;
+            width: 35px;
+            height: 35px;
+            border-radius: 50%;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            margin-bottom: 15px;
+        }
+
+        .question-text {
+            font-size: 1.2em;
+            font-weight: 600;
+            margin-bottom: 20px;
+            line-height: 1.6;
+            color: #2c3e50;
+        }
+
+        .options {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .option {
+            background: white;
+            border: 2px solid #e9ecef;
+            border-radius: 10px;
+            padding: 15px 20px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .option:hover {
+            border-color: #667eea;
+            background: #f8f9ff;
+        }
+
+        .option input[type="radio"] {
+            margin-left: 10px;
+            transform: scale(1.2);
+        }
+
+        .option label {
+            cursor: pointer;
+            font-weight: 500;
+            color: #495057;
+        }
+
+        .option.selected {
+            border-color: #667eea;
+            background: #667eea;
+            color: white;
+        }
+
+        .option.selected label {
+            color: white;
+        }
+
+        .option.correct {
+            border-color: #28a745;
+            background: #28a745;
+            color: white;
+        }
+
+        .option.incorrect {
+            border-color: #dc3545;
+            background: #dc3545;
+            color: white;
+        }
+
+        .submit-container {
+            text-align: center;
+            padding: 30px;
+            background: #f8f9fa;
+            margin-top: 30px;
+            border-radius: 15px;
+        }
+
+        .submit-btn {
+            background: linear-gradient(135deg, #28a745 0%, #20c997 100%);
+            color: white;
+            border: none;
+            padding: 15px 40px;
+            font-size: 1.1em;
+            font-weight: 600;
+            border-radius: 25px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(40, 167, 69, 0.3);
+        }
+
+        .submit-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(40, 167, 69, 0.4);
+        }
+
+        .submit-btn:disabled {
+            background: #6c757d;
+            cursor: not-allowed;
+            transform: none;
+            box-shadow: none;
+        }
+
+        .results {
+            background: #e8f5e8;
+            border: 2px solid #28a745;
+            border-radius: 15px;
+            padding: 25px;
+            margin-bottom: 30px;
+            text-align: center;
+            display: none;
+        }
+
+        .results.show {
+            display: block;
+        }
+
+        .score {
+            font-size: 2em;
+            font-weight: bold;
+            color: #28a745;
+            margin-bottom: 15px;
+        }
+
+        .score-details {
+            font-size: 1.2em;
+            color: #495057;
+            margin-bottom: 20px;
+        }
+
+        .explanation {
+            background: #fff3cd;
+            border: 1px solid #ffeaa7;
+            border-radius: 10px;
+            padding: 15px;
+            margin-top: 15px;
+            text-align: right;
+            font-style: italic;
+            color: #856404;
+        }
+
+        /* סרגל התקדמות קבוע */
+        .progress-bar {
+            position: fixed;
+            top: 100px; /* מתחת לכותרת הקבועה */
+            left: 0;
+            right: 0;
+            background: #e9ecef;
+            height: 10px;
+            border-radius: 0;
+            overflow: hidden;
+            z-index: 99;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .progress-fill {
+            background: linear-gradient(90deg, #667eea 0%, #764ba2 100%);
+            height: 100%;
+            width: 0%;
+            transition: width 0.3s ease;
+        }
+
+        /* הודעת שאלות חסרות */
+        .missing-questions {
+            margin-top: 15px;
+            padding: 10px 15px;
+            background: #fff3cd;
+            border: 1px solid #ffeaa7;
+            border-radius: 10px;
+            color: #856404;
+            font-size: 0.95em;
+            display: none;
+        }
+
+        .missing-questions.show {
+            display: block;
+        }
+
+        /* קישור חזרה קבוע למעלה */
+        .top-link {
+            position: fixed;
+            top: 0;
+            right: 0;
+            left: 0;
+            background: #1976d2;
+            color: #fff;
+            text-align: center;
+            padding: 8px 0 4px 0;
+            z-index: 101;
+            font-size: 1.1em;
+            text-decoration: none;
+            letter-spacing: 1px;
+            box-shadow: 0 2px 8px #bbb;
+        }
+
+        /* כותרת קבועה מתחת לקישור */
+        .sticky-header {
+            position: fixed;
+            top: 36px;
+            right: 0;
+            left: 0;
+            background: #fff;
+            z-index: 100;
+            text-align: center;
+            padding: 18px 0 10px 0;
+            font-size: 2em;
+            font-weight: bold;
+            box-shadow: 0 2px 8px #ddd;
+            border-bottom: 1px solid #eee;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        /* ריווח לתוכן */
+        .content-wrapper {
+            margin-top: 130px; /* מקום לכותרת + סרגל התקדמות */
+        }
+
+        /* סגנונות התפריט */
+        .hamburger-menu {
+            cursor: pointer;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-around;
+            width: 30px;
+            height: 25px;
+            background: transparent;
+            border: none;
+            padding: 0;
+            margin-right: 20px;
+        }
+
+        .hamburger-line {
+            width: 100%;
+            height: 3px;
+            background-color: #333;
+            border-radius: 2px;
+            transition: 0.3s;
+        }
+
+        .hamburger-menu.active .hamburger-line:nth-child(1) {
+            transform: rotate(45deg) translate(8px, 8px);
+        }
+
+        .hamburger-menu.active .hamburger-line:nth-child(2) {
+            opacity: 0;
+        }
+
+        .hamburger-menu.active .hamburger-line:nth-child(3) {
+            transform: rotate(-45deg) translate(8px, -8px);
+        }
+
+        .side-menu {
+            position: fixed;
+            top: 0;
+            right: -15%;
+            width: 15%;
+            height: 100vh;
+            background-color: white;
+            box-shadow: -2px 0 10px rgba(0,0,0,0.1);
+            transition: right 0.3s ease;
+            z-index: 1000;
+            padding: 0;
+            border-left: 1px solid #ddd;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .side-menu.open {
+            right: 0;
+        }
+
+        .side-menu h3 {
+            padding: 20px;
+            background-color: #1976d2;
+            color: white;
+            margin: 0;
+            text-align: center;
+            font-size: 18px;
+            font-weight: bold;
+            flex-shrink: 0;
+        }
+
+        .side-menu-content {
+            flex: 1;
+            overflow-y: auto;
+            overflow-x: hidden;
+        }
+
+        .side-menu ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .side-menu li {
+            border-bottom: 1px solid #eee;
+        }
+
+        .side-menu a {
+            display: block;
+            padding: 15px 20px;
+            color: #0077cc;
+            text-decoration: none;
+            transition: background-color 0.3s;
+            font-size: 16px;
+        }
+
+        .side-menu a:hover {
+            background-color: #f0f0f0;
+            text-decoration: underline;
+        }
+
+        .overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.5);
+            visibility: hidden;
+            opacity: 0;
+            transition: opacity 0.3s, visibility 0.3s;
+            z-index: 999;
+        }
+
+        .overlay.active {
+            visibility: visible;
+            opacity: 1;
+        }
+
+        .menu-title {
+            flex-grow: 1;
+            text-align: center;
+        }
+
+        .menu-spacer {
+            width: 30px;
+            margin-left: 20px;
+        }
+
+        /* עיצוב סרגל הגלילה */
+        .side-menu-content::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        .side-menu-content::-webkit-scrollbar-track {
+            background: #f1f1f1;
+        }
+
+        .side-menu-content::-webkit-scrollbar-thumb {
+            background: #c1c1c1;
+            border-radius: 4px;
+        }
+
+        .side-menu-content::-webkit-scrollbar-thumb:hover {
+            background: #a8a8a8;
+        }
+
+        /* Responsive - עדכון למסכים קטנים */
+        @media (max-width: 600px) {
+            .side-menu {
+                width: 70%;
+                right: -70%;
+            }
+            
+            .sticky-header {
+                font-size: 1.2em;
+                padding: 0px;
+            }
+
+            .question-card {
+                padding: 20px;
+            }
+
+            .container {
+                width: 95%;
+                max-width: 95%;
+                margin: 10px auto;
+                border-radius: 15px;
+            }
+            
+            .quiz-container {
+                padding: 20px;
+            }
+        }
+
+        @media (max-width: 1200px) {
+            .container {
+                width: 85%;
+                max-width: 85%;
+            }
+        }
+         .loading {
+      text-align: center;
+      padding: 20px;
+      font-size: 1.2em;
+      color: #666;
+    }
+    </style>
+</head>
+<body>
+   <a href="../../index.html" class="top-link">חזרה לתפריט הראשי</a>
+
+    <div class="sticky-header">
+        <button class="hamburger-menu" id="hamburgerBtn">
+            <div class="hamburger-line"></div>
+            <div class="hamburger-line"></div>
+            <div class="hamburger-line"></div>
+        </button>
+        <div class="menu-title">בכירים - שאלון חזרה 1 לקראת מבחן קרדיו</div>
+        <div class="menu-spacer"></div>
+    </div>
+
+    <!-- סרגל התקדמות קבוע מתחת לכותרת 
+    <div class="progress-bar">
+        <div class="progress-fill" id="progressFill"></div>
+    </div>-->
+
+    <div class="content-wrapper">
+        <div class="container">
+            <div class="quiz-container"> 
+            <div class="progress-bar" style="position: fixed; top: 100px; left: 50%; transform: translateX(-13%); z-index: 102; width: 80%; margin-bottom: 0;">
+                    <div class="progress-fill" id="progressFill"></div>
+                </div>               
+                <div class="results" id="results">
+                    <div class="score" id="scoreDisplay"></div>
+                    <div class="score-details" id="scoreDetails"></div>
+                    <button type="button" class="submit-btn" onclick="resetQuiz()">
+                        התחל מחדש
+                    </button>
+                </div>
+                
+                <form id="quizForm">
+                    <!-- השאלות יוצגו כאן באמצעות JavaScript -->
+                </form>
+
+                <div class="submit-container">
+                    <button type="button" class="submit-btn" id="clearBtn" onclick="clearAllAnswers()" style="background: linear-gradient(135deg, #ffc107 0%, #fd7e14 100%); margin-left: 15px;">
+                        מחק הכל
+                    </button>
+                    <button type="button" class="submit-btn" id="submitBtn" onclick="submitQuiz()">
+                        בדוק תשובות
+                    </button>
+                    <div class="missing-questions" id="missingQuestions">
+                        השלם תשובות בשאלות: <span id="missingQuestionsList"></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    
+  <script>
+    let quizData = null;
+    let shuffledQuestions = [];
+    let currentQuestionIndex = 0;
+    let correctAnswers = 0;
+    let totalQuestions = 0;
+    let userAnswers = {}; // לאחסון תשובות המשתמש
+
+    // Load quiz data from JSON file
+    async function loadQuizData() {
+      try {
+        const response = await fetch('../../json/Cardio_data1_quiz.json');
+        if (!response.ok) {
+          throw new Error('Failed to load quiz data');
+        }
+        quizData = await response.json();
+        
+        // Set total questions based on actual data length
+        totalQuestions = quizData.length || (quizData.questions ? quizData.questions.length : 0);
+        
+        return true;
+      } catch (error) {
+        console.error('Error loading quiz data:', error);
+        document.querySelector('.loading').innerHTML = 'שגיאה בטעינת השאלות. אנא ודא שקובץ copd_quiz.json נמצא באותה תיקייה.';
+        return false;
+      }
+    }
+
+    // Shuffle array function
+    function shuffleArray(array) {
+      const shuffled = [...array];
+      for (let i = shuffled.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
+      }
+      return shuffled;
+    }
+
+    // Initialize quiz
+    async function initializeQuiz() {
+      if (!quizData) {
+        const loaded = await loadQuizData();
+        if (!loaded) return;
+      }
+      
+      // Handle both array format and object with questions property
+      const questions = Array.isArray(quizData) ? quizData : quizData.questions || [];
+      totalQuestions = questions.length;
+      
+      shuffledQuestions = shuffleArray(questions);
+      currentQuestionIndex = 0;
+      correctAnswers = 0;
+      userAnswers = {};
+      
+      const quizContainer = document.getElementById('quiz-container');
+      const loadingDiv = document.querySelector('.loading');
+      
+      loadingDiv.style.display = 'none';
+      quizContainer.innerHTML = '';
+      
+      shuffledQuestions.forEach((question, index) => {
+        const questionDiv = createQuestionElement(question, index + 1);
+        if (questionDiv) {
+          quizContainer.appendChild(questionDiv);
+        }
+      });
+    }
+
+    // Create question element
+    function createQuestionElement(question, questionNumber) {
+      // בדיקת תקינות השאלה
+      if (!question || !question.id || !question.question || !question.options) {
+        return null;
+      }
+      
+      const questionDiv = document.createElement('div');
+      questionDiv.className = 'question';
+      questionDiv.id = `question-${question.id}`;
+      
+      const questionTitle = document.createElement('h4');
+      questionTitle.textContent = `${questionNumber}. ${question.question}`;
+      questionDiv.appendChild(questionTitle);
+      
+      // בדוק אם השאלה היא רב-בחירה (multiple correct answers)
+      const isMultipleSelect = Array.isArray(question.correct) && question.correct.length > 1;
+      
+      if (isMultipleSelect) {
+        const instructionDiv = document.createElement('div');
+        instructionDiv.style.cssText = 'font-size: 14px; color: #666; margin: 5px 0; display: flex; align-items: center; gap: 10px;';
+        
+        const instructionText = document.createElement('span');
+        instructionText.textContent = '(ניתן לבחור יותר מתשובה אחת)';
+        
+        const checkQuestionButton = document.createElement('button');
+        checkQuestionButton.textContent = 'בדוק תשובה';
+        checkQuestionButton.className = 'check-question-btn';
+        checkQuestionButton.id = `check-btn-${question.id}`;
+        checkQuestionButton.onclick = () => checkMultipleQuestion(question.id, question);
+        checkQuestionButton.style.cssText = `
+          padding: 4px 8px;
+          font-size: 12px;
+          background-color: #28a745;
+          color: white;
+          border: none;
+          border-radius: 3px;
+          cursor: pointer;
+        `;
+        
+        instructionDiv.appendChild(instructionText);
+        instructionDiv.appendChild(checkQuestionButton);
+        questionDiv.appendChild(instructionDiv);
+      }
+      
+      // בדיקה שיש אפשרויות
+      if (!Array.isArray(question.options) || question.options.length === 0) {
+        return null;
+      }
+      
+      // Shuffle options
+      const shuffledOptions = shuffleArray(question.options.map((option, index) => ({
+        text: option, 
+        originalIndex: index
+      })));
+      
+      shuffledOptions.forEach((option, index) => {
+        const optionDiv = document.createElement('div');
+        optionDiv.className = 'answer-option';
+        optionDiv.setAttribute('data-original-index', option.originalIndex);
+        
+        // Hebrew letters for labeling
+        const hebrewLetters = ['א', 'ב', 'ג', 'ד', 'ה', 'ו', 'ז', 'ח'];
+        optionDiv.textContent = `${hebrewLetters[index]}. ${option.text}`;
+        
+        // Style for unselected options
+        optionDiv.style.cssText = `
+          padding: 10px 40px 10px 10px;
+          margin: 5px 0;
+          border: 2px solid #ddd;
+          border-radius: 5px;
+          cursor: pointer;
+          transition: all 0.3s ease;
+          background-color: #f9f9f9;
+          position: relative;
+          text-align: right;
+          direction: rtl;
+          padding-right: 40px;
+        `;
+        
+        if (isMultipleSelect) {
+          optionDiv.onclick = () => toggleMultipleAnswer(optionDiv, question.id, option.originalIndex, question);
+        } else {
+          optionDiv.onclick = () => checkSingleAnswer(optionDiv, option.originalIndex, question.id, question);
+        }
+        
+        questionDiv.appendChild(optionDiv);
+      });
+      
+      // Initialize user answers for this question
+      userAnswers[question.id] = [];
+      
+      return questionDiv;
+    }
+
+    // Toggle answer for multiple selection questions
+    function toggleMultipleAnswer(selectedElement, questionId, originalIndex, question) {
+      const questionDiv = selectedElement.parentElement;
+      
+      // בדוק אם השאלה כבר נבדקה
+      if (questionDiv.classList.contains('answered')) {
+        return;
+      }
+      
+      const isSelected = selectedElement.classList.contains('selected');
+      const correctAnswers = Array.isArray(question.correct) ? question.correct : [question.correct];
+      const isCorrectAnswer = correctAnswers.includes(originalIndex);
+      
+      if (isSelected) {
+        // בטל בחירה
+        selectedElement.classList.remove('selected');
+        selectedElement.style.backgroundColor = '#f9f9f9';
+        selectedElement.style.borderColor = '#ddd';
+        removeMarkings(selectedElement);
+        
+        // הסר מהתשובות
+        const index = userAnswers[questionId].indexOf(originalIndex);
+        if (index > -1) {
+          userAnswers[questionId].splice(index, 1);
+        }
+      } else {
+        // הוסף בחירה
+        selectedElement.classList.add('selected');
+        
+        // סמן מיד אם נכון או לא
+        if (isCorrectAnswer) {
+          markAsCorrect(selectedElement);
+        } else {
+          markAsIncorrect(selectedElement);
+        }
+        
+        // הוסף לתשובות
+        if (!userAnswers[questionId].includes(originalIndex)) {
+          userAnswers[questionId].push(originalIndex);
+        }
+      }
+    }
+
+    // Check single answer questions (immediate feedback)
+    function checkSingleAnswer(selectedElement, originalIndex, questionId, question) {
+      const questionDiv = selectedElement.parentElement;
+      const options = questionDiv.querySelectorAll('.answer-option');
+      
+      // Check if already answered
+      if (options[0].style.pointerEvents === 'none') {
+        return;
+      }
+      
+      const correctAnswers = Array.isArray(question.correct) ? question.correct : [question.correct];
+      const isCorrect = correctAnswers.includes(originalIndex);
+      
+      // Remove previous markings
+      options.forEach(option => {
+        removeMarkings(option);
+        option.style.backgroundColor = '#f9f9f9';
+        option.style.borderColor = '#ddd';
+      });
+      
+      if (isCorrect) {
+        markAsCorrect(selectedElement);
+      } else {
+        markAsIncorrect(selectedElement);
+        // Find and mark the correct answer
+        options.forEach(option => {
+          const optionOriginalIndex = parseInt(option.getAttribute('data-original-index'));
+          if (correctAnswers.includes(optionOriginalIndex)) {
+            markAsCorrect(option);
+          }
+        });
+      }
+      
+      // Disable further clicking on this question
+      options.forEach(option => {
+        option.style.pointerEvents = 'none';
+      });
+      
+      // Mark question as answered
+      questionDiv.classList.add('answered');
+      
+      // Check if all questions answered
+      checkIfAllQuestionsAnswered();
+    }
+
+    // Check multiple answer question
+    function checkMultipleQuestion(questionId, question) {
+      const questionDiv = document.getElementById(`question-${questionId}`);
+      const options = questionDiv.querySelectorAll('.answer-option');
+      const checkButton = document.getElementById(`check-btn-${questionId}`);
+      
+      if (questionDiv.classList.contains('answered')) {
+        return;
+      }
+      
+      const correctAnswers = Array.isArray(question.correct) ? question.correct : [question.correct];
+      const userQuestionAnswers = userAnswers[questionId] || [];
+      
+      // Mark all correct answers that weren't selected
+      options.forEach(option => {
+        const originalIndex = parseInt(option.getAttribute('data-original-index'));
+        const isCorrectAnswer = correctAnswers.includes(originalIndex);
+        const isUserSelected = userQuestionAnswers.includes(originalIndex);
+        
+        if (isCorrectAnswer && !isUserSelected) {
+          markAsMissed(option);
+        }
+        
+        option.style.pointerEvents = 'none';
+      });
+      
+      // Disable check button and mark as answered
+      checkButton.style.display = 'none';
+      questionDiv.classList.add('answered');
+      
+      // Check if all questions answered
+      checkIfAllQuestionsAnswered();
+    }
+
+    // Mark option as correct with V symbol
+    function markAsCorrect(element) {
+      element.style.backgroundColor = '#d4edda';
+      element.style.borderColor = '#28a745';
+      element.style.color = '#155724';
+      
+      // Add checkmark
+      const checkmark = document.createElement('span');
+      checkmark.innerHTML = ' ✓';
+      checkmark.style.cssText = 'color: #28a745; font-weight: bold; font-size: 18px; position: absolute; right: 10px; top: 50%; transform: translateY(-50%);';
+      checkmark.className = 'checkmark';
+      element.appendChild(checkmark);
+    }
+
+    // Mark option as incorrect with X symbol
+    function markAsIncorrect(element) {
+      element.style.backgroundColor = '#f8d7da';
+      element.style.borderColor = '#dc3545';
+      element.style.color = '#721c24';
+      
+      // Add X mark
+      const xmark = document.createElement('span');
+      xmark.innerHTML = ' ✗';
+      xmark.style.cssText = 'color: #dc3545; font-weight: bold; font-size: 18px; position: absolute; right: 10px; top: 50%; transform: translateY(-50%);';
+      xmark.className = 'xmark';
+      element.appendChild(xmark);
+    }
+
+    // Mark option as missed (correct but not selected) with yellow circle
+    function markAsMissed(element) {
+      element.style.backgroundColor = '#fff3cd';
+      element.style.borderColor = '#ffc107';
+      element.style.color = '#856404';
+      
+      // Add yellow circle
+      const circle = document.createElement('span');
+      circle.innerHTML = ' ●';
+      circle.style.cssText = 'color: #ffc107; font-weight: bold; font-size: 16px; position: absolute; right: 10px; top: 50%; transform: translateY(-50%);';
+      circle.className = 'missed-mark';
+      element.appendChild(circle);
+    }
+
+    // Remove markings
+    function removeMarkings(element) {
+      const checkmark = element.querySelector('.checkmark');
+      const xmark = element.querySelector('.xmark');
+      const missedMark = element.querySelector('.missed-mark');
+      if (checkmark) checkmark.remove();
+      if (xmark) xmark.remove();
+      if (missedMark) missedMark.remove();
+    }
+
+    // Check if all questions have been answered
+    function checkIfAllQuestionsAnswered() {
+      const answeredQuestions = document.querySelectorAll('.question.answered').length;
+      if (answeredQuestions === totalQuestions) {
+        setTimeout(() => showFinalScore(), 1000);
+      }
+    }
+
+    // Helper function to compare arrays
+    function arraysEqual(a, b) {
+      if (a.length !== b.length) return false;
+      for (let i = 0; i < a.length; i++) {
+        if (a[i] !== b[i]) return false;
+      }
+      return true;
+    }
+
+    // Show final score
+    function showFinalScore() {
+      // Count correct answers
+      let totalCorrect = 0;
+      
+      shuffledQuestions.forEach(question => {
+        const questionDiv = document.getElementById(`question-${question.id}`);
+        const correctAnswers = Array.isArray(question.correct) ? question.correct : [question.correct];
+        
+        if (correctAnswers.length === 1) {
+          // Single answer question - check if answered correctly
+          const selectedOption = questionDiv.querySelector('.answer-option[style*="rgb(212, 237, 218)"]');
+          if (selectedOption) {
+            const selectedIndex = parseInt(selectedOption.getAttribute('data-original-index'));
+            if (correctAnswers.includes(selectedIndex)) {
+              totalCorrect++;
+            }
+          }
+        } else {
+          // Multiple answer question - check if fully correct
+          const userQuestionAnswers = userAnswers[question.id] || [];
+          if (arraysEqual(userQuestionAnswers.sort(), correctAnswers.sort())) {
+            totalCorrect++;
+          }
+        }
+      });
+      
+      correctAnswers = totalCorrect;
+      showScore();
+    }
+
+    // Show score function
+    function showScore() {
+      const scoreDisplay = document.getElementById('score-display');
+      const scoreText = document.getElementById('score-text');
+      const percentage = Math.round((correctAnswers / totalQuestions) * 100);
+      
+      let gradeText = '';
+      if (percentage >= 90) gradeText = 'מעולה!';
+      else if (percentage >= 80) gradeText = 'טוב מאוד!';
+      else if (percentage >= 70) gradeText = 'טוב!';
+      else if (percentage >= 60) gradeText = 'מספיק!';
+      else gradeText = 'נדרשת חזרה על החומר';
+      
+      scoreText.innerHTML = `הציון שלך: ${correctAnswers}/${totalQuestions} (${percentage}%)<br>${gradeText}`;
+      scoreDisplay.style.display = 'block';
+      scoreDisplay.scrollIntoView({ behavior: 'smooth' });
+    }
+
+    // Reset quiz function
+    function resetQuiz() {
+      document.getElementById('score-display').style.display = 'none';
+      document.querySelector('.loading').style.display = 'block';
+      document.querySelector('.loading').innerHTML = 'טוען שאלות...';
+      
+      // Small delay to show loading
+      setTimeout(() => {
+        initializeQuiz();
+      }, 500);
+    }
+
+    // Initialize quiz when page loads
+    document.addEventListener('DOMContentLoaded', function() {
+      setTimeout(() => {
+        initializeQuiz();
+      }, 1000);
+    });
+</script>
+    <script src="/mda/js/hamburger-menu.js"></script> 
+</body>
+</html>

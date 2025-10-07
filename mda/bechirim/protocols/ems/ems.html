@@ -1,0 +1,769 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>רפואת חירום טרום אישפוזית</title>
+    <link rel="stylesheet" href="../../../css/als2024.css">
+    <script 
+      src="https://cdn.counter.dev/script.js" 
+      data-id="87cd2eee-d5db-43dc-9575-16e58a14c32d" 
+      data-utcoffset="3" 
+      defer 
+      referrerpolicy="no-referrer"></script>
+
+<style>
+        .accordion-item.active .accordion-content {
+            max-height: none !important;
+            height: auto !important;
+            overflow-y: auto !important;
+        }
+            body {
+      font-family: Arial, sans-serif;
+      background-color: #f5f5f5;
+      margin: 0;
+      padding: 20px;
+      overflow-x: hidden;
+      word-wrap: break-word;
+    }
+
+        /* קישור חזרה קבוע למעלה */
+    .top-link {
+      position: fixed;
+      top: 0;
+      right: 0;
+      left: 0;
+      background: #1976d2;
+      color: #fff;
+      text-align: center;
+      padding: 8px 0 4px 0;
+      z-index: 101;
+      font-size: 1.1em;
+      text-decoration: none;
+      letter-spacing: 1px;
+      box-shadow: 0 2px 8px #bbb;
+    }
+    /* כותרת קבועה מתחת לקישור */
+    .sticky-header {
+      position: fixed;
+      top: 36px;
+      right: 0;
+      left: 0;
+      background: #fff;
+      z-index: 100;
+      text-align: center;
+      padding: 18px 0 10px 0;
+      font-size: 2em;
+      font-weight: bold;
+      box-shadow: 0 2px 8px #ddd;
+      border-bottom: 1px solid #eee;
+      /**/
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    /* ריווח לתוכן */
+    .content-wrapper {
+      margin-top: 100px; /* מספיק מקום לשני האלמנטים הקבועים */
+    }
+
+/* סגנונות התפריט */
+        .hamburger-menu {
+            cursor: pointer;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-around;
+            width: 30px;
+            height: 25px;
+            background: transparent;
+            border: none;
+            padding: 0;
+            margin-right: 20px;
+            
+        }
+
+        .hamburger-line {
+            width: 100%;
+            height: 3px;
+            background-color: #333;
+            border-radius: 2px;
+            transition: 0.3s;
+        }
+
+        .hamburger-menu.active .hamburger-line:nth-child(1) {
+            transform: rotate(45deg) translate(8px, 8px);
+        }
+
+        .hamburger-menu.active .hamburger-line:nth-child(2) {
+            opacity: 0;
+        }
+
+        .hamburger-menu.active .hamburger-line:nth-child(3) {
+            transform: rotate(-45deg) translate(8px, -8px);
+        }
+
+        .side-menu {
+            position: fixed;
+            top: 0;
+            right: -15%;
+            width: 15%;
+            height: 100vh;
+            background-color: white;
+            box-shadow: -2px 0 10px rgba(0,0,0,0.1);
+            transition: right 0.3s ease;
+            z-index: 1000;
+            padding: 0;
+            border-left: 1px solid #ddd;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .side-menu.open {
+            right: 0;
+        }
+
+        .side-menu h3 {
+            padding: 20px;
+            background-color: #1976d2;
+            color: white;
+            margin: 0;
+            text-align: center;
+            font-size: 18px;
+            font-weight: bold;
+            flex-shrink: 0;
+        }
+
+        .side-menu-content {
+            flex: 1;
+            overflow-y: auto;
+            overflow-x: hidden;
+        }
+
+        .side-menu ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .side-menu li {
+            border-bottom: 1px solid #eee;
+        }
+
+        .side-menu a {
+            display: block;
+            padding: 15px 20px;
+            color: #0077cc;
+            text-decoration: none;
+            transition: background-color 0.3s;
+            font-size: 16px;
+        }
+
+        .side-menu a:hover {
+            background-color: #f0f0f0;
+            text-decoration: underline;
+        }
+
+        .overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.5);
+            visibility: hidden;
+            opacity: 0;
+            transition: opacity 0.3s, visibility 0.3s;
+            z-index: 999;
+        }
+
+        .overlay.active {
+            visibility: visible;
+            opacity: 1;
+        }
+
+        .menu-title {
+            flex-grow: 1;
+            text-align: center;
+        }
+
+        .menu-spacer {
+            width: 30px;
+            margin-left: 20px;
+        }
+/* עיצוב סרגל הגלילה */
+        .side-menu-content::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        .side-menu-content::-webkit-scrollbar-track {
+            background: #f1f1f1;
+        }
+
+        .side-menu-content::-webkit-scrollbar-thumb {
+            background: #c1c1c1;
+            border-radius: 4px;
+        }
+
+        .side-menu-content::-webkit-scrollbar-thumb:hover {
+            background: #a8a8a8;
+			}
+/* כפתור חזרה בפינה השמאלית */
+    .back-button {
+      position: absolute;
+      left: 15px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: #ffffff;
+      text-decoration: none;
+      font-size: 1em;
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      cursor: pointer;
+      transition: opacity 0.2s;
+    }
+    
+    .back-button:hover {
+      opacity: 0.8;
+    }
+    
+    .back-arrow {
+      font-size: 1.2em;
+      font-weight: bold;
+    }	
+
+
+    h2 {
+      color: #0077cc;
+      text-align: center;
+      font-size: 28px;
+    }
+  
+    .projects {
+      text-align: right;
+      max-width: 100%;
+    }
+  
+    .projects a, .title-link {
+      display: block;
+      font-size: 22px;
+      color: #0077cc;
+      text-decoration: none;
+      margin: 20px 0;
+    }
+  
+    .projects a:hover, .title-link:hover {
+      text-decoration: underline;
+    }
+  
+    @media (max-width: 600px) {
+      h2 {
+        font-size: 40px;
+      }
+  
+      .projects a, .title-link {
+        font-size: 26px;
+        margin: 25px 0;
+      }
+    }
+        /* Responsive */
+        @media (max-width: 600px) {
+            h2 {
+                font-size: 40px;
+            }
+            .projects a, .title-link {
+                font-size: 26px;
+                margin: 25px 0;
+            }
+            .side-menu {
+                width: 70%;
+                right: -70%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+    <!--
+        <div class="header">
+            <h1>🚑 פרוטוקולי מד"א ALS 2024</h1>
+        </div>
+    -->    
+        <a href="../../../index.html" class="top-link">
+                    חזרה לתפריט הראשי
+                    <div class="back-button" onclick="history.back()">
+                        <span class="back-arrow">←</span>
+                        <span>חזרה</span>
+                    </div>
+                </a>
+		<div class="sticky-header">
+		
+		<button class="hamburger-menu" id="hamburgerBtn">
+            <div class="hamburger-line"></div>
+            <div class="hamburger-line"></div>
+            <div class="hamburger-line"></div>
+        </button>
+        <div class="menu-title">דף ראשי</div>
+        <div class="menu-spacer"></div>
+    </div>
+
+    <div class="overlay" id="overlay"></div>
+    
+    <div class="side-menu" id="sideMenu">
+        <h3>תפריט ראשי</h3>
+        <div class="side-menu-content">
+            <ul>
+                <li><a href="../../atan/atan_index.html">אט"ן</a></li>
+				<li><a href="../../bls/bls_index.html">BLS</a></li>
+				<li><a href="../../Bechirim/bechirim_index.html">קורס בכירים</a></li>
+                <li><a href="../../Bechirim/protocols/ALS2024.HTML">אוגדן ALS 2024</a></li>
+                <li><a href="../../Bechirim/protocols/protocols_index.html">פרוטוקולים</a></li>
+                <li><a href="../../Bechirim/Sikumim/Sikumim_index.html">מצגות וסיכומי מצגות</a></li>
+                <li><a href="../../Bechirim/Sikumim/SIKUM_LESSONS/lessons_index.html">סיכומי שיעורים</a></li>
+                <li><a href="../../Bechirim/Sikumim/SIKUM_LESSONS/ECG_Practice_MI.html">תרגול אק"ג - אוטם</a></li>
+                <li><a href="../../Bechirim/Sikumim/SIKUM_LESSONS/ECG_Practice_arrhythm.html">תרגול אק"ג - הפרעות קצב</a></li>
+                <li><a href="../../Bechirim/Phrases/Phrases.html">אינדקס מושגים</a></li>
+                <li><a href="../../Bechirim/trufot_Bait_search_site/Trufot_BAEIT.html">תרופות נפוצות בבית</a></li>
+                <li><a href="../../Bechirim/Sikumim/Pdf_files/pdf_index.html">ספרות</a></li>
+         <!--    <li><a href="#" onclick="alert('הוסף קישור לספרות')">ספרות</a></li> -->
+            </ul>
+        </div>
+	</div>
+
+<!--        <div class="sticky-header">אוגדן פרוטוקולי מד"א ALS 2024</div>-->
+<div class="content-wrapper">
+    <div style="display: flex; justify-content: center; align-items: center; height: 10px;">
+      <a href="https://www.mdais.org/Media/file_download/Refuat_Herumpdf_2024.pdf" target="blank"> הספר רפואת חירום טרום אישפוזית, יצא לאור על ידי מדא"</a>
+    </div>
+        <div class="accordion-container" id="accordionContainer">
+            <div class="loading">טוען קבצים...</div>
+        </div>
+    </div>
+
+    <script>
+        let chapters = {};
+        let englishToHebrewMapping = {};
+        
+        // Mapping for display names (Hebrew) to file names (English)
+        const chapterDisplayMapping = {
+            "Chapter_1_Introduction_Emergency_Medicine_35": "פרק 1 / מבוא לרפואת חירום טרום-אשפוזית ... 35",
+            "Chapter_2_Patient_Assessment_59": "פרק 2 / הערכת מצב המטופל ... 59",
+            "Chapter_3_Respiratory_System_Anatomy_Physiology_125": "פרק 3 / אנטומיה ופיזיולוגיה של מערכת הנשימה ... 125",
+            "Chapter_4_Respiratory_Diseases_145": "פרק 4 / מחלות דרכי הנשימה ... 145",
+            "Chapter_5_Respiratory_System_Injuries_169": "פרק 5 / פגיעות במערכת הנשימה ... 169",
+            "Chapter_6_Cardiovascular_System_Anatomy_Physiology_181": "פרק 6 / אנטומיה ופיזיולוגיה של מערכת הלב וכלי הדם ... 181",
+            "Chapter_7_Cardiovascular_Diseases_Injuries_217": "פרק 7 / מחלות ופגיעות במערכת הלב וכלי הדם ... 217",
+            "Chapter_8_Heart_Vascular_Diseases_239": "פרק 8 / מחלות לב וכלי דם ... 239",
+            "Chapter_9_Cardiac_Arrhythmias_Myocardial_Infarction_275": "פרק 9 / הפרעות קצב ואוטם שריר הלב ... 275",
+            "Chapter_10_Vascular_Injuries_339": "פרק 10 / פגיעות בכלי דם ... 339",
+            "Chapter_11_Nervous_System_Anatomy_Physiology_403": "פרק 11 / אנטומיה ופיזיולוגיה של מערכת העצבים ... 403",
+            "Chapter_12_Nervous_System_Disorders_423": "פרק 12 / הפרעות במערכת העצבים ... 423",
+            "Chapter_13_Head_Injuries_451": "פרק 13 / פגיעות ראש ... 451",
+            "Chapter_14_Abdomen_Anatomy_Injuries_467": "פרק 14 / אנטומיית הבטן ופגיעות באיברי הבטן והאגן ... 467",
+            "Chapter_15_Skin_Muscles_Skeleton_Anatomy_Injuries_493": "פרק 15 / אנטומיה ופגיעות במערכות העור השרירים והשלד ... 493",
+            "Chapter_16_Reproductive_System_Gynecology_Obstetrics_519": "פרק 16 / מערכת המין גינקולוגיה ומיילדות ... 519",
+            "Chapter_17_Endocrinology_555": "פרק 17 / אנדוקרינולוגיה ... 555",
+            "Chapter_18_Emergency_Care_Special_Populations_595": "פרק 18 / טיפול חירום לאנשים בקבוצות עם מאפיינים ייחודיים ... 595",
+            "Chapter_19_Emergency_Situations_Treatment_625": "פרק 19 / טיפול במצבי חירום ... 625",
+            "Chapter_20_Psychiatric_Emergency_Care_679": "פרק 20 / מצבי חירום בפסיכיאטריה ... 679",
+            "Chapter_21_Pediatric_Medicine_701": "פרק 21 / פדיאטריה רפואת ילדים ... 701",
+            "Chapter_22_Environmental_Trauma_753": "פרק 22 / טראומה סביבתית ... 753",
+            "Chapter_23_Pharmacology_Medications_817": "פרק 23 / פרמקולוגיה ותרופות ... 817",
+            "Chapter_24_Poisoning_883": "פרק 24 / הרעלות ... 883",
+            "Chapter_25_Equipment_Skills_947": "פרק 25 / מכשור ומיומנויות ... 947",
+            "Chapter_26_Unusual_Incidents_Procedures_1013": "פרק 26 / עקרונות עבודה באירועים חריגים ... 1013",
+            "Chapter_27_Extraction_Evacuation_Patient_Transport_1061": "פרק 27 / חילוץ פינוי ונשיאת המטופל ... 1061",
+            "Chapter_28_Introduction_Basics_1083": "פרק 28 / מבוא ובסיס ... 1083"
+        };
+
+        const fileDisplayMapping = {
+            // Chapter 1
+            "emergency_medicine_general_definitions": "רפואת חירום: הגדרות כלליות",
+            "prehospital_emergency_medicine_systems": "הדגמים של מערכות רפואת חירום טרום-אשפוזית", 
+            "magen_david_adom_organization": "מגן דוד אדום -- ארגון רפואת החירום הטרום-אשפוזית של ישראל",
+
+            // Chapter 2
+            "patient_assessment_introduction": "הקדמה",
+            "approach_to_injured_patient": "הגישה להערכת פצוע",
+            "kinematic_related_injuries": "פגיעות אחרות הקשורות בקינמטיקה",
+            "approach_to_trauma_patient": "הגישה לנפגע טראומה",
+            "trauma_hostile_environment": "טראומה בסביבה עוינת",
+
+            // Chapter 3
+            "respiratory_system_anatomy": "אנטומיה של מערכת הנשימה",
+            "respiratory_system_physiology": "פיזיולוגיה של מערכת הנשימה",
+
+            // Chapter 4
+            "respiratory_system_pathophysiology": "פתופיזיולוגיה של מערכת הנשימה",
+            "approach_to_respiratory_patient": "הגישה למטופל הנשימתי",
+            "additional_respiratory_tract_injuries": "פגיעות נוספות בדרכי הנשימה",
+
+            // Chapter 5
+            "medical_terminology_glossary": "מילון מונחים",
+            "chest_injuries": "פגיעות בבית החזה",
+            "additional_respiratory_system_injuries": "פגיעות נוספות במערכת הנשימה",
+
+            // Chapter 6
+            "blood_system": "מערכת הדם",
+            "blood_vessels": "כלי הדם",
+            "blood_circulation": "מחזור הדם בגוף",
+            "heart": "הלב",
+
+            // Chapter 7
+            "blood_flow": "שטף דם",
+            "shock": "הלם",
+            "abdominal_injuries": "פגיעות בטן",
+
+            // Chapter 8
+            "heart_failure_cardiomyopathy": "אי-ספיקת לב וקרדיומיופתיה",
+            "inflammatory_heart_diseases": "מחלות לב דלקתיות",
+            "structural_heart_disorders": "הפרעות מבניות של הלב",
+            "pediatric_cardiology": "קרדיולוגיה פדיאטרית",
+            "cardiology_in_trauma": "קרדיאולוגיה בטראומה",
+            "resuscitation": "החייאה",
+            "summary": "סיכום",
+
+            // Chapter 9
+            "introduction": "מבוא",
+            "cardiac_conduction_system": "פעילות מערכת ההולכה החשמלית בלב",
+            "ecg_interpretation_principles": "עקרונות הפענוח של אק\"ג",
+            "arrhythmia": "אריתמיה",
+            "sinus_rhythm_disorders": "הפרעות קצב סינוס",
+            "focal_arrhythmia": "אריתמיה ממקור מוקדי",
+            "cardiac_conduction_blocks": "חוסמי הולכה של הלב",
+            "cardiac_hypertrophy": "היפרטרופיה של הלב",
+            "myocardial_infarction": "אוטם שריר הלב",
+            "cardiomyopathy": "קרדיומיופתיה",
+            "ecg_in_various_conditions": "תרשים האק\"ג במצבים ובמחלות שונים",
+            "electrolyte_disorders": "הפרעות אלקטרוליטריות",
+
+            // Chapter 10
+            "introduction_vascular": "מבוא",
+            "blood_coagulation": "קרישת הדם",
+            "ischemic_heart_disease": "מחלת לב איסכמית",
+            "coronary_artery_disease": "טרשת עורקים קורונרית",
+            "angina_pectoris": "תעוקת חזה",
+            "acute_coronary_syndrome": "תסמונת כלילית חריפה",
+            "myocardial_infarction_vascular": "אוטם שריר הלב",
+            "pulmonary_embolism": "תסחיף ריאות",
+            "acute_mesenteric_ischemia": "אירוע מזנטרי",
+            "bleeding_management_principles": "עקרונות הטיפול בדימומים",
+            "aortic_dissection": "דיסקציה של האאורטה",
+            "shock_vascular": "הלם",
+
+            // Chapter 11
+            "nervous_system_structure_function": "מבנה מערכת העצבים ותפקידיה",
+            "central_nervous_system": "מערכת העצבים המרכזית",
+            "peripheral_nervous_system": "מערכת העצבים ההיקפית",
+
+            // Chapter 12
+            "seizures": "פרכוסים",
+            "stroke_cerebral_event": "שבץ מוחי, אירוע מוחי",
+            "syncope": "עילפון",
+            "diabetic_emergencies": "מצבי חירום סוכרתיים",
+
+            // Chapter 13
+            "head_injuries_introduction": "הקדמה",
+            "intracranial_pressure": "לחץ תוך-גולגולתי",
+            "additional_head_injuries": "פגיעות ראש נוספות",
+
+            // Chapter 14
+            "abdominal_anatomy": "אנטומיה של הבטן",
+            "digestive_system_physiology": "פיזיולוגיה של מערכת העיכול",
+            "digestive_system_auxiliary_organs": "איברים המסייעים במסלול העיכול",
+            "urinary_system_physiology": "פיזיולוגיה של מערכת ההפרשה, מערכת השתן",
+            "abdominal_pain": "כאבי בטן",
+            "abdominal_trauma": "טראומת בטן",
+
+            // Chapter 15
+            "skin_anatomy": "האנטומיה של העור",
+            "skin_system_injuries": "פגיעות במערכת העור",
+            "burns": "כוויות",
+            "muscle_system": "מערכת השרירים",
+            "skeletal_system": "מערכת השלד",
+            "fractures": "שברים",
+            "compartment_syndrome": "תסמונת המדור הסגור",
+
+            // Chapter 16
+            "reproductive_system_anatomy_physiology": "האנטומיה והפיזיולוגיה של מערכת המין",
+            "female_reproductive_system": "מבנה מערכת המין הנקבית",
+            "fetal_circulation": "מחזור הדם העוברי",
+            "pregnancy_complications": "סיבוכים אפשריים בהיריון",
+            "miscarriages": "הפלות",
+            "third_trimester_bleeding": "דימומים בטרימסטר השלישי",
+            "preeclampsia_eclampsia": "רעלת היריון וקדם-רעלת היריון",
+            "eclampsia": "רעלת, אקלמפסיה",
+            "supine_hypotension": "לחץ דם נמוך בשכיבה",
+            "labor_delivery": "לידה",
+            "delivery_management": "קבלת לידה",
+
+            // Chapter 17
+            "endocrine_system": "המערכת האנדוקרינית",
+            "endocrine_anatomy_physiology": "אנטומיה ופיזיולוגיה",
+            "endocrine_diseases_emergencies": "מחלות ומצבי חירום אנדוקרינולוגיים",
+            "thyroid_pathologies": "פתולוגיות של התירואיד (בלוטת התריס)",
+            "parathyroid_pathologies": "פתולוגיות של הפראתירואיד (בלוטת יותרת התריס)",
+            "adrenal_pathologies": "פתולוגיות של האדרנל",
+            "pancreatic_pathologies": "פתולוגיות של הלבלב",
+            "diabetic_emergency_states": "מצבי החירום הסוכרתיים",
+
+            // Chapter 18
+            "elderly_patients": "קשישים",
+            "disabled_patients": "נכים",
+            "nursing_care_patients": "מטופלים סיעודיים",
+            "cognitive_impairment_patients": "אנשים עם מוגבלות קוגניטיבית או פיגור",
+            "mental_health_patients": "פגועי נפש, מתמודדי נפש",
+
+            // Chapter 19
+            "clinical_approach_emergency_care": "גישה קלינית לטיפול במצבי חירום",
+            "altered_consciousness": "חוסר הכרה",
+            "headaches": "כאבי ראש",
+            "neck_pain": "כאבים בצוואר",
+            "chest_pain": "כאבים בחזה",
+            "abdominal_pain_emergency": "כאבי בטן",
+            "flank_pain_lumbar": "כאבי צד, כאבים לומבריים",
+            "back_pain_musculoskeletal": "כאבי גב, שלד ושרירים",
+            "oncology": "אונקולוגיה",
+            "laboratory_tests_introduction": "מבוא לבדיקות מעבדה",
+
+            // Chapter 20
+            "psychiatric_disorders": "ההפרעות הפסיכיאטריות",
+            "addiction_emergencies": "מצבי חירום בהתמכרויות",
+
+            // Chapter 21
+            "pediatric_anatomy_physiology": "אנטומיה ופיזיולוגיה של ילדים",
+            "child_abuse": "התעללות בילדים",
+            "pediatric_respiratory_emergencies": "מצבי חירום נשימתיים בילדים",
+            "pediatric_cardiac_problems": "בעיות לב אצל ילדים",
+
+            // Chapter 22
+            "blast_injuries": "פגיעות הדף",
+            "crush_injuries": "פגיעות מעיכה",
+            "environmental_injuries": "פגיעות אקלים",
+            "heat_related_injuries": "פגיעות אקלים חם",
+            "water_related_injuries": "פגיעות ימיות",
+
+            // Chapter 23
+            "pharmacokinetics": "פרמקוקינטיקה",
+            "medication_uses_ems": "שימושים עיקריים בתרופות במד\"א",
+
+            // Chapter 24
+            "poisoning_introduction": "הקדמה",
+            "ingested_poisons": "רעלים המגיעים לגוף דרך מערכת העיכול",
+            "inhaled_poisons": "רעלים המגיעים לגוף בשאיפה",
+            "drugs": "סמים",
+            "chemical_warfare_agents": "חומרי לחימה כימיים (חל\"כ)",
+            "mass_toxicological_event": "אירוע טוקסולוגי המוני: אט\"ה",
+
+            // Chapter 25
+            "ems_bags_kits": "תיקים וערכות במד\"א",
+            "airway_management": "מנתב אוויר",
+            "ventilation_equipment": "מפוח להנשמה",
+            "suction_equipment": "מכשיר סקשן",
+            "oxygen_tank": "מכל חמצן",
+            "peep_valve": "שסתום פיפ להחייאה",
+            "manual_blood_pressure": "מדידת לחץ דם ידנית",
+            "glucometer_blood_sugar": "גלוקומטר ומדידת סוכר",
+            "pulse_oximetry": "מד רוויון החמצן בדם",
+            "capnometry": "קפנומטר",
+            "corpuls_3": "קורפולס-3",
+            "lucas_cpr_device": "מעסה לב אוטומטי -- לוקאס-2",
+            "lifepak_12": "לייף פק-12",
+            "injections": "הזרקות",
+            "iv_access": "החדרת עירוי תוך-ורידי",
+            "intraosseous_access": "עירוי תוך-גרמי",
+            "airway_skills": "מיומנויות נתיב אוויר",
+            "respiratory_improvement_skills": "מיומנויות לשיפור נשימה",
+            "immobilization_skills": "מיומנויות קיבוע",
+
+            // Chapter 26
+            "mass_casualty_incident": "אר\"ן -- אירוע רב-נפגעים",
+            "mega_mass_casualty": "מגה אר\"ן",
+            "earthquake": "רעידת אדמה (רע\"ד)",
+            "hazmat_incident": "אירוע חומרים מסוכנים (חומ\"ס)",
+            "mass_toxicological_incident": "אירוע טוקסולוגי המוני: אט\"ה",
+
+            // Chapter 27
+            "rescue_operations": "מערך חילוץ והצלה",
+            "general_rescue_principles": "הקרונות הכלליים לחילוץ",
+            "rescue_stages": "שלבי החילוץ",
+            "helicopter_evacuation": "פינוי בהיטס",
+            "patient_transport_methods": "אמצעים לנשיאת מטופל",
+
+            // Chapter 28
+            "basics_introduction": "הקדמה",
+            "body_systems": "המערכות בגוף האדם",
+            "body_processes": "התהליכים המתקיימים בגוף האדם"
+        };
+
+        // Utility functions for cleaning names
+        function cleanFileName(name) {
+            return name.replace(/[\\/*?"<>|]/g, "").trim().replace(/ /g, "_").replace(/__/g, "_");
+        }
+
+        function cleanFolderName(title) {
+            return cleanFileName(title);
+        }
+
+        // Load chapters data from JSON file
+        async function loadChaptersData() {
+            try {
+                // Try to load English JSON first, fallback to Hebrew
+                let response;
+                try {
+                    response = await fetch('../../../json/ems_chapters_english.json');
+                    if (!response.ok) throw new Error('English JSON not found');
+                } catch (e) {
+                    console.log('English JSON not found, falling back to Hebrew version');
+                    response = await fetch('../../../json/ems_chapters.json');
+                }
+                
+                const data = await response.json();
+                chapters = data.chapters;
+                createAccordion();
+            } catch (error) {
+                console.error('Error loading chapters data:', error);
+                displayError('שגיאה בטעינת נתוני הפרקים');
+            }
+        }
+
+        function displayError(message) {
+            const container = document.getElementById('accordionContainer');
+            container.innerHTML = `<div class="error">${message}</div>`;
+        }
+
+        function createAccordion() {
+            const container = document.getElementById('accordionContainer');
+            container.innerHTML = '';
+
+            Object.keys(chapters).forEach((chapterTitle, index) => {
+                const files = chapters[chapterTitle];
+                const folderName = cleanFolderName(chapterTitle);
+                
+                // Get Hebrew display name for chapter
+                const displayChapterTitle = chapterDisplayMapping[chapterTitle] || chapterTitle;
+                
+                // Main accordion item
+                const accordionItem = document.createElement('div');
+                accordionItem.className = 'accordion-item';
+                accordionItem.innerHTML = `
+                    <div class="accordion-header" onclick="toggleAccordion(${index})">
+                        <span>${displayChapterTitle}</span>
+                        <span class="accordion-arrow">▼</span>
+                    </div>                   
+                    <div class="accordion-content">
+                        ${files.map(file => {
+                            const displayFileName = fileDisplayMapping[file] || file;
+                            return `
+                                <div class="pdf-item" onclick="openPDF('${folderName}', '${file}')">
+                                    <span class="pdf-icon">📄</span>
+                                    <span class="pdf-name">${displayFileName}</span>
+                                </div>
+                            `;
+                        }).join('')}
+                    </div>
+                `;
+                
+                container.appendChild(accordionItem);
+            });
+        }
+
+        function toggleAccordion(index) {
+            const items = document.querySelectorAll('.accordion-item');
+            const item = items[index];
+            
+            // Close all other main accordion items
+            items.forEach((otherItem, otherIndex) => {
+                if (otherIndex !== index) {
+                    otherItem.classList.remove('active');
+                }
+            });
+            
+            item.classList.toggle('active');
+        }
+
+        function openPDF(folderName, fileName) {
+    // Get Hebrew display name for the file
+    const displayFileName = fileDisplayMapping[fileName] || fileName;
+    
+    // Encode parameters for URL
+    const encodedDisplayName = encodeURIComponent(displayFileName);
+    
+    // Create URL with parameters including Hebrew title
+    const viewerUrl = `ems_pdf_viewer2.html?folder=${folderName}&file=${fileName}&title=${encodedDisplayName}`;
+    
+    // Try to open PDF viewer in new tab
+    try {
+        window.open(viewerUrl, '_blank');
+    } catch (error) {
+        // Fallback: create a link and click it
+        const link = document.createElement('a');
+        link.href = viewerUrl;
+        link.target = '_blank';
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+    }
+}
+
+            // Open PDF in same tab
+           /*  try {
+                window.location.href = pdfPath;
+            } catch (error) {
+                // Fallback: create a link and click it
+                const link = document.createElement('a');
+                link.href = pdfPath;
+                // Remove target='_blank' to open in same tab
+                link.download = `${fileName}.pdf`;
+                document.body.appendChild(link);
+                link.click();
+                document.body.removeChild(link);
+            } */
+
+        
+
+        // Initialize on page load
+        document.addEventListener('DOMContentLoaded', function() {
+            loadChaptersData();
+        });
+
+        // Add smooth scrolling behavior
+        document.addEventListener('click', function(e) {
+            if (e.target.closest('.accordion-header')) {
+                setTimeout(() => {
+                    e.target.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+                }, 300);
+            }
+        });
+
+                const hamburgerBtn = document.getElementById('hamburgerBtn');
+        const sideMenu = document.getElementById('sideMenu');
+        const overlay = document.getElementById('overlay');
+
+        // פתיחה/סגירה של התפריט
+        hamburgerBtn.addEventListener('click', function() {
+            hamburgerBtn.classList.toggle('active');
+            sideMenu.classList.toggle('open');
+            overlay.classList.toggle('active');
+        });
+
+        // סגירה בלחיצה על האוברליי
+        overlay.addEventListener('click', function() {
+            hamburgerBtn.classList.remove('active');
+            sideMenu.classList.remove('open');
+            overlay.classList.remove('active');
+        });
+
+        // סגירה בלחיצה על ESC
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                hamburgerBtn.classList.remove('active');
+                sideMenu.classList.remove('open');
+                overlay.classList.remove('active');
+            }
+        });
+    </script>
+    <script src="../mda/js/hamburger-menu.js"></script>
+</div> <!--close class="content-wrapper"-->
+</body>
+</html>

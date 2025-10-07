@@ -1,0 +1,731 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>רשימת תרופות באט"ן</title>
+    <script 
+      src="https://cdn.counter.dev/script.js" 
+      data-id="87cd2eee-d5db-43dc-9575-16e58a14c32d" 
+      data-utcoffset="3" 
+      defer 
+      referrerpolicy="no-referrer"></script>
+
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        background-color: #f5f5f5;
+        margin: 0;
+        padding: 0;
+        overflow-x: hidden;
+        word-wrap: break-word;
+      }
+      
+      /* קישור חזרה קבוע למעלה */
+      .top-link {
+        position: fixed;
+        top: 0;
+        right: 0;
+        left: 0;
+        background: #1976d2;
+        color: #fff;
+        text-align: center;
+        padding: 8px 0 4px 0;
+        z-index: 101;
+        font-size: clamp(0.9em, 2.5vw, 1.1em);
+        text-decoration: none;
+        letter-spacing: 1px;
+        box-shadow: 0 2px 8px #bbb;
+      }
+      
+      /* כותרת קבועה מתחת לקישור */
+      .sticky-header {
+        position: fixed;
+        top: 20px;
+        right: 0;
+        left: 0;
+        background: #fff;
+        z-index: 100;
+        text-align: center;
+        padding: 15px 0 8px 0;
+        font-size: clamp(1.2em, 4vw, 1.5em);
+        font-weight: bold;
+        box-shadow: 0 2px 8px #ddd;
+        border-bottom: 1px solid #eee;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+      
+      /* ריווח לתוכן */
+      .content-wrapper {
+        margin-top: clamp(80px, 15vw, 100px);
+        padding: clamp(10px, 3vw, 20px);
+      }
+      
+      /* סגנונות התפריט המבורגר */
+      .hamburger-menu {
+        cursor: pointer;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+        width: 30px;
+        height: 25px;
+        background: transparent;
+        border: none;
+        padding: 0;
+        margin-right: 20px;
+      }
+
+      .hamburger-line {
+        width: 100%;
+        height: 3px;
+        background-color: #333;
+        border-radius: 2px;
+        transition: 0.3s;
+      }
+
+      .hamburger-menu.active .hamburger-line:nth-child(1) {
+        transform: rotate(45deg) translate(8px, 8px);
+      }
+
+      .hamburger-menu.active .hamburger-line:nth-child(2) {
+        opacity: 0;
+      }
+
+      .hamburger-menu.active .hamburger-line:nth-child(3) {
+        transform: rotate(-45deg) translate(8px, -8px);
+      }
+
+      .side-menu {
+        position: fixed;
+        top: 0;
+        right: -15%;
+        width: 15%;
+        height: 100vh;
+        background-color: white;
+        box-shadow: -2px 0 10px rgba(0,0,0,0.1);
+        transition: right 0.3s ease;
+        z-index: 1000;
+        padding: 0;
+        border-left: 1px solid #ddd;
+        display: flex;
+        flex-direction: column;
+      }
+
+      .side-menu.open {
+        right: 0;
+      }
+
+      .side-menu h3 {
+        padding: 20px;
+        background-color: #1976d2;
+        color: white;
+        margin: 0;
+        text-align: center;
+        font-size: 18px;
+        font-weight: bold;
+        flex-shrink: 0;
+      }
+
+      .side-menu-content {
+        flex: 1;
+        overflow-y: auto;
+        overflow-x: hidden;
+      }
+
+      .side-menu ul {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+      }
+
+      .side-menu li {
+        border-bottom: 1px solid #eee;
+      }
+
+      .side-menu a {
+        display: block;
+        padding: 15px 20px;
+        color: #0077cc;
+        text-decoration: none;
+        transition: background-color 0.3s;
+        font-size: 16px;
+      }
+
+      .side-menu a:hover {
+        background-color: #f0f0f0;
+        text-decoration: underline;
+      }
+
+      .overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0,0,0,0.5);
+        visibility: hidden;
+        opacity: 0;
+        transition: opacity 0.3s, visibility 0.3s;
+        z-index: 999;
+      }
+
+      .overlay.active {
+        visibility: visible;
+        opacity: 1;
+      }
+
+      .menu-title {
+        flex-grow: 1;
+        text-align: center;
+      }
+
+      .menu-spacer {
+        width: 30px;
+        margin-left: 20px;
+      }
+
+      /* עיצוב סרגל הגלילה */
+      .side-menu-content::-webkit-scrollbar {
+        width: 8px;
+      }
+
+      .side-menu-content::-webkit-scrollbar-track {
+        background: #f1f1f1;
+      }
+
+      .side-menu-content::-webkit-scrollbar-thumb {
+        background: #c1c1c1;
+        border-radius: 4px;
+      }
+
+      .side-menu-content::-webkit-scrollbar-thumb:hover {
+        background: #a8a8a8;
+      }
+
+      /* כפתור חזרה בפינה השמאלית */
+      .back-button {
+        position: absolute;
+        left: 15px;
+        top: 50%;
+        transform: translateY(-50%);
+        color: #ffffff;
+        text-decoration: none;
+        font-size: 1em;
+        display: flex;
+        align-items: center;
+        gap: 5px;
+        cursor: pointer;
+        transition: opacity 0.2s;
+      }
+      
+      .back-button:hover {
+        opacity: 0.8;
+      }
+      
+      .back-arrow {
+        font-size: 1.2em;
+        font-weight: bold;
+      }
+      
+      .accordion {
+        width: 100%;
+        background-color: #fff;
+        border: 1px solid #ddd;
+        margin: clamp(2px, 1vw, 4px) 0;
+        border-radius: clamp(3px, 1vw, 6px);
+        overflow: hidden;
+        box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+      }
+      
+      details {
+        margin: 0;
+        padding: 0;
+        border: none;
+      }
+      
+      summary {
+        margin: 0;
+        padding: clamp(6px, 2vw, 10px);
+        background-color: #e0f0ff;
+        font-weight: bold;
+        list-style: none;
+        cursor: pointer;
+        font-size: clamp(0.75em, 2.5vw, 0.9em);
+        border-bottom: 1px solid #ccc;
+        transition: background-color 0.2s;
+      }
+      
+      summary:hover {
+        background-color: #d0e8ff;
+      }
+      
+      summary::-webkit-details-marker {
+        display: none;
+      }
+
+      /* עיצוב לסאמרי של תרופות ראשיות - קטן ב-30% */
+      .main-medication summary {
+        background-color: #e0f0ff;
+        font-size: clamp(0.7em, 2.5vw, 0.91em);
+        font-weight: bold;
+        padding: clamp(8px, 2.5vw, 12px);
+      }
+
+      .main-medication summary:hover {
+        background-color: #d0e8ff;
+      }
+
+      /* עיצוב לאקורדיונים משניים */
+      .sub-accordion {
+        margin: clamp(1px, 0.5vw, 3px) 0;
+        background-color: #f8f8f8;
+        border: 1px solid #e0e0e0;
+        border-radius: clamp(2px, 0.5vw, 4px);
+      }
+
+      .sub-accordion summary {
+        background-color: #e8f5e8;
+        font-size: clamp(0.7em, 2vw, 0.85em);
+        font-weight: 600;
+        padding: clamp(4px, 1.5vw, 8px);
+        margin: 0;
+        border-bottom: 1px solid #d0d0d0;
+      }
+
+      .sub-accordion summary:hover {
+        background-color: #d8edd8;
+      }
+      
+      .details-table td.title {
+  font-weight: bold;
+  padding-right: 10px;
+}
+
+.details-table td.value {
+  padding-right: 20px;
+}
+
+      .sub-content {
+        padding: clamp(4px, 1.5vw, 8px);
+        background-color: #fff;
+        font-size: clamp(0.7em, 2vw, 0.8em);
+        line-height: 1.2;
+      }
+
+      .dosage-section {
+        margin-bottom: clamp(4px, 1.5vw, 8px);
+        border-left: 2px solid #0077cc;
+        padding-right: clamp(4px, 1vw, 8px);
+      }
+
+      .dosage-title {
+        font-weight: bold;
+        color: #0077cc;
+        margin-bottom: clamp(2px, 0.5vw, 4px);
+        font-size: clamp(0.75em, 2.2vw, 0.9em);
+      }
+
+      .dosage-item {
+        margin: clamp(1px, 0.5vw, 2px) 0;
+        padding-right: clamp(4px, 1vw, 8px);
+        line-height: 1.2;
+      }
+
+      .close-button {
+        background: #1976d2;
+        color: white;
+        border: none;
+        padding: clamp(6px, 2vw, 10px) clamp(12px, 3vw, 18px);
+        font-size: clamp(0.75em, 2.2vw, 0.9em);
+        border-radius: clamp(3px, 1vw, 5px);
+        cursor: pointer;
+        margin-bottom: clamp(8px, 2vw, 15px);
+        transition: background-color 0.2s;
+      }
+
+      .close-button:hover {
+        background: #1565c0;
+      }
+
+      /* התאמה מיוחדת למסכים קטנים */
+      @media (max-width: 600px) {
+        body {
+          padding: 1%;
+        }
+        
+        .content-wrapper {
+          margin-top: 85px;
+          padding: 5px;
+        }
+
+        .details-table td.title,
+        .details-table td.value {
+          display: block;
+          width: 100%;
+          padding: 2px 5px;
+        }
+
+        .details-table td.title {
+          background-color: #f0f0f0;
+          border-bottom: none;
+          font-weight: bold;
+        }
+
+        .details-table td.value {
+          border-bottom: 1px solid #ddd;
+          margin-bottom: 4px;
+        }
+
+        .dosage-section {
+          margin-bottom: 6px;
+          padding-right: 3px;
+        }
+
+        .side-menu {
+          width: 70%;
+          right: -70%;
+        }
+      }
+
+      /* התאמה לטאבלטים */
+      @media (min-width: 601px) and (max-width: 1024px) {
+        .content-wrapper {
+          padding: 10px;
+        }
+      }
+
+      /* התאמה למסכים גדולים */
+      @media (min-width: 1200px) {
+        body {
+          max-width: 1400px;
+          margin: 0 auto;
+          padding: 0 2%;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <a href="../index.html" class="top-link">
+      חזרה לתפריט הראשי
+      <div class="back-button" onclick="history.back()">
+        <span class="back-arrow">←</span>
+        <span>חזרה</span>
+      </div>
+    </a>
+    
+    <div class="sticky-header">		
+      <button class="hamburger-menu" id="hamburgerBtn">
+        <div class="hamburger-line"></div>
+        <div class="hamburger-line"></div>
+        <div class="hamburger-line"></div>
+      </button>
+      <div class="menu-title">תרופות באט"ן</div>
+      <div class="menu-spacer"></div>
+    </div>
+
+    <div class="overlay" id="overlay"></div>
+    
+    <div class="side-menu" id="sideMenu">
+      <h3>תפריט ראשי</h3>
+      <div class="side-menu-content">
+        <ul>
+          <li><a href="atan/atan_index.html">אט"ן</a></li>
+          <li><a href="bls/bls_index.html">BLS</a></li>
+          <li><a href="Bechirim/bechirim_index.html">קורס בכירים</a></li>
+          <li><a href="Bechirim/protocols/ALS2024.HTML">אובדן ALS 2024</a></li>
+          <li><a href="Bechirim/protocols/protocols_index.html">פרוטוקולים</a></li>
+          <li><a href="Bechirim/Sikumim/Sikumim_index.html">מצבות וסיכומי מצבות</a></li>
+          <li><a href="Bechirim/Sikumim/SIKUM_LESSONS/lessons_index.html">סיכומי שיעורים</a></li>
+          <li><a href="Bechirim/Sikumim/SIKUM_LESSONS/ECG_Practice_MI.html">תרגול אק"ג - אוטם</a></li>
+          <li><a href="Bechirim/Sikumim/SIKUM_LESSONS/ECG_Practice_arrhythm.html">תרגול אק"ג - הפרעות קצב</a></li>
+          <li><a href="Bechirim/Phrases/Phrases.html">אינדקס מושגים</a></li>
+          <li><a href="Bechirim/trufot_Bait_search_site/Trufot_BAEIT.html">תרופות נפוצות בבית</a></li>
+          <li><a href="Bechirim/Sikumim/Pdf_files/pdf_index.html">ספרות</a></li>
+        </ul>
+      </div>
+    </div>
+    
+    <div class="content-wrapper">
+      <!-- כפתור סגירת כל התרופות -->
+      <button onclick="closeAllDrugs()" class="close-button">סגור את כל התרופות</button>
+      
+      <div id="medications-container">
+        <!-- התרופות יוטענו כאן -->
+      </div>
+    </div>
+
+    <script>
+      // הסקריפט של תפריט ההמבורגר
+      const hamburgerBtn = document.getElementById('hamburgerBtn');
+      const sideMenu = document.getElementById('sideMenu');
+      const overlay = document.getElementById('overlay');
+
+      // פתיחה/סגירה של התפריט
+      hamburgerBtn.addEventListener('click', function() {
+        hamburgerBtn.classList.toggle('active');
+        sideMenu.classList.toggle('open');
+        overlay.classList.toggle('active');
+      });
+
+      // סגירה בלחיצה על האוברליי
+      overlay.addEventListener('click', function() {
+        hamburgerBtn.classList.remove('active');
+        sideMenu.classList.remove('open');
+        overlay.classList.remove('active');
+      });
+
+      // סגירה בלחיצה על ESC
+      document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape') {
+          hamburgerBtn.classList.remove('active');
+          sideMenu.classList.remove('open');
+          overlay.classList.remove('active');
+        }
+      });
+
+      // פונקציה לטעינת נתוני התרופות מקובץ JSON חיצוני
+      async function loadMedicationsData() {
+        try {
+          const response = await fetch('../json/atan_medications_Details.json');
+          if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`);
+          }
+          const data = await response.json();
+          return data;
+        } catch (error) {
+          console.error('שגיאה בטעינת נתוני התרופות:', error);
+          // נתונים לדוגמה במקרה של שגיאה
+          return {
+            medications: [
+              {
+                medication_name: "שגיאה בטעינת הנתונים",
+                english_name: "Error loading data",
+                dosage_form: "בדוק את קובץ ה-JSON",
+                activity: "לא ניתן לטעון את נתוני התרופות מהקובץ החיצוני."
+              }
+            ]
+          };
+        }
+      }
+
+      // פונקציה ליצירת תוכן אקורדיון משני
+      function createSubAccordion(title, content) {
+        if (!content) return '';
+        
+        let formattedContent = '';
+        
+        if (Array.isArray(content)) {
+          formattedContent = content
+            .filter(item => item && typeof item === 'string' && item.trim() !== '')
+            .map(item => `<div style="margin-bottom: 2px;">• ${item.trim()}</div>`)
+            .join('');
+        } else if (typeof content === 'object') {
+          // טיפול באובייקטים כמו מינון או פרמקוקינטיקה
+          formattedContent = formatObjectContent(content, title);
+        } else if (typeof content === 'string') {
+          // טיפול מיוחד למנגנון הפעולה - פיצול לפי נקודות
+          if (title === 'מנגנון הפעולה') {
+            formattedContent = content
+              .split('.')
+              .filter(sentence => sentence.trim() !== '')
+              .map(sentence => `<div style="margin-bottom: 3px; line-height: 1.2;">${sentence.trim()}.</div>`)
+              .join('');
+          } else {
+            formattedContent = content.replace(/\n/g, '<br>').trim();
+          }
+        } else {
+          formattedContent = String(content || '');
+        }
+        
+        if (!formattedContent.trim()) return '';
+        
+        return `
+          <div class="accordion sub-accordion">
+            <details>
+              <summary>${title}</summary>
+              <div class="sub-content">${formattedContent}</div>
+            </details>
+          </div>
+        `;
+      }
+
+      // פונקציה לעיצוב תוכן אובייקטים עם תרגום לעברית
+      function formatObjectContent(obj, sectionTitle = '') {
+        let html = '';
+        
+        for (const [key, value] of Object.entries(obj)) {
+          const translatedKey = translateToHebrew(key, sectionTitle);
+          
+          if (typeof value === 'object' && value !== null) {
+            html += `<div class="dosage-section">`;
+            html += `<div class="dosage-title">${translatedKey}:</div>`;
+            
+            for (const [subKey, subValue] of Object.entries(value)) {
+              const translatedSubKey = translateToHebrew(subKey, sectionTitle);
+              html += `<div class="dosage-item"><strong>${translatedSubKey}:</strong> ${subValue}</div>`;
+            }
+            html += `</div>`;
+          } else {
+            html += `<div class="dosage-item"><strong>${translatedKey}:</strong> ${value}</div>`;
+          }
+        }
+        
+        return html;
+      }
+
+      // פונקציה לתרגום מפתחות לעברית
+      function translateToHebrew(key, context = '') {
+        const translations = {
+          // פרמקוקינטיקה
+          'onset_of_action': 'התחלת השפעה',
+          'peak_effect': 'שיא השפעה',
+          'duration_of_action': 'משך השפעה',
+          'half_life': 'זמן מחצית חיים',
+          'bioavailability': 'זמינות ביולוגית',
+          
+          // מינונים כלליים
+          'adults': 'מבוגרים',
+          'children': 'ילדים',
+          'infants_children': 'תינוקות וילדים',
+          'first_dose': 'מנה ראשונה',
+          'second_dose': 'מנה שנייה',
+          'deep_sedation': 'הרדמה עמוקה',
+          'light_sedation': 'הרדמה קלה',
+          'seizures_adults': 'פרכוסים במבוגרים',
+          'seizures_children': 'פרכוסים בילדים',
+          'organophosphate':'אירוע טוקסולוגי המוני',
+          'pulseless_vt_vf': 'VT/VF דום לב',
+          'tachyarrhythmia':'טכיאריתמיה',
+          'iv_administration':'מתן תוך-ורידי',
+          'glucogel': 'גלוקוג\'ל',
+          'subsequent_doses': 'מנות המשך',
+          'iv_adults': 'מבוגרים - תוך-ורידי',
+          'iv_children': 'ילדים - תוך-ורידי',
+          'pulseless_vt_tdp': 'VT/TDP_דום לב',
+          'wct_tdp': 'TDP/טכיקארדיה רחבת קומפלקס',
+          'severe_asthma': 'אסתמה קשה',
+          'wct_tdp_asthma': 'טכיקארדיה רחבת קומפלקס_TDP באסתמה',
+          'eclampsia': 'אקלמפסיה',
+          'sedation': 'הרדמה',
+          'sedation_maintenance': 'תחזוקת הרדמה',
+          'delirium': 'דליריום',
+
+
+          // מצבים רפואיים
+          'cardiac_arrest': 'דום לב',
+          'et_route': 'דרך הטובוס',
+          'bradycardia': 'ברדיקרדיה',
+          'asthma': 'אסתמה',
+          'anaphylaxis': 'אנפילקסיס',
+          'cardiac_arrest_anaphylaxis': 'דום לב באנפילקסיס',
+          'newborn_resuscitation': 'החייאת יילוד',
+          'stridor': 'סטרידור',
+          'acute_coronary_syndrome': 'תסמונת כלילית חריפה',
+          'pain_management': 'טיפול בכאב',
+          'general': 'כללי',
+          'special_populations': 'אוכלוסיות מיוחדות',
+          
+          // דרכי מתן
+          'sublingual': 'תת-לשוני',
+          'intravenous': 'תוך-ורידי',
+          'intranasal': 'תוך-אפי',
+          
+          // אחרים
+          'dose_range': 'טווח מינון',
+          'dilution_example': 'דוגמה למיהול'
+        };
+        
+        return translations[key] || key;
+      }
+
+      // פונקציה ליצירת אקורדיון ראשי לתרופה
+      function createMedicationAccordion(medication) {
+        // יצירת טבלת הנתונים הכלליים
+        let generalTableRows = '';
+        
+        if (medication.dosage_form) {
+          generalTableRows += `<tr><td class="title">צורת הופעה:</td><td class="value">${medication.dosage_form}</td></tr>`;
+        }
+        if (medication.category) {
+          generalTableRows += `<tr><td class="title">קטגוריה:</td><td class="value">${medication.category}</td></tr>`;
+        }
+        if (medication.administration_routes_mda) {
+          const routes = Array.isArray(medication.administration_routes_mda) 
+            ? medication.administration_routes_mda.join(', ')
+            : medication.administration_routes_mda;
+          generalTableRows += `<tr><td class="title">צורות מתן:</td><td class="value">${routes}</td></tr>`;
+        }
+        if (medication.pregnancy_safety) {
+          generalTableRows += `<tr><td class="title">בטיחות בהריון:</td><td class="value">${medication.pregnancy_safety}</td></tr>`;
+        }
+
+        // יצירת אקורדיונים משניים
+        let subAccordions = '';
+        
+        // שדות שיהפכו לאקורדיונים משניים
+        const subFields = [
+          { key: 'activity', title: 'מנגנון הפעולה' },
+          { key: 'pharmacokinetics', title: 'פרמקוקינטיקה' },
+          { key: 'contraindications', title: 'התוויות נגד' },
+          { key: 'side_effects', title: 'תופעות לוואי' },
+          { key: 'dosage', title: 'מינונים' },
+          { key: 'indications', title: 'התוויות לשימוש' },
+          { key: 'appears_in_protocol', title: 'מופיע בפרוטוקולים' },
+          { key: 'breastfeeding', title: 'הנקה' }
+        ];
+        
+        subFields.forEach(field => {
+          const content = medication[field.key];
+          if (content) {
+            subAccordions += createSubAccordion(field.title, content);
+          }
+        });
+
+        const medicationTitle = medication.english_name 
+          ? `${medication.medication_name} (${medication.english_name})`
+          : medication.medication_name;
+
+        return `
+          <div class="accordion main-medication">
+            <details>
+              <summary>${medicationTitle}</summary>
+              <table class="details-table">
+                ${generalTableRows}
+              </table>
+              ${subAccordions}
+            </details>
+          </div>
+        `;
+      }
+
+      // פונקציה לטעינת התרופות לעמוד
+      async function renderMedications() {
+        const container = document.getElementById('medications-container');
+        const data = await loadMedicationsData();
+        let html = '';
+        
+        if (data.medications) {
+          data.medications.forEach(medication => {
+            html += createMedicationAccordion(medication);
+          });
+        }
+        
+        container.innerHTML = html;
+      }
+
+      // פונקציה לסגירת כל התרופות
+      function closeAllDrugs() {
+        const allDetails = document.querySelectorAll('details[open]');
+        allDetails.forEach(detail => {
+          detail.removeAttribute('open');
+        });
+      }
+
+      // טעינת התרופות כאשר העמוד נטען
+      document.addEventListener('DOMContentLoaded', renderMedications);
+    </script>
+   <script src="/mda/js/hamburger-menu.js"></script>
+  </body>
+</html>

@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>פרוטוקולי מד"א ALS 2024</title>
+    <link rel="stylesheet" href="../../../../css/Als2024.css">
+    <script 
+      src="https://cdn.counter.dev/script.js" 
+      data-id="87cd2eee-d5db-43dc-9575-16e58a14c32d" 
+      data-utcoffset="3" 
+      defer 
+      referrerpolicy="no-referrer"></script>
+
+<style>
+         /* הקובץ הוא קובץ ניסיון לפתיחת קבצי PDF בתוך מסגרת עם אפשרות זום וגלילה */
+    /* זה לא עובד טוב במסכים קטנים*/
+        .accordion-item.active .accordion-content {
+            max-height: none !important;
+            height: auto !important;
+            overflow-y: auto !important;
+        }
+            body {
+      font-family: Arial, sans-serif;
+      background-color: #f5f5f5;
+      margin: 0;
+      padding: 20px;
+      overflow-x: hidden;
+      word-wrap: break-word;
+    }
+
+        /* קישור חזרה קבוע למעלה */
+    .top-link {
+      position: fixed;
+      top: 0;
+      right: 0;
+      left: 0;
+      background: #1976d2;
+      color: #fff;
+      text-align: center;
+      padding: 8px 0 4px 0;
+      z-index: 101;
+      font-size: 1.1em;
+      text-decoration: none;
+      letter-spacing: 1px;
+      box-shadow: 0 2px 8px #bbb;
+    }
+    /* כותרת קבועה מתחת לקישור */
+    .sticky-header {
+      position: fixed;
+      top: 36px;
+      right: 0;
+      left: 0;
+      background: #fff;
+      z-index: 100;
+      text-align: center;
+      padding: 10px 0 10px 0;
+      font-size: 2em;
+      font-weight: bold;
+      box-shadow: 0 2px 8px #ddd;
+      border-bottom: 1px solid #eee;
+    }
+    /* ריווח לתוכן */
+    .content-wrapper {
+      margin-top: 60px; /* מספיק מקום לשני האלמנטים הקבועים */
+    }
+
+    h2 {
+      color: #0077cc;
+      text-align: center;
+      font-size: 28px;
+    }
+  
+    .projects {
+      text-align: right;
+      max-width: 100%;
+    }
+  
+    .projects a, .title-link {
+      display: block;
+      font-size: 22px;
+      color: #0077cc;
+      text-decoration: none;
+      margin: 20px 0;
+    }
+
+    /* מיכל PDF */
+        .pdf-container {
+            padding: 10px;
+            height: calc(100vh - 120px);
+            display: flex;
+            justify-content: center;
+        }
+
+        .pdf-frame {
+            width: 100%;
+            max-width: 1200px;
+            height: 100%;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            background: white;
+        }
+  
+    .projects a:hover, .title-link:hover {
+      text-decoration: underline;
+    }
+
+    /* הגדרות זום עבור PDF */
+        .pdf-frame {
+            overflow: auto;
+            -webkit-overflow-scrolling: touch;
+        }
+
+        /* הודעת שגיאה */
+        .error-message {
+            text-align: center;
+            padding: 50px 20px;
+            color: #d32f2f;
+            font-size: 1.2em;
+            background: #ffebee;
+            margin: 20px;
+            border-radius: 8px;
+            border: 1px solid #ffcdd2;
+        }
+
+        .loading-message {
+            text-align: center;
+            padding: 50px 20px;
+            color: #1976d2;
+            font-size: 1.1em;
+            background: #e3f2fd;
+            margin: 20px;
+            border-radius: 8px;
+            border: 1px solid #bbdefb;
+        }
+    /* רספונסיבי */
+        @media (max-width: 768px) {
+            .sticky-header {
+                font-size: 1.6em;
+                padding: 8px 0 8px 0;
+            }
+
+            .back-button {
+                font-size: 0.8em;
+                padding: 3px 8px;
+            }
+
+            .menu-title {
+                font-size: 0.6em;
+                margin: 0 80px;
+            }
+
+            .side-menu {
+                width: 250px;
+                right: -250px;
+            }
+
+            .content-wrapper {
+                margin-top: 50px;
+            }
+
+            .pdf-container {
+                padding: 5px;
+                height: calc(100vh - 100px);
+            }
+        }
+
+        @media (max-width: 480px) {
+            .sticky-header {
+                font-size: 1.6em;
+                padding: 8px 0 6px 0;
+            }
+
+            .back-button {
+                font-size: 0.8em;
+                padding: 2px 6px;
+            }
+
+            .menu-title {
+                font-size: 0.5em;
+                margin: 0 70px;
+            }
+
+            .side-menu {
+                width: 280px;
+                right: -280px;
+            }
+
+            .content-wrapper {
+                margin-top: 30px;
+            }
+
+            .pdf-container {
+                padding: 3px;
+                height: calc(100vh - 90px);
+            }
+        }
+    @media (max-width: 600px) {
+      h2 {
+        font-size: 40px;
+      }
+  
+      .projects a, .title-link {
+        font-size: 26px;
+        margin: 25px 0;
+      }
+    }
+        /* Responsive */
+        @media (max-width: 600px) {
+            h2 {
+                font-size: 40px;
+            }
+            .projects a, .title-link {
+                font-size: 26px;
+                margin: 25px 0;
+            }
+            .side-menu {
+                width: 70%;
+                right: -70%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+    <!--
+        <div class="header">
+            <h1>🚑 פרוטוקולי מד"א ALS 2024</h1>
+        </div>
+    -->    
+        <a href="../../index.html" class="top-link">
+                    חזרה לתפריט הראשי
+                    <div class="back-button" onclick="history.back()">
+                        <span class="back-arrow">←</span>
+                        <span>חזרה</span>
+                    </div>
+                </a>
+		<div class="sticky-header">
+		
+		<button class="hamburger-menu" id="hamburgerBtn">
+            <div class="hamburger-line"></div>
+            <div class="hamburger-line"></div>
+            <div class="hamburger-line"></div>
+        </button>
+        <div class="menu-title">דף ראשי</div>
+        <div class="menu-spacer"></div>
+    </div>
+
+    <div class="overlay" id="overlay"></div>
+    
+    <div class="side-menu" id="sideMenu">
+        <h3>תפריט ראשי</h3>
+        <div class="side-menu-content">
+            <ul>
+<!--                 <li><a href="../../atan/atan_index.html">אט"ן</a></li>
+				<li><a href="../../bls/bls_index.html">BLS</a></li>
+				<li><a href="../../Bechirim/bechirim_index.html">קורס בכירים</a></li>
+                <li><a href="../../Bechirim/protocols/ALS2024.HTML">אוגדן ALS 2024</a></li>
+                <li><a href="../../Bechirim/protocols/protocols_index.html">פרוטוקולים</a></li>
+                <li><a href="../../Bechirim/Sikumim/Sikumim_index.html">מצגות וסיכומי מצגות</a></li>
+                <li><a href="../../Bechirim/Sikumim/SIKUM_LESSONS/lessons_index.html">סיכומי שיעורים</a></li>
+                <li><a href="../../Bechirim/Sikumim/SIKUM_LESSONS/ECG_Practice_MI.html">תרגול אק"ג - אוטם</a></li>
+                <li><a href="../../Bechirim/Sikumim/SIKUM_LESSONS/ECG_Practice_arrhythm.html">תרגול אק"ג - הפרעות קצב</a></li>
+                <li><a href="../../Bechirim/Phrases/Phrases.html">אינדקס מושגים</a></li>
+                <li><a href="../../Bechirim/trufot_Bait_search_site/Trufot_BAEIT.html">תרופות נפוצות בבית</a></li>
+                <li><a href="../../Bechirim/Sikumim/Pdf_files/pdf_index.html">ספרות</a></li> -->
+         <!--    <li><a href="#" onclick="alert('הוסף קישור לספרות')">ספרות</a></li> -->
+            </ul>
+        </div>
+	</div>
+
+<!--        <div class="sticky-header">אוגדן פרוטוקולי מד"א ALS 2024</div>-->
+<div class="content-wrapper">
+
+        <div class="pdf-container">
+        <div class="loading-message" id="loadingMessage">טוען קובץ PDF...</div>
+        <iframe id="pdfFrame" class="pdf-frame" style="display: none;" allowfullscreen></iframe>
+    </div>
+
+    <script>
+
+function getPDFData() {
+   return {
+       pdfPath: '/mda/files/als2024e/chapter_3_adult_emergencies_50/allergic_reaction_anaphylaxis_adult.pdf',
+       fileName: 'allergic_reaction_anaphylaxis_adult',
+       title: 'תגובה אלרגית (אנפילקסיס) מבוגר'
+   };
+}
+
+// טעינת PDF
+function loadPDF() {
+   const pdfData = getPDFData();
+   const loadingMessage = document.getElementById('loadingMessage');
+   const pdfFrame = document.getElementById('pdfFrame');
+   const menuTitle = document.querySelector('.menu-title');
+
+   // עדכון הכותרת
+   const displayTitle = pdfData.title;
+   
+   // עדכון כותרת הדף וכותרת התפריט
+   menuTitle.textContent = displayTitle;
+   document.title = displayTitle;
+
+   // בניית נתיב ה-PDF עם PDF.js viewer
+   const viewerUrl = `/mda/bechirim/sikumim/pdf_files/pdf2web/web/viewer.html?file=${pdfData.pdfPath}`;
+   
+   // הגדרת מקור ה-iframe לviewer של PDF.js
+   pdfFrame.src = viewerUrl;
+    
+    // הסתרת הודעת הטעינה והצגת ה-iframe
+    loadingMessage.style.display = 'none';
+    pdfFrame.style.display = 'block';
+    if ('ontouchstart' in window) {
+    // מניעת זום כפול על האלמנטים הקבועים
+    document.querySelector('.top-link').addEventListener('touchstart', function(e) {
+        e.preventDefault();
+    });
+    
+    document.querySelector('.sticky-header').addEventListener('touchstart', function(e) {
+        if (!e.target.closest('.hamburger-menu')) {
+            e.preventDefault();
+        }
+    });
+    
+    // מניעת זום על התפריט הצדדי
+    document.querySelector('.side-menu').addEventListener('touchstart', function(e) {
+        if (e.target.tagName === 'A') {
+            return; // אפשר קליקים על קישורים
+        }
+        e.stopPropagation();
+    });
+    
+    // ודא שה-PDF יכול לקבל זום
+    pdfFrame.addEventListener('touchstart', function(e) {
+        e.stopPropagation();
+    });
+}
+}
+
+// אתחול הדף - רק טעינת PDF
+document.addEventListener('DOMContentLoaded', function() {
+    loadPDF();
+});
+
+                const hamburgerBtn = document.getElementById('hamburgerBtn');
+        const sideMenu = document.getElementById('sideMenu');
+        const overlay = document.getElementById('overlay');
+
+        // פתיחה/סגירה של התפריט
+        hamburgerBtn.addEventListener('click', function() {
+            hamburgerBtn.classList.toggle('active');
+            sideMenu.classList.toggle('open');
+            overlay.classList.toggle('active');
+        });
+
+        // סגירה בלחיצה על האוברליי
+        overlay.addEventListener('click', function() {
+            hamburgerBtn.classList.remove('active');
+            sideMenu.classList.remove('open');
+            overlay.classList.remove('active');
+        });
+
+        // סגירה בלחיצה על ESC
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                hamburgerBtn.classList.remove('active');
+                sideMenu.classList.remove('open');
+                overlay.classList.remove('active');
+            }
+        });
+    </script>
+    <script src="/mda/js/hamburger-menu.js"></script>
+</div> <!--close class="content-wrapper"-->
+</body>
+</html>

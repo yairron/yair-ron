@@ -1,0 +1,869 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <title>שאלון חזרה התוויות נגד לתרופות לחולה הנשימתי</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <script 
+      src="https://cdn.counter.dev/script.js" 
+      data-id="87cd2eee-d5db-43dc-9575-16e58a14c32d" 
+      data-utcoffset="3" 
+      defer 
+      referrerpolicy="no-referrer"></script>
+
+<style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f7f7f7;
+      margin: 0;
+      padding: 0 10vw;
+    }
+    .top-link {
+      position: fixed;
+      top: 0;
+      right: 0;
+      left: 0;
+      background: #1976d2;
+      color: #fff;
+      text-align: center;
+      padding: 8px 0 4px 0;
+      z-index: 101;
+      font-size: 1.1em;
+      text-decoration: none;
+      letter-spacing: 1px;
+      box-shadow: 0 2px 8px #bbb;
+    }
+    .sticky-header {
+      position: fixed;
+      top: 36px;
+      right: 0;
+      left: 0;
+      background: #fff;
+      z-index: 100;
+      text-align: center;
+      padding: 18px 0 10px 0;
+      font-size: 2em;
+      font-weight: bold;
+      box-shadow: 0 2px 8px #ddd;
+      border-bottom: 1px solid #eee;
+    }
+    .content-wrapper {
+      margin-top: 100px;
+    }
+    details {
+      background: #fff;
+      border-radius: 8px;
+      margin: 16px 0;
+      box-shadow: 0 2px 8px #ddd;
+    }
+    .text-wrap {
+    max-width: 800px;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+}
+
+    @media (max-width: 600px) {
+      .sticky-header {
+        font-size: 1.2em;
+        padding: 10px 0 6px 0;
+      }
+    }
+    summary {
+      font-size: 1.2em;
+      font-weight: bold;
+      cursor: pointer;
+      padding: 12px;
+      outline: none;
+    }
+    details[open] summary { 
+      color: #1976d2; 
+    }
+    .content { 
+      padding: 0 16px 16px 0px; 
+      max-width: 80%;
+      word-wrap: break-word;
+      overflow-wrap: break-word;
+    }
+    ul { 
+      margin: 0; 
+      padding-right: 20px; 
+    }
+    li { 
+        padding-top:  0px;
+        margin-right: 10px;
+        margin-bottom: 6px; 
+    }
+    blockquote {
+      background: #e3f2fd;
+      border-right: 5px solid #1976d2;
+      margin: 12px 0;
+      padding: 10px 16px;
+      font-style: italic;
+      color: #1976d2;
+    }
+    .question {
+      margin: 15px 0;
+      padding: 15px;
+      background: #f8f9fa;
+      border-radius: 8px;
+      border: 1px solid #dee2e6;
+    }
+    .question h4 {
+      margin: 0 0 10px 0;
+      color: #495057;
+    }
+    .answer-option {
+      margin: 8px 0;
+      padding: 10px;
+      background: #fff;
+      border: 1px solid #dee2e6;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+    .answer-option:hover {
+      background: #f8f9fa;
+    }
+    .answer-option.correct {
+      background: #d4edda !important;
+      border-color: #c3e6cb;
+    }
+    .answer-option.incorrect {
+      background: #f8d7da !important;
+      border-color: #f5c6cb;
+    }
+    .answer-option.correct::before {
+      content: "✓ ";
+      color: #155724;
+      font-weight: bold;
+    }
+    .answer-option.incorrect::before {
+      content: "✗ ";
+      color: #721c24;
+      font-weight: bold;
+    }
+    .loading {
+      text-align: center;
+      padding: 20px;
+      font-size: 1.2em;
+      color: #666;
+    }
+  </style>
+</head>
+<body>
+  <a href="../../index.html" class="top-link">חזרה לתפריט הראשי</a>
+  <div class="sticky-header">שאלון "התוויות נגד" אצל החולה הנשימתי</div>
+  <div class="content-wrapper">
+
+    <div class="loading" style="display: none;">טוען שאלות...</div>
+    <div id="quiz-container"></div>
+    <div id="score-display" style="margin-top: 10px; padding: 20px; background: #e9ecef; border-radius: 8px; text-align: center; font-size: 1.2em; font-weight: bold; display: none;">
+        <h3>תוצאות השאלון</h3>
+        <div id="score-text"></div>
+         <button onclick="startNewQuiz()" style="margin-top: 10px; padding: 10px 20px; background: #1976d2; color: white; border: none; border-radius: 5px; cursor: pointer;">שאלון חדש</button>
+
+    </div>
+
+<script>
+// ========== טעינת השאלות מקובץ contra_med_quiz.json ==========
+async function loadMainQuiz() {
+  try {
+    console.log('📖 טוען שאלות מקובץ contra_med_quiz.json...');
+    
+    const response = await fetch('../../json/contra_med_quiz.json');
+    if (!response.ok) {
+      throw new Error(`HTTP error! status: ${response.status}`);
+    }
+    
+    const data = await response.json();
+    
+    if (!data.questions || !Array.isArray(data.questions)) {
+      throw new Error('מבנה הקובץ לא תקין - לא נמצאו שאלות');
+    }
+    
+    // שמור את כל השאלות במשתנה גלובלי
+    window.allQuizQuestions = data.questions;
+    
+    console.log(`✅ נטענו ${data.questions.length} שאלות בהצלחה`);
+    console.log(`📊 מ-${data.sourceFiles?.length || 0} קבצי מקור`);
+    
+    // הצג פילוח לפי נושאים
+    const subjectCounts = {};
+    data.questions.forEach(q => {
+      if (q.subject) {
+        subjectCounts[q.subject] = (subjectCounts[q.subject] || 0) + 1;
+      }
+    });
+    
+    console.log('📚 פילוח לפי נושאים:');
+    Object.entries(subjectCounts).forEach(([subject, count]) => {
+      console.log(`   • ${subject}: ${count} שאלות`);
+    });
+    
+    // הצג חלון בחירת מספר שאלות
+    showQuestionSelector(data.questions.length);
+    
+  } catch (error) {
+    console.error('❌ שגיאה בטעינת השאלות:', error);
+    showErrorMessage(`שגיאה בטעינת השאלות: ${error.message}. אנא ודא שקובץ contra_med_quiz.json קיים ותקין.`);
+  }
+}
+
+function showErrorMessage(message) {
+  const errorDiv = document.createElement('div');
+  errorDiv.style.cssText = `
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: #f8d7da;
+    color: #721c24;
+    padding: 20px;
+    border-radius: 10px;
+    border: 2px solid #f5c6cb;
+    text-align: center;
+    z-index: 1000;
+    max-width: 400px;
+  `;
+  
+  errorDiv.innerHTML = `
+    <h3>שגיאה</h3>
+    <p>${message}</p>
+    <button onclick="location.reload()" style="
+      padding: 10px 20px;
+      background: #dc3545;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      margin-top: 10px;
+    ">נסה שוב</button>
+  `;
+  
+  document.body.appendChild(errorDiv);
+}
+
+function showQuestionSelector(totalQuestions) {
+  // נקה את המסך קודם
+  clearScreen();
+  
+  // צור חלון בחירה
+  const selectorDiv = document.createElement('div');
+  selectorDiv.id = 'question-selector';
+  selectorDiv.style.cssText = `
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: white;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+    text-align: center;
+    z-index: 1000;
+    font-family: Arial, sans-serif;
+    border: 2px solid #007bff;
+  `;
+  
+  selectorDiv.innerHTML = `
+    <h3 style="margin-bottom: 20px; color: #007bff;">בחירת מספר שאלות</h3>
+    <p style="margin-bottom: 20px; font-size: 16px;">
+      אנא בחר כמה שאלות אתה רוצה לתרגל<br>
+      בין 1 עד ${totalQuestions} שאלות
+    </p>
+    <input type="number" id="question-count" min="1" max="${totalQuestions}" 
+           value="${Math.min(10, totalQuestions)}" 
+           style="padding: 10px; font-size: 16px; width: 100px; text-align: center; border: 2px solid #ddd; border-radius: 5px;">
+    <br><br>
+    <button onclick="startSelectedQuiz()" style="
+      padding: 12px 24px;
+      background: #28a745;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 16px;
+      font-weight: bold;
+    ">הכנס</button>
+  `;
+  
+  // הוסף רק את חלון הבחירה ללא רקע אפור
+  document.body.appendChild(selectorDiv);
+  
+  // פוקוס על השדה
+  document.getElementById('question-count').focus();
+  document.getElementById('question-count').select();
+  
+  // הוסף אפשרות ללחוץ Enter
+  document.getElementById('question-count').addEventListener('keypress', function(e) {
+    if (e.key === 'Enter') {
+      startSelectedQuiz();
+    }
+  });
+}
+
+function clearScreen() {
+  // הסתר/נקה את כל האלמנטים הקיימים
+  const quizContainer = document.getElementById('quiz-container');
+  const scoreDisplay = document.getElementById('score-display');
+  const loadingDiv = document.querySelector('.loading');
+  
+  if (quizContainer) quizContainer.innerHTML = '';
+  if (scoreDisplay) scoreDisplay.style.display = 'none';
+  if (loadingDiv) loadingDiv.style.display = 'none';
+  
+  // הסר חלון בחירה קיים אם יש
+  const existingSelector = document.getElementById('question-selector');
+  if (existingSelector) existingSelector.remove();
+  
+  // **איפוס כל המשתנים הגלובליים**
+  quizData = null;
+  shuffledQuestions = [];
+  currentQuestionIndex = 0;
+  correctAnswers = 0;
+  totalQuestions = 0;
+  userAnswers = {};
+  
+  // נקה את נתוני השאלון הנוכחי
+  window.quizData = null;
+  window.totalQuestions = 0;
+}
+
+function startSelectedQuiz() {
+  const questionCount = parseInt(document.getElementById('question-count').value);
+  const totalQuestions = window.allQuizQuestions.length;
+  
+  // בדיקת תקינות
+  if (isNaN(questionCount) || questionCount < 1 || questionCount > totalQuestions) {
+    alert(`אנא הכנס מספר תקין בין 1 ל-${totalQuestions}`);
+    return;
+  }
+  
+  // הסר את חלון הבחירה
+  const selector = document.getElementById('question-selector');
+  if (selector) selector.remove();
+  
+  // הכן את השאלון עם המספר הנבחר
+  prepareCustomQuiz(questionCount);
+}
+
+// ========== הפונקציה המקשרת ==========
+function prepareCustomQuiz(questionCount) {
+  console.log(`🎯 מכין שאלון עם ${questionCount} שאלות`);
+  console.log(`📊 סה"כ שאלות זמינות: ${window.allQuizQuestions.length}`);
+  
+  // ודא שיש מספיק שאלות
+  if (questionCount > window.allQuizQuestions.length) {
+    questionCount = window.allQuizQuestions.length;
+    console.log(`⚠️ מספר השאלות הונמך ל-${questionCount} (כל השאלות הזמינות)`);
+  }
+  
+  // ערבב את כל השאלות ובחר את המספר הנדרש
+  const shuffledQuestions = shuffleArray_v1([...window.allQuizQuestions]);
+  const selectedQuestions = shuffledQuestions.slice(0, questionCount);
+  
+  console.log(`✅ נבחרו ${selectedQuestions.length} שאלות חדשות`);
+  console.log('🔤 מזהי השאלות שנבחרו:', selectedQuestions.map(q => q.id).slice(0, 5), '...');
+  
+  // הגדר את נתוני השאלון למעבר לחלק השני
+  window.quizData = selectedQuestions;
+  window.totalQuestions = questionCount;
+  
+  // הסתר טעינה
+  const loadingDiv = document.querySelector('.loading');
+  if (loadingDiv) {
+    loadingDiv.style.display = 'none';
+  }
+  
+  // אתחל את השאלון מהחלק השני מיד
+  if (typeof initializeQuiz === 'function') {
+    initializeQuiz();
+  }
+}
+
+function shuffleArray_v1(array) {
+  const shuffled = [...array];
+  for (let i = shuffled.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
+  }
+  return shuffled;
+}
+
+// ========== פונקציה חדשה לשאלון חדש ==========
+function startNewQuiz() {
+  // נקה את המסך לחלוטין
+  clearScreen();
+  
+  // הצג חלון בחירת שאלות חדש
+  if (window.allQuizQuestions && window.allQuizQuestions.length > 0) {
+    showQuestionSelector(window.allQuizQuestions.length);
+  } else {
+    // אם אין שאלות טעונות, טען מחדש
+    loadMainQuiz();
+  }
+}
+
+// ========== החלק השני - הצגת שאלון (עם שינוי קטן בתחילת loadQuizData ו-initializeQuiz) ==========
+let quizData = null;
+let shuffledQuestions = [];
+let currentQuestionIndex = 0;
+let correctAnswers = 0;
+let totalQuestions = 0;
+let userAnswers = {}; // לאחסון תשובות המשתמש
+
+// Load quiz data from JSON file - עם תמיכה בנתונים מהחלק הראשון
+async function loadQuizData() {
+  try {
+    // **בדוק תחילה אם יש נתונים מהחלק הראשון**
+    if (window.quizData && Array.isArray(window.quizData)) {
+      quizData = window.quizData;
+      totalQuestions = window.totalQuestions || window.quizData.length;
+      return true;
+    }
+    
+    // אם אין נתונים, נסה לטעון מקובץ contra_med_quiz.json כ-fallback
+    console.log('⚠️ נטען fallback מקובץ contra_med_quiz.json');
+    const response = await fetch('../../json/contra_med_quiz.json');
+    if (!response.ok) {
+      throw new Error('Failed to load contra_med_quiz.json');
+    }
+    const data = await response.json();
+    quizData = data.questions || [];
+    
+    // Set total questions based on actual data length
+    totalQuestions = quizData.length;
+    
+    return true;
+  } catch (error) {
+    console.error('Error loading quiz data:', error);
+    document.querySelector('.loading').innerHTML = 'שגיאה בטעינת השאלות. אנא ודא שקובץ contra_med_quiz.json קיים ותקין.';
+    return false;
+  }
+}
+
+// Shuffle array function
+function shuffleArray(array) {
+  const shuffled = [...array];
+  for (let i = shuffled.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
+  }
+  return shuffled;
+}
+
+// Initialize quiz - עם תמיכה בנתונים מהחלק הראשון
+async function initializeQuiz() {
+  console.log('🚀 מאתחל שאלון...');
+  
+  // **בדוק תחילה אם יש נתונים מוכנים מהחלק הראשון**
+  if (!quizData && window.quizData) {
+    quizData = window.quizData;
+    totalQuestions = window.totalQuestions || window.quizData.length;
+    console.log(`📋 נטעמו ${totalQuestions} שאלות מהחלק הראשון`);
+  }
+  
+  // אם עדיין אין נתונים, נסה לטעון
+  if (!quizData) {
+    console.log('📁 טוען נתונים מקובץ...');
+    const loaded = await loadQuizData();
+    if (!loaded) return;
+  }
+  
+  // Handle both array format and object with questions property
+  const questions = Array.isArray(quizData) ? quizData : quizData.questions || [];
+  totalQuestions = questions.length;
+  
+  console.log(`🔀 מערבב ${totalQuestions} שאלות`);
+  shuffledQuestions = shuffleArray(questions);
+  
+  // איפוס מצב השאלון
+  currentQuestionIndex = 0;
+  correctAnswers = 0;
+  userAnswers = {};
+  
+  const quizContainer = document.getElementById('quiz-container');
+  const loadingDiv = document.querySelector('.loading');
+  
+  if (loadingDiv) loadingDiv.style.display = 'none';
+  if (quizContainer) quizContainer.innerHTML = '';
+  
+  console.log('🎨 יוצר אלמנטי שאלות...');
+  shuffledQuestions.forEach((question, index) => {
+    const questionDiv = createQuestionElement(question, index + 1);
+    if (questionDiv) {
+      quizContainer.appendChild(questionDiv);
+    }
+  });
+  
+  console.log('✅ השאלון מוכן!');
+}
+
+// Create question element (עם תמיכה בהצגת subject)
+function createQuestionElement(question, questionNumber) {
+  // בדיקת תקינות השאלה
+  if (!question || !question.id || !question.question || !question.options) {
+    return null;
+  }
+  
+  const questionDiv = document.createElement('div');
+  questionDiv.className = 'question';
+  questionDiv.id = `question-${question.id}`;
+  questionDiv.style.cssText = `
+    position: relative;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 20px;
+    margin: 15px 0;
+    background-color: #fff;
+  `;
+  
+  // הוסף נושא אם קיים
+  if (question.subject) {
+    const subjectDiv = document.createElement('div');
+    subjectDiv.style.cssText = `
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      background: #007bff;
+      color: white;
+      padding: 4px 8px;
+      border-radius: 4px;
+      font-size: 12px;
+      font-weight: bold;
+    `;
+    subjectDiv.textContent = question.subject;
+    questionDiv.appendChild(subjectDiv);
+  }
+  
+  const questionTitle = document.createElement('h4');
+  questionTitle.textContent = `${questionNumber}. ${question.question}`;
+  questionTitle.style.marginTop = question.subject ? '25px' : '0'; // מרווח נוסף אם יש נושא
+  questionDiv.appendChild(questionTitle);
+  
+  // בדוק אם השאלה היא רב-בחירה (multiple correct answers)
+  const isMultipleSelect = Array.isArray(question.correct) && question.correct.length > 1;
+  
+  if (isMultipleSelect) {
+    const instructionDiv = document.createElement('div');
+    instructionDiv.style.cssText = 'font-size: 14px; color: #666; margin: 5px 0; display: flex; align-items: center; gap: 10px; flex-wrap: wrap;';
+    
+    const instructionText = document.createElement('span');
+    instructionText.textContent = '(ניתן לבחור יותר מתשובה אחת)';
+    
+    const checkQuestionButton = document.createElement('button');
+    checkQuestionButton.textContent = 'להשלמת השאלה בדוק את התשובה';
+    checkQuestionButton.className = 'check-question-btn';
+    checkQuestionButton.id = `check-btn-${question.id}`;
+    checkQuestionButton.onclick = () => checkMultipleQuestion(question.id, question);
+    checkQuestionButton.style.cssText = `
+      padding: 8px 12px;
+      font-size: 10px;
+      background-color: #28a745;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      font-weight: bold;
+      white-space: nowrap;
+    `;
+    
+    instructionDiv.appendChild(instructionText);
+    instructionDiv.appendChild(checkQuestionButton);
+    questionDiv.appendChild(instructionDiv);
+  }
+  
+  // בדיקה שיש אפשרויות
+  if (!Array.isArray(question.options) || question.options.length === 0) {
+    return null;
+  }
+  
+  // Shuffle options
+  const shuffledOptions = shuffleArray(question.options.map((option, index) => ({
+    text: option, 
+    originalIndex: index
+  })));
+  
+  shuffledOptions.forEach((option, index) => {
+    const optionDiv = document.createElement('div');
+    optionDiv.className = 'answer-option';
+    optionDiv.setAttribute('data-original-index', option.originalIndex);
+    
+    // Hebrew letters for labeling
+    const hebrewLetters = ['א', 'ב', 'ג', 'ד', 'ה', 'ו', 'ז', 'ח'];
+    optionDiv.textContent = `${hebrewLetters[index]}. ${option.text}`;
+    
+    // Style for unselected options
+    optionDiv.style.cssText = `
+      padding: 10px 40px 10px 10px;
+      margin: 5px 0;
+      border: 2px solid #ddd;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      background-color: #f9f9f9;
+      position: relative;
+      text-align: right;
+      direction: rtl;
+      padding-right: 40px;
+    `;
+    
+    if (isMultipleSelect) {
+      optionDiv.onclick = () => toggleMultipleAnswer(optionDiv, question.id, option.originalIndex, question);
+    } else {
+      optionDiv.onclick = () => checkSingleAnswer(optionDiv, option.originalIndex, question.id, question);
+    }
+    
+    questionDiv.appendChild(optionDiv);
+  });
+  
+  // Initialize user answers for this question
+  userAnswers[question.id] = [];
+  
+  return questionDiv;
+}
+
+// שאר הפונקציות נשארות ללא שינוי
+function toggleMultipleAnswer(selectedElement, questionId, originalIndex, question) {
+  const questionDiv = selectedElement.parentElement;
+  
+  // בדוק אם השאלה כבר נבדקה
+  if (questionDiv.classList.contains('answered')) {
+    return;
+  }
+  
+  const isSelected = selectedElement.classList.contains('selected');
+  const correctAnswers = Array.isArray(question.correct) ? question.correct : [question.correct];
+  const isCorrectAnswer = correctAnswers.includes(originalIndex);
+  
+  if (isSelected) {
+    // בטל בחירה
+    selectedElement.classList.remove('selected');
+    selectedElement.style.backgroundColor = '#f9f9f9';
+    selectedElement.style.borderColor = '#ddd';
+    removeMarkings(selectedElement);
+    
+    // הסר מהתשובות
+    const index = userAnswers[questionId].indexOf(originalIndex);
+    if (index > -1) {
+      userAnswers[questionId].splice(index, 1);
+    }
+  } else {
+    // הוסף בחירה
+    selectedElement.classList.add('selected');
+    
+    // סמן מיד אם נכון או לא
+    if (isCorrectAnswer) {
+      markAsCorrect(selectedElement);
+    } else {
+      markAsIncorrect(selectedElement);
+    }
+    
+    // הוסף לתשובות
+    if (!userAnswers[questionId].includes(originalIndex)) {
+      userAnswers[questionId].push(originalIndex);
+    }
+  }
+}
+
+function checkSingleAnswer(selectedElement, originalIndex, questionId, question) {
+  const questionDiv = selectedElement.parentElement;
+  const options = questionDiv.querySelectorAll('.answer-option');
+  
+  // Check if already answered
+  if (options[0].style.pointerEvents === 'none') {
+    return;
+  }
+  
+  const correctAnswers = Array.isArray(question.correct) ? question.correct : [question.correct];
+  const isCorrect = correctAnswers.includes(originalIndex);
+  
+  // שמור את התשובה של המשתמש
+  userAnswers[questionId] = [originalIndex];
+  
+  // Remove previous markings
+  options.forEach(option => {
+    removeMarkings(option);
+    option.style.backgroundColor = '#f9f9f9';
+    option.style.borderColor = '#ddd';
+  });
+  
+  if (isCorrect) {
+    markAsCorrect(selectedElement);
+  } else {
+    markAsIncorrect(selectedElement);
+    // Find and mark the correct answer
+    options.forEach(option => {
+      const optionOriginalIndex = parseInt(option.getAttribute('data-original-index'));
+      if (correctAnswers.includes(optionOriginalIndex)) {
+        markAsCorrect(option);
+      }
+    });
+  }
+  
+  // Disable further clicking on this question
+  options.forEach(option => {
+    option.style.pointerEvents = 'none';
+  });
+  
+  // Mark question as answered
+  questionDiv.classList.add('answered');
+  
+  // Check if all questions answered
+  checkIfAllQuestionsAnswered();
+}
+
+function checkMultipleQuestion(questionId, question) {
+  const questionDiv = document.getElementById(`question-${questionId}`);
+  const options = questionDiv.querySelectorAll('.answer-option');
+  const checkButton = document.getElementById(`check-btn-${questionId}`);
+  
+  if (questionDiv.classList.contains('answered')) {
+    return;
+  }
+  
+  const correctAnswers = Array.isArray(question.correct) ? question.correct : [question.correct];
+  const userQuestionAnswers = userAnswers[questionId] || [];
+  
+  // Mark all correct answers that weren't selected
+  options.forEach(option => {
+    const originalIndex = parseInt(option.getAttribute('data-original-index'));
+    const isCorrectAnswer = correctAnswers.includes(originalIndex);
+    const isUserSelected = userQuestionAnswers.includes(originalIndex);
+    
+    if (isCorrectAnswer && !isUserSelected) {
+      markAsMissed(option);
+    }
+    
+    option.style.pointerEvents = 'none';
+  });
+  
+  // Disable check button and mark as answered
+  checkButton.style.display = 'none';
+  questionDiv.classList.add('answered');
+  
+  // Check if all questions answered
+  checkIfAllQuestionsAnswered();
+}
+
+function markAsCorrect(element) {
+  element.style.backgroundColor = '#d4edda';
+  element.style.borderColor = '#28a745';
+  element.style.color = '#155724';
+  
+  // Add checkmark
+  const checkmark = document.createElement('span');
+  checkmark.innerHTML = ' ✓';
+  checkmark.style.cssText = 'color: #28a745; font-weight: bold; font-size: 18px; position: absolute; right: 10px; top: 50%; transform: translateY(-50%);';
+  checkmark.className = 'checkmark';
+  element.appendChild(checkmark);
+}
+
+function markAsIncorrect(element) {
+  element.style.backgroundColor = '#f8d7da';
+  element.style.borderColor = '#dc3545';
+  element.style.color = '#721c24';
+  
+  // Add X mark
+  const xmark = document.createElement('span');
+  xmark.innerHTML = ' ✗';
+  xmark.style.cssText = 'color: #dc3545; font-weight: bold; font-size: 18px; position: absolute; right: 10px; top: 50%; transform: translateY(-50%);';
+  xmark.className = 'xmark';
+  element.appendChild(xmark);
+}
+
+function markAsMissed(element) {
+  element.style.backgroundColor = '#fff3cd';
+  element.style.borderColor = '#ffc107';
+  element.style.color = '#856404';
+  
+  // Add yellow circle
+  const circle = document.createElement('span');
+  circle.innerHTML = ' ●';
+  circle.style.cssText = 'color: #ffc107; font-weight: bold; font-size: 16px; position: absolute; right: 10px; top: 50%; transform: translateY(-50%);';
+  circle.className = 'missed-mark';
+  element.appendChild(circle);
+}
+
+function removeMarkings(element) {
+  const checkmark = element.querySelector('.checkmark');
+  const xmark = element.querySelector('.xmark');
+  const missedMark = element.querySelector('.missed-mark');
+  if (checkmark) checkmark.remove();
+  if (xmark) xmark.remove();
+  if (missedMark) missedMark.remove();
+}
+
+function checkIfAllQuestionsAnswered() {
+  const answeredQuestions = document.querySelectorAll('.question.answered').length;
+  if (answeredQuestions === totalQuestions) {
+    setTimeout(() => showFinalScore(), 1000);
+  }
+}
+
+function arraysEqual(a, b) {
+  if (a.length !== b.length) return false;
+  for (let i = 0; i < a.length; i++) {
+    if (a[i] !== b[i]) return false;
+  }
+  return true;
+}
+
+function showFinalScore() {
+  // Count correct answers
+  let totalCorrect = 0;
+  
+  shuffledQuestions.forEach(question => {
+    const correctAnswers = Array.isArray(question.correct) ? question.correct : [question.correct];
+    
+    if (correctAnswers.length === 1) {
+      // Single answer question - check if answered correctly
+      const userAnswer = userAnswers[question.id];
+      if (userAnswer && userAnswer.length > 0 && correctAnswers.includes(userAnswer[0])) {
+        totalCorrect++;
+      }
+    } else {
+      // Multiple answer question - check if fully correct
+      const userQuestionAnswers = userAnswers[question.id] || [];
+      if (arraysEqual(userQuestionAnswers.sort(), correctAnswers.sort())) {
+        totalCorrect++;
+      }
+    }
+  });
+  
+  correctAnswers = totalCorrect;
+  showScore();
+}
+
+function showScore() {
+  const scoreDisplay = document.getElementById('score-display');
+  const scoreText = document.getElementById('score-text');
+  const percentage = Math.round((correctAnswers / totalQuestions) * 100);
+  
+  let gradeText = '';
+  if (percentage >= 90) gradeText = 'מעולה!';
+  else if (percentage >= 80) gradeText = 'טוב מאוד!';
+  else if (percentage >= 70) gradeText = 'טוב!';
+  else if (percentage >= 60) gradeText = 'מספיק!';
+  else gradeText = 'נדרשת חזרה על החומר';
+  
+  scoreText.innerHTML = `הציון שלך: ${correctAnswers}/${totalQuestions} (${percentage}%)<br>${gradeText}`;
+  scoreDisplay.style.display = 'block';
+  scoreDisplay.scrollIntoView({ behavior: 'smooth' });
+}
+
+// פונקציה ישנה - נשארת לתאימות לאחור (לא בשימוש)
+function resetQuiz() {
+  startNewQuiz();
+}
+
+// ========== הפעלה אוטומטית ==========
+document.addEventListener('DOMContentLoaded', function() {
+  setTimeout(() => {
+    loadMainQuiz();
+  }, 1000);
+});
+</script>
+ <script src="/mda/js/hamburger-menu.js"></script>
+</body>
+</html>

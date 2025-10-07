@@ -1,0 +1,515 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>פרוטוקולי מד"א ALS 2024</title>
+    <link rel="stylesheet" href="../../css/Als2024.css">
+    <script 
+      src="https://cdn.counter.dev/script.js" 
+      data-id="87cd2eee-d5db-43dc-9575-16e58a14c32d" 
+      data-utcoffset="3" 
+      defer 
+      referrerpolicy="no-referrer"></script>
+
+<style>
+        .accordion-item.active .accordion-content {
+            max-height: none !important;
+            height: auto !important;
+            overflow-y: auto !important;
+        }
+            body {
+      font-family: Arial, sans-serif;
+      background-color: #f5f5f5;
+      margin: 0;
+      padding: 20px;
+      overflow-x: hidden;
+      word-wrap: break-word;
+    }
+
+        /* קישור חזרה קבוע למעלה */
+    .top-link {
+      position: fixed;
+      top: 0;
+      right: 0;
+      left: 0;
+      background: #1976d2;
+      color: #fff;
+      text-align: center;
+      padding: 8px 0 4px 0;
+      z-index: 101;
+      font-size: 1.1em;
+      text-decoration: none;
+      letter-spacing: 1px;
+      box-shadow: 0 2px 8px #bbb;
+    }
+    /* כותרת קבועה מתחת לקישור */
+    .sticky-header {
+      position: fixed;
+      top: 36px;
+      right: 0;
+      left: 0;
+      background: #fff;
+      z-index: 100;
+      text-align: center;
+      padding: 18px 0 10px 0;
+      font-size: 2em;
+      font-weight: bold;
+      box-shadow: 0 2px 8px #ddd;
+      border-bottom: 1px solid #eee;
+    }
+    /* ריווח לתוכן */
+    .content-wrapper {
+      margin-top: 100px; /* מספיק מקום לשני האלמנטים הקבועים */
+    
+    }
+
+    h2 {
+      color: #0077cc;
+      text-align: center;
+      font-size: 28px;
+    }
+  
+    .projects {
+      text-align: right;
+      max-width: 100%;
+    }
+  
+    .projects a, .title-link {
+      display: block;
+      font-size: 22px;
+      color: #0077cc;
+      text-decoration: none;
+      margin: 20px 0;
+    }
+  
+    .projects a:hover, .title-link:hover {
+      text-decoration: underline;
+    }
+  
+    @media (max-width: 600px) {
+      h2 {
+        font-size: 40px;
+      }
+  
+      .projects a, .title-link {
+        font-size: 26px;
+        margin: 25px 0;
+      }
+    }
+        /* Responsive */
+        @media (max-width: 600px) {
+            h2 {
+                font-size: 40px;
+            }
+            .projects a, .title-link {
+                font-size: 26px;
+                margin: 25px 0;
+            }
+            .side-menu {
+                width: 70%;
+                right: -70%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+    <!--
+        <div class="header">
+            <h1>🚑 פרוטוקולי מד"א ALS 2024</h1>
+        </div>
+    -->    
+        <a href="../../index.html" class="top-link">
+                    חזרה לתפריט הראשי
+                    <div class="back-button" onclick="history.back()">
+                        <span class="back-arrow">←</span>
+                        <span>חזרה</span>
+                    </div>
+                </a>
+		<div class="sticky-header">
+		
+		<button class="hamburger-menu" id="hamburgerBtn">
+            <div class="hamburger-line"></div>
+            <div class="hamburger-line"></div>
+            <div class="hamburger-line"></div>
+        </button>
+        <div class="menu-title">דף ראשי</div>
+        <div class="menu-spacer"></div>
+    </div>
+
+    <div class="overlay" id="overlay"></div>
+    
+    <div class="side-menu" id="sideMenu">
+        <h3>תפריט ראשי</h3>
+        <div class="side-menu-content">
+            <ul>
+                <li><a href="../../atan/atan_index.html">אט"ן</a></li>
+				<li><a href="../../bls/bls_index.html">BLS</a></li>
+				<li><a href="../../Bechirim/bechirim_index.html">קורס בכירים</a></li>
+                <li><a href="../../Bechirim/protocols/ALS2024.HTML">אוגדן ALS 2024</a></li>
+                <li><a href="../../Bechirim/protocols/protocols_index.html">פרוטוקולים</a></li>
+                <li><a href="../../Bechirim/Sikumim/Sikumim_index.html">מצגות וסיכומי מצגות</a></li>
+                <li><a href="../../Bechirim/Sikumim/SIKUM_LESSONS/lessons_index.html">סיכומי שיעורים</a></li>
+                <li><a href="../../Bechirim/Sikumim/SIKUM_LESSONS/ECG_Practice_MI.html">תרגול אק"ג - אוטם</a></li>
+                <li><a href="../../Bechirim/Sikumim/SIKUM_LESSONS/ECG_Practice_arrhythm.html">תרגול אק"ג - הפרעות קצב</a></li>
+                <li><a href="../../Bechirim/Phrases/Phrases.html">אינדקס מושגים</a></li>
+                <li><a href="../../Bechirim/trufot_Bait_search_site/Trufot_BAEIT.html">תרופות נפוצות בבית</a></li>
+                <li><a href="../../Bechirim/Sikumim/Pdf_files/pdf_index.html">ספרות</a></li>
+         <!--    <li><a href="#" onclick="alert('הוסף קישור לספרות')">ספרות</a></li> -->
+            </ul>
+        </div>
+	</div>
+
+<!--        <div class="sticky-header">אוגדן פרוטוקולי מד"א ALS 2024</div>-->
+<div class="content-wrapper">
+
+        <div class="accordion-container" id="accordionContainer">
+            <div class="loading">טוען קבצים...</div>
+        </div>
+    </div>
+
+    <script>
+        let chapters = {};
+        let englishToHebrewMapping = {};
+        
+        // Mapping for display names (Hebrew) to file names (English)
+        const chapterDisplayMapping = {
+            "Chapter_1_General_8": "פרק 1 / כללי ... 8",
+            "Chapter_2_Resuscitation_Protocols_26_ROSC": "פרק 2 / פרוטוקולי החייאה / 26 ... ROSC",
+            "Chapter_3_Adult_Emergencies_50": "פרק 3 / מצבי חירום במבוגרים ... 50",
+            "Chapter_4_Pediatric_Emergencies_93": "פרק 4 / מצבי חירום בילדים ... 93",
+            "Chapter_5_Trauma_Environment_115": "פרק 5 / טראומה וסביבה ... 115",
+            "Chapter_6_Obstetrics_Gynecology_154": "פרק 6 / מיילדות וגניקולוגיה ... 154",
+            "Chapter_7_Mass_Casualty_Incidents_164": "פרק 7 / אירועים רבי־נפגעים ... 164",
+            "Chapter_8_Guidelines_Instructions_179": "פרק 8 / הנחיות והוראות שעה ... 179",
+            "Chapter_9_Skills_Medical_Equipment_248": "פרק 9 / מיומנויות וציוד רפואי ... 248",
+            "Chapter_10_Medications_279": "פרק 10 / תרופות ... 279",
+            "Chapter_11_Miscellaneous_319": "פרק 11 / שונות ... 319"
+        };
+
+        const fileDisplayMapping = {
+            // Chapter 1
+            "general_approach_to_patient": "גישה כללית למטופל",
+            "introduction_general_guidelines": "מבוא והנחיות כלליות",
+            
+            // Chapter 2
+            "adult_cardiac_respiratory_arrest": "דום לב ונשימה במבוגר",
+            "adult_cardiac_arrest_vt_vf": "דום לב במבוגר VT / VF",
+            "adult_cardiac_arrest_pea_asystole": "דום לב במבוגר PEA / ASYSTOLE",
+            "post_resuscitation_care_rosc_adults": "טיפול בחולה לאחר החייאה (ROSC) – מבוגרים",
+            "pediatric_cardiac_arrest": "דום לב בתינוקות ובילדים",
+            "pediatric_cardiac_arrest_vt_vf": "דום לב בתינוקות וילדים VT / VF",
+            "pediatric_cardiac_arrest_pea_asystole": "דום לב בתינוקות וילדים PEA / ASYSTOLE",
+            "post_resuscitation_care_rosc_pediatric": "טיפול בחולה לאחר החייאה (ROSC) – תינוקות וילדים",
+            "immediate_newborn_care": "הטיפול המיידי ביילוד",
+            "patient_transport_during_ongoing_resuscitation": "פינוי מטופל לבית חולים תוך כדי המשך פעולות החייאה",
+            "withholding_or_terminating_resuscitation": "הימנעות מביצוע פעולות החייאה או הפסקתן",
+            
+            // Chapter 3
+            "advanced_airway_management": "ניהול מתקדם של נתיב האוויר",
+            "foreign_body_airway_obstruction": "השתנקות כתוצאה משאיפת גוף זר",
+            "respiratory_support_for_respiratory_failure": "סיוע נשימתי לטיפול באי־ספיקה נשימתית",
+            "pulmonary_edema": "בצקת ריאות",
+            "adult_asthma_attack": "התקף אסתמה במבוגר",
+            "copd_exacerbation": "החמרה במחלת ריאות חסימתית כרונית",
+            "allergic_reaction_anaphylaxis_adult": "תגובה אלרגית (אנפילקסיס) מבוגר",
+            "adult_tachycardia": "טכיקרדיה במבוגר",
+            "wide_complex_tachyarrhythmia_adult": "טכיאריתמיה בקומפלקס רחב – מבוגר",
+            "narrow_complex_tachyarrhythmia_adult": "טכיאריתמיה בקומפלקס צר – מבוגר",
+            "adult_bradycardia": "ברדיקרדיה במבוגר",
+            "acute_coronary_syndrome_acs": "תסמונת כלילית חריפה (ACS)",
+            "decreased_perfusion_non_traumatic": "ירידה בפרפוזיה (שלא על רקע טראומה)",
+            "suspected_stroke_patient_approach": "גישה למטופל עם חשד לאירוע מוחי",
+            "seizure_or_post_seizure_adult": "פרכוס או לאחר פרכוס במבוגר",
+            "altered_mental_status": "שינויים במצב ההכרה",
+            "delirium": "דליריום",
+            "nausea_or_vomiting": "בחילות או הקאות",
+            
+            // Chapter 4
+            "advanced_airway_management_pediatric": "ניהול מתקדם של נתיב האוויר בתינוקות ובילדים",
+            "pediatric_stridor": "סטרידור בילדים",
+            "pediatric_asthma_attack": "התקף אסתמה בילדים",
+            "pediatric_tachycardia": "טכיקרדיה בתינוקות ובילדים",
+            "wide_complex_tachyarrhythmia_pediatric": "טכיאריתמיה בקומפלקס רחב - תינוקות וילדים",
+            "narrow_complex_tachyarrhythmia_pediatric": "טכיאריתמיה בקומפלקס צר - תינוקות וילדים",
+            "pediatric_bradycardia": "ברדיקרדיה בילדים",
+            "seizure_or_post_seizure_pediatric": "פרכוס או לאחר פרכוס בתינוקות ובילדים",
+            "altered_mental_status_pediatric": "שינויים במצב ההכרה בתינוקות ובילדים",
+            "allergic_reaction_anaphylaxis_pediatric": "תגובה אלרגית (אנפילקסיס) ילדים",
+            
+            // Chapter 5
+            "trauma_patient_care": "הטיפול בנפגע טראומה",
+            "spinal_immobilization": "קיבוע עמוד שדרה",
+            "suspected_crush_syndrome": "חשד לתסמונת מעיכה",
+            "trauma_destination_guidelines": "קווים מנחים לקביעת יעד הפינוי של נפגע טראומה",
+            "traumatic_cardiopulmonary_arrest_tcpa": "הגישה לנפגע בדום לב ונשימה עקב טראומה TRAUMATIC CARDIOPULMONARY ARREST (TCPA)",
+            "burn_patient_care": "הטיפול בנפגע כוויות",
+            "pain_management": "הטיפול בכאב",
+            "venomous_animal_bite_sting_care": "הטיפול בנפגע מעקיצה או הכשה של בעל חיים ארסי",
+            "smoke_inhalation_care": "הטיפול בנפגע משאיפת עשן",
+            "dead_sea_drowning_care": "הטיפול בנפגע טביעה בים המלח",
+            "organophosphate_poisoning_care": "הטיפול בנפגע עם חשד להרעלת זרחנים אורגניים",
+            "heat_related_illness_care": "הטיפול בנפגעי חום",
+            "hypothermia_patient_approach": "גישה למטופל עם חשד להיפותרמיה",
+            
+            // Chapter 6
+            "delivery_management": "קבלת לידה",
+            "peripartum_hemorrhage": "דימום סב־לידתי (PERI PARTUM HEMORRHAGE)",
+            "delivery_complications": "סיבוכים בלידה",
+            "pregnancy_toxemia_preeclampsia_eclampsia": "רעלת היריון (פרה־אקלמפסיה / אקלמפסיה)",
+            
+            // Chapter 7
+            "individual_casualty_assessment_mci_start": "הערכת נפגע בודד באירוע רב־נפגעים – אר\"ן (S.T.A.R.T)",
+            "general_triage_scheme_mci_salt": "סכימת טריאז' כללית באירוע רב־נפגעים SALT (אר\"ן)",
+            "key_points_mci": "דגשים עיקריים באר\"ן",
+            "tagging_documentation_mci_triage": "סימון ורישום באמצעות תג מיון ופינוי נפגעים באר\"ן",
+            "mass_toxicological_incident": "אירוע טוקסיקולוגי המוני",
+            "biological_incident_response_principles": "עקרונות תורת הטיפול באירוע ביולוגי חריג (אבח\"ר)",
+            
+            // Chapter 8
+            "patient_refusing_treatment_transport": "הגישה למטופל המסרב לקבלת טיפול רפואי או לפינוי לבית חולים",
+            "suicidal_patient_psychiatric_emergency_response": "מענה רפואי למטופל אובדני או למטופל עם חשד להפרעה נפשית מגבילה",
+            "psychological_first_aid_secondary_trauma_prevention": "עזרה ראשונה נפשית למניעת טראומטיזציה משנית",
+            "staff_infectious_disease_exposure_prevention_treatment": "חשיפת אנשי צוות למחלות זיהומיות – מניעה וטיפול",
+            "duty_paramedic_authorities": "סמכויות הפראמדיק הכונן",
+            "medication_injection_home_station": "הזרקת תרופות בבית המטופל או בתחנת מד\"א",
+            "patient_transport_distant_hospital": "פינוי מטופל לבית חולים מרוחק",
+            "patient_transport_non_hospital_destination": "פינוי מטופל ליעד שאינו בית חולים",
+            "helicopter_evacuation_guidelines": "קווים מנחים להפעלת פינוי בהיטס",
+            "patient_handover_between_medical_teams": "העברת מטופל בין צוותים רפואיים לצורך המשך טיפול ופינוי",
+            "inter_facility_patient_transport": "העברת מטופל בין מוסדות רפואיים באמצעות נט\"ן או אמבולנס",
+            "prehospital_emergency_medicine_quality_metrics": "מדדי איכות ברפואת חירום טרום־אשפוזית",
+            "intensive_care_unit_telemedicine_activation": "הפעלת ניידת טיפול נמרץ בטֵלֵמדיסין",
+            "medication_preparation_administration_rules": "כללים להכנה ומתן תרופות בנט\"ן",
+            
+            // Chapter 9
+            "intubation": "אינטובציה",
+            "supraglottic_airway": "נתיב אוויר סופראגלוטי",
+            "cricothyrotomy": "קריקוטומיה",
+            "patient_cpap_connection": "חיבור מטופל ל־ CPAP",
+            "needle_thoracotomy": "ניקור חזה באמצעות מחט – NEEDLE THORACOTOMY",
+            "external_cardiac_massage_lucas": "עיסוי לב חיצוני באמצעות מעסה לב אוטומטי LUCAS",
+            "intraosseous_infusion_big_nio": "התקנת עירוי תוך־גרמי (BIG/NIO)",
+            "external_pacing": "קיצוב חיצוני",
+            "freeze_dried_plasma_fdp_infusion": "עירוי פלזמה קפואה מיובשת (FDP)",
+            "mechanical_flow_selector_use": "שימוש בבורר זרימה מכני",
+            "hydroxocobalamin_infusion": "עירוי הידרוקסיקובלמין",
+            "epipen_use": "שימוש באפיפן",
+            "hemostatic_dressing_axiostat_packing": "חבישה המוסטטית – AXIOSTAT ו־ PACKING",
+            "pelvic_binder": "מקבע אגן",
+            "advanced_tourniquet": "חסם עורקים מתקדם",
+            
+            // Chapter 10
+            "adenosine": "אדנוזין",
+            "adrenaline_epinephrine": "אדרנלין – אפינפרין",
+            "optalgin": "אופטלגין",
+            "etomidate": "אטומידאט",
+            "atropine": "אטרופין",
+            "isoket": "איזוקט",
+            "airovent": "אירובנט",
+            "amiodarone": "אמיודרון",
+            "aspirin": "אספירין",
+            "acamol": "אקמול",
+            "dopamine": "דופמין",
+            "dormicum": "דורמיקום",
+            "dextrose_glucose_50_percent": "דקסטרוז (גלוקוז)",
+            "droperidol": "דרופרידול",
+            "hydroxocobalamin": "הידרוקסיקובלמין",
+            "heparin": "הפרין",
+            "hexacapron": "הקסקפרון",
+            "ventolin": "ונטולין",
+            "zofran": "זופרן",
+            "tramdex": "טרמדקס",
+            "labetalol": "לבטלול",
+            "magnesium_sulfate": "מגנזיום סולפט",
+            "metoprolol": "מטופרולול",
+            "nitrolingual_spray": "ניטרולינגואל ספריי",
+            "narcan": "נרקן",
+            "sugammadex": "סוגמדקס",
+            "sodium_bicarbonate": "סודיום ביקרבונט",
+            "sodium_thiosulfate": "סודיום תיוסולפט",
+            "solumedrol": "סולומדרול",
+            "fusid": "פוסיד",
+            "fentanyl": "פנטניל",
+            "ketamine": "קטמין",
+            "calcium_gluconate": "קלציום גלוקונט",
+            "rocuronium": "רוקורוניום",
+            
+            // Chapter 11
+            "suicidal_psychiatric_patient_evacuation_guidelines": "מענה רפואי למטופל אובדני או למטופל עם חשד להפרעה נפשית מגבילה – קווים מנחים לפינוי",
+            "israeli_bandage_uses": "שימושים לתחבושת ישראלית",
+            "electrical_suction": "סקשן חשמלי"
+        };
+
+        // Utility functions for cleaning names
+        function cleanFileName(name) {
+            return name.replace(/[\\/*?"<>|]/g, "").trim().replace(/ /g, "_").replace(/__/g, "_");
+        }
+
+        function cleanFolderName(title) {
+            return cleanFileName(title);
+        }
+
+        // Load chapters data from JSON file
+        async function loadChaptersData() {
+            try {
+                // Try to load English JSON first, fallback to Hebrew
+                let response;
+                try {
+                    response = await fetch('../../json/als_chapters_english.json');
+                    if (!response.ok) throw new Error('English JSON not found');
+                } catch (e) {
+                    console.log('English JSON not found, falling back to Hebrew version');
+                    response = await fetch('../../json/als_chapters.json');
+                }
+                
+                const data = await response.json();
+                chapters = data.chapters;
+                createAccordion();
+            } catch (error) {
+                console.error('Error loading chapters data:', error);
+                displayError('שגיאה בטעינת נתוני הפרקים');
+            }
+        }
+
+        function displayError(message) {
+            const container = document.getElementById('accordionContainer');
+            container.innerHTML = `<div class="error">${message}</div>`;
+        }
+
+        function createAccordion() {
+            const container = document.getElementById('accordionContainer');
+            container.innerHTML = '';
+
+            Object.keys(chapters).forEach((chapterTitle, index) => {
+                const files = chapters[chapterTitle];
+                const folderName = cleanFolderName(chapterTitle);
+                
+                // Get Hebrew display name for chapter
+                const displayChapterTitle = chapterDisplayMapping[chapterTitle] || chapterTitle;
+                
+                // Main accordion item
+                const accordionItem = document.createElement('div');
+                accordionItem.className = 'accordion-item';
+                accordionItem.innerHTML = `
+                    <div class="accordion-header" onclick="toggleAccordion(${index})">
+                        <span>${displayChapterTitle}</span>
+                        <span class="accordion-arrow">▼</span>
+                    </div>                   
+                    <div class="accordion-content">
+                        ${files.map(file => {
+                            const displayFileName = fileDisplayMapping[file] || file;
+                            return `
+                                <div class="pdf-item" onclick="openPDF('${folderName}', '${file}')">
+                                    <span class="pdf-icon">📄</span>
+                                    <span class="pdf-name">${displayFileName}</span>
+                                </div>
+                            `;
+                        }).join('')}
+                    </div>
+                `;
+                
+                container.appendChild(accordionItem);
+            });
+        }
+
+        function toggleAccordion(index) {
+            const items = document.querySelectorAll('.accordion-item');
+            const item = items[index];
+            
+            // Close all other main accordion items
+            items.forEach((otherItem, otherIndex) => {
+                if (otherIndex !== index) {
+                    otherItem.classList.remove('active');
+                }
+            });
+            
+            item.classList.toggle('active');
+        }
+
+        function openPDF(folderName, fileName) {
+    // Get Hebrew display name for the file
+    const displayFileName = fileDisplayMapping[fileName] || fileName;
+    
+    // Encode parameters for URL
+    const encodedDisplayName = encodeURIComponent(displayFileName);
+    
+    // Create URL with parameters including Hebrew title
+    const viewerUrl = `als2024_pdf_viewer.html?folder=${folderName}&file=${fileName}&title=${encodedDisplayName}`;
+    
+    // Try to open PDF viewer in new tab
+    try {
+        window.open(viewerUrl, '_blank');
+    } catch (error) {
+        // Fallback: create a link and click it
+        const link = document.createElement('a');
+        link.href = viewerUrl;
+        link.target = '_blank';
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+    }
+}
+
+            // Open PDF in same tab
+           /*  try {
+                window.location.href = pdfPath;
+            } catch (error) {
+                // Fallback: create a link and click it
+                const link = document.createElement('a');
+                link.href = pdfPath;
+                // Remove target='_blank' to open in same tab
+                link.download = `${fileName}.pdf`;
+                document.body.appendChild(link);
+                link.click();
+                document.body.removeChild(link);
+            } */
+
+        
+
+        // Initialize on page load
+        document.addEventListener('DOMContentLoaded', function() {
+            loadChaptersData();
+        });
+
+        // Add smooth scrolling behavior
+        document.addEventListener('click', function(e) {
+            if (e.target.closest('.accordion-header')) {
+                setTimeout(() => {
+                    e.target.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+                }, 300);
+            }
+        });
+
+                const hamburgerBtn = document.getElementById('hamburgerBtn');
+        const sideMenu = document.getElementById('sideMenu');
+        const overlay = document.getElementById('overlay');
+
+        // פתיחה/סגירה של התפריט
+        hamburgerBtn.addEventListener('click', function() {
+            hamburgerBtn.classList.toggle('active');
+            sideMenu.classList.toggle('open');
+            overlay.classList.toggle('active');
+        });
+
+        // סגירה בלחיצה על האוברליי
+        overlay.addEventListener('click', function() {
+            hamburgerBtn.classList.remove('active');
+            sideMenu.classList.remove('open');
+            overlay.classList.remove('active');
+        });
+
+        // סגירה בלחיצה על ESC
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                hamburgerBtn.classList.remove('active');
+                sideMenu.classList.remove('open');
+                overlay.classList.remove('active');
+            }
+        });
+    </script>
+    <script src="/mda/js/hamburger-menu.js"></script>
+</div> <!--close class="content-wrapper"-->
+</body>
+</html>

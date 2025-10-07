@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <title>היפרקלמיה - סיכום</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <script 
+      src="https://cdn.counter.dev/script.js" 
+      data-id="87cd2eee-d5db-43dc-9575-16e58a14c32d" 
+      data-utcoffset="3" 
+      defer 
+      referrerpolicy="no-referrer"></script>
+
+<style>
+     body {
+      font-family: Arial, sans-serif;
+      background: #f7f7f7;
+      margin: 0;
+      padding: 0 10vw;
+    }
+    .top-link {
+      position: fixed;
+      top: 0;
+      right: 0;
+      left: 0;
+      background: #1976d2;
+      color: #fff;
+      text-align: center;
+      padding: 8px 0 4px 0;
+      z-index: 101;
+      font-size: 1.1em;
+      text-decoration: none;
+      letter-spacing: 1px;
+      box-shadow: 0 2px 8px #bbb;
+    }
+    .sticky-header {
+      position: fixed;
+      top: 36px;
+      right: 0;
+      left: 0;
+      background: #fff;
+      z-index: 100;
+      text-align: center;
+      padding: 18px 0 10px 0;
+      font-size: 2em;
+      font-weight: bold;
+      box-shadow: 0 2px 8px #ddd;
+      border-bottom: 1px solid #eee;
+      /**/
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    
+    .content-wrapper {
+      margin-top: 100px;
+    }
+    details {
+      background: #fff;
+      border-radius: 8px;
+      margin: 16px 0;
+      box-shadow: 0 2px 8px #ddd;
+    }
+    summary {
+      font-size: 1.2em;
+      font-weight: bold;
+      cursor: pointer;
+      padding: 12px;
+      outline: none;
+    }
+
+    .content div {
+    margin: 0.3em 0;
+    line-height: 1.4;
+}
+.indent-1 { margin-right: 20px; }
+.indent-2 { margin-right: 40px; }
+.indent-3 { margin-right: 60px; }
+
+    /* סגנונות התפריט */
+        .hamburger-menu {
+            cursor: pointer;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-around;
+            width: 30px;
+            height: 25px;
+            background: transparent;
+            border: none;
+            padding: 0;
+            margin-right: 20px;
+            
+        }
+
+        .hamburger-line {
+            width: 100%;
+            height: 3px;
+            background-color: #333;
+            border-radius: 2px;
+            transition: 0.3s;
+        }
+
+        .hamburger-menu.active .hamburger-line:nth-child(1) {
+            transform: rotate(45deg) translate(8px, 8px);
+        }
+
+        .hamburger-menu.active .hamburger-line:nth-child(2) {
+            opacity: 0;
+        }
+
+        .hamburger-menu.active .hamburger-line:nth-child(3) {
+            transform: rotate(-45deg) translate(8px, -8px);
+        }
+
+        .side-menu {
+            position: fixed;
+            top: 0;
+            right: -15%;
+            width: 15%;
+            height: 100vh;
+            background-color: white;
+            box-shadow: -2px 0 10px rgba(0,0,0,0.1);
+            transition: right 0.3s ease;
+            z-index: 1000;
+            padding: 0;
+            border-left: 1px solid #ddd;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .side-menu.open {
+            right: 0;
+        }
+
+        .side-menu h3 {
+            padding: 20px;
+            background-color: #1976d2;
+            color: white;
+            margin: 0;
+            text-align: center;
+            font-size: 18px;
+            font-weight: bold;
+            flex-shrink: 0;
+        }
+
+        .side-menu-content {
+            flex: 1;
+            overflow-y: auto;
+            overflow-x: hidden;
+        }
+
+        .side-menu ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .side-menu li {
+            border-bottom: 1px solid #eee;
+        }
+
+        .side-menu a {
+            display: block;
+            padding: 15px 20px;
+            color: #0077cc;
+            text-decoration: none;
+            transition: background-color 0.3s;
+            font-size: 16px;
+        }
+
+        .side-menu a:hover {
+            background-color: #f0f0f0;
+            text-decoration: underline;
+        }
+
+        .overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.5);
+            visibility: hidden;
+            opacity: 0;
+            transition: opacity 0.3s, visibility 0.3s;
+            z-index: 999;
+        }
+
+        .overlay.active {
+            visibility: visible;
+            opacity: 1;
+        }
+
+       /* .menu-title_old{
+            flex-grow: 1;
+            text-align: center;
+        } */
+
+       .menu-title {
+            flex-grow: 1;
+            text-align: center;
+            white-space: nowrap;
+            font-size: clamp(1.5rem, 4vw, 2rem);
+            padding: 0 5px;
+          
+       }
+
+        .menu-spacer {
+            width: 30px;  
+            margin-left: 20px;
+        }
+/* עיצוב סרגל הגלילה */
+        .side-menu-content::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        .side-menu-content::-webkit-scrollbar-track {
+            background: #f1f1f1;
+        }
+
+        .side-menu-content::-webkit-scrollbar-thumb {
+            background: #c1c1c1;
+            border-radius: 4px;
+        }
+
+        .side-menu-content::-webkit-scrollbar-thumb:hover {
+            background: #a8a8a8;
+			}
+/* כפתור חזרה בפינה השמאלית */
+    .back-button {
+      position: absolute;
+      left: 15px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: #ffffff;
+      text-decoration: none;
+      font-size: 1em;
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      cursor: pointer;
+      transition: opacity 0.2s;
+    }
+    
+    .back-button:hover {
+      opacity: 0.8;
+    }
+    
+    .back-arrow {
+      font-size: 1.2em;
+      font-weight: bold;
+      
+    }	
+    details[open] summary { color: #1976d2; }
+    .content { padding: 0 16px 16px 16px; }
+    ul { margin: 0; padding-right: 20px; }
+    li { margin-bottom: 6px; }
+    blockquote {
+      background: #e3f2fd;
+      border-right: 5px solid #1976d2;
+      margin: 12px 0;
+      padding: 10px 16px;
+      font-style: italic;
+      color: #1976d2;
+    }
+    @media (max-width: 600px) {
+      h2 {
+        font-size: 40px;
+      }
+  
+      .projects a, .title-link {
+        font-size: 26px;
+        margin: 25px 0;
+      }
+      /* תיקון התפריט הצדדי במסכים קטנים */
+       .side-menu {
+                width: 70%;
+                right: -70%;
+            }
+    }
+  </style>
+</head>
+<body>
+  <a href="../../../index.html" class="top-link">
+  	חזרה לתפריט הראשי
+		   <div class="back-button" onclick="history.back()">
+			 <span class="back-arrow">←</span>
+			 <span>חזרה</span>
+		   </div>
+		 </a>
+		<div class="sticky-header">		
+		<button class="hamburger-menu" id="hamburgerBtn">
+            <div class="hamburger-line"></div>
+            <div class="hamburger-line"></div>
+            <div class="hamburger-line"></div>
+        </button>
+        <div class="menu-title">היפרקלמיה - סיכום</div>
+        <div class="menu-spacer"></div>
+    </div>
+
+    <div class="overlay" id="overlay"></div>
+    
+    <div class="side-menu" id="sideMenu">
+        <h3>תפריט ראשי</h3>
+        <div class="side-menu-content">
+            <ul>
+    <!--            <li><a href="atan/atan_index.html">אט"ן</a></li>
+				<li><a href="bls/bls_index.html">BLS</a></li>
+				<li><a href="Bechirim/bechirim_index.html">קורס בכירים</a></li>
+                <li><a href="Bechirim/protocols/ALS2024.HTML">אוגדן ALS 2024</a></li>
+                <li><a href="Bechirim/protocols/protocols_index.html">פרוטוקולים</a></li>
+                <li><a href="Bechirim/Sikumim/Sikumim_index.html">מצגות וסיכומי מצגות</a></li>
+                <li><a href="Bechirim/Sikumim/SIKUM_LESSONS/lessons_index.html">סיכומי שיעורים</a></li>
+                <li><a href="Bechirim/Sikumim/SIKUM_LESSONS/ECG_Practice_MI.html">תרגול אק"ג - אוטם</a></li>
+                <li><a href="Bechirim/Sikumim/SIKUM_LESSONS/ECG_Practice_arrhythm.html">תרגול אק"ג - הפרעות קצב</a></li>
+                <li><a href="Bechirim/Phrases/Phrases.html">אינדקס מושגים</a></li>
+                <li><a href="Bechirim/trufot_Bait_search_site/Trufot_BAEIT.html">תרופות נפוצות בבית</a></li>
+                <li><a href="Bechirim/Sikumim/Pdf_files/pdf_index.html">ספרות</a></li> -->
+         <!--    <li><a href="#" onclick="alert('הוסף קישור לספרות')">ספרות</a></li> -->
+            </ul>
+        </div>
+	</div>
+  <div class="content-wrapper">
+
+    <details>
+      <summary>הגדרה וגורמים</summary>
+      <div class="content">
+        <div style="margin-right: 20px;">● <strong>תפקיד הכליות לסנן את הדם כדי להסיר פסולת וחומרים מיותרים דרך השתן, על מנת לשמור על איזון נכון של מים, מלחים ומינרלים בגוף.</strong></div>
+        <div style="margin-right: 20px;">● <strong>באי ספיקת כליות כמות האשלגן בדם עולה.</strong></div>
+        <div style="margin-right: 20px;">● <strong>גורמים נוספים לעליית אשלגן בדם הם תרופות, סכרת חמורה, הרס תאי שרירי שלד.</strong></div>
+      </div>
+    </details>
+
+    <details>
+      <summary>סכנות בהיפרקלמיה</summary>
+      <div class="content">
+        <div style="margin-right: 20px;">● <strong>הפרעות קצב לב חמורות.</strong></div>
+        <div style="margin-right: 20px;">● <strong>חולשת שרירים או שיתוק.</strong></div>
+        <div style="margin-right: 20px;">● <strong>במקרים קיצוניים דום לב</strong></div>
+      </div>
+    </details>
+
+    <details>
+      <summary>גורמי סיכון להיפרקלמיה</summary>
+      <div class="content">
+        <div style="margin-right: 20px;">● <strong>מזונות</strong></div>
+        <div style="margin-right: 20px;">● <strong>תרופות</strong></div>
+        <div style="margin-right: 20px;">● <strong>אי-שמירה על הנחיות</strong></div>
+        <div style="margin-right: 20px;">● <strong>תקלות בדיאליזה: מטופל נמצא בסכנה מוגברת להיפרקלמיה, לפני ומיד לאחר הדיאליזה</strong></div>
+      </div>
+    </details>
+
+    <details>
+      <summary>מזונות המכילים אשלגן ברמה גבוהה</summary>
+      <div class="content">
+        <div style="margin-right: 20px;">● <strong>פירות וירקות: בננה, עגבנייה, אבוקדו</strong></div>
+        <div style="margin-right: 20px;">● <strong>תבלינים: עשבי תיבול ירוקים (שמיר, אורגנו...)</strong></div>
+        <div style="margin-right: 20px;">● <strong>מוצרי קקאו, פירות יבשים, אגוזים וגרעינים, דגיםף קטניות</strong></div>
+      </div>
+    </details>
+
+    <details>
+      <summary>טיפול בהיפרקלמיה</summary>
+      <div class="content">
+        <div style="margin-right: 20px;">● <strong>אין טיפול ספציפי בהיפרקלמיה. כלל הטיפולים המוצעים כאן נגזרים מפרוטוקול פגיעות מעיכה ובכל מקרה דורשים אישור מהמוקד הרפואי.</strong></div>
+        <div style="margin-right: 20px;">● <strong>קלציום</strong></div>
+        <div style="margin-right: 40px;">☐ <strong>מטרה: הורדת הסיכון להפרעות קצב</strong></div>
+        <div style="margin-right: 40px;">☐ <strong>מנגנון: מעלה את פוטנציאל המנוחה של הלב</strong></div>
+        <div style="margin-right: 40px;">☐ <strong>הערה: קלציום לא מטפל בהיפרקלמיה עצמה</strong></div>
+        <div style="margin-right: 20px;">● <strong>וונטולין באינהלציה</strong></div>
+        <div style="margin-right: 40px;">☐ <strong>מנגנון: הכנסת אשלגן לתאים בשרירי השלד והוצאתו מזרם הדם</strong></div>
+        <div style="margin-right: 40px;">☐ <strong>בסיס פיזיולוגי: כחלק מפעילות רצפטורים β אגוניסטים</strong></div>
+        <div style="margin-right: 20px;">● <strong>פוסיד</strong></div>
+        <div style="margin-right: 40px;">☐ <strong>מינון: 1 מ&quot;ג/ק&quot;ג</strong></div>
+        <div style="margin-right: 40px;">☐ <strong>פעולה: עידוד פינוי אשלגן</strong></div>
+        <div style="margin-right: 20px;">● <strong>ביקרבונט (פעולה כפולה)</strong></div>
+        <div style="margin-right: 40px;">☐ <strong>מאיץ הכנסת אשלגן לתאים</strong></div>
+        <div style="margin-right: 40px;">☐ <strong>סותר חמצת</strong></div>
+        <div style="margin-right: 20px;">● <strong>גלוקוז</strong></div>
+        <div style="margin-right: 40px;">☐ <strong>מנגנון: עידוד הפרשת אינסולין אשר מכניס אשלגן לתאים</strong></div>
+        <div style="margin-right: 20px;">● <strong>בבית החולים</strong></div>
+        <div style="margin-right: 40px;">☐ <strong>טיפול מתקדם: שילוב של אינסולין וגלוקוז</strong></div>
+      </div>
+    </details>
+
+<details>
+          <summary style="color: red; font-weight: bold;">פרוטוקול לתסמונת מעיכה</summary>
+          <div class="content">
+            <div style="margin-right: 10px;">☐ פרסתזיה = תחושה חריגה בעור (עיקצוץ, "נמלים", צריבה, רטט)</div>
+            <iframe src="../../protocols/als2024protocols/als2024C5/suspected_crush_syndrome_pdfviewer.html" style="width:100%;height:600px;border:none;"></iframe>
+          </div>
+        </details>
+
+  <script>
+        const hamburgerBtn = document.getElementById('hamburgerBtn');
+        const sideMenu = document.getElementById('sideMenu');
+        const overlay = document.getElementById('overlay');
+
+        // פתיחה/סגירה של התפריט
+        hamburgerBtn.addEventListener('click', function() {
+            hamburgerBtn.classList.toggle('active');
+            sideMenu.classList.toggle('open');
+            overlay.classList.toggle('active');
+        });
+
+        // סגירה בלחיצה על האוברליי
+        overlay.addEventListener('click', function() {
+            hamburgerBtn.classList.remove('active');
+            sideMenu.classList.remove('open');
+            overlay.classList.remove('active');
+        });
+
+        // סגירה בלחיצה על ESC
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                hamburgerBtn.classList.remove('active');
+                sideMenu.classList.remove('open');
+                overlay.classList.remove('active');
+            }
+        });
+  </script>
+	<script src="/mda/js/hamburger-menu.js"></script>      
+</body>
+</html>
