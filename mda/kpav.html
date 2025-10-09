@@ -1,0 +1,647 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>סיכומים של ורוניקה מוקוביץ ז"ל</title>
+  <script 
+      src="https://cdn.counter.dev/script.js" 
+      data-id="87cd2eee-d5db-43dc-9575-16e58a14c32d" 
+      data-utcoffset="3" 
+      defer 
+      referrerpolicy="no-referrer"></script>
+
+<link href="https://fonts.googleapis.com/css2?family=Assistant:wght@400;600;700&family=Rubik:wght@300;400;500;700&display=swap" rel="stylesheet">
+<style>
+    :root{
+      --accent:#1976d2;
+      --muted:#666;
+      --card:#ffffff;
+      --bg:#f7f9fb;
+      --shadow: 0 6px 20px rgba(8,35,63,0.08);
+      --radius:12px;
+    }
+    html,body{height:100%;}
+    body {
+      font-family: 'Assistant', 'Rubik', system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
+      background-color: var(--bg);
+      margin: 0;
+      padding: 20px 18px 60px;
+      overflow-x: hidden;
+      color: #111;
+      -webkit-font-smoothing:antialiased;
+      -moz-osx-font-smoothing:grayscale;
+    }
+  
+/* קישור חזרה קבוע למעלה */
+    .top-link {
+      position: fixed;
+      top: 0;
+      right: 0;
+      left: 0;
+      background: #1976d2;
+      color: #fff;
+      text-align: center;
+      padding: 8px 0 4px 0;
+      z-index: 101;
+      font-size: 1.1em;
+      text-decoration: none;
+      letter-spacing: 1px;
+      box-shadow: 0 2px 8px #bbb;
+    }
+
+  
+    
+    /* כותרת קבועה מתחת לקישור */
+    .sticky-header {
+      position: fixed;
+      top: 20px;
+      right: 0;
+      left: 0;
+      background: #fff;
+      z-index: 100;
+      text-align: center;
+      padding: 15px 0 8px 0;
+      font-size: 1.5em;
+      font-weight: bold;
+      box-shadow: 0 2px 8px #ddd;
+      border-bottom: 1px solid #eee;
+      /**/
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    /* ריווח לתוכן */
+    .content-wrapper {
+      margin-top: 100px; /* מספיק מקום לשני האלמנטים הקבועים */
+      max-width: 980px;
+      margin-left: auto;
+      margin-right: auto;
+      padding: 0 12px;
+    }
+/* סגנונות התפריט */
+        .hamburger-menu {
+            cursor: pointer;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-around;
+            width: 30px;
+            height: 25px;
+            background: transparent;
+            border: none;
+            padding: 0;
+            margin-right: 20px;
+            
+        }
+
+        .hamburger-line {
+            width: 100%;
+            height: 3px;
+            background-color: #333;
+            border-radius: 2px;
+            transition: 0.3s;
+        }
+
+        .hamburger-menu.active .hamburger-line:nth-child(1) {
+            transform: rotate(45deg) translate(8px, 8px);
+        }
+
+        .hamburger-menu.active .hamburger-line:nth-child(2) {
+            opacity: 0;
+        }
+
+        .hamburger-menu.active .hamburger-line:nth-child(3) {
+            transform: rotate(-45deg) translate(8px, -8px);
+        }
+
+        .side-menu {
+            position: fixed;
+            top: 0;
+            right: -15%;
+            width: 15%;
+            height: 100vh;
+            background-color: white;
+            box-shadow: -2px 0 10px rgba(0,0,0,0.1);
+            transition: right 0.3s ease;
+            z-index: 1000;
+            padding: 0;
+            border-left: 1px solid #ddd;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .side-menu.open {
+            right: 0;
+        }
+
+        .side-menu h3 {
+            padding: 20px;
+            background-color: #1976d2;
+            color: white;
+            margin: 0;
+            text-align: center;
+            font-size: 18px;
+            font-weight: bold;
+            flex-shrink: 0;
+        }
+
+        .side-menu-content {
+            flex: 1;
+            overflow-y: auto;
+            overflow-x: hidden;
+        }
+
+        .side-menu ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .side-menu li {
+            border-bottom: 1px solid #eee;
+        }
+
+        .side-menu a {
+            display: block;
+            padding: 15px 20px;
+            color: #0077cc;
+            text-decoration: none;
+            transition: background-color 0.3s;
+            font-size: 16px;
+        }
+
+        .side-menu a:hover {
+            background-color: #f0f0f0;
+            text-decoration: underline;
+        }
+
+        .overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.5);
+            visibility: hidden;
+            opacity: 0;
+            transition: opacity 0.3s, visibility 0.3s;
+            z-index: 999;
+        }
+
+        .overlay.active {
+            visibility: visible;
+            opacity: 1;
+        }
+
+        .menu-title {
+            flex-grow: 1;
+            text-align: center;
+        }
+
+        .menu-spacer {
+            width: 30px;
+            margin-left: 20px;
+        }
+/* עיצוב סרגל הגלילה */
+        .side-menu-content::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        .side-menu-content::-webkit-scrollbar-track {
+            background: #f1f1f1;
+        }
+
+        .side-menu-content::-webkit-scrollbar-thumb {
+            background: #c1c1c1;
+            border-radius: 4px;
+        }
+
+        .side-menu-content::-webkit-scrollbar-thumb:hover {
+            background: #a8a8a8;
+			}
+/* כפתור חזרה בפינה השמאלית */
+    .back-button {
+      position: absolute;
+      left: 15px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: #ffffff;
+      text-decoration: none;
+      font-size: 1em;
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      cursor: pointer;
+      transition: opacity 0.2s;
+    }
+    
+    .back-button:hover {
+      opacity: 0.8;
+    }
+    
+    .back-arrow {
+      font-size: 1.2em;
+      font-weight: bold;
+    }	
+
+
+    h2 {
+      color: #0077cc;
+      text-align: center;
+      font-size: 28px;
+    }
+  
+    .projects {
+      text-align: right;
+      max-width: 100%;
+    }
+  
+    .projects a, .title-link {
+      display: block;
+      font-size: 22px;
+      color: #0077cc;
+      text-decoration: none;
+      margin: 20px 0;
+    }
+  
+    .projects a:hover, .title-link:hover {
+      text-decoration: underline;
+    }
+    
+    html, body { margin: 0; padding: 0; height: 100%; }
+    iframe { width: 100%; height: 100%; border: none; }
+  
+    @media (max-width: 600px) {
+      h2 {
+        font-size: 40px;
+      }
+  
+      .projects a, .title-link {
+        font-size: 26px;
+        margin: 25px 0;
+      }
+         .side-menu {
+                width: 70%;
+                right: -70%;
+            }
+    }
+    html, body { margin: 0; padding: 0; height: 100%; }
+    iframe { width: 100%; height: 100%; border: none; }
+  /* --- New accordion container & card styles --- */
+  .catalog-card{
+    background: linear-gradient(180deg,var(--card),#fbfdff);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    padding: 18px;
+    margin: 18px 0 30px;
+    border: 1px solid rgba(10,30,60,0.04);
+  }
+
+  .catalog-header{
+    display:flex;
+    align-items:center;
+    gap:12px;
+    margin-bottom:8px;
+  }
+
+  .toggle-all-btn{
+    margin-left:auto; /* push to left in RTL header */
+    background:var(--accent);
+    color:white;
+    border:none;
+    padding:8px 12px;
+    border-radius:8px;
+    font-weight:600;
+    cursor:pointer;
+    box-shadow: 0 4px 10px rgba(8,35,63,0.12);
+  }
+
+  .catalog-title{
+    font-size:1.35rem;
+    font-weight:700;
+    color:var(--accent);
+  }
+
+  .catalog-sub{
+    color:var(--muted);
+    font-size:0.95rem;
+  }
+
+  /* Accordions (styled details/summary) */
+  #accordion-container { margin-top:12px; }
+  details.accordion{
+    background: transparent;
+    border-radius: 10px;
+    margin: 10px 0;
+    overflow: hidden;
+  }
+
+  summary.accordion-summary{
+    list-style: none;
+    cursor: pointer;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    gap:12px;
+    padding:14px 16px;
+    background: linear-gradient(90deg, rgba(25,118,210,0.06), rgba(25,118,210,0.03));
+    border: 1px solid rgba(25,118,210,0.08);
+    border-radius: 10px;
+    transition: background 220ms, box-shadow 220ms;
+    direction: rtl;
+    position:relative;
+    padding-right:46px; /* space for chevron on right */
+  }
+
+  summary.accordion-summary:focus{outline: none; box-shadow:0 0 0 4px rgba(25,118,210,0.08);} 
+
+  /* reduced by 50% as requested */
+  summary.accordion-summary .title{ font-weight:700; font-size:1.05rem; }
+  summary.accordion-summary .meta{ color:var(--muted); font-size:0.95rem; }
+
+  /* custom chevron placed at right */
+  summary.accordion-summary::marker{display:none}
+  summary.accordion-summary::before{
+    content: '\25B6'; /* triangle */
+    position:absolute;
+    right:12px; /* small distance from right edge */
+    top:50%;
+    transform: translateY(-50%) rotate(0deg);
+    transition: transform 220ms, right 180ms;
+    color:var(--accent);
+    font-size:1rem;
+    opacity:0.95;
+  }
+  details[open] > summary.accordion-summary::before{ transform: translateY(-50%) rotate(90deg); }
+
+  .accordion-body{
+    padding:12px 16px 18px 16px;
+    background: linear-gradient(180deg, rgba(255,255,255,0.95), rgba(250,252,254,0.95));
+    border-left: 1px solid rgba(0,0,0,0.02);
+    border-right: 1px solid rgba(0,0,0,0.02);
+    border-bottom: 1px solid rgba(0,0,0,0.02);
+    animation: fadeIn 180ms ease;
+  }
+
+  @keyframes fadeIn{ from{opacity:0; transform: translateY(-4px)} to{opacity:1; transform:none} }
+
+  .file-list{ display:flex; flex-direction:column; gap:8px; }
+  .file-link{
+    display:flex; align-items:center; gap:10px; text-decoration:none; color:#0b63a8; padding:8px 10px; border-radius:8px;
+    transition: background 160ms, transform 120ms;
+  }
+  .file-link:hover{ background: rgba(11,99,168,0.06); transform: translateX(-4px); }
+  .file-link .bullet{ font-size:0.9rem; color:var(--accent); }
+  .file-link .name{ font-weight:500; }
+  .file-link .meta{ color:var(--muted); font-size:0.9rem; margin-right:8px }
+
+  /* empty message */
+  .empty-msg{ color:var(--muted); padding:8px 4px }
+
+  /* responsive tweaks */
+  @media (max-width:600px){
+    .catalog-title{ font-size:1.0rem }
+    /* stack header vertically so toggle button fits */
+    .catalog-header{ flex-direction:column-reverse; align-items:flex-start; gap:8px }
+    .toggle-all-btn{ width:100%; margin:6px 0 0 0; padding:9px 10px; font-size:0.95rem }
+    summary.accordion-summary{ padding:10px 12px 10px 12px; }
+    summary.accordion-summary{ padding-right:40px }
+    summary.accordion-summary .title{ font-size:0.95rem }
+    summary.accordion-summary::before{ right:10px; font-size:0.95rem }
+    .file-link{ padding:8px }
+    .catalog-card{ padding:12px }
+  }
+  </style>
+</head>
+<body>
+
+<a href="index.html" class="top-link">
+		חזרה לתפריט הראשי
+		   <div class="back-button" onclick="history.back()">
+			 <span class="back-arrow">←</span>
+			 <span>חזרה</span>
+		   </div>
+		 </a>
+		<div class="sticky-header">		
+		<button class="hamburger-menu" id="hamburgerBtn">
+            <div class="hamburger-line"></div>
+            <div class="hamburger-line"></div>
+            <div class="hamburger-line"></div>
+        </button>
+        <div class="menu-title">סיכומי קפ"ע של ורוניקה מושקוביץ ז"ל</div>
+        <div class="menu-spacer"></div>
+    </div>
+
+    <div class="overlay" id="overlay"></div>
+    
+    <div class="side-menu" id="sideMenu">
+        <h3>תפריט ראשי</h3>
+        <div class="side-menu-content">
+            <ul>
+    <!--            <li><a href="atan/atan_index.html">אט"ן</a></li>
+				<li><a href="bls/bls_index.html">BLS</a></li>
+				<li><a href="Bechirim/bechirim_index.html">קורס בכירים</a></li>
+                <li><a href="Bechirim/protocols/ALS2024.HTML">אוגדן ALS 2024</a></li>
+                <li><a href="Bechirim/protocols/protocols_index.html">פרוטוקולים</a></li>
+                <li><a href="Bechirim/Sikumim/Sikumim_index.html">מצגות וסיכומי מצגות</a></li>
+                <li><a href="Bechirim/Sikumim/SIKUM_LESSONS/lessons_index.html">סיכומי שיעורים</a></li>
+                <li><a href="Bechirim/Sikumim/SIKUM_LESSONS/ECG_Practice_MI.html">תרגול אק"ג - אוטם</a></li>
+                <li><a href="Bechirim/Sikumim/SIKUM_LESSONS/ECG_Practice_arrhythm.html">תרגול אק"ג - הפרעות קצב</a></li>
+                <li><a href="Bechirim/Phrases/Phrases.html">אינדקס מושגים</a></li>
+                <li><a href="Bechirim/trufot_Bait_search_site/Trufot_BAEIT.html">תרופות נפוצות בבית</a></li>
+                <li><a href="Bechirim/Sikumim/Pdf_files/pdf_index.html">ספרות</a></li> -->
+         <!--    <li><a href="#" onclick="alert('הוסף קישור לספרות')">ספרות</a></li> -->
+            </ul>
+        </div>
+	</div>  
+
+<!-- <div class="sticky-header">מאזן חומצבה בסיס</div> -->
+   <div class="content-wrapper"></div>
+ 
+   <div class="content-wrapper">
+  <div id="loading" style="text-align: center; padding: 50px; font-size: 1.2em; color: #1976d2;">
+    טוען קטלוג PDF...
+  </div>
+  
+  <div id="accordion-container"></div>
+</div>
+
+<script>
+// טעינת קובץ JSON
+async function loadCatalog() {
+  try {
+    const response = await fetch('json/pdf_v_catalog.json');
+    if (!response.ok) throw new Error('לא הצלחנו לטעון את הקטלוג');
+    
+    const catalog = await response.json();
+    document.getElementById('loading').style.display = 'none';
+    buildAccordions(catalog);
+  } catch (error) {
+    document.getElementById('loading').innerHTML = 
+      `<div style="color: #d32f2f; background: #ffebee; padding: 20px; border-radius: 8px;">
+        ❌ שגיאה בטעינת הקטלוג: ${error.message}
+      </div>`;
+  }
+}
+
+// הסרת מספרים מתחילת שם הקובץ
+function cleanFileName(fileName) {
+  // הסרת .pdf
+  let name = fileName.replace('.pdf', '');
+  // הסרת מספרים ומקפים/נקודות מהתחלה
+  name = name.replace(/^[\d\s\-\.]+/, '');
+  return name.trim();
+}
+
+// בניית האקורדיונים
+function buildAccordions(catalog) {
+  const container = document.getElementById('accordion-container');
+
+  // ראש כרטיס קטלוג אחד גדול
+  const card = document.createElement('section');
+  card.className = 'catalog-card';
+  const header = document.createElement('div');
+  header.className = 'catalog-header';
+  const title = document.createElement('div');
+  title.className = 'catalog-title';
+  title.textContent = catalog.title || 'קטלוג קבצים';
+  const sub = document.createElement('div');
+  sub.className = 'catalog-sub';
+  sub.textContent = catalog.description || '';
+  header.appendChild(title);
+  header.appendChild(sub);
+  // Toggle all button
+  const toggleAllBtn = document.createElement('button');
+  toggleAllBtn.className = 'toggle-all-btn';
+  toggleAllBtn.id = 'toggleAllBtn';
+  toggleAllBtn.textContent = 'פתח הכל';
+  header.appendChild(toggleAllBtn);
+  card.appendChild(header);
+
+  const accordionsWrap = document.createElement('div');
+  accordionsWrap.id = 'accordion-list';
+
+  catalog.folders.forEach(folder => {
+    const details = document.createElement('details');
+    details.className = 'accordion';
+
+    const summary = document.createElement('summary');
+    summary.className = 'accordion-summary';
+    summary.setAttribute('role','button');
+    summary.setAttribute('aria-expanded','false');
+
+    const sTitle = document.createElement('div');
+    sTitle.className = 'title';
+    sTitle.textContent = folder.name;
+
+    // no file count in the header per design request
+    const sMeta = document.createElement('div');
+    sMeta.className = 'meta';
+    sMeta.textContent = '';
+    summary.appendChild(sTitle);
+
+    // כאשר summary נלחץ - עדכון aria-expanded
+    summary.addEventListener('click', (e)=>{
+      // toggle handled by details element; update attribute after frame
+      requestAnimationFrame(()=>{
+        const expanded = details.hasAttribute('open');
+        summary.setAttribute('aria-expanded', expanded ? 'true' : 'false');
+      });
+    });
+
+    const content = document.createElement('div');
+    content.className = 'accordion-body';
+
+    if (folder.files && folder.files.length > 0) {
+      const list = document.createElement('div');
+      list.className = 'file-list';
+
+      folder.files.forEach(file => {
+        const a = document.createElement('a');
+        a.className = 'file-link';
+        a.href = file.google_drive_url;
+        a.target = '_blank';
+        a.rel = 'noopener noreferrer';
+
+        const bullet = document.createElement('span');
+        bullet.className = 'bullet';
+        bullet.textContent = '•';
+
+        const name = document.createElement('span');
+        name.className = 'name';
+        name.textContent = cleanFileName(file.name);
+
+        const meta = document.createElement('span');
+        meta.className = 'meta';
+        if(file.size) meta.textContent = file.size; // אם קיים שדה גודל
+
+        a.appendChild(bullet);
+        a.appendChild(name);
+        a.appendChild(meta);
+
+        list.appendChild(a);
+      });
+
+      content.appendChild(list);
+    } else {
+      const emptyMsg = document.createElement('div');
+      emptyMsg.className = 'empty-msg';
+      emptyMsg.textContent = 'אין קבצים בתיקייה זו';
+      content.appendChild(emptyMsg);
+    }
+
+    details.appendChild(summary);
+    details.appendChild(content);
+    accordionsWrap.appendChild(details);
+  });
+
+  card.appendChild(accordionsWrap);
+  container.appendChild(card);
+  // Toggle all functionality
+  const toggleBtn = document.getElementById('toggleAllBtn');
+  toggleBtn.addEventListener('click', ()=>{
+    const all = accordionsWrap.querySelectorAll('details');
+    const anyClosed = Array.from(all).some(d => !d.hasAttribute('open'));
+    all.forEach(d => { if(anyClosed) d.setAttribute('open',''); else d.removeAttribute('open'); });
+    toggleBtn.textContent = anyClosed ? 'סגור הכל' : 'פתח הכל';
+  });
+}
+
+// טעינה אוטומטית בעת פתיחת הדף
+document.addEventListener('DOMContentLoaded', loadCatalog);
+</script>
+
+
+
+
+<script>
+        const hamburgerBtn = document.getElementById('hamburgerBtn');
+        const sideMenu = document.getElementById('sideMenu');
+        const overlay = document.getElementById('overlay');
+
+        // פתיחה/סגירה של התפריט
+        hamburgerBtn.addEventListener('click', function() {
+            hamburgerBtn.classList.toggle('active');
+            sideMenu.classList.toggle('open');
+            overlay.classList.toggle('active');
+        });
+
+        // סגירה בלחיצה על האוברליי
+        overlay.addEventListener('click', function() {
+            hamburgerBtn.classList.remove('active');
+            sideMenu.classList.remove('open');
+            overlay.classList.remove('active');
+        });
+
+        // סגירה בלחיצה על ESC
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                hamburgerBtn.classList.remove('active');
+                sideMenu.classList.remove('open');
+                overlay.classList.remove('active');
+            }
+        });
+    </script>
+    <script src="/mda/js/hamburger-menu.js"></script>
+</body>
+</html>
