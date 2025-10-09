@@ -1,0 +1,860 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <title>פדיאטריה</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <script 
+      src="https://cdn.counter.dev/script.js" 
+      data-id="87cd2eee-d5db-43dc-9575-16e58a14c32d" 
+      data-utcoffset="3" 
+      defer 
+      referrerpolicy="no-referrer"></script>
+<!--<meta name="viewport" content="width=device-width, initial-scale=1.0">-->
+<style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f7f7f7;
+      margin: 0;
+      padding: 0 10vw;
+    }
+    .top-link {
+      position: fixed;
+      top: 0;
+      right: 0;
+      left: 0;
+      background: #1976d2;
+      color: #fff;
+      text-align: center;
+      padding: 8px 0 4px 0;
+      z-index: 101;
+      font-size: 1.1em;
+      text-decoration: none;
+      letter-spacing: 1px;
+      box-shadow: 0 2px 8px #bbb;
+    }
+    .sticky-header {
+      position: fixed;
+      top: 36px;
+      right: 0;
+      left: 0;
+      background: #fff;
+      z-index: 100;
+      text-align: center;
+      padding: 18px 0 10px 0;
+      font-size: 2em;
+      font-weight: bold;
+      box-shadow: 0 2px 8px #ddd;
+      border-bottom: 1px solid #eee;
+      /**/
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    
+    .content-wrapper {
+      margin-top: 100px;
+    }
+
+    /* מיכל PDF */
+        .pdf-container {
+            padding: 10px;
+            height: calc(100vh - 120px);
+            display: flex;
+            justify-content: center;
+        }
+
+        .pdf-frame {
+            width: 100%;
+            max-width: 1200px;
+            height: 100%;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            background: white;
+        }
+  
+    .projects a:hover, .title-link:hover {
+      text-decoration: underline;
+    }
+
+    /* הגדרות זום עבור PDF */
+        .pdf-frame {
+            overflow: auto;
+            -webkit-overflow-scrolling: touch;
+        }
+
+
+    details {
+      background: #fff;
+      border-radius: 8px;
+      margin: 16px 0;
+      box-shadow: 0 2px 8px #ddd;
+    }
+    summary {
+      font-size: 1.2em;
+      font-weight: bold;
+      cursor: pointer;
+      padding: 12px;
+      outline: none;
+    }
+
+    .content div {
+    margin: 0.3em 0;
+    line-height: 1.4;
+      }
+      .indent-1 { margin-right: 20px; }
+      .indent-2 { margin-right: 40px; }
+      .indent-3 { margin-right: 60px; }
+
+      .two-columns {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 2px;
+        max-width: 500px;
+        margin: 0.1em 0;
+        line-height: 1.4;
+        }
+        
+        .column-item {
+        margin-right: 60px;
+        }
+
+    /* סגנונות התפריט */
+        .hamburger-menu {
+            cursor: pointer;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-around;
+            width: 30px;
+            height: 25px;
+            background: transparent;
+            border: none;
+            padding: 0;
+            margin-right: 20px;
+            
+        }
+
+        .hamburger-line {
+            width: 100%;
+            height: 3px;
+            background-color: #333;
+            border-radius: 2px;
+            transition: 0.3s;
+        }
+
+        .hamburger-menu.active .hamburger-line:nth-child(1) {
+            transform: rotate(45deg) translate(8px, 8px);
+        }
+
+        .hamburger-menu.active .hamburger-line:nth-child(2) {
+            opacity: 0;
+        }
+
+        .hamburger-menu.active .hamburger-line:nth-child(3) {
+            transform: rotate(-45deg) translate(8px, -8px);
+        }
+
+        .side-menu {
+            position: fixed;
+            top: 0;
+            right: -15%;
+            width: 15%;
+            height: 100vh;
+            background-color: white;
+            box-shadow: -2px 0 10px rgba(0,0,0,0.1);
+            transition: right 0.3s ease;
+            z-index: 1000;
+            padding: 0;
+            border-left: 1px solid #ddd;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .side-menu.open {
+            right: 0;
+        }
+
+        .side-menu h3 {
+            padding: 20px;
+            background-color: #1976d2;
+            color: white;
+            margin: 0;
+            text-align: center;
+            font-size: 18px;
+            font-weight: bold;
+            flex-shrink: 0;
+        }
+
+        .side-menu-content {
+            flex: 1;
+            overflow-y: auto;
+            overflow-x: hidden;
+        }
+
+        .side-menu ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .side-menu li {
+            border-bottom: 1px solid #eee;
+        }
+
+        .side-menu a {
+            display: block;
+            padding: 15px 20px;
+            color: #0077cc;
+            text-decoration: none;
+            transition: background-color 0.3s;
+            font-size: 16px;
+        }
+
+        .side-menu a:hover {
+            background-color: #f0f0f0;
+            text-decoration: underline;
+        }
+
+        .overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.5);
+            visibility: hidden;
+            opacity: 0;
+            transition: opacity 0.3s, visibility 0.3s;
+            z-index: 999;
+        }
+
+        .overlay.active {
+            visibility: visible;
+            opacity: 1;
+        }
+
+        .menu-title {
+            flex-grow: 1;
+            text-align: center;
+        }
+
+        .menu-spacer {
+            width: 30px;
+            margin-left: 20px;
+        }
+/* עיצוב סרגל הגלילה */
+        .side-menu-content::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        .side-menu-content::-webkit-scrollbar-track {
+            background: #f1f1f1;
+        }
+
+        .side-menu-content::-webkit-scrollbar-thumb {
+            background: #c1c1c1;
+            border-radius: 4px;
+        }
+
+        .side-menu-content::-webkit-scrollbar-thumb:hover {
+            background: #a8a8a8;
+			}
+/* כפתור חזרה בפינה השמאלית */
+    .back-button {
+      position: absolute;
+      left: 15px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: #ffffff;
+      text-decoration: none;
+      font-size: 1em;
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      cursor: pointer;
+      transition: opacity 0.2s;
+    }
+    
+    .back-button:hover {
+      opacity: 0.8;
+    }
+    
+    .back-arrow {
+      font-size: 1.2em;
+      font-weight: bold;
+      
+    }	
+    details[open] summary { color: #1976d2; }
+    .content { padding: 0 16px 16px 16px; }
+    ul { margin: 0; padding-right: 20px; }
+    li { margin-bottom: 6px; }
+    blockquote {
+      background: #e3f2fd;
+      border-right: 5px solid #1976d2;
+      margin: 12px 0;
+      padding: 10px 16px;
+      font-style: italic;
+      color: #1976d2;
+    }
+
+    /* רספונסיבי */
+        @media (max-width: 768px) {
+            .sticky-header {
+                font-size: 1.6em;
+                padding: 8px 0 8px 0;
+            }
+
+            .back-button {
+                font-size: 0.8em;
+                padding: 3px 8px;
+            }
+
+            .menu-title {
+                font-size: 0.6em;
+                margin: 0 80px;
+            }
+
+            .side-menu {
+                width: 250px;
+                right: -250px;
+            }
+
+            .content-wrapper {
+                margin-top: 50px;
+            }
+
+            .pdf-container {
+                padding: 5px;
+                height: calc(100vh - 100px);
+            }
+            html, body {
+    touch-action: manipulation;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    overflow-x: hidden;
+  }
+  
+  * {
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+  }
+
+        }
+
+        @media (max-width: 480px) {
+            .sticky-header {
+                font-size: 1.6em;
+                padding: 8px 0 6px 0;
+            }
+
+            .back-button {
+                font-size: 0.8em;
+                padding: 2px 6px;
+            }
+
+            .menu-title {
+                font-size: 0.5em;
+                margin: 0 70px;
+            }
+
+            .side-menu {
+                width: 280px;
+                right: -280px;
+            }
+
+            .content-wrapper {
+                margin-top: 30px;
+            }
+
+            .pdf-container {
+                padding: 3px;
+                height: calc(100vh - 90px);
+            }
+        }
+    @media (max-width: 600px) {
+      h2 {
+        font-size: 40px;
+      }
+  
+      .projects a, .title-link {
+        font-size: 26px;
+        margin: 25px 0;
+      }
+    }
+        /* Responsive */
+        @media (max-width: 600px) {
+            h2 {
+                font-size: 40px;
+            }
+            .projects a, .title-link {
+                font-size: 26px;
+                margin: 25px 0;
+            }
+            .side-menu {
+                width: 70%;
+                right: -70%;
+            }
+            html, body {
+    touch-action: manipulation;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    overflow-x: hidden;
+  }
+  
+  * {
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+  }
+
+        }
+    
+    @media (max-width: 600px) {
+      h2 {
+        font-size: 40px;
+      }
+  
+      .projects a, .title-link {
+        font-size: 26px;
+        margin: 25px 0;
+      }
+      /* תיקון התפריט הצדדי במסכים קטנים */
+       .side-menu {
+                width: 70%;
+                right: -70%;
+            }
+             .two-columns {
+                grid-template-columns: 1fr;
+             }
+    }
+  </style>
+</head>
+<body>
+  <a href="../../../index.html" class="top-link">
+  	חזרה לתפריט הראשי
+		   <div class="back-button" onclick="history.back()">
+			 <span class="back-arrow">←</span>
+			 <span>חזרה</span>
+		   </div>
+		 </a>
+		<div class="sticky-header">		
+		<button class="hamburger-menu" id="hamburgerBtn">
+            <div class="hamburger-line"></div>
+            <div class="hamburger-line"></div>
+            <div class="hamburger-line"></div>
+        </button>
+        <div class="menu-title">פדיאטריה - סיכום</div>
+        <div class="menu-spacer"></div>
+    </div>
+
+    <div class="overlay" id="overlay"></div>
+    
+    <div class="side-menu" id="sideMenu">
+        <h3>תפריט ראשי</h3>
+        <div class="side-menu-content">
+            <ul>
+    <!--            <li><a href="atan/atan_index.html">אט"ן</a></li>
+				<li><a href="bls/bls_index.html">BLS</a></li>
+				<li><a href="Bechirim/bechirim_index.html">קורס בכירים</a></li>
+                <li><a href="Bechirim/protocols/ALS2024.HTML">אוגדן ALS 2024</a></li>
+                <li><a href="Bechirim/protocols/protocols_index.html">פרוטוקולים</a></li>
+                <li><a href="Bechirim/Sikumim/Sikumim_index.html">מצגות וסיכומי מצגות</a></li>
+                <li><a href="Bechirim/Sikumim/SIKUM_LESSONS/lessons_index.html">סיכומי שיעורים</a></li>
+                <li><a href="Bechirim/Sikumim/SIKUM_LESSONS/ECG_Practice_MI.html">תרגול אק"ג - אוטם</a></li>
+                <li><a href="Bechirim/Sikumim/SIKUM_LESSONS/ECG_Practice_arrhythm.html">תרגול אק"ג - הפרעות קצב</a></li>
+                <li><a href="Bechirim/Phrases/Phrases.html">אינדקס מושגים</a></li>
+                <li><a href="Bechirim/trufot_Bait_search_site/Trufot_BAEIT.html">תרופות נפוצות בבית</a></li>
+                <li><a href="Bechirim/Sikumim/Pdf_files/pdf_index.html">ספרות</a></li> -->
+         <!--    <li><a href="#" onclick="alert('הוסף קישור לספרות')">ספרות</a></li> -->
+            </ul>
+        </div>
+	</div>
+  <div class="content-wrapper">
+    <details>
+      <summary>מצבי חירום קרדיאליים בילדים</summary>
+      <div class="content">
+        <div style="margin-right: 20px;">● <strong>כללי</strong></div>
+        <div style="margin-right: 40px;"><span style="font-size: 60%;">☐</span> סיבת מוות בילדים ותינוקות: אספיקציה נשימתית (חנק), הלם.</div>
+        <div style="margin-right: 40px;"><span style="font-size: 60%;">☐</span> בעיות קרדיאליות מישניות לבעיה הנשימתית.</div>
+        <div style="margin-right: 20px;">● <strong>החייאת BLS בתינוקות</strong></div>
+        <div style="margin-right: 40px;"><span style="font-size: 60%;">☐</span> מטפל יחיד 30:2. עיסויים עם שתי אצבעות. מטפלים בצמד . עיסויים עם שני אגודלים 15:2.</div>
+        <div style="margin-right: 40px;"><span style="font-size: 60%;">☐</span> מתחילים עיסויים כשנמדד דופק נמוך מ 60, עם סימני ירידה בפרפוזיה. אצל תינוקות וילדים עד גיל 5.</div>
+        <div style="margin-right: 40px;"><span style="font-size: 60%;">☐</span> אם חזר דופק מעל 60 בדקה. להנשים בקצב 12-20 הנשמות בדקה.</div>
+        <div style="margin-right: 40px;"><span style="font-size: 60%;">☐</span> מטופל עם דופק אפניאי או ברדיפנאי – להנשים בקצב של 20-30 נשימות בדקה.</div>
+      <details>
+        <summary>דום לב בילדים VT/VF</summary>
+        <div class="content">
+          <div style="margin-right: 20px;">● <strong>שוק חשמלי אצל ילדים ותינוקות</strong></div>
+          <div style="margin-right: 40px;"><span style="font-size: 60%;">☐</span> שוק ראשון 2J/kg</div>
+          <div style="margin-right: 40px;"><span style="font-size: 60%;">☐</span> שוק שני 4J/kg</div>
+          <div style="margin-right: 40px;"><span style="font-size: 60%;">☐</span> לדוגמה ילד שוקל 10 ק&quot;ג נותנים שוק ראשון 20J ושוק שני 40J</div>
+          <div style="margin-right: 40px;"><span style="font-size: 60%;">☐</span> שוק שלישי ומעלה בין 4-9J לקילו.</div>
+          <div style="margin-right: 40px;"><span style="font-size: 60%;">☐</span> אסור לעבור 10J/kg ומותר מקסימום 200J בסך הכל.</div>
+        <details>
+          <summary>תרופות ומינונים בילדים ותינוקות</summary>
+          <div class="content">
+            <div style="margin-right: 20px;">● חישוב המינונים אצל ילדים מסובך יותר כי צריך לחשב כל כמות תרופה לפי משקל.</div>
+            <div style="margin-right: 20px;">● לשם הקלה ניתן לחשב לי משקל מקורב של מכפלות של 5 ק&quot;ג.</div>
+      </div>
+    </details>
+
+        <details>
+          <summary>אדרנלין IV</summary>
+          <div class="content">
+            <div style="margin-right: 20px;">● מינון 0.01mg/kg</div>
+            <div style="margin-right: 20px;">● מינון מקסימלי למנה: 1mg</div>
+            <div style="margin-right: 20px;">● <strong>ילד עד 10 ק&quot;ג.</strong></div>
+            <div style="margin-right: 40px;"><span style="font-size: 60%;">☐</span> נשאב אמפולה (1mg/1ml)ונכניס לתוך סליין 100ml.</div>
+            <div style="margin-right: 40px;"><span style="font-size: 60%;">☐</span> נשאב מתוך השקית למזרק 10ml את משקל הילד וניתן בפוש.</div>
+            <div style="margin-right: 40px;"><span style="font-size: 60%;">☐</span> דוגמא: ילד ששוקל 8 ק&quot;ג. צריך לקבל 0.08mg. ניתן לו 8ml.</div>
+            <div style="margin-right: 20px;">● <strong>ילד ששוקל מעל 10 ק&quot;ג</strong></div>
+            <div style="margin-right: 40px;"><span style="font-size: 60%;">☐</span> נשאב אמפולה לתוך מזרק 10. ונשלים את המזרק עם סליין. יש לנו במזרק 0.1mg/ml.</div>
+            <div style="margin-right: 40px;"><span style="font-size: 60%;">☐</span> ניתן בפוש את משקל הילד מחולק ב 10.</div>
+            <div style="margin-right: 40px;"><span style="font-size: 60%;">☐</span> דוגמא: ילד ששוקל 15 ק&quot;ג. צריך לקבל 0.15mg. ניתן 1.5ml. (הכמות במ&quot;ל היא המשקל מחולק ב 10)</div>
+            <div style="margin-right: 20px;">● <strong>לתת מיד בולוס של 10מ&quot;ל סליין (לא 20 מ&quot;ל).</strong></div>
+            <div style="margin-right: 20px;">● <strong>מינון ב ET לפי 0.1mg/kg מהולים ב 3-5ml סליין. שואבים כמו לילד מעל 10 ק&quot;ג. לבצע חמש הנשמות רצופות.</strong></div>
+      </div>
+    </details>
+
+        <details>
+          <summary>אמיודורון</summary>
+          <div class="content">
+            <div style="margin-right: 20px;">● <strong>אמפולה 150mg/3ml</strong></div>
+            <div style="margin-right: 20px;">● מינון: 5mg/kg מהול ב 5-10 סליין (כמו אצל מבוגר).</div>
+            <div style="margin-right: 20px;">● מינון מקסימלי למנה 300mg.</div>
+            <div style="margin-right: 20px;">● <strong>ילדים עד 10 ק&quot;ג:</strong></div>
+            <div style="margin-right: 40px;"><span style="font-size: 60%;">☐</span> שואבים 50mg/1ml במזרק 10 ומשלימים ל 10ml. מקבלים 5mg/1ml.</div>
+            <div style="margin-right: 20px;">● <strong>ילדים מעל 10 ק&quot;ג:</strong></div>
+            <div style="margin-right: 40px;"><span style="font-size: 60%;">☐</span> שואבים 100mg/2ml במזרק 10 ומשלימים ל 10ml ואז מקבלים 10mg/1ml.</div>
+            <div style="margin-right: 20px;">● <strong>אמיודורון בילדים מותר עד 3 מנות. ועד 300mg למנה.</strong></div>
+            <div style="margin-right: 20px;">● <strong>אצל ילדים כל מנות האמיודורון שוות. (לא כמו אצל מבוגרים).</strong></div>
+            <div style="margin-right: 20px;">● <strong>סדר השוקים והתרופות בהחייאת vt/vf</strong></div>
+            <div style="margin-right: 40px;"><span style="font-size: 60%;">☐</span> שוק-החייאה-שוק-אדרנלין-שוק-אמיודורון-שוק-אדרנלין-שוק-אמיודורון. בהמשך רק אדרנלין אחרי כל שוק.</div>
+      </div>
+    </details>
+
+      </div>
+    </details>
+
+      <details>
+        <summary>החייאת אסיסטולה</summary>
+        <div class="content">
+          <div style="margin-right: 20px;">● נותנים רק אדרנלין</div>
+          <div style="margin-right: 20px;">● אדרנלין ראשון תוך חמש דקות מתחילת ההחייאה.</div>
+          <div style="margin-right: 20px;">● מינון אדרנלין נשאר אותו מינון כמו בהחייאת VT/VF</div>
+      </div>
+    </details>
+
+      <details>
+        <summary>ROSC</summary>
+        <div class="content">
+          <div style="margin-right: 20px;">● שמור סטורציה מעל 94%</div>
+          <div style="margin-right: 20px;">● במידת הצורך, הנשם בקצב 12-20 הנשמות בדקה.</div>
+          <div style="margin-right: 20px;">● תן בולוסים סליין 20ml/kg לשמור לחץ דם סיסטולי מעל למינימום לגיל.</div>
+          <div style="margin-right: 20px;">● ( עד גיל 10. גיל כפול 2 ועוד 70 . מעל גיל 10 לחץ דם סיסטולי 90 מינימלי).</div>
+        <details>
+          <summary>דופמין</summary>
+          <div class="content">
+            <div style="margin-right: 20px;">● במידה ולחץ הדם לא עולה, אפשר לתת דופמין 5-20mcg/kg/mim</div>
+            <div style="margin-right: 20px;">● אמפולה 200mg/5ml.</div>
+            <div style="margin-right: 20px;">● <strong>מינון לדוגמה</strong></div>
+            <div style="margin-right: 40px;"><span style="font-size: 60%;">☐</span> אצל ילד ששוקל 10 קילו, הטווח יהיה 50-200mcg/min. (0.05-0.2mg/min)</div>
+            <div style="margin-right: 20px;">● <strong>העקרון:</strong></div>
+            <div style="margin-right: 40px;"><span style="font-size: 60%;">☐</span> <strong>להכין מזרק 10 עם 10mg/1ml ומזה להכניס לסליין 100 את משקל המטופל מחולק ב 10 במיליליטר.</strong></div>
+            <div style="margin-right: 40px;"><span style="font-size: 60%;">☐</span> למזרק 10 שואבים חצי אמפולה 100mg/2.5ml ומשלימים עם סליין ל 10 מיליליטר. מקבלים במזרק 10mg/1ml.</div>
+            <div style="margin-right: 40px;"><span style="font-size: 60%;">☐</span> לתוך שקית 100 סליין מכניסים מהמזרק את משקל הילד מחולק ל 10 במיליליטר.</div>
+            <div style="margin-right: 20px;">● <strong>לדוגמא. עבור ילד ששוקל 5 קג.</strong></div>
+            <div style="margin-right: 40px;"><span style="font-size: 60%;">☐</span> מכניסים 5mg/0.5ml. (0.5ml זה משקל הילד מחולק ב 10)</div>
+            <div style="margin-right: 40px;"><span style="font-size: 60%;">☐</span> יש לנו בשקית 5mg/100ml או 0.05mg/1ml</div>
+            <div style="margin-right: 20px;">● <strong>דוגמאות</strong></div>
+            <div style="margin-right: 40px;"><span style="font-size: 60%;">☐</span> תינוק ששוקל 5 ק&quot;ג צריך לקבל 0.025-0.1mg/min. נכוון ל 20 טיפות בדקה.</div>
+            <div style="margin-right: 40px;"><span style="font-size: 60%;">☐</span> תינוק ששוקל 8 ק&quot;ג צריך לקבל 40-160mcg/min (0.04-0.16/mg/min). לתוך שקית סליין 100 נכניס 8mg/0.8ml. נקבל 0.08mg/1ml. ניתן בטפטוף 1ml בדקה.</div>
+            <div style="margin-right: 40px;"><span style="font-size: 60%;">☐</span> מבוגר ששוקל 50 ק&quot;ג צריך לקבל 250-1000mcg/min (0.25-1mg/min)</div>
+            <div style="margin-right: 40px;"><span style="font-size: 60%;">☐</span> לתוך שקית סליין 100 נכניס 50mg/5ml. נקבל 0.5mg/1ml ניתן בטפטוף 1ml בדקה.</div>
+            <div style="margin-right: 20px;">● <strong>כאשר לחץ הדם כמו הנורמה, לבדוק לחץ דם, סוכר וא.ק.ג</strong></div>
+            <div style="margin-right: 20px;">● <strong>מדבקות הדפי לא מותאמות לילדים קטנים, ובכל זאת חשוב לנסות לבצע א.ק.ג</strong></div>
+      </div>
+    </details>
+
+      </div>
+    </details>
+
+      </div>
+    </details>
+
+    <details>
+      <summary>פרוטוקולים של הפרעות קצב בילדים</summary>
+      <div class="content">
+        <div style="margin-right: 20px;">● <strong>יילוד ותינוק</strong></div>
+        <div style="margin-right: 40px;"><span style="font-size: 60%;">☐</span> מתחילים החייאה אם הדופק קטן מ 60.</div>
+        <div style="margin-right: 20px;">● <strong>יילוד</strong></div>
+        <div style="margin-right: 40px;"><span style="font-size: 60%;">☐</span> סדר ההחייאה A-B-C. לא נושם או בראדיפניאה, הנשמה 30 שניות באוויר החדר. לאחר מכן.</div>
+        <div style="margin-right: 40px;"><span style="font-size: 60%;">☐</span> אם דופק נמוך מ 100, הנשמה 30 שניות עם חמצן בריכוז מקסימלי.</div>
+        <div style="margin-right: 40px;"><span style="font-size: 60%;">☐</span> אם דופק נמוך מ 60, עיסויים והנשמות עם חמצן בריכוז מקסימלי. עיסויים 1:3 ( 90 עיסויים ו30 הנשמות בדקה) .</div>
+        <div style="margin-right: 40px;"><span style="font-size: 60%;">☐</span> להמשיך חפש גורמים הפיכים</div>
+        <div style="margin-right: 40px;"><span style="font-size: 60%;">☐</span> <strong>נזכור שדופק הבסיס הוא סינוס טכיקרדיה, ולרוב לא סדיר.</strong></div>
+      <details>
+        <summary>ברדיקרדיה לילדים</summary>
+        <div class="content">
+          <div style="margin-right: 20px;">● <strong>טיפול נדרש רק אם יש סימני ירידה בפרפוזיה ( ירידה במצב הכרה, סימני הלם, לחץ דם סיסטולי נמוך מהערך התחתון המתאים לגיל).</strong></div>
+          <div style="margin-right: 20px;">● <strong>הסיבה השכיחה ביותר לברדיקרדיה בילדים זה היפוקסיה.</strong></div>
+          <div style="margin-right: 20px;">● <strong>אוורור יעיל הוא הטיפול הראשוני והחשוב ביותר.</strong></div>
+          <div style="margin-right: 20px;">● אם הדופק מעל 60, לנסות לבצע אק&quot;ג ולפנות בדחוף</div>
+          <div style="margin-right: 20px;">● <strong>אם הדופק מתחת ל 60</strong></div>
+          <div style="margin-right: 40px;"><span style="font-size: 60%;">☐</span> מבצעים עיסויים והנשמות 2 דקות.</div>
+          <div style="margin-right: 40px;"><span style="font-size: 60%;">☐</span> אם עדיין הדופק נמוך מ 60 ויש סימני היפופרפוזיה</div>
+          <div style="margin-right: 40px;"><span style="font-size: 60%;">☐</span> ממשיכים עיסויים והנשמות, נותנים אדרנלין, שוקלים אטרופין, שוקלים קיצוב.</div>
+        <details>
+          <summary>טיפול תרופתי</summary>
+          <div class="content">
+            <div style="margin-right: 20px;">● <strong>אדרנלין- זו התרופה הראשונה IV/IO 0.01mg/kg לחזור על המנה כל 3-5 דקות</strong></div>
+            <div style="margin-right: 20px;">● <strong>אטרופין לא תמיד יעיל בברדיקרדיה.</strong></div>
+            <div style="margin-right: 40px;"><span style="font-size: 60%;">☐</span> פחות יעיל בברדיקרדיה משנית להיפוקסיה</div>
+            <div style="margin-right: 40px;"><span style="font-size: 60%;">☐</span> יותר יעיל בברדיקרדיה ואגלית ראשונית, (אם יש גירוי ואגלי מוגבר, הקאות, שיעול)</div>
+            <div style="margin-right: 40px;"><span style="font-size: 60%;">☐</span> אם יש חסימת AV.</div>
+            <div style="margin-right: 40px;"><span style="font-size: 60%;">☐</span> <strong>מינון IO/IV 0.02mg/kg. מינון מינימלי 0.1mg. מינון מקסימלי למנהבילדים 0.5mg.</strong></div>
+      </div>
+    </details>
+
+        <details>
+          <summary>קיצוב חיצוני</summary>
+          <div class="content">
+            <div style="margin-right: 40px;"><span style="font-size: 60%;">☐</span> להשרות סדציה ארוכה. תרופת הבחירה קטמין.</div>
+            <div style="margin-right: 40px;"><span style="font-size: 60%;">☐</span> מומלץ לשלב עם דורמיקום IV בתנאי שלחץ הדם הסיסטולי מעל לחץ הדם המינימלי לגיל.</div>
+            <div style="margin-right: 40px;"><span style="font-size: 60%;">☐</span> <strong>קטמין מינון IV 0.5-1mg/kg . אפשר לחזור על המנה לאחר כמה דקות.</strong></div>
+            <div style="margin-right: 40px;"><span style="font-size: 60%;">☐</span> <strong>דורמיקום מינון 0.1mg/kg.</strong></div>
+      </div>
+    </details>
+
+      </div>
+    </details>
+
+      <details>
+        <summary>טכיקרדיה בתינוקות וילדים</summary>
+        <div class="content">
+          <div style="margin-right: 20px;">● <strong>המטופל יציב או לא יציב?</strong></div>
+          <div style="margin-right: 40px;"><span style="font-size: 60%;">☐</span> <strong>אצל מבוגרים &quot;כ.ל.ב.ה&quot;</strong></div>
+          <div style="margin-right: 60px;">(כאב בחזה, לחץ דם נמוך, בצקת ריאות, ירידה במצב הכרה).</div>
+          <div style="margin-right: 40px;"><span style="font-size: 60%;">☐</span> <strong>אצל ילדים נעזרים במשולש להערכת ילדים.</strong></div>
+          <div style="margin-right: 60px;">זו שיטה מהירה, ללא מגע בילד, מתאימה לכל גיל, עוזרת להחליט על סדר עדיפויות.</div>
+          <div style="margin-right: 20px;">● <strong>משולש הערכת ילדים, מבוסס על 3 צלעות</strong></div>
+          <div style="margin-right: 40px;"><span style="font-size: 60%;">☐</span> <strong>מראה</strong></div>
+          <div style="margin-right: 40px;"><span style="font-size: 60%;">☐</span> <strong>נשימה</strong></div>
+          <div style="margin-right: 40px;"><span style="font-size: 60%;">☐</span> <strong>זרימת דם לעור</strong></div>
+          <div style="margin-right: 20px;">● <strong>מראה – הערכת מצב המוח והתודעה (TICLS)</strong></div>
+          <div style="margin-right: 40px;"><span style="font-size: 60%;">☐</span> טונוס שרירים</div>
+          <div style="margin-right: 40px;"><span style="font-size: 60%;">☐</span> אינטראקציה עם הסביבה</div>
+          <div style="margin-right: 40px;"><span style="font-size: 60%;">☐</span> יכולת להרגע</div>
+          <div style="margin-right: 40px;"><span style="font-size: 60%;">☐</span> מבט, מעקב אחר תנועה</div>
+          <div style="margin-right: 40px;"><span style="font-size: 60%;">☐</span> דיבור/בכי תקין</div>
+          <div style="margin-right: 20px;">● <strong>עבודת נשימה – סימני מצוקה נשימתית</strong></div>
+          <div style="margin-right: 40px;"><span style="font-size: 60%;">☐</span> נשימה מהירה/איטית/סדירה</div>
+          <div style="margin-right: 40px;"><span style="font-size: 60%;">☐</span> נשימת אף</div>
+          <div style="margin-right: 40px;"><span style="font-size: 60%;">☐</span> משיכות</div>
+          <div style="margin-right: 40px;"><span style="font-size: 60%;">☐</span> צפצופים/גניחות</div>
+          <div style="margin-right: 40px;"><span style="font-size: 60%;">☐</span> תנוחת טריפוד</div>
+          <div style="margin-right: 40px;"><span style="font-size: 60%;">☐</span> ראש מתנדנד</div>
+          <div style="margin-right: 20px;">● <strong>זרימת דם לעור – הערכת זילוף היקפי</strong></div>
+          <div style="margin-right: 40px;"><span style="font-size: 60%;">☐</span> צבע וורוד/כחלחל/מנומר</div>
+          <div style="margin-right: 40px;"><span style="font-size: 60%;">☐</span> מילוי קפילרי קטן מ 2 שניות</div>
+          <div style="margin-right: 40px;"><span style="font-size: 60%;">☐</span> עור יבש/מזיע</div>
+          <div style="margin-right: 20px;">● <strong>פרשנות התוצאות</strong></div>
+          <div style="margin-right: 40px;"><span style="font-size: 60%;">☐</span> מראה בלבד לא תקין – בעיה נוירולודית/מטבולית</div>
+          <div style="margin-right: 40px;"><span style="font-size: 60%;">☐</span> נשימה בלבד לא תקין – מצוקה נשימתית (זילוף תקין)</div>
+          <div style="margin-right: 40px;"><span style="font-size: 60%;">☐</span> זרימה בלבד לא תקין – הלם מפוצה</div>
+          <div style="margin-right: 40px;"><span style="font-size: 60%;">☐</span> נשימה+זרימה לא תקין – הלם/כשל נשימתי</div>
+          <div style="margin-right: 40px;"><span style="font-size: 60%;">☐</span> מראה+זרימה לא תקין – הלם לא מפוצה</div>
+          <div style="margin-right: 40px;"><span style="font-size: 60%;">☐</span> מראה+נשימה לא תקין – כשל נשימתי/היפוקסיה</div>
+          <div style="margin-right: 40px;"><span style="font-size: 60%;">☐</span> <strong>כל שלושת הרכיבים לא תקינים – כשל נשימתי/קרדיולוגי – מצב קריטי</strong></div>
+          <div style="margin-right: 20px;">● <strong>סיכום מעשי</strong></div>
+          <div style="margin-right: 40px;"><span style="font-size: 60%;">☐</span> <strong>כל שלושת הרכיבים תקינים – ילד/תינוק יציב</strong></div>
+          <div style="margin-right: 40px;"><span style="font-size: 60%;">☐</span> <strong>צלע אחת או יותר לא תקינה – ילד/תינוק לא יציב. צריך התערבות מיידית</strong></div>
+          <div style="margin-right: 20px;">● <strong>אצל ילדים מקרה הטכיקרדיה הנפוץ ביותר הוא סינוס טכיקרדיה כתוצאה מתגובת הגוף למצבים קלינים שונים.</strong></div>
+          <div style="margin-right: 40px;"><span style="font-size: 60%;">☐</span> <strong>סימני סינוס טכיקארדיה</strong></div>
+          <div style="margin-right: 60px;">גלי P ומרווח P-R קבועים. מרווח R-R משתנה</div>
+          <div style="margin-right: 40px;"><span style="font-size: 60%;">☐</span> <strong>גבול הנרומה העליון לדופק לפי גיל</strong></div>
+          <div style="margin-right: 60px;">עד 3 חודשים 210 פעימות לדקה</div>
+          <div style="margin-right: 60px;">מ 3 חודשים ועד שנתיים 190 פעימות לדקה</div>
+          <div style="margin-right: 60px;">מגיל שנתיים ועד 10 שנים 140 פעימות לדקה</div>
+          <div style="margin-right: 60px;">גיל 10 ומעלה 100 פעימות לדקה</div>
+          <div style="margin-right: 40px;"><span style="font-size: 60%;">☐</span> <strong>ערכי לחץ דם סיסטולי מינמלי לפי גיל</strong></div>
+          <div style="margin-right: 60px;">גיל חודש עד שנה 70mmHg</div>
+          <div style="margin-right: 60px;">גיל שנה עד 10 שנים 70mmHg+(גילX2)</div>
+          <div style="margin-right: 60px;">גיל 19 שנים ומעלה 90mmHg</div>
+          <div style="margin-right: 40px;"><span style="font-size: 60%;">☐</span> <strong>מטופל יציב ללא סימני ירידה בפרפוזיה</strong></div>
+          <div style="margin-right: 40px;"><span style="font-size: 60%;">☐</span> עבור לפרוטוקול המתאים בהתאם לרוחב QRS</div>
+          <div style="margin-right: 40px;"><span style="font-size: 60%;">☐</span> QRS קטן מ 0.09 שניות – פרוטוקול טכיאריטמיה בקומפלקס צר</div>
+          <div style="margin-right: 40px;"><span style="font-size: 60%;">☐</span> QRS גדול מ 0.09 שניות – טכיאריטמיה בקומפלקס רחב.</div>
+          <div style="margin-right: 40px;"><span style="font-size: 60%;">☐</span> <strong>מטופל עם סימני ירידה בפרפוזיה</strong></div>
+          <div style="margin-right: 40px;"><span style="font-size: 60%;">☐</span> אם זיהית טכיקרדיה ממקור סינוס – טפל בגורמים הפיכים.</div>
+          <div style="margin-right: 40px;"><span style="font-size: 60%;">☐</span> אם זיהית טכיקארדיה לא ממקור סינוס – בצע היפוך חשמלי.</div>
+          <div style="margin-right: 40px;"><span style="font-size: 60%;">☐</span> <strong>חשוב לנסות לבצע אק&quot;ג לפני החלטה על טיפול, פרק למקרים שבהם המטופל מראה סימנים ברורים לירידה בפרפוזיה.</strong></div>
+          <div style="margin-right: 40px;"><span style="font-size: 60%;">☐</span> <strong>טיפול תומך</strong></div>
+          <div style="margin-right: 60px;">חמצן – אם הסטורציה נמוכה מ 94%</div>
+          <div style="margin-right: 60px;">נוזלים – למטופלים עם מחלת חום או התייבשות</div>
+          <div style="margin-right: 60px;">טיפול בכאב – על פי פרוטוקול</div>
+          <div style="margin-right: 60px;">הורדת חום</div>
+          <div style="margin-right: 40px;"><span style="font-size: 60%;">☐</span> <strong>היפוך חשמלי</strong></div>
+          <div style="margin-right: 60px;">שקול סדציה</div>
+          <div style="margin-right: 60px;">עד שני ניסיונות רצופים. (אצל מבוגר עד 3)</div>
+          <div style="margin-right: 60px;">אנרגיה התחלתית 0.5-1J/kg</div>
+          <div style="margin-right: 60px;">אנרגיה מירבית 2J/kg</div>
+          <div style="margin-right: 60px;">אם אין אפשרות לסינכרון, בצע דפיבלריציה.</div>
+          <div style="margin-right: 40px;"><span style="font-size: 60%;">☐</span> <strong>סדציה</strong></div>
+          <div style="margin-right: 60px;">דורמיקום – מתן ב IV במינון של 0.1mg/kg מנה מירבית 5mg.</div>
+          <div style="margin-right: 60px;">אטומידדט – מינון 0.2-0.3mg/kg.</div>
+          <div style="margin-right: 40px;"><span style="font-size: 60%;">☐</span> <strong>אמיודורון – תרופה אנטי אריטמיות</strong></div>
+          <div style="margin-right: 60px;">מינון 5mg/kg במשך 20 דקות.</div>
+          <div style="margin-right: 60px;">אפשר לתת עד שתי מנות נוספות בהפרש של 10 דקות אם המטופל לא הגיב למנה הראשונה.</div>
+          <div style="margin-right: 60px;">אין לתת לחולים עם רגישות ידועה ליוד או הסובלים מפרה-אקסיטציה.</div>
+          <div style="margin-right: 60px;">אפשר לנסות היפוך חשמלי נוסף, אחרי מתן אמיודורון.</div>
+          <div style="margin-right: 40px;"><span style="font-size: 60%;">☐</span> <strong>מגנזיום סולפט (במקרה של TDP) – אלקטרוליט, אנטיאריטמיות</strong></div>
+          <div style="margin-right: 60px;">מינון של 25-50mg/kg במשך 10-15 דקות עד למקסימון של 2gr.</div>
+        <details>
+          <summary>טכיאריטמיה בקומפלקס רחב (ללא סימני ירידה בפרפוזיה)</summary>
+          <div class="content">
+            <div style="margin-right: 20px;">● <strong>דופק לא סדיר ולא מונומורפי</strong></div>
+            <div style="margin-right: 40px;"><span style="font-size: 60%;">☐</span> שקול אמיודורון – 5mg/kg במשך 20 דקות.. מינון מירבי 300mg.</div>
+            <div style="margin-right: 40px;"><span style="font-size: 60%;">☐</span> שקול היפוך חשמלי</div>
+            <div style="margin-right: 40px;"><span style="font-size: 60%;">☐</span> פינוי דחוף לבית חולים קרוב.</div>
+            <div style="margin-right: 40px;"><span style="font-size: 60%;">☐</span> <strong>מגנזיום סולפט</strong></div>
+            <div style="margin-right: 60px;">התוויה – Polymorphicv VT</div>
+            <div style="margin-right: 60px;">מינון – 25-50mg/kg בהמשך 10-15 דקות</div>
+            <div style="margin-right: 60px;">מינון מקסימלי 2gr.</div>
+            <div style="margin-right: 40px;"><span style="font-size: 60%;">☐</span> <strong>היפוך חשמלי מסונכרן – על פי פרוטוקול טכיקרדיה בתינוקות וילדים.</strong></div>
+            <div style="margin-right: 20px;">● <strong>דופק סדיר ומונומורפי</strong></div>
+            <div style="margin-right: 40px;"><span style="font-size: 60%;">☐</span> <strong>שקול אדנוזין</strong></div>
+            <div style="margin-right: 60px;">מנה ראשונה – 0.1mg/kg מקסימלית 6mg.</div>
+            <div style="margin-right: 60px;">מנה שניה (על פי הצורך) – 0.2mg/kg מנה מירבית 12mg.</div>
+            <div style="margin-right: 60px;">מתן בפוש מהיר ומיד 5ml סליין. להמתין 1-2 דקת בין המנות.</div>
+            <div style="margin-right: 60px;">אין לתת למטופל עם פרה-אקסטציה ידועה.</div>
+            <div style="margin-right: 60px;">יש לקבל אישור מהמוקד הרפואי עם מטופלים הסובלים מאסתמה קשה.</div>
+      </div>
+    </details>
+
+        <details>
+          <summary>טכיאריטמיה בקומפלקס צר (ללא סימני ירידה בפרפוזיה)</summary>
+          <div class="content">
+            <div style="margin-right: 20px;">● <strong>אם סינוס טכיקרדיה – תן טיפול תומך בגורמים הפיכים.</strong></div>
+            <div style="margin-right: 20px;">● <strong>אם לא סינוס טכיקרדיה .</strong></div>
+            <div style="margin-right: 40px;"><span style="font-size: 60%;">☐</span> שקול גירוי וגאלי.</div>
+            <div style="margin-right: 40px;"><span style="font-size: 60%;">☐</span> אם לא עזר – שקול אדנוזין IV</div>
+            <div style="margin-right: 40px;"><span style="font-size: 60%;">☐</span> אם לא עזר שקול אמיודורון IV. שקול היפוך חשמלי.</div>
+            <div style="margin-right: 40px;"><span style="font-size: 60%;">☐</span> בכל שלב שבו הקצב הפך לסינוס טכיקרדיה, טפל בגורמים הפיכים.</div>
+            <div style="margin-right: 40px;"><span style="font-size: 60%;">☐</span> המשך ניטור בזמן פינוי לבית חולים קרוב.</div>
+            <div style="margin-right: 20px;">● <strong>חשד ל PSVT בילדים.</strong></div>
+            <div style="margin-right: 40px;"><span style="font-size: 60%;">☐</span> תשאול רלוונטי</div>
+            <div style="margin-right: 40px;"><span style="font-size: 60%;">☐</span> קצב לב גבוה מ 220 אצל תינוקות וגבוה מ 180 אצל ילדים</div>
+            <div style="margin-right: 40px;"><span style="font-size: 60%;">☐</span> גלי P חסרים או א-נורמליים</div>
+            <div style="margin-right: 40px;"><span style="font-size: 60%;">☐</span> מרווח R-R קבוע.</div>
+            <div style="margin-right: 20px;">● <strong>גירוי וגאלי</strong></div>
+            <div style="margin-right: 40px;"><span style="font-size: 60%;">☐</span> תינוקות וילדים עד גיל 6 באמצעות קרח עטוף במגבת על הפנים.</div>
+            <div style="margin-right: 40px;"><span style="font-size: 60%;">☐</span> בילדים בוגרים תמרון Valsalva או באמצעות נשיפה חזקה מאד לקשית או לתוך מזרק.</div>
+            <div style="margin-right: 40px;"><span style="font-size: 60%;">☐</span> אפשר לנסות עיסוי קרוטי.</div>
+            <div style="margin-right: 20px;">● <strong>הכנת אדנוזין</strong></div>
+            <div style="margin-right: 40px;"><span style="font-size: 60%;">☐</span> אמפולה 6mg/2ml</div>
+            <div style="margin-right: 40px;"><span style="font-size: 60%;">☐</span> <strong>מנה ראשונה</strong></div>
+            <div style="margin-right: 60px;">שואבים 3mg/1ml למזרק 3 ומשלימים עם סליין יש במזרק 3mg/3ml.</div>
+            <div style="margin-right: 60px;">ילד ששוקל 10 ק&quot;ג צריך לקבל 1mg. נותנים לו את המשקל מחולק ב 10 במיליליטר.</div>
+            <div style="margin-right: 60px;">ילד ששוקל 30 ק&quot;ג צריך לקבל 3mg. נותנים לו את כל המזרק 3ml.</div>
+            <div style="margin-right: 60px;">עבור ילדים מעל 30 ק&quot;ג שואבים את כל האמפולה למזרק 10 ומשלימים ל 6ml.</div>
+            <div>מקבלים 6mg/6ml</div>
+            <div style="margin-right: 40px;"><span style="font-size: 60%;">☐</span> <strong>מנה שניה</strong></div>
+            <div style="margin-right: 60px;">שואבים את כל האמפולה למזרק עשר ומשלימים ל6ml . נותנים כפול מהמנה הראשונה.</div>
+            <div style="margin-right: 60px;">ילד ששוקל 30ק&quot;ג צריך לקבל 6mg. מקבל את כל ה 6ml במזרק.</div>
+            <div style="margin-right: 60px;">אם 2 ניסיונות היפוך לא הצליחו מתקשרים לרפואי לאישור של היפוך חשמלי או אמיודורון.</div>
+      </div>
+    </details>
+
+      </div>
+    </details>
+
+      </div>
+    </details>
+
+    <details>
+      <summary>מצבי חירום נשימתיים</summary>
+      <div class="content">
+      <details>
+        <summary>CROUP (קראופ) – ידועה גם כ לרינגוטראכיוברונכיטיס.</summary>
+        <div class="content">
+          <div style="margin-right: 40px;"><span style="font-size: 60%;">☐</span> דלקת נגיפית של דרכי נשימה העליונות אצל ילדים הנגרמת על ידי נפיחות וצמצום של הגרון וקנה הנשימה.</div>
+          <div style="margin-right: 40px;"><span style="font-size: 60%;">☐</span> המחלה גורמת לתהליך בצקתי בשל הדלקת במיתרי הקול.</div>
+          <div style="margin-right: 40px;"><span style="font-size: 60%;">☐</span> המחלה משמעותית ביותר, מגיל 3 חודשים עד 3 שנים, משום שאז קוטר דרכי הנשימה קטן והבצקת גומת לחסימה משמעותית במעבר האוויר.</div>
+          <div style="margin-right: 40px;"><span style="font-size: 60%;">☐</span> מה שאנחנו מכירים כסטרידור, זה לא מחלה. זה הצליל הנבחני ששומעים.</div>
+          <div style="margin-right: 20px;">● <strong>תסמינים:</strong></div>
+          <div style="margin-right: 40px;"><span style="font-size: 60%;">☐</span> <strong>שיעול טורדני: שיעול חזק, הנשמע כמו נביחה.</strong></div>
+          <div style="margin-right: 40px;"><span style="font-size: 60%;">☐</span> נשימה רועשת (סטרידור): קול גבוה וצפצפני הנשמע בזמן שאיפת אוויר (אינספירטורי).</div>
+          <div style="margin-right: 40px;"><span style="font-size: 60%;">☐</span> צרידות</div>
+          <div style="margin-right: 40px;"><span style="font-size: 60%;">☐</span> חום, נזלת ושיעול – תסמינים דמויי הצטננות</div>
+          <div style="margin-right: 40px;"><span style="font-size: 60%;">☐</span> קוצר נשימה, במקרים חמורים עלולים לראות רטרקציות של השרירים הבין צלעיים.</div>
+          <div style="margin-right: 40px;"><span style="font-size: 60%;">☐</span> טאכיפנאה</div>
+          <div style="margin-right: 20px;">● <strong>טיפול יכלול</strong></div>
+          <div style="margin-right: 40px;"><span style="font-size: 60%;">☐</span> חמצן</div>
+          <div style="margin-right: 40px;"><span style="font-size: 60%;">☐</span> חשיפה לאוויר קר</div>
+          <div style="margin-right: 40px;"><span style="font-size: 60%;">☐</span> הרגעת המטופל</div>
+          <div style="margin-right: 40px;"><span style="font-size: 60%;">☐</span> טיפול תרופתי על ידי אינהלציית אדרנלין במינון גבוה.</div>
+          <div style="margin-right: 20px;">● <strong>אדרנלין</strong></div>
+          <div style="margin-right: 40px;"><span style="font-size: 60%;">☐</span> מינון 0.5mg/kg. מדולל ב 3-5ml סליין.</div>
+          <div style="margin-right: 40px;"><span style="font-size: 60%;">☐</span> צפוי שיפור מהיר תוך 10-30 דקות. השפעה 2-3 שעות.</div>
+          <div style="margin-right: 40px;"><span style="font-size: 60%;">☐</span> השפעה זמנית שלאחריה הסימפטומים עלולים לחזור ולהחמיר. לכן חובה להשאר בהשגחה 3-4 שעיות לאחר תחילת הטיפול.</div>
+          <div style="margin-right: 40px;"><span style="font-size: 60%;">☐</span> טיפול לטווח ארוך על ידי סטרואידים.</div>
+      </div>
+    </details>
+
+      <details>
+        <summary>מחלות CROUP</summary>
+        <div class="content">
+          <div style="margin-right: 20px;">● <strong>עדיין בהכנה</strong></div>
+      </div>
+    </details>
+
+      </div>
+    </details>
+
+  
+
+      </div>
+        <script>
+        const hamburgerBtn = document.getElementById('hamburgerBtn');
+        const sideMenu = document.getElementById('sideMenu');
+        const overlay = document.getElementById('overlay');
+
+        // פתיחה/סגירה של התפריט
+        hamburgerBtn.addEventListener('click', function() {
+            hamburgerBtn.classList.toggle('active');
+            sideMenu.classList.toggle('open');
+            overlay.classList.toggle('active');
+        });
+
+        // סגירה בלחיצה על האוברליי
+        overlay.addEventListener('click', function() {
+            hamburgerBtn.classList.remove('active');
+            sideMenu.classList.remove('open');
+            overlay.classList.remove('active');
+        });
+
+        // סגירה בלחיצה על ESC
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                hamburgerBtn.classList.remove('active');
+                sideMenu.classList.remove('open');
+                overlay.classList.remove('active');
+            }
+        });
+  </script>
+	<script src="/mda/js/hamburger-menu.js"></script>      
+</body>
+</html>
