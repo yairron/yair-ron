@@ -1,0 +1,441 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <title>מדד גלזגאו</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <script 
+      src="https://cdn.counter.dev/script.js" 
+      data-id="87cd2eee-d5db-43dc-9575-16e58a14c32d" 
+      data-utcoffset="3" 
+      defer 
+      referrerpolicy="no-referrer"></script>
+<!--<meta name="viewport" content="width=device-width, initial-scale=1.0">-->
+<style>
+      body {
+      font-family: Arial, sans-serif;
+      background: #f7f7f7;
+      margin: 0;
+      padding: 0 10vw;
+    }
+    .top-link {
+      position: fixed;
+      top: 0;
+      right: 0;
+      left: 0;
+      background: #1976d2;
+      color: #fff;
+      text-align: center;
+      padding: 8px 0 4px 0;
+      z-index: 101;
+      font-size: 1.1em;
+      text-decoration: none;
+      letter-spacing: 1px;
+      box-shadow: 0 2px 8px #bbb;
+    }
+    .sticky-header {
+      position: fixed;
+      top: 36px;
+      right: 0;
+      left: 0;
+      background: #fff;
+      z-index: 100;
+      text-align: center;
+      padding: 18px 0 10px 0;
+      font-size: 2em;
+      font-weight: bold;
+      box-shadow: 0 2px 8px #ddd;
+      border-bottom: 1px solid #eee;
+      /**/
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    
+    .content-wrapper {
+      margin-top: 100px;
+    }
+    details {
+      background: #fff;
+      border-radius: 8px;
+      margin: 16px 0;
+      box-shadow: 0 2px 8px #ddd;
+    }
+    summary {
+      font-size: 1.2em;
+      font-weight: bold;
+      cursor: pointer;
+      padding: 12px;
+      outline: none;
+    }
+
+    .content div {
+    margin: 0.3em 0;
+    line-height: 1.4;
+}
+.indent-1 { margin-right: 20px; }
+.indent-2 { margin-right: 40px; }
+.indent-3 { margin-right: 60px; }
+
+    /* סגנונות התפריט */
+        .hamburger-menu {
+            cursor: pointer;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-around;
+            width: 30px;
+            height: 25px;
+            background: transparent;
+            border: none;
+            padding: 0;
+            margin-right: 20px;
+            
+        }
+
+        .hamburger-line {
+            width: 100%;
+            height: 3px;
+            background-color: #333;
+            border-radius: 2px;
+            transition: 0.3s;
+        }
+
+        .hamburger-menu.active .hamburger-line:nth-child(1) {
+            transform: rotate(45deg) translate(8px, 8px);
+        }
+
+        .hamburger-menu.active .hamburger-line:nth-child(2) {
+            opacity: 0;
+        }
+
+        .hamburger-menu.active .hamburger-line:nth-child(3) {
+            transform: rotate(-45deg) translate(8px, -8px);
+        }
+
+        .side-menu {
+            position: fixed;
+            top: 0;
+            right: -15%;
+            width: 15%;
+            height: 100vh;
+            background-color: white;
+            box-shadow: -2px 0 10px rgba(0,0,0,0.1);
+            transition: right 0.3s ease;
+            z-index: 1000;
+            padding: 0;
+            border-left: 1px solid #ddd;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .side-menu.open {
+            right: 0;
+        }
+
+        .side-menu h3 {
+            padding: 20px;
+            background-color: #1976d2;
+            color: white;
+            margin: 0;
+            text-align: center;
+            font-size: 18px;
+            font-weight: bold;
+            flex-shrink: 0;
+        }
+
+        .side-menu-content {
+            flex: 1;
+            overflow-y: auto;
+            overflow-x: hidden;
+        }
+
+        .side-menu ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .side-menu li {
+            border-bottom: 1px solid #eee;
+        }
+
+        .side-menu a {
+            display: block;
+            padding: 15px 20px;
+            color: #0077cc;
+            text-decoration: none;
+            transition: background-color 0.3s;
+            font-size: 16px;
+        }
+
+        .side-menu a:hover {
+            background-color: #f0f0f0;
+            text-decoration: underline;
+        }
+
+        .overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.5);
+            visibility: hidden;
+            opacity: 0;
+            transition: opacity 0.3s, visibility 0.3s;
+            z-index: 999;
+        }
+
+        .overlay.active {
+            visibility: visible;
+            opacity: 1;
+        }
+
+       /* .menu-title_old{
+            flex-grow: 1;
+            text-align: center;
+        } */
+
+       .menu-title {
+            flex-grow: 1;
+            text-align: center;
+            white-space: nowrap;
+            font-size: clamp(1.5rem, 4vw, 2rem);
+            padding: 0 5px;
+          
+       }
+
+        .menu-spacer {
+            width: 30px;  
+            margin-left: 20px;
+        }
+/* עיצוב סרגל הגלילה */
+        .side-menu-content::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        .side-menu-content::-webkit-scrollbar-track {
+            background: #f1f1f1;
+        }
+
+        .side-menu-content::-webkit-scrollbar-thumb {
+            background: #c1c1c1;
+            border-radius: 4px;
+        }
+
+        .side-menu-content::-webkit-scrollbar-thumb:hover {
+            background: #a8a8a8;
+			}
+/* כפתור חזרה בפינה השמאלית */
+    .back-button {
+      position: absolute;
+      left: 15px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: #ffffff;
+      text-decoration: none;
+      font-size: 1em;
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      cursor: pointer;
+      transition: opacity 0.2s;
+    }
+    
+    .back-button:hover {
+      opacity: 0.8;
+    }
+    
+    .back-arrow {
+      font-size: 1.2em;
+      font-weight: bold;
+      
+    }	
+    details[open] summary { color: #1976d2; }
+    .content { padding: 0 16px 16px 16px; }
+    ul { margin: 0; padding-right: 20px; }
+    li { margin-bottom: 6px; }
+    blockquote {
+      background: #e3f2fd;
+      border-right: 5px solid #1976d2;
+      margin: 12px 0;
+      padding: 10px 16px;
+      font-style: italic;
+      color: #1976d2;
+    }
+    @media (max-width: 600px) {
+      h2 {
+        font-size: 40px;
+      }
+  
+      .projects a, .title-link {
+        font-size: 26px;
+        margin: 25px 0;
+      }
+      /* תיקון התפריט הצדדי במסכים קטנים */
+       .side-menu {
+                width: 70%;
+                right: -70%;
+            }
+    }
+  </style>
+</head>
+<body>
+  <a href="../../../index.html" class="top-link">
+  	חזרה לתפריט הראשי
+		   <div class="back-button" onclick="history.back()">
+			 <span class="back-arrow">←</span>
+			 <span>חזרה</span>
+		   </div>
+		 </a>
+		<div class="sticky-header">		
+		<button class="hamburger-menu" id="hamburgerBtn">
+            <div class="hamburger-line"></div>
+            <div class="hamburger-line"></div>
+            <div class="hamburger-line"></div>
+        </button>
+        <div class="menu-title">מדד גלזגאו</div>
+        <div class="menu-spacer"></div>
+    </div>
+
+    <div class="overlay" id="overlay"></div>
+    
+    <div class="side-menu" id="sideMenu">
+        <h3>תפריט ראשי</h3>
+        <div class="side-menu-content">
+            <ul>
+    <!--            <li><a href="atan/atan_index.html">אט"ן</a></li>
+				<li><a href="bls/bls_index.html">BLS</a></li>
+				<li><a href="Bechirim/bechirim_index.html">קורס בכירים</a></li>
+                <li><a href="Bechirim/protocols/ALS2024.HTML">אוגדן ALS 2024</a></li>
+                <li><a href="Bechirim/protocols/protocols_index.html">פרוטוקולים</a></li>
+                <li><a href="Bechirim/Sikumim/Sikumim_index.html">מצגות וסיכומי מצגות</a></li>
+                <li><a href="Bechirim/Sikumim/SIKUM_LESSONS/lessons_index.html">סיכומי שיעורים</a></li>
+                <li><a href="Bechirim/Sikumim/SIKUM_LESSONS/ECG_Practice_MI.html">תרגול אק"ג - אוטם</a></li>
+                <li><a href="Bechirim/Sikumim/SIKUM_LESSONS/ECG_Practice_arrhythm.html">תרגול אק"ג - הפרעות קצב</a></li>
+                <li><a href="Bechirim/Phrases/Phrases.html">אינדקס מושגים</a></li>
+                <li><a href="Bechirim/trufot_Bait_search_site/Trufot_BAEIT.html">תרופות נפוצות בבית</a></li>
+                <li><a href="Bechirim/Sikumim/Pdf_files/pdf_index.html">ספרות</a></li> -->
+         <!--    <li><a href="#" onclick="alert('הוסף קישור לספרות')">ספרות</a></li> -->
+            </ul>
+        </div>
+	</div>
+  <div class="content-wrapper">
+        
+ <details>
+  <summary>פתיחת עיניים (Eye Opening) - 4 E נקודות</summary>
+  <div class="content">
+    <div style="margin-right: 20px;">● <strong>ציון מקסימלי: 4 נקודות</strong></div>
+    <div style="margin-right: 20px;">● <strong>4 נקודות - פתיחת עיניים ספונטנית</strong></div>
+    <div style="margin-right: 40px;"><span style="font-size: 60%;">☐</span> המטופל פותח עיניים מעצמו ללא גירוי חיצוני</div>
+    <div style="margin-right: 40px;"><span style="font-size: 60%;">☐</span> מעיד על רמת ערנות גבוהה יחסית</div>
+    <div style="margin-right: 20px;">● <strong>3 נקודות - פתיחת עיניים בתגובה לפנייה קולית</strong></div>
+    <div style="margin-right: 40px;"><span style="font-size: 60%;">☐</span> המטופל פותח עיניים רק לאחר קריאה בשמו או פנייה קולית</div>
+    <div style="margin-right: 40px;"><span style="font-size: 60%;">☐</span> אין צורך בגירוי חזק - די בדיבור רגיל</div>
+    <div style="margin-right: 20px;">● <strong>2 נקודות - פתיחת עיניים בתגובה לכאב</strong></div>
+    <div style="margin-right: 40px;"><span style="font-size: 60%;">☐</span> המטופל פותח עיניים רק בתגובה לגירוי כאב</div>
+    <div style="margin-right: 40px;"><span style="font-size: 60%;">☐</span> יש להפעיל לחץ על ציפורן או עצם החזה</div>
+    <div style="margin-right: 20px;">● <strong>1 נקודה - אין פתיחת עיניים</strong></div>
+    <div style="margin-right: 40px;"><span style="font-size: 60%;">☐</span> המטופל לא פותח עיניים בכל תנאי</div>
+    <div style="margin-right: 40px;"><span style="font-size: 60%;">☐</span> גם לא בתגובה לגירוי כאב</div>
+  </div>
+</details>
+
+<details>
+  <summary>תגובה מילולית (Verbal Response) - 5 V נקודות</summary>
+  <div class="content">
+    <div style="margin-right: 20px;">● <strong>ציון מקסימלי: 5 נקודות</strong></div>
+    <div style="margin-right: 20px;">● <strong>5 נקודות - מדבר בצורה קוהרנטית ומתמצא</strong></div>
+    <div style="margin-right: 40px;"><span style="font-size: 60%;">☐</span> המטופל מתמצא במקום, זמן ומצב (Oriented)</div>
+    <div style="margin-right: 40px;"><span style="font-size: 60%;">☐</span> עונה על שאלות בצורה הגיונית ורצופה</div>
+    <div style="margin-right: 40px;"><span style="font-size: 60%;">☐</span> דיבור קוהרנטי ומובן</div>
+    <div style="margin-right: 20px;">● <strong>4 נקודות - מדבר אך מבולבל</strong></div>
+    <div style="margin-right: 40px;"><span style="font-size: 60%;">☐</span> המטופל מדבר במשפטים אך לא מתמצא (Confused)</div>
+    <div style="margin-right: 40px;"><span style="font-size: 60%;">☐</span> עשוי לא לדעת היכן הוא או מה התאריך</div>
+    <div style="margin-right: 40px;"><span style="font-size: 60%;">☐</span> הדיבור עצמו קוהרנטי אך התוכן מבולבל</div>
+    <div style="margin-right: 20px;">● <strong>3 נקודות - מילים בודדות לא מתאימות</strong></div>
+    <div style="margin-right: 40px;"><span style="font-size: 60%;">☐</span> המטופל משתמש במילים בודדות בלבד (Inappropriate Words)</div>
+    <div style="margin-right: 40px;"><span style="font-size: 60%;">☐</span> המילים אינן מתאימות לשאלה או לסיטואציה</div>
+    <div style="margin-right: 40px;"><span style="font-size: 60%;">☐</span> אין משפטים שלמים</div>
+    <div style="margin-right: 20px;">● <strong>2 נקודות - קולות בלתי מובנים</strong></div>
+    <div style="margin-right: 40px;"><span style="font-size: 60%;">☐</span> המטופל משמיע קולות בלבד (Incomprehensible Sounds)</div>
+    <div style="margin-right: 40px;"><span style="font-size: 60%;">☐</span> גניחות, אנחות, צעקות</div>
+    <div style="margin-right: 40px;"><span style="font-size: 60%;">☐</span> אין מילים מובחנות</div>
+    <div style="margin-right: 20px;">● <strong>1 נקודה - אין תגובה מילולית</strong></div>
+    <div style="margin-right: 40px;"><span style="font-size: 60%;">☐</span> אין כל תגובה קולית (No Response)</div>
+    <div style="margin-right: 40px;"><span style="font-size: 60%;">☐</span> גם לא בתגובה לגירוי כאב</div>
+    <div style="margin-right: 20px;">● <strong>הערה מיוחדת:</strong></div>
+    <div style="margin-right: 40px;"><span style="font-size: 60%;">☐</span> במקרה של מטופל מאונטב או עם טראכאוסטומיה - יש לסמן T (Tracheostomy)</div>
+    <div style="margin-right: 40px;"><span style="font-size: 60%;">☐</span> במקרה של מחסום שפה - יש להעריך לפי יכולת התקשורת</div>
+  </div>
+</details>
+
+<details>
+  <summary>תגובה מוטורית (Motor Response) - 6 M נקודות</summary>
+  <div class="content">
+    <div style="margin-right: 20px;">● <strong>ציון מקסימלי: 6 נקודות</strong></div>
+    <div style="margin-right: 20px;">● <strong>6 נקודות - מבצע פקודות</strong></div>
+    <div style="margin-right: 40px;"><span style="font-size: 60%;">☐</span> המטופל מבצע פקודות פשוטות במדויק (Obeys Commands)</div>
+    <div style="margin-right: 40px;"><span style="font-size: 60%;">☐</span> למשל: "הרם את היד", "פתח את העיניים"</div>
+    <div style="margin-right: 40px;"><span style="font-size: 60%;">☐</span> מעיד על תפקוד מוטורי תקין</div>
+    <div style="margin-right: 20px;">● <strong>5 נקודות - מאתר כאב</strong></div>
+    <div style="margin-right: 40px;"><span style="font-size: 60%;">☐</span> המטופל מאתר את מקור הכאב ומנסה להרחיק אותו (Localizes Pain)</div>
+    <div style="margin-right: 40px;"><span style="font-size: 60%;">☐</span> מניח יד על אזור הגירוי או דוחף את יד הבודק</div>
+    <div style="margin-right: 40px;"><span style="font-size: 60%;">☐</span> תנועה מכוונת ומדויקת</div>
+    <div style="margin-right: 20px;">● <strong>4 נקודות - נסיגה מכאב</strong></div>
+    <div style="margin-right: 40px;"><span style="font-size: 60%;">☐</span> המטופל מושך את הגפה מהכאב אך לא מאתר (Withdraws from Pain)</div>
+    <div style="margin-right: 40px;"><span style="font-size: 60%;">☐</span> תנועת נסיגה רפלקסיבית</div>
+    <div style="margin-right: 40px;"><span style="font-size: 60%;">☐</span> אין ניסיון להרחיק את מקור הכאב</div>
+    <div style="margin-right: 20px;">● <strong>3 נקודות - כיפוף חריג (Decorticate)</strong></div>
+    <div style="margin-right: 40px;"><span style="font-size: 60%;">☐</span> תגובת כיפוף פתולוגית (Abnormal Flexion)</div>
+    <div style="margin-right: 40px;"><span style="font-size: 60%;">☐</span> כיפוף הידיים לכיוון החזה עם סיבוב פנימי</div>
+    <div style="margin-right: 40px;"><span style="font-size: 60%;">☐</span> הרגליים במצב הרחבה</div>
+    <div style="margin-right: 40px;"><span style="font-size: 60%;">☐</span> מעיד על נזק לקליפת המוח</div>
+    <div style="margin-right: 20px;">● <strong>2 נקודות - הרחבה חריגה (Decerebrate)</strong></div>
+    <div style="margin-right: 40px;"><span style="font-size: 60%;">☐</span> תגובת הרחבה פתולוגית (Abnormal Extension)</div>
+    <div style="margin-right: 40px;"><span style="font-size: 60%;">☐</span> הרחבת כל הגפיים עם סיבוב פנימי</div>
+    <div style="margin-right: 40px;"><span style="font-size: 60%;">☐</span> תנוחת "קשיחות" עם קימור לאחור</div>
+    <div style="margin-right: 40px;"><span style="font-size: 60%;">☐</span> מעיד על נזק עמוק יותר במוח (גזע המוח)</div>
+    <div style="margin-right: 20px;">● <strong>1 נקודה - אין תגובה מוטורית</strong></div>
+    <div style="margin-right: 40px;"><span style="font-size: 60%;">☐</span> אין כל תגובה מוטורית (No Response)</div>
+    <div style="margin-right: 40px;"><span style="font-size: 60%;">☐</span> המטופל איננו מגיב לכאב כלל</div>
+    <div style="margin-right: 40px;"><span style="font-size: 60%;">☐</span> מצב קומה עמוקה</div>
+    <div style="margin-right: 20px;">● <strong>הערה חשובה:</strong></div>
+    <div style="margin-right: 40px;"><span style="font-size: 60%;">☐</span> יש להעריך את התגובה הטובה ביותר</div>
+    <div style="margin-right: 40px;"><span style="font-size: 60%;">☐</span> במקרה של שיתוק - יש להעריך את הצד התקין</div>
+    <div style="margin-right: 40px;"><span style="font-size: 60%;">☐</span> גירוי כאב צריך להיות מרכזי (לחץ על עצם החזה) ולא היקפי</div>
+  </div>
+</details>
+
+      </div>
+        <script>
+        const hamburgerBtn = document.getElementById('hamburgerBtn');
+        const sideMenu = document.getElementById('sideMenu');
+        const overlay = document.getElementById('overlay');
+
+        // פתיחה/סגירה של התפריט
+        hamburgerBtn.addEventListener('click', function() {
+            hamburgerBtn.classList.toggle('active');
+            sideMenu.classList.toggle('open');
+            overlay.classList.toggle('active');
+        });
+
+        // סגירה בלחיצה על האוברליי
+        overlay.addEventListener('click', function() {
+            hamburgerBtn.classList.remove('active');
+            sideMenu.classList.remove('open');
+            overlay.classList.remove('active');
+        });
+
+        // סגירה בלחיצה על ESC
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                hamburgerBtn.classList.remove('active');
+                sideMenu.classList.remove('open');
+                overlay.classList.remove('active');
+            }
+        });
+  </script>
+	<script src="/mda/js/hamburger-menu.js"></script>      
+</body>
+</html>
