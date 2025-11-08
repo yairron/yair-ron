@@ -1,7 +1,7 @@
 {
   "subject": "שאלון חזרה כללי",
   "description": "שאלון מאוחד של כל השאלות מקבצי ה-quiz השונים",
-  "totalQuestions": 777,
+  "totalQuestions": 807,
   "sourceFiles": [
     "anaphylaxis_quiz.json",
     "asthma_quiz.json",
@@ -25,9 +25,10 @@
     "stroke_quiz.json",
     "diabetes_mellitus_quiz.json",
     "mediction_dosse_quiz.json",
-    "trauma_care_quiz.json"
+    "trauma_care_quiz.json",
+    "glasgow_index_quiz.json"
   ],
-  "createdAt": "2025-11-01T18:10:08.925Z",
+  "createdAt": "2025-11-08T06:00:13.427Z",
   "questions": [
     {
       "id": "anaphylaxis_quiz_1",
@@ -11657,6 +11658,440 @@
       "correct": 5,
       "subject": "פרוטוקול הטיפול בנפגע טראומה",
       "sourceFile": "trauma_care_quiz.json"
+    },
+    {
+      "id": "glasgow_index_quiz_1",
+      "question": "מדד גלזגאו משמש להערכת רמת ההכרה של מטופלים",
+      "type": "true_false",
+      "options": [
+        "נכון",
+        "לא נכון"
+      ],
+      "correct": 0,
+      "subject": "מדד גלזגאו - Glasgow Coma Scale (GCS)",
+      "sourceFile": "glasgow_index_quiz.json"
+    },
+    {
+      "id": "glasgow_index_quiz_2",
+      "question": "מהו הטווח האפשרי של ציון מדד גלזגאו?",
+      "type": "multiple_choice",
+      "options": [
+        "1-10",
+        "1-12",
+        "3-15",
+        "0-15"
+      ],
+      "correct": 2,
+      "subject": "מדד גלזגאו - Glasgow Coma Scale (GCS)",
+      "sourceFile": "glasgow_index_quiz.json"
+    },
+    {
+      "id": "glasgow_index_quiz_3",
+      "question": "מהם שלושת המרכיבים של מדד גלזגאו?",
+      "type": "multiple_choice",
+      "options": [
+        "פתיחת עיניים (Eye Opening)",
+        "תגובה מילולית (Verbal Response)",
+        "תגובה מוטורית (Motor Response)",
+        "כל התשובות נכונות"
+      ],
+      "correct": 3,
+      "subject": "מדד גלזגאו - Glasgow Coma Scale (GCS)",
+      "sourceFile": "glasgow_index_quiz.json"
+    },
+    {
+      "id": "glasgow_index_quiz_4",
+      "question": "מהו הציון המקסימלי האפשרי בקטגוריית פתיחת עיניים?",
+      "type": "multiple_choice",
+      "options": [
+        "3 נקודות",
+        "4 נקודות",
+        "5 נקודות",
+        "6 נקודות"
+      ],
+      "correct": 1,
+      "subject": "מדד גלזגאו - Glasgow Coma Scale (GCS)",
+      "sourceFile": "glasgow_index_quiz.json"
+    },
+    {
+      "id": "glasgow_index_quiz_5",
+      "question": "מהו הציון המקסימלי האפשרי בקטגוריית התגובה המילולית?",
+      "type": "multiple_choice",
+      "options": [
+        "3 נקודות",
+        "4 נקודות",
+        "5 נקודות",
+        "6 נקודות"
+      ],
+      "correct": 2,
+      "subject": "מדד גלזגאו - Glasgow Coma Scale (GCS)",
+      "sourceFile": "glasgow_index_quiz.json"
+    },
+    {
+      "id": "glasgow_index_quiz_6",
+      "question": "מהו הציון המקסימלי האפשרי בקטגוריית התגובה המוטורית?",
+      "type": "multiple_choice",
+      "options": [
+        "4 נקודות",
+        "5 נקודות",
+        "6 נקודות",
+        "7 נקודות"
+      ],
+      "correct": 2,
+      "subject": "מדד גלזגאו - Glasgow Coma Scale (GCS)",
+      "sourceFile": "glasgow_index_quiz.json"
+    },
+    {
+      "id": "glasgow_index_quiz_7",
+      "question": "ציון GCS של 15 מעיד על מטופל בהכרה מלאה ותקינה",
+      "type": "true_false",
+      "options": [
+        "נכון",
+        "לא נכון"
+      ],
+      "correct": 0,
+      "subject": "מדד גלזגאו - Glasgow Coma Scale (GCS)",
+      "sourceFile": "glasgow_index_quiz.json"
+    },
+    {
+      "id": "glasgow_index_quiz_8",
+      "question": "ציון GCS של 3 מעיד על מה?",
+      "type": "multiple_choice",
+      "options": [
+        "הכרה מלאה",
+        "הכרה מופרעת קלה",
+        "אובדן הכרה עמוק (קומה)",
+        "מצב התכווצות דצרברטיבית"
+      ],
+      "correct": 2,
+      "subject": "מדד גלזגאו - Glasgow Coma Scale (GCS)",
+      "sourceFile": "glasgow_index_quiz.json"
+    },
+    {
+      "id": "glasgow_index_quiz_9",
+      "question": "איזה ציון GCS מחייב שקילת אבטחת נתיב אוויר?",
+      "type": "multiple_choice",
+      "options": [
+        "GCS ≤ 12",
+        "GCS ≤ 10",
+        "GCS ≤ 8",
+        "GCS ≤ 6"
+      ],
+      "correct": 2,
+      "subject": "מדד גלזגאו - Glasgow Coma Scale (GCS)",
+      "sourceFile": "glasgow_index_quiz.json"
+    },
+    {
+      "id": "glasgow_index_quiz_10",
+      "question": "מהו הציון בקטגוריית פתיחת עיניים כאשר המטופל פותח עיניים באופן ספונטני?",
+      "type": "multiple_choice",
+      "options": [
+        "2 נקודות",
+        "3 נקודות",
+        "4 נקודות",
+        "5 נקודות"
+      ],
+      "correct": 2,
+      "subject": "מדד גלזגאו - Glasgow Coma Scale (GCS)",
+      "sourceFile": "glasgow_index_quiz.json"
+    },
+    {
+      "id": "glasgow_index_quiz_11",
+      "question": "מהו הציון בקטגוריית פתיחת עיניים כאשר המטופל פותח עיניים בתגובה לפנייה קולית?",
+      "type": "multiple_choice",
+      "options": [
+        "1 נקודה",
+        "2 נקודות",
+        "3 נקודות",
+        "4 נקודות"
+      ],
+      "correct": 2,
+      "subject": "מדד גלזגאו - Glasgow Coma Scale (GCS)",
+      "sourceFile": "glasgow_index_quiz.json"
+    },
+    {
+      "id": "glasgow_index_quiz_12",
+      "question": "מהו הציון בקטגוריית פתיחת עיניים כאשר המטופל פותח עיניים רק בתגובה לכאב?",
+      "type": "multiple_choice",
+      "options": [
+        "1 נקודה",
+        "2 נקודות",
+        "3 נקודות",
+        "4 נקודות"
+      ],
+      "correct": 1,
+      "subject": "מדד גלזגאו - Glasgow Coma Scale (GCS)",
+      "sourceFile": "glasgow_index_quiz.json"
+    },
+    {
+      "id": "glasgow_index_quiz_13",
+      "question": "מהו הציון בקטגוריית פתיחת עיניים כאשר המטופל לא פותח עיניים כלל?",
+      "type": "multiple_choice",
+      "options": [
+        "0 נקודות",
+        "1 נקודה",
+        "2 נקודות",
+        "3 נקודות"
+      ],
+      "correct": 1,
+      "subject": "מדד גלזגאו - Glasgow Coma Scale (GCS)",
+      "sourceFile": "glasgow_index_quiz.json"
+    },
+    {
+      "id": "glasgow_index_quiz_14",
+      "question": "מהו הציון בתגובה מילולית כאשר המטופל מדבר בצורה קוהרנטית ומתמצא במקום, זמן ומצב?",
+      "type": "multiple_choice",
+      "options": [
+        "3 נקודות",
+        "4 נקודות",
+        "5 נקודות",
+        "6 נקודות"
+      ],
+      "correct": 2,
+      "subject": "מדד גלזגאו - Glasgow Coma Scale (GCS)",
+      "sourceFile": "glasgow_index_quiz.json"
+    },
+    {
+      "id": "glasgow_index_quiz_15",
+      "question": "מהו הציון בתגובה מילולית כאשר המטופל מדבר אך מבולבל או לא מתמצא?",
+      "type": "multiple_choice",
+      "options": [
+        "2 נקודות",
+        "3 נקודות",
+        "4 נקודות",
+        "5 נקודות"
+      ],
+      "correct": 2,
+      "subject": "מדד גלזגאו - Glasgow Coma Scale (GCS)",
+      "sourceFile": "glasgow_index_quiz.json"
+    },
+    {
+      "id": "glasgow_index_quiz_16",
+      "question": "מהו הציון בתגובה מילולית כאשר המטופל משתמש במילים בודדות לא מתאימות?",
+      "type": "multiple_choice",
+      "options": [
+        "1 נקודה",
+        "2 נקודות",
+        "3 נקודות",
+        "4 נקודות"
+      ],
+      "correct": 2,
+      "subject": "מדד גלזגאו - Glasgow Coma Scale (GCS)",
+      "sourceFile": "glasgow_index_quiz.json"
+    },
+    {
+      "id": "glasgow_index_quiz_17",
+      "question": "מהו הציון בתגובה מילולית כאשר המטופל משמיע קולות בלתי מובנים בלבד?",
+      "type": "multiple_choice",
+      "options": [
+        "1 נקודה",
+        "2 נקודות",
+        "3 נקודות",
+        "4 נקודות"
+      ],
+      "correct": 1,
+      "subject": "מדד גלזגאו - Glasgow Coma Scale (GCS)",
+      "sourceFile": "glasgow_index_quiz.json"
+    },
+    {
+      "id": "glasgow_index_quiz_18",
+      "question": "מהו הציון בתגובה מילולית כאשר אין תגובה מילולית כלל?",
+      "type": "multiple_choice",
+      "options": [
+        "0 נקודות",
+        "1 נקודה",
+        "2 נקודות",
+        "3 נקודות"
+      ],
+      "correct": 1,
+      "subject": "מדד גלזגאו - Glasgow Coma Scale (GCS)",
+      "sourceFile": "glasgow_index_quiz.json"
+    },
+    {
+      "id": "glasgow_index_quiz_19",
+      "question": "מהו הציון בתגובה מוטורית כאשר המטופל מבצע פקודות במדויק?",
+      "type": "multiple_choice",
+      "options": [
+        "4 נקודות",
+        "5 נקודות",
+        "6 נקודות",
+        "7 נקודות"
+      ],
+      "correct": 2,
+      "subject": "מדד גלזגאו - Glasgow Coma Scale (GCS)",
+      "sourceFile": "glasgow_index_quiz.json"
+    },
+    {
+      "id": "glasgow_index_quiz_20",
+      "question": "מהו הציון בתגובה מוטורית כאשר המטופל מאתר את מקור הכאב ומנסה להרחיק אותו?",
+      "type": "multiple_choice",
+      "options": [
+        "3 נקודות",
+        "4 נקודות",
+        "5 נקודות",
+        "6 נקודות"
+      ],
+      "correct": 2,
+      "subject": "מדד גלזגאו - Glasgow Coma Scale (GCS)",
+      "sourceFile": "glasgow_index_quiz.json"
+    },
+    {
+      "id": "glasgow_index_quiz_21",
+      "question": "מהו הציון בתגובה מוטורית כאשר המטופל מושך את הגפה מכאב אך לא מאתר את מקורו?",
+      "type": "multiple_choice",
+      "options": [
+        "2 נקודות",
+        "3 נקודות",
+        "4 נקודות",
+        "5 נקודות"
+      ],
+      "correct": 2,
+      "subject": "מדד גלזגאו - Glasgow Coma Scale (GCS)",
+      "sourceFile": "glasgow_index_quiz.json"
+    },
+    {
+      "id": "glasgow_index_quiz_22",
+      "question": "מהו הציון בתגובה מוטורית כאשר המטופל מגיב בכיפוף חריג (Flexion/Decorticate)?",
+      "type": "multiple_choice",
+      "options": [
+        "1 נקודה",
+        "2 נקודות",
+        "3 נקודות",
+        "4 נקודות"
+      ],
+      "correct": 2,
+      "subject": "מדד גלזגאו - Glasgow Coma Scale (GCS)",
+      "sourceFile": "glasgow_index_quiz.json"
+    },
+    {
+      "id": "glasgow_index_quiz_23",
+      "question": "מהו הציון בתגובה מוטורית כאשר המטופל מגיב בהרחבה חריגה (Extension/Decerebrate)?",
+      "type": "multiple_choice",
+      "options": [
+        "1 נקודה",
+        "2 נקודות",
+        "3 נקודות",
+        "4 נקודות"
+      ],
+      "correct": 1,
+      "subject": "מדד גלזגאו - Glasgow Coma Scale (GCS)",
+      "sourceFile": "glasgow_index_quiz.json"
+    },
+    {
+      "id": "glasgow_index_quiz_24",
+      "question": "מהו הציון בתגובה מוטורית כאשר אין תגובה מוטורית כלל?",
+      "type": "multiple_choice",
+      "options": [
+        "0 נקודות",
+        "1 נקודה",
+        "2 נקודות",
+        "3 נקודות"
+      ],
+      "correct": 1,
+      "subject": "מדד גלזגאו - Glasgow Coma Scale (GCS)",
+      "sourceFile": "glasgow_index_quiz.json"
+    },
+    {
+      "id": "glasgow_index_quiz_25",
+      "question": "מהם גורמים שעלולים להשפיע על דיוק מדד גלזגאו?",
+      "type": "multiple_choice",
+      "options": [
+        "שימוש באלכוהול או סמים",
+        "שימוש בתרופות מרגיעות",
+        "נפיחות או טראומה באזור העיניים",
+        "אינטובציה או טראכאוסטומיה",
+        "שפה לא משותפת עם הבודק",
+        "חירשות או אילמות",
+        "שיתוק או פגיעה בעמוד השדרה",
+        "כל התשובות נכונות"
+      ],
+      "correct": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6
+      ],
+      "subject": "מדד גלזגאו - Glasgow Coma Scale (GCS)",
+      "sourceFile": "glasgow_index_quiz.json"
+    },
+    {
+      "id": "glasgow_index_quiz_26",
+      "question": "ציון GCS בין 13-15 מוגדר כחבלת ראש קלה",
+      "type": "true_false",
+      "options": [
+        "נכון",
+        "לא נכון"
+      ],
+      "correct": 0,
+      "subject": "מדד גלזגאו - Glasgow Coma Scale (GCS)",
+      "sourceFile": "glasgow_index_quiz.json"
+    },
+    {
+      "id": "glasgow_index_quiz_27",
+      "question": "איזה טווח ציון GCS מוגדר כחבלת ראש בינונית?",
+      "type": "multiple_choice",
+      "options": [
+        "GCS 12-14",
+        "GCS 9-12",
+        "GCS 6-9",
+        "GCS 3-8"
+      ],
+      "correct": 1,
+      "subject": "מדד גלזגאו - Glasgow Coma Scale (GCS)",
+      "sourceFile": "glasgow_index_quiz.json"
+    },
+    {
+      "id": "glasgow_index_quiz_28",
+      "question": "איזה טווח ציון GCS מוגדר כחבלת ראש חמורה?",
+      "type": "multiple_choice",
+      "options": [
+        "GCS < 12",
+        "GCS < 10",
+        "GCS ≤ 8",
+        "GCS ≤ 6"
+      ],
+      "correct": 2,
+      "subject": "מדד גלזגאו - Glasgow Coma Scale (GCS)",
+      "sourceFile": "glasgow_index_quiz.json"
+    },
+    {
+      "id": "glasgow_index_quiz_29",
+      "question": "ירידה של 2 נקודות או יותר בציון GCS במעקב חוזר מהווה סימן אזהרה להתדרדרות נוירולוגית",
+      "type": "true_false",
+      "options": [
+        "נכון",
+        "לא נכון"
+      ],
+      "correct": 0,
+      "subject": "מדד גלזגאו - Glasgow Coma Scale (GCS)",
+      "sourceFile": "glasgow_index_quiz.json"
+    },
+    {
+      "id": "glasgow_index_quiz_30",
+      "question": "מתי יש לבצע הערכה חוזרת של מדד גלזגאו?",
+      "type": "multiple_choice",
+      "options": [
+        "כל 15 דקות אם המטופל לא יציב",
+        "כל 30 דקות אם המטופל יציב",
+        "לאחר כל התערבות רפואית משמעותית",
+        "במקרה של שינוי במצב המטופל",
+        "לפני ואחרי העברה לבית חולים",
+        "רק פעם אחת בתחילת הטיפול",
+        "רק אם המטופל מתלונן על כאב ראש",
+        "רק כאשר יש הנחיה רפואית מפורשת"
+      ],
+      "correct": [
+        0,
+        1,
+        2,
+        3,
+        4
+      ],
+      "subject": "מדד גלזגאו - Glasgow Coma Scale (GCS)",
+      "sourceFile": "glasgow_index_quiz.json"
     }
   ]
 }
