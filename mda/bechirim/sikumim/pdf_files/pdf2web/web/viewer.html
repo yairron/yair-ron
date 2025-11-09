@@ -937,4 +937,50 @@ See https://github.com/adobe-type-tools/cmap-resources
     </div> <!-- outerContainer -->
     <div id="printContainer"></div>
   </body>
+  <script>
+    // Force PDF.js to stay at actual size after outline navigation or page changes.
+    (function () {
+      const PREFERRED_SCALE = 'page-actual';
+
+      function setActualScaleIfNeeded() {
+        try {
+          const app = window.PDFViewerApplication;
+          if (!app || !app.pdfViewer) return;
+          const curr = String(app.pdfViewer.currentScaleValue);
+          if (curr !== PREFERRED_SCALE) {
+            app.pdfViewer.currentScaleValue = PREFERRED_SCALE;
+          }
+        } catch (e) {
+          // ignore errors
+        }
+      }
+
+      function hookEventBus(eventBus) {
+        try {
+          eventBus.on('pagesinit', function () {
+            setTimeout(setActualScaleIfNeeded, 10);
+          });
+          eventBus.on('pagechanging', function () {
+            setTimeout(setActualScaleIfNeeded, 10);
+          });
+          eventBus.on('updateviewarea', function () {
+            setTimeout(setActualScaleIfNeeded, 10);
+          });
+        } catch (e) {
+          // ignore
+        }
+      }
+
+      if (window.PDFViewerApplication && PDFViewerApplication.eventBus) {
+        hookEventBus(PDFViewerApplication.eventBus);
+      } else {
+        const interval = setInterval(function () {
+          if (window.PDFViewerApplication && PDFViewerApplication.eventBus) {
+            clearInterval(interval);
+            hookEventBus(PDFViewerApplication.eventBus);
+          }
+        }, 100);
+      }
+    })();
+  </script>
 </html>
