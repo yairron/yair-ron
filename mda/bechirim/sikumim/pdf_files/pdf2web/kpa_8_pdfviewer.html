@@ -302,9 +302,8 @@ function loadPDF() {
    menuTitle.textContent = displayTitle;
    document.title = displayTitle;
 
-    // בניית נתיב ה-PDF עם PDF.js viewer - בקביעה שייפתח ב"גודל אמיתי" (actual size)
-    // מצרפים fragment של #zoom=page-actual כדי לפתוח ב-100% (actual size)
-    const viewerUrl = `/mda/bechirim/sikumim/pdf_files/pdf2web/web/viewer.html?file=${encodeURIComponent(pdfData.pdfPath)}#zoom=page-actual`;
+   // בניית נתיב ה-PDF עם PDF.js viewer
+   const viewerUrl = `/mda/bechirim/sikumim/pdf_files/pdf2web/web/viewer.html?file=${pdfData.pdfPath}`;
    
    // הגדרת מקור ה-iframe לviewer של PDF.js
    pdfFrame.src = viewerUrl;
