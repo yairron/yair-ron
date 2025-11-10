@@ -303,8 +303,9 @@ function loadPDF() {
    document.title = displayTitle;
 
    // בניית נתיב ה-PDF עם PDF.js viewer
-   const viewerUrl = `/mda/bechirim/sikumim/pdf_files/pdf2web/web/viewer.html?file=${pdfData.pdfPath}`;
-   
+   // שימוש ב-pagemode=none כדי למנוע שינוי אוטומטי של הזום בעת ניווט
+   const viewerUrl = `/mda/bechirim/sikumim/pdf_files/pdf2web/web/viewer.html?file=${pdfData.pdfPath}#zoom=page-width&pagemode=none`;
+
    // הגדרת מקור ה-iframe לviewer של PDF.js
    pdfFrame.src = viewerUrl;
     

@@ -801,7 +801,7 @@ const defaultOptions = {
     kind: OptionKind.VIEWER + OptionKind.PREFERENCE
   },
   ignoreDestinationZoom: {
-    value: false,
+    value: true,
     kind: OptionKind.VIEWER + OptionKind.PREFERENCE
   },
   imageResourcesPath: {
