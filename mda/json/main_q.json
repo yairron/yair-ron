@@ -1,7 +1,7 @@
 {
   "subject": "שאלון חזרה כללי",
   "description": "שאלון מאוחד של כל השאלות מקבצי ה-quiz השונים",
-  "totalQuestions": 897,
+  "totalQuestions": 957,
   "sourceFiles": [
     "anaphylaxis_quiz.json",
     "asthma_quiz.json",
@@ -29,7 +29,7 @@
     "glasgow_index_quiz.json",
     "trauma_final_exem_quiz.json"
   ],
-  "createdAt": "2025-11-20T17:33:34.269Z",
+  "createdAt": "2025-11-20T18:33:43.337Z",
   "questions": [
     {
       "id": "anaphylaxis_quiz_1",
@@ -13503,6 +13503,963 @@
         "דרגה IV"
       ],
       "correct": 2,
+      "subject": "טראומה - בחינה מסכמת",
+      "sourceFile": "trauma_final_exem_quiz.json"
+    },
+    {
+      "id": "trauma_final_exem_quiz_91",
+      "question": "מהם המרכיבים של עקרון מונרו-קלי (Monro-Kellie doctrine)?",
+      "type": "multiple_choice",
+      "options": [
+        "80% דם, 10% CSF, 10% רקמת מוח",
+        "80% רקמת מוח, 10% דם, 10% CSF",
+        "50% רקמת מוח, 30% דם, 20% CSF",
+        "70% רקמת מוח, 20% דם, 10% CSF"
+      ],
+      "correct": 1,
+      "subject": "טראומה - בחינה מסכמת",
+      "sourceFile": "trauma_final_exem_quiz.json"
+    },
+    {
+      "id": "trauma_final_exem_quiz_92",
+      "question": "מהו טווח הלחץ התוך-גולגולתי (ICP) הנורמלי למבוגר?",
+      "type": "multiple_choice",
+      "options": [
+        "0-5 mmHg",
+        "5-15 mmHg",
+        "15-25 mmHg",
+        "25-35 mmHg"
+      ],
+      "correct": 1,
+      "subject": "טראומה - בחינה מסכמת",
+      "sourceFile": "trauma_final_exem_quiz.json"
+    },
+    {
+      "id": "trauma_final_exem_quiz_93",
+      "question": "מהם מרכיבי שלישיית Cushing?",
+      "type": "multiple_choice",
+      "options": [
+        "היפוטנזיה, טכיקרדיה, נשימה סדירה",
+        "היפרטנזיה, ברדיקרדיה, נשימה לא סדירה",
+        "היפרטנזיה, טכיקרדיה, נשימה מהירה",
+        "היפוטנזיה, ברדיקרדיה, נשימה איטית"
+      ],
+      "correct": 1,
+      "subject": "טראומה - בחינה מסכמת",
+      "sourceFile": "trauma_final_exem_quiz.json"
+    },
+    {
+      "id": "trauma_final_exem_quiz_94",
+      "question": "במטופל עם חשד לעלייה ב-ICP, יש להרים את ראש המיטה ל-30 מעלות",
+      "type": "true_false",
+      "options": [
+        "נכון",
+        "לא נכון"
+      ],
+      "correct": 0,
+      "subject": "טראומה - בחינה מסכמת",
+      "sourceFile": "trauma_final_exem_quiz.json"
+    },
+    {
+      "id": "trauma_final_exem_quiz_95",
+      "question": "מהו הגורם להלם נוירוגני?",
+      "type": "multiple_choice",
+      "options": [
+        "דימום חיצוני",
+        "פגיעה במערכת העצבים או חוט השדרה",
+        "זיהום בדם",
+        "אוטם שריר הלב"
+      ],
+      "correct": 1,
+      "subject": "טראומה - בחינה מסכמת",
+      "sourceFile": "trauma_final_exem_quiz.json"
+    },
+    {
+      "id": "trauma_final_exem_quiz_96",
+      "question": "איך מאופיין הדופק בהלם נוירוגני?",
+      "type": "multiple_choice",
+      "options": [
+        "דופק מהיר וחזק",
+        "דופק איטי יחסית",
+        "דופק לא סדיר",
+        "דופק נעדר"
+      ],
+      "correct": 1,
+      "subject": "טראומה - בחינה מסכמת",
+      "sourceFile": "trauma_final_exem_quiz.json"
+    },
+    {
+      "id": "trauma_final_exem_quiz_97",
+      "question": "מהם הסימנים האופייניים להלם קרדיוגני? (בחר את כל התשובות הנכונות)",
+      "type": "multiple_correct",
+      "options": [
+        "כשל של שריר הלב",
+        "אוטם שריר הלב",
+        "הפרעות קצב חמורות",
+        "עור חם ואדום",
+        "דופק איטי",
+        "דימום מסיבי",
+        "היפוטנזיה",
+        "עור חיוור וקר"
+      ],
+      "correct": [
+        0,
+        1,
+        2,
+        6,
+        7
+      ],
+      "subject": "טראומה - בחינה מסכמת",
+      "sourceFile": "trauma_final_exem_quiz.json"
+    },
+    {
+      "id": "trauma_final_exem_quiz_98",
+      "question": "מהו הגורם להלם חסימתי?",
+      "type": "multiple_choice",
+      "options": [
+        "דימום פנימי",
+        "זיהום",
+        "חסימה פיזית לזרימת הדם",
+        "כשל לב"
+      ],
+      "correct": 2,
+      "subject": "טראומה - בחינה מסכמת",
+      "sourceFile": "trauma_final_exem_quiz.json"
+    },
+    {
+      "id": "trauma_final_exem_quiz_99",
+      "question": "אילו גורמים יכולים לגרום להלם חסימתי? (בחר את כל התשובות הנכונות)",
+      "type": "multiple_correct",
+      "options": [
+        "פנאומותורקס מתח",
+        "טמפונדה קרדיאלית",
+        "דימום עורקי",
+        "זיהום בדם",
+        "פגיעת חוט שדרה",
+        "אובדן נוזלים"
+      ],
+      "correct": [
+        0,
+        1
+      ],
+      "subject": "טראומה - בחינה מסכמת",
+      "sourceFile": "trauma_final_exem_quiz.json"
+    },
+    {
+      "id": "trauma_final_exem_quiz_100",
+      "question": "בהלם ספטי, העור בשלב המוקדם הוא חם ואדום",
+      "type": "true_false",
+      "options": [
+        "נכון",
+        "לא נכון"
+      ],
+      "correct": 0,
+      "subject": "טראומה - בחינה מסכמת",
+      "sourceFile": "trauma_final_exem_quiz.json"
+    },
+    {
+      "id": "trauma_final_exem_quiz_101",
+      "question": "מהי הסיבה לתנועה פרדוקסלית בחזה מרפרף?",
+      "type": "multiple_choice",
+      "options": [
+        "שבר בצלע אחת",
+        "יצירת קטע חופשי בדופן החזה שנע באופן הפוך",
+        "אוויר בחזה",
+        "דם בחזה"
+      ],
+      "correct": 1,
+      "subject": "טראומה - בחינה מסכמת",
+      "sourceFile": "trauma_final_exem_quiz.json"
+    },
+    {
+      "id": "trauma_final_exem_quiz_102",
+      "question": "כמה צלעות שבורות נדרשות ליצירת חזה מרפרף?",
+      "type": "multiple_choice",
+      "options": [
+        "צלע אחת",
+        "2 או יותר צלעות סמוכות, בשני מקומות או יותר בכל צלע",
+        "3 צלעות בלבד",
+        "כל מספר צלעות"
+      ],
+      "correct": 1,
+      "subject": "טראומה - בחינה מסכמת",
+      "sourceFile": "trauma_final_exem_quiz.json"
+    },
+    {
+      "id": "trauma_final_exem_quiz_103",
+      "question": "איך מטפלים בחזה מרפרף? (בחר את כל התשובות הנכונות)",
+      "type": "multiple_correct",
+      "options": [
+        "חמצן בריכוז גבוה",
+        "יציבות הקטע המרפרף",
+        "מיקום על הצד הפגוע",
+        "חבישה גדולה על הקטע",
+        "הדבקת סרט הדבקה סביב כל החזה",
+        "עידוד נשימות עמוקות",
+        "שיכוך כאבים",
+        "ניטור מתמיד"
+      ],
+      "correct": [
+        0,
+        1,
+        2,
+        3,
+        5,
+        6,
+        7
+      ],
+      "subject": "טראומה - בחינה מסכמת",
+      "sourceFile": "trauma_final_exem_quiz.json"
+    },
+    {
+      "id": "trauma_final_exem_quiz_104",
+      "question": "בחזה מרפרף, אסור להדביק סרט הדבקה סביב כל החזה",
+      "type": "true_false",
+      "options": [
+        "נכון",
+        "לא נכון"
+      ],
+      "correct": 0,
+      "subject": "טראומה - בחינה מסכמת",
+      "sourceFile": "trauma_final_exem_quiz.json"
+    },
+    {
+      "id": "trauma_final_exem_quiz_105",
+      "question": "מהי חבישה תלת-צדדית (3-sided dressing)?",
+      "type": "multiple_choice",
+      "options": [
+        "חבישה על שלושה אזורים שונים",
+        "חבישה שסוגרת 3 צדדים של הפצע ומשאירה צד אחד פתוח",
+        "חבישה בשלוש שכבות",
+        "חבישה משולשת"
+      ],
+      "correct": 1,
+      "subject": "טראומה - בחינה מסכמת",
+      "sourceFile": "trauma_final_exem_quiz.json"
+    },
+    {
+      "id": "trauma_final_exem_quiz_106",
+      "question": "מהו התפקיד של חבישה תלת-צדדית בפצע חזה פתוח?",
+      "type": "multiple_choice",
+      "options": [
+        "לסגור את הפצע לחלוטין",
+        "ליצור שסתום חד-כיווני שמאפשר לאוויר לצאת אבל לא להיכנס",
+        "לעצור דימום בלבד",
+        "למנוע זיהום"
+      ],
+      "correct": 1,
+      "subject": "טראומה - בחינה מסכמת",
+      "sourceFile": "trauma_final_exem_quiz.json"
+    },
+    {
+      "id": "trauma_final_exem_quiz_107",
+      "question": "מה המשמעות של 'פצע יונק'?",
+      "type": "multiple_choice",
+      "options": [
+        "דימום חזק",
+        "פצע חזה פתוח (Open Pneumothorax) שבו נשמע צליל יניקה או שריקה",
+        "פצע זיהומי",
+        "פצע שטחי"
+      ],
+      "correct": 1,
+      "subject": "טראומה - בחינה מסכמת",
+      "sourceFile": "trauma_final_exem_quiz.json"
+    },
+    {
+      "id": "trauma_final_exem_quiz_108",
+      "question": "מהי דקומפרסיה מחטית?",
+      "type": "multiple_choice",
+      "options": [
+        "הכנסת מחט קטנה לעורק",
+        "החדרת מחט גדולה (14-16G) לחלל הפלאורלי לשחרור לחץ",
+        "הזרקת תרופות",
+        "דגימת דם"
+      ],
+      "correct": 1,
+      "subject": "טראומה - בחינה מסכמת",
+      "sourceFile": "trauma_final_exem_quiz.json"
+    },
+    {
+      "id": "trauma_final_exem_quiz_109",
+      "question": "היכן מבצעים דקומפרסיה מחטית?",
+      "type": "multiple_choice",
+      "options": [
+        "מרווח צלעי 5",
+        "מרווח צלעי 2, בקו אמצע-בית השחי",
+        "מרווח צלעי 3",
+        "כל מקום בחזה"
+      ],
+      "correct": 1,
+      "subject": "טראומה - בחינה מסכמת",
+      "sourceFile": "trauma_final_exem_quiz.json"
+    },
+    {
+      "id": "trauma_final_exem_quiz_110",
+      "question": "מי יכול לבצע דקומפרסיה מחטית?",
+      "type": "multiple_choice",
+      "options": [
+        "כל אדם",
+        "רק צוות מוסמך",
+        "רק רופאים",
+        "רק אחיות"
+      ],
+      "correct": 1,
+      "subject": "טראומה - בחינה מסכמת",
+      "sourceFile": "trauma_final_exem_quiz.json"
+    },
+    {
+      "id": "trauma_final_exem_quiz_111",
+      "question": "איזה צליל נשמע בהקשה על החזה בהמותורקס?",
+      "type": "multiple_choice",
+      "options": [
+        "היפר-רזוננס (צליל תוף)",
+        "קהות (dullness)",
+        "צליל נורמלי",
+        "צליל מתכתי"
+      ],
+      "correct": 1,
+      "subject": "טראומה - בחינה מסכמת",
+      "sourceFile": "trauma_final_exem_quiz.json"
+    },
+    {
+      "id": "trauma_final_exem_quiz_112",
+      "question": "כמה דם יכול להצטבר בהמותורקס?",
+      "type": "multiple_choice",
+      "options": [
+        "עד 500 מ\"ל",
+        "עד 1000 מ\"ל",
+        "עד 1500-3000 מ\"ל",
+        "עד 5000 מ\"ל"
+      ],
+      "correct": 2,
+      "subject": "טראומה - בחינה מסכמת",
+      "sourceFile": "trauma_final_exem_quiz.json"
+    },
+    {
+      "id": "trauma_final_exem_quiz_113",
+      "question": "אילו סימני הלם אופייניים להמותורקס? (בחר את כל התשובות הנכונות)",
+      "type": "multiple_correct",
+      "options": [
+        "טכיקרדיה",
+        "היפוטנזיה",
+        "עור חיוור, קר, לח",
+        "דופק חלש",
+        "עור חם ואדום",
+        "ציאנוזה",
+        "דופק איטי",
+        "חום גבוה"
+      ],
+      "correct": [
+        0,
+        1,
+        2,
+        3,
+        5
+      ],
+      "subject": "טראומה - בחינה מסכמת",
+      "sourceFile": "trauma_final_exem_quiz.json"
+    },
+    {
+      "id": "trauma_final_exem_quiz_114",
+      "question": "מהי קונטוזיה ריאתית?",
+      "type": "multiple_choice",
+      "options": [
+        "זיהום בריאה",
+        "חבלה (חבורה) ברקמת הריאה עצמה עם דימום ונפיחות",
+        "קרע בריאה",
+        "אוויר בריאה"
+      ],
+      "correct": 1,
+      "subject": "טראומה - בחינה מסכמת",
+      "sourceFile": "trauma_final_exem_quiz.json"
+    },
+    {
+      "id": "trauma_final_exem_quiz_115",
+      "question": "הסימנים של קונטוזיה ריאתית מופיעים תמיד באופן מיידי",
+      "type": "true_false",
+      "options": [
+        "נכון",
+        "לא נכון"
+      ],
+      "correct": 1,
+      "subject": "טראומה - בחינה מסכמת",
+      "sourceFile": "trauma_final_exem_quiz.json"
+    },
+    {
+      "id": "trauma_final_exem_quiz_116",
+      "question": "מהם שלבי ה-Primary Survey?",
+      "type": "multiple_choice",
+      "options": [
+        "ABC",
+        "ABCD",
+        "ABCDE",
+        "SAMPLE"
+      ],
+      "correct": 2,
+      "subject": "טראומה - בחינה מסכמת",
+      "sourceFile": "trauma_final_exem_quiz.json"
+    },
+    {
+      "id": "trauma_final_exem_quiz_117",
+      "question": "מה משמעות 'A' ב-Primary Survey?",
+      "type": "multiple_choice",
+      "options": [
+        "Assessment",
+        "Airway (נתיב אוויר)",
+        "Allergies",
+        "Alert"
+      ],
+      "correct": 1,
+      "subject": "טראומה - בחינה מסכמת",
+      "sourceFile": "trauma_final_exem_quiz.json"
+    },
+    {
+      "id": "trauma_final_exem_quiz_118",
+      "question": "מה משמעות 'B' ב-Primary Survey?",
+      "type": "multiple_choice",
+      "options": [
+        "Blood",
+        "Body",
+        "Breathing (נשימה)",
+        "Bones"
+      ],
+      "correct": 2,
+      "subject": "טראומה - בחינה מסכמת",
+      "sourceFile": "trauma_final_exem_quiz.json"
+    },
+    {
+      "id": "trauma_final_exem_quiz_119",
+      "question": "מה משמעות 'D' ב-Primary Survey?",
+      "type": "multiple_choice",
+      "options": [
+        "Drugs",
+        "Disability (מצב נוירולוגי)",
+        "Death",
+        "Damage"
+      ],
+      "correct": 1,
+      "subject": "טראומה - בחינה מסכמת",
+      "sourceFile": "trauma_final_exem_quiz.json"
+    },
+    {
+      "id": "trauma_final_exem_quiz_120",
+      "question": "מה משמעות 'E' ב-Primary Survey?",
+      "type": "multiple_choice",
+      "options": [
+        "Emergency",
+        "Eyes",
+        "Exposure (חשיפה)",
+        "Examine"
+      ],
+      "correct": 2,
+      "subject": "טראומה - בחינה מסכמת",
+      "sourceFile": "trauma_final_exem_quiz.json"
+    },
+    {
+      "id": "trauma_final_exem_quiz_121",
+      "question": "מה כולל שלב A (Airway) ב-Primary Survey? (בחר את כל התשובות הנכונות)",
+      "type": "multiple_correct",
+      "options": [
+        "בדיקת פתיחות דרכי הנשימה",
+        "זיהוי חסימות",
+        "הטיית ראש-הרמת סנטר",
+        "שאיבה",
+        "יציבות עמוד שדרה צווארי",
+        "מדידת דופק",
+        "בדיקת אישונים",
+        "מדידת לחץ דם"
+      ],
+      "correct": [
+        0,
+        1,
+        2,
+        3,
+        4
+      ],
+      "subject": "טראומה - בחינה מסכמת",
+      "sourceFile": "trauma_final_exem_quiz.json"
+    },
+    {
+      "id": "trauma_final_exem_quiz_122",
+      "question": "מה משמעות SAMPLE באנמנזה?",
+      "type": "multiple_choice",
+      "options": [
+        "דגימת דם",
+        "Symptoms, Allergies, Medications, Past history, Last meal, Events",
+        "סוג של בדיקה",
+        "פרוטוקול טיפול"
+      ],
+      "correct": 1,
+      "subject": "טראומה - בחינה מסכמת",
+      "sourceFile": "trauma_final_exem_quiz.json"
+    },
+    {
+      "id": "trauma_final_exem_quiz_123",
+      "question": "מהי קינמטיקה (Kinematics)?",
+      "type": "multiple_choice",
+      "options": [
+        "סוג של תרופה",
+        "מנגנון הפגיעה - איך האירוע קרה",
+        "בדיקת דם",
+        "סוג של שבר"
+      ],
+      "correct": 1,
+      "subject": "טראומה - בחינה מסכמת",
+      "sourceFile": "trauma_final_exem_quiz.json"
+    },
+    {
+      "id": "trauma_final_exem_quiz_124",
+      "question": "מדוע קינמטיקה חשובה? (בחר את כל התשובות הנכונות)",
+      "type": "multiple_correct",
+      "options": [
+        "חוזה פגיעות נסתרות",
+        "עוזרת לתעדף טיפול",
+        "חשובה לדיווח לבית החולים",
+        "קובעת אם צריך פינוי מהיר",
+        "משפיעה על בחירת תרופות",
+        "קובעת את סוג החבישה",
+        "משפיעה על החלטת Load and Go",
+        "רלוונטית רק למטוסים"
+      ],
+      "correct": [
+        0,
+        1,
+        2,
+        3,
+        6
+      ],
+      "subject": "טראומה - בחינה מסכמת",
+      "sourceFile": "trauma_final_exem_quiz.json"
+    },
+    {
+      "id": "trauma_final_exem_quiz_125",
+      "question": "מהי קרפיטציה (Crepitus)?",
+      "type": "multiple_choice",
+      "options": [
+        "דימום עורקי",
+        "תחושת פצפוצים במישוש",
+        "קוצר נשימה",
+        "כאב חזה"
+      ],
+      "correct": 1,
+      "subject": "טראומה - בחינה מסכמת",
+      "sourceFile": "trauma_final_exem_quiz.json"
+    },
+    {
+      "id": "trauma_final_exem_quiz_126",
+      "question": "מהו Log Roll?",
+      "type": "multiple_choice",
+      "options": [
+        "סוג של טיפול",
+        "גלגול מבוקר לבדיקת הגב",
+        "סוג של חבישה",
+        "בדיקת דם"
+      ],
+      "correct": 1,
+      "subject": "טראומה - בחינה מסכמת",
+      "sourceFile": "trauma_final_exem_quiz.json"
+    },
+    {
+      "id": "trauma_final_exem_quiz_127",
+      "question": "מתי מבצעים Secondary Survey?",
+      "type": "multiple_choice",
+      "options": [
+        "לפני Primary Survey",
+        "רק לאחר יציבות המטופל בסבב הראשוני",
+        "תמיד, ללא קשר למצב",
+        "רק בבית החולים"
+      ],
+      "correct": 1,
+      "subject": "טראומה - בחינה מסכמת",
+      "sourceFile": "trauma_final_exem_quiz.json"
+    },
+    {
+      "id": "trauma_final_exem_quiz_128",
+      "question": "אם יש הידרדרות במצב המטופל בזמן Secondary Survey, יש לחזור ל-Primary Survey",
+      "type": "true_false",
+      "options": [
+        "נכון",
+        "לא נכון"
+      ],
+      "correct": 0,
+      "subject": "טראומה - בחינה מסכמת",
+      "sourceFile": "trauma_final_exem_quiz.json"
+    },
+    {
+      "id": "trauma_final_exem_quiz_129",
+      "question": "כמה זמן צריך לקחת Primary Survey?",
+      "type": "multiple_choice",
+      "options": [
+        "1-2 דקות",
+        "3-5 דקות מקסימום",
+        "10-15 דקות",
+        "20 דקות"
+      ],
+      "correct": 1,
+      "subject": "טראומה - בחינה מסכמת",
+      "sourceFile": "trauma_final_exem_quiz.json"
+    },
+    {
+      "id": "trauma_final_exem_quiz_130",
+      "question": "מהם הטיפולים מצילי חיים בזירה? (בחר את כל התשובות הנכונות)",
+      "type": "multiple_correct",
+      "options": [
+        "פתיחת דרכי נשימה",
+        "אוורור",
+        "חמצן",
+        "עצירת דימום חיצוני",
+        "קיבוע כל השברים",
+        "יציבות עמוד שדרה",
+        "דקומפרסיה מחטית (אם מוסמך)",
+        "היסטוריה רפואית מפורטת"
+      ],
+      "correct": [
+        0,
+        1,
+        2,
+        3,
+        5,
+        6
+      ],
+      "subject": "טראומה - בחינה מסכמת",
+      "sourceFile": "trauma_final_exem_quiz.json"
+    },
+    {
+      "id": "trauma_final_exem_quiz_131",
+      "question": "קיבוע שברים (למעט אגן) נחשב טיפול מציל חיים בזירה",
+      "type": "true_false",
+      "options": [
+        "נכון",
+        "לא נכון"
+      ],
+      "correct": 1,
+      "subject": "טראומה - בחינה מסכמת",
+      "sourceFile": "trauma_final_exem_quiz.json"
+    },
+    {
+      "id": "trauma_final_exem_quiz_132",
+      "question": "מהו Load and Go?",
+      "type": "multiple_choice",
+      "options": [
+        "טיפול מפורט בזירה",
+        "פינוי מהיר עם מינימום טיפול בזירה",
+        "המתנה לצוות נוסף",
+        "קיבוע כל השברים"
+      ],
+      "correct": 1,
+      "subject": "טראומה - בחינה מסכמת",
+      "sourceFile": "trauma_final_exem_quiz.json"
+    },
+    {
+      "id": "trauma_final_exem_quiz_133",
+      "question": "מתי מיישמים Load and Go? (בחר את כל התשובות הנכונות)",
+      "type": "multiple_correct",
+      "options": [
+        "דימום מסיבי לא נשלט",
+        "הלם",
+        "פגיעות חזה/בטן/אגן קשות",
+        "GCS ≤8",
+        "קינמטיקה קשה",
+        "שריטה קלה",
+        "כאב ראש קל",
+        "פצעים חודרים באזורים קריטיים"
+      ],
+      "correct": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        7
+      ],
+      "subject": "טראומה - בחינה מסכמת",
+      "sourceFile": "trauma_final_exem_quiz.json"
+    },
+    {
+      "id": "trauma_final_exem_quiz_134",
+      "question": "כמה זמן מקסימלי בזירה ב-Load and Go?",
+      "type": "multiple_choice",
+      "options": [
+        "5 דקות",
+        "≤10 דקות",
+        "15 דקות",
+        "20 דקות"
+      ],
+      "correct": 1,
+      "subject": "טראומה - בחינה מסכמת",
+      "sourceFile": "trauma_final_exem_quiz.json"
+    },
+    {
+      "id": "trauma_final_exem_quiz_135",
+      "question": "מהו Stay and Play?",
+      "type": "multiple_choice",
+      "options": [
+        "פינוי מהיר",
+        "טיפול מפורט בזירה לנפגעים יציבים",
+        "המתנה לרופא",
+        "ניתוח בזירה"
+      ],
+      "correct": 1,
+      "subject": "טראומה - בחינה מסכמת",
+      "sourceFile": "trauma_final_exem_quiz.json"
+    },
+    {
+      "id": "trauma_final_exem_quiz_136",
+      "question": "מתי מיישמים Stay and Play? (בחר את כל התשובות הנכונות)",
+      "type": "multiple_correct",
+      "options": [
+        "פציעות קלות-בינוניות",
+        "ללא סכנת חיים מיידית",
+        "חולה רפואי (לא טראומה)",
+        "נפגע יציב",
+        "דימום מסיבי",
+        "הלם חמור",
+        "GCS ≤8",
+        "קינמטיקה קשה"
+      ],
+      "correct": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "subject": "טראומה - בחינה מסכמת",
+      "sourceFile": "trauma_final_exem_quiz.json"
+    },
+    {
+      "id": "trauma_final_exem_quiz_137",
+      "question": "מהו MIST בתקשורת עם בית החולים?",
+      "type": "multiple_choice",
+      "options": [
+        "סוג של ערפל",
+        "Mechanism, Injuries, Signs, Treatment",
+        "פרוטוקול טיפול",
+        "סוג של בדיקה"
+      ],
+      "correct": 1,
+      "subject": "טראומה - בחינה מסכמת",
+      "sourceFile": "trauma_final_exem_quiz.json"
+    },
+    {
+      "id": "trauma_final_exem_quiz_138",
+      "question": "מהם מרכיבי MIST? (בחר את כל התשובות הנכונות)",
+      "type": "multiple_correct",
+      "options": [
+        "Mechanism - מנגנון הפגיעה",
+        "Injuries - פציעות",
+        "Signs - סימנים חיוניים",
+        "Treatment - טיפול שניתן",
+        "Money - עלות",
+        "Temperature - טמפרטורה",
+        "Size - גודל",
+        "History - היסטוריה משפחתית"
+      ],
+      "correct": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "subject": "טראומה - בחינה מסכמת",
+      "sourceFile": "trauma_final_exem_quiz.json"
+    },
+    {
+      "id": "trauma_final_exem_quiz_139",
+      "question": "מהו SBAR בדיווח בבית החולים?",
+      "type": "multiple_choice",
+      "options": [
+        "סוג של חבישה",
+        "Situation, Background, Assessment, Recommendation",
+        "פרוטוקול הנשאה",
+        "סוג של תרופה"
+      ],
+      "correct": 1,
+      "subject": "טראומה - בחינה מסכמת",
+      "sourceFile": "trauma_final_exem_quiz.json"
+    },
+    {
+      "id": "trauma_final_exem_quiz_140",
+      "question": "מהו תפקיד חובש 1 (Team Leader)?",
+      "type": "multiple_choice",
+      "options": [
+        "ביצוע כל הטיפולים בעצמו",
+        "הערכת זירה, ניהול, החלטות ותקשורת",
+        "רק נהיגה",
+        "רק תיעוד"
+      ],
+      "correct": 1,
+      "subject": "טראומה - בחינה מסכמת",
+      "sourceFile": "trauma_final_exem_quiz.json"
+    },
+    {
+      "id": "trauma_final_exem_quiz_141",
+      "question": "מהו תפקיד חובש 2 (Hands-on)? (בחר את כל התשובות הנכונות)",
+      "type": "multiple_correct",
+      "options": [
+        "ביצוע טיפולים",
+        "עצירת דימום",
+        "חבישות",
+        "עירוי",
+        "קבלת כל ההחלטות לבד",
+        "העברת מטופל",
+        "הבאת ציוד",
+        "ניטור"
+      ],
+      "correct": [
+        0,
+        1,
+        2,
+        3,
+        5,
+        6,
+        7
+      ],
+      "subject": "טראומה - בחינה מסכמת",
+      "sourceFile": "trauma_final_exem_quiz.json"
+    },
+    {
+      "id": "trauma_final_exem_quiz_142",
+      "question": "מהי תקשורת סגורה (Closed-loop communication)?",
+      "type": "multiple_choice",
+      "options": [
+        "שיחה ללא אישור",
+        "הנחיה, אישור, ביצוע ודיווח חזרה",
+        "שיחה בטלפון",
+        "שיחה חד-כיוונית"
+      ],
+      "correct": 1,
+      "subject": "טראומה - בחינה מסכמת",
+      "sourceFile": "trauma_final_exem_quiz.json"
+    },
+    {
+      "id": "trauma_final_exem_quiz_143",
+      "question": "מהו Triage?",
+      "type": "multiple_choice",
+      "options": [
+        "סוג של חבישה",
+        "מיון נפגעים לפי דחיפות",
+        "סוג של תרופה",
+        "בדיקת דם"
+      ],
+      "correct": 1,
+      "subject": "טראומה - בחינה מסכמת",
+      "sourceFile": "trauma_final_exem_quiz.json"
+    },
+    {
+      "id": "trauma_final_exem_quiz_144",
+      "question": "מה משמעות צבע אדום ב-Triage?",
+      "type": "multiple_choice",
+      "options": [
+        "נפטר",
+        "מיידי - סכנת חיים, ניתן להציל",
+        "קל",
+        "דחוף"
+      ],
+      "correct": 1,
+      "subject": "טראומה - בחינה מסכמת",
+      "sourceFile": "trauma_final_exem_quiz.json"
+    },
+    {
+      "id": "trauma_final_exem_quiz_145",
+      "question": "מה משמעות צבע שחור ב-Triage?",
+      "type": "multiple_choice",
+      "options": [
+        "מיידי",
+        "קל",
+        "מת או גוסס ללא סיכוי",
+        "דחוף"
+      ],
+      "correct": 2,
+      "subject": "טראומה - בחינה מסכמת",
+      "sourceFile": "trauma_final_exem_quiz.json"
+    },
+    {
+      "id": "trauma_final_exem_quiz_146",
+      "question": "מהם צבעי Triage? (בחר את כל התשובות הנכונות)",
+      "type": "multiple_correct",
+      "options": [
+        "אדום - מיידי",
+        "צהוב - דחוף",
+        "ירוק - קל",
+        "שחור - נפטר/גוסס",
+        "כחול - בינוני",
+        "לבן - יציב",
+        "כתום - חמור",
+        "סגול - לא דחוף"
+      ],
+      "correct": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "subject": "טראומה - בחינה מסכמת",
+      "sourceFile": "trauma_final_exem_quiz.json"
+    },
+    {
+      "id": "trauma_final_exem_quiz_147",
+      "question": "מהי הקביעה העיקרית של קינמטיקה קשה כאינדיקציה ל-Load and Go?",
+      "type": "multiple_choice",
+      "options": [
+        "המטופל תמיד נראה חמור",
+        "גם אם המטופל נראה יציב, יש חשד לפגיעות נסתרות",
+        "המטופל תמיד מדמם",
+        "המטופל תמיד מחוסר הכרה"
+      ],
+      "correct": 1,
+      "subject": "טראומה - בחינה מסכמת",
+      "sourceFile": "trauma_final_exem_quiz.json"
+    },
+    {
+      "id": "trauma_final_exem_quiz_148",
+      "question": "מהי קינמטיקה קשה בתאונות דרכים? (בחר את כל התשובות הנכונות)",
+      "type": "multiple_correct",
+      "options": [
+        "התנגשות חזיתית במהירות גבוהה",
+        "פליטה מרכב",
+        "התהפכות רכב",
+        "עיוות משמעותי לרכב",
+        "הגה שבור",
+        "נסיעה איטית",
+        "חנייה בצד הדרך",
+        "נסיעה ללא חגורה"
+      ],
+      "correct": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        7
+      ],
+      "subject": "טראומה - בחינה מסכמת",
+      "sourceFile": "trauma_final_exem_quiz.json"
+    },
+    {
+      "id": "trauma_final_exem_quiz_149",
+      "question": "מאיזה גובה נפילה נחשבת קינמטיקה קשה למבוגרים?",
+      "type": "multiple_choice",
+      "options": [
+        ">3 מטר",
+        ">4 מטר",
+        ">6 מטר",
+        ">10 מטר"
+      ],
+      "correct": 2,
+      "subject": "טראומה - בחינה מסכמת",
+      "sourceFile": "trauma_final_exem_quiz.json"
+    },
+    {
+      "id": "trauma_final_exem_quiz_150",
+      "question": "מאיזה גובה נפילה נחשבת קינמטיקה קשה לילדים?",
+      "type": "multiple_choice",
+      "options": [
+        ">1 מטר",
+        ">3 מטר",
+        ">6 מטר",
+        ">10 מטר"
+      ],
+      "correct": 1,
       "subject": "טראומה - בחינה מסכמת",
       "sourceFile": "trauma_final_exem_quiz.json"
     }
