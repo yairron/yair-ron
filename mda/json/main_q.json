@@ -1,7 +1,7 @@
 {
   "subject": "שאלון חזרה כללי",
   "description": "שאלון מאוחד של כל השאלות מקבצי ה-quiz השונים",
-  "totalQuestions": 807,
+  "totalQuestions": 897,
   "sourceFiles": [
     "anaphylaxis_quiz.json",
     "asthma_quiz.json",
@@ -26,9 +26,10 @@
     "diabetes_mellitus_quiz.json",
     "mediction_dosse_quiz.json",
     "trauma_care_quiz.json",
-    "glasgow_index_quiz.json"
+    "glasgow_index_quiz.json",
+    "trauma_final_exem_quiz.json"
   ],
-  "createdAt": "2025-11-08T06:00:13.427Z",
+  "createdAt": "2025-11-20T17:21:18.082Z",
   "questions": [
     {
       "id": "anaphylaxis_quiz_1",
@@ -4222,7 +4223,7 @@
         "פליטת חום בלבד"
       ],
       "correct": 0,
-      "subject": " מסכם מצ-ח נשימתיים ",
+      "subject": "מסכם מצ-ח נשימתיים",
       "sourceFile": "respiratory_final_quiz.json"
     },
     {
@@ -4236,7 +4237,7 @@
         "Pneumotaxic"
       ],
       "correct": 1,
-      "subject": " מסכם מצ-ח נשימתיים ",
+      "subject": "מסכם מצ-ח נשימתיים",
       "sourceFile": "respiratory_final_quiz.json"
     },
     {
@@ -4250,7 +4251,7 @@
         "Pneumotaxic"
       ],
       "correct": 3,
-      "subject": " מסכם מצ-ח נשימתיים ",
+      "subject": "מסכם מצ-ח נשימתיים",
       "sourceFile": "respiratory_final_quiz.json"
     },
     {
@@ -4264,7 +4265,7 @@
         "סרטוס קדמי"
       ],
       "correct": 1,
-      "subject": " מסכם מצ-ח נשימתיים ",
+      "subject": "מסכם מצ-ח נשימתיים",
       "sourceFile": "respiratory_final_quiz.json"
     },
     {
@@ -4278,7 +4279,7 @@
         "נזק מבני לבית החזה"
       ],
       "correct": 0,
-      "subject": " מסכם מצ-ח נשימתיים ",
+      "subject": "מסכם מצ-ח נשימתיים",
       "sourceFile": "respiratory_final_quiz.json"
     },
     {
@@ -4292,7 +4293,7 @@
         "זמנית"
       ],
       "correct": 1,
-      "subject": " מסכם מצ-ח נשימתיים ",
+      "subject": "מסכם מצ-ח נשימתיים",
       "sourceFile": "respiratory_final_quiz.json"
     },
     {
@@ -4306,7 +4307,7 @@
         "קורטיזול"
       ],
       "correct": 1,
-      "subject": " מסכם מצ-ח נשימתיים ",
+      "subject": "מסכם מצ-ח נשימתיים",
       "sourceFile": "respiratory_final_quiz.json"
     },
     {
@@ -4320,7 +4321,7 @@
         "β2"
       ],
       "correct": 3,
-      "subject": " מסכם מצ-ח נשימתיים ",
+      "subject": "מסכם מצ-ח נשימתיים",
       "sourceFile": "respiratory_final_quiz.json"
     },
     {
@@ -4334,7 +4335,7 @@
         "כל התשובות נכונות"
       ],
       "correct": 0,
-      "subject": " מסכם מצ-ח נשימתיים ",
+      "subject": "מסכם מצ-ח נשימתיים",
       "sourceFile": "respiratory_final_quiz.json"
     },
     {
@@ -4348,7 +4349,7 @@
         "נשימה תקינה"
       ],
       "correct": 1,
-      "subject": " מסכם מצ-ח נשימתיים ",
+      "subject": "מסכם מצ-ח נשימתיים",
       "sourceFile": "respiratory_final_quiz.json"
     },
     {
@@ -4362,7 +4363,7 @@
         "שיעול כרוני"
       ],
       "correct": 1,
-      "subject": " מסכם מצ-ח נשימתיים ",
+      "subject": "מסכם מצ-ח נשימתיים",
       "sourceFile": "respiratory_final_quiz.json"
     },
     {
@@ -4376,7 +4377,7 @@
         "\"Gray Fighter\""
       ],
       "correct": 1,
-      "subject": " מסכם מצ-ח נשימתיים ",
+      "subject": "מסכם מצ-ח נשימתיים",
       "sourceFile": "respiratory_final_quiz.json"
     },
     {
@@ -4390,7 +4391,7 @@
         "חום גבוה"
       ],
       "correct": 1,
-      "subject": " מסכם מצ-ח נשימתיים ",
+      "subject": "מסכם מצ-ח נשימתיים",
       "sourceFile": "respiratory_final_quiz.json"
     },
     {
@@ -4412,7 +4413,7 @@
         2,
         6
       ],
-      "subject": " מסכם מצ-ח נשימתיים ",
+      "subject": "מסכם מצ-ח נשימתיים",
       "sourceFile": "respiratory_final_quiz.json"
     },
     {
@@ -4426,7 +4427,7 @@
         "הפחתת מאמץ נשימתי"
       ],
       "correct": 1,
-      "subject": " מסכם מצ-ח נשימתיים ",
+      "subject": "מסכם מצ-ח נשימתיים",
       "sourceFile": "respiratory_final_quiz.json"
     },
     {
@@ -4440,7 +4441,7 @@
         "האטת קצב הלב"
       ],
       "correct": 1,
-      "subject": " מסכם מצ-ח נשימתיים ",
+      "subject": "מסכם מצ-ח נשימתיים",
       "sourceFile": "respiratory_final_quiz.json"
     },
     {
@@ -4454,7 +4455,7 @@
         "אנטיכולינרגי"
       ],
       "correct": 1,
-      "subject": " מסכם מצ-ח נשימתיים ",
+      "subject": "מסכם מצ-ח נשימתיים",
       "sourceFile": "respiratory_final_quiz.json"
     },
     {
@@ -4468,7 +4469,7 @@
         "מרפה שריר חלק"
       ],
       "correct": 1,
-      "subject": " מסכם מצ-ח נשימתיים ",
+      "subject": "מסכם מצ-ח נשימתיים",
       "sourceFile": "respiratory_final_quiz.json"
     },
     {
@@ -4480,7 +4481,7 @@
         "לא נכון"
       ],
       "correct": 0,
-      "subject": " מסכם מצ-ח נשימתיים ",
+      "subject": "מסכם מצ-ח נשימתיים",
       "sourceFile": "respiratory_final_quiz.json"
     },
     {
@@ -4494,7 +4495,7 @@
         "מחלת לב"
       ],
       "correct": 1,
-      "subject": " מסכם מצ-ח נשימתיים ",
+      "subject": "מסכם מצ-ח נשימתיים",
       "sourceFile": "respiratory_final_quiz.json"
     },
     {
@@ -4508,7 +4509,7 @@
         "אינסולין"
       ],
       "correct": 1,
-      "subject": " מסכם מצ-ח נשימתיים ",
+      "subject": "מסכם מצ-ח נשימתיים",
       "sourceFile": "respiratory_final_quiz.json"
     },
     {
@@ -4522,7 +4523,7 @@
         "כשהמטופל צעיר"
       ],
       "correct": 1,
-      "subject": " מסכם מצ-ח נשימתיים ",
+      "subject": "מסכם מצ-ח נשימתיים",
       "sourceFile": "respiratory_final_quiz.json"
     },
     {
@@ -4536,7 +4537,7 @@
         "קצב לב תקין"
       ],
       "correct": 2,
-      "subject": " מסכם מצ-ח נשימתיים ",
+      "subject": "מסכם מצ-ח נשימתיים",
       "sourceFile": "respiratory_final_quiz.json"
     },
     {
@@ -4550,7 +4551,7 @@
         "כאב בטן"
       ],
       "correct": 2,
-      "subject": " מסכם מצ-ח נשימתיים ",
+      "subject": "מסכם מצ-ח נשימתיים",
       "sourceFile": "respiratory_final_quiz.json"
     },
     {
@@ -4564,7 +4565,7 @@
         "רק פריחה"
       ],
       "correct": 1,
-      "subject": " מסכם מצ-ח נשימתיים ",
+      "subject": "מסכם מצ-ח נשימתיים",
       "sourceFile": "respiratory_final_quiz.json"
     },
     {
@@ -4578,7 +4579,7 @@
         "עלייה בפחמן דו-חמצני"
       ],
       "correct": 1,
-      "subject": " מסכם מצ-ח נשימתיים ",
+      "subject": "מסכם מצ-ח נשימתיים",
       "sourceFile": "respiratory_final_quiz.json"
     },
     {
@@ -4592,7 +4593,7 @@
         "עלייה בפחמן דו-חמצני ברקמות"
       ],
       "correct": 0,
-      "subject": " מסכם מצ-ח נשימתיים ",
+      "subject": "מסכם מצ-ח נשימתיים",
       "sourceFile": "respiratory_final_quiz.json"
     },
     {
@@ -4604,7 +4605,7 @@
         "לא נכון"
       ],
       "correct": 0,
-      "subject": " מסכם מצ-ח נשימתיים ",
+      "subject": "מסכם מצ-ח נשימתיים",
       "sourceFile": "respiratory_final_quiz.json"
     },
     {
@@ -4618,7 +4619,7 @@
         "עלייה ב-PaO2"
       ],
       "correct": 1,
-      "subject": " מסכם מצ-ח נשימתיים ",
+      "subject": "מסכם מצ-ח נשימתיים",
       "sourceFile": "respiratory_final_quiz.json"
     },
     {
@@ -4632,7 +4633,7 @@
         "ירידה ב-PaCO2"
       ],
       "correct": 1,
-      "subject": " מסכם מצ-ח נשימתיים ",
+      "subject": "מסכם מצ-ח נשימתיים",
       "sourceFile": "respiratory_final_quiz.json"
     },
     {
@@ -4646,7 +4647,7 @@
         "הפסקת נשימה מוחלטת"
       ],
       "correct": 1,
-      "subject": " מסכם מצ-ח נשימתיים ",
+      "subject": "מסכם מצ-ח נשימתיים",
       "sourceFile": "respiratory_final_quiz.json"
     },
     {
@@ -4660,7 +4661,7 @@
         "חוסר נשימה"
       ],
       "correct": 1,
-      "subject": " מסכם מצ-ח נשימתיים ",
+      "subject": "מסכם מצ-ח נשימתיים",
       "sourceFile": "respiratory_final_quiz.json"
     },
     {
@@ -4674,7 +4675,7 @@
         "85%"
       ],
       "correct": 2,
-      "subject": " מסכם מצ-ח נשימתיים ",
+      "subject": "מסכם מצ-ח נשימתיים",
       "sourceFile": "respiratory_final_quiz.json"
     },
     {
@@ -4688,7 +4689,7 @@
         "מעל ל-100%"
       ],
       "correct": 1,
-      "subject": " מסכם מצ-ח נשימתיים ",
+      "subject": "מסכם מצ-ח נשימתיים",
       "sourceFile": "respiratory_final_quiz.json"
     },
     {
@@ -4702,7 +4703,7 @@
         "עושים ECG"
       ],
       "correct": 2,
-      "subject": " מסכם מצ-ח נשימתיים ",
+      "subject": "מסכם מצ-ח נשימתיים",
       "sourceFile": "respiratory_final_quiz.json"
     },
     {
@@ -4716,7 +4717,7 @@
         "מצב תקין"
       ],
       "correct": 1,
-      "subject": " מסכם מצ-ח נשימתיים ",
+      "subject": "מסכם מצ-ח נשימתיים",
       "sourceFile": "respiratory_final_quiz.json"
     },
     {
@@ -4730,7 +4731,7 @@
         "באי ספיקה נשימתית"
       ],
       "correct": 3,
-      "subject": " מסכם מצ-ח נשימתיים ",
+      "subject": "מסכם מצ-ח נשימתיים",
       "sourceFile": "respiratory_final_quiz.json"
     },
     {
@@ -4749,7 +4750,7 @@
         1,
         2
       ],
-      "subject": " מסכם מצ-ח נשימתיים ",
+      "subject": "מסכם מצ-ח נשימתיים",
       "sourceFile": "respiratory_final_quiz.json"
     },
     {
@@ -4770,7 +4771,7 @@
         2,
         5
       ],
-      "subject": " מסכם מצ-ח נשימתיים ",
+      "subject": "מסכם מצ-ח נשימתיים",
       "sourceFile": "respiratory_final_quiz.json"
     },
     {
@@ -4784,7 +4785,7 @@
         "לחץ דם נמוך"
       ],
       "correct": 0,
-      "subject": " מסכם מצ-ח נשימתיים ",
+      "subject": "מסכם מצ-ח נשימתיים",
       "sourceFile": "respiratory_final_quiz.json"
     },
     {
@@ -4798,7 +4799,7 @@
         "חדירות לנוזל של קרום הנאדיות"
       ],
       "correct": 0,
-      "subject": " מסכם מצ-ח נשימתיים ",
+      "subject": "מסכם מצ-ח נשימתיים",
       "sourceFile": "respiratory_final_quiz.json"
     },
     {
@@ -4817,7 +4818,7 @@
         1,
         2
       ],
-      "subject": " מסכם מצ-ח נשימתיים ",
+      "subject": "מסכם מצ-ח נשימתיים",
       "sourceFile": "respiratory_final_quiz.json"
     },
     {
@@ -4838,7 +4839,7 @@
         2,
         3
       ],
-      "subject": " מסכם מצ-ח נשימתיים ",
+      "subject": "מסכם מצ-ח נשימתיים",
       "sourceFile": "respiratory_final_quiz.json"
     },
     {
@@ -4859,7 +4860,7 @@
         2,
         5
       ],
-      "subject": " מסכם מצ-ח נשימתיים ",
+      "subject": "מסכם מצ-ח נשימתיים",
       "sourceFile": "respiratory_final_quiz.json"
     },
     {
@@ -4873,7 +4874,7 @@
         "תאים אדומים"
       ],
       "correct": 2,
-      "subject": " מסכם מצ-ח נשימתיים ",
+      "subject": "מסכם מצ-ח נשימתיים",
       "sourceFile": "respiratory_final_quiz.json"
     },
     {
@@ -4887,7 +4888,7 @@
         "הפסקת עיכול"
       ],
       "correct": 1,
-      "subject": " מסכם מצ-ח נשימתיים ",
+      "subject": "מסכם מצ-ח נשימתיים",
       "sourceFile": "respiratory_final_quiz.json"
     },
     {
@@ -4901,7 +4902,7 @@
         "ירידה בטמפרטורה"
       ],
       "correct": 1,
-      "subject": " מסכם מצ-ח נשימתיים ",
+      "subject": "מסכם מצ-ח נשימתיים",
       "sourceFile": "respiratory_final_quiz.json"
     },
     {
@@ -4915,7 +4916,7 @@
         "Pneumotaxic"
       ],
       "correct": 1,
-      "subject": " מסכם מצ-ח נשימתיים ",
+      "subject": "מסכם מצ-ח נשימתיים",
       "sourceFile": "respiratory_final_quiz.json"
     },
     {
@@ -4929,7 +4930,7 @@
         "עור ורוד"
       ],
       "correct": 1,
-      "subject": " מסכם מצ-ח נשימתיים ",
+      "subject": "מסכם מצ-ח נשימתיים",
       "sourceFile": "respiratory_final_quiz.json"
     },
     {
@@ -4950,7 +4951,7 @@
         2,
         3
       ],
-      "subject": " מסכם מצ-ח נשימתיים ",
+      "subject": "מסכם מצ-ח נשימתיים",
       "sourceFile": "respiratory_final_quiz.json"
     },
     {
@@ -4962,7 +4963,7 @@
         "לא נכון"
       ],
       "correct": 0,
-      "subject": " מסכם מצ-ח נשימתיים ",
+      "subject": "מסכם מצ-ח נשימתיים",
       "sourceFile": "respiratory_final_quiz.json"
     },
     {
@@ -4974,7 +4975,7 @@
         "לא נכון"
       ],
       "correct": 0,
-      "subject": " מסכם מצ-ח נשימתיים ",
+      "subject": "מסכם מצ-ח נשימתיים",
       "sourceFile": "respiratory_final_quiz.json"
     },
     {
@@ -4986,7 +4987,7 @@
         "לא נכון"
       ],
       "correct": 1,
-      "subject": " מסכם מצ-ח נשימתיים ",
+      "subject": "מסכם מצ-ח נשימתיים",
       "sourceFile": "respiratory_final_quiz.json"
     },
     {
@@ -4998,7 +4999,7 @@
         "לא נכון"
       ],
       "correct": 0,
-      "subject": " מסכם מצ-ח נשימתיים ",
+      "subject": "מסכם מצ-ח נשימתיים",
       "sourceFile": "respiratory_final_quiz.json"
     },
     {
@@ -5010,7 +5011,7 @@
         "לא נכון"
       ],
       "correct": 0,
-      "subject": " מסכם מצ-ח נשימתיים ",
+      "subject": "מסכם מצ-ח נשימתיים",
       "sourceFile": "respiratory_final_quiz.json"
     },
     {
@@ -5022,7 +5023,7 @@
         "לא נכון"
       ],
       "correct": 0,
-      "subject": " מסכם מצ-ח נשימתיים ",
+      "subject": "מסכם מצ-ח נשימתיים",
       "sourceFile": "respiratory_final_quiz.json"
     },
     {
@@ -5034,7 +5035,7 @@
         "לא נכון"
       ],
       "correct": 0,
-      "subject": " מסכם מצ-ח נשימתיים ",
+      "subject": "מסכם מצ-ח נשימתיים",
       "sourceFile": "respiratory_final_quiz.json"
     },
     {
@@ -5620,7 +5621,7 @@
         "5mg, עד שתי מנות של"
       ],
       "correct": 0,
-      "subject": " תרופות ומינונים, מצ-ח נשימתי",
+      "subject": "תרופות ומינונים, מצ-ח נשימתי",
       "sourceFile": "resperatory_mdictaion_quiz.json"
     },
     {
@@ -5634,7 +5635,7 @@
         "20mg, מנה מקסימלית עד "
       ],
       "correct": 0,
-      "subject": " תרופות ומינונים, מצ-ח נשימתי",
+      "subject": "תרופות ומינונים, מצ-ח נשימתי",
       "sourceFile": "resperatory_mdictaion_quiz.json"
     },
     {
@@ -5648,7 +5649,7 @@
         "למטופלים עם חום"
       ],
       "correct": 0,
-      "subject": " תרופות ומינונים, מצ-ח נשימתי",
+      "subject": "תרופות ומינונים, מצ-ח נשימתי",
       "sourceFile": "resperatory_mdictaion_quiz.json"
     },
     {
@@ -5662,7 +5663,7 @@
         "אדרנלין"
       ],
       "correct": 0,
-      "subject": " תרופות ומינונים, מצ-ח נשימתי",
+      "subject": "תרופות ומינונים, מצ-ח נשימתי",
       "sourceFile": "resperatory_mdictaion_quiz.json"
     },
     {
@@ -5676,7 +5677,7 @@
         "דופמין מקל על כאבים"
       ],
       "correct": 0,
-      "subject": " תרופות ומינונים, מצ-ח נשימתי",
+      "subject": "תרופות ומינונים, מצ-ח נשימתי",
       "sourceFile": "resperatory_mdictaion_quiz.json"
     },
     {
@@ -5690,7 +5691,7 @@
         "סולמדרול מאט את זרימת הדם לפריפריה ומקטין פריחה"
       ],
       "correct": 0,
-      "subject": " תרופות ומינונים, מצ-ח נשימתי",
+      "subject": "תרופות ומינונים, מצ-ח נשימתי",
       "sourceFile": "resperatory_mdictaion_quiz.json"
     },
     {
@@ -5704,7 +5705,7 @@
         "0.1mg תת עורי כל חצי שעה"
       ],
       "correct": 0,
-      "subject": " תרופות ומינונים, מצ-ח נשימתי",
+      "subject": "תרופות ומינונים, מצ-ח נשימתי",
       "sourceFile": "resperatory_mdictaion_quiz.json"
     },
     {
@@ -5718,7 +5719,7 @@
         "100mcg תת עורי כל שעה"
       ],
       "correct": 0,
-      "subject": " תרופות ומינונים, מצ-ח נשימתי",
+      "subject": "תרופות ומינונים, מצ-ח נשימתי",
       "sourceFile": "resperatory_mdictaion_quiz.json"
     },
     {
@@ -5732,7 +5733,7 @@
         "מוציאים את הטובוס ועושים ניסיון שני, עד 3 ניסיונות"
       ],
       "correct": 0,
-      "subject": " תרופות ומינונים, מצ-ח נשימתי",
+      "subject": "תרופות ומינונים, מצ-ח נשימתי",
       "sourceFile": "resperatory_mdictaion_quiz.json"
     },
     {
@@ -5746,7 +5747,7 @@
         "מנה אחת של 25mg"
       ],
       "correct": 0,
-      "subject": " תרופות ומינונים, מצ-ח נשימתי",
+      "subject": "תרופות ומינונים, מצ-ח נשימתי",
       "sourceFile": "resperatory_mdictaion_quiz.json"
     },
     {
@@ -5758,7 +5759,7 @@
         "לא נכון"
       ],
       "correct": 0,
-      "subject": " תרופות ומינונים, מצ-ח נשימתי",
+      "subject": "תרופות ומינונים, מצ-ח נשימתי",
       "sourceFile": "resperatory_mdictaion_quiz.json"
     },
     {
@@ -5770,7 +5771,7 @@
         "לא נכון"
       ],
       "correct": 0,
-      "subject": " תרופות ומינונים, מצ-ח נשימתי",
+      "subject": "תרופות ומינונים, מצ-ח נשימתי",
       "sourceFile": "resperatory_mdictaion_quiz.json"
     },
     {
@@ -5784,7 +5785,7 @@
         "מתן אנטיביוטיקה"
       ],
       "correct": 0,
-      "subject": " תרופות ומינונים, מצ-ח נשימתי",
+      "subject": "תרופות ומינונים, מצ-ח נשימתי",
       "sourceFile": "resperatory_mdictaion_quiz.json"
     },
     {
@@ -5803,7 +5804,7 @@
         1,
         2
       ],
-      "subject": " תרופות ומינונים, מצ-ח נשימתי",
+      "subject": "תרופות ומינונים, מצ-ח נשימתי",
       "sourceFile": "resperatory_mdictaion_quiz.json"
     },
     {
@@ -5815,7 +5816,7 @@
         "לא נכון. אם לא חל שיפור לאחר אינהלציה, אפשר לתת למטופל במצב קל/בינוני אדרנלין IM 0.3-0.5mg עד 3 מנות בהפרש של 10 דקות בין המנות."
       ],
       "correct": 1,
-      "subject": " תרופות ומינונים, מצ-ח נשימתי",
+      "subject": "תרופות ומינונים, מצ-ח נשימתי",
       "sourceFile": "resperatory_mdictaion_quiz.json"
     },
     {
@@ -5829,7 +5830,7 @@
         "אינהלציית ונטולין ואירובנט, אדרנלין IV. סולומדרול. עירוי סליין"
       ],
       "correct": 0,
-      "subject": " תרופות ומינונים, מצ-ח נשימתי",
+      "subject": "תרופות ומינונים, מצ-ח נשימתי",
       "sourceFile": "resperatory_mdictaion_quiz.json"
     },
     {
@@ -5843,7 +5844,7 @@
         "אדרנלין IM עד 3 מנות בהפרש של 10 דקות בין כל מנה. סולומדרול, אינהלציית ונטולין."
       ],
       "correct": 0,
-      "subject": " תרופות ומינונים, מצ-ח נשימתי",
+      "subject": "תרופות ומינונים, מצ-ח נשימתי",
       "sourceFile": "resperatory_mdictaion_quiz.json"
     },
     {
@@ -5866,7 +5867,7 @@
         4,
         6
       ],
-      "subject": " תרופות ומינונים, מצ-ח נשימתי",
+      "subject": "תרופות ומינונים, מצ-ח נשימתי",
       "sourceFile": "resperatory_mdictaion_quiz.json"
     },
     {
@@ -5880,7 +5881,7 @@
         "150 מ\"ג IV"
       ],
       "correct": 1,
-      "subject": " תרופות ומינונים, מצ-ח נשימתי",
+      "subject": "תרופות ומינונים, מצ-ח נשימתי",
       "sourceFile": "resperatory_mdictaion_quiz.json"
     },
     {
@@ -5894,7 +5895,7 @@
         "2.5 מ\"ג מנה חד פעמית"
       ],
       "correct": 1,
-      "subject": " תרופות ומינונים, מצ-ח נשימתי",
+      "subject": "תרופות ומינונים, מצ-ח נשימתי",
       "sourceFile": "resperatory_mdictaion_quiz.json"
     },
     {
@@ -5908,7 +5909,7 @@
         "0.3mg IM"
       ],
       "correct": 1,
-      "subject": " תרופות ומינונים, מצ-ח נשימתי",
+      "subject": "תרופות ומינונים, מצ-ח נשימתי",
       "sourceFile": "resperatory_mdictaion_quiz.json"
     },
     {
@@ -5922,7 +5923,7 @@
         "אירובנט"
       ],
       "correct": 2,
-      "subject": " תרופות ומינונים, מצ-ח נשימתי",
+      "subject": "תרופות ומינונים, מצ-ח נשימתי",
       "sourceFile": "resperatory_mdictaion_quiz.json"
     },
     {
@@ -5934,7 +5935,7 @@
         "לא נכון"
       ],
       "correct": 0,
-      "subject": " תרופות ומינונים, מצ-ח נשימתי",
+      "subject": "תרופות ומינונים, מצ-ח נשימתי",
       "sourceFile": "resperatory_mdictaion_quiz.json"
     },
     {
@@ -5948,7 +5949,7 @@
         "1 מ\"ג עד 3 מנות"
       ],
       "correct": 2,
-      "subject": " תרופות ומינונים, מצ-ח נשימתי",
+      "subject": "תרופות ומינונים, מצ-ח נשימתי",
       "sourceFile": "resperatory_mdictaion_quiz.json"
     },
     {
@@ -5962,7 +5963,7 @@
         "3 גר' ב-150 מ\"ל סליין"
       ],
       "correct": 2,
-      "subject": " תרופות ומינונים, מצ-ח נשימתי",
+      "subject": "תרופות ומינונים, מצ-ח נשימתי",
       "sourceFile": "resperatory_mdictaion_quiz.json"
     },
     {
@@ -5974,7 +5975,7 @@
         "לא נכון"
       ],
       "correct": 0,
-      "subject": " תרופות ומינונים, מצ-ח נשימתי",
+      "subject": "תרופות ומינונים, מצ-ח נשימתי",
       "sourceFile": "resperatory_mdictaion_quiz.json"
     },
     {
@@ -5988,7 +5989,7 @@
         "40cc/min max 100cc"
       ],
       "correct": 0,
-      "subject": " תרופות ומינונים, מצ-ח נשימתי",
+      "subject": "תרופות ומינונים, מצ-ח נשימתי",
       "sourceFile": "resperatory_mdictaion_quiz.json"
     },
     {
@@ -6002,7 +6003,7 @@
         "1 אמפולת אדרנלין למזרק 3cc"
       ],
       "correct": 1,
-      "subject": " תרופות ומינונים, מצ-ח נשימתי",
+      "subject": "תרופות ומינונים, מצ-ח נשימתי",
       "sourceFile": "resperatory_mdictaion_quiz.json"
     },
     {
@@ -6014,7 +6015,7 @@
         "לא נכון"
       ],
       "correct": 0,
-      "subject": " תרופות ומינונים, מצ-ח נשימתי",
+      "subject": "תרופות ומינונים, מצ-ח נשימתי",
       "sourceFile": "resperatory_mdictaion_quiz.json"
     },
     {
@@ -6028,7 +6029,7 @@
         "תוך 20 דקות"
       ],
       "correct": 1,
-      "subject": " תרופות ומינונים, מצ-ח נשימתי",
+      "subject": "תרופות ומינונים, מצ-ח נשימתי",
       "sourceFile": "resperatory_mdictaion_quiz.json"
     },
     {
@@ -6042,7 +6043,7 @@
         "עד 750 מ\"ל"
       ],
       "correct": 2,
-      "subject": " תרופות ומינונים, מצ-ח נשימתי",
+      "subject": "תרופות ומינונים, מצ-ח נשימתי",
       "sourceFile": "resperatory_mdictaion_quiz.json"
     },
     {
@@ -6054,7 +6055,7 @@
         "לא נכון"
       ],
       "correct": 0,
-      "subject": " תרופות ומינונים, מצ-ח נשימתי",
+      "subject": "תרופות ומינונים, מצ-ח נשימתי",
       "sourceFile": "resperatory_mdictaion_quiz.json"
     },
     {
@@ -6068,7 +6069,7 @@
         "חצי אמפולה למזרק 5cc והשלמה עם סליין"
       ],
       "correct": 1,
-      "subject": " תרופות ומינונים, מצ-ח נשימתי",
+      "subject": "תרופות ומינונים, מצ-ח נשימתי",
       "sourceFile": "resperatory_mdictaion_quiz.json"
     },
     {
@@ -6082,7 +6083,7 @@
         "רק אירובנט ללא ונטולין"
       ],
       "correct": 1,
-      "subject": " תרופות ומינונים, מצ-ח נשימתי",
+      "subject": "תרופות ומינונים, מצ-ח נשימתי",
       "sourceFile": "resperatory_mdictaion_quiz.json"
     },
     {
@@ -6096,7 +6097,7 @@
         "מצבו של המטופל יציב ואין שינוי"
       ],
       "correct": 0,
-      "subject": " תרופות ומינונים, מצ-ח נשימתי",
+      "subject": "תרופות ומינונים, מצ-ח נשימתי",
       "sourceFile": "resperatory_mdictaion_quiz.json"
     },
     {
@@ -6110,7 +6111,7 @@
         "לא ניתן לקבוע על סמך המינון"
       ],
       "correct": 0,
-      "subject": " תרופות ומינונים, מצ-ח נשימתי",
+      "subject": "תרופות ומינונים, מצ-ח נשימתי",
       "sourceFile": "resperatory_mdictaion_quiz.json"
     },
     {
@@ -6124,7 +6125,7 @@
         "ניתן לתת בכל מצב"
       ],
       "correct": 2,
-      "subject": " תרופות ומינונים, מצ-ח נשימתי",
+      "subject": "תרופות ומינונים, מצ-ח נשימתי",
       "sourceFile": "resperatory_mdictaion_quiz.json"
     },
     {
@@ -6138,7 +6139,7 @@
         "0.5mg S.C."
       ],
       "correct": 0,
-      "subject": " תרופות ומינונים, מצ-ח נשימתי",
+      "subject": "תרופות ומינונים, מצ-ח נשימתי",
       "sourceFile": "resperatory_mdictaion_quiz.json"
     },
     {
@@ -6162,7 +6163,7 @@
         3,
         4
       ],
-      "subject": " תרופות ומינונים, מצ-ח נשימתי",
+      "subject": "תרופות ומינונים, מצ-ח נשימתי",
       "sourceFile": "resperatory_mdictaion_quiz.json"
     },
     {
@@ -6186,7 +6187,7 @@
         3,
         4
       ],
-      "subject": " תרופות ומינונים, מצ-ח נשימתי",
+      "subject": "תרופות ומינונים, מצ-ח נשימתי",
       "sourceFile": "resperatory_mdictaion_quiz.json"
     },
     {
@@ -6200,7 +6201,7 @@
         "ארבע מנות"
       ],
       "correct": 0,
-      "subject": " תרופות ומינונים, מצ-ח נשימתי",
+      "subject": "תרופות ומינונים, מצ-ח נשימתי",
       "sourceFile": "resperatory_mdictaion_quiz.json"
     },
     {
@@ -6214,7 +6215,7 @@
         "כורטיזון 10mg בסליין"
       ],
       "correct": 0,
-      "subject": " תרופות ומינונים, מצ-ח נשימתי",
+      "subject": "תרופות ומינונים, מצ-ח נשימתי",
       "sourceFile": "resperatory_mdictaion_quiz.json"
     },
     {
@@ -6226,7 +6227,7 @@
         "לא נכון"
       ],
       "correct": 1,
-      "subject": " תרופות ומינונים, מצ-ח נשימתי",
+      "subject": "תרופות ומינונים, מצ-ח נשימתי",
       "sourceFile": "resperatory_mdictaion_quiz.json"
     },
     {
@@ -6248,7 +6249,7 @@
         2,
         4
       ],
-      "subject": " תרופות ומינונים, מצ-ח נשימתי",
+      "subject": "תרופות ומינונים, מצ-ח נשימתי",
       "sourceFile": "resperatory_mdictaion_quiz.json"
     },
     {
@@ -6270,7 +6271,7 @@
         2,
         4
       ],
-      "subject": " תרופות ומינונים, מצ-ח נשימתי",
+      "subject": "תרופות ומינונים, מצ-ח נשימתי",
       "sourceFile": "resperatory_mdictaion_quiz.json"
     },
     {
@@ -6284,7 +6285,7 @@
         "5mg ונטולין. 0.5 אירובנט . למהול ב 2ml סליין"
       ],
       "correct": 0,
-      "subject": " תרופות ומינונים, מצ-ח נשימתי",
+      "subject": "תרופות ומינונים, מצ-ח נשימתי",
       "sourceFile": "resperatory_mdictaion_quiz.json"
     },
     {
@@ -6296,7 +6297,7 @@
         "לא, נכון"
       ],
       "correct": 1,
-      "subject": " תרופות ומינונים, מצ-ח נשימתי",
+      "subject": "תרופות ומינונים, מצ-ח נשימתי",
       "sourceFile": "resperatory_mdictaion_quiz.json"
     },
     {
@@ -6308,7 +6309,7 @@
         "לא נכון"
       ],
       "correct": 1,
-      "subject": " תרופות ומינונים, מצ-ח נשימתי",
+      "subject": "תרופות ומינונים, מצ-ח נשימתי",
       "sourceFile": "resperatory_mdictaion_quiz.json"
     },
     {
@@ -6322,7 +6323,7 @@
         "0.4mg עד 5 מנות בהפרש של 10 דקות"
       ],
       "correct": 0,
-      "subject": " תרופות ומינונים, מצ-ח נשימתי",
+      "subject": "תרופות ומינונים, מצ-ח נשימתי",
       "sourceFile": "resperatory_mdictaion_quiz.json"
     },
     {
@@ -6336,7 +6337,7 @@
         "ניטרולינגואל"
       ],
       "correct": 0,
-      "subject": " תרופות ומינונים, מצ-ח נשימתי",
+      "subject": "תרופות ומינונים, מצ-ח נשימתי",
       "sourceFile": "resperatory_mdictaion_quiz.json"
     },
     {
@@ -6350,7 +6351,7 @@
         "25mcg/min"
       ],
       "correct": 0,
-      "subject": " תרופות ומינונים, מצ-ח נשימתי",
+      "subject": "תרופות ומינונים, מצ-ח נשימתי",
       "sourceFile": "resperatory_mdictaion_quiz.json"
     },
     {
@@ -6364,7 +6365,7 @@
         "15mcg/min כל 2 דקות"
       ],
       "correct": 0,
-      "subject": " תרופות ומינונים, מצ-ח נשימתי",
+      "subject": "תרופות ומינונים, מצ-ח נשימתי",
       "sourceFile": "resperatory_mdictaion_quiz.json"
     },
     {
@@ -6378,7 +6379,7 @@
         "אמפולה 2mg/5ml"
       ],
       "correct": 0,
-      "subject": " תרופות ומינונים, מצ-ח נשימתי",
+      "subject": "תרופות ומינונים, מצ-ח נשימתי",
       "sourceFile": "resperatory_mdictaion_quiz.json"
     },
     {
@@ -6392,7 +6393,7 @@
         "ניטרולינגואל"
       ],
       "correct": 0,
-      "subject": " תרופות ומינונים, מצ-ח נשימתי",
+      "subject": "תרופות ומינונים, מצ-ח נשימתי",
       "sourceFile": "resperatory_mdictaion_quiz.json"
     },
     {
@@ -6406,7 +6407,7 @@
         "לא צריך למהול"
       ],
       "correct": 0,
-      "subject": " תרופות ומינונים, מצ-ח נשימתי",
+      "subject": "תרופות ומינונים, מצ-ח נשימתי",
       "sourceFile": "resperatory_mdictaion_quiz.json"
     },
     {
@@ -6420,7 +6421,7 @@
         "8mg/hr"
       ],
       "correct": 0,
-      "subject": " תרופות ומינונים, מצ-ח נשימתי",
+      "subject": "תרופות ומינונים, מצ-ח נשימתי",
       "sourceFile": "resperatory_mdictaion_quiz.json"
     },
     {
@@ -6434,7 +6435,7 @@
         "דופמין עוזר לריאות להתגבר על הנוזלים"
       ],
       "correct": 0,
-      "subject": " תרופות ומינונים, מצ-ח נשימתי",
+      "subject": "תרופות ומינונים, מצ-ח נשימתי",
       "sourceFile": "resperatory_mdictaion_quiz.json"
     },
     {
@@ -6448,7 +6449,7 @@
         "מנה התחלתית 7.5mcg/kg/min"
       ],
       "correct": 0,
-      "subject": " תרופות ומינונים, מצ-ח נשימתי",
+      "subject": "תרופות ומינונים, מצ-ח נשימתי",
       "sourceFile": "resperatory_mdictaion_quiz.json"
     },
     {
@@ -6462,7 +6463,7 @@
         "3-18mcg/kg/min עד לחץ דם מעל 95"
       ],
       "correct": 0,
-      "subject": " תרופות ומינונים, מצ-ח נשימתי",
+      "subject": "תרופות ומינונים, מצ-ח נשימתי",
       "sourceFile": "resperatory_mdictaion_quiz.json"
     },
     {
@@ -6476,7 +6477,7 @@
         "לא רלוונטי"
       ],
       "correct": 0,
-      "subject": " תרופות ומינונים, מצ-ח נשימתי",
+      "subject": "תרופות ומינונים, מצ-ח נשימתי",
       "sourceFile": "resperatory_mdictaion_quiz.json"
     },
     {
@@ -6490,7 +6491,7 @@
         "רק איזוקט"
       ],
       "correct": 0,
-      "subject": " תרופות ומינונים, מצ-ח נשימתי",
+      "subject": "תרופות ומינונים, מצ-ח נשימתי",
       "sourceFile": "resperatory_mdictaion_quiz.json"
     },
     {
@@ -6504,7 +6505,7 @@
         "דופמין ופוסיד בלבד"
       ],
       "correct": 0,
-      "subject": " תרופות ומינונים, מצ-ח נשימתי",
+      "subject": "תרופות ומינונים, מצ-ח נשימתי",
       "sourceFile": "resperatory_mdictaion_quiz.json"
     },
     {
@@ -6522,7 +6523,7 @@
         0,
         1
       ],
-      "subject": " תרופות ומינונים, מצ-ח נשימתי",
+      "subject": "תרופות ומינונים, מצ-ח נשימתי",
       "sourceFile": "resperatory_mdictaion_quiz.json"
     },
     {
@@ -6534,7 +6535,7 @@
         "איזוקט IV"
       ],
       "correct": 0,
-      "subject": " תרופות ומינונים, מצ-ח נשימתי",
+      "subject": "תרופות ומינונים, מצ-ח נשימתי",
       "sourceFile": "resperatory_mdictaion_quiz.json"
     },
     {
@@ -6557,7 +6558,7 @@
         6,
         7
       ],
-      "subject": " תרופות ומינונים, מצ-ח נשימתי",
+      "subject": "תרופות ומינונים, מצ-ח נשימתי",
       "sourceFile": "resperatory_mdictaion_quiz.json"
     },
     {
@@ -6580,7 +6581,7 @@
         6,
         7
       ],
-      "subject": " תרופות ומינונים, מצ-ח נשימתי",
+      "subject": "תרופות ומינונים, מצ-ח נשימתי",
       "sourceFile": "resperatory_mdictaion_quiz.json"
     },
     {
@@ -11261,9 +11262,14 @@
         "זמן פינוי משוער מעל 10 דקות",
         "קיימים לפחות שני סימנים קליניים לירידה בפרפוזיה",
         "חבלת ראש המלווה בירידה במצב ההכרה ללא הרחבת אישונים דו-צדדית",
-        "כל התשובות נכונות"
+        "סיכוי טוב לדימום בחלל הבטן",
+        "דפורמציה קשה בגפיים תחתונות"
       ],
-      "correct": 3,
+      "correct": [
+        0,
+        1,
+        2
+      ],
       "subject": "פרוטוקול הטיפול בנפגע טראומה",
       "sourceFile": "trauma_care_quiz.json"
     },
@@ -11329,9 +11335,15 @@
         "A - נתיב אוויר",
         "B - מצב הנשימה",
         "C - מצב המודינמי",
-        "כל התשובות נכונות"
+        "מהלך/לא מהלך",
+        "הפשטה מלאה",
+        "גלזגאו אינדקס"
       ],
-      "correct": 3,
+      "correct": [
+        1,
+        2,
+        3
+      ],
       "subject": "פרוטוקול הטיפול בנפגע טראומה",
       "sourceFile": "trauma_care_quiz.json"
     },
@@ -11546,9 +11558,14 @@
         "דימום חמור או חשד לדימום חמור",
         "לפחות שניים מהסימנים הקליניים לירידה בפרפוזיה",
         "זמן פינוי מעל 20 דקות",
-        "כל התשובות נכונות"
+        "הכרה מעורפלת",
+        "הקאות מרובות"
       ],
-      "correct": 3,
+      "correct": [
+        0,
+        1,
+        2
+      ],
       "subject": "פרוטוקול הטיפול בנפגע טראומה",
       "sourceFile": "trauma_care_quiz.json"
     },
@@ -11623,9 +11640,14 @@
         "לקרב את האיבר למנח האנטומי המקורי",
         "לכסות את הפצע ברקמת עור אם קיימת",
         "לחבוש את האיבר בחבישת לחץ",
-        "כל התשובות נכונות"
+        "להניח קרח על החבישה",
+        "לקבע לגפה הנגדית"
       ],
-      "correct": 3,
+      "correct": [
+        0,
+        1,
+        2
+      ],
       "subject": "פרוטוקול הטיפול בנפגע טראומה",
       "sourceFile": "trauma_care_quiz.json"
     },
@@ -11653,9 +11675,17 @@
         "חשד לדימום פנימי בלתי נשלט עם סימני הלם",
         "סבירות גבוהה להתדרדרות במצב הרפואי",
         "כשל בביצוע הליך רפואי חיוני",
-        "כל התשובות נכונות"
+        "הכרה מעורפלת",
+        "הקאות",
+        "בלבול"
       ],
-      "correct": 5,
+      "correct": [
+        0,
+        1,
+        2,
+        3,
+        4
+      ],
       "subject": "פרוטוקול הטיפול בנפגע טראומה",
       "sourceFile": "trauma_care_quiz.json"
     },
@@ -12000,10 +12030,10 @@
         "שימוש בתרופות מרגיעות",
         "נפיחות או טראומה באזור העיניים",
         "אינטובציה או טראכאוסטומיה",
-        "שפה לא משותפת עם הבודק",
+        "קשיי שפה",
         "חירשות או אילמות",
         "שיתוק או פגיעה בעמוד השדרה",
-        "כל התשובות נכונות"
+        "התיבשות"
       ],
       "correct": [
         0,
@@ -12092,6 +12122,1389 @@
       ],
       "subject": "מדד גלזגאו - Glasgow Coma Scale (GCS)",
       "sourceFile": "glasgow_index_quiz.json"
+    },
+    {
+      "id": "trauma_final_exem_quiz_1",
+      "question": "מהו הלם?",
+      "type": "multiple_choice",
+      "options": [
+        "מצב של עייפות חמורה",
+        "מצב של אי-ספיקה במחזור הדם שבו אספקת החמצן לרקמות אינה מספיקה",
+        "מצב של כאב עז",
+        "מצב של חום גבוה"
+      ],
+      "correct": 1,
+      "subject": "לא צוין",
+      "sourceFile": "trauma_final_exem_quiz.json"
+    },
+    {
+      "id": "trauma_final_exem_quiz_2",
+      "question": "איזה מהבאים הוא הסוג השכיח ביותר של הלם במצבי טראומה?",
+      "type": "multiple_choice",
+      "options": [
+        "הלם קרדיוגני",
+        "הלם ספטי",
+        "הלם היפוולמי",
+        "הלם נוירוגני"
+      ],
+      "correct": 2,
+      "subject": "לא צוין",
+      "sourceFile": "trauma_final_exem_quiz.json"
+    },
+    {
+      "id": "trauma_final_exem_quiz_3",
+      "question": "בהלם נוירוגני, הדופק בדרך כלל מהיר ומוגבר",
+      "type": "true_false",
+      "options": [
+        "נכון",
+        "לא נכון"
+      ],
+      "correct": 1,
+      "subject": "לא צוין",
+      "sourceFile": "trauma_final_exem_quiz.json"
+    },
+    {
+      "id": "trauma_final_exem_quiz_4",
+      "question": "אילו מהסימנים הבאים מעידים על הלם? (בחר את כל התשובות הנכונות)",
+      "type": "multiple_correct",
+      "options": [
+        "דופק מעל 100 פעימות לדקה",
+        "לחץ דם סיסטולי מתחת ל-90 mmHg",
+        "עור חיוור, קר ולח",
+        "נשימה מהירה מעל 20 נשימות לדקה",
+        "חום גבוה",
+        "ירידה ברמת ההכרה",
+        "כאב ראש",
+        "בחילות קלות"
+      ],
+      "correct": [
+        0,
+        1,
+        2,
+        3,
+        5
+      ],
+      "subject": "לא צוין",
+      "sourceFile": "trauma_final_exem_quiz.json"
+    },
+    {
+      "id": "trauma_final_exem_quiz_5",
+      "question": "מהו הגורם העיקרי להלם אנפילקטי?",
+      "type": "multiple_choice",
+      "options": [
+        "דימום פנימי",
+        "תגובה אלרגית חמורה",
+        "אוטם שריר הלב",
+        "פגיעה בחוט השדרה"
+      ],
+      "correct": 1,
+      "subject": "לא צוין",
+      "sourceFile": "trauma_final_exem_quiz.json"
+    },
+    {
+      "id": "trauma_final_exem_quiz_6",
+      "question": "במטופל בהלם, מותר לתת לו מזון או משקה אם הוא מבקש",
+      "type": "true_false",
+      "options": [
+        "נכון",
+        "לא נכון"
+      ],
+      "correct": 1,
+      "subject": "לא צוין",
+      "sourceFile": "trauma_final_exem_quiz.json"
+    },
+    {
+      "id": "trauma_final_exem_quiz_7",
+      "question": "מהו הסדר הנכון של הסבב הראשוני (Primary Survey)?",
+      "type": "multiple_choice",
+      "options": [
+        "ABC",
+        "ABCDE",
+        "DCBA",
+        "SAMPLE"
+      ],
+      "correct": 1,
+      "subject": "לא צוין",
+      "sourceFile": "trauma_final_exem_quiz.json"
+    },
+    {
+      "id": "trauma_final_exem_quiz_8",
+      "question": "מה משמעות האות 'C' בסבב הראשוני ABCDE?",
+      "type": "multiple_choice",
+      "options": [
+        "Consciousness - רמת הכרה",
+        "Circulation - מחזור דם",
+        "Cervical spine - עמוד שדרה צווארי",
+        "Cardiac - לב"
+      ],
+      "correct": 1,
+      "subject": "לא צוין",
+      "sourceFile": "trauma_final_exem_quiz.json"
+    },
+    {
+      "id": "trauma_final_exem_quiz_9",
+      "question": "הסבב השניוני (Secondary Survey) מבוצע לפני יציבות המטופל בסבב הראשוני",
+      "type": "true_false",
+      "options": [
+        "נכון",
+        "לא נכון"
+      ],
+      "correct": 1,
+      "subject": "לא צוין",
+      "sourceFile": "trauma_final_exem_quiz.json"
+    },
+    {
+      "id": "trauma_final_exem_quiz_10",
+      "question": "אילו פעולות נכללות בבדיקת 'A' (Airway) בסבב הראשוני? (בחר את כל התשובות הנכונות)",
+      "type": "multiple_correct",
+      "options": [
+        "בדיקת פתיחות דרכי הנשימה",
+        "זיהוי חסימות כמו דם או גוף זר",
+        "יציבות עמוד שדרה צווארי",
+        "שאיבה במידת הצורך",
+        "מדידת לחץ דם",
+        "בדיקת אישונים",
+        "הטיית ראש-הרמת סנטר",
+        "הערכת דופק"
+      ],
+      "correct": [
+        0,
+        1,
+        2,
+        3,
+        6
+      ],
+      "subject": "לא צוין",
+      "sourceFile": "trauma_final_exem_quiz.json"
+    },
+    {
+      "id": "trauma_final_exem_quiz_11",
+      "question": "מה כולל הסבב השניוני?",
+      "type": "multiple_choice",
+      "options": [
+        "רק בדיקת סימנים חיוניים",
+        "בדיקה שיטתית מפורטת לזיהוי כל הפגיעות כולל אנמנזה וקינמטיקה",
+        "רק בדיקה נוירולוגית",
+        "רק טיפול בדימומים"
+      ],
+      "correct": 1,
+      "subject": "לא צוין",
+      "sourceFile": "trauma_final_exem_quiz.json"
+    },
+    {
+      "id": "trauma_final_exem_quiz_12",
+      "question": "GCS (Glasgow Coma Scale) נבדק בשלב 'D' (Disability) של הסבב הראשוני",
+      "type": "true_false",
+      "options": [
+        "נכון",
+        "לא נכון"
+      ],
+      "correct": 0,
+      "subject": "לא צוין",
+      "sourceFile": "trauma_final_exem_quiz.json"
+    },
+    {
+      "id": "trauma_final_exem_quiz_13",
+      "question": "מהו חזה מרפרף (Flail Chest)?",
+      "type": "multiple_choice",
+      "options": [
+        "שבר בצלע אחת",
+        "שבר ב-2 או יותר צלעות סמוכות, בשני מקומות או יותר בכל צלע",
+        "דימום בחזה",
+        "אוויר בחזה"
+      ],
+      "correct": 1,
+      "subject": "לא צוין",
+      "sourceFile": "trauma_final_exem_quiz.json"
+    },
+    {
+      "id": "trauma_final_exem_quiz_14",
+      "question": "במה מתאפיינת התנועה הפרדוקסלית בחזה מרפרף?",
+      "type": "multiple_choice",
+      "options": [
+        "הקטע נע כרגיל עם הנשימה",
+        "הקטע נכנס פנימה בשאיפה ויוצא החוצה בנשיפה",
+        "הקטע לא זז כלל",
+        "הקטע רק עולה למעלה"
+      ],
+      "correct": 1,
+      "subject": "לא צוין",
+      "sourceFile": "trauma_final_exem_quiz.json"
+    },
+    {
+      "id": "trauma_final_exem_quiz_15",
+      "question": "Tension Pneumothorax (חזה אוויר במתח) הוא מצב שאינו מסכן חיים",
+      "type": "true_false",
+      "options": [
+        "נכון",
+        "לא נכון"
+      ],
+      "correct": 1,
+      "subject": "לא צוין",
+      "sourceFile": "trauma_final_exem_quiz.json"
+    },
+    {
+      "id": "trauma_final_exem_quiz_16",
+      "question": "אילו סימנים אופייניים ל-Tension Pneumothorax? (בחר את כל התשובות הנכונות)",
+      "type": "multiple_correct",
+      "options": [
+        "היסט של קנה הנשימה (טראכאה)",
+        "התרחבות ורידי צוואר (JVD)",
+        "היפר-רזוננס בהקשה",
+        "היעדר רעשי נשימה בצד הפגוע",
+        "חום גבוה",
+        "היפוטנזיה",
+        "כאב בבטן",
+        "טכיקרדיה"
+      ],
+      "correct": [
+        0,
+        1,
+        2,
+        3,
+        5,
+        7
+      ],
+      "subject": "לא צוין",
+      "sourceFile": "trauma_final_exem_quiz.json"
+    },
+    {
+      "id": "trauma_final_exem_quiz_17",
+      "question": "מהו הטיפול המתאים לפצע חזה פתוח ('פצע יונק')?",
+      "type": "multiple_choice",
+      "options": [
+        "חבישה רגילה על כל הפצע",
+        "חבישה אטומה תלת-צדדית (3-sided dressing)",
+        "אין צורך בחבישה",
+        "רק מתן חמצן"
+      ],
+      "correct": 1,
+      "subject": "לא צוין",
+      "sourceFile": "trauma_final_exem_quiz.json"
+    },
+    {
+      "id": "trauma_final_exem_quiz_18",
+      "question": "בהמותורקס (Hemothorax), נשמע היפר-רזוננס (צליל תוף) בהקשה על החזה",
+      "type": "true_false",
+      "options": [
+        "נכון",
+        "לא נכון"
+      ],
+      "correct": 1,
+      "subject": "לא צוין",
+      "sourceFile": "trauma_final_exem_quiz.json"
+    },
+    {
+      "id": "trauma_final_exem_quiz_19",
+      "question": "מהו טווח הלחץ התוך-גולגולתי (ICP) התקין?",
+      "type": "multiple_choice",
+      "options": [
+        "0-5 mmHg",
+        "5-15 mmHg",
+        "20-30 mmHg",
+        "30-40 mmHg"
+      ],
+      "correct": 1,
+      "subject": "לא צוין",
+      "sourceFile": "trauma_final_exem_quiz.json"
+    },
+    {
+      "id": "trauma_final_exem_quiz_20",
+      "question": "מהי שלישיית Cushing המעידה על עלייה קריטית ב-ICP?",
+      "type": "multiple_choice",
+      "options": [
+        "היפוטנזיה, טכיקרדיה, נשימה סדירה",
+        "היפרטנזיה, ברדיקרדיה, נשימה לא סדירה",
+        "טכיקרדיה, היפותרמיה, הזעה",
+        "ציאנוזה, חום, שיעול"
+      ],
+      "correct": 1,
+      "subject": "לא צוין",
+      "sourceFile": "trauma_final_exem_quiz.json"
+    },
+    {
+      "id": "trauma_final_exem_quiz_21",
+      "question": "במטופל עם חשד לעלייה ב-ICP, יש להוריד את ראש המיטה כדי לשפר זרימת דם",
+      "type": "true_false",
+      "options": [
+        "נכון",
+        "לא נכון"
+      ],
+      "correct": 1,
+      "subject": "לא צוין",
+      "sourceFile": "trauma_final_exem_quiz.json"
+    },
+    {
+      "id": "trauma_final_exem_quiz_22",
+      "question": "אילו פעולות מומלצות בטיפול במטופל עם חשד לעלייה ב-ICP? (בחר את כל התשובות הנכונות)",
+      "type": "multiple_correct",
+      "options": [
+        "הרמת ראש למיטה 30 מעלות",
+        "שמירת הראש באמצע (לא מסובב)",
+        "חמצן גבוה (SpO₂ ≥94%)",
+        "היפרונטילציה אגרסיבית",
+        "מניעת היפוטנזיה (SBP >90)",
+        "שאיבה תוך-קנה נשימה אגרסיבית",
+        "מניעת כאב וגירויים מיותרים",
+        "מתן נוזלים בכמות גדולה"
+      ],
+      "correct": [
+        0,
+        1,
+        2,
+        4,
+        6
+      ],
+      "subject": "לא צוין",
+      "sourceFile": "trauma_final_exem_quiz.json"
+    },
+    {
+      "id": "trauma_final_exem_quiz_23",
+      "question": "מהו הסימן המוקדם ביותר לעלייה ב-ICP?",
+      "type": "multiple_choice",
+      "options": [
+        "אישון מורחב וקבוע",
+        "שינויים ברמת ההכרה וכאב ראש",
+        "היפוטנזיה",
+        "ברדיקרדיה"
+      ],
+      "correct": 1,
+      "subject": "לא צוין",
+      "sourceFile": "trauma_final_exem_quiz.json"
+    },
+    {
+      "id": "trauma_final_exem_quiz_24",
+      "question": "אישון מורחב וקבוע (blown pupil) הוא סימן מאוחר ומסוכן לעלייה ב-ICP",
+      "type": "true_false",
+      "options": [
+        "נכון",
+        "לא נכון"
+      ],
+      "correct": 0,
+      "subject": "לא צוין",
+      "sourceFile": "trauma_final_exem_quiz.json"
+    },
+    {
+      "id": "trauma_final_exem_quiz_25",
+      "question": "איזה צבע אופייני לדימום עורקי?",
+      "type": "multiple_choice",
+      "options": [
+        "אדום כהה",
+        "אדום בהיר",
+        "חום",
+        "ורוד"
+      ],
+      "correct": 1,
+      "subject": "לא צוין",
+      "sourceFile": "trauma_final_exem_quiz.json"
+    },
+    {
+      "id": "trauma_final_exem_quiz_26",
+      "question": "איך מתאפיין דימום עורקי?",
+      "type": "multiple_choice",
+      "options": [
+        "זורם בצורה רציפה ויציבה",
+        "מחלחל לאט",
+        "מתיז/פועם בקצב הדופק",
+        "נעצר מעצמו במהירות"
+      ],
+      "correct": 2,
+      "subject": "לא צוין",
+      "sourceFile": "trauma_final_exem_quiz.json"
+    },
+    {
+      "id": "trauma_final_exem_quiz_27",
+      "question": "טורניקט (חסם עורקים) מותר לשימוש גם בצוואר ובטן",
+      "type": "true_false",
+      "options": [
+        "נכון",
+        "לא נכון"
+      ],
+      "correct": 1,
+      "subject": "לא צוין",
+      "sourceFile": "trauma_final_exem_quiz.json"
+    },
+    {
+      "id": "trauma_final_exem_quiz_28",
+      "question": "מהו הסדר הנכון של שלבי עצירת דימום (מהפשוט למתקדם)?",
+      "type": "multiple_choice",
+      "options": [
+        "טורניקט → לחץ ישיר → חבישה המוסטטית",
+        "לחץ ישיר → חבישה המוסטטית → טורניקט",
+        "חבישה המוסטטית → לחץ ישיר → טורניקט",
+        "טורניקט → חבישה המוסטטית → לחץ ישיר"
+      ],
+      "correct": 1,
+      "subject": "לא צוין",
+      "sourceFile": "trauma_final_exem_quiz.json"
+    },
+    {
+      "id": "trauma_final_exem_quiz_29",
+      "question": "אילו מהבאים נכונים לגבי טורניקט? (בחר את כל התשובות הנכונות)",
+      "type": "multiple_correct",
+      "options": [
+        "יש להדק מספיק חזק כדי לעצור דימום עורקי",
+        "יש לתעד את זמן ההנחה בדיוק",
+        "מומלץ לשחרר בשטח כל 15 דקות",
+        "מיקום: 5-7 ס\"מ מעל הפצע",
+        "עד שעתיים בטוח יחסית",
+        "לא לכסות את הטורניקט",
+        "מותר להיות 'רך' כדי לא לכאוב",
+        "רשום 'T' או 'TQ' על מצח הנפגע"
+      ],
+      "correct": [
+        0,
+        1,
+        3,
+        4,
+        5,
+        7
+      ],
+      "subject": "לא צוין",
+      "sourceFile": "trauma_final_exem_quiz.json"
+    },
+    {
+      "id": "trauma_final_exem_quiz_30",
+      "question": "חבישה המוסטטית יעילה רק לדימום קפילרי קל",
+      "type": "true_false",
+      "options": [
+        "נכון",
+        "לא נכון"
+      ],
+      "correct": 1,
+      "subject": "לא צוין",
+      "sourceFile": "trauma_final_exem_quiz.json"
+    },
+    {
+      "id": "trauma_final_exem_quiz_31",
+      "question": "מהו נקע (Sprain)?",
+      "type": "multiple_choice",
+      "options": [
+        "פגיעה בעצם",
+        "פגיעה ברצועה (Ligament)",
+        "פגיעה בשריר",
+        "פגיעה בעצב"
+      ],
+      "correct": 1,
+      "subject": "לא צוין",
+      "sourceFile": "trauma_final_exem_quiz.json"
+    },
+    {
+      "id": "trauma_final_exem_quiz_32",
+      "question": "מהו ההבדל העיקרי בין שבר סגור לשבר פתוח?",
+      "type": "multiple_choice",
+      "options": [
+        "השבר הסגור כואב יותר",
+        "בשבר פתוח העצם חודרת דרך העור או יש פצע חיצוני החושף עצם",
+        "השבר הפתוח לא מסוכן",
+        "השבר הסגור דורש ניתוח תמיד"
+      ],
+      "correct": 1,
+      "subject": "לא צוין",
+      "sourceFile": "trauma_final_exem_quiz.json"
+    },
+    {
+      "id": "trauma_final_exem_quiz_33",
+      "question": "מותר להחזיר פריקה (Dislocation) בשטח אם יודעים את הטכניקה",
+      "type": "true_false",
+      "options": [
+        "נכון",
+        "לא נכון"
+      ],
+      "correct": 1,
+      "subject": "לא צוין",
+      "sourceFile": "trauma_final_exem_quiz.json"
+    },
+    {
+      "id": "trauma_final_exem_quiz_34",
+      "question": "מהן ה-6 P's לבדיקת זרימת דם ועצבים? (בחר את כל התשובות הנכונות)",
+      "type": "multiple_correct",
+      "options": [
+        "Pain (כאב)",
+        "Pallor (חיוורון)",
+        "Pulse (דופק)",
+        "Paresthesia (פרסתזיה - עקצוצים)",
+        "Pressure (לחץ)",
+        "Paralysis (שיתוק)",
+        "Position (מיקום)",
+        "Protection (הגנה)"
+      ],
+      "correct": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "subject": "לא צוין",
+      "sourceFile": "trauma_final_exem_quiz.json"
+    },
+    {
+      "id": "trauma_final_exem_quiz_35",
+      "question": "מהו העיקרון הנכון לקיבוע שברים?",
+      "type": "multiple_choice",
+      "options": [
+        "קבע רק את האזור הפגוע",
+        "קבע מפרק למעלה ומפרק למטה מהשבר",
+        "קבע רק אם יש דימום",
+        "קבע רק את המפרק הקרוב"
+      ],
+      "correct": 1,
+      "subject": "לא צוין",
+      "sourceFile": "trauma_final_exem_quiz.json"
+    },
+    {
+      "id": "trauma_final_exem_quiz_36",
+      "question": "תסמונת דחיסה (Compartment Syndrome) יכולה להיגרם מקיבוע הדוק מדי",
+      "type": "true_false",
+      "options": [
+        "נכון",
+        "לא נכון"
+      ],
+      "correct": 0,
+      "subject": "לא צוין",
+      "sourceFile": "trauma_final_exem_quiz.json"
+    },
+    {
+      "id": "trauma_final_exem_quiz_37",
+      "question": "איזו דרגת כוויה מאופיינת בשלפוחיות (Blisters)?",
+      "type": "multiple_choice",
+      "options": [
+        "דרגה ראשונה",
+        "דרגה שנייה",
+        "דרגה שלישית",
+        "דרגה רביעית"
+      ],
+      "correct": 1,
+      "subject": "לא צוין",
+      "sourceFile": "trauma_final_exem_quiz.json"
+    },
+    {
+      "id": "trauma_final_exem_quiz_38",
+      "question": "למה בכוויה מדרגה שלישית אין כאב?",
+      "type": "multiple_choice",
+      "options": [
+        "כי הכוויה שטחית",
+        "כי קצות העצביות נהרסו לחלוטין",
+        "כי יש דימום",
+        "כי יש שלפוחיות"
+      ],
+      "correct": 1,
+      "subject": "לא צוין",
+      "sourceFile": "trauma_final_exem_quiz.json"
+    },
+    {
+      "id": "trauma_final_exem_quiz_39",
+      "question": "לפי 'כלל ה-9', כל זרוע (קדמי ואחורי) מהווה 9% משטח הגוף במבוגר",
+      "type": "true_false",
+      "options": [
+        "נכון",
+        "לא נכון"
+      ],
+      "correct": 0,
+      "subject": "לא צוין",
+      "sourceFile": "trauma_final_exem_quiz.json"
+    },
+    {
+      "id": "trauma_final_exem_quiz_40",
+      "question": "אילו סימנים מעידים על כוויית דרכי נשימה? (בחר את כל התשובות הנכונות)",
+      "type": "multiple_correct",
+      "options": [
+        "שריפה במרחב סגור",
+        "כוויות בפנים",
+        "שערות פנים חרוכות",
+        "פיח בנחיריים או בפה",
+        "צרידות (Hoarseness)",
+        "כאב בבטן",
+        "סטרידור",
+        "שלשול"
+      ],
+      "correct": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        6
+      ],
+      "subject": "לא צוין",
+      "sourceFile": "trauma_final_exem_quiz.json"
+    },
+    {
+      "id": "trauma_final_exem_quiz_41",
+      "question": "מהו הטיפול הנכון בכוויה כימית?",
+      "type": "multiple_choice",
+      "options": [
+        "מריחת משחה מיד",
+        "שטיפה ממושכת במים זורמים (20-60 דקות)",
+        "קירור בקרח",
+        "חבישה יבשה בלבד"
+      ],
+      "correct": 1,
+      "subject": "לא צוין",
+      "sourceFile": "trauma_final_exem_quiz.json"
+    },
+    {
+      "id": "trauma_final_exem_quiz_42",
+      "question": "כוויות מעל 15-20% בבוגר עלולות לגרום להלם היפווולמי",
+      "type": "true_false",
+      "options": [
+        "נכון",
+        "לא נכון"
+      ],
+      "correct": 0,
+      "subject": "לא צוין",
+      "sourceFile": "trauma_final_exem_quiz.json"
+    },
+    {
+      "id": "trauma_final_exem_quiz_43",
+      "question": "מדוע אסור להוציא חפץ תקוע בשטח?",
+      "type": "multiple_choice",
+      "options": [
+        "כי זה כואב",
+        "כי החפץ פועל כ'פקק' ומונע דימום מסיבי",
+        "כי זה לא חשוב",
+        "כי זה מסובך"
+      ],
+      "correct": 1,
+      "subject": "לא צוין",
+      "sourceFile": "trauma_final_exem_quiz.json"
+    },
+    {
+      "id": "trauma_final_exem_quiz_44",
+      "question": "מהו הטיפול הנכון בחפץ תקוע?",
+      "type": "multiple_choice",
+      "options": [
+        "להוציא מיד",
+        "לדחוף פנימה",
+        "להשאיר במקום ולייצב עם חבישות bulky",
+        "להתעלם"
+      ],
+      "correct": 2,
+      "subject": "לא צוין",
+      "sourceFile": "trauma_final_exem_quiz.json"
+    },
+    {
+      "id": "trauma_final_exem_quiz_45",
+      "question": "בפצע חודר, הפתח החיצוני תמיד משקף את חומרת הנזק הפנימי",
+      "type": "true_false",
+      "options": [
+        "נכון",
+        "לא נכון"
+      ],
+      "correct": 1,
+      "subject": "לא צוין",
+      "sourceFile": "trauma_final_exem_quiz.json"
+    },
+    {
+      "id": "trauma_final_exem_quiz_46",
+      "question": "אילו אזורים נחשבים קריטיים בפצעים חודרים? (בחר את כל התשובות הנכונות)",
+      "type": "multiple_correct",
+      "options": [
+        "חזה",
+        "בטן",
+        "צוואר",
+        "ראש",
+        "אצבע",
+        "גפיים (בסיכון לכלי דם)",
+        "אוזן",
+        "אף"
+      ],
+      "correct": [
+        0,
+        1,
+        2,
+        3,
+        5
+      ],
+      "subject": "לא צוין",
+      "sourceFile": "trauma_final_exem_quiz.json"
+    },
+    {
+      "id": "trauma_final_exem_quiz_47",
+      "question": "מהו הסיכון המיוחד בפציעה ורידית בצוואר?",
+      "type": "multiple_choice",
+      "options": [
+        "זיהום",
+        "תסחיף אוויר (Air Embolism)",
+        "כאב עז",
+        "חום"
+      ],
+      "correct": 1,
+      "subject": "לא צוין",
+      "sourceFile": "trauma_final_exem_quiz.json"
+    },
+    {
+      "id": "trauma_final_exem_quiz_48",
+      "question": "בדקירה בבטן עם סימני הלם, יש לבצע 'Load and Go' - פינוי מהיר",
+      "type": "true_false",
+      "options": [
+        "נכון",
+        "לא נכון"
+      ],
+      "correct": 0,
+      "subject": "לא צוין",
+      "sourceFile": "trauma_final_exem_quiz.json"
+    },
+    {
+      "id": "trauma_final_exem_quiz_49",
+      "question": "מהו PAT (Pediatric Assessment Triangle)?",
+      "type": "multiple_choice",
+      "options": [
+        "סוג של תרופה לילדים",
+        "הערכה ויזואלית מהירה של ילד: מראה, מאמץ נשימתי, זרימה לעור",
+        "סוג של טורניקט",
+        "שיטת מדידת לחץ דם"
+      ],
+      "correct": 1,
+      "subject": "לא צוין",
+      "sourceFile": "trauma_final_exem_quiz.json"
+    },
+    {
+      "id": "trauma_final_exem_quiz_50",
+      "question": "כמה מ\"ל/ק\"ג יש לתת בבולוס נוזלים לילד בהלם?",
+      "type": "multiple_choice",
+      "options": [
+        "10 מ\"ל/ק\"ג",
+        "20 מ\"ל/ק\"ג",
+        "50 מ\"ל/ק\"ג",
+        "100 מ\"ל/ק\"ג"
+      ],
+      "correct": 1,
+      "subject": "לא צוין",
+      "sourceFile": "trauma_final_exem_quiz.json"
+    },
+    {
+      "id": "trauma_final_exem_quiz_52",
+      "question": "קשישים מפצים בצורה מצוינת על הלם ולכן תמיד יופיע טכיקרדיה",
+      "type": "true_false",
+      "options": [
+        "נכון",
+        "לא נכון"
+      ],
+      "correct": 1,
+      "subject": "לא צוין",
+      "sourceFile": "trauma_final_exem_quiz.json"
+    },
+    {
+      "id": "trauma_final_exem_quiz_53",
+      "question": "אילו הבדלים פיזיולוגיים חשובים בילדים? (בחר את כל התשובות הנכונות)",
+      "type": "multiple_correct",
+      "options": [
+        "ראש גדול יחסית לגוף",
+        "דרכי נשימה צרות ורכות",
+        "פיצוי קרדיווסקולרי מצוין",
+        "היפותרמיה בקלות",
+        "עצמות גמישות",
+        "שטח פנים קטן",
+        "נפח דם גדול",
+        "ויסות טמפרטורה מושלם"
+      ],
+      "correct": [
+        0,
+        1,
+        2,
+        3,
+        4
+      ],
+      "subject": "לא צוין",
+      "sourceFile": "trauma_final_exem_quiz.json"
+    },
+    {
+      "id": "trauma_final_exem_quiz_54",
+      "question": "איזה מהבאים הוא סימן חשוד להתעללות בילד?",
+      "type": "multiple_choice",
+      "options": [
+        "חבורה על הברך",
+        "כוויות בדפוס 'כפפה' או 'גרב' עם קווי הגבלה חדים",
+        "שריטה על המצח",
+        "חבורה קלה על המרפק"
+      ],
+      "correct": 1,
+      "subject": "לא צוין",
+      "sourceFile": "trauma_final_exem_quiz.json"
+    },
+    {
+      "id": "trauma_final_exem_quiz_55",
+      "question": "דיווח על חשד להתעללות בילד הוא חובה חוקית",
+      "type": "true_false",
+      "options": [
+        "נכון",
+        "לא נכון"
+      ],
+      "correct": 0,
+      "subject": "לא צוין",
+      "sourceFile": "trauma_final_exem_quiz.json"
+    },
+    {
+      "id": "trauma_final_exem_quiz_55",
+      "question": "מהן 'עשר דקות הזהב' (Platinum 10 Minutes)?",
+      "type": "multiple_choice",
+      "options": [
+        "זמן ההמתנה למסוק",
+        "משך הזמן המקסימלי בזירה עם מטופל טראומה קשה לפני תחילת פינוי",
+        "זמן נסיעה לבית חולים",
+        "זמן להכנת ציוד"
+      ],
+      "correct": 1,
+      "subject": "לא צוין",
+      "sourceFile": "trauma_final_exem_quiz.json"
+    },
+    {
+      "id": "trauma_final_exem_quiz_56",
+      "question": "מהו העיקרון המרכזי של 'עשר דקות הזהב'?",
+      "type": "multiple_choice",
+      "options": [
+        "לבצע כל טיפול אפשרי בזירה",
+        "מינימום טיפול בזירה, מקסימום מהירות לבית חולים",
+        "להמתין לצוות מתקדם",
+        "לבצע ניתוח בשטח"
+      ],
+      "correct": 1,
+      "subject": "לא צוין",
+      "sourceFile": "trauma_final_exem_quiz.json"
+    },
+    {
+      "id": "trauma_final_exem_quiz_57",
+      "question": "קינמטיקה (Kinematics) עוזרת לחזות פגיעות נסתרות על פי מנגנון הפגיעה",
+      "type": "true_false",
+      "options": [
+        "נכון",
+        "לא נכון"
+      ],
+      "correct": 0,
+      "subject": "לא צוין",
+      "sourceFile": "trauma_final_exem_quiz.json"
+    },
+    {
+      "id": "trauma_final_exem_quiz_58",
+      "question": "אילו טיפולים נחשבים 'מצילי חיים' ומבוצעים בזירה? (בחר את כל התשובות הנכונות)",
+      "type": "multiple_correct",
+      "options": [
+        "פתיחת דרכי נשימה",
+        "עצירת דימום חיצוני",
+        "חמצן",
+        "יציבות עמוד שדרה",
+        "קיבוע שברי אצבעות",
+        "יציבות חפץ תקוע",
+        "חבישות מפורטות על שריטות",
+        "אנמנזה מפורטת"
+      ],
+      "correct": [
+        0,
+        1,
+        2,
+        3,
+        5
+      ],
+      "subject": "לא צוין",
+      "sourceFile": "trauma_final_exem_quiz.json"
+    },
+    {
+      "id": "trauma_final_exem_quiz_59",
+      "question": "מהו 'Load and Go'?",
+      "type": "multiple_choice",
+      "options": [
+        "טיפול ממושך בזירה",
+        "מינימום טיפול בזירה ופינוי מהיר למטופל טראומה קשה",
+        "המתנה לצוות נוסף",
+        "נסיעה איטית לבית חולים"
+      ],
+      "correct": 1,
+      "subject": "לא צוין",
+      "sourceFile": "trauma_final_exem_quiz.json"
+    },
+    {
+      "id": "trauma_final_exem_quiz_60",
+      "question": "החובש המוביל (Team Leader) בדרך כלל נמצא ליד ראש המטופל כשיש חשד לפגיעת C-spine",
+      "type": "true_false",
+      "options": [
+        "נכון",
+        "לא נכון"
+      ],
+      "correct": 0,
+      "subject": "לא צוין",
+      "sourceFile": "trauma_final_exem_quiz.json"
+    },
+    {
+      "id": "trauma_final_exem_quiz_61",
+      "question": "מהי האות 'S' בסכמת PHTLS?",
+      "type": "multiple_choice",
+      "options": [
+        "Shock - הלם",
+        "Safety - בטחון המטפל והמטופל",
+        "Surgery - ניתוח",
+        "Symptoms - תסמינים"
+      ],
+      "correct": 1,
+      "subject": "לא צוין",
+      "sourceFile": "trauma_final_exem_quiz.json"
+    },
+    {
+      "id": "trauma_final_exem_quiz_62",
+      "question": "אילו פעולות כלולות בשלב S (בטחון)? (בחר את כל התשובות הנכונות)",
+      "type": "multiple_correct",
+      "options": [
+        "התרשמות מזירת האירוע ומנגנון הפציעה",
+        "קבלת דיווח ובחינה ויזואלית",
+        "עצירת דימום משמעותי כולל אזור מעבר",
+        "דיווח ראשוני",
+        "מדידת לחץ דם",
+        "קיבוע שברים",
+        "בדיקת אישונים",
+        "מתן תרופות"
+      ],
+      "correct": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "subject": "לא צוין",
+      "sourceFile": "trauma_final_exem_quiz.json"
+    },
+    {
+      "id": "trauma_final_exem_quiz_63",
+      "question": "בשלב S, יש לעצור דימום משמעותי גם באזורי מעבר כמו בית שחי ומפשעה",
+      "type": "true_false",
+      "options": [
+        "נכון",
+        "לא נכון"
+      ],
+      "correct": 0,
+      "subject": "לא צוין",
+      "sourceFile": "trauma_final_exem_quiz.json"
+    },
+    {
+      "id": "trauma_final_exem_quiz_64",
+      "question": "מהו הסדר הנכון לבדיקת רמת הכרה בסכמת PHTLS?",
+      "type": "multiple_choice",
+      "options": [
+        "ABCD",
+        "AVPU",
+        "GCS",
+        "SAMPLE"
+      ],
+      "correct": 1,
+      "subject": "לא צוין",
+      "sourceFile": "trauma_final_exem_quiz.json"
+    },
+    {
+      "id": "trauma_final_exem_quiz_65",
+      "question": "מה משמעות הראשי תיבות AVPU?",
+      "type": "multiple_choice",
+      "options": [
+        "Alert, Voice, Pain, Unresponsive",
+        "Airway, Ventilation, Pulse, Urgent",
+        "Arterial, Venous, Pulmonary, Urgent",
+        "Assessment, Vital signs, Protocol, Update"
+      ],
+      "correct": 0,
+      "subject": "לא צוין",
+      "sourceFile": "trauma_final_exem_quiz.json"
+    },
+    {
+      "id": "trauma_final_exem_quiz_66",
+      "question": "בחשד לפגיעת עמוד שדרה צווארי, יש להשתמש בטכניקת Jaw Thrust (J.T) במקום הטיית ראש",
+      "type": "true_false",
+      "options": [
+        "נכון",
+        "לא נכון"
+      ],
+      "correct": 0,
+      "subject": "לא צוין",
+      "sourceFile": "trauma_final_exem_quiz.json"
+    },
+    {
+      "id": "trauma_final_exem_quiz_67",
+      "question": "אילו פעולות נכללות בשלב A (נתיב אוויר)? (בחר את כל התשובות הנכונות)",
+      "type": "multiple_correct",
+      "options": [
+        "בדיקת הכרה AVPU",
+        "התרשמות מדרכי האוויר",
+        "סילוק הפרשות במידת הצורך",
+        "החדרת מנתב אוויר",
+        "מדידת דופק",
+        "עצירת דימום",
+        "קבלת החלטה על נתיב אוויר דפניטיבי",
+        "מדידת לחץ דם"
+      ],
+      "correct": [
+        0,
+        1,
+        2,
+        3,
+        6
+      ],
+      "subject": "לא צוין",
+      "sourceFile": "trauma_final_exem_quiz.json"
+    },
+    {
+      "id": "trauma_final_exem_quiz_68",
+      "question": "כמה שניות יש לבדוק את הנשימה הכמותית (ספירת קצב נשימה) בשלב B?",
+      "type": "multiple_choice",
+      "options": [
+        "15 שניות",
+        "20 שניות",
+        "30 שניות",
+        "60 שניות"
+      ],
+      "correct": 2,
+      "subject": "לא צוין",
+      "sourceFile": "trauma_final_exem_quiz.json"
+    },
+    {
+      "id": "trauma_final_exem_quiz_69",
+      "question": "מהי הפעולה הראשונה בשלב B (נשימה)?",
+      "type": "multiple_choice",
+      "options": [
+        "מדידת סטורציה",
+        "מתן חמצן",
+        "חשיפת בית חזה והתרשמות מחבלה",
+        "האזנה לריאות"
+      ],
+      "correct": 2,
+      "subject": "לא צוין",
+      "sourceFile": "trauma_final_exem_quiz.json"
+    },
+    {
+      "id": "trauma_final_exem_quiz_70",
+      "question": "בבדיקת נשימה איכותית, יש להניח 2 ידיים על בית החזה לבדוק עלייה דו-צדדית",
+      "type": "true_false",
+      "options": [
+        "נכון",
+        "לא נכון"
+      ],
+      "correct": 0,
+      "subject": "לא צוין",
+      "sourceFile": "trauma_final_exem_quiz.json"
+    },
+    {
+      "id": "trauma_final_exem_quiz_71",
+      "question": "כמה שניות יש לספור את הדופק הכמותי בשלב C?",
+      "type": "multiple_choice",
+      "options": [
+        "10 שניות",
+        "15 שניות",
+        "30 שניות",
+        "60 שניות"
+      ],
+      "correct": 1,
+      "subject": "לא צוין",
+      "sourceFile": "trauma_final_exem_quiz.json"
+    },
+    {
+      "id": "trauma_final_exem_quiz_72",
+      "question": "אילו סימני הלם נלווים יש לבדוק בשלב C? (בחר את כל התשובות הנכונות)",
+      "type": "multiple_correct",
+      "options": [
+        "חיוורון",
+        "הזעה",
+        "טמפרטורת עור נמוכה",
+        "מילוי קפילרי איטי",
+        "כאב ראש",
+        "בחילות",
+        "סחרחורת",
+        "שיעול"
+      ],
+      "correct": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "subject": "לא צוין",
+      "sourceFile": "trauma_final_exem_quiz.json"
+    },
+    {
+      "id": "trauma_final_exem_quiz_73",
+      "question": "בשלב C, אם יש סימני הלם חמורים, ישנה אופציה לפינוי מידי והשלמת סכמה במהלך הפינוי",
+      "type": "true_false",
+      "options": [
+        "נכון",
+        "לא נכון"
+      ],
+      "correct": 0,
+      "subject": "לא צוין",
+      "sourceFile": "trauma_final_exem_quiz.json"
+    },
+    {
+      "id": "trauma_final_exem_quiz_74",
+      "question": "איזה דופק יש לבדוק בשלב C? (בחר את כל התשובות הנכונות)",
+      "type": "multiple_correct",
+      "options": [
+        "דופק רדיאלי",
+        "דופק פמורלי",
+        "דופק קרוטידי",
+        "דופק טמפורלי",
+        "דופק פדיס",
+        "דופק פופליטאלי"
+      ],
+      "correct": [
+        0,
+        1,
+        2
+      ],
+      "subject": "לא צוין",
+      "sourceFile": "trauma_final_exem_quiz.json"
+    },
+    {
+      "id": "trauma_final_exem_quiz_75",
+      "question": "מה עושים אם יש הדרדרות במצב ההכרה בשלב D?",
+      "type": "multiple_choice",
+      "options": [
+        "ממשיכים לשלב E",
+        "חוזרים לשלב A (נתיב אוויר)",
+        "מודדים לחץ דם",
+        "מתחילים החייאה"
+      ],
+      "correct": 1,
+      "subject": "לא צוין",
+      "sourceFile": "trauma_final_exem_quiz.json"
+    },
+    {
+      "id": "trauma_final_exem_quiz_76",
+      "question": "אילו בדיקות מבצעים בפצוע מחוסר הכרה בשלב D? (בחר את כל התשובות הנכונות)",
+      "type": "multiple_correct",
+      "options": [
+        "בדיקת אישונים - סימטריה",
+        "בדיקת אישונים - גודל (צר/מורחב)",
+        "בדיקת אישונים - תגובה לאור",
+        "הערכת GCS",
+        "מדידת לחץ דם",
+        "בדיקת רפלקסים",
+        "בדיקת תנועת גפיים",
+        "מדידת חום"
+      ],
+      "correct": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "subject": "לא צוין",
+      "sourceFile": "trauma_final_exem_quiz.json"
+    },
+    {
+      "id": "trauma_final_exem_quiz_77",
+      "question": "בפצוע בהכרה, יש לבדוק תנועת גפיים (ידיים ורגליים) בהוראה לקול",
+      "type": "true_false",
+      "options": [
+        "נכון",
+        "לא נכון"
+      ],
+      "correct": 0,
+      "subject": "לא צוין",
+      "sourceFile": "trauma_final_exem_quiz.json"
+    },
+    {
+      "id": "trauma_final_exem_quiz_78",
+      "question": "מה כולל שלב E (חשיפה)?",
+      "type": "multiple_choice",
+      "options": [
+        "רק הסרת בגדים",
+        "השלמת הפשטה מלאה, בדיקת גוף כללית ועצירת דימום",
+        "רק חיפוש דימומים",
+        "רק קיבוע למלוח"
+      ],
+      "correct": 1,
+      "subject": "לא צוין",
+      "sourceFile": "trauma_final_exem_quiz.json"
+    },
+    {
+      "id": "trauma_final_exem_quiz_79",
+      "question": "באילו אזורים יש לבצע בדיקת גוף כללית בשלב E? (בחר את כל התשובות הנכונות)",
+      "type": "multiple_correct",
+      "options": [
+        "ראש, צוואר, עורף",
+        "חזה, בטן",
+        "בית שחי, ידיים",
+        "אגן, מפשעה",
+        "רגליים",
+        "גב (הפיכה לשני הצדדים)",
+        "רק החזה והבטן",
+        "רק הראש והצוואר"
+      ],
+      "correct": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "subject": "לא צוין",
+      "sourceFile": "trauma_final_exem_quiz.json"
+    },
+    {
+      "id": "trauma_final_exem_quiz_80",
+      "question": "בסיום שלב E, אין צורך לדווח על דחיפות הפינוי",
+      "type": "true_false",
+      "options": [
+        "נכון",
+        "לא נכון"
+      ],
+      "correct": 1,
+      "subject": "לא צוין",
+      "sourceFile": "trauma_final_exem_quiz.json"
+    },
+    {
+      "id": "trauma_final_exem_quiz_81",
+      "question": "מהו אחד הקריטריונים להגדרת נפגע כ'לא יציב'?",
+      "type": "multiple_choice",
+      "options": [
+        "כאב ראש קל",
+        "חסימה או איום על נתיב האוויר שלא נפתר",
+        "שריטה קלה",
+        "חבורה בגפה"
+      ],
+      "correct": 1,
+      "subject": "לא צוין",
+      "sourceFile": "trauma_final_exem_quiz.json"
+    },
+    {
+      "id": "trauma_final_exem_quiz_82",
+      "question": "אילו קריטריונים מגדירים נפגע כ'לא יציב'? (בחר את כל התשובות הנכונות)",
+      "type": "multiple_correct",
+      "options": [
+        "טכיפניאה >30 או ברדיפניאה <8",
+        "סטורציה <90% שלא נפתרה",
+        "חשד לדימום פנימי בלתי נשלט עם סימני הלם",
+        "סבירות גבוהה להתדרדרות במצב בטווח של דקות",
+        "כאב ראש קל",
+        "חום נמוך",
+        "צורך בהליך רפואי חיוני שכשל",
+        "שיעול קל"
+      ],
+      "correct": [
+        0,
+        1,
+        2,
+        3,
+        6
+      ],
+      "subject": "לא צוין",
+      "sourceFile": "trauma_final_exem_quiz.json"
+    },
+    {
+      "id": "trauma_final_exem_quiz_83",
+      "question": "בנפגע לא יציב, מותר להתעכב בשטח לביצוע כל הטיפולים הרצויים",
+      "type": "true_false",
+      "options": [
+        "נכון",
+        "לא נכון"
+      ],
+      "correct": 1,
+      "subject": "לא צוין",
+      "sourceFile": "trauma_final_exem_quiz.json"
+    },
+    {
+      "id": "trauma_final_exem_quiz_84",
+      "question": "מה כולל הטיפול בפינוי בנפגע לא יציב? (בחר את כל התשובות הנכונות)",
+      "type": "multiple_correct",
+      "options": [
+        "ניטור מדדים חיוניים ומצב הכרה",
+        "השגת גישה ורידית או IO",
+        "שקול מתן עירוי נוזלים או פלזמה",
+        "שקול מתן הקסקפרון",
+        "המתנה לצוות נוסף",
+        "העברת דיווח מקדים לבית החולים",
+        "קיבוע כל השברים בזירה",
+        "שקול טיפול בכאב"
+      ],
+      "correct": [
+        0,
+        1,
+        2,
+        3,
+        5,
+        7
+      ],
+      "subject": "לא צוין",
+      "sourceFile": "trauma_final_exem_quiz.json"
+    },
+    {
+      "id": "trauma_final_exem_quiz_85",
+      "question": "מהי העדיפות בפינוי נפגע לא יציב?",
+      "type": "multiple_choice",
+      "options": [
+        "פנה לבית החולים המתקדם ביותר",
+        "פנה לבית החולים הקרוב ביותר",
+        "המתן לצוות מתקדם",
+        "בצע כל הטיפולים בזירה"
+      ],
+      "correct": 1,
+      "subject": "לא צוין",
+      "sourceFile": "trauma_final_exem_quiz.json"
+    },
+    {
+      "id": "trauma_final_exem_quiz_86",
+      "question": "בנפגע יציב, אין צורך בניטור מדדים חיוניים בפינוי",
+      "type": "true_false",
+      "options": [
+        "נכון",
+        "לא נכון"
+      ],
+      "correct": 1,
+      "subject": "לא צוין",
+      "sourceFile": "trauma_final_exem_quiz.json"
+    },
+    {
+      "id": "trauma_final_exem_quiz_87",
+      "question": "מהו הציון במדד גלזגו (GCS) המגדיר פצוע ראש קשה?",
+      "type": "multiple_choice",
+      "options": [
+        "12-15",
+        "9-12",
+        "3-8",
+        "1-3"
+      ],
+      "correct": 2,
+      "subject": "לא צוין",
+      "sourceFile": "trauma_final_exem_quiz.json"
+    },
+    {
+      "id": "trauma_final_exem_quiz_88",
+      "question": "התדרדרות במדד גלזגו בכמה נקודות מגדירה פגיעת ראש קשה?",
+      "type": "multiple_choice",
+      "options": [
+        "נקודה אחת",
+        "שתי נקודות",
+        "שלוש נקודות",
+        "ארבע נקודות"
+      ],
+      "correct": 1,
+      "subject": "לא צוין",
+      "sourceFile": "trauma_final_exem_quiz.json"
+    },
+    {
+      "id": "trauma_final_exem_quiz_89",
+      "question": "מהי קטגוריית פגיעת ראש אם מדד גלזגו הוא 10?",
+      "type": "multiple_choice",
+      "options": [
+        "פצוע ראש קל",
+        "פצוע ראש בינוני",
+        "פצוע ראש קשה",
+        "פצוע ראש אנוש"
+      ],
+      "correct": 1,
+      "subject": "לא צוין",
+      "sourceFile": "trauma_final_exem_quiz.json"
+    },
+    {
+      "id": "trauma_final_exem_quiz_90",
+      "question": "באיזו דרגת הלם הדופק הוא נמוך והלחץ הסיסטולי מתחת ל-90?",
+      "type": "multiple_choice",
+      "options": [
+        "דרגה I",
+        "דרגה II",
+        "דרגה III",
+        "דרגה IV"
+      ],
+      "correct": 2,
+      "subject": "לא צוין",
+      "sourceFile": "trauma_final_exem_quiz.json"
     }
   ]
 }
