@@ -1,7 +1,7 @@
 {
   "subject": "שאלון חזרה כללי",
   "description": "שאלון מאוחד של כל השאלות מקבצי ה-quiz השונים",
-  "totalQuestions": 1067,
+  "totalQuestions": 1107,
   "sourceFiles": [
     "anaphylaxis_quiz.json",
     "asthma_quiz.json",
@@ -28,9 +28,10 @@
     "trauma_care_quiz.json",
     "glasgow_index_quiz.json",
     "trauma_final_exem_quiz.json",
-    "trauma_tcpa_protocol_quiz.json"
+    "trauma_tcpa_protocol_quiz.json",
+    "Trauma_burn_final_quiz.JSON"
   ],
-  "createdAt": "2025-11-22T04:41:20.404Z",
+  "createdAt": "2025-11-22T17:26:19.893Z",
   "questions": [
     {
       "id": "anaphylaxis_quiz_1",
@@ -11257,11 +11258,11 @@
     },
     {
       "id": "trauma_care_quiz_3",
-      "question": "מהם התנאים למתן הקסקפרון?",
+      "question": "מה הם התנאים למתן הקסקפרון?",
       "type": "multiple_choice",
       "options": [
-        "זמן פינוי משוער מעל 10 דקות",
-        "קיימים לפחות שני סימנים קליניים לירידה בפרפוזיה",
+        "זמן פינוי משוער מעל 10 דקות ולפחות עוד שני סימנים לירידה בפרפוזיה ",
+        "דופק מתחת ל90 פעימות בדקה",
         "חבלת ראש המלווה בירידה במצב ההכרה ללא הרחבת אישונים דו-צדדית",
         "סיכוי טוב לדימום בחלל הבטן",
         "דפורמציה קשה בגפיים תחתונות"
@@ -11330,7 +11331,7 @@
     },
     {
       "id": "trauma_care_quiz_8",
-      "question": "מהם עקרונות ABCDE בהערכה ראשונית?",
+      "question": "מה הם עקרונות ABCDE בהערכה ראשונית?",
       "type": "multiple_choice",
       "options": [
         "A - נתיב אוויר",
@@ -11341,9 +11342,9 @@
         "גלזגאו אינדקס"
       ],
       "correct": [
+        0,
         1,
-        2,
-        3
+        2
       ],
       "subject": "טראומה - פרוטוקול הטיפול בנפגע",
       "sourceFile": "trauma_care_quiz.json"
@@ -11392,7 +11393,7 @@
     },
     {
       "id": "trauma_care_quiz_12",
-      "question": "מהם הסימנים הקליניים לירידה בפרפוזיה?",
+      "question": "מה הם הסימנים הקליניים לירידה בפרפוזיה?",
       "type": "multiple_choice",
       "options": [
         "חיוורון והזעה",
@@ -11553,7 +11554,7 @@
     },
     {
       "id": "trauma_care_quiz_23",
-      "question": "מהם התנאים למתן פלזמה מיובשת?",
+      "question": "מה הם התנאים למתן פלזמה מיובשת?",
       "type": "multiple_choice",
       "options": [
         "דימום חמור או חשד לדימום חמור",
@@ -13509,7 +13510,7 @@
     },
     {
       "id": "trauma_final_exem_quiz_91",
-      "question": "מהם המרכיבים של עקרון מונרו-קלי (Monro-Kellie doctrine)?",
+      "question": "מה הם המרכיבים של עקרון מונרו-קלי (Monro-Kellie doctrine)?",
       "type": "multiple_choice",
       "options": [
         "80% דם, 10% CSF, 10% רקמת מוח",
@@ -13537,7 +13538,7 @@
     },
     {
       "id": "trauma_final_exem_quiz_93",
-      "question": "מהם מרכיבי שלישיית Cushing?",
+      "question": "מה הם מרכיבי שלישיית Cushing?",
       "type": "multiple_choice",
       "options": [
         "היפוטנזיה, טכיקרדיה, נשימה סדירה",
@@ -13591,7 +13592,7 @@
     },
     {
       "id": "trauma_final_exem_quiz_97",
-      "question": "מהם הסימנים האופייניים להלם קרדיוגני? (בחר את כל התשובות הנכונות)",
+      "question": "מה הם הסימנים האופייניים להלם קרדיוגני? (בחר את כל התשובות הנכונות)",
       "type": "multiple_correct",
       "options": [
         "כשל של שריר הלב",
@@ -13888,7 +13889,7 @@
     },
     {
       "id": "trauma_final_exem_quiz_116",
-      "question": "מהם שלבי ה-Primary Survey?",
+      "question": "מה הם שלבי ה-Primary Survey?",
       "type": "multiple_choice",
       "options": [
         "ABC",
@@ -14102,7 +14103,7 @@
     },
     {
       "id": "trauma_final_exem_quiz_130",
-      "question": "מהם הטיפולים מצילי חיים בזירה? (בחר את כל התשובות הנכונות)",
+      "question": "מה הם הטיפולים מצילי חיים בזירה? (בחר את כל התשובות הנכונות)",
       "type": "multiple_correct",
       "options": [
         "פתיחת דרכי נשימה",
@@ -14243,7 +14244,7 @@
     },
     {
       "id": "trauma_final_exem_quiz_138",
-      "question": "מהם מרכיבי MIST? (בחר את כל התשובות הנכונות)",
+      "question": "מה הם מרכיבי MIST? (בחר את כל התשובות הנכונות)",
       "type": "multiple_correct",
       "options": [
         "Mechanism - מנגנון הפגיעה",
@@ -14376,7 +14377,7 @@
     },
     {
       "id": "trauma_final_exem_quiz_146",
-      "question": "מהם צבעי Triage? (בחר את כל התשובות הנכונות)",
+      "question": "מה הם צבעי Triage? (בחר את כל התשובות הנכונות)",
       "type": "multiple_correct",
       "options": [
         "אדום - מיידי",
@@ -14923,7 +14924,7 @@
     },
     {
       "id": "trauma_final_exem_quiz_182",
-      "question": "בדקירה בצוואר יש להניח חבישה אוקלוסיבית על פצע ורידי מחשש לתסחיף אוויר.",
+      "question": "בדקירה בצוואר יש להניח חבישה אוקלוסיבית (אטומה לגמרי) על פצע ורידי מחשש לתסחיף אוויר.",
       "type": "true_false",
       "options": [
         "נכון",
@@ -15710,7 +15711,7 @@
       "question": "מה חובה לתעד במקרה של הפסקת החייאה ב-TCPA?",
       "type": "multiple_choice",
       "options": [
-        "תעד את קצב הלב, הזמן משטרה, מלא דוח רפואי ודווח מוכנות למוקד המרחבי",
+        "תעד את קצב הלב",
         "רק את הזמן וקצב הלב",
         "רק את מנגנון הפגיעה",
         "את כל התרופות שניתנו"
@@ -15834,7 +15835,7 @@
     },
     {
       "id": "trauma_tcpa_protocol_quiz_13",
-      "question": "מהם סימני החיים ב-TCPA?",
+      "question": "מה הם סימני החיים ב-TCPA?",
       "type": "multiple_choice",
       "options": [
         "תגובת אישונים לאור",
@@ -16113,6 +16114,673 @@
       ],
       "subject": "טראומה - פרוטוקול דום לב ונשימה TCPA",
       "sourceFile": "trauma_tcpa_protocol_quiz.json"
+    },
+    {
+      "id": "Trauma_burn_final_quiz.JSON_1",
+      "question": "מה מאפיין כוויה מדרגה א'?",
+      "type": "multiple_choice",
+      "options": [
+        "הרס שכבת האפידרמיס, עור אדום צורב וחם למגע",
+        "הרס האפידרמיס והדרמיס עם שלפוחיות",
+        "הרס כל שכבות העור עם עור חרוך",
+        "נזק לאיברים פנימיים"
+      ],
+      "correct": 0,
+      "subject": "טראומה - כוויות",
+      "sourceFile": "Trauma_burn_final_quiz.JSON"
+    },
+    {
+      "id": "Trauma_burn_final_quiz.JSON_2",
+      "question": "כוויה מדרגה א' מסכנת חיים בטווח המיידי",
+      "type": "true_false",
+      "options": [
+        "נכון",
+        "לא נכון. כוויה מדרגה א' איננה מסכנת חיים בטווח המיידי (סרטן עור הוא סיבוך מאוחר)"
+      ],
+      "correct": 1,
+      "subject": "טראומה - כוויות",
+      "sourceFile": "Trauma_burn_final_quiz.JSON"
+    },
+    {
+      "id": "Trauma_burn_final_quiz.JSON_3",
+      "question": "מה הטיפול בכוויה מדרגה א'?",
+      "type": "multiple_choice",
+      "options": [
+        "משחות ביתיות והרגעת העור",
+        "החלפת נוזלים תוך-ורידי",
+        "חבישה סטרילית וחומרי כאב",
+        "פינוי מיידי למרכז כוויות"
+      ],
+      "correct": 0,
+      "subject": "טראומה - כוויות",
+      "sourceFile": "Trauma_burn_final_quiz.JSON"
+    },
+    {
+      "id": "Trauma_burn_final_quiz.JSON_4",
+      "question": "מה הסימן המובהק לכוויה מדרגה ב'?",
+      "type": "multiple_choice",
+      "options": [
+        "שלפוחיות - סימן היכר לפגיעה בדרמיס",
+        "עור אדום בלבד",
+        "עור חרוך שחור",
+        "היעדר כאב"
+      ],
+      "correct": 0,
+      "subject": "טראומה - כוויות",
+      "sourceFile": "Trauma_burn_final_quiz.JSON"
+    },
+    {
+      "id": "Trauma_burn_final_quiz.JSON_5",
+      "question": "מותר לפוצץ שלפוחיות בכוויה מדרגה ב'",
+      "type": "true_false",
+      "options": [
+        "נכון",
+        "לא נכון. אין לפוצץ שלפוחיות"
+      ],
+      "correct": 1,
+      "subject": "טראומה - כוויות",
+      "sourceFile": "Trauma_burn_final_quiz.JSON"
+    },
+    {
+      "id": "Trauma_burn_final_quiz.JSON_6",
+      "question": "אילו שכבות עור נפגעות בכוויה מדרגה ב'?",
+      "type": "multiple_choice",
+      "options": [
+        "אפידרמיס ודרמיס",
+        "אפידרמיס בלבד",
+        "אפידרמיס, דרמיס וסאב-קוטאן",
+        "כל שכבות העור והשריר"
+      ],
+      "correct": 0,
+      "subject": "טראומה - כוויות",
+      "sourceFile": "Trauma_burn_final_quiz.JSON"
+    },
+    {
+      "id": "Trauma_burn_final_quiz.JSON_7",
+      "question": "מהן הסכנות בכוויה מדרגה ב'?",
+      "type": "multiple_choice",
+      "options": [
+        "אובדן המחסום הבררני של הדרמיס ובריחת נוזלים",
+        "אובדן נוזלים - סכנת הלם",
+        "סכנת זיהומים",
+        "כאב עז ורגישות למגע",
+        "היעדר כאב",
+        "שחרור מיוגלובין",
+        "עור חרוך שחור"
+      ],
+      "correct": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "subject": "טראומה - כוויות",
+      "sourceFile": "Trauma_burn_final_quiz.JSON"
+    },
+    {
+      "id": "Trauma_burn_final_quiz.JSON_8",
+      "question": "מה מאפיין כוויה מדרגה ג'?",
+      "type": "multiple_choice",
+      "options": [
+        "הרס האפידרמיס, דרמיס והסאב-קוטאן, עור חרוך",
+        "היעדר כאב במרכז הכוויה",
+        "ריח חריף של שריפת בשר",
+        "גלד קשיח למגע",
+        "שלפוחיות מרובות",
+        "כאב עז במרכז הכוויה",
+        "עור אדום וחם"
+      ],
+      "correct": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "subject": "טראומה - כוויות",
+      "sourceFile": "Trauma_burn_final_quiz.JSON"
+    },
+    {
+      "id": "Trauma_burn_final_quiz.JSON_9",
+      "question": "למה אין כאב במרכז כוויה מדרגה ג'?",
+      "type": "multiple_choice",
+      "options": [
+        "בגלל הרס קצות העצבים בשכבות העור העמוקות",
+        "בגלל שוק היפוולמי",
+        "בגלל היפותרמיה",
+        "בגלל הרעלת CO"
+      ],
+      "correct": 0,
+      "subject": "טראומה - כוויות",
+      "sourceFile": "Trauma_burn_final_quiz.JSON"
+    },
+    {
+      "id": "Trauma_burn_final_quiz.JSON_10",
+      "question": "כוויה מדרגה ד' מסווגת רק בבית החולים",
+      "type": "true_false",
+      "options": [
+        "נכון. סיווג לדרגה ד' בבית החולים בלבד",
+        "לא נכון"
+      ],
+      "correct": 0,
+      "subject": "טראומה - כוויות",
+      "sourceFile": "Trauma_burn_final_quiz.JSON"
+    },
+    {
+      "id": "Trauma_burn_final_quiz.JSON_11",
+      "question": "מה מאפיין כוויה מדרגה ד'?",
+      "type": "multiple_choice",
+      "options": [
+        "נזק לאיברים פנימיים והרס השריר",
+        "שחרור מיוגלובין וחומרים מזיקים אחרים לזרם הדם",
+        "שלפוחיות גדולות",
+        "כאב עז",
+        "עור חרוך שחור בלבד",
+        "פגיעה באפידרמיס בלבד"
+      ],
+      "correct": [
+        0,
+        1
+      ],
+      "subject": "טראומה - כוויות",
+      "sourceFile": "Trauma_burn_final_quiz.JSON"
+    },
+    {
+      "id": "Trauma_burn_final_quiz.JSON_12",
+      "question": "איך מחשבים שטח פני הכוויה?",
+      "type": "multiple_choice",
+      "options": [
+        "עפ\"י שיטת התשיעיות",
+        "עפ\"י גודל כף יד הנפגע",
+        "שטחי הגוף הגדולים מקבלים 9% בערך",
+        "חישוב רק של דרגה ב' ו-ג'",
+        "חישוב של כל הדרגות כולל א'",
+        "עפ\"י משקל הנפגע",
+        "עפ\"י גובה הנפגע"
+      ],
+      "correct": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "subject": "טראומה - כוויות",
+      "sourceFile": "Trauma_burn_final_quiz.JSON"
+    },
+    {
+      "id": "Trauma_burn_final_quiz.JSON_13",
+      "question": "בילדים ותינוקות איזה איבר בעל חשיבות גדולה יותר בחישוב שטח הכוויה?",
+      "type": "multiple_choice",
+      "options": [
+        "הראש",
+        "הידיים",
+        "הרגליים",
+        "הגב"
+      ],
+      "correct": 0,
+      "subject": "טראומה - כוויות",
+      "sourceFile": "Trauma_burn_final_quiz.JSON"
+    },
+    {
+      "id": "Trauma_burn_final_quiz.JSON_14",
+      "question": "איזה דרגות כוויה נכללות בחישוב שטח הכוויה?",
+      "type": "multiple_choice",
+      "options": [
+        "דרגה ב' ו-ג' בלבד",
+        "כל הדרגות",
+        "רק דרגה ג'",
+        "דרגה א' ו-ב' בלבד"
+      ],
+      "correct": 0,
+      "subject": "טראומה - כוויות",
+      "sourceFile": "Trauma_burn_final_quiz.JSON"
+    },
+    {
+      "id": "Trauma_burn_final_quiz.JSON_15",
+      "question": "מהן הסכנות שבכוויות?",
+      "type": "multiple_choice",
+      "options": [
+        "פגיעה בנתיב האוויר - חסימה עקב בצקות",
+        "אובדן האלסטיות של בית החזה או הצוואר",
+        "הרעלת CO והרעלת ציאניד",
+        "שוק היפוולמי",
+        "היפותרמיה",
+        "תסמונת המדור",
+        "זיהום",
+        "עלייה בלחץ דם"
+      ],
+      "correct": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6
+      ],
+      "subject": "טראומה - כוויות",
+      "sourceFile": "Trauma_burn_final_quiz.JSON"
+    },
+    {
+      "id": "Trauma_burn_final_quiz.JSON_16",
+      "question": "למה כוויות גורמות להיפותרמיה?",
+      "type": "multiple_choice",
+      "options": [
+        "אובדן יכולת העור לוויסות יציאת החום",
+        "בגלל שוק היפוולמי",
+        "בגלל הרעלת CO",
+        "בגלל זיהום"
+      ],
+      "correct": 0,
+      "subject": "טראומה - כוויות",
+      "sourceFile": "Trauma_burn_final_quiz.JSON"
+    },
+    {
+      "id": "Trauma_burn_final_quiz.JSON_17",
+      "question": "מה זה גלד היקפי?",
+      "type": "multiple_choice",
+      "options": [
+        "רקמת צלקת קשיחה שנוצרת מכוויה מעגלית המקיפה גפה ויכולה לגרום לתסמונת המדור",
+        "שלפוחית גדולה",
+        "זיהום בעור",
+        "כאב היקפי"
+      ],
+      "correct": 0,
+      "subject": "טראומה - כוויות",
+      "sourceFile": "Trauma_burn_final_quiz.JSON"
+    },
+    {
+      "id": "Trauma_burn_final_quiz.JSON_18",
+      "question": "מה כולל הערכת חומרת הכוויה?",
+      "type": "multiple_choice",
+      "options": [
+        "עומק הכוויה",
+        "חישוב שטח הפנים (דרגה ב' ו-ג' בלבד)",
+        "מיקומים קריטיים",
+        "גיל",
+        "שאיפת עשן או כימיקלים",
+        "מחלות קודמות",
+        "צבע העור",
+        "משקל בלבד"
+      ],
+      "correct": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "subject": "טראומה - כוויות",
+      "sourceFile": "Trauma_burn_final_quiz.JSON"
+    },
+    {
+      "id": "Trauma_burn_final_quiz.JSON_19",
+      "question": "למה מחלות קודמות חשובות בהערכת חומרת הכוויה?",
+      "type": "multiple_choice",
+      "options": [
+        "סוכרת - ריפוי איטי ודיכוי חיסוני",
+        "לב - אי-עמידה בעומס על המערכת",
+        "ריאות - בעיות קודמות מתווספות לבעיה אקוטית",
+        "לא משפיעות על חומרת הכוויה",
+        "רק בגיל מעל 80",
+        "רק בילדים"
+      ],
+      "correct": [
+        0,
+        1,
+        2
+      ],
+      "subject": "טראומה - כוויות",
+      "sourceFile": "Trauma_burn_final_quiz.JSON"
+    },
+    {
+      "id": "Trauma_burn_final_quiz.JSON_20",
+      "question": "מה מגמת הטיפול בכוויות?",
+      "type": "multiple_choice",
+      "options": [
+        "הרחקה מגורם מסכן",
+        "אבטחת נתיב האוויר והנשימה",
+        "טיפול בהלם והחזר נוזלים",
+        "הסרת תכשיטים למניעת תסמונת המדור",
+        "טיפול בכאב",
+        "מניעת היפותרמיה",
+        "טיפול בפצע",
+        "פינוי מיידי בכל מקרה"
+      ],
+      "correct": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6
+      ],
+      "subject": "טראומה - כוויות",
+      "sourceFile": "Trauma_burn_final_quiz.JSON"
+    },
+    {
+      "id": "Trauma_burn_final_quiz.JSON_21",
+      "question": "מעל כמה אחוזי שטח כוויה אין לשטוף במים זורמים?",
+      "type": "multiple_choice",
+      "options": [
+        "מעל 10% שטח כוויה",
+        "מעל 20% שטח כוויה",
+        "מעל 30% שטח כוויה",
+        "מעל 5% שטח כוויה"
+      ],
+      "correct": 0,
+      "subject": "טראומה - כוויות",
+      "sourceFile": "Trauma_burn_final_quiz.JSON"
+    },
+    {
+      "id": "Trauma_burn_final_quiz.JSON_22",
+      "question": "למה אין לשטוף במים זורמים כוויה מעל 10% שטח?",
+      "type": "multiple_choice",
+      "options": [
+        "מניעת היפותרמיה",
+        "כדי למנוע זיהום",
+        "כדי למנוע הלם",
+        "כדי למנוע כאב"
+      ],
+      "correct": 0,
+      "subject": "טראומה - כוויות",
+      "sourceFile": "Trauma_burn_final_quiz.JSON"
+    },
+    {
+      "id": "Trauma_burn_final_quiz.JSON_23",
+      "question": "הטיפול בכוויות הוא בסבב הראשוני",
+      "type": "true_false",
+      "options": [
+        "נכון",
+        "לא נכון. הטיפול בכוויות הוא בסבב השניוני"
+      ],
+      "correct": 1,
+      "subject": "טראומה - כוויות",
+      "sourceFile": "Trauma_burn_final_quiz.JSON"
+    },
+    {
+      "id": "Trauma_burn_final_quiz.JSON_24",
+      "question": "כמה זמן שוטפים כוויות בעיניים?",
+      "type": "multiple_choice",
+      "options": [
+        "15 דקות לפחות באמצעות כמויות גדולות של סליין",
+        "5 דקות",
+        "10 דקות",
+        "20 דקות"
+      ],
+      "correct": 0,
+      "subject": "טראומה - כוויות",
+      "sourceFile": "Trauma_burn_final_quiz.JSON"
+    },
+    {
+      "id": "Trauma_burn_final_quiz.JSON_25",
+      "question": "באילו מקרים שוקלים אינטובציה פרופילקטית (מניעתית)?",
+      "type": "multiple_choice",
+      "options": [
+        "כוויות בפנים ובצוואר",
+        "שערות שרופות באף ובפנים",
+        "ליחה שחורה",
+        "בצקות ו/או אודם משמעותיים בלוע המלווים בנפיחות",
+        "צרידות חדשה",
+        "קולות נשימה - צפצופים ו/או סטרידור אינספירטוריים",
+        "כל כוויה מעל 5%",
+        "כאב חזק"
+      ],
+      "correct": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "subject": "טראומה - כוויות",
+      "sourceFile": "Trauma_burn_final_quiz.JSON"
+    },
+    {
+      "id": "Trauma_burn_final_quiz.JSON_26",
+      "question": "מה זה ליחה שחורה?",
+      "type": "multiple_choice",
+      "options": [
+        "הפרשה שחורה מדרכי הנשימה המעידה על שאיפת עשן ופיח",
+        "זיהום בדרכי הנשימה",
+        "דימום מדרכי הנשימה",
+        "תופעה נורמלית"
+      ],
+      "correct": 0,
+      "subject": "טראומה - כוויות",
+      "sourceFile": "Trauma_burn_final_quiz.JSON"
+    },
+    {
+      "id": "Trauma_burn_final_quiz.JSON_27",
+      "question": "איך מתכוננים לאינטובציה בחולה כוויות?",
+      "type": "multiple_choice",
+      "options": [
+        "יש להתכונן לאינטובציה קשה",
+        "לשקול בוז'י ולהכין חלופות זמינות",
+        "פריסת בוז'י מראש",
+        "אינטובציה רגילה ללא הכנות מיוחדות",
+        "להמתין לרופא במוקד",
+        "לבצע רק בבית החולים"
+      ],
+      "correct": [
+        0,
+        1,
+        2
+      ],
+      "subject": "טראומה - כוויות",
+      "sourceFile": "Trauma_burn_final_quiz.JSON"
+    },
+    {
+      "id": "Trauma_burn_final_quiz.JSON_28",
+      "question": "מה זה אסקרוטומיה?",
+      "type": "multiple_choice",
+      "options": [
+        "פעולה כירורגית למניעת גלד ואי-תזוזה באיברים המחייבים תנועה, מתבצעת על ידי מומחים בבית החולים בלבד",
+        "פעולה שמבצע פראמדיק בשטח",
+        "סוג של חבישה",
+        "שטיפה מיוחדת לכוויות"
+      ],
+      "correct": 0,
+      "subject": "טראומה - כוויות",
+      "sourceFile": "Trauma_burn_final_quiz.JSON"
+    },
+    {
+      "id": "Trauma_burn_final_quiz.JSON_29",
+      "question": "פראמדיק יכול לבצע אסכרוטומיה בשטח",
+      "type": "true_false",
+      "options": [
+        "נכון",
+        "לא נכון. פעולה זו מתבצעת על ידי מומחים בבית החולים בלבד"
+      ],
+      "correct": 1,
+      "subject": "טראומה - כוויות",
+      "sourceFile": "Trauma_burn_final_quiz.JSON"
+    },
+    {
+      "id": "Trauma_burn_final_quiz.JSON_30",
+      "question": "באילו מקרים יש צורך בפינוי למרכז כוויות?",
+      "type": "multiple_choice",
+      "options": [
+        "כוויות בדרכי הנשימה",
+        "כוויות דרגה 3 מעל 10% או דרגה 2 מעל 40%",
+        "כוויות הגורמות לנכות - ראש, פנים, צוואר, אזורי חיץ, איברי מין, מפרקים גדולים, כפות ידיים/רגליים",
+        "כוויות כימיות/קרינה רדיואקטיבית",
+        "כל כוויה מדרגה א'",
+        "כל כוויה מתחת ל-5%",
+        "רק כוויות מדרגה ד'"
+      ],
+      "correct": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "subject": "טראומה - כוויות",
+      "sourceFile": "Trauma_burn_final_quiz.JSON"
+    },
+    {
+      "id": "Trauma_burn_final_quiz.JSON_31",
+      "question": "מהם תנאים לפינוי ישירות למרכז כוויות על ידי צוות ALS?",
+      "type": "multiple_choice",
+      "options": [
+        "כל אחד מהקריטריונים לפינוי למרכז כוויות וגם פצוע יציב",
+        "נתיב אוויר שמור (או לאחר ביצוע אינטובציה מוצלחת)",
+        "אין חשד לשוק קיים או עתידי וניתן לשמור על לחץ דם תקין",
+        "זמן הפינוי לא מתארך מעל 15 דקות בערך",
+        "כל כוויה ללא קשר ליציבות",
+        "רק כוויות מתחת ל-10%",
+        "רק בשעות היום"
+      ],
+      "correct": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "subject": "טראומה - כוויות",
+      "sourceFile": "Trauma_burn_final_quiz.JSON"
+    },
+    {
+      "id": "Trauma_burn_final_quiz.JSON_32",
+      "question": "מה זה צרידות?",
+      "type": "multiple_choice",
+      "options": [
+        "קול צרוד וגרוע בעת דיבור, מעיד על בצקת בקפלי הקול או מעל קפלי הקול",
+        "קול נשימה תקין",
+        "צפצופים בריאות",
+        "שיעול"
+      ],
+      "correct": 0,
+      "subject": "טראומה - כוויות",
+      "sourceFile": "Trauma_burn_final_quiz.JSON"
+    },
+    {
+      "id": "Trauma_burn_final_quiz.JSON_33",
+      "question": "מה זה סטרידור?",
+      "type": "multiple_choice",
+      "options": [
+        "קול נשימה חריג וחד הנשמע בעיקר בשאיפה, מעיד על היצרות או חסימה בדרכי נשימה עליונות",
+        "קול נשימה תקין",
+        "צפצופים בנשיפה",
+        "שיעול יבש"
+      ],
+      "correct": 0,
+      "subject": "טראומה - כוויות",
+      "sourceFile": "Trauma_burn_final_quiz.JSON"
+    },
+    {
+      "id": "Trauma_burn_final_quiz.JSON_34",
+      "question": "כוויות דרגה 2 מעל 40% מחייבות פינוי למרכז כוויות",
+      "type": "true_false",
+      "options": [
+        "נכון",
+        "לא נכון"
+      ],
+      "correct": 0,
+      "subject": "טראומה - כוויות",
+      "sourceFile": "Trauma_burn_final_quiz.JSON"
+    },
+    {
+      "id": "Trauma_burn_final_quiz.JSON_35",
+      "question": "כוויות דרגה 3 מעל 10% מחייבות פינוי למרכז כוויות",
+      "type": "true_false",
+      "options": [
+        "נכון",
+        "לא נכון"
+      ],
+      "correct": 0,
+      "subject": "טראומה - כוויות",
+      "sourceFile": "Trauma_burn_final_quiz.JSON"
+    },
+    {
+      "id": "Trauma_burn_final_quiz.JSON_36",
+      "question": "רוב מקרי הכוויות הם מקרי טראומה קהה וחודרת",
+      "type": "true_false",
+      "options": [
+        "נכון",
+        "לא נכון. רוב מקרי הכוויות אינם מקרי טראומה קהה וחודרת - ניתן להתעכב בבית המטופל לצורך שטיפת הפצע וחבישתו אם אין סכנה ל-ABC"
+      ],
+      "correct": 1,
+      "subject": "טראומה - כוויות",
+      "sourceFile": "Trauma_burn_final_quiz.JSON"
+    },
+    {
+      "id": "Trauma_burn_final_quiz.JSON_37",
+      "question": "למה חשוב להסיר תכשיטים בכוויות?",
+      "type": "multiple_choice",
+      "options": [
+        "למניעת תסמונת המדור עקב נפיחות",
+        "כדי למנוע זיהום",
+        "כדי למנוע כאב",
+        "כדי למנוע היפותרמיה"
+      ],
+      "correct": 0,
+      "subject": "טראומה - כוויות",
+      "sourceFile": "Trauma_burn_final_quiz.JSON"
+    },
+    {
+      "id": "Trauma_burn_final_quiz.JSON_38",
+      "question": "מהי תסמונת המדור?",
+      "type": "multiple_choice",
+      "options": [
+        "מצב בו נפיחות או גלד מקיף גורמים ללחץ מוגבר בתוך תא השריר, מה שמוביל לפגיעה בזרימת הדם, עצבים ורקמות",
+        "זיהום בעור",
+        "היפותרמיה",
+        "הרעלת CO"
+      ],
+      "correct": 0,
+      "subject": "טראומה - כוויות",
+      "sourceFile": "Trauma_burn_final_quiz.JSON"
+    },
+    {
+      "id": "Trauma_burn_final_quiz.JSON_39",
+      "question": "אילו מיקומים נחשבים קריטיים בכוויות?",
+      "type": "multiple_choice",
+      "options": [
+        "ראש ופנים",
+        "צוואר",
+        "אזורי חיץ",
+        "איברי מין",
+        "מפרקים גדולים",
+        "כפות ידיים וכפות רגליים",
+        "גב בלבד",
+        "בטן בלבד"
+      ],
+      "correct": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "subject": "טראומה - כוויות",
+      "sourceFile": "Trauma_burn_final_quiz.JSON"
+    },
+    {
+      "id": "Trauma_burn_final_quiz.JSON_40",
+      "question": "מה נכון לגבי טיפול בכוויות?",
+      "type": "multiple_choice",
+      "options": [
+        "אין לפוצץ שלפוחיות",
+        "מעל 10% שטח כוויה אין לשטוף במים זורמים",
+        "הטיפול בכוויות הוא בסבב השניוני",
+        "יש להסיר תכשיטים למניעת תסמונת המדור",
+        "כוויות בעיניים שוטפים 15 דקות לפחות",
+        "צריך לשטוף כל כוויה במים קרים לפחות שעה",
+        "אין צורך בהחזר נוזלים בכוויות מדרגה ב'"
+      ],
+      "correct": [
+        0,
+        1,
+        2,
+        3,
+        4
+      ],
+      "subject": "טראומה - כוויות",
+      "sourceFile": "Trauma_burn_final_quiz.JSON"
     }
   ]
 }
