@@ -1,7 +1,7 @@
 {
   "subject": "שאלון חזרה כללי",
   "description": "שאלון מאוחד של כל השאלות מקבצי ה-quiz השונים",
-  "totalQuestions": 1405,
+  "totalQuestions": 1705,
   "sourceFiles": [
     "anaphylaxis_quiz.json",
     "asthma_quiz.json",
@@ -33,9 +33,11 @@
     "trauma_smoke_final quiz.json",
     "end_trauma_quiz.json",
     "end_nerave_quiz.json",
-    "end_respiratry_quiz.json"
+    "end_respiratry_quiz.json",
+    "end_additional1_quiz.json",
+    "end_additional2_quiz.json"
   ],
-  "createdAt": "2025-12-01T13:21:23.268Z",
+  "createdAt": "2025-12-01T14:50:57.986Z",
   "questions": [
     {
       "id": "anaphylaxis_quiz_1",
@@ -21597,6 +21599,4206 @@
       "correct": 0,
       "subject": "מבחן עיוני מסכם נשימה",
       "sourceFile": "end_respiratry_quiz.json"
+    },
+    {
+      "id": "end_additional1_quiz_1",
+      "question": "מהו הטיפול הראשוני והעיקרי במכת חום חמורה (Heat Stroke)?",
+      "type": "multiple_choice",
+      "options": [
+        "קירור באמצעות שמיכות מילוט",
+        "מתן נוזלים קרים ורק לאחר מכן קירור",
+        "קירור מהיר באמצעות מים, מאווררים ושקיות קרח",
+        "פינוי דחוף לבית חולים ללא טיפול בשטח"
+      ],
+      "correct": 2,
+      "subject": "מבחן עיוני מסכם חומר נוסף1",
+      "sourceFile": "end_additional1_quiz.json"
+    },
+    {
+      "id": "end_additional1_quiz_2",
+      "question": "מה מהבאים נחשב לסיבוך עיקרי בהתחשמלות?",
+      "type": "multiple_choice",
+      "options": [
+        "התייבשות",
+        "כוויות קור",
+        "הפרעות קצב בלב",
+        "שבץ מוחי"
+      ],
+      "correct": 2,
+      "subject": "מבחן עיוני מסכם חומר נוסף1",
+      "sourceFile": "end_additional1_quiz.json"
+    },
+    {
+      "id": "end_additional1_quiz_3",
+      "question": "הסכנה המרכזית בתסמונת מדור היא:",
+      "type": "multiple_choice",
+      "options": [
+        "נמק שרירים כתוצאה מירידת חמצון מקומית",
+        "פרפור חדרים",
+        "קרע כלי דם גדולים",
+        "פקקת ורידים עמוקים"
+      ],
+      "correct": 0,
+      "subject": "מבחן עיוני מסכם חומר נוסף1",
+      "sourceFile": "end_additional1_quiz.json"
+    },
+    {
+      "id": "end_additional1_quiz_4",
+      "question": "מה מאפיין דימום אפידורלי לאחר חבלת ראש?",
+      "type": "multiple_choice",
+      "options": [
+        "מצב הכרה יציב לאורך זמן",
+        "סטיית מבט ובלבול מהיר",
+        "Lucid Interval – חזרה להכרה תקינה זמנית",
+        "איבוד הכרה מידי, ללא שיפור"
+      ],
+      "correct": 2,
+      "subject": "מבחן עיוני מסכם חומר נוסף1",
+      "sourceFile": "end_additional1_quiz.json"
+    },
+    {
+      "id": "end_additional1_quiz_5",
+      "question": "איזה ממצא נחשב לאופייני לשבר בסיס גולגולת?",
+      "type": "multiple_choice",
+      "options": [
+        "ניסטגמוס",
+        "המטומה פריאורביטלית (\"עיני דביבון\")",
+        "הרחבת אישונים דו-צדדית",
+        "רעד בידיים"
+      ],
+      "correct": 1,
+      "subject": "מבחן עיוני מסכם חומר נוסף1",
+      "sourceFile": "end_additional1_quiz.json"
+    },
+    {
+      "id": "end_additional1_quiz_6",
+      "question": "מהם הסימנים הקלאסיים לטמפונדה לבבית?",
+      "type": "multiple_choice",
+      "options": [
+        "לחץ דם גבוה, דופק מהיר, חום",
+        "כיחלון, ברדיקרדיה, דופק חוטי",
+        "תת ל\"ד, גודש ורידי צוואר, קולות לב מוחלשים",
+        "דופק איטי, חום גבוה, סימני התייבשות"
+      ],
+      "correct": 2,
+      "subject": "מבחן עיוני מסכם חומר נוסף1",
+      "sourceFile": "end_additional1_quiz.json"
+    },
+    {
+      "id": "end_additional1_quiz_7",
+      "question": "פנאומוטורקס בלחץ גורם ל:",
+      "type": "multiple_choice",
+      "options": [
+        "ירידה בדופק עקב ואזוודילטציה",
+        "עלייה בנפח הריאות",
+        "הסטת הקנה לצד הנגדי",
+        "ירידה בגודש ורידי צוואר"
+      ],
+      "correct": 2,
+      "subject": "מבחן עיוני מסכם חומר נוסף1",
+      "sourceFile": "end_additional1_quiz.json"
+    },
+    {
+      "id": "end_additional1_quiz_8",
+      "question": "מהו הטיפול הראשוני בפנאומוטורקס בלחץ בשטח?",
+      "type": "multiple_choice",
+      "options": [
+        "מתן חמצן ומעקב",
+        "ניקור חזה באמצעות מחט",
+        "פינוי מהיר בלבד",
+        "מתן נוזלים וונטילציה בלחץ חיובי"
+      ],
+      "correct": 1,
+      "subject": "מבחן עיוני מסכם חומר נוסף1",
+      "sourceFile": "end_additional1_quiz.json"
+    },
+    {
+      "id": "end_additional1_quiz_9",
+      "question": "מהו גורם הסיכון העיקרי בפגיעת בטן קהה?",
+      "type": "multiple_choice",
+      "options": [
+        "חבלות פנימיות עם דימום סמוי",
+        "דימום אפידורלי",
+        "פנאומוטורקס",
+        "פגיעת אגן פתוחה"
+      ],
+      "correct": 0,
+      "subject": "מבחן עיוני מסכם חומר נוסף1",
+      "sourceFile": "end_additional1_quiz.json"
+    },
+    {
+      "id": "end_additional1_quiz_10",
+      "question": "מה תפקיד הקינמטיקה בהערכת טראומה?",
+      "type": "multiple_choice",
+      "options": [
+        "קובעת את סוג הטיפול התרופתי",
+        "מחליפה בדיקה גופנית",
+        "מסייעת בזיהוי מנגנון הפגיעה וצפי לנזק",
+        "מגדירה רמות כאב"
+      ],
+      "correct": 2,
+      "subject": "מבחן עיוני מסכם חומר נוסף1",
+      "sourceFile": "end_additional1_quiz.json"
+    },
+    {
+      "id": "end_additional1_quiz_11",
+      "question": "מה החשיבות בזיהוי זמן הופעת סימני שבץ מוחי?",
+      "type": "multiple_choice",
+      "options": [
+        "לצורך תיעוד רפואי בלבד",
+        "כדי להעריך מצב תודעתי",
+        "לקביעת התאמה לטיפול תרופתי כמו TPA",
+        "אין חשיבות לשעה המדויקת"
+      ],
+      "correct": 2,
+      "subject": "מבחן עיוני מסכם חומר נוסף1",
+      "sourceFile": "end_additional1_quiz.json"
+    },
+    {
+      "id": "end_additional1_quiz_12",
+      "question": "איזה שבץ נחשב לבעל פרוגנוזה חמורה יותר לרוב?",
+      "type": "multiple_choice",
+      "options": [
+        "שבץ איסכמי",
+        "שבץ המורגי",
+        "שבץ עם FAST-ED 0",
+        "שבץ שנמשך פחות מ-15 דקות"
+      ],
+      "correct": 1,
+      "subject": "מבחן עיוני מסכם חומר נוסף1",
+      "sourceFile": "end_additional1_quiz.json"
+    },
+    {
+      "id": "end_additional1_quiz_13",
+      "question": "מהו סימן מוקדם לפרכוס?",
+      "type": "multiple_choice",
+      "options": [
+        "פרפורים בלתי נשלטים",
+        "תנועות עיניים מהירות",
+        "אובדן שליטה על סוגרים",
+        "תחושת אאורה"
+      ],
+      "correct": 3,
+      "subject": "מבחן עיוני מסכם חומר נוסף1",
+      "sourceFile": "end_additional1_quiz.json"
+    },
+    {
+      "id": "end_additional1_quiz_14",
+      "question": "מה מאפיין סטטוס אפילפטיקוס?",
+      "type": "multiple_choice",
+      "options": [
+        "פרכוס מתחת ל-2 דקות",
+        "סדרת פרכוסים בהפרשים של מעל שעה",
+        "פרכוס מתמשך מעל 5 דקות או שניים ברצף ללא חזרה להכרה",
+        "פרכוס עם דופק מתחת ל-50"
+      ],
+      "correct": 2,
+      "subject": "מבחן עיוני מסכם חומר נוסף1",
+      "sourceFile": "end_additional1_quiz.json"
+    },
+    {
+      "id": "end_additional1_quiz_15",
+      "question": "לחץ תוך גולגולתי מוגבר עלול להתבטא ב:",
+      "type": "multiple_choice",
+      "options": [
+        "טכיפנאה, טכיקרדיה, סומק",
+        "היפוטוניה, אישונים מורחבים, בראדיפנאה",
+        "הרחבת אישונים, ברדיקרדיה, עלייה בל\"ד",
+        "בלבול, ירידת טמפ', דופק מהיר"
+      ],
+      "correct": 2,
+      "subject": "מבחן עיוני מסכם חומר נוסף1",
+      "sourceFile": "end_additional1_quiz.json"
+    },
+    {
+      "id": "end_additional1_quiz_16",
+      "question": "מה משפיע על מרכזי הנשימה במוח?",
+      "type": "multiple_choice",
+      "options": [
+        "רמות גלוקוז בלבד",
+        "רמות CO2, pH ו-O2",
+        "קצב הלב",
+        "טמפרטורת הגוף"
+      ],
+      "correct": 1,
+      "subject": "מבחן עיוני מסכם חומר נוסף1",
+      "sourceFile": "end_additional1_quiz.json"
+    },
+    {
+      "id": "end_additional1_quiz_17",
+      "question": "איזה תסמין אופייני ל־COPD מסוג אמפיזמה?",
+      "type": "multiple_choice",
+      "options": [
+        "שיעול ליחתי, חום, חמצת",
+        "חזה חביתי, טכיפנאה, שימוש בשרירי עזר",
+        "כיחלון פתאומי, בצקת ריאות",
+        "חזה נפול, פרפוזיה מוגברת"
+      ],
+      "correct": 1,
+      "subject": "מבחן עיוני מסכם חומר נוסף1",
+      "sourceFile": "end_additional1_quiz.json"
+    },
+    {
+      "id": "end_additional1_quiz_18",
+      "question": "Cor Pulmonale היא:",
+      "type": "multiple_choice",
+      "options": [
+        "התכווצות יתר של שרירי הנשימה",
+        "יתר לחץ דם ריאתי שגורם לאי ספיקת לב ימין",
+        "בצקת מוחית משנית לאנוקסיה",
+        "ירידה בקצב הלב בגלל יתר לחץ דם סיסטמי"
+      ],
+      "correct": 1,
+      "subject": "מבחן עיוני מסכם חומר נוסף1",
+      "sourceFile": "end_additional1_quiz.json"
+    },
+    {
+      "id": "end_additional1_quiz_19",
+      "question": "מה מטרת מתן סטרואידים באסתמה קשה?",
+      "type": "multiple_choice",
+      "options": [
+        "לשיפור תפקוד הכבד",
+        "להרחבת סימפונות באופן מיידי",
+        "להפחתת דלקת בדרכי האוויר",
+        "להמרצת מערכת החיסון"
+      ],
+      "correct": 2,
+      "subject": "מבחן עיוני מסכם חומר נוסף1",
+      "sourceFile": "end_additional1_quiz.json"
+    },
+    {
+      "id": "end_additional1_quiz_20",
+      "question": "אילו סימנים עוזרים להעריך חומרת התקף אסתמה?",
+      "type": "multiple_choice",
+      "options": [
+        "רמות גלוקוז, צבע עור",
+        "קושי בדיבור, שימוש בשרירי עזר, סטורציה",
+        "גודל האישונים",
+        "מצב הכרה בלבד"
+      ],
+      "correct": 1,
+      "subject": "מבחן עיוני מסכם חומר נוסף1",
+      "sourceFile": "end_additional1_quiz.json"
+    },
+    {
+      "id": "end_additional1_quiz_21",
+      "question": "מהו הטיפול הראשוני בתעוקת חזה יציבה?",
+      "type": "multiple_choice",
+      "options": [
+        "מתן אדרנלין",
+        "אספירין וחמצן לפי הצורך",
+        "וונטולין וסטרואידים",
+        "סילוק הפרשות וניתוב אוויר"
+      ],
+      "correct": 1,
+      "subject": "מבחן עיוני מסכם חומר נוסף1",
+      "sourceFile": "end_additional1_quiz.json"
+    },
+    {
+      "id": "end_additional1_quiz_22",
+      "question": "מתי נותנים שוק חשמלי במהלך החייאה?",
+      "type": "multiple_choice",
+      "options": [
+        "בהיפוגליקמיה",
+        "בהפרעות קצב מסוג PEA",
+        "ב־Ventricular Fibrillation",
+        "באסיסטולה"
+      ],
+      "correct": 2,
+      "subject": "מבחן עיוני מסכם חומר נוסף1",
+      "sourceFile": "end_additional1_quiz.json"
+    },
+    {
+      "id": "end_additional1_quiz_23",
+      "question": "מה השלב בו נותנים אדרנלין במהלך החייאה?",
+      "type": "multiple_choice",
+      "options": [
+        "מייד לאחר ROSC",
+        "כל 3-5 דקות בהחייאה, כולל ב־PEA",
+        "רק אם יש דופק",
+        "בסוף כל מחזור החייאה של 10 דקות"
+      ],
+      "correct": 1,
+      "subject": "מבחן עיוני מסכם חומר נוסף1",
+      "sourceFile": "end_additional1_quiz.json"
+    },
+    {
+      "id": "end_additional1_quiz_24",
+      "question": "מהי מטרת קפנומטריה במהלך החייאה?",
+      "type": "multiple_choice",
+      "options": [
+        "להעריך תפקוד כלייתי",
+        "לזהות אסיסטולה",
+        "להערכת איכות העיסויים ולזיהוי ROSC",
+        "לבדוק נוכחות סטרואידים"
+      ],
+      "correct": 2,
+      "subject": "מבחן עיוני מסכם חומר נוסף1",
+      "sourceFile": "end_additional1_quiz.json"
+    },
+    {
+      "id": "end_additional1_quiz_25",
+      "question": "מהי דרך המתן המועדפת לאמיודרון במהלך החייאה ב-VF?",
+      "type": "multiple_choice",
+      "options": [
+        "תוך-שרירית",
+        "תת-עורית",
+        "תוך-ורידית",
+        "בשאיפה"
+      ],
+      "correct": 2,
+      "subject": "מבחן עיוני מסכם חומר נוסף1",
+      "sourceFile": "end_additional1_quiz.json"
+    },
+    {
+      "id": "end_additional1_quiz_26",
+      "question": "מה הסיכון העיקרי בהיפוך קצב בפרפור עליות ממושך?",
+      "type": "multiple_choice",
+      "options": [
+        "פגיעה בשריר הלב",
+        "היווצרות פנאומוטורקס",
+        "תסחיף ריאתי/מוחי עקב קריש",
+        "ירידת ל\"ד קלה"
+      ],
+      "correct": 2,
+      "subject": "מבחן עיוני מסכם חומר נוסף1",
+      "sourceFile": "end_additional1_quiz.json"
+    },
+    {
+      "id": "end_additional1_quiz_27",
+      "question": "מתי אסור לתת אדנוזין?",
+      "type": "multiple_choice",
+      "options": [
+        "בפרפור פרוזדורים מהיר",
+        "ב־VT יציב",
+        "בחשד לחסם הולכה מדרגה שנייה בלי קוצב",
+        "בטכיקרדיה על־חדרית"
+      ],
+      "correct": 2,
+      "subject": "מבחן עיוני מסכם חומר נוסף1",
+      "sourceFile": "end_additional1_quiz.json"
+    },
+    {
+      "id": "end_additional1_quiz_28",
+      "question": "מהו מנגנון הפעולה של אטרופין?",
+      "type": "multiple_choice",
+      "options": [
+        "חסימת רצפטורים אדרנרגיים",
+        "הפעלת מערכת פאראסימפתטית",
+        "עיכוב אצטילכולין במעביר הסינפטי",
+        "הגברת הולכה חשמלית בחדרים"
+      ],
+      "correct": 2,
+      "subject": "מבחן עיוני מסכם חומר נוסף1",
+      "sourceFile": "end_additional1_quiz.json"
+    },
+    {
+      "id": "end_additional1_quiz_29",
+      "question": "אדרנלין פועל על ידי:",
+      "type": "multiple_choice",
+      "options": [
+        "עיכוב הולכה בין־עלייתית",
+        "הרחבת כלי דם",
+        "הפעלת רצפטורים α ו-β",
+        "חסימת דופאמין"
+      ],
+      "correct": 2,
+      "subject": "מבחן עיוני מסכם חומר נוסף1",
+      "sourceFile": "end_additional1_quiz.json"
+    },
+    {
+      "id": "end_additional1_quiz_30",
+      "question": "למה משמשת התרופה Etomidate בפרה-אינטובציה?",
+      "type": "multiple_choice",
+      "options": [
+        "שיכוך כאב",
+        "השריית שינה מהירה עם מינימום דיכוי לבבי",
+        "הרחבת סימפונות",
+        "טיפול בפרפור חדרים"
+      ],
+      "correct": 1,
+      "subject": "מבחן עיוני מסכם חומר נוסף1",
+      "sourceFile": "end_additional1_quiz.json"
+    },
+    {
+      "id": "end_additional1_quiz_31",
+      "question": "מה היתרון במתן IO על פני IV בשטח?",
+      "type": "multiple_choice",
+      "options": [
+        "נספג מהר יותר",
+        "מתאים רק בילדים",
+        "מאפשר גישה מהירה כאשר אין IV",
+        "פועל רק על תרופות מסוימות"
+      ],
+      "correct": 2,
+      "subject": "מבחן עיוני מסכם חומר נוסף1",
+      "sourceFile": "end_additional1_quiz.json"
+    },
+    {
+      "id": "end_additional1_quiz_32",
+      "question": "מה ההבדל העיקרי בין ספיגת תרופה ב־IV לעומת IO?",
+      "type": "multiple_choice",
+      "options": [
+        "IV מהיר יותר אך IO חזק יותר",
+        "אין הבדל משמעותי בזמן ספיגה",
+        "IO פועל רק בפרוטוקול טראומה",
+        "IV ניתן רק במיון"
+      ],
+      "correct": 1,
+      "subject": "מבחן עיוני מסכם חומר נוסף1",
+      "sourceFile": "end_additional1_quiz.json"
+    },
+    {
+      "id": "end_additional1_quiz_33",
+      "question": "מהי התוויית הנגד העיקרית של אספירין?",
+      "type": "multiple_choice",
+      "options": [
+        "טכיקרדיה",
+        "דימום פעיל או אלרגיה",
+        "גיל מבוגר",
+        "חום גבוה"
+      ],
+      "correct": 1,
+      "subject": "מבחן עיוני מסכם חומר נוסף1",
+      "sourceFile": "end_additional1_quiz.json"
+    },
+    {
+      "id": "end_additional1_quiz_34",
+      "question": "מהו המינון המקובל של אדרנלין בהחייאת מבוגר?",
+      "type": "multiple_choice",
+      "options": [
+        "0.1mg IV כל 10 דקות",
+        "1mg IV כל 3–5 דקות",
+        "5mg כל 2 דקות",
+        "0.5mg תוך שריר"
+      ],
+      "correct": 1,
+      "subject": "מבחן עיוני מסכם חומר נוסף1",
+      "sourceFile": "end_additional1_quiz.json"
+    },
+    {
+      "id": "end_additional1_quiz_35",
+      "question": "מתי נותנים נרקן (Naloxone)?",
+      "type": "multiple_choice",
+      "options": [
+        "בחשד לדום לב על רקע לבבי",
+        "בחשד לדיכוי נשימתי כתוצאה משימוש באופיואידים",
+        "בפרכוסים חוזרים",
+        "בטראומה עם ירידת הכרה"
+      ],
+      "correct": 1,
+      "subject": "מבחן עיוני מסכם חומר נוסף1",
+      "sourceFile": "end_additional1_quiz.json"
+    },
+    {
+      "id": "end_additional1_quiz_36",
+      "question": "מה היחס בין עיסויים להנשמות בהחייאת ילדים עם שני מטפלים?",
+      "type": "multiple_choice",
+      "options": [
+        "15:2",
+        "30:2",
+        "3:1",
+        "5:2"
+      ],
+      "correct": 0,
+      "subject": "מבחן עיוני מסכם חומר נוסף1",
+      "sourceFile": "end_additional1_quiz.json"
+    },
+    {
+      "id": "end_additional1_quiz_37",
+      "question": "איזה קצב נחשב ל־\"לא בר שוק\" (non-shockable)?",
+      "type": "multiple_choice",
+      "options": [
+        "Ventricular Fibrillation",
+        "Asystole",
+        "VT עם דופק",
+        "VF"
+      ],
+      "correct": 1,
+      "subject": "מבחן עיוני מסכם חומר נוסף1",
+      "sourceFile": "end_additional1_quiz.json"
+    },
+    {
+      "id": "end_additional1_quiz_38",
+      "question": "מתי נותנים אמיודרון לפי פרוטוקול החייאה?",
+      "type": "multiple_choice",
+      "options": [
+        "לאחר שוק שלישי במצב VF/Pulseless VT",
+        "מיד עם תחילת החייאה",
+        "רק אחרי ROSC",
+        "רק בילדים"
+      ],
+      "correct": 0,
+      "subject": "מבחן עיוני מסכם חומר נוסף1",
+      "sourceFile": "end_additional1_quiz.json"
+    },
+    {
+      "id": "end_additional1_quiz_39",
+      "question": "מהו מינון אטרופין להאטה סימפטומטית?",
+      "type": "multiple_choice",
+      "options": [
+        "0.1mg כל 3–5 דקות",
+        "1mg במנת העמסה",
+        "0.5mg כל 3–5 דקות עד מקסימום 3mg",
+        "2mg כל 10 דקות"
+      ],
+      "correct": 2,
+      "subject": "מבחן עיוני מסכם חומר נוסף1",
+      "sourceFile": "end_additional1_quiz.json"
+    },
+    {
+      "id": "end_additional1_quiz_40",
+      "question": "מהי אחת מתופעות הלוואי האפשריות של קטאמין?",
+      "type": "multiple_choice",
+      "options": [
+        "ירידת ל\"ד חמורה",
+        "ברונכוספזם",
+        "עלייה בלחץ תוך גולגולתי והזיות",
+        "האטת קצב לב קשה"
+      ],
+      "correct": 2,
+      "subject": "מבחן עיוני מסכם חומר נוסף1",
+      "sourceFile": "end_additional1_quiz.json"
+    },
+    {
+      "id": "end_additional1_quiz_41",
+      "question": "מה מהבאים נחשב סימן אופייני להיפוגליקמיה?",
+      "type": "multiple_choice",
+      "options": [
+        "לחץ דם נמוך וירידת הכרה",
+        "דופק איטי, אישונים מורחבים",
+        "רעד, הזעה, בלבול",
+        "חום גבוה, עור יבש"
+      ],
+      "correct": 2,
+      "subject": "מבחן עיוני מסכם חומר נוסף1",
+      "sourceFile": "end_additional1_quiz.json"
+    },
+    {
+      "id": "end_additional1_quiz_42",
+      "question": "מהו מנגנון עיקרי להתפתחות היפרגליקמיה?",
+      "type": "multiple_choice",
+      "options": [
+        "עודף אינסולין",
+        "ירידה בצריכת פחמימות",
+        "חוסר יחסי או מוחלט של אינסולין",
+        "פעילות יתר של הכבד"
+      ],
+      "correct": 2,
+      "subject": "מבחן עיוני מסכם חומר נוסף1",
+      "sourceFile": "end_additional1_quiz.json"
+    },
+    {
+      "id": "end_additional1_quiz_43",
+      "question": "מה המינון התקני של גלוקוז 50% למתן דרך וריד בפרוטוקול היפוגליקמיה?",
+      "type": "multiple_choice",
+      "options": [
+        "5cc",
+        "25cc",
+        "50cc",
+        "100cc"
+      ],
+      "correct": 2,
+      "subject": "מבחן עיוני מסכם חומר נוסף1",
+      "sourceFile": "end_additional1_quiz.json"
+    },
+    {
+      "id": "end_additional1_quiz_44",
+      "question": "כיצד מחשבים את כמות הגלוקוז (D50) למתן?",
+      "type": "multiple_choice",
+      "options": [
+        "משקל המטופל בק\"ג × 1",
+        "חישוב לפי רמת הסוכר בלבד",
+        "0.5 גרם לק\"ג",
+        "1 גרם לק\"ג"
+      ],
+      "correct": 2,
+      "subject": "מבחן עיוני מסכם חומר נוסף1",
+      "sourceFile": "end_additional1_quiz.json"
+    },
+    {
+      "id": "end_additional1_quiz_45",
+      "question": "מה ההבדל בין גליקוליזה לגלוקוניאוגנזה?",
+      "type": "multiple_choice",
+      "options": [
+        "שתיהן מייצרות גלוקוז",
+        "גליקוליזה מייצרת אנרגיה, גלוקוניאוגנזה בונה גלוקוז",
+        "גליקוליזה מתרחשת בכבד בלבד",
+        "גלוקוניאוגנזה מתרחשת רק במעי"
+      ],
+      "correct": 1,
+      "subject": "מבחן עיוני מסכם חומר נוסף1",
+      "sourceFile": "end_additional1_quiz.json"
+    },
+    {
+      "id": "end_additional1_quiz_46",
+      "question": "מהי סוכרת סוג 2?",
+      "type": "multiple_choice",
+      "options": [
+        "חוסר מוחלט באינסולין",
+        "עמידות של הגוף לאינסולין",
+        "מחלה אוטואימונית של הלבלב",
+        "הפרשה מופרזת של גלוקוז"
+      ],
+      "correct": 1,
+      "subject": "מבחן עיוני מסכם חומר נוסף1",
+      "sourceFile": "end_additional1_quiz.json"
+    },
+    {
+      "id": "end_additional1_quiz_47",
+      "question": "מהו הסיכון המרכזי בשליית פתח בלידה?",
+      "type": "multiple_choice",
+      "options": [
+        "היפרדות של חבל הטבור",
+        "דימום מאסיבי",
+        "התכווצויות מוקדמות",
+        "חום ולחץ דם גבוה"
+      ],
+      "correct": 1,
+      "subject": "מבחן עיוני מסכם חומר נוסף1",
+      "sourceFile": "end_additional1_quiz.json"
+    },
+    {
+      "id": "end_additional1_quiz_48",
+      "question": "מה נכון לגבי לידה בשטח?",
+      "type": "multiple_choice",
+      "options": [
+        "יש לבצע חיתוך חבל טבור מיד ביציאת התינוק",
+        "יש למשוך את השליה בעדינות",
+        "חשוב למדוד זמן בין ירידת מים לצירים",
+        "יש לתמוך בראש התינוק ביציאה ולהגן על הפרינאום"
+      ],
+      "correct": 3,
+      "subject": "מבחן עיוני מסכם חומר נוסף1",
+      "sourceFile": "end_additional1_quiz.json"
+    },
+    {
+      "id": "end_additional1_quiz_49",
+      "question": "איזו גישה מתאימה למתן תרופות בשטח כשאין גישה ורידית?",
+      "type": "multiple_choice",
+      "options": [
+        "PO",
+        "תת עורית",
+        "תוך שרירית",
+        "תוך גרמית (IO)"
+      ],
+      "correct": 3,
+      "subject": "מבחן עיוני מסכם חומר נוסף1",
+      "sourceFile": "end_additional1_quiz.json"
+    },
+    {
+      "id": "end_additional1_quiz_50",
+      "question": "מהו ההבדל בזמן הספיגה בין IV ל־IO?",
+      "type": "multiple_choice",
+      "options": [
+        "IV מהיר בהרבה",
+        "IO איטי משמעותית",
+        "אין הבדל משמעותי",
+        "IO נספג רק בילדים"
+      ],
+      "correct": 2,
+      "subject": "מבחן עיוני מסכם חומר נוסף1",
+      "sourceFile": "end_additional1_quiz.json"
+    },
+    {
+      "id": "end_additional1_quiz_51",
+      "question": "לאיזו מהתרופות הבאות יש התוויית נגד במקרה של אלרגיה ל־NSAID?",
+      "type": "multiple_choice",
+      "options": [
+        "קטאמין",
+        "אטרופין",
+        "אספירין",
+        "גלוקוז"
+      ],
+      "correct": 2,
+      "subject": "מבחן עיוני מסכם חומר נוסף1",
+      "sourceFile": "end_additional1_quiz.json"
+    },
+    {
+      "id": "end_additional1_quiz_52",
+      "question": "מהו ייעודו של נרקן (Naloxone)?",
+      "type": "multiple_choice",
+      "options": [
+        "אנטידוט להרעלת אקונומיקה",
+        "אנטידוט להרעלת אלכוהול",
+        "אנטידוט לדיכוי נשימתי מאופיואידים",
+        "משכך כאבים מסוג אופיאטי"
+      ],
+      "correct": 2,
+      "subject": "מבחן עיוני מסכם חומר נוסף1",
+      "sourceFile": "end_additional1_quiz.json"
+    },
+    {
+      "id": "end_additional1_quiz_53",
+      "question": "מה תפקידה של כדורית דם אדומה?",
+      "type": "multiple_choice",
+      "options": [
+        "סינון רעלים",
+        "הובלת חמצן לרקמות",
+        "חיסול פתוגנים",
+        "סינתזת חלבונים"
+      ],
+      "correct": 1,
+      "subject": "מבחן עיוני מסכם חומר נוסף1",
+      "sourceFile": "end_additional1_quiz.json"
+    },
+    {
+      "id": "end_additional1_quiz_54",
+      "question": "מהי האורטה?",
+      "type": "multiple_choice",
+      "options": [
+        "העורק הריאתי הראשי",
+        "הווריד המרכזי בגוף",
+        "העורק הראשי היוצא מהלב",
+        "אונה במוח"
+      ],
+      "correct": 2,
+      "subject": "מבחן עיוני מסכם חומר נוסף1",
+      "sourceFile": "end_additional1_quiz.json"
+    },
+    {
+      "id": "end_additional1_quiz_55",
+      "question": "מהו הלם היפוולמי?",
+      "type": "multiple_choice",
+      "options": [
+        "מצב בו קצב הלב גבוה מהנורמה",
+        "חוסר נפח נוזלים ודם הגורם לירידת פרפוזיה",
+        "תגובה של הגוף לזיהום",
+        "תגובה למתח נפשי"
+      ],
+      "correct": 1,
+      "subject": "מבחן עיוני מסכם חומר נוסף1",
+      "sourceFile": "end_additional1_quiz.json"
+    },
+    {
+      "id": "end_additional1_quiz_56",
+      "question": "מהו הטיפול העיקרי בהלם מדימום?",
+      "type": "multiple_choice",
+      "options": [
+        "מתן סטרואידים",
+        "אינטובציה",
+        "מתן נוזלים ועצירת הדימום",
+        "מתן דופמין"
+      ],
+      "correct": 2,
+      "subject": "מבחן עיוני מסכם חומר נוסף1",
+      "sourceFile": "end_additional1_quiz.json"
+    },
+    {
+      "id": "end_additional1_quiz_57",
+      "question": "מה מסמל ראשי התיבות DOPE בבדיקת התדרדרות של מונשם?",
+      "type": "multiple_choice",
+      "options": [
+        "Drainage, Overpressure, Pulmonary Edema, Emesis",
+        "Disconnection, Obstruction, Pneumothorax, Equipment failure",
+        "Drainage, Oxygen, Position, Embolism",
+        "Dilution, Overload, Pulmonary Effusion, Embolism"
+      ],
+      "correct": 1,
+      "subject": "מבחן עיוני מסכם חומר נוסף1",
+      "sourceFile": "end_additional1_quiz.json"
+    },
+    {
+      "id": "end_additional1_quiz_58",
+      "question": "מהי סיבה נפוצה להתעלפות על פי פרוטוקול מד״א?",
+      "type": "multiple_choice",
+      "options": [
+        "תסחיף שומני",
+        "חסימה של כלי דם כליליים",
+        "עמידה ממושכת וחום",
+        "דימום מוחי"
+      ],
+      "correct": 2,
+      "subject": "מבחן עיוני מסכם חומר נוסף1",
+      "sourceFile": "end_additional1_quiz.json"
+    },
+    {
+      "id": "end_additional1_quiz_59",
+      "question": "איזה מהבאים מהווה סיבה קלינית דחופה לבדיקה נוספת במטופל?",
+      "type": "multiple_choice",
+      "options": [
+        "חום של 37.8",
+        "כאב גב ממוקד",
+        "ירידה פתאומית בלחץ הדם עם בלבול",
+        "עייפות לאחר מאמץ"
+      ],
+      "correct": 2,
+      "subject": "מבחן עיוני מסכם חומר נוסף1",
+      "sourceFile": "end_additional1_quiz.json"
+    },
+    {
+      "id": "end_additional1_quiz_60",
+      "question": "מה נכון לגבי הבנת מנגנון פעולה של תרופות?",
+      "type": "multiple_choice",
+      "options": [
+        "הוא נדרש רק לפרמדיקים מתקדמים",
+        "חשוב רק אם מדובר באינטובציה",
+        "הכרחי להבנה ולשימוש מושכל בפרוטוקולים",
+        "אינו דרוש בשלב טרום אשפוזי"
+      ],
+      "correct": 2,
+      "subject": "מבחן עיוני מסכם חומר נוסף1",
+      "sourceFile": "end_additional1_quiz.json"
+    },
+    {
+      "id": "end_additional1_quiz_61",
+      "question": "מהו הטיפול המיידי במכת חום חמורה (heat stroke)?",
+      "type": "multiple_choice",
+      "options": [
+        "פינוי מהיר וטיפול נוזלים תוך ורידי",
+        "קירור מיידי ואגרסיבי תוך כדי פינוי",
+        "מתן אנטיפירטיקה (נוגדי חום)",
+        "מנוחה מלאה ונוזלים פומיים"
+      ],
+      "correct": 1,
+      "subject": "מבחן עיוני מסכם חומר נוסף1",
+      "sourceFile": "end_additional1_quiz.json"
+    },
+    {
+      "id": "end_additional1_quiz_62",
+      "question": "מהו סימן אופייני להיפותרמיה בדרגה 2?",
+      "type": "multiple_choice",
+      "options": [
+        "רעד, בלבול קל, חום גוף 35–32",
+        "הכרה מעורפלת, ברדיקרדיה וקשיון שרירים",
+        "חוסר הכרה מלא, דום לב",
+        "תחושת צמא ונימול"
+      ],
+      "correct": 1,
+      "subject": "מבחן עיוני מסכם חומר נוסף1",
+      "sourceFile": "end_additional1_quiz.json"
+    },
+    {
+      "id": "end_additional1_quiz_63",
+      "question": "מהו העיקרון החשוב ביותר בהחייאת נפגע היפותרמיה קשה?",
+      "type": "multiple_choice",
+      "options": [
+        "להפסיק החייאה אם אין דופק",
+        "לא לקבוע מוות לפני חימום מעל 35 מעלות",
+        "להימנע משימוש בדפיברילטור",
+        "לבצע עיסויים בקצב כפול"
+      ],
+      "correct": 1,
+      "subject": "מבחן עיוני מסכם חומר נוסף1",
+      "sourceFile": "end_additional1_quiz.json"
+    },
+    {
+      "id": "end_additional1_quiz_64",
+      "question": "איזו פגיעה היא פגיעת קור פריפרית?",
+      "type": "multiple_choice",
+      "options": [
+        "מכת חום",
+        "היפותרמיה",
+        "רגלי חפירות",
+        "התייבשות"
+      ],
+      "correct": 2,
+      "subject": "מבחן עיוני מסכם חומר נוסף1",
+      "sourceFile": "end_additional1_quiz.json"
+    },
+    {
+      "id": "end_additional1_quiz_65",
+      "question": "מה ההבדל המרכזי בין כוויית קור לרגלי חפירות?",
+      "type": "multiple_choice",
+      "options": [
+        "בכוויית קור יש תחושת חום קיצונית",
+        "ברגלי חפירות הרקמה אינה קפואה וניתנת להצלה",
+        "כוויית קור נפוצה יותר בישראל",
+        "רגלי חפירות היא תמיד עמוקה יותר"
+      ],
+      "correct": 1,
+      "subject": "מבחן עיוני מסכם חומר נוסף1",
+      "sourceFile": "end_additional1_quiz.json"
+    },
+    {
+      "id": "end_additional1_quiz_66",
+      "question": "מהו הטיפול הנכון לכוויית קור בשטח?",
+      "type": "multiple_choice",
+      "options": [
+        "שפשוף עדין של האיבר",
+        "קירור האיבר עם מים",
+        "חימום הדרגתי, חבישה וקיבוע",
+        "השארת האיבר חשוף לאוויר"
+      ],
+      "correct": 2,
+      "subject": "מבחן עיוני מסכם חומר נוסף1",
+      "sourceFile": "end_additional1_quiz.json"
+    },
+    {
+      "id": "end_additional1_quiz_67",
+      "question": "מה נכון בנוגע להפשרה של כוויית קור?",
+      "type": "multiple_choice",
+      "options": [
+        "מותר לבצע בשטח הפשרה לא מבוקרת",
+        "רצוי להפשיר תוך כדי פינוי בכל מקרה",
+        "יש לבצע הפשרה רק אם בטוחים שלא תהיה הקפאה חוזרת",
+        "אין חשיבות לדרך ההפשרה"
+      ],
+      "correct": 2,
+      "subject": "מבחן עיוני מסכם חומר נוסף1",
+      "sourceFile": "end_additional1_quiz.json"
+    },
+    {
+      "id": "end_additional1_quiz_68",
+      "question": "מהי סכנה עיקרית בהכשת נחש ארסי?",
+      "type": "multiple_choice",
+      "options": [
+        "פגיעה בתפקוד הכלייתי בלבד",
+        "דימום מוחי",
+        "התפתחות תסמונת מדור ונזק נוירולוגי",
+        "חום גבוה ודלקת מפרקים"
+      ],
+      "correct": 2,
+      "subject": "מבחן עיוני מסכם חומר נוסף1",
+      "sourceFile": "end_additional1_quiz.json"
+    },
+    {
+      "id": "end_additional1_quiz_69",
+      "question": "כיצד יש לטפל בנפגע הכשת נחש בשטח?",
+      "type": "multiple_choice",
+      "options": [
+        "לשאוב את הארס",
+        "לחתוך את מקום ההכשה",
+        "להגביה את הגפה",
+        "לקבע את הגפה ולהשאיר את המטופל במנוחה"
+      ],
+      "correct": 3,
+      "subject": "מבחן עיוני מסכם חומר נוסף1",
+      "sourceFile": "end_additional1_quiz.json"
+    },
+    {
+      "id": "end_additional1_quiz_70",
+      "question": "אילו פעולות אסור לבצע בהכשת נחש?",
+      "type": "multiple_choice",
+      "options": [
+        "קיבוע האיבר",
+        "מתן נוזלים",
+        "חיתוך, מציצה, חסם עורקים",
+        "מתן חמצן"
+      ],
+      "correct": 2,
+      "subject": "מבחן עיוני מסכם חומר נוסף1",
+      "sourceFile": "end_additional1_quiz.json"
+    },
+    {
+      "id": "end_additional1_quiz_71",
+      "question": "מה נכון לגבי טיפול בנפגע עקיצת עקרב צהוב?",
+      "type": "multiple_choice",
+      "options": [
+        "יש להכניס אותו מיד למים חמים",
+        "רוב המקרים נפתרים תסמינית",
+        "יש לתת סטרואידים מיד",
+        "חובה לתת נסיוב בכל מקרה"
+      ],
+      "correct": 1,
+      "subject": "מבחן עיוני מסכם חומר נוסף1",
+      "sourceFile": "end_additional1_quiz.json"
+    },
+    {
+      "id": "end_additional1_quiz_72",
+      "question": "מהו הסיבוך העיקרי בעקיצת עקרב או אלמנה שחורה?",
+      "type": "multiple_choice",
+      "options": [
+        "פריחה ממושכת",
+        "פגיעה כבדית",
+        "תגובה נוירולוגית או אנאפילקטית",
+        "יתר לחץ דם"
+      ],
+      "correct": 2,
+      "subject": "מבחן עיוני מסכם חומר נוסף1",
+      "sourceFile": "end_additional1_quiz.json"
+    },
+    {
+      "id": "end_additional1_quiz_73",
+      "question": "מה הפעולה הראשונית במקרה של תגובה אנאפילקטית?",
+      "type": "multiple_choice",
+      "options": [
+        "מתן סטרואידים",
+        "פתיחת וריד ומתן נוזלים",
+        "מתן אדרנלין לשריר",
+        "אנטיהיסטמין דרך הפה"
+      ],
+      "correct": 2,
+      "subject": "מבחן עיוני מסכם חומר נוסף1",
+      "sourceFile": "end_additional1_quiz.json"
+    },
+    {
+      "id": "end_additional1_quiz_74",
+      "question": "מהי המנה התקנית של אדרנלין לשריר באנאפילקסיס?",
+      "type": "multiple_choice",
+      "options": [
+        "1 מ״ג",
+        "0.3 מ״ג",
+        "0.03 מ״ג",
+        "0.5 מ״ג"
+      ],
+      "correct": 1,
+      "subject": "מבחן עיוני מסכם חומר נוסף1",
+      "sourceFile": "end_additional1_quiz.json"
+    },
+    {
+      "id": "end_additional1_quiz_75",
+      "question": "מתי יש לשקול מתן אדרנלין נוסף באנאפילקסיס?",
+      "type": "multiple_choice",
+      "options": [
+        "אם אין שיפור תוך 2–5 דקות",
+        "רק לאחר 30 דקות",
+        "אם יש לחץ דם נמוך",
+        "אם המטופל מבקש זאת"
+      ],
+      "correct": 0,
+      "subject": "מבחן עיוני מסכם חומר נוסף1",
+      "sourceFile": "end_additional1_quiz.json"
+    },
+    {
+      "id": "end_additional1_quiz_76",
+      "question": "מה מהבאים מהווה מנגנון עיקרי של תגובה אנאפילקטית?",
+      "type": "multiple_choice",
+      "options": [
+        "שחרור המוגלובין",
+        "פעילות נוגדנים מסוג IgE ושחרור היסטמין",
+        "חסימה של קולטני בטא",
+        "ירידה ברמות אינסולין"
+      ],
+      "correct": 1,
+      "subject": "מבחן עיוני מסכם חומר נוסף1",
+      "sourceFile": "end_additional1_quiz.json"
+    },
+    {
+      "id": "end_additional1_quiz_77",
+      "question": "מהו נוגדן מסוג IgE?",
+      "type": "multiple_choice",
+      "options": [
+        "תאי דם לבנים הפולטים חמצן",
+        "גורם לקרישת יתר",
+        "משתתף בתגובה אלרגית",
+        "נוגדן לזיהומים חיידקיים"
+      ],
+      "correct": 2,
+      "subject": "מבחן עיוני מסכם חומר נוסף1",
+      "sourceFile": "end_additional1_quiz.json"
+    },
+    {
+      "id": "end_additional1_quiz_78",
+      "question": "כיצד משפיע היסטמין על הגוף באנאפילקסיס?",
+      "type": "multiple_choice",
+      "options": [
+        "מרחיב סימפונות ומכווץ כלי דם",
+        "גורם להקאות וחום",
+        "מכווץ סימפונות ומרחיב כלי דם",
+        "מעלה את קצב הלב"
+      ],
+      "correct": 2,
+      "subject": "מבחן עיוני מסכם חומר נוסף1",
+      "sourceFile": "end_additional1_quiz.json"
+    },
+    {
+      "id": "end_additional1_quiz_79",
+      "question": "מהי הסיבה המרכזית לפינוי דחוף מהשטח במצב אלרגי?",
+      "type": "multiple_choice",
+      "options": [
+        "כאב עז בגפיים",
+        "קושי בבליעה או נשימה",
+        "פריחה חמורה",
+        "דלקת בעור"
+      ],
+      "correct": 1,
+      "subject": "מבחן עיוני מסכם חומר נוסף1",
+      "sourceFile": "end_additional1_quiz.json"
+    },
+    {
+      "id": "end_additional1_quiz_80",
+      "question": "מהי אחת ממטרות הטיפול הראשוני בשטח במצב אנאפילקטי?",
+      "type": "multiple_choice",
+      "options": [
+        "למנוע את הפריחה",
+        "לעכב את התגובה האלרגית ולתמוך במערכת הנשימה",
+        "לזהות את מקור האלרגיה",
+        "לקרר את הגוף"
+      ],
+      "correct": 1,
+      "subject": "מבחן עיוני מסכם חומר נוסף1",
+      "sourceFile": "end_additional1_quiz.json"
+    },
+    {
+      "id": "end_additional1_quiz_81",
+      "question": "מהי עדות קלינית אפשרית לפגיעת ראש חמורה?",
+      "type": "multiple_choice",
+      "options": [
+        "כאב גב תחתון",
+        "צהבת בעור",
+        "אישונים לא שווים",
+        "נשימות שטחיות סדירות"
+      ],
+      "correct": 2,
+      "subject": "מבחן עיוני מסכם חומר נוסף1",
+      "sourceFile": "end_additional1_quiz.json"
+    },
+    {
+      "id": "end_additional1_quiz_82",
+      "question": "איזו פגיעה מחשידה לפגיעת בסיס גולגולת?",
+      "type": "multiple_choice",
+      "options": [
+        "חיוורון בלחיים",
+        "דימומים מהאף",
+        "המטומה סביב העין (Raccoon eyes)",
+        "טשטוש ראייה"
+      ],
+      "correct": 2,
+      "subject": "מבחן עיוני מסכם חומר נוסף1",
+      "sourceFile": "end_additional1_quiz.json"
+    },
+    {
+      "id": "end_additional1_quiz_83",
+      "question": "מה הסכנה המרכזית בפגיעת ראש עם עלייה בלחץ תוך גולגולתי?",
+      "type": "multiple_choice",
+      "options": [
+        "ירידה בחום גוף",
+        "היפוגליקמיה",
+        "הרניאציה מוחית",
+        "ירידה בכמות שתן"
+      ],
+      "correct": 2,
+      "subject": "מבחן עיוני מסכם חומר נוסף1",
+      "sourceFile": "end_additional1_quiz.json"
+    },
+    {
+      "id": "end_additional1_quiz_84",
+      "question": "מה מהבאים מאפיין תגובת קושינג?",
+      "type": "multiple_choice",
+      "options": [
+        "ל\"ד נמוך, טכיקרדיה ודיכוי נשימתי",
+        "ל\"ד גבוה, ברדיקרדיה ודפוסי נשימה לא סדירים",
+        "ל\"ד גבוה, טכיפניאה ודופק מהיר",
+        "ירידת ל\"ד ועליית דופק"
+      ],
+      "correct": 1,
+      "subject": "מבחן עיוני מסכם חומר נוסף1",
+      "sourceFile": "end_additional1_quiz.json"
+    },
+    {
+      "id": "end_additional1_quiz_85",
+      "question": "מה השלב הראשון בטיפול בפצוע טראומה לפי גישת ABCDE?",
+      "type": "multiple_choice",
+      "options": [
+        "הערכת מצב נוירולוגי",
+        "ניטור ל\"ד",
+        "ניהול נתיב אוויר",
+        "חשיפת הפצוע"
+      ],
+      "correct": 2,
+      "subject": "מבחן עיוני מסכם חומר נוסף1",
+      "sourceFile": "end_additional1_quiz.json"
+    },
+    {
+      "id": "end_additional1_quiz_86",
+      "question": "מה חשוב במיוחד בבדיקת \"Breathing\" בטראומה?",
+      "type": "multiple_choice",
+      "options": [
+        "מדידת לחץ דם",
+        "קביעת רמת הכרה",
+        "הערכת קולות נשימה וחזה אוויר",
+        "בדיקת דופק"
+      ],
+      "correct": 2,
+      "subject": "מבחן עיוני מסכם חומר נוסף1",
+      "sourceFile": "end_additional1_quiz.json"
+    },
+    {
+      "id": "end_additional1_quiz_87",
+      "question": "מתי נבצע Needle Thoracostomy (מחט חזה)?",
+      "type": "multiple_choice",
+      "options": [
+        "בכל חזה אוויר",
+        "כאשר יש חשד לחזה אוויר בלחץ",
+        "בכל טראומה קהה לבית החזה",
+        "בכל מקרה של ירידת ל\"ד בטראומה"
+      ],
+      "correct": 1,
+      "subject": "מבחן עיוני מסכם חומר נוסף1",
+      "sourceFile": "end_additional1_quiz.json"
+    },
+    {
+      "id": "end_additional1_quiz_88",
+      "question": "מהי אינדיקציה עיקרית לפינוי דחוף בנפגע טראומה?",
+      "type": "multiple_choice",
+      "options": [
+        "כאבי גב",
+        "חום גבוה",
+        "ירידה במצב ההכרה",
+        "שבר ביד"
+      ],
+      "correct": 2,
+      "subject": "מבחן עיוני מסכם חומר נוסף1",
+      "sourceFile": "end_additional1_quiz.json"
+    },
+    {
+      "id": "end_additional1_quiz_89",
+      "question": "כיצד נזהה חזה אוויר בלחץ בשטח?",
+      "type": "multiple_choice",
+      "options": [
+        "ירידה בהכרה בלבד",
+        "חרחורים דו־צדדיים",
+        "דופק איטי וצלילי נשימה תקינים",
+        "גודש ורידי צוואר, סטיית קנה, קולות נשימה מופחתים בצד אחד"
+      ],
+      "correct": 3,
+      "subject": "מבחן עיוני מסכם חומר נוסף1",
+      "sourceFile": "end_additional1_quiz.json"
+    },
+    {
+      "id": "end_additional1_quiz_90",
+      "question": "מה ההבדל העיקרי בין חזה אוויר פשוט לחזה אוויר בלחץ?",
+      "type": "multiple_choice",
+      "options": [
+        "חזה אוויר בלחץ מלווה בהתדרדרות המודינמית",
+        "חזה אוויר פשוט גורם לדום לב",
+        "חזה אוויר פשוט תמיד עם סטיית קנה",
+        "אין כל הבדל"
+      ],
+      "correct": 0,
+      "subject": "מבחן עיוני מסכם חומר נוסף1",
+      "sourceFile": "end_additional1_quiz.json"
+    },
+    {
+      "id": "end_additional1_quiz_91",
+      "question": "מהי סיבת המוות הנפוצה ביותר בטראומה?",
+      "type": "multiple_choice",
+      "options": [
+        "שברים מרובים",
+        "חזה אוויר",
+        "דימום בלתי נשלט",
+        "פגיעת עמוד שדרה"
+      ],
+      "correct": 2,
+      "subject": "מבחן עיוני מסכם חומר נוסף1",
+      "sourceFile": "end_additional1_quiz.json"
+    },
+    {
+      "id": "end_additional1_quiz_92",
+      "question": "מהי הפעולה הראשונה בהערכת פצוע מחוסר הכרה?",
+      "type": "multiple_choice",
+      "options": [
+        "הפשטה",
+        "קיבוע צוואר",
+        "פתיחת נתיב אוויר",
+        "חיבור למוניטור"
+      ],
+      "correct": 2,
+      "subject": "מבחן עיוני מסכם חומר נוסף1",
+      "sourceFile": "end_additional1_quiz.json"
+    },
+    {
+      "id": "end_additional1_quiz_93",
+      "question": "מהי מטרת קיבוע עמוד שדרה צווארי?",
+      "type": "multiple_choice",
+      "options": [
+        "להקל על כאב",
+        "למנוע תזוזה של שברים ולפגיעה בחוט השדרה",
+        "לאפשר הנשמה טובה יותר",
+        "לשפר את זרימת הדם למוח"
+      ],
+      "correct": 1,
+      "subject": "מבחן עיוני מסכם חומר נוסף1",
+      "sourceFile": "end_additional1_quiz.json"
+    },
+    {
+      "id": "end_additional1_quiz_94",
+      "question": "כיצד נזהה שוק נוירוגני?",
+      "type": "multiple_choice",
+      "options": [
+        "ל\"ד גבוה, חום גבוה",
+        "טכיקרדיה, חיוורון וזיעה",
+        "ברדיקרדיה, ירידת ל\"ד וחום עור תקין",
+        "טכיקרדיה, לחץ דם תקין וחיוורון"
+      ],
+      "correct": 2,
+      "subject": "מבחן עיוני מסכם חומר נוסף1",
+      "sourceFile": "end_additional1_quiz.json"
+    },
+    {
+      "id": "end_additional1_quiz_95",
+      "question": "כיצד נבדיל בין שוק היפוולמי לשוק נוירוגני?",
+      "type": "multiple_choice",
+      "options": [
+        "בשוק היפוולמי תהיה ברדיקרדיה",
+        "בשוק נוירוגני תהיה טכיקרדיה",
+        "בשוק נוירוגני דופק איטי יחסית ופריפריה חמה",
+        "בשניהם יש גודש ורידי צוואר"
+      ],
+      "correct": 2,
+      "subject": "מבחן עיוני מסכם חומר נוסף1",
+      "sourceFile": "end_additional1_quiz.json"
+    },
+    {
+      "id": "end_additional1_quiz_96",
+      "question": "כיצד נבצע קיבוע של גפה עם חשד לשבר?",
+      "type": "multiple_choice",
+      "options": [
+        "קיבוע רק מעל השבר",
+        "חבישה סטרילית בלבד",
+        "קיבוע מעל ומתחת לשבר",
+        "קירור המקום בלבד"
+      ],
+      "correct": 2,
+      "subject": "מבחן עיוני מסכם חומר נוסף1",
+      "sourceFile": "end_additional1_quiz.json"
+    },
+    {
+      "id": "end_additional1_quiz_97",
+      "question": "מה נכון לגבי \"Golden Hour\" בטראומה?",
+      "type": "multiple_choice",
+      "options": [
+        "יש זמן לטפל בשטח בנחת",
+        "שעה בה יש סיכון לזיהומים",
+        "פרק הזמן הקריטי להצלת חיים לאחר טראומה",
+        "מושג המתאר דימום תוך־גולגולתי"
+      ],
+      "correct": 2,
+      "subject": "מבחן עיוני מסכם חומר נוסף1",
+      "sourceFile": "end_additional1_quiz.json"
+    },
+    {
+      "id": "end_additional1_quiz_98",
+      "question": "מהי בדיקת \"Pelvic Rock\"?",
+      "type": "multiple_choice",
+      "options": [
+        "לחיצה על גפיים להערכת תחושה",
+        "בדיקת יציבות אגן",
+        "בדיקת נשימה תקינה",
+        "הערכת נוזלים חופשיים"
+      ],
+      "correct": 1,
+      "subject": "מבחן עיוני מסכם חומר נוסף1",
+      "sourceFile": "end_additional1_quiz.json"
+    },
+    {
+      "id": "end_additional1_quiz_99",
+      "question": "מתי נבצע קיבוע אגן?",
+      "type": "multiple_choice",
+      "options": [
+        "בכל מקרה של כאבי גב",
+        "רק כשיש חשד לשבר בצלעות",
+        "בחשד לשבר באגן או דימום פנימי",
+        "כשיש שבר פתוח בגפה תחתונה"
+      ],
+      "correct": 2,
+      "subject": "מבחן עיוני מסכם חומר נוסף1",
+      "sourceFile": "end_additional1_quiz.json"
+    },
+    {
+      "id": "end_additional1_quiz_100",
+      "question": "למה מיועד טמפונדה (חסם עורקים)?",
+      "type": "multiple_choice",
+      "options": [
+        "לחימום גפיים",
+        "לחסימת דימום חיצוני מסכן חיים",
+        "לשמירה על פרפוזיה מוחית",
+        "למניעת היפותרמיה"
+      ],
+      "correct": 1,
+      "subject": "מבחן עיוני מסכם חומר נוסף1",
+      "sourceFile": "end_additional1_quiz.json"
+    },
+    {
+      "id": "end_additional1_quiz_101",
+      "question": "מהו יחס עיסויים להנשמות בהחייאת תינוק עם שני מטפלים?",
+      "type": "multiple_choice",
+      "options": [
+        "30:2",
+        "15:2",
+        "5:1",
+        "3:1"
+      ],
+      "correct": 1,
+      "subject": "מבחן עיוני מסכם חומר נוסף1",
+      "sourceFile": "end_additional1_quiz.json"
+    },
+    {
+      "id": "end_additional1_quiz_102",
+      "question": "מה נכון לגבי עיסויים בתינוק בהחייאה?",
+      "type": "multiple_choice",
+      "options": [
+        "מבוצעים באמצעות אגודל אחד",
+        "מבוצעים באמצעות שתי אצבעות במרכז בית החזה",
+        "מבוצעים בכף יד אחת",
+        "מבוצעים באמצעות שני אגודלים וסביב בית החזה"
+      ],
+      "correct": 3,
+      "subject": "מבחן עיוני מסכם חומר נוסף1",
+      "sourceFile": "end_additional1_quiz.json"
+    },
+    {
+      "id": "end_additional1_quiz_103",
+      "question": "מתי נבצע הנשמה עם שקית אמבו בילוד?",
+      "type": "multiple_choice",
+      "options": [
+        "כאשר קצב הלב מתחת ל־100 לדקה לאחר ייבוש וגירוי",
+        "בכל מקרה של בכי חלש",
+        "מיד לאחר יציאה",
+        "כשקצב הלב מעל 100"
+      ],
+      "correct": 0,
+      "subject": "מבחן עיוני מסכם חומר נוסף1",
+      "sourceFile": "end_additional1_quiz.json"
+    },
+    {
+      "id": "end_additional1_quiz_104",
+      "question": "מה נכון לגבי קצב ההנשמה בילוד לאחר לידה?",
+      "type": "multiple_choice",
+      "options": [
+        "30 נשימות לדקה",
+        "20–30 נשימות לדקה",
+        "40–60 הנשמות בדקה",
+        "10–20 נשימות בדקה"
+      ],
+      "correct": 2,
+      "subject": "מבחן עיוני מסכם חומר נוסף1",
+      "sourceFile": "end_additional1_quiz.json"
+    },
+    {
+      "id": "end_additional1_quiz_105",
+      "question": "מתי מתחילים עיסויים בילוד לאחר לידה?",
+      "type": "multiple_choice",
+      "options": [
+        "אם קצב הלב מתחת ל־100",
+        "אם אין בכי תוך 30 שניות",
+        "אם קצב הלב נמוך מ־60 לאחר הנשמה טובה",
+        "אם אין תזוזה"
+      ],
+      "correct": 2,
+      "subject": "מבחן עיוני מסכם חומר נוסף1",
+      "sourceFile": "end_additional1_quiz.json"
+    },
+    {
+      "id": "end_additional1_quiz_106",
+      "question": "מה מינון האדרנלין ב־ET בילוד?",
+      "type": "multiple_choice",
+      "options": [
+        "0.3 מ\"ג",
+        "0.03 מ\"ג",
+        "0.01 מ\"ג/ק\"ג",
+        "0.1 מ\"ג/ק\"ג"
+      ],
+      "correct": 3,
+      "subject": "מבחן עיוני מסכם חומר נוסף1",
+      "sourceFile": "end_additional1_quiz.json"
+    },
+    {
+      "id": "end_additional1_quiz_107",
+      "question": "מה הסיבה השכיחה לדום לב בילדים?",
+      "type": "multiple_choice",
+      "options": [
+        "סיבה לבבית",
+        "סיבה נוירולוגית",
+        "סיבה נשימתית",
+        "התייבשות"
+      ],
+      "correct": 2,
+      "subject": "מבחן עיוני מסכם חומר נוסף1",
+      "sourceFile": "end_additional1_quiz.json"
+    },
+    {
+      "id": "end_additional1_quiz_108",
+      "question": "מה נכון לגבי פתיחת נתיב אוויר בתינוק?",
+      "type": "multiple_choice",
+      "options": [
+        "יש להטות ראש לאחור ככל האפשר",
+        "יש לשמור על מנח \"sniffing position\"",
+        "להכניס מנתב אוויר אף בלבד",
+        "אין צורך במנח מסוים"
+      ],
+      "correct": 1,
+      "subject": "מבחן עיוני מסכם חומר נוסף1",
+      "sourceFile": "end_additional1_quiz.json"
+    },
+    {
+      "id": "end_additional1_quiz_109",
+      "question": "באיזה מצב נבצע אינטובציה מוקדמת בילדים?",
+      "type": "multiple_choice",
+      "options": [
+        "בכל התקף אסתמה",
+        "במקרה של כשל נשימתי מאיים",
+        "בכל התקף פרכוס",
+        "אם הסיטורציה 94%"
+      ],
+      "correct": 1,
+      "subject": "מבחן עיוני מסכם חומר נוסף1",
+      "sourceFile": "end_additional1_quiz.json"
+    },
+    {
+      "id": "end_additional1_quiz_110",
+      "question": "מה הסכנה המרכזית במצוקת נשימה בילדים?",
+      "type": "multiple_choice",
+      "options": [
+        "ירידה בחום גוף",
+        "כשל נשימתי שמתדרדר לדום לב",
+        "עליית ל\"ד פתאומית",
+        "עליית ICP"
+      ],
+      "correct": 1,
+      "subject": "מבחן עיוני מסכם חומר נוסף1",
+      "sourceFile": "end_additional1_quiz.json"
+    },
+    {
+      "id": "end_additional1_quiz_111",
+      "question": "מה נכון לגבי סטרידור?",
+      "type": "multiple_choice",
+      "options": [
+        "נשמע בעיקר בנשיפה",
+        "תמיד מצריך אנטיביוטיקה",
+        "הוא סימן לחסימה בדרכי אוויר עליונות",
+        "אופייני לדלקת ריאות"
+      ],
+      "correct": 2,
+      "subject": "מבחן עיוני מסכם חומר נוסף1",
+      "sourceFile": "end_additional1_quiz.json"
+    },
+    {
+      "id": "end_additional1_quiz_112",
+      "question": "מהם הסימנים להידרדרות נשימתית בילדים?",
+      "type": "multiple_choice",
+      "options": [
+        "טכיפניאה, רטרקציות, סטורציה תקינה",
+        "שימוש בשרירי עזר, כיחלון, שינוי ברמת הכרה",
+        "חום, כאב ראש ועייפות",
+        "נזלת, שיעול והקאות"
+      ],
+      "correct": 1,
+      "subject": "מבחן עיוני מסכם חומר נוסף1",
+      "sourceFile": "end_additional1_quiz.json"
+    },
+    {
+      "id": "end_additional1_quiz_113",
+      "question": "מה הצעד הראשון בטיפול בילד עם אנאפילקסיס?",
+      "type": "multiple_choice",
+      "options": [
+        "נוזלים",
+        "אנטיהיסטמין",
+        "אדרנלין IM",
+        "אינטובציה"
+      ],
+      "correct": 2,
+      "subject": "מבחן עיוני מסכם חומר נוסף1",
+      "sourceFile": "end_additional1_quiz.json"
+    },
+    {
+      "id": "end_additional1_quiz_114",
+      "question": "מהו מינון אדרנלין IM בילד?",
+      "type": "multiple_choice",
+      "options": [
+        "0.01 מ\"ג/ק\"ג",
+        "0.1 מ\"ג/ק\"ג",
+        "0.3 מ\"ג",
+        "1 מ\"ג"
+      ],
+      "correct": 0,
+      "subject": "מבחן עיוני מסכם חומר נוסף1",
+      "sourceFile": "end_additional1_quiz.json"
+    },
+    {
+      "id": "end_additional1_quiz_115",
+      "question": "מהו מינון גלוקוז 10% בהיפוגליקמיה בילד?",
+      "type": "multiple_choice",
+      "options": [
+        "5cc לק\"ג",
+        "2cc לק\"ג",
+        "1cc לק\"ג",
+        "10cc לק\"ג"
+      ],
+      "correct": 1,
+      "subject": "מבחן עיוני מסכם חומר נוסף1",
+      "sourceFile": "end_additional1_quiz.json"
+    },
+    {
+      "id": "end_additional1_quiz_116",
+      "question": "איזה ממצא מחשיד לדלקת ריאות בילד?",
+      "type": "multiple_choice",
+      "options": [
+        "חרחורים ובכיות",
+        "סטרידור",
+        "חרחורים, חום ושיעול",
+        "נשימות שקטות"
+      ],
+      "correct": 2,
+      "subject": "מבחן עיוני מסכם חומר נוסף1",
+      "sourceFile": "end_additional1_quiz.json"
+    },
+    {
+      "id": "end_additional1_quiz_117",
+      "question": "כיצד נזהה מצב של כשל נשימתי בילדים?",
+      "type": "multiple_choice",
+      "options": [
+        "כיחלון, טכיקרדיה, שימוש בשרירי עזר",
+        "ירידה בהכרה, כיחלון, ברדיקרדיה",
+        "חום מעל 38.5",
+        "הקאות והתייבשות"
+      ],
+      "correct": 1,
+      "subject": "מבחן עיוני מסכם חומר נוסף1",
+      "sourceFile": "end_additional1_quiz.json"
+    },
+    {
+      "id": "end_additional1_quiz_118",
+      "question": "איזו תרופה ניתנת בפרכוס מתמשך בילדים?",
+      "type": "multiple_choice",
+      "options": [
+        "קטאמין",
+        "דיאזפם (ואלביום)",
+        "אדרנלין",
+        "גלוקוז"
+      ],
+      "correct": 1,
+      "subject": "מבחן עיוני מסכם חומר נוסף1",
+      "sourceFile": "end_additional1_quiz.json"
+    },
+    {
+      "id": "end_additional1_quiz_119",
+      "question": "כיצד נטפל בפרכוס היפוגליקמי בילד?",
+      "type": "multiple_choice",
+      "options": [
+        "אדרנלין",
+        "דיאזפם",
+        "גלוקוז לווריד",
+        "פינוי מהיר"
+      ],
+      "correct": 2,
+      "subject": "מבחן עיוני מסכם חומר נוסף1",
+      "sourceFile": "end_additional1_quiz.json"
+    },
+    {
+      "id": "end_additional1_quiz_120",
+      "question": "מה עושים במקרה של חנק מגוף זר בתינוק חסר הכרה?",
+      "type": "multiple_choice",
+      "options": [
+        "5 טפיחות גב",
+        "הנשמות בלבד",
+        "לחיצות חזה והנשמות",
+        "השארה על הברכיים עם תמרון היימליך"
+      ],
+      "correct": 2,
+      "subject": "מבחן עיוני מסכם חומר נוסף1",
+      "sourceFile": "end_additional1_quiz.json"
+    },
+    {
+      "id": "end_additional1_quiz_121",
+      "question": "מהו מינון אדרנלין ב־IV בהחייאת מבוגר?",
+      "type": "multiple_choice",
+      "options": [
+        "0.5 מ\"ג",
+        "1 מ\"ג",
+        "0.3 מ\"ג",
+        "5 מ\"ג"
+      ],
+      "correct": 1,
+      "subject": "מבחן עיוני מסכם חומר נוסף1",
+      "sourceFile": "end_additional1_quiz.json"
+    },
+    {
+      "id": "end_additional1_quiz_122",
+      "question": "מה ההבדל בין מוניטור דפיברילטור רגיל למוניטור LIFEPAK 15?",
+      "type": "multiple_choice",
+      "options": [
+        "אין הבדל משמעותי",
+        "LIFEPAK 15 הוא נייד, מופעל ידנית בלבד",
+        "LIFEPAK 15 כולל גם מד סוכר",
+        "LIFEPAK 15 כולל מדדים נוספים כמו EtCO2, SpO2 ואופציות מתקדמות"
+      ],
+      "correct": 3,
+      "subject": "מבחן עיוני מסכם חומר נוסף1",
+      "sourceFile": "end_additional1_quiz.json"
+    },
+    {
+      "id": "end_additional1_quiz_123",
+      "question": "באיזה קצב דופק נחשוד בטכיקרדיה מסכנת חיים?",
+      "type": "multiple_choice",
+      "options": [
+        "מעל 100 לדקה",
+        "מעל 120 לדקה",
+        "מעל 150 לדקה",
+        "מעל 180 לדקה"
+      ],
+      "correct": 2,
+      "subject": "מבחן עיוני מסכם חומר נוסף1",
+      "sourceFile": "end_additional1_quiz.json"
+    },
+    {
+      "id": "end_additional1_quiz_124",
+      "question": "מהי בדיקת הבחירה בהערכת פרפוזיה פריפרית בשטח?",
+      "type": "multiple_choice",
+      "options": [
+        "סוכר",
+        "מילוי קפילרי",
+        "דופק רדיאלי",
+        "ל״ד"
+      ],
+      "correct": 1,
+      "subject": "מבחן עיוני מסכם חומר נוסף1",
+      "sourceFile": "end_additional1_quiz.json"
+    },
+    {
+      "id": "end_additional1_quiz_125",
+      "question": "מהו הטיפול הראשוני ב־VT ללא דופק?",
+      "type": "multiple_choice",
+      "options": [
+        "אדרנלין בלבד",
+        "מתן מגנזיום",
+        "שוק חשמלי מיידי",
+        "אספירין"
+      ],
+      "correct": 2,
+      "subject": "מבחן עיוני מסכם חומר נוסף1",
+      "sourceFile": "end_additional1_quiz.json"
+    },
+    {
+      "id": "end_additional1_quiz_126",
+      "question": "מהי מנת האמיוודרון הראשונית ב־VT/VF?",
+      "type": "multiple_choice",
+      "options": [
+        "150 מ״ג",
+        "300 מ״ג",
+        "1 מ״ג/ק״ג",
+        "500 מ״ג"
+      ],
+      "correct": 1,
+      "subject": "מבחן עיוני מסכם חומר נוסף1",
+      "sourceFile": "end_additional1_quiz.json"
+    },
+    {
+      "id": "end_additional1_quiz_127",
+      "question": "מה נכון לגבי טיפול באסיסטולה?",
+      "type": "multiple_choice",
+      "options": [
+        "מכת חשמל מיידית",
+        "התחלת החייאה ומתן אדרנלין",
+        "דפיברילציה וסטרואידים",
+        "מכת חשמל ואז בדיקת דופק"
+      ],
+      "correct": 1,
+      "subject": "מבחן עיוני מסכם חומר נוסף1",
+      "sourceFile": "end_additional1_quiz.json"
+    },
+    {
+      "id": "end_additional1_quiz_128",
+      "question": "מה ההבדל המרכזי בין PEA לאסיסטולה?",
+      "type": "multiple_choice",
+      "options": [
+        "ב־PEA אין פעילות חשמלית בכלל",
+        "ב־PEA אין דופק אך יש פעילות חשמלית",
+        "באסיסטולה תמיד יש דופק",
+        "אין כל הבדל"
+      ],
+      "correct": 1,
+      "subject": "מבחן עיוני מסכם חומר נוסף1",
+      "sourceFile": "end_additional1_quiz.json"
+    },
+    {
+      "id": "end_additional1_quiz_129",
+      "question": "מה השלב הראשון בזיהוי STEMI באק\"ג?",
+      "type": "multiple_choice",
+      "options": [
+        "צניחת ST",
+        "הופעת גל U",
+        "הרמת ST בשתי לידים עוקבים",
+        "הארכת PR"
+      ],
+      "correct": 2,
+      "subject": "מבחן עיוני מסכם חומר נוסף1",
+      "sourceFile": "end_additional1_quiz.json"
+    },
+    {
+      "id": "end_additional1_quiz_130",
+      "question": "באילו לידים נראה הרמת ST באוטם תחתון?",
+      "type": "multiple_choice",
+      "options": [
+        "V1–V4",
+        "I, aVL",
+        "II, III, aVF",
+        "V5–V6"
+      ],
+      "correct": 2,
+      "subject": "מבחן עיוני מסכם חומר נוסף1",
+      "sourceFile": "end_additional1_quiz.json"
+    },
+    {
+      "id": "end_additional1_quiz_131",
+      "question": "מה נכון לגבי DNR (צוואה רפואית)?",
+      "type": "multiple_choice",
+      "options": [
+        "יש להתעלם ממנה בשטח",
+        "יש לכבדה אם היא תקפה ומצורפת",
+        "ניתן להפעילה רק בבית חולים",
+        "תקפה רק במקרה של דום נשימה"
+      ],
+      "correct": 1,
+      "subject": "מבחן עיוני מסכם חומר נוסף1",
+      "sourceFile": "end_additional1_quiz.json"
+    },
+    {
+      "id": "end_additional1_quiz_132",
+      "question": "מהו מינון אספירין במטופל עם חשד ל־ACS?",
+      "type": "multiple_choice",
+      "options": [
+        "100 מ\"ג",
+        "500 מ\"ג",
+        "160–325 מ\"ג ללעיסה",
+        "75 מ\"ג"
+      ],
+      "correct": 2,
+      "subject": "מבחן עיוני מסכם חומר נוסף1",
+      "sourceFile": "end_additional1_quiz.json"
+    },
+    {
+      "id": "end_additional1_quiz_133",
+      "question": "מה נכון לגבי ניטרטים (ניטרוגליצרין)?",
+      "type": "multiple_choice",
+      "options": [
+        "מעלים ל״ד",
+        "גורמים לברדיקרדיה",
+        "מרחיבים ורידים, משפרים פרפוזיה",
+        "מעלים פרילוד"
+      ],
+      "correct": 2,
+      "subject": "מבחן עיוני מסכם חומר נוסף1",
+      "sourceFile": "end_additional1_quiz.json"
+    },
+    {
+      "id": "end_additional1_quiz_134",
+      "question": "מהו סיבוך אפשרי של מתן ניטרטים במטופל עם אוטם תחתון?",
+      "type": "multiple_choice",
+      "options": [
+        "ירידת ל״ד חדה",
+        "פרפור פרוזדורים",
+        "בצקת ריאות",
+        "עליה בדופק"
+      ],
+      "correct": 0,
+      "subject": "מבחן עיוני מסכם חומר נוסף1",
+      "sourceFile": "end_additional1_quiz.json"
+    },
+    {
+      "id": "end_additional1_quiz_135",
+      "question": "מתי יש לשקול הפסקת מתן ניטרטים?",
+      "type": "multiple_choice",
+      "options": [
+        "כאשר יש חום",
+        "כאשר המטופל מרגיש שיפור",
+        "כאשר לחץ הדם הסיסטולי יורד מתחת ל־100",
+        "כאשר יש סטרידור"
+      ],
+      "correct": 2,
+      "subject": "מבחן עיוני מסכם חומר נוסף1",
+      "sourceFile": "end_additional1_quiz.json"
+    },
+    {
+      "id": "end_additional1_quiz_136",
+      "question": "מהי מטרת מתן אספירין ב־ACS?",
+      "type": "multiple_choice",
+      "options": [
+        "הורדת כאב",
+        "הורדת ל״ד",
+        "עיכוב טסיות ומניעת קריש",
+        "שיפור סטורציה"
+      ],
+      "correct": 2,
+      "subject": "מבחן עיוני מסכם חומר נוסף1",
+      "sourceFile": "end_additional1_quiz.json"
+    },
+    {
+      "id": "end_additional1_quiz_137",
+      "question": "מה נכון לגבי מתן אדרנלין בהחייאה?",
+      "type": "multiple_choice",
+      "options": [
+        "מעלה את הסיכוי לדום לב",
+        "משפר זרימה מוחית וכלילית",
+        "מחמיר חמצת נשימתית",
+        "מעלה סיכון לאסיסטולה"
+      ],
+      "correct": 1,
+      "subject": "מבחן עיוני מסכם חומר נוסף1",
+      "sourceFile": "end_additional1_quiz.json"
+    },
+    {
+      "id": "end_additional1_quiz_138",
+      "question": "מה מבין הבאים נחשב קצב בר־שוק?",
+      "type": "multiple_choice",
+      "options": [
+        "אסיסטולה",
+        "PEA",
+        "VT עם דופק",
+        "VF"
+      ],
+      "correct": 3,
+      "subject": "מבחן עיוני מסכם חומר נוסף1",
+      "sourceFile": "end_additional1_quiz.json"
+    },
+    {
+      "id": "end_additional1_quiz_139",
+      "question": "מה חשוב לבדוק לפני מתן ניטרטים?",
+      "type": "multiple_choice",
+      "options": [
+        "חום גוף",
+        "שימוש בתרופות לאין־אונות",
+        "קיום DNR",
+        "סטורציה"
+      ],
+      "correct": 1,
+      "subject": "מבחן עיוני מסכם חומר נוסף1",
+      "sourceFile": "end_additional1_quiz.json"
+    },
+    {
+      "id": "end_additional1_quiz_140",
+      "question": "מה נכון לגבי אמיודורון?",
+      "type": "multiple_choice",
+      "options": [
+        "ניתן רק במצב של דופק תקין",
+        "עלול לגרום להארכת QT",
+        "אסור לשימוש בהחייאה",
+        "מעלה לחץ דם"
+      ],
+      "correct": 1,
+      "subject": "מבחן עיוני מסכם חומר נוסף1",
+      "sourceFile": "end_additional1_quiz.json"
+    },
+    {
+      "id": "end_additional1_quiz_141",
+      "question": "מהי ההגדרה לסטטוס אפילפטיקוס?",
+      "type": "multiple_choice",
+      "options": [
+        "פרכוס בודד מעל 2 דקות",
+        "שני פרכוסים תוך פחות מ־30 דקות ללא חזרה להכרה",
+        "כל פרכוס בילד מעל גיל 5",
+        "פרכוס טוני קלוני שמפסיק בעצמו"
+      ],
+      "correct": 1,
+      "subject": "מבחן עיוני מסכם חומר נוסף1",
+      "sourceFile": "end_additional1_quiz.json"
+    },
+    {
+      "id": "end_additional1_quiz_142",
+      "question": "מהו הטיפול הראשוני בפרכוס שלא נפסק?",
+      "type": "multiple_choice",
+      "options": [
+        "גלוקוז",
+        "חמצן בלבד",
+        "דיאזפם (ואליום)",
+        "קטאמין"
+      ],
+      "correct": 2,
+      "subject": "מבחן עיוני מסכם חומר נוסף1",
+      "sourceFile": "end_additional1_quiz.json"
+    },
+    {
+      "id": "end_additional1_quiz_143",
+      "question": "באיזו דרך מותר להזליף דיאזפם (ואליום) במד״א?",
+      "type": "multiple_choice",
+      "options": [
+        "IV או IM",
+        "IV או PR",
+        "IM בלבד",
+        "PO בלבד"
+      ],
+      "correct": 1,
+      "subject": "מבחן עיוני מסכם חומר נוסף1",
+      "sourceFile": "end_additional1_quiz.json"
+    },
+    {
+      "id": "end_additional1_quiz_144",
+      "question": "מה חשוב לבדוק לפני מתן גלוקוז בפרכוס?",
+      "type": "multiple_choice",
+      "options": [
+        "לחץ דם",
+        "אישונים",
+        "סוכר",
+        "סטורציה"
+      ],
+      "correct": 2,
+      "subject": "מבחן עיוני מסכם חומר נוסף1",
+      "sourceFile": "end_additional1_quiz.json"
+    },
+    {
+      "id": "end_additional1_quiz_145",
+      "question": "מה מסוכן במתן גלוקוז IV בלי בדיקת סוכר?",
+      "type": "multiple_choice",
+      "options": [
+        "גרימת דום לב",
+        "גרימת היפרגליקמיה שעלולה להחמיר מצב נוירולוגי",
+        "ירידת לחץ דם",
+        "הרעלת אשלגן"
+      ],
+      "correct": 1,
+      "subject": "מבחן עיוני מסכם חומר נוסף1",
+      "sourceFile": "end_additional1_quiz.json"
+    },
+    {
+      "id": "end_additional1_quiz_146",
+      "question": "מהו סימן נפוץ להרעלת אורגנו־זרחנים?",
+      "type": "multiple_choice",
+      "options": [
+        "יובש בפה",
+        "אישונים מורחבים",
+        "ברדיקרדיה, ריור, כיחלון",
+        "אודם בגפיים"
+      ],
+      "correct": 2,
+      "subject": "מבחן עיוני מסכם חומר נוסף1",
+      "sourceFile": "end_additional1_quiz.json"
+    },
+    {
+      "id": "end_additional1_quiz_147",
+      "question": "מה האנטידוט לאורגנו־זרחנים?",
+      "type": "multiple_choice",
+      "options": [
+        "אטרופין",
+        "גלוקוז",
+        "אדרנלין",
+        "מגנזיום"
+      ],
+      "correct": 0,
+      "subject": "מבחן עיוני מסכם חומר נוסף1",
+      "sourceFile": "end_additional1_quiz.json"
+    },
+    {
+      "id": "end_additional1_quiz_148",
+      "question": "מה נכון לגבי טיפול בשבץ מוחי חד?",
+      "type": "multiple_choice",
+      "options": [
+        "אין חשיבות לזמן ההופעה",
+        "מתן חמצן רק אם יש קוצר נשימה או סטורציה נמוכה",
+        "חובה לתת נוזלים בהחייאה מלאה",
+        "יש לבצע דפיברילציה ראשונית"
+      ],
+      "correct": 1,
+      "subject": "מבחן עיוני מסכם חומר נוסף1",
+      "sourceFile": "end_additional1_quiz.json"
+    },
+    {
+      "id": "end_additional1_quiz_149",
+      "question": "מהו סמן אופייני לשבץ המורגי?",
+      "type": "multiple_choice",
+      "options": [
+        "חיוורון",
+        "כאב ראש פתאומי, הקאות ול\"ד גבוה",
+        "חולשה באחת הגפיים בלבד",
+        "לחץ דם נמוך"
+      ],
+      "correct": 1,
+      "subject": "מבחן עיוני מסכם חומר נוסף1",
+      "sourceFile": "end_additional1_quiz.json"
+    },
+    {
+      "id": "end_additional1_quiz_150",
+      "question": "מה מבין הבאים נחשב סיבה ל־PEA?",
+      "type": "multiple_choice",
+      "options": [
+        "VF",
+        "היפוגליקמיה",
+        "טמפונדה לבבית",
+        "דום נשימה"
+      ],
+      "correct": 2,
+      "subject": "מבחן עיוני מסכם חומר נוסף1",
+      "sourceFile": "end_additional1_quiz.json"
+    },
+    {
+      "id": "end_additional1_quiz_151",
+      "question": "מהם ה־H’s and T’s שגורמים ל־PEA?",
+      "type": "multiple_choice",
+      "options": [
+        "היפרגליקמיה, טראומה, טרשת",
+        "הרעלת סמים, טכיקרדיה, טרשת",
+        "היפוולמיה, היפוקסיה, טמפונדה, תסחיף",
+        "היפרנתרמיה, חום, טרשת עורקים"
+      ],
+      "correct": 2,
+      "subject": "מבחן עיוני מסכם חומר נוסף1",
+      "sourceFile": "end_additional1_quiz.json"
+    },
+    {
+      "id": "end_additional1_quiz_152",
+      "question": "כיצד נזהה FAST בשבץ?",
+      "type": "multiple_choice",
+      "options": [
+        "F – Finger drop",
+        "F – Face droop, A – Arm drift, S – Speech, T – Time",
+        "F – Fatigue",
+        "F – Full pulse"
+      ],
+      "correct": 1,
+      "subject": "מבחן עיוני מסכם חומר נוסף1",
+      "sourceFile": "end_additional1_quiz.json"
+    },
+    {
+      "id": "end_additional1_quiz_153",
+      "question": "מהו חלון הזמן להגעה לבית חולים בשבץ חשוד?",
+      "type": "multiple_choice",
+      "options": [
+        "עד 2 שעות",
+        "עד 4.5 שעות",
+        "עד 6 שעות",
+        "עד 12 שעות"
+      ],
+      "correct": 1,
+      "subject": "מבחן עיוני מסכם חומר נוסף1",
+      "sourceFile": "end_additional1_quiz.json"
+    },
+    {
+      "id": "end_additional1_quiz_154",
+      "question": "מהו הטיפול המיידי בהרעלת קנאביס?",
+      "type": "multiple_choice",
+      "options": [
+        "נוזלים, ניטור, השגחה",
+        "פחם פעיל",
+        "קטאמין",
+        "דפיברילציה"
+      ],
+      "correct": 0,
+      "subject": "מבחן עיוני מסכם חומר נוסף1",
+      "sourceFile": "end_additional1_quiz.json"
+    },
+    {
+      "id": "end_additional1_quiz_155",
+      "question": "איזו תרופה מותרת לשימוש בפרכוס בילד לפי פרוטוקול מד״א?",
+      "type": "multiple_choice",
+      "options": [
+        "קטאמין",
+        "ואליום",
+        "אדרנלין",
+        "מגנזיום"
+      ],
+      "correct": 1,
+      "subject": "מבחן עיוני מסכם חומר נוסף1",
+      "sourceFile": "end_additional1_quiz.json"
+    },
+    {
+      "id": "end_additional1_quiz_156",
+      "question": "כיצד נזהה הרעלת CO (פחמן חד־חמצני)?",
+      "type": "multiple_choice",
+      "options": [
+        "סוכר גבוה",
+        "ל\"ד גבוה",
+        "כאב ראש, סחרחורת, בלבול",
+        "פריחה עורית"
+      ],
+      "correct": 2,
+      "subject": "מבחן עיוני מסכם חומר נוסף1",
+      "sourceFile": "end_additional1_quiz.json"
+    },
+    {
+      "id": "end_additional1_quiz_157",
+      "question": "מה הטיפול הראשוני בהרעלת CO?",
+      "type": "multiple_choice",
+      "options": [
+        "נוזלים והחייאה",
+        "מתן חמצן 100%",
+        "גלוקוז IV",
+        "אנטיביוטיקה"
+      ],
+      "correct": 1,
+      "subject": "מבחן עיוני מסכם חומר נוסף1",
+      "sourceFile": "end_additional1_quiz.json"
+    },
+    {
+      "id": "end_additional1_quiz_158",
+      "question": "מה מסכן את החיים בהרעלת CO?",
+      "type": "multiple_choice",
+      "options": [
+        "חום גבוה",
+        "חמצת מטבולית קלה",
+        "היפוקסיה רקמתית קשה",
+        "בצקת ריאות"
+      ],
+      "correct": 2,
+      "subject": "מבחן עיוני מסכם חומר נוסף1",
+      "sourceFile": "end_additional1_quiz.json"
+    },
+    {
+      "id": "end_additional1_quiz_159",
+      "question": "מהו סימן קליני להרעלת אופיואידים?",
+      "type": "multiple_choice",
+      "options": [
+        "טכיקרדיה",
+        "אישונים מורחבים",
+        "ברדיפניאה, ירידה בהכרה ואישונים סיכות",
+        "לחץ דם גבוה"
+      ],
+      "correct": 2,
+      "subject": "מבחן עיוני מסכם חומר נוסף1",
+      "sourceFile": "end_additional1_quiz.json"
+    },
+    {
+      "id": "end_additional1_quiz_160",
+      "question": "מה האנטידוט לנרקוטיקה (אופיואידים)?",
+      "type": "multiple_choice",
+      "options": [
+        "נרקן (Naloxone)",
+        "אטרופין",
+        "גלוקוז",
+        "ביקרבונט"
+      ],
+      "correct": 0,
+      "subject": "מבחן עיוני מסכם חומר נוסף1",
+      "sourceFile": "end_additional1_quiz.json"
+    },
+    {
+      "id": "end_additional1_quiz_161",
+      "question": "מהי הסיבה השכיחה ביותר לדום לב באנאפילקסיס?",
+      "type": "multiple_choice",
+      "options": [
+        "היפוגליקמיה",
+        "ברדיקרדיה",
+        "חסימת נתיב אוויר",
+        "חום גבוה"
+      ],
+      "correct": 2,
+      "subject": "מבחן עיוני מסכם חומר נוסף1",
+      "sourceFile": "end_additional1_quiz.json"
+    },
+    {
+      "id": "end_additional1_quiz_162",
+      "question": "מהי התרופה הראשונה באנאפילקסיס?",
+      "type": "multiple_choice",
+      "options": [
+        "אנטיהיסטמין",
+        "סטרואידים",
+        "אדרנלין IM",
+        "נוזלים"
+      ],
+      "correct": 2,
+      "subject": "מבחן עיוני מסכם חומר נוסף1",
+      "sourceFile": "end_additional1_quiz.json"
+    },
+    {
+      "id": "end_additional1_quiz_163",
+      "question": "מה נכון לגבי מתן אדרנלין באנאפילקסיס?",
+      "type": "multiple_choice",
+      "options": [
+        "ניתן רק לאחר סטרואידים",
+        "תמיד ניתן IV",
+        "ניתן IM מוקדם ככל האפשר",
+        "אסור בילדים"
+      ],
+      "correct": 2,
+      "subject": "מבחן עיוני מסכם חומר נוסף1",
+      "sourceFile": "end_additional1_quiz.json"
+    },
+    {
+      "id": "end_additional1_quiz_164",
+      "question": "מהו סימן קליני בולט לאנאפילקסיס?",
+      "type": "multiple_choice",
+      "options": [
+        "עלייה בלחץ דם",
+        "כיחלון שפתיים",
+        "פריחה עורית וקשיי נשימה",
+        "כאב ראש"
+      ],
+      "correct": 2,
+      "subject": "מבחן עיוני מסכם חומר נוסף1",
+      "sourceFile": "end_additional1_quiz.json"
+    },
+    {
+      "id": "end_additional1_quiz_165",
+      "question": "מה עושים לאחר מתן אדרנלין באנאפילקסיס?",
+      "type": "multiple_choice",
+      "options": [
+        "כלום",
+        "השגחה בלבד",
+        "נוזלים, חמצן, סטרואידים ואנטיהיסטמינים",
+        "פינוי לבית חולים בלבד"
+      ],
+      "correct": 2,
+      "subject": "מבחן עיוני מסכם חומר נוסף1",
+      "sourceFile": "end_additional1_quiz.json"
+    },
+    {
+      "id": "end_additional1_quiz_166",
+      "question": "באיזו סיטואציה ניתן אדרנלין IV באנאפילקסיס?",
+      "type": "multiple_choice",
+      "options": [
+        "תמיד",
+        "לאחר מתן IM ללא שיפור ומצב קריטי",
+        "כאשר הסיטורציה מעל 95%",
+        "בילדים בלבד"
+      ],
+      "correct": 1,
+      "subject": "מבחן עיוני מסכם חומר נוסף1",
+      "sourceFile": "end_additional1_quiz.json"
+    },
+    {
+      "id": "end_additional1_quiz_167",
+      "question": "מהי סיבת המוות העיקרית בהיפוגליקמיה קשה?",
+      "type": "multiple_choice",
+      "options": [
+        "בצקת ריאות",
+        "דום לב ממקור קרדיאלי",
+        "בצקת מוחית",
+        "טכיקרדיה"
+      ],
+      "correct": 2,
+      "subject": "מבחן עיוני מסכם חומר נוסף1",
+      "sourceFile": "end_additional1_quiz.json"
+    },
+    {
+      "id": "end_additional1_quiz_168",
+      "question": "מתי נחשוד בהיפוגליקמיה במטופל מחוסר הכרה?",
+      "type": "multiple_choice",
+      "options": [
+        "כאשר יש פרכוס",
+        "בכל ירידה פתאומית בהכרה",
+        "רק אם יש סוכרת ידועה",
+        "רק אם יש ירידת ל״ד"
+      ],
+      "correct": 1,
+      "subject": "מבחן עיוני מסכם חומר נוסף1",
+      "sourceFile": "end_additional1_quiz.json"
+    },
+    {
+      "id": "end_additional1_quiz_169",
+      "question": "מה הטיפול הראשוני בהיפוגליקמיה קשה?",
+      "type": "multiple_choice",
+      "options": [
+        "אספירין",
+        "גלוקוז IV",
+        "נרקן",
+        "קטאמין"
+      ],
+      "correct": 1,
+      "subject": "מבחן עיוני מסכם חומר נוסף1",
+      "sourceFile": "end_additional1_quiz.json"
+    },
+    {
+      "id": "end_additional1_quiz_170",
+      "question": "מה מינון גלוקוז 10% במבוגר?",
+      "type": "multiple_choice",
+      "options": [
+        "10cc",
+        "25cc",
+        "50cc",
+        "100cc"
+      ],
+      "correct": 2,
+      "subject": "מבחן עיוני מסכם חומר נוסף1",
+      "sourceFile": "end_additional1_quiz.json"
+    },
+    {
+      "id": "end_additional1_quiz_171",
+      "question": "מה נכון לגבי אסתמה חריפה?",
+      "type": "multiple_choice",
+      "options": [
+        "ניתן דיאזפם",
+        "מתחילה בדום לב",
+        "קוצר נשימה, צפצופים, שימוש בשרירי עזר",
+        "יש לתת נרקן"
+      ],
+      "correct": 2,
+      "subject": "מבחן עיוני מסכם חומר נוסף1",
+      "sourceFile": "end_additional1_quiz.json"
+    },
+    {
+      "id": "end_additional1_quiz_172",
+      "question": "מה הסיבה לאי ספיקה נשימתית באסתמה קשה?",
+      "type": "multiple_choice",
+      "options": [
+        "התמוטטות נאדיות",
+        "חסימת דרכי אוויר תחתונות",
+        "לחץ תוך־גולגולתי גבוה",
+        "התייבשות"
+      ],
+      "correct": 1,
+      "subject": "מבחן עיוני מסכם חומר נוסף1",
+      "sourceFile": "end_additional1_quiz.json"
+    },
+    {
+      "id": "end_additional1_quiz_173",
+      "question": "מהו הטיפול הראשון באסתמה קשה לפי מד״א?",
+      "type": "multiple_choice",
+      "options": [
+        "סולומדרול",
+        "אינהלציית וונטולין/אטרובנט + חמצן",
+        "נוזלים",
+        "קטאמין"
+      ],
+      "correct": 1,
+      "subject": "מבחן עיוני מסכם חומר נוסף1",
+      "sourceFile": "end_additional1_quiz.json"
+    },
+    {
+      "id": "end_additional1_quiz_174",
+      "question": "מתי יינתן מגנזיום באסתמה?",
+      "type": "multiple_choice",
+      "options": [
+        "בכל אסתמה",
+        "רק בילדים",
+        "באסתמה חמורה שלא מגיבה לטיפול ראשוני",
+        "כאשר לחץ הדם גבוה"
+      ],
+      "correct": 2,
+      "subject": "מבחן עיוני מסכם חומר נוסף1",
+      "sourceFile": "end_additional1_quiz.json"
+    },
+    {
+      "id": "end_additional1_quiz_175",
+      "question": "מה נכון לגבי COPD?",
+      "type": "multiple_choice",
+      "options": [
+        "יש להנשים ב־20 נשימות בדקה",
+        "יש להימנע מהיפר־חמצן",
+        "מחייב דפיברילציה",
+        "דורש קטאמין"
+      ],
+      "correct": 1,
+      "subject": "מבחן עיוני מסכם חומר נוסף1",
+      "sourceFile": "end_additional1_quiz.json"
+    },
+    {
+      "id": "end_additional1_quiz_176",
+      "question": "מהו מנגנון פיצוי אפשרי בחולה COPD?",
+      "type": "multiple_choice",
+      "options": [
+        "הנשמה תדירה",
+        "כיווץ כלי דם היקפיים",
+        "פוליציטמיה (ייצור יתר של RBC)",
+        "ברדיקרדיה"
+      ],
+      "correct": 2,
+      "subject": "מבחן עיוני מסכם חומר נוסף1",
+      "sourceFile": "end_additional1_quiz.json"
+    },
+    {
+      "id": "end_additional1_quiz_177",
+      "question": "מהו סימן קליני לאי ספיקת לב שמאל?",
+      "type": "multiple_choice",
+      "options": [
+        "גודש ורידי צוואר",
+        "פריפריה חמה",
+        "בצקת ריאות",
+        "בצקות בגפיים"
+      ],
+      "correct": 2,
+      "subject": "מבחן עיוני מסכם חומר נוסף1",
+      "sourceFile": "end_additional1_quiz.json"
+    },
+    {
+      "id": "end_additional1_quiz_178",
+      "question": "מה הסיבה לקוצר נשימה באי ספיקת לב שמאל?",
+      "type": "multiple_choice",
+      "options": [
+        "גודש בריאות כתוצאה מלחץ דם ורידי מוגבר",
+        "קריסת קנה",
+        "חסימה סימפטית",
+        "הרעלת CO"
+      ],
+      "correct": 0,
+      "subject": "מבחן עיוני מסכם חומר נוסף1",
+      "sourceFile": "end_additional1_quiz.json"
+    },
+    {
+      "id": "end_additional1_quiz_179",
+      "question": "מהי תמונה טיפוסית בבצקת ריאות?",
+      "type": "multiple_choice",
+      "options": [
+        "סטורציה גבוהה, נשימות שקטות",
+        "חרחורים, דיספניאה, סטורציה נמוכה",
+        "ברונכוספזם",
+        "עור יבש וחם"
+      ],
+      "correct": 1,
+      "subject": "מבחן עיוני מסכם חומר נוסף1",
+      "sourceFile": "end_additional1_quiz.json"
+    },
+    {
+      "id": "end_additional1_quiz_180",
+      "question": "מה נכון לגבי חולה COPD עם סטורציה 88%?",
+      "type": "multiple_choice",
+      "options": [
+        "יש להנשים מהר",
+        "זוהי סטורציה מטרה סבירה לחולה כזה",
+        "יש לשאוף ל־100%",
+        "יש להזריק נוזלים מהר"
+      ],
+      "correct": 1,
+      "subject": "מבחן עיוני מסכם חומר נוסף1",
+      "sourceFile": "end_additional1_quiz.json"
+    },
+    {
+      "id": "end_additional1_quiz_181",
+      "question": "מהו קצב עיסויים בהחייאת מבוגר לפי ה־ALS של מד\"א?",
+      "type": "multiple_choice",
+      "options": [
+        "לפחות 60 בדקה",
+        "80–100 בדקה",
+        "100–120 בדקה",
+        "בדיוק 100 בדקה"
+      ],
+      "correct": 2,
+      "subject": "מבחן עיוני מסכם חומר נוסף1",
+      "sourceFile": "end_additional1_quiz.json"
+    },
+    {
+      "id": "end_additional1_quiz_182",
+      "question": "עומק עיסויים במבוגר בהחייאה לפי ההנחיות?",
+      "type": "multiple_choice",
+      "options": [
+        "2 ס\"מ",
+        "לפחות 5 ס\"מ ולא יותר מ־6 ס\"מ",
+        "מעל 6 ס\"מ",
+        "תלוי בגיל המטופל"
+      ],
+      "correct": 1,
+      "subject": "מבחן עיוני מסכם חומר נוסף1",
+      "sourceFile": "end_additional1_quiz.json"
+    },
+    {
+      "id": "end_additional1_quiz_183",
+      "question": "איזה מקצב אינו בר־שוק?",
+      "type": "multiple_choice",
+      "options": [
+        "VF",
+        "VT בלי דופק",
+        "PEA",
+        "VT עם דופק"
+      ],
+      "correct": 2,
+      "subject": "מבחן עיוני מסכם חומר נוסף1",
+      "sourceFile": "end_additional1_quiz.json"
+    },
+    {
+      "id": "end_additional1_quiz_184",
+      "question": "מהו יחס הנשמות לעיסויים בהחייאה עם שני מטפלים בתינוק?",
+      "type": "multiple_choice",
+      "options": [
+        "30:2",
+        "5:1",
+        "15:2",
+        "3:1"
+      ],
+      "correct": 2,
+      "subject": "מבחן עיוני מסכם חומר נוסף1",
+      "sourceFile": "end_additional1_quiz.json"
+    },
+    {
+      "id": "end_additional1_quiz_185",
+      "question": "מה נכון לגבי DNR (צוואה רפואית חוקית)?",
+      "type": "multiple_choice",
+      "options": [
+        "אין לכבדה בשטח",
+        "חובה לכבדה אם היא עדכנית וחתומה",
+        "מתייחסת רק ל־CPR",
+        "תקפה רק מעל גיל 65"
+      ],
+      "correct": 1,
+      "subject": "מבחן עיוני מסכם חומר נוסף1",
+      "sourceFile": "end_additional1_quiz.json"
+    },
+    {
+      "id": "end_additional1_quiz_186",
+      "question": "מה נכון לגבי אינטובציה בשטח לפי מד\"א?",
+      "type": "multiple_choice",
+      "options": [
+        "מבוצעת תמיד בכל החייאה",
+        "מבוצעת לפי שיקול דעת החובש/פאראמדיק",
+        "מבוצעת רק עם אטרופין",
+        "מחייבת קיום DNR"
+      ],
+      "correct": 1,
+      "subject": "מבחן עיוני מסכם חומר נוסף1",
+      "sourceFile": "end_additional1_quiz.json"
+    },
+    {
+      "id": "end_additional1_quiz_187",
+      "question": "מתי נשקול הפסקת החייאה בשטח?",
+      "type": "multiple_choice",
+      "options": [
+        "לאחר 2 מחזורים",
+        "לאחר מתן אדרנלין",
+        "לאחר 20 דקות החייאה ללא שינוי, באישור רופא",
+        "לאחר אינטובציה"
+      ],
+      "correct": 2,
+      "subject": "מבחן עיוני מסכם חומר נוסף1",
+      "sourceFile": "end_additional1_quiz.json"
+    },
+    {
+      "id": "end_additional1_quiz_188",
+      "question": "מה נבדוק לפני מתן שוק חשמלי?",
+      "type": "multiple_choice",
+      "options": [
+        "לחץ דם",
+        "סוכר",
+        "מקצב",
+        "סטורציה"
+      ],
+      "correct": 2,
+      "subject": "מבחן עיוני מסכם חומר נוסף1",
+      "sourceFile": "end_additional1_quiz.json"
+    },
+    {
+      "id": "end_additional1_quiz_189",
+      "question": "מהו EtCO2 תקין במטופל מאוורר?",
+      "type": "multiple_choice",
+      "options": [
+        "10–15 mmHg",
+        "35–45 mmHg",
+        "60–80 mmHg",
+        "25–30 mmHg"
+      ],
+      "correct": 1,
+      "subject": "מבחן עיוני מסכם חומר נוסף1",
+      "sourceFile": "end_additional1_quiz.json"
+    },
+    {
+      "id": "end_additional1_quiz_190",
+      "question": "מהו השימוש המרכזי ב־EtCO2 בהחייאה?",
+      "type": "multiple_choice",
+      "options": [
+        "הערכת היפרגליקמיה",
+        "אישור מיקום טובוס ויעילות עיסויים",
+        "בדיקת חמצת מטבולית",
+        "החלטה על הפסקת הנשמה"
+      ],
+      "correct": 1,
+      "subject": "מבחן עיוני מסכם חומר נוסף1",
+      "sourceFile": "end_additional1_quiz.json"
+    },
+    {
+      "id": "end_additional1_quiz_191",
+      "question": "מה משמעות ירידה חדה ב־EtCO2 במהלך החייאה?",
+      "type": "multiple_choice",
+      "options": [
+        "שיפור פרפוזיה",
+        "פקיעת ריאה",
+        "החייאה איכותית",
+        "ירידה בפרפוזיה/החמרה"
+      ],
+      "correct": 3,
+      "subject": "מבחן עיוני מסכם חומר נוסף1",
+      "sourceFile": "end_additional1_quiz.json"
+    },
+    {
+      "id": "end_additional1_quiz_192",
+      "question": "מה נכון לגבי פעילות צוות ALS?",
+      "type": "multiple_choice",
+      "options": [
+        "רק חובש רשאי להוביל",
+        "חובה שהמנהל יבצע הנשמות",
+        "מנהל הצוות אחראי על חלוקת תפקידים",
+        "אין צורך במנהל מוגדר בשטח"
+      ],
+      "correct": 2,
+      "subject": "מבחן עיוני מסכם חומר נוסף1",
+      "sourceFile": "end_additional1_quiz.json"
+    },
+    {
+      "id": "end_additional1_quiz_193",
+      "question": "מהו מינון אטרופין בברדיקרדיה במבוגר?",
+      "type": "multiple_choice",
+      "options": [
+        "0.5 מ\"ג",
+        "1 מ\"ג",
+        "3 מ\"ג",
+        "5 מ\"ג"
+      ],
+      "correct": 0,
+      "subject": "מבחן עיוני מסכם חומר נוסף1",
+      "sourceFile": "end_additional1_quiz.json"
+    },
+    {
+      "id": "end_additional1_quiz_194",
+      "question": "מהי תופעת לוואי נפוצה של קטאמין?",
+      "type": "multiple_choice",
+      "options": [
+        "פרכוסים",
+        "רעד שרירים",
+        "הזיות ודיסוציאציה",
+        "ירידה בל\"ד קיצונית"
+      ],
+      "correct": 2,
+      "subject": "מבחן עיוני מסכם חומר נוסף1",
+      "sourceFile": "end_additional1_quiz.json"
+    },
+    {
+      "id": "end_additional1_quiz_195",
+      "question": "איזה ערך של גלוקוז נחשב להיפוגליקמיה?",
+      "type": "multiple_choice",
+      "options": [
+        "מתחת ל־90 mg/dl",
+        "מתחת ל־60 mg/dl",
+        "מתחת ל־70 mg/dl",
+        "מתחת ל־100 mg/dl"
+      ],
+      "correct": 2,
+      "subject": "מבחן עיוני מסכם חומר נוסף1",
+      "sourceFile": "end_additional1_quiz.json"
+    },
+    {
+      "id": "end_additional1_quiz_196",
+      "question": "מהו מינון נרקן (Naloxone) ראשוני במד״א?",
+      "type": "multiple_choice",
+      "options": [
+        "2 מ״ג",
+        "0.4 מ״ג",
+        "4 מ״ג",
+        "1 מ״ג"
+      ],
+      "correct": 1,
+      "subject": "מבחן עיוני מסכם חומר נוסף1",
+      "sourceFile": "end_additional1_quiz.json"
+    },
+    {
+      "id": "end_additional1_quiz_197",
+      "question": "איזה מהבאים הוא סימן להחייאה מוצלחת?",
+      "type": "multiple_choice",
+      "options": [
+        "דופק עצמוני חוזר",
+        "המשך קומה",
+        "EtCO2 של 10",
+        "גודל אישונים"
+      ],
+      "correct": 0,
+      "subject": "מבחן עיוני מסכם חומר נוסף1",
+      "sourceFile": "end_additional1_quiz.json"
+    },
+    {
+      "id": "end_additional1_quiz_198",
+      "question": "מה יש לבצע מיד לאחר שוק חשמלי?",
+      "type": "multiple_choice",
+      "options": [
+        "הפסקת עיסויים",
+        "בדיקת דופק",
+        "המשך החייאה מיד",
+        "אינטובציה"
+      ],
+      "correct": 2,
+      "subject": "מבחן עיוני מסכם חומר נוסף1",
+      "sourceFile": "end_additional1_quiz.json"
+    },
+    {
+      "id": "end_additional1_quiz_199",
+      "question": "מהי המשמעות של PEA?",
+      "type": "multiple_choice",
+      "options": [
+        "אין פעילות חשמלית",
+        "אין דופק אך יש קצב חשמלי",
+        "דופק איטי מאוד",
+        "רק פעילות חדרית"
+      ],
+      "correct": 1,
+      "subject": "מבחן עיוני מסכם חומר נוסף1",
+      "sourceFile": "end_additional1_quiz.json"
+    },
+    {
+      "id": "end_additional1_quiz_200",
+      "question": "מהי אינדיקציה ברורה לאינטובציה בשטח?",
+      "type": "multiple_choice",
+      "options": [
+        "סוכר נמוך",
+        "אי ספיקה נשימתית מסכנת חיים",
+        "פריחה עורית",
+        "ברדיקרדיה"
+      ],
+      "correct": 1,
+      "subject": "מבחן עיוני מסכם חומר נוסף1",
+      "sourceFile": "end_additional1_quiz.json"
+    },
+    {
+      "id": "end_additional2_quiz_1",
+      "question": "מהי הסיבה השכיחה ביותר לדום לב פתאומי במבוגר?",
+      "type": "multiple_choice",
+      "options": [
+        "בצקת ריאות",
+        "תסחיף ריאתי",
+        "אוטם חד בשריר הלב (ACS)",
+        "היפוגליקמיה"
+      ],
+      "correct": 2,
+      "subject": "מבחן עיוני מסכם - חומר נוסף2",
+      "sourceFile": "end_additional2_quiz.json"
+    },
+    {
+      "id": "end_additional2_quiz_2",
+      "question": "מהו היחס בין עיסויים להנשמות בהחייאה בסיסית במבוגר עם מטפל יחיד?",
+      "type": "multiple_choice",
+      "options": [
+        "5:1",
+        "15:2",
+        "30:2",
+        "3:1"
+      ],
+      "correct": 2,
+      "subject": "מבחן עיוני מסכם - חומר נוסף2",
+      "sourceFile": "end_additional2_quiz.json"
+    },
+    {
+      "id": "end_additional2_quiz_3",
+      "question": "מהו עומק העיסויים המומלץ בהחייאת תינוק?",
+      "type": "multiple_choice",
+      "options": [
+        "1/3 מרוחב בית החזה",
+        "בדיוק 2 ס\"מ",
+        "לפחות 5 ס\"מ",
+        "עד גבול הכאב"
+      ],
+      "correct": 0,
+      "subject": "מבחן עיוני מסכם - חומר נוסף2",
+      "sourceFile": "end_additional2_quiz.json"
+    },
+    {
+      "id": "end_additional2_quiz_4",
+      "question": "מה מהבאים אינו מקצב בר-שוק?",
+      "type": "multiple_choice",
+      "options": [
+        "VT בלי דופק",
+        "VF",
+        "VT עם דופק",
+        "דום לב חשמלי (Asystole)"
+      ],
+      "correct": 3,
+      "subject": "מבחן עיוני מסכם - חומר נוסף2",
+      "sourceFile": "end_additional2_quiz.json"
+    },
+    {
+      "id": "end_additional2_quiz_5",
+      "question": "כמה מ\"ג אדרנלין יש להזריק למבוגר בדום לב?",
+      "type": "multiple_choice",
+      "options": [
+        "0.3 מ\"ג",
+        "1 מ\"ג",
+        "2 מ\"ג",
+        "3 מ\"ג"
+      ],
+      "correct": 1,
+      "subject": "מבחן עיוני מסכם - חומר נוסף2",
+      "sourceFile": "end_additional2_quiz.json"
+    },
+    {
+      "id": "end_additional2_quiz_6",
+      "question": "כל כמה זמן ניתן אדרנלין בהחייאה?",
+      "type": "multiple_choice",
+      "options": [
+        "כל 1 דקה",
+        "כל 2 דקות",
+        "כל 3–5 דקות",
+        "כל 10 דקות"
+      ],
+      "correct": 2,
+      "subject": "מבחן עיוני מסכם - חומר נוסף2",
+      "sourceFile": "end_additional2_quiz.json"
+    },
+    {
+      "id": "end_additional2_quiz_7",
+      "question": "מה נכון לגבי קצב הנשמה במטופל מאוורר (עם טובוס) בהחייאה?",
+      "type": "multiple_choice",
+      "options": [
+        "30 נשימות בדקה",
+        "1 כל 5 שניות",
+        "הנשמה מסונכרנת עם העיסויים",
+        "1 כל 6 שניות, ללא הפסקת עיסויים"
+      ],
+      "correct": 3,
+      "subject": "מבחן עיוני מסכם - חומר נוסף2",
+      "sourceFile": "end_additional2_quiz.json"
+    },
+    {
+      "id": "end_additional2_quiz_8",
+      "question": "מהו EtCO2 שמרמז על החייאה יעילה?",
+      "type": "multiple_choice",
+      "options": [
+        "10–15 mmHg",
+        "פחות מ־10 mmHg",
+        "מעל 20 mmHg",
+        "0 mmHg"
+      ],
+      "correct": 2,
+      "subject": "מבחן עיוני מסכם - חומר נוסף2",
+      "sourceFile": "end_additional2_quiz.json"
+    },
+    {
+      "id": "end_additional2_quiz_9",
+      "question": "מה הסיבה השכיחה ביותר ל־PEA?",
+      "type": "multiple_choice",
+      "options": [
+        "היפוולמיה",
+        "VF",
+        "דום נשימה",
+        "טמפונדה קרדיאלית"
+      ],
+      "correct": 0,
+      "subject": "מבחן עיוני מסכם - חומר נוסף2",
+      "sourceFile": "end_additional2_quiz.json"
+    },
+    {
+      "id": "end_additional2_quiz_10",
+      "question": "מה הפעולה הראשונה לאחר הגעת דפיברילטור למטופל ב־VF?",
+      "type": "multiple_choice",
+      "options": [
+        "התחלת הנשמות",
+        "ביצוע שוק מיידי",
+        "בדיקת דופק",
+        "הכנסת טובוס"
+      ],
+      "correct": 1,
+      "subject": "מבחן עיוני מסכם - חומר נוסף2",
+      "sourceFile": "end_additional2_quiz.json"
+    },
+    {
+      "id": "end_additional2_quiz_11",
+      "question": "מהי אינדיקציה להפסקת החייאה בשטח?",
+      "type": "multiple_choice",
+      "options": [
+        "20 דקות ללא שינוי באישור רופא",
+        "סטורציה מעל 90%",
+        "קצב VF חוזר",
+        "כל מקרה של חולה מעל גיל 80"
+      ],
+      "correct": 0,
+      "subject": "מבחן עיוני מסכם - חומר נוסף2",
+      "sourceFile": "end_additional2_quiz.json"
+    },
+    {
+      "id": "end_additional2_quiz_12",
+      "question": "מה הסיבה לחשיבות ביצוע עיסויים ללא הפסקה ממושכת?",
+      "type": "multiple_choice",
+      "options": [
+        "כדי לחסוך באנרגיה לצוות",
+        "לשמור על חום גוף",
+        "לשמור על זרימת דם למוח וללב",
+        "לשפר ספיגת התרופות"
+      ],
+      "correct": 2,
+      "subject": "מבחן עיוני מסכם - חומר נוסף2",
+      "sourceFile": "end_additional2_quiz.json"
+    },
+    {
+      "id": "end_additional2_quiz_13",
+      "question": "מה נכון לגבי מתן אמיודרון בהחייאה?",
+      "type": "multiple_choice",
+      "options": [
+        "ניתן תמיד לפני אדרנלין",
+        "ניתן רק אחרי שני שוקים שלא הצליחו",
+        "רק בילדים",
+        "אסור לשלב עם מגנזיום"
+      ],
+      "correct": 1,
+      "subject": "מבחן עיוני מסכם - חומר נוסף2",
+      "sourceFile": "end_additional2_quiz.json"
+    },
+    {
+      "id": "end_additional2_quiz_14",
+      "question": "מה משך הזמן בין שני שוקים חשמליים בהחייאה?",
+      "type": "multiple_choice",
+      "options": [
+        "מיידי",
+        "כל 5 דקות",
+        "כל 2 דקות עם עיסויים ביניהם",
+        "כל 10 דקות"
+      ],
+      "correct": 2,
+      "subject": "מבחן עיוני מסכם - חומר נוסף2",
+      "sourceFile": "end_additional2_quiz.json"
+    },
+    {
+      "id": "end_additional2_quiz_15",
+      "question": "באיזה שלב משלבים אינטובציה בהחייאה?",
+      "type": "multiple_choice",
+      "options": [
+        "מיד לאחר האבחנה",
+        "אחרי מחזור אחד",
+        "לפי שיקול המטפל ובהתאם למצב",
+        "רק לאחר חזרת דופק עצמוני"
+      ],
+      "correct": 2,
+      "subject": "מבחן עיוני מסכם - חומר נוסף2",
+      "sourceFile": "end_additional2_quiz.json"
+    },
+    {
+      "id": "end_additional2_quiz_16",
+      "question": "מה מהבאים נדרש לבדוק אחרי כל שוק חשמלי?",
+      "type": "multiple_choice",
+      "options": [
+        "לחץ דם",
+        "דופק",
+        "מקצב",
+        "סטורציה"
+      ],
+      "correct": 2,
+      "subject": "מבחן עיוני מסכם - חומר נוסף2",
+      "sourceFile": "end_additional2_quiz.json"
+    },
+    {
+      "id": "end_additional2_quiz_17",
+      "question": "למה נועד EtCO2 בהחייאה?",
+      "type": "multiple_choice",
+      "options": [
+        "לבדוק גלוקוז",
+        "להעריך איכות עיסויים והחייאה",
+        "לזהות VF",
+        "לשפר הנשמה ידנית"
+      ],
+      "correct": 1,
+      "subject": "מבחן עיוני מסכם - חומר נוסף2",
+      "sourceFile": "end_additional2_quiz.json"
+    },
+    {
+      "id": "end_additional2_quiz_18",
+      "question": "מה הצעד הבא אם לאחר שני שוקים יש עדיין VF?",
+      "type": "multiple_choice",
+      "options": [
+        "הפסקת ההחייאה",
+        "המשך עיסויים ומתן אמיודרון",
+        "בדיקת דופק",
+        "מתן גלוקוז"
+      ],
+      "correct": 1,
+      "subject": "מבחן עיוני מסכם - חומר נוסף2",
+      "sourceFile": "end_additional2_quiz.json"
+    },
+    {
+      "id": "end_additional2_quiz_19",
+      "question": "מה השלב הראשון בהחייאת ALS במטופל מחוסר הכרה?",
+      "type": "multiple_choice",
+      "options": [
+        "אינטובציה",
+        "מתן אדרנלין",
+        "הערכת תגובה, פתיחת נתיב אוויר",
+        "בדיקת סוכר"
+      ],
+      "correct": 2,
+      "subject": "מבחן עיוני מסכם - חומר נוסף2",
+      "sourceFile": "end_additional2_quiz.json"
+    },
+    {
+      "id": "end_additional2_quiz_20",
+      "question": "מה נדרש לבצע לפני מתן תרופות דרך הווריד בהחייאה?",
+      "type": "multiple_choice",
+      "options": [
+        "מתן בולוס נוזלים",
+        "שטיפת הקו",
+        "אינטובציה",
+        "דפיברילציה"
+      ],
+      "correct": 1,
+      "subject": "מבחן עיוני מסכם - חומר נוסף2",
+      "sourceFile": "end_additional2_quiz.json"
+    },
+    {
+      "id": "end_additional2_quiz_21",
+      "question": "מהי המטרה העיקרית של מתן אספירין באוטם חד בשריר הלב?",
+      "type": "multiple_choice",
+      "options": [
+        "לשיכוך כאב",
+        "להורדת לחץ דם",
+        "עיכוב אגרגציית טסיות",
+        "הפחתת היפוקסיה"
+      ],
+      "correct": 2,
+      "subject": "מבחן עיוני מסכם - חומר נוסף2",
+      "sourceFile": "end_additional2_quiz.json"
+    },
+    {
+      "id": "end_additional2_quiz_22",
+      "question": "מהו מינון האספרין לפי פרוטוקול ACS של מד״א?",
+      "type": "multiple_choice",
+      "options": [
+        "75 מ\"ג",
+        "160 מ\"ג",
+        "300 מ\"ג",
+        "500 מ\"ג"
+      ],
+      "correct": 2,
+      "subject": "מבחן עיוני מסכם - חומר נוסף2",
+      "sourceFile": "end_additional2_quiz.json"
+    },
+    {
+      "id": "end_additional2_quiz_23",
+      "question": "איזו מהתוויות הנגד הבאות נכונה למתן ניטרוגליצרין?",
+      "type": "multiple_choice",
+      "options": [
+        "כאב מעל 30 דקות",
+        "נטילת תרופות לאין-אונות ב־24–48 שעות",
+        "לחץ דם מעל 140 סיסטולי",
+        "דופק מתחת ל־100"
+      ],
+      "correct": 1,
+      "subject": "מבחן עיוני מסכם - חומר נוסף2",
+      "sourceFile": "end_additional2_quiz.json"
+    },
+    {
+      "id": "end_additional2_quiz_24",
+      "question": "מדוע אין לתת ניטרוגליצרין במצב של אוטם ימני (RV MI)?",
+      "type": "multiple_choice",
+      "options": [
+        "כי המטופל חווה היפרקלמיה",
+        "כי יש סיכון לברדיקרדיה",
+        "כי לחץ הדם יורד משמעותית עקב תלות בתפוקת הלב",
+        "כי ניטרו משפיע על ה־AV Node"
+      ],
+      "correct": 2,
+      "subject": "מבחן עיוני מסכם - חומר נוסף2",
+      "sourceFile": "end_additional2_quiz.json"
+    },
+    {
+      "id": "end_additional2_quiz_25",
+      "question": "מתי נחשוד באוטם ימני (RV MI)?",
+      "type": "multiple_choice",
+      "options": [
+        "כאבים בגב",
+        "Elevation ב־V1-V2 בלבד",
+        "Elevation ב־V1 עם סטיות באגוּדים ימין (III, aVF)",
+        "רק כאשר יש גם ברדיקרדיה"
+      ],
+      "correct": 2,
+      "subject": "מבחן עיוני מסכם - חומר נוסף2",
+      "sourceFile": "end_additional2_quiz.json"
+    },
+    {
+      "id": "end_additional2_quiz_26",
+      "question": "באילו אגודים נראה ST Elevation באוטם תחתון?",
+      "type": "multiple_choice",
+      "options": [
+        "V1-V4",
+        "I, aVL",
+        "II, III, aVF",
+        "V5-V6"
+      ],
+      "correct": 2,
+      "subject": "מבחן עיוני מסכם - חומר נוסף2",
+      "sourceFile": "end_additional2_quiz.json"
+    },
+    {
+      "id": "end_additional2_quiz_27",
+      "question": "מהי הפעולה הראשונה בעת זיהוי STEMI בשטח לפי מד\"א?",
+      "type": "multiple_choice",
+      "options": [
+        "מתן מורפין",
+        "קירור חולה",
+        "העברת אק\"ג לרופא",
+        "מתן קטאמין"
+      ],
+      "correct": 2,
+      "subject": "מבחן עיוני מסכם - חומר נוסף2",
+      "sourceFile": "end_additional2_quiz.json"
+    },
+    {
+      "id": "end_additional2_quiz_28",
+      "question": "באיזה מקרים יש להפסיק ניטרוגליצרין?",
+      "type": "multiple_choice",
+      "options": [
+        "כאשר המטופל מקיא",
+        "כאשר לחץ הדם יורד מתחת ל־100 סיסטולי",
+        "כאשר יש תלונות על כאב ראש",
+        "לאחר 3 מנות"
+      ],
+      "correct": 1,
+      "subject": "מבחן עיוני מסכם - חומר נוסף2",
+      "sourceFile": "end_additional2_quiz.json"
+    },
+    {
+      "id": "end_additional2_quiz_29",
+      "question": "באיזה מקצב יש אינדיקציה למתן אמיודרון?",
+      "type": "multiple_choice",
+      "options": [
+        "ברדיקרדיה סינוסלית",
+        "VT עם דופק",
+        "AV Block",
+        "PEA"
+      ],
+      "correct": 1,
+      "subject": "מבחן עיוני מסכם - חומר נוסף2",
+      "sourceFile": "end_additional2_quiz.json"
+    },
+    {
+      "id": "end_additional2_quiz_30",
+      "question": "מהו מינון האמיודרון לטיפול ב־VT עם דופק לפי פרוטוקול ALS מד\"א?",
+      "type": "multiple_choice",
+      "options": [
+        "300 מ\"ג",
+        "150 מ\"ג במשך 10 דקות",
+        "150 מ\"ג בזריקה מהירה",
+        "100 מ\"ג ל־5 דקות"
+      ],
+      "correct": 1,
+      "subject": "מבחן עיוני מסכם - חומר נוסף2",
+      "sourceFile": "end_additional2_quiz.json"
+    },
+    {
+      "id": "end_additional2_quiz_31",
+      "question": "מהי ההשפעה העיקרית של קטאמין בפרוטוקול כאבים/טיפול כללי?",
+      "type": "multiple_choice",
+      "options": [
+        "הפחתת לחץ דם",
+        "הרדמה וסדציה דיסוציאטיבית",
+        "חסימת β1",
+        "פעילות אנטיהיסטמינית"
+      ],
+      "correct": 1,
+      "subject": "מבחן עיוני מסכם - חומר נוסף2",
+      "sourceFile": "end_additional2_quiz.json"
+    },
+    {
+      "id": "end_additional2_quiz_32",
+      "question": "מהי הגדרה של טכיקרדיה סינוסלית?",
+      "type": "multiple_choice",
+      "options": [
+        "קצב סדיר, מקור עלייתי, מעל 100 לדקה",
+        "קצב בלתי סדיר, QRS צר",
+        "תבנית SA Block",
+        "קצב לא סדיר עם גל P הפוך"
+      ],
+      "correct": 0,
+      "subject": "מבחן עיוני מסכם - חומר נוסף2",
+      "sourceFile": "end_additional2_quiz.json"
+    },
+    {
+      "id": "end_additional2_quiz_33",
+      "question": "איזו תרופה ניתנת כקו ראשון ב־SVT יציב לפי ALS?",
+      "type": "multiple_choice",
+      "options": [
+        "אטרופין",
+        "אמיודרון",
+        "אדנוזין",
+        "מגנזיום"
+      ],
+      "correct": 2,
+      "subject": "מבחן עיוני מסכם - חומר נוסף2",
+      "sourceFile": "end_additional2_quiz.json"
+    },
+    {
+      "id": "end_additional2_quiz_34",
+      "question": "מהי התוויית הנגד לאמיודרון?",
+      "type": "multiple_choice",
+      "options": [
+        "דופק נמוך מ־50",
+        "ירידה ב־EtCO2",
+        "סינוס טכיקרדיה",
+        "פרפור פרוזדורים"
+      ],
+      "correct": 0,
+      "subject": "מבחן עיוני מסכם - חומר נוסף2",
+      "sourceFile": "end_additional2_quiz.json"
+    },
+    {
+      "id": "end_additional2_quiz_35",
+      "question": "מהו קריטריון לביצוע היפוך חשמלי מיידי בטכיקרדיה?",
+      "type": "multiple_choice",
+      "options": [
+        "כאב ראש",
+        "טכיקרדיה ממושכת",
+        "סימני פגיעה בפרפוזיה",
+        "הופעת PVC"
+      ],
+      "correct": 2,
+      "subject": "מבחן עיוני מסכם - חומר נוסף2",
+      "sourceFile": "end_additional2_quiz.json"
+    },
+    {
+      "id": "end_additional2_quiz_36",
+      "question": "מהי הסיבה השכיחה ביותר לטכיקרדיה קומפלקס רחב עם דופק?",
+      "type": "multiple_choice",
+      "options": [
+        "פרפור פרוזדורים",
+        "VT",
+        "SVT עם חסימה",
+        "AV Block"
+      ],
+      "correct": 1,
+      "subject": "מבחן עיוני מסכם - חומר נוסף2",
+      "sourceFile": "end_additional2_quiz.json"
+    },
+    {
+      "id": "end_additional2_quiz_37",
+      "question": "מהי בדיקה מהירה מבדילה בין SVT ל־VT?",
+      "type": "multiple_choice",
+      "options": [
+        "גל P",
+        "אורך מקטע QT",
+        "קיוב QRS",
+        "תגובה לאדנוזין"
+      ],
+      "correct": 3,
+      "subject": "מבחן עיוני מסכם - חומר נוסף2",
+      "sourceFile": "end_additional2_quiz.json"
+    },
+    {
+      "id": "end_additional2_quiz_38",
+      "question": "מתי ניתן לחשוד ש־PVC הופך למסוכן?",
+      "type": "multiple_choice",
+      "options": [
+        "PVC בודד",
+        "Trigeminy",
+        "PVC בתבנית R-on-T",
+        "PVC הפוך"
+      ],
+      "correct": 2,
+      "subject": "מבחן עיוני מסכם - חומר נוסף2",
+      "sourceFile": "end_additional2_quiz.json"
+    },
+    {
+      "id": "end_additional2_quiz_39",
+      "question": "באיזה מצב עדיף לבצע קיצוב (Pacing)?",
+      "type": "multiple_choice",
+      "options": [
+        "VT",
+        "Complete Heart Block סימפטומטי",
+        "אוטם קדמי",
+        "PEA"
+      ],
+      "correct": 1,
+      "subject": "מבחן עיוני מסכם - חומר נוסף2",
+      "sourceFile": "end_additional2_quiz.json"
+    },
+    {
+      "id": "end_additional2_quiz_40",
+      "question": "מהי גישה ראשונית במקרה של Bradicardia Symptomatic במבוגר?",
+      "type": "multiple_choice",
+      "options": [
+        "השכבת המטופל והרגעתו",
+        "ביצוע דפיברילציה",
+        "אדרנלין במינון גבוה",
+        "מתן אטרופין"
+      ],
+      "correct": 3,
+      "subject": "מבחן עיוני מסכם - חומר נוסף2",
+      "sourceFile": "end_additional2_quiz.json"
+    },
+    {
+      "id": "end_additional2_quiz_41",
+      "question": "מהי סכנה עיקרית בפרפור פרוזדורים לא מטופל?",
+      "type": "multiple_choice",
+      "options": [
+        "פרפור חדרים",
+        "AV Block",
+        "תסחיף ואירוע מוחי",
+        "ירידה בל\"ד בלבד"
+      ],
+      "correct": 2,
+      "subject": "מבחן עיוני מסכם - חומר נוסף2",
+      "sourceFile": "end_additional2_quiz.json"
+    },
+    {
+      "id": "end_additional2_quiz_42",
+      "question": "איזה גירוי עשוי לעורר פרפור פרוזדורים?",
+      "type": "multiple_choice",
+      "options": [
+        "שתיית אלכוהול",
+        "תנוחה בשכיבה",
+        "רמות סוכר גבוהות",
+        "צום ממושך"
+      ],
+      "correct": 0,
+      "subject": "מבחן עיוני מסכם - חומר נוסף2",
+      "sourceFile": "end_additional2_quiz.json"
+    },
+    {
+      "id": "end_additional2_quiz_43",
+      "question": "מה נכון לגבי AV Block דרגה 2 סוג Mobitz II?",
+      "type": "multiple_choice",
+      "options": [
+        "הארכה הדרגתית של PR עד נשירה",
+        "קבוע PR ונשירה פתאומית של QRS",
+        "כל גל P מלווה בקומפלקס QRS",
+        "חסימה מלאה בין עליה לחדר"
+      ],
+      "correct": 1,
+      "subject": "מבחן עיוני מסכם - חומר נוסף2",
+      "sourceFile": "end_additional2_quiz.json"
+    },
+    {
+      "id": "end_additional2_quiz_44",
+      "question": "מהי הגישה הראשונית למטופל עם GCS=6?",
+      "type": "multiple_choice",
+      "options": [
+        "השכבת המטופל והרגעתו",
+        "פתיחת וריד ומתן גלוקוז",
+        "הבטחת נתיב אוויר",
+        "מדידת חום"
+      ],
+      "correct": 2,
+      "subject": "מבחן עיוני מסכם - חומר נוסף2",
+      "sourceFile": "end_additional2_quiz.json"
+    },
+    {
+      "id": "end_additional2_quiz_45",
+      "question": "מה מהבאים יכול לגרום לפרכוס חדש אצל מבוגר?",
+      "type": "multiple_choice",
+      "options": [
+        "נטילת פנוברביטל",
+        "היפוגליקמיה",
+        "שתיית מים",
+        "טכיקרדיה"
+      ],
+      "correct": 1,
+      "subject": "מבחן עיוני מסכם - חומר נוסף2",
+      "sourceFile": "end_additional2_quiz.json"
+    },
+    {
+      "id": "end_additional2_quiz_46",
+      "question": "מהי הסיבה הנפוצה ביותר לשינוי במצב הכרה במבוגר?",
+      "type": "multiple_choice",
+      "options": [
+        "שבץ מוחי",
+        "היפוגליקמיה",
+        "פרכוס אפילפטי",
+        "הרעלת אלכוהול"
+      ],
+      "correct": 1,
+      "subject": "מבחן עיוני מסכם - חומר נוסף2",
+      "sourceFile": "end_additional2_quiz.json"
+    },
+    {
+      "id": "end_additional2_quiz_47",
+      "question": "באיזה מצב ניתן גלוקוז תוך ורידי?",
+      "type": "multiple_choice",
+      "options": [
+        "בכל מקרה של חולשה",
+        "בכל מצב של בלבול",
+        "רק אם נמדד ערך מתחת ל־70",
+        "בכל מקרה של איבוד הכרה"
+      ],
+      "correct": 2,
+      "subject": "מבחן עיוני מסכם - חומר נוסף2",
+      "sourceFile": "end_additional2_quiz.json"
+    },
+    {
+      "id": "end_additional2_quiz_48",
+      "question": "מה נכון לגבי ניהול מטופל עם חשד ל־TIA (אירוע מוחי חולף)?",
+      "type": "multiple_choice",
+      "options": [
+        "אין צורך בטיפול בשטח",
+        "חובה להתחיל נוזלים מהירים",
+        "ההתייחסות כאל שבץ לכל דבר",
+        "ניתן לשחרר לאחר תצפית"
+      ],
+      "correct": 2,
+      "subject": "מבחן עיוני מסכם - חומר נוסף2",
+      "sourceFile": "end_additional2_quiz.json"
+    },
+    {
+      "id": "end_additional2_quiz_49",
+      "question": "איזה סימן עשוי להופיע בשבץ המורגי?",
+      "type": "multiple_choice",
+      "options": [
+        "לחץ דם נמוך",
+        "דימום מהאוזן",
+        "א-סימטריה בפנים",
+        "כאב בטן"
+      ],
+      "correct": 2,
+      "subject": "מבחן עיוני מסכם - חומר נוסף2",
+      "sourceFile": "end_additional2_quiz.json"
+    },
+    {
+      "id": "end_additional2_quiz_50",
+      "question": "מה הפעולה הראשונית במטופל חשוד לשבץ עם סוכר 50?",
+      "type": "multiple_choice",
+      "options": [
+        "החייאה מלאה",
+        "מתן גלוקוז IV",
+        "הפעלת שבץ",
+        "ניטור לב"
+      ],
+      "correct": 1,
+      "subject": "מבחן עיוני מסכם - חומר נוסף2",
+      "sourceFile": "end_additional2_quiz.json"
+    },
+    {
+      "id": "end_additional2_quiz_51",
+      "question": "מה כולל סולם Cincinnati לזיהוי שבץ?",
+      "type": "multiple_choice",
+      "options": [
+        "מדידת לחץ דם, סטורציה, דופק",
+        "חיוך, דיבור, הרמת ידיים",
+        "תגובה לאור, GCS, תנועות עיניים",
+        "קואורדינציה, זיכרון, הכרה"
+      ],
+      "correct": 1,
+      "subject": "מבחן עיוני מסכם - חומר נוסף2",
+      "sourceFile": "end_additional2_quiz.json"
+    },
+    {
+      "id": "end_additional2_quiz_52",
+      "question": "מה נכון לגבי טיפול בחום גבוה במד״א?",
+      "type": "multiple_choice",
+      "options": [
+        "מתן פראצטמול בכל גיל",
+        "יש לקרר בכל מקרה מעל 38.5",
+        "קירור רק מעל 39.5 או לפי סימנים",
+        "חובה אינטובציה בכל מקרה של חום"
+      ],
+      "correct": 2,
+      "subject": "מבחן עיוני מסכם - חומר נוסף2",
+      "sourceFile": "end_additional2_quiz.json"
+    },
+    {
+      "id": "end_additional2_quiz_53",
+      "question": "מהי רמת GCS המקסימלית?",
+      "type": "multiple_choice",
+      "options": [
+        "10",
+        "15",
+        "12",
+        "8"
+      ],
+      "correct": 1,
+      "subject": "מבחן עיוני מסכם - חומר נוסף2",
+      "sourceFile": "end_additional2_quiz.json"
+    },
+    {
+      "id": "end_additional2_quiz_54",
+      "question": "מהו טיפול הבחירה בפרכוס מתמשך במד״א?",
+      "type": "multiple_choice",
+      "options": [
+        "קטמין IV",
+        "גלוקוז",
+        "דורמיקום",
+        "הידרציה מהירה"
+      ],
+      "correct": 2,
+      "subject": "מבחן עיוני מסכם - חומר נוסף2",
+      "sourceFile": "end_additional2_quiz.json"
+    },
+    {
+      "id": "end_additional2_quiz_55",
+      "question": "איזו רמת סוכר נחשבת להיפוגליקמיה לפי מד\"א?",
+      "type": "multiple_choice",
+      "options": [
+        "מתחת ל־80",
+        "מתחת ל־70",
+        "מתחת ל־60",
+        "מתחת ל־50"
+      ],
+      "correct": 1,
+      "subject": "מבחן עיוני מסכם - חומר נוסף2",
+      "sourceFile": "end_additional2_quiz.json"
+    },
+    {
+      "id": "end_additional2_quiz_56",
+      "question": "מהו הטיפול בבלבול אצל מטופל עם סוכר 35?",
+      "type": "multiple_choice",
+      "options": [
+        "אדנוזין",
+        "קטמין",
+        "גלוקוז IV",
+        "אמיודרון"
+      ],
+      "correct": 2,
+      "subject": "מבחן עיוני מסכם - חומר נוסף2",
+      "sourceFile": "end_additional2_quiz.json"
+    },
+    {
+      "id": "end_additional2_quiz_57",
+      "question": "מהו מינון גלוקוז 50% במד\"א?",
+      "type": "multiple_choice",
+      "options": [
+        "10 סמ\"ק",
+        "20 סמ\"ק",
+        "25 סמ\"ק",
+        "50 סמ\"ק"
+      ],
+      "correct": 3,
+      "subject": "מבחן עיוני מסכם - חומר נוסף2",
+      "sourceFile": "end_additional2_quiz.json"
+    },
+    {
+      "id": "end_additional2_quiz_58",
+      "question": "מהי הסיבה לשטיפת וריד אחרי גלוקוז בהחייאה?",
+      "type": "multiple_choice",
+      "options": [
+        "למנוע קריש דם",
+        "להעלות לחץ דם",
+        "לסייע לספיגת התרופה",
+        "לרענן את הקו"
+      ],
+      "correct": 2,
+      "subject": "מבחן עיוני מסכם - חומר נוסף2",
+      "sourceFile": "end_additional2_quiz.json"
+    },
+    {
+      "id": "end_additional2_quiz_59",
+      "question": "מהו הסיבוך המרכזי בפרכוס ממושך שאינו מופסק?",
+      "type": "multiple_choice",
+      "options": [
+        "VF",
+        "שוק",
+        "פגיעה מוחית היפוקסית",
+        "בצקת ריאות"
+      ],
+      "correct": 2,
+      "subject": "מבחן עיוני מסכם - חומר נוסף2",
+      "sourceFile": "end_additional2_quiz.json"
+    },
+    {
+      "id": "end_additional2_quiz_60",
+      "question": "מהי אחת הסיבות האפשריות לפרכוס אצל ילד עם חום גבוה?",
+      "type": "multiple_choice",
+      "options": [
+        "יתר לחץ דם",
+        "התייבשות",
+        "פרכוס חום",
+        "קרע בכלי דם מוחי"
+      ],
+      "correct": 2,
+      "subject": "מבחן עיוני מסכם - חומר נוסף2",
+      "sourceFile": "end_additional2_quiz.json"
+    },
+    {
+      "id": "end_additional2_quiz_61",
+      "question": "מה חשוב לעשות לפני מתן קטמין לשיכוך כאבים?",
+      "type": "multiple_choice",
+      "options": [
+        "מדידת חום",
+        "ניטור מלא ו-IV פתוח",
+        "בדיקת תלמידים",
+        "מדידת EtCO2"
+      ],
+      "correct": 1,
+      "subject": "מבחן עיוני מסכם - חומר נוסף2",
+      "sourceFile": "end_additional2_quiz.json"
+    },
+    {
+      "id": "end_additional2_quiz_62",
+      "question": "מהו מינון קטמין לשיכוך כאב לפי פרוטוקול מד\"א?",
+      "type": "multiple_choice",
+      "options": [
+        "0.1 מ\"ג/ק\"ג",
+        "0.25 מ\"ג/ק\"ג",
+        "0.5 מ\"ג/ק\"ג",
+        "1 מ\"ג/ק\"ג"
+      ],
+      "correct": 1,
+      "subject": "מבחן עיוני מסכם - חומר נוסף2",
+      "sourceFile": "end_additional2_quiz.json"
+    },
+    {
+      "id": "end_additional2_quiz_63",
+      "question": "מהו הסיבוך העיקרי במתן קטמין במינון גבוה?",
+      "type": "multiple_choice",
+      "options": [
+        "יתר לחץ דם",
+        "עיכוב נשימתי",
+        "הזיות ודיסוציאציה",
+        "פרפור פרוזדורים"
+      ],
+      "correct": 2,
+      "subject": "מבחן עיוני מסכם - חומר נוסף2",
+      "sourceFile": "end_additional2_quiz.json"
+    },
+    {
+      "id": "end_additional2_quiz_64",
+      "question": "מה מהבאים מהווה אינדיקציה לאינטובציה?",
+      "type": "multiple_choice",
+      "options": [
+        "כאב ראש חזק",
+        "ירידה קלה בהכרה",
+        "GCS ≤ 8",
+        "דופק איטי"
+      ],
+      "correct": 2,
+      "subject": "מבחן עיוני מסכם - חומר נוסף2",
+      "sourceFile": "end_additional2_quiz.json"
+    },
+    {
+      "id": "end_additional2_quiz_65",
+      "question": "מה מהבאים מהווה קונטרה־אינדיקציה לאינטובציה מהירה (RSI)?",
+      "type": "multiple_choice",
+      "options": [
+        "דימום אפי",
+        "חוסר הכרה",
+        "חסימה מלאה של נתיב אוויר",
+        "ירידת לחץ דם"
+      ],
+      "correct": 2,
+      "subject": "מבחן עיוני מסכם - חומר נוסף2",
+      "sourceFile": "end_additional2_quiz.json"
+    },
+    {
+      "id": "end_additional2_quiz_66",
+      "question": "מה הסיבה העיקרית לביצוע קריקוטירוטומיה?",
+      "type": "multiple_choice",
+      "options": [
+        "חוסר בציוד טובוס",
+        "טכיפניאה",
+        "חסימה עליונה שלא ניתנת לאבטחה באמצעים אחרים",
+        "פרכוס"
+      ],
+      "correct": 2,
+      "subject": "מבחן עיוני מסכם - חומר נוסף2",
+      "sourceFile": "end_additional2_quiz.json"
+    },
+    {
+      "id": "end_additional2_quiz_67",
+      "question": "מה מטרת מתן דורמיקום לפני אינטובציה?",
+      "type": "multiple_choice",
+      "options": [
+        "שיכוך כאב",
+        "הרדמה / סדציה",
+        "הגברת הנשימה",
+        "הגברת רוק"
+      ],
+      "correct": 1,
+      "subject": "מבחן עיוני מסכם - חומר נוסף2",
+      "sourceFile": "end_additional2_quiz.json"
+    },
+    {
+      "id": "end_additional2_quiz_68",
+      "question": "מהו אינדיקציה לפיום קנה (קריקוטירוטומיה)?",
+      "type": "multiple_choice",
+      "options": [
+        "דום לב",
+        "פרכוס",
+        "טראומה קשה ללסת שלא מאפשרת אבטחת נתיב אוויר",
+        "שבר באגן"
+      ],
+      "correct": 2,
+      "subject": "מבחן עיוני מסכם - חומר נוסף2",
+      "sourceFile": "end_additional2_quiz.json"
+    },
+    {
+      "id": "end_additional2_quiz_69",
+      "question": "איזה מדד מעיד על החדרת טובוס נכונה?",
+      "type": "multiple_choice",
+      "options": [
+        "קולות נשימה חד־צדדיים",
+        "דופק מהיר",
+        "עליית EtCO2 מעל 20",
+        "ירידת סטורציה"
+      ],
+      "correct": 2,
+      "subject": "מבחן עיוני מסכם - חומר נוסף2",
+      "sourceFile": "end_additional2_quiz.json"
+    },
+    {
+      "id": "end_additional2_quiz_70",
+      "question": "מהו סימן אופייני לחזה אוויר בלחץ?",
+      "type": "multiple_choice",
+      "options": [
+        "ירידה בדופק",
+        "עלייה ב־EtCO2",
+        "ירידה בסטורציה, גודש ורידי צוואר והיעדר כניסת אוויר",
+        "ברדיפניאה"
+      ],
+      "correct": 2,
+      "subject": "מבחן עיוני מסכם - חומר נוסף2",
+      "sourceFile": "end_additional2_quiz.json"
+    },
+    {
+      "id": "end_additional2_quiz_71",
+      "question": "מהו הטיפול הראשוני בדימום מסכן חיים בגפה?",
+      "type": "multiple_choice",
+      "options": [
+        "הרמת הרגל",
+        "נוזלים",
+        "חבישה",
+        "חסם עורקים"
+      ],
+      "correct": 3,
+      "subject": "מבחן עיוני מסכם - חומר נוסף2",
+      "sourceFile": "end_additional2_quiz.json"
+    },
+    {
+      "id": "end_additional2_quiz_72",
+      "question": "איזה מדד מעיד על ירידה בפרפוזיה?",
+      "type": "multiple_choice",
+      "options": [
+        "סטורציה 94%",
+        "קצב נשימה 18",
+        "מילוי קפילארי איטי",
+        "לחץ דם 140/90"
+      ],
+      "correct": 2,
+      "subject": "מבחן עיוני מסכם - חומר נוסף2",
+      "sourceFile": "end_additional2_quiz.json"
+    },
+    {
+      "id": "end_additional2_quiz_73",
+      "question": "מה המיקום הנכון להנחת חסם עורקים?",
+      "type": "multiple_choice",
+      "options": [
+        "בדיוק מעל הפצע",
+        "כ־5–7 ס\"מ מעל הפצע",
+        "במפרק הקרוב",
+        "על החתך עצמו"
+      ],
+      "correct": 1,
+      "subject": "מבחן עיוני מסכם - חומר נוסף2",
+      "sourceFile": "end_additional2_quiz.json"
+    },
+    {
+      "id": "end_additional2_quiz_74",
+      "question": "מתי יש לבצע Needle Thoracostomy?",
+      "type": "multiple_choice",
+      "options": [
+        "בכל חולה עם כאבים בחזה",
+        "חזה אוויר בלחץ עם סימני אי ספיקה",
+        "סטורציה נמוכה מתחת ל־94%",
+        "ירידת ל\"ד בלבד"
+      ],
+      "correct": 1,
+      "subject": "מבחן עיוני מסכם - חומר נוסף2",
+      "sourceFile": "end_additional2_quiz.json"
+    },
+    {
+      "id": "end_additional2_quiz_75",
+      "question": "איזו גישה עדיפה להחדרת מחט נידל דקומפרשן במד\"א?",
+      "type": "multiple_choice",
+      "options": [
+        "מרווח בין צלעי 2 – קו אמצע קלויקולה",
+        "מרווח 4 בצד ימין",
+        "אפקס הלב",
+        "מרווח 5 בצד שמאל"
+      ],
+      "correct": 0,
+      "subject": "מבחן עיוני מסכם - חומר נוסף2",
+      "sourceFile": "end_additional2_quiz.json"
+    },
+    {
+      "id": "end_additional2_quiz_76",
+      "question": "מהו טיפול הבחירה ב־Tension Pneumothorax בשטח?",
+      "type": "multiple_choice",
+      "options": [
+        "הנשמה במסכה",
+        "מתן נוזלים",
+        "נידל דקומפרשן",
+        "אינטובציה"
+      ],
+      "correct": 2,
+      "subject": "מבחן עיוני מסכם - חומר נוסף2",
+      "sourceFile": "end_additional2_quiz.json"
+    },
+    {
+      "id": "end_additional2_quiz_77",
+      "question": "מהי בדיקה אופיינית להערכת פרפוזיה?",
+      "type": "multiple_choice",
+      "options": [
+        "תגובת אישונים",
+        "צבע שתן",
+        "מילוי קפילארי",
+        "דופק קרוטידי"
+      ],
+      "correct": 2,
+      "subject": "מבחן עיוני מסכם - חומר נוסף2",
+      "sourceFile": "end_additional2_quiz.json"
+    },
+    {
+      "id": "end_additional2_quiz_78",
+      "question": "מה הדבר הראשון שיש להבטיח בטיפול בטראומה?",
+      "type": "multiple_choice",
+      "options": [
+        "פתיחת וריד",
+        "מיון פגיעות",
+        "אבטחת נתיב אוויר",
+        "מתן קטמין"
+      ],
+      "correct": 2,
+      "subject": "מבחן עיוני מסכם - חומר נוסף2",
+      "sourceFile": "end_additional2_quiz.json"
+    },
+    {
+      "id": "end_additional2_quiz_79",
+      "question": "מה נכון לגבי שימוש במזרק קטמין לשיכוך כאבים במד״א?",
+      "type": "multiple_choice",
+      "options": [
+        "ניתן רק בילדים",
+        "אין צורך ברופא",
+        "נדרש אישור רופא",
+        "חובה לתת במקביל אדרנלין"
+      ],
+      "correct": 2,
+      "subject": "מבחן עיוני מסכם - חומר נוסף2",
+      "sourceFile": "end_additional2_quiz.json"
+    },
+    {
+      "id": "end_additional2_quiz_80",
+      "question": "מה חשוב לעקוב אחריו לאחר מתן קטמין?",
+      "type": "multiple_choice",
+      "options": [
+        "רמות סוכר",
+        "לחץ דם ונשימה",
+        "רמת נתרן",
+        "קצב מתן נוזלים"
+      ],
+      "correct": 1,
+      "subject": "מבחן עיוני מסכם - חומר נוסף2",
+      "sourceFile": "end_additional2_quiz.json"
+    },
+    {
+      "id": "end_additional2_quiz_81",
+      "question": "מהו הטיפול הראשוני באנפילקסיס לפי מד״א?",
+      "type": "multiple_choice",
+      "options": [
+        "ונטולין",
+        "הידרוקורטיזון",
+        "אדרנלין IM",
+        "נוזלים"
+      ],
+      "correct": 2,
+      "subject": "מבחן עיוני מסכם - חומר נוסף2",
+      "sourceFile": "end_additional2_quiz.json"
+    },
+    {
+      "id": "end_additional2_quiz_82",
+      "question": "מה המינון הראשוני של אדרנלין IM באנפילקסיס למבוגר?",
+      "type": "multiple_choice",
+      "options": [
+        "0.1 מ״ג",
+        "0.3 מ״ג",
+        "0.5 מ״ג",
+        "1 מ״ג"
+      ],
+      "correct": 1,
+      "subject": "מבחן עיוני מסכם - חומר נוסף2",
+      "sourceFile": "end_additional2_quiz.json"
+    },
+    {
+      "id": "end_additional2_quiz_83",
+      "question": "מה נדרש לבצע לאחר מתן אדרנלין בשריר?",
+      "type": "multiple_choice",
+      "options": [
+        "השכבת המטופל והרגעתו",
+        "חיבור למוניטור",
+        "מעקב ל\"ד, נשימה, והכנה למנה נוספת",
+        "מתן קטמין"
+      ],
+      "correct": 2,
+      "subject": "מבחן עיוני מסכם - חומר נוסף2",
+      "sourceFile": "end_additional2_quiz.json"
+    },
+    {
+      "id": "end_additional2_quiz_84",
+      "question": "מהו הטיפול בתגובה אנפילקטית עם ירידה בלחץ דם?",
+      "type": "multiple_choice",
+      "options": [
+        "רק נוזלים",
+        "אדרנלין IV",
+        "רק הידרוקורטיזון",
+        "אנטי־היסטמין"
+      ],
+      "correct": 1,
+      "subject": "מבחן עיוני מסכם - חומר נוסף2",
+      "sourceFile": "end_additional2_quiz.json"
+    },
+    {
+      "id": "end_additional2_quiz_85",
+      "question": "מה מהבאים מהווה קונטרה־אינדיקציה למתן ונטולין?",
+      "type": "multiple_choice",
+      "options": [
+        "דופק מעל 110",
+        "לחץ דם גבוה",
+        "היעדר כניסת אוויר משמעותית",
+        "חום"
+      ],
+      "correct": 0,
+      "subject": "מבחן עיוני מסכם - חומר נוסף2",
+      "sourceFile": "end_additional2_quiz.json"
+    },
+    {
+      "id": "end_additional2_quiz_86",
+      "question": "מה מנגנון הפעולה של ונטולין?",
+      "type": "multiple_choice",
+      "options": [
+        "חסימת בטא 1",
+        "הרחבת כלי דם",
+        "גירוי בטא 2 – הרחבת סימפונות",
+        "דיכוי מערכת העצבים"
+      ],
+      "correct": 2,
+      "subject": "מבחן עיוני מסכם - חומר נוסף2",
+      "sourceFile": "end_additional2_quiz.json"
+    },
+    {
+      "id": "end_additional2_quiz_87",
+      "question": "מהו סיבוך עיקרי של טיפול מוגזם בונטולין?",
+      "type": "multiple_choice",
+      "options": [
+        "ברדיקרדיה",
+        "אצידוזיס",
+        "טכיקרדיה והפרעות קצב",
+        "עצירת שתן"
+      ],
+      "correct": 2,
+      "subject": "מבחן עיוני מסכם - חומר נוסף2",
+      "sourceFile": "end_additional2_quiz.json"
+    },
+    {
+      "id": "end_additional2_quiz_88",
+      "question": "מה ניתן למטופל עם התקף אסתמה חמור ללא שיפור לאחר ונטולין?",
+      "type": "multiple_choice",
+      "options": [
+        "קטמין",
+        "הידרוקורטיזון",
+        "אדרנלין",
+        "פראצטמול"
+      ],
+      "correct": 2,
+      "subject": "מבחן עיוני מסכם - חומר נוסף2",
+      "sourceFile": "end_additional2_quiz.json"
+    },
+    {
+      "id": "end_additional2_quiz_89",
+      "question": "מהו תופעת לוואי אפשרית של מתן אדרנלין IV?",
+      "type": "multiple_choice",
+      "options": [
+        "כיווץ סימפונות",
+        "היפרקלמיה",
+        "הפרעות קצב מסכנות חיים",
+        "כיווץ אישונים"
+      ],
+      "correct": 2,
+      "subject": "מבחן עיוני מסכם - חומר נוסף2",
+      "sourceFile": "end_additional2_quiz.json"
+    },
+    {
+      "id": "end_additional2_quiz_90",
+      "question": "מהי אינדיקציה למתן אדרנלין ב־IV במקום IM באנפילקסיס?",
+      "type": "multiple_choice",
+      "options": [
+        "אי סבילות לונטולין",
+        "תגובה קשה שלא משתפרת לאחר IM",
+        "פרכוס",
+        "חום"
+      ],
+      "correct": 1,
+      "subject": "מבחן עיוני מסכם - חומר נוסף2",
+      "sourceFile": "end_additional2_quiz.json"
+    },
+    {
+      "id": "end_additional2_quiz_91",
+      "question": "איזו תגובה יכולה להתרחש כתוצאה מהרעלת אורגנו־זרחניים?",
+      "type": "multiple_choice",
+      "options": [
+        "ברדיקרדיה, הפרשת רוק, כיווץ אישונים",
+        "טכיקרדיה, הרחבת אישונים",
+        "רעד בגפיים",
+        "חמצת מטבולית"
+      ],
+      "correct": 0,
+      "subject": "מבחן עיוני מסכם - חומר נוסף2",
+      "sourceFile": "end_additional2_quiz.json"
+    },
+    {
+      "id": "end_additional2_quiz_92",
+      "question": "מהי ההשפעה המרכזית של אטרופין בהרעלה קולינרגית?",
+      "type": "multiple_choice",
+      "options": [
+        "הרחבת כלי דם",
+        "עיכוב אנזים אצטילכולין",
+        "ייבוש הפרשות",
+        "שיתוק שרירים"
+      ],
+      "correct": 2,
+      "subject": "מבחן עיוני מסכם - חומר נוסף2",
+      "sourceFile": "end_additional2_quiz.json"
+    },
+    {
+      "id": "end_additional2_quiz_93",
+      "question": "מהו הטיפול הראשוני בהרעלת אופיאטים?",
+      "type": "multiple_choice",
+      "options": [
+        "הידרציה",
+        "מתן קטמין",
+        "נלוקסון",
+        "אטרופין"
+      ],
+      "correct": 2,
+      "subject": "מבחן עיוני מסכם - חומר נוסף2",
+      "sourceFile": "end_additional2_quiz.json"
+    },
+    {
+      "id": "end_additional2_quiz_94",
+      "question": "מהו מנגנון הפעולה של נלוקסון?",
+      "type": "multiple_choice",
+      "options": [
+        "גירוי קולטני β2",
+        "חסימת קולטני אופיאטים",
+        "דיכוי מערכת סימפתטית",
+        "המרצת CNS"
+      ],
+      "correct": 1,
+      "subject": "מבחן עיוני מסכם - חומר נוסף2",
+      "sourceFile": "end_additional2_quiz.json"
+    },
+    {
+      "id": "end_additional2_quiz_95",
+      "question": "מה נכון לגבי טיפול בהיפרגליקמיה בשטח?",
+      "type": "multiple_choice",
+      "options": [
+        "מתן אינסולין",
+        "מתן קטמין",
+        "מתן נוזלים ומתן אינסולין בהמשך בבית חולים",
+        "גלוקוז"
+      ],
+      "correct": 2,
+      "subject": "מבחן עיוני מסכם - חומר נוסף2",
+      "sourceFile": "end_additional2_quiz.json"
+    },
+    {
+      "id": "end_additional2_quiz_96",
+      "question": "מה נדרש לבדוק לפני מתן גלוקוז למטופל מחוסר הכרה?",
+      "type": "multiple_choice",
+      "options": [
+        "תגובת אישונים",
+        "מד סוכר",
+        "לחץ דם",
+        "סטורציה"
+      ],
+      "correct": 1,
+      "subject": "מבחן עיוני מסכם - חומר נוסף2",
+      "sourceFile": "end_additional2_quiz.json"
+    },
+    {
+      "id": "end_additional2_quiz_97",
+      "question": "מה מינון נלוקסון IV למבוגר בהרעלת אופיאטים במד״א?",
+      "type": "multiple_choice",
+      "options": [
+        "0.2 מ״ג",
+        "0.4 מ״ג",
+        "1 מ״ג",
+        "2 מ״ג"
+      ],
+      "correct": 1,
+      "subject": "מבחן עיוני מסכם - חומר נוסף2",
+      "sourceFile": "end_additional2_quiz.json"
+    },
+    {
+      "id": "end_additional2_quiz_98",
+      "question": "איזה מהמצבים הבאים מצריך טיפול בנוזלים לפי ALS מד\"א?",
+      "type": "multiple_choice",
+      "options": [
+        "שבץ",
+        "הרעלת אופיאטים",
+        "אנפילקסיס עם ל\"ד נמוך",
+        "פרכוס"
+      ],
+      "correct": 2,
+      "subject": "מבחן עיוני מסכם - חומר נוסף2",
+      "sourceFile": "end_additional2_quiz.json"
+    },
+    {
+      "id": "end_additional2_quiz_99",
+      "question": "מה הטיפול בפרכוס חום בילדים לפי פרוטוקול מד\"א?",
+      "type": "multiple_choice",
+      "options": [
+        "אדרנלין",
+        "אנטיביוטיקה",
+        "קירור ומתן דורמיקום",
+        "פראצטמול בלבד"
+      ],
+      "correct": 2,
+      "subject": "מבחן עיוני מסכם - חומר נוסף2",
+      "sourceFile": "end_additional2_quiz.json"
+    },
+    {
+      "id": "end_additional2_quiz_100",
+      "question": "מה חשוב לנטר לאחר מתן דורמיקום לילד?",
+      "type": "multiple_choice",
+      "options": [
+        "חום",
+        "צבע שתן",
+        "רמת הכרה ונשימה",
+        "כאב ראש"
+      ],
+      "correct": 2,
+      "subject": "מבחן עיוני מסכם - חומר נוסף2",
+      "sourceFile": "end_additional2_quiz.json"
     }
   ]
 }
