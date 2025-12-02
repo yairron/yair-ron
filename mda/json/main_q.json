@@ -1,7 +1,7 @@
 {
   "subject": "שאלון חזרה כללי",
   "description": "שאלון מאוחד של כל השאלות מקבצי ה-quiz השונים",
-  "totalQuestions": 1825,
+  "totalQuestions": 1875,
   "sourceFiles": [
     "anaphylaxis_quiz.json",
     "asthma_quiz.json",
@@ -36,9 +36,10 @@
     "end_respiratry_quiz.json",
     "end_additional1_quiz.json",
     "end_additional2_quiz.json",
-    "end_cpr_quiz.json"
+    "end_cpr_quiz.json",
+    "end_birth_quiz.json"
   ],
-  "createdAt": "2025-12-02T05:55:57.294Z",
+  "createdAt": "2025-12-02T19:46:59.383Z",
   "questions": [
     {
       "id": "anaphylaxis_quiz_1",
@@ -21087,17 +21088,15 @@
       "options": [
         "בצקות ברגליים וקרסוליים",
         "הרחבת וורידי הצוואר (JVD)",
-        "הפטומגליה - הגדלת הכבד",
-        "אסציטס - נוזל בבטן",
-        "ציאנוזה",
+        "דופק מהיר",
+        "הזעה",
+        "כיחלון",
         "חום גבוה",
         "כאב חזה חד"
       ],
       "correct": [
         0,
         1,
-        2,
-        3,
         4
       ],
       "subject": "מבחן עיוני מסכם נשימה",
@@ -21238,12 +21237,11 @@
         "אלרגנים - אבק, אבקת פרחים, עובש, בעלי חיים",
         "זיהומים בדרכי נשימה",
         "פעילות גופנית",
-        "אוויר קר",
         "עשן וזיהום אוויר",
         "תרופות - אספירין, בטא בלוקרים",
         "לחץ רגשי",
-        "שינה טובה",
-        "תזונה מאוזנת"
+        "שינה קלה",
+        "תזונה עשירת תבלינים"
       ],
       "correct": [
         0,
@@ -21251,8 +21249,7 @@
         2,
         3,
         4,
-        5,
-        6
+        5
       ],
       "subject": "מבחן עיוני מסכם נשימה",
       "sourceFile": "end_respiratry_quiz.json"
@@ -21289,7 +21286,6 @@
         "שיעול",
         "קושי בדיבור",
         "שימוש בשרירי עזר לנשימה",
-        "חרדה",
         "נשימה איטית ועמוקה",
         "קולות ריאה ברורים"
       ],
@@ -23129,7 +23125,7 @@
     },
     {
       "id": "end_additional1_quiz_100",
-      "question": "למה מיועד טמפונדה (חסם עורקים)?",
+      "question": "למה מיועד חסם עורקים?",
       "type": "multiple_choice",
       "options": [
         "לחימום גפיים",
@@ -24552,7 +24548,7 @@
         "היפוגליקמיה"
       ],
       "correct": 2,
-      "subject": "מבחן עיוני מסכם - חומר נוסף2",
+      "subject": "מבחן עיוני מסכם חומר נוסף2",
       "sourceFile": "end_additional2_quiz.json"
     },
     {
@@ -24566,7 +24562,7 @@
         "3:1"
       ],
       "correct": 2,
-      "subject": "מבחן עיוני מסכם - חומר נוסף2",
+      "subject": "מבחן עיוני מסכם חומר נוסף2",
       "sourceFile": "end_additional2_quiz.json"
     },
     {
@@ -24574,13 +24570,13 @@
       "question": "מהו עומק העיסויים המומלץ בהחייאת תינוק?",
       "type": "multiple_choice",
       "options": [
-        "1/3 מרוחב בית החזה",
+        "1/3 מעומק בית החזה",
         "בדיוק 2 ס\"מ",
         "לפחות 5 ס\"מ",
         "עד גבול הכאב"
       ],
       "correct": 0,
-      "subject": "מבחן עיוני מסכם - חומר נוסף2",
+      "subject": "מבחן עיוני מסכם חומר נוסף2",
       "sourceFile": "end_additional2_quiz.json"
     },
     {
@@ -24594,7 +24590,7 @@
         "דום לב חשמלי (Asystole)"
       ],
       "correct": 3,
-      "subject": "מבחן עיוני מסכם - חומר נוסף2",
+      "subject": "מבחן עיוני מסכם חומר נוסף2",
       "sourceFile": "end_additional2_quiz.json"
     },
     {
@@ -24608,7 +24604,7 @@
         "3 מ\"ג"
       ],
       "correct": 1,
-      "subject": "מבחן עיוני מסכם - חומר נוסף2",
+      "subject": "מבחן עיוני מסכם חומר נוסף2",
       "sourceFile": "end_additional2_quiz.json"
     },
     {
@@ -24622,7 +24618,7 @@
         "כל 10 דקות"
       ],
       "correct": 2,
-      "subject": "מבחן עיוני מסכם - חומר נוסף2",
+      "subject": "מבחן עיוני מסכם חומר נוסף2",
       "sourceFile": "end_additional2_quiz.json"
     },
     {
@@ -24636,7 +24632,7 @@
         "1 כל 6 שניות, ללא הפסקת עיסויים"
       ],
       "correct": 3,
-      "subject": "מבחן עיוני מסכם - חומר נוסף2",
+      "subject": "מבחן עיוני מסכם חומר נוסף2",
       "sourceFile": "end_additional2_quiz.json"
     },
     {
@@ -24650,7 +24646,7 @@
         "0 mmHg"
       ],
       "correct": 2,
-      "subject": "מבחן עיוני מסכם - חומר נוסף2",
+      "subject": "מבחן עיוני מסכם חומר נוסף2",
       "sourceFile": "end_additional2_quiz.json"
     },
     {
@@ -24664,7 +24660,7 @@
         "טמפונדה קרדיאלית"
       ],
       "correct": 0,
-      "subject": "מבחן עיוני מסכם - חומר נוסף2",
+      "subject": "מבחן עיוני מסכם חומר נוסף2",
       "sourceFile": "end_additional2_quiz.json"
     },
     {
@@ -24678,7 +24674,7 @@
         "הכנסת טובוס"
       ],
       "correct": 1,
-      "subject": "מבחן עיוני מסכם - חומר נוסף2",
+      "subject": "מבחן עיוני מסכם חומר נוסף2",
       "sourceFile": "end_additional2_quiz.json"
     },
     {
@@ -24692,7 +24688,7 @@
         "כל מקרה של חולה מעל גיל 80"
       ],
       "correct": 0,
-      "subject": "מבחן עיוני מסכם - חומר נוסף2",
+      "subject": "מבחן עיוני מסכם חומר נוסף2",
       "sourceFile": "end_additional2_quiz.json"
     },
     {
@@ -24706,7 +24702,7 @@
         "לשפר ספיגת התרופות"
       ],
       "correct": 2,
-      "subject": "מבחן עיוני מסכם - חומר נוסף2",
+      "subject": "מבחן עיוני מסכם חומר נוסף2",
       "sourceFile": "end_additional2_quiz.json"
     },
     {
@@ -24720,7 +24716,7 @@
         "אסור לשלב עם מגנזיום"
       ],
       "correct": 1,
-      "subject": "מבחן עיוני מסכם - חומר נוסף2",
+      "subject": "מבחן עיוני מסכם חומר נוסף2",
       "sourceFile": "end_additional2_quiz.json"
     },
     {
@@ -24734,7 +24730,7 @@
         "כל 10 דקות"
       ],
       "correct": 2,
-      "subject": "מבחן עיוני מסכם - חומר נוסף2",
+      "subject": "מבחן עיוני מסכם חומר נוסף2",
       "sourceFile": "end_additional2_quiz.json"
     },
     {
@@ -24748,7 +24744,7 @@
         "רק לאחר חזרת דופק עצמוני"
       ],
       "correct": 2,
-      "subject": "מבחן עיוני מסכם - חומר נוסף2",
+      "subject": "מבחן עיוני מסכם חומר נוסף2",
       "sourceFile": "end_additional2_quiz.json"
     },
     {
@@ -24762,7 +24758,7 @@
         "סטורציה"
       ],
       "correct": 2,
-      "subject": "מבחן עיוני מסכם - חומר נוסף2",
+      "subject": "מבחן עיוני מסכם חומר נוסף2",
       "sourceFile": "end_additional2_quiz.json"
     },
     {
@@ -24776,7 +24772,7 @@
         "לשפר הנשמה ידנית"
       ],
       "correct": 1,
-      "subject": "מבחן עיוני מסכם - חומר נוסף2",
+      "subject": "מבחן עיוני מסכם חומר נוסף2",
       "sourceFile": "end_additional2_quiz.json"
     },
     {
@@ -24790,7 +24786,7 @@
         "מתן גלוקוז"
       ],
       "correct": 1,
-      "subject": "מבחן עיוני מסכם - חומר נוסף2",
+      "subject": "מבחן עיוני מסכם חומר נוסף2",
       "sourceFile": "end_additional2_quiz.json"
     },
     {
@@ -24804,7 +24800,7 @@
         "בדיקת סוכר"
       ],
       "correct": 2,
-      "subject": "מבחן עיוני מסכם - חומר נוסף2",
+      "subject": "מבחן עיוני מסכם חומר נוסף2",
       "sourceFile": "end_additional2_quiz.json"
     },
     {
@@ -24818,7 +24814,7 @@
         "דפיברילציה"
       ],
       "correct": 1,
-      "subject": "מבחן עיוני מסכם - חומר נוסף2",
+      "subject": "מבחן עיוני מסכם חומר נוסף2",
       "sourceFile": "end_additional2_quiz.json"
     },
     {
@@ -24832,7 +24828,7 @@
         "הפחתת היפוקסיה"
       ],
       "correct": 2,
-      "subject": "מבחן עיוני מסכם - חומר נוסף2",
+      "subject": "מבחן עיוני מסכם חומר נוסף2",
       "sourceFile": "end_additional2_quiz.json"
     },
     {
@@ -24846,7 +24842,7 @@
         "500 מ\"ג"
       ],
       "correct": 2,
-      "subject": "מבחן עיוני מסכם - חומר נוסף2",
+      "subject": "מבחן עיוני מסכם חומר נוסף2",
       "sourceFile": "end_additional2_quiz.json"
     },
     {
@@ -24860,7 +24856,7 @@
         "דופק מתחת ל־100"
       ],
       "correct": 1,
-      "subject": "מבחן עיוני מסכם - חומר נוסף2",
+      "subject": "מבחן עיוני מסכם חומר נוסף2",
       "sourceFile": "end_additional2_quiz.json"
     },
     {
@@ -24874,7 +24870,7 @@
         "כי ניטרו משפיע על ה־AV Node"
       ],
       "correct": 2,
-      "subject": "מבחן עיוני מסכם - חומר נוסף2",
+      "subject": "מבחן עיוני מסכם חומר נוסף2",
       "sourceFile": "end_additional2_quiz.json"
     },
     {
@@ -24888,7 +24884,7 @@
         "רק כאשר יש גם ברדיקרדיה"
       ],
       "correct": 2,
-      "subject": "מבחן עיוני מסכם - חומר נוסף2",
+      "subject": "מבחן עיוני מסכם חומר נוסף2",
       "sourceFile": "end_additional2_quiz.json"
     },
     {
@@ -24902,7 +24898,7 @@
         "V5-V6"
       ],
       "correct": 2,
-      "subject": "מבחן עיוני מסכם - חומר נוסף2",
+      "subject": "מבחן עיוני מסכם חומר נוסף2",
       "sourceFile": "end_additional2_quiz.json"
     },
     {
@@ -24916,7 +24912,7 @@
         "מתן קטאמין"
       ],
       "correct": 2,
-      "subject": "מבחן עיוני מסכם - חומר נוסף2",
+      "subject": "מבחן עיוני מסכם חומר נוסף2",
       "sourceFile": "end_additional2_quiz.json"
     },
     {
@@ -24930,7 +24926,7 @@
         "לאחר 3 מנות"
       ],
       "correct": 1,
-      "subject": "מבחן עיוני מסכם - חומר נוסף2",
+      "subject": "מבחן עיוני מסכם חומר נוסף2",
       "sourceFile": "end_additional2_quiz.json"
     },
     {
@@ -24944,7 +24940,7 @@
         "PEA"
       ],
       "correct": 1,
-      "subject": "מבחן עיוני מסכם - חומר נוסף2",
+      "subject": "מבחן עיוני מסכם חומר נוסף2",
       "sourceFile": "end_additional2_quiz.json"
     },
     {
@@ -24958,7 +24954,7 @@
         "100 מ\"ג ל־5 דקות"
       ],
       "correct": 1,
-      "subject": "מבחן עיוני מסכם - חומר נוסף2",
+      "subject": "מבחן עיוני מסכם חומר נוסף2",
       "sourceFile": "end_additional2_quiz.json"
     },
     {
@@ -24972,7 +24968,7 @@
         "פעילות אנטיהיסטמינית"
       ],
       "correct": 1,
-      "subject": "מבחן עיוני מסכם - חומר נוסף2",
+      "subject": "מבחן עיוני מסכם חומר נוסף2",
       "sourceFile": "end_additional2_quiz.json"
     },
     {
@@ -24986,7 +24982,7 @@
         "קצב לא סדיר עם גל P הפוך"
       ],
       "correct": 0,
-      "subject": "מבחן עיוני מסכם - חומר נוסף2",
+      "subject": "מבחן עיוני מסכם חומר נוסף2",
       "sourceFile": "end_additional2_quiz.json"
     },
     {
@@ -25000,7 +24996,7 @@
         "מגנזיום"
       ],
       "correct": 2,
-      "subject": "מבחן עיוני מסכם - חומר נוסף2",
+      "subject": "מבחן עיוני מסכם חומר נוסף2",
       "sourceFile": "end_additional2_quiz.json"
     },
     {
@@ -25014,7 +25010,7 @@
         "פרפור פרוזדורים"
       ],
       "correct": 0,
-      "subject": "מבחן עיוני מסכם - חומר נוסף2",
+      "subject": "מבחן עיוני מסכם חומר נוסף2",
       "sourceFile": "end_additional2_quiz.json"
     },
     {
@@ -25028,7 +25024,7 @@
         "הופעת PVC"
       ],
       "correct": 2,
-      "subject": "מבחן עיוני מסכם - חומר נוסף2",
+      "subject": "מבחן עיוני מסכם חומר נוסף2",
       "sourceFile": "end_additional2_quiz.json"
     },
     {
@@ -25042,7 +25038,7 @@
         "AV Block"
       ],
       "correct": 1,
-      "subject": "מבחן עיוני מסכם - חומר נוסף2",
+      "subject": "מבחן עיוני מסכם חומר נוסף2",
       "sourceFile": "end_additional2_quiz.json"
     },
     {
@@ -25052,11 +25048,11 @@
       "options": [
         "גל P",
         "אורך מקטע QT",
-        "קיוב QRS",
+        " רחב QRS",
         "תגובה לאדנוזין"
       ],
-      "correct": 3,
-      "subject": "מבחן עיוני מסכם - חומר נוסף2",
+      "correct": 2,
+      "subject": "מבחן עיוני מסכם חומר נוסף2",
       "sourceFile": "end_additional2_quiz.json"
     },
     {
@@ -25070,7 +25066,7 @@
         "PVC הפוך"
       ],
       "correct": 2,
-      "subject": "מבחן עיוני מסכם - חומר נוסף2",
+      "subject": "מבחן עיוני מסכם חומר נוסף2",
       "sourceFile": "end_additional2_quiz.json"
     },
     {
@@ -25084,7 +25080,7 @@
         "PEA"
       ],
       "correct": 1,
-      "subject": "מבחן עיוני מסכם - חומר נוסף2",
+      "subject": "מבחן עיוני מסכם חומר נוסף2",
       "sourceFile": "end_additional2_quiz.json"
     },
     {
@@ -25098,7 +25094,7 @@
         "מתן אטרופין"
       ],
       "correct": 3,
-      "subject": "מבחן עיוני מסכם - חומר נוסף2",
+      "subject": "מבחן עיוני מסכם חומר נוסף2",
       "sourceFile": "end_additional2_quiz.json"
     },
     {
@@ -25112,7 +25108,7 @@
         "ירידה בל\"ד בלבד"
       ],
       "correct": 2,
-      "subject": "מבחן עיוני מסכם - חומר נוסף2",
+      "subject": "מבחן עיוני מסכם חומר נוסף2",
       "sourceFile": "end_additional2_quiz.json"
     },
     {
@@ -25126,7 +25122,7 @@
         "צום ממושך"
       ],
       "correct": 0,
-      "subject": "מבחן עיוני מסכם - חומר נוסף2",
+      "subject": "מבחן עיוני מסכם חומר נוסף2",
       "sourceFile": "end_additional2_quiz.json"
     },
     {
@@ -25140,7 +25136,7 @@
         "חסימה מלאה בין עליה לחדר"
       ],
       "correct": 1,
-      "subject": "מבחן עיוני מסכם - חומר נוסף2",
+      "subject": "מבחן עיוני מסכם חומר נוסף2",
       "sourceFile": "end_additional2_quiz.json"
     },
     {
@@ -25154,7 +25150,7 @@
         "מדידת חום"
       ],
       "correct": 2,
-      "subject": "מבחן עיוני מסכם - חומר נוסף2",
+      "subject": "מבחן עיוני מסכם חומר נוסף2",
       "sourceFile": "end_additional2_quiz.json"
     },
     {
@@ -25168,7 +25164,7 @@
         "טכיקרדיה"
       ],
       "correct": 1,
-      "subject": "מבחן עיוני מסכם - חומר נוסף2",
+      "subject": "מבחן עיוני מסכם חומר נוסף2",
       "sourceFile": "end_additional2_quiz.json"
     },
     {
@@ -25182,7 +25178,7 @@
         "הרעלת אלכוהול"
       ],
       "correct": 1,
-      "subject": "מבחן עיוני מסכם - חומר נוסף2",
+      "subject": "מבחן עיוני מסכם חומר נוסף2",
       "sourceFile": "end_additional2_quiz.json"
     },
     {
@@ -25196,7 +25192,7 @@
         "בכל מקרה של איבוד הכרה"
       ],
       "correct": 2,
-      "subject": "מבחן עיוני מסכם - חומר נוסף2",
+      "subject": "מבחן עיוני מסכם חומר נוסף2",
       "sourceFile": "end_additional2_quiz.json"
     },
     {
@@ -25210,7 +25206,7 @@
         "ניתן לשחרר לאחר תצפית"
       ],
       "correct": 2,
-      "subject": "מבחן עיוני מסכם - חומר נוסף2",
+      "subject": "מבחן עיוני מסכם חומר נוסף2",
       "sourceFile": "end_additional2_quiz.json"
     },
     {
@@ -25224,7 +25220,7 @@
         "כאב בטן"
       ],
       "correct": 2,
-      "subject": "מבחן עיוני מסכם - חומר נוסף2",
+      "subject": "מבחן עיוני מסכם חומר נוסף2",
       "sourceFile": "end_additional2_quiz.json"
     },
     {
@@ -25238,7 +25234,7 @@
         "ניטור לב"
       ],
       "correct": 1,
-      "subject": "מבחן עיוני מסכם - חומר נוסף2",
+      "subject": "מבחן עיוני מסכם חומר נוסף2",
       "sourceFile": "end_additional2_quiz.json"
     },
     {
@@ -25252,7 +25248,7 @@
         "קואורדינציה, זיכרון, הכרה"
       ],
       "correct": 1,
-      "subject": "מבחן עיוני מסכם - חומר נוסף2",
+      "subject": "מבחן עיוני מסכם חומר נוסף2",
       "sourceFile": "end_additional2_quiz.json"
     },
     {
@@ -25266,7 +25262,7 @@
         "חובה אינטובציה בכל מקרה של חום"
       ],
       "correct": 2,
-      "subject": "מבחן עיוני מסכם - חומר נוסף2",
+      "subject": "מבחן עיוני מסכם חומר נוסף2",
       "sourceFile": "end_additional2_quiz.json"
     },
     {
@@ -25280,7 +25276,7 @@
         "8"
       ],
       "correct": 1,
-      "subject": "מבחן עיוני מסכם - חומר נוסף2",
+      "subject": "מבחן עיוני מסכם חומר נוסף2",
       "sourceFile": "end_additional2_quiz.json"
     },
     {
@@ -25294,7 +25290,7 @@
         "הידרציה מהירה"
       ],
       "correct": 2,
-      "subject": "מבחן עיוני מסכם - חומר נוסף2",
+      "subject": "מבחן עיוני מסכם חומר נוסף2",
       "sourceFile": "end_additional2_quiz.json"
     },
     {
@@ -25308,7 +25304,7 @@
         "מתחת ל־50"
       ],
       "correct": 1,
-      "subject": "מבחן עיוני מסכם - חומר נוסף2",
+      "subject": "מבחן עיוני מסכם חומר נוסף2",
       "sourceFile": "end_additional2_quiz.json"
     },
     {
@@ -25322,7 +25318,7 @@
         "אמיודרון"
       ],
       "correct": 2,
-      "subject": "מבחן עיוני מסכם - חומר נוסף2",
+      "subject": "מבחן עיוני מסכם חומר נוסף2",
       "sourceFile": "end_additional2_quiz.json"
     },
     {
@@ -25336,7 +25332,7 @@
         "50 סמ\"ק"
       ],
       "correct": 3,
-      "subject": "מבחן עיוני מסכם - חומר נוסף2",
+      "subject": "מבחן עיוני מסכם חומר נוסף2",
       "sourceFile": "end_additional2_quiz.json"
     },
     {
@@ -25350,7 +25346,7 @@
         "לרענן את הקו"
       ],
       "correct": 2,
-      "subject": "מבחן עיוני מסכם - חומר נוסף2",
+      "subject": "מבחן עיוני מסכם חומר נוסף2",
       "sourceFile": "end_additional2_quiz.json"
     },
     {
@@ -25364,7 +25360,7 @@
         "בצקת ריאות"
       ],
       "correct": 2,
-      "subject": "מבחן עיוני מסכם - חומר נוסף2",
+      "subject": "מבחן עיוני מסכם חומר נוסף2",
       "sourceFile": "end_additional2_quiz.json"
     },
     {
@@ -25378,7 +25374,7 @@
         "קרע בכלי דם מוחי"
       ],
       "correct": 2,
-      "subject": "מבחן עיוני מסכם - חומר נוסף2",
+      "subject": "מבחן עיוני מסכם חומר נוסף2",
       "sourceFile": "end_additional2_quiz.json"
     },
     {
@@ -25392,7 +25388,7 @@
         "מדידת EtCO2"
       ],
       "correct": 1,
-      "subject": "מבחן עיוני מסכם - חומר נוסף2",
+      "subject": "מבחן עיוני מסכם חומר נוסף2",
       "sourceFile": "end_additional2_quiz.json"
     },
     {
@@ -25406,7 +25402,7 @@
         "1 מ\"ג/ק\"ג"
       ],
       "correct": 1,
-      "subject": "מבחן עיוני מסכם - חומר נוסף2",
+      "subject": "מבחן עיוני מסכם חומר נוסף2",
       "sourceFile": "end_additional2_quiz.json"
     },
     {
@@ -25420,7 +25416,7 @@
         "פרפור פרוזדורים"
       ],
       "correct": 2,
-      "subject": "מבחן עיוני מסכם - חומר נוסף2",
+      "subject": "מבחן עיוני מסכם חומר נוסף2",
       "sourceFile": "end_additional2_quiz.json"
     },
     {
@@ -25434,7 +25430,7 @@
         "דופק איטי"
       ],
       "correct": 2,
-      "subject": "מבחן עיוני מסכם - חומר נוסף2",
+      "subject": "מבחן עיוני מסכם חומר נוסף2",
       "sourceFile": "end_additional2_quiz.json"
     },
     {
@@ -25448,7 +25444,7 @@
         "ירידת לחץ דם"
       ],
       "correct": 2,
-      "subject": "מבחן עיוני מסכם - חומר נוסף2",
+      "subject": "מבחן עיוני מסכם חומר נוסף2",
       "sourceFile": "end_additional2_quiz.json"
     },
     {
@@ -25462,7 +25458,7 @@
         "פרכוס"
       ],
       "correct": 2,
-      "subject": "מבחן עיוני מסכם - חומר נוסף2",
+      "subject": "מבחן עיוני מסכם חומר נוסף2",
       "sourceFile": "end_additional2_quiz.json"
     },
     {
@@ -25476,7 +25472,7 @@
         "הגברת רוק"
       ],
       "correct": 1,
-      "subject": "מבחן עיוני מסכם - חומר נוסף2",
+      "subject": "מבחן עיוני מסכם חומר נוסף2",
       "sourceFile": "end_additional2_quiz.json"
     },
     {
@@ -25490,7 +25486,7 @@
         "שבר באגן"
       ],
       "correct": 2,
-      "subject": "מבחן עיוני מסכם - חומר נוסף2",
+      "subject": "מבחן עיוני מסכם חומר נוסף2",
       "sourceFile": "end_additional2_quiz.json"
     },
     {
@@ -25504,7 +25500,7 @@
         "ירידת סטורציה"
       ],
       "correct": 2,
-      "subject": "מבחן עיוני מסכם - חומר נוסף2",
+      "subject": "מבחן עיוני מסכם חומר נוסף2",
       "sourceFile": "end_additional2_quiz.json"
     },
     {
@@ -25518,7 +25514,7 @@
         "ברדיפניאה"
       ],
       "correct": 2,
-      "subject": "מבחן עיוני מסכם - חומר נוסף2",
+      "subject": "מבחן עיוני מסכם חומר נוסף2",
       "sourceFile": "end_additional2_quiz.json"
     },
     {
@@ -25532,7 +25528,7 @@
         "חסם עורקים"
       ],
       "correct": 3,
-      "subject": "מבחן עיוני מסכם - חומר נוסף2",
+      "subject": "מבחן עיוני מסכם חומר נוסף2",
       "sourceFile": "end_additional2_quiz.json"
     },
     {
@@ -25546,7 +25542,7 @@
         "לחץ דם 140/90"
       ],
       "correct": 2,
-      "subject": "מבחן עיוני מסכם - חומר נוסף2",
+      "subject": "מבחן עיוני מסכם חומר נוסף2",
       "sourceFile": "end_additional2_quiz.json"
     },
     {
@@ -25560,7 +25556,7 @@
         "על החתך עצמו"
       ],
       "correct": 1,
-      "subject": "מבחן עיוני מסכם - חומר נוסף2",
+      "subject": "מבחן עיוני מסכם חומר נוסף2",
       "sourceFile": "end_additional2_quiz.json"
     },
     {
@@ -25574,7 +25570,7 @@
         "ירידת ל\"ד בלבד"
       ],
       "correct": 1,
-      "subject": "מבחן עיוני מסכם - חומר נוסף2",
+      "subject": "מבחן עיוני מסכם חומר נוסף2",
       "sourceFile": "end_additional2_quiz.json"
     },
     {
@@ -25588,7 +25584,7 @@
         "מרווח 5 בצד שמאל"
       ],
       "correct": 0,
-      "subject": "מבחן עיוני מסכם - חומר נוסף2",
+      "subject": "מבחן עיוני מסכם חומר נוסף2",
       "sourceFile": "end_additional2_quiz.json"
     },
     {
@@ -25602,7 +25598,7 @@
         "אינטובציה"
       ],
       "correct": 2,
-      "subject": "מבחן עיוני מסכם - חומר נוסף2",
+      "subject": "מבחן עיוני מסכם חומר נוסף2",
       "sourceFile": "end_additional2_quiz.json"
     },
     {
@@ -25616,7 +25612,7 @@
         "דופק קרוטידי"
       ],
       "correct": 2,
-      "subject": "מבחן עיוני מסכם - חומר נוסף2",
+      "subject": "מבחן עיוני מסכם חומר נוסף2",
       "sourceFile": "end_additional2_quiz.json"
     },
     {
@@ -25630,7 +25626,7 @@
         "מתן קטמין"
       ],
       "correct": 2,
-      "subject": "מבחן עיוני מסכם - חומר נוסף2",
+      "subject": "מבחן עיוני מסכם חומר נוסף2",
       "sourceFile": "end_additional2_quiz.json"
     },
     {
@@ -25644,7 +25640,7 @@
         "חובה לתת במקביל אדרנלין"
       ],
       "correct": 2,
-      "subject": "מבחן עיוני מסכם - חומר נוסף2",
+      "subject": "מבחן עיוני מסכם חומר נוסף2",
       "sourceFile": "end_additional2_quiz.json"
     },
     {
@@ -25658,7 +25654,7 @@
         "קצב מתן נוזלים"
       ],
       "correct": 1,
-      "subject": "מבחן עיוני מסכם - חומר נוסף2",
+      "subject": "מבחן עיוני מסכם חומר נוסף2",
       "sourceFile": "end_additional2_quiz.json"
     },
     {
@@ -25672,7 +25668,7 @@
         "נוזלים"
       ],
       "correct": 2,
-      "subject": "מבחן עיוני מסכם - חומר נוסף2",
+      "subject": "מבחן עיוני מסכם חומר נוסף2",
       "sourceFile": "end_additional2_quiz.json"
     },
     {
@@ -25686,7 +25682,7 @@
         "1 מ״ג"
       ],
       "correct": 1,
-      "subject": "מבחן עיוני מסכם - חומר נוסף2",
+      "subject": "מבחן עיוני מסכם חומר נוסף2",
       "sourceFile": "end_additional2_quiz.json"
     },
     {
@@ -25700,7 +25696,7 @@
         "מתן קטמין"
       ],
       "correct": 2,
-      "subject": "מבחן עיוני מסכם - חומר נוסף2",
+      "subject": "מבחן עיוני מסכם חומר נוסף2",
       "sourceFile": "end_additional2_quiz.json"
     },
     {
@@ -25714,7 +25710,7 @@
         "אנטי־היסטמין"
       ],
       "correct": 1,
-      "subject": "מבחן עיוני מסכם - חומר נוסף2",
+      "subject": "מבחן עיוני מסכם חומר נוסף2",
       "sourceFile": "end_additional2_quiz.json"
     },
     {
@@ -25728,7 +25724,7 @@
         "חום"
       ],
       "correct": 0,
-      "subject": "מבחן עיוני מסכם - חומר נוסף2",
+      "subject": "מבחן עיוני מסכם חומר נוסף2",
       "sourceFile": "end_additional2_quiz.json"
     },
     {
@@ -25742,7 +25738,7 @@
         "דיכוי מערכת העצבים"
       ],
       "correct": 2,
-      "subject": "מבחן עיוני מסכם - חומר נוסף2",
+      "subject": "מבחן עיוני מסכם חומר נוסף2",
       "sourceFile": "end_additional2_quiz.json"
     },
     {
@@ -25756,7 +25752,7 @@
         "עצירת שתן"
       ],
       "correct": 2,
-      "subject": "מבחן עיוני מסכם - חומר נוסף2",
+      "subject": "מבחן עיוני מסכם חומר נוסף2",
       "sourceFile": "end_additional2_quiz.json"
     },
     {
@@ -25770,7 +25766,7 @@
         "פראצטמול"
       ],
       "correct": 2,
-      "subject": "מבחן עיוני מסכם - חומר נוסף2",
+      "subject": "מבחן עיוני מסכם חומר נוסף2",
       "sourceFile": "end_additional2_quiz.json"
     },
     {
@@ -25784,7 +25780,7 @@
         "כיווץ אישונים"
       ],
       "correct": 2,
-      "subject": "מבחן עיוני מסכם - חומר נוסף2",
+      "subject": "מבחן עיוני מסכם חומר נוסף2",
       "sourceFile": "end_additional2_quiz.json"
     },
     {
@@ -25798,7 +25794,7 @@
         "חום"
       ],
       "correct": 1,
-      "subject": "מבחן עיוני מסכם - חומר נוסף2",
+      "subject": "מבחן עיוני מסכם חומר נוסף2",
       "sourceFile": "end_additional2_quiz.json"
     },
     {
@@ -25812,7 +25808,7 @@
         "חמצת מטבולית"
       ],
       "correct": 0,
-      "subject": "מבחן עיוני מסכם - חומר נוסף2",
+      "subject": "מבחן עיוני מסכם חומר נוסף2",
       "sourceFile": "end_additional2_quiz.json"
     },
     {
@@ -25826,7 +25822,7 @@
         "שיתוק שרירים"
       ],
       "correct": 2,
-      "subject": "מבחן עיוני מסכם - חומר נוסף2",
+      "subject": "מבחן עיוני מסכם חומר נוסף2",
       "sourceFile": "end_additional2_quiz.json"
     },
     {
@@ -25840,7 +25836,7 @@
         "אטרופין"
       ],
       "correct": 2,
-      "subject": "מבחן עיוני מסכם - חומר נוסף2",
+      "subject": "מבחן עיוני מסכם חומר נוסף2",
       "sourceFile": "end_additional2_quiz.json"
     },
     {
@@ -25854,7 +25850,7 @@
         "המרצת CNS"
       ],
       "correct": 1,
-      "subject": "מבחן עיוני מסכם - חומר נוסף2",
+      "subject": "מבחן עיוני מסכם חומר נוסף2",
       "sourceFile": "end_additional2_quiz.json"
     },
     {
@@ -25868,7 +25864,7 @@
         "גלוקוז"
       ],
       "correct": 2,
-      "subject": "מבחן עיוני מסכם - חומר נוסף2",
+      "subject": "מבחן עיוני מסכם חומר נוסף2",
       "sourceFile": "end_additional2_quiz.json"
     },
     {
@@ -25882,7 +25878,7 @@
         "סטורציה"
       ],
       "correct": 1,
-      "subject": "מבחן עיוני מסכם - חומר נוסף2",
+      "subject": "מבחן עיוני מסכם חומר נוסף2",
       "sourceFile": "end_additional2_quiz.json"
     },
     {
@@ -25896,7 +25892,7 @@
         "2 מ״ג"
       ],
       "correct": 1,
-      "subject": "מבחן עיוני מסכם - חומר נוסף2",
+      "subject": "מבחן עיוני מסכם חומר נוסף2",
       "sourceFile": "end_additional2_quiz.json"
     },
     {
@@ -25910,7 +25906,7 @@
         "פרכוס"
       ],
       "correct": 2,
-      "subject": "מבחן עיוני מסכם - חומר נוסף2",
+      "subject": "מבחן עיוני מסכם חומר נוסף2",
       "sourceFile": "end_additional2_quiz.json"
     },
     {
@@ -25924,7 +25920,7 @@
         "פראצטמול בלבד"
       ],
       "correct": 2,
-      "subject": "מבחן עיוני מסכם - חומר נוסף2",
+      "subject": "מבחן עיוני מסכם חומר נוסף2",
       "sourceFile": "end_additional2_quiz.json"
     },
     {
@@ -25938,7 +25934,7 @@
         "כאב ראש"
       ],
       "correct": 2,
-      "subject": "מבחן עיוני מסכם - חומר נוסף2",
+      "subject": "מבחן עיוני מסכם חומר נוסף2",
       "sourceFile": "end_additional2_quiz.json"
     },
     {
@@ -27476,6 +27472,706 @@
       "correct": 0,
       "subject": "מבחן עיוני מסכם החייאה",
       "sourceFile": "end_cpr_quiz.json"
+    },
+    {
+      "id": "end_birth_quiz_1",
+      "question": "מה נחשב לידה במועד?",
+      "type": "multiple_choice",
+      "options": [
+        "בין שבוע 30 ל-36",
+        "בין שבוע 37 ל-42",
+        "בין שבוע 40 ל-44",
+        "בין שבוע 28 ל-35"
+      ],
+      "correct": 1,
+      "subject": "מבחן עיוני מסכם לידה",
+      "sourceFile": "end_birth_quiz.json"
+    },
+    {
+      "id": "end_birth_quiz_2",
+      "question": "מהו הטרימסטר הראשון?",
+      "type": "multiple_choice",
+      "options": [
+        "שבועות 1-12",
+        "שבועות 1-16",
+        "שבועות 1-20",
+        "שבועות 1-24"
+      ],
+      "correct": 0,
+      "subject": "מבחן עיוני מסכם לידה",
+      "sourceFile": "end_birth_quiz.json"
+    },
+    {
+      "id": "end_birth_quiz_3",
+      "question": "מהו הטרימסטר השני?",
+      "type": "multiple_choice",
+      "options": [
+        "שבועות 10-20",
+        "שבועות 13-28",
+        "שבועות 15-30",
+        "שבועות 12-24"
+      ],
+      "correct": 1,
+      "subject": "מבחן עיוני מסכם לידה",
+      "sourceFile": "end_birth_quiz.json"
+    },
+    {
+      "id": "end_birth_quiz_4",
+      "question": "מהו הטרימסטר השלישי?",
+      "type": "multiple_choice",
+      "options": [
+        "שבועות 24-40",
+        "שבועות 28-40",
+        "שבועות 30-42",
+        "שבועות 29 ועד ללידה"
+      ],
+      "correct": 3,
+      "subject": "מבחן עיוני מסכם לידה",
+      "sourceFile": "end_birth_quiz.json"
+    },
+    {
+      "id": "end_birth_quiz_5",
+      "question": "עד איזה שבוע הריון לא מבצעים החייאה לעובר/יילוד?",
+      "type": "multiple_choice",
+      "options": [
+        "עד שבוע 20",
+        "עד שבוע 23-24",
+        "עד שבוע 28",
+        "עד שבוע 30"
+      ],
+      "correct": 1,
+      "subject": "מבחן עיוני מסכם לידה",
+      "sourceFile": "end_birth_quiz.json"
+    },
+    {
+      "id": "end_birth_quiz_6",
+      "question": "מדוע לא מבצעים החייאה לפני שבוע 20?",
+      "type": "multiple_choice",
+      "options": [
+        "זה אסור על פי חוק",
+        "אין ציוד מתאים",
+        "הסיכויים להישרדות נמוכים מאוד והעובר אינו ניתן לחיים (non-viable)",
+        "זה מסוכן לאם"
+      ],
+      "correct": 2,
+      "subject": "מבחן עיוני מסכם לידה",
+      "sourceFile": "end_birth_quiz.json"
+    },
+    {
+      "id": "end_birth_quiz_7",
+      "question": "מהם השינויים הקרדיווסקולריים בהריון?",
+      "type": "multiple_choice",
+      "options": [
+        "עלייה בנפח הדם ובתפוקת הלב, ירידה קלה בלחץ דם",
+        "ירידה בנפח הדם",
+        "עלייה משמעותית בלחץ דם",
+        "אין שינוי"
+      ],
+      "correct": 0,
+      "subject": "מבחן עיוני מסכם לידה",
+      "sourceFile": "end_birth_quiz.json"
+    },
+    {
+      "id": "end_birth_quiz_8",
+      "question": "מהם השינויים הנשימתיים בהריון?",
+      "type": "multiple_choice",
+      "options": [
+        "ירידה בנפח הנשימה",
+        "עלייה בקצב הנשימה ובנפח הנשימה, תחושת קוצר נשימה",
+        "אין שינוי",
+        "רק עלייה בקצב"
+      ],
+      "correct": 1,
+      "subject": "מבחן עיוני מסכם לידה",
+      "sourceFile": "end_birth_quiz.json"
+    },
+    {
+      "id": "end_birth_quiz_9",
+      "question": "מהם השינויים המטבוליים בהריון?",
+      "type": "multiple_choice",
+      "options": [
+        "עלייה בקצב המטבולי ובצריכת חמצן",
+        "ירידה בקצב המטבולי",
+        "אין שינוי",
+        "רק שינויים הורמונליים"
+      ],
+      "correct": 0,
+      "subject": "מבחן עיוני מסכם לידה",
+      "sourceFile": "end_birth_quiz.json"
+    },
+    {
+      "id": "end_birth_quiz_10",
+      "question": "מהו הסיכון של Supine Hypotension Syndrome בהריון?",
+      "type": "multiple_choice",
+      "options": [
+        "הרחם הכבד לוחץ על Vena Cava Inferior בשכיבה על הגב ומפחית החזר ורידי",
+        "לחץ דם גבוה",
+        "קצב לב מהיר",
+        "אין סיכון"
+      ],
+      "correct": 0,
+      "subject": "מבחן עיוני מסכם לידה",
+      "sourceFile": "end_birth_quiz.json"
+    },
+    {
+      "id": "end_birth_quiz_11",
+      "question": "כיצד מונעים Supine Hypotension בהריונית?",
+      "type": "multiple_choice",
+      "options": [
+        "שכיבה על הגב בלבד",
+        "הטיית רחם שמאלה או שכיבה על הצד השמאלי",
+        "עמידה",
+        "אין צורך במניעה"
+      ],
+      "correct": 1,
+      "subject": "מבחן עיוני מסכם לידה",
+      "sourceFile": "end_birth_quiz.json"
+    },
+    {
+      "id": "end_birth_quiz_12",
+      "question": "מה חשוב לשאול על גיל ההריון?",
+      "type": "multiple_choice",
+      "options": [
+        "כמה שבועות היריון (לפי LMP - Last Menstrual Period או אולטרסאונד)",
+        "רק תאריך הלידה",
+        "משקל האישה",
+        "אין צורך לדעת"
+      ],
+      "correct": 0,
+      "subject": "מבחן עיוני מסכם לידה",
+      "sourceFile": "end_birth_quiz.json"
+    },
+    {
+      "id": "end_birth_quiz_13",
+      "question": "מדוע חשוב לשאול על לידות קודמות?",
+      "type": "multiple_choice",
+      "options": [
+        "לא חשוב",
+        "לקבוע סיכון ללידה מהירה, סיבוכים קודמים, ניסיון האישה",
+        "רק לתיעוד",
+        "רק למידע סטטיסטי"
+      ],
+      "correct": 1,
+      "subject": "מבחן עיוני מסכם לידה",
+      "sourceFile": "end_birth_quiz.json"
+    },
+    {
+      "id": "end_birth_quiz_14",
+      "question": "מה המשמעות של ירידת מים?",
+      "type": "multiple_choice",
+      "options": [
+        "קרע בשק השפיר (Amniotic Sac) והשפרת מי שפיר",
+        "דימום",
+        "צירים",
+        "אין משמעות"
+      ],
+      "correct": 0,
+      "subject": "מבחן עיוני מסכם לידה",
+      "sourceFile": "end_birth_quiz.json"
+    },
+    {
+      "id": "end_birth_quiz_15",
+      "question": "מה זה מים מקוניאליים?",
+      "type": "multiple_choice",
+      "options": [
+        "מים צלולים",
+        "מי שפיר עם גוון ירקרק-חום - מעיד על צואה עוברית (Meconium) ועל מצוקה עוברית אפשרית",
+        "דם",
+        "נוזל נורמלי"
+      ],
+      "correct": 1,
+      "subject": "מבחן עיוני מסכם לידה",
+      "sourceFile": "end_birth_quiz.json"
+    },
+    {
+      "id": "end_birth_quiz_16",
+      "question": "מה חשוב לשאול על צירים?",
+      "type": "multiple_choice",
+      "options": [
+        "תדירות - כל כמה דקות, משך - כמה זמן כל ציר נמשך, עוצמה",
+        "רק אם יש כאב",
+        "אין צורך לשאול",
+        "רק הזמן"
+      ],
+      "correct": 0,
+      "subject": "מבחן עיוני מסכם לידה",
+      "sourceFile": "end_birth_quiz.json"
+    },
+    {
+      "id": "end_birth_quiz_17",
+      "question": "מה מעיד על לידה קרובה?",
+      "type": "multiple_choice",
+      "options": [
+        "צירים כל 10 דקות",
+        "צירים קבועים כל 2-3 דקות הנמשכים 60 שניות",
+        "צירים לא סדירים",
+        "אין צירים"
+      ],
+      "correct": 1,
+      "subject": "מבחן עיוני מסכם לידה",
+      "sourceFile": "end_birth_quiz.json"
+    },
+    {
+      "id": "end_birth_quiz_18",
+      "question": "מדוע חשוב לדעת את מספר העוברים?",
+      "type": "multiple_choice",
+      "options": [
+        "אין חשיבות",
+        "הריון מרובה עוברים - סיכון גבוה יותר, צורך בהכנה מתאימה",
+        "רק למידע",
+        "רק לתיעוד"
+      ],
+      "correct": 1,
+      "subject": "מבחן עיוני מסכם לידה",
+      "sourceFile": "end_birth_quiz.json"
+    },
+    {
+      "id": "end_birth_quiz_19",
+      "question": "מהו מנח העובר?",
+      "type": "multiple_choice",
+      "options": [
+        "גודל העובר",
+        "מיקום העובר - ראש למטה (Cephalic), עכוז (Breech), רוחבי",
+        "משקל העובר",
+        "גיל העובר"
+      ],
+      "correct": 1,
+      "subject": "מבחן עיוני מסכם לידה",
+      "sourceFile": "end_birth_quiz.json"
+    },
+    {
+      "id": "end_birth_quiz_20",
+      "question": "מהו המנח האידיאלי ללידה?",
+      "type": "multiple_choice",
+      "options": [
+        "עכוז",
+        "רוחבי",
+        "ראש למטה (Cephalic/Vertex)",
+        "אין הבדל"
+      ],
+      "correct": 2,
+      "subject": "מבחן עיוני מסכם לידה",
+      "sourceFile": "end_birth_quiz.json"
+    },
+    {
+      "id": "end_birth_quiz_21",
+      "question": "מדוע חשוב לשאול על עישון ואלכוהול בהריון?",
+      "type": "multiple_choice",
+      "options": [
+        "אין חשיבות",
+        "גורמי סיכון לסיבוכי הריון ולידה, פגיעה בעובר",
+        "רק למידע",
+        "רק לתיעוד"
+      ],
+      "correct": 1,
+      "subject": "מבחן עיוני מסכם לידה",
+      "sourceFile": "end_birth_quiz.json"
+    },
+    {
+      "id": "end_birth_quiz_22",
+      "question": "מה המשמעות של דחף עז לריקון מעיים בהריונית?",
+      "type": "multiple_choice",
+      "options": [
+        "בעיית עיכול",
+        "עלול להעיד על שלב מתקדם של לידה - לחץ של הראש על פי הטבעת",
+        "אין משמעות",
+        "סימן למחלה"
+      ],
+      "correct": 1,
+      "subject": "מבחן עיוני מסכם לידה",
+      "sourceFile": "end_birth_quiz.json"
+    },
+    {
+      "id": "end_birth_quiz_23",
+      "question": "מה זו רעלת הריון (Preeclampsia)?",
+      "type": "multiple_choice",
+      "options": [
+        "זיהום בהריון",
+        "לחץ דם גבוה עם חלבון בשתן אחרי שבוע 20 להריון",
+        "סוכרת בהריון",
+        "אנמיה בהריון"
+      ],
+      "correct": 1,
+      "subject": "מבחן עיוני מסכם לידה",
+      "sourceFile": "end_birth_quiz.json"
+    },
+    {
+      "id": "end_birth_quiz_24",
+      "question": "מהם הסימנים הקלאסיים לרעלת הריון?",
+      "type": "multiple_choice",
+      "options": [
+        "חום גבוה",
+        "לחץ דם גבוה (>140/90), חלבון בשתן, בצקות",
+        "לחץ דם נמוך",
+        "קוצר נשימה בלבד"
+      ],
+      "correct": 1,
+      "subject": "מבחן עיוני מסכם לידה",
+      "sourceFile": "end_birth_quiz.json"
+    },
+    {
+      "id": "end_birth_quiz_25",
+      "question": "מה זו אקלמפסיה (Eclampsia)?",
+      "type": "multiple_choice",
+      "options": [
+        "רעלת הריון עם פרכוסים",
+        "לחץ דם נמוך",
+        "סוכרת",
+        "זיהום"
+      ],
+      "correct": 0,
+      "subject": "מבחן עיוני מסכם לידה",
+      "sourceFile": "end_birth_quiz.json"
+    },
+    {
+      "id": "end_birth_quiz_26",
+      "question": "מהם גורמי הסיכון לרעלת הריון?",
+      "type": "multiple_choice",
+      "options": [
+        "הריון ראשון, גיל מעל 35 או מתחת ל-20, הריון מרובה עוברים, רעלת הריון קודמת, מחלות כרוניות (סוכרת, יתר לחץ דם)",
+        "רק גיל צעיר",
+        "רק עישון",
+        "אין גורמי סיכון"
+      ],
+      "correct": 0,
+      "subject": "מבחן עיוני מסכם לידה",
+      "sourceFile": "end_birth_quiz.json"
+    },
+    {
+      "id": "end_birth_quiz_27",
+      "question": "מהו הטיפול החירום ברעלת הריון/אקלמפסיה?",
+      "type": "multiple_choice",
+      "options": [
+        "אנטיביוטיקה",
+        "מגנזיום סולפט למניעת פרכוסים, שליטה בלחץ דם, פינוי מהיר לבית חולים",
+        "רק נוזלים",
+        "רק חמצן"
+      ],
+      "correct": 1,
+      "subject": "מבחן עיוני מסכם לידה",
+      "sourceFile": "end_birth_quiz.json"
+    },
+    {
+      "id": "end_birth_quiz_28",
+      "question": "מה זו שליית פתח (Placenta Previa)?",
+      "type": "multiple_choice",
+      "options": [
+        "השליה נמצאת במיקום תקין",
+        "השליה חוסמת חלקית או מלאה את צוואר הרחם",
+        "השליה מתנתקת",
+        "אין שליה"
+      ],
+      "correct": 1,
+      "subject": "מבחן עיוני מסכם לידה",
+      "sourceFile": "end_birth_quiz.json"
+    },
+    {
+      "id": "end_birth_quiz_29",
+      "question": "מהו הסימפטום העיקרי של שליית פתח?",
+      "type": "multiple_choice",
+      "options": [
+        "כאב עז",
+        "דימום ורידי בהיר ללא כאב (Painless Bleeding) בד\"כ בטרימסטר השלישי",
+        "חום",
+        "בחילות"
+      ],
+      "correct": 1,
+      "subject": "מבחן עיוני מסכם לידה",
+      "sourceFile": "end_birth_quiz.json"
+    },
+    {
+      "id": "end_birth_quiz_30",
+      "question": "מהם גורמי הסיכון לשליית פתח?",
+      "type": "multiple_choice",
+      "options": [
+        "לידות קודמות מרובות, ניתוחי רחם קודמים (כולל קיסרי), הריון מרובה עוברים, גיל אם מבוגר, עישון",
+        "רק גיל צעיר",
+        "רק הריון ראשון",
+        "אין גורמי סיכון"
+      ],
+      "correct": 0,
+      "subject": "מבחן עיוני מסכם לידה",
+      "sourceFile": "end_birth_quiz.json"
+    },
+    {
+      "id": "end_birth_quiz_31",
+      "question": "מה אסור לעשות בחשד לשליית פתח?",
+      "type": "multiple_choice",
+      "options": [
+        "בדיקה ידנית נרתיקית - עלולה להחמיר את הדימום",
+        "מדידת לחץ דם",
+        "מתן חמצן",
+        "שכיבה"
+      ],
+      "correct": 0,
+      "subject": "מבחן עיוני מסכם לידה",
+      "sourceFile": "end_birth_quiz.json"
+    },
+    {
+      "id": "end_birth_quiz_32",
+      "question": "מהו הטיפול בשליית פתח בשטח?",
+      "type": "multiple_choice",
+      "options": [
+        "בדיקה פנימית",
+        "מנוחה, פינוי מהיר, נוזלים IV במידת הצורך, הכנה לאובדן דם",
+        "רק המתנה",
+        "לידה בשטח"
+      ],
+      "correct": 1,
+      "subject": "מבחן עיוני מסכם לידה",
+      "sourceFile": "end_birth_quiz.json"
+    },
+    {
+      "id": "end_birth_quiz_33",
+      "question": "מה חשוב לשאול על מחלות רקע בהריון?",
+      "type": "multiple_choice",
+      "options": [
+        "אין חשיבות",
+        "סוכרת, יתר לחץ דם, מחלות לב, אסתמה - משפיעות על ניהול ההריון והלידה",
+        "רק גיל",
+        "רק משקל"
+      ],
+      "correct": 1,
+      "subject": "מבחן עיוני מסכם לידה",
+      "sourceFile": "end_birth_quiz.json"
+    },
+    {
+      "id": "end_birth_quiz_34",
+      "question": "מדוע חשוב לדעת על רגישות לתרופות בהריונית?",
+      "type": "multiple_choice",
+      "options": [
+        "אין חשיבות",
+        "למניעת תגובות אלרגיות בטיפול חירום",
+        "רק למידע",
+        "רק לתיעוד"
+      ],
+      "correct": 1,
+      "subject": "מבחן עיוני מסכם לידה",
+      "sourceFile": "end_birth_quiz.json"
+    },
+    {
+      "id": "end_birth_quiz_35",
+      "question": "מה המשמעות של הפרשות ורודות/דמיות בסוף ההריון?",
+      "type": "multiple_choice",
+      "options": [
+        "זיהום",
+        "\"Bloody Show\" - שחרור פקק ריר מצוואר הרחם, מעיד על התחלת לידה",
+        "סימן מסוכן תמיד",
+        "אין משמעות"
+      ],
+      "correct": 1,
+      "subject": "מבחן עיוני מסכם לידה",
+      "sourceFile": "end_birth_quiz.json"
+    },
+    {
+      "id": "end_birth_quiz_36",
+      "question": "מה חשיבות כרטיס מעקב הריון?",
+      "type": "multiple_choice",
+      "options": [
+        "אין חשיבות",
+        "מכיל מידע חיוני: גיל הריון, מנח עובר, קבוצת דם, סיבוכים, בדיקות",
+        "רק למידע",
+        "רק לארכיון"
+      ],
+      "correct": 1,
+      "subject": "מבחן עיוני מסכם לידה",
+      "sourceFile": "end_birth_quiz.json"
+    },
+    {
+      "id": "end_birth_quiz_37",
+      "question": "מדוע חשוב לשאול על מחלות מדבקות בהריון?",
+      "type": "multiple_choice",
+      "options": [
+        "אין חשיבות",
+        "סיכון להדבקת צוות, סיכון לעובר, צורך באמצעי מגן",
+        "רק למידע",
+        "רק לתיעוד"
+      ],
+      "correct": 1,
+      "subject": "מבחן עיוני מסכם לידה",
+      "sourceFile": "end_birth_quiz.json"
+    },
+    {
+      "id": "end_birth_quiz_38",
+      "question": "מהי סוכרת הריונית (Gestational Diabetes)?",
+      "type": "multiple_choice",
+      "options": [
+        "סוכרת שהייתה לפני ההריון",
+        "עמידות לאינסולין המתפתחת במהלך ההריון",
+        "רעלת הריון",
+        "זיהום"
+      ],
+      "correct": 1,
+      "subject": "מבחן עיוני מסכם לידה",
+      "sourceFile": "end_birth_quiz.json"
+    },
+    {
+      "id": "end_birth_quiz_39",
+      "question": "מהם הסיכונים של סוכרת הריונית?",
+      "type": "multiple_choice",
+      "options": [
+        "עובר גדול (Macrosomia), היפוגליקמיה ביילוד, סיבוכי לידה",
+        "אין סיכונים",
+        "רק לאם",
+        "רק לעובר"
+      ],
+      "correct": 0,
+      "subject": "מבחן עיוני מסכם לידה",
+      "sourceFile": "end_birth_quiz.json"
+    },
+    {
+      "id": "end_birth_quiz_40",
+      "question": "מה זו היפרדות שליה (Placental Abruption)?",
+      "type": "multiple_choice",
+      "options": [
+        "שליית פתח",
+        "היפרדות מוקדמת של השליה מדופן הרחם לפני הלידה",
+        "שליה נורמלית",
+        "זיהום שליה"
+      ],
+      "correct": 1,
+      "subject": "מבחן עיוני מסכם לידה",
+      "sourceFile": "end_birth_quiz.json"
+    },
+    {
+      "id": "end_birth_quiz_41",
+      "question": "מהם הסימנים של היפרדות שליה?",
+      "type": "multiple_choice",
+      "options": [
+        "דימום (חיצוני או פנימי), כאב בטן חמור, רחם קשה, מצוקה עוברית",
+        "אין סימנים",
+        "רק חום",
+        "רק בחילות"
+      ],
+      "correct": 0,
+      "subject": "מבחן עיוני מסכם לידה",
+      "sourceFile": "end_birth_quiz.json"
+    },
+    {
+      "id": "end_birth_quiz_42",
+      "question": "מה ההבדל בין שליית פתח להיפרדות שליה?",
+      "type": "multiple_choice",
+      "options": [
+        "שליית פתח - דימום ללא כאב; היפרדות שליה - דימום עם כאב חמור",
+        "אין הבדל",
+        "רק במיקום",
+        "רק בטיפול"
+      ],
+      "correct": 0,
+      "subject": "מבחן עיוני מסכם לידה",
+      "sourceFile": "end_birth_quiz.json"
+    },
+    {
+      "id": "end_birth_quiz_43",
+      "question": "מהו חבל טבור סביב צוואר (Nuchal Cord)?",
+      "type": "multiple_choice",
+      "options": [
+        "חבל טבור תקין",
+        "חבל טבור כרוך סביב צוואר העובר - עלול לגרום למצוקה",
+        "חבל טבור קצר",
+        "חבל טבור ארוך"
+      ],
+      "correct": 1,
+      "subject": "מבחן עיוני מסכם לידה",
+      "sourceFile": "end_birth_quiz.json"
+    },
+    {
+      "id": "end_birth_quiz_44",
+      "question": "מה עושים אם מזהים חבל טבור סביב צוואר בלידה?",
+      "type": "multiple_choice",
+      "options": [
+        "מתעלמים",
+        "מנסים להסיט בעדינות או להחליק מעל הראש",
+        "מושכים חזק",
+        "חותכים מיד"
+      ],
+      "correct": 1,
+      "subject": "מבחן עיוני מסכם לידה",
+      "sourceFile": "end_birth_quiz.json"
+    },
+    {
+      "id": "end_birth_quiz_45",
+      "question": "מהי לידת עכוז (Breech Delivery)?",
+      "type": "multiple_choice",
+      "options": [
+        "ראש קדימה",
+        "ירכיים או רגליים יוצאות ראשונות",
+        "כתף קדימה",
+        "לידה נורמלית"
+      ],
+      "correct": 1,
+      "subject": "מבחן עיוני מסכם לידה",
+      "sourceFile": "end_birth_quiz.json"
+    },
+    {
+      "id": "end_birth_quiz_46",
+      "question": "מהם הסיכונים בלידת עכוז?",
+      "type": "multiple_choice",
+      "options": [
+        "אין סיכונים",
+        "הראש (החלק הגדול) יוצא אחרון, סיכון לתפיסת ראש, פגיעה בחבל טבור",
+        "רק קל יותר",
+        "רק מהיר יותר"
+      ],
+      "correct": 1,
+      "subject": "מבחן עיוני מסכם לידה",
+      "sourceFile": "end_birth_quiz.json"
+    },
+    {
+      "id": "end_birth_quiz_47",
+      "question": "מהו פרוצדנס של חבל טבור (Cord Prolapse)?",
+      "type": "multiple_choice",
+      "options": [
+        "חבל טבור תקין",
+        "חבל הטבור יוצא לפני העובר - חירום מיילדותי!",
+        "חבל טבור סביב צוואר",
+        "חבל טבור קצר"
+      ],
+      "correct": 1,
+      "subject": "מבחן עיוני מסכם לידה",
+      "sourceFile": "end_birth_quiz.json"
+    },
+    {
+      "id": "end_birth_quiz_48",
+      "question": "מה הטיפול בפרוצדנס של חבל טבור?",
+      "type": "multiple_choice",
+      "options": [
+        "המתנה",
+        "הרמת החלק המציג של העובר כלפי מעלה, שכיבת האם עם רגליים מורמות, כיסוי החבל בחומר לח חם, פינוי דחוף",
+        "רק תצפית",
+        "אין טיפול"
+      ],
+      "correct": 1,
+      "subject": "מבחן עיוני מסכם לידה",
+      "sourceFile": "end_birth_quiz.json"
+    },
+    {
+      "id": "end_birth_quiz_49",
+      "question": "מתי מבצעים החייאה לאם הרה?",
+      "type": "multiple_choice",
+      "options": [
+        "בדיוק כמו כל מטופל, עם הטיית רחם שמאלה ושיקול קיסרי חירום אחרי 4 דקות",
+        "אסור להחיות",
+        "רק עיסויים",
+        "רק תרופות"
+      ],
+      "correct": 0,
+      "subject": "מבחן עיוני מסכם לידה",
+      "sourceFile": "end_birth_quiz.json"
+    },
+    {
+      "id": "end_birth_quiz_50",
+      "question": "מדוע מטים את הרחם שמאלה בהחייאת הריונית?",
+      "type": "multiple_choice",
+      "options": [
+        "אין צורך",
+        "למנוע לחיצה על Vena Cava Inferior ולשפר את החזר הדם ללב",
+        "רק לנוחות",
+        "רק למראה"
+      ],
+      "correct": 1,
+      "subject": "מבחן עיוני מסכם לידה",
+      "sourceFile": "end_birth_quiz.json"
     }
   ]
 }
