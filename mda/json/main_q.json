@@ -1,7 +1,7 @@
 {
   "subject": "שאלון חזרה כללי",
   "description": "שאלון מאוחד של כל השאלות מקבצי ה-quiz השונים",
-  "totalQuestions": 1968,
+  "totalQuestions": 1967,
   "sourceFiles": [
     "anaphylaxis_quiz.json",
     "asthma_quiz.json",
@@ -40,7 +40,7 @@
     "end_birth_quiz.json",
     "end_misc_quiz.json"
   ],
-  "createdAt": "2025-12-02T20:49:16.659Z",
+  "createdAt": "2025-12-02T20:56:07.335Z",
   "questions": [
     {
       "id": "anaphylaxis_quiz_1",
@@ -27536,7 +27536,7 @@
       "type": "multiple_choice",
       "options": [
         "עד שבוע 20",
-        "עד שבוע 23-24",
+        "עד שבוע 22",
         "עד שבוע 28",
         "עד שבוע 30"
       ],
@@ -27546,7 +27546,7 @@
     },
     {
       "id": "end_birth_quiz_6",
-      "question": "מדוע לא מבצעים החייאה לפני שבוע 20?",
+      "question": "מדוע לא מבצעים החייאה לפני שבוע 22?",
       "type": "multiple_choice",
       "options": [
         "זה אסור על פי חוק",
@@ -27616,7 +27616,7 @@
     },
     {
       "id": "end_birth_quiz_11",
-      "question": "כיצד מונעים Supine Hypotension בהריונית?",
+      "question": "כיצד מונעים ירידת לחץ דם בשכיבה על הגב (Supine Hypotension) בהריונית?",
       "type": "multiple_choice",
       "options": [
         "שכיבה על הגב בלבד",
@@ -27742,7 +27742,7 @@
     },
     {
       "id": "end_birth_quiz_20",
-      "question": "מהו המנח האידיאלי ללידה?",
+      "question": "מהו המנח האידיאלי של העובר ללידה?",
       "type": "multiple_choice",
       "options": [
         "עכוז",
@@ -27965,20 +27965,6 @@
       "sourceFile": "end_birth_quiz.json"
     },
     {
-      "id": "end_birth_quiz_36",
-      "question": "מה חשיבות כרטיס מעקב הריון?",
-      "type": "multiple_choice",
-      "options": [
-        "אין חשיבות",
-        "מכיל מידע חיוני: גיל הריון, מנח עובר, קבוצת דם, סיבוכים, בדיקות",
-        "רק למידע",
-        "רק לארכיון"
-      ],
-      "correct": 1,
-      "subject": "מבחן עיוני מסכם לידה",
-      "sourceFile": "end_birth_quiz.json"
-    },
-    {
       "id": "end_birth_quiz_37",
       "question": "מדוע חשוב לשאול על מחלות מדבקות בהריון?",
       "type": "multiple_choice",
@@ -28120,7 +28106,7 @@
     },
     {
       "id": "end_birth_quiz_47",
-      "question": "מהו פרוצדנס של חבל טבור (Cord Prolapse)?",
+      "question": "מהו שמט של חבל טבור (Cord Prolapse)?",
       "type": "multiple_choice",
       "options": [
         "חבל טבור תקין",
@@ -28134,11 +28120,11 @@
     },
     {
       "id": "end_birth_quiz_48",
-      "question": "מה הטיפול בפרוצדנס של חבל טבור?",
+      "question": "מה הטיפול שמט של חבל טבור?",
       "type": "multiple_choice",
       "options": [
         "המתנה",
-        "הרמת החלק המציג של העובר כלפי מעלה, שכיבת האם עם רגליים מורמות, כיסוי החבל בחומר לח חם, פינוי דחוף",
+        "הזז בזהירות את החלק של העובר שלוחץ על חבל הטבור, שכיבת האם עם רגליים מורמות, כיסוי החבל בחומר לח חם, פינוי דחוף",
         "רק תצפית",
         "אין טיפול"
       ],
