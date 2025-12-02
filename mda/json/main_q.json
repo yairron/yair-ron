@@ -1,7 +1,7 @@
 {
   "subject": "שאלון חזרה כללי",
   "description": "שאלון מאוחד של כל השאלות מקבצי ה-quiz השונים",
-  "totalQuestions": 1875,
+  "totalQuestions": 1968,
   "sourceFiles": [
     "anaphylaxis_quiz.json",
     "asthma_quiz.json",
@@ -37,9 +37,10 @@
     "end_additional1_quiz.json",
     "end_additional2_quiz.json",
     "end_cpr_quiz.json",
-    "end_birth_quiz.json"
+    "end_birth_quiz.json",
+    "end_misc_quiz.json"
   ],
-  "createdAt": "2025-12-02T20:06:26.493Z",
+  "createdAt": "2025-12-02T20:49:16.659Z",
   "questions": [
     {
       "id": "anaphylaxis_quiz_1",
@@ -28172,6 +28173,1308 @@
       "correct": 1,
       "subject": "מבחן עיוני מסכם לידה",
       "sourceFile": "end_birth_quiz.json"
+    },
+    {
+      "id": "end_misc_quiz_1",
+      "question": "מה ההבדל בין IV ל-IO?",
+      "type": "multiple_choice",
+      "options": [
+        "IV - תוך ורידי, IO - תוך גרמי (Intraosseous)",
+        "אין הבדל",
+        "רק במהירות",
+        "רק בעוצמה"
+      ],
+      "correct": 0,
+      "subject": "פרמקולוגיה, מערכת הדם, הלם וחירום רפואי",
+      "sourceFile": "end_misc_quiz.json"
+    },
+    {
+      "id": "end_misc_quiz_2",
+      "question": "מה היתרון של IO על פני IV?",
+      "type": "multiple_choice",
+      "options": [
+        "IO מהיר יותר",
+        "גישה מהירה כאשר קשה להשיג IV, במיוחד בילדים, במצבי הלם או דום לב",
+        "IO זול יותר",
+        "IO כואב פחות"
+      ],
+      "correct": 1,
+      "subject": "פרמקולוגיה, מערכת הדם, הלם וחירום רפואי",
+      "sourceFile": "end_misc_quiz.json"
+    },
+    {
+      "id": "end_misc_quiz_3",
+      "question": "מה ההבדל בזמן ספיגה בין IV ל-IO?",
+      "type": "multiple_choice",
+      "options": [
+        "IV מהיר בהרבה",
+        "IO איטי משמעותית",
+        "אין הבדל משמעותי - שניהם מגיעים במהירות למחזור הדם",
+        "IO נספג רק בילדים"
+      ],
+      "correct": 2,
+      "subject": "פרמקולוגיה, מערכת הדם, הלם וחירום רפואי",
+      "sourceFile": "end_misc_quiz.json"
+    },
+    {
+      "id": "end_misc_quiz_4",
+      "question": "מה המינון של תרופה ב-IO ביחס ל-IV?",
+      "type": "multiple_choice",
+      "options": [
+        "IO דורש מינון כפול",
+        "IO דורש מינון חצי",
+        "המינון זהה",
+        "IO לא ניתן להשתמש בתרופות"
+      ],
+      "correct": 2,
+      "subject": "פרמקולוגיה, מערכת הדם, הלם וחירום רפואי",
+      "sourceFile": "end_misc_quiz.json"
+    },
+    {
+      "id": "end_misc_quiz_5",
+      "question": "היכן מבצעים IO בילדים?",
+      "type": "multiple_choice",
+      "options": [
+        "רק בראש",
+        "טיביה פרוקסימלית (מתחת לפיקת הברך), פמור דיסטלי",
+        "רק בזרוע",
+        "בכל מקום"
+      ],
+      "correct": 1,
+      "subject": "פרמקולוגיה, מערכת הדם, הלם וחירום רפואי",
+      "sourceFile": "end_misc_quiz.json"
+    },
+    {
+      "id": "end_misc_quiz_6",
+      "question": "היכן מבצעים IO במבוגרים?",
+      "type": "multiple_choice",
+      "options": [
+        "טיביה פרוקסימלית, הומרוס פרוקסימלי, סטרנום",
+        "רק בראש",
+        "רק בכף היד",
+        "אי אפשר IO במבוגרים"
+      ],
+      "correct": 0,
+      "subject": "פרמקולוגיה, מערכת הדם, הלם וחירום רפואי",
+      "sourceFile": "end_misc_quiz.json"
+    },
+    {
+      "id": "end_misc_quiz_7",
+      "question": "מהן התוויות הנגד ל-IO?",
+      "type": "multiple_choice",
+      "options": [
+        "שבר באזור ההחדרה, זיהום באזור, ניסיון IO קודם באותה עצם",
+        "אין התוויות נגד",
+        "רק גיל מבוגר",
+        "רק ילדים"
+      ],
+      "correct": 0,
+      "subject": "פרמקולוגיה, מערכת הדם, הלם וחירום רפואי",
+      "sourceFile": "end_misc_quiz.json"
+    },
+    {
+      "id": "end_misc_quiz_8",
+      "question": "מה חשוב לעשות אחרי מתן תרופה ב-IO?",
+      "type": "multiple_choice",
+      "options": [
+        "כלום",
+        "שטיפה עם 10-20 מ\"ל נורמל סליין לדחיפת התרופה למחזור",
+        "רק המתנה",
+        "הסרת הצנתר"
+      ],
+      "correct": 1,
+      "subject": "פרמקולוגיה, מערכת הדם, הלם וחירום רפואי",
+      "sourceFile": "end_misc_quiz.json"
+    },
+    {
+      "id": "end_misc_quiz_9",
+      "question": "מהי האינדיקציה למתן אספירין?",
+      "type": "multiple_choice",
+      "options": [
+        "חום",
+        "חשד ל-ACS (Acute Coronary Syndrome) - תעוקת חזה",
+        "כאב ראש",
+        "שיעול"
+      ],
+      "correct": 1,
+      "subject": "פרמקולוגיה, מערכת הדם, הלם וחירום רפואי",
+      "sourceFile": "end_misc_quiz.json"
+    },
+    {
+      "id": "end_misc_quiz_10",
+      "question": "מהו המינון של אספירין ב-ACS?",
+      "type": "multiple_choice",
+      "options": [
+        "75 מ\"ג",
+        "100 מ\"ג",
+        "160-325 מ\"ג ללעיסה",
+        "500 מ\"ג"
+      ],
+      "correct": 2,
+      "subject": "פרמקולוגיה, מערכת הדם, הלם וחירום רפואי",
+      "sourceFile": "end_misc_quiz.json"
+    },
+    {
+      "id": "end_misc_quiz_11",
+      "question": "מהו מנגנון הפעולה של אספירין?",
+      "type": "multiple_choice",
+      "options": [
+        "הרחבת כלי דם",
+        "עיכוב בלתי הפיך של אגרגציית טסיות",
+        "הורדת חום בלבד",
+        "הגברת קרישה"
+      ],
+      "correct": 1,
+      "subject": "פרמקולוגיה, מערכת הדם, הלם וחירום רפואי",
+      "sourceFile": "end_misc_quiz.json"
+    },
+    {
+      "id": "end_misc_quiz_12",
+      "question": "מדוע נותנים אספירין ללעיסה?",
+      "type": "multiple_choice",
+      "options": [
+        "טעים יותר",
+        "ספיגה מהירה יותר דרך רירית הפה",
+        "זול יותר",
+        "אין הבדל"
+      ],
+      "correct": 1,
+      "subject": "פרמקולוגיה, מערכת הדם, הלם וחירום רפואי",
+      "sourceFile": "end_misc_quiz.json"
+    },
+    {
+      "id": "end_misc_quiz_13",
+      "question": "מהן התוויות הנגד לאספירין?",
+      "type": "multiple_choice",
+      "options": [
+        "דימום פעיל, אלרגיה לאספירין או NSAID, כיב פפטי פעיל",
+        "רק גיל מבוגר",
+        "רק סוכרת",
+        "אין התוויות נגד"
+      ],
+      "correct": 0,
+      "subject": "פרמקולוגיה, מערכת הדם, הלם וחירום רפואי",
+      "sourceFile": "end_misc_quiz.json"
+    },
+    {
+      "id": "end_misc_quiz_14",
+      "question": "האם ניתן לתת אספירין למי שנוטל נוגדי קרישה?",
+      "type": "multiple_choice",
+      "options": [
+        "תמיד מותר",
+        "זהירות - יש לשקול עם רופא, אך ב-ACS חריף לרוב נותנים",
+        "אסור לחלוטין",
+        "רק בילדים"
+      ],
+      "correct": 1,
+      "subject": "פרמקולוגיה, מערכת הדם, הלם וחירום רפואי",
+      "sourceFile": "end_misc_quiz.json"
+    },
+    {
+      "id": "end_misc_quiz_15",
+      "question": "מהו השם הגנרי של נרקן?",
+      "type": "multiple_choice",
+      "options": [
+        "Adrenaline",
+        "Naloxone",
+        "Atropine",
+        "Ketamine"
+      ],
+      "correct": 1,
+      "subject": "פרמקולוגיה, מערכת הדם, הלם וחירום רפואי",
+      "sourceFile": "end_misc_quiz.json"
+    },
+    {
+      "id": "end_misc_quiz_16",
+      "question": "למה מיועד נרקן?",
+      "type": "multiple_choice",
+      "options": [
+        "טיפול בכאב",
+        "היפוך השפעות של אופיואידים (הרואין, מורפיום, פנטניל)",
+        "טיפול בפרכוסים",
+        "טיפול בהיפרגליקמיה"
+      ],
+      "correct": 1,
+      "subject": "פרמקולוגיה, מערכת הדם, הלם וחירום רפואי",
+      "sourceFile": "end_misc_quiz.json"
+    },
+    {
+      "id": "end_misc_quiz_17",
+      "question": "מהו מנגנון הפעולה של נרקן?",
+      "type": "multiple_choice",
+      "options": [
+        "הפעלת רצפטורים",
+        "אנטגוניסט תחרותי לרצפטורי אופיואידים",
+        "עיכוב אצטילכולין",
+        "הרחבת סימפונות"
+      ],
+      "correct": 1,
+      "subject": "פרמקולוגיה, מערכת הדם, הלם וחירום רפואי",
+      "sourceFile": "end_misc_quiz.json"
+    },
+    {
+      "id": "end_misc_quiz_18",
+      "question": "מהם הסימנים להרעלת אופיואידים?",
+      "type": "multiple_choice",
+      "options": [
+        "ברדיפניאה, ירידה בהכרה, אישונים סיכה (Pinpoint Pupils)",
+        "טכיפניאה",
+        "אישונים מורחבים",
+        "לחץ דם גבוה"
+      ],
+      "correct": 0,
+      "subject": "פרמקולוגיה, מערכת הדם, הלם וחירום רפואי",
+      "sourceFile": "end_misc_quiz.json"
+    },
+    {
+      "id": "end_misc_quiz_19",
+      "question": "מהו המינון הראשוני של נרקן IV/IM/IN?",
+      "type": "multiple_choice",
+      "options": [
+        "0.1 מ\"ג",
+        "0.4 מ\"ג",
+        "1 מ\"ג",
+        "2 מ\"ג"
+      ],
+      "correct": 1,
+      "subject": "פרמקולוגיה, מערכת הדם, הלם וחירום רפואי",
+      "sourceFile": "end_misc_quiz.json"
+    },
+    {
+      "id": "end_misc_quiz_20",
+      "question": "מתי ניתן מינון חוזר של נרקן?",
+      "type": "multiple_choice",
+      "options": [
+        "לאחר דקה",
+        "כל 2-3 דקות אם אין שיפור בנשימה/הכרה",
+        "רק פעם אחת",
+        "כל שעה"
+      ],
+      "correct": 1,
+      "subject": "פרמקולוגיה, מערכת הדם, הלם וחירום רפואי",
+      "sourceFile": "end_misc_quiz.json"
+    },
+    {
+      "id": "end_misc_quiz_21",
+      "question": "מה זמן מחצית החיים של נרקן?",
+      "type": "multiple_choice",
+      "options": [
+        "30-90 דקות (קצר מאופיואידים רבים!)",
+        "12 שעות",
+        "יום",
+        "שבוע"
+      ],
+      "correct": 0,
+      "subject": "פרמקולוגיה, מערכת הדם, הלם וחירום רפואי",
+      "sourceFile": "end_misc_quiz.json"
+    },
+    {
+      "id": "end_misc_quiz_22",
+      "question": "מה הסיכון בנרקן?",
+      "type": "multiple_choice",
+      "options": [
+        "אין סיכון",
+        "גמילה פתאומית - תסמיני נסיגה (כאב, בחילות, אגיטציה), חזרת דיכוי נשימתי אחרי 30-90 דקות",
+        "רק אלרגיה",
+        "רק כאב ראש"
+      ],
+      "correct": 1,
+      "subject": "פרמקולוגיה, מערכת הדם, הלם וחירום רפואי",
+      "sourceFile": "end_misc_quiz.json"
+    },
+    {
+      "id": "end_misc_quiz_23",
+      "question": "מה חשוב אחרי מתן נרקן?",
+      "type": "multiple_choice",
+      "options": [
+        "לשחרר את המטופל",
+        "מעקב מתמשך - המטופל עלול לחזור לדיכוי נשימתי",
+        "רק תיעוד",
+        "אין צורך במעקב"
+      ],
+      "correct": 1,
+      "subject": "פרמקולוגיה, מערכת הדם, הלם וחירום רפואי",
+      "sourceFile": "end_misc_quiz.json"
+    },
+    {
+      "id": "end_misc_quiz_24",
+      "question": "מה תפקיד כדורית הדם האדומה (RBC)?",
+      "type": "multiple_choice",
+      "options": [
+        "הובלת חמצן לרקמות והסרת CO2",
+        "קרישת דם",
+        "הגנה מפני זיהומים",
+        "הובלת חלבונים"
+      ],
+      "correct": 0,
+      "subject": "פרמקולוגיה, מערכת הדם, הלם וחירום רפואי",
+      "sourceFile": "end_misc_quiz.json"
+    },
+    {
+      "id": "end_misc_quiz_25",
+      "question": "מה מכיל כדורית הדם האדומה?",
+      "type": "multiple_choice",
+      "options": [
+        "DNA",
+        "המוגלובין - חלבון המכיל ברזל ונקשר לחמצן",
+        "נוגדנים",
+        "גלוקוז בלבד"
+      ],
+      "correct": 1,
+      "subject": "פרמקולוגיה, מערכת הדם, הלם וחירום רפואי",
+      "sourceFile": "end_misc_quiz.json"
+    },
+    {
+      "id": "end_misc_quiz_26",
+      "question": "מהי אנמיה?",
+      "type": "multiple_choice",
+      "options": [
+        "עודף כדוריות דם אדומות",
+        "מחסור בכדוריות דם אדומות או המוגלובין - פחות הובלת חמצן",
+        "עודף טסיות",
+        "זיהום"
+      ],
+      "correct": 1,
+      "subject": "פרמקולוגיה, מערכת הדם, הלם וחירום רפואי",
+      "sourceFile": "end_misc_quiz.json"
+    },
+    {
+      "id": "end_misc_quiz_27",
+      "question": "מהם הסימנים לאנמיה?",
+      "type": "multiple_choice",
+      "options": [
+        "עייפות, חיוורון, קוצר נשימה, סחרחורת",
+        "חום גבוה",
+        "דופק איטי",
+        "לחץ דם גבוה"
+      ],
+      "correct": 0,
+      "subject": "פרמקולוגיה, מערכת הדם, הלם וחירום רפואי",
+      "sourceFile": "end_misc_quiz.json"
+    },
+    {
+      "id": "end_misc_quiz_28",
+      "question": "מהי האורטה?",
+      "type": "multiple_choice",
+      "options": [
+        "ורידדימום לב",
+        "העורק הראשי היוצא מחדר שמאל ומחלק דם לכל הגוף",
+        "עורק ריאתי",
+        "ורידי Cava"
+      ],
+      "correct": 1,
+      "subject": "פרמקולוגיה, מערכת הדם, הלם וחירום רפואי",
+      "sourceFile": "end_misc_quiz.json"
+    },
+    {
+      "id": "end_misc_quiz_29",
+      "question": "מהם חלקי האורטה?",
+      "type": "multiple_choice",
+      "options": [
+        "אורטה עולה, קשת אורטה, אורטה יורדת (חזה ובטן)",
+        "רק אחד",
+        "שניים",
+        "אין חלוקה"
+      ],
+      "correct": 0,
+      "subject": "פרמקולוגיה, מערכת הדם, הלם וחירום רפואי",
+      "sourceFile": "end_misc_quiz.json"
+    },
+    {
+      "id": "end_misc_quiz_30",
+      "question": "מהו מפרצת אורטה (Aortic Aneurysm)?",
+      "type": "multiple_choice",
+      "options": [
+        "היצרות אורטה",
+        "התרחבות חריגה של דופן האורטה - עלולה להיקרע",
+        "סתימת אורטה",
+        "דלקת אורטה"
+      ],
+      "correct": 1,
+      "subject": "פרמקולוגיה, מערכת הדם, הלם וחירום רפואי",
+      "sourceFile": "end_misc_quiz.json"
+    },
+    {
+      "id": "end_misc_quiz_31",
+      "question": "מהם הסימנים לקרע אורטה (Aortic Dissection)?",
+      "type": "multiple_choice",
+      "options": [
+        "כאב חזה/גב עז ופתאומי \"קורע\", הבדלי לחץ דם בין הידיים",
+        "חום",
+        "שיעול",
+        "בחילות בלבד"
+      ],
+      "correct": 0,
+      "subject": "פרמקולוגיה, מערכת הדם, הלם וחירום רפואי",
+      "sourceFile": "end_misc_quiz.json"
+    },
+    {
+      "id": "end_misc_quiz_32",
+      "question": "מה זה Vena Cava?",
+      "type": "multiple_choice",
+      "options": [
+        "עורק",
+        "הווריד הגדול המחזיר דם מהגוף ללב (עליון ותחתון)",
+        "שריר לב",
+        "מסתם לב"
+      ],
+      "correct": 1,
+      "subject": "פרמקולוגיה, מערכת הדם, הלם וחירום רפואי",
+      "sourceFile": "end_misc_quiz.json"
+    },
+    {
+      "id": "end_misc_quiz_33",
+      "question": "מהו העורק הריאתי?",
+      "type": "multiple_choice",
+      "options": [
+        "עורק המוביל דם עשיר בחמצן",
+        "העורק היחיד המוביל דם עני בחמצן מהלב לריאות",
+        "ורידים",
+        "אין עורק כזה"
+      ],
+      "correct": 1,
+      "subject": "פרמקולוגיה, מערכת הדם, הלם וחירום רפואי",
+      "sourceFile": "end_misc_quiz.json"
+    },
+    {
+      "id": "end_misc_quiz_34",
+      "question": "מה זה הלם (Shock)?",
+      "type": "multiple_choice",
+      "options": [
+        "לחץ דם גבוה",
+        "מצב של אי ספיקת פרפוזיה - אי אספקת חמצן ותזונה מספקת לרקמות",
+        "דופק מהיר בלבד",
+        "חום גבוה"
+      ],
+      "correct": 1,
+      "subject": "פרמקולוגיה, מערכת הדם, הלם וחירום רפואי",
+      "sourceFile": "end_misc_quiz.json"
+    },
+    {
+      "id": "end_misc_quiz_35",
+      "question": "מהם סוגי ההלם?",
+      "type": "multiple_choice",
+      "options": [
+        "היפוולמי, קרדיוגני, חלוקתי (Distributive), חסימתי",
+        "רק אחד",
+        "רק שניים",
+        "אין סוגים"
+      ],
+      "correct": 0,
+      "subject": "פרמקולוגיה, מערכת הדם, הלם וחירום רפואי",
+      "sourceFile": "end_misc_quiz.json"
+    },
+    {
+      "id": "end_misc_quiz_36",
+      "question": "מה זה הלם היפוולמי?",
+      "type": "multiple_choice",
+      "options": [
+        "עודף נפח נוזלים",
+        "מחסור בנפח נוזלים/דם - דימום, התייבשות, כוויות",
+        "בעיית לב",
+        "זיהום"
+      ],
+      "correct": 1,
+      "subject": "פרמקולוגיה, מערכת הדם, הלם וחירום רפואי",
+      "sourceFile": "end_misc_quiz.json"
+    },
+    {
+      "id": "end_misc_quiz_37",
+      "question": "מהם הסימנים להלם היפוולמי?",
+      "type": "multiple_choice",
+      "options": [
+        "טכיקרדיה, לחץ דם נמוך, עור קר וחיוור, מילוי קפילרי איטי, ירידה בתפוקת שתן",
+        "ברדיקרדיה",
+        "לחץ דם גבוה",
+        "עור חם"
+      ],
+      "correct": 0,
+      "subject": "פרמקולוגיה, מערכת הדם, הלם וחירום רפואי",
+      "sourceFile": "end_misc_quiz.json"
+    },
+    {
+      "id": "end_misc_quiz_38",
+      "question": "מה הטיפול העיקרי בהלם מדימום?",
+      "type": "multiple_choice",
+      "options": [
+        "רק תרופות",
+        "שליטה על מקור הדימום + החייאת נוזלים (IV/IO)",
+        "רק חמצן",
+        "רק מעקב"
+      ],
+      "correct": 1,
+      "subject": "פרמקולוגיה, מערכת הדם, הלם וחירום רפואי",
+      "sourceFile": "end_misc_quiz.json"
+    },
+    {
+      "id": "end_misc_quiz_39",
+      "question": "איזה נוזלים נותנים בהלם היפוולמי?",
+      "type": "multiple_choice",
+      "options": [
+        "גלוקוז 5%",
+        "קריסטלואידים (Normal Saline, Ringer's Lactate)",
+        "רק מים",
+        "רק דם"
+      ],
+      "correct": 1,
+      "subject": "פרמקולוגיה, מערכת הדם, הלם וחירום רפואי",
+      "sourceFile": "end_misc_quiz.json"
+    },
+    {
+      "id": "end_misc_quiz_40",
+      "question": "מהו מינון הנוזלים בהלם בוגר?",
+      "type": "multiple_choice",
+      "options": [
+        "50 מ\"ל",
+        "250-500 מ\"ל בולוסים",
+        "5 ליטר מיד",
+        "אין צורך בנוזלים"
+      ],
+      "correct": 1,
+      "subject": "פרמקולוגיה, מערכת הדם, הלם וחירום רפואי",
+      "sourceFile": "end_misc_quiz.json"
+    },
+    {
+      "id": "end_misc_quiz_41",
+      "question": "מה זה הלם קרדיוגני?",
+      "type": "multiple_choice",
+      "options": [
+        "הלם מדימום",
+        "הלם כתוצאה מכשל משאבת הלב - אוטם, אי ספיקת לב",
+        "הלם מזיהום",
+        "הלם מאלרגיה"
+      ],
+      "correct": 1,
+      "subject": "פרמקולוגיה, מערכת הדם, הלם וחירום רפואי",
+      "sourceFile": "end_misc_quiz.json"
+    },
+    {
+      "id": "end_misc_quiz_42",
+      "question": "מה הטיפול בהלם קרדיוגני?",
+      "type": "multiple_choice",
+      "options": [
+        "נוזלים רבים",
+        "זהירות בנוזלים (עלול להחמיר בצקת ריאות), תמיכה אינוטרופית, טיפול בגורם",
+        "רק אדרנלין",
+        "אין טיפול"
+      ],
+      "correct": 1,
+      "subject": "פרמקולוגיה, מערכת הדם, הלם וחירום רפואי",
+      "sourceFile": "end_misc_quiz.json"
+    },
+    {
+      "id": "end_misc_quiz_43",
+      "question": "מה זה הלם חלוקתי/מפושט (Distributive)?",
+      "type": "multiple_choice",
+      "options": [
+        "הלם מדימום",
+        "הרחבה לא מבוקרת של כלי דם - ספטי, אנפילקטי, נוירוגני",
+        "הלם מהלב",
+        "אין הלם כזה"
+      ],
+      "correct": 1,
+      "subject": "פרמקולוגיה, מערכת הדם, הלם וחירום רפואי",
+      "sourceFile": "end_misc_quiz.json"
+    },
+    {
+      "id": "end_misc_quiz_44",
+      "question": "מה זה הלם ספטי?",
+      "type": "multiple_choice",
+      "options": [
+        "הלם מדימום",
+        "הלם כתוצאה מזיהום מערכתי חמור (Sepsis)",
+        "הלם מהלב",
+        "הלם מאלרגיה"
+      ],
+      "correct": 1,
+      "subject": "פרמקולוגיה, מערכת הדם, הלם וחירום רפואי",
+      "sourceFile": "end_misc_quiz.json"
+    },
+    {
+      "id": "end_misc_quiz_45",
+      "question": "מהם הסימנים להלם ספטי?",
+      "type": "multiple_choice",
+      "options": [
+        "חום או היפותרמיה, טכיקרדיה, לחץ דם נמוך, עור חם/אדום (בשלב מוקדם)",
+        "רק חום",
+        "רק לחץ דם נמוך",
+        "אין סימנים"
+      ],
+      "correct": 0,
+      "subject": "פרמקולוגיה, מערכת הדם, הלם וחירום רפואי",
+      "sourceFile": "end_misc_quiz.json"
+    },
+    {
+      "id": "end_misc_quiz_46",
+      "question": "מה הטיפול בהלם ספטי?",
+      "type": "multiple_choice",
+      "options": [
+        "רק חמצן",
+        "נוזלים, אנטיביוטיקה מוקדמת, תמיכה המודינמית",
+        "רק המתנה",
+        "אין טיפול"
+      ],
+      "correct": 1,
+      "subject": "פרמקולוגיה, מערכת הדם, הלם וחירום רפואי",
+      "sourceFile": "end_misc_quiz.json"
+    },
+    {
+      "id": "end_misc_quiz_47",
+      "question": "מה זה הלם אנפילקטי?",
+      "type": "multiple_choice",
+      "options": [
+        "הלם מדימום",
+        "תגובה אלרגית חמורה עם הרחבת כלי דם וחסימת דרכי אוויר",
+        "הלם מזיהום",
+        "הלם מהלב"
+      ],
+      "correct": 1,
+      "subject": "פרמקולוגיה, מערכת הדם, הלם וחירום רפואי",
+      "sourceFile": "end_misc_quiz.json"
+    },
+    {
+      "id": "end_misc_quiz_48",
+      "question": "מה הטיפול בהלם אנפילקטי?",
+      "type": "multiple_choice",
+      "options": [
+        "רק נוזלים",
+        "אדרנלין IM מיידי, נוזלים, חמצן, אנטיהיסטמין, סטרואידים",
+        "רק חמצן",
+        "אין טיפול"
+      ],
+      "correct": 1,
+      "subject": "פרמקולוגיה, מערכת הדם, הלם וחירום רפואי",
+      "sourceFile": "end_misc_quiz.json"
+    },
+    {
+      "id": "end_misc_quiz_49",
+      "question": "מה זה הלם נוירוגני?",
+      "type": "multiple_choice",
+      "options": [
+        "הלם מדימום",
+        "הלם כתוצאה מפגיעה בחוט שדרה - אובדן טונוס סימפתטי",
+        "הלם מזיהום",
+        "הלם מאלרגיה"
+      ],
+      "correct": 1,
+      "subject": "פרמקולוגיה, מערכת הדם, הלם וחירום רפואי",
+      "sourceFile": "end_misc_quiz.json"
+    },
+    {
+      "id": "end_misc_quiz_50",
+      "question": "מהם הסימנים להלם נוירוגני?",
+      "type": "multiple_choice",
+      "options": [
+        "טכיקרדיה",
+        "לחץ דם נמוך עם ברדיקרדיה (לא טכיקרדיה!), עור חם ויבש למטה מרמת הפגיעה",
+        "חום גבוה",
+        "דופק מהיר"
+      ],
+      "correct": 1,
+      "subject": "פרמקולוגיה, מערכת הדם, הלם וחירום רפואי",
+      "sourceFile": "end_misc_quiz.json"
+    },
+    {
+      "id": "end_misc_quiz_51",
+      "question": "מה זה הלם חסימתי (Obstructive)?",
+      "type": "multiple_choice",
+      "options": [
+        "הלם מדימום",
+        "חסימה פיזית לזרימת הדם - טמפונדה, פנאומוטורקס בלחץ, תסחיף ריאתי",
+        "הלם מזיהום",
+        "הלם מהלב"
+      ],
+      "correct": 1,
+      "subject": "פרמקולוגיה, מערכת הדם, הלם וחירום רפואי",
+      "sourceFile": "end_misc_quiz.json"
+    },
+    {
+      "id": "end_misc_quiz_52",
+      "question": "מה המשמעות של DOPE במטופל מונשם?",
+      "type": "multiple_choice",
+      "options": [
+        "שם תרופה",
+        "ראשי תיבות לבדיקת סיבת התדרדרות: Displacement, Obstruction, Pneumothorax, Equipment failure",
+        "סוג הלם",
+        "סוג זיהום"
+      ],
+      "correct": 1,
+      "subject": "פרמקולוגיה, מערכת הדם, הלם וחירום רפואי",
+      "sourceFile": "end_misc_quiz.json"
+    },
+    {
+      "id": "end_misc_quiz_53",
+      "question": "מה זה Displacement ב-DOPE?",
+      "type": "multiple_choice",
+      "options": [
+        "שבר",
+        "עקירה או יציאה של הטובוס ממקומו (לושט, מחוץ לקנה)",
+        "זיהום",
+        "דימום"
+      ],
+      "correct": 1,
+      "subject": "פרמקולוגיה, מערכת הדם, הלם וחירום רפואי",
+      "sourceFile": "end_misc_quiz.json"
+    },
+    {
+      "id": "end_misc_quiz_54",
+      "question": "איך בודקים Displacement?",
+      "type": "multiple_choice",
+      "options": [
+        "רק צילום",
+        "האזנה דו-צדדית, קפנוגרפיה, בדיקת עומק הטובוס",
+        "רק מבט",
+        "אין דרך"
+      ],
+      "correct": 1,
+      "subject": "פרמקולוגיה, מערכת הדם, הלם וחירום רפואי",
+      "sourceFile": "end_misc_quiz.json"
+    },
+    {
+      "id": "end_misc_quiz_55",
+      "question": "מה זה Obstruction ב-DOPE?",
+      "type": "multiple_choice",
+      "options": [
+        "שבר",
+        "חסימת הטובוס - הפרשות, דם, כיפוף, ברונכוספזם",
+        "זיהום",
+        "דימום חיצוני"
+      ],
+      "correct": 1,
+      "subject": "פרמקולוגיה, מערכת הדם, הלם וחירום רפואי",
+      "sourceFile": "end_misc_quiz.json"
+    },
+    {
+      "id": "end_misc_quiz_56",
+      "question": "מה עושים במקרה של Obstruction?",
+      "type": "multiple_choice",
+      "options": [
+        "כלום",
+        "שאיבה, שטיפה, בדיקת כיפופים, טיפול בברונכוספזם",
+        "רק המתנה",
+        "החלפת מטופל"
+      ],
+      "correct": 1,
+      "subject": "פרמקולוגיה, מערכת הדם, הלם וחירום רפואי",
+      "sourceFile": "end_misc_quiz.json"
+    },
+    {
+      "id": "end_misc_quiz_57",
+      "question": "מה זה Pneumothorax ב-DOPE?",
+      "type": "multiple_choice",
+      "options": [
+        "שבר צלע",
+        "פנאומוטורקס (במיוחד בלחץ) - אוויר בחלל הפלאורלי",
+        "זיהום",
+        "דימום"
+      ],
+      "correct": 1,
+      "subject": "פרמקולוגיה, מערכת הדם, הלם וחירום רפואי",
+      "sourceFile": "end_misc_quiz.json"
+    },
+    {
+      "id": "end_misc_quiz_58",
+      "question": "מהם הסימנים לפנאומוטורקס במונשם?",
+      "type": "multiple_choice",
+      "options": [
+        "שיפור פתאומי",
+        "לחץ דם נמוך, סטורציה נמוכה, העדר קולות נשימה בצד אחד, גודש ורידי צוואר",
+        "רק שיעול",
+        "אין סימנים"
+      ],
+      "correct": 1,
+      "subject": "פרמקולוגיה, מערכת הדם, הלם וחירום רפואי",
+      "sourceFile": "end_misc_quiz.json"
+    },
+    {
+      "id": "end_misc_quiz_59",
+      "question": "מה זה Equipment failure ב-DOPE?",
+      "type": "multiple_choice",
+      "options": [
+        "המטופל נכשל",
+        "כשל בציוד - אמבו, מנשם, אספקת חמצן, צנתר",
+        "כשל בתרופות",
+        "אין כשל"
+      ],
+      "correct": 1,
+      "subject": "פרמקולוגיה, מערכת הדם, הלם וחירום רפואי",
+      "sourceFile": "end_misc_quiz.json"
+    },
+    {
+      "id": "end_misc_quiz_60",
+      "question": "איך בודקים Equipment failure?",
+      "type": "multiple_choice",
+      "options": [
+        "רק מבט",
+        "בדיקת חיבורים, אספקת חמצן, סוללות, אמבו ידני כגיבוי",
+        "רק שאילת שאלות",
+        "אין דרך"
+      ],
+      "correct": 1,
+      "subject": "פרמקולוגיה, מערכת הדם, הלם וחירום רפואי",
+      "sourceFile": "end_misc_quiz.json"
+    },
+    {
+      "id": "end_misc_quiz_61",
+      "question": "מהי סיבה שכיחה להתעלפות?",
+      "type": "multiple_choice",
+      "options": [
+        "סרטן",
+        "Vasovagal Syncope - גירוי ואגאלי (כאב, פחד, עמידה ממושכת, חום)",
+        "רק סוכרת",
+        "רק זיהום"
+      ],
+      "correct": 1,
+      "subject": "פרמקולוגיה, מערכת הדם, הלם וחירום רפואי",
+      "sourceFile": "end_misc_quiz.json"
+    },
+    {
+      "id": "end_misc_quiz_62",
+      "question": "מה קורה ב-Vasovagal Syncope?",
+      "type": "multiple_choice",
+      "options": [
+        "לחץ דם עולה",
+        "ברדיקרדיה והרחבת כלי דם - ירידה בלחץ דם ובפרפוזיה מוחית",
+        "דופק מהיר",
+        "חום גבוה"
+      ],
+      "correct": 1,
+      "subject": "פרמקולוגיה, מערכת הדם, הלם וחירום רפואי",
+      "sourceFile": "end_misc_quiz.json"
+    },
+    {
+      "id": "end_misc_quiz_63",
+      "question": "מהן סיבות קרדיאליות להתעלפות?",
+      "type": "multiple_choice",
+      "options": [
+        "אין סיבות",
+        "הפרעות קצב (ברדיקרדיה, טכיקרדיה), היצרות מסתמים, אוטם",
+        "רק חום",
+        "רק זיהום"
+      ],
+      "correct": 1,
+      "subject": "פרמקולוגיה, מערכת הדם, הלם וחירום רפואי",
+      "sourceFile": "end_misc_quiz.json"
+    },
+    {
+      "id": "end_misc_quiz_64",
+      "question": "מהן סיבות נוירולוגיות להתעלפות?",
+      "type": "multiple_choice",
+      "options": [
+        "אין סיבות",
+        "TIA, שבץ, פרכוס, נזק לחוט שדרה",
+        "רק חום",
+        "רק שיעול"
+      ],
+      "correct": 1,
+      "subject": "פרמקולוגיה, מערכת הדם, הלם וחירום רפואי",
+      "sourceFile": "end_misc_quiz.json"
+    },
+    {
+      "id": "end_misc_quiz_65",
+      "question": "מהן סיבות מטבוליות להתעלפות?",
+      "type": "multiple_choice",
+      "options": [
+        "אין סיבות",
+        "היפוגליקמיה, התייבשות, אנמיה",
+        "רק חום",
+        "רק זיהום"
+      ],
+      "correct": 1,
+      "subject": "פרמקולוגיה, מערכת הדם, הלם וחירום רפואי",
+      "sourceFile": "end_misc_quiz.json"
+    },
+    {
+      "id": "end_misc_quiz_66",
+      "question": "מה זה Orthostatic Hypotension?",
+      "type": "multiple_choice",
+      "options": [
+        "לחץ דם גבוה",
+        "ירידת לחץ דם בעמידה מהירה - גורם להתעלפות",
+        "לחץ דם נורמלי",
+        "חום"
+      ],
+      "correct": 1,
+      "subject": "פרמקולוגיה, מערכת הדם, הלם וחירום רפואי",
+      "sourceFile": "end_misc_quiz.json"
+    },
+    {
+      "id": "end_misc_quiz_67",
+      "question": "מהו הטיפול בהתעלפות פשוטה?",
+      "type": "multiple_choice",
+      "options": [
+        "רק תרופות",
+        "שכיבה עם רגליים מורמות, בדיקת סימנים חיוניים, גלוקוז, ECG",
+        "רק עמידה",
+        "אין צורך בטיפול"
+      ],
+      "correct": 1,
+      "subject": "פרמקולוגיה, מערכת הדם, הלם וחירום רפואי",
+      "sourceFile": "end_misc_quiz.json"
+    },
+    {
+      "id": "end_misc_quiz_68",
+      "question": "מתי התעלפות מדאיגה?",
+      "type": "multiple_choice",
+      "options": [
+        "תמיד",
+        "עם כאב חזה, קוצר נשימה, פלפיטציות, סימנים נוירולוגיים, בזמן פעילות",
+        "אף פעם",
+        "רק בילדים"
+      ],
+      "correct": 1,
+      "subject": "פרמקולוגיה, מערכת הדם, הלם וחירום רפואי",
+      "sourceFile": "end_misc_quiz.json"
+    },
+    {
+      "id": "end_misc_quiz_69",
+      "question": "מה ההבדל בין התעלפות לפרכוס?",
+      "type": "multiple_choice",
+      "options": [
+        "אין הבדל",
+        "פרכוס - פעילות חשמלית חריגה במוח, יש תנועות לא רצוניות ותקופת בלבול; התעלפות - אובדן הכרה קצר ללא פעילות פרכוסית",
+        "רק בגיל",
+        "רק במשך"
+      ],
+      "correct": 1,
+      "subject": "פרמקולוגיה, מערכת הדם, הלם וחירום רפואי",
+      "sourceFile": "end_misc_quiz.json"
+    },
+    {
+      "id": "end_misc_quiz_70",
+      "question": "מהו תסחיף ריאתי (Pulmonary Embolism)?",
+      "type": "multiple_choice",
+      "options": [
+        "זיהום ריאות",
+        "חסימת עורק ריאתי על ידי קריש דם",
+        "נוזל בריאות",
+        "גידול בריאות"
+      ],
+      "correct": 1,
+      "subject": "פרמקולוגיה, מערכת הדם, הלם וחירום רפואי",
+      "sourceFile": "end_misc_quiz.json"
+    },
+    {
+      "id": "end_misc_quiz_71",
+      "question": "מהם הסימנים לתסחיף ריאתי?",
+      "type": "multiple_choice",
+      "options": [
+        "רק שיעול",
+        "קוצר נשימה פתאומי, כאב חזה פלאוריטי, דסטורציה, טכיקרדיה",
+        "רק חום",
+        "אין סימנים"
+      ],
+      "correct": 1,
+      "subject": "פרמקולוגיה, מערכת הדם, הלם וחירום רפואי",
+      "sourceFile": "end_misc_quiz.json"
+    },
+    {
+      "id": "end_misc_quiz_72",
+      "question": "מהם גורמי הסיכון לתסחיף ריאתי?",
+      "type": "multiple_choice",
+      "options": [
+        "אין גורמי סיכון",
+        "טיסות/נסיעות ארוכות, ניתוח לאחרונה, שבר, הריון, סרטן, עישון",
+        "רק גיל",
+        "רק משקל"
+      ],
+      "correct": 1,
+      "subject": "פרמקולוגיה, מערכת הדם, הלם וחירום רפואי",
+      "sourceFile": "end_misc_quiz.json"
+    },
+    {
+      "id": "end_misc_quiz_73",
+      "question": "מה הטיפול בחשד לתסחיף ריאתי בשטח?",
+      "type": "multiple_choice",
+      "options": [
+        "רק המתנה",
+        "חמצן, פינוי מהיר, נוזלים זהירים, הכנה להחמרה",
+        "רק תרופות",
+        "אין טיפול"
+      ],
+      "correct": 1,
+      "subject": "פרמקולוגיה, מערכת הדם, הלם וחירום רפואי",
+      "sourceFile": "end_misc_quiz.json"
+    },
+    {
+      "id": "end_misc_quiz_74",
+      "question": "מה זה DVT (Deep Vein Thrombosis)?",
+      "type": "multiple_choice",
+      "options": [
+        "זיהום ורידים",
+        "קריש דם בוריד עמוק (בד\"כ ברגל) - עלול להפוך לתסחיף ריאתי",
+        "דלקת עורקים",
+        "שבר"
+      ],
+      "correct": 1,
+      "subject": "פרמקולוגיה, מערכת הדם, הלם וחירום רפואי",
+      "sourceFile": "end_misc_quiz.json"
+    },
+    {
+      "id": "end_misc_quiz_75",
+      "question": "מהם הסימנים ל-DVT?",
+      "type": "multiple_choice",
+      "options": [
+        "אין סימנים",
+        "נפיחות, כאב, אודם, חום באזור, רגישות למגע",
+        "רק חום כללי",
+        "רק שיעול"
+      ],
+      "correct": 1,
+      "subject": "פרמקולוגיה, מערכת הדם, הלם וחירום רפואי",
+      "sourceFile": "end_misc_quiz.json"
+    },
+    {
+      "id": "end_misc_quiz_76",
+      "question": "מה חשיבות זמן הספיגה בתרופות למצבי חירום?",
+      "type": "multiple_choice",
+      "options": [
+        "אין חשיבות",
+        "קריטי - תרופות למצבי חירום דורשות פעולה מהירה",
+        "רק לתיעוד",
+        "רק למחקר"
+      ],
+      "correct": 1,
+      "subject": "פרמקולוגיה, מערכת הדם, הלם וחירום רפואי",
+      "sourceFile": "end_misc_quiz.json"
+    },
+    {
+      "id": "end_misc_quiz_77",
+      "question": "מהי דרך המתן המהירה ביותר?",
+      "type": "multiple_choice",
+      "options": [
+        "פומי (PO)",
+        "תוך ורידי (IV) או תוך גרמי (IO)",
+        "תוך שרירי (IM)",
+        "תת עורי (SC)"
+      ],
+      "correct": 1,
+      "subject": "פרמקולוגיה, מערכת הדם, הלם וחירום רפואי",
+      "sourceFile": "end_misc_quiz.json"
+    },
+    {
+      "id": "end_misc_quiz_78",
+      "question": "מה יתרון IM על פני IV?",
+      "type": "multiple_choice",
+      "options": [
+        "מהיר יותר",
+        "קל יותר להשגה, לא דורש גישה ורידית",
+        "חזק יותר",
+        "אין יתרון"
+      ],
+      "correct": 1,
+      "subject": "פרמקולוגיה, מערכת הדם, הלם וחירום רפואי",
+      "sourceFile": "end_misc_quiz.json"
+    },
+    {
+      "id": "end_misc_quiz_79",
+      "question": "מתי משתמשים בדרך תת-לשונית (Sublingual)?",
+      "type": "multiple_choice",
+      "options": [
+        "תמיד",
+        "לספיגה מהירה דרך רירית הפה - ניטרוגליצרין, אספירין",
+        "רק בילדים",
+        "אף פעם"
+      ],
+      "correct": 1,
+      "subject": "פרמקולוגיה, מערכת הדם, הלם וחירום רפואי",
+      "sourceFile": "end_misc_quiz.json"
+    },
+    {
+      "id": "end_misc_quiz_80",
+      "question": "מה זה IN (Intranasal)?",
+      "type": "multiple_choice",
+      "options": [
+        "בעין",
+        "דרך האף - ספיגה מהירה דרך רירית - נרקן IN",
+        "בפה",
+        "בוריד"
+      ],
+      "correct": 1,
+      "subject": "פרמקולוגיה, מערכת הדם, הלם וחירום רפואי",
+      "sourceFile": "end_misc_quiz.json"
+    },
+    {
+      "id": "end_misc_quiz_81",
+      "question": "מה חשוב בטיפול בהלם?",
+      "type": "multiple_choice",
+      "options": [
+        "רק תרופות",
+        "זיהוי מוקדם, טיפול בגורם, תמיכה המודינמית, פינוי מהיר",
+        "רק נוזלים",
+        "רק חמצן"
+      ],
+      "correct": 1,
+      "subject": "פרמקולוגיה, מערכת הדם, הלם וחירום רפואי",
+      "sourceFile": "end_misc_quiz.json"
+    },
+    {
+      "id": "end_misc_quiz_82",
+      "question": "מהו Capillary Refill Time?",
+      "type": "multiple_choice",
+      "options": [
+        "זמן דופק",
+        "זמן מילוי קפילרי - בדיקת פרפוזיה, תקין <2 שניות",
+        "זמן נשימה",
+        "זמן לחץ דם"
+      ],
+      "correct": 1,
+      "subject": "פרמקולוגיה, מערכת הדם, הלם וחירום רפואי",
+      "sourceFile": "end_misc_quiz.json"
+    },
+    {
+      "id": "end_misc_quiz_83",
+      "question": "איך בודקים Capillary Refill?",
+      "type": "multiple_choice",
+      "options": [
+        "מדידת דופק",
+        "לחיצה על ציפורן/עור, שחרור ובדיקת זמן חזרת צבע",
+        "רק מבט",
+        "בדיקת לב"
+      ],
+      "correct": 1,
+      "subject": "פרמקולוגיה, מערכת הדם, הלם וחירום רפואי",
+      "sourceFile": "end_misc_quiz.json"
+    },
+    {
+      "id": "end_misc_quiz_84",
+      "question": "מה משמעות Capillary Refill >2 שניות?",
+      "type": "multiple_choice",
+      "options": [
+        "נורמלי",
+        "עלול להעיד על הלם, התייבשות, פרפוזיה לקויה",
+        "מצוין",
+        "אין משמעות"
+      ],
+      "correct": 1,
+      "subject": "פרמקולוגיה, מערכת הדם, הלם וחירום רפואי",
+      "sourceFile": "end_misc_quiz.json"
+    },
+    {
+      "id": "end_misc_quiz_85",
+      "question": "מה זה Mean Arterial Pressure (MAP)?",
+      "type": "multiple_choice",
+      "options": [
+        "לחץ דם סיסטולי",
+        "לחץ דם ממוצע - MAP = (2×Diastolic + Systolic)/3, חשוב לפרפוזיה",
+        "לחץ דם דיאסטולי",
+        "דופק"
+      ],
+      "correct": 1,
+      "subject": "פרמקולוגיה, מערכת הדם, הלם וחירום רפואי",
+      "sourceFile": "end_misc_quiz.json"
+    },
+    {
+      "id": "end_misc_quiz_86",
+      "question": "מהו MAP מינימלי לפרפוזיה רקמות?",
+      "type": "multiple_choice",
+      "options": [
+        "40 mmHg",
+        "65 mmHg",
+        "100 mmHg",
+        "120 mmHg"
+      ],
+      "correct": 1,
+      "subject": "פרמקולוגיה, מערכת הדם, הלם וחירום רפואי",
+      "sourceFile": "end_misc_quiz.json"
+    },
+    {
+      "id": "end_misc_quiz_87",
+      "question": "מה זה DIC (Disseminated Intravascular Coagulation)?",
+      "type": "multiple_choice",
+      "options": [
+        "קרישה תקינה",
+        "קרישה מפושטת לא מבוקרת + דימום - סיבוך של זיהום/טראומה חמורה",
+        "אין קרישה",
+        "רק זיהום"
+      ],
+      "correct": 1,
+      "subject": "פרמקולוגיה, מערכת הדם, הלם וחירום רפואי",
+      "sourceFile": "end_misc_quiz.json"
+    },
+    {
+      "id": "end_misc_quiz_88",
+      "question": "מהם הסימנים ל-DIC?",
+      "type": "multiple_choice",
+      "options": [
+        "רק חום",
+        "דימומים מרובים, סימני קרישים (אוטמים), צניחת טסיות",
+        "רק כאב",
+        "אין סימנים"
+      ],
+      "correct": 1,
+      "subject": "פרמקולוגיה, מערכת הדם, הלם וחירום רפואי",
+      "sourceFile": "end_misc_quiz.json"
+    },
+    {
+      "id": "end_misc_quiz_89",
+      "question": "מה הטיפול ב-DIC?",
+      "type": "multiple_choice",
+      "options": [
+        "רק נוזלים",
+        "טיפול בגורם הבסיסי, מוצרי דם (טסיות, קרישה), תמיכה",
+        "רק חמצן",
+        "אין טיפול"
+      ],
+      "correct": 1,
+      "subject": "פרמקולוגיה, מערכת הדם, הלם וחירום רפואי",
+      "sourceFile": "end_misc_quiz.json"
+    },
+    {
+      "id": "end_misc_quiz_90",
+      "question": "מה חשיבות ה-Golden Hour?",
+      "type": "multiple_choice",
+      "options": [
+        "אין חשיבות",
+        "השעה הראשונה מהפגיעה קריטית להישרדות בטראומה חמורה",
+        "רק למחקר",
+        "רק לתיעוד"
+      ],
+      "correct": 1,
+      "subject": "פרמקולוגיה, מערכת הדם, הלם וחירום רפואי",
+      "sourceFile": "end_misc_quiz.json"
+    },
+    {
+      "id": "end_misc_quiz_91",
+      "question": "מה עושים במטופל עם סימני הלם והיסטוריה של אלרגיה?",
+      "type": "multiple_choice",
+      "options": [
+        "רק המתנה",
+        "חשד גבוה לאנפילקסיס - אדרנלין מיידי, נוזלים, חמצן",
+        "רק נוזלים",
+        "רק חמצן"
+      ],
+      "correct": 1,
+      "subject": "פרמקולוגיה, מערכת הדם, הלם וחירום רפואי",
+      "sourceFile": "end_misc_quiz.json"
+    },
+    {
+      "id": "end_misc_quiz_92",
+      "question": "מה חשוב בתיעוד מתן תרופות?",
+      "type": "multiple_choice",
+      "options": [
+        "אין צורך",
+        "שם תרופה, מינון, דרך מתן, זמן, תגובת מטופל",
+        "רק שם התרופה",
+        "רק הזמן"
+      ],
+      "correct": 1,
+      "subject": "פרמקולוגיה, מערכת הדם, הלם וחירום רפואי",
+      "sourceFile": "end_misc_quiz.json"
+    },
+    {
+      "id": "end_misc_quiz_93",
+      "question": "מה ההבדל בין אגוניסט לאנטגוניסט?",
+      "type": "multiple_choice",
+      "options": [
+        "אין הבדל",
+        "אגוניסט - מפעיל רצפטור; אנטגוניסט - חוסם רצפטור",
+        "רק בשם",
+        "רק במינון"
+      ],
+      "correct": 1,
+      "subject": "פרמקולוגיה, מערכת הדם, הלם וחירום רפואי",
+      "sourceFile": "end_misc_quiz.json"
     }
   ]
 }
