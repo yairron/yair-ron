@@ -1,5 +1,5 @@
 {
-  "subject": "פרמקולוגיה, מערכת הדם, הלם וחירום רפואי",
+  "subject": "מבחן עיוני מסכם שונות",
   "questions": [
     {
       "id": 1,
@@ -639,7 +639,7 @@
     },
     {
       "id": 54,
-      "question": "איך בודקים Displacement?",
+      "question": "איך בודקים ב DOPE Displacement?",
       "type": "multiple_choice",
       "options": [
         "רק צילום",
@@ -663,11 +663,11 @@
     },
     {
       "id": 56,
-      "question": "מה עושים במקרה של Obstruction?",
+      "question": "מה עושים בבדיקת DOPE Obstruction?",
       "type": "multiple_choice",
       "options": [
         "כלום",
-        "שאיבה, שטיפה, בדיקת כיפופים, טיפול בברונכוספזם",
+        "סאקשן, שטיפה, בדיקת כיפופים, טיפול בברונכוספזם",
         "רק המתנה",
         "החלפת מטופל"
       ],
@@ -711,7 +711,7 @@
     },
     {
       "id": 60,
-      "question": "איך בודקים Equipment failure?",
+      "question": "איך בודקים ב DOPE Equipment failure?",
       "type": "multiple_choice",
       "options": [
         "רק מבט",
@@ -915,7 +915,7 @@
     },
     {
       "id": 77,
-      "question": "מהי דרך המתן המהירה ביותר?",
+      "question": "מה דרך המתן המהירה ביותר להכנסת התרופה למחזור הדם?",
       "type": "multiple_choice",
       "options": [
         "פומי (PO)",
