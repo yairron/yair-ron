@@ -1,7 +1,7 @@
 {
   "subject": "שאלון חזרה כללי",
   "description": "שאלון מאוחד של כל השאלות מקבצי ה-quiz השונים",
-  "totalQuestions": 1967,
+  "totalQuestions": 2137,
   "sourceFiles": [
     "anaphylaxis_quiz.json",
     "asthma_quiz.json",
@@ -38,9 +38,12 @@
     "end_additional2_quiz.json",
     "end_cpr_quiz.json",
     "end_birth_quiz.json",
-    "end_misc_quiz.json"
+    "end_misc_quiz.json",
+    "end_med_quiz.json",
+    "end_med_quiz_long_not-in-use.json",
+    "end_diabetes_quiz.json"
   ],
-  "createdAt": "2025-12-02T20:56:07.335Z",
+  "createdAt": "2025-12-03T18:09:21.717Z",
   "questions": [
     {
       "id": "anaphylaxis_quiz_1",
@@ -19769,7 +19772,7 @@
       "question": "מהי התרופה הראשונה לטיפול בסטטוס אפילפטיקוס?",
       "type": "multiple_choice",
       "options": [
-        "בנזודיאזפין (מידזולם או דיאזפם)",
+        "בנזודיאזפין (דורמיקום או דיאזפם)",
         "אדרנלין",
         "אטרופין",
         "מורפיום"
@@ -20063,7 +20066,7 @@
       "question": "מהו הטיפול הדחוף באירוע פרכוס חוזר?",
       "type": "multiple_choice",
       "options": [
-        "מתן בנזודיאזפין (מידזולם IV/IM או דיאזפם רקטלי)",
+        "מתן בנזודיאזפין (דורמיקום זולם IV/IM או דיאזפם רקטלי)",
         "שמירה על ABC",
         "ניטור רציף",
         "בדיקת סוכר והתאמת טיפול",
@@ -20543,7 +20546,7 @@
       "question": "מהו פרוטוקול הטיפול התרופתי בסטטוס אפילפטיקוס?",
       "type": "multiple_choice",
       "options": [
-        "בנזודיאזפין - מידזולם IM/IV/IN",
+        "בנזודיאזפין - דורמיקום מידזולם IM/IV/IN",
         "אינהלצית וונטולין",
         "אטומידט",
         " הרדמה והנשמה מלאכותית",
@@ -20556,7 +20559,7 @@
     },
     {
       "id": "end_nerave_quiz_76",
-      "question": "מהן מנות המידזולם לטיפול בסטטוס אפילפטיקוס?",
+      "question": "מהן מנות דורמיקום/מידזולם לטיפול בסטטוס אפילפטיקוס?",
       "type": "multiple_choice",
       "options": [
         "מבוגרים: 10 מ\"ג IM, 5 מ\"ג IV לאט, או תוך-אפי",
@@ -28171,7 +28174,7 @@
         "רק בעוצמה"
       ],
       "correct": 0,
-      "subject": "פרמקולוגיה, מערכת הדם, הלם וחירום רפואי",
+      "subject": "מבחן עיוני מסכם שונות",
       "sourceFile": "end_misc_quiz.json"
     },
     {
@@ -28185,7 +28188,7 @@
         "IO כואב פחות"
       ],
       "correct": 1,
-      "subject": "פרמקולוגיה, מערכת הדם, הלם וחירום רפואי",
+      "subject": "מבחן עיוני מסכם שונות",
       "sourceFile": "end_misc_quiz.json"
     },
     {
@@ -28199,7 +28202,7 @@
         "IO נספג רק בילדים"
       ],
       "correct": 2,
-      "subject": "פרמקולוגיה, מערכת הדם, הלם וחירום רפואי",
+      "subject": "מבחן עיוני מסכם שונות",
       "sourceFile": "end_misc_quiz.json"
     },
     {
@@ -28213,7 +28216,7 @@
         "IO לא ניתן להשתמש בתרופות"
       ],
       "correct": 2,
-      "subject": "פרמקולוגיה, מערכת הדם, הלם וחירום רפואי",
+      "subject": "מבחן עיוני מסכם שונות",
       "sourceFile": "end_misc_quiz.json"
     },
     {
@@ -28227,7 +28230,7 @@
         "בכל מקום"
       ],
       "correct": 1,
-      "subject": "פרמקולוגיה, מערכת הדם, הלם וחירום רפואי",
+      "subject": "מבחן עיוני מסכם שונות",
       "sourceFile": "end_misc_quiz.json"
     },
     {
@@ -28241,7 +28244,7 @@
         "אי אפשר IO במבוגרים"
       ],
       "correct": 0,
-      "subject": "פרמקולוגיה, מערכת הדם, הלם וחירום רפואי",
+      "subject": "מבחן עיוני מסכם שונות",
       "sourceFile": "end_misc_quiz.json"
     },
     {
@@ -28255,7 +28258,7 @@
         "רק ילדים"
       ],
       "correct": 0,
-      "subject": "פרמקולוגיה, מערכת הדם, הלם וחירום רפואי",
+      "subject": "מבחן עיוני מסכם שונות",
       "sourceFile": "end_misc_quiz.json"
     },
     {
@@ -28269,7 +28272,7 @@
         "הסרת הצנתר"
       ],
       "correct": 1,
-      "subject": "פרמקולוגיה, מערכת הדם, הלם וחירום רפואי",
+      "subject": "מבחן עיוני מסכם שונות",
       "sourceFile": "end_misc_quiz.json"
     },
     {
@@ -28283,7 +28286,7 @@
         "שיעול"
       ],
       "correct": 1,
-      "subject": "פרמקולוגיה, מערכת הדם, הלם וחירום רפואי",
+      "subject": "מבחן עיוני מסכם שונות",
       "sourceFile": "end_misc_quiz.json"
     },
     {
@@ -28297,7 +28300,7 @@
         "500 מ\"ג"
       ],
       "correct": 2,
-      "subject": "פרמקולוגיה, מערכת הדם, הלם וחירום רפואי",
+      "subject": "מבחן עיוני מסכם שונות",
       "sourceFile": "end_misc_quiz.json"
     },
     {
@@ -28311,7 +28314,7 @@
         "הגברת קרישה"
       ],
       "correct": 1,
-      "subject": "פרמקולוגיה, מערכת הדם, הלם וחירום רפואי",
+      "subject": "מבחן עיוני מסכם שונות",
       "sourceFile": "end_misc_quiz.json"
     },
     {
@@ -28325,7 +28328,7 @@
         "אין הבדל"
       ],
       "correct": 1,
-      "subject": "פרמקולוגיה, מערכת הדם, הלם וחירום רפואי",
+      "subject": "מבחן עיוני מסכם שונות",
       "sourceFile": "end_misc_quiz.json"
     },
     {
@@ -28339,7 +28342,7 @@
         "אין התוויות נגד"
       ],
       "correct": 0,
-      "subject": "פרמקולוגיה, מערכת הדם, הלם וחירום רפואי",
+      "subject": "מבחן עיוני מסכם שונות",
       "sourceFile": "end_misc_quiz.json"
     },
     {
@@ -28353,7 +28356,7 @@
         "רק בילדים"
       ],
       "correct": 1,
-      "subject": "פרמקולוגיה, מערכת הדם, הלם וחירום רפואי",
+      "subject": "מבחן עיוני מסכם שונות",
       "sourceFile": "end_misc_quiz.json"
     },
     {
@@ -28367,7 +28370,7 @@
         "Ketamine"
       ],
       "correct": 1,
-      "subject": "פרמקולוגיה, מערכת הדם, הלם וחירום רפואי",
+      "subject": "מבחן עיוני מסכם שונות",
       "sourceFile": "end_misc_quiz.json"
     },
     {
@@ -28381,7 +28384,7 @@
         "טיפול בהיפרגליקמיה"
       ],
       "correct": 1,
-      "subject": "פרמקולוגיה, מערכת הדם, הלם וחירום רפואי",
+      "subject": "מבחן עיוני מסכם שונות",
       "sourceFile": "end_misc_quiz.json"
     },
     {
@@ -28395,7 +28398,7 @@
         "הרחבת סימפונות"
       ],
       "correct": 1,
-      "subject": "פרמקולוגיה, מערכת הדם, הלם וחירום רפואי",
+      "subject": "מבחן עיוני מסכם שונות",
       "sourceFile": "end_misc_quiz.json"
     },
     {
@@ -28409,7 +28412,7 @@
         "לחץ דם גבוה"
       ],
       "correct": 0,
-      "subject": "פרמקולוגיה, מערכת הדם, הלם וחירום רפואי",
+      "subject": "מבחן עיוני מסכם שונות",
       "sourceFile": "end_misc_quiz.json"
     },
     {
@@ -28423,7 +28426,7 @@
         "2 מ\"ג"
       ],
       "correct": 1,
-      "subject": "פרמקולוגיה, מערכת הדם, הלם וחירום רפואי",
+      "subject": "מבחן עיוני מסכם שונות",
       "sourceFile": "end_misc_quiz.json"
     },
     {
@@ -28437,7 +28440,7 @@
         "כל שעה"
       ],
       "correct": 1,
-      "subject": "פרמקולוגיה, מערכת הדם, הלם וחירום רפואי",
+      "subject": "מבחן עיוני מסכם שונות",
       "sourceFile": "end_misc_quiz.json"
     },
     {
@@ -28451,7 +28454,7 @@
         "שבוע"
       ],
       "correct": 0,
-      "subject": "פרמקולוגיה, מערכת הדם, הלם וחירום רפואי",
+      "subject": "מבחן עיוני מסכם שונות",
       "sourceFile": "end_misc_quiz.json"
     },
     {
@@ -28465,7 +28468,7 @@
         "רק כאב ראש"
       ],
       "correct": 1,
-      "subject": "פרמקולוגיה, מערכת הדם, הלם וחירום רפואי",
+      "subject": "מבחן עיוני מסכם שונות",
       "sourceFile": "end_misc_quiz.json"
     },
     {
@@ -28479,7 +28482,7 @@
         "אין צורך במעקב"
       ],
       "correct": 1,
-      "subject": "פרמקולוגיה, מערכת הדם, הלם וחירום רפואי",
+      "subject": "מבחן עיוני מסכם שונות",
       "sourceFile": "end_misc_quiz.json"
     },
     {
@@ -28493,7 +28496,7 @@
         "הובלת חלבונים"
       ],
       "correct": 0,
-      "subject": "פרמקולוגיה, מערכת הדם, הלם וחירום רפואי",
+      "subject": "מבחן עיוני מסכם שונות",
       "sourceFile": "end_misc_quiz.json"
     },
     {
@@ -28507,7 +28510,7 @@
         "גלוקוז בלבד"
       ],
       "correct": 1,
-      "subject": "פרמקולוגיה, מערכת הדם, הלם וחירום רפואי",
+      "subject": "מבחן עיוני מסכם שונות",
       "sourceFile": "end_misc_quiz.json"
     },
     {
@@ -28521,7 +28524,7 @@
         "זיהום"
       ],
       "correct": 1,
-      "subject": "פרמקולוגיה, מערכת הדם, הלם וחירום רפואי",
+      "subject": "מבחן עיוני מסכם שונות",
       "sourceFile": "end_misc_quiz.json"
     },
     {
@@ -28535,7 +28538,7 @@
         "לחץ דם גבוה"
       ],
       "correct": 0,
-      "subject": "פרמקולוגיה, מערכת הדם, הלם וחירום רפואי",
+      "subject": "מבחן עיוני מסכם שונות",
       "sourceFile": "end_misc_quiz.json"
     },
     {
@@ -28549,7 +28552,7 @@
         "ורידי Cava"
       ],
       "correct": 1,
-      "subject": "פרמקולוגיה, מערכת הדם, הלם וחירום רפואי",
+      "subject": "מבחן עיוני מסכם שונות",
       "sourceFile": "end_misc_quiz.json"
     },
     {
@@ -28563,7 +28566,7 @@
         "אין חלוקה"
       ],
       "correct": 0,
-      "subject": "פרמקולוגיה, מערכת הדם, הלם וחירום רפואי",
+      "subject": "מבחן עיוני מסכם שונות",
       "sourceFile": "end_misc_quiz.json"
     },
     {
@@ -28577,7 +28580,7 @@
         "דלקת אורטה"
       ],
       "correct": 1,
-      "subject": "פרמקולוגיה, מערכת הדם, הלם וחירום רפואי",
+      "subject": "מבחן עיוני מסכם שונות",
       "sourceFile": "end_misc_quiz.json"
     },
     {
@@ -28591,7 +28594,7 @@
         "בחילות בלבד"
       ],
       "correct": 0,
-      "subject": "פרמקולוגיה, מערכת הדם, הלם וחירום רפואי",
+      "subject": "מבחן עיוני מסכם שונות",
       "sourceFile": "end_misc_quiz.json"
     },
     {
@@ -28605,7 +28608,7 @@
         "מסתם לב"
       ],
       "correct": 1,
-      "subject": "פרמקולוגיה, מערכת הדם, הלם וחירום רפואי",
+      "subject": "מבחן עיוני מסכם שונות",
       "sourceFile": "end_misc_quiz.json"
     },
     {
@@ -28619,7 +28622,7 @@
         "אין עורק כזה"
       ],
       "correct": 1,
-      "subject": "פרמקולוגיה, מערכת הדם, הלם וחירום רפואי",
+      "subject": "מבחן עיוני מסכם שונות",
       "sourceFile": "end_misc_quiz.json"
     },
     {
@@ -28633,7 +28636,7 @@
         "חום גבוה"
       ],
       "correct": 1,
-      "subject": "פרמקולוגיה, מערכת הדם, הלם וחירום רפואי",
+      "subject": "מבחן עיוני מסכם שונות",
       "sourceFile": "end_misc_quiz.json"
     },
     {
@@ -28647,7 +28650,7 @@
         "אין סוגים"
       ],
       "correct": 0,
-      "subject": "פרמקולוגיה, מערכת הדם, הלם וחירום רפואי",
+      "subject": "מבחן עיוני מסכם שונות",
       "sourceFile": "end_misc_quiz.json"
     },
     {
@@ -28661,7 +28664,7 @@
         "זיהום"
       ],
       "correct": 1,
-      "subject": "פרמקולוגיה, מערכת הדם, הלם וחירום רפואי",
+      "subject": "מבחן עיוני מסכם שונות",
       "sourceFile": "end_misc_quiz.json"
     },
     {
@@ -28675,7 +28678,7 @@
         "עור חם"
       ],
       "correct": 0,
-      "subject": "פרמקולוגיה, מערכת הדם, הלם וחירום רפואי",
+      "subject": "מבחן עיוני מסכם שונות",
       "sourceFile": "end_misc_quiz.json"
     },
     {
@@ -28689,7 +28692,7 @@
         "רק מעקב"
       ],
       "correct": 1,
-      "subject": "פרמקולוגיה, מערכת הדם, הלם וחירום רפואי",
+      "subject": "מבחן עיוני מסכם שונות",
       "sourceFile": "end_misc_quiz.json"
     },
     {
@@ -28703,7 +28706,7 @@
         "רק דם"
       ],
       "correct": 1,
-      "subject": "פרמקולוגיה, מערכת הדם, הלם וחירום רפואי",
+      "subject": "מבחן עיוני מסכם שונות",
       "sourceFile": "end_misc_quiz.json"
     },
     {
@@ -28717,7 +28720,7 @@
         "אין צורך בנוזלים"
       ],
       "correct": 1,
-      "subject": "פרמקולוגיה, מערכת הדם, הלם וחירום רפואי",
+      "subject": "מבחן עיוני מסכם שונות",
       "sourceFile": "end_misc_quiz.json"
     },
     {
@@ -28731,7 +28734,7 @@
         "הלם מאלרגיה"
       ],
       "correct": 1,
-      "subject": "פרמקולוגיה, מערכת הדם, הלם וחירום רפואי",
+      "subject": "מבחן עיוני מסכם שונות",
       "sourceFile": "end_misc_quiz.json"
     },
     {
@@ -28745,7 +28748,7 @@
         "אין טיפול"
       ],
       "correct": 1,
-      "subject": "פרמקולוגיה, מערכת הדם, הלם וחירום רפואי",
+      "subject": "מבחן עיוני מסכם שונות",
       "sourceFile": "end_misc_quiz.json"
     },
     {
@@ -28759,7 +28762,7 @@
         "אין הלם כזה"
       ],
       "correct": 1,
-      "subject": "פרמקולוגיה, מערכת הדם, הלם וחירום רפואי",
+      "subject": "מבחן עיוני מסכם שונות",
       "sourceFile": "end_misc_quiz.json"
     },
     {
@@ -28773,7 +28776,7 @@
         "הלם מאלרגיה"
       ],
       "correct": 1,
-      "subject": "פרמקולוגיה, מערכת הדם, הלם וחירום רפואי",
+      "subject": "מבחן עיוני מסכם שונות",
       "sourceFile": "end_misc_quiz.json"
     },
     {
@@ -28787,7 +28790,7 @@
         "אין סימנים"
       ],
       "correct": 0,
-      "subject": "פרמקולוגיה, מערכת הדם, הלם וחירום רפואי",
+      "subject": "מבחן עיוני מסכם שונות",
       "sourceFile": "end_misc_quiz.json"
     },
     {
@@ -28801,7 +28804,7 @@
         "אין טיפול"
       ],
       "correct": 1,
-      "subject": "פרמקולוגיה, מערכת הדם, הלם וחירום רפואי",
+      "subject": "מבחן עיוני מסכם שונות",
       "sourceFile": "end_misc_quiz.json"
     },
     {
@@ -28815,7 +28818,7 @@
         "הלם מהלב"
       ],
       "correct": 1,
-      "subject": "פרמקולוגיה, מערכת הדם, הלם וחירום רפואי",
+      "subject": "מבחן עיוני מסכם שונות",
       "sourceFile": "end_misc_quiz.json"
     },
     {
@@ -28829,7 +28832,7 @@
         "אין טיפול"
       ],
       "correct": 1,
-      "subject": "פרמקולוגיה, מערכת הדם, הלם וחירום רפואי",
+      "subject": "מבחן עיוני מסכם שונות",
       "sourceFile": "end_misc_quiz.json"
     },
     {
@@ -28843,7 +28846,7 @@
         "הלם מאלרגיה"
       ],
       "correct": 1,
-      "subject": "פרמקולוגיה, מערכת הדם, הלם וחירום רפואי",
+      "subject": "מבחן עיוני מסכם שונות",
       "sourceFile": "end_misc_quiz.json"
     },
     {
@@ -28857,7 +28860,7 @@
         "דופק מהיר"
       ],
       "correct": 1,
-      "subject": "פרמקולוגיה, מערכת הדם, הלם וחירום רפואי",
+      "subject": "מבחן עיוני מסכם שונות",
       "sourceFile": "end_misc_quiz.json"
     },
     {
@@ -28871,7 +28874,7 @@
         "הלם מהלב"
       ],
       "correct": 1,
-      "subject": "פרמקולוגיה, מערכת הדם, הלם וחירום רפואי",
+      "subject": "מבחן עיוני מסכם שונות",
       "sourceFile": "end_misc_quiz.json"
     },
     {
@@ -28885,7 +28888,7 @@
         "סוג זיהום"
       ],
       "correct": 1,
-      "subject": "פרמקולוגיה, מערכת הדם, הלם וחירום רפואי",
+      "subject": "מבחן עיוני מסכם שונות",
       "sourceFile": "end_misc_quiz.json"
     },
     {
@@ -28899,12 +28902,12 @@
         "דימום"
       ],
       "correct": 1,
-      "subject": "פרמקולוגיה, מערכת הדם, הלם וחירום רפואי",
+      "subject": "מבחן עיוני מסכם שונות",
       "sourceFile": "end_misc_quiz.json"
     },
     {
       "id": "end_misc_quiz_54",
-      "question": "איך בודקים Displacement?",
+      "question": "איך בודקים ב DOPE Displacement?",
       "type": "multiple_choice",
       "options": [
         "רק צילום",
@@ -28913,7 +28916,7 @@
         "אין דרך"
       ],
       "correct": 1,
-      "subject": "פרמקולוגיה, מערכת הדם, הלם וחירום רפואי",
+      "subject": "מבחן עיוני מסכם שונות",
       "sourceFile": "end_misc_quiz.json"
     },
     {
@@ -28927,21 +28930,21 @@
         "דימום חיצוני"
       ],
       "correct": 1,
-      "subject": "פרמקולוגיה, מערכת הדם, הלם וחירום רפואי",
+      "subject": "מבחן עיוני מסכם שונות",
       "sourceFile": "end_misc_quiz.json"
     },
     {
       "id": "end_misc_quiz_56",
-      "question": "מה עושים במקרה של Obstruction?",
+      "question": "מה עושים בבדיקת DOPE Obstruction?",
       "type": "multiple_choice",
       "options": [
         "כלום",
-        "שאיבה, שטיפה, בדיקת כיפופים, טיפול בברונכוספזם",
+        "סאקשן, שטיפה, בדיקת כיפופים, טיפול בברונכוספזם",
         "רק המתנה",
         "החלפת מטופל"
       ],
       "correct": 1,
-      "subject": "פרמקולוגיה, מערכת הדם, הלם וחירום רפואי",
+      "subject": "מבחן עיוני מסכם שונות",
       "sourceFile": "end_misc_quiz.json"
     },
     {
@@ -28955,7 +28958,7 @@
         "דימום"
       ],
       "correct": 1,
-      "subject": "פרמקולוגיה, מערכת הדם, הלם וחירום רפואי",
+      "subject": "מבחן עיוני מסכם שונות",
       "sourceFile": "end_misc_quiz.json"
     },
     {
@@ -28969,7 +28972,7 @@
         "אין סימנים"
       ],
       "correct": 1,
-      "subject": "פרמקולוגיה, מערכת הדם, הלם וחירום רפואי",
+      "subject": "מבחן עיוני מסכם שונות",
       "sourceFile": "end_misc_quiz.json"
     },
     {
@@ -28983,12 +28986,12 @@
         "אין כשל"
       ],
       "correct": 1,
-      "subject": "פרמקולוגיה, מערכת הדם, הלם וחירום רפואי",
+      "subject": "מבחן עיוני מסכם שונות",
       "sourceFile": "end_misc_quiz.json"
     },
     {
       "id": "end_misc_quiz_60",
-      "question": "איך בודקים Equipment failure?",
+      "question": "איך בודקים ב DOPE Equipment failure?",
       "type": "multiple_choice",
       "options": [
         "רק מבט",
@@ -28997,7 +29000,7 @@
         "אין דרך"
       ],
       "correct": 1,
-      "subject": "פרמקולוגיה, מערכת הדם, הלם וחירום רפואי",
+      "subject": "מבחן עיוני מסכם שונות",
       "sourceFile": "end_misc_quiz.json"
     },
     {
@@ -29011,7 +29014,7 @@
         "רק זיהום"
       ],
       "correct": 1,
-      "subject": "פרמקולוגיה, מערכת הדם, הלם וחירום רפואי",
+      "subject": "מבחן עיוני מסכם שונות",
       "sourceFile": "end_misc_quiz.json"
     },
     {
@@ -29025,7 +29028,7 @@
         "חום גבוה"
       ],
       "correct": 1,
-      "subject": "פרמקולוגיה, מערכת הדם, הלם וחירום רפואי",
+      "subject": "מבחן עיוני מסכם שונות",
       "sourceFile": "end_misc_quiz.json"
     },
     {
@@ -29039,7 +29042,7 @@
         "רק זיהום"
       ],
       "correct": 1,
-      "subject": "פרמקולוגיה, מערכת הדם, הלם וחירום רפואי",
+      "subject": "מבחן עיוני מסכם שונות",
       "sourceFile": "end_misc_quiz.json"
     },
     {
@@ -29053,7 +29056,7 @@
         "רק שיעול"
       ],
       "correct": 1,
-      "subject": "פרמקולוגיה, מערכת הדם, הלם וחירום רפואי",
+      "subject": "מבחן עיוני מסכם שונות",
       "sourceFile": "end_misc_quiz.json"
     },
     {
@@ -29067,7 +29070,7 @@
         "רק זיהום"
       ],
       "correct": 1,
-      "subject": "פרמקולוגיה, מערכת הדם, הלם וחירום רפואי",
+      "subject": "מבחן עיוני מסכם שונות",
       "sourceFile": "end_misc_quiz.json"
     },
     {
@@ -29081,7 +29084,7 @@
         "חום"
       ],
       "correct": 1,
-      "subject": "פרמקולוגיה, מערכת הדם, הלם וחירום רפואי",
+      "subject": "מבחן עיוני מסכם שונות",
       "sourceFile": "end_misc_quiz.json"
     },
     {
@@ -29095,7 +29098,7 @@
         "אין צורך בטיפול"
       ],
       "correct": 1,
-      "subject": "פרמקולוגיה, מערכת הדם, הלם וחירום רפואי",
+      "subject": "מבחן עיוני מסכם שונות",
       "sourceFile": "end_misc_quiz.json"
     },
     {
@@ -29109,7 +29112,7 @@
         "רק בילדים"
       ],
       "correct": 1,
-      "subject": "פרמקולוגיה, מערכת הדם, הלם וחירום רפואי",
+      "subject": "מבחן עיוני מסכם שונות",
       "sourceFile": "end_misc_quiz.json"
     },
     {
@@ -29123,7 +29126,7 @@
         "רק במשך"
       ],
       "correct": 1,
-      "subject": "פרמקולוגיה, מערכת הדם, הלם וחירום רפואי",
+      "subject": "מבחן עיוני מסכם שונות",
       "sourceFile": "end_misc_quiz.json"
     },
     {
@@ -29137,7 +29140,7 @@
         "גידול בריאות"
       ],
       "correct": 1,
-      "subject": "פרמקולוגיה, מערכת הדם, הלם וחירום רפואי",
+      "subject": "מבחן עיוני מסכם שונות",
       "sourceFile": "end_misc_quiz.json"
     },
     {
@@ -29151,7 +29154,7 @@
         "אין סימנים"
       ],
       "correct": 1,
-      "subject": "פרמקולוגיה, מערכת הדם, הלם וחירום רפואי",
+      "subject": "מבחן עיוני מסכם שונות",
       "sourceFile": "end_misc_quiz.json"
     },
     {
@@ -29165,7 +29168,7 @@
         "רק משקל"
       ],
       "correct": 1,
-      "subject": "פרמקולוגיה, מערכת הדם, הלם וחירום רפואי",
+      "subject": "מבחן עיוני מסכם שונות",
       "sourceFile": "end_misc_quiz.json"
     },
     {
@@ -29179,7 +29182,7 @@
         "אין טיפול"
       ],
       "correct": 1,
-      "subject": "פרמקולוגיה, מערכת הדם, הלם וחירום רפואי",
+      "subject": "מבחן עיוני מסכם שונות",
       "sourceFile": "end_misc_quiz.json"
     },
     {
@@ -29193,7 +29196,7 @@
         "שבר"
       ],
       "correct": 1,
-      "subject": "פרמקולוגיה, מערכת הדם, הלם וחירום רפואי",
+      "subject": "מבחן עיוני מסכם שונות",
       "sourceFile": "end_misc_quiz.json"
     },
     {
@@ -29207,7 +29210,7 @@
         "רק שיעול"
       ],
       "correct": 1,
-      "subject": "פרמקולוגיה, מערכת הדם, הלם וחירום רפואי",
+      "subject": "מבחן עיוני מסכם שונות",
       "sourceFile": "end_misc_quiz.json"
     },
     {
@@ -29221,12 +29224,12 @@
         "רק למחקר"
       ],
       "correct": 1,
-      "subject": "פרמקולוגיה, מערכת הדם, הלם וחירום רפואי",
+      "subject": "מבחן עיוני מסכם שונות",
       "sourceFile": "end_misc_quiz.json"
     },
     {
       "id": "end_misc_quiz_77",
-      "question": "מהי דרך המתן המהירה ביותר?",
+      "question": "מה דרך המתן המהירה ביותר להכנסת התרופה למחזור הדם?",
       "type": "multiple_choice",
       "options": [
         "פומי (PO)",
@@ -29235,7 +29238,7 @@
         "תת עורי (SC)"
       ],
       "correct": 1,
-      "subject": "פרמקולוגיה, מערכת הדם, הלם וחירום רפואי",
+      "subject": "מבחן עיוני מסכם שונות",
       "sourceFile": "end_misc_quiz.json"
     },
     {
@@ -29249,7 +29252,7 @@
         "אין יתרון"
       ],
       "correct": 1,
-      "subject": "פרמקולוגיה, מערכת הדם, הלם וחירום רפואי",
+      "subject": "מבחן עיוני מסכם שונות",
       "sourceFile": "end_misc_quiz.json"
     },
     {
@@ -29263,7 +29266,7 @@
         "אף פעם"
       ],
       "correct": 1,
-      "subject": "פרמקולוגיה, מערכת הדם, הלם וחירום רפואי",
+      "subject": "מבחן עיוני מסכם שונות",
       "sourceFile": "end_misc_quiz.json"
     },
     {
@@ -29277,7 +29280,7 @@
         "בוריד"
       ],
       "correct": 1,
-      "subject": "פרמקולוגיה, מערכת הדם, הלם וחירום רפואי",
+      "subject": "מבחן עיוני מסכם שונות",
       "sourceFile": "end_misc_quiz.json"
     },
     {
@@ -29291,7 +29294,7 @@
         "רק חמצן"
       ],
       "correct": 1,
-      "subject": "פרמקולוגיה, מערכת הדם, הלם וחירום רפואי",
+      "subject": "מבחן עיוני מסכם שונות",
       "sourceFile": "end_misc_quiz.json"
     },
     {
@@ -29305,7 +29308,7 @@
         "זמן לחץ דם"
       ],
       "correct": 1,
-      "subject": "פרמקולוגיה, מערכת הדם, הלם וחירום רפואי",
+      "subject": "מבחן עיוני מסכם שונות",
       "sourceFile": "end_misc_quiz.json"
     },
     {
@@ -29319,7 +29322,7 @@
         "בדיקת לב"
       ],
       "correct": 1,
-      "subject": "פרמקולוגיה, מערכת הדם, הלם וחירום רפואי",
+      "subject": "מבחן עיוני מסכם שונות",
       "sourceFile": "end_misc_quiz.json"
     },
     {
@@ -29333,7 +29336,7 @@
         "אין משמעות"
       ],
       "correct": 1,
-      "subject": "פרמקולוגיה, מערכת הדם, הלם וחירום רפואי",
+      "subject": "מבחן עיוני מסכם שונות",
       "sourceFile": "end_misc_quiz.json"
     },
     {
@@ -29347,7 +29350,7 @@
         "דופק"
       ],
       "correct": 1,
-      "subject": "פרמקולוגיה, מערכת הדם, הלם וחירום רפואי",
+      "subject": "מבחן עיוני מסכם שונות",
       "sourceFile": "end_misc_quiz.json"
     },
     {
@@ -29361,7 +29364,7 @@
         "120 mmHg"
       ],
       "correct": 1,
-      "subject": "פרמקולוגיה, מערכת הדם, הלם וחירום רפואי",
+      "subject": "מבחן עיוני מסכם שונות",
       "sourceFile": "end_misc_quiz.json"
     },
     {
@@ -29375,7 +29378,7 @@
         "רק זיהום"
       ],
       "correct": 1,
-      "subject": "פרמקולוגיה, מערכת הדם, הלם וחירום רפואי",
+      "subject": "מבחן עיוני מסכם שונות",
       "sourceFile": "end_misc_quiz.json"
     },
     {
@@ -29389,7 +29392,7 @@
         "אין סימנים"
       ],
       "correct": 1,
-      "subject": "פרמקולוגיה, מערכת הדם, הלם וחירום רפואי",
+      "subject": "מבחן עיוני מסכם שונות",
       "sourceFile": "end_misc_quiz.json"
     },
     {
@@ -29403,7 +29406,7 @@
         "אין טיפול"
       ],
       "correct": 1,
-      "subject": "פרמקולוגיה, מערכת הדם, הלם וחירום רפואי",
+      "subject": "מבחן עיוני מסכם שונות",
       "sourceFile": "end_misc_quiz.json"
     },
     {
@@ -29417,7 +29420,7 @@
         "רק לתיעוד"
       ],
       "correct": 1,
-      "subject": "פרמקולוגיה, מערכת הדם, הלם וחירום רפואי",
+      "subject": "מבחן עיוני מסכם שונות",
       "sourceFile": "end_misc_quiz.json"
     },
     {
@@ -29431,7 +29434,7 @@
         "רק חמצן"
       ],
       "correct": 1,
-      "subject": "פרמקולוגיה, מערכת הדם, הלם וחירום רפואי",
+      "subject": "מבחן עיוני מסכם שונות",
       "sourceFile": "end_misc_quiz.json"
     },
     {
@@ -29445,7 +29448,7 @@
         "רק הזמן"
       ],
       "correct": 1,
-      "subject": "פרמקולוגיה, מערכת הדם, הלם וחירום רפואי",
+      "subject": "מבחן עיוני מסכם שונות",
       "sourceFile": "end_misc_quiz.json"
     },
     {
@@ -29459,8 +29462,2620 @@
         "רק במינון"
       ],
       "correct": 1,
-      "subject": "פרמקולוגיה, מערכת הדם, הלם וחירום רפואי",
+      "subject": "מבחן עיוני מסכם שונות",
       "sourceFile": "end_misc_quiz.json"
+    },
+    {
+      "id": "end_med_quiz_1",
+      "question": "מהן התוויות הנגד לשימוש באדנוזין?",
+      "type": "multiple_choice",
+      "options": [
+        "רגישות יתר ידועה",
+        "תסמונת סינוס חולה (Sick sinus syndrome)",
+        "חוסם הולכה מדרגה שנייה או שלישית",
+        "אסתמה קשה",
+        "יתר לחץ דם",
+        "סוכרת"
+      ],
+      "correct": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "subject": "מבחן עיוני מסכם תרופות",
+      "sourceFile": "end_med_quiz.json"
+    },
+    {
+      "id": "end_med_quiz_2",
+      "question": "למה מיועד אדרנלין?",
+      "type": "multiple_choice",
+      "options": [
+        "תגובה אלרגית/אנפילקסיס",
+        "סטרידור",
+        "ברדיקרדיה",
+        "התקף אסתמה",
+        "דום לב",
+        "טכיקרדיה",
+        "יתר לחץ דם",
+        "הרדמה"
+      ],
+      "correct": [
+        0,
+        1,
+        2,
+        3,
+        4
+      ],
+      "subject": "מבחן עיוני מסכם תרופות",
+      "sourceFile": "end_med_quiz.json"
+    },
+    {
+      "id": "end_med_quiz_3",
+      "question": "על אילו קולטנים פועל אדרנלין?",
+      "type": "multiple_choice",
+      "options": [
+        "קולטנים אדרנרגיים מסוג α",
+        "קולטנים אדרנרגיים מסוג β",
+        "רצפטורי GABA",
+        "רצפטורי אופיאטים"
+      ],
+      "correct": [
+        0,
+        1
+      ],
+      "subject": "מבחן עיוני מסכם תרופות",
+      "sourceFile": "end_med_quiz.json"
+    },
+    {
+      "id": "end_med_quiz_4",
+      "question": "מהי השפעת אדרנלין על קולטני β1?",
+      "type": "multiple_choice",
+      "options": [
+        "חיזוק כיווץ שריר הלב, העלאת לחץ דם ודופק",
+        "הרפיית השריר החלק בסימפונות",
+        "כיווץ עורקיקים",
+        "הרחבת כלי דם"
+      ],
+      "correct": 0,
+      "subject": "מבחן עיוני מסכם תרופות",
+      "sourceFile": "end_med_quiz.json"
+    },
+    {
+      "id": "end_med_quiz_5",
+      "question": "מהי השפעת אדרנלין על קולטני β2?",
+      "type": "multiple_choice",
+      "options": [
+        "הרפיית השריר החלק בסימפונות",
+        "חיזוק כיווץ שריר הלב",
+        "העלאת לחץ דם",
+        "כיווץ עורקיקים"
+      ],
+      "correct": 0,
+      "subject": "מבחן עיוני מסכם תרופות",
+      "sourceFile": "end_med_quiz.json"
+    },
+    {
+      "id": "end_med_quiz_6",
+      "question": "למה מיועד אטרופין?",
+      "type": "multiple_choice",
+      "options": [
+        "הרעלות זרחן אורגני",
+        "ברדיקרדיה",
+        "טכיקרדיה",
+        "יתר לחץ דם"
+      ],
+      "correct": [
+        0,
+        1
+      ],
+      "subject": "מבחן עיוני מסכם תרופות",
+      "sourceFile": "end_med_quiz.json"
+    },
+    {
+      "id": "end_med_quiz_7",
+      "question": "איך אטרופין משפיע על הלב?",
+      "type": "multiple_choice",
+      "options": [
+        "חוסם דחפים ווגאליים ומגדיל קצב SA node",
+        "משפר הולכה ב-AV node ומגדיל תפוקת לב",
+        "מאט את הדופק",
+        "מוריד את לחץ הדם"
+      ],
+      "correct": [
+        0,
+        1
+      ],
+      "subject": "מבחן עיוני מסכם תרופות",
+      "sourceFile": "end_med_quiz.json"
+    },
+    {
+      "id": "end_med_quiz_8",
+      "question": "אטרופין יעיל בטיפול בהרעלת גז עצבים",
+      "type": "true_false",
+      "options": [
+        "נכון",
+        "לא נכון"
+      ],
+      "correct": 0,
+      "subject": "מבחן עיוני מסכם תרופות",
+      "sourceFile": "end_med_quiz.json"
+    },
+    {
+      "id": "end_med_quiz_9",
+      "question": "למה מיועד אטומידאט?",
+      "type": "multiple_choice",
+      "options": [
+        "השריית סדציה למטופל הזקוק לפרוצדורה (כגון אינטובציה או היפוך חשמלי)",
+        "טיפול בכאב",
+        "הורדת לחץ דם",
+        "טיפול בפרכוסים"
+      ],
+      "correct": 0,
+      "subject": "מבחן עיוני מסכם תרופות",
+      "sourceFile": "end_med_quiz.json"
+    },
+    {
+      "id": "end_med_quiz_10",
+      "question": "מהם המאפיינים של אטומידאט?",
+      "type": "multiple_choice",
+      "options": [
+        "אין השפעה על מדדים קרדיווסקולריים ונשימתיים",
+        "גורם לירידה קלה בלחץ תוך-גולגולתי (ICP)",
+        "אידיאלי לנפגעים לא יציבים המודינמית",
+        "משכך כאב",
+        "מעלה לחץ דם",
+        "גורם לטכיקרדיה"
+      ],
+      "correct": [
+        0,
+        1,
+        2
+      ],
+      "subject": "מבחן עיוני מסכם תרופות",
+      "sourceFile": "end_med_quiz.json"
+    },
+    {
+      "id": "end_med_quiz_11",
+      "question": "אטומידאט משכך כאב",
+      "type": "true_false",
+      "options": [
+        "נכון",
+        "לא נכון. אטומידאט אינו משכך כאב"
+      ],
+      "correct": 1,
+      "subject": "מבחן עיוני מסכם תרופות",
+      "sourceFile": "end_med_quiz.json"
+    },
+    {
+      "id": "end_med_quiz_12",
+      "question": "למה יש להימנע מהזרקה מהירה של אטומידאט?",
+      "type": "multiple_choice",
+      "options": [
+        "עלול לגרום לטריזמוס (עווית הלסת)",
+        "עלול לגרום לברדיקרדיה",
+        "עלול לגרום לירידת לחץ דם קיצונית",
+        "עלול לגרום לפרכוס"
+      ],
+      "correct": 0,
+      "subject": "מבחן עיוני מסכם תרופות",
+      "sourceFile": "end_med_quiz.json"
+    },
+    {
+      "id": "end_med_quiz_13",
+      "question": "מה המינון של אטומידאט?",
+      "type": "multiple_choice",
+      "options": [
+        "0.2-0.3 מ\"ג/ק\"ג מנה חד-פעמית",
+        "1-2 מ\"ג/ק\"ג",
+        "0.5-1 מ\"ג/ק\"ג",
+        "5 מ\"ג/ק\"ג"
+      ],
+      "correct": 0,
+      "subject": "מבחן עיוני מסכם תרופות",
+      "sourceFile": "end_med_quiz.json"
+    },
+    {
+      "id": "end_med_quiz_14",
+      "question": "למה מיועד קטמין?",
+      "type": "multiple_choice",
+      "options": [
+        "הרדמה",
+        "טיפול בכאב",
+        "הרחבת דרכי נשימה",
+        "הורדת לחץ דם",
+        "טיפול בפרכוסים",
+        "הורדת חום"
+      ],
+      "correct": [
+        0,
+        1,
+        2
+      ],
+      "subject": "מבחן עיוני מסכם תרופות",
+      "sourceFile": "end_med_quiz.json"
+    },
+    {
+      "id": "end_med_quiz_15",
+      "question": "מה ההבדל בין קטמין לאטומידאט?",
+      "type": "multiple_choice",
+      "options": [
+        "קטמין גם משכך כאב בניגוד לאטומידאט",
+        "קטמין לא משכך כאב",
+        "אטומידאט משכך כאב",
+        "אין הבדל ביניהם"
+      ],
+      "correct": 0,
+      "subject": "מבחן עיוני מסכם תרופות",
+      "sourceFile": "end_med_quiz.json"
+    },
+    {
+      "id": "end_med_quiz_16",
+      "question": "מהם תופעות הלוואי של קטמין?",
+      "type": "multiple_choice",
+      "options": [
+        "גורם להזיות וחוויות חוץ-גופיות",
+        "מעלה לחץ דם וקצב לב",
+        "מוריד לחץ דם",
+        "גורם לברדיקרדיה"
+      ],
+      "correct": [
+        0,
+        1
+      ],
+      "subject": "מבחן עיוני מסכם תרופות",
+      "sourceFile": "end_med_quiz.json"
+    },
+    {
+      "id": "end_med_quiz_17",
+      "question": "מה המינון של קטמין לסדציה תוך-ורידי (IV)?",
+      "type": "multiple_choice",
+      "options": [
+        "2-3 מ\"ג/ק\"ג",
+        "5-6 מ\"ג/ק\"ג",
+        "0.2 מ\"ג/ק\"ג",
+        "1 מ\"ג/ק\"ג"
+      ],
+      "correct": 0,
+      "subject": "מבחן עיוני מסכם תרופות",
+      "sourceFile": "end_med_quiz.json"
+    },
+    {
+      "id": "end_med_quiz_18",
+      "question": "מה המינון של קטמין לסדציה תוך-שרירי (IM)?",
+      "type": "multiple_choice",
+      "options": [
+        "5-6 מ\"ג/ק\"ג",
+        "2-3 מ\"ג/ק\"ג",
+        "0.5-1 מ\"ג/ק\"ג",
+        "10 מ\"ג/ק\"ג"
+      ],
+      "correct": 0,
+      "subject": "מבחן עיוני מסכם תרופות",
+      "sourceFile": "end_med_quiz.json"
+    },
+    {
+      "id": "end_med_quiz_19",
+      "question": "מה המינון של קטמין לשיכוך כאב בשילוב עם אופיאט (IV)?",
+      "type": "multiple_choice",
+      "options": [
+        "0.2 מ\"ג/ק\"ג",
+        "2-3 מ\"ג/ק\"ג",
+        "5-6 מ\"ג/ק\"ג",
+        "1 מ\"ג/ק\"ג"
+      ],
+      "correct": 0,
+      "subject": "מבחן עיוני מסכם תרופות",
+      "sourceFile": "end_med_quiz.json"
+    },
+    {
+      "id": "end_med_quiz_20",
+      "question": "המינונים זהים לתוך-לשדי (IO) ולתוך-ורידי (IV)",
+      "type": "true_false",
+      "options": [
+        "נכון. המינונים זהים ל-IO ול-IV",
+        "לא נכון. המינונים שונים"
+      ],
+      "correct": 0,
+      "subject": "מבחן עיוני מסכם תרופות",
+      "sourceFile": "end_med_quiz.json"
+    },
+    {
+      "id": "end_med_quiz_21",
+      "question": "מתי משתמשים בגישה תוך-לשדית (IO)?",
+      "type": "multiple_choice",
+      "options": [
+        "כאשר אין גישה ורידית זמינה",
+        "בהחייאה",
+        "בדום לב",
+        "בהלם",
+        "כגישה ראשונה תמיד",
+        "רק בילדים"
+      ],
+      "correct": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "subject": "מבחן עיוני מסכם תרופות",
+      "sourceFile": "end_med_quiz.json"
+    },
+    {
+      "id": "end_med_quiz_22",
+      "question": "מהם יתרונות הגישה התוך-לשדית (IO)?",
+      "type": "multiple_choice",
+      "options": [
+        "קל להשגה במצבי חירום",
+        "אמין במטופלים עם קריסה וסקולרית",
+        "מהירות הזרמה דומה ל-IV",
+        "ספיגה איטית יותר",
+        "פחות כואב",
+        "לא צריך הכשרה"
+      ],
+      "correct": [
+        0,
+        1,
+        2
+      ],
+      "subject": "מבחן עיוני מסכם תרופות",
+      "sourceFile": "end_med_quiz.json"
+    },
+    {
+      "id": "end_med_quiz_23",
+      "question": "למה מיועד אספירין?",
+      "type": "multiple_choice",
+      "options": [
+        "כאבים בחזה ממקור לבבי",
+        "שיכוך כאב",
+        "הורדת חום",
+        "טיפול בפרכוסים",
+        "הרדמה"
+      ],
+      "correct": [
+        0,
+        1,
+        2
+      ],
+      "subject": "מבחן עיוני מסכם תרופות",
+      "sourceFile": "end_med_quiz.json"
+    },
+    {
+      "id": "end_med_quiz_24",
+      "question": "מהן התוויות הנגד לשימוש באספירין?",
+      "type": "multiple_choice",
+      "options": [
+        "אלרגיה",
+        "כיב פפטי",
+        "דמם מדרכי העיכול",
+        "אסתמה רגישה לאספירין או NSAIDs",
+        "יתר לחץ דם",
+        "ברדיקרדיה"
+      ],
+      "correct": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "subject": "מבחן עיוני מסכם תרופות",
+      "sourceFile": "end_med_quiz.json"
+    },
+    {
+      "id": "end_med_quiz_25",
+      "question": "אספירין אסור בילדים בשל הסיכון לתסמונת ריי (Reye)",
+      "type": "true_false",
+      "options": [
+        "נכון. אסור בילדים - סיכון לתסמונת ריי",
+        "לא נכון. מותר בילדים"
+      ],
+      "correct": 0,
+      "subject": "מבחן עיוני מסכם תרופות",
+      "sourceFile": "end_med_quiz.json"
+    },
+    {
+      "id": "end_med_quiz_26",
+      "question": "איך אספירין פועל?",
+      "type": "multiple_choice",
+      "options": [
+        "מעכב COX לצמיתות",
+        "מונע ייצור פרוסטגלנדינים ותרומבוקסנים",
+        "מונע אגרגציה של טסיות ויצירת קריש",
+        "מאיץ קרישת דם",
+        "מעלה את לחץ הדם"
+      ],
+      "correct": [
+        0,
+        1,
+        2
+      ],
+      "subject": "מבחן עיוני מסכם תרופות",
+      "sourceFile": "end_med_quiz.json"
+    },
+    {
+      "id": "end_med_quiz_27",
+      "question": "מה המינון של אספירין?",
+      "type": "multiple_choice",
+      "options": [
+        "160-325 מ\"ג בלעיסה",
+        "50-100 מ\"ג",
+        "500-1000 מ\"ג",
+        "25-50 מ\"ג"
+      ],
+      "correct": 0,
+      "subject": "מבחן עיוני מסכם תרופות",
+      "sourceFile": "end_med_quiz.json"
+    },
+    {
+      "id": "end_med_quiz_28",
+      "question": "למה מיועד נרקן?",
+      "type": "multiple_choice",
+      "options": [
+        "מינון יתר של אופיאטים",
+        "מינון יתר של בנזודיאזפינים",
+        "הרדמה",
+        "טיפול בכאב"
+      ],
+      "correct": 0,
+      "subject": "מבחן עיוני מסכם תרופות",
+      "sourceFile": "end_med_quiz.json"
+    },
+    {
+      "id": "end_med_quiz_29",
+      "question": "מהם המינונים של נרקן?",
+      "type": "multiple_choice",
+      "options": [
+        "מבוגרים IV: 0.4-2 מ\"ג מהול ב-10 סמ\"ק סליין",
+        "מבוגרים IN: 2 מ\"ג",
+        "ילדים מתחת ל-20 ק\"ג: 0.1 מ\"ג/ק\"ג",
+        "ילדים מעל 20 ק\"ג: 2 מ\"ג למנה",
+        "מבוגרים: 10 מ\"ג",
+        "ילדים: 5 מ\"ג"
+      ],
+      "correct": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "subject": "מבחן עיוני מסכם תרופות",
+      "sourceFile": "end_med_quiz.json"
+    },
+    {
+      "id": "end_med_quiz_30",
+      "question": "משך ההשפעה של נרקן ארוך יותר מהאופיאטים",
+      "type": "true_false",
+      "options": [
+        "נכון",
+        "לא נכון. משך השפעת נרקן (20 דקות) קצר מהאופיאטים ולכן יש לנטר את המטופל לאורך זמן"
+      ],
+      "correct": 1,
+      "subject": "מבחן עיוני מסכם תרופות",
+      "sourceFile": "end_med_quiz.json"
+    },
+    {
+      "id": "end_med_quiz_long_not-in-use_1",
+      "question": "למה מיועדת התרופה אדנוזין (Adenosine)?",
+      "type": "multiple_choice",
+      "options": [
+        "טכיקרדיה צרה או רחבת קומפלקס",
+        "ברדיקרדיה",
+        "יתר לחץ דם",
+        "כאב בחזה"
+      ],
+      "correct": 0,
+      "subject": "מבחן עיוני מסכם תרופות",
+      "sourceFile": "end_med_quiz_long_not-in-use.json"
+    },
+    {
+      "id": "end_med_quiz_long_not-in-use_2",
+      "question": "מה התווית הנגד לשימוש באדנוזין?",
+      "type": "multiple_choice",
+      "options": [
+        "אסתמה קשה",
+        "יתר לחץ דם",
+        "סוכרת",
+        "מחלת כליות"
+      ],
+      "correct": 0,
+      "subject": "מבחן עיוני מסכם תרופות",
+      "sourceFile": "end_med_quiz_long_not-in-use.json"
+    },
+    {
+      "id": "end_med_quiz_long_not-in-use_3",
+      "question": "איך אדנוזין משפיע על הלב?",
+      "type": "multiple_choice",
+      "options": [
+        "מאט את ההולכה ב-AV node ומעכב הולכה במסלול reentry",
+        "מאיץ את הדופק",
+        "מעלה את לחץ הדם",
+        "מרחיב את כלי הדם"
+      ],
+      "correct": 0,
+      "subject": "מבחן עיוני מסכם תרופות",
+      "sourceFile": "end_med_quiz_long_not-in-use.json"
+    },
+    {
+      "id": "end_med_quiz_long_not-in-use_4",
+      "question": "מה זמן מחצית החיים של אדנוזין?",
+      "type": "multiple_choice",
+      "options": [
+        "10 שניות",
+        "10 דקות",
+        "1 שעה",
+        "5 שעות"
+      ],
+      "correct": 0,
+      "subject": "מבחן עיוני מסכם תרופות",
+      "sourceFile": "end_med_quiz_long_not-in-use.json"
+    },
+    {
+      "id": "end_med_quiz_long_not-in-use_5",
+      "question": "מה המינון הראשון של אדנוזין למבוגרים?",
+      "type": "multiple_choice",
+      "options": [
+        "6mg",
+        "12mg",
+        "3mg",
+        "1mg"
+      ],
+      "correct": 0,
+      "subject": "מבחן עיוני מסכם תרופות",
+      "sourceFile": "end_med_quiz_long_not-in-use.json"
+    },
+    {
+      "id": "end_med_quiz_long_not-in-use_6",
+      "question": "מה המינון השני של אדנוזין למבוגרים?",
+      "type": "multiple_choice",
+      "options": [
+        "12mg",
+        "6mg",
+        "3mg",
+        "18mg"
+      ],
+      "correct": 0,
+      "subject": "מבחן עיוני מסכם תרופות",
+      "sourceFile": "end_med_quiz_long_not-in-use.json"
+    },
+    {
+      "id": "end_med_quiz_long_not-in-use_7",
+      "question": "מהי תופעת הלוואי השכיחה של אדנוזין?",
+      "type": "multiple_choice",
+      "options": [
+        "ירידת לחץ דם",
+        "עלייה בלחץ דם",
+        "ברדיקרדיה",
+        "עצירות"
+      ],
+      "correct": 0,
+      "subject": "מבחן עיוני מסכם תרופות",
+      "sourceFile": "end_med_quiz_long_not-in-use.json"
+    },
+    {
+      "id": "end_med_quiz_long_not-in-use_8",
+      "question": "למה מיועד אדרנלין/אפינפרין?",
+      "type": "multiple_choice",
+      "options": [
+        "תגובה אלרגית, אנפילקסיס, דום לב, ברדיקרדיה",
+        "טכיקרדיה",
+        "יתר לחץ דם",
+        "פרכוסים"
+      ],
+      "correct": 0,
+      "subject": "מבחן עיוני מסכם תרופות",
+      "sourceFile": "end_med_quiz_long_not-in-use.json"
+    },
+    {
+      "id": "end_med_quiz_long_not-in-use_9",
+      "question": "מה התווית נגד לשימוש באדרנלין?",
+      "type": "multiple_choice",
+      "options": [
+        "הפרעות קצב מהירות (טכיאריתמיות)",
+        "ברדיקרדיה",
+        "אסתמה",
+        "אלרגיה"
+      ],
+      "correct": 0,
+      "subject": "מבחן עיוני מסכם תרופות",
+      "sourceFile": "end_med_quiz_long_not-in-use.json"
+    },
+    {
+      "id": "end_med_quiz_long_not-in-use_10",
+      "question": "על אילו קולטנים פועל אדרנלין?",
+      "type": "multiple_choice",
+      "options": [
+        "קולטני α ו-β אדרנרגיים",
+        "קולטני דופמין בלבד",
+        "קולטני GABA",
+        "קולטני NMDA"
+      ],
+      "correct": 0,
+      "subject": "מבחן עיוני מסכם תרופות",
+      "sourceFile": "end_med_quiz_long_not-in-use.json"
+    },
+    {
+      "id": "end_med_quiz_long_not-in-use_11",
+      "question": "מה המינון של אדרנלין בדום לב למבוגרים?",
+      "type": "multiple_choice",
+      "options": [
+        "1mg כל 3-5 דקות",
+        "0.5mg כל דקה",
+        "0.3mg כל 5 דקות",
+        "2mg כל 10 דקות"
+      ],
+      "correct": 0,
+      "subject": "מבחן עיוני מסכם תרופות",
+      "sourceFile": "end_med_quiz_long_not-in-use.json"
+    },
+    {
+      "id": "end_med_quiz_long_not-in-use_12",
+      "question": "מה המינון של אדרנלין באנפילקסיס למבוגרים?",
+      "type": "multiple_choice",
+      "options": [
+        "0.3-0.5mg בהזרקה תוך שרירית",
+        "1mg תוך ורידי",
+        "0.1mg תוך עורי",
+        "2mg תוך שרירי"
+      ],
+      "correct": 0,
+      "subject": "מבחן עיוני מסכם תרופות",
+      "sourceFile": "end_med_quiz_long_not-in-use.json"
+    },
+    {
+      "id": "end_med_quiz_long_not-in-use_13",
+      "question": "מהו המינון של אדרנלין באסתמה למבוגרים?",
+      "type": "multiple_choice",
+      "options": [
+        "0.3mg בהזרקה תת-עורית",
+        "1mg תוך ורידי",
+        "0.5mg תוך שרירי",
+        "2mg באינהלציה"
+      ],
+      "correct": 0,
+      "subject": "מבחן עיוני מסכם תרופות",
+      "sourceFile": "end_med_quiz_long_not-in-use.json"
+    },
+    {
+      "id": "end_med_quiz_long_not-in-use_14",
+      "question": "מהי תופעת לוואי של אדרנלין?",
+      "type": "multiple_choice",
+      "options": [
+        "טכיאריתמיות",
+        "ברדיקרדיה",
+        "ירידת לחץ דם",
+        "עייפות"
+      ],
+      "correct": 0,
+      "subject": "מבחן עיוני מסכם תרופות",
+      "sourceFile": "end_med_quiz_long_not-in-use.json"
+    },
+    {
+      "id": "end_med_quiz_long_not-in-use_15",
+      "question": "למה מיועד אטומידאט (Etomidate)?",
+      "type": "multiple_choice",
+      "options": [
+        "השריית סדציה במטופל הזקוק לפרוצדורה",
+        "טיפול בכאב",
+        "הורדת לחץ דם",
+        "טיפול בפרכוסים"
+      ],
+      "correct": 0,
+      "subject": "מבחן עיוני מסכם תרופות",
+      "sourceFile": "end_med_quiz_long_not-in-use.json"
+    },
+    {
+      "id": "end_med_quiz_long_not-in-use_16",
+      "question": "מהי התווית נגד לשימוש באטומידאט?",
+      "type": "multiple_choice",
+      "options": [
+        "הלם ספטי",
+        "יתר לחץ דם",
+        "טכיקרדיה",
+        "כאב בחזה"
+      ],
+      "correct": 0,
+      "subject": "מבחן עיוני מסכם תרופות",
+      "sourceFile": "end_med_quiz_long_not-in-use.json"
+    },
+    {
+      "id": "end_med_quiz_long_not-in-use_17",
+      "question": "מה ההשפעה של אטומידאט על הלחץ התוך-גולגולתי?",
+      "type": "multiple_choice",
+      "options": [
+        "גורם לירידה קלה בלחץ התוך-גולגולתי",
+        "מעלה את הלחץ התוך-גולגולתי",
+        "אין לו השפעה על הלחץ התוך-גולגולתי",
+        "מייצב את הלחץ התוך-גולגולתי"
+      ],
+      "correct": 0,
+      "subject": "מבחן עיוני מסכם תרופות",
+      "sourceFile": "end_med_quiz_long_not-in-use.json"
+    },
+    {
+      "id": "end_med_quiz_long_not-in-use_18",
+      "question": "מה המינון של אטומידאט?",
+      "type": "multiple_choice",
+      "options": [
+        "0.2-0.3mg/kg",
+        "1-2mg/kg",
+        "0.5-1mg/kg",
+        "0.05-0.1mg/kg"
+      ],
+      "correct": 0,
+      "subject": "מבחן עיוני מסכם תרופות",
+      "sourceFile": "end_med_quiz_long_not-in-use.json"
+    },
+    {
+      "id": "end_med_quiz_long_not-in-use_19",
+      "question": "מהי תופעת לוואי של אטומידאט?",
+      "type": "multiple_choice",
+      "options": [
+        "תנועות מיוקלוניות",
+        "ירידת לחץ דם קיצונית",
+        "ברדיקרדיה",
+        "חום גבוה"
+      ],
+      "correct": 0,
+      "subject": "מבחן עיוני מסכם תרופות",
+      "sourceFile": "end_med_quiz_long_not-in-use.json"
+    },
+    {
+      "id": "end_med_quiz_long_not-in-use_20",
+      "question": "למה מיועד אטרופין (Atropine)?",
+      "type": "multiple_choice",
+      "options": [
+        "הרעלות זרחן אורגני וברדיקרדיה",
+        "טכיקרדיה",
+        "יתר לחץ דם",
+        "אסתמה"
+      ],
+      "correct": 0,
+      "subject": "מבחן עיוני מסכם תרופות",
+      "sourceFile": "end_med_quiz_long_not-in-use.json"
+    },
+    {
+      "id": "end_med_quiz_long_not-in-use_21",
+      "question": "מה התווית נגד לשימוש באטרופין?",
+      "type": "multiple_choice",
+      "options": [
+        "פרפור עליות ורפרוף עליות",
+        "ברדיקרדיה",
+        "אסתמה",
+        "סוכרת"
+      ],
+      "correct": 0,
+      "subject": "מבחן עיוני מסכם תרופות",
+      "sourceFile": "end_med_quiz_long_not-in-use.json"
+    },
+    {
+      "id": "end_med_quiz_long_not-in-use_22",
+      "question": "איך אטרופין משפיע על הלב?",
+      "type": "multiple_choice",
+      "options": [
+        "חוסם את הדחפים הווגאלים ומגדיל את קצב ה-SA node",
+        "מאט את הדופק",
+        "מוריד את לחץ הדם",
+        "מעכב את ה-AV node"
+      ],
+      "correct": 0,
+      "subject": "מבחן עיוני מסכם תרופות",
+      "sourceFile": "end_med_quiz_long_not-in-use.json"
+    },
+    {
+      "id": "end_med_quiz_long_not-in-use_23",
+      "question": "מה המינון של אטרופין בברדיקרדיה למבוגרים?",
+      "type": "multiple_choice",
+      "options": [
+        "1mg כל 3-5 דקות עד למינון מקסימלי של 3mg",
+        "0.5mg כל דקה",
+        "2mg חד פעמי",
+        "5mg כל 10 דקות"
+      ],
+      "correct": 0,
+      "subject": "מבחן עיוני מסכם תרופות",
+      "sourceFile": "end_med_quiz_long_not-in-use.json"
+    },
+    {
+      "id": "end_med_quiz_long_not-in-use_24",
+      "question": "מה המינון של אטרופין בברדיקרדיה לילדים?",
+      "type": "multiple_choice",
+      "options": [
+        "0.02mg/kg, מינון מינימלי 0.1mg, מקסימלי 0.5mg",
+        "0.1mg/kg",
+        "1mg למנה",
+        "0.5mg/kg"
+      ],
+      "correct": 0,
+      "subject": "מבחן עיוני מסכם תרופות",
+      "sourceFile": "end_med_quiz_long_not-in-use.json"
+    },
+    {
+      "id": "end_med_quiz_long_not-in-use_25",
+      "question": "מהי תופעת לוואי של אטרופין?",
+      "type": "multiple_choice",
+      "options": [
+        "טכיקרדיה",
+        "ברדיקרדיה",
+        "ירידת לחץ דם",
+        "דיכוי נשימתי"
+      ],
+      "correct": 0,
+      "subject": "מבחן עיוני מסכם תרופות",
+      "sourceFile": "end_med_quiz_long_not-in-use.json"
+    },
+    {
+      "id": "end_med_quiz_long_not-in-use_26",
+      "question": "למה מיועד אספירין?",
+      "type": "multiple_choice",
+      "options": [
+        "כאבים בחזה ממקור לבבי, שיכוך כאב, הורדת חום",
+        "טיפול בפרכוסים",
+        "הורדת לחץ דם",
+        "טיפול באלרגיה"
+      ],
+      "correct": 0,
+      "subject": "מבחן עיוני מסכם תרופות",
+      "sourceFile": "end_med_quiz_long_not-in-use.json"
+    },
+    {
+      "id": "end_med_quiz_long_not-in-use_27",
+      "question": "מה התווית נגד לשימוש באספירין?",
+      "type": "multiple_choice",
+      "options": [
+        "כיב פפטי, דמם מדרכי העיכול",
+        "יתר לחץ דם",
+        "ברדיקרדיה",
+        "טכיקרדיה"
+      ],
+      "correct": 0,
+      "subject": "מבחן עיוני מסכם תרופות",
+      "sourceFile": "end_med_quiz_long_not-in-use.json"
+    },
+    {
+      "id": "end_med_quiz_long_not-in-use_28",
+      "question": "למה אסור לתת אספירין לילדים ומתבגרים?",
+      "type": "multiple_choice",
+      "options": [
+        "בשל הסיכון להתפתחות Reye's syndrome",
+        "בשל סיכון לטכיקרדיה",
+        "בשל סיכון ללחץ דם נמוך",
+        "בשל סיכון לפרכוסים"
+      ],
+      "correct": 0,
+      "subject": "מבחן עיוני מסכם תרופות",
+      "sourceFile": "end_med_quiz_long_not-in-use.json"
+    },
+    {
+      "id": "end_med_quiz_long_not-in-use_29",
+      "question": "איך אספירין משפיע על הדם?",
+      "type": "multiple_choice",
+      "options": [
+        "מעכב את האנזים COX ומונע יצירת תרומבוקסן A2 ובכך מונע קרישת דם",
+        "מאיץ את קרישת הדם",
+        "מעלה את ספירת הדם",
+        "מוריד את ספירת הדם"
+      ],
+      "correct": 0,
+      "subject": "מבחן עיוני מסכם תרופות",
+      "sourceFile": "end_med_quiz_long_not-in-use.json"
+    },
+    {
+      "id": "end_med_quiz_long_not-in-use_30",
+      "question": "מה המינון של אספירין?",
+      "type": "multiple_choice",
+      "options": [
+        "160-325mg בלעיסה",
+        "50-100mg",
+        "500-1000mg",
+        "25-50mg"
+      ],
+      "correct": 0,
+      "subject": "מבחן עיוני מסכם תרופות",
+      "sourceFile": "end_med_quiz_long_not-in-use.json"
+    },
+    {
+      "id": "end_med_quiz_long_not-in-use_31",
+      "question": "מהי תופעת לוואי של אספירין?",
+      "type": "multiple_choice",
+      "options": [
+        "דימום מדרכי העיכול",
+        "טכיקרדיה",
+        "עלייה בלחץ דם",
+        "פרכוסים"
+      ],
+      "correct": 0,
+      "subject": "מבחן עיוני מסכם תרופות",
+      "sourceFile": "end_med_quiz_long_not-in-use.json"
+    },
+    {
+      "id": "end_med_quiz_long_not-in-use_32",
+      "question": "למה מיועד דורמיקום (Midazolam)?",
+      "type": "multiple_choice",
+      "options": [
+        "פרכוסים, סדציה, הרגעת מטופל אלים",
+        "הורדת לחץ דם",
+        "טיפול בכאב",
+        "טיפול בברדיקרדיה"
+      ],
+      "correct": 0,
+      "subject": "מבחן עיוני מסכם תרופות",
+      "sourceFile": "end_med_quiz_long_not-in-use.json"
+    },
+    {
+      "id": "end_med_quiz_long_not-in-use_33",
+      "question": "מה התווית נגד לשימוש בדורמיקום?",
+      "type": "multiple_choice",
+      "options": [
+        "לחץ דם נמוך וסימני היפופרפוזיה",
+        "יתר לחץ דם",
+        "טכיקרדיה",
+        "אסתמה"
+      ],
+      "correct": 0,
+      "subject": "מבחן עיוני מסכם תרופות",
+      "sourceFile": "end_med_quiz_long_not-in-use.json"
+    },
+    {
+      "id": "end_med_quiz_long_not-in-use_34",
+      "question": "על איזה רצפטור פועל דורמיקום?",
+      "type": "multiple_choice",
+      "options": [
+        "רצפטור GABAA",
+        "רצפטור דופמין",
+        "רצפטור NMDA",
+        "רצפטור אופיאטי"
+      ],
+      "correct": 0,
+      "subject": "מבחן עיוני מסכם תרופות",
+      "sourceFile": "end_med_quiz_long_not-in-use.json"
+    },
+    {
+      "id": "end_med_quiz_long_not-in-use_35",
+      "question": "מה המינון של דורמיקום לסדציה עמוקה?",
+      "type": "multiple_choice",
+      "options": [
+        "0.1mg/kg תוך ורידי, מקסימום 10mg",
+        "0.5mg/kg",
+        "1mg/kg",
+        "0.05mg/kg"
+      ],
+      "correct": 0,
+      "subject": "מבחן עיוני מסכם תרופות",
+      "sourceFile": "end_med_quiz_long_not-in-use.json"
+    },
+    {
+      "id": "end_med_quiz_long_not-in-use_36",
+      "question": "מה המינון של דורמיקום לפרכוסים במבוגרים?",
+      "type": "multiple_choice",
+      "options": [
+        "5mg תוך ורידי, אם אין גישה ורידית: 10mg IM/IN",
+        "10mg תוך ורידי",
+        "2mg IM",
+        "15mg IN"
+      ],
+      "correct": 0,
+      "subject": "מבחן עיוני מסכם תרופות",
+      "sourceFile": "end_med_quiz_long_not-in-use.json"
+    },
+    {
+      "id": "end_med_quiz_long_not-in-use_37",
+      "question": "מהי תופעת לוואי של דורמיקום?",
+      "type": "multiple_choice",
+      "options": [
+        "דיכוי נשימה",
+        "טכיקרדיה",
+        "עלייה בלחץ דם",
+        "חום גבוה"
+      ],
+      "correct": 0,
+      "subject": "מבחן עיוני מסכם תרופות",
+      "sourceFile": "end_med_quiz_long_not-in-use.json"
+    },
+    {
+      "id": "end_med_quiz_long_not-in-use_38",
+      "question": "למה מיועד לבטלול (Labetalol)?",
+      "type": "multiple_choice",
+      "options": [
+        "טיפול בלחץ דם גבוה עם אירוע מוחי או פרה-אקלמפסיה",
+        "טיפול בברדיקרדיה",
+        "טיפול בפרכוסים",
+        "טיפול בכאב"
+      ],
+      "correct": 0,
+      "subject": "מבחן עיוני מסכם תרופות",
+      "sourceFile": "end_med_quiz_long_not-in-use.json"
+    },
+    {
+      "id": "end_med_quiz_long_not-in-use_39",
+      "question": "מה התווית נגד לשימוש בלבטלול?",
+      "type": "multiple_choice",
+      "options": [
+        "ברדיקרדיה מתחת ל-60 בדקה",
+        "יתר לחץ דם",
+        "טכיקרדיה",
+        "אסתמה קלה"
+      ],
+      "correct": 0,
+      "subject": "מבחן עיוני מסכם תרופות",
+      "sourceFile": "end_med_quiz_long_not-in-use.json"
+    },
+    {
+      "id": "end_med_quiz_long_not-in-use_40",
+      "question": "איך לבטלול משפיע על הלב?",
+      "type": "multiple_choice",
+      "options": [
+        "עיכוב רצפטורים אלפא-1 ובטא, גורם לוואזודילטציה והפחתת תפוקת הלב",
+        "מאיץ את הדופק",
+        "מעלה את לחץ הדם",
+        "מחזק את כיווץ שריר הלב"
+      ],
+      "correct": 0,
+      "subject": "מבחן עיוני מסכם תרופות",
+      "sourceFile": "end_med_quiz_long_not-in-use.json"
+    },
+    {
+      "id": "end_med_quiz_long_not-in-use_41",
+      "question": "מה המינון של לבטלול?",
+      "type": "multiple_choice",
+      "options": [
+        "בולוסים של 20mg כל 5-10 דקות, מקסימום 300mg",
+        "10mg חד פעמי",
+        "50mg כל 2 דקות",
+        "100mg פעם ביום"
+      ],
+      "correct": 0,
+      "subject": "מבחן עיוני מסכם תרופות",
+      "sourceFile": "end_med_quiz_long_not-in-use.json"
+    },
+    {
+      "id": "end_med_quiz_long_not-in-use_42",
+      "question": "מהי תופעת לוואי של לבטלול?",
+      "type": "multiple_choice",
+      "options": [
+        "ברדיקרדיה",
+        "טכיקרדיה",
+        "עלייה בלחץ דם",
+        "פרכוסים"
+      ],
+      "correct": 0,
+      "subject": "מבחן עיוני מסכם תרופות",
+      "sourceFile": "end_med_quiz_long_not-in-use.json"
+    },
+    {
+      "id": "end_med_quiz_long_not-in-use_43",
+      "question": "למה מיועד נרקן (Naloxone)?",
+      "type": "multiple_choice",
+      "options": [
+        "מינון יתר של אופיאטים",
+        "מינון יתר של בנזודיאזפינים",
+        "טיפול בפרכוסים",
+        "טיפול בלחץ דם גבוה"
+      ],
+      "correct": 0,
+      "subject": "מבחן עיוני מסכם תרופות",
+      "sourceFile": "end_med_quiz_long_not-in-use.json"
+    },
+    {
+      "id": "end_med_quiz_long_not-in-use_44",
+      "question": "איך נרקן פועל?",
+      "type": "multiple_choice",
+      "options": [
+        "אנטגוניסט תחרותי לרצפטורים אופיאטים",
+        "אגוניסט לרצפטורים אופיאטים",
+        "חוסם רצפטורי GABA",
+        "מעכב רצפטורי דופמין"
+      ],
+      "correct": 0,
+      "subject": "מבחן עיוני מסכם תרופות",
+      "sourceFile": "end_med_quiz_long_not-in-use.json"
+    },
+    {
+      "id": "end_med_quiz_long_not-in-use_45",
+      "question": "מה המינון של נרקן למבוגרים?",
+      "type": "multiple_choice",
+      "options": [
+        "0.4-2mg מהול ב-10cc סליין",
+        "0.1mg",
+        "5mg",
+        "10mg"
+      ],
+      "correct": 0,
+      "subject": "מבחן עיוני מסכם תרופות",
+      "sourceFile": "end_med_quiz_long_not-in-use.json"
+    },
+    {
+      "id": "end_med_quiz_long_not-in-use_46",
+      "question": "מה המינון של נרקן לילדים מתחת ל-20 ק\"ג?",
+      "type": "multiple_choice",
+      "options": [
+        "0.1mg/kg מהול ב-10cc סליין, מקסימום 2mg",
+        "0.5mg/kg",
+        "1mg/kg",
+        "2mg למנה"
+      ],
+      "correct": 0,
+      "subject": "מבחן עיוני מסכם תרופות",
+      "sourceFile": "end_med_quiz_long_not-in-use.json"
+    },
+    {
+      "id": "end_med_quiz_long_not-in-use_47",
+      "question": "מהי תופעת לוואי של נרקן?",
+      "type": "multiple_choice",
+      "options": [
+        "פרכוס",
+        "ברדיקרדיה",
+        "דיכוי נשימה",
+        "ירידת לחץ דם"
+      ],
+      "correct": 0,
+      "subject": "מבחן עיוני מסכם תרופות",
+      "sourceFile": "end_med_quiz_long_not-in-use.json"
+    },
+    {
+      "id": "end_med_quiz_long_not-in-use_48",
+      "question": "למה מיועד קטמין (Ketamine)?",
+      "type": "multiple_choice",
+      "options": [
+        "הרדמה, טיפול בכאב, הרחבת דרכי נשימה",
+        "הורדת לחץ דם",
+        "טיפול בפרכוסים",
+        "טיפול בברדיקרדיה"
+      ],
+      "correct": 0,
+      "subject": "מבחן עיוני מסכם תרופות",
+      "sourceFile": "end_med_quiz_long_not-in-use.json"
+    },
+    {
+      "id": "end_med_quiz_long_not-in-use_49",
+      "question": "מה התווית נגד יחסית לשימוש בקטמין?",
+      "type": "multiple_choice",
+      "options": [
+        "יתר לחץ דם משמעותי",
+        "לחץ דם נמוך",
+        "ברדיקרדיה",
+        "טכיקרדיה קלה"
+      ],
+      "correct": 0,
+      "subject": "מבחן עיוני מסכם תרופות",
+      "sourceFile": "end_med_quiz_long_not-in-use.json"
+    },
+    {
+      "id": "end_med_quiz_long_not-in-use_50",
+      "question": "מה המינון של קטמין לסדציה בהזרקה תוך ורידית?",
+      "type": "multiple_choice",
+      "options": [
+        "2-3mg/kg",
+        "0.5-1mg/kg",
+        "5-6mg/kg",
+        "10mg/kg"
+      ],
+      "correct": 0,
+      "subject": "מבחן עיוני מסכם תרופות",
+      "sourceFile": "end_med_quiz_long_not-in-use.json"
+    },
+    {
+      "id": "end_med_quiz_long_not-in-use_51",
+      "question": "מה המינון של קטמין לסדציה בהזרקה תוך שרירית?",
+      "type": "multiple_choice",
+      "options": [
+        "5-6mg/kg",
+        "1-2mg/kg",
+        "0.5mg/kg",
+        "10mg/kg"
+      ],
+      "correct": 0,
+      "subject": "מבחן עיוני מסכם תרופות",
+      "sourceFile": "end_med_quiz_long_not-in-use.json"
+    },
+    {
+      "id": "end_med_quiz_long_not-in-use_52",
+      "question": "מה המינון של קטמין לשיכוך כאב בשילוב עם אופיאט?",
+      "type": "multiple_choice",
+      "options": [
+        "0.2mg/kg",
+        "1mg/kg",
+        "3mg/kg",
+        "5mg/kg"
+      ],
+      "correct": 0,
+      "subject": "מבחן עיוני מסכם תרופות",
+      "sourceFile": "end_med_quiz_long_not-in-use.json"
+    },
+    {
+      "id": "end_med_quiz_long_not-in-use_53",
+      "question": "מהי תופעת לוואי של קטמין?",
+      "type": "multiple_choice",
+      "options": [
+        "עלייה בקצב הלב ובלחץ הדם",
+        "ברדיקרדיה",
+        "ירידה בלחץ דם",
+        "עצירות"
+      ],
+      "correct": 0,
+      "subject": "מבחן עיוני מסכם תרופות",
+      "sourceFile": "end_med_quiz_long_not-in-use.json"
+    },
+    {
+      "id": "end_med_quiz_long_not-in-use_54",
+      "question": "איזו תופעת לוואי ייחודית של קטמין?",
+      "type": "multiple_choice",
+      "options": [
+        "הזיות וחוויות חוץ-גופיות",
+        "דיכוי נשימתי קשה",
+        "ברדיקרדיה חמורה",
+        "עלייה בטמפרטורה"
+      ],
+      "correct": 0,
+      "subject": "מבחן עיוני מסכם תרופות",
+      "sourceFile": "end_med_quiz_long_not-in-use.json"
+    },
+    {
+      "id": "end_med_quiz_long_not-in-use_55",
+      "question": "באיזו דרך ניתן לתת אדנוזין?",
+      "type": "multiple_choice",
+      "options": [
+        "תוך-ורידי (IV) בלבד",
+        "תוך-שרירי",
+        "תוך-אפי",
+        "דרך הפה"
+      ],
+      "correct": 0,
+      "subject": "מבחן עיוני מסכם תרופות",
+      "sourceFile": "end_med_quiz_long_not-in-use.json"
+    },
+    {
+      "id": "end_med_quiz_long_not-in-use_56",
+      "question": "מה המינון הראשון של אדנוזין לילדים?",
+      "type": "multiple_choice",
+      "options": [
+        "0.1mg/kg, מקסימום 6mg",
+        "0.2mg/kg",
+        "0.5mg/kg",
+        "1mg/kg"
+      ],
+      "correct": 0,
+      "subject": "מבחן עיוני מסכם תרופות",
+      "sourceFile": "end_med_quiz_long_not-in-use.json"
+    },
+    {
+      "id": "end_med_quiz_long_not-in-use_57",
+      "question": "באילו דרכים ניתן לתת אדרנלין?",
+      "type": "multiple_choice",
+      "options": [
+        "IV, IM, SC, IO, Inh, ET",
+        "רק IV",
+        "רק IM",
+        "רק באינהלציה"
+      ],
+      "correct": 0,
+      "subject": "מבחן עיוני מסכם תרופות",
+      "sourceFile": "end_med_quiz_long_not-in-use.json"
+    },
+    {
+      "id": "end_med_quiz_long_not-in-use_58",
+      "question": "מה המינון של אדרנלין בדום לב דרך הטובוס?",
+      "type": "multiple_choice",
+      "options": [
+        "3mg מהולים ב-5 סמ\"ק סליין",
+        "1mg",
+        "0.5mg",
+        "5mg"
+      ],
+      "correct": 0,
+      "subject": "מבחן עיוני מסכם תרופות",
+      "sourceFile": "end_med_quiz_long_not-in-use.json"
+    },
+    {
+      "id": "end_med_quiz_long_not-in-use_59",
+      "question": "מה המינון של אדרנלין בסטרידור לילדים?",
+      "type": "multiple_choice",
+      "options": [
+        "0.25-0.5mg/kg באינהלציה, מקסימום 5mg",
+        "1mg/kg",
+        "0.1mg/kg",
+        "2mg/kg"
+      ],
+      "correct": 0,
+      "subject": "מבחן עיוני מסכם תרופות",
+      "sourceFile": "end_med_quiz_long_not-in-use.json"
+    },
+    {
+      "id": "end_med_quiz_long_not-in-use_60",
+      "question": "האם אטומידאט הוא משכך כאב?",
+      "type": "multiple_choice",
+      "options": [
+        "לא, אטומידאט אינו משכך כאב",
+        "כן, הוא משכך כאב חזק",
+        "רק במינונים גבוהים",
+        "רק בשילוב עם תרופות אחרות"
+      ],
+      "correct": 0,
+      "subject": "מבחן עיוני מסכם תרופות",
+      "sourceFile": "end_med_quiz_long_not-in-use.json"
+    },
+    {
+      "id": "end_med_quiz_long_not-in-use_61",
+      "question": "למה אטומידאט אידיאלי לנפגעים לא יציבים המודינמית?",
+      "type": "multiple_choice",
+      "options": [
+        "אין לו כמעט השפעה על המדדים הקרדיווסקולריים והנשימתיים",
+        "הוא מעלה את לחץ הדם",
+        "הוא מאיץ את הדופק",
+        "הוא משכך כאב"
+      ],
+      "correct": 0,
+      "subject": "מבחן עיוני מסכם תרופות",
+      "sourceFile": "end_med_quiz_long_not-in-use.json"
+    },
+    {
+      "id": "end_med_quiz_long_not-in-use_62",
+      "question": "מה זמן מחצית החיים של אטומידאט?",
+      "type": "multiple_choice",
+      "options": [
+        "כ-75 דקות",
+        "כ-10 דקות",
+        "כ-5 שעות",
+        "כ-30 דקות"
+      ],
+      "correct": 0,
+      "subject": "מבחן עיוני מסכם תרופות",
+      "sourceFile": "end_med_quiz_long_not-in-use.json"
+    },
+    {
+      "id": "end_med_quiz_long_not-in-use_63",
+      "question": "למה יש להימנע מהזרקה מהירה של אטומידאט?",
+      "type": "multiple_choice",
+      "options": [
+        "עלול לגרום לטריזמוס (עווית הלסת)",
+        "עלול לגרום לברדיקרדיה",
+        "עלול לגרום לירידת לחץ דם",
+        "עלול לגרום לפרכוס"
+      ],
+      "correct": 0,
+      "subject": "מבחן עיוני מסכם תרופות",
+      "sourceFile": "end_med_quiz_long_not-in-use.json"
+    },
+    {
+      "id": "end_med_quiz_long_not-in-use_64",
+      "question": "מהי התווית נגד לשימוש באטרופין הקשורה לקצב הלב?",
+      "type": "multiple_choice",
+      "options": [
+        "פרפור עליות, רפרוף עליות, טכיקרדיה",
+        "ברדיקרדיה",
+        "קצב סינוס תקין",
+        "אקסטרסיסטולות"
+      ],
+      "correct": 0,
+      "subject": "מבחן עיוני מסכם תרופות",
+      "sourceFile": "end_med_quiz_long_not-in-use.json"
+    },
+    {
+      "id": "end_med_quiz_long_not-in-use_65",
+      "question": "באילו דרכים ניתן לתת אטרופין?",
+      "type": "multiple_choice",
+      "options": [
+        "IV, ET, IM באמצעות מזרק אוטומטי",
+        "רק IV",
+        "רק IM",
+        "רק באינהלציה"
+      ],
+      "correct": 0,
+      "subject": "מבחן עיוני מסכם תרופות",
+      "sourceFile": "end_med_quiz_long_not-in-use.json"
+    },
+    {
+      "id": "end_med_quiz_long_not-in-use_66",
+      "question": "מה זמן מחצית החיים של אטרופין?",
+      "type": "multiple_choice",
+      "options": [
+        "2-3 שעות",
+        "10 דקות",
+        "30 דקות",
+        "12 שעות"
+      ],
+      "correct": 0,
+      "subject": "מבחן עיוני מסכם תרופות",
+      "sourceFile": "end_med_quiz_long_not-in-use.json"
+    },
+    {
+      "id": "end_med_quiz_long_not-in-use_67",
+      "question": "למה אטרופין יעיל בהרעלת גז עצבים?",
+      "type": "multiple_choice",
+      "options": [
+        "חוסם את האצטילכולין באתרים המוסקריניים",
+        "מנטרל את הגז",
+        "מעלה את לחץ הדם",
+        "משפר את הנשימה"
+      ],
+      "correct": 0,
+      "subject": "מבחן עיוני מסכם תרופות",
+      "sourceFile": "end_med_quiz_long_not-in-use.json"
+    },
+    {
+      "id": "end_med_quiz_long_not-in-use_68",
+      "question": "באיזו דרך ניתן לתת אספירין?",
+      "type": "multiple_choice",
+      "options": [
+        "טבליה בלעיסה",
+        "תוך ורידי",
+        "תוך שרירי",
+        "באינהלציה"
+      ],
+      "correct": 0,
+      "subject": "מבחן עיוני מסכם תרופות",
+      "sourceFile": "end_med_quiz_long_not-in-use.json"
+    },
+    {
+      "id": "end_med_quiz_long_not-in-use_69",
+      "question": "מה זמן מחצית החיים של אספירין?",
+      "type": "multiple_choice",
+      "options": [
+        "2-19 שעות תלוי במינון",
+        "30 דקות",
+        "1 שעה",
+        "48 שעות"
+      ],
+      "correct": 0,
+      "subject": "מבחן עיוני מסכם תרופות",
+      "sourceFile": "end_med_quiz_long_not-in-use.json"
+    },
+    {
+      "id": "end_med_quiz_long_not-in-use_70",
+      "question": "מה זמן מחצית החיים של דורמיקום?",
+      "type": "multiple_choice",
+      "options": [
+        "1-4 שעות",
+        "10-20 דקות",
+        "6-8 שעות",
+        "12 שעות"
+      ],
+      "correct": 0,
+      "subject": "מבחן עיוני מסכם תרופות",
+      "sourceFile": "end_med_quiz_long_not-in-use.json"
+    },
+    {
+      "id": "end_med_quiz_long_not-in-use_71",
+      "question": "מה המינון של דורמיקום לסדציה קלה?",
+      "type": "multiple_choice",
+      "options": [
+        "2.5-5mg תוך ורידי",
+        "10mg",
+        "0.5mg",
+        "15mg"
+      ],
+      "correct": 0,
+      "subject": "מבחן עיוני מסכם תרופות",
+      "sourceFile": "end_med_quiz_long_not-in-use.json"
+    },
+    {
+      "id": "end_med_quiz_long_not-in-use_72",
+      "question": "מה המינון של דורמיקום לפרכוסים בילדים?",
+      "type": "multiple_choice",
+      "options": [
+        "0.1mg/kg IV מקסימום 5mg, או 0.2mg/kg IM/IN מקסימום 10mg",
+        "0.5mg/kg",
+        "1mg/kg",
+        "5mg למנה"
+      ],
+      "correct": 0,
+      "subject": "מבחן עיוני מסכם תרופות",
+      "sourceFile": "end_med_quiz_long_not-in-use.json"
+    },
+    {
+      "id": "end_med_quiz_long_not-in-use_73",
+      "question": "מה זמן מחצית החיים של לבטלול?",
+      "type": "multiple_choice",
+      "options": [
+        "3 שעות",
+        "30 דקות",
+        "1 שעה",
+        "6 שעות"
+      ],
+      "correct": 0,
+      "subject": "מבחן עיוני מסכם תרופות",
+      "sourceFile": "end_med_quiz_long_not-in-use.json"
+    },
+    {
+      "id": "end_med_quiz_long_not-in-use_74",
+      "question": "מה זמן מחצית החיים של נרקן?",
+      "type": "multiple_choice",
+      "options": [
+        "60-90 דקות",
+        "10-20 דקות",
+        "2-3 שעות",
+        "4 שעות"
+      ],
+      "correct": 0,
+      "subject": "מבחן עיוני מסכם תרופות",
+      "sourceFile": "end_med_quiz_long_not-in-use.json"
+    },
+    {
+      "id": "end_med_quiz_long_not-in-use_75",
+      "question": "מהו המינון של נרקן באינטרנזל (IN)?",
+      "type": "multiple_choice",
+      "options": [
+        "2mg",
+        "0.4mg",
+        "5mg",
+        "10mg"
+      ],
+      "correct": 0,
+      "subject": "מבחן עיוני מסכם תרופות",
+      "sourceFile": "end_med_quiz_long_not-in-use.json"
+    },
+    {
+      "id": "end_med_quiz_long_not-in-use_76",
+      "question": "מה זמן מחצית החיים של קטמין?",
+      "type": "multiple_choice",
+      "options": [
+        "2.5-3 שעות",
+        "30 דקות",
+        "1 שעה",
+        "6 שעות"
+      ],
+      "correct": 0,
+      "subject": "מבחן עיוני מסכם תרופות",
+      "sourceFile": "end_med_quiz_long_not-in-use.json"
+    },
+    {
+      "id": "end_med_quiz_long_not-in-use_77",
+      "question": "מה המינון של קטמין לשיכוך כאב IM?",
+      "type": "multiple_choice",
+      "options": [
+        "0.5-1mg/kg",
+        "2mg/kg",
+        "5mg/kg",
+        "0.1mg/kg"
+      ],
+      "correct": 0,
+      "subject": "מבחן עיוני מסכם תרופות",
+      "sourceFile": "end_med_quiz_long_not-in-use.json"
+    },
+    {
+      "id": "end_med_quiz_long_not-in-use_78",
+      "question": "מה המינון של קטמין לדליריום?",
+      "type": "multiple_choice",
+      "options": [
+        "1mg/kg IV או 2mg/kg IM",
+        "0.5mg/kg",
+        "5mg/kg",
+        "10mg/kg"
+      ],
+      "correct": 0,
+      "subject": "מבחן עיוני מסכם תרופות",
+      "sourceFile": "end_med_quiz_long_not-in-use.json"
+    },
+    {
+      "id": "end_med_quiz_long_not-in-use_79",
+      "question": "באיזו צורה מופיע אדנוזין?",
+      "type": "multiple_choice",
+      "options": [
+        "תמיסה להזרקה תוך ורידית",
+        "טבליות",
+        "משאף",
+        "קרם"
+      ],
+      "correct": 0,
+      "subject": "מבחן עיוני מסכם תרופות",
+      "sourceFile": "end_med_quiz_long_not-in-use.json"
+    },
+    {
+      "id": "end_med_quiz_long_not-in-use_80",
+      "question": "באיזו צורה מופיע אדרנלין לטיפול באנפילקסיס?",
+      "type": "multiple_choice",
+      "options": [
+        "אמפולות להזרקה תוך שרירית או תוך ורידית",
+        "טבליות",
+        "משחה",
+        "סירופ"
+      ],
+      "correct": 0,
+      "subject": "מבחן עיוני מסכם תרופות",
+      "sourceFile": "end_med_quiz_long_not-in-use.json"
+    },
+    {
+      "id": "end_med_quiz_long_not-in-use_81",
+      "question": "באיזו צורה מופיע אדרנלין לטיפול בסטרידור?",
+      "type": "multiple_choice",
+      "options": [
+        "תמיסה לאינהלציה",
+        "טבליות",
+        "הזרקה תוך עורית בלבד",
+        "טיפות לעיניים"
+      ],
+      "correct": 0,
+      "subject": "מבחן עיוני מסכם תרופות",
+      "sourceFile": "end_med_quiz_long_not-in-use.json"
+    },
+    {
+      "id": "end_med_quiz_long_not-in-use_82",
+      "question": "באיזו צורה מופיע אטומידאט?",
+      "type": "multiple_choice",
+      "options": [
+        "תמיסה להזרקה תוך ורידית",
+        "כדורים",
+        "משאף",
+        "טיפות"
+      ],
+      "correct": 0,
+      "subject": "מבחן עיוני מסכם תרופות",
+      "sourceFile": "end_med_quiz_long_not-in-use.json"
+    },
+    {
+      "id": "end_med_quiz_long_not-in-use_83",
+      "question": "באיזו צורה מופיע אטרופין לטיפול בברדיקרדיה?",
+      "type": "multiple_choice",
+      "options": [
+        "אמפולות להזרקה תוך ורידית",
+        "טבליות",
+        "משחה",
+        "ג'ל"
+      ],
+      "correct": 0,
+      "subject": "מבחן עיוני מסכם תרופות",
+      "sourceFile": "end_med_quiz_long_not-in-use.json"
+    },
+    {
+      "id": "end_med_quiz_long_not-in-use_84",
+      "question": "באיזו צורה מופיע אספירין?",
+      "type": "multiple_choice",
+      "options": [
+        "טבליות ללעיסה",
+        "תמיסה להזרקה",
+        "משחה",
+        "סירופ"
+      ],
+      "correct": 0,
+      "subject": "מבחן עיוני מסכם תרופות",
+      "sourceFile": "end_med_quiz_long_not-in-use.json"
+    },
+    {
+      "id": "end_med_quiz_long_not-in-use_85",
+      "question": "באיזו צורה מופיע דורמיקום?",
+      "type": "multiple_choice",
+      "options": [
+        "אמפולות להזרקה IV, IM או IN",
+        "טבליות בלבד",
+        "כמוסות",
+        "משחה"
+      ],
+      "correct": 0,
+      "subject": "מבחן עיוני מסכם תרופות",
+      "sourceFile": "end_med_quiz_long_not-in-use.json"
+    },
+    {
+      "id": "end_med_quiz_long_not-in-use_86",
+      "question": "באיזו צורה מופיע לבטלול?",
+      "type": "multiple_choice",
+      "options": [
+        "תמיסה להזרקה תוך ורידית (בולוס)",
+        "טבליות",
+        "משאף",
+        "תמיסה לשתייה"
+      ],
+      "correct": 0,
+      "subject": "מבחן עיוני מסכם תרופות",
+      "sourceFile": "end_med_quiz_long_not-in-use.json"
+    },
+    {
+      "id": "end_med_quiz_long_not-in-use_87",
+      "question": "באיזו צורה מופיע נרקן?",
+      "type": "multiple_choice",
+      "options": [
+        "אמפולות להזרקה IV או ספריי אף (IN)",
+        "טבליות",
+        "כמוסות",
+        "סירופ"
+      ],
+      "correct": 0,
+      "subject": "מבחן עיוני מסכם תרופות",
+      "sourceFile": "end_med_quiz_long_not-in-use.json"
+    },
+    {
+      "id": "end_med_quiz_long_not-in-use_88",
+      "question": "באיזו צורה מופיע קטמין?",
+      "type": "multiple_choice",
+      "options": [
+        "תמיסה להזרקה IV או IM",
+        "טבליות",
+        "אינהלר",
+        "משחה"
+      ],
+      "correct": 0,
+      "subject": "מבחן עיוני מסכם תרופות",
+      "sourceFile": "end_med_quiz_long_not-in-use.json"
+    },
+    {
+      "id": "end_med_quiz_long_not-in-use_89",
+      "question": "באיזה ריכוז נמצא אדרנלין באמפולות סטנדרטיות?",
+      "type": "multiple_choice",
+      "options": [
+        "1:1000 (1mg/ml) או 1:10,000",
+        "1:100",
+        "1:50",
+        "1:5000"
+      ],
+      "correct": 0,
+      "subject": "מבחן עיוני מסכם תרופות",
+      "sourceFile": "end_med_quiz_long_not-in-use.json"
+    },
+    {
+      "id": "end_med_quiz_long_not-in-use_90",
+      "question": "מה הנפח הסטנדרטי של אמפולת אדנוזין?",
+      "type": "multiple_choice",
+      "options": [
+        "2ml עם 6mg או 4ml עם 12mg",
+        "10ml",
+        "1ml",
+        "5ml"
+      ],
+      "correct": 0,
+      "subject": "מבחן עיוני מסכם תרופות",
+      "sourceFile": "end_med_quiz_long_not-in-use.json"
+    },
+    {
+      "id": "end_med_quiz_long_not-in-use_91",
+      "question": "באיזו צורת אריזה מגיע אטרופין לשימוש באירוע אט\"ה?",
+      "type": "multiple_choice",
+      "options": [
+        "מזרקים אוטומטיים בצבעים שונים לפי מינון",
+        "בקבוקונים",
+        "שקיות פלסטיק",
+        "קופסאות מתכת"
+      ],
+      "correct": 0,
+      "subject": "מבחן עיוני מסכם תרופות",
+      "sourceFile": "end_med_quiz_long_not-in-use.json"
+    },
+    {
+      "id": "end_med_quiz_long_not-in-use_92",
+      "question": "מה הצבע של מזרק אטרופין TA במינון 2mg?",
+      "type": "multiple_choice",
+      "options": [
+        "צהוב",
+        "ורוד",
+        "תכלת",
+        "ירוק"
+      ],
+      "correct": 0,
+      "subject": "מבחן עיוני מסכם תרופות",
+      "sourceFile": "end_med_quiz_long_not-in-use.json"
+    },
+    {
+      "id": "end_med_quiz_long_not-in-use_93",
+      "question": "מה הצבע של מזרק אטרופין TA במינון 1mg?",
+      "type": "multiple_choice",
+      "options": [
+        "ורוד",
+        "צהוב",
+        "תכלת",
+        "אדום"
+      ],
+      "correct": 0,
+      "subject": "מבחן עיוני מסכם תרופות",
+      "sourceFile": "end_med_quiz_long_not-in-use.json"
+    },
+    {
+      "id": "end_med_quiz_long_not-in-use_94",
+      "question": "מה הצבע של מזרק אטרופין TA במינון 0.5mg?",
+      "type": "multiple_choice",
+      "options": [
+        "תכלת",
+        "צהוב",
+        "ורוד",
+        "כחול כהה"
+      ],
+      "correct": 0,
+      "subject": "מבחן עיוני מסכם תרופות",
+      "sourceFile": "end_med_quiz_long_not-in-use.json"
+    },
+    {
+      "id": "end_med_quiz_long_not-in-use_95",
+      "question": "באיזה ריכוז נמצא דורמיקום באמפולות?",
+      "type": "multiple_choice",
+      "options": [
+        "5mg/ml או 1mg/ml",
+        "10mg/ml",
+        "0.5mg/ml",
+        "20mg/ml"
+      ],
+      "correct": 0,
+      "subject": "מבחן עיוני מסכם תרופות",
+      "sourceFile": "end_med_quiz_long_not-in-use.json"
+    },
+    {
+      "id": "end_med_quiz_long_not-in-use_96",
+      "question": "באיזה ריכוז נמצא נרקן באמפולות?",
+      "type": "multiple_choice",
+      "options": [
+        "0.4mg/ml",
+        "1mg/ml",
+        "2mg/ml",
+        "5mg/ml"
+      ],
+      "correct": 0,
+      "subject": "מבחן עיוני מסכם תרופות",
+      "sourceFile": "end_med_quiz_long_not-in-use.json"
+    },
+    {
+      "id": "end_med_quiz_long_not-in-use_97",
+      "question": "מה הריכוז הנפוץ של קטמין באמפולות?",
+      "type": "multiple_choice",
+      "options": [
+        "50mg/ml או 100mg/ml",
+        "10mg/ml",
+        "5mg/ml",
+        "200mg/ml"
+      ],
+      "correct": 0,
+      "subject": "מבחן עיוני מסכם תרופות",
+      "sourceFile": "end_med_quiz_long_not-in-use.json"
+    },
+    {
+      "id": "end_diabetes_quiz_1",
+      "question": "מהי היפרגליקמיה?",
+      "type": "multiple_choice",
+      "options": [
+        "רמת סוכר גבוהה בדם",
+        "רמת סוכר נמוכה בדם",
+        "רמת סוכר תקינה בדם",
+        "חוסר בהפרשת אינסולין"
+      ],
+      "correct": 0,
+      "subject": "מבחן עיוני מסכם סכרת",
+      "sourceFile": "end_diabetes_quiz.json"
+    },
+    {
+      "id": "end_diabetes_quiz_2",
+      "question": "מהו ערך הסוכר בדם המגדיר היפרגליקמיה?",
+      "type": "multiple_choice",
+      "options": [
+        "מעל 100 מ\"ג/ד\"ל",
+        "מעל 126 מ\"ג/ד\"ל בצום",
+        "מתחת ל-70 מ\"ג/ד\"ל",
+        "מתחת ל-50 מ\"ג/ד\"ל"
+      ],
+      "correct": 0,
+      "subject": "מבחן עיוני מסכם סכרת",
+      "sourceFile": "end_diabetes_quiz.json"
+    },
+    {
+      "id": "end_diabetes_quiz_3",
+      "question": "מהם הסימנים והתסמינים של היפרגליקמיה?",
+      "type": "multiple_choice",
+      "options": [
+        "פוליאוריה (הטלת שתן מרובה)",
+        "פולידיפסיה (צמא מוגבר)",
+        "פוליפגיה (רעב מוגבר)",
+        "ראייה מטושטשת",
+        "עייפות וחולשה",
+        "ריח אצטון",
+        "הזעה",
+        "רעד"
+      ],
+      "correct": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "subject": "מבחן עיוני מסכם סכרת",
+      "sourceFile": "end_diabetes_quiz.json"
+    },
+    {
+      "id": "end_diabetes_quiz_4",
+      "question": "איך מתפתחת היפרגליקמיה?",
+      "type": "multiple_choice",
+      "options": [
+        "חוסר או אי-ספיקות של אינסולין",
+        "התנגדות לאינסולין בתאים",
+        "צריכת פחמימות מוגזמת",
+        "דלקת או זיהום",
+        "מתן אינסולין עודף",
+        "פעילות גופנית מוגזמת"
+      ],
+      "correct": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "subject": "מבחן עיוני מסכם סכרת",
+      "sourceFile": "end_diabetes_quiz.json"
+    },
+    {
+      "id": "end_diabetes_quiz_5",
+      "question": "מהן הסכנות של היפרגליקמיה ממושכת?",
+      "type": "multiple_choice",
+      "options": [
+        "קטואצידוזיס סוכרתית (DKA)",
+        "נזק לכלי דם ועצבים",
+        "נזק לכליות, עיניים ולב",
+        "פגיעה מוחית",
+        "היפוגליקמיה",
+        "דום לב מיידי",
+        "פרכוסים"
+      ],
+      "correct": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "subject": "מבחן עיוני מסכם סכרת",
+      "sourceFile": "end_diabetes_quiz.json"
+    },
+    {
+      "id": "end_diabetes_quiz_6",
+      "question": "מהי קטואצידוזיס סוכרתית (DKA)?",
+      "type": "multiple_choice",
+      "options": [
+        "סיבוך חמור של סוכרת עם הצטברות גופי קטון בדם",
+        "סיבוך של מתן אינסולין עודף",
+        "מצב של סוכר נמוך בדם",
+        "דלקת בלבלב"
+      ],
+      "correct": 0,
+      "subject": "מבחן עיוני מסכם סכרת",
+      "sourceFile": "end_diabetes_quiz.json"
+    },
+    {
+      "id": "end_diabetes_quiz_7",
+      "question": "מהם הסימנים של קטואצידוזיס סוכרתית (DKA)?",
+      "type": "multiple_choice",
+      "options": [
+        "ריח אצטון (פירותי) מהפה",
+        "נשימת קוסמאול (נשימה עמוקה ומהירה)",
+        "בחילות והקאות",
+        "כאבי בטן",
+        "בלבול והפרעות הכרה",
+        "רעד והזעה",
+        "רעב מוגבר",
+        "עלייה במשקל"
+      ],
+      "correct": [
+        0,
+        1,
+        2,
+        3,
+        4
+      ],
+      "subject": "מבחן עיוני מסכם סכרת",
+      "sourceFile": "end_diabetes_quiz.json"
+    },
+    {
+      "id": "end_diabetes_quiz_8",
+      "question": "היפרגליקמיה היא מצב מסכן חיים המצריך טיפול מיידי",
+      "type": "true_false",
+      "options": [
+        "נכון, במיוחד כאשר מתפתחת לקטואצידוזיס או תרדמת היפראוסמולרית",
+        "לא נכון, זה מצב שפיר"
+      ],
+      "correct": 0,
+      "subject": "מבחן עיוני מסכם סכרת",
+      "sourceFile": "end_diabetes_quiz.json"
+    },
+    {
+      "id": "end_diabetes_quiz_9",
+      "question": "מהי היפוגליקמיה?",
+      "type": "multiple_choice",
+      "options": [
+        "רמת סוכר נמוכה בדם",
+        "רמת סוכר גבוהה בדם",
+        "רמת סוכר תקינה בדם",
+        "עודף אינסולין"
+      ],
+      "correct": 0,
+      "subject": "מבחן עיוני מסכם סכרת",
+      "sourceFile": "end_diabetes_quiz.json"
+    },
+    {
+      "id": "end_diabetes_quiz_10",
+      "question": "מהו ערך הסוכר בדם המגדיר היפוגליקמיה?",
+      "type": "multiple_choice",
+      "options": [
+        "מתחת ל-70 מ\"ג/ד\"ל",
+        "מתחת ל-60 מ\"ג/ד\"ל (חמור)",
+        "מעל 200 מ\"ג/ד\"ל",
+        "מעל 126 מ\"ג/ד\"ל"
+      ],
+      "correct": 1,
+      "subject": "מבחן עיוני מסכם סכרת",
+      "sourceFile": "end_diabetes_quiz.json"
+    },
+    {
+      "id": "end_diabetes_quiz_11",
+      "question": "מה מהרשימה הם סימנים והתסמינים של היפוגליקמיה?",
+      "type": "multiple_choice",
+      "options": [
+        "רעד ורעידות",
+        "הזעה מרובה",
+        "דפיקות לב מוגברות",
+        "בלבול ועצבנות",
+        "חולשה וסחרחורת",
+        "כאב ראש",
+        "ראייה כפולה או מטושטשת",
+        "צמא מוגבר",
+        "הטלת שתן מרובה"
+      ],
+      "correct": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6
+      ],
+      "subject": "מבחן עיוני מסכם סכרת",
+      "sourceFile": "end_diabetes_quiz.json"
+    },
+    {
+      "id": "end_diabetes_quiz_12",
+      "question": "איך מתפתחת היפוגליקמיה?",
+      "type": "multiple_choice",
+      "options": [
+        "מינון עודף של אינסולין או תרופות להורדת סוכר",
+        "דילוג על ארוחה או אי-צריכת מספיק פחמימות",
+        "פעילות גופנית מוגברת ללא התאמת מזון או תרופות",
+        "צריכת אלכוהול ללא מזון",
+        "צריכת מזון מתוק מוגזמת",
+        "חוסר בפעילות גופנית",
+        "מתח רגשי",
+        "זיהום"
+      ],
+      "correct": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "subject": "מבחן עיוני מסכם סכרת",
+      "sourceFile": "end_diabetes_quiz.json"
+    },
+    {
+      "id": "end_diabetes_quiz_13",
+      "question": "מהן הסכנות של היפוגליקמיה?",
+      "type": "multiple_choice",
+      "options": [
+        "פרכוסים",
+        "אובדן הכרה",
+        "תרדמת",
+        "נזק מוחי בלתי הפיך",
+        "מוות",
+        "התייבשות",
+        "קטואצידוזיס",
+        "עלייה בלחץ דם"
+      ],
+      "correct": [
+        0,
+        1,
+        2,
+        3,
+        4
+      ],
+      "subject": "מבחן עיוני מסכם סכרת",
+      "sourceFile": "end_diabetes_quiz.json"
+    },
+    {
+      "id": "end_diabetes_quiz_14",
+      "question": "היפוגליקמיה היא מצב חירום רפואי הדורש טיפול מיידי",
+      "type": "true_false",
+      "options": [
+        "נכון, היפוגליקמיה יכולה להוביל לנזק מוחי ומוות תוך דקות",
+        "לא נכון, זה מצב שניתן להמתין עם הטיפול"
+      ],
+      "correct": 0,
+      "subject": "מבחן עיוני מסכם סכרת",
+      "sourceFile": "end_diabetes_quiz.json"
+    },
+    {
+      "id": "end_diabetes_quiz_15",
+      "question": "איזה מצב מסכן יותר לטווח המיידי - היפרגליקמיה או היפוגליקמיה?",
+      "type": "multiple_choice",
+      "options": [
+        "היפוגליקמיה מסוכנת יותר לטווח המיידי",
+        "היפרגליקמיה מסוכנת יותר לטווח המיידי",
+        "שתיהן מסוכנות באותה מידה",
+        "אף אחת לא מסוכנת"
+      ],
+      "correct": 0,
+      "subject": "מבחן עיוני מסכם סכרת",
+      "sourceFile": "end_diabetes_quiz.json"
+    },
+    {
+      "id": "end_diabetes_quiz_16",
+      "question": "מהו הטיפול המיידי בהיפוגליקמיה אצל מטופל בהכרה?",
+      "type": "multiple_choice",
+      "options": [
+        "מתן 15-20 גרם פחמימות מהירות (סוכר, מיץ, סוכריות)",
+        "בדיקת סוכר חוזרת לאחר 15 דקות",
+        "חזרה על המתן אם הסוכר עדיין נמוך",
+        "מתן אינסולין",
+        "המתנה ללא טיפול",
+        "מתן מים בלבד"
+      ],
+      "correct": [
+        0,
+        1,
+        2
+      ],
+      "subject": "מבחן עיוני מסכם סכרת",
+      "sourceFile": "end_diabetes_quiz.json"
+    },
+    {
+      "id": "end_diabetes_quiz_17",
+      "question": "מהו הטיפול בהיפוגליקמיה אצל מטופל מחוסר הכרה?",
+      "type": "multiple_choice",
+      "options": [
+        "מתן גלוקוז תוך ורידי (IV)",
+        "עירוי נוזלים",
+        "מתן סוכר דרך הפה",
+        "מתן מים עם סוכר"
+      ],
+      "correct": [
+        0,
+        2
+      ],
+      "subject": "מבחן עיוני מסכם סכרת",
+      "sourceFile": "end_diabetes_quiz.json"
+    },
+    {
+      "id": "end_diabetes_quiz_18",
+      "question": "אסור לתת מזון או נוזלים דרך הפה למטופל מחוסר הכרה",
+      "type": "true_false",
+      "options": [
+        "נכון, קיים סיכון לאספרציה",
+        "לא נכון, תמיד יש לתת דרך הפה"
+      ],
+      "correct": 0,
+      "subject": "מבחן עיוני מסכם סכרת",
+      "sourceFile": "end_diabetes_quiz.json"
+    },
+    {
+      "id": "end_diabetes_quiz_19",
+      "question": "מהו ריכוז גלוקוז 50% (D50)?",
+      "type": "multiple_choice",
+      "options": [
+        "50 גרם גלוקוז ב-100 מ\"ל תמיסה (25 גרם ב-50 מ\"ל)",
+        "5 גרם גלוקוז ב-100 מ\"ל תמיסה",
+        "25 מ\"ג גלוקוז ב-100 מ\"ל תמיסה",
+        "500 גרם גלוקוז ב-100 מ\"ל תמיסה"
+      ],
+      "correct": 0,
+      "subject": "מבחן עיוני מסכם סכרת",
+      "sourceFile": "end_diabetes_quiz.json"
+    },
+    {
+      "id": "end_diabetes_quiz_20",
+      "question": "מהו המינון הסטנדרטי של גלוקוז למבוגר עם היפוגליקמיה?",
+      "type": "multiple_choice",
+      "options": [
+        "25 גרם גלוקוז (50 מ\"ל של D50)",
+        "10 גרם גלוקוז",
+        "50 גרם גלוקוז",
+        "5 גרם גלוקוז"
+      ],
+      "correct": 0,
+      "subject": "מבחן עיוני מסכם סכרת",
+      "sourceFile": "end_diabetes_quiz.json"
+    },
+    {
+      "id": "end_diabetes_quiz_21",
+      "question": "איך מחשבים את כמות הגלוקוז בתמיסה?",
+      "type": "multiple_choice",
+      "options": [
+        "ריכוז (%) × נפח (מ\"ל) / 100 = כמות גלוקוז (גרם)",
+        "ריכוז (%) + נפח (מ\"ל) = כמות גלוקוז (גרם)",
+        "ריכוז (%) - נפח (מ\"ל) = כמות גלוקוז (גרם)",
+        "נפח (מ\"ל) / ריכוז (%) = כמות גלוקוז (גרם)"
+      ],
+      "correct": 0,
+      "subject": "מבחן עיוני מסכם סכרת",
+      "sourceFile": "end_diabetes_quiz.json"
+    },
+    {
+      "id": "end_diabetes_quiz_22",
+      "question": "כמה גרם גלוקוז יש ב-100 מ\"ל של תמיסת D10?",
+      "type": "multiple_choice",
+      "options": [
+        "10 גרם",
+        "1 גרם",
+        "100 גרם",
+        "50 גרם"
+      ],
+      "correct": 0,
+      "subject": "מבחן עיוני מסכם סכרת",
+      "sourceFile": "end_diabetes_quiz.json"
+    },
+    {
+      "id": "end_diabetes_quiz_23",
+      "question": "כמה גרם גלוקוז יש ב-50 מ\"ל של תמיסת D50?",
+      "type": "multiple_choice",
+      "options": [
+        "25 גרם",
+        "50 גרם",
+        "5 גרם",
+        "10 גרם"
+      ],
+      "correct": 0,
+      "subject": "מבחן עיוני מסכם סכרת",
+      "sourceFile": "end_diabetes_quiz.json"
+    },
+    {
+      "id": "end_diabetes_quiz_24",
+      "question": "מהו המינון של גלוקוז לילדים עם היפוגליקמיה?",
+      "type": "multiple_choice",
+      "options": [
+        "0.5-1 גרם/ק\"ג",
+        "2-3 גרם/ק\"ג",
+        "5 גרם/ק\"ג",
+        "0.1 גרם/ק\"ג"
+      ],
+      "correct": 0,
+      "subject": "מבחן עיוני מסכם סכרת",
+      "sourceFile": "end_diabetes_quiz.json"
+    },
+    {
+      "id": "end_diabetes_quiz_25",
+      "question": "מהי סוכרת סוג 1?",
+      "type": "multiple_choice",
+      "options": [
+        "מחלה אוטואימונית שבה מערכת החיסון הורסת תאי בטא בלבלב",
+        "חוסר מוחלט באינסולין",
+        "מופיעה בדרך כלל בגיל צעיר",
+        "התנגדות לאינסולין בתאים",
+        "מופיעה בגיל מבוגר",
+        "קשורה להשמנה"
+      ],
+      "correct": [
+        0,
+        1,
+        2
+      ],
+      "subject": "מבחן עיוני מסכם סכרת",
+      "sourceFile": "end_diabetes_quiz.json"
+    },
+    {
+      "id": "end_diabetes_quiz_26",
+      "question": "מהי סוכרת סוג 2?",
+      "type": "multiple_choice",
+      "options": [
+        "התנגדות לאינסולין בתאי הגוף",
+        "ירידה בהפרשת אינסולין מהלבלב עם הזמן",
+        "קשורה להשמנה, תזונה לא בריאה וחוסר פעילות גופנית",
+        "מופיעה בדרך כלל בגיל מבוגר",
+        "מחלה אוטואימונית",
+        "חוסר מוחלט באינסולין",
+        "מופיעה רק בילדים",
+        "אינה קשורה לתזונה"
+      ],
+      "correct": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "subject": "מבחן עיוני מסכם סכרת",
+      "sourceFile": "end_diabetes_quiz.json"
+    },
+    {
+      "id": "end_diabetes_quiz_27",
+      "question": "מהו האינסולין?",
+      "type": "multiple_choice",
+      "options": [
+        "הורמון המופרש מתאי הבטא בלבלב",
+        "מוריד את רמת הסוכר בדם",
+        "מאפשר כניסת גלוקוז לתאים",
+        "מעלה את רמת הסוכר בדם",
+        "מופרש מהכליות",
+        "מונע כניסת גלוקוז לתאים"
+      ],
+      "correct": [
+        0,
+        1,
+        2
+      ],
+      "subject": "מבחן עיוני מסכם סכרת",
+      "sourceFile": "end_diabetes_quiz.json"
+    },
+    {
+      "id": "end_diabetes_quiz_28",
+      "question": "בסוכרת סוג 2 קיימת התנגדות לאינסולין",
+      "type": "true_false",
+      "options": [
+        "נכון, התאים לא מגיבים כראוי לאינסולין",
+        "לא נכון, הבעיה היא רק בהפרשת אינסולין"
+      ],
+      "correct": 0,
+      "subject": "מבחן עיוני מסכם סכרת",
+      "sourceFile": "end_diabetes_quiz.json"
+    },
+    {
+      "id": "end_diabetes_quiz_29",
+      "question": "מהן הסיבות להתפתחות התנגדות לאינסולין?",
+      "type": "multiple_choice",
+      "options": [
+        "חוסר פעילות גופנית",
+        "תזונה עשירה בפחמימות מעובדות וסוכרים",
+        "גנטיקה",
+        "תרופות מסוימות",
+        "גיל מבוגר",
+        "משקל נמוך",
+        "פעילות גופנית מוגזמת"
+      ],
+      "correct": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "subject": "מבחן עיוני מסכם סכרת",
+      "sourceFile": "end_diabetes_quiz.json"
+    },
+    {
+      "id": "end_diabetes_quiz_30",
+      "question": "מה קורה בגוף כאשר יש התנגדות לאינסולין?",
+      "type": "multiple_choice",
+      "options": [
+        "תאי הגוף לא מגיבים כראוי לאינסולין",
+        "הלבלב מפריש יותר אינסולין כדי לפצות",
+        "עם הזמן הלבלב מתעייף ולא מצליח לייצר מספיק אינסולין",
+        "רמת הסוכר בדם עולה",
+        "הגוף מייצר פחות אינסולין מההתחלה",
+        "התאים סופגים יותר סוכר",
+        "רמת הסוכר בדם יורדת"
+      ],
+      "correct": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "subject": "מבחן עיוני מסכם סכרת",
+      "sourceFile": "end_diabetes_quiz.json"
+    },
+    {
+      "id": "end_diabetes_quiz_31",
+      "question": "מהי גליקוליזה?",
+      "type": "multiple_choice",
+      "options": [
+        "תהליך פירוק גלוקוז לייצור אנרגיה (ATP)",
+        "מתרחש בציטופלסמה של התא",
+        "הופך גלוקוז (6 פחמנים) לשני מולקולות פירובט (3 פחמנים כל אחת)",
+        "מייצר ATP, NADH ופירובט",
+        "תהליך בניית גלוקוז מחדש",
+        "מתרחש במיטוכונדריה",
+        "מייצר חלבונים",
+        "מפרק שומנים"
+      ],
+      "correct": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "subject": "מבחן עיוני מסכם סכרת",
+      "sourceFile": "end_diabetes_quiz.json"
+    },
+    {
+      "id": "end_diabetes_quiz_32",
+      "question": "מהי גלוקונאוגנזה?",
+      "type": "multiple_choice",
+      "options": [
+        "תהליך בניית גלוקוז מחדש ממקורות שאינם פחמימות",
+        "מתרחש בעיקר בכבד",
+        "משתמש בחומצות אמינו, לקטט וגליצרול לבניית גלוקוז",
+        "מתרחש בזמן צום או פעילות גופנית ממושכת",
+        "תהליך פירוק גלוקוז",
+        "מתרחש רק בשרירים",
+        "משתמש רק בפחמימות",
+        "מתרחש אחרי כל ארוחה"
+      ],
+      "correct": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "subject": "מבחן עיוני מסכם סכרת",
+      "sourceFile": "end_diabetes_quiz.json"
+    },
+    {
+      "id": "end_diabetes_quiz_33",
+      "question": "מתי מתרחשת גליקוליזה?",
+      "type": "multiple_choice",
+      "options": [
+        "כאשר יש גלוקוז זמין (אחרי ארוחה)",
+        "כאשר התא זקוק לאנרגיה מהירה",
+        "בכל הזמן בתאים",
+        "רק בזמן צום",
+        "רק בזמן שינה",
+        "רק בשרירים"
+      ],
+      "correct": [
+        0,
+        1,
+        2
+      ],
+      "subject": "מבחן עיוני מסכם סכרת",
+      "sourceFile": "end_diabetes_quiz.json"
+    },
+    {
+      "id": "end_diabetes_quiz_34",
+      "question": "מתי מתרחשת גלוקונאוגנזה?",
+      "type": "multiple_choice",
+      "options": [
+        "בזמן צום או הרעבה",
+        "במהלך פעילות גופנית ממושכת",
+        "כאשר רמת הסוכר בדם נמוכה",
+        "מיד אחרי ארוחה עשירה בפחמימות",
+        "רק אצל חולי סוכרת",
+        "רק בזמן מנוחה מוחלטת"
+      ],
+      "correct": [
+        0,
+        1,
+        2
+      ],
+      "subject": "מבחן עיוני מסכם סכרת",
+      "sourceFile": "end_diabetes_quiz.json"
+    },
+    {
+      "id": "end_diabetes_quiz_35",
+      "question": "גליקוליזה וגלוקונאוגנזה הם תהליכים הפוכים זה לזה",
+      "type": "true_false",
+      "options": [
+        "נכון, גליקוליזה מפרקת גלוקוז וגלוקונאוגנזה בונה אותו",
+        "לא נכון, הם אותו תהליך"
+      ],
+      "correct": 0,
+      "subject": "מבחן עיוני מסכם סכרת",
+      "sourceFile": "end_diabetes_quiz.json"
+    },
+    {
+      "id": "end_diabetes_quiz_36",
+      "question": "איפה מתרחשת גלוקונאוגנזה?",
+      "type": "multiple_choice",
+      "options": [
+        "בעיקר בכבד ",
+        " בטחול ",
+        "בשרירים",
+        "במוח"
+      ],
+      "correct": 0,
+      "subject": "מבחן עיוני מסכם סכרת",
+      "sourceFile": "end_diabetes_quiz.json"
+    },
+    {
+      "id": "end_diabetes_quiz_37",
+      "question": "מה התפקיד של האינסולין בגליקוליזה?",
+      "type": "multiple_choice",
+      "options": [
+        "מעודד כניסת גלוקוז לתאים",
+        "מקדם גליקוליזה",
+        "מאפשר שימוש בגלוקוז לאנרגיה",
+        "מעכב גלוקונאוגנזה",
+        "מעכב כניסת גלוקוז לתאים",
+        "מקדם גלוקונאוגנזה"
+      ],
+      "correct": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "subject": "מבחן עיוני מסכם סכרת",
+      "sourceFile": "end_diabetes_quiz.json"
+    },
+    {
+      "id": "end_diabetes_quiz_38",
+      "question": "האינסולין והגלוקגון פועלים בצורה הפוכה לשמירה על איזון הסוכר",
+      "type": "true_false",
+      "options": [
+        "נכון, אינסולין מוריד סוכר וגלוקגון מעלה סוכר",
+        "לא נכון, שניהם מורידים סוכר"
+      ],
+      "correct": 0,
+      "subject": "מבחן עיוני מסכם סכרת",
+      "sourceFile": "end_diabetes_quiz.json"
+    },
+    {
+      "id": "end_diabetes_quiz_39",
+      "question": "מהם התוצרים של גליקוליזה?",
+      "type": "multiple_choice",
+      "options": [
+        "2 מולקולות פירובט",
+        "2 מולקולות ATP (נטו)",
+        "2 מולקולות NADH",
+        "גלוקוז",
+        "חומצות שומן",
+        "חלבונים"
+      ],
+      "correct": [
+        0,
+        1,
+        2
+      ],
+      "subject": "מבחן עיוני מסכם סכרת",
+      "sourceFile": "end_diabetes_quiz.json"
+    },
+    {
+      "id": "end_diabetes_quiz_40",
+      "question": "למה הגוף זקוק לגלוקונאוגנזה?",
+      "type": "multiple_choice",
+      "options": [
+        "לשמור על רמת סוכר תקינה בדם בזמן צום",
+        "לספק גלוקוז למוח שתלוי בו",
+        "לייצר אנרגיה כאשר אין גלוקוז זמין מהמזון",
+        "לאחסן גלוקוז עודף",
+        "לפרק חלבונים",
+        "להוריד את רמת הסוכר"
+      ],
+      "correct": [
+        0,
+        1,
+        2
+      ],
+      "subject": "מבחן עיוני מסכם סכרת",
+      "sourceFile": "end_diabetes_quiz.json"
+    },
+    {
+      "id": "end_diabetes_quiz_41",
+      "question": "מה קורה למטופל עם סוכרת סוג 2 שלא מטופלת?",
+      "type": "multiple_choice",
+      "options": [
+        "התנגדות לאינסולין מתגברת",
+        "הלבלב מתקשה לייצר מספיק אינסולין",
+        "רמות הסוכר בדם עולות",
+        "התפתחות סיבוכים: נזק לכליות, עיניים, עצבים וכלי דם",
+        "רמות הסוכר יורדות",
+        "הלבלב מייצר יותר אינסולין",
+        "ההתנגדות לאינסולין פוחתת"
+      ],
+      "correct": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "subject": "מבחן עיוני מסכם סכרת",
+      "sourceFile": "end_diabetes_quiz.json"
+    },
+    {
+      "id": "end_diabetes_quiz_42",
+      "question": "מדוע חשוב למדוד רמת סוכר לפני מתן גלוקוז?",
+      "type": "multiple_choice",
+      "options": [
+        "כדי לאבחן נכון האם מדובר בהיפוגליקמיה או מצב אחר",
+        "כדי למנוע מתן גלוקוז למטופל עם היפרגליקמיה",
+        "כדי לתעד את רמת הסוכר ההתחלתית",
+        "כדי לקבוע את המינון המדויק",
+        "אין צורך למדוד לפני המתן",
+        "רק כדי לתעד בתיק הרפואי"
+      ],
+      "correct": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "subject": "מבחן עיוני מסכם סכרת",
+      "sourceFile": "end_diabetes_quiz.json"
+    },
+    {
+      "id": "end_diabetes_quiz_43",
+      "question": "מתן גלוקוז למטופל עם היפרגליקמיה יכול להחמיר את מצבו",
+      "type": "true_false",
+      "options": [
+        "נכון, מתן גלוקוז יעלה עוד יותר את רמת הסוכר ויחמיר סיבוכים",
+        "לא נכון, גלוקוז תמיד עוזר"
+      ],
+      "correct": 0,
+      "subject": "מבחן עיוני מסכם סכרת",
+      "sourceFile": "end_diabetes_quiz.json"
     }
   ]
 }
