@@ -31,7 +31,7 @@
     "trauma_tcpa_protocol_quiz.json",
     "Trauma_burn_final_quiz.JSON",
     "trauma_smoke_final quiz.json",
-    "end_trauma_quiz.json",
+    "end_trauma_other_quiz.json",
     "end_nerave_quiz.json",
     "end_respiratry_quiz.json",
     "end_additional1_quiz.json",
@@ -40,9 +40,13 @@
     "end_birth_quiz.json",
     "end_misc_quiz.json",
     "end_med_quiz.json",
-    "end_diabetes_quiz.json"
+    "end_diabetes_quiz.json",
+    "end_cpr_ecg_quiz.json",
+    "end_cpr_med_quiz.json",
+    "end_trauma_chess_quiz.json",
+    "end_trauma_head_quiz.json"
   ],
-  "createdAt": "2025-12-03T18:19:50.823Z",
+  "createdAt": "2025-12-03T20:06:30.043Z",
   "questions": [
     {
       "id": "anaphylaxis_quiz_1",
@@ -17688,7 +17692,7 @@
       "sourceFile": "trauma_smoke_final quiz.json"
     },
     {
-      "id": "end_trauma_quiz_1",
+      "id": "end_trauma_other_quiz_1",
       "question": "מהו הטיפול העיקרי והמיידי במכת חום קלאסית?",
       "type": "multiple_choice",
       "options": [
@@ -17698,11 +17702,11 @@
         "מתן משככי כאבים חזקים"
       ],
       "correct": 1,
-      "subject": "מבחן עיוני מסכם טראומה",
-      "sourceFile": "end_trauma_quiz.json"
+      "subject": "מבחן עיוני - התחשמלות, מכת חום, תסמונת מדור",
+      "sourceFile": "end_trauma_other_quiz.json"
     },
     {
-      "id": "end_trauma_quiz_2",
+      "id": "end_trauma_other_quiz_2",
       "question": "הסכנה העיקרית בהתחשמלות היא כוויות עור נרחבות.",
       "type": "true_false",
       "options": [
@@ -17710,11 +17714,11 @@
         "לא נכון. הסיבוכים הקרדיו-וסקולריים (הפרעות קצב ודום לב) והנזק לשרירים (רבדומיוליזה) הם הסכנות העיקריות."
       ],
       "correct": 1,
-      "subject": "מבחן עיוני מסכם טראומה",
-      "sourceFile": "end_trauma_quiz.json"
+      "subject": "מבחן עיוני - התחשמלות, מכת חום, תסמונת מדור",
+      "sourceFile": "end_trauma_other_quiz.json"
     },
     {
-      "id": "end_trauma_quiz_3",
+      "id": "end_trauma_other_quiz_3",
       "question": "מהם הסיבוכים העיקריים והשכיחים בהתחשמלות?",
       "type": "multiple_choice",
       "options": [
@@ -17734,11 +17738,11 @@
         3,
         5
       ],
-      "subject": "מבחן עיוני מסכם טראומה",
-      "sourceFile": "end_trauma_quiz.json"
+      "subject": "מבחן עיוני - התחשמלות, מכת חום, תסמונת מדור",
+      "sourceFile": "end_trauma_other_quiz.json"
     },
     {
-      "id": "end_trauma_quiz_4",
+      "id": "end_trauma_other_quiz_4",
       "question": "מהי הסכנה העיקרית בתסמונת המדור (Compartment Syndrome)?",
       "type": "multiple_choice",
       "options": [
@@ -17748,11 +17752,11 @@
         "הלם קרדיוגני"
       ],
       "correct": 0,
-      "subject": "מבחן עיוני מסכם טראומה",
-      "sourceFile": "end_trauma_quiz.json"
+      "subject": "מבחן עיוני - התחשמלות, מכת חום, תסמונת מדור",
+      "sourceFile": "end_trauma_other_quiz.json"
     },
     {
-      "id": "end_trauma_quiz_5",
+      "id": "end_trauma_other_quiz_5",
       "question": "תסמונת המדור מתפתחת רק לאחר שברים פתוחים.",
       "type": "true_false",
       "options": [
@@ -17760,72 +17764,11 @@
         "לא נכון. היא יכולה להתפתח גם לאחר שברים סגורים, פגיעות ריסוק או כוויות עמוקות ומעגליות."
       ],
       "correct": 1,
-      "subject": "מבחן עיוני מסכם טראומה",
-      "sourceFile": "end_trauma_quiz.json"
+      "subject": "מבחן עיוני - התחשמלות, מכת חום, תסמונת מדור",
+      "sourceFile": "end_trauma_other_quiz.json"
     },
     {
-      "id": "end_trauma_quiz_6",
-      "question": "מהו ה'אינטרוול הצלול' (Lucid Interval) הקלאסי המאפיין דימום אפידורלי (Epidural Hematoma)?",
-      "type": "multiple_choice",
-      "options": [
-        "תקופה ארוכה של איבוד הכרה שמתפתחת לאיבוד הכרה מתמשך",
-        "תקופה קצרה של חוסר הכרה, אחריה תקופה של הכרה מלאה, ואז הידרדרות מהירה להלם",
-        "איבוד הכרה קצר, אחריו תקופה של **הכרה חלקית או מלאה** (שעות), ואז **הידרדרות מהירה** במצב ההכרה",
-        "טשטוש בלבד ללא איבוד הכרה"
-      ],
-      "correct": 2,
-      "subject": "מבחן עיוני מסכם טראומה",
-      "sourceFile": "end_trauma_quiz.json"
-    },
-    {
-      "id": "end_trauma_quiz_7",
-      "question": "דימום אפידורלי הוא בדרך כלל ורידי ומתפתח לאט.",
-      "type": "true_false",
-      "options": [
-        "נכון",
-        "לא נכון. הוא לרוב **עורקי** (פגיעה בעורק המנינגיאלי האמצעי) ומתפתח **במהירות**."
-      ],
-      "correct": 1,
-      "subject": "מבחן עיוני מסכם טראומה",
-      "sourceFile": "end_trauma_quiz.json"
-    },
-    {
-      "id": "end_trauma_quiz_8",
-      "question": "אילו סימנים עלולים להעיד על שבר בבסיס הגולגולת (Basilar Skull Fracture)?",
-      "type": "multiple_choice",
-      "options": [
-        "סימן באטל (Battle's Sign) - חבלה מאחורי האוזן",
-        "עיני דביבון (Racoon Eyes) - שטף דם דו-צדדי מסביב לעיניים",
-        "דליפת נוזל מוחי שדרתי (CSF) מהאף או מהאוזן",
-        "היעדר כאב",
-        "ירידה מהירה בלחץ דם",
-        "הלם ספטי",
-        "טכיקרדיה קבועה"
-      ],
-      "correct": [
-        0,
-        1,
-        2
-      ],
-      "subject": "מבחן עיוני מסכם טראומה",
-      "sourceFile": "end_trauma_quiz.json"
-    },
-    {
-      "id": "end_trauma_quiz_9",
-      "question": "מהי טמפונדה לבבית (Cardiac Tamponade)?",
-      "type": "multiple_choice",
-      "options": [
-        "חזה אוויר בלחץ",
-        "הצטברות נוזל/דם בחלל הפריקרדיאלי המונעת מילוי תקין של הלב",
-        "זיהום בשריר הלב",
-        "שבר בצלעות"
-      ],
-      "correct": 1,
-      "subject": "מבחן עיוני מסכם טראומה",
-      "sourceFile": "end_trauma_quiz.json"
-    },
-    {
-      "id": "end_trauma_quiz_10",
+      "id": "end_trauma_other_quiz_6",
       "question": "אילו סימנים מרכיבים את 'שלישיית בק' (Beck's Triad) המעידה על טמפונדה לבבית?",
       "type": "multiple_choice",
       "options": [
@@ -17841,141 +17784,11 @@
         1,
         2
       ],
-      "subject": "מבחן עיוני מסכם טראומה",
-      "sourceFile": "end_trauma_quiz.json"
+      "subject": "מבחן עיוני - התחשמלות, מכת חום, תסמונת מדור",
+      "sourceFile": "end_trauma_other_quiz.json"
     },
     {
-      "id": "end_trauma_quiz_11",
-      "question": "מהי הסכנה העיקרית בחזה אוויר בלחץ (Tension Pneumothorax)?",
-      "type": "multiple_choice",
-      "options": [
-        "דליפת נוזל מוחי שדרתי",
-        "קריסה המודינמית מהירה ומיידית עקב הפרעה חמורה בהחזר הוורידי ללב",
-        "זיהום פטרייתי",
-        "שבר פשוט בגפה"
-      ],
-      "correct": 1,
-      "subject": "מבחן עיוני מסכם טראומה",
-      "sourceFile": "end_trauma_quiz.json"
-    },
-    {
-      "id": "end_trauma_quiz_12",
-      "question": "מהם הסימנים המאפיינים חזה אוויר בלחץ?",
-      "type": "multiple_choice",
-      "options": [
-        "ירידה מהירה בלחץ דם (הלם)",
-        "היעדר קולות נשימה בצד הפגוע",
-        "סטיית קנה הנשימה (טראכאה) לצד הלא פגוע (סימן מאוחר)",
-        "כאב ראש חזק",
-        "היפרגליקמיה",
-        "צפצופים דו-צדדיים",
-        "טכיקרדיה"
-      ],
-      "correct": [
-        0,
-        1,
-        2,
-        6
-      ],
-      "subject": "מבחן עיוני מסכם טראומה",
-      "sourceFile": "end_trauma_quiz.json"
-    },
-    {
-      "id": "end_trauma_quiz_13",
-      "question": "פנאומוטורקס לוחץ (חזה אוויר בלחץ) גורם למוות עקב כשל נשימתי בלבד.",
-      "type": "true_false",
-      "options": [
-        "נכון",
-        "לא נכון. הסכנה העיקרית היא **הלם חסימתי** (Obstructive Shock) עקב לחץ על המדיאסטינום והפרעה חמורה להחזר הוורידי."
-      ],
-      "correct": 1,
-      "subject": "מבחן עיוני מסכם טראומה",
-      "sourceFile": "end_trauma_quiz.json"
-    },
-    {
-      "id": "end_trauma_quiz_14",
-      "question": "בהקשר של טראומה, אילו איברים מוצקים באזור הבטן נוטים לדמם בצורה משמעותית?",
-      "type": "multiple_choice",
-      "options": [
-        "המעי הדק",
-        "הכבד",
-        "הטחול",
-        "הכליות",
-        "שלפוחית השתן המלאה",
-        "הווריד הנבוב",
-        "הלבלב"
-      ],
-      "correct": [
-        1,
-        2,
-        3
-      ],
-      "subject": "מבחן עיוני מסכם טראומה",
-      "sourceFile": "end_trauma_quiz.json"
-    },
-    {
-      "id": "end_trauma_quiz_15",
-      "question": "מה נכון לגבי פגיעות בטן בטראומה חודרת?",
-      "type": "multiple_choice",
-      "options": [
-        "הקיבה והמעי הדק הם האיברים הנפגעים לרוב",
-        "יש סיכון גבוה להתפתחות זיהום משמעותי (פריטוניטיס)",
-        "הרס תאי שריר הוא הסיכון העיקרי",
-        "אין סכנה לדימום משמעותי"
-      ],
-      "correct": [
-        0,
-        1
-      ],
-      "subject": "מבחן עיוני מסכם טראומה",
-      "sourceFile": "end_trauma_quiz.json"
-    },
-    {
-      "id": "end_trauma_quiz_16",
-      "question": "מהו העיקרון המנחה בקינמטיקה של טראומה (Kinematics of Trauma)?",
-      "type": "multiple_choice",
-      "options": [
-        "הערכת מנגנון הפגיעה מאפשרת לחזות את סוגי הפגיעות הפוטנציאליות",
-        "הערכה של מצב הכוויה בלבד",
-        "חישוב של אחוזי כוויות",
-        "התעלמות ממנגנון הפגיעה והתמקדות בפצעים הגלויים בלבד"
-      ],
-      "correct": 0,
-      "subject": "מבחן עיוני מסכם טראומה",
-      "sourceFile": "end_trauma_quiz.json"
-    },
-    {
-      "id": "end_trauma_quiz_17",
-      "question": "התנגשות קדמית ברכב (Head-on Collision) עלולה לגרום ל-",
-      "type": "multiple_choice",
-      "options": [
-        "פגיעת 'Up and Over' - פגיעות ראש, צוואר וחזה (מול ההגה)",
-        "פגיעת 'Down and Under' - פריקת ירך ושברים בגפיים תחתונות (מול לוח המחוונים)",
-        "חבלת עמוד שדרה צווארי (Whiplash)",
-        "פציעה של תסמונת המדור"
-      ],
-      "correct": [
-        0,
-        1,
-        2
-      ],
-      "subject": "מבחן עיוני מסכם טראומה",
-      "sourceFile": "end_trauma_quiz.json"
-    },
-    {
-      "id": "end_trauma_quiz_18",
-      "question": "שבר בסיס גולגולת מחייב קיבוע מלא של עמוד השדרה.",
-      "type": "true_false",
-      "options": [
-        "נכון. כל פגיעת ראש משמעותית עם חשד לשבר בבסיס הגולגולת או מצב הכרה מעורפל מחייבת קיבוע.",
-        "לא נכון."
-      ],
-      "correct": 0,
-      "subject": "מבחן עיוני מסכם טראומה",
-      "sourceFile": "end_trauma_quiz.json"
-    },
-    {
-      "id": "end_trauma_quiz_19",
+      "id": "end_trauma_other_quiz_7",
       "question": "הסימנים של תסמונת המדור מתאפיינים לרוב ב-5 P's. מהם?",
       "type": "multiple_choice",
       "options": [
@@ -17995,11 +17808,11 @@
         3,
         4
       ],
-      "subject": "מבחן עיוני מסכם טראומה",
-      "sourceFile": "end_trauma_quiz.json"
+      "subject": "מבחן עיוני - התחשמלות, מכת חום, תסמונת מדור",
+      "sourceFile": "end_trauma_other_quiz.json"
     },
     {
-      "id": "end_trauma_quiz_20",
+      "id": "end_trauma_other_quiz_8",
       "question": "מכת חום היא תוצאה של כשל במנגנוני ויסות החום של הגוף, המוביל לטמפרטורת ליבה של מעל 40°C ופגיעה במערכת העצבים המרכזית.",
       "type": "true_false",
       "options": [
@@ -18007,25 +17820,11 @@
         "לא נכון"
       ],
       "correct": 0,
-      "subject": "מבחן עיוני מסכם טראומה",
-      "sourceFile": "end_trauma_quiz.json"
+      "subject": "מבחן עיוני - התחשמלות, מכת חום, תסמונת מדור",
+      "sourceFile": "end_trauma_other_quiz.json"
     },
     {
-      "id": "end_trauma_quiz_21",
-      "question": "איזה דימום תוך-גולגולתי הוא בדרך כלל ורידי ומתפתח לאט יותר?",
-      "type": "multiple_choice",
-      "options": [
-        "דימום אפידורלי",
-        "דימום סאב-דורלי (Subdural Hematoma)",
-        "דימום תת-עכבישי (Subarachnoid Hemorrhage)",
-        "דימום אינטרה-צרברלי"
-      ],
-      "correct": 1,
-      "subject": "מבחן עיוני מסכם טראומה",
-      "sourceFile": "end_trauma_quiz.json"
-    },
-    {
-      "id": "end_trauma_quiz_22",
+      "id": "end_trauma_other_quiz_9",
       "question": "בהתחשמלות, יש סכנה מוגברת לרבדומיוליזה. מה הסיבוך העיקרי של רבדומיוליזה?",
       "type": "multiple_choice",
       "options": [
@@ -18035,11 +17834,11 @@
         "היפוגליקמיה"
       ],
       "correct": 0,
-      "subject": "מבחן עיוני מסכם טראומה",
-      "sourceFile": "end_trauma_quiz.json"
+      "subject": "מבחן עיוני - התחשמלות, מכת חום, תסמונת מדור",
+      "sourceFile": "end_trauma_other_quiz.json"
     },
     {
-      "id": "end_trauma_quiz_23",
+      "id": "end_trauma_other_quiz_10",
       "question": "הסכנה המיידית לחיים בדימום אפידורלי נובעת מ-",
       "type": "multiple_choice",
       "options": [
@@ -18049,11 +17848,11 @@
         "היפותרמיה"
       ],
       "correct": 1,
-      "subject": "מבחן עיוני מסכם טראומה",
-      "sourceFile": "end_trauma_quiz.json"
+      "subject": "מבחן עיוני - התחשמלות, מכת חום, תסמונת מדור",
+      "sourceFile": "end_trauma_other_quiz.json"
     },
     {
-      "id": "end_trauma_quiz_24",
+      "id": "end_trauma_other_quiz_11",
       "question": "מהו הטיפול העיקרי בבית החולים בתסמונת המדור?",
       "type": "multiple_choice",
       "options": [
@@ -18063,23 +17862,11 @@
         "הסרת תכשיטים בלבד"
       ],
       "correct": 2,
-      "subject": "מבחן עיוני מסכם טראומה",
-      "sourceFile": "end_trauma_quiz.json"
+      "subject": "מבחן עיוני - התחשמלות, מכת חום, תסמונת מדור",
+      "sourceFile": "end_trauma_other_quiz.json"
     },
     {
-      "id": "end_trauma_quiz_25",
-      "question": "המקום העיקרי לזיהוי טמפונדה לבבית הוא בסבב השניוני (Secondary Survey) ב-ATLS.",
-      "type": "true_false",
-      "options": [
-        "נכון",
-        "לא נכון. טמפונדה לבבית היא סכנת חיים מיידית המחייבת זיהוי וטיפול במסגרת **סבב ראשוני (Primary Survey)**."
-      ],
-      "correct": 1,
-      "subject": "מבחן עיוני מסכם טראומה",
-      "sourceFile": "end_trauma_quiz.json"
-    },
-    {
-      "id": "end_trauma_quiz_26",
+      "id": "end_trauma_other_quiz_12",
       "question": "בפגיעות חזה, איזה מצב מחייב ניקור חזה (Needle Decompression) מיידי?",
       "type": "multiple_choice",
       "options": [
@@ -18089,11 +17876,11 @@
         "שבר בצלעות"
       ],
       "correct": 2,
-      "subject": "מבחן עיוני מסכם טראומה",
-      "sourceFile": "end_trauma_quiz.json"
+      "subject": "מבחן עיוני - התחשמלות, מכת חום, תסמונת מדור",
+      "sourceFile": "end_trauma_other_quiz.json"
     },
     {
-      "id": "end_trauma_quiz_27",
+      "id": "end_trauma_other_quiz_13",
       "question": "איזה סוג של קינמטיקה גורם לרוב לפגיעות בטן קהות (Blunt Abdominal Trauma)?",
       "type": "multiple_choice",
       "options": [
@@ -18106,25 +17893,11 @@
         0,
         1
       ],
-      "subject": "מבחן עיוני מסכם טראומה",
-      "sourceFile": "end_trauma_quiz.json"
+      "subject": "מבחן עיוני - התחשמלות, מכת חום, תסמונת מדור",
+      "sourceFile": "end_trauma_other_quiz.json"
     },
     {
-      "id": "end_trauma_quiz_28",
-      "question": "הירידה בלחץ דם בטמפונדה לבבית נובעת מ-",
-      "type": "multiple_choice",
-      "options": [
-        "איבוד דם חיצוני",
-        "כשל במילוי החדרים עקב לחץ חיצוני",
-        "הרפיית שריר הלב",
-        "זיהום"
-      ],
-      "correct": 1,
-      "subject": "מבחן עיוני מסכם טראומה",
-      "sourceFile": "end_trauma_quiz.json"
-    },
-    {
-      "id": "end_trauma_quiz_29",
+      "id": "end_trauma_other_quiz_14",
       "question": "מהו הטיפול החשוב ביותר בחזה אוויר בלחץ בשטח?",
       "type": "multiple_choice",
       "options": [
@@ -18134,11 +17907,11 @@
         "מתן חמצן בנזאלי"
       ],
       "correct": 1,
-      "subject": "מבחן עיוני מסכם טראומה",
-      "sourceFile": "end_trauma_quiz.json"
+      "subject": "מבחן עיוני - התחשמלות, מכת חום, תסמונת מדור",
+      "sourceFile": "end_trauma_other_quiz.json"
     },
     {
-      "id": "end_trauma_quiz_30",
+      "id": "end_trauma_other_quiz_15",
       "question": "נכון או לא נכון: הטיפול במכת חום קלאסית כולל מתן אקמול להורדת החום.",
       "type": "true_false",
       "options": [
@@ -18146,11 +17919,11 @@
         "לא נכון. התרופות להורדת חום אינן יעילות במכת חום, שהיא כשל של מנגנון ויסות החום המרכזי. הטיפול הוא קירור פיזי מהיר."
       ],
       "correct": 1,
-      "subject": "מבחן עיוני מסכם טראומה",
-      "sourceFile": "end_trauma_quiz.json"
+      "subject": "מבחן עיוני - התחשמלות, מכת חום, תסמונת מדור",
+      "sourceFile": "end_trauma_other_quiz.json"
     },
     {
-      "id": "end_trauma_quiz_31",
+      "id": "end_trauma_other_quiz_16",
       "question": "הסכנה העיקרית במכת חום היא:",
       "type": "multiple_choice",
       "options": [
@@ -18160,23 +17933,11 @@
         "כאב ראש חזק"
       ],
       "correct": 1,
-      "subject": "מבחן עיוני מסכם טראומה",
-      "sourceFile": "end_trauma_quiz.json"
+      "subject": "מבחן עיוני - התחשמלות, מכת חום, תסמונת מדור",
+      "sourceFile": "end_trauma_other_quiz.json"
     },
     {
-      "id": "end_trauma_quiz_32",
-      "question": "פגיעות ראש קהות כוללות רק דימומים אפידורליים וסאב-דורליים.",
-      "type": "true_false",
-      "options": [
-        "נכון",
-        "לא נכון. הן כוללות גם זעזוע מוח (Concussion) ופגיעה מפושטת באקסונים (DAI)."
-      ],
-      "correct": 1,
-      "subject": "מבחן עיוני מסכם טראומה",
-      "sourceFile": "end_trauma_quiz.json"
-    },
-    {
-      "id": "end_trauma_quiz_33",
+      "id": "end_trauma_other_quiz_17",
       "question": "מהן ההשלכות העיקריות של נזק שרירי (רבדומיוליזה) בהתחשמלות?",
       "type": "multiple_choice",
       "options": [
@@ -18190,23 +17951,11 @@
         1,
         2
       ],
-      "subject": "מבחן עיוני מסכם טראומה",
-      "sourceFile": "end_trauma_quiz.json"
+      "subject": "מבחן עיוני - התחשמלות, מכת חום, תסמונת מדור",
+      "sourceFile": "end_trauma_other_quiz.json"
     },
     {
-      "id": "end_trauma_quiz_34",
-      "question": "שבר בסיס גולגולת יכול לגרום לנזק ישיר למבנים עצביים ורקמות מוחיות.",
-      "type": "true_false",
-      "options": [
-        "נכון",
-        "לא נכון"
-      ],
-      "correct": 0,
-      "subject": "מבחן עיוני מסכם טראומה",
-      "sourceFile": "end_trauma_quiz.json"
-    },
-    {
-      "id": "end_trauma_quiz_35",
+      "id": "end_trauma_other_quiz_18",
       "question": "מה מייצג ה'אינטרוול הצלול' בדימום אפידורלי?",
       "type": "multiple_choice",
       "options": [
@@ -18216,42 +17965,11 @@
         "היפותרמיה"
       ],
       "correct": 2,
-      "subject": "מבחן עיוני מסכם טראומה",
-      "sourceFile": "end_trauma_quiz.json"
+      "subject": "מבחן עיוני - התחשמלות, מכת חום, תסמונת מדור",
+      "sourceFile": "end_trauma_other_quiz.json"
     },
     {
-      "id": "end_trauma_quiz_36",
-      "question": "חזה אוויר בלחץ (Tension Pneumothorax) מתפתח כאשר-",
-      "type": "multiple_choice",
-      "options": [
-        "אוויר נכנס לחלל הפלאורלי ואינו יכול לצאת",
-        "אוויר נכנס לחלל הפלאורלי ויוצא בחופשיות",
-        "דם מצטבר בחלל הפלאורלי",
-        "נוזל מוחי שדרתי דולף לחזה"
-      ],
-      "correct": 0,
-      "subject": "מבחן עיוני מסכם טראומה",
-      "sourceFile": "end_trauma_quiz.json"
-    },
-    {
-      "id": "end_trauma_quiz_37",
-      "question": "מה הקינמטיקה של טראומה מעידה על פגיעה אפשרית באאורטה (Aortic Injury)?",
-      "type": "multiple_choice",
-      "options": [
-        "תאונת דרכים במהירות נמוכה",
-        "נפילה מגובה רב",
-        "תאונה חזיתית או צדדית במהירות גבוהה",
-        "כוויות מדרגה ב'"
-      ],
-      "correct": [
-        1,
-        2
-      ],
-      "subject": "מבחן עיוני מסכם טראומה",
-      "sourceFile": "end_trauma_quiz.json"
-    },
-    {
-      "id": "end_trauma_quiz_38",
+      "id": "end_trauma_other_quiz_19",
       "question": "תסמונת המדור מתפתחת רק בגפיים התחתונות.",
       "type": "true_false",
       "options": [
@@ -18259,11 +17977,11 @@
         "לא נכון. היא יכולה להתפתח בכל 'מדור' סגור, כולל גפיים עליונות."
       ],
       "correct": 1,
-      "subject": "מבחן עיוני מסכם טראומה",
-      "sourceFile": "end_trauma_quiz.json"
+      "subject": "מבחן עיוני - התחשמלות, מכת חום, תסמונת מדור",
+      "sourceFile": "end_trauma_other_quiz.json"
     },
     {
-      "id": "end_trauma_quiz_39",
+      "id": "end_trauma_other_quiz_20",
       "question": "במכת חום קלאסית (לא מאמץ), העור לרוב יהיה:",
       "type": "multiple_choice",
       "options": [
@@ -18273,39 +17991,11 @@
         "חיוור וקר"
       ],
       "correct": 1,
-      "subject": "מבחן עיוני מסכם טראומה",
-      "sourceFile": "end_trauma_quiz.json"
+      "subject": "מבחן עיוני - התחשמלות, מכת חום, תסמונת מדור",
+      "sourceFile": "end_trauma_other_quiz.json"
     },
     {
-      "id": "end_trauma_quiz_40",
-      "question": "מהו סוג הדימום השכיח ביותר בפגיעות ראש חודרות (כגון ירי)?",
-      "type": "multiple_choice",
-      "options": [
-        "דימום אפידורלי",
-        "דימום סאב-דורלי",
-        "דימום תוך מוחי (Intracerebral Hemorrhage)",
-        "שבר בבסיס הגולגולת"
-      ],
-      "correct": 2,
-      "subject": "מבחן עיוני מסכם טראומה",
-      "sourceFile": "end_trauma_quiz.json"
-    },
-    {
-      "id": "end_trauma_quiz_41",
-      "question": "מה מאפיין את קולות הלב בטמפונדה לבבית?",
-      "type": "multiple_choice",
-      "options": [
-        "מואצים וחזקים",
-        "קולות לב עמומים/רחוקים (Muffled Heart Sounds)",
-        "קולות מפוצלים",
-        "היעדר קולות לב"
-      ],
-      "correct": 1,
-      "subject": "מבחן עיוני מסכם טראומה",
-      "sourceFile": "end_trauma_quiz.json"
-    },
-    {
-      "id": "end_trauma_quiz_42",
+      "id": "end_trauma_other_quiz_21",
       "question": "הסכנה העיקרית של פגיעה בכבד או בטחול בטראומה בטנית קהה היא:",
       "type": "multiple_choice",
       "options": [
@@ -18315,39 +18005,11 @@
         "תסמונת המדור"
       ],
       "correct": 0,
-      "subject": "מבחן עיוני מסכם טראומה",
-      "sourceFile": "end_trauma_quiz.json"
+      "subject": "מבחן עיוני - התחשמלות, מכת חום, תסמונת מדור",
+      "sourceFile": "end_trauma_other_quiz.json"
     },
     {
-      "id": "end_trauma_quiz_43",
-      "question": "מהי משמעות הופעת 'עיני דביבון' (Racoon Eyes) לאחר טראומה?",
-      "type": "multiple_choice",
-      "options": [
-        "סימן מובהק לדימום אפידורלי",
-        "סימן חלופי לשבר בסיס גולגולת",
-        "סימן לשוק היפוולמי",
-        "סימן לזיהום קשה"
-      ],
-      "correct": 1,
-      "subject": "מבחן עיוני מסכם טראומה",
-      "sourceFile": "end_trauma_quiz.json"
-    },
-    {
-      "id": "end_trauma_quiz_44",
-      "question": "בדימום אפידורלי, לרוב הדם מתאסף בין:",
-      "type": "multiple_choice",
-      "options": [
-        "שכבת הדורה (Dura Mater) לארכנואיד",
-        "הגולגולת (Skull) לשכבת הדורה",
-        "הגולגולת לשכבת הפיא",
-        "שכבת הדרמיס והאפידרמיס"
-      ],
-      "correct": 1,
-      "subject": "מבחן עיוני מסכם טראומה",
-      "sourceFile": "end_trauma_quiz.json"
-    },
-    {
-      "id": "end_trauma_quiz_45",
+      "id": "end_trauma_other_quiz_22",
       "question": "באיזה מנגנון טראומה הקינמטיקה מצביעה על סכנה מוגברת לפגיעה ריאתית וסחוסית (כגון פגיעה בקנה הנשימה)?",
       "type": "multiple_choice",
       "options": [
@@ -18357,11 +18019,11 @@
         "שפשוף עור קל"
       ],
       "correct": 0,
-      "subject": "מבחן עיוני מסכם טראומה",
-      "sourceFile": "end_trauma_quiz.json"
+      "subject": "מבחן עיוני - התחשמלות, מכת חום, תסמונת מדור",
+      "sourceFile": "end_trauma_other_quiz.json"
     },
     {
-      "id": "end_trauma_quiz_46",
+      "id": "end_trauma_other_quiz_23",
       "question": "נכון או לא נכון: תסמונת המדור תמיד ניתנת לזיהוי לפי דופק חלש או היעדר דופק בגפה הפגועה.",
       "type": "true_false",
       "options": [
@@ -18369,25 +18031,11 @@
         "לא נכון. היעדר דופק (Pulselessness) הוא סימן **מאוחר** וחמור ביותר; בדרך כלל הלחץ עורקי גבוה מספיק כדי לשמר דופק גם כאשר הגפה איסכמית."
       ],
       "correct": 1,
-      "subject": "מבחן עיוני מסכם טראומה",
-      "sourceFile": "end_trauma_quiz.json"
+      "subject": "מבחן עיוני - התחשמלות, מכת חום, תסמונת מדור",
+      "sourceFile": "end_trauma_other_quiz.json"
     },
     {
-      "id": "end_trauma_quiz_47",
-      "question": "איזו פגיעה גורמת לוורידי צוואר גדושים (JVD) כחלק מ'שלישיית בק'?",
-      "type": "multiple_choice",
-      "options": [
-        "חזה אוויר פשוט",
-        "טמפונדה לבבית",
-        "זעזוע מוח",
-        "דימום סאב-דורלי"
-      ],
-      "correct": 1,
-      "subject": "מבחן עיוני מסכם טראומה",
-      "sourceFile": "end_trauma_quiz.json"
-    },
-    {
-      "id": "end_trauma_quiz_48",
+      "id": "end_trauma_other_quiz_24",
       "question": "מהו המדד המרכזי לקביעת הצלחת הטיפול המיידי במכת חום?",
       "type": "multiple_choice",
       "options": [
@@ -18397,11 +18045,11 @@
         "עלייה ברמת הסוכר"
       ],
       "correct": 1,
-      "subject": "מבחן עיוני מסכם טראומה",
-      "sourceFile": "end_trauma_quiz.json"
+      "subject": "מבחן עיוני - התחשמלות, מכת חום, תסמונת מדור",
+      "sourceFile": "end_trauma_other_quiz.json"
     },
     {
-      "id": "end_trauma_quiz_49",
+      "id": "end_trauma_other_quiz_25",
       "question": "איזה ממצא בהתחשמלות מחייב ניטור א.ק.ג. מיידי וממושך?",
       "type": "multiple_choice",
       "options": [
@@ -18411,29 +18059,11 @@
         "כאב שרירים קל"
       ],
       "correct": 1,
-      "subject": "מבחן עיוני מסכם טראומה",
-      "sourceFile": "end_trauma_quiz.json"
+      "subject": "מבחן עיוני - התחשמלות, מכת חום, תסמונת מדור",
+      "sourceFile": "end_trauma_other_quiz.json"
     },
     {
-      "id": "end_trauma_quiz_50",
-      "question": "מה נכון לגבי הקינמטיקה של טראומה ופגיעות בטן?",
-      "type": "multiple_choice",
-      "options": [
-        "בטראומה קהה, איברים מוצקים (כבד, טחול) בסיכון גבוה יותר לפגיעה",
-        "בטראומה חודרת, איברים חלולים (מעיים) בסיכון גבוה יותר לפגיעה ולזיהום",
-        "חגורת בטיחות עשויה לגרום לפגיעה ב'חגורה' (Seatbelt Sign) - נזק לאיברים חלולים",
-        "נפילת ילד מגובה היא אירוע קל ואינה מצריכה חשד לפגיעות פנימיות"
-      ],
-      "correct": [
-        0,
-        1,
-        2
-      ],
-      "subject": "מבחן עיוני מסכם טראומה",
-      "sourceFile": "end_trauma_quiz.json"
-    },
-    {
-      "id": "end_trauma_quiz_51",
+      "id": "end_trauma_other_quiz_26",
       "question": "מהו סדר הפעולות הנכון לקירור מטופל עם מכת חום בטיפול קדם-אשפוזי (ALS)?",
       "type": "multiple_choice",
       "options": [
@@ -18443,11 +18073,11 @@
         "טיפול סימפטומטי בלבד"
       ],
       "correct": 2,
-      "subject": "מבחן עיוני מסכם טראומה",
-      "sourceFile": "end_trauma_quiz.json"
+      "subject": "מבחן עיוני - התחשמלות, מכת חום, תסמונת מדור",
+      "sourceFile": "end_trauma_other_quiz.json"
     },
     {
-      "id": "end_trauma_quiz_52",
+      "id": "end_trauma_other_quiz_27",
       "question": "הסימנים הנוירולוגיים במכת חום (כגון פרכוסים, קומה) נובעים ישירות מנזק תרמי ל-CNS.",
       "type": "true_false",
       "options": [
@@ -18455,11 +18085,11 @@
         "לא נכון. הם נובעים מהלם היפוולמי."
       ],
       "correct": 0,
-      "subject": "מבחן עיוני מסכם טראומה",
-      "sourceFile": "end_trauma_quiz.json"
+      "subject": "מבחן עיוני - התחשמלות, מכת חום, תסמונת מדור",
+      "sourceFile": "end_trauma_other_quiz.json"
     },
     {
-      "id": "end_trauma_quiz_53",
+      "id": "end_trauma_other_quiz_28",
       "question": "מהם ההתוויות למתן סודיום ביקרבונט (Sodium Bicarbonate) בחולה לאחר התחשמלות קשה?",
       "type": "multiple_choice",
       "options": [
@@ -18469,11 +18099,11 @@
         "טיפול שגרתי בכל התחשמלות"
       ],
       "correct": 0,
-      "subject": "מבחן עיוני מסכם טראומה",
-      "sourceFile": "end_trauma_quiz.json"
+      "subject": "מבחן עיוני - התחשמלות, מכת חום, תסמונת מדור",
+      "sourceFile": "end_trauma_other_quiz.json"
     },
     {
-      "id": "end_trauma_quiz_54",
+      "id": "end_trauma_other_quiz_29",
       "question": "בטיפול בהרס תאי שריר לאחר התחשמלות, מהי המטרה העיקרית של מתן נוזלים אגרסיבי?",
       "type": "multiple_choice",
       "options": [
@@ -18483,11 +18113,11 @@
         "להוריד את החום"
       ],
       "correct": 1,
-      "subject": "מבחן עיוני מסכם טראומה",
-      "sourceFile": "end_trauma_quiz.json"
+      "subject": "מבחן עיוני - התחשמלות, מכת חום, תסמונת מדור",
+      "sourceFile": "end_trauma_other_quiz.json"
     },
     {
-      "id": "end_trauma_quiz_55",
+      "id": "end_trauma_other_quiz_30",
       "question": "מהם הקריטריונים המרכזיים המעלים חשד לתסמונת המדור לאחר טראומה?",
       "type": "multiple_choice",
       "options": [
@@ -18504,11 +18134,11 @@
         2,
         4
       ],
-      "subject": "מבחן עיוני מסכם טראומה",
-      "sourceFile": "end_trauma_quiz.json"
+      "subject": "מבחן עיוני - התחשמלות, מכת חום, תסמונת מדור",
+      "sourceFile": "end_trauma_other_quiz.json"
     },
     {
-      "id": "end_trauma_quiz_56",
+      "id": "end_trauma_other_quiz_31",
       "question": "בחשד לתסמונת המדור, הטיפול הקדם-אשפוזי המיידי כולל הרמת הגפה מעל גובה הלב.",
       "type": "true_false",
       "options": [
@@ -18516,11 +18146,11 @@
         "לא נכון. אין להרים את הגפה מעל גובה הלב מכיוון שזה עלול להפחית את זרימת הדם העורקית שנותרה."
       ],
       "correct": 1,
-      "subject": "מבחן עיוני מסכם טראומה",
-      "sourceFile": "end_trauma_quiz.json"
+      "subject": "מבחן עיוני - התחשמלות, מכת חום, תסמונת מדור",
+      "sourceFile": "end_trauma_other_quiz.json"
     },
     {
-      "id": "end_trauma_quiz_57",
+      "id": "end_trauma_other_quiz_32",
       "question": "דימום אפידורלי (EDH) קשור לרוב לפגיעה ב-",
       "type": "multiple_choice",
       "options": [
@@ -18530,87 +18160,11 @@
         "סינוס קורונרי"
       ],
       "correct": 0,
-      "subject": "מבחן עיוני מסכם טראומה",
-      "sourceFile": "end_trauma_quiz.json"
+      "subject": "מבחן עיוני - התחשמלות, מכת חום, תסמונת מדור",
+      "sourceFile": "end_trauma_other_quiz.json"
     },
     {
-      "id": "end_trauma_quiz_58",
-      "question": "מהי המשמעות הקלינית של Lucid Interval (אינטרוול צלול) בפגיעת ראש?",
-      "type": "multiple_choice",
-      "options": [
-        "מצב המעיד על דימום קל ואיטי שאינו מחייב התערבות",
-        "מצב המעיד על פגיעה קשה המחייב ניטור קפדני ופינוי מהיר, שכן הידרדרות מהירה אפשרית (לרוב EDH)",
-        "סימן מובהק לשבר בבסיס הגולגולת",
-        "סימן לזעזוע מוח בלבד"
-      ],
-      "correct": 1,
-      "subject": "מבחן עיוני מסכם טראומה",
-      "sourceFile": "end_trauma_quiz.json"
-    },
-    {
-      "id": "end_trauma_quiz_59",
-      "question": "שבר בסיס גולגולת עלול להוביל ל-",
-      "type": "multiple_choice",
-      "options": [
-        "דליפת CSF מהאף (Rhinorrhea) או מהאוזן (Otorrhea)",
-        "פגיעה בעצבי הגולגולת (Facial Palsy, Tinnitus)",
-        "התפתחות המטומה סביב העיניים (Racoon Eyes) או מאחורי האוזן (Battle's Sign)",
-        "הלם ספטי מיידי",
-        "תסמונת המדור בגפיים",
-        "לחץ דם מוגבר מאוד"
-      ],
-      "correct": [
-        0,
-        1,
-        2
-      ],
-      "subject": "מבחן עיוני מסכם טראומה",
-      "sourceFile": "end_trauma_quiz.json"
-    },
-    {
-      "id": "end_trauma_quiz_60",
-      "question": "בטמפונדה לבבית, הדם מצטבר בחלל הפריקרד וגורם ל-",
-      "type": "multiple_choice",
-      "options": [
-        "עלייה בתפוקת הלב",
-        "ירידה חדה במילוי החדרים בזמן הדיאסטולה",
-        "עלייה חדה בלחץ הדם הסיסטולי",
-        "היפרוונטילציה"
-      ],
-      "correct": 1,
-      "subject": "מבחן עיוני מסכם טראומה",
-      "sourceFile": "end_trauma_quiz.json"
-    },
-    {
-      "id": "end_trauma_quiz_61",
-      "question": "מדוע ורידי הצוואר גדושים (JVD) בטמפונדה לבבית?",
-      "type": "multiple_choice",
-      "options": [
-        "עקב הרפיית כלי הדם",
-        "עקב עלייה בלחץ התוך-חזי המונעת זרימת דם ללב (החזר ורידי לקוי)",
-        "עקב אי-ספיקת כליות",
-        "עקב דימום משמעותי לבית החזה"
-      ],
-      "correct": 1,
-      "subject": "מבחן עיוני מסכם טראומה",
-      "sourceFile": "end_trauma_quiz.json"
-    },
-    {
-      "id": "end_trauma_quiz_62",
-      "question": "הסכנה העיקרית בפנאומוטורקס לוחץ נובעת ממעבר הלחץ לצד הלא פגוע, הגורם ל-",
-      "type": "multiple_choice",
-      "options": [
-        "הפרעה בפעולת הריאה הנגדית בלבד",
-        "דחיסה וסטייה של המדיאסטינום, פגיעה בהחזר הוורידי וקריסה המודינמית (הלם חסימתי)",
-        "זיהום פטרייתי",
-        "דימום עורקי בלבד"
-      ],
-      "correct": 1,
-      "subject": "מבחן עיוני מסכם טראומה",
-      "sourceFile": "end_trauma_quiz.json"
-    },
-    {
-      "id": "end_trauma_quiz_63",
+      "id": "end_trauma_other_quiz_33",
       "question": "מהו הטיפול הקדם-אשפוזי המכריע לחזה אוויר בלחץ (Tension Pneumothorax)?",
       "type": "multiple_choice",
       "options": [
@@ -18620,25 +18174,11 @@
         "המתנה לחדר ניתוח"
       ],
       "correct": 0,
-      "subject": "מבחן עיוני מסכם טראומה",
-      "sourceFile": "end_trauma_quiz.json"
+      "subject": "מבחן עיוני - התחשמלות, מכת חום, תסמונת מדור",
+      "sourceFile": "end_trauma_other_quiz.json"
     },
     {
-      "id": "end_trauma_quiz_64",
-      "question": "בפגיעת בטן קהה, איזה איבר נחשב לאיבר מוצק ובעל סיכון גבוה לדימום מסיבי?",
-      "type": "multiple_choice",
-      "options": [
-        "קיבה",
-        "מעי גס",
-        "טחול",
-        "שלפוחית השתן"
-      ],
-      "correct": 2,
-      "subject": "מבחן עיוני מסכם טראומה",
-      "sourceFile": "end_trauma_quiz.json"
-    },
-    {
-      "id": "end_trauma_quiz_65",
+      "id": "end_trauma_other_quiz_34",
       "question": "מהו אחד מהאינדיקטורים הקינמטיים החשובים ביותר המחייבים חשד גבוה לפגיעות בטן קהות?",
       "type": "multiple_choice",
       "options": [
@@ -18648,37 +18188,11 @@
         "התחשמלות"
       ],
       "correct": 1,
-      "subject": "מבחן עיוני מסכם טראומה",
-      "sourceFile": "end_trauma_quiz.json"
+      "subject": "מבחן עיוני - התחשמלות, מכת חום, תסמונת מדור",
+      "sourceFile": "end_trauma_other_quiz.json"
     },
     {
-      "id": "end_trauma_quiz_66",
-      "question": "מהי הגישה המקובלת לטיפול בפגיעות בטן קהות ב-ALS?",
-      "type": "multiple_choice",
-      "options": [
-        "הרדמה מיידית",
-        "טיפול תומך (ABC), מתן חמצן, צפיית סימני הלם, מתן נוזלים ופינוי מהיר",
-        "חבישה לוחצת",
-        "המתנה לרופא"
-      ],
-      "correct": 1,
-      "subject": "מבחן עיוני מסכם טראומה",
-      "sourceFile": "end_trauma_quiz.json"
-    },
-    {
-      "id": "end_trauma_quiz_67",
-      "question": "האם חיוני להגן על עמוד השדרה הצווארי במטופל עם Lucid Interval?",
-      "type": "true_false",
-      "options": [
-        "נכון. כל פגיעת ראש משמעותית עם שינוי במצב ההכרה או מנגנון פגיעה קשה מחייבת קיבוע צווארי מלא עד לשלילת פגיעה בעמוד השדרה.",
-        "לא נכון."
-      ],
-      "correct": 0,
-      "subject": "מבחן עיוני מסכם טראומה",
-      "sourceFile": "end_trauma_quiz.json"
-    },
-    {
-      "id": "end_trauma_quiz_68",
+      "id": "end_trauma_other_quiz_35",
       "question": "מהם הסימנים הקליניים של תסמונת המדור שמחייבים התערבות כירורגית מיידית (פאסיוטומיה)?",
       "type": "multiple_choice",
       "options": [
@@ -18688,11 +18202,11 @@
         "לחץ דם נמוך מאוד"
       ],
       "correct": 0,
-      "subject": "מבחן עיוני מסכם טראומה",
-      "sourceFile": "end_trauma_quiz.json"
+      "subject": "מבחן עיוני - התחשמלות, מכת חום, תסמונת מדור",
+      "sourceFile": "end_trauma_other_quiz.json"
     },
     {
-      "id": "end_trauma_quiz_69",
+      "id": "end_trauma_other_quiz_36",
       "question": "היפוגליקמיה היא סיבוך נפוץ במכת חום קשה.",
       "type": "true_false",
       "options": [
@@ -18700,11 +18214,11 @@
         "לא נכון."
       ],
       "correct": 0,
-      "subject": "מבחן עיוני מסכם טראומה",
-      "sourceFile": "end_trauma_quiz.json"
+      "subject": "מבחן עיוני - התחשמלות, מכת חום, תסמונת מדור",
+      "sourceFile": "end_trauma_other_quiz.json"
     },
     {
-      "id": "end_trauma_quiz_70",
+      "id": "end_trauma_other_quiz_37",
       "question": "מהו הטיפול הקרדיאלי העיקרי הנדרש לאחר התחשמלות, גם אם הא.ק.ג. נראה תקין בשטח?",
       "type": "multiple_choice",
       "options": [
@@ -18714,11 +18228,11 @@
         "התעלמות מנושא הלב"
       ],
       "correct": 1,
-      "subject": "מבחן עיוני מסכם טראומה",
-      "sourceFile": "end_trauma_quiz.json"
+      "subject": "מבחן עיוני - התחשמלות, מכת חום, תסמונת מדור",
+      "sourceFile": "end_trauma_other_quiz.json"
     },
     {
-      "id": "end_trauma_quiz_71",
+      "id": "end_trauma_other_quiz_38",
       "question": "היכן ממקמים את המחט לניקור חזה (Needle Decompression) בחזה אוויר בלחץ?",
       "type": "multiple_choice",
       "options": [
@@ -18728,11 +18242,11 @@
         "מרווח בין צלעי 7 בקו המיד-אקסילרי"
       ],
       "correct": 1,
-      "subject": "מבחן עיוני מסכם טראומה",
-      "sourceFile": "end_trauma_quiz.json"
+      "subject": "מבחן עיוני - התחשמלות, מכת חום, תסמונת מדור",
+      "sourceFile": "end_trauma_other_quiz.json"
     },
     {
-      "id": "end_trauma_quiz_72",
+      "id": "end_trauma_other_quiz_39",
       "question": "בדימום אפידורלי, למה לרוב אין סימנים נוירולוגיים מייד לאחר הפגיעה הראשונית?",
       "type": "multiple_choice",
       "options": [
@@ -18742,25 +18256,11 @@
         "בגלל היפותרמיה"
       ],
       "correct": 1,
-      "subject": "מבחן עיוני מסכם טראומה",
-      "sourceFile": "end_trauma_quiz.json"
+      "subject": "מבחן עיוני - התחשמלות, מכת חום, תסמונת מדור",
+      "sourceFile": "end_trauma_other_quiz.json"
     },
     {
-      "id": "end_trauma_quiz_73",
-      "question": "בפגיעות בטן חודרות, הסכנה העיקרית היא:",
-      "type": "multiple_choice",
-      "options": [
-        "זיהום (פריטוניטיס) מתוכן מערכת העיכול",
-        "כוויה",
-        "שבר בבסיס הגולגולת",
-        "הלם קרדיוגני"
-      ],
-      "correct": 0,
-      "subject": "מבחן עיוני מסכם טראומה",
-      "sourceFile": "end_trauma_quiz.json"
-    },
-    {
-      "id": "end_trauma_quiz_74",
+      "id": "end_trauma_other_quiz_40",
       "question": "מהי הקינמטיקה המאפיינת 'תסמונת הדחיסה' (Crush Syndrome) שעלולה להוביל לתסמונת המדור?",
       "type": "multiple_choice",
       "options": [
@@ -18770,23 +18270,11 @@
         "כוויה מדרגה א'"
       ],
       "correct": 0,
-      "subject": "מבחן עיוני מסכם טראומה",
-      "sourceFile": "end_trauma_quiz.json"
+      "subject": "מבחן עיוני - התחשמלות, מכת חום, תסמונת מדור",
+      "sourceFile": "end_trauma_other_quiz.json"
     },
     {
-      "id": "end_trauma_quiz_75",
-      "question": "האם בטמפונדה לבבית יש איבוד דם משמעותי מחוץ ללב?",
-      "type": "true_false",
-      "options": [
-        "נכון. יש איבוד דם רב לבית החזה.",
-        "לא נכון. הבעיה היא הלחץ שמפעיל הדם/נוזל על הלב עצמו, לא איבוד דם רב לחלל חיצוני. טמפונדה היא הלם חסימתי, לא היפוולמי."
-      ],
-      "correct": 1,
-      "subject": "מבחן עיוני מסכם טראומה",
-      "sourceFile": "end_trauma_quiz.json"
-    },
-    {
-      "id": "end_trauma_quiz_76",
+      "id": "end_trauma_other_quiz_41",
       "question": "מהם הסימנים המיידיים המעידים על חזה אוויר בלחץ מתפתח?",
       "type": "multiple_choice",
       "options": [
@@ -18796,39 +18284,11 @@
         "היפוגליקמיה"
       ],
       "correct": 0,
-      "subject": "מבחן עיוני מסכם טראומה",
-      "sourceFile": "end_trauma_quiz.json"
+      "subject": "מבחן עיוני - התחשמלות, מכת חום, תסמונת מדור",
+      "sourceFile": "end_trauma_other_quiz.json"
     },
     {
-      "id": "end_trauma_quiz_77",
-      "question": "הסכנה העיקרית של פגיעה בכבד ו/או בטחול היא סכנה של:",
-      "type": "multiple_choice",
-      "options": [
-        "דימום עורקי מיידי",
-        "דימום ורידי איטי",
-        "דימום משמעותי ופוטנציאל להלם היפוולמי",
-        "זיהום בלבד"
-      ],
-      "correct": 2,
-      "subject": "מבחן עיוני מסכם טראומה",
-      "sourceFile": "end_trauma_quiz.json"
-    },
-    {
-      "id": "end_trauma_quiz_78",
-      "question": "מהו האיבר הפנימי בעל הסיכון הגבוה ביותר לפגיעה בטראומה קהה באזור הבטן העליונה השמאלית?",
-      "type": "multiple_choice",
-      "options": [
-        "כבד",
-        "טחול",
-        "שלפוחית השתן",
-        "אאורטה"
-      ],
-      "correct": 1,
-      "subject": "מבחן עיוני מסכם טראומה",
-      "sourceFile": "end_trauma_quiz.json"
-    },
-    {
-      "id": "end_trauma_quiz_79",
+      "id": "end_trauma_other_quiz_42",
       "question": "מתי חגורת בטיחות עלולה לגרום לפגיעה בטנית משמעותית (Seatbelt Sign)?",
       "type": "multiple_choice",
       "options": [
@@ -18838,11 +18298,11 @@
         "נפילה מגובה נמוך"
       ],
       "correct": 1,
-      "subject": "מבחן עיוני מסכם טראומה",
-      "sourceFile": "end_trauma_quiz.json"
+      "subject": "מבחן עיוני - התחשמלות, מכת חום, תסמונת מדור",
+      "sourceFile": "end_trauma_other_quiz.json"
     },
     {
-      "id": "end_trauma_quiz_80",
+      "id": "end_trauma_other_quiz_43",
       "question": "האם מתן נוזלים קרים עשוי להיות מסוכן בחולה עם מכת חום קשה?",
       "type": "true_false",
       "options": [
@@ -18850,11 +18310,11 @@
         "נכון. נוזלים קרים עלולים להחמיר את ההלם."
       ],
       "correct": 0,
-      "subject": "מבחן עיוני מסכם טראומה",
-      "sourceFile": "end_trauma_quiz.json"
+      "subject": "מבחן עיוני - התחשמלות, מכת חום, תסמונת מדור",
+      "sourceFile": "end_trauma_other_quiz.json"
     },
     {
-      "id": "end_trauma_quiz_81",
+      "id": "end_trauma_other_quiz_44",
       "question": "האם מותר להשתמש במד טמפרטורה דרך הפה כדי לקבוע מכת חום?",
       "type": "true_false",
       "options": [
@@ -18862,11 +18322,11 @@
         "לא נכון. יש להשתמש בטמפרטורת ליבה (רקטאלית/וושטי), שכן טמפ' פה אינה אמינה במצבים קריטיים."
       ],
       "correct": 1,
-      "subject": "מבחן עיוני מסכם טראומה",
-      "sourceFile": "end_trauma_quiz.json"
+      "subject": "מבחן עיוני - התחשמלות, מכת חום, תסמונת מדור",
+      "sourceFile": "end_trauma_other_quiz.json"
     },
     {
-      "id": "end_trauma_quiz_82",
+      "id": "end_trauma_other_quiz_45",
       "question": "בחשד לרבדומיוליזה לאחר התחשמלות, איזה ממצא מעבדתי (אם זמין) צפוי להיות מוגבר?",
       "type": "multiple_choice",
       "options": [
@@ -18879,23 +18339,11 @@
         1,
         2
       ],
-      "subject": "מבחן עיוני מסכם טראומה",
-      "sourceFile": "end_trauma_quiz.json"
+      "subject": "מבחן עיוני - התחשמלות, מכת חום, תסמונת מדור",
+      "sourceFile": "end_trauma_other_quiz.json"
     },
     {
-      "id": "end_trauma_quiz_83",
-      "question": "האם יש לטפל באפילפסיה אצל מטופל עם תסמונת המדור?",
-      "type": "true_false",
-      "options": [
-        "נכון",
-        "לא נכון. אין קשר ישיר בין תסמונת המדור לאפילפסיה. פגיעות ראש או הפרעות מטבוליות עלולות לגרום להתקפים."
-      ],
-      "correct": 1,
-      "subject": "מבחן עיוני מסכם טראומה",
-      "sourceFile": "end_trauma_quiz.json"
-    },
-    {
-      "id": "end_trauma_quiz_84",
+      "id": "end_trauma_other_quiz_46",
       "question": "במטופל לאחר טראומה, אובדן דם משמעותי יגרום תחילה ל-",
       "type": "multiple_choice",
       "options": [
@@ -18905,23 +18353,11 @@
         "חום גבוה"
       ],
       "correct": 1,
-      "subject": "מבחן עיוני מסכם טראומה",
-      "sourceFile": "end_trauma_quiz.json"
+      "subject": "מבחן עיוני - התחשמלות, מכת חום, תסמונת מדור",
+      "sourceFile": "end_trauma_other_quiz.json"
     },
     {
-      "id": "end_trauma_quiz_85",
-      "question": "טמפונדה לבבית ניתנת לטיפול רק ע\"י פתיחת חזה בשטח.",
-      "type": "true_false",
-      "options": [
-        "נכון",
-        "לא נכון. ניתן לבצע פריקרדיוסנטזיס (ניקוז הנוזל/דם מהפריקרד) בבית החולים."
-      ],
-      "correct": 1,
-      "subject": "מבחן עיוני מסכם טראומה",
-      "sourceFile": "end_trauma_quiz.json"
-    },
-    {
-      "id": "end_trauma_quiz_86",
+      "id": "end_trauma_other_quiz_47",
       "question": "כיצד ניקור חזה (Needle Decompression) מטפל בחזה אוויר בלחץ?",
       "type": "multiple_choice",
       "options": [
@@ -18931,28 +18367,11 @@
         "מחמם את המטופל"
       ],
       "correct": 1,
-      "subject": "מבחן עיוני מסכם טראומה",
-      "sourceFile": "end_trauma_quiz.json"
+      "subject": "מבחן עיוני - התחשמלות, מכת חום, תסמונת מדור",
+      "sourceFile": "end_trauma_other_quiz.json"
     },
     {
-      "id": "end_trauma_quiz_87",
-      "question": "פגיעות ראש קשות (כגון EDH או SDH) מצריכות לעיתים אינטובציה לצורך:",
-      "type": "multiple_choice",
-      "options": [
-        "שימור נתיב אוויר והגנה מפני אספירציה",
-        "היפרוונטילציה מבוקרת להורדת ICP (במצבים ספציפיים)",
-        "מתן נוזלים קרים",
-        "טיפול שגרתי בכל פגיעה"
-      ],
-      "correct": [
-        0,
-        1
-      ],
-      "subject": "מבחן עיוני מסכם טראומה",
-      "sourceFile": "end_trauma_quiz.json"
-    },
-    {
-      "id": "end_trauma_quiz_88",
+      "id": "end_trauma_other_quiz_48",
       "question": "מהו המדד הנוירולוגי העיקרי להערכת חומרת פגיעת ראש בטראומה?",
       "type": "multiple_choice",
       "options": [
@@ -18962,11 +18381,11 @@
         "שטח כוויה"
       ],
       "correct": 1,
-      "subject": "מבחן עיוני מסכם טראומה",
-      "sourceFile": "end_trauma_quiz.json"
+      "subject": "מבחן עיוני - התחשמלות, מכת חום, תסמונת מדור",
+      "sourceFile": "end_trauma_other_quiz.json"
     },
     {
-      "id": "end_trauma_quiz_89",
+      "id": "end_trauma_other_quiz_49",
       "question": "תסמונת המדור עלולה להתפתח לאחר שחזור זרימת דם לגפה איסכמית ממושכת (Reperfusion Injury).",
       "type": "true_false",
       "options": [
@@ -18974,11 +18393,11 @@
         "לא נכון."
       ],
       "correct": 0,
-      "subject": "מבחן עיוני מסכם טראומה",
-      "sourceFile": "end_trauma_quiz.json"
+      "subject": "מבחן עיוני - התחשמלות, מכת חום, תסמונת מדור",
+      "sourceFile": "end_trauma_other_quiz.json"
     },
     {
-      "id": "end_trauma_quiz_90",
+      "id": "end_trauma_other_quiz_50",
       "question": "מהם הסימנים המעידים על מכת חום מאמץ?",
       "type": "multiple_choice",
       "options": [
@@ -18996,67 +18415,11 @@
         2,
         3
       ],
-      "subject": "מבחן עיוני מסכם טראומה",
-      "sourceFile": "end_trauma_quiz.json"
+      "subject": "מבחן עיוני - התחשמלות, מכת חום, תסמונת מדור",
+      "sourceFile": "end_trauma_other_quiz.json"
     },
     {
-      "id": "end_trauma_quiz_91",
-      "question": "איזה ממצא בבדיקת נוזל הדולף מהאף או האוזן מעיד על דליפת CSF (שבר בסיס גולגולת)?",
-      "type": "multiple_choice",
-      "options": [
-        "ריח חריף",
-        "מבחן ה'הילה' (Halo Sign) או מבחן הגלוקוז (אם אין דם)",
-        "צבע אדום כהה",
-        "קריש דם"
-      ],
-      "correct": 1,
-      "subject": "מבחן עיוני מסכם טראומה",
-      "sourceFile": "end_trauma_quiz.json"
-    },
-    {
-      "id": "end_trauma_quiz_92",
-      "question": "מה מייצגת פגיעת ה'Up and Over' בקינמטיקה של תאונת דרכים קדמית?",
-      "type": "multiple_choice",
-      "options": [
-        "המטופל עף מהמושב למעלה ופוגע עם הראש/חזה בהגה או בשמשה הקדמית",
-        "המטופל מחליק מתחת לחגורה",
-        "המטופל עף מחוץ לרכב",
-        "המטופל יושב ללא תזוזה"
-      ],
-      "correct": 0,
-      "subject": "מבחן עיוני מסכם טראומה",
-      "sourceFile": "end_trauma_quiz.json"
-    },
-    {
-      "id": "end_trauma_quiz_93",
-      "question": "המטרה העיקרית במתן נוזלים בטמפונדה לבבית היא:",
-      "type": "multiple_choice",
-      "options": [
-        "לשפר את מילוי החדרים הנותר ולהעלות לחץ דם עד לניקוז הפריקרד",
-        "לצנן את הלב",
-        "להפחית לחץ דם",
-        "למנוע היפוגליקמיה"
-      ],
-      "correct": 0,
-      "subject": "מבחן עיוני מסכם טראומה",
-      "sourceFile": "end_trauma_quiz.json"
-    },
-    {
-      "id": "end_trauma_quiz_94",
-      "question": "בפנאומוטורקס לוחץ, סטיית קנה הנשימה (טראכאה) היא סימן:",
-      "type": "multiple_choice",
-      "options": [
-        "מיידי ומוקדם",
-        "מאוחר מאוד ומעיד על לחץ קיצוני",
-        "שאינו קשור לחזה אוויר בלחץ",
-        "הקשור רק לטמפונדה לבבית"
-      ],
-      "correct": 1,
-      "subject": "מבחן עיוני מסכם טראומה",
-      "sourceFile": "end_trauma_quiz.json"
-    },
-    {
-      "id": "end_trauma_quiz_95",
+      "id": "end_trauma_other_quiz_51",
       "question": "בפגיעת בטן, נוכחות של 'בטן קשה' (Board-like Abdomen) מחייבת חשד גבוה ל:",
       "type": "multiple_choice",
       "options": [
@@ -19066,11 +18429,11 @@
         "תסמונת המדור"
       ],
       "correct": 1,
-      "subject": "מבחן עיוני מסכם טראומה",
-      "sourceFile": "end_trauma_quiz.json"
+      "subject": "מבחן עיוני - התחשמלות, מכת חום, תסמונת מדור",
+      "sourceFile": "end_trauma_other_quiz.json"
     },
     {
-      "id": "end_trauma_quiz_96",
+      "id": "end_trauma_other_quiz_52",
       "question": "הסכנות העיקריות בהתחשמלות במתח נמוך (Low Voltage) הן:",
       "type": "multiple_choice",
       "options": [
@@ -19080,25 +18443,11 @@
         "נזק מוחי"
       ],
       "correct": 0,
-      "subject": "מבחן עיוני מסכם טראומה",
-      "sourceFile": "end_trauma_quiz.json"
+      "subject": "מבחן עיוני - התחשמלות, מכת חום, תסמונת מדור",
+      "sourceFile": "end_trauma_other_quiz.json"
     },
     {
-      "id": "end_trauma_quiz_97",
-      "question": "מהו הגורם העיקרי להידרדרות מהירה של GCS בחולה עם דימום אפידורלי?",
-      "type": "multiple_choice",
-      "options": [
-        "היפוגליקמיה",
-        "הרניאציה (Herniation) של המוח עקב עלייה ב-ICP",
-        "ירידה בלחץ דם",
-        "זיהום"
-      ],
-      "correct": 1,
-      "subject": "מבחן עיוני מסכם טראומה",
-      "sourceFile": "end_trauma_quiz.json"
-    },
-    {
-      "id": "end_trauma_quiz_98",
+      "id": "end_trauma_other_quiz_53",
       "question": "מה עשוי לכלול הטיפול הקדם-אשפוזי בחשד לתסמונת המדור?",
       "type": "multiple_choice",
       "options": [
@@ -19113,84 +18462,11 @@
         1,
         2
       ],
-      "subject": "מבחן עיוני מסכם טראומה",
-      "sourceFile": "end_trauma_quiz.json"
+      "subject": "מבחן עיוני - התחשמלות, מכת חום, תסמונת מדור",
+      "sourceFile": "end_trauma_other_quiz.json"
     },
     {
-      "id": "end_trauma_quiz_99",
-      "question": "בטראומה ביתנית קהה, אילו איברים פניימים מוגנים פחות מאשר הכבד או הטחול?",
-      "type": "multiple_choice",
-      "options": [
-        "כליות (ממוקמות רטרופריטונאלית)",
-        "הלב",
-        "כלי דם גדולים (אאורטה)",
-        "קיבה"
-      ],
-      "correct": [
-        0,
-        2
-      ],
-      "subject": "מבחן עיוני מסכם טראומה",
-      "sourceFile": "end_trauma_quiz.json"
-    },
-    {
-      "id": "end_trauma_quiz_100",
-      "question": "מהו השם הגנרי של תרופת הקסקפרון?",
-      "type": "multiple_choice",
-      "options": [
-        "Adrenaline",
-        "Tranexamic Acid",
-        "Amiodarone",
-        "Ketamine"
-      ],
-      "correct": 1,
-      "subject": "מבחן עיוני מסכם טראומה",
-      "sourceFile": "end_trauma_quiz.json"
-    },
-    {
-      "id": "end_trauma_quiz_101",
-      "question": "מהו סוג התרופה של Tranexamic Acid?",
-      "type": "multiple_choice",
-      "options": [
-        "אנטי-היסטמין",
-        "אנטי-פיברינוליטי",
-        "אנטיביוטיקה",
-        "אנטי-דכאיבי"
-      ],
-      "correct": 1,
-      "subject": "מבחן עיוני מסכם טראומה",
-      "sourceFile": "end_trauma_quiz.json"
-    },
-    {
-      "id": "end_trauma_quiz_102",
-      "question": "מהו מנגנון הפעולה של Tranexamic Acid?",
-      "type": "multiple_choice",
-      "options": [
-        "מעלה את לחץ הדם",
-        "מונע פירוק של קרישי דם ועוזר לעצור דימומים",
-        "מרחיב כלי דם",
-        "מפחית דלקת"
-      ],
-      "correct": 1,
-      "subject": "מבחן עיוני מסכם טראומה",
-      "sourceFile": "end_trauma_quiz.json"
-    },
-    {
-      "id": "end_trauma_quiz_103",
-      "question": "מתי ניתן לתת Tranexamic Acid בטראומה?",
-      "type": "multiple_choice",
-      "options": [
-        "בכל מקרה של טראומה",
-        "רק בטראומת ראש",
-        "בשוק היפוולמי עם מעל 10 דקות פינוי ולפחות 2 מסימני ההלם",
-        "רק בטראומה חודרת"
-      ],
-      "correct": 2,
-      "subject": "מבחן עיוני מסכם טראומה",
-      "sourceFile": "end_trauma_quiz.json"
-    },
-    {
-      "id": "end_trauma_quiz_104",
+      "id": "end_trauma_other_quiz_54",
       "question": "מהם סימני ההלם הנדרשים למתן Tranexamic Acid? (נדרשים לפחות 2)",
       "type": "multiple_choice",
       "options": [
@@ -19200,90 +18476,8 @@
         "רק דופק מהיר"
       ],
       "correct": 0,
-      "subject": "מבחן עיוני מסכם טראומה",
-      "sourceFile": "end_trauma_quiz.json"
-    },
-    {
-      "id": "end_trauma_quiz_105",
-      "question": "מהו זמן הפינוי המינימלי הנדרש כדי לשקול מתן Tranexamic Acid?",
-      "type": "multiple_choice",
-      "options": [
-        "מעל 5 דקות",
-        "מעל 10 דקות",
-        "מעל 20 דקות",
-        "מעל 30 דקות"
-      ],
-      "correct": 1,
-      "subject": "מבחן עיוני מסכם טראומה",
-      "sourceFile": "end_trauma_quiz.json"
-    },
-    {
-      "id": "end_trauma_quiz_106",
-      "question": "מהו המינון של Tranexamic Acid באמפולה?",
-      "type": "multiple_choice",
-      "options": [
-        "250mg/5cc",
-        "500mg/5cc",
-        "1000mg/10cc",
-        "100mg/2cc"
-      ],
-      "correct": 1,
-      "subject": "מבחן עיוני מסכם טראומה",
-      "sourceFile": "end_trauma_quiz.json"
-    },
-    {
-      "id": "end_trauma_quiz_107",
-      "question": "מהו המנה החד-פעמית של Tranexamic Acid?",
-      "type": "multiple_choice",
-      "options": [
-        "500mg - אמפולה אחת",
-        "1 גרם - 2 אמפולות",
-        "2 גרם - 4 אמפולות",
-        "250mg - חצי אמפולה"
-      ],
-      "correct": 1,
-      "subject": "מבחן עיוני מסכם טראומה",
-      "sourceFile": "end_trauma_quiz.json"
-    },
-    {
-      "id": "end_trauma_quiz_108",
-      "question": "באילו דרכים ניתן לתת Tranexamic Acid?",
-      "type": "multiple_choice",
-      "options": [
-        "רק בהזלפה",
-        "רק בפוש",
-        "בפוש או בהזלפה",
-        "רק דרך הפה"
-      ],
-      "correct": 2,
-      "subject": "מבחן עיוני מסכם טראומה",
-      "sourceFile": "end_trauma_quiz.json"
-    },
-    {
-      "id": "end_trauma_quiz_109",
-      "question": "האם ניתן לתת Tranexamic Acid למטופל עם ירידה במצב הכרה משנית לחבלת ראש?",
-      "type": "multiple_choice",
-      "options": [
-        "כן, בכל מקרה של חבלת ראש",
-        "לא, ירידה במצב הכרה משנית לחבלת ראש אינה נחשבת כסימן הלם מתאים למתן התרופה",
-        "כן, אך רק עם אישור רופא",
-        "כן, זו האינדיקציה העיקרית"
-      ],
-      "correct": 1,
-      "subject": "מבחן עיוני מסכם טראומה",
-      "sourceFile": "end_trauma_quiz.json"
-    },
-    {
-      "id": "end_trauma_quiz_110",
-      "question": "האם ניתן לתת Tranexamic Acid למטופל עם חבלת ראש?",
-      "type": "true_false",
-      "options": [
-        "כן, בתנאי שאין הרחבת אישונים דו צדדית",
-        "אין לתת הקסקפרון בחבלת ראש"
-      ],
-      "correct": 0,
-      "subject": "מבחן עיוני מסכם טראומה",
-      "sourceFile": "end_trauma_quiz.json"
+      "subject": "מבחן עיוני - התחשמלות, מכת חום, תסמונת מדור",
+      "sourceFile": "end_trauma_other_quiz.json"
     },
     {
       "id": "end_nerave_quiz_1",
@@ -25940,48 +25134,6 @@
     },
     {
       "id": "end_cpr_quiz_1",
-      "question": "מהו הטיפול הראשוני בתעוקת חזה לפי פרוטוקול ACS?",
-      "type": "multiple_choice",
-      "options": [
-        "מתן אדרנלין",
-        "אספירין וחמצן לפי הצורך",
-        "ונטולין וסטרואידים",
-        "אינטובציה"
-      ],
-      "correct": 1,
-      "subject": "מבחן עיוני מסכם החייאה",
-      "sourceFile": "end_cpr_quiz.json"
-    },
-    {
-      "id": "end_cpr_quiz_2",
-      "question": "מה המינון הסטנדרטי של אספירין בתעוקת חזה?",
-      "type": "multiple_choice",
-      "options": [
-        "75 מ\"ג",
-        "100 מ\"ג",
-        "160-325 מ\"ג ללעיסה",
-        "500 מ\"ג"
-      ],
-      "correct": 2,
-      "subject": "מבחן עיוני מסכם החייאה",
-      "sourceFile": "end_cpr_quiz.json"
-    },
-    {
-      "id": "end_cpr_quiz_3",
-      "question": "מתי ניתן ניטרוגליצרין בתעוקת חזה?",
-      "type": "multiple_choice",
-      "options": [
-        "תמיד, בכל תעוקת חזה",
-        "כאשר ל\"ד סיסטולי מעל 100 ואין שימוש בתרופות לאין-אונות ב-24-48 שעות",
-        "רק כאשר ל\"ד מעל 160",
-        "אסור לתת ניטרוגליצרין בשטח"
-      ],
-      "correct": 1,
-      "subject": "מבחן עיוני מסכם החייאה",
-      "sourceFile": "end_cpr_quiz.json"
-    },
-    {
-      "id": "end_cpr_quiz_4",
       "question": "כמה מ\"ג אדרנלין יש לתת למבוגר בהחייאה?",
       "type": "multiple_choice",
       "options": [
@@ -25995,7 +25147,7 @@
       "sourceFile": "end_cpr_quiz.json"
     },
     {
-      "id": "end_cpr_quiz_5",
+      "id": "end_cpr_quiz_2",
       "question": "כל כמה זמן ניתן אדרנלין במהלך החייאה?",
       "type": "multiple_choice",
       "options": [
@@ -26009,21 +25161,7 @@
       "sourceFile": "end_cpr_quiz.json"
     },
     {
-      "id": "end_cpr_quiz_6",
-      "question": "מהם הקצבים הבר-שוק (Shockable Rhythms)?",
-      "type": "multiple_choice",
-      "options": [
-        "VF ו-Pulseless VT",
-        "Asystole ו-PEA",
-        "Bradycardia ו-Tachycardia",
-        "רק VF"
-      ],
-      "correct": 3,
-      "subject": "מבחן עיוני מסכם החייאה",
-      "sourceFile": "end_cpr_quiz.json"
-    },
-    {
-      "id": "end_cpr_quiz_7",
+      "id": "end_cpr_quiz_3",
       "question": "מהו היחס בין עיסויים להנשמות בהחייאת מבוגר עם שני מטפלים?",
       "type": "multiple_choice",
       "options": [
@@ -26037,7 +25175,7 @@
       "sourceFile": "end_cpr_quiz.json"
     },
     {
-      "id": "end_cpr_quiz_8",
+      "id": "end_cpr_quiz_4",
       "question": "מהו ערך EtCO2 המעיד על החייאה יעילה?",
       "type": "multiple_choice",
       "options": [
@@ -26051,21 +25189,7 @@
       "sourceFile": "end_cpr_quiz.json"
     },
     {
-      "id": "end_cpr_quiz_9",
-      "question": "מה מעיד על ROSC (חזרת דופק ספונטני)?",
-      "type": "multiple_choice",
-      "options": [
-        "ירידה חדה ב-EtCO2",
-        "עלייה פתאומית ב-EtCO2 מעל 40 mmHg ודופק מישוש",
-        "שינוי בקצב ל-Asystole",
-        "אין שינוי ב-EtCO2"
-      ],
-      "correct": 1,
-      "subject": "מבחן עיוני מסכם החייאה",
-      "sourceFile": "end_cpr_quiz.json"
-    },
-    {
-      "id": "end_cpr_quiz_10",
+      "id": "end_cpr_quiz_5",
       "question": "מה תפקיד הקפנומטריה בהחייאה?",
       "type": "multiple_choice",
       "options": [
@@ -26079,7 +25203,7 @@
       "sourceFile": "end_cpr_quiz.json"
     },
     {
-      "id": "end_cpr_quiz_11",
+      "id": "end_cpr_quiz_6",
       "question": "מתי ניתן שוק חשמלי ראשון בהחייאה?",
       "type": "multiple_choice",
       "options": [
@@ -26093,7 +25217,7 @@
       "sourceFile": "end_cpr_quiz.json"
     },
     {
-      "id": "end_cpr_quiz_12",
+      "id": "end_cpr_quiz_7",
       "question": "מה עושים מיד לאחר מתן שוק חשמלי?",
       "type": "multiple_choice",
       "options": [
@@ -26107,7 +25231,7 @@
       "sourceFile": "end_cpr_quiz.json"
     },
     {
-      "id": "end_cpr_quiz_13",
+      "id": "end_cpr_quiz_8",
       "question": "מתי ניתן אמיודרון בהחייאה?",
       "type": "multiple_choice",
       "options": [
@@ -26121,7 +25245,7 @@
       "sourceFile": "end_cpr_quiz.json"
     },
     {
-      "id": "end_cpr_quiz_14",
+      "id": "end_cpr_quiz_9",
       "question": "מהו המינון הראשוני של אמיודרון בהחייאה?",
       "type": "multiple_choice",
       "options": [
@@ -26135,7 +25259,7 @@
       "sourceFile": "end_cpr_quiz.json"
     },
     {
-      "id": "end_cpr_quiz_15",
+      "id": "end_cpr_quiz_10",
       "question": "איך ניתן אמיודרון לאחר ROSC?",
       "type": "multiple_choice",
       "options": [
@@ -26149,77 +25273,7 @@
       "sourceFile": "end_cpr_quiz.json"
     },
     {
-      "id": "end_cpr_quiz_16",
-      "question": "מה המאפיין העיקרי של Rapid Atrial Fibrillation?",
-      "type": "multiple_choice",
-      "options": [
-        "קצב סדיר",
-        "קצב לא סדיר עם גלי P ברורים",
-        "קצב לא סדיר ללא גלי P ברורים, קצב חדרי מהיר",
-        "חסימה מוחלטת"
-      ],
-      "correct": 2,
-      "subject": "מבחן עיוני מסכם החייאה",
-      "sourceFile": "end_cpr_quiz.json"
-    },
-    {
-      "id": "end_cpr_quiz_17",
-      "question": "מהי הסכנה העיקרית בפרפור פרוזדורים ממושך?",
-      "type": "multiple_choice",
-      "options": [
-        "התייבשות",
-        "היווצרות קרישים ותסחיף (שבץ מוחי או תסחיף ריאתי)",
-        "עלייה בלחץ דם",
-        "ברדיקרדיה"
-      ],
-      "correct": 1,
-      "subject": "מבחן עיוני מסכם החייאה",
-      "sourceFile": "end_cpr_quiz.json"
-    },
-    {
-      "id": "end_cpr_quiz_18",
-      "question": "מה מאפיין Mobitz II?",
-      "type": "multiple_choice",
-      "options": [
-        "הארכה הדרגתית של PR עד נשירת QRS",
-        "PR קבוע עם נשירה פתאומית של QRS",
-        "חסימה מוחלטת",
-        "קצב מהיר מאוד"
-      ],
-      "correct": 1,
-      "subject": "מבחן עיוני מסכם החייאה",
-      "sourceFile": "end_cpr_quiz.json"
-    },
-    {
-      "id": "end_cpr_quiz_19",
-      "question": "מה זה VF (Ventricular Fibrillation)?",
-      "type": "multiple_choice",
-      "options": [
-        "קצב סדיר מהחדרים",
-        "פעילות חשמלית כאוטית בחדרים ללא תפוקה",
-        "פעילות רגילה של העליות",
-        "ברדיקרדיה"
-      ],
-      "correct": 1,
-      "subject": "מבחן עיוני מסכם החייאה",
-      "sourceFile": "end_cpr_quiz.json"
-    },
-    {
-      "id": "end_cpr_quiz_20",
-      "question": "מה זה TDP (Torsades de Pointes)?",
-      "type": "multiple_choice",
-      "options": [
-        "VT פולימורפי עם מראה \"מסתובב\" סביב הבסיס, קשור להארכת QT",
-        "פרפור פרוזדורים",
-        "חסם מדרגה ראשונה",
-        "קצב סינוס תקין"
-      ],
-      "correct": 0,
-      "subject": "מבחן עיוני מסכם החייאה",
-      "sourceFile": "end_cpr_quiz.json"
-    },
-    {
-      "id": "end_cpr_quiz_21",
+      "id": "end_cpr_quiz_11",
       "question": "מה הטיפול ב-VF לפי פרוטוקול?",
       "type": "multiple_choice",
       "options": [
@@ -26233,35 +25287,7 @@
       "sourceFile": "end_cpr_quiz.json"
     },
     {
-      "id": "end_cpr_quiz_22",
-      "question": "מתי אין לתת אדנוזין?",
-      "type": "multiple_choice",
-      "options": [
-        "ב-SVT",
-        "בחסם AV מדרגה שנייה או שלישית ללא קוצב",
-        "בכל טכיקרדיה",
-        "תמיד מותר"
-      ],
-      "correct": 1,
-      "subject": "מבחן עיוני מסכם החייאה",
-      "sourceFile": "end_cpr_quiz.json"
-    },
-    {
-      "id": "end_cpr_quiz_23",
-      "question": "מה מנגנון הפעולה של אדנוזין?",
-      "type": "multiple_choice",
-      "options": [
-        "האטה זמנית של הולכה דרך ה-AV node",
-        "הרחבת כלי דם",
-        "עיכוב אצטילכולין",
-        "הפעלת בטא רצפטורים"
-      ],
-      "correct": 0,
-      "subject": "מבחן עיוני מסכם החייאה",
-      "sourceFile": "end_cpr_quiz.json"
-    },
-    {
-      "id": "end_cpr_quiz_24",
+      "id": "end_cpr_quiz_12",
       "question": "מה ייעוד אדרנלין בהחייאה?",
       "type": "multiple_choice",
       "options": [
@@ -26275,77 +25301,7 @@
       "sourceFile": "end_cpr_quiz.json"
     },
     {
-      "id": "end_cpr_quiz_25",
-      "question": "מהו מנגנון הפעולה של אדרנלין?",
-      "type": "multiple_choice",
-      "options": [
-        "חסימת רצפטורים",
-        "הפעלת רצפטורים אלפא ובטא אדרנרגיים",
-        "עיכוב אצטילכולין",
-        "הרחבת כלי דם בלבד"
-      ],
-      "correct": 1,
-      "subject": "מבחן עיוני מסכם החייאה",
-      "sourceFile": "end_cpr_quiz.json"
-    },
-    {
-      "id": "end_cpr_quiz_26",
-      "question": "מה ייעוד אטרופין?",
-      "type": "multiple_choice",
-      "options": [
-        "טיפול בטכיקרדיה",
-        "טיפול בברדיקרדיה סימפטומטית",
-        "טיפול באסתמה",
-        "הורדת לחץ דם"
-      ],
-      "correct": 1,
-      "subject": "מבחן עיוני מסכם החייאה",
-      "sourceFile": "end_cpr_quiz.json"
-    },
-    {
-      "id": "end_cpr_quiz_27",
-      "question": "מה מנגנון הפעולה של אטרופין?",
-      "type": "multiple_choice",
-      "options": [
-        "הפעלת מערכת פאראסימפתטית",
-        "עיכוב אצטילכולין במערכת הפאראסימפתטית",
-        "הפעלת בטא רצפטורים",
-        "כיווץ כלי דם"
-      ],
-      "correct": 1,
-      "subject": "מבחן עיוני מסכם החייאה",
-      "sourceFile": "end_cpr_quiz.json"
-    },
-    {
-      "id": "end_cpr_quiz_28",
-      "question": "מהו המינון של אטרופין לברדיקרדיה סימפטומטית?",
-      "type": "multiple_choice",
-      "options": [
-        "0.5 מ\"ג כל 3-5 דקות עד מקסימום 3 מ\"ג",
-        "1 מ\"ג כל דקה",
-        "0.1 מ\"ג בלבד",
-        "5 מ\"ג"
-      ],
-      "correct": 0,
-      "subject": "מבחן עיוני מסכם החייאה",
-      "sourceFile": "end_cpr_quiz.json"
-    },
-    {
-      "id": "end_cpr_quiz_29",
-      "question": "למה מיועד Etomidate?",
-      "type": "multiple_choice",
-      "options": [
-        "משכך כאבים",
-        "השראת הרדמה מהירה לפני אינטובציה (RSI) עם מינימום דיכוי לבבי",
-        "הרחבת סימפונות",
-        "טיפול בהפרעות קצב"
-      ],
-      "correct": 1,
-      "subject": "מבחן עיוני מסכם החייאה",
-      "sourceFile": "end_cpr_quiz.json"
-    },
-    {
-      "id": "end_cpr_quiz_30",
+      "id": "end_cpr_quiz_13",
       "question": "למה מיועד Ketamine?",
       "type": "multiple_choice",
       "options": [
@@ -26359,7 +25315,7 @@
       "sourceFile": "end_cpr_quiz.json"
     },
     {
-      "id": "end_cpr_quiz_31",
+      "id": "end_cpr_quiz_14",
       "question": "מהם כללי המתן של Ketamine?",
       "type": "multiple_choice",
       "options": [
@@ -26373,7 +25329,7 @@
       "sourceFile": "end_cpr_quiz.json"
     },
     {
-      "id": "end_cpr_quiz_32",
+      "id": "end_cpr_quiz_15",
       "question": "מהו היחס בין עיסויים להנשמות בהחייאת תינוק עם שני מטפלים?",
       "type": "multiple_choice",
       "options": [
@@ -26387,7 +25343,7 @@
       "sourceFile": "end_cpr_quiz.json"
     },
     {
-      "id": "end_cpr_quiz_33",
+      "id": "end_cpr_quiz_16",
       "question": "מהו היחס בין עיסויים להנשמות בהחייאת ילד עם שני מטפלים?",
       "type": "multiple_choice",
       "options": [
@@ -26401,7 +25357,7 @@
       "sourceFile": "end_cpr_quiz.json"
     },
     {
-      "id": "end_cpr_quiz_34",
+      "id": "end_cpr_quiz_17",
       "question": "מהו היחס בין עיסויים להנשמות בהחייאת מבוגר עם מטפל יחיד?",
       "type": "multiple_choice",
       "options": [
@@ -26415,7 +25371,7 @@
       "sourceFile": "end_cpr_quiz.json"
     },
     {
-      "id": "end_cpr_quiz_35",
+      "id": "end_cpr_quiz_18",
       "question": "האם ניתן להמשיך עיסויים ללא הפסקה אחרי אינטובציה?",
       "type": "true_false",
       "options": [
@@ -26427,21 +25383,7 @@
       "sourceFile": "end_cpr_quiz.json"
     },
     {
-      "id": "end_cpr_quiz_36",
-      "question": "מה הקצב המומלץ לעיסויים בהחייאת מבוגר?",
-      "type": "multiple_choice",
-      "options": [
-        "60-80 לדקה",
-        "80-100 לדקה",
-        "100-120 לדקה",
-        "מעל 120 לדקה"
-      ],
-      "correct": 2,
-      "subject": "מבחן עיוני מסכם החייאה",
-      "sourceFile": "end_cpr_quiz.json"
-    },
-    {
-      "id": "end_cpr_quiz_37",
+      "id": "end_cpr_quiz_19",
       "question": "מהו העומק המומלץ לעיסויים במבוגר?",
       "type": "multiple_choice",
       "options": [
@@ -26455,21 +25397,7 @@
       "sourceFile": "end_cpr_quiz.json"
     },
     {
-      "id": "end_cpr_quiz_38",
-      "question": "מהם הקצבים הלא-בר-שוק (Non-Shockable)?",
-      "type": "multiple_choice",
-      "options": [
-        "VF ו-VT",
-        "Asystole ו-PEA",
-        "רק Asystole",
-        "רק VF"
-      ],
-      "correct": 1,
-      "subject": "מבחן עיוני מסכם החייאה",
-      "sourceFile": "end_cpr_quiz.json"
-    },
-    {
-      "id": "end_cpr_quiz_39",
+      "id": "end_cpr_quiz_20",
       "question": "מהו הטיפול ב-PEA?",
       "type": "multiple_choice",
       "options": [
@@ -26483,21 +25411,7 @@
       "sourceFile": "end_cpr_quiz.json"
     },
     {
-      "id": "end_cpr_quiz_40",
-      "question": "מהם ה-H's and T's ב-PEA?",
-      "type": "multiple_choice",
-      "options": [
-        "גורמים הפיכים שיש לטפל בהם ב pea/asystola.",
-        "רק Hypoxia",
-        "רק Hypovolemia",
-        "אין משמעות קלינית"
-      ],
-      "correct": 0,
-      "subject": "מבחן עיוני מסכם החייאה",
-      "sourceFile": "end_cpr_quiz.json"
-    },
-    {
-      "id": "end_cpr_quiz_41",
+      "id": "end_cpr_quiz_21",
       "question": "מתי יש לשקול הפסקת החייאה בשטח?",
       "type": "multiple_choice",
       "options": [
@@ -26511,145 +25425,7 @@
       "sourceFile": "end_cpr_quiz.json"
     },
     {
-      "id": "end_cpr_quiz_42",
-      "question": "כיצד זיהוי של VF בקצב המוניטור?",
-      "type": "multiple_choice",
-      "options": [
-        "גלים כאוטיים ללא קומפלקסי QRS מוגדרים",
-        "קו ישר",
-        "קצב סדיר עם QRS רחב",
-        "פרפור פרוזדורים"
-      ],
-      "correct": 0,
-      "subject": "מבחן עיוני מסכם החייאה",
-      "sourceFile": "end_cpr_quiz.json"
-    },
-    {
-      "id": "end_cpr_quiz_43",
-      "question": "מה צריך לבדוק לפני מתן שוק חשמלי?",
-      "type": "multiple_choice",
-      "options": [
-        "שהמקצב הוא בר-שוק (VF או Pulseless VT)",
-        "לחץ דם",
-        "סוכר",
-        "טמפרטורה"
-      ],
-      "correct": 0,
-      "subject": "מבחן עיוני מסכם החייאה",
-      "sourceFile": "end_cpr_quiz.json"
-    },
-    {
-      "id": "end_cpr_quiz_44",
-      "question": "האם אמיודרון יכול לגרום להארכת QT?",
-      "type": "true_false",
-      "options": [
-        "נכון. אמיודרון יכול לגרום להארכת QT ולכן יש להיזהר ב-TDP",
-        "לא נכון"
-      ],
-      "correct": 0,
-      "subject": "מבחן עיוני מסכם החייאה",
-      "sourceFile": "end_cpr_quiz.json"
-    },
-    {
-      "id": "end_cpr_quiz_45",
-      "question": "מה זה Asystole?",
-      "type": "multiple_choice",
-      "options": [
-        "פעילות חשמלית כאוטית",
-        "אין פעילות חשמלית - קו ישר",
-        "קצב איטי מאוד",
-        "קצב מהיר מאוד"
-      ],
-      "correct": 1,
-      "subject": "מבחן עיוני מסכם החייאה",
-      "sourceFile": "end_cpr_quiz.json"
-    },
-    {
-      "id": "end_cpr_quiz_46",
-      "question": "מה ההבדל בין PEA ל-Asystole?",
-      "type": "multiple_choice",
-      "options": [
-        "ב-PEA יש פעילות חשמלית אך אין דופק, ב-Asystole אין פעילות חשמלית",
-        "אין הבדל",
-        "PEA זה קצב מהיר",
-        "Asystole זה קצב איטי"
-      ],
-      "correct": 0,
-      "subject": "מבחן עיוני מסכם החייאה",
-      "sourceFile": "end_cpr_quiz.json"
-    },
-    {
-      "id": "end_cpr_quiz_47",
-      "question": "מהם הסימנים לברדיקרדיה סימפטומטית?",
-      "type": "multiple_choice",
-      "options": [
-        "קצב מתחת ל-60 עם סימנים: ל\"ד נמוך, ירידת הכרה, כאב חזה, קוצר נשימה",
-        "רק קצב איטי",
-        "רק ל\"ד נמוך",
-        "אין סימנים"
-      ],
-      "correct": 0,
-      "subject": "מבחן עיוני מסכם החייאה",
-      "sourceFile": "end_cpr_quiz.json"
-    },
-    {
-      "id": "end_cpr_quiz_48",
-      "question": "מהן התוויות הנגד למתן ניטרוגליצרין?",
-      "type": "multiple_choice",
-      "options": [
-        "ל\"ד סיסטולי מתחת ל-100, שימוש בתרופות לאין-אונות ב-24-48 שעות, אוטם ימני",
-        "תמיד מותר",
-        "רק גיל מבוגר",
-        "רק סוכרת"
-      ],
-      "correct": 0,
-      "subject": "מבחן עיוני מסכם החייאה",
-      "sourceFile": "end_cpr_quiz.json"
-    },
-    {
-      "id": "end_cpr_quiz_49",
-      "question": "כמה ניתן לתת ניטרוגליצרין מתחת ללשון?",
-      "type": "multiple_choice",
-      "options": [
-        "מנה אחת בלבד",
-        "עד 3 מנות במרווחים של 5 דקות",
-        "ללא הגבלה",
-        "אסור לתת בשטח"
-      ],
-      "correct": 1,
-      "subject": "מבחן עיוני מסכם החייאה",
-      "sourceFile": "end_cpr_quiz.json"
-    },
-    {
-      "id": "end_cpr_quiz_50",
-      "question": "מהם הסימנים לפרפור פרוזדורים?",
-      "type": "multiple_choice",
-      "options": [
-        "קצב לא סדיר, אין גלי P ברורים, רווחי R-R משתנים",
-        "קצב סדיר מאוד",
-        "קו ישר",
-        "קצב איטי"
-      ],
-      "correct": 0,
-      "subject": "מבחן עיוני מסכם החייאה",
-      "sourceFile": "end_cpr_quiz.json"
-    },
-    {
-      "id": "end_cpr_quiz_51",
-      "question": "מה הרציונל למתן אספירין ב-ACS?",
-      "type": "multiple_choice",
-      "options": [
-        "הורדת חום",
-        "עיכוב אגרגציית טסיות ומניעת התפשטות הקריש",
-        "הורדת לחץ דם",
-        "שיכוך כאבים"
-      ],
-      "correct": 1,
-      "subject": "מבחן עיוני מסכם החייאה",
-      "sourceFile": "end_cpr_quiz.json"
-    },
-    {
-      "id": "end_cpr_quiz_52",
+      "id": "end_cpr_quiz_22",
       "question": "מהו המינון השני של אמיודרון בהחייאה?",
       "type": "multiple_choice",
       "options": [
@@ -26663,7 +25439,7 @@
       "sourceFile": "end_cpr_quiz.json"
     },
     {
-      "id": "end_cpr_quiz_53",
+      "id": "end_cpr_quiz_23",
       "question": "מתי ניתן מינון שני של אמיודרון בהחייאה?",
       "type": "multiple_choice",
       "options": [
@@ -26677,7 +25453,7 @@
       "sourceFile": "end_cpr_quiz.json"
     },
     {
-      "id": "end_cpr_quiz_54",
+      "id": "end_cpr_quiz_24",
       "question": "מהי המשמעות של EtCO2 נמוך מ-10 mmHg במהלך החייאה?",
       "type": "multiple_choice",
       "options": [
@@ -26691,49 +25467,7 @@
       "sourceFile": "end_cpr_quiz.json"
     },
     {
-      "id": "end_cpr_quiz_55",
-      "question": "מהי ההשפעה של אמיודרון על הלב?",
-      "type": "multiple_choice",
-      "options": [
-        "הארכת הפוטנציאל אקשן והתקופה הרפרקטורית, ייצוב הקרום",
-        "רק האצה של הקצב",
-        "רק כיווץ כלי דם",
-        "אין השפעה"
-      ],
-      "correct": 0,
-      "subject": "מבחן עיוני מסכם החייאה",
-      "sourceFile": "end_cpr_quiz.json"
-    },
-    {
-      "id": "end_cpr_quiz_56",
-      "question": "כיצד פועל אדנוזין?",
-      "type": "multiple_choice",
-      "options": [
-        "הפעלת בטא רצפטורים",
-        "האטה זמנית של הולכה ב-AV node (\"איפוס\") לסיום SVT",
-        "כיווץ כלי דם",
-        "הרחבת סימפונות"
-      ],
-      "correct": 1,
-      "subject": "מבחן עיוני מסכם החייאה",
-      "sourceFile": "end_cpr_quiz.json"
-    },
-    {
-      "id": "end_cpr_quiz_57",
-      "question": "מהו זמן מחצית החיים הקצר של אדנוזין?",
-      "type": "multiple_choice",
-      "options": [
-        "מספר שניות",
-        "שעה",
-        "יום",
-        "שבוע"
-      ],
-      "correct": 0,
-      "subject": "מבחן עיוני מסכם החייאה",
-      "sourceFile": "end_cpr_quiz.json"
-    },
-    {
-      "id": "end_cpr_quiz_58",
+      "id": "end_cpr_quiz_25",
       "question": "כיצד יש לתת אדנוזין?",
       "type": "multiple_choice",
       "options": [
@@ -26747,77 +25481,7 @@
       "sourceFile": "end_cpr_quiz.json"
     },
     {
-      "id": "end_cpr_quiz_59",
-      "question": "מהן תופעות הלוואי של אדנוזין?",
-      "type": "multiple_choice",
-      "options": [
-        "תחושת דיכוי בחזה, אודם פנים, קוצר נשימה זמני - כל אלו חולפים מהר",
-        "לחץ דם גבוה",
-        "טכיקרדיה חמורה",
-        "אין תופעות לוואי"
-      ],
-      "correct": 0,
-      "subject": "מבחן עיוני מסכם החייאה",
-      "sourceFile": "end_cpr_quiz.json"
-    },
-    {
-      "id": "end_cpr_quiz_60",
-      "question": "מהו השימוש העיקרי באטרופין?",
-      "type": "multiple_choice",
-      "options": [
-        "טיפול בטכיקרדיה",
-        "טיפול בברדיקרדיה סימפטומטית ובחסם AV",
-        "טיפול באסתמה",
-        "טיפול בהיפרגליקמיה"
-      ],
-      "correct": 1,
-      "subject": "מבחן עיוני מסכם החייאה",
-      "sourceFile": "end_cpr_quiz.json"
-    },
-    {
-      "id": "end_cpr_quiz_61",
-      "question": "מתי אטרופין לא יעיל?",
-      "type": "multiple_choice",
-      "options": [
-        "בברדיקרדיה סינוסית",
-        "בחסם AV מדרגה גבוהה או בברדיקרדיה חדרית",
-        "תמיד יעיל",
-        "אף פעם"
-      ],
-      "correct": 1,
-      "subject": "מבחן עיוני מסכם החייאה",
-      "sourceFile": "end_cpr_quiz.json"
-    },
-    {
-      "id": "end_cpr_quiz_62",
-      "question": "מהם היתרונות של Etomidate?",
-      "type": "multiple_choice",
-      "options": [
-        "דיכוי לבבי מינימלי, יציבות המודינמית",
-        "משכך כאבים חזק",
-        "הרחבת סימפונות",
-        "הורדת לחץ תוך גולגולתי"
-      ],
-      "correct": 0,
-      "subject": "מבחן עיוני מסכם החייאה",
-      "sourceFile": "end_cpr_quiz.json"
-    },
-    {
-      "id": "end_cpr_quiz_63",
-      "question": "מהן החסרונות של Etomidate?",
-      "type": "multiple_choice",
-      "options": [
-        "דיכוי אדרנל (עם שימוש ממושך)",
-        "עלייה בלחץ דם",
-        "ברדיקרדיה",
-        "אין חסרונות"
-      ],
-      "correct": 0,
-      "subject": "מבחן עיוני מסכם החייאה",
-      "sourceFile": "end_cpr_quiz.json"
-    },
-    {
-      "id": "end_cpr_quiz_64",
+      "id": "end_cpr_quiz_26",
       "question": "מה ייחודי ב-Ketamine?",
       "type": "multiple_choice",
       "options": [
@@ -26831,7 +25495,7 @@
       "sourceFile": "end_cpr_quiz.json"
     },
     {
-      "id": "end_cpr_quiz_65",
+      "id": "end_cpr_quiz_27",
       "question": "מתי יש להיזהר במתן Ketamine?",
       "type": "multiple_choice",
       "options": [
@@ -26845,77 +25509,7 @@
       "sourceFile": "end_cpr_quiz.json"
     },
     {
-      "id": "end_cpr_quiz_66",
-      "question": "מהן תופעות הלוואי של Ketamine?",
-      "type": "multiple_choice",
-      "options": [
-        "הזיות, דיסוציאציה, עלייה בלחץ דם ובדופק, עלייה בלחץ תוך גולגולתי",
-        "ברדיקרדיה",
-        "היפוטנזיה",
-        "אין תופעות לוואי"
-      ],
-      "correct": 0,
-      "subject": "מבחן עיוני מסכם החייאה",
-      "sourceFile": "end_cpr_quiz.json"
-    },
-    {
-      "id": "end_cpr_quiz_67",
-      "question": "מה ההבדל בין אדרנלין לנוראדרנלין?",
-      "type": "multiple_choice",
-      "options": [
-        "אדרנלין פועל על אלפא ובטא, נוראדרנלין בעיקר על אלפא",
-        "אין הבדל",
-        "נוראדרנלין חזק יותר",
-        "אדרנלין רק על אלפא"
-      ],
-      "correct": 0,
-      "subject": "מבחן עיוני מסכם החייאה",
-      "sourceFile": "end_cpr_quiz.json"
-    },
-    {
-      "id": "end_cpr_quiz_68",
-      "question": "מה ההשפעה של אדרנלין על רצפטורים בטא-1?",
-      "type": "multiple_choice",
-      "options": [
-        "הגברת כוח וקצב הלב",
-        "הרחבת סימפונות",
-        "הרחבת כלי דם",
-        "אין השפעה"
-      ],
-      "correct": 0,
-      "subject": "מבחן עיוני מסכם החייאה",
-      "sourceFile": "end_cpr_quiz.json"
-    },
-    {
-      "id": "end_cpr_quiz_69",
-      "question": "מה ההשפעה של אדרנלין על רצפטורים אלפא?",
-      "type": "multiple_choice",
-      "options": [
-        "כיווץ כלי דם היקפיים והעלאת לחץ דם",
-        "הרחבת כלי דם",
-        "הורדת לחץ דם",
-        "אין השפעה"
-      ],
-      "correct": 0,
-      "subject": "מבחן עיוני מסכם החייאה",
-      "sourceFile": "end_cpr_quiz.json"
-    },
-    {
-      "id": "end_cpr_quiz_70",
-      "question": "מה ההשפעה של אדרנלין על רצפטורים בטא-2?",
-      "type": "multiple_choice",
-      "options": [
-        "הרחבת סימפונות",
-        "כיווץ סימפונות",
-        "כיווץ כלי דם",
-        "אין השפעה"
-      ],
-      "correct": 0,
-      "subject": "מבחן עיוני מסכם החייאה",
-      "sourceFile": "end_cpr_quiz.json"
-    },
-    {
-      "id": "end_cpr_quiz_71",
+      "id": "end_cpr_quiz_28",
       "question": "מדוע אדרנלין חשוב בהחייאה?",
       "type": "multiple_choice",
       "options": [
@@ -26929,133 +25523,7 @@
       "sourceFile": "end_cpr_quiz.json"
     },
     {
-      "id": "end_cpr_quiz_72",
-      "question": "מהו המנגנון של אטרופין?",
-      "type": "multiple_choice",
-      "options": [
-        "חסימת רצפטורים מוסקריניים (אנטגוניסט אצטילכולין)",
-        "הפעלת אצטילכולין",
-        "חסימת בטא רצפטורים",
-        "הפעלת בטא רצפטורים"
-      ],
-      "correct": 0,
-      "subject": "מבחן עיוני מסכם החייאה",
-      "sourceFile": "end_cpr_quiz.json"
-    },
-    {
-      "id": "end_cpr_quiz_73",
-      "question": "מה קורה כשחוסמים אצטילכולין באטרופין?",
-      "type": "multiple_choice",
-      "options": [
-        "העצבוב הפאראסימפתטי פוחת, מה שמאיץ את הקצב",
-        "הקצב נהיה איטי יותר",
-        "לחץ הדם יורד",
-        "אין שינוי"
-      ],
-      "correct": 0,
-      "subject": "מבחן עיוני מסכם החייאה",
-      "sourceFile": "end_cpr_quiz.json"
-    },
-    {
-      "id": "end_cpr_quiz_74",
-      "question": "מה זה SVT (Supraventricular Tachycardia)?",
-      "type": "multiple_choice",
-      "options": [
-        "טכיקרדיה שמקורה מעל החדרים (עליות או AV node)",
-        "טכיקרדיה מהחדרים",
-        "ברדיקרדיה",
-        "קצב נורמלי"
-      ],
-      "correct": 0,
-      "subject": "מבחן עיוני מסכם החייאה",
-      "sourceFile": "end_cpr_quiz.json"
-    },
-    {
-      "id": "end_cpr_quiz_75",
-      "question": "מתי משתמשים באדנוזין?",
-      "type": "multiple_choice",
-      "options": [
-        "ל-SVT (טכיקרדיה על-חדרית) יציבה",
-        "ל-VT",
-        "לברדיקרדיה",
-        "ל-VF"
-      ],
-      "correct": 0,
-      "subject": "מבחן עיוני מסכם החייאה",
-      "sourceFile": "end_cpr_quiz.json"
-    },
-    {
-      "id": "end_cpr_quiz_76",
-      "question": "מה קורה בהיפוך קצב (Cardioversion) של פרפור פרוזדורים ממושך?",
-      "type": "multiple_choice",
-      "options": [
-        "סכנה לשחרור קרישים ותסחיף",
-        "אין סיכון",
-        "תמיד בטוח",
-        "רק יתרונות"
-      ],
-      "correct": 0,
-      "subject": "מבחן עיוני מסכם החייאה",
-      "sourceFile": "end_cpr_quiz.json"
-    },
-    {
-      "id": "end_cpr_quiz_77",
-      "question": "למה יש סיכון בהיפוך קצב של פרפור ממושך?",
-      "type": "multiple_choice",
-      "options": [
-        "בפרפור פרוזדורים יכולים להיווצר קרישים בעליות, היפוך פתאומי יכול לשחרר אותם",
-        "אין סיכון",
-        "רק כאב",
-        "רק עלייה בדופק"
-      ],
-      "correct": 0,
-      "subject": "מבחן עיוני מסכם החייאה",
-      "sourceFile": "end_cpr_quiz.json"
-    },
-    {
-      "id": "end_cpr_quiz_78",
-      "question": "מתי נשקול אנטיקואגולציה לפני היפוך קצב?",
-      "type": "multiple_choice",
-      "options": [
-        "כשהפרפור נמשך מעל 48 שעות",
-        "תמיד",
-        "אף פעם",
-        "רק בקשישים"
-      ],
-      "correct": 0,
-      "subject": "מבחן עיוני מסכם החייאה",
-      "sourceFile": "end_cpr_quiz.json"
-    },
-    {
-      "id": "end_cpr_quiz_79",
-      "question": "מה מאפיין VT (Ventricular Tachycardia)?",
-      "type": "multiple_choice",
-      "options": [
-        "קצב מהיר מהחדרים עם QRS רחב (>0.12 שניות)",
-        "קצב איטי",
-        "קצב עם QRS צר",
-        "פרפור פרוזדורים"
-      ],
-      "correct": 0,
-      "subject": "מבחן עיוני מסכם החייאה",
-      "sourceFile": "end_cpr_quiz.json"
-    },
-    {
-      "id": "end_cpr_quiz_80",
-      "question": "מה ההבדל בין VT עם דופק ל-Pulseless VT?",
-      "type": "multiple_choice",
-      "options": [
-        "VT עם דופק - המטופל יציב יחסית; Pulseless VT - דום לב, טיפול כמו VF",
-        "אין הבדל",
-        "VT עם דופק זה ברדיקרדיה",
-        "Pulseless VT זה קצב נורמלי"
-      ],
-      "correct": 0,
-      "subject": "מבחן עיוני מסכם החייאה",
-      "sourceFile": "end_cpr_quiz.json"
-    },
-    {
-      "id": "end_cpr_quiz_81",
+      "id": "end_cpr_quiz_29",
       "question": "מה הטיפול ב-VT יציב (עם דופק)?",
       "type": "multiple_choice",
       "options": [
@@ -27069,7 +25537,7 @@
       "sourceFile": "end_cpr_quiz.json"
     },
     {
-      "id": "end_cpr_quiz_82",
+      "id": "end_cpr_quiz_30",
       "question": "מה הטיפול ב-TDP (Torsades de Pointes)?",
       "type": "multiple_choice",
       "options": [
@@ -27083,35 +25551,7 @@
       "sourceFile": "end_cpr_quiz.json"
     },
     {
-      "id": "end_cpr_quiz_83",
-      "question": "מה הקשר בין הארכת QT ל-TDP?",
-      "type": "multiple_choice",
-      "options": [
-        "הארכת QT יכולה להוביל ל-TDP",
-        "אין קשר",
-        "רק ב-VF",
-        "רק בברדיקרדיה"
-      ],
-      "correct": 0,
-      "subject": "מבחן עיוני מסכם החייאה",
-      "sourceFile": "end_cpr_quiz.json"
-    },
-    {
-      "id": "end_cpr_quiz_84",
-      "question": "מהו Mobitz I (Wenckebach)?",
-      "type": "multiple_choice",
-      "options": [
-        "הארכה הדרגתית של PR עד נשירת QRS",
-        "PR קבוע עם נשירות פתאומיות",
-        "חסימה מוחלטת",
-        "קצב מהיר"
-      ],
-      "correct": 0,
-      "subject": "מבחן עיוני מסכם החייאה",
-      "sourceFile": "end_cpr_quiz.json"
-    },
-    {
-      "id": "end_cpr_quiz_85",
+      "id": "end_cpr_quiz_31",
       "question": "איזה חסם AV מסוכן יותר?",
       "type": "multiple_choice",
       "options": [
@@ -27125,35 +25565,7 @@
       "sourceFile": "end_cpr_quiz.json"
     },
     {
-      "id": "end_cpr_quiz_86",
-      "question": "מה זה חסם AV מדרגה שלישית (מוחלט)?",
-      "type": "multiple_choice",
-      "options": [
-        "אין הולכה בין עליות לחדרים - עליות וחדרים דופקים בנפרד",
-        "הולכה איטית",
-        "הולכה מהירה",
-        "קצב נורמלי"
-      ],
-      "correct": 0,
-      "subject": "מבחן עיוני מסכם החייאה",
-      "sourceFile": "end_cpr_quiz.json"
-    },
-    {
-      "id": "end_cpr_quiz_87",
-      "question": "מהו הטיפול בחסם AV מוחלט סימפטומטי?",
-      "type": "multiple_choice",
-      "options": [
-        "אטרופין (אם לא עוזר - קצב חיצוני או אדרנלין)",
-        "רק נוזלים",
-        "רק חמצן",
-        "אין טיפול"
-      ],
-      "correct": 0,
-      "subject": "מבחן עיוני מסכם החייאה",
-      "sourceFile": "end_cpr_quiz.json"
-    },
-    {
-      "id": "end_cpr_quiz_88",
+      "id": "end_cpr_quiz_32",
       "question": "מה זה קצב חיצוני (External Pacing)?",
       "type": "multiple_choice",
       "options": [
@@ -27167,77 +25579,7 @@
       "sourceFile": "end_cpr_quiz.json"
     },
     {
-      "id": "end_cpr_quiz_89",
-      "question": "מתי נשקול קצב חיצוני?",
-      "type": "multiple_choice",
-      "options": [
-        "בברדיקרדיה חמורה שלא מגיבה לאטרופין",
-        "בטכיקרדיה",
-        "ב-VF",
-        "ב-Asystole"
-      ],
-      "correct": 0,
-      "subject": "מבחן עיוני מסכם החייאה",
-      "sourceFile": "end_cpr_quiz.json"
-    },
-    {
-      "id": "end_cpr_quiz_90",
-      "question": "מה ההבדל בין שוק חשמלי (Defibrillation) להיפוך קצב מסונכרן (Synchronized Cardioversion)?",
-      "type": "multiple_choice",
-      "options": [
-        "שוק חשמלי (Defibrillation) הוא מיידי ולא מסונכרן, ואילו הפיכת קצב (Cardioversion) מתוזמנת ומסונכרנת לגל ה-R בפעילות הלב כדי למנוע החמרה.",
-        "אין הבדל",
-        "רק בעוצמה",
-        "רק בזמן"
-      ],
-      "correct": 0,
-      "subject": "מבחן עיוני מסכם החייאה",
-      "sourceFile": "end_cpr_quiz.json"
-    },
-    {
-      "id": "end_cpr_quiz_91",
-      "question": "מהו השוק המומלץ ב-VF?",
-      "type": "multiple_choice",
-      "options": [
-        "200 ג'אול (מונופזי) או 120-200 ג'אול (ביפזי)",
-        "50 ג'אול",
-        "10 ג'אול",
-        "500 ג'אול"
-      ],
-      "correct": 0,
-      "subject": "מבחן עיוני מסכם החייאה",
-      "sourceFile": "end_cpr_quiz.json"
-    },
-    {
-      "id": "end_cpr_quiz_92",
-      "question": "מהו השוק המומלץ להיפוך קצב מסונכרן?",
-      "type": "multiple_choice",
-      "options": [
-        "התחלה מ-50-100 ג'אול והעלאה בהדרגה",
-        "תמיד 200 ג'אול",
-        "תמיד 360 ג'אול",
-        "אין שוק"
-      ],
-      "correct": 0,
-      "subject": "מבחן עיוני מסכם החייאה",
-      "sourceFile": "end_cpr_quiz.json"
-    },
-    {
-      "id": "end_cpr_quiz_93",
-      "question": "מה חשוב לעשות לפני היפוך קצב מסונכרן?",
-      "type": "multiple_choice",
-      "options": [
-        "סדציה/הרדמה (אם המטופל ער), הפעלת מצב Sync",
-        "רק להפעיל את המכשיר",
-        "אין צורך בהכנה",
-        "רק מתן נוזלים"
-      ],
-      "correct": 0,
-      "subject": "מבחן עיוני מסכם החייאה",
-      "sourceFile": "end_cpr_quiz.json"
-    },
-    {
-      "id": "end_cpr_quiz_94",
+      "id": "end_cpr_quiz_33",
       "question": "מתי נותנים אדרנלין בהחייאה?",
       "type": "multiple_choice",
       "options": [
@@ -27251,7 +25593,7 @@
       "sourceFile": "end_cpr_quiz.json"
     },
     {
-      "id": "end_cpr_quiz_95",
+      "id": "end_cpr_quiz_34",
       "question": "מה עושים אחרי ROSC?",
       "type": "multiple_choice",
       "options": [
@@ -27265,21 +25607,7 @@
       "sourceFile": "end_cpr_quiz.json"
     },
     {
-      "id": "end_cpr_quiz_96",
-      "question": "מה זה Post-Cardiac Arrest Syndrome?",
-      "type": "multiple_choice",
-      "options": [
-        "תסמונת לאחר ROSC - פגיעה מוחית, לבבית, מערכתית",
-        "רק עייפות",
-        "רק כאב ראש",
-        "אין תסמונת כזו"
-      ],
-      "correct": 0,
-      "subject": "מבחן עיוני מסכם החייאה",
-      "sourceFile": "end_cpr_quiz.json"
-    },
-    {
-      "id": "end_cpr_quiz_97",
+      "id": "end_cpr_quiz_35",
       "question": "מהי חשיבות הטמפרטורה אחרי ROSC?",
       "type": "multiple_choice",
       "options": [
@@ -27293,7 +25621,7 @@
       "sourceFile": "end_cpr_quiz.json"
     },
     {
-      "id": "end_cpr_quiz_98",
+      "id": "end_cpr_quiz_36",
       "question": "מהו המטרה הגליקמית אחרי ROSC?",
       "type": "multiple_choice",
       "options": [
@@ -27307,7 +25635,7 @@
       "sourceFile": "end_cpr_quiz.json"
     },
     {
-      "id": "end_cpr_quiz_99",
+      "id": "end_cpr_quiz_37",
       "question": "מה נכון לגבי החייאה בהריון?",
       "type": "multiple_choice",
       "options": [
@@ -27321,7 +25649,7 @@
       "sourceFile": "end_cpr_quiz.json"
     },
     {
-      "id": "end_cpr_quiz_100",
+      "id": "end_cpr_quiz_38",
       "question": "מה היחס המדויק לעיסויים והנשמות בהחייאת ילד ומבוגר עם שני מטפלים?",
       "type": "multiple_choice",
       "options": [
@@ -27335,7 +25663,7 @@
       "sourceFile": "end_cpr_quiz.json"
     },
     {
-      "id": "end_cpr_quiz_101",
+      "id": "end_cpr_quiz_39",
       "question": "מה זה Refractory VF/VT?",
       "type": "multiple_choice",
       "options": [
@@ -27349,7 +25677,7 @@
       "sourceFile": "end_cpr_quiz.json"
     },
     {
-      "id": "end_cpr_quiz_102",
+      "id": "end_cpr_quiz_40",
       "question": "אחרי כמה שוקים כושלים נחשב VF/VT כ-Refractory?",
       "type": "multiple_choice",
       "options": [
@@ -27363,7 +25691,7 @@
       "sourceFile": "end_cpr_quiz.json"
     },
     {
-      "id": "end_cpr_quiz_103",
+      "id": "end_cpr_quiz_41",
       "question": "מהן האסטרטגיות המתקדמות ב-Refractory VF/VT?",
       "type": "multiple_choice",
       "options": [
@@ -27377,7 +25705,7 @@
       "sourceFile": "end_cpr_quiz.json"
     },
     {
-      "id": "end_cpr_quiz_104",
+      "id": "end_cpr_quiz_42",
       "question": "מה זה DSED (Double Sequential External Defibrillation)?",
       "type": "multiple_choice",
       "options": [
@@ -27391,7 +25719,7 @@
       "sourceFile": "end_cpr_quiz.json"
     },
     {
-      "id": "end_cpr_quiz_105",
+      "id": "end_cpr_quiz_43",
       "question": "מהי המטרה של DSED?",
       "type": "multiple_choice",
       "options": [
@@ -27405,7 +25733,7 @@
       "sourceFile": "end_cpr_quiz.json"
     },
     {
-      "id": "end_cpr_quiz_106",
+      "id": "end_cpr_quiz_44",
       "question": "כיצד ממקמים את הפדים ב-DSED?",
       "type": "multiple_choice",
       "options": [
@@ -27419,7 +25747,7 @@
       "sourceFile": "end_cpr_quiz.json"
     },
     {
-      "id": "end_cpr_quiz_107",
+      "id": "end_cpr_quiz_45",
       "question": "מה זה Vector Change (VC)?",
       "type": "multiple_choice",
       "options": [
@@ -27433,35 +25761,7 @@
       "sourceFile": "end_cpr_quiz.json"
     },
     {
-      "id": "end_cpr_quiz_108",
-      "question": "מהם מיקומי הפדים האלטרנטיביים ב-Vector Change?",
-      "type": "multiple_choice",
-      "options": [
-        "AP (Anterior-Posterior) - אחד על החזה, אחד על הגב",
-        "שניהם על הצוואר",
-        "שניהם על הרגליים",
-        "רק על הראש"
-      ],
-      "correct": 0,
-      "subject": "מבחן עיוני מסכם החייאה",
-      "sourceFile": "end_cpr_quiz.json"
-    },
-    {
-      "id": "end_cpr_quiz_109",
-      "question": "מתי נשקול DSED או Vector Change?",
-      "type": "multiple_choice",
-      "options": [
-        "ב-Refractory VF/VT לאחר 3 שוקים כושלים עם טיפול סטנדרטי מלא",
-        "מיד בתחילת ההחייאה",
-        "רק אחרי ROSC",
-        "אף פעם"
-      ],
-      "correct": 0,
-      "subject": "מבחן עיוני מסכם החייאה",
-      "sourceFile": "end_cpr_quiz.json"
-    },
-    {
-      "id": "end_cpr_quiz_110",
+      "id": "end_cpr_quiz_46",
       "question": "מה חשוב לוודא לפני ביצוע DSED?",
       "type": "multiple_choice",
       "options": [
@@ -29480,7 +27780,7 @@
         2,
         3
       ],
-      "subject": "מבחן עיוני מסכם תרופות",
+      "subject": "מבחן עיוני מסכם תרופות2",
       "sourceFile": "end_med_quiz.json"
     },
     {
@@ -29504,7 +27804,7 @@
         3,
         4
       ],
-      "subject": "מבחן עיוני מסכם תרופות",
+      "subject": "מבחן עיוני מסכם תרופות2",
       "sourceFile": "end_med_quiz.json"
     },
     {
@@ -29521,7 +27821,7 @@
         0,
         1
       ],
-      "subject": "מבחן עיוני מסכם תרופות",
+      "subject": "מבחן עיוני מסכם תרופות2",
       "sourceFile": "end_med_quiz.json"
     },
     {
@@ -29535,7 +27835,7 @@
         "הרחבת כלי דם"
       ],
       "correct": 0,
-      "subject": "מבחן עיוני מסכם תרופות",
+      "subject": "מבחן עיוני מסכם תרופות2",
       "sourceFile": "end_med_quiz.json"
     },
     {
@@ -29549,7 +27849,7 @@
         "כיווץ עורקיקים"
       ],
       "correct": 0,
-      "subject": "מבחן עיוני מסכם תרופות",
+      "subject": "מבחן עיוני מסכם תרופות2",
       "sourceFile": "end_med_quiz.json"
     },
     {
@@ -29566,7 +27866,7 @@
         0,
         1
       ],
-      "subject": "מבחן עיוני מסכם תרופות",
+      "subject": "מבחן עיוני מסכם תרופות2",
       "sourceFile": "end_med_quiz.json"
     },
     {
@@ -29583,7 +27883,7 @@
         0,
         1
       ],
-      "subject": "מבחן עיוני מסכם תרופות",
+      "subject": "מבחן עיוני מסכם תרופות2",
       "sourceFile": "end_med_quiz.json"
     },
     {
@@ -29595,7 +27895,7 @@
         "לא נכון"
       ],
       "correct": 0,
-      "subject": "מבחן עיוני מסכם תרופות",
+      "subject": "מבחן עיוני מסכם תרופות2",
       "sourceFile": "end_med_quiz.json"
     },
     {
@@ -29609,7 +27909,7 @@
         "טיפול בפרכוסים"
       ],
       "correct": 0,
-      "subject": "מבחן עיוני מסכם תרופות",
+      "subject": "מבחן עיוני מסכם תרופות2",
       "sourceFile": "end_med_quiz.json"
     },
     {
@@ -29629,7 +27929,7 @@
         1,
         2
       ],
-      "subject": "מבחן עיוני מסכם תרופות",
+      "subject": "מבחן עיוני מסכם תרופות2",
       "sourceFile": "end_med_quiz.json"
     },
     {
@@ -29641,7 +27941,7 @@
         "לא נכון. אטומידאט אינו משכך כאב"
       ],
       "correct": 1,
-      "subject": "מבחן עיוני מסכם תרופות",
+      "subject": "מבחן עיוני מסכם תרופות2",
       "sourceFile": "end_med_quiz.json"
     },
     {
@@ -29655,7 +27955,7 @@
         "עלול לגרום לפרכוס"
       ],
       "correct": 0,
-      "subject": "מבחן עיוני מסכם תרופות",
+      "subject": "מבחן עיוני מסכם תרופות2",
       "sourceFile": "end_med_quiz.json"
     },
     {
@@ -29669,7 +27969,7 @@
         "5 מ\"ג/ק\"ג"
       ],
       "correct": 0,
-      "subject": "מבחן עיוני מסכם תרופות",
+      "subject": "מבחן עיוני מסכם תרופות2",
       "sourceFile": "end_med_quiz.json"
     },
     {
@@ -29689,7 +27989,7 @@
         1,
         2
       ],
-      "subject": "מבחן עיוני מסכם תרופות",
+      "subject": "מבחן עיוני מסכם תרופות2",
       "sourceFile": "end_med_quiz.json"
     },
     {
@@ -29703,7 +28003,7 @@
         "אין הבדל ביניהם"
       ],
       "correct": 0,
-      "subject": "מבחן עיוני מסכם תרופות",
+      "subject": "מבחן עיוני מסכם תרופות2",
       "sourceFile": "end_med_quiz.json"
     },
     {
@@ -29720,7 +28020,7 @@
         0,
         1
       ],
-      "subject": "מבחן עיוני מסכם תרופות",
+      "subject": "מבחן עיוני מסכם תרופות2",
       "sourceFile": "end_med_quiz.json"
     },
     {
@@ -29734,7 +28034,7 @@
         "1 מ\"ג/ק\"ג"
       ],
       "correct": 0,
-      "subject": "מבחן עיוני מסכם תרופות",
+      "subject": "מבחן עיוני מסכם תרופות2",
       "sourceFile": "end_med_quiz.json"
     },
     {
@@ -29748,7 +28048,7 @@
         "10 מ\"ג/ק\"ג"
       ],
       "correct": 0,
-      "subject": "מבחן עיוני מסכם תרופות",
+      "subject": "מבחן עיוני מסכם תרופות2",
       "sourceFile": "end_med_quiz.json"
     },
     {
@@ -29762,7 +28062,7 @@
         "1 מ\"ג/ק\"ג"
       ],
       "correct": 0,
-      "subject": "מבחן עיוני מסכם תרופות",
+      "subject": "מבחן עיוני מסכם תרופות2",
       "sourceFile": "end_med_quiz.json"
     },
     {
@@ -29774,7 +28074,7 @@
         "לא נכון. המינונים שונים"
       ],
       "correct": 0,
-      "subject": "מבחן עיוני מסכם תרופות",
+      "subject": "מבחן עיוני מסכם תרופות2",
       "sourceFile": "end_med_quiz.json"
     },
     {
@@ -29795,7 +28095,7 @@
         2,
         3
       ],
-      "subject": "מבחן עיוני מסכם תרופות",
+      "subject": "מבחן עיוני מסכם תרופות2",
       "sourceFile": "end_med_quiz.json"
     },
     {
@@ -29815,7 +28115,7 @@
         1,
         2
       ],
-      "subject": "מבחן עיוני מסכם תרופות",
+      "subject": "מבחן עיוני מסכם תרופות2",
       "sourceFile": "end_med_quiz.json"
     },
     {
@@ -29834,7 +28134,7 @@
         1,
         2
       ],
-      "subject": "מבחן עיוני מסכם תרופות",
+      "subject": "מבחן עיוני מסכם תרופות2",
       "sourceFile": "end_med_quiz.json"
     },
     {
@@ -29855,7 +28155,7 @@
         2,
         3
       ],
-      "subject": "מבחן עיוני מסכם תרופות",
+      "subject": "מבחן עיוני מסכם תרופות2",
       "sourceFile": "end_med_quiz.json"
     },
     {
@@ -29867,7 +28167,7 @@
         "לא נכון. מותר בילדים"
       ],
       "correct": 0,
-      "subject": "מבחן עיוני מסכם תרופות",
+      "subject": "מבחן עיוני מסכם תרופות2",
       "sourceFile": "end_med_quiz.json"
     },
     {
@@ -29886,7 +28186,7 @@
         1,
         2
       ],
-      "subject": "מבחן עיוני מסכם תרופות",
+      "subject": "מבחן עיוני מסכם תרופות2",
       "sourceFile": "end_med_quiz.json"
     },
     {
@@ -29900,7 +28200,7 @@
         "25-50 מ\"ג"
       ],
       "correct": 0,
-      "subject": "מבחן עיוני מסכם תרופות",
+      "subject": "מבחן עיוני מסכם תרופות2",
       "sourceFile": "end_med_quiz.json"
     },
     {
@@ -29914,7 +28214,7 @@
         "טיפול בכאב"
       ],
       "correct": 0,
-      "subject": "מבחן עיוני מסכם תרופות",
+      "subject": "מבחן עיוני מסכם תרופות2",
       "sourceFile": "end_med_quiz.json"
     },
     {
@@ -29935,7 +28235,7 @@
         2,
         3
       ],
-      "subject": "מבחן עיוני מסכם תרופות",
+      "subject": "מבחן עיוני מסכם תרופות2",
       "sourceFile": "end_med_quiz.json"
     },
     {
@@ -29947,7 +28247,7 @@
         "לא נכון. משך השפעת נרקן (20 דקות) קצר מהאופיאטים ולכן יש לנטר את המטופל לאורך זמן"
       ],
       "correct": 1,
-      "subject": "מבחן עיוני מסכם תרופות",
+      "subject": "מבחן עיוני מסכם תרופות2",
       "sourceFile": "end_med_quiz.json"
     },
     {
@@ -30715,6 +29015,1710 @@
       "correct": 0,
       "subject": "מבחן עיוני מסכם סכרת",
       "sourceFile": "end_diabetes_quiz.json"
+    },
+    {
+      "id": "end_cpr_ecg_quiz_1",
+      "question": "מהם הקצבים הבר-שוק (Shockable Rhythms)?",
+      "type": "multiple_choice",
+      "options": [
+        "VF ו-Pulseless VT",
+        "Asystole ו-PEA",
+        "Bradycardia ו-Tachycardia",
+        "רק VF"
+      ],
+      "correct": 3,
+      "subject": "מבחן עיוני מסכם החייאה אקג והפרעות קצב",
+      "sourceFile": "end_cpr_ecg_quiz.json"
+    },
+    {
+      "id": "end_cpr_ecg_quiz_2",
+      "question": "מה מעיד על ROSC (חזרת דופק ספונטני)?",
+      "type": "multiple_choice",
+      "options": [
+        "ירידה חדה ב-EtCO2",
+        "עלייה פתאומית ב-EtCO2 מעל 40 mmHg ודופק מישוש",
+        "שינוי בקצב ל-Asystole",
+        "אין שינוי ב-EtCO2"
+      ],
+      "correct": 1,
+      "subject": "מבחן עיוני מסכם החייאה אקג והפרעות קצב",
+      "sourceFile": "end_cpr_ecg_quiz.json"
+    },
+    {
+      "id": "end_cpr_ecg_quiz_3",
+      "question": "מה המאפיין העיקרי של Rapid Atrial Fibrillation?",
+      "type": "multiple_choice",
+      "options": [
+        "קצב סדיר",
+        "קצב לא סדיר עם גלי P ברורים",
+        "קצב לא סדיר ללא גלי P ברורים, קצב חדרי מהיר",
+        "חסימה מוחלטת"
+      ],
+      "correct": 2,
+      "subject": "מבחן עיוני מסכם החייאה אקג והפרעות קצב",
+      "sourceFile": "end_cpr_ecg_quiz.json"
+    },
+    {
+      "id": "end_cpr_ecg_quiz_4",
+      "question": "מהי הסכנה העיקרית בפרפור פרוזדורים ממושך?",
+      "type": "multiple_choice",
+      "options": [
+        "התייבשות",
+        "היווצרות קרישים ותסחיף (שבץ מוחי או תסחיף ריאתי)",
+        "עלייה בלחץ דם",
+        "ברדיקרדיה"
+      ],
+      "correct": 1,
+      "subject": "מבחן עיוני מסכם החייאה אקג והפרעות קצב",
+      "sourceFile": "end_cpr_ecg_quiz.json"
+    },
+    {
+      "id": "end_cpr_ecg_quiz_5",
+      "question": "מה מאפיין Mobitz II?",
+      "type": "multiple_choice",
+      "options": [
+        "הארכה הדרגתית של PR עד נשירת QRS",
+        "PR קבוע עם נשירה פתאומית של QRS",
+        "חסימה מוחלטת",
+        "קצב מהיר מאוד"
+      ],
+      "correct": 1,
+      "subject": "מבחן עיוני מסכם החייאה אקג והפרעות קצב",
+      "sourceFile": "end_cpr_ecg_quiz.json"
+    },
+    {
+      "id": "end_cpr_ecg_quiz_6",
+      "question": "מה זה VF (Ventricular Fibrillation)?",
+      "type": "multiple_choice",
+      "options": [
+        "קצב סדיר מהחדרים",
+        "פעילות חשמלית כאוטית בחדרים ללא תפוקה",
+        "פעילות רגילה של העליות",
+        "ברדיקרדיה"
+      ],
+      "correct": 1,
+      "subject": "מבחן עיוני מסכם החייאה אקג והפרעות קצב",
+      "sourceFile": "end_cpr_ecg_quiz.json"
+    },
+    {
+      "id": "end_cpr_ecg_quiz_7",
+      "question": "מה זה TDP (Torsades de Pointes)?",
+      "type": "multiple_choice",
+      "options": [
+        "VT פולימורפי עם מראה \"מסתובב\" סביב הבסיס, קשור להארכת QT",
+        "פרפור פרוזדורים",
+        "חסם מדרגה ראשונה",
+        "קצב סינוס תקין"
+      ],
+      "correct": 0,
+      "subject": "מבחן עיוני מסכם החייאה אקג והפרעות קצב",
+      "sourceFile": "end_cpr_ecg_quiz.json"
+    },
+    {
+      "id": "end_cpr_ecg_quiz_8",
+      "question": "למה מיועד Etomidate?",
+      "type": "multiple_choice",
+      "options": [
+        "משכך כאבים",
+        "השראת הרדמה מהירה לפני אינטובציה (RSI) עם מינימום דיכוי לבבי",
+        "הרחבת סימפונות",
+        "טיפול בהפרעות קצב"
+      ],
+      "correct": 1,
+      "subject": "מבחן עיוני מסכם החייאה אקג והפרעות קצב",
+      "sourceFile": "end_cpr_ecg_quiz.json"
+    },
+    {
+      "id": "end_cpr_ecg_quiz_9",
+      "question": "מה הקצב המומלץ לעיסויים בהחייאת מבוגר?",
+      "type": "multiple_choice",
+      "options": [
+        "60-80 לדקה",
+        "80-100 לדקה",
+        "100-120 לדקה",
+        "מעל 120 לדקה"
+      ],
+      "correct": 2,
+      "subject": "מבחן עיוני מסכם החייאה אקג והפרעות קצב",
+      "sourceFile": "end_cpr_ecg_quiz.json"
+    },
+    {
+      "id": "end_cpr_ecg_quiz_10",
+      "question": "מהם הקצבים הלא-בר-שוק (Non-Shockable)?",
+      "type": "multiple_choice",
+      "options": [
+        "VF ו-VT",
+        "Asystole ו-PEA",
+        "רק Asystole",
+        "רק VF"
+      ],
+      "correct": 1,
+      "subject": "מבחן עיוני מסכם החייאה אקג והפרעות קצב",
+      "sourceFile": "end_cpr_ecg_quiz.json"
+    },
+    {
+      "id": "end_cpr_ecg_quiz_11",
+      "question": "מהם ה-H's and T's ב-PEA?",
+      "type": "multiple_choice",
+      "options": [
+        "גורמים הפיכים שיש לטפל בהם ב pea/asystola.",
+        "רק Hypoxia",
+        "רק Hypovolemia",
+        "אין משמעות קלינית"
+      ],
+      "correct": 0,
+      "subject": "מבחן עיוני מסכם החייאה אקג והפרעות קצב",
+      "sourceFile": "end_cpr_ecg_quiz.json"
+    },
+    {
+      "id": "end_cpr_ecg_quiz_12",
+      "question": "כיצד זיהוי של VF בקצב המוניטור?",
+      "type": "multiple_choice",
+      "options": [
+        "גלים כאוטיים ללא קומפלקסי QRS מוגדרים",
+        "קו ישר",
+        "קצב סדיר עם QRS רחב",
+        "פרפור פרוזדורים"
+      ],
+      "correct": 0,
+      "subject": "מבחן עיוני מסכם החייאה אקג והפרעות קצב",
+      "sourceFile": "end_cpr_ecg_quiz.json"
+    },
+    {
+      "id": "end_cpr_ecg_quiz_13",
+      "question": "מה צריך לבדוק לפני מתן שוק חשמלי?",
+      "type": "multiple_choice",
+      "options": [
+        "שהמקצב הוא בר-שוק (VF או Pulseless VT)",
+        "לחץ דם",
+        "סוכר",
+        "טמפרטורה"
+      ],
+      "correct": 0,
+      "subject": "מבחן עיוני מסכם החייאה אקג והפרעות קצב",
+      "sourceFile": "end_cpr_ecg_quiz.json"
+    },
+    {
+      "id": "end_cpr_ecg_quiz_14",
+      "question": "מה זה Asystole?",
+      "type": "multiple_choice",
+      "options": [
+        "פעילות חשמלית כאוטית",
+        "אין פעילות חשמלית - קו ישר",
+        "קצב איטי מאוד",
+        "קצב מהיר מאוד"
+      ],
+      "correct": 1,
+      "subject": "מבחן עיוני מסכם החייאה אקג והפרעות קצב",
+      "sourceFile": "end_cpr_ecg_quiz.json"
+    },
+    {
+      "id": "end_cpr_ecg_quiz_15",
+      "question": "מה ההבדל בין PEA ל-Asystole?",
+      "type": "multiple_choice",
+      "options": [
+        "ב-PEA יש פעילות חשמלית אך אין דופק, ב-Asystole אין פעילות חשמלית",
+        "אין הבדל",
+        "PEA זה קצב מהיר",
+        "Asystole זה קצב איטי"
+      ],
+      "correct": 0,
+      "subject": "מבחן עיוני מסכם החייאה אקג והפרעות קצב",
+      "sourceFile": "end_cpr_ecg_quiz.json"
+    },
+    {
+      "id": "end_cpr_ecg_quiz_16",
+      "question": "מהם הסימנים לברדיקרדיה סימפטומטית?",
+      "type": "multiple_choice",
+      "options": [
+        "קצב מתחת ל-60 עם סימנים: ל\"ד נמוך, ירידת הכרה, כאב חזה, קוצר נשימה",
+        "רק קצב איטי",
+        "רק ל\"ד נמוך",
+        "אין סימנים"
+      ],
+      "correct": 0,
+      "subject": "מבחן עיוני מסכם החייאה אקג והפרעות קצב",
+      "sourceFile": "end_cpr_ecg_quiz.json"
+    },
+    {
+      "id": "end_cpr_ecg_quiz_17",
+      "question": "מהם הסימנים לפרפור פרוזדורים?",
+      "type": "multiple_choice",
+      "options": [
+        "קצב לא סדיר, אין גלי P ברורים, רווחי R-R משתנים",
+        "קצב סדיר מאוד",
+        "קו ישר",
+        "קצב איטי"
+      ],
+      "correct": 0,
+      "subject": "מבחן עיוני מסכם החייאה אקג והפרעות קצב",
+      "sourceFile": "end_cpr_ecg_quiz.json"
+    },
+    {
+      "id": "end_cpr_ecg_quiz_18",
+      "question": "מהם היתרונות של Etomidate?",
+      "type": "multiple_choice",
+      "options": [
+        "דיכוי לבבי מינימלי, יציבות המודינמית",
+        "משכך כאבים חזק",
+        "הרחבת סימפונות",
+        "הורדת לחץ תוך גולגולתי"
+      ],
+      "correct": 0,
+      "subject": "מבחן עיוני מסכם החייאה אקג והפרעות קצב",
+      "sourceFile": "end_cpr_ecg_quiz.json"
+    },
+    {
+      "id": "end_cpr_ecg_quiz_19",
+      "question": "מהן החסרונות של Etomidate?",
+      "type": "multiple_choice",
+      "options": [
+        "דיכוי אדרנל (עם שימוש ממושך)",
+        "עלייה בלחץ דם",
+        "ברדיקרדיה",
+        "אין חסרונות"
+      ],
+      "correct": 0,
+      "subject": "מבחן עיוני מסכם החייאה אקג והפרעות קצב",
+      "sourceFile": "end_cpr_ecg_quiz.json"
+    },
+    {
+      "id": "end_cpr_ecg_quiz_20",
+      "question": "מהן תופעות הלוואי של Ketamine?",
+      "type": "multiple_choice",
+      "options": [
+        "הזיות, דיסוציאציה, עלייה בלחץ דם ובדופק, עלייה בלחץ תוך גולגולתי",
+        "ברדיקרדיה",
+        "היפוטנזיה",
+        "אין תופעות לוואי"
+      ],
+      "correct": 0,
+      "subject": "מבחן עיוני מסכם החייאה אקג והפרעות קצב",
+      "sourceFile": "end_cpr_ecg_quiz.json"
+    },
+    {
+      "id": "end_cpr_ecg_quiz_21",
+      "question": "מה זה SVT (Supraventricular Tachycardia)?",
+      "type": "multiple_choice",
+      "options": [
+        "טכיקרדיה שמקורה מעל החדרים (עליות או AV node)",
+        "טכיקרדיה מהחדרים",
+        "ברדיקרדיה",
+        "קצב נורמלי"
+      ],
+      "correct": 0,
+      "subject": "מבחן עיוני מסכם החייאה אקג והפרעות קצב",
+      "sourceFile": "end_cpr_ecg_quiz.json"
+    },
+    {
+      "id": "end_cpr_ecg_quiz_22",
+      "question": "מה קורה בהיפוך קצב (Cardioversion) של פרפור פרוזדורים ממושך?",
+      "type": "multiple_choice",
+      "options": [
+        "סכנה לשחרור קרישים ותסחיף",
+        "אין סיכון",
+        "תמיד בטוח",
+        "רק יתרונות"
+      ],
+      "correct": 0,
+      "subject": "מבחן עיוני מסכם החייאה אקג והפרעות קצב",
+      "sourceFile": "end_cpr_ecg_quiz.json"
+    },
+    {
+      "id": "end_cpr_ecg_quiz_23",
+      "question": "למה יש סיכון בהיפוך קצב של פרפור ממושך?",
+      "type": "multiple_choice",
+      "options": [
+        "בפרפור פרוזדורים יכולים להיווצר קרישים בעליות, היפוך פתאומי יכול לשחרר אותם",
+        "אין סיכון",
+        "רק כאב",
+        "רק עלייה בדופק"
+      ],
+      "correct": 0,
+      "subject": "מבחן עיוני מסכם החייאה אקג והפרעות קצב",
+      "sourceFile": "end_cpr_ecg_quiz.json"
+    },
+    {
+      "id": "end_cpr_ecg_quiz_24",
+      "question": "מתי נשקול אנטיקואגולציה לפני היפוך קצב?",
+      "type": "multiple_choice",
+      "options": [
+        "כשהפרפור נמשך מעל 48 שעות",
+        "תמיד",
+        "אף פעם",
+        "רק בקשישים"
+      ],
+      "correct": 0,
+      "subject": "מבחן עיוני מסכם החייאה אקג והפרעות קצב",
+      "sourceFile": "end_cpr_ecg_quiz.json"
+    },
+    {
+      "id": "end_cpr_ecg_quiz_25",
+      "question": "מה מאפיין VT (Ventricular Tachycardia)?",
+      "type": "multiple_choice",
+      "options": [
+        "קצב מהיר מהחדרים עם QRS רחב (>0.12 שניות)",
+        "קצב איטי",
+        "קצב עם QRS צר",
+        "פרפור פרוזדורים"
+      ],
+      "correct": 0,
+      "subject": "מבחן עיוני מסכם החייאה אקג והפרעות קצב",
+      "sourceFile": "end_cpr_ecg_quiz.json"
+    },
+    {
+      "id": "end_cpr_ecg_quiz_26",
+      "question": "מה ההבדל בין VT עם דופק ל-Pulseless VT?",
+      "type": "multiple_choice",
+      "options": [
+        "VT עם דופק - המטופל יציב יחסית; Pulseless VT - דום לב, טיפול כמו VF",
+        "אין הבדל",
+        "VT עם דופק זה ברדיקרדיה",
+        "Pulseless VT זה קצב נורמלי"
+      ],
+      "correct": 0,
+      "subject": "מבחן עיוני מסכם החייאה אקג והפרעות קצב",
+      "sourceFile": "end_cpr_ecg_quiz.json"
+    },
+    {
+      "id": "end_cpr_ecg_quiz_27",
+      "question": "מה הקשר בין הארכת QT ל-TDP?",
+      "type": "multiple_choice",
+      "options": [
+        "הארכת QT יכולה להוביל ל-TDP",
+        "אין קשר",
+        "רק ב-VF",
+        "רק בברדיקרדיה"
+      ],
+      "correct": 0,
+      "subject": "מבחן עיוני מסכם החייאה אקג והפרעות קצב",
+      "sourceFile": "end_cpr_ecg_quiz.json"
+    },
+    {
+      "id": "end_cpr_ecg_quiz_28",
+      "question": "מהו Mobitz I (Wenckebach)?",
+      "type": "multiple_choice",
+      "options": [
+        "הארכה הדרגתית של PR עד נשירת QRS",
+        "PR קבוע עם נשירות פתאומיות",
+        "חסימה מוחלטת",
+        "קצב מהיר"
+      ],
+      "correct": 0,
+      "subject": "מבחן עיוני מסכם החייאה אקג והפרעות קצב",
+      "sourceFile": "end_cpr_ecg_quiz.json"
+    },
+    {
+      "id": "end_cpr_ecg_quiz_29",
+      "question": "מה זה חסם AV מדרגה שלישית (מוחלט)?",
+      "type": "multiple_choice",
+      "options": [
+        "אין הולכה בין עליות לחדרים - עליות וחדרים דופקים בנפרד",
+        "הולכה איטית",
+        "הולכה מהירה",
+        "קצב נורמלי"
+      ],
+      "correct": 0,
+      "subject": "מבחן עיוני מסכם החייאה אקג והפרעות קצב",
+      "sourceFile": "end_cpr_ecg_quiz.json"
+    },
+    {
+      "id": "end_cpr_ecg_quiz_30",
+      "question": "מה ההבדל בין שוק חשמלי (Defibrillation) להיפוך קצב מסונכרן (Synchronized Cardioversion)?",
+      "type": "multiple_choice",
+      "options": [
+        "שוק חשמלי (Defibrillation) הוא מיידי ולא מסונכרן, ואילו הפיכת קצב (Cardioversion) מתוזמנת ומסונכרנת לגל ה-R בפעילות הלב כדי למנוע החמרה.",
+        "אין הבדל",
+        "רק בעוצמה",
+        "רק בזמן"
+      ],
+      "correct": 0,
+      "subject": "מבחן עיוני מסכם החייאה אקג והפרעות קצב",
+      "sourceFile": "end_cpr_ecg_quiz.json"
+    },
+    {
+      "id": "end_cpr_ecg_quiz_31",
+      "question": "מהו השוק המומלץ ב-VF?",
+      "type": "multiple_choice",
+      "options": [
+        "200 ג'אול (מונופזי) או 120-200 ג'אול (ביפזי)",
+        "50 ג'אול",
+        "10 ג'אול",
+        "500 ג'אול"
+      ],
+      "correct": 0,
+      "subject": "מבחן עיוני מסכם החייאה אקג והפרעות קצב",
+      "sourceFile": "end_cpr_ecg_quiz.json"
+    },
+    {
+      "id": "end_cpr_ecg_quiz_32",
+      "question": "מהו השוק המומלץ להיפוך קצב מסונכרן?",
+      "type": "multiple_choice",
+      "options": [
+        "התחלה מ-50-100 ג'אול והעלאה בהדרגה",
+        "תמיד 200 ג'אול",
+        "תמיד 360 ג'אול",
+        "אין שוק"
+      ],
+      "correct": 0,
+      "subject": "מבחן עיוני מסכם החייאה אקג והפרעות קצב",
+      "sourceFile": "end_cpr_ecg_quiz.json"
+    },
+    {
+      "id": "end_cpr_ecg_quiz_33",
+      "question": "מה חשוב לעשות לפני היפוך קצב מסונכרן?",
+      "type": "multiple_choice",
+      "options": [
+        "סדציה/הרדמה (אם המטופל ער), הפעלת מצב Sync",
+        "רק להפעיל את המכשיר",
+        "אין צורך בהכנה",
+        "רק מתן נוזלים"
+      ],
+      "correct": 0,
+      "subject": "מבחן עיוני מסכם החייאה אקג והפרעות קצב",
+      "sourceFile": "end_cpr_ecg_quiz.json"
+    },
+    {
+      "id": "end_cpr_ecg_quiz_34",
+      "question": "מה זה Post-Cardiac Arrest Syndrome?",
+      "type": "multiple_choice",
+      "options": [
+        "תסמונת לאחר ROSC - פגיעה מוחית, לבבית, מערכתית",
+        "רק עייפות",
+        "רק כאב ראש",
+        "אין תסמונת כזו"
+      ],
+      "correct": 0,
+      "subject": "מבחן עיוני מסכם החייאה אקג והפרעות קצב",
+      "sourceFile": "end_cpr_ecg_quiz.json"
+    },
+    {
+      "id": "end_cpr_ecg_quiz_35",
+      "question": "מהם מיקומי הפדים האלטרנטיביים ב-Vector Change?",
+      "type": "multiple_choice",
+      "options": [
+        "AP (Anterior-Posterior) - אחד על החזה, אחד על הגב",
+        "שניהם על הצוואר",
+        "שניהם על הרגליים",
+        "רק על הראש"
+      ],
+      "correct": 0,
+      "subject": "מבחן עיוני מסכם החייאה אקג והפרעות קצב",
+      "sourceFile": "end_cpr_ecg_quiz.json"
+    },
+    {
+      "id": "end_cpr_ecg_quiz_36",
+      "question": "מתי נשקול DSED או Vector Change?",
+      "type": "multiple_choice",
+      "options": [
+        "ב-Refractory VF/VT לאחר 3 שוקים כושלים עם טיפול סטנדרטי מלא",
+        "מיד בתחילת ההחייאה",
+        "רק אחרי ROSC",
+        "אף פעם"
+      ],
+      "correct": 0,
+      "subject": "מבחן עיוני מסכם החייאה אקג והפרעות קצב",
+      "sourceFile": "end_cpr_ecg_quiz.json"
+    },
+    {
+      "id": "end_cpr_med_quiz_1",
+      "question": "מהו הטיפול הראשוני בתעוקת חזה לפי פרוטוקול ACS?",
+      "type": "multiple_choice",
+      "options": [
+        "מתן אדרנלין",
+        "אספירין וחמצן לפי הצורך",
+        "ונטולין וסטרואידים",
+        "אינטובציה"
+      ],
+      "correct": 1,
+      "subject": "מבחן עיוני מסכם החייאה תרופות",
+      "sourceFile": "end_cpr_med_quiz.json"
+    },
+    {
+      "id": "end_cpr_med_quiz_2",
+      "question": "מה המינון הסטנדרטי של אספירין בתעוקת חזה?",
+      "type": "multiple_choice",
+      "options": [
+        "75 מ\"ג",
+        "100 מ\"ג",
+        "160-325 מ\"ג ללעיסה",
+        "500 מ\"ג"
+      ],
+      "correct": 2,
+      "subject": "מבחן עיוני מסכם החייאה תרופות",
+      "sourceFile": "end_cpr_med_quiz.json"
+    },
+    {
+      "id": "end_cpr_med_quiz_3",
+      "question": "מה מנגנון הפעולה של אטרופין?",
+      "type": "multiple_choice",
+      "options": [
+        "הפעלת מערכת פאראסימפתטית",
+        "עיכוב אצטילכולין במערכת הפאראסימפתטית",
+        "הפעלת בטא רצפטורים",
+        "כיווץ כלי דם"
+      ],
+      "correct": 1,
+      "subject": "מבחן עיוני מסכם החייאה תרופות",
+      "sourceFile": "end_cpr_med_quiz.json"
+    },
+    {
+      "id": "end_cpr_med_quiz_4",
+      "question": "האם אמיודרון יכול לגרום להארכת QT?",
+      "type": "true_false",
+      "options": [
+        "נכון. אמיודרון יכול לגרום להארכת QT ולכן יש להיזהר ב-TDP",
+        "לא נכון"
+      ],
+      "correct": 0,
+      "subject": "מבחן עיוני מסכם החייאה תרופות",
+      "sourceFile": "end_cpr_med_quiz.json"
+    },
+    {
+      "id": "end_cpr_med_quiz_5",
+      "question": "מה הרציונל למתן אספירין ב-ACS?",
+      "type": "multiple_choice",
+      "options": [
+        "הורדת חום",
+        "עיכוב אגרגציית טסיות ומניעת התפשטות הקריש",
+        "הורדת לחץ דם",
+        "שיכוך כאבים"
+      ],
+      "correct": 1,
+      "subject": "מבחן עיוני מסכם החייאה תרופות",
+      "sourceFile": "end_cpr_med_quiz.json"
+    },
+    {
+      "id": "end_cpr_med_quiz_6",
+      "question": "מה ההבדל בין אדרנלין לנוראדרנלין?",
+      "type": "multiple_choice",
+      "options": [
+        "אדרנלין פועל על אלפא ובטא, נוראדרנלין בעיקר על אלפא",
+        "אין הבדל",
+        "נוראדרנלין חזק יותר",
+        "אדרנלין רק על אלפא"
+      ],
+      "correct": 0,
+      "subject": "מבחן עיוני מסכם החייאה תרופות",
+      "sourceFile": "end_cpr_med_quiz.json"
+    },
+    {
+      "id": "end_cpr_med_quiz_7",
+      "question": "מהו המנגנון של אטרופין?",
+      "type": "multiple_choice",
+      "options": [
+        "חסימת רצפטורים מוסקריניים (אנטגוניסט אצטילכולין)",
+        "הפעלת אצטילכולין",
+        "חסימת בטא רצפטורים",
+        "הפעלת בטא רצפטורים"
+      ],
+      "correct": 0,
+      "subject": "מבחן עיוני מסכם החייאה תרופות",
+      "sourceFile": "end_cpr_med_quiz.json"
+    },
+    {
+      "id": "end_cpr_med_quiz_8",
+      "question": "מתי ניתן ניטרוגליצרין בתעוקת חזה?",
+      "type": "multiple_choice",
+      "options": [
+        "תמיד, בכל תעוקת חזה",
+        "כאשר ל\"ד סיסטולי מעל 100 ואין שימוש בתרופות לאין-אונות ב-24-48 שעות",
+        "רק כאשר ל\"ד מעל 160",
+        "אסור לתת ניטרוגליצרין בשטח"
+      ],
+      "correct": 1,
+      "subject": "מבחן עיוני מסכם החייאה תרופות",
+      "sourceFile": "end_cpr_med_quiz.json"
+    },
+    {
+      "id": "end_cpr_med_quiz_9",
+      "question": "מתי אין לתת אדנוזין?",
+      "type": "multiple_choice",
+      "options": [
+        "ב-SVT",
+        "בחסם AV מדרגה שנייה או שלישית ללא קוצב",
+        "בכל טכיקרדיה",
+        "תמיד מותר"
+      ],
+      "correct": 1,
+      "subject": "מבחן עיוני מסכם החייאה תרופות",
+      "sourceFile": "end_cpr_med_quiz.json"
+    },
+    {
+      "id": "end_cpr_med_quiz_10",
+      "question": "מה מנגנון הפעולה של אדנוזין?",
+      "type": "multiple_choice",
+      "options": [
+        "האטה זמנית של הולכה דרך ה-AV node",
+        "הרחבת כלי דם",
+        "עיכוב אצטילכולין",
+        "הפעלת בטא רצפטורים"
+      ],
+      "correct": 0,
+      "subject": "מבחן עיוני מסכם החייאה תרופות",
+      "sourceFile": "end_cpr_med_quiz.json"
+    },
+    {
+      "id": "end_cpr_med_quiz_11",
+      "question": "מהו מנגנון הפעולה של אדרנלין?",
+      "type": "multiple_choice",
+      "options": [
+        "חסימת רצפטורים",
+        "הפעלת רצפטורים אלפא ובטא אדרנרגיים",
+        "עיכוב אצטילכולין",
+        "הרחבת כלי דם בלבד"
+      ],
+      "correct": 1,
+      "subject": "מבחן עיוני מסכם החייאה תרופות",
+      "sourceFile": "end_cpr_med_quiz.json"
+    },
+    {
+      "id": "end_cpr_med_quiz_12",
+      "question": "מה ייעוד אטרופין?",
+      "type": "multiple_choice",
+      "options": [
+        "טיפול בטכיקרדיה",
+        "טיפול בברדיקרדיה סימפטומטית",
+        "טיפול באסתמה",
+        "הורדת לחץ דם"
+      ],
+      "correct": 1,
+      "subject": "מבחן עיוני מסכם החייאה תרופות",
+      "sourceFile": "end_cpr_med_quiz.json"
+    },
+    {
+      "id": "end_cpr_med_quiz_13",
+      "question": "מהו המינון של אטרופין לברדיקרדיה סימפטומטית?",
+      "type": "multiple_choice",
+      "options": [
+        "0.5 מ\"ג כל 3-5 דקות עד מקסימום 3 מ\"ג",
+        "1 מ\"ג כל דקה",
+        "0.1 מ\"ג בלבד",
+        "5 מ\"ג"
+      ],
+      "correct": 0,
+      "subject": "מבחן עיוני מסכם החייאה תרופות",
+      "sourceFile": "end_cpr_med_quiz.json"
+    },
+    {
+      "id": "end_cpr_med_quiz_14",
+      "question": "מהן התוויות הנגד למתן ניטרוגליצרין?",
+      "type": "multiple_choice",
+      "options": [
+        "ל\"ד סיסטולי מתחת ל-100, שימוש בתרופות לאין-אונות ב-24-48 שעות, אוטם ימני",
+        "תמיד מותר",
+        "רק גיל מבוגר",
+        "רק סוכרת"
+      ],
+      "correct": 0,
+      "subject": "מבחן עיוני מסכם החייאה תרופות",
+      "sourceFile": "end_cpr_med_quiz.json"
+    },
+    {
+      "id": "end_cpr_med_quiz_15",
+      "question": "כמה ניתן לתת ניטרוגליצרין מתחת ללשון?",
+      "type": "multiple_choice",
+      "options": [
+        "מנה אחת בלבד",
+        "עד 3 מנות במרווחים של 5 דקות",
+        "ללא הגבלה",
+        "אסור לתת בשטח"
+      ],
+      "correct": 1,
+      "subject": "מבחן עיוני מסכם החייאה תרופות",
+      "sourceFile": "end_cpr_med_quiz.json"
+    },
+    {
+      "id": "end_cpr_med_quiz_16",
+      "question": "מהי ההשפעה של אמיודרון על הלב?",
+      "type": "multiple_choice",
+      "options": [
+        "הארכת הפוטנציאל אקשן והתקופה הרפרקטורית, ייצוב הקרום",
+        "רק האצה של הקצב",
+        "רק כיווץ כלי דם",
+        "אין השפעה"
+      ],
+      "correct": 0,
+      "subject": "מבחן עיוני מסכם החייאה תרופות",
+      "sourceFile": "end_cpr_med_quiz.json"
+    },
+    {
+      "id": "end_cpr_med_quiz_17",
+      "question": "כיצד פועל אדנוזין?",
+      "type": "multiple_choice",
+      "options": [
+        "הפעלת בטא רצפטורים",
+        "האטה זמנית של הולכה ב-AV node (\"איפוס\") לסיום SVT",
+        "כיווץ כלי דם",
+        "הרחבת סימפונות"
+      ],
+      "correct": 1,
+      "subject": "מבחן עיוני מסכם החייאה תרופות",
+      "sourceFile": "end_cpr_med_quiz.json"
+    },
+    {
+      "id": "end_cpr_med_quiz_18",
+      "question": "מהו זמן מחצית החיים הקצר של אדנוזין?",
+      "type": "multiple_choice",
+      "options": [
+        "מספר שניות",
+        "שעה",
+        "יום",
+        "שבוע"
+      ],
+      "correct": 0,
+      "subject": "מבחן עיוני מסכם החייאה תרופות",
+      "sourceFile": "end_cpr_med_quiz.json"
+    },
+    {
+      "id": "end_cpr_med_quiz_19",
+      "question": "מהן תופעות הלוואי של אדנוזין?",
+      "type": "multiple_choice",
+      "options": [
+        "תחושת דיכוי בחזה, אודם פנים, קוצר נשימה זמני - כל אלו חולפים מהר",
+        "לחץ דם גבוה",
+        "טכיקרדיה חמורה",
+        "אין תופעות לוואי"
+      ],
+      "correct": 0,
+      "subject": "מבחן עיוני מסכם החייאה תרופות",
+      "sourceFile": "end_cpr_med_quiz.json"
+    },
+    {
+      "id": "end_cpr_med_quiz_20",
+      "question": "מהו השימוש העיקרי באטרופין?",
+      "type": "multiple_choice",
+      "options": [
+        "טיפול בטכיקרדיה",
+        "טיפול בברדיקרדיה סימפטומטית ובחסם AV",
+        "טיפול באסתמה",
+        "טיפול בהיפרגליקמיה"
+      ],
+      "correct": 1,
+      "subject": "מבחן עיוני מסכם החייאה תרופות",
+      "sourceFile": "end_cpr_med_quiz.json"
+    },
+    {
+      "id": "end_cpr_med_quiz_21",
+      "question": "מתי אטרופין לא יעיל?",
+      "type": "multiple_choice",
+      "options": [
+        "בברדיקרדיה סינוסית",
+        "בחסם AV מדרגה גבוהה או בברדיקרדיה חדרית",
+        "תמיד יעיל",
+        "אף פעם"
+      ],
+      "correct": 1,
+      "subject": "מבחן עיוני מסכם החייאה תרופות",
+      "sourceFile": "end_cpr_med_quiz.json"
+    },
+    {
+      "id": "end_cpr_med_quiz_22",
+      "question": "מה ההשפעה של אדרנלין על רצפטורים בטא-1?",
+      "type": "multiple_choice",
+      "options": [
+        "הגברת כוח וקצב הלב",
+        "הרחבת סימפונות",
+        "הרחבת כלי דם",
+        "אין השפעה"
+      ],
+      "correct": 0,
+      "subject": "מבחן עיוני מסכם החייאה תרופות",
+      "sourceFile": "end_cpr_med_quiz.json"
+    },
+    {
+      "id": "end_cpr_med_quiz_23",
+      "question": "מה ההשפעה של אדרנלין על רצפטורים אלפא?",
+      "type": "multiple_choice",
+      "options": [
+        "כיווץ כלי דם היקפיים והעלאת לחץ דם",
+        "הרחבת כלי דם",
+        "הורדת לחץ דם",
+        "אין השפעה"
+      ],
+      "correct": 0,
+      "subject": "מבחן עיוני מסכם החייאה תרופות",
+      "sourceFile": "end_cpr_med_quiz.json"
+    },
+    {
+      "id": "end_cpr_med_quiz_24",
+      "question": "מה ההשפעה של אדרנלין על רצפטורים בטא-2?",
+      "type": "multiple_choice",
+      "options": [
+        "הרחבת סימפונות",
+        "כיווץ סימפונות",
+        "כיווץ כלי דם",
+        "אין השפעה"
+      ],
+      "correct": 0,
+      "subject": "מבחן עיוני מסכם החייאה תרופות",
+      "sourceFile": "end_cpr_med_quiz.json"
+    },
+    {
+      "id": "end_cpr_med_quiz_25",
+      "question": "מה קורה כשחוסמים אצטילכולין באטרופין?",
+      "type": "multiple_choice",
+      "options": [
+        "העצבוב הפאראסימפתטי פוחת, מה שמאיץ את הקצב",
+        "הקצב נהיה איטי יותר",
+        "לחץ הדם יורד",
+        "אין שינוי"
+      ],
+      "correct": 0,
+      "subject": "מבחן עיוני מסכם החייאה תרופות",
+      "sourceFile": "end_cpr_med_quiz.json"
+    },
+    {
+      "id": "end_cpr_med_quiz_26",
+      "question": "מתי משתמשים באדנוזין?",
+      "type": "multiple_choice",
+      "options": [
+        "ל-SVT (טכיקרדיה על-חדרית) יציבה",
+        "ל-VT",
+        "לברדיקרדיה",
+        "ל-VF"
+      ],
+      "correct": 0,
+      "subject": "מבחן עיוני מסכם החייאה תרופות",
+      "sourceFile": "end_cpr_med_quiz.json"
+    },
+    {
+      "id": "end_cpr_med_quiz_27",
+      "question": "מהו הטיפול בחסם AV מוחלט סימפטומטי?",
+      "type": "multiple_choice",
+      "options": [
+        "אטרופין (אם לא עוזר - קצב חיצוני או אדרנלין)",
+        "רק נוזלים",
+        "רק חמצן",
+        "אין טיפול"
+      ],
+      "correct": 0,
+      "subject": "מבחן עיוני מסכם החייאה תרופות",
+      "sourceFile": "end_cpr_med_quiz.json"
+    },
+    {
+      "id": "end_cpr_med_quiz_28",
+      "question": "מתי נשקול קצב חיצוני?",
+      "type": "multiple_choice",
+      "options": [
+        "בברדיקרדיה חמורה שלא מגיבה לאטרופין",
+        "בטכיקרדיה",
+        "ב-VF",
+        "ב-Asystole"
+      ],
+      "correct": 0,
+      "subject": "מבחן עיוני מסכם החייאה תרופות",
+      "sourceFile": "end_cpr_med_quiz.json"
+    },
+    {
+      "id": "end_trauma_chess_quiz_1",
+      "question": "דימום אפידורלי הוא בדרך כלל ורידי ומתפתח לאט.",
+      "type": "true_false",
+      "options": [
+        "נכון",
+        "לא נכון. הוא לרוב **עורקי** (פגיעה בעורק המנינגיאלי האמצעי) ומתפתח **במהירות**."
+      ],
+      "correct": 1,
+      "subject": "מבחן עיוני - קינמטיקה, פגיעות חזה ובטן",
+      "sourceFile": "end_trauma_chess_quiz.json"
+    },
+    {
+      "id": "end_trauma_chess_quiz_2",
+      "question": "מהי טמפונדה לבבית (Cardiac Tamponade)?",
+      "type": "multiple_choice",
+      "options": [
+        "חזה אוויר בלחץ",
+        "הצטברות נוזל/דם בחלל הפריקרדיאלי המונעת מילוי תקין של הלב",
+        "זיהום בשריר הלב",
+        "שבר בצלעות"
+      ],
+      "correct": 1,
+      "subject": "מבחן עיוני - קינמטיקה, פגיעות חזה ובטן",
+      "sourceFile": "end_trauma_chess_quiz.json"
+    },
+    {
+      "id": "end_trauma_chess_quiz_3",
+      "question": "מהי הסכנה העיקרית בחזה אוויר בלחץ (Tension Pneumothorax)?",
+      "type": "multiple_choice",
+      "options": [
+        "דליפת נוזל מוחי שדרתי",
+        "קריסה המודינמית מהירה ומיידית עקב הפרעה חמורה בהחזר הוורידי ללב",
+        "זיהום פטרייתי",
+        "שבר פשוט בגפה"
+      ],
+      "correct": 1,
+      "subject": "מבחן עיוני - קינמטיקה, פגיעות חזה ובטן",
+      "sourceFile": "end_trauma_chess_quiz.json"
+    },
+    {
+      "id": "end_trauma_chess_quiz_4",
+      "question": "מהם הסימנים המאפיינים חזה אוויר בלחץ?",
+      "type": "multiple_choice",
+      "options": [
+        "ירידה מהירה בלחץ דם (הלם)",
+        "היעדר קולות נשימה בצד הפגוע",
+        "סטיית קנה הנשימה (טראכאה) לצד הלא פגוע (סימן מאוחר)",
+        "כאב ראש חזק",
+        "היפרגליקמיה",
+        "צפצופים דו-צדדיים",
+        "טכיקרדיה"
+      ],
+      "correct": [
+        0,
+        1,
+        2,
+        6
+      ],
+      "subject": "מבחן עיוני - קינמטיקה, פגיעות חזה ובטן",
+      "sourceFile": "end_trauma_chess_quiz.json"
+    },
+    {
+      "id": "end_trauma_chess_quiz_5",
+      "question": "פנאומוטורקס לוחץ (חזה אוויר בלחץ) גורם למוות עקב כשל נשימתי בלבד.",
+      "type": "true_false",
+      "options": [
+        "נכון",
+        "לא נכון. הסכנה העיקרית היא **הלם חסימתי** (Obstructive Shock) עקב לחץ על המדיאסטינום והפרעה חמורה להחזר הוורידי."
+      ],
+      "correct": 1,
+      "subject": "מבחן עיוני - קינמטיקה, פגיעות חזה ובטן",
+      "sourceFile": "end_trauma_chess_quiz.json"
+    },
+    {
+      "id": "end_trauma_chess_quiz_6",
+      "question": "בהקשר של טראומה, אילו איברים מוצקים באזור הבטן נוטים לדמם בצורה משמעותית?",
+      "type": "multiple_choice",
+      "options": [
+        "המעי הדק",
+        "הכבד",
+        "הטחול",
+        "הכליות",
+        "שלפוחית השתן המלאה",
+        "הווריד הנבוב",
+        "הלבלב"
+      ],
+      "correct": [
+        1,
+        2,
+        3
+      ],
+      "subject": "מבחן עיוני - קינמטיקה, פגיעות חזה ובטן",
+      "sourceFile": "end_trauma_chess_quiz.json"
+    },
+    {
+      "id": "end_trauma_chess_quiz_7",
+      "question": "מה נכון לגבי פגיעות בטן בטראומה חודרת?",
+      "type": "multiple_choice",
+      "options": [
+        "הקיבה והמעי הדק הם האיברים הנפגעים לרוב",
+        "יש סיכון גבוה להתפתחות זיהום משמעותי (פריטוניטיס)",
+        "הרס תאי שריר הוא הסיכון העיקרי",
+        "אין סכנה לדימום משמעותי"
+      ],
+      "correct": [
+        0,
+        1
+      ],
+      "subject": "מבחן עיוני - קינמטיקה, פגיעות חזה ובטן",
+      "sourceFile": "end_trauma_chess_quiz.json"
+    },
+    {
+      "id": "end_trauma_chess_quiz_8",
+      "question": "מהו העיקרון המנחה בקינמטיקה של טראומה (Kinematics of Trauma)?",
+      "type": "multiple_choice",
+      "options": [
+        "הערכת מנגנון הפגיעה מאפשרת לחזות את סוגי הפגיעות הפוטנציאליות",
+        "הערכה של מצב הכוויה בלבד",
+        "חישוב של אחוזי כוויות",
+        "התעלמות ממנגנון הפגיעה והתמקדות בפצעים הגלויים בלבד"
+      ],
+      "correct": 0,
+      "subject": "מבחן עיוני - קינמטיקה, פגיעות חזה ובטן",
+      "sourceFile": "end_trauma_chess_quiz.json"
+    },
+    {
+      "id": "end_trauma_chess_quiz_9",
+      "question": "התנגשות קדמית ברכב (Head-on Collision) עלולה לגרום ל-",
+      "type": "multiple_choice",
+      "options": [
+        "פגיעת 'Up and Over' - פגיעות ראש, צוואר וחזה (מול ההגה)",
+        "פגיעת 'Down and Under' - פריקת ירך ושברים בגפיים תחתונות (מול לוח המחוונים)",
+        "חבלת עמוד שדרה צווארי (Whiplash)",
+        "פציעה של תסמונת המדור"
+      ],
+      "correct": [
+        0,
+        1,
+        2
+      ],
+      "subject": "מבחן עיוני - קינמטיקה, פגיעות חזה ובטן",
+      "sourceFile": "end_trauma_chess_quiz.json"
+    },
+    {
+      "id": "end_trauma_chess_quiz_10",
+      "question": "הירידה בלחץ דם בטמפונדה לבבית נובעת מ-",
+      "type": "multiple_choice",
+      "options": [
+        "איבוד דם חיצוני",
+        "כשל במילוי החדרים עקב לחץ חיצוני",
+        "הרפיית שריר הלב",
+        "זיהום"
+      ],
+      "correct": 1,
+      "subject": "מבחן עיוני - קינמטיקה, פגיעות חזה ובטן",
+      "sourceFile": "end_trauma_chess_quiz.json"
+    },
+    {
+      "id": "end_trauma_chess_quiz_11",
+      "question": "חזה אוויר בלחץ (Tension Pneumothorax) מתפתח כאשר-",
+      "type": "multiple_choice",
+      "options": [
+        "אוויר נכנס לחלל הפלאורלי ואינו יכול לצאת",
+        "אוויר נכנס לחלל הפלאורלי ויוצא בחופשיות",
+        "דם מצטבר בחלל הפלאורלי",
+        "נוזל מוחי שדרתי דולף לחזה"
+      ],
+      "correct": 0,
+      "subject": "מבחן עיוני - קינמטיקה, פגיעות חזה ובטן",
+      "sourceFile": "end_trauma_chess_quiz.json"
+    },
+    {
+      "id": "end_trauma_chess_quiz_12",
+      "question": "מה הקינמטיקה של טראומה מעידה על פגיעה אפשרית באאורטה (Aortic Injury)?",
+      "type": "multiple_choice",
+      "options": [
+        "תאונת דרכים במהירות נמוכה",
+        "נפילה מגובה רב",
+        "תאונה חזיתית או צדדית במהירות גבוהה",
+        "כוויות מדרגה ב'"
+      ],
+      "correct": [
+        1,
+        2
+      ],
+      "subject": "מבחן עיוני - קינמטיקה, פגיעות חזה ובטן",
+      "sourceFile": "end_trauma_chess_quiz.json"
+    },
+    {
+      "id": "end_trauma_chess_quiz_13",
+      "question": "מה מאפיין את קולות הלב בטמפונדה לבבית?",
+      "type": "multiple_choice",
+      "options": [
+        "מואצים וחזקים",
+        "קולות לב עמומים/רחוקים (Muffled Heart Sounds)",
+        "קולות מפוצלים",
+        "היעדר קולות לב"
+      ],
+      "correct": 1,
+      "subject": "מבחן עיוני - קינמטיקה, פגיעות חזה ובטן",
+      "sourceFile": "end_trauma_chess_quiz.json"
+    },
+    {
+      "id": "end_trauma_chess_quiz_14",
+      "question": "איזו פגיעה גורמת לוורידי צוואר גדושים (JVD) כחלק מ'שלישיית בק'?",
+      "type": "multiple_choice",
+      "options": [
+        "חזה אוויר פשוט",
+        "טמפונדה לבבית",
+        "זעזוע מוח",
+        "דימום סאב-דורלי"
+      ],
+      "correct": 1,
+      "subject": "מבחן עיוני - קינמטיקה, פגיעות חזה ובטן",
+      "sourceFile": "end_trauma_chess_quiz.json"
+    },
+    {
+      "id": "end_trauma_chess_quiz_15",
+      "question": "מה נכון לגבי הקינמטיקה של טראומה ופגיעות בטן?",
+      "type": "multiple_choice",
+      "options": [
+        "בטראומה קהה, איברים מוצקים (כבד, טחול) בסיכון גבוה יותר לפגיעה",
+        "בטראומה חודרת, איברים חלולים (מעיים) בסיכון גבוה יותר לפגיעה ולזיהום",
+        "חגורת בטיחות עשויה לגרום לפגיעה ב'חגורה' (Seatbelt Sign) - נזק לאיברים חלולים",
+        "נפילת ילד מגובה היא אירוע קל ואינה מצריכה חשד לפגיעות פנימיות"
+      ],
+      "correct": [
+        0,
+        1,
+        2
+      ],
+      "subject": "מבחן עיוני - קינמטיקה, פגיעות חזה ובטן",
+      "sourceFile": "end_trauma_chess_quiz.json"
+    },
+    {
+      "id": "end_trauma_chess_quiz_16",
+      "question": "בטמפונדה לבבית, הדם מצטבר בחלל הפריקרד וגורם ל-",
+      "type": "multiple_choice",
+      "options": [
+        "עלייה בתפוקת הלב",
+        "ירידה חדה במילוי החדרים בזמן הדיאסטולה",
+        "עלייה חדה בלחץ הדם הסיסטולי",
+        "היפרוונטילציה"
+      ],
+      "correct": 1,
+      "subject": "מבחן עיוני - קינמטיקה, פגיעות חזה ובטן",
+      "sourceFile": "end_trauma_chess_quiz.json"
+    },
+    {
+      "id": "end_trauma_chess_quiz_17",
+      "question": "מדוע ורידי הצוואר גדושים (JVD) בטמפונדה לבבית?",
+      "type": "multiple_choice",
+      "options": [
+        "עקב הרפיית כלי הדם",
+        "עקב עלייה בלחץ התוך-חזי המונעת זרימת דם ללב (החזר ורידי לקוי)",
+        "עקב אי-ספיקת כליות",
+        "עקב דימום משמעותי לבית החזה"
+      ],
+      "correct": 1,
+      "subject": "מבחן עיוני - קינמטיקה, פגיעות חזה ובטן",
+      "sourceFile": "end_trauma_chess_quiz.json"
+    },
+    {
+      "id": "end_trauma_chess_quiz_18",
+      "question": "הסכנה העיקרית בפנאומוטורקס לוחץ נובעת ממעבר הלחץ לצד הלא פגוע, הגורם ל-",
+      "type": "multiple_choice",
+      "options": [
+        "הפרעה בפעולת הריאה הנגדית בלבד",
+        "דחיסה וסטייה של המדיאסטינום, פגיעה בהחזר הוורידי וקריסה המודינמית (הלם חסימתי)",
+        "זיהום פטרייתי",
+        "דימום עורקי בלבד"
+      ],
+      "correct": 1,
+      "subject": "מבחן עיוני - קינמטיקה, פגיעות חזה ובטן",
+      "sourceFile": "end_trauma_chess_quiz.json"
+    },
+    {
+      "id": "end_trauma_chess_quiz_19",
+      "question": "בפגיעת בטן קהה, איזה איבר נחשב לאיבר מוצק ובעל סיכון גבוה לדימום מסיבי?",
+      "type": "multiple_choice",
+      "options": [
+        "קיבה",
+        "מעי גס",
+        "טחול",
+        "שלפוחית השתן"
+      ],
+      "correct": 2,
+      "subject": "מבחן עיוני - קינמטיקה, פגיעות חזה ובטן",
+      "sourceFile": "end_trauma_chess_quiz.json"
+    },
+    {
+      "id": "end_trauma_chess_quiz_20",
+      "question": "מהי הגישה המקובלת לטיפול בפגיעות בטן קהות ב-ALS?",
+      "type": "multiple_choice",
+      "options": [
+        "הרדמה מיידית",
+        "טיפול תומך (ABC), מתן חמצן, צפיית סימני הלם, מתן נוזלים ופינוי מהיר",
+        "חבישה לוחצת",
+        "המתנה לרופא"
+      ],
+      "correct": 1,
+      "subject": "מבחן עיוני - קינמטיקה, פגיעות חזה ובטן",
+      "sourceFile": "end_trauma_chess_quiz.json"
+    },
+    {
+      "id": "end_trauma_chess_quiz_21",
+      "question": "בפגיעות בטן חודרות, הסכנה העיקרית היא:",
+      "type": "multiple_choice",
+      "options": [
+        "זיהום (פריטוניטיס) מתוכן מערכת העיכול",
+        "כוויה",
+        "שבר בבסיס הגולגולת",
+        "הלם קרדיוגני"
+      ],
+      "correct": 0,
+      "subject": "מבחן עיוני - קינמטיקה, פגיעות חזה ובטן",
+      "sourceFile": "end_trauma_chess_quiz.json"
+    },
+    {
+      "id": "end_trauma_chess_quiz_22",
+      "question": "האם בטמפונדה לבבית יש איבוד דם משמעותי מחוץ ללב?",
+      "type": "true_false",
+      "options": [
+        "נכון. יש איבוד דם רב לבית החזה.",
+        "לא נכון. הבעיה היא הלחץ שמפעיל הדם/נוזל על הלב עצמו, לא איבוד דם רב לחלל חיצוני. טמפונדה היא הלם חסימתי, לא היפוולמי."
+      ],
+      "correct": 1,
+      "subject": "מבחן עיוני - קינמטיקה, פגיעות חזה ובטן",
+      "sourceFile": "end_trauma_chess_quiz.json"
+    },
+    {
+      "id": "end_trauma_chess_quiz_23",
+      "question": "הסכנה העיקרית של פגיעה בכבד ו/או בטחול היא סכנה של:",
+      "type": "multiple_choice",
+      "options": [
+        "דימום עורקי מיידי",
+        "דימום ורידי איטי",
+        "דימום משמעותי ופוטנציאל להלם היפוולמי",
+        "זיהום בלבד"
+      ],
+      "correct": 2,
+      "subject": "מבחן עיוני - קינמטיקה, פגיעות חזה ובטן",
+      "sourceFile": "end_trauma_chess_quiz.json"
+    },
+    {
+      "id": "end_trauma_chess_quiz_24",
+      "question": "מהו האיבר הפנימי בעל הסיכון הגבוה ביותר לפגיעה בטראומה קהה באזור הבטן העליונה השמאלית?",
+      "type": "multiple_choice",
+      "options": [
+        "כבד",
+        "טחול",
+        "שלפוחית השתן",
+        "אאורטה"
+      ],
+      "correct": 1,
+      "subject": "מבחן עיוני - קינמטיקה, פגיעות חזה ובטן",
+      "sourceFile": "end_trauma_chess_quiz.json"
+    },
+    {
+      "id": "end_trauma_chess_quiz_25",
+      "question": "טמפונדה לבבית ניתנת לטיפול רק ע\"י פתיחת חזה בשטח.",
+      "type": "true_false",
+      "options": [
+        "נכון",
+        "לא נכון. ניתן לבצע פריקרדיוסנטזיס (ניקוז הנוזל/דם מהפריקרד) בבית החולים."
+      ],
+      "correct": 1,
+      "subject": "מבחן עיוני - קינמטיקה, פגיעות חזה ובטן",
+      "sourceFile": "end_trauma_chess_quiz.json"
+    },
+    {
+      "id": "end_trauma_chess_quiz_26",
+      "question": "מה מייצגת פגיעת ה'Up and Over' בקינמטיקה של תאונת דרכים קדמית?",
+      "type": "multiple_choice",
+      "options": [
+        "המטופל עף מהמושב למעלה ופוגע עם הראש/חזה בהגה או בשמשה הקדמית",
+        "המטופל מחליק מתחת לחגורה",
+        "המטופל עף מחוץ לרכב",
+        "המטופל יושב ללא תזוזה"
+      ],
+      "correct": 0,
+      "subject": "מבחן עיוני - קינמטיקה, פגיעות חזה ובטן",
+      "sourceFile": "end_trauma_chess_quiz.json"
+    },
+    {
+      "id": "end_trauma_chess_quiz_27",
+      "question": "המטרה העיקרית במתן נוזלים בטמפונדה לבבית היא:",
+      "type": "multiple_choice",
+      "options": [
+        "לשפר את מילוי החדרים הנותר ולהעלות לחץ דם עד לניקוז הפריקרד",
+        "לצנן את הלב",
+        "להפחית לחץ דם",
+        "למנוע היפוגליקמיה"
+      ],
+      "correct": 0,
+      "subject": "מבחן עיוני - קינמטיקה, פגיעות חזה ובטן",
+      "sourceFile": "end_trauma_chess_quiz.json"
+    },
+    {
+      "id": "end_trauma_chess_quiz_28",
+      "question": "בפנאומוטורקס לוחץ, סטיית קנה הנשימה (טראכאה) היא סימן:",
+      "type": "multiple_choice",
+      "options": [
+        "מיידי ומוקדם",
+        "מאוחר מאוד ומעיד על לחץ קיצוני",
+        "שאינו קשור לחזה אוויר בלחץ",
+        "הקשור רק לטמפונדה לבבית"
+      ],
+      "correct": 1,
+      "subject": "מבחן עיוני - קינמטיקה, פגיעות חזה ובטן",
+      "sourceFile": "end_trauma_chess_quiz.json"
+    },
+    {
+      "id": "end_trauma_chess_quiz_29",
+      "question": "בטראומה ביתנית קהה, אילו איברים פניימים מוגנים פחות מאשר הכבד או הטחול?",
+      "type": "multiple_choice",
+      "options": [
+        "כליות (ממוקמות רטרופריטונאלית)",
+        "הלב",
+        "כלי דם גדולים (אאורטה)",
+        "קיבה"
+      ],
+      "correct": [
+        0,
+        2
+      ],
+      "subject": "מבחן עיוני - קינמטיקה, פגיעות חזה ובטן",
+      "sourceFile": "end_trauma_chess_quiz.json"
+    },
+    {
+      "id": "end_trauma_chess_quiz_30",
+      "question": "מהו השם הגנרי של תרופת הקסקפרון?",
+      "type": "multiple_choice",
+      "options": [
+        "Adrenaline",
+        "Tranexamic Acid",
+        "Amiodarone",
+        "Ketamine"
+      ],
+      "correct": 1,
+      "subject": "מבחן עיוני - קינמטיקה, פגיעות חזה ובטן",
+      "sourceFile": "end_trauma_chess_quiz.json"
+    },
+    {
+      "id": "end_trauma_chess_quiz_31",
+      "question": "מהו סוג התרופה של Tranexamic Acid?",
+      "type": "multiple_choice",
+      "options": [
+        "אנטי-היסטמין",
+        "אנטי-פיברינוליטי",
+        "אנטיביוטיקה",
+        "אנטי-דכאיבי"
+      ],
+      "correct": 1,
+      "subject": "מבחן עיוני - קינמטיקה, פגיעות חזה ובטן",
+      "sourceFile": "end_trauma_chess_quiz.json"
+    },
+    {
+      "id": "end_trauma_chess_quiz_32",
+      "question": "מהו מנגנון הפעולה של Tranexamic Acid?",
+      "type": "multiple_choice",
+      "options": [
+        "מעלה את לחץ הדם",
+        "מונע פירוק של קרישי דם ועוזר לעצור דימומים",
+        "מרחיב כלי דם",
+        "מפחית דלקת"
+      ],
+      "correct": 1,
+      "subject": "מבחן עיוני - קינמטיקה, פגיעות חזה ובטן",
+      "sourceFile": "end_trauma_chess_quiz.json"
+    },
+    {
+      "id": "end_trauma_chess_quiz_33",
+      "question": "מתי ניתן לתת Tranexamic Acid בטראומה?",
+      "type": "multiple_choice",
+      "options": [
+        "בכל מקרה של טראומה",
+        "רק בטראומת ראש",
+        "בשוק היפוולמי עם מעל 10 דקות פינוי ולפחות 2 מסימני ההלם",
+        "רק בטראומה חודרת"
+      ],
+      "correct": 2,
+      "subject": "מבחן עיוני - קינמטיקה, פגיעות חזה ובטן",
+      "sourceFile": "end_trauma_chess_quiz.json"
+    },
+    {
+      "id": "end_trauma_chess_quiz_34",
+      "question": "מהו זמן הפינוי המינימלי הנדרש כדי לשקול מתן Tranexamic Acid?",
+      "type": "multiple_choice",
+      "options": [
+        "מעל 5 דקות",
+        "מעל 10 דקות",
+        "מעל 20 דקות",
+        "מעל 30 דקות"
+      ],
+      "correct": 1,
+      "subject": "מבחן עיוני - קינמטיקה, פגיעות חזה ובטן",
+      "sourceFile": "end_trauma_chess_quiz.json"
+    },
+    {
+      "id": "end_trauma_chess_quiz_35",
+      "question": "מהו המינון של Tranexamic Acid באמפולה?",
+      "type": "multiple_choice",
+      "options": [
+        "250mg/5cc",
+        "500mg/5cc",
+        "1000mg/10cc",
+        "100mg/2cc"
+      ],
+      "correct": 1,
+      "subject": "מבחן עיוני - קינמטיקה, פגיעות חזה ובטן",
+      "sourceFile": "end_trauma_chess_quiz.json"
+    },
+    {
+      "id": "end_trauma_chess_quiz_36",
+      "question": "מהו המנה החד-פעמית של Tranexamic Acid?",
+      "type": "multiple_choice",
+      "options": [
+        "500mg - אמפולה אחת",
+        "1 גרם - 2 אמפולות",
+        "2 גרם - 4 אמפולות",
+        "250mg - חצי אמפולה"
+      ],
+      "correct": 1,
+      "subject": "מבחן עיוני - קינמטיקה, פגיעות חזה ובטן",
+      "sourceFile": "end_trauma_chess_quiz.json"
+    },
+    {
+      "id": "end_trauma_chess_quiz_37",
+      "question": "באילו דרכים ניתן לתת Tranexamic Acid?",
+      "type": "multiple_choice",
+      "options": [
+        "רק בהזלפה",
+        "רק בפוש",
+        "בפוש או בהזלפה",
+        "רק דרך הפה"
+      ],
+      "correct": 2,
+      "subject": "מבחן עיוני - קינמטיקה, פגיעות חזה ובטן",
+      "sourceFile": "end_trauma_chess_quiz.json"
+    },
+    {
+      "id": "end_trauma_head_quiz_1",
+      "question": "מהו ה'אינטרוול הצלול' (Lucid Interval) הקלאסי המאפיין דימום אפידורלי (Epidural Hematoma)?",
+      "type": "multiple_choice",
+      "options": [
+        "תקופה ארוכה של איבוד הכרה שמתפתחת לאיבוד הכרה מתמשך",
+        "תקופה קצרה של חוסר הכרה, אחריה תקופה של הכרה מלאה, ואז הידרדרות מהירה להלם",
+        "איבוד הכרה קצר, אחריו תקופה של **הכרה חלקית או מלאה** (שעות), ואז **הידרדרות מהירה** במצב ההכרה",
+        "טשטוש בלבד ללא איבוד הכרה"
+      ],
+      "correct": 2,
+      "subject": "מבחן עיוני - פגיעות ראש",
+      "sourceFile": "end_trauma_head_quiz.json"
+    },
+    {
+      "id": "end_trauma_head_quiz_2",
+      "question": "אילו סימנים עלולים להעיד על שבר בבסיס הגולגולת (Basilar Skull Fracture)?",
+      "type": "multiple_choice",
+      "options": [
+        "סימן באטל (Battle's Sign) - חבלה מאחורי האוזן",
+        "עיני דביבון (Racoon Eyes) - שטף דם דו-צדדי מסביב לעיניים",
+        "דליפת נוזל מוחי שדרתי (CSF) מהאף או מהאוזן",
+        "היעדר כאב",
+        "ירידה מהירה בלחץ דם",
+        "הלם ספטי",
+        "טכיקרדיה קבועה"
+      ],
+      "correct": [
+        0,
+        1,
+        2
+      ],
+      "subject": "מבחן עיוני - פגיעות ראש",
+      "sourceFile": "end_trauma_head_quiz.json"
+    },
+    {
+      "id": "end_trauma_head_quiz_3",
+      "question": "שבר בסיס גולגולת מחייב קיבוע מלא של עמוד השדרה.",
+      "type": "true_false",
+      "options": [
+        "נכון. כל פגיעת ראש משמעותית עם חשד לשבר בבסיס הגולגולת או מצב הכרה מעורפל מחייבת קיבוע.",
+        "לא נכון."
+      ],
+      "correct": 0,
+      "subject": "מבחן עיוני - פגיעות ראש",
+      "sourceFile": "end_trauma_head_quiz.json"
+    },
+    {
+      "id": "end_trauma_head_quiz_4",
+      "question": "איזה דימום תוך-גולגולתי הוא בדרך כלל ורידי ומתפתח לאט יותר?",
+      "type": "multiple_choice",
+      "options": [
+        "דימום אפידורלי",
+        "דימום סאב-דורלי (Subdural Hematoma)",
+        "דימום תת-עכבישי (Subarachnoid Hemorrhage)",
+        "דימום אינטרה-צרברלי"
+      ],
+      "correct": 1,
+      "subject": "מבחן עיוני - פגיעות ראש",
+      "sourceFile": "end_trauma_head_quiz.json"
+    },
+    {
+      "id": "end_trauma_head_quiz_5",
+      "question": "המקום העיקרי לזיהוי טמפונדה לבבית הוא בסבב השניוני (Secondary Survey) ב-ATLS.",
+      "type": "true_false",
+      "options": [
+        "נכון",
+        "לא נכון. טמפונדה לבבית היא סכנת חיים מיידית המחייבת זיהוי וטיפול במסגרת **סבב ראשוני (Primary Survey)**."
+      ],
+      "correct": 1,
+      "subject": "מבחן עיוני - פגיעות ראש",
+      "sourceFile": "end_trauma_head_quiz.json"
+    },
+    {
+      "id": "end_trauma_head_quiz_6",
+      "question": "פגיעות ראש קהות כוללות רק דימומים אפידורליים וסאב-דורליים.",
+      "type": "true_false",
+      "options": [
+        "נכון",
+        "לא נכון. הן כוללות גם זעזוע מוח (Concussion) ופגיעה מפושטת באקסונים (DAI)."
+      ],
+      "correct": 1,
+      "subject": "מבחן עיוני - פגיעות ראש",
+      "sourceFile": "end_trauma_head_quiz.json"
+    },
+    {
+      "id": "end_trauma_head_quiz_7",
+      "question": "שבר בסיס גולגולת יכול לגרום לנזק ישיר למבנים עצביים ורקמות מוחיות.",
+      "type": "true_false",
+      "options": [
+        "נכון",
+        "לא נכון"
+      ],
+      "correct": 0,
+      "subject": "מבחן עיוני - פגיעות ראש",
+      "sourceFile": "end_trauma_head_quiz.json"
+    },
+    {
+      "id": "end_trauma_head_quiz_8",
+      "question": "מהו סוג הדימום השכיח ביותר בפגיעות ראש חודרות (כגון ירי)?",
+      "type": "multiple_choice",
+      "options": [
+        "דימום אפידורלי",
+        "דימום סאב-דורלי",
+        "דימום תוך מוחי (Intracerebral Hemorrhage)",
+        "שבר בבסיס הגולגולת"
+      ],
+      "correct": 2,
+      "subject": "מבחן עיוני - פגיעות ראש",
+      "sourceFile": "end_trauma_head_quiz.json"
+    },
+    {
+      "id": "end_trauma_head_quiz_9",
+      "question": "מהי משמעות הופעת 'עיני דביבון' (Racoon Eyes) לאחר טראומה?",
+      "type": "multiple_choice",
+      "options": [
+        "סימן מובהק לדימום אפידורלי",
+        "סימן חלופי לשבר בסיס גולגולת",
+        "סימן לשוק היפוולמי",
+        "סימן לזיהום קשה"
+      ],
+      "correct": 1,
+      "subject": "מבחן עיוני - פגיעות ראש",
+      "sourceFile": "end_trauma_head_quiz.json"
+    },
+    {
+      "id": "end_trauma_head_quiz_10",
+      "question": "בדימום אפידורלי, לרוב הדם מתאסף בין:",
+      "type": "multiple_choice",
+      "options": [
+        "שכבת הדורה (Dura Mater) לארכנואיד",
+        "הגולגולת (Skull) לשכבת הדורה",
+        "הגולגולת לשכבת הפיא",
+        "שכבת הדרמיס והאפידרמיס"
+      ],
+      "correct": 1,
+      "subject": "מבחן עיוני - פגיעות ראש",
+      "sourceFile": "end_trauma_head_quiz.json"
+    },
+    {
+      "id": "end_trauma_head_quiz_11",
+      "question": "מהי המשמעות הקלינית של Lucid Interval (אינטרוול צלול) בפגיעת ראש?",
+      "type": "multiple_choice",
+      "options": [
+        "מצב המעיד על דימום קל ואיטי שאינו מחייב התערבות",
+        "מצב המעיד על פגיעה קשה המחייב ניטור קפדני ופינוי מהיר, שכן הידרדרות מהירה אפשרית (לרוב EDH)",
+        "סימן מובהק לשבר בבסיס הגולגולת",
+        "סימן לזעזוע מוח בלבד"
+      ],
+      "correct": 1,
+      "subject": "מבחן עיוני - פגיעות ראש",
+      "sourceFile": "end_trauma_head_quiz.json"
+    },
+    {
+      "id": "end_trauma_head_quiz_12",
+      "question": "שבר בסיס גולגולת עלול להוביל ל-",
+      "type": "multiple_choice",
+      "options": [
+        "דליפת CSF מהאף (Rhinorrhea) או מהאוזן (Otorrhea)",
+        "פגיעה בעצבי הגולגולת (Facial Palsy, Tinnitus)",
+        "התפתחות המטומה סביב העיניים (Racoon Eyes) או מאחורי האוזן (Battle's Sign)",
+        "הלם ספטי מיידי",
+        "תסמונת המדור בגפיים",
+        "לחץ דם מוגבר מאוד"
+      ],
+      "correct": [
+        0,
+        1,
+        2
+      ],
+      "subject": "מבחן עיוני - פגיעות ראש",
+      "sourceFile": "end_trauma_head_quiz.json"
+    },
+    {
+      "id": "end_trauma_head_quiz_13",
+      "question": "האם חיוני להגן על עמוד השדרה הצווארי במטופל עם Lucid Interval?",
+      "type": "true_false",
+      "options": [
+        "נכון. כל פגיעת ראש משמעותית עם שינוי במצב ההכרה או מנגנון פגיעה קשה מחייבת קיבוע צווארי מלא עד לשלילת פגיעה בעמוד השדרה.",
+        "לא נכון."
+      ],
+      "correct": 0,
+      "subject": "מבחן עיוני - פגיעות ראש",
+      "sourceFile": "end_trauma_head_quiz.json"
+    },
+    {
+      "id": "end_trauma_head_quiz_14",
+      "question": "האם יש לטפל באפילפסיה אצל מטופל עם תסמונת המדור?",
+      "type": "true_false",
+      "options": [
+        "נכון",
+        "לא נכון. אין קשר ישיר בין תסמונת המדור לאפילפסיה. פגיעות ראש או הפרעות מטבוליות עלולות לגרום להתקפים."
+      ],
+      "correct": 1,
+      "subject": "מבחן עיוני - פגיעות ראש",
+      "sourceFile": "end_trauma_head_quiz.json"
+    },
+    {
+      "id": "end_trauma_head_quiz_15",
+      "question": "פגיעות ראש קשות (כגון EDH או SDH) מצריכות לעיתים אינטובציה לצורך:",
+      "type": "multiple_choice",
+      "options": [
+        "שימור נתיב אוויר והגנה מפני אספירציה",
+        "היפרוונטילציה מבוקרת להורדת ICP (במצבים ספציפיים)",
+        "מתן נוזלים קרים",
+        "טיפול שגרתי בכל פגיעה"
+      ],
+      "correct": [
+        0,
+        1
+      ],
+      "subject": "מבחן עיוני - פגיעות ראש",
+      "sourceFile": "end_trauma_head_quiz.json"
+    },
+    {
+      "id": "end_trauma_head_quiz_16",
+      "question": "איזה ממצא בבדיקת נוזל הדולף מהאף או האוזן מעיד על דליפת CSF (שבר בסיס גולגולת)?",
+      "type": "multiple_choice",
+      "options": [
+        "ריח חריף",
+        "מבחן ה'הילה' (Halo Sign) או מבחן הגלוקוז (אם אין דם)",
+        "צבע אדום כהה",
+        "קריש דם"
+      ],
+      "correct": 1,
+      "subject": "מבחן עיוני - פגיעות ראש",
+      "sourceFile": "end_trauma_head_quiz.json"
+    },
+    {
+      "id": "end_trauma_head_quiz_17",
+      "question": "מהו הגורם העיקרי להידרדרות מהירה של GCS בחולה עם דימום אפידורלי?",
+      "type": "multiple_choice",
+      "options": [
+        "היפוגליקמיה",
+        "הרניאציה (Herniation) של המוח עקב עלייה ב-ICP",
+        "ירידה בלחץ דם",
+        "זיהום"
+      ],
+      "correct": 1,
+      "subject": "מבחן עיוני - פגיעות ראש",
+      "sourceFile": "end_trauma_head_quiz.json"
+    },
+    {
+      "id": "end_trauma_head_quiz_18",
+      "question": "האם ניתן לתת Tranexamic Acid למטופל עם ירידה במצב הכרה משנית לחבלת ראש?",
+      "type": "multiple_choice",
+      "options": [
+        "כן, בכל מקרה של חבלת ראש",
+        "לא, ירידה במצב הכרה משנית לחבלת ראש אינה נחשבת כסימן הלם מתאים למתן התרופה",
+        "כן, אך רק עם אישור רופא",
+        "כן, זו האינדיקציה העיקרית"
+      ],
+      "correct": 1,
+      "subject": "מבחן עיוני - פגיעות ראש",
+      "sourceFile": "end_trauma_head_quiz.json"
+    },
+    {
+      "id": "end_trauma_head_quiz_19",
+      "question": "האם ניתן לתת Tranexamic Acid למטופל עם חבלת ראש?",
+      "type": "true_false",
+      "options": [
+        "כן, בתנאי שאין הרחבת אישונים דו צדדית",
+        "אין לתת הקסקפרון בחבלת ראש"
+      ],
+      "correct": 0,
+      "subject": "מבחן עיוני - פגיעות ראש",
+      "sourceFile": "end_trauma_head_quiz.json"
     }
   ]
 }
