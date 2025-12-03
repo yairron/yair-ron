@@ -917,18 +917,6 @@
     },
     {
       "id": 73,
-      "question": "מהו הטיפול התרופתי המקובל להפחתת בצקת מוחית (אם מתאים לפרוטוקול) במצב של עלייה חדה ב-ICP?",
-      "type": "multiple_choice",
-      "options": [
-        "מתן מניטול (Mannitol) או סליין היפרטוני",
-        "מתן אדרנלין",
-        "מתן אטרופין",
-        "מתן ביקרבונט"
-      ],
-      "correct": 0
-    },
-    {
-      "id": 74,
       "question": "בפגיעות בטן חודרות, הסכנה העיקרית היא:",
       "type": "multiple_choice",
       "options": [
@@ -940,7 +928,7 @@
       "correct": 0
     },
     {
-      "id": 75,
+      "id": 74,
       "question": "מהי הקינמטיקה המאפיינת 'תסמונת הדחיסה' (Crush Syndrome) שעלולה להוביל לתסמונת המדור?",
       "type": "multiple_choice",
       "options": [
@@ -952,7 +940,7 @@
       "correct": 0
     },
     {
-      "id": 76,
+      "id": 75,
       "question": "האם בטמפונדה לבבית יש איבוד דם משמעותי מחוץ ללב?",
       "type": "true_false",
       "options": [
@@ -962,7 +950,7 @@
       "correct": 1
     },
     {
-      "id": 77,
+      "id": 76,
       "question": "מהם הסימנים המיידיים המעידים על חזה אוויר בלחץ מתפתח?",
       "type": "multiple_choice",
       "options": [
@@ -974,7 +962,7 @@
       "correct": 0
     },
     {
-      "id": 78,
+      "id": 77,
       "question": "הסכנה העיקרית של פגיעה בכבד ו/או בטחול היא סכנה של:",
       "type": "multiple_choice",
       "options": [
@@ -986,7 +974,7 @@
       "correct": 2
     },
     {
-      "id": 79,
+      "id": 78,
       "question": "מהו האיבר הפנימי בעל הסיכון הגבוה ביותר לפגיעה בטראומה קהה באזור הבטן העליונה השמאלית?",
       "type": "multiple_choice",
       "options": [
@@ -998,7 +986,7 @@
       "correct": 1
     },
     {
-      "id": 80,
+      "id": 79,
       "question": "מתי חגורת בטיחות עלולה לגרום לפגיעה בטנית משמעותית (Seatbelt Sign)?",
       "type": "multiple_choice",
       "options": [
@@ -1010,7 +998,7 @@
       "correct": 1
     },
     {
-      "id": 81,
+      "id": 80,
       "question": "האם מתן נוזלים קרים עשוי להיות מסוכן בחולה עם מכת חום קשה?",
       "type": "true_false",
       "options": [
@@ -1020,7 +1008,7 @@
       "correct": 0
     },
     {
-      "id": 82,
+      "id": 81,
       "question": "האם מותר להשתמש במד טמפרטורה דרך הפה כדי לקבוע מכת חום?",
       "type": "true_false",
       "options": [
@@ -1030,7 +1018,7 @@
       "correct": 1
     },
     {
-      "id": 83,
+      "id": 82,
       "question": "בחשד לרבדומיוליזה לאחר התחשמלות, איזה ממצא מעבדתי (אם זמין) צפוי להיות מוגבר?",
       "type": "multiple_choice",
       "options": [
@@ -1045,7 +1033,7 @@
       ]
     },
     {
-      "id": 84,
+      "id": 83,
       "question": "האם יש לטפל באפילפסיה אצל מטופל עם תסמונת המדור?",
       "type": "true_false",
       "options": [
@@ -1055,7 +1043,7 @@
       "correct": 1
     },
     {
-      "id": 85,
+      "id": 84,
       "question": "במטופל לאחר טראומה, אובדן דם משמעותי יגרום תחילה ל-",
       "type": "multiple_choice",
       "options": [
@@ -1067,7 +1055,7 @@
       "correct": 1
     },
     {
-      "id": 86,
+      "id": 85,
       "question": "טמפונדה לבבית ניתנת לטיפול רק ע\"י פתיחת חזה בשטח.",
       "type": "true_false",
       "options": [
@@ -1077,7 +1065,7 @@
       "correct": 1
     },
     {
-      "id": 87,
+      "id": 86,
       "question": "כיצד ניקור חזה (Needle Decompression) מטפל בחזה אוויר בלחץ?",
       "type": "multiple_choice",
       "options": [
@@ -1089,7 +1077,7 @@
       "correct": 1
     },
     {
-      "id": 88,
+      "id": 87,
       "question": "פגיעות ראש קשות (כגון EDH או SDH) מצריכות לעיתים אינטובציה לצורך:",
       "type": "multiple_choice",
       "options": [
@@ -1104,7 +1092,7 @@
       ]
     },
     {
-      "id": 89,
+      "id": 88,
       "question": "מהו המדד הנוירולוגי העיקרי להערכת חומרת פגיעת ראש בטראומה?",
       "type": "multiple_choice",
       "options": [
@@ -1116,7 +1104,7 @@
       "correct": 1
     },
     {
-      "id": 90,
+      "id": 89,
       "question": "תסמונת המדור עלולה להתפתח לאחר שחזור זרימת דם לגפה איסכמית ממושכת (Reperfusion Injury).",
       "type": "true_false",
       "options": [
@@ -1126,7 +1114,7 @@
       "correct": 0
     },
     {
-      "id": 91,
+      "id": 90,
       "question": "מהם הסימנים המעידים על מכת חום מאמץ?",
       "type": "multiple_choice",
       "options": [
@@ -1146,7 +1134,7 @@
       ]
     },
     {
-      "id": 92,
+      "id": 91,
       "question": "איזה ממצא בבדיקת נוזל הדולף מהאף או האוזן מעיד על דליפת CSF (שבר בסיס גולגולת)?",
       "type": "multiple_choice",
       "options": [
@@ -1158,7 +1146,7 @@
       "correct": 1
     },
     {
-      "id": 93,
+      "id": 92,
       "question": "מה מייצגת פגיעת ה'Up and Over' בקינמטיקה של תאונת דרכים קדמית?",
       "type": "multiple_choice",
       "options": [
@@ -1170,7 +1158,7 @@
       "correct": 0
     },
     {
-      "id": 94,
+      "id": 93,
       "question": "המטרה העיקרית במתן נוזלים בטמפונדה לבבית היא:",
       "type": "multiple_choice",
       "options": [
@@ -1182,7 +1170,7 @@
       "correct": 0
     },
     {
-      "id": 95,
+      "id": 94,
       "question": "בפנאומוטורקס לוחץ, סטיית קנה הנשימה (טראכאה) היא סימן:",
       "type": "multiple_choice",
       "options": [
@@ -1194,7 +1182,7 @@
       "correct": 1
     },
     {
-      "id": 96,
+      "id": 95,
       "question": "בפגיעת בטן, נוכחות של 'בטן קשה' (Board-like Abdomen) מחייבת חשד גבוה ל:",
       "type": "multiple_choice",
       "options": [
@@ -1206,7 +1194,7 @@
       "correct": 1
     },
     {
-      "id": 97,
+      "id": 96,
       "question": "הסכנות העיקריות בהתחשמלות במתח נמוך (Low Voltage) הן:",
       "type": "multiple_choice",
       "options": [
@@ -1218,7 +1206,7 @@
       "correct": 0
     },
     {
-      "id": 98,
+      "id": 97,
       "question": "מהו הגורם העיקרי להידרדרות מהירה של GCS בחולה עם דימום אפידורלי?",
       "type": "multiple_choice",
       "options": [
@@ -1230,7 +1218,7 @@
       "correct": 1
     },
     {
-      "id": 99,
+      "id": 98,
       "question": "מה עשוי לכלול הטיפול הקדם-אשפוזי בחשד לתסמונת המדור?",
       "type": "multiple_choice",
       "options": [
@@ -1247,7 +1235,7 @@
       ]
     },
     {
-      "id": 100,
+      "id": 99,
       "question": "בטראומה ביתנית קהה, אילו איברים פניימים מוגנים פחות מאשר הכבד או הטחול?",
       "type": "multiple_choice",
       "options": [
@@ -1262,7 +1250,7 @@
       ]
     },
     {
-      "id": 101,
+      "id": 100,
       "question": "מהו השם הגנרי של תרופת הקסקפרון?",
       "type": "multiple_choice",
       "options": [
@@ -1274,7 +1262,7 @@
       "correct": 1
     },
     {
-      "id": 102,
+      "id": 101,
       "question": "מהו סוג התרופה של Tranexamic Acid?",
       "type": "multiple_choice",
       "options": [
@@ -1286,7 +1274,7 @@
       "correct": 1
     },
     {
-      "id": 103,
+      "id": 102,
       "question": "מהו מנגנון הפעולה של Tranexamic Acid?",
       "type": "multiple_choice",
       "options": [
@@ -1298,7 +1286,7 @@
       "correct": 1
     },
     {
-      "id": 104,
+      "id": 103,
       "question": "מתי ניתן לתת Tranexamic Acid בטראומה?",
       "type": "multiple_choice",
       "options": [
@@ -1310,7 +1298,7 @@
       "correct": 2
     },
     {
-      "id": 105,
+      "id": 104,
       "question": "מהם סימני ההלם הנדרשים למתן Tranexamic Acid? (נדרשים לפחות 2)",
       "type": "multiple_choice",
       "options": [
@@ -1322,7 +1310,7 @@
       "correct": 0
     },
     {
-      "id": 106,
+      "id": 105,
       "question": "מהו זמן הפינוי המינימלי הנדרש כדי לשקול מתן Tranexamic Acid?",
       "type": "multiple_choice",
       "options": [
@@ -1334,7 +1322,7 @@
       "correct": 1
     },
     {
-      "id": 107,
+      "id": 106,
       "question": "מהו המינון של Tranexamic Acid באמפולה?",
       "type": "multiple_choice",
       "options": [
@@ -1346,7 +1334,7 @@
       "correct": 1
     },
     {
-      "id": 108,
+      "id": 107,
       "question": "מהו המנה החד-פעמית של Tranexamic Acid?",
       "type": "multiple_choice",
       "options": [
@@ -1358,7 +1346,7 @@
       "correct": 1
     },
     {
-      "id": 109,
+      "id": 108,
       "question": "באילו דרכים ניתן לתת Tranexamic Acid?",
       "type": "multiple_choice",
       "options": [
@@ -1370,7 +1358,7 @@
       "correct": 2
     },
     {
-      "id": 110,
+      "id": 109,
       "question": "האם ניתן לתת Tranexamic Acid למטופל עם ירידה במצב הכרה משנית לחבלת ראש?",
       "type": "multiple_choice",
       "options": [
@@ -1380,6 +1368,16 @@
         "כן, זו האינדיקציה העיקרית"
       ],
       "correct": 1
+    },
+    {
+      "id": 110,
+      "question": "האם ניתן לתת Tranexamic Acid למטופל עם חבלת ראש?",
+      "type": "true_false",
+      "options": [
+        "כן, בתנאי שאין הרחבת אישונים דו צדדית",
+        "אין לתת הקסקפרון בחבלת ראש"
+      ],
+      "correct": 0
     }
   ]
 }
