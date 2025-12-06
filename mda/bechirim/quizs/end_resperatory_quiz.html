@@ -54,6 +54,31 @@
     .content-wrapper {
       margin-top: 100px;
     }
+    /* Toggle-all fixed button container */
+    #toggle-all-container {
+      position: fixed;
+      left: 50%;
+      transform: translateX(-50%);
+      /* top will be set dynamically by JS to sit below the sticky header */
+      top: 92px; /* fallback for older browsers or if JS fails */
+      z-index: 105;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      pointer-events: auto;
+      transition: top 0.18s ease;
+    }
+    #toggle-all-questions {
+      background: #1976d2;
+      color: #fff;
+      border: none;
+      padding: 8px 14px;
+      border-radius: 6px;
+      font-weight: bold;
+      cursor: pointer;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.12);
+    }
+    #toggle-all-questions:active { transform: translateY(1px); }
     details {
       background: #fff;
       border-radius: 8px;
@@ -274,6 +299,14 @@
       margin: 0 0 10px 0;
       color: #495057;
     }
+
+    /* כשהשאלה נענתה - שנה צבע כותרת השאלה (התאם לצבע ה-V של תשובה נכונה) */
+    .question.answered h4 {
+      color: #1421d3; /* checkmark green */
+      transition: color 0.25s ease;
+    }
+
+    /* (removed answered-title styling during rollback) */
     .answer-option {
       margin: 8px 0;
       padding: 10px;
@@ -615,6 +648,33 @@
     font-size: 1.2em;
     padding: 10px 0 6px 0;
   }
+
+/* Responsive rules for the toggle-all button */
+@media (max-width: 768px) {
+  #toggle-all-questions {
+    padding: 7px 12px;
+    font-size: 0.9em;
+    border-radius: 6px;
+  }
+  #toggle-all-container {
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 110;
+  }
+}
+
+@media (max-width: 480px) {
+  #toggle-all-questions {
+    padding: 6px 10px;
+    font-size: 0.85em;
+    border-radius: 6px;
+  }
+  #toggle-all-container {
+    left: 50%;
+    transform: translateX(-50%);
+    width: auto;
+  }
+}
   
   /* תפריט צד */
   .side-menu {
@@ -1014,7 +1074,7 @@
             <div class="hamburger-line"></div>
             <div class="hamburger-line"></div>
         </button>
-        <div class="menu-title">מיקוד למבחן מסכם - נשימה</div>
+        <div class="menu-title"><div class="menu-title">מיקוד למבחן מסכם - נשימה</div></div>
         <div class="menu-spacer"></div>
     </div>
 
@@ -1042,6 +1102,10 @@
 	</div>
   <div class="content-wrapper">
 
+    <div id="toggle-all-container">
+      <button id="toggle-all-questions" aria-controls="quiz-container">פתח את כל השאלות</button>
+    </div>
+
     <div class="loading" style="display: none;">טוען שאלות...</div>
     <div id="quiz-container"></div>
     <div id="score-display" style="margin-top: 10px; padding: 20px; background: #e9ecef; border-radius: 8px; text-align: center; font-size: 1.2em; font-weight: bold; display: none;">
@@ -1057,7 +1121,7 @@ async function loadMainQuiz() {
   try {
     console.log('📖 טוען שאלות מקובץ contra_med_quiz.json...');
     
-    const response = await fetch('../../json/end_respiratry_quiz.json');
+const response = await fetch('../../json/end_respiratry_quiz.json');
     if (!response.ok) {
       throw new Error(`HTTP error! status: ${response.status}`);
     }
@@ -1471,6 +1535,11 @@ function createQuestionElement(question, questionNumber) {
     originalIndex: index
   })));
   
+  // Create a container for options, hidden by default
+  const optionsContainer = document.createElement('div');
+  optionsContainer.className = 'options-container';
+  optionsContainer.style.cssText = 'display: none; margin-top: 10px;';
+
   shuffledOptions.forEach((option, index) => {
     const optionDiv = document.createElement('div');
     optionDiv.className = 'answer-option';
@@ -1501,7 +1570,18 @@ function createQuestionElement(question, questionNumber) {
       optionDiv.onclick = () => checkSingleAnswer(optionDiv, option.originalIndex, question.id, question);
     }
     
-    questionDiv.appendChild(optionDiv);
+    optionsContainer.appendChild(optionDiv);
+  });
+
+  // add options container to questionDiv (hidden by default)
+  questionDiv.appendChild(optionsContainer);
+
+  // Make question title clickable to toggle answers
+  questionTitle.style.cursor = 'pointer';
+  questionTitle.addEventListener('click', () => {
+    // toggle display
+    const isVisible = optionsContainer.style.display !== 'none';
+    optionsContainer.style.display = isVisible ? 'none' : 'block';
   });
   
   // Initialize user answers for this question
@@ -1512,7 +1592,7 @@ function createQuestionElement(question, questionNumber) {
 
 // שאר הפונקציות נשארות ללא שינוי
 function toggleMultipleAnswer(selectedElement, questionId, originalIndex, question) {
-  const questionDiv = selectedElement.parentElement;
+  const questionDiv = selectedElement.closest('.question');
   
   // בדוק אם השאלה כבר נבדקה
   if (questionDiv.classList.contains('answered')) {
@@ -1554,7 +1634,7 @@ function toggleMultipleAnswer(selectedElement, questionId, originalIndex, questi
 }
 
 function checkSingleAnswer(selectedElement, originalIndex, questionId, question) {
-  const questionDiv = selectedElement.parentElement;
+  const questionDiv = selectedElement.closest('.question');
   const options = questionDiv.querySelectorAll('.answer-option');
   
   // Check if already answered
@@ -1595,7 +1675,6 @@ function checkSingleAnswer(selectedElement, originalIndex, questionId, question)
   
   // Mark question as answered
   questionDiv.classList.add('answered');
-  
   // Check if all questions answered
   checkIfAllQuestionsAnswered();
 }
@@ -1628,7 +1707,6 @@ function checkMultipleQuestion(questionId, question) {
   // Disable check button and mark as answered
   checkButton.style.display = 'none';
   questionDiv.classList.add('answered');
-  
   // Check if all questions answered
   checkIfAllQuestionsAnswered();
 }
@@ -1684,7 +1762,16 @@ function removeMarkings(element) {
 function checkIfAllQuestionsAnswered() {
   const answeredQuestions = document.querySelectorAll('.question.answered').length;
   if (answeredQuestions === totalQuestions) {
-    setTimeout(() => showFinalScore(), 1000);
+    // ensure score display is visible and then show final score
+    const scoreDisplay = document.getElementById('score-display');
+    if (scoreDisplay) scoreDisplay.style.display = 'block';
+    setTimeout(() => {
+      try {
+        showFinalScore();
+      } catch (err) {
+        console.error('showFinalScore error:', err);
+      }
+    }, 100);
   }
 }
 
@@ -1749,6 +1836,68 @@ document.addEventListener('DOMContentLoaded', function() {
   setTimeout(() => {
     loadMainQuiz();
   }, 1000);
+  // wire and position toggle-all button
+  const toggleBtn = document.getElementById('toggle-all-questions');
+
+  function positionToggleButton() {
+    const topLink = document.querySelector('.top-link');
+    const sticky = document.querySelector('.sticky-header');
+    const container = document.getElementById('toggle-all-container');
+    const contentWrapper = document.querySelector('.content-wrapper');
+    if (!container) return;
+
+    let offset = 0;
+    if (topLink) offset += Math.ceil(topLink.getBoundingClientRect().height);
+    if (sticky) offset += Math.ceil(sticky.getBoundingClientRect().height);
+
+    // Add a small gap
+    const gap = 10;
+    const topValue = offset + gap;
+    container.style.top = topValue + 'px';
+
+    // Reserve space between header+button and the first question by setting content-wrapper margin-top
+    try {
+      const containerHeight = container.getBoundingClientRect().height || 0;
+      if (contentWrapper) {
+        const desired = topValue + containerHeight + 8; // extra breathing room
+        contentWrapper.style.marginTop = desired + 'px';
+      }
+    } catch (e) {
+      // ignore measurement errors
+    }
+  }
+
+  // wire toggle action
+  if (toggleBtn) {
+    toggleBtn.setAttribute('aria-expanded', 'false');
+    toggleBtn.addEventListener('click', () => {
+      const containers = document.querySelectorAll('.options-container');
+      // determine whether to open or close: if any closed => open all
+      let anyClosed = false;
+      containers.forEach(c => {
+        if (c.style.display === 'none' || c.style.display === '') anyClosed = true;
+      });
+      if (anyClosed) {
+        containers.forEach(c => c.style.display = 'block');
+        toggleBtn.textContent = 'סגור את כל השאלות';
+        toggleBtn.setAttribute('aria-expanded', 'true');
+      } else {
+        containers.forEach(c => c.style.display = 'none');
+        toggleBtn.textContent = 'פתח את all השאלות'.replace('all','כל');
+        // above replace keeps the hebrew text consistent while avoiding accidental encoding changes
+        toggleBtn.textContent = 'פתח את כל השאלות';
+        toggleBtn.setAttribute('aria-expanded', 'false');
+      }
+    });
+  }
+
+  // initial positioning and on resize
+  positionToggleButton();
+  window.addEventListener('resize', () => {
+    // debounce to avoid too many layouts
+    clearTimeout(window.__toggleRepositionTimeout);
+    window.__toggleRepositionTimeout = setTimeout(positionToggleButton, 120);
+  });
 });
         const hamburgerBtn = document.getElementById('hamburgerBtn');
         const sideMenu = document.getElementById('sideMenu');
