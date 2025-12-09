@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>טראומה חלק א</title>
+    <title>אישונים ועיניים</title>
     <link rel="stylesheet" href="../../../../css/Als2024.css">
     <script 
       src="https://cdn.counter.dev/script.js" 
@@ -35,7 +35,7 @@
       top: 0;
       right: 0;
       left: 0;
-      background: #3ac214;
+      background: #1976d2;
       color: #fff;
       text-align: center;
       padding: 8px 0 4px 0;
@@ -243,7 +243,7 @@
             <div class="hamburger-line"></div>
             <div class="hamburger-line"></div>
         </button>
-        <div class="menu-title">טראומה חלק א</div>
+        <div class="menu-title">אישונים ועיניים</div>
         <div class="menu-spacer"></div>
     </div>
 
@@ -282,9 +282,9 @@
 
 function getPDFData() {
    return {
-       pdfPath: '/btl/files/bechirim_final_pdfviewer.pdf',
-       fileName: 'bechirim_final_pdfviewer',
-       title: 'מבחן מסכם'
+       pdfPath: '/mda/files/others/pupil_examination_guide.pdf',
+       fileName: 'pupil_examination_guide',
+       title: 'אישונים ועיניים'
    };
 }
 
@@ -303,8 +303,9 @@ function loadPDF() {
    document.title = displayTitle;
 
    // בניית נתיב ה-PDF עם PDF.js viewer
-   const viewerUrl = `/mda/bechirim/sikumim/pdf_files/pdf2web/web/viewer.html?file=${pdfData.pdfPath}`;
-   
+   // שימוש ב-pagemode=none כדי למנוע שינוי אוטומטי של הזום בעת ניווט
+   const viewerUrl = `/mda/bechirim/sikumim/pdf_files/pdf2web/web/viewer.html?file=${pdfData.pdfPath}#zoom=page-width&pagemode=none`;
+
    // הגדרת מקור ה-iframe לviewer של PDF.js
    pdfFrame.src = viewerUrl;
     
@@ -370,7 +371,7 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         });
     </script>
-    <script src="btl/js/hamburger-menu.js"></script>
+    <script src="/mda/js/hamburger-menu.js"></script>
 </div> <!--close class="content-wrapper"-->
 </body>
 </html>
