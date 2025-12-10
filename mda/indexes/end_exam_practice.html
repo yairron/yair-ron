@@ -1,0 +1,766 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+  <title>פרוטוקולים למסכם מעשי</title>
+  <script 
+    src="https://cdn.counter.dev/script.js" 
+    data-id="87cd2eee-d5db-43dc-9575-16e58a14c32d" 
+    data-utcoffset="3" 
+    defer 
+    referrerpolicy="no-referrer"></script>
+
+<style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f5f5f5;
+      margin: 0;
+      padding: 20px;
+      overflow-x: hidden;
+      word-wrap: break-word;
+    }
+
+        /* קישור חזרה קבוע למעלה */
+    .top-link {
+      position: fixed;
+      top: 0;
+      right: 0;
+      left: 0;
+      background: #1976d2;
+      color: #fff;
+      text-align: center;
+      padding: 8px 0 4px 0;
+      z-index: 101;
+      font-size: 1.1em;
+      text-decoration: none;
+      letter-spacing: 1px;
+      box-shadow: 0 2px 8px #bbb;
+    }
+    /* כותרת קבועה מתחת לקישור */
+    .sticky-header {
+      position: fixed;
+      top: 36px;
+      right: 0;
+      left: 0;
+      background: #fff;
+      z-index: 100;
+      text-align: center;
+      padding: 18px 0 10px 0;
+      font-size: 2em;
+      font-weight: bold;
+      box-shadow: 0 2px 8px #ddd;
+      border-bottom: 1px solid #eee;
+      /**/
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    /* ריווח לתוכן */
+    .content-wrapper {
+      margin-top: 100px; /* מספיק מקום לשני האלמנטים הקבועים */
+    }
+
+    details {
+      background: #fff;
+      border-radius: 8px;
+      margin: 16px 0;
+      box-shadow: 0 2px 8px #ddd;
+    }
+    .text-wrap {
+    max-width: 800px;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+}
+
+    summary {
+      font-size: 1.2em;
+      font-weight: bold;
+      cursor: pointer;
+      padding: 12px;
+      outline: none;
+    }
+    details[open] summary { 
+      color: #1976d2; 
+    }
+    .content { 
+      padding: 0 16px 16px 0px; 
+      max-width: 80%;
+      word-wrap: break-word;
+      overflow-wrap: break-word;
+    }
+    ul { 
+      margin: 0; 
+      padding-right: 20px; 
+    }
+    li { 
+        padding-top:  0px;
+        margin-right: 10px;
+        margin-bottom: 6px; 
+    }
+/* סגנונות התפריט */
+        .hamburger-menu {
+            cursor: pointer;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-around;
+            width: 30px;
+            height: 25px;
+            background: transparent;
+            border: none;
+            padding: 0;
+            margin-right: 20px;
+            
+        }
+
+        .hamburger-line {
+            width: 100%;
+            height: 3px;
+            background-color: #333;
+            border-radius: 2px;
+            transition: 0.3s;
+        }
+
+        .hamburger-menu.active .hamburger-line:nth-child(1) {
+            transform: rotate(45deg) translate(8px, 8px);
+        }
+
+        .hamburger-menu.active .hamburger-line:nth-child(2) {
+            opacity: 0;
+        }
+
+        .hamburger-menu.active .hamburger-line:nth-child(3) {
+            transform: rotate(-45deg) translate(8px, -8px);
+        }
+
+        .side-menu {
+            position: fixed;
+            top: 0;
+            right: -15%;
+            width: 15%;
+            height: 100vh;
+            background-color: white;
+            box-shadow: -2px 0 10px rgba(0,0,0,0.1);
+            transition: right 0.3s ease;
+            z-index: 1000;
+            padding: 0;
+            border-left: 1px solid #ddd;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .side-menu.open {
+            right: 0;
+        }
+
+        .side-menu h3 {
+            padding: 20px;
+            background-color: #1976d2;
+            color: white;
+            margin: 0;
+            text-align: center;
+            font-size: 18px;
+            font-weight: bold;
+            flex-shrink: 0;
+        }
+
+        .side-menu-content {
+            flex: 1;
+            overflow-y: auto;
+            overflow-x: hidden;
+        }
+
+        .side-menu ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .side-menu li {
+            border-bottom: 1px solid #eee;
+        }
+
+        .side-menu a {
+            display: block;
+            padding: 15px 20px;
+            color: #0077cc;
+            text-decoration: none;
+            transition: background-color 0.3s;
+            font-size: 16px;
+        }
+
+        .side-menu a:hover {
+            background-color: #f0f0f0;
+            text-decoration: underline;
+        }
+
+        .overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.5);
+            visibility: hidden;
+            opacity: 0;
+            transition: opacity 0.3s, visibility 0.3s;
+            z-index: 999;
+        }
+
+        .overlay.active {
+            visibility: visible;
+            opacity: 1;
+        }
+
+        .menu-title {
+            flex-grow: 1;
+            text-align: center;
+        }
+
+        .menu-spacer {
+            width: 30px;
+            margin-left: 20px;
+        }
+/* עיצוב סרגל הגלילה */
+        .side-menu-content::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        .side-menu-content::-webkit-scrollbar-track {
+            background: #f1f1f1;
+        }
+
+        .side-menu-content::-webkit-scrollbar-thumb {
+            background: #c1c1c1;
+            border-radius: 4px;
+        }
+
+        .side-menu-content::-webkit-scrollbar-thumb:hover {
+            background: #a8a8a8;
+			}
+/* כפתור חזרה בפינה השמאלית */
+    .back-button {
+      position: absolute;
+      left: 15px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: #ffffff;
+      text-decoration: none;
+      font-size: 1em;
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      cursor: pointer;
+      transition: opacity 0.2s;
+    }
+    
+    .back-button:hover {
+      opacity: 0.8;
+    }
+    
+    .back-arrow {
+      font-size: 1.2em;
+      font-weight: bold;
+    }	
+    h2 {
+      color: #0077cc;
+      text-align: center;
+      font-size: 28px;
+    }
+  
+    .projects {
+      text-align: right;
+      max-width: 100%;
+    }
+  
+    .projects a, .title-link {
+      display: block;
+      font-size: 22px;
+      color: #0077cc;
+      text-decoration: none;
+      margin: 20px 0;
+    }
+  
+    .projects a:hover, .title-link:hover {
+      text-decoration: underline;
+    }
+  
+    /* CSS נוסף למינוני תרופות */
+
+.medication-dosage {
+  background: #f8f9fa;
+  border: 1px solid #e9ecef;
+  border-radius: 6px;
+  padding: 8px;
+  margin: 5px 0;
+  font-family: Arial, sans-serif;
+  line-height: 1.2;
+}
+
+.medication-dosage h4 {
+  margin: 0 0 6px 0;
+  color: #0077cc;
+  border-bottom: 1px solid #0077cc;
+  padding-bottom: 3px;
+  font-size: 0.9em;
+  font-weight: bold;
+}
+
+.sub-content {
+  padding: clamp(4px, 1.5vw, 8px);
+  background-color: #fff;
+  font-size: clamp(0.7em, 2vw, 0.8em);
+  line-height: 1.2;
+}
+
+.dosage-section {
+  margin-bottom: clamp(4px, 1.5vw, 8px);
+  border-left: 2px solid #0077cc;
+  padding-right: clamp(4px, 1vw, 8px);
+}
+
+.dosage-title {
+  font-weight: bold;
+  color: #0077cc;
+  margin-bottom: clamp(2px, 0.5vw, 4px);
+  font-size: clamp(1em, 2.2vw, 0.9em);
+}
+
+.dosage-item {
+  margin: clamp(1px, 0.5vw, 2px) 0;
+  padding-right: clamp(4px, 1vw, 8px);
+  line-height: 1.2;
+  color: #000;
+  font-size:1em;
+}
+
+.medication-dosage p {
+  margin: 2px 0;
+  color: #000;
+  font-size: 0.75em;
+  line-height: 1.2;
+}
+
+.medication-dosage ul {
+  margin: 2px 0;
+  padding-right: 12px;
+}
+
+.medication-dosage li {
+  margin-bottom: 1px;
+  color: #000;
+  font-size: 0.75em;
+  line-height: 1.2;
+}
+
+.medication-dosage strong {
+  color: #000;
+  font-weight: bold;
+}
+
+.loading {
+  color: #666;
+  font-style: italic;
+  font-size: 0.75em;
+}
+
+.error {
+  color: #d32f2f;
+  background: #ffebee;
+  border-color: #ffcdd2;
+  font-size: 0.75em;
+}
+
+    @media (max-width: 600px) {
+      h2 {
+        font-size: 40px;
+      }
+  
+      .projects a, .title-link {
+        font-size: 26px;
+        margin: 25px 0;
+      }
+      /* תיקון התפריט הצדדי במסכים קטנים */
+       .side-menu {
+                width: 70%;
+                right: -70%;
+            }
+    }
+  </style>
+</head>
+<body>
+    <a href="/mda/index.html" class="top-link">
+  		חזרה לתפריט הראשי
+		   <div class="back-button" onclick="history.back()">
+			 <span class="back-arrow">←</span>
+			 <span>חזרה</span>
+		   </div>
+		 </a>
+		<div class="sticky-header">		
+		<button class="hamburger-menu" id="hamburgerBtn">
+            <div class="hamburger-line"></div>
+            <div class="hamburger-line"></div>
+            <div class="hamburger-line"></div>
+        </button>
+        <div class="menu-title">פרוטוקולים למסכם מעשי</div>
+        <div class="menu-spacer"></div>
+    </div>
+
+    <div class="overlay" id="overlay"></div>
+    
+    <div class="side-menu" id="sideMenu">
+        <h3>תפריט ראשי</h3>
+        <div class="side-menu-content">
+            <ul>
+    <!--            <li><a href="atan/atan_index.html">אט"ן</a></li>
+				<li><a href="bls/bls_index.html">BLS</a></li>
+				<li><a href="Bechirim/bechirim_index.html">קורס בכירים</a></li>
+                <li><a href="Bechirim/protocols/ALS2024.HTML">אוגדן ALS 2024</a></li>
+                <li><a href="Bechirim/protocols/protocols_index.html">פרוטוקולים</a></li>
+                <li><a href="Bechirim/Sikumim/Sikumim_index.html">מצגות וסיכומי מצגות</a></li>
+                <li><a href="Bechirim/Sikumim/SIKUM_LESSONS/lessons_index.html">סיכומי שיעורים</a></li>
+                <li><a href="Bechirim/Sikumim/SIKUM_LESSONS/ECG_Practice_MI.html">תרגול אק"ג - אוטם</a></li>
+                <li><a href="Bechirim/Sikumim/SIKUM_LESSONS/ECG_Practice_arrhythm.html">תרגול אק"ג - הפרעות קצב</a></li>
+                <li><a href="Bechirim/Phrases/Phrases.html">אינדקס מושגים</a></li>
+                <li><a href="Bechirim/trufot_Bait_search_site/Trufot_BAEIT.html">תרופות נפוצות בבית</a></li>
+                <li><a href="Bechirim/Sikumim/Pdf_files/pdf_index.html">ספרות</a></li> -->
+         <!--    <li><a href="#" onclick="alert('הוסף קישור לספרות')">ספרות</a></li> -->
+            </ul>
+        </div>
+	</div>
+
+  <div class="content-wrapper">
+
+      <div class="content">
+        <ul>
+          <details>
+        <summary>החייאה מתקדמת</summary>
+        <div class="content">
+            <div class="projects" style="text-align: right;">
+              <a style="color: rgba(197, 36, 146, 0.496);" href="/mda/bechirim/protocols/als2024protocols/als2024C2/adult_cardiac_respiratory_arrest_pdfviewer.html">דום לב ונשימה במבוגר</a>
+                <a style="color: rgba(197, 36, 146, 0.496);" href="/mda/bechirim/protocols/als2024protocols/als2024C2/adult_cardiac_arrest_vt_vf_pdfviewer.html">פרוטוקול VT/VF</a>
+                <a style="color: rgba(197, 36, 146, 0.496);" href="/mda/bechirim/protocols/als2024protocols/als2024C2/adult_cardiac_arrest_pea_asystole_pdfviewer.html">פרוטוקול PEA/ASYSTOLE</a>
+                <a style="color: rgba(197, 36, 146, 0.496);" href="/mda/bechirim/protocols/als2024protocols/als2024C2/post_resuscitation_care_rosc_adults_pdfviewer.html">פרוטוקול ROSC</a>
+            </div>
+        </div>
+    </details>
+         <details>
+        <summary>מחלות קרדיאליות</summary>
+        <div class="content">
+            <div class="projects" style="text-align: right;">
+                <a style="color: rgba(197, 36, 146, 0.496);" href="/mda/bechirim/protocols/als2024protocols/als2024C3/acute_coronary_syndrome_acs_pdfviewer.html">תסמונת כלילית חריפה (ACS)</a>
+            </div>
+            
+            <!-- תת אקורדיון: הפרעות קצב -->
+            <details>
+                <summary>הפרעות קצב</summary>
+                <div class="content">
+                    <div class="projects" style="text-align: right;">
+                        <a style="color: rgba(197, 36, 146, 0.496);" href="/mda/bechirim/protocols/als2024protocols/als2024C3/adult_tachycardia_pdfviewer.html">טכיקרדיה במבוגר</a>
+                        <a style="color: rgba(197, 36, 146, 0.496);" href="/mda/bechirim/protocols/als2024protocols/als2024C3/wide_complex_tachyarrhythmia_adult_pdfviewer.html">טכיאריתמיה בקומפלקס רחב</a>
+                        <a style="color: rgba(197, 36, 146, 0.496);" href="/mda/bechirim/protocols/als2024protocols/als2024C3/narrow_complex_tachyarrhythmia_adult_pdfviewer.html">טכיאריתמיה בקומפלקס צר</a>
+                        <a style="color: rgba(197, 36, 146, 0.496);" href="/mda/bechirim/protocols/als2024protocols/als2024C3/adult_bradycardia_pdfviewer.html">ברדיקארדיה</a>
+                        <a style="color: rgba(197, 36, 146, 0.496);" href="/mda/bechirim/protocols/als2024protocols/als2024C3/pulmonary_edema_pdfviewer.html">בצקת ריאות</a>
+                    </div>
+                </div>
+            </details>
+        </div>
+    </details>
+    
+    <!-- אקורדיון ראשי: חולה נשימתי -->
+    <details>
+        <summary>חולה נשימתי</summary>
+        <div class="content">
+            <div class="projects" style="text-align: right;">
+                <a style="color: rgba(197, 36, 146, 0.496);" href="/mda/bechirim/protocols/als2024protocols/als2024C3/adult_asthma_attack_pdfviewer.html">התקף אסתמה במבוגר</a>
+                <a style="color: rgba(197, 36, 146, 0.496);" href="/mda/bechirim/protocols/als2024protocols/als2024C3/copd_exacerbation_pdfviewer.html">החמרה ב-COPD</a>
+                <a style="color: rgba(197, 36, 146, 0.496);" href="/mda/bechirim/protocols/als2024protocols/als2024C3/respiratory_support_for_respiratory_failure_pdfviewer.html">סיוע נשימתי לטיפול באי ספיקה נשימתית</a>
+                <a style="color: rgba(197, 36, 146, 0.496);" href="/mda/bechirim/protocols/als2024protocols/als2024C3/allergic_reaction_anaphylaxis_adult_pdfviewer.html">אנאפילקסיס - תגובה אלרגית במבוגר</a>
+            </div>
+        </div>
+    </details>
+    
+    <!-- אקורדיון ראשי: מצבי חירום בחולה -->
+    <details>
+        <summary>מצבי חירום בחולה</summary>
+        <div class="content">
+            <div class="projects" style="text-align: right;">
+                <a style="color: rgba(197, 36, 146, 0.496);" href="/mda/bechirim/protocols/als2024protocols/als2024C3/foreign_body_airway_obstruction_pdfviewer.html">גוף זר בדרכי האוויר</a>
+                <a style="color: rgba(197, 36, 146, 0.496);" href="/mda/bechirim/protocols/als2024protocols/als2024C3/decreased_perfusion_non_traumatic_pdfviewer.html">ירידה בפרפוזיה שלא על רקע טראומה</a>
+                <a style="color: rgba(197, 36, 146, 0.496);" href="/mda/bechirim/protocols/als2024protocols/als2024C3/suspected_stroke_patient_approach_pdfviewer.html">אירוע מוחי (CVA/Stroke)</a>
+                <a style="color: rgba(197, 36, 146, 0.496);" href="/mda/bechirim/protocols/als2024protocols/als2024C3/suspected_stroke_patient_approach_pdfviewer.html">פרכוס</a>
+                <a style="color: rgba(197, 36, 146, 0.496);" href="/mda/bechirim/protocols/als2024protocols/als2024C3/altered_mental_status_pdfviewer.html">שינוי במצב ההכרה</a>
+            </div>
+        </div>
+    </details>
+      </div>
+
+
+ 
+    
+<script>
+        const hamburgerBtn = document.getElementById('hamburgerBtn');
+        const sideMenu = document.getElementById('sideMenu');
+        const overlay = document.getElementById('overlay');
+
+        // פתיחה/סגירה של התפריט
+        hamburgerBtn.addEventListener('click', function() {
+            hamburgerBtn.classList.toggle('active');
+            sideMenu.classList.toggle('open');
+            overlay.classList.toggle('active');
+        });
+
+        // סגירה בלחיצה על האוברליי
+        overlay.addEventListener('click', function() {
+            hamburgerBtn.classList.remove('active');
+            sideMenu.classList.remove('open');
+            overlay.classList.remove('active');
+        });
+
+        // סגירה בלחיצה על ESC
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                hamburgerBtn.classList.remove('active');
+                sideMenu.classList.remove('open');
+                overlay.classList.remove('active');
+            }
+        });
+    </script>
+	<script src="/mda/js/hamburger-menu.js"></script>
+  <script>
+document.addEventListener('DOMContentLoaded', function() {
+     // מיפוי בין שמות התרופות לבין ה-IDs
+        const medicationMapping = {
+            'ניטרולינגואל': 'nitrolingual',
+            'פוסיד': 'fusid',
+            'איזוקט': 'isoket',
+            'דופמין': 'dopamine',
+            'אדרנלין': 'adrenaline',
+            'וונטולין': 'ventolin',
+            'אירובנט': 'ipratropium',
+            'מגנזיום סולפט': 'magnesium',
+            'סולומדרול': 'solumedrol'
+        };
+
+    // מיפוי שמות התרופות בעברית לשמות בקובץ JSON
+     const jsonMedicationNames = {
+            'ניטרולינגואל': 'ניטרולינגואל',
+            'פוסיד': 'פוסיד',
+            'איזוקט': 'איזוקט',
+            'דופמין': 'דופמין',
+            'אדרנלין': 'אדרנלין/אפינפרין',
+            'וונטולין': 'ונטולין',
+            'אירובנט': 'איירובנט',
+            'מגנזיום סולפט': 'מגנזיום סולפט',
+            'סולומדרול': 'סולומדרול'
+        };
+
+    // פונקציה לתרגום מפתחות לעברית
+    function translateToHebrew(key, context = '') {
+        const translations = {
+            // פרמקוקינטיקה
+            'onset_of_action': 'התחלת השפעה',
+            'peak_effect': 'שיא השפעה',
+            'duration_of_action': 'משך השפעה',
+            'half_life': 'זמן מחצית חיים',
+            'bioavailability': 'זמינות ביולוגית',
+            'storage': 'אחסון',
+            'age_effect': 'השפעת גיל',
+            'first_pass_effect': 'אפקט מעבר ראשון',
+            'serum_concentration': 'ריכוז בסרום',
+            'absorption': 'ספיגה',
+            'metabolism': 'חילוף חומרים',
+            'iv_onset': 'התחלה תוך ורידית',
+           
+            // מינונים כלליים
+            'adults': 'מבוגרים',
+            'children': 'ילדים',
+            'infants_children': 'תינוקות וילדים',
+            'first_dose': 'מנה ראשונה',
+            'second_dose': 'מנה שנייה',
+            'subsequent_doses': 'מנות נוספות',
+            'iv_adults': 'מבוגרים תוך ורידי',
+            'iv_children': 'ילדים תוך ורידי',
+            'iv_administration': 'מתן תוך ורידי',
+            'glucogel': 'גלוקוגל',
+           
+            // מצבים רפואיים
+            'cardiac_arrest': 'דום לב',
+            'et_route': 'דרך הטובוס',
+            'bradycardia': 'ברדיקרדיה',
+            'asthma': 'אסתמה',
+            'anaphylaxis': 'אנפילקסיס',
+            'cardiac_arrest_anaphylaxis': 'דום לב באנפילקסיס',
+            'newborn_resuscitation': 'החייאת יילוד',
+            'stridor': 'סטרידור',
+            'acute_coronary_syndrome': 'תסמונת כלילית חריפה',
+            'pain_management': 'טיפול בכאב',
+            'general': 'כללי',
+            'special_populations': 'אוכלוסיות מיוחדות',
+            'organophosphate': 'חשיפה לחומר אורגני פוספטי',
+            'pulseless_vt_vf': 'VT/VF ללא דופק',
+            'rosc_tachyarrhythmia': 'טכיאריתמיה לאחר ROSC',
+            'tachyarrhythmia':' טכיאריתמיה',
+            'pulseless_vt_tdp': 'VT/TDP ללא דופק',
+            'wct_tdp': 'TDP/טכיארטמיה בקומפלקס רחב',
+            'wct_tdp_asthma': 'TDP/טכיארטמיה בקומפלקס רחב + אסתמה',
+            'severe_asthma': 'אסתמה חמורה',
+            'eclampsia': 'אקלמפסיה',
+            'deep_sedation': 'הרדמה עמוקה',
+            'light_sedation': 'הרדמה קלה',
+            'seizures_adults': 'פרכוסים מבוגרים',
+            'seizures_children': 'פרכוסים ילדים',
+            'dsi': 'DSI',
+            'sedation': 'הרדמה',
+            'sedation_maintenance': 'שמירת הרדמה',
+            'delirium': 'דליריום',
+            'paralysis_ventilated': 'שיתוק מונשם',
+            'rsi': 'RSI',
+           
+            // דרכי מתן
+            'sublingual': 'תת-לשוני',
+            'intravenous': 'תוך-ורידי',
+            'intranasal': 'תוך-אפי',
+           
+            // אחרים
+            'dose_range': 'טווח מינון',
+            'dilution_example': 'דוגמה למיהול'
+        };
+       
+        return translations[key] || key;
+    }
+
+    // פונקציה לטעינת נתוני התרופות
+    async function loadMedicationData() {
+        try {
+            const response = await fetch('../json/medication_Details.json');
+            if (!response.ok) {
+                throw new Error(`HTTP error! status: ${response.status}`);
+            }
+            const data = await response.json();
+            
+            // הדפסת המבנה של הקובץ לקונסול (לדיבוג)
+            console.log('JSON Structure:', data);
+            
+            // עדכון כל התרופות
+            for (const [hebrewName, elementId] of Object.entries(medicationMapping)) {
+                const element = document.getElementById(elementId + '-dosage');
+                if (element) {
+                    const medicationData = findMedication(data, hebrewName);
+                    if (medicationData) {
+                        element.innerHTML = formatDosage(medicationData, hebrewName);
+                        element.classList.remove('loading');
+                    } else {
+                        element.innerHTML = `<div class="error">לא נמצאו נתוני מינון עבור ${hebrewName}</div>`;
+                        element.classList.add('error');
+                    }
+                }
+            }
+        } catch (error) {
+            console.error('שגיאה בטעינת נתוני התרופות:', error);
+            // הודעת שגיאה כללית
+            Object.values(medicationMapping).forEach(elementId => {
+                const element = document.getElementById(elementId + '-dosage');
+                if (element) {
+                    element.innerHTML = `<div class="error">שגיאה בטעינת נתוני התרופה: ${error.message}</div>`;
+                    element.classList.add('error');
+                }
+            });
+        }
+    }
+
+    // פונקציה לחיפוש תרופה במידע
+    function findMedication(data, hebrewName) {
+        // חיפוש במערך medications
+        if (data.medications && Array.isArray(data.medications)) {
+            const jsonName = jsonMedicationNames[hebrewName];
+            
+            // חיפוש לפי השם המדויק בקובץ JSON
+            let medication = data.medications.find(med => 
+                med.medication_name === jsonName
+            );
+            
+            // אם לא נמצא, חפש לפי השם בעברית המקורי
+            if (!medication) {
+                medication = data.medications.find(med => 
+                    med.medication_name === hebrewName
+                );
+            }
+            
+            // אם עדיין לא נמצא, חפש בשם האנגלי
+            if (!medication && hebrewName === 'נרקן') {
+                medication = data.medications.find(med => 
+                    med.english_name && med.english_name.toLowerCase().includes('naloxone')
+                );
+            }
+            
+            return medication;
+        }
+        
+        return null;
+    }
+
+    // פונקציה לעיצוב נתוני המינון
+    function formatDosage(medicationData, medicationName) {
+     //   let html = `<h4>מינון ${medicationName}</h4>`;
+         let html = '<div class="dosage-item">';
+        // חיפוש שדה המינון
+        if (medicationData.dosage) {
+            return html + formatDosageContent(medicationData.dosage);
+        }
+        
+        // אם לא נמצא שדה מינון
+        return html + '<p>אין מידע מינון זמין</p>';
+    }
+    
+function formatDosageContent(dosageData) {
+    let html = '<div class="sub-content">';
+    
+    if (typeof dosageData === 'string') {
+        // הוספת שורה חדשה אחרי כל נקודה
+        const formattedText = dosageData.replace(/\. /g, '.<br>');
+        html += `<div class="dosage-item">${formattedText}</div>`;
+    } else if (Array.isArray(dosageData)) {
+        html += '<ul>';
+        dosageData.forEach(item => {
+            const formattedItem = item.replace(/\. /g, '.<br>');
+            html += `<li class="dosage-item">${formattedItem}</li>`;
+        });
+        html += '</ul>';
+    } else if (typeof dosageData === 'object' && dosageData !== null) {
+        for (const [key, value] of Object.entries(dosageData)) {
+            const translatedKey = translateToHebrew(key);
+            
+            html += '<div class="dosage-section">';
+            html += `<div class="dosage-title">${translatedKey}:</div>`;
+            
+            if (typeof value === 'string') {
+                const formattedValue = value.replace(/\. /g, '.<br>');
+                html += `<div class="dosage-item">${formattedValue}</div>`;
+            } else if (Array.isArray(value)) {
+                html += '<ul>';
+                value.forEach(item => {
+                    const formattedItem = item.replace(/\. /g, '.<br>');
+                    html += `<li class="dosage-item">${formattedItem}</li>`;
+                });
+                html += '</ul>';
+            } else if (typeof value === 'object' && value !== null) {
+                for (const [subKey, subValue] of Object.entries(value)) {
+                    const translatedSubKey = translateToHebrew(subKey);
+                    const formattedSubValue = subValue.replace(/\. /g, '.<br>');
+                    html += `<div class="dosage-item"><strong>${translatedSubKey}:</strong> ${formattedSubValue}</div>`;
+                }
+            }
+            html += '</div>';
+        }
+    }
+    
+    html += '</div>';
+    return html || '<div class="dosage-item">אין מידע זמין</div>';
+}
+    // טעינת הנתונים
+    loadMedicationData();
+});
+</script>
+</body>
+</html>
