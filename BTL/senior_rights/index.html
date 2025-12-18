@@ -425,6 +425,32 @@
             font-weight: 600;
         }
 
+        .back-button {
+            display: inline-block;
+            background: rgba(255,255,255,0.25);
+            backdrop-filter: blur(10px);
+            padding: 12px 24px;
+            border-radius: 25px;
+            color: white;
+            text-decoration: none;
+            font-size: 1rem;
+            font-weight: 600;
+            transition: all 0.3s;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+        }
+
+        .back-button:hover {
+            background: rgba(255,255,255,0.35);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(0,0,0,0.25);
+        }
+
+        .back-button::before {
+            content: '← ';
+            margin-left: 5px;
+        }
+
         @media (max-width: 768px) {
             h1 {
                 font-size: 2.5rem;
@@ -451,6 +477,7 @@
 <body>
     <div class="container">
         <header>
+            <a href="../index.html" class="back-button">חזרה לדף הכניסה</a>
             <h1>🌟 זכויות אזרחים ותיקים</h1>
             <p class="subtitle">מידע מעודכן אוטומטית מהמקורות הרשמיים</p>
             <div class="update-badge" id="updateBadge">⏳ טוען מידע...</div>

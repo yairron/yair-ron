@@ -13,4 +13,4 @@ if (typeof module !== 'undefined' && module.exports) {
 `;
 
 fs.writeFileSync('rights-data.js', jsContent, 'utf8');
-console.log('✅ rights-data.js regenerated');
+console.log('✅ rights-data.js regenerated successfully');
