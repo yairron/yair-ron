@@ -452,23 +452,22 @@
                 // יצירת אקורדיון לכל קטגוריה
                 for (const [key, config] of Object.entries(ACCORDIONS_CONFIG)) {
                     const data = RIGHTS_DATA.categories[key];
+                    const content = data ? data.content : '<p style="text-align: center; color: #999; padding: 40px;">⏳ המידע יתעדכן בקרוב...</p>';
 
-                    if (data) {
-                        html += `
-                            <div class="accordion" data-category="${key}">
-                                <div class="accordion-header">
-                                    <div class="accordion-icon">${config.icon}</div>
-                                    <h2 class="accordion-title">${config.title}</h2>
-                                    <span class="accordion-arrow">▼</span>
-                                </div>
-                                <div class="accordion-content">
-                                    <div class="accordion-body">
-                                        ${data.content}
-                                    </div>
+                    html += `
+                        <div class="accordion" data-category="${key}">
+                            <div class="accordion-header">
+                                <div class="accordion-icon">${config.icon}</div>
+                                <h2 class="accordion-title">${config.title}</h2>
+                                <span class="accordion-arrow">▼</span>
+                            </div>
+                            <div class="accordion-content">
+                                <div class="accordion-body">
+                                    ${content}
                                 </div>
                             </div>
-                        `;
-                    }
+                        </div>
+                    `;
                 }
 
                 html += '</div>';
@@ -514,10 +513,8 @@
                 });
             });
 
-            // פתיחת האקורדיון הראשון כברירת מחדל
-            if (accordions.length > 0) {
-                accordions[0].classList.add('active');
-            }
+            // כל האקורדיונים סגורים בהתחלה
+            // (מחיקת הקוד שפותח את הראשון אוטומטית)
         }
 
         // טעינה כשהדף מוכן
