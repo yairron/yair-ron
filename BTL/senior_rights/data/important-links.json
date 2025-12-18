@@ -1,0 +1,183 @@
+{
+  "lastUpdate": "2025-12-18",
+  "version": "1.0",
+  "categories": [
+    {
+      "id": "btl",
+      "title": "ביטוח לאומי",
+      "icon": "🏛️",
+      "links": [
+        {
+          "name": "אתר הביטוח הלאומי",
+          "url": "https://www.btl.gov.il",
+          "description": "אתר ראשי - מידע על זכויות, טפסים, ושירותים"
+        },
+        {
+          "name": "שירותים מקוונים",
+          "url": "https://www.btl.gov.il/online_services/Pages/default.aspx",
+          "description": "הגשת תביעות, עדכון פרטים, ובדיקת זכאות"
+        },
+        {
+          "name": "קצבאות זקנה",
+          "url": "https://www.btl.gov.il/benefits/old_age/Pages/default.aspx",
+          "description": "מידע מפורט על קצבאות זקנה ותנאי זכאות"
+        },
+        {
+          "name": "גמלת סיעוד",
+          "url": "https://www.btl.gov.il/benefits/Nursing/Pages/default.aspx",
+          "description": "כל המידע על גמלת סיעוד, רמות ותהליך הגשת תביעה"
+        },
+        {
+          "name": "תוספת השלמת הכנסה",
+          "url": "https://www.btl.gov.il/benefits/Income_Support/Pages/default.aspx",
+          "description": "הכנסה מובטחת לאזרחים ותיקים"
+        },
+        {
+          "name": "מוקד טלפוני",
+          "url": "tel:*6050",
+          "description": "*6050 או 02-6709000 (א'-ה' 08:00-16:00)"
+        }
+      ]
+    },
+    {
+      "id": "holocaust",
+      "title": "קרן לרווחת ניצולי השואה",
+      "icon": "✡️",
+      "links": [
+        {
+          "name": "אתר הקרן לרווחת השואה",
+          "url": "https://www.k-shoa.org",
+          "description": "שירותים וסיוע לניצולי שואה"
+        },
+        {
+          "name": "רשות תגמולים",
+          "url": "https://www.gov.il/he/departments/the_claims_conference",
+          "description": "תגמולים ופיצויים לניצולי שואה"
+        },
+        {
+          "name": "טפסים ובקשות",
+          "url": "https://www.k-shoa.org/services",
+          "description": "טפסים להגשת בקשות לסיוע"
+        },
+        {
+          "name": "מוקד טלפוני",
+          "url": "tel:1-800-354-354",
+          "description": "1-800-354-354 (א'-ה' 08:00-16:00)"
+        }
+      ]
+    },
+    {
+      "id": "rights",
+      "title": "ארגוני זכויות ומידע",
+      "icon": "⚖️",
+      "links": [
+        {
+          "name": "כל זכות",
+          "url": "https://www.kolzchut.org.il",
+          "description": "מדריך זכויות מקיף לאזרחי ישראל"
+        },
+        {
+          "name": "זכויות אזרח ותיק - כל זכות",
+          "url": "https://www.kolzchut.org.il/he/Category:זקנה",
+          "description": "כל הזכויות לאזרחים ותיקים במקום אחד"
+        },
+        {
+          "name": "סיעוד - כל זכות",
+          "url": "https://www.kolzchut.org.il/he/גמלת_סיעוד",
+          "description": "מדריך מפורט לגמלת סיעוד"
+        },
+        {
+          "name": "יד שרה - השאלת ציוד רפואי",
+          "url": "https://www.yadsarah.org.il",
+          "description": "השאלה חינם של ציוד רפואי ושיקומי"
+        },
+        {
+          "name": "עמותת ישיבות - זכויות ותמיכה",
+          "url": "https://www.yeshivot.org.il",
+          "description": "סיוע וליווי בקבלת זכויות"
+        }
+      ]
+    },
+    {
+      "id": "health",
+      "title": "בריאות וסיעוד",
+      "icon": "🏥",
+      "links": [
+        {
+          "name": "משרד הבריאות",
+          "url": "https://www.health.gov.il",
+          "description": "מידע על שירותי בריאות וזכויות"
+        },
+        {
+          "name": "קופות החולים",
+          "url": "https://www.health.gov.il/Subjects/MedicalAndHealthInsurance/Pages/default.aspx",
+          "description": "מידע על קופות החולים וביטוח בריאות"
+        },
+        {
+          "name": "משרד הרווחה - שירותי סיעוד",
+          "url": "https://www.molsa.gov.il",
+          "description": "שירותי סיעוד ורווחה לאזרח הוותיק"
+        },
+        {
+          "name": "מוקד 118 - מבוגרים בסיכון",
+          "url": "tel:118",
+          "description": "קו חירום למבוגרים בסיכון - 118"
+        }
+      ]
+    },
+    {
+      "id": "tax",
+      "title": "מיסים והטבות כלכליות",
+      "icon": "💰",
+      "links": [
+        {
+          "name": "רשות המסים",
+          "url": "https://taxes.gov.il",
+          "description": "מידע על הטבות מס לאזרחים ותיקים"
+        },
+        {
+          "name": "נקודות זיכוי",
+          "url": "https://taxes.gov.il/incometax/individuals/pages/credit_points.aspx",
+          "description": "מידע על נקודות זיכוי ופטורים"
+        },
+        {
+          "name": "הנחות ארנונה",
+          "url": "https://www.kolzchut.org.il/he/הנחה_בארנונה_לאזרח_ותיק",
+          "description": "זכאות להנחות בארנונה"
+        },
+        {
+          "name": "משרד השיכון - דיור בר השגה",
+          "url": "https://www.gov.il/he/service/senior_citizen_housing",
+          "description": "פתרונות דיור לאזרחים ותיקים"
+        }
+      ]
+    },
+    {
+      "id": "organizations",
+      "title": "עמותות וארגונים",
+      "icon": "🤝",
+      "links": [
+        {
+          "name": "עמותת אשל - לאזרח הוותיק",
+          "url": "https://www.eshel.org.il",
+          "description": "קידום איכות חיים של אזרחים ותיקים"
+        },
+        {
+          "name": "הארגון הארצי של נכי מלחמה בנאצים",
+          "url": "https://www.disabled-holocaust.org.il",
+          "description": "זכויות ותמיכה לנכי השואה"
+        },
+        {
+          "name": "עמותת לתת - סיוע כלכלי",
+          "url": "https://latet.org.il",
+          "description": "סיוע למשפחות נזקקות ולאזרחים ותיקים"
+        },
+        {
+          "name": "פתח - שילוב אנשים עם מוגבלויות",
+          "url": "https://www.pitchu.org.il",
+          "description": "שילוב ותמיכה לאנשים עם מוגבלויות"
+        }
+      ]
+    }
+  ]
+}

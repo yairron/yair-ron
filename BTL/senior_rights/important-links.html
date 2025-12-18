@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>קישורים חשובים - זכויות אזרחים ותיקים</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        header {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        h1 {
+            color: #333;
+            font-size: 2.5em;
+            margin-bottom: 10px;
+        }
+
+        .subtitle {
+            color: #666;
+            font-size: 1.1em;
+        }
+
+        .last-update {
+            background: #f0f0f0;
+            padding: 10px 20px;
+            border-radius: 20px;
+            display: inline-block;
+            margin-top: 15px;
+            font-size: 0.9em;
+            color: #555;
+        }
+
+        .categories-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 25px;
+            margin-bottom: 30px;
+        }
+
+        .category-card {
+            background: white;
+            border-radius: 15px;
+            padding: 25px;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .category-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 35px rgba(0, 0, 0, 0.25);
+        }
+
+        .category-header {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 3px solid #667eea;
+        }
+
+        .category-icon {
+            font-size: 2.5em;
+        }
+
+        .category-title {
+            color: #333;
+            font-size: 1.5em;
+            font-weight: bold;
+        }
+
+        .links-list {
+            list-style: none;
+        }
+
+        .link-item {
+            margin-bottom: 15px;
+            padding: 15px;
+            background: #f8f9fa;
+            border-radius: 10px;
+            transition: all 0.3s ease;
+            border-right: 4px solid transparent;
+        }
+
+        .link-item:hover {
+            background: #e9ecef;
+            border-right-color: #667eea;
+            transform: translateX(-5px);
+        }
+
+        .link-item:last-child {
+            margin-bottom: 0;
+        }
+
+        .link-name {
+            display: block;
+            color: #667eea;
+            font-weight: bold;
+            font-size: 1.1em;
+            text-decoration: none;
+            margin-bottom: 5px;
+            transition: color 0.3s ease;
+        }
+
+        .link-name:hover {
+            color: #764ba2;
+        }
+
+        .link-description {
+            color: #666;
+            font-size: 0.9em;
+            line-height: 1.4;
+        }
+
+        .loading {
+            text-align: center;
+            padding: 50px;
+            color: white;
+            font-size: 1.5em;
+        }
+
+        .error {
+            background: #ff6b6b;
+            color: white;
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+            margin: 20px 0;
+        }
+
+        footer {
+            background: white;
+            padding: 20px;
+            border-radius: 15px;
+            text-align: center;
+            color: #666;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+        }
+
+        @media (max-width: 768px) {
+            .categories-grid {
+                grid-template-columns: 1fr;
+            }
+
+            h1 {
+                font-size: 1.8em;
+            }
+
+            .category-title {
+                font-size: 1.2em;
+            }
+        }
+
+        /* אנימציה לכרטיסים */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .category-card {
+            animation: fadeInUp 0.6s ease forwards;
+            opacity: 0;
+        }
+
+        .category-card:nth-child(1) { animation-delay: 0.1s; }
+        .category-card:nth-child(2) { animation-delay: 0.2s; }
+        .category-card:nth-child(3) { animation-delay: 0.3s; }
+        .category-card:nth-child(4) { animation-delay: 0.4s; }
+        .category-card:nth-child(5) { animation-delay: 0.5s; }
+        .category-card:nth-child(6) { animation-delay: 0.6s; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>📚 קישורים חשובים</h1>
+            <p class="subtitle">זכויות אזרחים ותיקים, ביטוח לאומי, ניצולי שואה ועמותות</p>
+            <div class="last-update" id="lastUpdate">מעדכן...</div>
+        </header>
+
+        <div id="content" class="loading">
+            טוען נתונים...
+        </div>
+
+        <footer>
+            <p><strong>לתשומת לב:</strong> המידע באתר זה מוצג למטרות הדרכה בלבד.</p>
+            <p>לקבלת מידע רשמי ומעודכן, יש לפנות לגופים הרשמיים.</p>
+        </footer>
+    </div>
+
+    <script>
+        // טעינת הנתונים מקובץ JSON
+        async function loadLinks() {
+            try {
+                const response = await fetch('data/important-links.json');
+                if (!response.ok) {
+                    throw new Error('שגיאה בטעינת הנתונים');
+                }
+
+                const data = await response.json();
+                displayLinks(data);
+                displayLastUpdate(data.lastUpdate);
+            } catch (error) {
+                console.error('Error loading links:', error);
+                document.getElementById('content').innerHTML = `
+                    <div class="error">
+                        <h3>⚠️ שגיאה בטעינת הנתונים</h3>
+                        <p>${error.message}</p>
+                    </div>
+                `;
+            }
+        }
+
+        // הצגת תאריך עדכון אחרון
+        function displayLastUpdate(date) {
+            const updateElement = document.getElementById('lastUpdate');
+            const formattedDate = new Date(date).toLocaleDateString('he-IL', {
+                year: 'numeric',
+                month: 'long',
+                day: 'numeric'
+            });
+            updateElement.textContent = `עדכון אחרון: ${formattedDate}`;
+        }
+
+        // הצגת הקישורים
+        function displayLinks(data) {
+            const contentDiv = document.getElementById('content');
+
+            const categoriesHTML = data.categories.map(category => `
+                <div class="category-card">
+                    <div class="category-header">
+                        <div class="category-icon">${category.icon}</div>
+                        <h2 class="category-title">${category.title}</h2>
+                    </div>
+                    <ul class="links-list">
+                        ${category.links.map(link => `
+                            <li class="link-item">
+                                <a href="${link.url}"
+                                   class="link-name"
+                                   target="_blank"
+                                   rel="noopener noreferrer">
+                                    ${link.name}
+                                </a>
+                                <div class="link-description">${link.description}</div>
+                            </li>
+                        `).join('')}
+                    </ul>
+                </div>
+            `).join('');
+
+            contentDiv.innerHTML = `<div class="categories-grid">${categoriesHTML}</div>`;
+        }
+
+        // טעינה אוטומטית בעת פתיחת הדף
+        window.addEventListener('DOMContentLoaded', loadLinks);
+    </script>
+</body>
+</html>
