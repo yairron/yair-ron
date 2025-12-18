@@ -1,17 +1,13 @@
-name: עדכון אוטומטי של בסיס נתונים זכויות אזרחים ותיקים
+name: עדכון אוטומטי - 2 קטגוריות ליום
 
 # מתי להריץ
 on:
   # כל יום בחצות (שעון ישראל: 02:00 UTC)
   schedule:
     - cron: '0 2 * * *'
-  
+
   # אפשרות להריץ ידנית
   workflow_dispatch:
-  
-  # אפשרות להריץ אוטומטית כל שבוע (ראשון בבוקר)
-  # schedule:
-  #   - cron: '0 6 * * 0'  # ראשון ב-06:00 UTC (08:00 בישראל)
 
 jobs:
   update-data:
@@ -31,18 +27,17 @@ jobs:
         with:
           node-version: '18'
       
-      # 3. התקנת תלויות
-      - name: 📦 Install dependencies
+      # 3. התקנת תלויות (מדלג - משתמש ב-fetch מובנה)
+      - name: 📦 Skip dependencies
         run: |
-          npm install
-          npm install node-fetch@2
+          echo "✅ משתמש ב-fetch מובנה של Node.js, לא צריך node_modules"
       
-      # 4. הרצת סקריפט העדכון
-      - name: 🔄 Update data from web sources
+      # 4. הרצת סקריפט העדכון (2 קטגוריות ליום)
+      - name: 🔄 Update 2 categories today
         env:
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
         run: |
-          echo "🚀 מתחיל עדכון בסיס נתונים..."
+          echo "🚀 מתחיל עדכון 2 קטגוריות היום..."
           cd BTL/senior_rights
           node scripts/update-data.js
           echo "✅ עדכון הושלם!"
@@ -60,7 +55,7 @@ jobs:
           git config --local user.email "github-actions[bot]@users.noreply.github.com"
           git config --local user.name "GitHub Actions Bot"
           git add BTL/senior_rights/data/
-          git commit -m "🤖 עדכון אוטומטי של בסיס הנתונים - $(date +'%Y-%m-%d %H:%M')"
+          git commit -m "🤖 עדכון יומי - 2 קטגוריות - $(date +'%Y-%m-%d')"
           git push
       
       # 7. הודעת סיום

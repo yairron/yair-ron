@@ -1,7 +1,6 @@
 // סקריפט לעדכון אוטומטי של בסיס נתונים זכויות אזרחים ותיקים
 // scripts/update-data.js
 
-const fetch = require('node-fetch');
 const fs = require('fs').promises;
 const path = require('path');
 
@@ -84,18 +83,39 @@ async function updateAllCategories(apiKey) {
     additional: 'זכויות נוספות: תרבות, פנאי, טלפון חירום, וסיוע משפטי'
   };
 
-  const updatedData = {
+  // טעינת הנתונים הקיימים
+  const dataFile = path.join(__dirname, '..', 'data', 'rights-data.json');
+  let existingData = {
     lastUpdate: new Date().toISOString(),
     version: '1.0',
     categories: {}
   };
 
-  for (const [key, topic] of Object.entries(topics)) {
+  try {
+    const fileContent = await fs.readFile(dataFile, 'utf-8');
+    existingData = JSON.parse(fileContent);
+  } catch (error) {
+    console.log('📄 לא נמצא קובץ קיים, יוצר חדש...');
+  }
+
+  // בחירת 2 קטגוריות לעדכון (מתחלפות כל יום)
+  const allKeys = Object.keys(topics);
+  const dayOfYear = Math.floor((Date.now() - new Date(new Date().getFullYear(), 0, 0)) / 86400000);
+  const startIndex = (dayOfYear * 2) % allKeys.length;
+  const categoriesToUpdate = [
+    allKeys[startIndex % allKeys.length],
+    allKeys[(startIndex + 1) % allKeys.length]
+  ];
+
+  console.log(`\n📅 מעדכן היום: ${categoriesToUpdate.map(k => topics[k]).join(' ו-')}\n`);
+
+  for (const key of categoriesToUpdate) {
+    const topic = topics[key];
     console.log(`\n📝 מעדכן: ${topic}`);
     const content = await searchWithAI(topic, apiKey);
-    
+
     if (content) {
-      updatedData.categories[key] = {
+      existingData.categories[key] = {
         title: topic,
         content: content,
         updatedAt: new Date().toISOString()
@@ -106,10 +126,11 @@ async function updateAllCategories(apiKey) {
     }
 
     // המתנה קצרה בין בקשות
-    await new Promise(resolve => setTimeout(resolve, 2000));
+    await new Promise(resolve => setTimeout(resolve, 10000));
   }
 
-  return updatedData;
+  existingData.lastUpdate = new Date().toISOString();
+  return existingData;
 }
 
 async function saveDataToFile(data) {
