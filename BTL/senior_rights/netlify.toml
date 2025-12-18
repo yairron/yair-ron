@@ -1,0 +1,33 @@
+# Netlify Configuration File
+
+[build]
+  # תיקיית הבניה (לא נדרש כי זה HTML סטטי)
+  publish = "."
+  
+  # פקודת בניה (לא נדרש)
+  command = "echo 'No build step required'"
+
+[functions]
+  # תיקיית ה-Functions
+  directory = "netlify/functions"
+  
+  # Node.js version
+  node_bundler = "esbuild"
+
+[[redirects]]
+  # Redirect all paths to index.html for SPA routing (optional)
+  from = "/*"
+  to = "/index.html"
+  status = 200
+
+# Environment variables (להגדיר בממשק הניהול של Netlify)
+# ANTHROPIC_API_KEY = "your-api-key-here"
+
+# Headers for security
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Frame-Options = "DENY"
+    X-Content-Type-Options = "nosniff"
+    Referrer-Policy = "no-referrer-when-downgrade"
+    X-XSS-Protection = "1; mode=block"

@@ -1,0 +1,441 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>זכויות אזרחים ותיקים - מידע מעודכן</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Assistant:wght@300;400;600;700;800&family=Varela+Round&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #2E5B8A;
+            --secondary: #4A90B5;
+            --accent: #E8A840;
+            --success: #2E7D32;
+            --danger: #C62828;
+            --light: #F5F9FC;
+            --dark: #1A3A52;
+            --text: #2C3E50;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Assistant', 'Segoe UI', Tahoma, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
+            min-height: 100vh;
+            padding: 20px;
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: 
+                radial-gradient(circle at 20% 50%, rgba(255,255,255,0.1) 0%, transparent 50%),
+                radial-gradient(circle at 80% 80%, rgba(255,255,255,0.1) 0%, transparent 50%);
+            animation: backgroundShift 20s ease-in-out infinite;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        @keyframes backgroundShift {
+            0%, 100% { transform: translate(0, 0) scale(1); }
+            50% { transform: translate(-5%, 5%) scale(0.95); }
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 50px;
+            animation: slideDown 0.8s ease-out;
+        }
+
+        @keyframes slideDown {
+            from {
+                opacity: 0;
+                transform: translateY(-50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        h1 {
+            font-family: 'Varela Round', sans-serif;
+            font-size: 3.5rem;
+            font-weight: 800;
+            color: white;
+            margin-bottom: 15px;
+            text-shadow: 3px 5px 15px rgba(0,0,0,0.3);
+            letter-spacing: -2px;
+        }
+
+        .subtitle {
+            font-size: 1.4rem;
+            color: rgba(255,255,255,0.95);
+            font-weight: 300;
+            text-shadow: 1px 2px 8px rgba(0,0,0,0.2);
+        }
+
+        .update-badge {
+            display: inline-block;
+            background: rgba(255,255,255,0.2);
+            backdrop-filter: blur(10px);
+            padding: 8px 20px;
+            border-radius: 20px;
+            color: white;
+            font-size: 0.9rem;
+            margin-top: 15px;
+            font-weight: 600;
+        }
+
+        .categories-grid {
+            display: grid;
+            gap: 25px;
+            margin-bottom: 40px;
+            animation: fadeIn 0.8s ease-out 0.3s both;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .category-card {
+            background: white;
+            border-radius: 24px;
+            padding: 35px;
+            box-shadow: 0 12px 35px rgba(0,0,0,0.2);
+            border-right: 6px solid var(--primary);
+            transition: transform 0.3s, box-shadow 0.3s;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .category-card:hover {
+            transform: translateX(-5px);
+            box-shadow: 0 15px 45px rgba(0,0,0,0.25);
+        }
+
+        .category-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(90deg, var(--primary), var(--secondary), var(--accent));
+        }
+
+        .category-header {
+            display: flex;
+            align-items: center;
+            gap: 18px;
+            margin-bottom: 20px;
+        }
+
+        .category-icon {
+            width: 60px;
+            height: 60px;
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            box-shadow: 0 6px 20px rgba(46, 91, 138, 0.3);
+            flex-shrink: 0;
+        }
+
+        .category-title {
+            font-family: 'Varela Round', sans-serif;
+            font-size: 1.6rem;
+            font-weight: 800;
+            color: var(--primary);
+            margin: 0;
+        }
+
+        .category-content {
+            font-size: 1.15rem;
+            line-height: 1.9;
+            color: #546E7A;
+        }
+
+        .category-content ul {
+            list-style: none;
+            padding: 0;
+            margin: 15px 0;
+        }
+
+        .category-content li {
+            padding: 12px 0;
+            padding-right: 35px;
+            position: relative;
+            border-bottom: 1px solid #E0E7EE;
+        }
+
+        .category-content li:last-child {
+            border-bottom: none;
+        }
+
+        .category-content li::before {
+            content: '✓';
+            position: absolute;
+            right: 0;
+            color: var(--success);
+            font-weight: bold;
+            font-size: 1.4rem;
+        }
+
+        .info-box {
+            background: rgba(255,255,255,0.95);
+            border-radius: 20px;
+            padding: 30px;
+            margin-top: 40px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+            border-right: 4px solid var(--accent);
+            animation: fadeIn 0.8s ease-out 0.6s both;
+        }
+
+        .info-box-header {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 15px;
+        }
+
+        .info-box-icon {
+            font-size: 2rem;
+        }
+
+        .info-box h3 {
+            font-family: 'Varela Round', sans-serif;
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: var(--accent);
+            margin: 0;
+        }
+
+        .info-box p {
+            font-size: 1.05rem;
+            line-height: 1.8;
+            color: #546E7A;
+            margin: 0;
+        }
+
+        .links-section {
+            margin-top: 25px;
+            padding-top: 20px;
+            border-top: 2px solid #E0E7EE;
+        }
+
+        .links-title {
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 15px;
+            font-size: 1.1rem;
+        }
+
+        .link-item {
+            display: block;
+            padding: 12px 18px;
+            margin-bottom: 10px;
+            background: #F5F9FC;
+            border-radius: 12px;
+            color: var(--secondary);
+            text-decoration: none;
+            transition: all 0.3s;
+            font-weight: 600;
+        }
+
+        .link-item:hover {
+            background: var(--secondary);
+            color: white;
+            transform: translateX(-5px);
+            box-shadow: 0 4px 12px rgba(74, 144, 181, 0.3);
+        }
+
+        .loading {
+            text-align: center;
+            padding: 60px 20px;
+            background: white;
+            border-radius: 24px;
+            box-shadow: 0 12px 35px rgba(0,0,0,0.2);
+        }
+
+        .loading-spinner {
+            width: 60px;
+            height: 60px;
+            border: 6px solid #E0E7EE;
+            border-top-color: var(--primary);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 20px;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        footer {
+            text-align: center;
+            margin-top: 60px;
+            padding: 30px;
+            color: rgba(255,255,255,0.9);
+            font-size: 1rem;
+        }
+
+        footer a {
+            color: white;
+            text-decoration: underline;
+            font-weight: 600;
+        }
+
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2.5rem;
+            }
+
+            .subtitle {
+                font-size: 1.1rem;
+            }
+
+            .category-card {
+                padding: 25px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🌟 זכויות אזרחים ותיקים</h1>
+            <p class="subtitle">מידע מעודכן אוטומטית מהמקורות הרשמיים</p>
+            <div class="update-badge" id="updateBadge">⏳ טוען מידע...</div>
+        </header>
+
+        <div id="content">
+            <div class="loading">
+                <div class="loading-spinner"></div>
+                <p style="color: #546E7A; font-size: 1.2rem; font-weight: 600;">טוען מידע מעודכן...</p>
+            </div>
+        </div>
+
+        <div class="info-box">
+            <div class="info-box-header">
+                <span class="info-box-icon">ℹ️</span>
+                <h3>הערה חשובה</h3>
+            </div>
+            <p>
+                המידע באתר זה מתעדכן אוטומטית מדי יום ממקורות רשמיים, אך הוא לידיעה כללית בלבד 
+                ואינו מהווה ייעוץ משפטי, רפואי או פיננסי. מומלץ מאוד לפנות לגורמים המוסמכים 
+                לקבלת מידע מדויק ומעודכן על הזכויות המגיעות לכם באופן אישי.
+            </p>
+            <div class="links-section">
+                <div class="links-title">🔗 קישורים למקורות מידע רשמיים:</div>
+                <a href="https://www.btl.gov.il" target="_blank" class="link-item">🏛️ אתר הביטוח הלאומי</a>
+                <a href="https://www.gov.il/he/Departments/molsa" target="_blank" class="link-item">🏢 משרד הרווחה והשירותים החברתיים</a>
+                <a href="https://www.health.gov.il" target="_blank" class="link-item">🏥 משרד הבריאות</a>
+                <a href="https://www.gov.il/he/service/senior-citizens-benefits" target="_blank" class="link-item">📋 זכויות אזרחים ותיקים - gov.il</a>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <p>
+            🤖 מערכת עדכון אוטומטית | פותח עם ❤️ לסיוע לאזרחים ותיקים בישראל<br>
+            המידע מתעדכן אוטומטית מדי יום
+        </p>
+    </footer>
+
+    <script src="data/rights-data.js"></script>
+    <script>
+        // אייקונים לפי קטגוריה
+        const CATEGORY_ICONS = {
+            social_security: '🛡️',
+            nursing: '❤️',
+            tax_benefits: '💰',
+            transportation: '🚌',
+            housing: '🏠',
+            additional: '📄'
+        };
+
+        // הצגת המידע
+        function displayData() {
+            try {
+                // בדיקה אם יש נתונים
+                if (typeof RIGHTS_DATA === 'undefined' || !RIGHTS_DATA.categories) {
+                    throw new Error('אין נתונים זמינים');
+                }
+
+                // עדכון תג העדכון
+                const updateDate = new Date(RIGHTS_DATA.lastUpdate);
+                const updateBadge = document.getElementById('updateBadge');
+                updateBadge.textContent = `🔄 עודכן: ${updateDate.toLocaleDateString('he-IL')} בשעה ${updateDate.toLocaleTimeString('he-IL', { hour: '2-digit', minute: '2-digit' })}`;
+
+                // בניית ה-HTML
+                let html = '<div class="categories-grid">';
+
+                for (const [key, data] of Object.entries(RIGHTS_DATA.categories)) {
+                    const icon = CATEGORY_ICONS[key] || '📋';
+                    
+                    html += `
+                        <div class="category-card">
+                            <div class="category-header">
+                                <div class="category-icon">${icon}</div>
+                                <h3 class="category-title">${data.title}</h3>
+                            </div>
+                            <div class="category-content">
+                                ${data.content}
+                            </div>
+                        </div>
+                    `;
+                }
+
+                html += '</div>';
+
+                // עדכון התוכן
+                document.getElementById('content').innerHTML = html;
+
+            } catch (error) {
+                console.error('שגיאה בטעינת הנתונים:', error);
+                document.getElementById('content').innerHTML = `
+                    <div class="loading">
+                        <p style="color: var(--danger); font-size: 1.2rem; font-weight: 600;">
+                            ⚠️ אירעה שגיאה בטעינת המידע
+                        </p>
+                        <p style="color: #546E7A; margin-top: 10px;">
+                            אנא רענן את הדף או נסה שוב מאוחר יותר
+                        </p>
+                    </div>
+                `;
+            }
+        }
+
+        // טעינה כשהדף מוכן
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', displayData);
+        } else {
+            displayData();
+        }
+    </script>
+</body>
+</html>
