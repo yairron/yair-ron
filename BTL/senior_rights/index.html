@@ -119,11 +119,25 @@
 
         .accordion {
             background: white;
-            border-radius: 24px;
-            margin-bottom: 20px;
+            border-radius: 0;
+            margin-bottom: 0;
             box-shadow: 0 12px 35px rgba(0,0,0,0.2);
             overflow: hidden;
             transition: all 0.3s;
+            border-bottom: 1px solid rgba(0,0,0,0.1);
+        }
+
+        .accordion:first-child {
+            border-radius: 24px 24px 0 0;
+        }
+
+        .accordion:last-child {
+            border-radius: 0 0 24px 24px;
+            border-bottom: none;
+        }
+
+        .accordion:only-child {
+            border-radius: 24px;
         }
 
         .accordion:hover {
