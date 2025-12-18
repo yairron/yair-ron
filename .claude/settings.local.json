@@ -1,0 +1,15 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(cat:*)",
+      "Bash(if [ -d \"BTL/senior_rights/.git\" ])",
+      "Bash(then rm -rf \"BTL/senior_rights/.git\")",
+      "Bash(elif [ -f \"BTL/senior_rights/.git\" ])",
+      "Bash(then rm \"BTL/senior_rights/.git\")",
+      "Bash(else echo \"No .git found\")",
+      "Bash(fi)",
+      "Bash(git add:*)",
+      "Bash(git commit:*)"
+    ]
+  }
+}
