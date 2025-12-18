@@ -242,6 +242,64 @@
             font-size: 1.4rem;
         }
 
+        /* תתי-אקורדיונים */
+        .sub-accordion {
+            margin: 15px 0;
+            border: 1px solid #E0E7EE;
+            border-radius: 12px;
+            overflow: hidden;
+            background: #F8FAFB;
+        }
+
+        .sub-accordion-header {
+            padding: 18px 25px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background: linear-gradient(135deg, #F8FAFB 0%, #EEF2F5 100%);
+            transition: all 0.3s;
+        }
+
+        .sub-accordion-header:hover {
+            background: linear-gradient(135deg, #EEF2F5 0%, #E3E9EE 100%);
+        }
+
+        .sub-accordion-title {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: var(--primary);
+            margin: 0;
+            flex: 1;
+        }
+
+        .sub-accordion-arrow {
+            font-size: 1.2rem;
+            transition: transform 0.3s;
+            color: var(--primary);
+            width: 30px;
+            text-align: center;
+        }
+
+        .sub-accordion.active .sub-accordion-arrow {
+            transform: rotate(180deg);
+        }
+
+        .sub-accordion-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s ease;
+        }
+
+        .sub-accordion.active .sub-accordion-content {
+            max-height: 3000px;
+        }
+
+        .sub-accordion-body {
+            padding: 20px 25px;
+            background: white;
+        }
+
         .conditions-box {
             background: #FFF8E1;
             border-right: 4px solid var(--accent);
@@ -492,6 +550,9 @@
                 // עדכון התוכן
                 document.getElementById('content').innerHTML = html;
 
+                // המרת h2/h3 לתתי-אקורדיונים
+                convertHeadingsToSubAccordions();
+
                 // הוספת מאזינים לאקורדיונים
                 initAccordions();
 
@@ -508,6 +569,69 @@
                     </div>
                 `;
             }
+        }
+
+        // המרת כותרות לתתי-אקורדיונים
+        function convertHeadingsToSubAccordions() {
+            const accordionBodies = document.querySelectorAll('.accordion-body');
+
+            accordionBodies.forEach(body => {
+                const headings = body.querySelectorAll('h2, h3');
+
+                headings.forEach(heading => {
+                    // מצא את כל האלמנטים עד הכותרת הבאה
+                    let contentElements = [];
+                    let nextElement = heading.nextElementSibling;
+
+                    while (nextElement && !['H2', 'H3'].includes(nextElement.tagName)) {
+                        contentElements.push(nextElement);
+                        nextElement = nextElement.nextElementSibling;
+                    }
+
+                    if (contentElements.length > 0) {
+                        // צור תת-אקורדיון
+                        const subAccordion = document.createElement('div');
+                        subAccordion.className = 'sub-accordion';
+
+                        const subHeader = document.createElement('div');
+                        subHeader.className = 'sub-accordion-header';
+
+                        const subTitle = document.createElement('div');
+                        subTitle.className = 'sub-accordion-title';
+                        subTitle.innerHTML = heading.innerHTML;
+
+                        const subArrow = document.createElement('span');
+                        subArrow.className = 'sub-accordion-arrow';
+                        subArrow.textContent = '▼';
+
+                        subHeader.appendChild(subTitle);
+                        subHeader.appendChild(subArrow);
+
+                        const subContent = document.createElement('div');
+                        subContent.className = 'sub-accordion-content';
+
+                        const subBody = document.createElement('div');
+                        subBody.className = 'sub-accordion-body';
+
+                        // העבר את כל האלמנטים לגוף התת-אקורדיון
+                        contentElements.forEach(el => {
+                            subBody.appendChild(el);
+                        });
+
+                        subContent.appendChild(subBody);
+                        subAccordion.appendChild(subHeader);
+                        subAccordion.appendChild(subContent);
+
+                        // החלף את הכותרת בתת-אקורדיון
+                        heading.parentNode.replaceChild(subAccordion, heading);
+
+                        // הוסף מאזין אירועים
+                        subHeader.addEventListener('click', () => {
+                            subAccordion.classList.toggle('active');
+                        });
+                    }
+                });
+            });
         }
 
         // אתחול פונקציונליות האקורדיון
