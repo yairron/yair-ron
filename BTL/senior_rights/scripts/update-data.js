@@ -75,12 +75,9 @@ async function searchWithAI(topic, apiKey) {
 
 async function updateAllCategories(apiKey) {
   const topics = {
-    social_security: 'קצבאות זקנה וזכויות ביטוח לאומי',
-    nursing: 'זכויות סיעוד, רמות סיעוד, ושירותי בריאות לקשישים',
-    tax_benefits: 'הטבות מס, נקודות זיכוי, והנחות ארנונה לאזרחים ותיקים',
-    transportation: 'הנחות תחבורה ציבורית, רב-קו, ורכבת לגיל השלישי',
-    housing: 'סיוע בדיור, דמי שכירות, ודיור מוגן לאזרחים ותיקים',
-    additional: 'זכויות נוספות: תרבות, פנאי, טלפון חירום, וסיוע משפטי'
+    social_security: 'קצבאות זקנה וזכויות ביטוח לאומי - כולל תנאי זכאות מפורטים, גיל פרישה, סכומים, ומסמכים נדרשים',
+    nursing: 'זכויות סיעוד לאזרחים ותיקים - כולל רמות סיעוד, תנאי זכאות, סכומים לכל רמה, תהליך הגשת תביעה ומסמכים נדרשים',
+    holocaust_survivors: 'זכויות ניצולי שואה - כולל תנאי זכאות, קצבאות, הטבות מיוחדות, סיוע רפואי וסיעודי, ומסמכים נדרשים'
   };
 
   // טעינת הנתונים הקיימים
@@ -98,16 +95,13 @@ async function updateAllCategories(apiKey) {
     console.log('📄 לא נמצא קובץ קיים, יוצר חדש...');
   }
 
-  // בחירת 2 קטגוריות לעדכון (מתחלפות כל יום)
+  // בחירת קטגוריה אחת לעדכון (מתחלפת כל יום)
   const allKeys = Object.keys(topics);
   const dayOfYear = Math.floor((Date.now() - new Date(new Date().getFullYear(), 0, 0)) / 86400000);
-  const startIndex = (dayOfYear * 2) % allKeys.length;
-  const categoriesToUpdate = [
-    allKeys[startIndex % allKeys.length],
-    allKeys[(startIndex + 1) % allKeys.length]
-  ];
+  const categoryIndex = dayOfYear % allKeys.length;
+  const categoriesToUpdate = [allKeys[categoryIndex]];
 
-  console.log(`\n📅 מעדכן היום: ${categoriesToUpdate.map(k => topics[k]).join(' ו-')}\n`);
+  console.log(`\n📅 מעדכן היום: ${topics[allKeys[categoryIndex]]}\n`);
 
   for (const key of categoriesToUpdate) {
     const topic = topics[key];
