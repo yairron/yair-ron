@@ -40,6 +40,33 @@
       ]
     },
     {
+      "id": "social_equality",
+      "title": "משרד לשוויון חברתי",
+      "icon": "🏢",
+      "links": [
+        {
+          "name": "משרד לשוויון חברתי - האזרח הוותיק",
+          "url": "https://www.gov.il/he/departments/topics/senior_citizens",
+          "description": "מידע מקיף על זכויות, שירותים ותוכניות לאזרחים ותיקים"
+        },
+        {
+          "name": "תעודת אזרח ותיק",
+          "url": "https://www.gov.il/he/service/senior_citizen_card",
+          "description": "בקשה לתעודת אזרח ותיק והטבות"
+        },
+        {
+          "name": "תוכניות ושירותים לאזרח הוותיק",
+          "url": "https://www.gov.il/he/departments/guides/senior_services",
+          "description": "מדריך מקיף לכל השירותים והתוכניות"
+        },
+        {
+          "name": "מרכזי מידע לאזרח הוותיק",
+          "url": "https://www.gov.il/he/service/information_centers_for_senior_citizens",
+          "description": "מרכזי מידע ויעוץ ברחבי הארץ"
+        }
+      ]
+    },
+    {
       "id": "holocaust",
       "title": "קרן לרווחת ניצולי השואה",
       "icon": "✡️",
