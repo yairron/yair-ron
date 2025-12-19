@@ -9,6 +9,10 @@ on:
   # אפשרות להריץ ידנית
   workflow_dispatch:
 
+# הרשאות נדרשות
+permissions:
+  contents: write
+
 jobs:
   update-data:
     name: עדכון מידע מעודכן מהאינטרנט
