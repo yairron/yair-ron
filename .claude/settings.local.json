@@ -9,7 +9,10 @@
       "Bash(else echo \"No .git found\")",
       "Bash(fi)",
       "Bash(git add:*)",
-      "Bash(git commit:*)"
+      "Bash(git commit:*)",
+      "Bash(node build-json-from-md.js:*)",
+      "Bash(node validate-data.js:*)",
+      "Bash(node fill-json-from-md.js:*)"
     ]
   }
 }
