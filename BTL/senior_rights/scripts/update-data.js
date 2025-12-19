@@ -27,7 +27,7 @@ async function searchWithAI(topic, apiKey) {
       },
       body: JSON.stringify({
         model: 'claude-sonnet-4-20250514',
-        max_tokens: 6000,
+        max_tokens: 8000,
         messages: [
           {
             role: 'user',
@@ -46,18 +46,13 @@ async function searchWithAI(topic, apiKey) {
 - כתוב בעברית פשוטה וברורה
 - אל תכלול תג <html> או <body> - רק את תוכן ה-HTML`
           }
-        ],
-        tools: [
-          {
-            type: 'web_search_20250305',
-            name: 'web_search'
-          }
         ]
       })
     });
 
     if (!response.ok) {
-      throw new Error(`API error: ${response.status}`);
+      const errorData = await response.json();
+      throw new Error(`API error: ${response.status} - ${JSON.stringify(errorData)}`);
     }
 
     const data = await response.json();
@@ -78,7 +73,9 @@ async function searchWithAI(topic, apiKey) {
 
 async function updateAllCategories(apiKey) {
   const topics = {
-    social_security: `קצבאות זקנה וזכויות ביטוח לאומי לאזרחים ותיקים בישראל - חפש ב-btl.gov.il ו-gov.il מידע מעודכן על:
+    social_security: {
+      title: 'קצבאות זקנה וזכויות ביטוח לאומי',
+      prompt: `קצבאות זקנה וזכויות ביטוח לאומי לאזרחים ותיקים בישראל - חפש ב-btl.gov.il ו-gov.il מידע מעודכן על:
 - גיל פרישה מדויק (גברים ונשים)
 - סכומי קצבת זקנה (עד גיל 80 ומגיל 80+)
 - תוספת השלמת הכנסה - תנאים וסכומים
@@ -89,40 +86,52 @@ async function updateAllCategories(apiKey) {
 - הנחות במוזיאונים וגנים לאומיים
 - תוספת מים במחיר מופחת
 - פרטי קשר ומוקדי מידע
-הצג בפורמט HTML מסודר עם כותרות ורשימות`,
+הצג בפורמט HTML מסודר עם כותרות ורשימות`
+    },
 
-    nursing: `זכויות סיעוד מלאות לאזרחים ותיקים בישראל - חפש ב-btl.gov.il מידע מקיף על:
-תנאי זכאות:
-- גיל פרישה מדויק (67 גברים, 62-65 נשים)
-- תנאי תושבות
-- מבחן הכנסות מפורט עם סכומים מדויקים (גמלה מלאה/מופחתת)
-- דרישות מצב תפקודי
+    nursing: {
+      title: 'זכויות סיעוד לאזרחים ותיקים',
+      prompt: `חפש מידע מקיף ומעודכן על זכויות סיעוד לאזרחים ותיקים בישראל מאתר btl.gov.il.
 
-6 רמות הסיעוד:
-- לכל רמה: נקודות תלות מדויקות, שעות טיפול שבועיות, גמלה מקסימלית בכסף
-- שווי שעת טיפול עדכני
-- הבדלים בין מטפל ישראלי לעובד זר
+חשוב מאוד: הבא מידע מפורט ומלא על כל הנושאים הבאים:
 
-סל השירותים:
-- טיפול אישי, מרכז יום, מוצרי ספיגה, לחצן מצוקה, שירותי כביסה
-- אפשרויות המרה לכסף לפי רמות
-- תוספות ניקוד למצבים מיוחדים (גר לבד, עם בן זוג מטופל, בן 90+)
+1. תנאי זכאות בסיסיים:
+   - גיל פרישה מדויק (גברים ונשים)
+   - תנאי תושבות
+   - מבחן הכנסות מפורט עם סכומים מדויקים לגמלה מלאה ומופחתת
+   - דרישות מצב תפקודי
 
-תהליך הגשת תביעה:
-- שלבי ההגשה המלאים
-- מבחן ADL - פעולות שנבדקות
-- זמני תגובה
-- טיפים להגשה מוצלחת
-- זכות ערעור
+2. 6 רמות הסיעוד - חובה לכלול לכל רמה:
+   - נקודות תלות מדויקות (טווח נקודות)
+   - שעות טיפול שבועיות
+   - גמלה מקסימלית בכסף (סכום מדויק ב-₪)
+   - שווי שעת טיפול עדכני
+   - הבדלים בין מטפל ישראלי לעובד זר
 
-מניעות וחסמים:
-- קצבאות סותרות
-- סוגי מגורים המונעים זכאות
+3. סל השירותים המלא:
+   - טיפול אישי, מרכז יום, מוצרי ספיגה, לחצן מצוקה, שירותי כביסה
+   - אפשרויות המרה לכסף לפי רמות
+   - תוספות ניקוד למצבים מיוחדים (גר לבד, עם בן זוג מטופל, בן 90+)
 
-פרטי קשר: מוקדים, אתרים, טלפונים
-הצג בפורמט HTML עם טבלאות, כותרות ברורות, ורשימות מסודרות`,
+4. תהליך הגשת תביעה:
+   - שלבי ההגשה המלאים
+   - מבחן ADL - פירוט כל הפעולות שנבדקות
+   - זמני תגובה ממועד הגשה
+   - טיפים להגשה מוצלחת
+   - זכות ערעור ותהליך הערעור
 
-    holocaust_survivors: `זכויות מיוחדות לניצולי שואה בישראל - חפש ב-btl.gov.il, באתר הרשות לזכויות ניצולי השואה, וועידת התביעות:
+5. מניעות וחסמים:
+   - קצבאות סותרות
+   - סוגי מגורים המונעים זכאות
+
+6. פרטי קשר מלאים: מוקדים, אתרים, טלפונים
+
+הצג את המידע בפורמט HTML עשיר עם טבלאות מפורטות, כותרות ברורות (h2, h3), ורשימות מסודרות.`
+    },
+
+    holocaust_survivors: {
+      title: 'זכויות מיוחדות לניצולי שואה',
+      prompt: `זכויות מיוחדות לניצולי שואה בישראל - חפש ב-btl.gov.il, באתר הרשות לזכויות ניצולי השואה, וועידת התביעות:
 
 הגדרה: מי מוכר כניצול שואה? (רשות לזכויות ניצולי השואה, Claims Conference, BEG)
 
@@ -158,6 +167,7 @@ async function updateAllCategories(apiKey) {
 
 פרטי קשר מלאים: רשות, קרן, ועידת התביעות, מוקדים
 הצג בפורמט HTML מסודר עם כותרות, רשימות וטבלאות`
+    }
   };
 
   // טעינת הנתונים הקיימים
@@ -181,22 +191,30 @@ async function updateAllCategories(apiKey) {
   const categoryIndex = dayOfYear % allKeys.length;
   const categoriesToUpdate = [allKeys[categoryIndex]];
 
-  console.log(`\n📅 מעדכן היום: ${topics[allKeys[categoryIndex]]}\n`);
+  console.log(`\n📅 מעדכן היום: ${topics[categoriesToUpdate[0]].title}\n`);
 
   for (const key of categoriesToUpdate) {
-    const topic = topics[key];
-    console.log(`\n📝 מעדכן: ${topic}`);
-    const content = await searchWithAI(topic, apiKey);
+    const topicData = topics[key];
+    console.log(`\n📝 מעדכן: ${topicData.title}`);
+    const content = await searchWithAI(topicData.prompt, apiKey);
 
     if (content) {
-      existingData.categories[key] = {
-        title: topic,
-        content: content,
-        updatedAt: new Date().toISOString()
-      };
-      console.log(`✅ הצליח לעדכן: ${topic}`);
+      // בדיקת תקינות - התוכן צריך להיות עשיר מספיק
+      const minContentLength = 500; // מינימום 500 תווים
+
+      if (content.length < minContentLength) {
+        console.log(`⚠️  התוכן קצר מדי (${content.length} תווים), משאיר את התוכן הקיים`);
+        console.log(`⚠️  נדרש מינימום ${minContentLength} תווים`);
+      } else {
+        existingData.categories[key] = {
+          title: topicData.title,
+          content: content,
+          updatedAt: new Date().toISOString()
+        };
+        console.log(`✅ הצליח לעדכן: ${topicData.title} (${content.length} תווים)`);
+      }
     } else {
-      console.log(`⚠️  לא הצליח לעדכן: ${topic}`);
+      console.log(`⚠️  לא הצליח לעדכן: ${topicData.title}`);
     }
 
     // המתנה קצרה בין בקשות
