@@ -1,0 +1,490 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>טפסי ביטוח לאומי - זכויות אזרחים ותיקים</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        header {
+            background: white;
+            padding: 30px;
+            padding-top: 70px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            text-align: center;
+            margin-bottom: 30px;
+            position: relative;
+        }
+
+        h1 {
+            color: #333;
+            font-size: 2.5em;
+            margin-bottom: 10px;
+        }
+
+        .subtitle {
+            color: #666;
+            font-size: 1.1em;
+        }
+
+        .back-button {
+            display: inline-block;
+            background: rgba(255,255,255,0.25);
+            backdrop-filter: blur(10px);
+            padding: 12px 24px;
+            border-radius: 25px;
+            color: black;
+            text-decoration: none;
+            font-size: 1rem;
+            font-weight: 600;
+            transition: all 0.3s;
+            position: absolute;
+            top: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+        }
+
+        .back-button:hover {
+            background: rgba(255,255,255,0.35);
+            transform: translateX(-50%) translateY(-2px);
+            box-shadow: 0 6px 20px rgba(0,0,0,0.25);
+        }
+
+        .back-button::before {
+            content: '← ';
+            margin-left: 5px;
+        }
+
+        .category-section {
+            background: white;
+            border-radius: 15px;
+            padding: 25px;
+            margin-bottom: 25px;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+            animation: fadeInUp 0.6s ease forwards;
+        }
+
+        .category-header {
+            color: #667eea;
+            font-size: 1.8em;
+            font-weight: bold;
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 3px solid #667eea;
+        }
+
+        .forms-list {
+            list-style: none;
+        }
+
+        .form-item {
+            margin-bottom: 15px;
+            padding: 15px;
+            background: #f8f9fa;
+            border-radius: 10px;
+            transition: all 0.3s ease;
+            border-right: 4px solid transparent;
+        }
+
+        .form-item:hover {
+            background: #e9ecef;
+            border-right-color: #667eea;
+            transform: translateX(-5px);
+        }
+
+        .form-number {
+            display: inline-block;
+            background: #667eea;
+            color: white;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-weight: bold;
+            font-size: 0.9em;
+            margin-left: 10px;
+        }
+
+        .form-name {
+            display: block;
+            color: #333;
+            font-weight: bold;
+            font-size: 1.1em;
+            margin-bottom: 8px;
+        }
+
+        .form-description {
+            color: #666;
+            font-size: 0.95em;
+            line-height: 1.4;
+            margin-bottom: 10px;
+        }
+
+        .form-links {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .form-link {
+            display: inline-block;
+            padding: 8px 16px;
+            background: #667eea;
+            color: white;
+            text-decoration: none;
+            border-radius: 8px;
+            font-size: 0.9em;
+            transition: all 0.3s ease;
+        }
+
+        .form-link:hover {
+            background: #764ba2;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+        }
+
+        .form-link.pdf {
+            background: #e74c3c;
+        }
+
+        .form-link.pdf:hover {
+            background: #c0392b;
+        }
+
+        .info-box {
+            background: #e7f3ff;
+            border-right: 4px solid #2196F3;
+            padding: 15px;
+            border-radius: 8px;
+            margin-top: 20px;
+        }
+
+        .info-box h3 {
+            color: #2196F3;
+            margin-bottom: 10px;
+        }
+
+        .info-box ul {
+            list-style: none;
+            padding-right: 0;
+        }
+
+        .info-box li {
+            margin-bottom: 8px;
+            color: #555;
+        }
+
+        .info-box strong {
+            color: #333;
+        }
+
+        footer {
+            background: white;
+            padding: 20px;
+            border-radius: 15px;
+            text-align: center;
+            color: #666;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .category-section:nth-child(1) { animation-delay: 0.1s; opacity: 0; }
+        .category-section:nth-child(2) { animation-delay: 0.2s; opacity: 0; }
+        .category-section:nth-child(3) { animation-delay: 0.3s; opacity: 0; }
+        .category-section:nth-child(4) { animation-delay: 0.4s; opacity: 0; }
+        .category-section:nth-child(5) { animation-delay: 0.5s; opacity: 0; }
+
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 1.8em;
+            }
+
+            .category-header {
+                font-size: 1.4em;
+            }
+
+            .form-links {
+                flex-direction: column;
+            }
+
+            .form-link {
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <a href="../BTL_index.html" class="back-button">חזרה לדף ראשי</a>
+            <h1>📋 טפסי ביטוח לאומי</h1>
+            <p class="subtitle">טפסים חשובים לאזרחים ותיקים - קצבאות, סיעוד, והנחות</p>
+        </header>
+
+        <!-- טפסים לאזרחים ותיקים -->
+        <div class="category-section">
+            <h2 class="category-header">📝 טפסים לאזרח ותיק (קצבת זקנה)</h2>
+            <ul class="forms-list">
+                <li class="form-item">
+                    <span class="form-number">טופס 480</span>
+                    <div class="form-name">תביעה לקצבת אזרח ותיק - זקנה</div>
+                    <div class="form-description">טופס להגשת תביעה לקצבת זקנה לאזרח ותיק</div>
+                    <div class="form-links">
+                        <a href="https://govforms.gov.il/mw/forms/T480@btl.gov.il" class="form-link" target="_blank" rel="noopener noreferrer">מלא מקוון</a>
+                        <a href="https://www.btl.gov.il/טפסים%20ואישורים/Documents/T480.pdf" class="form-link pdf" target="_blank" rel="noopener noreferrer">הורד PDF</a>
+                    </div>
+                </li>
+
+                <li class="form-item">
+                    <span class="form-number">טופס 430</span>
+                    <div class="form-name">תביעה להשלמת הכנסה</div>
+                    <div class="form-description">תביעה להשלמת הכנסה למקבל קצבאות אזרח ותיק וקצבת שאירים</div>
+                    <div class="form-links">
+                        <a href="https://govforms.gov.il/mw/forms/T480@btl.gov.il" class="form-link" target="_blank" rel="noopener noreferrer">מלא מקוון</a>
+                        <a href="https://www.btl.gov.il/טפסים%20ואישורים/Documents/t430.pdf" class="form-link pdf" target="_blank" rel="noopener noreferrer">הורד PDF</a>
+                    </div>
+                </li>
+
+                <li class="form-item">
+                    <span class="form-number">טופס 484</span>
+                    <div class="form-name">תביעה לתוספת עבור בן/בת זוג</div>
+                    <div class="form-description">תביעה לתוספת עבור בן/בת זוג בקצבת אזרח ותיק - זקנה</div>
+                    <div class="form-links">
+                        <a href="https://www.btl.gov.il/טפסים%20ואישורים/Documents/T484.pdf" class="form-link pdf" target="_blank" rel="noopener noreferrer">הורד PDF</a>
+                    </div>
+                </li>
+
+                <li class="form-item">
+                    <span class="form-number">טופס 409</span>
+                    <div class="form-name">הצהרת הכנסות</div>
+                    <div class="form-description">הצהרת הכנסות לבדיקת זכאות לתוספת עבור בן/בת זוג בקצבת אזרח ותיק</div>
+                    <div class="form-links">
+                        <a href="https://www.btl.gov.il/טפסים%20ואישורים/Documents/t409.pdf" class="form-link pdf" target="_blank" rel="noopener noreferrer">הורד PDF</a>
+                    </div>
+                </li>
+
+                <li class="form-item">
+                    <span class="form-number">טופס 434</span>
+                    <div class="form-name">תביעה למענק מעבר</div>
+                    <div class="form-description">תביעה למענק מעבר בגין העלאת גיל הפרישה</div>
+                    <div class="form-links">
+                        <a href="https://govforms.gov.il/mw/forms/T434@btl.gov.il" class="form-link" target="_blank" rel="noopener noreferrer">מלא מקוון</a>
+                        <a href="https://www.btl.gov.il/טפסים%20ואישורים/Documents/t434.pdf" class="form-link pdf" target="_blank" rel="noopener noreferrer">הורד PDF</a>
+                    </div>
+                </li>
+
+                <li class="form-item">
+                    <span class="form-number">טופס 4501</span>
+                    <div class="form-name">תביעה לגמלה מיוחדת</div>
+                    <div class="form-description">תביעה לגמלה מיוחדת לאזרח ותיק - זקנה</div>
+                    <div class="form-links">
+                        <a href="https://www.btl.gov.il/טפסים%20ואישורים/Documents/T4501.pdf" class="form-link pdf" target="_blank" rel="noopener noreferrer">הורד PDF</a>
+                    </div>
+                </li>
+
+                <li class="form-item">
+                    <span class="form-number">טופס 416</span>
+                    <div class="form-name">תביעה לתשלום מענק פטירה</div>
+                    <div class="form-description">תביעה לתשלום מענק פטירה ו/או יתרת קצבה</div>
+                    <div class="form-links">
+                        <a href="https://www.btl.gov.il/טפסים%20ואישורים/Documents/t416.pdf" class="form-link pdf" target="_blank" rel="noopener noreferrer">הורד PDF</a>
+                    </div>
+                </li>
+
+                <li class="form-item">
+                    <span class="form-number">טופס 418</span>
+                    <div class="form-name">הודעה על יציאה לחו"ל</div>
+                    <div class="form-description">הודעה על יציאה לחו"ל ובקשה לבחינת המשך תשלום</div>
+                    <div class="form-links">
+                        <a href="https://www.btl.gov.il/טפסים%20ואישורים/Documents/t418.pdf" class="form-link pdf" target="_blank" rel="noopener noreferrer">הורד PDF</a>
+                    </div>
+                </li>
+            </ul>
+        </div>
+
+        <!-- טפסי סיעוד -->
+        <div class="category-section">
+            <h2 class="category-header">🏥 טפסים לקצבת סיעוד</h2>
+            <ul class="forms-list">
+                <li class="form-item">
+                    <span class="form-number">טופס 2600</span>
+                    <div class="form-name">תביעה לגמלת סיעוד</div>
+                    <div class="form-description">טופס להגשת תביעה ראשונית לקבלת גמלת סיעוד</div>
+                    <div class="form-links">
+                        <a href="https://govforms.gov.il/mw/forms/T2600@btl.gov.il" class="form-link" target="_blank" rel="noopener noreferrer">מלא מקוון</a>
+                        <a href="https://www.btl.gov.il/טפסים%20ואישורים/Documents/T2600.pdf" class="form-link pdf" target="_blank" rel="noopener noreferrer">הורד PDF</a>
+                    </div>
+                </li>
+
+                <li class="form-item">
+                    <span class="form-number">טופס 2620</span>
+                    <div class="form-name">בקשה לבדיקה מחדש</div>
+                    <div class="form-description">בקשה לבדיקה מחדש של זכאי לגמלת סיעוד עקב טענת החמרה</div>
+                    <div class="form-links">
+                        <a href="https://govforms.gov.il/mw/forms/T2620@btl.gov.il" class="form-link" target="_blank" rel="noopener noreferrer">מלא מקוון</a>
+                    </div>
+                </li>
+
+                <li class="form-item">
+                    <span class="form-number">טופס 2655</span>
+                    <div class="form-name">גמלת סיעוד בכסף במקום שירותים</div>
+                    <div class="form-description">גמלת סיעוד בכסף במקום שירותים למי שמעסיק מטפל צמוד</div>
+                    <div class="form-links">
+                        <a href="https://www.btl.gov.il/טפסים%20ואישורים/Documents/T2655.pdf" class="form-link pdf" target="_blank" rel="noopener noreferrer">הורד PDF</a>
+                    </div>
+                </li>
+
+                <li class="form-item">
+                    <span class="form-number">טופס 7109</span>
+                    <div class="form-name">כתב ויתור סודיות רפואית</div>
+                    <div class="form-description">כתב ויתור על סודיות רפואית לצורך בדיקת תביעה לסיעוד</div>
+                    <div class="form-links">
+                        <a href="https://govforms.gov.il/mw/forms/tVitour_sodiout_refuit@btl.gov.il" class="form-link" target="_blank" rel="noopener noreferrer">מלא מקוון</a>
+                        <a href="https://www.btl.gov.il/טפסים%20ואישורים/Documents/t7109.pdf" class="form-link pdf" target="_blank" rel="noopener noreferrer">הורד PDF</a>
+                    </div>
+                </li>
+
+                <li class="form-item">
+                    <span class="form-number">טופס 2670</span>
+                    <div class="form-name">הצהרה לקביעת מעמד "בודד"</div>
+                    <div class="form-description">הצהרה לקביעת מעמד "בודד" לצורך תוספת נקודות בגמלת סיעוד</div>
+                    <div class="form-links">
+                        <a href="https://www.btl.gov.il/טפסים%20ואישורים/Documents/t2670.pdf" class="form-link pdf" target="_blank" rel="noopener noreferrer">הורד PDF</a>
+                    </div>
+                </li>
+
+                <li class="form-item">
+                    <span class="form-number">טופס 2604</span>
+                    <div class="form-name">אישור על מגורים במוסד</div>
+                    <div class="form-description">אישור על מגורים במוסד/בית אבות</div>
+                    <div class="form-links">
+                        <a href="https://www.btl.gov.il/טפסים%20ואישורים/Documents/t2604.pdf" class="form-link pdf" target="_blank" rel="noopener noreferrer">הורד PDF</a>
+                    </div>
+                </li>
+
+                <li class="form-item">
+                    <span class="form-number">טופס 2666</span>
+                    <div class="form-name">הסכמה להעברת תביעה דרך בית חולים</div>
+                    <div class="form-description">הסכמה להעברת תביעה לגמלת סיעוד באמצעות בית חולים</div>
+                    <div class="form-links">
+                        <a href="https://www.btl.gov.il/טפסים%20ואישורים/Documents/t2666.pdf" class="form-link pdf" target="_blank" rel="noopener noreferrer">הורד PDF</a>
+                    </div>
+                </li>
+
+                <li class="form-item">
+                    <span class="form-number">טופס 2668</span>
+                    <div class="form-name">הסכמה לבדיקה מחדש דרך בית חולים</div>
+                    <div class="form-description">הסכמה להעברת תביעה לבדיקה מחדש עקב החמרה באמצעות בית החולים</div>
+                    <div class="form-links">
+                        <a href="https://www.btl.gov.il/טפסים%20ואישורים/Documents/T2668.pdf" class="form-link pdf" target="_blank" rel="noopener noreferrer">הורד PDF</a>
+                    </div>
+                </li>
+
+                <li class="form-item">
+                    <span class="form-number">טופס 2640</span>
+                    <div class="form-name">הצהרת התובע לאחר אשפוז</div>
+                    <div class="form-description">הצהרת התובע לאחר שחרור מאשפוז מבית אבות או מוסד סיעודי</div>
+                    <div class="form-links">
+                        <a href="https://www.btl.gov.il/טפסים%20ואישורים/Documents/t2640.pdf" class="form-link pdf" target="_blank" rel="noopener noreferrer">הורד PDF</a>
+                    </div>
+                </li>
+            </ul>
+        </div>
+
+        <!-- טפסים כלליים -->
+        <div class="category-section">
+            <h2 class="category-header">📄 טפסים נוספים חשובים</h2>
+            <ul class="forms-list">
+                <li class="form-item">
+                    <span class="form-number">טופס 408</span>
+                    <div class="form-name">הצהרה ועדכון מצב משפחתי</div>
+                    <div class="form-description">הצהרה ועדכון מצב משפחתי לצורך קצבאות ביטוח לאומי</div>
+                    <div class="form-links">
+                        <a href="https://www.btl.gov.il/טפסים%20ואישורים/Documents/t408.pdf" class="form-link pdf" target="_blank" rel="noopener noreferrer">הורד PDF</a>
+                    </div>
+                </li>
+
+                <li class="form-item">
+                    <span class="form-number">טופס 486</span>
+                    <div class="form-name">מבחן הכנסות</div>
+                    <div class="form-description">טופס מבחן הכנסות לבדיקת זכאות לגמלאות</div>
+                    <div class="form-links">
+                        <a href="https://www.btl.gov.il/טפסים%20ואישורים/Documents/t486.pdf" class="form-link pdf" target="_blank" rel="noopener noreferrer">הורד PDF</a>
+                    </div>
+                </li>
+
+                <li class="form-item">
+                    <span class="form-number">טופס 485</span>
+                    <div class="form-name">אישור הקיבוץ על עבודה ושכר</div>
+                    <div class="form-description">אישור הקיבוץ על עבודה ושכר לחברי קיבוץ</div>
+                    <div class="form-links">
+                        <a href="https://www.btl.gov.il/טפסים%20ואישורים/Documents/T485.pdf" class="form-link pdf" target="_blank" rel="noopener noreferrer">הורד PDF</a>
+                    </div>
+                </li>
+            </ul>
+        </div>
+
+        <!-- מידע לניצולי שואה -->
+        <div class="category-section">
+            <h2 class="category-header">✡️ מידע חשוב לניצולי שואה</h2>
+            <div class="info-box">
+                <h3>זכויות מיוחדות לניצולי שואה</h3>
+                <p style="margin-bottom: 15px;">לניצולי שואה יש זכאות לתוספת שעות סיעוד ולהטבות נוספות. הזכאות ניתנת באופן אוטומטי למי שמוכר כניצול שואה ומקבל גמלת סיעוד ברמות מסוימות.</p>
+                <ul>
+                    <li><strong>הרשות לזכויות ניצולי השואה:</strong> מרכז מידע ארצי *5105</li>
+                    <li><strong>ועידת התביעות:</strong> 03-5194401</li>
+                    <li><strong>הקרן לרווחת נפגעי השואה:</strong> 03-6090866</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- קישור לכל הטפסים -->
+        <div class="category-section">
+            <h2 class="category-header">🔍 כל הטפסים</h2>
+            <ul class="forms-list">
+                <li class="form-item">
+                    <div class="form-name">מאגר הטפסים המלא של הביטוח הלאומי</div>
+                    <div class="form-description">גישה לכל הטפסים והשירותים המקוונים של הביטוח הלאומי</div>
+                    <div class="form-links">
+                        <a href="https://www.btl.gov.il/טפסים%20ואישורים/Pages/default.aspx" class="form-link" target="_blank" rel="noopener noreferrer">כל הטפסים</a>
+                        <a href="https://www.btl.gov.il/Pages/default.aspx" class="form-link" target="_blank" rel="noopener noreferrer">שירותים מקוונים</a>
+                    </div>
+                </li>
+            </ul>
+        </div>
+
+        <footer>
+            <p><strong>לתשומת לב:</strong> המידע באתר זה מוצג למטרות הדרכה בלבד.</p>
+            <p>לקבלת מידע רשמי ומעודכן, יש לפנות לגופים הרשמיים.</p>
+            <p style="margin-top: 10px;">מוקד הביטוח הלאומי: <strong>*6050</strong> | <strong>02-6709000</strong></p>
+        </footer>
+    </div>
+</body>
+</html>

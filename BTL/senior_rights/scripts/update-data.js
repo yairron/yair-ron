@@ -185,13 +185,13 @@ async function updateAllCategories(apiKey) {
     console.log('📄 לא נמצא קובץ קיים, יוצר חדש...');
   }
 
-  // בחירת קטגוריה אחת לעדכון (מתחלפת כל יום)
+  // בחירת קטגוריה אחת לעדכון (מתחלפת כל שבוע)
   const allKeys = Object.keys(topics);
-  const dayOfYear = Math.floor((Date.now() - new Date(new Date().getFullYear(), 0, 0)) / 86400000);
-  const categoryIndex = dayOfYear % allKeys.length;
+  const weekOfYear = Math.floor((Date.now() - new Date(new Date().getFullYear(), 0, 0)) / (7 * 86400000));
+  const categoryIndex = weekOfYear % allKeys.length;
   const categoriesToUpdate = [allKeys[categoryIndex]];
 
-  console.log(`\n📅 מעדכן היום: ${topics[categoriesToUpdate[0]].title}\n`);
+  console.log(`\n📅 מעדכן השבוע: ${topics[categoriesToUpdate[0]].title}\n`);
 
   for (const key of categoriesToUpdate) {
     const topicData = topics[key];

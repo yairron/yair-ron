@@ -40,118 +40,6 @@
       ]
     },
     {
-      "id": "btl_forms",
-      "title": "טפסים - ביטוח לאומי",
-      "icon": "📋",
-      "links": [
-        {
-          "name": "טופס 480 - תביעה לקצבת זקנה",
-          "url": "https://govforms.gov.il/mw/forms/T480@btl.gov.il",
-          "description": "תביעה לקצבת אזרח ותיק - זקנה (מילוי מקוון)"
-        },
-        {
-          "name": "טופס 430 - תביעה להשלמת הכנסה",
-          "url": "https://govforms.gov.il/mw/forms/T480@btl.gov.il",
-          "description": "תביעה להשלמת הכנסה למקבל קצבאות זקנה ושאירים"
-        },
-        {
-          "name": "טופס 484 - תוספת עבור בן/בת זוג",
-          "url": "https://www.btl.gov.il/טפסים%20ואישורים/Documents/T484.pdf",
-          "description": "תביעה לתוספת עבור בן/בת זוג בקצבת זקנה"
-        },
-        {
-          "name": "טופס 409 - הצהרת הכנסות",
-          "url": "https://www.btl.gov.il/טפסים%20ואישורים/Documents/t409.pdf",
-          "description": "הצהרת הכנסות לבדיקת זכאות לתוספת בן/בת זוג"
-        },
-        {
-          "name": "טופס 434 - מענק מעבר",
-          "url": "https://govforms.gov.il/mw/forms/T434@btl.gov.il",
-          "description": "תביעה למענק מעבר בגין העלאת גיל פרישה"
-        },
-        {
-          "name": "טופס 4501 - גמלה מיוחדת",
-          "url": "https://www.btl.gov.il/טפסים%20ואישורים/Documents/T4501.pdf",
-          "description": "תביעה לגמלה מיוחדת לאזרח ותיק - זקנה"
-        },
-        {
-          "name": "טופס 416 - מענק פטירה",
-          "url": "https://www.btl.gov.il/טפסים%20ואישורים/Documents/t416.pdf",
-          "description": "תביעה לתשלום מענק פטירה ו/או יתרת קצבה"
-        },
-        {
-          "name": "טופס 418 - הודעה על יציאה לחו\"ל",
-          "url": "https://www.btl.gov.il/טפסים%20ואישורים/Documents/t418.pdf",
-          "description": "הודעה על יציאה לחו\"ל ובקשה לבחינת המשך תשלום"
-        },
-        {
-          "name": "טופס 2600 - תביעה לגמלת סיעוד",
-          "url": "https://govforms.gov.il/mw/forms/T2600@btl.gov.il",
-          "description": "תביעה לגמלת סיעוד (מילוי מקוון)"
-        },
-        {
-          "name": "טופס 2620 - בדיקה מחדש סיעוד",
-          "url": "https://govforms.gov.il/mw/forms/T2620@btl.gov.il",
-          "description": "בקשה לבדיקה מחדש עקב טענת החמרה (מילוי מקוון)"
-        },
-        {
-          "name": "טופס 2655 - גמלת סיעוד בכסף",
-          "url": "https://www.btl.gov.il/טפסים%20ואישורים/Documents/T2655.pdf",
-          "description": "גמלת סיעוד בכסף במקום שירותים (מעסיק מטפל צמוד)"
-        },
-        {
-          "name": "טופס 7109 - ויתור סודיות רפואית",
-          "url": "https://govforms.gov.il/mw/forms/tVitour_sodiout_refuit@btl.gov.il",
-          "description": "כתב ויתור סודיות רפואית (מילוי מקוון)"
-        },
-        {
-          "name": "טופס 2670 - הצהרת מעמד בודד",
-          "url": "https://www.btl.gov.il/טפסים%20ואישורים/Documents/t2670.pdf",
-          "description": "הצהרה לקביעת מעמד בודד לצורך גמלת סיעוד"
-        },
-        {
-          "name": "טופס 2604 - אישור מגורים במוסד",
-          "url": "https://www.btl.gov.il/טפסים%20ואישורים/Documents/t2604.pdf",
-          "description": "אישור על מגורים במוסד/בית אבות"
-        },
-        {
-          "name": "טופס 2666 - תביעה דרך בית חולים",
-          "url": "https://www.btl.gov.il/טפסים%20ואישורים/Documents/t2666.pdf",
-          "description": "הסכמה להעברת תביעה לגמלת סיעוד דרך בית חולים"
-        },
-        {
-          "name": "טופס 2668 - בדיקה מחדש דרך ביה\"ח",
-          "url": "https://www.btl.gov.il/טפסים%20ואישורים/Documents/T2668.pdf",
-          "description": "הסכמה להעברת בדיקה מחדש עקב החמרה דרך ביה\"ח"
-        },
-        {
-          "name": "טופס 2640 - הצהרה לאחר אשפוז",
-          "url": "https://www.btl.gov.il/טפסים%20ואישורים/Documents/t2640.pdf",
-          "description": "הצהרת התובע לאחר שחרור מבית אבות/מוסד סיעודי"
-        },
-        {
-          "name": "טופס 408 - עדכון מצב משפחתי",
-          "url": "https://www.btl.gov.il/טפסים%20ואישורים/Documents/t408.pdf",
-          "description": "הצהרה ועדכון מצב משפחתי"
-        },
-        {
-          "name": "טופס 486 - מבחן הכנסות",
-          "url": "https://www.btl.gov.il/טפסים%20ואישורים/Documents/t486.pdf",
-          "description": "מבחן הכנסות לבדיקת זכאות לקצבאות"
-        },
-        {
-          "name": "טופס 485 - אישור הקיבוץ",
-          "url": "https://www.btl.gov.il/טפסים%20ואישורים/Documents/T485.pdf",
-          "description": "אישור הקיבוץ על עבודה ושכר"
-        },
-        {
-          "name": "כל הטפסים - ביטוח לאומי",
-          "url": "https://www.btl.gov.il/טפסים%20ואישורים/Pages/default.aspx",
-          "description": "מאגר מלא של כל טפסי הביטוח הלאומי"
-        }
-      ]
-    },
-    {
       "id": "social_equality",
       "title": "משרד לשוויון חברתי",
       "icon": "🏢",
@@ -207,7 +95,7 @@
         },
         {
           "name": "זכויות אזרח ותיק - כל זכות",
-          "url": "https://www.kolzchut.org.il/he/%D7%96%D7%A7%D7%A0%D7%94",
+          "url": "https://www.kolzchut.org.il/he/%D7%9E%D7%93%D7%A8%D7%99%D7%9A_%D7%9E%D7%99%D7%A6%D7%95%D7%99_%D7%96%D7%9B%D7%95%D7%99%D7%95%D7%AA_%D7%9C%D7%90%D7%96%D7%A8%D7%97%D7%99%D7%9D_%D7%95%D7%AA%D7%99%D7%A7%D7%99%D7%9D",
           "description": "כל הזכויות לאזרחים ותיקים במקום אחד"
         },
         {
@@ -217,12 +105,12 @@
         },
         {
           "name": "יד שרה - השאלת ציוד רפואי",
-          "url": "https://www.yadsarah.org",
+          "url": "https://yad-sarah.net/",
           "description": "השאלה חינם של ציוד רפואי ושיקומי"
         },
         {
           "name": "עזר מציון",
-          "url": "https://www.ezer.co.il",
+          "url": "https://www.ami.org.il/communities/elders",
           "description": "סיוע וליווי בקבלת זכויות"
         }
       ]
@@ -244,13 +132,8 @@
         },
         {
           "name": "משרד הרווחה",
-          "url": "https://www.gov.il/he/departments/molsa",
+          "url": "https://www.gov.il/he/departments/units/senior-citizens-unit/govil-landing-page",
           "description": "שירותי סיעוד ורווחה לאזרח הוותיק"
-        },
-        {
-          "name": "מוקד 118 - מבוגרים בסיכון",
-          "url": "tel:118",
-          "description": "קו חירום למבוגרים בסיכון - 118"
         }
       ]
     },

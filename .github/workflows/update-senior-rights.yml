@@ -1,10 +1,10 @@
-name: עדכון אוטומטי - קטגוריה אחת ליום
+name: עדכון אוטומטי - קטגוריה אחת לשבוע
 
 # מתי להריץ
 on:
-  # כל יום בחצות (שעון ישראל: 02:00 UTC)
+  # כל שבוע בלילה שבין שבת לראשון (02:00 UTC)
   schedule:
-    - cron: '0 2 * * *'
+    - cron: '0 2 * * 0'
 
   # אפשרות להריץ ידנית
   workflow_dispatch:
@@ -36,12 +36,12 @@ jobs:
         run: |
           echo "✅ משתמש ב-fetch מובנה של Node.js, לא צריך node_modules"
       
-      # 4. הרצת סקריפט העדכון (קטגוריה אחת ליום)
-      - name: 🔄 Update 1 category today
+      # 4. הרצת סקריפט העדכון (קטגוריה אחת לשבוע)
+      - name: 🔄 Update 1 category this week
         env:
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
         run: |
-          echo "🚀 מתחיל עדכון קטגוריה אחת היום..."
+          echo "🚀 מתחיל עדכון קטגוריה אחת השבוע..."
           cd BTL/senior_rights
           node scripts/update-data.js
           echo "✅ עדכון הושלם!"
@@ -59,7 +59,7 @@ jobs:
           git config --local user.email "github-actions[bot]@users.noreply.github.com"
           git config --local user.name "GitHub Actions Bot"
           git add BTL/senior_rights/data/
-          git commit -m "🤖 עדכון יומי - קטגוריה אחת - $(date +'%Y-%m-%d')"
+          git commit -m "🤖 עדכון שבועי - קטגוריה אחת - $(date +'%Y-%m-%d')"
           git push
       
       # 7. הודעת סיום
