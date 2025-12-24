@@ -615,6 +615,7 @@
             const accordionBodies = document.querySelectorAll('.accordion-body');
 
             accordionBodies.forEach(body => {
+                // טיפול בכותרות h2, h3 - כולן יהפכו לתת-אקורדיונים
                 const headings = body.querySelectorAll('h2, h3');
 
                 headings.forEach(heading => {
@@ -666,7 +667,29 @@
 
                         // הוסף מאזין אירועים
                         subHeader.addEventListener('click', () => {
+                            const wasActive = subAccordion.classList.contains('active');
+
+                            // סגור את כל התת-אקורדיונים בדף (בכל הרמות)
+                            document.querySelectorAll('.sub-accordion.active').forEach(activeSubAccordion => {
+                                if (activeSubAccordion !== subAccordion) {
+                                    activeSubAccordion.classList.remove('active');
+                                }
+                            });
+
+                            // פתח/סגור את התת-אקורדיון הנוכחי
                             subAccordion.classList.toggle('active');
+
+                            // אם נפתח תת-אקורדיון, גלול אל הכותרת שלו
+                            // המתנה קצרה יותר כדי לתת לתת-אקורדיון הקודם להסגר תחילה
+                            if (!wasActive) {
+                                setTimeout(() => {
+                                    subAccordion.scrollIntoView({
+                                        behavior: 'smooth',
+                                        block: 'start',
+                                        inline: 'nearest'
+                                    });
+                                }, 450);
+                            }
                         });
                     }
                 });
@@ -681,6 +704,8 @@
                 const header = accordion.querySelector('.accordion-header');
 
                 header.addEventListener('click', () => {
+                    const wasActive = accordion.classList.contains('active');
+
                     // סגור את כל האקורדיונים האחרים
                     accordions.forEach(other => {
                         if (other !== accordion && other.classList.contains('active')) {
@@ -690,6 +715,18 @@
 
                     // פתח/סגור את האקורדיון הנוכחי
                     accordion.classList.toggle('active');
+
+                    // אם נפתח האקורדיון, גלול אליו
+                    // המתנה קצרה יותר כדי לתת לאקורדיון הקודם להסגר תחילה
+                    if (!wasActive) {
+                        setTimeout(() => {
+                            accordion.scrollIntoView({
+                                behavior: 'smooth',
+                                block: 'start',
+                                inline: 'nearest'
+                            });
+                        }, 450);
+                    }
                 });
             });
 
