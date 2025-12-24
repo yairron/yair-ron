@@ -815,7 +815,7 @@ const RIGHTS_DATA = {
 
           <h5>📮 דרכי הגשה</h5>
           <ul>
-            <li>✅ מילוי טופס והגשתו במחלקת אזרח ותיק בסניף הביטוח הלאומי הקרוב למקום מגוריך</li>
+            <li>✅ <a href="https://www.btl.gov.il/benefits/old_age/MankMavrATR/Pages/BksaMankMavr.aspx" target="_blank" style="color: #667eea; text-decoration: underline;">מילוי טופס והגשתו</a> במחלקת אזרח ותיק בסניף הביטוח הלאומי הקרוב למקום מגוריך</li>
             <li>✅ שליחת מסמכים דרך שירות שליחת מסמכים של הביטוח הלאומי</li>
           </ul>
         </div>
