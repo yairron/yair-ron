@@ -12,7 +12,8 @@
       "Bash(git commit:*)",
       "Bash(node build-json-from-md.js:*)",
       "Bash(node validate-data.js:*)",
-      "Bash(node fill-json-from-md.js:*)"
+      "Bash(node fill-json-from-md.js:*)",
+      "Bash(node build-dynamic-html.js:*)"
     ]
   }
 }

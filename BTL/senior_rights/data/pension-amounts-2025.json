@@ -1,0 +1,548 @@
+{
+  "metadata": {
+    "lastUpdate": "2025-01-01",
+    "source": "זכויות אזרחים ותיקים בישראל - מדריך מקיף לקצבאות, גמלאות והטבות - עדכון 2025",
+    "version": "2025.1",
+    "description": "נתוני קצבאות וגמלאות לאזרחים ותיקים - ינואר 2025"
+  },
+
+  "retirementAge": {
+    "men": {
+      "fieldName": "גיל פרישה - גברים",
+      "value": 67,
+      "updateDate": "2025-01-01",
+      "explanation": "גיל הפרישה לגברים בישראל"
+    },
+    "women": {
+      "fieldName": "גיל פרישה - נשים (לפי שנת לידה)",
+      "updateDate": "2025-01-01",
+      "explanation": "גיל הפרישה לנשים משתנה בהתאם לשנת הלידה",
+      "values": [
+        {"birthYear": "עד 1959", "retirementAge": 62},
+        {"birthYear": "1960", "retirementAge": "62 שנים ו-4 חודשים"},
+        {"birthYear": "1961", "retirementAge": "62 שנים ו-8 חודשים"},
+        {"birthYear": "1962", "retirementAge": 63},
+        {"birthYear": "1963", "retirementAge": "63 שנים ו-4 חודשים"},
+        {"birthYear": "1964", "retirementAge": "63 שנים ו-8 חודשים"},
+        {"birthYear": "1965", "retirementAge": 64},
+        {"birthYear": "1966", "retirementAge": "64 שנים ו-4 חודשים"},
+        {"birthYear": "1967 ואילך", "retirementAge": 65}
+      ]
+    },
+    "absoluteAge": {
+      "fieldName": "גיל הזכאות המוחלט",
+      "value": 70,
+      "updateDate": "2025-01-01",
+      "explanation": "ללא מבחן הכנסות - גברים ונשים"
+    }
+  },
+
+  "incomeTest": {
+    "fieldName": "מבחן הכנסות (בין גיל פרישה לגיל 70)",
+    "updateDate": "2025-01-01",
+    "single": {
+      "fullEligibility": {
+        "fieldName": "יחיד - זכאות מלאה",
+        "value": 9208,
+        "updateDate": "2025-01-01",
+        "explanation": "הכנסה חודשית מקסימלית לזכאות מלאה ליחיד"
+      },
+      "partialEligibility": {
+        "fieldName": "יחיד - זכאות חלקית",
+        "value": 13812,
+        "updateDate": "2025-01-01",
+        "explanation": "הכנסה חודשית מקסימלית לזכאות חלקית ליחיד"
+      },
+      "noEligibility": {
+        "fieldName": "יחיד - אין זכאות",
+        "value": 13812,
+        "updateDate": "2025-01-01",
+        "explanation": "מעל סכום זה אין זכאות"
+      }
+    },
+    "married": {
+      "fullEligibility": {
+        "fieldName": "נשוי - זכאות מלאה",
+        "value": 12277,
+        "updateDate": "2025-01-01",
+        "explanation": "הכנסה חודשית מקסימלית לזכאות מלאה לנשוי"
+      },
+      "partialEligibility": {
+        "fieldName": "נשוי - זכאות חלקית",
+        "value": 18416,
+        "updateDate": "2025-01-01",
+        "explanation": "הכנסה חודשית מקסימלית לזכאות חלקית לנשוי"
+      },
+      "noEligibility": {
+        "fieldName": "נשוי - אין זכאות",
+        "value": 18416,
+        "updateDate": "2025-01-01",
+        "explanation": "מעל סכום זה אין זכאות"
+      }
+    },
+    "deduction": {
+      "fieldName": "אחוז הפחתה",
+      "value": 60,
+      "updateDate": "2025-01-01",
+      "explanation": "60% מההכנסה העודפת מעל התקרה מופחתת מסכום הקצבה"
+    }
+  },
+
+  "basicPension": {
+    "fieldName": "סכומי הקצבה הבסיסית לשנת 2025",
+    "updateDate": "2025-01-01",
+    "single": {
+      "fieldName": "יחיד/ה",
+      "value": 1795,
+      "updateDate": "2025-01-01",
+      "explanation": "קצבה חודשית בסיסית ליחיד"
+    },
+    "singleAge80Plus": {
+      "fieldName": "יחיד/ה בגיל 80 ומעלה",
+      "value": 1896,
+      "updateDate": "2025-01-01",
+      "explanation": "קצבה חודשית ליחיד בגיל 80 ומעלה"
+    },
+    "singleWithSpouse": {
+      "fieldName": "יחיד עם בן זוג שאינו מקבל קצבה",
+      "value": 2697,
+      "updateDate": "2025-01-01",
+      "explanation": "קצבה חודשית ליחיד עם בן זוג תלוי"
+    },
+    "couple": {
+      "fieldName": "זוג שניהם מקבלים",
+      "valuePerPerson": 1795,
+      "total": 3590,
+      "updateDate": "2025-01-01",
+      "explanation": "1,795 ₪ לכל אחד (3,590 ₪ סה\"כ)"
+    },
+    "spouseAddition": {
+      "fieldName": "תוספת לבן/בת זוג",
+      "value": 902,
+      "updateDate": "2025-01-01",
+      "explanation": "תוספת חודשית לבן/בת זוג"
+    },
+    "childAddition": {
+      "fieldName": "תוספת לכל ילד (עד 2 ילדים)",
+      "value": 568,
+      "updateDate": "2025-01-01",
+      "explanation": "תוספת חודשית לכל ילד, מקסימום 2 ילדים"
+    }
+  },
+
+  "seniorityBonus": {
+    "fieldName": "תוספת ותק",
+    "updateDate": "2025-01-01",
+    "rate": {
+      "fieldName": "שיעור תוספת ותק",
+      "value": 2,
+      "updateDate": "2025-01-01",
+      "explanation": "2% לכל שנת ביטוח מלאה (12 חודשים)"
+    },
+    "maximum": {
+      "fieldName": "תוספת מקסימלית",
+      "value": 50,
+      "updateDate": "2025-01-01",
+      "explanation": "50% עבור 25 שנות ביטוח ומעלה"
+    },
+    "calculation": {
+      "fieldName": "בסיס חישוב",
+      "updateDate": "2025-01-01",
+      "explanation": "על הקצבה הבסיסית + תוספות בני משפחה"
+    },
+    "example": {
+      "fieldName": "דוגמה - 25 שנות ביטוח",
+      "years": 25,
+      "percentage": 50,
+      "amount": 897.50,
+      "baseAmount": 1795,
+      "totalWithBonus": 2692.50,
+      "updateDate": "2025-01-01",
+      "explanation": "25 שנות ביטוח = 50% תוספת = 897.50 ₪ (על 1,795 ₪), סה\"כ עם ותק מקסימלי: 2,692.50 ₪ ליחיד"
+    }
+  },
+
+  "deferralBonus": {
+    "fieldName": "תוספת דחיית קצבה",
+    "updateDate": "2025-01-01",
+    "rate": {
+      "fieldName": "שיעור תוספת",
+      "value": 5,
+      "updateDate": "2025-01-01",
+      "explanation": "5% לכל שנת דחייה"
+    },
+    "conditions": {
+      "fieldName": "תנאי",
+      "updateDate": "2025-01-01",
+      "explanation": "דחייה בגלל הכנסות מעבודה בלבד"
+    },
+    "period": {
+      "fieldName": "תקופת הדחייה",
+      "updateDate": "2025-01-01",
+      "explanation": "מגיל פרישה (67/62-65) עד גיל 70"
+    },
+    "maxMen": {
+      "fieldName": "תוספת מקסימלית לגבר",
+      "value": 15,
+      "years": 3,
+      "updateDate": "2025-01-01",
+      "explanation": "15% (3 שנות דחייה)"
+    },
+    "maxWomen": {
+      "fieldName": "תוספת מקסימלית לאישה",
+      "value": 40,
+      "years": 8,
+      "updateDate": "2025-01-01",
+      "explanation": "עד 40% (8 שנות דחייה)"
+    },
+    "calculation": {
+      "fieldName": "בסיס חישוב",
+      "updateDate": "2025-01-01",
+      "explanation": "על הקצבה הבסיסית + תוספת ותק"
+    }
+  },
+
+  "incomeSupplement": {
+    "fieldName": "תוספת השלמת הכנסה",
+    "updateDate": "2025-01-01",
+    "maxAmounts": {
+      "single": {
+        "fieldName": "השלמת הכנסה מקסימלית - יחיד",
+        "value": 4273,
+        "updateDate": "2025-01-01",
+        "explanation": "סכום חודשי מקסימלי להשלמת הכנסה ליחיד"
+      },
+      "couple": {
+        "fieldName": "השלמת הכנסה מקסימלית - זוג",
+        "value": 6751,
+        "updateDate": "2025-01-01",
+        "explanation": "סכום חודשי מקסימלי להשלמת הכנסה לזוג"
+      }
+    },
+    "allowedIncome": {
+      "oldAgePension": {
+        "fieldName": "קצבת זקנה",
+        "updateDate": "2025-01-01",
+        "explanation": "מותרת עד התקרה המלאה"
+      },
+      "workIncome": {
+        "single": {
+          "fieldName": "הכנסה מעבודה - יחיד",
+          "value": 3129,
+          "updateDate": "2025-01-01",
+          "explanation": "הכנסה מותרת מעבודה ליחיד"
+        },
+        "couple": {
+          "fieldName": "הכנסה מעבודה - זוג",
+          "value": 3662,
+          "updateDate": "2025-01-01",
+          "explanation": "הכנסה מותרת מעבודה לזוג"
+        }
+      },
+      "pension": {
+        "single": {
+          "fieldName": "קצבת פנסיה - יחיד",
+          "value": 1731,
+          "updateDate": "2025-01-01",
+          "explanation": "הכנסה מותרת מפנסיה ליחיד"
+        },
+        "couple": {
+          "fieldName": "קצבת פנסיה - זוג",
+          "value": 2730,
+          "updateDate": "2025-01-01",
+          "explanation": "הכנסה מותרת מפנסיה לזוג"
+        }
+      }
+    },
+    "deductionRate": {
+      "fieldName": "שיעור קיזוז",
+      "value": 60,
+      "updateDate": "2025-01-01",
+      "explanation": "60% מההכנסה העודפת מעל המותר מקוזזת מההשלמה"
+    },
+    "benefits": {
+      "fieldName": "הטבות נלוות להשלמת הכנסה",
+      "updateDate": "2025-01-01",
+      "list": [
+        "הנחה בארנונה (עד 100%)",
+        "הנחה בחשמל",
+        "הנחה בתרופות בקופות החולים",
+        "פטור מתשלום לקופת חולים",
+        "סיוע בשכר דירה"
+      ]
+    }
+  },
+
+  "disabilityAllowance": {
+    "fieldName": "גמלת נכות כללית",
+    "updateDate": "2025-01-01",
+    "rates": {
+      "disability100": {
+        "fieldName": "נכות 100% (אי כושר השתכרות מלאה)",
+        "value": 4556,
+        "updateDate": "2025-01-01",
+        "explanation": "גמלה חודשית לנכות 100%"
+      },
+      "disability99_74": {
+        "fieldName": "נכות 99%-74%",
+        "rangeMin": 3190,
+        "rangeMax": 4100,
+        "updateDate": "2025-01-01",
+        "explanation": "גמלה חודשית לנכות 74%-99%"
+      },
+      "disability73_50": {
+        "fieldName": "נכות 73%-50%",
+        "rangeMin": 2278,
+        "rangeMax": 3008,
+        "updateDate": "2025-01-01",
+        "explanation": "גמלה חודשית לנכות 50%-73%"
+      }
+    },
+    "spouseAddition": {
+      "fieldName": "תוספת לבן/בת זוג",
+      "value": 1468,
+      "updateDate": "2025-01-01",
+      "explanation": "תוספת חודשית לבן/בת זוג"
+    }
+  },
+
+  "specialServices": {
+    "fieldName": "קצבת שירותים מיוחדים (שר\"מ)",
+    "updateDate": "2025-01-01",
+    "rates": {
+      "rate50": {
+        "fieldName": "שר\"מ 50%",
+        "value": 2278,
+        "updateDate": "2025-01-01",
+        "explanation": "קצבה חודשית לשר\"מ 50%"
+      },
+      "rate65": {
+        "fieldName": "שר\"מ 65%",
+        "value": 2961,
+        "updateDate": "2025-01-01",
+        "explanation": "קצבה חודשית לשר\"מ 65%"
+      },
+      "rate75": {
+        "fieldName": "שר\"מ 75%",
+        "value": 3417,
+        "updateDate": "2025-01-01",
+        "explanation": "קצבה חודשית לשר\"מ 75%"
+      },
+      "rate100": {
+        "fieldName": "שר\"מ 100%",
+        "value": 4556,
+        "updateDate": "2025-01-01",
+        "explanation": "קצבה חודשית לשר\"מ 100%"
+      },
+      "rate112": {
+        "fieldName": "שר\"מ 112%",
+        "value": 5102,
+        "updateDate": "2025-01-01",
+        "explanation": "קצבה חודשית לשר\"מ 112%"
+      },
+      "rate188": {
+        "fieldName": "שר\"מ 188%",
+        "value": 8565,
+        "updateDate": "2025-01-01",
+        "explanation": "קצבה חודשית לשר\"מ 188%"
+      }
+    }
+  },
+
+  "nursingCare": {
+    "fieldName": "גמלת סיעוד",
+    "updateDate": "2025-01-01",
+    "levels": {
+      "level1": {
+        "fieldName": "רמת סיעוד 1",
+        "dependencyPoints": "2.5-3",
+        "weeklyHours": 9,
+        "cashValue": 1572,
+        "updateDate": "2025-01-01",
+        "explanation": "ניתן לקבל בכסף מלא"
+      },
+      "level2": {
+        "fieldName": "רמת סיעוד 2",
+        "dependencyPoints": "3.5-4.5",
+        "weeklyHours": 10,
+        "cashValue": 2290,
+        "partialConversion": 915,
+        "updateDate": "2025-01-01",
+        "explanation": "המרה חלקית עד 915 ₪"
+      },
+      "level3": {
+        "fieldName": "רמת סיעוד 3",
+        "dependencyPoints": "5-6",
+        "weeklyHours": 17,
+        "cashValue": 3893,
+        "partialConversion": 1350,
+        "updateDate": "2025-01-01",
+        "explanation": "המרה חלקית עד 1,350 ₪"
+      },
+      "level4": {
+        "fieldName": "רמת סיעוד 4",
+        "dependencyPoints": "6.5-7.5",
+        "weeklyHours": 20,
+        "cashValue": 4580,
+        "updateDate": "2025-01-01",
+        "explanation": "רק שירותים בעין"
+      },
+      "level5": {
+        "fieldName": "רמת סיעוד 5",
+        "dependencyPoints": "8-9",
+        "weeklyHours": 26,
+        "weeklyHoursWithForeign": 22,
+        "cashValue": 5954,
+        "updateDate": "2025-01-01",
+        "explanation": "26 שעות (22 עם זר), רק שירותים בעין"
+      },
+      "level6": {
+        "fieldName": "רמת סיעוד 6",
+        "dependencyPoints": "9.5+",
+        "weeklyHours": 30,
+        "weeklyHoursWithForeign": 26,
+        "cashValue": 6870,
+        "updateDate": "2025-01-01",
+        "explanation": "30 שעות (26 עם זר), רק שירותים בעין"
+      }
+    },
+    "incomeTest": {
+      "fullBenefit": {
+        "fieldName": "גמלה מלאה",
+        "maxIncome": 12796,
+        "updateDate": "2025-01-01",
+        "explanation": "הכנסה חודשית עד 12,796 ₪"
+      },
+      "halfBenefit": {
+        "fieldName": "גמלה בהיקף חצי",
+        "incomeRange": "12,796-19,194",
+        "updateDate": "2025-01-01",
+        "explanation": "הכנסה חודשית בין 12,796 ל-19,194 ₪"
+      },
+      "noEligibility": {
+        "fieldName": "אין זכאות",
+        "minIncome": 19194,
+        "updateDate": "2025-01-01",
+        "explanation": "הכנסה חודשית מעל 19,194 ₪"
+      }
+    }
+  },
+
+  "holocaustSurvivors": {
+    "fieldName": "זכויות ניצולי שואה",
+    "updateDate": "2025-01-01",
+    "grants": {
+      "annualGrant": {
+        "fieldName": "מענק שנתי",
+        "value": 7502,
+        "updateDate": "2025-01-01",
+        "explanation": "למי שלא מקבלים רנטה חודשית"
+      },
+      "germanRent": {
+        "fieldName": "רנטה גרמנית (BEG)",
+        "addition": "100-400 יורו",
+        "updateDate": "2025-01-01",
+        "explanation": "תשלום חודשי משתנה + תוספת"
+      },
+      "article2Fund": {
+        "fieldName": "קרן סעיף 2",
+        "value": "כ-2,000 יורו",
+        "frequency": "לרבעון",
+        "updateDate": "2025-01-01",
+        "explanation": "תשלום רבעוני"
+      },
+      "romanianBulgarian": {
+        "fieldName": "יוצאי רומניה/בולגריה",
+        "minValue": 2860,
+        "updateDate": "2025-01-01",
+        "explanation": "מינימום חודשי"
+      }
+    },
+    "nursingAddition": {
+      "fieldName": "תוספת 9 שעות סיעוד שבועיות",
+      "weeklyHours": 9,
+      "cashEquivalent": 2025,
+      "updateDate": "2025-01-01",
+      "eligibility": {
+        "fieldName": "תנאי זכאות",
+        "updateDate": "2025-01-01",
+        "conditions": [
+          "הכרה כניצול שואה",
+          "זכאות לגמלת סיעוד מלאה",
+          "רמה 3 עם 6 נקודות תלות ומעלה, או רמה 4, 5, 6",
+          "או קצבת שר\"מ בהיקף 112% ומעלה",
+          "או עזרה לזולת ממשרד הביטחון - 66 שעות חודשיות ומעלה"
+        ]
+      },
+      "partialAddition": {
+        "fieldName": "תוספת חלקית לניצולים עם פחות נקודות",
+        "updateDate": "2025-01-01",
+        "options": [
+          {
+            "points": "5-5.5",
+            "cashAssistance": 1200,
+            "explanation": "סיוע כספי"
+          },
+          {
+            "points": "6 + גמלה מופחתת",
+            "hours": 4.5,
+            "cashEquivalent": 970,
+            "explanation": "שעות או כסף"
+          },
+          {
+            "points": "1.5-2 (לא זכאים לסיעוד)",
+            "hours": 2,
+            "cashEquivalent": 430,
+            "explanation": "שעות או כסף"
+          }
+        ]
+      }
+    },
+    "shortTermCare": {
+      "fieldName": "סיוע סיעודי קצר מועד (סול\"ם)",
+      "updateDate": "2025-01-01",
+      "afterHospitalization": {
+        "fieldName": "לאחר אשפוז",
+        "maxHours": 50,
+        "duration": "חודשיים",
+        "incomeLimit": 10733,
+        "updateDate": "2025-01-01",
+        "explanation": "עד 50 שעות סיעוד למשך חודשיים, הגשת בקשה דרך עו\"ס בבית החולים, הכנסה עד 10,733 ₪ (לא כולל רנטות)"
+      },
+      "community": {
+        "fieldName": "סול\"ם בקהילה",
+        "maxHours": 50,
+        "duration": "חודשיים",
+        "frequency": "פעם אחת בשנה",
+        "updateDate": "2025-01-01",
+        "explanation": "למצבי חולי או משבר ללא אשפוז, הגשת בקשה דרך עו\"ס בקופת חולים"
+      }
+    }
+  },
+
+  "contacts": {
+    "fieldName": "פרטי קשר חשובים",
+    "updateDate": "2025-01-01",
+    "nationalInsurance": {
+      "fieldName": "המוסד לביטוח לאומי",
+      "phone": "*6050",
+      "website": "www.btl.gov.il",
+      "updateDate": "2025-01-01"
+    },
+    "holocaustAuthority": {
+      "fieldName": "הרשות לזכויות ניצולי השואה",
+      "phone": "*5105 או 03-5682651",
+      "updateDate": "2025-01-01"
+    },
+    "welfareFoundation": {
+      "fieldName": "הקרן לרווחת נפגעי השואה",
+      "phone": "03-6090866",
+      "updateDate": "2025-01-01"
+    },
+    "claimsConference": {
+      "fieldName": "ועידת התביעות (לגמלה בכסף)",
+      "phone": "03-5194401",
+      "updateDate": "2025-01-01"
+    }
+  }
+}
