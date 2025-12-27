@@ -292,7 +292,10 @@
         }
 
         .sub-accordion.active .sub-accordion-content {
-            max-height: 3000px;
+            /* הגבלת גובה פתוח והפעלת גלילה פנימית כדי למנוע חיתוך טקסט ארוך */
+            max-height: 60vh;
+            overflow: auto;
+            -webkit-overflow-scrolling: touch;
         }
 
         .sub-accordion-body {
