@@ -293,7 +293,7 @@
 
         .sub-accordion.active .sub-accordion-content {
             /* הגבלת גובה פתוח והפעלת גלילה פנימית כדי למנוע חיתוך טקסט ארוך */
-            max-height: 80vh;
+            max-height: 60vh;
             overflow: auto;
             -webkit-overflow-scrolling: touch;
         }
@@ -301,103 +301,6 @@
         .sub-accordion-body {
             padding: 20px 25px;
             background: white;
-        }
-
-        /* רמות קינון - עיצוב מותאם לפי עומק */
-        /* רמה 1: H2 - תתי-אקורדיונים ראשיים */
-        .sub-accordion[data-level="2"] {
-            margin: 15px 0;
-        }
-
-        .sub-accordion[data-level="2"] .sub-accordion-header {
-            padding: 18px 25px;
-        }
-
-        .sub-accordion[data-level="2"] .sub-accordion-title {
-            font-size: 1.2rem;
-        }
-
-        /* רמה 2: H3 - מקוננים בתוך H2 */
-        .sub-accordion[data-level="3"] {
-            margin: 12px 0;
-            background: #FAFBFC;
-        }
-
-        .sub-accordion[data-level="3"] .sub-accordion-header {
-            padding: 15px 20px;
-            background: linear-gradient(135deg, #FAFBFC 0%, #F0F3F6 100%);
-        }
-
-        .sub-accordion[data-level="3"] .sub-accordion-header:hover {
-            background: linear-gradient(135deg, #F0F3F6 0%, #E8ECF0 100%);
-        }
-
-        .sub-accordion[data-level="3"] .sub-accordion-title {
-            font-size: 1.1rem;
-            padding-right: 15px;
-        }
-
-        /* רמה 3: H4 - מקוננים בתוך H3 */
-        .sub-accordion[data-level="4"] {
-            margin: 10px 0;
-            background: #FCFCFD;
-            border-color: #E8ECF0;
-        }
-
-        .sub-accordion[data-level="4"] .sub-accordion-header {
-            padding: 12px 18px;
-            background: linear-gradient(135deg, #FCFCFD 0%, #F4F6F8 100%);
-        }
-
-        .sub-accordion[data-level="4"] .sub-accordion-header:hover {
-            background: linear-gradient(135deg, #F4F6F8 0%, #EDF0F3 100%);
-        }
-
-        .sub-accordion[data-level="4"] .sub-accordion-title {
-            font-size: 1.05rem;
-            padding-right: 25px;
-        }
-
-        /* רמה 4: H5 - מקוננים בתוך H4 */
-        .sub-accordion[data-level="5"] {
-            margin: 8px 0;
-            background: #FEFEFE;
-            border-color: #EDF0F3;
-        }
-
-        .sub-accordion[data-level="5"] .sub-accordion-header {
-            padding: 10px 15px;
-            background: linear-gradient(135deg, #FEFEFE 0%, #F7F8FA 100%);
-        }
-
-        .sub-accordion[data-level="5"] .sub-accordion-header:hover {
-            background: linear-gradient(135deg, #F7F8FA 0%, #F0F2F4 100%);
-        }
-
-        .sub-accordion[data-level="5"] .sub-accordion-title {
-            font-size: 1rem;
-            padding-right: 35px;
-        }
-
-        /* רמה 5: H6 - מקוננים בתוך H5 */
-        .sub-accordion[data-level="6"] {
-            margin: 6px 0;
-            background: #FFFFFF;
-            border-color: #F0F2F4;
-        }
-
-        .sub-accordion[data-level="6"] .sub-accordion-header {
-            padding: 8px 12px;
-            background: linear-gradient(135deg, #FFFFFF 0%, #F9FAFB 100%);
-        }
-
-        .sub-accordion[data-level="6"] .sub-accordion-header:hover {
-            background: linear-gradient(135deg, #F9FAFB 0%, #F3F5F6 100%);
-        }
-
-        .sub-accordion[data-level="6"] .sub-accordion-title {
-            font-size: 0.95rem;
-            padding-right: 45px;
         }
 
         .conditions-box {
@@ -710,120 +613,113 @@
             }
         }
 
-        // פונקציה רקורסיבית לעיבוד כותרות מקוננות
-        function processNestedHeadings(container) {
-            // מצא כותרות ישירות בלבד (לא מקוננות עמוק יותר)
-            const headings = Array.from(container.children).filter(el =>
-                el.tagName && el.tagName.match(/^H[2-6]$/)
-            );
-
-            headings.forEach(heading => {
-                // בדיקת דגל no-accordion
-                if (heading.classList.contains('no-accordion')) {
-                    return;
-                }
-
-                // מצא את כל האלמנטים עד הכותרת הבאה
-                let contentElements = [];
-                let nextElement = heading.nextElementSibling;
-
-                // קבע את הרמה של הכותרת הנוכחית
-                const currentLevel = parseInt(heading.tagName.substring(1));
-
-                // אסוף תוכן עד שנפגוש כותרת באותה רמה או גבוהה יותר
-                while (nextElement) {
-                    const nextTagName = nextElement.tagName;
-
-                    if (nextTagName && nextTagName.match(/^H[2-6]$/)) {
-                        const nextLevel = parseInt(nextTagName.substring(1));
-                        if (nextLevel <= currentLevel) {
-                            break;
-                        }
-                    }
-
-                    contentElements.push(nextElement);
-                    nextElement = nextElement.nextElementSibling;
-                }
-
-                if (contentElements.length > 0) {
-                    // צור תת-אקורדיון
-                    const subAccordion = document.createElement('div');
-                    subAccordion.className = 'sub-accordion';
-                    // הוסף data-level לעיצוב לפי רמת קינון
-                    subAccordion.setAttribute('data-level', currentLevel);
-
-                    const subHeader = document.createElement('div');
-                    subHeader.className = 'sub-accordion-header';
-
-                    const subTitle = document.createElement('div');
-                    subTitle.className = 'sub-accordion-title';
-                    subTitle.innerHTML = heading.innerHTML;
-
-                    const subArrow = document.createElement('span');
-                    subArrow.className = 'sub-accordion-arrow';
-                    subArrow.textContent = '▼';
-
-                    subHeader.appendChild(subTitle);
-                    subHeader.appendChild(subArrow);
-
-                    const subContent = document.createElement('div');
-                    subContent.className = 'sub-accordion-content';
-
-                    const subBody = document.createElement('div');
-                    subBody.className = 'sub-accordion-body';
-
-                    // העבר את כל האלמנטים לגוף התת-אקורדיון
-                    contentElements.forEach(el => {
-                        subBody.appendChild(el);
-                    });
-
-                    subContent.appendChild(subBody);
-                    subAccordion.appendChild(subHeader);
-                    subAccordion.appendChild(subContent);
-
-                    // החלף את הכותרת בתת-אקורדיון
-                    heading.parentNode.replaceChild(subAccordion, heading);
-
-                    // רקורסיה: עבד כותרות מקוננות בתוך התת-אקורדיון שנוצר
-                    processNestedHeadings(subBody);
-
-                    // הוסף מאזין אירועים
-                    subHeader.addEventListener('click', () => {
-                        const wasActive = subAccordion.classList.contains('active');
-
-                        // סגור את כל התת-אקורדיונים בדף
-                        document.querySelectorAll('.sub-accordion.active').forEach(activeSubAccordion => {
-                            if (activeSubAccordion !== subAccordion) {
-                                activeSubAccordion.classList.remove('active');
-                            }
-                        });
-
-                        // פתח/סגור את התת-אקורדיון הנוכחי
-                        subAccordion.classList.toggle('active');
-
-                        // גלילה
-                        if (!wasActive) {
-                            setTimeout(() => {
-                                subAccordion.scrollIntoView({
-                                    behavior: 'smooth',
-                                    block: 'start',
-                                    inline: 'nearest'
-                                });
-                            }, 450);
-                        }
-                    });
-                }
-            });
-        }
-
-        // המרת כותרות לתתי-אקורדיונים - פונקציה ראשית
+        // המרת כותרות לתתי-אקורדיונים
         function convertHeadingsToSubAccordions() {
             const accordionBodies = document.querySelectorAll('.accordion-body');
 
             accordionBodies.forEach(body => {
-                // קריאה לפונקציה הרקורסיבית לעיבוד כותרות
-                processNestedHeadings(body);
+                // טיפול בכותרות h2, h3 - כולן יהפכו לתת-אקורדיונים
+                const headings = body.querySelectorAll('h2, h3');
+
+                headings.forEach(heading => {
+                    // מצא את כל האלמנטים עד הכותרת הבאה
+                    let contentElements = [];
+                    let nextElement = heading.nextElementSibling;
+
+                    while (nextElement && !['H2', 'H3'].includes(nextElement.tagName)) {
+                        contentElements.push(nextElement);
+                        nextElement = nextElement.nextElementSibling;
+                    }
+
+                    if (contentElements.length > 0) {
+                        // צור תת-אקורדיון
+                        const subAccordion = document.createElement('div');
+                        subAccordion.className = 'sub-accordion';
+
+                        const subHeader = document.createElement('div');
+                        subHeader.className = 'sub-accordion-header';
+
+                        const subTitle = document.createElement('div');
+                        subTitle.className = 'sub-accordion-title';
+                        subTitle.innerHTML = heading.innerHTML;
+
+                        const subArrow = document.createElement('span');
+                        subArrow.className = 'sub-accordion-arrow';
+                        subArrow.textContent = '▼';
+
+                        subHeader.appendChild(subTitle);
+                        subHeader.appendChild(subArrow);
+
+                        const subContent = document.createElement('div');
+                        subContent.className = 'sub-accordion-content';
+
+                        const subBody = document.createElement('div');
+                        subBody.className = 'sub-accordion-body';
+
+                        // העבר את כל האלמנטים לגוף התת-אקורדיון
+                        contentElements.forEach(el => {
+                            subBody.appendChild(el);
+                        });
+
+                        subContent.appendChild(subBody);
+                        subAccordion.appendChild(subHeader);
+                        subAccordion.appendChild(subContent);
+
+                        // החלף את הכותרת בתת-אקורדיון
+                        heading.parentNode.replaceChild(subAccordion, heading);
+
+                        // הוסף מאזין אירועים
+                        subHeader.addEventListener('click', () => {
+                            const wasActive = subAccordion.classList.contains('active');
+
+                            // סגור את כל התת-אקורדיונים בדף (בכל הרמות)
+                            document.querySelectorAll('.sub-accordion.active').forEach(activeSubAccordion => {
+                                if (activeSubAccordion !== subAccordion) {
+                                    activeSubAccordion.classList.remove('active');
+                                }
+                            });
+
+                            // פתח/סגור את התת-אקורדיון הנוכחי
+                            subAccordion.classList.toggle('active');
+
+                            // אם נפתח תת-אקורדיון, גלול אל הכותרת שלו
+                            // המתנה קצרה יותר כדי לתת לתת-אקורדיון הקודם להסגר תחילה
+                            if (!wasActive) {
+                                setTimeout(() => {
+                                    subAccordion.scrollIntoView({
+                                        behavior: 'smooth',
+                                        block: 'start',
+                                        inline: 'nearest'
+                                    });
+                                }, 450);
+                            }
+                        });
+                    }
+                });
             });
+        }
+
+        // גלילה לראש הדף
+        function scrollToTop() {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        }
+
+        // בדיקה אם כל האקורדיונים סגורים
+        function checkAllAccordionsClosed() {
+            const accordions = document.querySelectorAll('.accordion');
+            const hasActiveAccordion = Array.from(accordions).some(accordion =>
+                accordion.classList.contains('active')
+            );
+
+            // אם אין אקורדיון פעיל, גלול לראש הדף
+            if (!hasActiveAccordion) {
+                setTimeout(() => {
+                    scrollToTop();
+                }, 450);
+            }
         }
 
         // אתחול פונקציונליות האקורדיון
@@ -856,6 +752,9 @@
                                 inline: 'nearest'
                             });
                         }, 450);
+                    } else {
+                        // אם נסגר האקורדיון, בדוק אם כל האקורדיונים סגורים
+                        checkAllAccordionsClosed();
                     }
                 });
             });
@@ -866,9 +765,15 @@
 
         // טעינה כשהדף מוכן
         if (document.readyState === 'loading') {
-            document.addEventListener('DOMContentLoaded', displayData);
+            document.addEventListener('DOMContentLoaded', () => {
+                displayData();
+                // גלילה לראש הדף בכל טעינה של הדף
+                scrollToTop();
+            });
         } else {
             displayData();
+            // גלילה לראש הדף בכל טעינה של הדף
+            scrollToTop();
         }
     </script>
 </body>

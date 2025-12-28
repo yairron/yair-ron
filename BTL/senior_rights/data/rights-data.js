@@ -8,7 +8,7 @@ const RIGHTS_DATA = {
     "social_security": {
       "title": "קצבאות זקנה וזכויות ביטוח לאומי",
       "content": `
-        <h2>📋 קצבת אזרח ותיק (קצבת זקנה) - מדריך מלא 2025</h2>
+        <h2 class="no-accordion">📋 קצבת אזרח ותיק (קצבת זקנה) - מדריך מלא 2025</h2>
 
         <h3>🎂 גילאי פרישה וזכאות</h3>
 
@@ -79,15 +79,15 @@ const RIGHTS_DATA = {
         </table>
         <p><strong>הפחתה:</strong> 60% מההכנסה העודפת מעל התקרה מופחתת מסכום הקצבה</p>
 
-        <h4>📐 נוסחת חישוב הקצבה החלקית</h4>
+        <h4 >📐 נוסחת חישוב הקצבה החלקית</h4>
         <div style="background: #e8f5e9; padding: 20px; border-radius: 10px; border-right: 4px solid #4caf50; margin: 20px 0;">
-          <h5>📊 הנוסחה לחישוב קצבה חלקית:</h5>
+          <h5 class="no-accordion">📊 הנוסחה לחישוב קצבה חלקית:</h5>
           <p style="font-size: 1.2em; font-weight: bold; text-align: center; background: white; padding: 15px; border-radius: 8px; margin: 15px 0;">
             קצבה חלקית = קצבה מלאה - [60% × (הכנסה ברוטו - תקרת קצבה מלאה)]
           </p>
         </div>
 
-        <h5>📋 נתונים בסיסיים לחישוב (2025):</h5>
+        <h5 class="no-accordion">📋 נתונים בסיסיים לחישוב (2025):</h5>
         <ul>
           <li><strong>קצבה בסיסית:</strong> ₪1,795 (מגיל פרישה עד גיל 80)</li>
           <li><strong>קצבה בסיסית:</strong> ₪1,896 (מגיל 80 ומעלה)</li>
@@ -99,7 +99,7 @@ const RIGHTS_DATA = {
 
         <h5>דוגמה 1: יחיד שזכאי לקצבת זקנה חלקית</h5>
         <div style="background: #fff8e1; padding: 20px; border-radius: 10px; margin: 15px 0;">
-          <h5>📋 נתוני המקרה:</h5>
+          <h5 class="no-accordion">📋 נתוני המקרה:</h5>
           <ul>
             <li>דוד, בן 67, יחיד</li>
             <li>הכנסה מעבודה: ₪11,000 ברוטו</li>
@@ -107,7 +107,7 @@ const RIGHTS_DATA = {
             <li><strong>מצב:</strong> הכנסה בטווח הזכאות לקצבה חלקית (₪9,208 - ₪13,812)</li>
           </ul>
 
-          <h5>💡 חישוב:</h5>
+          <h5 class="no-accordion">💡 חישוב:</h5>
           <p><strong>שלב 1: חישוב קצבה בסיסית עם ותק</strong></p>
           <ul>
             <li>קצבה בסיסית: ₪1,795</li>
@@ -131,7 +131,7 @@ const RIGHTS_DATA = {
 
         <h5>דוגמה 2: שני בני זוג שזכאים לקצבת זקנה חלקית</h5>
         <div style="background: #e3f2fd; padding: 20px; border-radius: 10px; margin: 15px 0;">
-          <h5>📋 נתוני המקרה:</h5>
+          <h5 class="no-accordion">📋 נתוני המקרה:</h5>
           <ul>
             <li>משה (68) ורחל (65), נשואים</li>
             <li>משה: הכנסה ₪8,000, ותק 20 שנים (תוספת 40%)</li>
@@ -139,7 +139,7 @@ const RIGHTS_DATA = {
             <li><strong>הכנסה משפחתית כוללת: ₪15,000</strong> (בטווח ₪12,277-₪18,416)</li>
           </ul>
 
-          <h5>💡 חישוב עבור משה:</h5>
+          <h5 class="no-accordion">💡 חישוב עבור משה:</h5>
           <ul>
             <li>קצבה בסיסית: ₪1,795</li>
             <li>תוספת ותק (40%): ₪1,795 × 40% = ₪718</li>
@@ -150,7 +150,7 @@ const RIGHTS_DATA = {
             <li><strong>קצבה חלקית למשה: ₪2,513 - ₪1,634 = ₪879</strong></li>
           </ul>
 
-          <h5>💡 חישוב עבור רחל:</h5>
+          <h5 class="no-accordion">💡 חישוב עבור רחל:</h5>
           <ul>
             <li>קצבה בסיסית: ₪1,795</li>
             <li>תוספת ותק (36%): ₪1,795 × 36% = ₪646</li>
@@ -167,7 +167,7 @@ const RIGHTS_DATA = {
 
         <h5>דוגמה 3: יחיד עם בן/בת זוג שזכאים לקצבה חלקית</h5>
         <div style="background: #f3e5f5; padding: 20px; border-radius: 10px; margin: 15px 0;">
-          <h5>📋 נתוני המקרה:</h5>
+          <h5 class="no-accordion">📋 נתוני המקרה:</h5>
           <ul>
             <li>יוסף, בן 68, נשוי</li>
             <li>הכנסה מעבודה: ₪14,500</li>
@@ -175,7 +175,7 @@ const RIGHTS_DATA = {
             <li>אשתו לא הגיעה לגיל פרישה ואין לה הכנסה</li>
           </ul>
 
-          <h5>💡 חישוב:</h5>
+          <h5 class="no-accordion">💡 חישוב:</h5>
           <ul>
             <li>קצבה בסיסית ליחיד: ₪1,795</li>
             <li>תוספת בן/בת זוג: ₪902</li>
@@ -191,7 +191,7 @@ const RIGHTS_DATA = {
 
         <h5>דוגמה 4: יחיד עם בן/בת זוג שעובד</h5>
         <div style="background: #fce4ec; padding: 20px; border-radius: 10px; margin: 15px 0;">
-          <h5>📋 נתוני המקרה:</h5>
+          <h5 class="no-accordion">📋 נתוני המקרה:</h5>
           <ul>
             <li>אברהם, בן 67, נשוי</li>
             <li>הכנסה מעבודה: ₪10,000</li>
@@ -204,7 +204,7 @@ const RIGHTS_DATA = {
             <p><strong>⚠ שימו לב:</strong> במקרה זה, הכנסת בן/בת הזוג שטרם הגיע לגיל פרישה נכללת במבחן ההכנסות. מכיוון שההכנסה המשפחתית (₪18,000) נמוכה מהתקרה המבטלת זכאות (₪18,416), אברהם זכאי לקצבה חלקית.</p>
           </div>
 
-          <h5>💡 חישוב:</h5>
+          <h5 class="no-accordion">💡 חישוב:</h5>
           <ul>
             <li>קצבה בסיסית ליחיד: ₪1,795</li>
             <li>תוספת בן/בת זוג: ₪902</li>
@@ -220,7 +220,7 @@ const RIGHTS_DATA = {
 
         <h3>⏱️ תוספת ותק</h3>
         <div class="conditions-box">
-          <h4>💎 פרטי תוספת הוותק</h4>
+          <h4 class="no-accordion">💎 פרטי תוספת הוותק</h4>
           <ul>
             <li><strong>שיעור:</strong> 2% לכל שנת ביטוח מלאה (12 חודשים)</li>
             <li><strong>תוספת מקסימלית:</strong> 50% (עבור 25 שנות ביטוח ומעלה)</li>
@@ -318,7 +318,7 @@ const RIGHTS_DATA = {
     "disability": {
       "title": "גמלת נכות כללית וקצבת שירותים מיוחדים",
       "content": `
-        <h2>♿ גמלת נכות כללית וקצבת שירותים מיוחדים</h2>
+        <h2 class="no-accordion">♿ גמלת נכות כללית וקצבת שירותים מיוחדים</h2>
 
         <h3>🏥 גמלת נכות כללית</h3>
         <p>גמלת נכות כללית ניתנת למי שכושר השתכרותו נפגע עקב נכות רפואית.</p>
@@ -340,7 +340,7 @@ const RIGHTS_DATA = {
 
         <h3>🔄 מעבר מנכות כללית לקצבת זקנה</h3>
         <div class="conditions-box">
-          <h4>⚠️ חשוב לדעת</h4>
+          <h4 class="no-accordion">⚠️ חשוב לדעת</h4>
           <ul>
             <li>המעבר מתבצע באופן אוטומטי ללא צורך בהגשת תביעה</li>
             <li>קצבת הזקנה לנכה לא תפחת מגמלת הנכות שקיבל לפני כן</li>
@@ -353,7 +353,7 @@ const RIGHTS_DATA = {
         <h3>🛟 קצבת שירותים מיוחדים (שר"מ)</h3>
         <p>קצבת שירותים מיוחדים ניתנת למי שזקוק לעזרת הזולת באופן משמעותי עקב נכות.</p>
 
-        <h4>דרגות שר"מ (נכון ל-2025):</h4>
+        <h4 class="no-accordion">דרגות שר"מ (נכון ל-2025):</h4>
         <table style="width: 100%; border-collapse: collapse; margin: 20px 0;">
           <thead>
             <tr style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white;">
@@ -373,7 +373,7 @@ const RIGHTS_DATA = {
 
         <h3>🔄 מעבר משר"מ לגמלת סיעוד</h3>
         <div style="background: #ffebee; padding: 20px; border-radius: 10px; border-right: 4px solid #c62828;">
-          <h4>⚠️ חשוב מאוד!</h4>
+          <h4 class="no-accordion">⚠️ חשוב מאוד!</h4>
           <p>מקבלי קצבת שירותים מיוחדים שמגיעים לגיל הזכאות לגמלת סיעוד עוברים לגמלת סיעוד:</p>
           <ul>
             <li><strong>גיל הזכאות לגמלת סיעוד:</strong> נשים 62-65 (לפי שנת לידה), גברים 67</li>
@@ -391,7 +391,7 @@ const RIGHTS_DATA = {
     "nursing": {
       "title": "זכויות סיעוד",
       "content": `
-        <h2>❤️ גמלת סיעוד - מדריך מקיף</h2>
+        <h2 class="no-accordion">❤️ גמלת סיעוד - מדריך מקיף</h2>
 
         <h3>📊 רמות גמלת הסיעוד 2025 - טבלה מפורטת</h3>
         <table style="width: 100%; border-collapse: collapse; margin: 20px 0;">
@@ -506,7 +506,7 @@ const RIGHTS_DATA = {
     "holocaust_survivors": {
       "title": "זכויות ניצולי שואה",
       "content": `
-        <h2>🕯️ זכויות ניצולי שואה - מדריך מקיף 2025</h2>
+        <h2 class="no-accordion">🕯️ זכויות ניצולי שואה - מדריך מקיף 2025</h2>
 
         <h3>💰 קצבאות ומענקים</h3>
         <ul>
@@ -572,8 +572,8 @@ const RIGHTS_DATA = {
         </table>
 
         <h3>🏥 סיוע סיעודי קצר מועד (סול"ם)</h3>
-        <p>לניצולי שואה שאינם זכאים לגמלת סיעוד:</p>
-
+        <p><strong>לניצולי שואה שאינם זכאים לגמלת סיעוד</strong></p>
+        <p>במסגרת התכנית, ניצולי שואה המתגוררים בקהילה, ללא חוק סיעוד ונמצאים במצב חולי או משבר חדש, או ניצולי שואה המתגוררים בקהילה ועומדים לקראת שחרור מאשפוז בבית חולים, העומדים בקריטריונים המפורטים מטה, עשויים להיות זכאים לקבל עד 50 שעות סיעוד בביתם למשך חודשיים.</p>
         <h4>לאחר אשפוז:</h4>
         <ul>
           <li>עד 50 שעות סיעוד למשך חודשיים</li>
@@ -611,7 +611,7 @@ const RIGHTS_DATA = {
     "summary": {
       "title": "תקציר - השפעות הדדיות בין ההטבות",
       "content": `
-        <h2>📊 תקציר - השפעות הדדיות בין ההטבות</h2>
+        <h2 class="no-accordion">📊 תקציר - השפעות הדדיות בין ההטבות</h2>
 
         <div style="background: #fff3e0; padding: 20px; border-radius: 10px; border-right: 4px solid #ff9800; margin: 20px 0;">
           <h3>⚠️ חשוב להבין כיצד הקצבאות והגמלאות השונות משפיעות זו על זו:</h3>
@@ -697,7 +697,7 @@ const RIGHTS_DATA = {
     "special_grants": {
       "title": "מענקים ותשלומים מיוחדים",
       "content": `
-        <h2>💰 מענקים ותשלומים מיוחדים</h2>
+        <h2 class="no-accordion">💰 מענקים ותשלומים מיוחדים</h2>
 
         <h3>💔 קצבת שאירים - מדריך מקיף</h3>
 
@@ -707,14 +707,14 @@ const RIGHTS_DATA = {
         <h4>👥 מי זכאי לקצבת שאירים?</h4>
 
         <div class="conditions-box">
-          <h5>שאירים זכאים:</h5>
+          <h5 class="no-accordion">שאירים זכאים:</h5>
           <ul>
             <li><strong>אלמנה/אלמן</strong> - בת/בן זוג של הנפטר (כולל ידועים בציבור)</li>
             <li><strong>יתומים</strong> - ילדי הנפטר (כולל ילדים חורגים, מאומצים או נכדים שהנפטר פרנס)</li>
           </ul>
         </div>
 
-        <h4>👶 הגדרת יתום לפי גיל ומעמד</h4>
+        <h4 class="no-accordion>👶 הגדרת יתום לפי גיל ומעמד</h4>
         <p>קצבת שאירים משולמת ליתום עד:</p>
         <ul>
           <li><strong>גיל 18</strong> - לכל הילדים</li>
@@ -1072,7 +1072,7 @@ const RIGHTS_DATA = {
         <p>בעקבות העלאת גיל הפרישה לנשים ודחיית מועד זכאותן לקצבת אזרח ותיק, נשים שנולדו בין ינואר 1960 לדצמבר 1966 עשויות להיות זכאיות למענק מעבר.</p>
 
         <div style="background: #e8f5e9; padding: 20px; border-radius: 10px; border-right: 4px solid #4caf50; margin: 20px 0;">
-          <h5>🎯 מטרת המענק</h5>
+          <h5 class="no-accordion>🎯 מטרת המענק</h5>
           <p>לסייע לנשים בפרק הזמן שבין גיל 62 ועד לקבלת קצבת אזרח ותיק.</p>
           <p><strong>משך התשלום:</strong> המענק משולם לתקופה של 4 חודשים לכל היותר, החל מהחודש שבו מלאו לאישה 62 שנים.</p>
         </div>
@@ -1081,35 +1081,35 @@ const RIGHTS_DATA = {
         <p><strong>כדי להיות זכאית למענק, יש לעמוד בכל התנאים המצטברים הבאים:</strong></p>
 
         <div class="conditions-box">
-          <h5>1️⃣ גיל ושנת לידה</h5>
+          <h5 class="no-accordion>1️⃣ גיל ושנת לידה</h5>
           <ul>
             <li>נשים שנולדו בין ינואר 1960 לדצמבר 1966</li>
           </ul>
         </div>
 
         <div class="conditions-box">
-          <h5>2️⃣ היעדר הכנסות מעבודה</h5>
+          <h5 class="no-accordion>2️⃣ היעדר הכנסות מעבודה</h5>
           <ul>
             <li>אסור שיהיו הכנסות כשכירה או כעצמאית מגיל 62 ועד גיל 62 ו-4 חודשים</li>
           </ul>
         </div>
 
         <div class="conditions-box">
-          <h5>3️⃣ מגבלה על הכנסות מפנסיה וקצבאות</h5>
+          <h5 class="no-accordion>3️⃣ מגבלה על הכנסות מפנסיה וקצבאות</h5>
           <ul>
             <li>הכנסה מפנסיה, תגמולים או קצבאות אינה יכולה לעלות על <strong>₪9,787 לחודש</strong> (נכון ל-1 בינואר 2025)</li>
           </ul>
         </div>
 
         <div class="conditions-box">
-          <h5>4️⃣ מגבלה על הכנסות שלא מעבודה</h5>
+          <h5 class="no-accordion>4️⃣ מגבלה על הכנסות שלא מעבודה</h5>
           <ul>
             <li>הכנסה שנתית שלא מעבודה (משכירות, ריבית על השקעות, מענקי פרישה וכו') לא יכולה לעלות על <strong>₪60,000</strong> בשנת המס שבה מלאו לך 61 שנים</li>
           </ul>
         </div>
 
         <div class="conditions-box">
-          <h5>5️⃣ תקופת ביטוח</h5>
+          <h5 class="no-accordion>5️⃣ תקופת ביטוח</h5>
           <p>חובה לעמוד באחד מהתנאים הבאים:</p>
           <ul>
             <li><strong>60 חודשי ביטוח מגיל 52</strong></li>
@@ -1118,7 +1118,7 @@ const RIGHTS_DATA = {
         </div>
 
         <div class="conditions-box">
-          <h5>6️⃣ אין קבלת קצבאות אחרות</h5>
+          <h5 class="no-accordion>6️⃣ אין קבלת קצבאות אחרות</h5>
           <p><strong>אין זכאות למענק במקרים הבאים:</strong></p>
           <ul>
             <li>❌ קבלת קצבת הבטחת הכנסה</li>
@@ -1177,10 +1177,10 @@ const RIGHTS_DATA = {
         <h4>📝 הגשת בקשה למענק</h4>
 
         <div style="background: #e3f2fd; padding: 20px; border-radius: 10px; margin: 20px 0;">
-          <h5>📅 מועד הגשה</h5>
+          <h5 class="no-accordion">📅 מועד הגשה</h5>
           <p>ניתן להגיש את הבקשה עד גיל 64.</p>
 
-          <h5>📮 דרכי הגשה</h5>
+          <h5 class="no-accordion" >📮 דרכי הגשה</h5>
           <ul>
             <li>✅ <a href="https://www.btl.gov.il/benefits/old_age/MankMavrATR/Pages/BksaMankMavr.aspx" target="_blank" style="color: #667eea; text-decoration: underline;">מילוי טופס והגשתו</a> במחלקת אזרח ותיק בסניף הביטוח הלאומי הקרוב למקום מגוריך</li>
             <li>✅ שליחת מסמכים דרך שירות שליחת מסמכים של הביטוח הלאומי</li>
@@ -1195,7 +1195,7 @@ const RIGHTS_DATA = {
         </ul>
 
         <div style="background: #ffebee; padding: 20px; border-radius: 10px; border-right: 4px solid #c62828; margin-top: 20px;">
-          <h5>⚠️ הערה חשובה</h5>
+          <h5 class="no-accordion">⚠️ הערה חשובה</h5>
           <p>המידע במסמך זה הוא כללי ונועד לספק מידע ראשוני. לקבלת מידע מדויק ועדכני ולבדיקת זכאות אישית, יש לפנות ישירות למוסד לביטוח לאומי.</p>
           <p style="margin-top: 10px;"><em>מסמך זה הוכן בתאריך 24 בדצמבר 2025</em></p>
         </div>
