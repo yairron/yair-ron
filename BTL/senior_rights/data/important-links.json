@@ -195,6 +195,23 @@
           "description": "שירותים קהילתיים לאזרחים ותיקים"
         }
       ]
+    },
+    {
+      "id": "Documents",
+      "title": "מסמכי מקור",
+      "icon": "🤝",
+      "links": [
+        {
+          "name": "חוק הביטוח הלאומי",
+          "url": "https://www.nevo.co.il/law_html/law01/039_002.htm",
+          "description": "נוסח חוק הביטוח הלאומי "
+        },
+        {
+          "name": "הודעת עדכון קצבאות 01-2025",
+          "url": "https://www.btl.gov.il/Publications/benefits_update/Documents/shiur25.pdf",
+          "description": "הודעת עידכון קצבאות ינואר 2025"
+        }
+      ]
     }
   ]
 }

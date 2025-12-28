@@ -8,6 +8,7 @@ const RIGHTS_DATA = {
     "social_security": {
       "title": "קצבאות זקנה וזכויות ביטוח לאומי",
       "content": `
+       <a href="https://www.kolzchut.org.il/he/%D7%96%D7%9B%D7%95%D7%AA%D7%95%D7%9F_%D7%A7%D7%A6%D7%91%D7%AA_%D7%96%D7%99%D7%A7%D7%A0%D7%94" target="_blank" class="link-item">🏛️  זכותון קצבת זיקנה - כל זכות. כל המידע על קצבת זיקנה במקום אחד</a>
         <h2 class="no-accordion">📋 קצבת אזרח ותיק (קצבת זקנה) - מדריך מלא 2025</h2>
 
         <h3>🎂 גילאי פרישה וזכאות</h3>
@@ -391,7 +392,8 @@ const RIGHTS_DATA = {
     "nursing": {
       "title": "זכויות סיעוד",
       "content": `
-        <h2 class="no-accordion">❤️ גמלת סיעוד - מדריך מקיף</h2>
+        <a href="https://www.kolzchut.org.il/he/%D7%92%D7%9E%D7%9C%D7%AA_%D7%A1%D7%99%D7%A2%D7%95%D7%93" target="_blank" class="link-item">🏛️  פורט גמלת סיעוד - כל זכות. כל המידע ודרכי המימוש לגמלת סיעוד, הניתנת למי שהגיעו לגיל פרישה, מתגוררים בקהילה.</a>
+      <h2 class="no-accordion">❤️ גמלת סיעוד - מדריך מקיף</h2>
 
         <h3>📊 רמות גמלת הסיעוד 2025 - טבלה מפורטת</h3>
         <table style="width: 100%; border-collapse: collapse; margin: 20px 0;">
@@ -506,7 +508,9 @@ const RIGHTS_DATA = {
     "holocaust_survivors": {
       "title": "זכויות ניצולי שואה",
       "content": `
-        <h2 class="no-accordion">🕯️ זכויות ניצולי שואה - מדריך מקיף 2025</h2>
+      <a href="https://www.btl.gov.il/benefits/Long_Term_Care/Pages/nitzoleShoaa.aspx" target="_blank" class="link-item">🏛️  ניצולי שואה – זכאות לתוספת שעות סיעוד - הביטוח הלאומי </a>
+      <a href="https://www.kolzchut.org.il/he/%D7%96%D7%9B%D7%95%D7%99%D7%95%D7%AA_%D7%A0%D7%99%D7%A6%D7%95%D7%9C%D7%99_%D7%A9%D7%95%D7%90%D7%94#.D7.A7.D7.A6.D7.91.D7.90.D7.95.D7.AA_.D7.95.D7.A4.D7.95.D7.A8.D7.98.D7.9C.D7.99_.D7.9E.D7.99.D7.93.D7.A2_.D7.9E.D7.A8.D7.9B.D7.96.D7.99.D7.99.D7.9D" target="_blank" class="link-item">🔦 פורטל המידע הלאומי לזכויות ניצולי השואה בישראל - כל זכות</a>  
+      <h2 class="no-accordion">🕯️ זכויות ניצולי שואה - מדריך מקיף 2025</h2>
 
         <h3>💰 קצבאות ומענקים</h3>
         <ul>
