@@ -699,6 +699,29 @@
             });
         }
 
+        // גלילה לראש הדף
+        function scrollToTop() {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        }
+
+        // בדיקה אם כל האקורדיונים סגורים
+        function checkAllAccordionsClosed() {
+            const accordions = document.querySelectorAll('.accordion');
+            const hasActiveAccordion = Array.from(accordions).some(accordion =>
+                accordion.classList.contains('active')
+            );
+
+            // אם אין אקורדיון פעיל, גלול לראש הדף
+            if (!hasActiveAccordion) {
+                setTimeout(() => {
+                    scrollToTop();
+                }, 450);
+            }
+        }
+
         // אתחול פונקציונליות האקורדיון
         function initAccordions() {
             const accordions = document.querySelectorAll('.accordion');
@@ -729,6 +752,9 @@
                                 inline: 'nearest'
                             });
                         }, 450);
+                    } else {
+                        // אם נסגר האקורדיון, בדוק אם כל האקורדיונים סגורים
+                        checkAllAccordionsClosed();
                     }
                 });
             });
@@ -739,9 +765,15 @@
 
         // טעינה כשהדף מוכן
         if (document.readyState === 'loading') {
-            document.addEventListener('DOMContentLoaded', displayData);
+            document.addEventListener('DOMContentLoaded', () => {
+                displayData();
+                // גלילה לראש הדף בכל טעינה של הדף
+                scrollToTop();
+            });
         } else {
             displayData();
+            // גלילה לראש הדף בכל טעינה של הדף
+            scrollToTop();
         }
     </script>
 </body>
