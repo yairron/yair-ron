@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="מערכת שאלות ותשובות - קצבאות וגמלאות ביטוח לאומי">
+    <meta name="keywords" content="ביטוח לאומי, קצבה, אזרח ותיק, גמלה, תוספת ותק">
+    <meta name="author" content="מערכת מידע ביטוח לאומי">
+    <title>שאלות ותשובות - קצבאות וגמלאות ביטוח לאומי</title>
+
+    <!-- Stylesheet -->
+    <link rel="stylesheet" href="sampels_style.css">
+    <style>
+        .back-button-container {
+            text-align: center;
+            padding: 20px 0;
+        }
+
+        .back-button {
+            display: inline-block;
+            background: rgba(255,255,255,0.25);
+            backdrop-filter: blur(10px);
+            padding: 12px 24px;
+            border-radius: 25px;
+            color: white;
+            text-decoration: none;
+            font-size: 1rem;
+            font-weight: 600;
+            transition: all 0.3s;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+        }
+
+        .back-button:hover {
+            background: rgba(255,255,255,0.35);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(0,0,0,0.25);
+        }
+
+        .back-button::before {
+            content: '← ';
+            margin-left: 5px;
+        }
+    </style>
+</head>
+<body>
+    <!-- Back Button -->
+    <div class="back-button-container">
+        <a href="../BTL_index.html" class="back-button">חזרה לדף ראשי</a>
+    </div>
+
+    <!-- Header -->
+    <div class="container">
+        <div class="header">
+            <h1>שאלות ותשובות</h1>
+            <p>מערכת מידע על קצבאות וגמלאות הביטוח הלאומי</p>
+        </div>
+
+        <!-- Content Area -->
+        <div class="content" id="content">
+            <!-- Content will be dynamically loaded here by JavaScript -->
+            <div style="text-align: center; padding: 50px; color: #666;">
+                <p style="font-size: 1.2em;">טוען נתונים...</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- JavaScript -->
+    <script src="sampels_app.js"></script>
+</body>
+</html>
