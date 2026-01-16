@@ -1,14 +1,14 @@
 // נתוני זכויות אזרחים ותיקים - עודכן מקובץ PDF מקיף
-// עדכון אחרון: ינואר 2025
+// עדכון אחרון: ינואר 2026
 const RIGHTS_DATA = {
-  "lastUpdate": "2025-01-01T00:00:00.000Z",
-  "version": "2025.1",
+  "lastUpdate": "2026-01-16T00:00:00.000Z",
+  "version": "2026.1",
   "categories": {
     "social_security": {
       "title": "קצבאות זקנה וזכויות ביטוח לאומי",
       "content": `
        <a href="https://www.kolzchut.org.il/he/%D7%96%D7%9B%D7%95%D7%AA%D7%95%D7%9F_%D7%A7%D7%A6%D7%91%D7%AA_%D7%96%D7%99%D7%A7%D7%A0%D7%94" target="_blank" class="link-item">🏛️  זכותון קצבת זיקנה - כל זכות. כל המידע על קצבת זיקנה במקום אחד</a>
-        <h2 class="no-accordion">📋 קצבת אזרח ותיק (קצבת זקנה) - מדריך מלא 2025</h2>
+        <h2 class="no-accordion">📋 קצבת אזרח ותיק (קצבת זקנה) - מדריך מלא 2026</h2>
 
         <h3>🎂 גילאי פרישה וזכאות</h3>
 
@@ -42,14 +42,14 @@ const RIGHTS_DATA = {
           </tbody>
         </table>
 
-        <h3>💰 סכומי הקצבה הבסיסית לשנת 2025</h3>
+        <h3>💰 סכומי הקצבה הבסיסית לשנת 2026</h3>
         <ul>
-          <li><strong>יחיד/ה:</strong> ₪1,795 לחודש</li>
-          <li><strong>יחיד/ה בגיל 80 ומעלה:</strong> ₪1,896 לחודש</li>
-          <li><strong>יחיד עם בן זוג שאינו מקבל קצבה:</strong> ₪2,697 לחודש</li>
-          <li><strong>זוג שניהם מקבלים:</strong> ₪1,795 לכל אחד (₪3,590 סה"כ)</li>
-          <li><strong>תוספת לבן/בת זוג:</strong> ₪902</li>
-          <li><strong>תוספת לכל ילד (עד 2 ילדים):</strong> ₪568</li>
+          <li><strong>יחיד/ה:</strong> ₪1,838 לחודש</li>
+          <li><strong>יחיד/ה בגיל 80 ומעלה:</strong> ₪1,941 לחודש</li>
+          <li><strong>יחיד עם בן זוג שאינו מקבל קצבה:</strong> ₪2,762 לחודש</li>
+          <li><strong>זוג שניהם מקבלים:</strong> ₪1,838 לכל אחד (₪3,676 סה"כ)</li>
+          <li><strong>תוספת לבן/בת זוג:</strong> ₪924</li>
+          <li><strong>תוספת לכל ילד (עד 2 ילדים):</strong> ₪581</li>
         </ul>
 
         <h3>💵 מבחן הכנסות (בין גיל פרישה לגיל 70)</h3>
@@ -65,15 +65,15 @@ const RIGHTS_DATA = {
           <tbody>
             <tr>
               <td style="padding: 10px; border: 1px solid #ddd; font-weight: bold;">יחיד</td>
-              <td style="padding: 10px; border: 1px solid #ddd; text-align: center;">עד ₪9,781</td>
-              <td style="padding: 10px; border: 1px solid #ddd; text-align: center;">₪9,781-₪13,970</td>
-              <td style="padding: 10px; border: 1px solid #ddd; text-align: center;">מעל ₪13,970</td>
+              <td style="padding: 10px; border: 1px solid #ddd; text-align: center;">עד ₪10,113</td>
+              <td style="padding: 10px; border: 1px solid #ddd; text-align: center;">₪10,113-₪14,302</td>
+              <td style="padding: 10px; border: 1px solid #ddd; text-align: center;">מעל ₪14,302</td>
             </tr>
             <tr>
               <td style="padding: 10px; border: 1px solid #ddd; font-weight: bold;">נשוי</td>
-              <td style="padding: 10px; border: 1px solid #ddd; text-align: center;">עד ₪13,040</td>
-              <td style="padding: 10px; border: 1px solid #ddd; text-align: center;">₪13,040-₪19,483</td>
-              <td style="padding: 10px; border: 1px solid #ddd; text-align: center;">מעל ₪19,483</td>
+              <td style="padding: 10px; border: 1px solid #ddd; text-align: center;">עד ₪13,484</td>
+              <td style="padding: 10px; border: 1px solid #ddd; text-align: center;">₪13,484-₪20,141</td>
+              <td style="padding: 10px; border: 1px solid #ddd; text-align: center;">מעל ₪20,141</td>
             </tr>
           </tbody>
         </table>
@@ -87,11 +87,11 @@ const RIGHTS_DATA = {
           </p>
         </div>
 
-        <h5 class="no-accordion">📋 נתונים בסיסיים לחישוב (2025):</h5>
+        <h5 class="no-accordion">📋 נתונים בסיסיים לחישוב (2026):</h5>
         <ul>
-          <li><strong>קצבה בסיסית:</strong> ₪1,795 (מגיל פרישה עד גיל 80)</li>
-          <li><strong>קצבה בסיסית:</strong> ₪1,896 (מגיל 80 ומעלה)</li>
-          <li><strong>תוספת בן/בת זוג:</strong> ₪902</li>
+          <li><strong>קצבה בסיסית:</strong> ₪1,838 (מגיל פרישה עד גיל 80)</li>
+          <li><strong>קצבה בסיסית:</strong> ₪1,941 (מגיל 80 ומעלה)</li>
+          <li><strong>תוספת בן/בת זוג:</strong> ₪924</li>
           <li><strong>תוספת ותק:</strong> 2% לכל שנת ביטוח (מקסימום 50%)</li>
         </ul>
 
@@ -102,30 +102,30 @@ const RIGHTS_DATA = {
           <h5 class="no-accordion">📋 נתוני המקרה:</h5>
           <ul>
             <li>דוד, בן 67, יחיד</li>
-            <li>הכנסה מעבודה: ₪11,000 ברוטו</li>
+            <li>הכנסה מעבודה: ₪11,500 ברוטו</li>
             <li>ותק ביטוח: 25 שנים (תוספת ותק מקסימלית 50%)</li>
-            <li><strong>מצב:</strong> הכנסה בטווח הזכאות לקצבה חלקית (₪9,781 - ₪13,970)</li>
+            <li><strong>מצב:</strong> הכנסה בטווח הזכאות לקצבה חלקית (₪10,113 - ₪14,302)</li>
           </ul>
 
           <h5 class="no-accordion">💡 חישוב:</h5>
           <p><strong>שלב 1: חישוב קצבה בסיסית עם ותק</strong></p>
           <ul>
-            <li>קצבה בסיסית: ₪1,795</li>
-            <li>תוספת ותק (50%): ₪1,795 × 50% = ₪898</li>
-            <li><strong>קצבה מלאה עם ותק: ₪1,795 + ₪898 = ₪2,693</strong></li>
+            <li>קצבה בסיסית: ₪1,838</li>
+            <li>תוספת ותק (50%): ₪1,838 × 50% = ₪919</li>
+            <li><strong>קצבה מלאה עם ותק: ₪1,838 + ₪919 = ₪2,757</strong></li>
           </ul>
 
           <p><strong>שלב 2: חישוב עודף הכנסה</strong></p>
           <ul>
-            <li>עודף הכנסה: ₪11,000 - ₪9,781 = ₪1,219</li>
-            <li>קיזוז (60% מהעודף): ₪1,219 × 60% = ₪731</li>
+            <li>עודף הכנסה: ₪11,500 - ₪10,113 = ₪1,387</li>
+            <li>קיזוז (60% מהעודף): ₪1,387 × 60% = ₪832</li>
           </ul>
 
           <p><strong>שלב 3: חישוב קצבה חלקית</strong></p>
           <ul>
-            <li>קצבה חלקית: ₪2,693 - ₪731 = ₪1,962</li>
-            <li>ניכוי ביטוח בריאות: ₪231</li>
-            <li style="font-size: 1.2em; font-weight: bold; color: #2e7d32;">✅ סה״כ לקבלה בפועל: ₪1,962 - ₪231 = ₪1,731</li>
+            <li>קצבה חלקית: ₪2,757 - ₪832 = ₪1,925</li>
+            <li>ניכוי ביטוח בריאות: ₪237</li>
+            <li style="font-size: 1.2em; font-weight: bold; color: #2e7d32;">✅ סה״כ לקבלה בפועל: ₪1,925 - ₪237 = ₪1,688</li>
           </ul>
         </div>
 
@@ -135,33 +135,33 @@ const RIGHTS_DATA = {
           <ul>
             <li>משה (68) ורחל (65), נשואים</li>
             <li>משה: הכנסה ₪8,000, ותק 20 שנים (תוספת 40%)</li>
-            <li>רחל: הכנסה ₪7,000, ותק 18 שנים (תוספת 36%)</li>
-            <li><strong>הכנסה משפחתית כוללת: ₪15,000</strong> (בטווח ₪13,040-₪19,483)</li>
+            <li>רחל: הכנסה ₪7,500, ותק 18 שנים (תוספת 36%)</li>
+            <li><strong>הכנסה משפחתית כוללת: ₪15,500</strong> (בטווח ₪13,484-₪20,141)</li>
           </ul>
 
           <h5 class="no-accordion">💡 חישוב עבור משה:</h5>
           <ul>
-            <li>קצבה בסיסית: ₪1,795</li>
-            <li>תוספת ותק (40%): ₪1,795 × 40% = ₪718</li>
-            <li>קצבה מלאה: ₪1,795 + ₪718 = ₪2,513</li>
-            <li><em>⚠ משה מתחת לתקרת קצבה מלאה ליחיד (₪9,781), אך נבדק לפי הכנסה משפחתית</em></li>
-            <li>עודף משפחתי: ₪15,000 - ₪13,040 = ₪1,960</li>
-            <li>קיזוז (60%): ₪1,960 × 60% = ₪1,176</li>
-            <li><strong>קצבה חלקית למשה: ₪2,513 - ₪1,176 = ₪1,337</strong></li>
+            <li>קצבה בסיסית: ₪1,838</li>
+            <li>תוספת ותק (40%): ₪1,838 × 40% = ₪735</li>
+            <li>קצבה מלאה: ₪1,838 + ₪735 = ₪2,573</li>
+            <li><em>⚠ משה מתחת לתקרת קצבה מלאה ליחיד (₪10,113), אך נבדק לפי הכנסה משפחתית</em></li>
+            <li>עודף משפחתי: ₪15,500 - ₪13,484 = ₪2,016</li>
+            <li>קיזוז (60%): ₪2,016 × 60% = ₪1,210</li>
+            <li><strong>קצבה חלקית למשה: ₪2,573 - ₪1,210 = ₪1,363</strong></li>
           </ul>
 
           <h5 class="no-accordion">💡 חישוב עבור רחל:</h5>
           <ul>
-            <li>קצבה בסיסית: ₪1,795</li>
-            <li>תוספת ותק (36%): ₪1,795 × 36% = ₪646</li>
-            <li>קצבה מלאה: ₪1,795 + ₪646 = ₪2,441</li>
-            <li>קיזוז זהה: ₪1,176</li>
-            <li><strong>קצבה חלקית לרחל: ₪2,441 - ₪1,176 = ₪1,265</strong></li>
+            <li>קצבה בסיסית: ₪1,838</li>
+            <li>תוספת ותק (36%): ₪1,838 × 36% = ₪662</li>
+            <li>קצבה מלאה: ₪1,838 + ₪662 = ₪2,500</li>
+            <li>קיזוז זהה: ₪1,210</li>
+            <li><strong>קצבה חלקית לרחל: ₪2,500 - ₪1,210 = ₪1,290</strong></li>
           </ul>
 
           <p style="font-size: 1.1em; font-weight: bold; color: #1565c0; margin-top: 15px;">
-            ✅ סה״כ קצבאות למשפחה: ₪1,337 + ₪1,265 = ₪2,602<br>
-            לאחר ניכוי ביטוח בריאות (₪332): ₪2,270
+            ✅ סה״כ קצבאות למשפחה: ₪1,363 + ₪1,290 = ₪2,653<br>
+            לאחר ניכוי ביטוח בריאות (₪340): ₪2,313
           </p>
         </div>
 
@@ -170,22 +170,22 @@ const RIGHTS_DATA = {
           <h5 class="no-accordion">📋 נתוני המקרה:</h5>
           <ul>
             <li>יוסף, בן 68, נשוי</li>
-            <li>הכנסה מעבודה: ₪14,500</li>
+            <li>הכנסה מעבודה: ₪15,000</li>
             <li>ותק: 22 שנים (תוספת 44%)</li>
             <li>אשתו לא הגיעה לגיל פרישה ואין לה הכנסה</li>
           </ul>
 
           <h5 class="no-accordion">💡 חישוב:</h5>
           <ul>
-            <li>קצבה בסיסית ליחיד: ₪1,795</li>
-            <li>תוספת בן/בת זוג: ₪902</li>
-            <li>קצבה בסיסית כוללת: ₪1,795 + ₪902 = ₪2,697</li>
-            <li>תוספת ותק (44%): ₪2,697 × 44% = ₪1,187</li>
-            <li>קצבה מלאה עם ותק: ₪2,697 + ₪1,187 = ₪3,884</li>
-            <li>עודף הכנסה: ₪14,500 - ₪13,040 = ₪1,460</li>
-            <li>קיזוז (60%): ₪1,460 × 60% = ₪876</li>
-            <li>קצבה חלקית: ₪3,884 - ₪876 = ₪3,008</li>
-            <li style="font-size: 1.2em; font-weight: bold; color: #6a1b9a;">✅ סה״כ לקבלה בפועל: ₪3,008 - ₪231 = ₪2,777</li>
+            <li>קצבה בסיסית ליחיד: ₪1,838</li>
+            <li>תוספת בן/בת זוג: ₪924</li>
+            <li>קצבה בסיסית כוללת: ₪1,838 + ₪924 = ₪2,762</li>
+            <li>תוספת ותק (44%): ₪2,762 × 44% = ₪1,215</li>
+            <li>קצבה מלאה עם ותק: ₪2,762 + ₪1,215 = ₪3,977</li>
+            <li>עודף הכנסה: ₪15,000 - ₪13,484 = ₪1,516</li>
+            <li>קיזוז (60%): ₪1,516 × 60% = ₪910</li>
+            <li>קצבה חלקית: ₪3,977 - ₪910 = ₪3,067</li>
+            <li style="font-size: 1.2em; font-weight: bold; color: #6a1b9a;">✅ סה״כ לקבלה בפועל: ₪3,067 - ₪237 = ₪2,830</li>
           </ul>
         </div>
 
@@ -196,25 +196,25 @@ const RIGHTS_DATA = {
             <li>אברהם, בן 67, נשוי</li>
             <li>הכנסה מעבודה: ₪10,000</li>
             <li>ותק: 25 שנים (תוספת 50%)</li>
-            <li>אשתו בת 58, עובדת ומרוויחה ₪8,000 (לא הגיעה לגיל פרישה)</li>
-            <li><strong>הכנסה כוללת של המשפחה: ₪18,000</strong></li>
+            <li>אשתו בת 58, עובדת ומרוויחה ₪8,500 (לא הגיעה לגיל פרישה)</li>
+            <li><strong>הכנסה כוללת של המשפחה: ₪18,500</strong></li>
           </ul>
 
           <div style="background: #fff3e0; padding: 15px; border-radius: 8px; border-right: 4px solid #ff9800; margin: 15px 0;">
-            <p><strong>⚠ שימו לב:</strong> במקרה זה, הכנסת בן/בת הזוג שטרם הגיע לגיל פרישה נכללת במבחן ההכנסות. מכיוון שההכנסה המשפחתית (₪18,000) נמוכה מהתקרה המבטלת זכאות (₪19,483), אברהם זכאי לקצבה חלקית.</p>
+            <p><strong>⚠ שימו לב:</strong> במקרה זה, הכנסת בן/בת הזוג שטרם הגיע לגיל פרישה נכללת במבחן ההכנסות. מכיוון שההכנסה המשפחתית (₪18,500) נמוכה מהתקרה המבטלת זכאות (₪20,141), אברהם זכאי לקצבה חלקית.</p>
           </div>
 
           <h5 class="no-accordion">💡 חישוב:</h5>
           <ul>
-            <li>קצבה בסיסית ליחיד: ₪1,795</li>
-            <li>תוספת בן/בת זוג: ₪902</li>
-            <li>קצבה בסיסית כוללת: ₪2,697</li>
-            <li>תוספת ותק (50%): ₪2,697 × 50% = ₪1,349</li>
-            <li>קצבה מלאה: ₪2,697 + ₪1,349 = ₪4,046</li>
-            <li>עודף הכנסה משפחתי: ₪18,000 - ₪13,040 = ₪4,960</li>
-            <li>קיזוז (60%): ₪4,960 × 60% = ₪2,976</li>
-            <li>קצבה חלקית: ₪4,046 - ₪2,976 = ₪1,070</li>
-            <li style="font-size: 1.2em; font-weight: bold; color: #c62828;">✅ סה״כ לקבלה בפועל: ₪1,070 - ₪231 = ₪839</li>
+            <li>קצבה בסיסית ליחיד: ₪1,838</li>
+            <li>תוספת בן/בת זוג: ₪924</li>
+            <li>קצבה בסיסית כוללת: ₪2,762</li>
+            <li>תוספת ותק (50%): ₪2,762 × 50% = ₪1,381</li>
+            <li>קצבה מלאה: ₪2,762 + ₪1,381 = ₪4,143</li>
+            <li>עודף הכנסה משפחתי: ₪18,500 - ₪13,484 = ₪5,016</li>
+            <li>קיזוז (60%): ₪5,016 × 60% = ₪3,010</li>
+            <li>קצבה חלקית: ₪4,143 - ₪3,010 = ₪1,133</li>
+            <li style="font-size: 1.2em; font-weight: bold; color: #c62828;">✅ סה״כ לקבלה בפועל: ₪1,133 - ₪237 = ₪896</li>
           </ul>
         </div>
 
@@ -225,8 +225,8 @@ const RIGHTS_DATA = {
             <li><strong>שיעור:</strong> 2% לכל שנת ביטוח מלאה (12 חודשים)</li>
             <li><strong>תוספת מקסימלית:</strong> 50% (עבור 25 שנות ביטוח ומעלה)</li>
             <li><strong>חישוב:</strong> על הקצבה הבסיסית + תוספות בני משפחה</li>
-            <li><strong>דוגמה:</strong> 25 שנות ביטוח = 50% תוספת = ₪897.50 (על ₪1,795)</li>
-            <li><strong>סה"כ עם וותק מקסימלי:</strong> ₪2,692.50 ליחיד</li>
+            <li><strong>דוגמה:</strong> 25 שנות ביטוח = 50% תוספת = ₪919 (על ₪1,838)</li>
+            <li><strong>סה"כ עם וותק מקסימלי:</strong> ₪2,757 ליחיד</li>
           </ul>
         </div>
 
@@ -245,32 +245,33 @@ const RIGHTS_DATA = {
         <div style="background: #f0f8ff; padding: 20px; border-radius: 10px; border-right: 4px solid #667eea;">
           <p><strong>גבר בן 70, היה מבוטח 35 שנים, דחה קצבה 3 שנים בשל עבודה:</strong></p>
           <ul>
-            <li>קצבה בסיסית (בגיל 70): ₪1,795</li>
-            <li>תוספת ותק מקסימלית (50%): ₪897.50</li>
-            <li>ביניים: ₪2,692.50</li>
-            <li>תוספת דחייה (15%): ₪403.88</li>
-            <li><strong>סה"כ קצבה: ₪3,096.38 לחודש</strong></li>
+            <li>קצבה בסיסית (בגיל 70): ₪1,838</li>
+            <li>תוספת ותק מקסימלית (50%): ₪919</li>
+            <li>ביניים: ₪2,757</li>
+            <li>תוספת דחייה (15%): ₪413.55</li>
+            <li><strong>סה"כ קצבה: ₪3,170.55 לחודש</strong></li>
           </ul>
-          <p style="margin-top: 15px;"><em>בגיל 80: הקצבה הבסיסית תעלה ל-₪1,896 והקצבה הכוללת תהיה גבוהה יותר</em></p>
+          <p style="margin-top: 15px;"><em>בגיל 80: הקצבה הבסיסית תעלה ל-₪1,941 והקצבה הכוללת תהיה גבוהה יותר</em></p>
         </div>
 
         <h3>💸 תוספת השלמת הכנסה</h3>
         <p>השלמת הכנסה ניתנת למי שהכנסותיו נמוכות ומיועדת להבטיח רמת חיים מינימלית.</p>
 
-        <h4>סכומי השלמת הכנסה מקסימליים 2025</h4>
+        <h4>סכומי השלמת הכנסה מקסימליים 2026</h4>
+        <p><em>למבוטחים שטרם מלאו להם 70 שנה. מבוטחים שמלאו להם 70 שנה עשויים לקבל יותר</em></p>
         <ul>
-          <li><strong>יחיד:</strong> ₪4,273 לחודש</li>
-          <li><strong>זוג:</strong> ₪6,751 לחודש</li>
+          <li><strong>יחיד:</strong> ₪4,375 לחודש</li>
+          <li><strong>זוג:</strong> ₪6,912 לחודש</li>
         </ul>
 
         <h4>נוסחת החישוב</h4>
         <ol>
-          <li>קובעים את הסכום המקסימלי להשלמה (₪4,273 יחיד / ₪6,751 זוג)</li>
+          <li>קובעים את הסכום המקסימלי להשלמה (₪4,375 יחיד / ₪6,912 זוג)</li>
           <li>בודקים הכנסות קיימות:
             <ul>
               <li>קצבת זקנה - מותרת עד התקרה המלאה</li>
-              <li>הכנסה מעבודה - מותרת: יחיד ₪3,129, זוג ₪3,662</li>
-              <li>קצבת פנסיה - מותרת: יחיד ₪1,731, זוג ₪2,730</li>
+              <li>הכנסה מעבודה - מותרת: יחיד ₪3,236, זוג ₪3,786</li>
+              <li>קצבת פנסיה - מותרת: יחיד ₪1,790, זוג ₪2,823</li>
             </ul>
           </li>
           <li>הכנסה עודפת מעל המותר: 60% ממנה מקוזזת מההשלמה</li>
@@ -281,24 +282,24 @@ const RIGHTS_DATA = {
         <div style="background: #fff8e1; padding: 15px; border-radius: 8px; margin: 15px 0;">
           <h5>דוגמה 1 - יחיד:</h5>
           <ul>
-            <li>קצבת זקנה: ₪1,795</li>
+            <li>קצבת זקנה: ₪1,838</li>
             <li>פנסיה: ₪2,500</li>
-            <li>חישוב: פנסיה עודפת = 2,500 - 1,731 = ₪769</li>
-            <li>קיזוז: 60% × 769 = ₪461</li>
-            <li>השלמה: 4,273 - 1,795 - 461 = ₪2,017</li>
-            <li><strong>סה"כ הכנסה: ₪6,312</strong></li>
+            <li>חישוב: פנסיה עודפת = 2,500 - 1,790 = ₪710</li>
+            <li>קיזוז: 60% × 710 = ₪426</li>
+            <li>השלמה: 4,375 - 1,838 - 426 = ₪2,111</li>
+            <li><strong>סה"כ הכנסה: ₪6,449</strong></li>
           </ul>
         </div>
 
         <div style="background: #e8f5e9; padding: 15px; border-radius: 8px; margin: 15px 0;">
           <h5>דוגמה 2 - זוג:</h5>
           <ul>
-            <li>קצבת זקנה לכל אחד: ₪1,795 (סה"כ ₪3,590)</li>
-            <li>הכנסה מעבודה: ₪4,000</li>
-            <li>חישוב: הכנסה עודפת = 4,000 - 3,662 = ₪338</li>
-            <li>קיזוז: 60% × 338 = ₪203</li>
-            <li>השלמה: 6,751 - 3,590 - 203 = ₪2,958</li>
-            <li><strong>סה"כ הכנסה: ₪10,548</strong></li>
+            <li>קצבת זקנה לכל אחד: ₪1,838 (סה"כ ₪3,676)</li>
+            <li>הכנסה מעבודה: ₪4,200</li>
+            <li>חישוב: הכנסה עודפת = 4,200 - 3,786 = ₪414</li>
+            <li>קיזוז: 60% × 414 = ₪248</li>
+            <li>השלמה: 6,912 - 3,676 - 248 = ₪2,988</li>
+            <li><strong>סה"כ הכנסה: ₪10,876</strong></li>
           </ul>
         </div>
 
@@ -312,7 +313,7 @@ const RIGHTS_DATA = {
           <li>✅ סיוע בשכר דירה</li>
         </ul>
       `,
-      "updatedAt": "2025-01-01T00:00:00.000Z"
+      "updatedAt": "2026-01-16T00:00:00.000Z"
     },
 
     "disability": {
@@ -331,12 +332,12 @@ const RIGHTS_DATA = {
             </tr>
           </thead>
           <tbody>
-            <tr><td style="padding: 10px; border: 1px solid #ddd;">100% (אי כושר השתכרות מלאה)</td><td style="padding: 10px; border: 1px solid #ddd; text-align: center; font-weight: bold;">₪4,556</td></tr>
-            <tr><td style="padding: 10px; border: 1px solid #ddd;">99%-74%</td><td style="padding: 10px; border: 1px solid #ddd; text-align: center;">₪3,190-₪4,100</td></tr>
-            <tr><td style="padding: 10px; border: 1px solid #ddd;">73%-50%</td><td style="padding: 10px; border: 1px solid #ddd; text-align: center;">₪2,278-₪3,008</td></tr>
+            <tr><td style="padding: 10px; border: 1px solid #ddd;">100% (אי כושר השתכרות מלאה)</td><td style="padding: 10px; border: 1px solid #ddd; text-align: center; font-weight: bold;">₪4,771</td></tr>
+            <tr><td style="padding: 10px; border: 1px solid #ddd;">99%-74%</td><td style="padding: 10px; border: 1px solid #ddd; text-align: center;">₪3,211-₪4,241</td></tr>
+            <tr><td style="padding: 10px; border: 1px solid #ddd;">73%-50%</td><td style="padding: 10px; border: 1px solid #ddd; text-align: center;">₪2,386-₪3,111</td></tr>
           </tbody>
         </table>
-        <p><strong>תוספת לבן/בת זוג:</strong> ₪1,468</p>
+        <p><strong>תוספת לבן/בת זוג:</strong> ₪1,541</p>
 
         <h3>🔄 מעבר מנכות כללית לקצבת זקנה</h3>
         <div class="conditions-box">
@@ -353,7 +354,7 @@ const RIGHTS_DATA = {
         <h3>🛟 קצבת שירותים מיוחדים (שר"מ)</h3>
         <p>קצבת שירותים מיוחדים ניתנת למי שזקוק לעזרת הזולת באופן משמעותי עקב נכות.</p>
 
-        <h4 class="no-accordion">דרגות שר"מ (נכון ל-2025):</h4>
+        <h4 class="no-accordion">דרגות שר"מ (נכון ל-2026):</h4>
         <table style="width: 100%; border-collapse: collapse; margin: 20px 0;">
           <thead>
             <tr style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white;">
@@ -362,12 +363,29 @@ const RIGHTS_DATA = {
             </tr>
           </thead>
           <tbody>
-            <tr><td style="padding: 10px; border: 1px solid #ddd;">50%</td><td style="padding: 10px; border: 1px solid #ddd; text-align: center; font-weight: bold;">₪2,278</td></tr>
-            <tr><td style="padding: 10px; border: 1px solid #ddd;">65%</td><td style="padding: 10px; border: 1px solid #ddd; text-align: center; font-weight: bold;">₪2,961</td></tr>
-            <tr><td style="padding: 10px; border: 1px solid #ddd;">75%</td><td style="padding: 10px; border: 1px solid #ddd; text-align: center; font-weight: bold;">₪3,417</td></tr>
-            <tr><td style="padding: 10px; border: 1px solid #ddd;">100%</td><td style="padding: 10px; border: 1px solid #ddd; text-align: center; font-weight: bold;">₪4,556</td></tr>
-            <tr><td style="padding: 10px; border: 1px solid #ddd;">112%</td><td style="padding: 10px; border: 1px solid #ddd; text-align: center; font-weight: bold;">₪5,102</td></tr>
-            <tr><td style="padding: 10px; border: 1px solid #ddd;">188%</td><td style="padding: 10px; border: 1px solid #ddd; text-align: center; font-weight: bold;">₪8,565</td></tr>
+            <tr><td style="padding: 10px; border: 1px solid #ddd;">50%</td><td style="padding: 10px; border: 1px solid #ddd; text-align: center; font-weight: bold;">₪1,943</td></tr>
+            <tr><td style="padding: 10px; border: 1px solid #ddd;">65%</td><td style="padding: 10px; border: 1px solid #ddd; text-align: center; font-weight: bold;">₪3,101</td></tr>
+            <tr><td style="padding: 10px; border: 1px solid #ddd;">75%</td><td style="padding: 10px; border: 1px solid #ddd; text-align: center; font-weight: bold;">₪3,578</td></tr>
+            <tr><td style="padding: 10px; border: 1px solid #ddd;">100%</td><td style="padding: 10px; border: 1px solid #ddd; text-align: center; font-weight: bold;">₪4,771</td></tr>
+            <tr><td style="padding: 10px; border: 1px solid #ddd;">112%</td><td style="padding: 10px; border: 1px solid #ddd; text-align: center; font-weight: bold;">₪4,501</td></tr>
+            <tr><td style="padding: 10px; border: 1px solid #ddd;">188%</td><td style="padding: 10px; border: 1px solid #ddd; text-align: center; font-weight: bold;">₪7,181</td></tr>
+            <tr><td style="padding: 10px; border: 1px solid #ddd;">235%</td><td style="padding: 10px; border: 1px solid #ddd; text-align: center; font-weight: bold;">₪9,126</td></tr>
+            <tr><td style="padding: 10px; border: 1px solid #ddd;">תוספת מונשם</td><td style="padding: 10px; border: 1px solid #ddd; text-align: center; font-weight: bold;">₪10,774</td></tr>
+            <tr><td style="padding: 10px; border: 1px solid #ddd;">188% + תוספת 2 מטפלים</td><td style="padding: 10px; border: 1px solid #ddd; text-align: center; font-weight: bold;">₪7,182</td></tr>
+          </tbody>
+        </table>
+
+        <h3>👶 גמלת ילד נכה</h3>
+        <table style="width: 100%; border-collapse: collapse; margin: 20px 0;">
+          <thead>
+            <tr style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white;">
+              <th style="padding: 12px; border: 1px solid #ddd;">סוג הגמלה</th>
+              <th style="padding: 12px; border: 1px solid #ddd;">סכום חודשי 2026</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td style="padding: 10px; border: 1px solid #ddd;">ילד עם נכות 100%</td><td style="padding: 10px; border: 1px solid #ddd; text-align: center; font-weight: bold;">₪3,820</td></tr>
+            <tr><td style="padding: 10px; border: 1px solid #ddd;">תוספת לילד נכה מונשם</td><td style="padding: 10px; border: 1px solid #ddd; text-align: center; font-weight: bold;">₪10,774</td></tr>
           </tbody>
         </table>
 
@@ -385,7 +403,7 @@ const RIGHTS_DATA = {
           </ul>
         </div>
       `,
-      "updatedAt": "2025-01-01T00:00:00.000Z"
+      "updatedAt": "2026-01-16T00:00:00.000Z"
     },
 
     "nursing": {
@@ -394,7 +412,7 @@ const RIGHTS_DATA = {
         <a href="https://www.kolzchut.org.il/he/%D7%92%D7%9E%D7%9C%D7%AA_%D7%A1%D7%99%D7%A2%D7%95%D7%93" target="_blank" class="link-item">🏛️  פורט גמלת סיעוד - כל זכות. כל המידע ודרכי המימוש לגמלת סיעוד, הניתנת למי שהגיעו לגיל פרישה, מתגוררים בקהילה.</a>
       <h2 class="no-accordion">❤️ גמלת סיעוד - מדריך מקיף</h2>
 
-        <h3>📊 רמות גמלת הסיעוד 2025 - טבלה מפורטת</h3>
+        <h3>📊 רמות גמלת הסיעוד 2026 - טבלה מפורטת</h3>
         <table style="width: 100%; border-collapse: collapse; margin: 20px 0;">
           <thead>
             <tr style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white;">
@@ -409,49 +427,49 @@ const RIGHTS_DATA = {
             <tr>
               <td style="padding: 10px; border: 1px solid #ddd; text-align: center; font-weight: bold;">1</td>
               <td style="padding: 10px; border: 1px solid #ddd; text-align: center;">2.5-3</td>
-              <td style="padding: 10px; border: 1px solid #ddd; text-align: center;">9 שעות</td>
-              <td style="padding: 10px; border: 1px solid #ddd; text-align: center;">₪1,572</td>
+              <td style="padding: 10px; border: 1px solid #ddd; text-align: center;">5.5 שעות</td>
+              <td style="padding: 10px; border: 1px solid #ddd; text-align: center;">₪1,659</td>
               <td style="padding: 10px; border: 1px solid #ddd;">ניתן לקבל בכסף מלא</td>
             </tr>
             <tr>
               <td style="padding: 10px; border: 1px solid #ddd; text-align: center; font-weight: bold;">2</td>
               <td style="padding: 10px; border: 1px solid #ddd; text-align: center;">3.5-4.5</td>
               <td style="padding: 10px; border: 1px solid #ddd; text-align: center;">10 שעות</td>
-              <td style="padding: 10px; border: 1px solid #ddd; text-align: center;">₪2,290</td>
-              <td style="padding: 10px; border: 1px solid #ddd;">המרה חלקית עד ₪915</td>
+              <td style="padding: 10px; border: 1px solid #ddd; text-align: center;">₪2,410</td>
+              <td style="padding: 10px; border: 1px solid #ddd;">המרה חלקית עד ₪965 (4 יח"ש)</td>
             </tr>
             <tr>
               <td style="padding: 10px; border: 1px solid #ddd; text-align: center; font-weight: bold;">3</td>
               <td style="padding: 10px; border: 1px solid #ddd; text-align: center;">5-6</td>
-              <td style="padding: 10px; border: 1px solid #ddd; text-align: center;">17 שעות</td>
-              <td style="padding: 10px; border: 1px solid #ddd; text-align: center;">₪3,893</td>
-              <td style="padding: 10px; border: 1px solid #ddd;">המרה חלקית עד ₪1,350</td>
+              <td style="padding: 10px; border: 1px solid #ddd; text-align: center;">15 שעות</td>
+              <td style="padding: 10px; border: 1px solid #ddd; text-align: center;">₪4,097</td>
+              <td style="padding: 10px; border: 1px solid #ddd;">המרה חלקית עד ₪1,350 (6 יח"ש)</td>
             </tr>
             <tr>
               <td style="padding: 10px; border: 1px solid #ddd; text-align: center; font-weight: bold;">4</td>
               <td style="padding: 10px; border: 1px solid #ddd; text-align: center;">6.5-7.5</td>
-              <td style="padding: 10px; border: 1px solid #ddd; text-align: center;">20 שעות</td>
-              <td style="padding: 10px; border: 1px solid #ddd; text-align: center;">₪4,580</td>
-              <td style="padding: 10px; border: 1px solid #ddd;">רק שירותים בעין</td>
+              <td style="padding: 10px; border: 1px solid #ddd; text-align: center;">21 (18 עם זר)</td>
+              <td style="padding: 10px; border: 1px solid #ddd; text-align: center;">₪5,061</td>
+              <td style="padding: 10px; border: 1px solid #ddd;">המרה חלקית עד ₪1,434 (7 יח"ש)</td>
             </tr>
             <tr>
               <td style="padding: 10px; border: 1px solid #ddd; text-align: center; font-weight: bold;">5</td>
               <td style="padding: 10px; border: 1px solid #ddd; text-align: center;">8-9</td>
               <td style="padding: 10px; border: 1px solid #ddd; text-align: center;">26 (22 עם זר)</td>
-              <td style="padding: 10px; border: 1px solid #ddd; text-align: center;">₪5,954</td>
-              <td style="padding: 10px; border: 1px solid #ddd;">רק שירותים בעין</td>
+              <td style="padding: 10px; border: 1px solid #ddd; text-align: center;">₪6,266</td>
+              <td style="padding: 10px; border: 1px solid #ddd;">המרה חלקית עד ₪1,884 (9 יח"ש)</td>
             </tr>
             <tr>
               <td style="padding: 10px; border: 1px solid #ddd; text-align: center; font-weight: bold;">6</td>
               <td style="padding: 10px; border: 1px solid #ddd; text-align: center;">9.5+</td>
               <td style="padding: 10px; border: 1px solid #ddd; text-align: center;">30 (26 עם זר)</td>
-              <td style="padding: 10px; border: 1px solid #ddd; text-align: center;">₪6,870</td>
-              <td style="padding: 10px; border: 1px solid #ddd;">רק שירותים בעין</td>
+              <td style="padding: 10px; border: 1px solid #ddd; text-align: center;">₪7,230</td>
+              <td style="padding: 10px; border: 1px solid #ddd;">המרה חלקית עד ₪2,249 (10 יח"ש)</td>
             </tr>
           </tbody>
         </table>
 
-        <h3>💵 מבחן הכנסות לגמלת סיעוד</h3>
+        <h3>💵 מבחן הכנסות לגמלת סיעוד (נכון לינואר 2026 - יתעדכן באפריל 2026)</h3>
         <ul>
           <li><strong>גמלה מלאה:</strong> הכנסה עד ₪12,796 לחודש</li>
           <li><strong>גמלה בהיקף חצי:</strong> הכנסה ₪12,796-₪19,194 לחודש</li>
@@ -501,7 +519,7 @@ const RIGHTS_DATA = {
           </tbody>
         </table>
       `,
-      "updatedAt": "2025-01-01T00:00:00.000Z"
+      "updatedAt": "2026-01-16T00:00:00.000Z"
     },
 
     "holocaust_survivors": {
@@ -509,7 +527,7 @@ const RIGHTS_DATA = {
       "content": `
       <a href="https://www.btl.gov.il/benefits/Long_Term_Care/Pages/nitzoleShoaa.aspx" target="_blank" class="link-item">🏛️  ניצולי שואה – זכאות לתוספת שעות סיעוד - הביטוח הלאומי </a>
       <a href="https://www.kolzchut.org.il/he/%D7%96%D7%9B%D7%95%D7%99%D7%95%D7%AA_%D7%A0%D7%99%D7%A6%D7%95%D7%9C%D7%99_%D7%A9%D7%95%D7%90%D7%94#.D7.A7.D7.A6.D7.91.D7.90.D7.95.D7.AA_.D7.95.D7.A4.D7.95.D7.A8.D7.98.D7.9C.D7.99_.D7.9E.D7.99.D7.93.D7.A2_.D7.9E.D7.A8.D7.9B.D7.96.D7.99.D7.99.D7.9D" target="_blank" class="link-item">🔦 פורטל המידע הלאומי לזכויות ניצולי השואה בישראל - כל זכות</a>  
-      <h2 class="no-accordion">🕯️ זכויות ניצולי שואה - מדריך מקיף 2025</h2>
+      <h2 class="no-accordion">🕯️ זכויות ניצולי שואה - מדריך מקיף 2026</h2>
 
         <h3>💰 קצבאות ומענקים</h3>
         <ul>
@@ -517,6 +535,7 @@ const RIGHTS_DATA = {
           <li><strong>רנטה גרמנית (BEG):</strong> תשלום חודשי משתנה + תוספת 100-400 יורו</li>
           <li><strong>קרן סעיף 2:</strong> כ-€2,000 לרבעון</li>
           <li><strong>יוצאי רומניה/בולגריה:</strong> מינימום ₪2,860 לחודש</li>
+          <li><strong>תשלום שנתי ועידת התביעות 2026:</strong> ₪5,457 (1,350€) - לזכאי קרן הסיוע</li>
         </ul>
 
         <h3>🏥 תוספת שעות סיעוד לניצולי שואה</h3>
@@ -528,9 +547,11 @@ const RIGHTS_DATA = {
           <ul>
             <li>הכרה כניצול שואה על ידי: הרשות לזכויות ניצולי השואה, ועידת התביעות, או BEG</li>
             <li>זכאות לגמלת סיעוד מלאה (לא מופחתת) מהביטוח הלאומי</li>
-            <li>רמה 3 עם 6 נקודות תלות ומעלה, או רמה 4, 5, 6</li>
+            <li>רמה 3 עם 6 נקודות תלות ומעלה, או רמה 4, 5, 6 - בגמלה מלאה</li>
             <li><strong>או:</strong> קצבת שירותים מיוחדים (שר"מ) בהיקף 112% ומעלה</li>
             <li><strong>או:</strong> עזרה לזולת ממשרד הביטחון - 66 שעות חודשיות ומעלה</li>
+            <li><strong>גיל:</strong> 80 שנים ומעלה</li>
+            <li><strong>נקודות תלות:</strong> מינימום 2 נקודות במבחן ADL</li>
           </ul>
         </div>
 
@@ -550,7 +571,7 @@ const RIGHTS_DATA = {
           </ul>
         </div>
 
-        <h4>תוספת חלקית לניצולים עם פחות נקודות</h4>
+        <h4>תוספת חלקית לניצולים עם פחות נקודות (2025 - לאימות בשנת 2026)</h4>
         <table style="width: 100%; border-collapse: collapse; margin: 20px 0;">
           <thead>
             <tr style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white;">
@@ -608,7 +629,7 @@ const RIGHTS_DATA = {
           <li>✅ מענקים לציוד רפואי</li>
         </ul>
       `,
-      "updatedAt": "2025-01-01T00:00:00.000Z"
+      "updatedAt": "2026-01-16T00:00:00.000Z"
     },
 
     "summary": {
@@ -632,7 +653,7 @@ const RIGHTS_DATA = {
             <tr style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white;">
               <th style="padding: 12px; border: 1px solid #ddd;">סוג הטבה</th>
               <th style="padding: 12px; border: 1px solid #ddd;">תנאי זכאות</th>
-              <th style="padding: 12px; border: 1px solid #ddd;">סכומים 2025</th>
+              <th style="padding: 12px; border: 1px solid #ddd;">סכומים 2026</th>
               <th style="padding: 12px; border: 1px solid #ddd;">נספר כהכנסה?</th>
               <th style="padding: 12px; border: 1px solid #ddd;">השפעה</th>
             </tr>
@@ -641,21 +662,21 @@ const RIGHTS_DATA = {
             <tr>
               <td style="padding: 10px; border: 1px solid #ddd; font-weight: bold;">קצבת אזרח ותיק</td>
               <td style="padding: 10px; border: 1px solid #ddd;">גיל פרישה + מבחן הכנסה או גיל 70</td>
-              <td style="padding: 10px; border: 1px solid #ddd;">יחיד: ₪1,795<br>+80: ₪1,896<br>עם בן זוג: ₪2,697<br>ותק: עד 50%<br>דחייה: עד 15-40%</td>
+              <td style="padding: 10px; border: 1px solid #ddd;">יחיד: ₪1,838<br>+80: ₪1,941<br>עם בן זוג: ₪2,762<br>ותק: עד 50%<br>דחייה: עד 15-40%</td>
               <td style="padding: 10px; border: 1px solid #ddd; text-align: center;">כן</td>
               <td style="padding: 10px; border: 1px solid #ddd;">בסיס לזכאות להטבות</td>
             </tr>
             <tr>
               <td style="padding: 10px; border: 1px solid #ddd; font-weight: bold;">השלמת הכנסה</td>
               <td style="padding: 10px; border: 1px solid #ddd;">הכנסות נמוכות + קצבת זקנה</td>
-              <td style="padding: 10px; border: 1px solid #ddd;">יחיד: עד ₪4,273<br>זוג: עד ₪6,751</td>
+              <td style="padding: 10px; border: 1px solid #ddd;">יחיד: עד ₪4,375<br>זוג: עד ₪6,912</td>
               <td style="padding: 10px; border: 1px solid #ddd; text-align: center;">לא</td>
               <td style="padding: 10px; border: 1px solid #ddd;">מזכה בהטבות נוספות</td>
             </tr>
             <tr>
               <td style="padding: 10px; border: 1px solid #ddd; font-weight: bold;">גמלת סיעוד</td>
               <td style="padding: 10px; border: 1px solid #ddd;">גיל פרישה + תלות בזולת</td>
-              <td style="padding: 10px; border: 1px solid #ddd;">רמה 1: ₪1,572<br>רמה 6: ₪6,870<br>או שעות טיפול</td>
+              <td style="padding: 10px; border: 1px solid #ddd;">רמה 1: ₪1,659<br>רמה 6: ₪7,230<br>או שעות טיפול</td>
               <td style="padding: 10px; border: 1px solid #ddd; text-align: center;">לא</td>
               <td style="padding: 10px; border: 1px solid #ddd;">ללא השפעה על הטבות אחרות</td>
             </tr>
@@ -669,7 +690,7 @@ const RIGHTS_DATA = {
             <tr>
               <td style="padding: 10px; border: 1px solid #ddd; font-weight: bold;">נכות כללית</td>
               <td style="padding: 10px; border: 1px solid #ddd;">נכות רפואית לפני גיל פרישה</td>
-              <td style="padding: 10px; border: 1px solid #ddd;">100%: ₪4,556<br>+ תוספת בן זוג</td>
+              <td style="padding: 10px; border: 1px solid #ddd;">100%: ₪4,771<br>+ תוספת בן זוג</td>
               <td style="padding: 10px; border: 1px solid #ddd; text-align: center;">כן</td>
               <td style="padding: 10px; border: 1px solid #ddd;">עוברת לקצבת זקנה בגיל פרישה</td>
             </tr>
@@ -687,14 +708,14 @@ const RIGHTS_DATA = {
         <div style="background: #e3f2fd; padding: 20px; border-radius: 10px; margin-top: 20px;">
           <h3>💡 הערות חשובות</h3>
           <ul>
-            <li>כל הסכומים נכונים לינואר 2025 ועשויים להתעדכן במהלך השנה</li>
+            <li>כל הסכומים נכונים לינואר 2026 ועשויים להתעדכן במהלך השנה</li>
             <li>מומלץ לבדוק זכאות אישית באתר ביטוח לאומי או בפנייה טלפונית</li>
             <li>יש להגיש תביעות בזמן - זכויות רטרואקטיביות מוגבלות</li>
             <li>שמירה על מסמכים רפואיים ותעסוקתיים חשובה לתביעות</li>
           </ul>
         </div>
       `,
-      "updatedAt": "2025-01-01T00:00:00.000Z"
+      "updatedAt": "2026-01-16T00:00:00.000Z"
     },
 
     "special_grants": {
@@ -717,7 +738,7 @@ const RIGHTS_DATA = {
           </ul>
         </div>
 
-        <h4 class="no-accordion>👶 הגדרת יתום לפי גיל ומעמד</h4>
+        <h4 class="no-accordion">👶 הגדרת יתום לפי גיל ומעמד</h4>
         <p>קצבת שאירים משולמת ליתום עד:</p>
         <ul>
           <li><strong>גיל 18</strong> - לכל הילדים</li>
@@ -773,7 +794,7 @@ const RIGHTS_DATA = {
           <h5>4️⃣ תנאים מיוחדים לאלמן (ללא ילדים)</h5>
           <p>אלמן ללא ילדים זכאי לקצבה <strong>רק אם</strong>:</p>
           <ul>
-            <li>הכנסותיו החודשיות הברוטו אינן עולות על <strong>₪7,590</strong> (נכון ל-1.1.2025)</li>
+            <li>הכנסותיו החודשיות הברוטו אינן עולות על <strong>₪7,848</strong> (נכון ל-1.1.2026)</li>
           </ul>
         </div>
 
@@ -813,9 +834,9 @@ const RIGHTS_DATA = {
           </ul>
         </div>
 
-        <h4>💵 סכומי קצבאות לשנת 2025</h4>
+        <h4>💵 סכומי קצבאות לשנת 2026</h4>
 
-        <h5>קצבת אלמן/ה (נכון לינואר 2025)</h5>
+        <h5>קצבת אלמן/ה (נכון לינואר 2026)</h5>
         <p>הסכומים משתנים לפי גיל ומספר ילדים:</p>
 
         <table style="width: 100%; border-collapse: collapse; margin: 20px 0;">
@@ -830,19 +851,19 @@ const RIGHTS_DATA = {
             <tr>
               <td style="padding: 10px; border: 1px solid #ddd;">אלמן/ה ללא ילדים</td>
               <td style="padding: 10px; border: 1px solid #ddd; text-align: center;">גיל 40-50</td>
-              <td style="padding: 10px; border: 1px solid #ddd; text-align: center; font-weight: bold; color: #667eea;">₪1,348</td>
+              <td style="padding: 10px; border: 1px solid #ddd; text-align: center; font-weight: bold; color: #667eea;">₪1,381</td>
             </tr>
             <tr>
               <td style="padding: 10px; border: 1px solid #ddd;">אלמן/ה ללא ילדים</td>
               <td style="padding: 10px; border: 1px solid #ddd; text-align: center;">גיל 50 ומעלה</td>
-              <td style="padding: 10px; border: 1px solid #ddd; text-align: center; font-weight: bold; color: #667eea;">₪1,795</td>
+              <td style="padding: 10px; border: 1px solid #ddd; text-align: center; font-weight: bold; color: #667eea;">₪1,838</td>
             </tr>
           </tbody>
         </table>
 
         <h5>קצבת יתומים:</h5>
         <ul>
-          <li><strong>₪2,230</strong> לכל ילד (נכון ל-1.1.2024)</li>
+          <li><strong>₪2,434</strong> לכל ילד (נכון ל-1.1.2026)</li>
           <li><strong>יתום משני הוריו</strong> זכאי לקצבה מכוח כל הורה בנפרד</li>
         </ul>
 
@@ -1066,7 +1087,7 @@ const RIGHTS_DATA = {
         </div>
 
         <div style="background: #ffebee; padding: 20px; border-radius: 10px; border-right: 4px solid #c62828; margin-top: 20px;">
-          <p style="font-style: italic; margin: 0;">*המידע במסמך זה עודכן לינואר 2025 ומהווה מדריך כללי בלבד. לפרטים מדויקים ומעודכנים יש לפנות למוסד לביטוח לאומי.*</p>
+          <p style="font-style: italic; margin: 0;">*המידע במסמך זה עודכן לינואר 2026 ומהווה מדריך כללי בלבד. לפרטים מדויקים ומעודכנים יש לפנות למוסד לביטוח לאומי.*</p>
         </div>
 
         <h3>👩 מענק מעבר לנשים בגיל 62</h3>
@@ -1075,53 +1096,62 @@ const RIGHTS_DATA = {
         <p>בעקבות העלאת גיל הפרישה לנשים ודחיית מועד זכאותן לקצבת אזרח ותיק, נשים שנולדו בין ינואר 1960 לדצמבר 1966 עשויות להיות זכאיות למענק מעבר.</p>
 
         <div style="background: #e8f5e9; padding: 20px; border-radius: 10px; border-right: 4px solid #4caf50; margin: 20px 0;">
-          <h5 class="no-accordion>🎯 מטרת המענק</h5>
+          <h5 class="no-accordion">🎯 מטרת המענק</h5>
           <p>לסייע לנשים בפרק הזמן שבין גיל 62 ועד לקבלת קצבת אזרח ותיק.</p>
-          <p><strong>משך התשלום:</strong> המענק משולם לתקופה של 4 חודשים לכל היותר, החל מהחודש שבו מלאו לאישה 62 שנים.</p>
+        </div>
+
+        <h4>⏱️ משך התשלום</h4>
+        <div style="background: #e3f2fd; padding: 20px; border-radius: 10px; border-right: 4px solid #2196f3; margin: 20px 0;">
+          <ul>
+            <li>המענק משולם לתקופה של <strong>4 חודשים לכל היותר</strong></li>
+            <li>התשלום מתחיל מהחודש שבו מלאו לאישה <strong>62 שנים</strong></li>
+            <li>התנאים נבדקים בכל חודש מ-4 חודשי הזכאות</li>
+          </ul>
         </div>
 
         <h4>✅ תנאי זכאות למענק</h4>
         <p><strong>כדי להיות זכאית למענק, יש לעמוד בכל התנאים המצטברים הבאים:</strong></p>
 
         <div class="conditions-box">
-          <h5 class="no-accordion>1️⃣ גיל ושנת לידה</h5>
+          <h5 class="no-accordion">1️⃣ גיל ושנת לידה</h5>
           <ul>
             <li>נשים שנולדו בין ינואר 1960 לדצמבר 1966</li>
           </ul>
         </div>
 
         <div class="conditions-box">
-          <h5 class="no-accordion>2️⃣ היעדר הכנסות מעבודה</h5>
+          <h5 class="no-accordion">2️⃣ היעדר הכנסות מעבודה</h5>
           <ul>
             <li>אסור שיהיו הכנסות כשכירה או כעצמאית מגיל 62 ועד גיל 62 ו-4 חודשים</li>
           </ul>
         </div>
 
         <div class="conditions-box">
-          <h5 class="no-accordion>3️⃣ מגבלה על הכנסות מפנסיה וקצבאות</h5>
+          <h5 class="no-accordion">3️⃣ מגבלה על הכנסות מפנסיה וקצבאות</h5>
           <ul>
-            <li>הכנסה מפנסיה, תגמולים או קצבאות אינה יכולה לעלות על <strong>₪9,787 לחודש</strong> (נכון ל-1 בינואר 2025)</li>
+            <li>הכנסה מפנסיה, תגמולים או קצבאות אינה יכולה לעלות על <strong>₪10,120 לחודש</strong> (נכון לינואר 2026)</li>
           </ul>
         </div>
 
         <div class="conditions-box">
-          <h5 class="no-accordion>4️⃣ מגבלה על הכנסות שלא מעבודה</h5>
+          <h5 class="no-accordion">4️⃣ מגבלה על הכנסות שלא מעבודה</h5>
           <ul>
             <li>הכנסה שנתית שלא מעבודה (משכירות, ריבית על השקעות, מענקי פרישה וכו') לא יכולה לעלות על <strong>₪60,000</strong> בשנת המס שבה מלאו לך 61 שנים</li>
           </ul>
         </div>
 
-        <div class="conditions-box">
-          <h5 class="no-accordion>5️⃣ תקופת ביטוח</h5>
-          <p>חובה לעמוד באחד מהתנאים הבאים:</p>
+        <h4>📅 תקופת ביטוח</h4>
+        <div style="background: #f3e5f5; padding: 20px; border-radius: 10px; border-right: 4px solid #9c27b0; margin: 20px 0;">
+          <p><strong>חובה לעמוד באחד מהתנאים הבאים:</strong></p>
           <ul>
-            <li><strong>60 חודשי ביטוח מגיל 52</strong></li>
-            <li><strong>144 חודשי ביטוח מגיל 18</strong></li>
+            <li>✅ <strong>60 חודשי ביטוח</strong> (5 שנים) מגיל 52</li>
+            <li>✅ <strong>144 חודשי ביטוח</strong> (12 שנים) מגיל 18</li>
           </ul>
+          <p style="margin-top: 10px; font-size: 0.9em; color: #666;">תקופת ביטוח כוללת תקופות עבודה בהן שולמו דמי ביטוח לאומי</p>
         </div>
 
-        <div class="conditions-box">
-          <h5 class="no-accordion>6️⃣ אין קבלת קצבאות אחרות</h5>
+        <h4>🚫 אין קבלת קצבאות אחרות</h4>
+        <div style="background: #ffebee; padding: 20px; border-radius: 10px; border-right: 4px solid #c62828; margin: 20px 0;">
           <p><strong>אין זכאות למענק במקרים הבאים:</strong></p>
           <ul>
             <li>❌ קבלת קצבת הבטחת הכנסה</li>
@@ -1200,10 +1230,10 @@ const RIGHTS_DATA = {
         <div style="background: #ffebee; padding: 20px; border-radius: 10px; border-right: 4px solid #c62828; margin-top: 20px;">
           <h5 class="no-accordion">⚠️ הערה חשובה</h5>
           <p>המידע במסמך זה הוא כללי ונועד לספק מידע ראשוני. לקבלת מידע מדויק ועדכני ולבדיקת זכאות אישית, יש לפנות ישירות למוסד לביטוח לאומי.</p>
-          <p style="margin-top: 10px;"><em>מסמך זה הוכן בתאריך 24 בדצמבר 2025</em></p>
+          <p style="margin-top: 10px;"><em>מסמך זה הוכן בתאריך ינואר 2026</em></p>
         </div>
       `,
-      "updatedAt": "2025-01-01T00:00:00.000Z"
+      "updatedAt": "2026-01-16T00:00:00.000Z"
     }
   }
 };

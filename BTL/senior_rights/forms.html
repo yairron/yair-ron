@@ -87,9 +87,40 @@
             color: #667eea;
             font-size: 1.8em;
             font-weight: bold;
-            margin-bottom: 20px;
-            padding-bottom: 15px;
+            margin-bottom: 0;
+            padding: 15px 0;
             border-bottom: 3px solid #667eea;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: all 0.3s ease;
+        }
+
+        .category-header:hover {
+            color: #764ba2;
+        }
+
+        .category-header::after {
+            content: '▼';
+            font-size: 0.7em;
+            transition: transform 0.3s ease;
+        }
+
+        .category-header.collapsed::after {
+            transform: rotate(-90deg);
+        }
+
+        .accordion-content {
+            max-height: 2000px;
+            overflow: hidden;
+            transition: max-height 0.4s ease-in-out, padding 0.3s ease;
+            padding-top: 20px;
+        }
+
+        .accordion-content.collapsed {
+            max-height: 0;
+            padding-top: 0;
         }
 
         .forms-list {
@@ -250,7 +281,8 @@
 
         <!-- טפסים לאזרחים ותיקים -->
         <div class="category-section">
-            <h2 class="category-header">📝 טפסים לאזרח ותיק (קצבת זקנה)</h2>
+            <h2 class="category-header collapsed" onclick="toggleAccordion(this)">📝 טפסים לאזרח ותיק (קצבת זקנה)</h2>
+            <div class="accordion-content collapsed">
             <ul class="forms-list">
                 <li class="form-item">
                     <span class="form-number">טופס 480</span>
@@ -327,11 +359,13 @@
                     </div>
                 </li>
             </ul>
+            </div>
         </div>
 
         <!-- טפסי סיעוד -->
         <div class="category-section">
-            <h2 class="category-header">🏥 טפסים לקצבת סיעוד</h2>
+            <h2 class="category-header collapsed" onclick="toggleAccordion(this)">🏥 טפסים לקצבת סיעוד</h2>
+            <div class="accordion-content collapsed">
             <ul class="forms-list">
                 <li class="form-item">
                     <span class="form-number">טופס 2600</span>
@@ -416,11 +450,13 @@
                     </div>
                 </li>
             </ul>
+            </div>
         </div>
 
         <!-- טפסים כלליים -->
         <div class="category-section">
-            <h2 class="category-header">📄 טפסים נוספים חשובים</h2>
+            <h2 class="category-header collapsed" onclick="toggleAccordion(this)">📄 טפסים נוספים חשובים</h2>
+            <div class="accordion-content collapsed">
             <ul class="forms-list">
                 <li class="form-item">
                     <span class="form-number">טופס 408</span>
@@ -449,11 +485,13 @@
                     </div>
                 </li>
             </ul>
+            </div>
         </div>
 
         <!-- קישור לכל הטפסים -->
         <div class="category-section">
-            <h2 class="category-header">🔍 כל הטפסים</h2>
+            <h2 class="category-header collapsed" onclick="toggleAccordion(this)">🔍 כל הטפסים</h2>
+            <div class="accordion-content collapsed">
             <ul class="forms-list">
                 <li class="form-item">
                     <div class="form-name">מאגר הטפסים המלא של הביטוח הלאומי</div>
@@ -464,6 +502,7 @@
                     </div>
                 </li>
             </ul>
+            </div>
         </div>
 
         <footer>
@@ -472,5 +511,12 @@
             <p style="margin-top: 10px;">מוקד הביטוח הלאומי: <strong>*6050</strong> | <strong>02-6709000</strong></p>
         </footer>
     </div>
+    <script>
+        function toggleAccordion(header) {
+            const content = header.nextElementSibling;
+            header.classList.toggle('collapsed');
+            content.classList.toggle('collapsed');
+        }
+    </script>
 </body>
 </html>
