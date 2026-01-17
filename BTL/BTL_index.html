@@ -131,7 +131,7 @@
         }
 
         .link-card-header {
-            padding: 30px 35px;
+            padding: 20px 35px;
             display: flex;
             align-items: center;
             gap: 18px;
@@ -226,6 +226,76 @@
             font-weight: 600;
         }
 
+        /* Accordion styles */
+        .accordion-card {
+            background: white;
+            border-radius: 24px;
+            box-shadow: 0 12px 35px rgba(0,0,0,0.2);
+            overflow: hidden;
+            transition: all 0.3s;
+        }
+
+        .accordion-card:hover {
+            box-shadow: 0 15px 45px rgba(0,0,0,0.25);
+        }
+
+        .accordion-header {
+            padding: 30px 35px;
+            display: flex;
+            align-items: center;
+            gap: 18px;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .accordion-header:hover {
+            background: linear-gradient(135deg, var(--secondary), var(--primary));
+        }
+
+        .accordion-header .link-card-arrow {
+            transition: transform 0.3s;
+        }
+
+        .accordion-header.active .link-card-arrow {
+            transform: rotate(-90deg);
+        }
+
+        .accordion-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease-out;
+            background: #f8f9fa;
+        }
+
+        .accordion-content.show {
+            max-height: 500px;
+        }
+
+        .accordion-links {
+            padding: 20px 35px;
+        }
+
+        .accordion-links a {
+            display: block;
+            padding: 15px 20px;
+            margin: 10px 0;
+            background: white;
+            border-radius: 12px;
+            text-decoration: none;
+            color: var(--text);
+            font-size: 1.1rem;
+            font-weight: 600;
+            transition: all 0.2s;
+            border-right: 4px solid var(--accent);
+        }
+
+        .accordion-links a:hover {
+            background: #e3f2fd;
+            transform: translateX(-5px);
+        }
+
         @media (max-width: 768px) {
             h1 {
                 font-size: 2.5rem;
@@ -288,6 +358,19 @@
                     <span class="link-card-arrow">◀</span>
                 </div>
             </a>
+
+            <div class="accordion-card">
+                <div class="accordion-header" onclick="toggleAccordion(this)">
+                    <div class="link-card-icon">📊</div>
+                    <h2 class="link-card-title">עדכוני ביטוח לאומי 2026</h2>
+                    <span class="link-card-arrow">◀</span>
+                </div>
+                <div class="accordion-content">
+                    <div class="accordion-links">
+                        <a href="senior_rights/data/data_202601.html">✅ עדכון 01.2026 קצבאות זקנה ושארים</a>
+                    </div>
+                </div>
+            </div>
         </div>
 
         <div class="info-box">
@@ -309,5 +392,13 @@
             צור קשר: <a href="mailto:yairron@gmail.com">יאיר רון</a>
         </p>
     </footer>
+
+    <script>
+        function toggleAccordion(header) {
+            const content = header.nextElementSibling;
+            header.classList.toggle('active');
+            content.classList.toggle('show');
+        }
+    </script>
 </body>
 </html>

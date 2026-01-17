@@ -14,7 +14,12 @@
       "Bash(node validate-data.js:*)",
       "Bash(node fill-json-from-md.js:*)",
       "Bash(node build-dynamic-html.js:*)",
-      "Bash(cp:*)"
+      "Bash(cp:*)",
+      "Bash(pandoc:*)",
+      "Bash(while IFS=: read -r line text)",
+      "Bash(do echo \"rights-data.js,$line,\"\"$text\"\"\")",
+      "Bash(done)",
+      "Bash(git push)"
     ]
   }
 }
