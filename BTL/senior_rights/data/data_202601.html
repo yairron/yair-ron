@@ -223,6 +223,78 @@
             content: '← ';
             margin-left: 5px;
         }
+
+        /* התאמה למסכים קטנים */
+        @media (max-width: 768px) {
+            body {
+                padding: 10px;
+            }
+
+            h1 {
+                font-size: 1.5em;
+            }
+
+            .subtitle {
+                font-size: 1em;
+            }
+
+            .accordion-header {
+                padding: 12px 15px;
+            }
+
+            .accordion-title {
+                font-size: 1em;
+            }
+
+            .accordion-content {
+                padding: 10px;
+            }
+
+            table {
+                font-size: 0.8em;
+            }
+
+            th, td {
+                padding: 6px 4px;
+            }
+
+            .section-note {
+                font-size: 0.85em;
+                padding: 10px;
+            }
+
+            .section-header {
+                font-size: 0.9em;
+                padding: 8px 10px;
+            }
+
+            .back-button {
+                padding: 10px 18px;
+                font-size: 0.9rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            h1 {
+                font-size: 1.3em;
+            }
+
+            .accordion-title {
+                font-size: 0.9em;
+            }
+
+            table {
+                font-size: 0.7em;
+            }
+
+            th, td {
+                padding: 5px 3px;
+            }
+
+            .emoji {
+                font-size: 1em;
+            }
+        }
     </style>
 </head>
 <body>
