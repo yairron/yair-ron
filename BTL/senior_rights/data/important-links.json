@@ -1,5 +1,5 @@
 {
-  "lastUpdate": "2025-12-19",
+  "lastUpdate": "2026-01-16",
   "version": "1.2",
   "categories": [
     {
@@ -95,7 +95,7 @@
       "links": [
         {
           "name": "כל זכות",
-          "url": "https://www.kolzchut.org.il",
+          "url": "https://www.kolzchut.org.il/he/עמוד_ראשי",
           "description": "מדריך זכויות מקיף לאזרחי ישראל"
         },
         {
@@ -175,9 +175,9 @@
       "icon": "🤝",
       "links": [
         {
-          "name": "עמותת אשל",
-          "url": "https://www.eshelnet.org.il",
-          "description": "קידום איכות חיים של אזרחים ותיקים"
+          "name": "ג'וינט-אשל",
+          "url": "https://www.thejoint.org.il/challenges/aging/",
+          "description": "הזדקנות מיטבית - שירותים לאזרחים ותיקים"
         },
         {
           "name": "ארגון נכי מלחמה בנאצים",
@@ -190,8 +190,8 @@
           "description": "סיוע למשפחות נזקקות ולאזרחים ותיקים"
         },
         {
-          "name": "ג'וינט ישראל - אשל",
-          "url": "https://www.jdc.org.il",
+          "name": "ג'וינט ישראל",
+          "url": "https://www.thejoint.org.il",
           "description": "שירותים קהילתיים לאזרחים ותיקים"
         }
       ]
@@ -202,14 +202,19 @@
       "icon": "🤝",
       "links": [
         {
-          "name": "חוק הביטוח הלאומי",
+          "name": "חוק הביטוח הלאומי - נבו",
           "url": "https://www.nevo.co.il/law_html/law01/039_002.htm",
           "description": "נוסח חוק הביטוח הלאומי "
         },
         {
-          "name": "הודעת עדכון קצבאות 01-2025",
-          "url": "https://www.btl.gov.il/Publications/benefits_update/Documents/shiur25.pdf",
-          "description": "הודעת עידכון קצבאות ינואר 2025"
+          "name": "חוק הביטוח הלאומי - חילן",
+          "url": "https://www.hilan.co.il/%D7%9E%D7%A8%D7%9B%D7%96-%D7%99%D7%93%D7%A2/%D7%97%D7%A7%D7%99%D7%A7%D7%94/%D7%93%D7%99%D7%A0%D7%99-%D7%91%D7%99%D7%98%D7%95%D7%97-%D7%9C%D7%90%D7%95%D7%9E%D7%99/%D7%97%D7%95%D7%A7-%D7%94%D7%91%D7%99%D7%98%D7%95%D7%97-%D7%94%D7%9C%D7%90%D7%95%D7%9E%D7%99/%D7%A4%D7%A8%D7%A7-%D7%90-%D7%A4%D7%A8%D7%A9%D7%A0%D7%95%D7%AA-%D7%95%D7%94%D7%95%D7%A8%D7%90%D7%95%D7%AA-%D7%9B%D7%9C%D7%9C%D7%99%D7%95%D7%AA/",
+          "description": "נוסח חוק הביטוח הלאומי "
+        },
+        {
+          "name": "עדכון קצבאות",
+          "url": "https://www.btl.gov.il/Publications/benefits_update/Pages/default.aspx",
+          "description": "טבלאות עדכון קצבאות - כל השנים"
         }
       ]
     }
