@@ -804,10 +804,10 @@ const RIGHTS_DATA = {
           </ul>
         </div>
 
-        <h4>💰 מבחן הכנסות מפורט - מה נספר ומה לא?</h4>
+        <h5>💰 מבחן הכנסות לאלמן - מה נספר ומה לא?</h5>
 
         <div style="background: #fff8e1; padding: 20px; border-radius: 10px; border-right: 4px solid #ff9800; margin: 20px 0;">
-          <h5>הכנסות שנלקחות בחשבון במבחן:</h5>
+          <h6>הכנסות שנלקחות בחשבון במבחן:</h6>
           <p><strong>כל ההכנסות הבאות נספרות:</strong></p>
           <ul>
             <li><strong>הכנסה מעבודה</strong> - כשכיר או עצמאי (עם הפחתה של ₪1,905)</li>
@@ -821,7 +821,7 @@ const RIGHTS_DATA = {
         </div>
 
         <div style="background: #e8f5e9; padding: 20px; border-radius: 10px; border-right: 4px solid #4caf50; margin: 20px 0;">
-          <h5>הכנסות שלא נלקחות בחשבון (פטורות):</h5>
+          <h6>הכנסות שלא נלקחות בחשבון (פטורות):</h6>
           <ul>
             <li>✅ <strong>קצבת סיעוד</strong> - פטורה לחלוטין</li>
             <li>✅ <strong>גמלת ניידות</strong> - פטורה</li>
@@ -838,7 +838,7 @@ const RIGHTS_DATA = {
               </ul>
             </li>
           </ul>
-        </div>
+        </div>       
 
         <h4>💵 סכומי קצבאות לשנת 2026</h4>
 
