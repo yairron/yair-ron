@@ -409,7 +409,7 @@ const RIGHTS_DATA = {
     "nursing": {
       "title": "זכויות סיעוד",
       "content": `
-        <a href="https://www.kolzchut.org.il/he/%D7%92%D7%9E%D7%9C%D7%AA_%D7%A1%D7%99%D7%A2%D7%95%D7%93" target="_blank" class="link-item">🏛️  פורט גמלת סיעוד - כל זכות. כל המידע ודרכי המימוש לגמלת סיעוד, הניתנת למי שהגיעו לגיל פרישה, מתגוררים בקהילה.</a>
+        <a href="https://www.kolzchut.org.il/he/%D7%92%D7%9E%D7%9C%D7%AA_%D7%A1%D7%99%D7%A2%D7%95%D7%93" target="_blank" class="link-item">🏛️  פורטל גמלת סיעוד - כל זכות. כל המידע ודרכי המימוש לגמלת סיעוד, הניתנת למי שהגיעו לגיל פרישה, מתגוררים בקהילה.</a>
       <h2 class="no-accordion">❤️ גמלת סיעוד - מדריך מקיף</h2>
 
         <h3>📊 רמות גמלת הסיעוד 2026 - טבלה מפורטת</h3>
@@ -738,7 +738,7 @@ const RIGHTS_DATA = {
           </ul>
         </div>
 
-        <h4 class="no-accordion">👶 הגדרת יתום לפי גיל ומעמד</h4>
+        <h4>👶 הגדרת יתום לפי גיל ומעמד</h4>
         <p>קצבת שאירים משולמת ליתום עד:</p>
         <ul>
           <li><strong>גיל 18</strong> - לכל הילדים</li>
