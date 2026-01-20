@@ -256,13 +256,63 @@ const RIGHTS_DATA = {
 
         <h3>💸 תוספת השלמת הכנסה</h3>
         <p>השלמת הכנסה ניתנת למי שהכנסותיו נמוכות ומיועדת להבטיח רמת חיים מינימלית.</p>
+        <a href="https://www.kolzchut.org.il/he/%D7%AA%D7%95%D7%A1%D7%A4%D7%AA_%D7%94%D7%A9%D7%9C%D7%9E%D7%AA_%D7%94%D7%9B%D7%A0%D7%A1%D7%94_%D7%9C%D7%A7%D7%A6%D7%91%D7%AA_%D7%96%D7%99%D7%A7%D7%A0%D7%94#.D7.9E.D7.99_.D7.96.D7.9B.D7.90.D7.99.3F" target="_blank" class="link-item">🏛️  השלמת הכנסה - כל זכות. כל המידע על השלמת הכנסה</a>
 
         <h4>סכומי השלמת הכנסה מקסימליים 2026</h4>
-        <p><em>למבוטחים שטרם מלאו להם 70 שנה. מבוטחים שמלאו להם 70 שנה עשויים לקבל יותר</em></p>
-        <ul>
-          <li><strong>יחיד:</strong> ₪4,375 לחודש</li>
-          <li><strong>זוג:</strong> ₪6,912 לחודש</li>
-        </ul>
+
+        <h5>עד גיל 70:</h5>
+        <table style="width: 100%; border-collapse: collapse; margin: 15px 0;">
+          <thead>
+            <tr style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white;">
+              <th style="padding: 12px; border: 1px solid #ddd;">הרכב המשפחה</th>
+              <th style="padding: 12px; border: 1px solid #ddd;">סכום הקצבה</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td style="padding: 10px; border: 1px solid #ddd;">יחיד/ה</td><td style="padding: 10px; border: 1px solid #ddd; text-align: center; font-weight: bold; color: #667eea;">₪4,375</td></tr>
+            <tr><td style="padding: 10px; border: 1px solid #ddd;">זוג</td><td style="padding: 10px; border: 1px solid #ddd; text-align: center; font-weight: bold; color: #667eea;">₪6,912</td></tr>
+            <tr><td style="padding: 10px; border: 1px solid #ddd;">יחיד/ה + ילד</td><td style="padding: 10px; border: 1px solid #ddd; text-align: center; font-weight: bold; color: #667eea;">₪7,305</td></tr>
+            <tr><td style="padding: 10px; border: 1px solid #ddd;">יחיד/ה + 2 ילדים</td><td style="padding: 10px; border: 1px solid #ddd; text-align: center; font-weight: bold; color: #667eea;">₪8,426</td></tr>
+            <tr><td style="padding: 10px; border: 1px solid #ddd;">זוג + ילד</td><td style="padding: 10px; border: 1px solid #ddd; text-align: center; font-weight: bold; color: #667eea;">₪8,035</td></tr>
+            <tr><td style="padding: 10px; border: 1px solid #ddd;">זוג + 2 ילדים</td><td style="padding: 10px; border: 1px solid #ddd; text-align: center; font-weight: bold; color: #667eea;">₪9,156</td></tr>
+          </tbody>
+        </table>
+
+        <h5>מגיל 70 עד גיל 80:</h5>
+        <table style="width: 100%; border-collapse: collapse; margin: 15px 0;">
+          <thead>
+            <tr style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white;">
+              <th style="padding: 12px; border: 1px solid #ddd;">הרכב המשפחה</th>
+              <th style="padding: 12px; border: 1px solid #ddd;">סכום הקצבה</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td style="padding: 10px; border: 1px solid #ddd;">יחיד/ה</td><td style="padding: 10px; border: 1px solid #ddd; text-align: center; font-weight: bold; color: #667eea;">₪4,418</td></tr>
+            <tr><td style="padding: 10px; border: 1px solid #ddd;">זוג</td><td style="padding: 10px; border: 1px solid #ddd; text-align: center; font-weight: bold; color: #667eea;">₪6,981</td></tr>
+            <tr><td style="padding: 10px; border: 1px solid #ddd;">יחיד/ה + ילד</td><td style="padding: 10px; border: 1px solid #ddd; text-align: center; font-weight: bold; color: #667eea;">₪7,374</td></tr>
+            <tr><td style="padding: 10px; border: 1px solid #ddd;">יחיד/ה + 2 ילדים</td><td style="padding: 10px; border: 1px solid #ddd; text-align: center; font-weight: bold; color: #667eea;">₪8,496</td></tr>
+            <tr><td style="padding: 10px; border: 1px solid #ddd;">זוג + ילד</td><td style="padding: 10px; border: 1px solid #ddd; text-align: center; font-weight: bold; color: #667eea;">₪8,102</td></tr>
+            <tr><td style="padding: 10px; border: 1px solid #ddd;">זוג + 2 ילדים</td><td style="padding: 10px; border: 1px solid #ddd; text-align: center; font-weight: bold; color: #667eea;">₪9,226</td></tr>
+          </tbody>
+        </table>
+
+        <h5>מגיל 80 ומעלה:</h5>
+        <table style="width: 100%; border-collapse: collapse; margin: 15px 0;">
+          <thead>
+            <tr style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white;">
+              <th style="padding: 12px; border: 1px solid #ddd;">הרכב המשפחה</th>
+              <th style="padding: 12px; border: 1px solid #ddd;">סכום הקצבה</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td style="padding: 10px; border: 1px solid #ddd;">יחיד/ה</td><td style="padding: 10px; border: 1px solid #ddd; text-align: center; font-weight: bold; color: #667eea;">₪4,460</td></tr>
+            <tr><td style="padding: 10px; border: 1px solid #ddd;">זוג</td><td style="padding: 10px; border: 1px solid #ddd; text-align: center; font-weight: bold; color: #667eea;">₪7,048</td></tr>
+            <tr><td style="padding: 10px; border: 1px solid #ddd;">יחיד/ה + ילד</td><td style="padding: 10px; border: 1px solid #ddd; text-align: center; font-weight: bold; color: #667eea;">₪7,442</td></tr>
+            <tr><td style="padding: 10px; border: 1px solid #ddd;">יחיד/ה + 2 ילדים</td><td style="padding: 10px; border: 1px solid #ddd; text-align: center; font-weight: bold; color: #667eea;">₪8,563</td></tr>
+            <tr><td style="padding: 10px; border: 1px solid #ddd;">זוג + ילד</td><td style="padding: 10px; border: 1px solid #ddd; text-align: center; font-weight: bold; color: #667eea;">₪8,171</td></tr>
+            <tr><td style="padding: 10px; border: 1px solid #ddd;">זוג + 2 ילדים</td><td style="padding: 10px; border: 1px solid #ddd; text-align: center; font-weight: bold; color: #667eea;">₪9,292</td></tr>
+          </tbody>
+        </table>
 
         <h4>נוסחת החישוב</h4>
         <ol>

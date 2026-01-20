@@ -15,12 +15,24 @@
 דמי מחיה - 9%,LIVING_ALLOWANCE_9,924,946,22,2.38%
 הכנסה מותרת לצורך דמי מחיה,ALLOWANCE_PAYMENT_SINGLE,15180,15696,516,3.40%
 תוספת לכל ילד נוסף,ALLOWANCE_PER_CHILD_EXTRA,932,964,32,3.43%
-השלמת הכנסה - יחיד,INCOME_SUPPLEMENT_SINGLE,4273,4375,102,2.39%
-השלמת הכנסה - זוג,INCOME_SUPPLEMENT_COUPLE,6751,6912,161,2.38%
-השלמת הכנסה - יחיד + ילד,INCOME_SUPPLEMENT_SINGLE_1_CHILD,7847,8035,188,2.40%
-השלמת הכנסה - יחיד + 2 ילדים,INCOME_SUPPLEMENT_SINGLE_2_CHILDREN,8942,9156,214,2.39%
-השלמת הכנסה - זוג + ילד,INCOME_SUPPLEMENT_COUPLE_1_CHILD,7134,7305,171,2.40%
-השלמת הכנסה - זוג + 2 ילדים,INCOME_SUPPLEMENT_COUPLE_2_CHILDREN,8229,8426,197,2.39%
+השלמת הכנסה עד גיל 70 - יחיד,INCOME_SUPPLEMENT_SINGLE_UNDER70,4273,4375,102,2.39%
+השלמת הכנסה עד גיל 70 - זוג,INCOME_SUPPLEMENT_COUPLE_UNDER70,6751,6912,161,2.38%
+השלמת הכנסה עד גיל 70 - יחיד + ילד,INCOME_SUPPLEMENT_SINGLE_1_CHILD_UNDER70,,7305,חדש,חדש
+השלמת הכנסה עד גיל 70 - יחיד + 2 ילדים,INCOME_SUPPLEMENT_SINGLE_2_CHILDREN_UNDER70,,8426,חדש,חדש
+השלמת הכנסה עד גיל 70 - זוג + ילד,INCOME_SUPPLEMENT_COUPLE_1_CHILD_UNDER70,,8035,חדש,חדש
+השלמת הכנסה עד גיל 70 - זוג + 2 ילדים,INCOME_SUPPLEMENT_COUPLE_2_CHILDREN_UNDER70,,9156,חדש,חדש
+השלמת הכנסה גיל 70-80 - יחיד,INCOME_SUPPLEMENT_SINGLE_70_80,,4418,חדש,חדש
+השלמת הכנסה גיל 70-80 - זוג,INCOME_SUPPLEMENT_COUPLE_70_80,,6981,חדש,חדש
+השלמת הכנסה גיל 70-80 - יחיד + ילד,INCOME_SUPPLEMENT_SINGLE_1_CHILD_70_80,,7374,חדש,חדש
+השלמת הכנסה גיל 70-80 - יחיד + 2 ילדים,INCOME_SUPPLEMENT_SINGLE_2_CHILDREN_70_80,,8496,חדש,חדש
+השלמת הכנסה גיל 70-80 - זוג + ילד,INCOME_SUPPLEMENT_COUPLE_1_CHILD_70_80,,8102,חדש,חדש
+השלמת הכנסה גיל 70-80 - זוג + 2 ילדים,INCOME_SUPPLEMENT_COUPLE_2_CHILDREN_70_80,,9226,חדש,חדש
+השלמת הכנסה מגיל 80 - יחיד,INCOME_SUPPLEMENT_SINGLE_80,,4460,חדש,חדש
+השלמת הכנסה מגיל 80 - זוג,INCOME_SUPPLEMENT_COUPLE_80,,7048,חדש,חדש
+השלמת הכנסה מגיל 80 - יחיד + ילד,INCOME_SUPPLEMENT_SINGLE_1_CHILD_80,,7442,חדש,חדש
+השלמת הכנסה מגיל 80 - יחיד + 2 ילדים,INCOME_SUPPLEMENT_SINGLE_2_CHILDREN_80,,8563,חדש,חדש
+השלמת הכנסה מגיל 80 - זוג + ילד,INCOME_SUPPLEMENT_COUPLE_1_CHILD_80,,8171,חדש,חדש
+השלמת הכנסה מגיל 80 - זוג + 2 ילדים,INCOME_SUPPLEMENT_COUPLE_2_CHILDREN_80,,9292,חדש,חדש
 יתומים - ילד,SURVIVORS_PENSION_YACHID,2377,2434,57,2.40%
 יתומים - שני ילדים,SURVIVORS_PENSION_2_CHILDREN,3486,3569,83,2.38%
 יתומים - כל ילד נוסף,SURVIVORS_PENSION_PER_CHILD,1014,1038,24,2.37%
