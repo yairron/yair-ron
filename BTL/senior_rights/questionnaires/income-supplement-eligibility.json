@@ -127,14 +127,24 @@
     },
     {
       "id": "q7_vehicle",
-      "type": "radio",
-      "question": "האם יש לך רכב ששוויו מעל 65,343₪?",
-      "description": "שוויו הנוכחי של הרכב בשוק.",
+      "type": "yesno",
+      "question": "האם יש לך רכב בבעלותך?",
+      "description": "אנחנו משתמשים בשווי לפי מחירון לוי יצחק.",
       "options": [
-        { "value": "yes", "label": "כן", "result": "check_vehicle" },
+        { "value": "yes", "label": "כן", "next": "q7b_vehicle_value" },
         { "value": "no", "label": "לא", "result": "calculate_eligibility" },
         { "value": "skip", "label": "דלג על שאלה זו", "result": "calculate_eligibility" }
       ]
+    },
+    {
+      "id": "q7b_vehicle_value",
+      "type": "number_input",
+      "question": "מה שווי הרכב לפי מחירון לוי יצחק? (בש\"ח)",
+      "description": "אם יש יותר מרכב אחד, הזן את הגבוה מביניהם.",
+      "placeholder": "0",
+      "suffix": "₪",
+      "next": "calculate_eligibility",
+      "storeAs": "q7_vehicle_value"
     }
   ],
   "results": {
@@ -153,15 +163,6 @@
         "estimated_supplement",
         "important_note"
       ]
-    },
-    "check_vehicle": {
-      "status": "warning",
-      "title": "ייתכן שאת/ה זכאי/ת - יש לבדוק נושא הרכב",
-      "message": "על סמך הנתונים שהזנת, ייתכן שאת/ה זכאי/ת להשלמת הכנסה, אך כאשר יש רכב ששוויו מעל 65,343₪, יש לבדוק אם מתקיימים תנאים מיוחדים שמאפשרים זכאות.",
-      "link": {
-        "url": "questionnaire.html?id=vehicle-income-supplement",
-        "text": "בדיקת זכאות עם רכב מעל תקרה"
-      }
     },
     "not_eligible_not_resident": {
       "status": "error",
@@ -222,6 +223,20 @@
       "imputedIncome": {
         "deductionRate": 1.0,
         "description": "הכנסה רעיונית מנכסים - נלקחת במלואה"
+      }
+    },
+    "vehicleRules": {
+      "baseThreshold": 46138,
+      "extendedThreshold": 65343,
+      "deductions": {
+        "high_income_worker": 19610,
+        "low_income_worker": 10380,
+        "non_worker_regular": 10380,
+        "non_worker_extended": 11227
+      },
+      "workIncomeThreshold": {
+        "regular": 3442,
+        "retirement": 2341
       }
     },
     "notes": "חישוב משוער בלבד. נוסחאות קיזוז אלו עשויות להשתנות. לבדיקה מדויקת, יש לפנות לביטוח הלאומי."

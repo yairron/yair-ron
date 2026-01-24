@@ -404,7 +404,12 @@ class QuestionnaireEngine {
 
             // Go to next question
             if (question.next) {
-                this.showQuestion(question.next);
+                // If next references a result key, show the result directly
+                if (this.data.results && this.data.results[question.next]) {
+                    this.showResult(question.next);
+                } else {
+                    this.showQuestion(question.next);
+                }
             }
         });
 
@@ -653,6 +658,19 @@ class QuestionnaireEngine {
             label: selectedOption.label
         };
 
+        // Support storing additional fields (e.g., work status, preset numeric values)
+        if (selectedOption.storeAs) {
+            Object.entries(selectedOption.storeAs).forEach(([key, storeValue]) => {
+                this.answers[key] = {
+                    question: question.question,
+                    value: storeValue,
+                    label: typeof storeValue === 'number'
+                        ? storeValue.toLocaleString('he-IL')
+                        : storeValue
+                };
+            });
+        }
+
         // Determine next action
         if (selectedOption.subQuestionnaire) {
             // Load sub-questionnaire
@@ -889,16 +907,30 @@ class QuestionnaireEngine {
                         <td class="calc-label"><strong>סה"כ הכנסה נטו:</strong></td>
                         <td class="calc-value"><strong>${calculation.netIncome.toLocaleString('he-IL')}₪</strong></td>
                     </tr>
-        `;
-
-        if (calculation.eligible) {
-            resultHtml += `
+                    <tr>
+                        <td class="calc-label">זכות להשלמה (אחרי קיזוזי הכנסה):</td>
+                        <td class="calc-value">${calculation.estimatedSupplementBeforeVehicle.toLocaleString('he-IL')}₪</td>
+                    </tr>
+                    ${calculation.incomes.vehicleValue ? `
+                    <tr>
+                        <td class="calc-label">שווי רכב (לוי יצחק):</td>
+                        <td class="calc-value">${calculation.incomes.vehicleValue.toLocaleString('he-IL')}₪</td>
+                    </tr>
+                    <tr>
+                        <td class="calc-label">קיזוז רכב (3% מהערך לאחר הפחתה):</td>
+                        <td class="calc-value">-${calculation.deductions.vehicleDeduction.toLocaleString('he-IL')}₪</td>
+                    </tr>
+                    ${calculation.deductions.vehicleNote ? `
+                    <tr>
+                        <td class="calc-label">הערה לגבי רכב:</td>
+                        <td class="calc-value">${calculation.deductions.vehicleNote}</td>
+                    </tr>` : ''}
+                    ` : ''}
                     <tr class="calculation-row-supplement">
-                        <td class="calc-label"><strong>השלמה משוערת:</strong></td>
+                        <td class="calc-label"><strong>השלמה משוערת (אחרי קיזוז רכב):</strong></td>
                         <td class="calc-value"><strong>${calculation.estimatedSupplement.toLocaleString('he-IL')}₪</strong></td>
                     </tr>
-            `;
-        }
+        `;
 
         resultHtml += `
                 </table>
@@ -928,23 +960,40 @@ class QuestionnaireEngine {
         // Get ceiling for this family composition
         const ceiling = rules.familyCompositions[familyCompositionValue]?.ceiling || 0;
 
+        // Determine family/age context
+        const isCoupleFamily = !!familyCompositionValue?.includes('couple');
+        const isRetirementAge = familyCompositionValue && (familyCompositionValue.includes('70_80') || familyCompositionValue.includes('over80'));
+
         // Extract income amounts
         const oldAgePension = parseFloat(this.answers['q1_old_age_pension_amount']?.value) || 0;
         const pensionIncome = parseFloat(this.answers['q2_pension_income_amount']?.value) || 0;
         const workIncome = parseFloat(this.answers['q3_work_income_amount']?.value) || 0;
         const imputedIncome = parseFloat(this.answers['q4_imputed_income_amount']?.value) || 0;
+        const vehicleValue = parseFloat(this.answers['q7_vehicle_value']?.value) || 0;
+        const workStatus = this.answers['q6_work_status']?.value || this.answers['q6_work_status']?.label || 'not_working';
 
         // Calculate deductions according to rules
-        const pensionDeduction = this.calculatePensionDeduction(pensionIncome, rules);
-        const workDeduction = this.calculateWorkDeduction(workIncome, rules);
+        const pensionDeduction = this.calculatePensionDeduction(pensionIncome, rules, isCoupleFamily);
+        const workDeduction = this.calculateWorkDeduction(workIncome, rules, isCoupleFamily);
         const imputedDeduction = imputedIncome * rules.incomeDeductions.imputedIncome.deductionRate;
+        const vehicleDeductionInfo = this.calculateVehicleDeduction(vehicleValue, workIncome, workStatus, isRetirementAge, rules.vehicleRules);
+        const vehicleDeduction = vehicleDeductionInfo.deduction;
 
-        // Calculate total counted income
-        const netIncome = oldAgePension + pensionDeduction + workDeduction + imputedDeduction;
+        // Calculate total counted income without vehicle deduction
+        const netIncomeWithoutVehicle = oldAgePension + pensionDeduction + workDeduction + imputedDeduction;
+
+        // Calculate initial supplement (before vehicle deduction)
+        const estimatedSupplementBeforeVehicle = Math.max(0, ceiling - netIncomeWithoutVehicle);
+
+        // Calculate final supplement (after vehicle deduction)
+        // If vehicle deduction is greater than supplement, final supplement is 0
+        const estimatedSupplement = Math.max(0, estimatedSupplementBeforeVehicle - vehicleDeduction);
+
+        // Total net income including vehicle deduction (for eligibility check)
+        const netIncome = netIncomeWithoutVehicle + vehicleDeduction;
 
         // Check eligibility
         const eligible = netIncome < ceiling;
-        const estimatedSupplement = Math.max(0, ceiling - netIncome);
 
         return {
             eligible: eligible,
@@ -955,14 +1004,18 @@ class QuestionnaireEngine {
                 oldAgePension: oldAgePension,
                 pensionIncome: pensionIncome,
                 workIncome: workIncome,
-                imputedIncome: imputedIncome
+                imputedIncome: imputedIncome,
+                vehicleValue: vehicleValue
             },
             deductions: {
                 pensionDeduction: pensionDeduction,
                 workDeduction: workDeduction,
-                imputedDeduction: imputedDeduction
+                imputedDeduction: imputedDeduction,
+                vehicleDeduction: vehicleDeduction,
+                vehicleNote: vehicleDeductionInfo.note
             },
             netIncome: netIncome,
+            estimatedSupplementBeforeVehicle: estimatedSupplementBeforeVehicle,
             estimatedSupplement: estimatedSupplement
         };
     }
@@ -970,25 +1023,96 @@ class QuestionnaireEngine {
     /**
      * Calculate pension income deduction according to rules
      */
-    calculatePensionDeduction(pensionIncome, rules) {
+    calculatePensionDeduction(pensionIncome, rules, isCoupleFamily = false) {
         const rule = rules.incomeDeductions.pensionIncome;
-        if (pensionIncome <= rule.exemption) {
+        // Backward compatibility: support single exemption or separate single/couple
+        const exemption = isCoupleFamily ? (rule.exemption_couple || rule.exemption) : (rule.exemption_single || rule.exemption);
+        if (pensionIncome <= exemption) {
             return 0;
         }
-        const taxableAmount = pensionIncome - rule.exemption;
+        const taxableAmount = pensionIncome - exemption;
         return taxableAmount * rule.deductionRate;
     }
 
     /**
      * Calculate work income deduction according to rules
      */
-    calculateWorkDeduction(workIncome, rules) {
+    calculateWorkDeduction(workIncome, rules, isCoupleFamily = false) {
         const rule = rules.incomeDeductions.workIncome;
-        if (workIncome <= rule.exemption) {
+        const exemption = isCoupleFamily ? (rule.exemption_couple || rule.exemption) : (rule.exemption_single || rule.exemption);
+        if (workIncome <= exemption) {
             return 0;
         }
-        const taxableAmount = workIncome - rule.exemption;
+        const taxableAmount = workIncome - exemption;
         return taxableAmount * rule.deductionRate;
+    }
+
+    /**
+     * Calculate vehicle-related deduction as imputed income
+     * Logic:
+     * 1. Up to 46,138 ₪ = no deduction
+     * 2. 46,138 to 65,343 ₪ = subtract deduction base (depends on work/retirement age), then 3% of remainder
+     * 3. Above 65,343 ₪ = no eligibility (special cases only)
+     */
+    calculateVehicleDeduction(vehicleValue, workIncome, workStatus, isRetirementAge, vehicleRules) {
+        if (!vehicleValue || vehicleValue <= 0 || !vehicleRules) {
+            return { deduction: 0, note: '' };
+        }
+
+        // Base threshold - no deduction up to 46,138
+        const baseThreshold = vehicleRules.baseThreshold; // 46,138
+
+        // Extended threshold - 65,343
+        const extendedThreshold = vehicleRules.extendedThreshold; // 65,343
+
+        // If below base threshold, no deduction at all
+        if (vehicleValue <= baseThreshold) {
+            return { deduction: 0, note: '' };
+        }
+
+        // If above extended threshold, cannot be eligible (special case warning)
+        if (vehicleValue > extendedThreshold) {
+            return {
+                deduction: 0,
+                note: 'שווי הרכב גבוה מ-65,343 ₪ - אין זכאות לקצבה (אלא במקרים מיוחדים בלבד). יש לפנות לביטוח הלאומי לבדיקה ידנית.'
+            };
+        }
+
+        // Between baseThreshold and extendedThreshold - apply deduction logic
+        const normalizedStatus = (workStatus || '').toString().toLowerCase();
+        const isWorking = normalizedStatus.includes('employed') || normalizedStatus.includes('self');
+
+        let deductionBase = 0;
+
+        if (isWorking) {
+            // Worker: check income thresholds
+            const incomeThreshold = isRetirementAge ? vehicleRules.workIncomeThreshold.retirement : vehicleRules.workIncomeThreshold.regular;
+            // High income: 19,610 ₪
+            // Low income: 10,380 ₪
+            deductionBase = workIncome > incomeThreshold
+                ? vehicleRules.deductions.high_income_worker    // 19,610
+                : vehicleRules.deductions.low_income_worker;     // 10,380
+        } else {
+            // Non-worker
+            if (isRetirementAge) {
+                // Retirement age non-worker: 11,227 ₪
+                deductionBase = vehicleRules.deductions.non_worker_extended; // 11,227
+            } else {
+                // Regular non-worker: 10,380 ₪
+                deductionBase = vehicleRules.deductions.non_worker_regular;  // 10,380
+            }
+        }
+
+        // Calculate: (vehicle value - deduction base) * 3%
+        const adjustedValue = vehicleValue - deductionBase;
+        const deduction = adjustedValue > 0 ? adjustedValue * 0.03 : 0;
+
+        return {
+            deduction: deduction,
+            note: '',
+            adjustedValue: adjustedValue,
+            deductionBase: deductionBase
+        };
     }
 
     /**
