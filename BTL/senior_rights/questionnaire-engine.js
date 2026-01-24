@@ -1,0 +1,1182 @@
+/**
+ * Questionnaire Engine
+ * מנוע דינמי להצגת שאלונים מבוססי JSON
+ * ניתן לשימוש חוזר עבור שאלונים שונים
+ */
+
+class QuestionnaireEngine {
+    constructor(jsonPath) {
+        this.jsonPath = jsonPath;
+        this.data = null;
+        this.currentQuestionId = null;
+        this.answers = {};
+        this.questionHistory = [];
+
+        // Sub-questionnaire state
+        this.parentState = null;  // Stores parent questionnaire state when running sub-questionnaire
+        this.returnToQuestion = null;  // Question to return to after sub-questionnaire
+
+        // DOM Elements
+        this.headerEl = document.getElementById('questionnaire-header');
+        this.contentEl = document.getElementById('questionnaire-content');
+        this.resultEl = document.getElementById('questionnaire-result');
+        this.navEl = document.getElementById('questionnaire-nav');
+        this.restartBtn = document.getElementById('btn-restart');
+        this.goBackBtn = document.getElementById('btn-go-back');
+    }
+
+    /**
+     * Initialize the questionnaire
+     */
+    async init() {
+        try {
+            await this.loadData();
+            this.setupEventListeners();
+            this.renderHeader();
+            this.startQuestionnaire();
+        } catch (error) {
+            console.error('Error initializing questionnaire:', error);
+            this.showError('שגיאה בטעינת השאלון');
+        }
+    }
+
+    /**
+     * Load questionnaire data from JSON file
+     */
+    async loadData() {
+        const response = await fetch(this.jsonPath);
+        if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`);
+        }
+        this.data = await response.json();
+    }
+
+    /**
+     * Setup event listeners
+     */
+    setupEventListeners() {
+        if (this.restartBtn) {
+            this.restartBtn.addEventListener('click', () => this.restart());
+        }
+        if (this.goBackBtn) {
+            this.goBackBtn.addEventListener('click', () => this.goBackFromResult());
+        }
+    }
+
+    /**
+     * Render the header with questionnaire info
+     */
+    renderHeader() {
+        this.headerEl.innerHTML = `
+            <h1>${this.data.title}</h1>
+            <p class="subtitle">${this.data.description}</p>
+            ${this.data.source ? `<span class="source-badge">מקור: ${this.data.source}</span>` : ''}
+        `;
+    }
+
+    /**
+     * Start or restart the questionnaire
+     */
+    startQuestionnaire() {
+        this.answers = {};
+        this.questionHistory = [];
+        this.resultEl.classList.add('hidden');
+        this.navEl.classList.add('hidden');
+
+        // Show intro if exists, otherwise show first question
+        if (this.data.intro) {
+            this.showIntro();
+        } else {
+            const firstQuestion = this.data.questions[0];
+            if (firstQuestion) {
+                this.showQuestion(firstQuestion.id);
+            }
+        }
+    }
+
+    /**
+     * Show intro section
+     */
+    showIntro() {
+        const intro = this.data.intro;
+        this.contentEl.innerHTML = `
+            <div class="intro-container">
+                <h3 class="intro-title">${intro.title}</h3>
+                <div class="intro-content">${intro.content}</div>
+                <button class="btn btn-primary intro-button" id="btn-start">
+                    ${intro.buttonText || 'המשך'}
+                </button>
+            </div>
+        `;
+
+        // Setup start button listener
+        const startBtn = this.contentEl.querySelector('#btn-start');
+        if (startBtn) {
+            startBtn.addEventListener('click', () => {
+                const firstQuestion = this.data.questions[0];
+                if (firstQuestion) {
+                    this.showQuestion(firstQuestion.id);
+                }
+            });
+        }
+    }
+
+    /**
+     * Show a specific question
+     */
+    showQuestion(questionId) {
+        // Check if we should skip imputed income questions when we already have the data
+        if ((questionId === 'q6_imputed_income_single' || questionId === 'q6_imputed_income_couple')
+            && this.answers['q0c_imputed_income_amount']) {
+            // Already have imputed income data, skip to vehicle question
+            const nextQuestion = questionId === 'q6_imputed_income_single' ? 'q7_vehicle_single' : 'q7_vehicle_couple';
+            this.showQuestion(nextQuestion);
+            return;
+        }
+
+        const question = this.data.questions.find(q => q.id === questionId);
+        if (!question) {
+            console.error('Question not found:', questionId);
+            return;
+        }
+
+        this.currentQuestionId = questionId;
+
+        // Add to history if not already there
+        if (!this.questionHistory.includes(questionId)) {
+            this.questionHistory.push(questionId);
+        }
+
+        // Render the question
+        this.contentEl.innerHTML = this.renderQuestion(question);
+
+        // Setup option event listeners
+        this.setupOptionListeners(question);
+
+        // Setup back button listener
+        this.setupBackButtonListener();
+    }
+
+    /**
+     * Setup back button event listener
+     */
+    setupBackButtonListener() {
+        const backBtn = this.contentEl.querySelector('#btn-back');
+        if (backBtn) {
+            backBtn.addEventListener('click', () => this.goBack());
+        }
+    }
+
+    /**
+     * Go back to previous question
+     */
+    goBack() {
+        if (this.questionHistory.length <= 1) return;
+
+        // Remove current question from history
+        const currentQuestionId = this.questionHistory.pop();
+
+        // Remove the answer for the current question
+        delete this.answers[currentQuestionId];
+
+        // Get the previous question
+        const previousQuestionId = this.questionHistory[this.questionHistory.length - 1];
+
+        // Remove it from history too (showQuestion will add it back)
+        this.questionHistory.pop();
+
+        // Also remove the answer for the previous question so user can re-answer
+        delete this.answers[previousQuestionId];
+
+        // Show the previous question
+        this.showQuestion(previousQuestionId);
+    }
+
+    /**
+     * Render a question based on its type
+     */
+    renderQuestion(question) {
+        const questionNumber = this.questionHistory.length;
+        const showBackButton = this.questionHistory.length > 1;
+
+        let optionsHtml = '';
+
+        switch (question.type) {
+            case 'dropdown':
+                optionsHtml = this.renderDropdown(question);
+                break;
+            case 'yesno':
+                optionsHtml = this.renderYesNo(question);
+                break;
+            case 'radio':
+                optionsHtml = this.renderRadio(question);
+                break;
+            case 'assets_form':
+                optionsHtml = this.renderAssetsForm(question);
+                break;
+            case 'number_input':
+                optionsHtml = this.renderNumberInput(question);
+                break;
+            default:
+                optionsHtml = this.renderRadio(question);
+        }
+
+        const backButtonHtml = showBackButton ? `
+            <button class="back-to-previous" id="btn-back">
+                <span class="back-arrow">→</span>
+                <span>חזרה לשאלה הקודמת</span>
+            </button>
+        ` : '';
+
+        return `
+            <div class="question-container" data-question-id="${question.id}">
+                ${backButtonHtml}
+                <div class="question-header">
+                    <div class="question-number">שאלה ${questionNumber}</div>
+                </div>
+                <div class="question-text">${question.question}</div>
+                <div class="options-container ${question.type === 'yesno' ? 'options-yesno' : ''}">
+                    ${optionsHtml}
+                </div>
+            </div>
+        `;
+    }
+
+    /**
+     * Render dropdown options
+     */
+    renderDropdown(question) {
+        const options = question.options.map(opt =>
+            `<option value="${opt.value}">${opt.label}</option>`
+        ).join('');
+
+        return `
+            <select class="option-dropdown" data-question-id="${question.id}">
+                <option value="">-- בחר --</option>
+                ${options}
+            </select>
+        `;
+    }
+
+    /**
+     * Render Yes/No buttons
+     */
+    renderYesNo(question) {
+        return question.options.map(opt => `
+            <button class="option-button ${opt.value === 'yes' ? 'yes-btn' : 'no-btn'}"
+                    data-value="${opt.value}"
+                    data-question-id="${question.id}">
+                ${opt.label}
+            </button>
+        `).join('');
+    }
+
+    /**
+     * Render radio buttons (as styled buttons)
+     */
+    renderRadio(question) {
+        return question.options.map(opt => `
+            <button class="option-button"
+                    data-value="${opt.value}"
+                    data-question-id="${question.id}">
+                ${opt.label}
+            </button>
+        `).join('');
+    }
+
+    /**
+     * Render number input field
+     */
+    renderNumberInput(question) {
+        return `
+            <div class="number-input-container">
+                <div class="number-input-wrapper">
+                    <input type="number"
+                           id="number-input-${question.id}"
+                           class="number-input"
+                           placeholder="${question.placeholder || '0'}"
+                           min="0"
+                           value=""
+                           onfocus="this.select()">
+                    <span class="number-input-suffix">${question.suffix || '₪'}</span>
+                </div>
+                <button class="btn btn-primary number-input-submit" id="btn-submit-number">
+                    המשך
+                </button>
+            </div>
+        `;
+    }
+
+    /**
+     * Render assets form with multiple input fields
+     */
+    renderAssetsForm(question) {
+        const fieldsHtml = question.fields.map(field => {
+            const inputType = field.type === 'monthly_income' ? 'monthly_income' : 'currency';
+            return `
+                <div class="asset-field">
+                    <label for="asset-${field.id}">${field.label}</label>
+                    <p class="asset-field-description">${field.description}</p>
+                    <div class="asset-input-wrapper">
+                        <input type="number"
+                               id="asset-${field.id}"
+                               class="asset-input"
+                               data-field-id="${field.id}"
+                               data-field-type="${inputType}"
+                               placeholder="0"
+                               min="0"
+                               value="0"
+                               onfocus="this.select()">
+                        <span class="asset-currency">₪</span>
+                    </div>
+                </div>
+            `;
+        }).join('');
+
+        return `
+            <div class="assets-form-container" data-family-type="${question.familyType}">
+                ${fieldsHtml}
+                <button class="btn btn-primary assets-form-submit" id="btn-calculate-assets">
+                    חשב הכנסה רעיונית
+                </button>
+            </div>
+        `;
+    }
+
+    /**
+     * Setup event listeners for options
+     */
+    setupOptionListeners(question) {
+        if (question.type === 'dropdown') {
+            const dropdown = this.contentEl.querySelector('.option-dropdown');
+            if (dropdown) {
+                dropdown.addEventListener('change', (e) => {
+                    const value = e.target.value;
+                    if (value) {
+                        this.handleAnswer(question, value);
+                    }
+                });
+            }
+        } else if (question.type === 'assets_form') {
+            this.setupAssetsFormListeners(question);
+        } else if (question.type === 'number_input') {
+            this.setupNumberInputListeners(question);
+        } else {
+            const buttons = this.contentEl.querySelectorAll('.option-button');
+            buttons.forEach(btn => {
+                btn.addEventListener('click', (e) => {
+                    const value = e.target.dataset.value;
+
+                    // Visual feedback
+                    buttons.forEach(b => b.classList.remove('selected'));
+                    e.target.classList.add('selected');
+
+                    // Small delay for visual feedback
+                    setTimeout(() => {
+                        this.handleAnswer(question, value);
+                    }, 300);
+                });
+            });
+        }
+    }
+
+    /**
+     * Setup event listeners for number input
+     */
+    setupNumberInputListeners(question) {
+        const input = this.contentEl.querySelector('.number-input');
+        const submitBtn = this.contentEl.querySelector('#btn-submit-number');
+
+        if (!input || !submitBtn) return;
+
+        submitBtn.addEventListener('click', () => {
+            const value = parseFloat(input.value) || 0;
+
+            // Determine storage key (use storeAs if available, otherwise use question id)
+            const storageKey = question.storeAs || question.id;
+
+            // Store the answer
+            this.answers[storageKey] = {
+                question: question.question,
+                value: value,
+                label: `${value.toLocaleString('he-IL')}₪`
+            };
+
+            // Go to next question
+            if (question.next) {
+                this.showQuestion(question.next);
+            }
+        });
+
+        // Allow Enter key to submit
+        input.addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') {
+                submitBtn.click();
+            }
+        });
+    }
+
+    /**
+     * Setup event listeners for assets form
+     */
+    setupAssetsFormListeners(question) {
+        const form = this.contentEl.querySelector('.assets-form-container');
+        const submitBtn = this.contentEl.querySelector('#btn-calculate-assets');
+
+        if (!form || !submitBtn) return;
+
+        const familyType = question.familyType;
+
+        // Thresholds based on family status
+        const thresholds = familyType === 'single'
+            ? { tier1: 41528, tier2: 83056, exemption: 41528 }
+            : { tier1: 62292, tier2: 124584, exemption: 62292 };
+
+        submitBtn.addEventListener('click', () => {
+            const inputs = form.querySelectorAll('.asset-input');
+            const assetValues = {};
+
+            inputs.forEach(input => {
+                const fieldId = input.dataset.fieldId;
+                const fieldType = input.dataset.fieldType;
+                const value = parseFloat(input.value) || 0;
+                assetValues[fieldId] = { value, type: fieldType };
+            });
+
+            // Calculate totals
+            const result = this.calculateImputedIncome(assetValues, thresholds);
+
+            // Store the answer
+            this.answers[question.id] = {
+                question: question.question,
+                value: 'assets_calculated',
+                label: `סה"כ נכסים: ${result.totalAssets.toLocaleString('he-IL')}₪`,
+                assetValues: assetValues,
+                calculatedResult: result
+            };
+
+            // Show the calculated result
+            this.showAssetsResult(result, familyType);
+
+            // Scroll to show result container at top
+            setTimeout(() => {
+                this.resultEl.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }, 100);
+        });
+    }
+
+    /**
+     * Calculate imputed income from assets
+     */
+    calculateImputedIncome(assetValues, thresholds) {
+        // Separate asset types
+        let totalFinancialAssets = 0;
+        let monthlyIncomeFromAssets = 0;
+
+        for (const [fieldId, data] of Object.entries(assetValues)) {
+            if (data.type === 'monthly_income') {
+                monthlyIncomeFromAssets += data.value;
+            } else {
+                totalFinancialAssets += data.value;
+            }
+        }
+
+        // Apply exemption for liquid assets
+        const taxableAssets = Math.max(0, totalFinancialAssets - thresholds.exemption);
+
+        // Calculate imputed income in tiers
+        let yearlyImputedIncome = 0;
+        let tierBreakdown = [];
+
+        if (taxableAssets > 0) {
+            if (taxableAssets <= thresholds.tier1) {
+                // Tier 1: 1.5%
+                const tier1Amount = taxableAssets * 0.015;
+                yearlyImputedIncome = tier1Amount;
+                tierBreakdown.push({
+                    tier: 1,
+                    rate: '1.5%',
+                    amount: taxableAssets,
+                    income: tier1Amount
+                });
+            } else if (taxableAssets <= thresholds.tier2) {
+                // Tier 1 + Tier 2: 1.5% + 3%
+                const tier1Income = thresholds.tier1 * 0.015;
+                const tier2Amount = taxableAssets - thresholds.tier1;
+                const tier2Income = tier2Amount * 0.03;
+                yearlyImputedIncome = tier1Income + tier2Income;
+                tierBreakdown.push(
+                    { tier: 1, rate: '1.5%', amount: thresholds.tier1, income: tier1Income },
+                    { tier: 2, rate: '3%', amount: tier2Amount, income: tier2Income }
+                );
+            } else {
+                // All three tiers: 1.5% + 3% + 5%
+                const tier1Income = thresholds.tier1 * 0.015;
+                const tier2Amount = thresholds.tier2 - thresholds.tier1;
+                const tier2Income = tier2Amount * 0.03;
+                const tier3Amount = taxableAssets - thresholds.tier2;
+                const tier3Income = tier3Amount * 0.05;
+                yearlyImputedIncome = tier1Income + tier2Income + tier3Income;
+                tierBreakdown.push(
+                    { tier: 1, rate: '1.5%', amount: thresholds.tier1, income: tier1Income },
+                    { tier: 2, rate: '3%', amount: tier2Amount, income: tier2Income },
+                    { tier: 3, rate: '5%', amount: tier3Amount, income: tier3Income }
+                );
+            }
+        }
+
+        const monthlyImputedIncome = yearlyImputedIncome / 12;
+
+        // Total monthly income includes both imputed and actual income from assets
+        const totalMonthlyIncome = monthlyImputedIncome + monthlyIncomeFromAssets;
+
+        return {
+            totalAssets: totalFinancialAssets,
+            exemption: thresholds.exemption,
+            taxableAssets: taxableAssets,
+            tierBreakdown: tierBreakdown,
+            yearlyImputedIncome: yearlyImputedIncome,
+            monthlyImputedIncome: monthlyImputedIncome,
+            monthlyIncomeFromAssets: monthlyIncomeFromAssets,
+            totalMonthlyIncome: totalMonthlyIncome
+        };
+    }
+
+    /**
+     * Show the assets calculation result
+     */
+    showAssetsResult(result, familyType) {
+        // Hide questions
+        this.contentEl.innerHTML = '';
+
+        // Build tier breakdown HTML
+        let tierBreakdownHtml = '';
+        if (result.tierBreakdown.length > 0) {
+            tierBreakdownHtml = result.tierBreakdown.map(tier => `
+                <div class="tier-row">
+                    <span class="tier-label">מדרגה ${tier.tier} (${tier.rate}):</span>
+                    <span class="tier-amount">${tier.amount.toLocaleString('he-IL')}₪</span>
+                    <span class="tier-income">= ${tier.income.toLocaleString('he-IL', { maximumFractionDigits: 0 })}₪/שנה</span>
+                </div>
+            `).join('');
+        }
+
+        const familyLabel = familyType === 'single' ? 'יחיד/ה' : 'זוג';
+
+        // Show result
+        this.resultEl.className = 'result-container info';
+        this.resultEl.innerHTML = `
+            <div class="result-icon-custom">📊</div>
+            <h2 class="result-title">תוצאות החישוב</h2>
+
+            <div class="assets-result-summary">
+                <div class="result-row highlight">
+                    <span class="result-label">סה"כ שווי נכסים:</span>
+                    <span class="result-value">${result.totalAssets.toLocaleString('he-IL')}₪</span>
+                </div>
+                <div class="result-row">
+                    <span class="result-label">פטור (${familyLabel}):</span>
+                    <span class="result-value">-${result.exemption.toLocaleString('he-IL')}₪</span>
+                </div>
+                <div class="result-row">
+                    <span class="result-label">סכום לחישוב הכנסה רעיונית:</span>
+                    <span class="result-value">${result.taxableAssets.toLocaleString('he-IL')}₪</span>
+                </div>
+
+                ${tierBreakdownHtml ? `
+                    <div class="tier-breakdown">
+                        <h4>פירוט לפי מדרגות:</h4>
+                        ${tierBreakdownHtml}
+                    </div>
+                ` : ''}
+
+                <div class="result-row main-result">
+                    <span class="result-label">הכנסה רעיונית שנתית מנכסים:</span>
+                    <span class="result-value">${result.yearlyImputedIncome.toLocaleString('he-IL', { maximumFractionDigits: 0 })}₪</span>
+                </div>
+                <div class="result-row main-result">
+                    <span class="result-label">הכנסה רעיונית חודשית מנכסים:</span>
+                    <span class="result-value">${result.monthlyImputedIncome.toLocaleString('he-IL', { maximumFractionDigits: 0 })}₪</span>
+                </div>
+
+                ${result.monthlyIncomeFromAssets > 0 ? `
+                    <div class="result-row income-producing">
+                        <span class="result-label">הכנסה חודשית מנכסים מניבים:</span>
+                        <span class="result-value">+${result.monthlyIncomeFromAssets.toLocaleString('he-IL')}₪</span>
+                    </div>
+                    <div class="result-row total-income highlight">
+                        <span class="result-label">סה"כ הכנסה חודשית מנכסים:</span>
+                        <span class="result-value">${result.totalMonthlyIncome.toLocaleString('he-IL', { maximumFractionDigits: 0 })}₪</span>
+                    </div>
+                ` : ''}
+            </div>
+
+            <div class="result-note">
+                <p><strong>שימו לב:</strong> הכנסה זו מתווספת להכנסותיכם האחרות בבדיקת הזכאות להשלמת הכנסה.</p>
+                <p>לבדיקה מדויקת יש לפנות לסניף הביטוח הלאומי או לקו השירות *6050.</p>
+            </div>
+
+            ${this.parentState ? `
+                <button class="btn btn-primary return-to-parent" id="btn-return-to-parent">
+                    חזרה לשאלון בדיקת הזכאות עם הסכום המחושב
+                </button>
+            ` : ''}
+        `;
+        this.resultEl.classList.remove('hidden');
+
+        // Setup return button if in sub-questionnaire
+        if (this.parentState) {
+            const returnBtn = this.resultEl.querySelector('#btn-return-to-parent');
+            if (returnBtn) {
+                returnBtn.addEventListener('click', () => {
+                    this.returnFromSubQuestionnaire(result.totalMonthlyIncome);
+                });
+            }
+        }
+
+        // Show navigation
+        this.navEl.classList.remove('hidden');
+    }
+
+    /**
+     * Handle an answer selection
+     */
+    handleAnswer(question, value) {
+        // Find the selected option
+        const selectedOption = question.options.find(opt => opt.value === value);
+        if (!selectedOption) return;
+
+        // Store the answer
+        this.answers[question.id] = {
+            question: question.question,
+            value: value,
+            label: selectedOption.label
+        };
+
+        // Determine next action
+        if (selectedOption.subQuestionnaire) {
+            // Load sub-questionnaire
+            this.loadSubQuestionnaire(selectedOption.subQuestionnaire, selectedOption.returnTo);
+        } else if (selectedOption.result) {
+            // Show result
+            this.showResult(selectedOption.result);
+        } else if (selectedOption.next) {
+            // Show next question
+            this.showQuestion(selectedOption.next);
+        }
+    }
+
+    /**
+     * Load a sub-questionnaire
+     */
+    async loadSubQuestionnaire(questionnaireId, returnToQuestion) {
+        // Save current state
+        this.parentState = {
+            data: this.data,
+            answers: { ...this.answers },
+            questionHistory: [...this.questionHistory],
+            currentQuestionId: this.currentQuestionId,
+            jsonPath: this.jsonPath
+        };
+        this.returnToQuestion = returnToQuestion;
+
+        // Load the sub-questionnaire
+        try {
+            const subPath = this.jsonPath.replace(/[^/]+\.json$/, questionnaireId + '.json');
+            const response = await fetch(subPath);
+            if (!response.ok) {
+                throw new Error(`HTTP error! status: ${response.status}`);
+            }
+            this.data = await response.json();
+
+            // Reset for sub-questionnaire
+            this.questionHistory = [];
+
+            // Update header
+            this.renderHeader();
+
+            // Start sub-questionnaire
+            if (this.data.intro) {
+                this.showIntro();
+            } else {
+                const firstQuestion = this.data.questions[0];
+                if (firstQuestion) {
+                    this.showQuestion(firstQuestion.id);
+                }
+            }
+        } catch (error) {
+            console.error('Error loading sub-questionnaire:', error);
+            this.showError('שגיאה בטעינת שאלון המשנה');
+        }
+    }
+
+    /**
+     * Return from sub-questionnaire to parent questionnaire
+     */
+    async returnFromSubQuestionnaire(calculatedValue) {
+        if (!this.parentState) return;
+
+        // Restore parent state
+        this.data = this.parentState.data;
+        this.answers = this.parentState.answers;
+        this.questionHistory = this.parentState.questionHistory;
+        this.jsonPath = this.parentState.jsonPath;
+
+        // Store the calculated value from sub-questionnaire
+        if (calculatedValue !== undefined) {
+            this.answers['q0c_imputed_income_amount'] = {
+                question: 'הכנסה רעיונית חודשית מנכסים (מחושב)',
+                value: calculatedValue,
+                label: `${calculatedValue.toLocaleString('he-IL')}₪ לחודש`
+            };
+        }
+
+        // Clear parent state
+        const returnTo = this.returnToQuestion;
+        this.parentState = null;
+        this.returnToQuestion = null;
+
+        // Update header back to parent questionnaire
+        this.renderHeader();
+
+        // Hide result and nav
+        this.resultEl.classList.add('hidden');
+        this.navEl.classList.add('hidden');
+
+        // Go to the return question's next (skip the number input since we have the value)
+        const returnQuestion = this.data.questions.find(q => q.id === returnTo);
+        if (returnQuestion && returnQuestion.next) {
+            this.showQuestion(returnQuestion.next);
+        } else {
+            // Fallback - show q1_family_composition
+            this.showQuestion('q1_family_composition');
+        }
+    }
+
+    /**
+     * Show the final result
+     */
+    showResult(resultKey) {
+        const result = this.data.results[resultKey];
+        if (!result) {
+            console.error('Result not found:', resultKey);
+            return;
+        }
+
+        // Check if this is a dynamic calculation result
+        if (result.dynamic) {
+            this.showDynamicResult(resultKey);
+            return;
+        }
+
+        // Hide questions
+        this.contentEl.innerHTML = '';
+
+        // Show result
+        this.resultEl.className = `result-container ${result.status}`;
+        this.resultEl.innerHTML = `
+            <div class="result-icon"></div>
+            <h2 class="result-title">${result.title}</h2>
+            <p class="result-message">${result.message}</p>
+               ${result.link ? `<a href="${result.link.url}" class="result-link btn btn-primary">${result.link.text}</a><br><small class="skip-link" style="margin-top: 10px; display: inline-block;"><a href="javascript:void(0)" class="skip-button">דלק על השלב הזה →</a></small>` : ''}
+            ${result.calculator ? this.renderCalculator(result.calculator) : ''}
+            ${this.renderAnswersSummary()}
+        `;
+        this.resultEl.classList.remove('hidden');
+
+        // Setup calculator if exists
+        if (result.calculator) {
+            this.setupCalculator(result.calculator);
+        }
+
+        // Show navigation
+        this.navEl.classList.remove('hidden');
+
+            // Setup skip button if this is a redirect result
+            if (resultKey === 'redirect_child_definition') {
+                const skipBtn = this.resultEl.querySelector('.skip-button');
+                if (skipBtn) {
+                    skipBtn.addEventListener('click', (e) => {
+                        e.preventDefault();
+                        // Hide the current warning container before jumping ahead
+                        this.resultEl.classList.add('hidden');
+                        this.resultEl.innerHTML = '';
+                        this.navEl.classList.add('hidden');
+
+                        // Jump to the next question after q0a_has_children
+                        const nextQuestion = this.data.questions.find(q => q.id === 'q0b_family_composition');
+                        if (nextQuestion) {
+                            this.showQuestion('q0b_family_composition');
+                        }
+                    });
+                }
+            }
+    }
+
+    /**
+     * Show dynamic result with income supplement calculation
+     */
+    showDynamicResult(resultKey) {
+        const result = this.data.results[resultKey];
+        if (!result) return;
+
+        // Calculate income supplement
+        const calculation = this.calculateIncomeSupplementEligibility();
+
+        // Hide questions
+        this.contentEl.innerHTML = '';
+
+        // Build result HTML
+        let resultHtml = `
+            <div class="result-icon"></div>
+            <h2 class="result-title">${result.title}</h2>
+        `;
+
+        if (calculation.eligible) {
+            resultHtml += `
+                <div class="eligibility-result success">
+                    <h3>✓ ייתכן שאת/ה זכאי/ת להשלמת הכנסה</h3>
+                    <p class="result-message">${result.message}</p>
+                </div>
+            `;
+        } else {
+            resultHtml += `
+                <div class="eligibility-result not-eligible">
+                    <h3>✗ לא זכאי/ת להשלמת הכנסה</h3>
+                    <p class="result-message">${calculation.reason}</p>
+                </div>
+            `;
+        }
+
+        // Calculation details
+        resultHtml += `
+            <div class="calculation-details">
+                <h4>פירוט החישוב</h4>
+                <table class="calculation-table">
+                    <tr>
+                        <td class="calc-label">הרכב משפחה:</td>
+                        <td class="calc-value">${calculation.familyComposition}</td>
+                    </tr>
+                    <tr>
+                        <td class="calc-label">תקרת השלמה:</td>
+                        <td class="calc-value">${calculation.ceiling.toLocaleString('he-IL')}₪</td>
+                    </tr>
+                    <tr>
+                        <td class="calc-label">קצבת זיקנה:</td>
+                        <td class="calc-value">${calculation.incomes.oldAgePension.toLocaleString('he-IL')}₪</td>
+                    </tr>
+                    <tr>
+                        <td class="calc-label">הכנסה מפנסיה (לפני קיזוז):</td>
+                        <td class="calc-value">${calculation.incomes.pensionIncome.toLocaleString('he-IL')}₪</td>
+                    </tr>
+                    <tr>
+                        <td class="calc-label">קיזוז - הכנסה מפנסיה:</td>
+                        <td class="calc-value">-${calculation.deductions.pensionDeduction.toLocaleString('he-IL')}₪</td>
+                    </tr>
+                    <tr>
+                        <td class="calc-label">הכנסה מעבודה (לפני קיזוז):</td>
+                        <td class="calc-value">${calculation.incomes.workIncome.toLocaleString('he-IL')}₪</td>
+                    </tr>
+                    <tr>
+                        <td class="calc-label">קיזוז - הכנסה מעבודה:</td>
+                        <td class="calc-value">-${calculation.deductions.workDeduction.toLocaleString('he-IL')}₪</td>
+                    </tr>
+                    <tr>
+                        <td class="calc-label">הכנסה רעיונית מנכסים:</td>
+                        <td class="calc-value">${calculation.incomes.imputedIncome.toLocaleString('he-IL')}₪</td>
+                    </tr>
+                    <tr class="calculation-row-total">
+                        <td class="calc-label"><strong>סה"כ הכנסה נטו:</strong></td>
+                        <td class="calc-value"><strong>${calculation.netIncome.toLocaleString('he-IL')}₪</strong></td>
+                    </tr>
+        `;
+
+        if (calculation.eligible) {
+            resultHtml += `
+                    <tr class="calculation-row-supplement">
+                        <td class="calc-label"><strong>השלמה משוערת:</strong></td>
+                        <td class="calc-value"><strong>${calculation.estimatedSupplement.toLocaleString('he-IL')}₪</strong></td>
+                    </tr>
+            `;
+        }
+
+        resultHtml += `
+                </table>
+                <p class="calculation-note"><strong>שימו לב:</strong> זהו חישוב משוער בלבד. הסכומים בפועל עשויים להיות שונים. לבדיקה מדויקת יש לפנות לביטוח הלאומי.</p>
+            </div>
+        `;
+
+        // Summary
+        resultHtml += this.renderAnswersSummary();
+
+        this.resultEl.className = `result-container ${calculation.eligible ? 'success' : 'error'}`;
+        this.resultEl.innerHTML = resultHtml;
+        this.resultEl.classList.remove('hidden');
+
+        // Show navigation
+        this.navEl.classList.remove('hidden');
+    }
+
+    /**
+     * Calculate income supplement eligibility and amount
+     */
+    calculateIncomeSupplementEligibility() {
+        const rules = this.data.calculationRules;
+        const familyCompositionValue = this.answers['q0b_family_composition']?.value;
+        const familyCompositionLabel = this.answers['q0b_family_composition']?.label;
+
+        // Get ceiling for this family composition
+        const ceiling = rules.familyCompositions[familyCompositionValue]?.ceiling || 0;
+
+        // Extract income amounts
+        const oldAgePension = parseFloat(this.answers['q1_old_age_pension_amount']?.value) || 0;
+        const pensionIncome = parseFloat(this.answers['q2_pension_income_amount']?.value) || 0;
+        const workIncome = parseFloat(this.answers['q3_work_income_amount']?.value) || 0;
+        const imputedIncome = parseFloat(this.answers['q4_imputed_income_amount']?.value) || 0;
+
+        // Calculate deductions according to rules
+        const pensionDeduction = this.calculatePensionDeduction(pensionIncome, rules);
+        const workDeduction = this.calculateWorkDeduction(workIncome, rules);
+        const imputedDeduction = imputedIncome * rules.incomeDeductions.imputedIncome.deductionRate;
+
+        // Calculate total counted income
+        const netIncome = oldAgePension + pensionDeduction + workDeduction + imputedDeduction;
+
+        // Check eligibility
+        const eligible = netIncome < ceiling;
+        const estimatedSupplement = Math.max(0, ceiling - netIncome);
+
+        return {
+            eligible: eligible,
+            reason: eligible ? '' : `סה"כ הכנסותיך (${netIncome.toLocaleString('he-IL')}₪) עולה על התקרה (${ceiling.toLocaleString('he-IL')}₪).`,
+            familyComposition: familyCompositionLabel,
+            ceiling: ceiling,
+            incomes: {
+                oldAgePension: oldAgePension,
+                pensionIncome: pensionIncome,
+                workIncome: workIncome,
+                imputedIncome: imputedIncome
+            },
+            deductions: {
+                pensionDeduction: pensionDeduction,
+                workDeduction: workDeduction,
+                imputedDeduction: imputedDeduction
+            },
+            netIncome: netIncome,
+            estimatedSupplement: estimatedSupplement
+        };
+    }
+
+    /**
+     * Calculate pension income deduction according to rules
+     */
+    calculatePensionDeduction(pensionIncome, rules) {
+        const rule = rules.incomeDeductions.pensionIncome;
+        if (pensionIncome <= rule.exemption) {
+            return 0;
+        }
+        const taxableAmount = pensionIncome - rule.exemption;
+        return taxableAmount * rule.deductionRate;
+    }
+
+    /**
+     * Calculate work income deduction according to rules
+     */
+    calculateWorkDeduction(workIncome, rules) {
+        const rule = rules.incomeDeductions.workIncome;
+        if (workIncome <= rule.exemption) {
+            return 0;
+        }
+        const taxableAmount = workIncome - rule.exemption;
+        return taxableAmount * rule.deductionRate;
+    }
+
+    /**
+     * Render the imputed income calculator
+     */
+    renderCalculator(calcConfig) {
+        const minFormatted = calcConfig.min.toLocaleString('he-IL');
+        const maxFormatted = calcConfig.max < 10000000 ? calcConfig.max.toLocaleString('he-IL') : '';
+
+        let rangeText = '';
+        if (calcConfig.min === 0) {
+            rangeText = `(עד ${maxFormatted}₪)`;
+        } else if (calcConfig.max >= 10000000) {
+            rangeText = `(מעל ${minFormatted}₪)`;
+        } else {
+            rangeText = `(${minFormatted}₪ - ${maxFormatted}₪)`;
+        }
+
+        return `
+            <div class="calculator-container">
+                <h4>מחשבון הכנסה רעיונית</h4>
+                <div class="calculator-field">
+                    <label for="asset-input">סכום הנכסים ${rangeText}:</label>
+                    <input type="number" id="asset-input" class="calculator-input"
+                           placeholder="הזן סכום"
+                           min="${calcConfig.min}"
+                           max="${calcConfig.max < 10000000 ? calcConfig.max : ''}"
+                           data-min="${calcConfig.min}"
+                           data-max="${calcConfig.max}">
+                    <div id="calc-range-error" class="calculator-error hidden"></div>
+                </div>
+                <div class="calculator-field">
+                    <label>הכנסה רעיונית חודשית:</label>
+                    <div id="calc-result" class="calculator-output">-</div>
+                </div>
+                <div class="calculator-field">
+                    <label>הכנסה רעיונית שנתית:</label>
+                    <div id="calc-result-yearly" class="calculator-output">-</div>
+                </div>
+            </div>
+        `;
+    }
+
+    /**
+     * Setup calculator event listeners
+     */
+    setupCalculator(calcConfig) {
+        const input = document.getElementById('asset-input');
+        const resultEl = document.getElementById('calc-result');
+        const resultYearlyEl = document.getElementById('calc-result-yearly');
+        const errorEl = document.getElementById('calc-range-error');
+
+        if (!input || !resultEl) return;
+
+        const minAmount = calcConfig.min;
+        const maxAmount = calcConfig.max;
+        const type = calcConfig.type;
+
+        // Thresholds based on family status
+        const thresholds = type === 'single'
+            ? { tier1: 41528, tier2: 83056 }
+            : { tier1: 62292, tier2: 124584 };
+
+        input.addEventListener('input', () => {
+            const amount = parseFloat(input.value) || 0;
+
+            // Validate range
+            if (amount < minAmount && amount > 0) {
+                errorEl.textContent = `הסכום המינימלי למדרגה זו הוא ${minAmount.toLocaleString('he-IL')}₪`;
+                errorEl.classList.remove('hidden');
+                resultEl.textContent = '-';
+                resultYearlyEl.textContent = '-';
+                return;
+            }
+
+            if (maxAmount < 10000000 && amount > maxAmount) {
+                errorEl.textContent = `הסכום המקסימלי למדרגה זו הוא ${maxAmount.toLocaleString('he-IL')}₪`;
+                errorEl.classList.remove('hidden');
+                resultEl.textContent = '-';
+                resultYearlyEl.textContent = '-';
+                return;
+            }
+
+            errorEl.classList.add('hidden');
+
+            if (amount <= 0) {
+                resultEl.textContent = '-';
+                resultYearlyEl.textContent = '-';
+                return;
+            }
+
+            // Calculate imputed income in tiers
+            let yearlyIncome = 0;
+
+            if (amount <= thresholds.tier1) {
+                // Tier 1: 1.5%
+                yearlyIncome = amount * 0.015;
+            } else if (amount <= thresholds.tier2) {
+                // Tier 1 + Tier 2: 1.5% + 3%
+                yearlyIncome = (thresholds.tier1 * 0.015) +
+                               ((amount - thresholds.tier1) * 0.03);
+            } else {
+                // All three tiers: 1.5% + 3% + 5%
+                yearlyIncome = (thresholds.tier1 * 0.015) +
+                               ((thresholds.tier2 - thresholds.tier1) * 0.03) +
+                               ((amount - thresholds.tier2) * 0.05);
+            }
+
+            const monthlyIncome = yearlyIncome / 12;
+
+            resultEl.textContent = monthlyIncome.toLocaleString('he-IL', {
+                style: 'currency',
+                currency: 'ILS',
+                maximumFractionDigits: 0
+            });
+            resultYearlyEl.textContent = yearlyIncome.toLocaleString('he-IL', {
+                style: 'currency',
+                currency: 'ILS',
+                maximumFractionDigits: 0
+            });
+        });
+    }
+
+    /**
+     * Render summary of all answers
+     */
+    renderAnswersSummary() {
+        if (Object.keys(this.answers).length === 0) return '';
+
+        const answersHtml = Object.values(this.answers).map(answer => `
+            <div class="answer-item">
+                <span class="answer-question">${answer.question}</span>
+                <span class="answer-value">${answer.label}</span>
+            </div>
+        `).join('');
+
+        return `
+            <div class="answers-summary">
+                <h4>סיכום התשובות:</h4>
+                ${answersHtml}
+            </div>
+        `;
+    }
+
+    /**
+     * Go back to last question from result screen
+     */
+    goBackFromResult() {
+        // Hide result
+        this.resultEl.classList.add('hidden');
+        this.navEl.classList.add('hidden');
+
+        // Get the last question from history
+        const lastQuestionId = this.questionHistory[this.questionHistory.length - 1];
+
+        // Remove it from history (showQuestion will add it back)
+        this.questionHistory.pop();
+
+        // Remove the answer so user can re-answer
+        delete this.answers[lastQuestionId];
+
+        // Show the last question
+        this.showQuestion(lastQuestionId);
+    }
+
+    /**
+     * Restart the questionnaire
+     */
+    restart() {
+        this.startQuestionnaire();
+    }
+
+    /**
+     * Show error message
+     */
+    showError(message) {
+        this.headerEl.innerHTML = '';
+        this.contentEl.innerHTML = `
+            <div class="error-state">
+                <h3>⚠️ שגיאה</h3>
+                <p>${message}</p>
+                <p>אנא נסה לרענן את הדף או לחזור מאוחר יותר.</p>
+            </div>
+        `;
+    }
+}
+
+// Export for use in HTML
+if (typeof module !== 'undefined' && module.exports) {
+    module.exports = QuestionnaireEngine;
+}

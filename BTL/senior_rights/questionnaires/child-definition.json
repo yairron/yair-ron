@@ -1,0 +1,93 @@
+{
+  "id": "child-definition",
+  "title": "הגדרת ילד להשלמת הכנסה אזרח ותיק",
+  "description": "שאלון לבדיקה האם ילד עונה להגדרת 'ילד' לצורך השלמת הכנסה בקצבת אזרח ותיק",
+  "source": "המוסד לביטוח לאומי",
+  "questions": [
+    {
+      "id": "q1_relation",
+      "type": "dropdown",
+      "question": "הקשר של הילד/ה אל המבוטח",
+      "options": [
+        { "value": "son", "label": "בן", "next": "q2_married" },
+        { "value": "daughter", "label": "בת", "next": "q2_married" },
+        { "value": "stepchild", "label": "ילד חורג", "next": "q2_married" },
+        { "value": "adopted", "label": "ילד מאומץ", "next": "q2_married" },
+        { "value": "grandchild", "label": "נכד שכל פרנסתו על המבוטח", "next": "q2_married" },
+        { "value": "none", "label": "אף אחד מאלה", "result": "not_eligible" }
+      ]
+    },
+    {
+      "id": "q2_married",
+      "type": "yesno",
+      "question": "הנער/ה נשוי/אה",
+      "options": [
+        { "value": "yes", "label": "כן", "result": "not_eligible" },
+        { "value": "no", "label": "לא", "next": "q3_under18" }
+      ]
+    },
+    {
+      "id": "q3_under18",
+      "type": "yesno",
+      "question": "הילד/ה פחות מ-18",
+      "options": [
+        { "value": "yes", "label": "כן", "result": "eligible" },
+        { "value": "no", "label": "לא", "next": "q4_age_range" }
+      ]
+    },
+    {
+      "id": "q4_age_range",
+      "type": "radio",
+      "question": "בחר את טווח הגיל המתאים",
+      "options": [
+        { "value": "18-20", "label": "הילד יותר מ-18 ופחות מ-20", "next": "q5a_18_20" },
+        { "value": "under21", "label": "הילד פחות מ-21", "next": "q5b_under21" },
+        { "value": "under24", "label": "הילד פחות מ-24", "next": "q5c_under24" }
+      ]
+    },
+    {
+      "id": "q5a_18_20",
+      "type": "radio",
+      "question": "הילד/ה יותר מ-18 ופחות מ-20 והוא",
+      "options": [
+        { "value": "finishing_education", "label": "הוא מסיים את לימודיו במוסד חינוך על יסודי", "result": "eligible" },
+        { "value": "bagrut", "label": "לומד לתעודת בגרות", "result": "eligible" },
+        { "value": "learning_disability", "label": "בעל לקות למידה במסגרת שהוכרה על ידי המוסד לביטוח לאומי", "result": "eligible" },
+        { "value": "none", "label": "אף אחד מאלה", "result": "not_eligible" }
+      ]
+    },
+    {
+      "id": "q5b_under21",
+      "type": "yesno",
+      "question": "הילד/ה פחות מ-21 ומשרת בהתנדבות למטרה ציבורית עד 12 חודש ושירותו הצבאי נדחה עקב ההתנדבות",
+      "options": [
+        { "value": "yes", "label": "כן", "result": "eligible" },
+        { "value": "no", "label": "לא", "result": "not_eligible" }
+      ]
+    },
+    {
+      "id": "q5c_under24",
+      "type": "radio",
+      "question": "הילד/ה פחות מ-24",
+      "options": [
+        { "value": "idf", "label": "והוא משרת שירות סדיר בצה\"ל", "result": "eligible" },
+        { "value": "national_service", "label": "הוא משרת בשירות לאומי בהתנדבות", "result": "eligible" },
+        { "value": "atuda", "label": "הוא לומד בעתודה ושירותו הסדיר נדחה עקב לימודיו", "result": "eligible" },
+        { "value": "none", "label": "אף אחד מאלה", "result": "not_eligible" }
+      ]
+    }
+  ],
+  "results": {
+    "eligible": {
+      "status": "success",
+      "title": "עונה להגדרת ילד",
+      "message": "הילד/ה עונה להגדרת ילד בקצבת אזרח ותיק"
+    },
+    "not_eligible": {
+      "status": "error",
+      "title": "לא עונה להגדרת ילד",
+      "message": "הילד/ה לא עונה להגדרת ילד בקצבת אזרח ותיק"
+    }
+  },
+  "disclaimer": "שאלון זה למטרות הערכה בלבד. הזכאות הסופית לתוספת הבטחת הכנסה תיקבע על ידי פקיד מוסמך של המוסד לביטוח הלאומי בעבודתו בהוראות החוק וחוקי הביטוח הלאומי."
+}

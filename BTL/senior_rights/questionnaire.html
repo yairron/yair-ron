@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="שאלון בדיקת זכאות - ביטוח לאומי">
+    <title>שאלון בדיקת זכאות</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Assistant:wght@300;400;600;700;800&family=Varela+Round&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="questionnaire-style.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Back Button -->
+        <div class="back-button-container">
+            <a href="../BTL_index.html" class="back-button">חזרה לדף ראשי</a>
+        </div>
+
+        <!-- Header - will be populated dynamically -->
+        <header id="questionnaire-header">
+            <div class="loading">
+                <div class="loading-spinner"></div>
+                <p>טוען שאלון...</p>
+            </div>
+        </header>
+
+        <!-- Questionnaire Content -->
+        <main class="questionnaire-wrapper">
+            <div id="questionnaire-content">
+                <!-- Questions will be rendered here -->
+            </div>
+
+            <!-- Result Section (hidden initially) -->
+            <div id="questionnaire-result" class="result-container hidden">
+            </div>
+
+            <!-- Navigation Buttons -->
+            <div id="questionnaire-nav" class="nav-buttons hidden">
+                <button id="btn-go-back" class="btn btn-primary">חזרה לשאלה האחרונה</button>
+                <button id="btn-restart" class="btn btn-secondary">התחל מחדש</button>
+            </div>
+        </main>
+
+        <!-- Info Box -->
+        <div class="info-box">
+            <div class="info-box-header">
+                <span class="info-box-icon">ℹ️</span>
+                <h3>הערה חשובה</h3>
+            </div>
+            <p>
+                המידע בשאלון זה מבוסס על מקורות רשמיים מהמוסד לביטוח לאומי, אך הוא לידיעה כללית בלבד
+                ואינו מהווה בסיס לפעולה או לאי פעולה מכל סוג. יש לפנות לגורמים המוסמכים
+                לקבלת מידע מדויק ומעודכן על הזכויות המגיעות לכם באופן אישי.
+            </p>
+        </div>
+    </div>
+
+    <footer>
+        <p>🤖 פותח עם ❤️ לסיוע לאזרחים ותיקים בישראל</p>
+    </footer>
+
+    <script src="questionnaire-engine.js"></script>
+    <script>
+        // Get questionnaire ID from URL parameter
+        const urlParams = new URLSearchParams(window.location.search);
+        const questionnaireId = urlParams.get('id') || 'child-definition';
+
+        // Initialize the questionnaire
+        const questionnaire = new QuestionnaireEngine('questionnaires/' + questionnaireId + '.json');
+        questionnaire.init();
+    </script>
+</body>
+</html>

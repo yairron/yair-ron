@@ -1,0 +1,228 @@
+{
+  "id": "income-supplement-eligibility",
+  "title": "בדיקת זכאות להשלמת הכנסה",
+  "description": "בדיקת זכאות לקצבת השלמת הכנסה לאזרחים ותיקים עם חישוב משוער של סכום ההשלמה (01.2026)",
+  "source": "המוסד לביטוח לאומי",
+  "intro": {
+    "title": "בדיקת זכאות להשלמת הכנסה",
+    "content": "<p>שאלון זה בודק אם אתה זכאי/אי להשלמת הכנסה (קצבה משלימה לקצבת זיקנה).</p><p><strong>השלמת הכנסה</strong> היא קצבה שמשלם הביטוח הלאומי כאשר סך כל ההכנסות שלך נמוך מתקרה מסוימת, שתלויה בגיל וברכב המשפחה.</p><h4>כיצד מתבצע החישוב?</h4><ol><li>הביטוח הלאומי אוסף את כל ההכנסות שלך: קצבה, פנסיה, עבודה והכנסה רעיונית מנכסים</li><li>מחשב את סכום הקיזוז על פי כללים מיוחדים</li><li>משווה את סה״כ ההכנסה נטו לתקרת ההשלמה לפי גיל וקומפוזיציה משפחתית</li><li>משלם הפרש כהשלמה עד התקרה</li></ol><p><strong>שימו לב:</strong> זהו חישוב משוער בלבד. לבדיקה מדויקת, יש לפנות לביטוח הלאומי.</p>",
+    "buttonText": "המשך לבדיקה"
+  },
+  "questions": [
+    {
+      "id": "q0a_has_children",
+      "type": "radio",
+      "question": "האם יש לך ילד מתחת לגיל 24 שגר איתך ואת/ה המפרנס/ת שלו?",
+      "options": [
+        { "value": "yes", "label": "כן", "result": "redirect_child_definition" },
+        { "value": "no", "label": "לא", "next": "q0b_family_composition" },
+        { "value": "skip", "label": "דלג על שאלה זו", "next": "q0b_family_composition" }
+      ]
+    },
+    {
+      "id": "q0b_family_composition",
+      "type": "dropdown",
+      "question": "מהו הרכב המשפחה וקבוצת הגיל שלך?",
+      "description": "בחר את המצב שתואם לך ביותר",
+      "options": [
+        { "value": "single_under70", "label": "יחיד/ה עד גיל 70", "next": "q1_old_age_pension", "ceil": 4375 },
+        { "value": "single_70_80", "label": "יחיד/ה גיל 70-80", "next": "q1_old_age_pension", "ceil": 4418 },
+        { "value": "single_over80", "label": "יחיד/ה מעל גיל 80", "next": "q1_old_age_pension", "ceil": 4460 },
+        { "value": "couple_under70", "label": "זוג עד גיל 70", "next": "q1_old_age_pension", "ceil": 6912 },
+        { "value": "couple_70_80", "label": "זוג גיל 70-80", "next": "q1_old_age_pension", "ceil": 6981 },
+        { "value": "couple_over80", "label": "זוג מעל גיל 80", "next": "q1_old_age_pension", "ceil": 7048 },
+        { "value": "single_1child_under70", "label": "יחיד/ה + ילד עד גיל 70", "next": "q1_old_age_pension", "ceil": 7305 },
+        { "value": "single_1child_70_80", "label": "יחיד/ה + ילד גיל 70-80", "next": "q1_old_age_pension", "ceil": 7374 },
+        { "value": "single_1child_over80", "label": "יחיד/ה + ילד מעל גיל 80", "next": "q1_old_age_pension", "ceil": 7442 },
+        { "value": "single_2children_under70", "label": "יחיד/ה + 2 ילדים עד גיל 70", "next": "q1_old_age_pension", "ceil": 8426 },
+        { "value": "single_2children_70_80", "label": "יחיד/ה + 2 ילדים גיל 70-80", "next": "q1_old_age_pension", "ceil": 8496 },
+        { "value": "single_2children_over80", "label": "יחיד/ה + 2 ילדים מעל גיל 80", "next": "q1_old_age_pension", "ceil": 8563 },
+        { "value": "couple_1child_under70", "label": "זוג + ילד עד גיל 70", "next": "q1_old_age_pension", "ceil": 8035 },
+        { "value": "couple_1child_70_80", "label": "זוג + ילד גיל 70-80", "next": "q1_old_age_pension", "ceil": 8102 },
+        { "value": "couple_1child_over80", "label": "זוג + ילד מעל גיל 80", "next": "q1_old_age_pension", "ceil": 8171 },
+        { "value": "couple_2children_under70", "label": "זוג + 2 ילדים עד גיל 70", "next": "q1_old_age_pension", "ceil": 9156 },
+        { "value": "couple_2children_70_80", "label": "זוג + 2 ילדים גיל 70-80", "next": "q1_old_age_pension", "ceil": 9226 },
+        { "value": "couple_2children_over80", "label": "זוג + 2 ילדים מעל גיל 80", "next": "q1_old_age_pension", "ceil": 9292 }
+      ]
+    },
+    {
+      "id": "q1_old_age_pension",
+      "type": "number_input",
+      "question": "כמה קצבת זיקנה (אזרח ותיק כולל שאירים) את/ה מקבל/ת בחודש מהביטוח הלאומי? (בש\"ח)",
+      "description": "הזן את הסכום החודשי. אם לא מקבל/ת קצבת זיקנה, הזן 0",
+      "placeholder": "0",
+      "suffix": "₪ לחודש",
+      "next": "q2_pension_income",
+      "storeAs": "q1_old_age_pension_amount"
+    },
+    {
+      "id": "q2_pension_income",
+      "type": "number_input",
+      "question": "כמה הכנסה מפנסיה (מעבידים קודמים, קרנות פנסיה וכו') את/ה מקבל/ת בחודש? (בש\"ח)",
+      "description": "הזן את הסכום החודשי לפני ניכויים. אם לא מקבל/ת פנסיה, הזן 0. לידיעתך: סכום מותר ליחיד - 1,790₪ | לזוג - 2,823₪. כל סכום עודף מעליהם יקוזז ב-60% מהתוספת",
+      "placeholder": "0",
+      "suffix": "₪ לחודש",
+      "next": "q3_work_income",
+      "storeAs": "q2_pension_income_amount"
+    },
+    {
+      "id": "q3_work_income",
+      "type": "radio",
+      "question": "מה מצב העבודה שלך? (אם יש הכנסה מעבודה, יש להזין את הסכום בשלב הבא)",
+      "options": [
+        { "value": "not_working", "label": "לא עובד/ת", "next": "q4_imputed_income", "storeAs": { "q3_work_income_amount": 0, "q6_work_status": "not_working" } },
+        { "value": "employed", "label": "עובד/ת שכיר - יש לי הכנסה מעבודה", "next": "q3b_work_income_amount", "storeAs": { "q6_work_status": "employed" } },
+        { "value": "self_employed", "label": "עצמאי/ת - יש לי הכנסה מעסק/עבודה עצמאית", "next": "q3b_work_income_amount", "storeAs": { "q6_work_status": "self_employed" } }
+      ]
+    },
+    {
+      "id": "q3b_work_income_amount",
+      "type": "number_input",
+      "question": "כמה הכנסה מעבודה/עסק את/ה מקבל/ת בחודש? (בש\"ח)",
+      "description": "הזן את סכום ההכנסה החודשית נטו (לאחר ניכוי מס אך לפני ניכויים אחרים). לידיעתך: סכום מותר לשכיר ליחיד - 3,236₪ | לזוג - 3,786₪. כל סכום עודף מעליהם יקוזז ב-60% מהתוספת",
+      "placeholder": "0",
+      "suffix": "₪ לחודש",
+      "next": "q4_imputed_income",
+      "storeAs": "q3_work_income_amount"
+    },
+    {
+      "id": "q4_imputed_income",
+      "type": "radio",
+      "question": "האם יש לך נכסים (חסכונות, נדל\"ן מעבר לדירת מגורים, השקעות וכו') שעשויים להיחשב כהכנסה רעיונית?",
+      "options": [
+        { "value": "yes_unknown", "label": "כן, אבל אני לא יודע/ת מה ההכנסה הרעיונית", "subQuestionnaire": "imputed-income-calculator", "returnTo": "q4b_imputed_income_amount" },
+        { "value": "yes_known", "label": "כן, יודע/ת את סכום ההכנסה הרעיונית החודשית", "next": "q4b_imputed_income_amount" },
+        { "value": "no", "label": "לא, אין לי נכסים מעבר לדירת המגורים", "next": "q5_israel_resident" },
+        { "value": "skip", "label": "דלג על שאלה זו", "next": "q5_israel_resident" }
+      ]
+    },
+    {
+      "id": "q4b_imputed_income_amount",
+      "type": "number_input",
+      "question": "מהי ההכנסה הרעיונית החודשית המחושבת מנכסים? (בש\"ח)",
+      "description": "הזן את סכום ההכנסה הרעיונית החודשית. אם לא זכאי/ת להכנסה רעיונית, הזן 0",
+      "placeholder": "0",
+      "suffix": "₪ לחודש",
+      "next": "q5_israel_resident",
+      "storeAs": "q4_imputed_income_amount"
+    },
+    {
+      "id": "q5_israel_resident",
+      "type": "yesno",
+      "question": "האם את/ה תושב/ת ישראל?",
+      "options": [
+        { "value": "yes", "label": "כן", "next": "q6_kibbutz_member" },
+        { "value": "no", "label": "לא", "result": "not_eligible_not_resident" }
+      ]
+    },
+    {
+      "id": "q6_kibbutz_member",
+      "type": "yesno",
+      "question": "האם את/ה חבר/ת בקיבוץ או חבר/ת במושב שיתופי?",
+      "description": "חברות בקיבוץ או במושב שיתופי מונעת זכאות לתוספת השלמת הכנסה.",
+      "options": [
+        { "value": "yes", "label": "כן", "result": "not_eligible_kibbutz_member" },
+        { "value": "no", "label": "לא", "next": "q7_vehicle" }
+      ]
+    },
+    {
+      "id": "q7_vehicle",
+      "type": "radio",
+      "question": "האם יש לך רכב ששוויו מעל 65,343₪?",
+      "description": "שוויו הנוכחי של הרכב בשוק.",
+      "options": [
+        { "value": "yes", "label": "כן", "result": "check_vehicle" },
+        { "value": "no", "label": "לא", "result": "calculate_eligibility" },
+        { "value": "skip", "label": "דלג על שאלה זו", "result": "calculate_eligibility" }
+      ]
+    }
+  ],
+  "results": {
+    "calculate_eligibility": {
+      "status": "info",
+      "title": "תוצאות בדיקת הזכאות",
+      "message": "על סמך הנתונים שהזנת, להלן החישוב המשוער שלך",
+      "dynamic": true,
+      "fields": [
+        "family_composition",
+        "total_income",
+        "deductions",
+        "net_income",
+        "ceiling",
+        "eligibility_status",
+        "estimated_supplement",
+        "important_note"
+      ]
+    },
+    "check_vehicle": {
+      "status": "warning",
+      "title": "ייתכן שאת/ה זכאי/ת - יש לבדוק נושא הרכב",
+      "message": "על סמך הנתונים שהזנת, ייתכן שאת/ה זכאי/ת להשלמת הכנסה, אך כאשר יש רכב ששוויו מעל 65,343₪, יש לבדוק אם מתקיימים תנאים מיוחדים שמאפשרים זכאות.",
+      "link": {
+        "url": "questionnaire.html?id=vehicle-income-supplement",
+        "text": "בדיקת זכאות עם רכב מעל תקרה"
+      }
+    },
+    "not_eligible_not_resident": {
+      "status": "error",
+      "title": "לא זכאי/ת להשלמת הכנסה",
+      "message": "השלמת הכנסה משולמת רק לתושבי ישראל. אם חזרת להתגורר בישראל, יש לעדכן את הכתובת בביטוח הלאומי."
+    },
+    "not_eligible_kibbutz_member": {
+      "status": "warning",
+      "title": "יתכן ולחברים בקיבוץ/מושב שיתופי זכאות להשלמת הכנסה",
+      "message": "יתכן ולחבר קיבוץ/מושב שיתופי יש זכאות להשלמת הכנסה בתנאים מסוימים. לפרטים נוספים, אנא צרו קשר עם סניף הביטוח הלאומי או פנו למוקד הטלפוני *6050."
+    },
+    "redirect_child_definition": {
+      "status": "warning",
+      "title": "בדיקה תחילית של הגדרת הילד",
+      "message": "לפני שתמשיכו בשאלון, יש לוודא שהילד עומד בהגדרה של 'ילד' לצורך קבלת השלמת הכנסה. יש לחץ על הקישור להצגת קריטריונים, ולאחר מכן חזרו לשאלון זה.",
+      "link": {
+        "url": "questionnaire.html?id=child-definition",
+        "text": "מעבר לשאלון הגדרת ילד"
+      }
+    }
+  },
+  "calculationRules": {
+    "familyCompositions": {
+      "single_under70": { "label": "יחיד/ה עד גיל 70", "ceiling": 4375 },
+      "single_70_80": { "label": "יחיד/ה גיל 70-80", "ceiling": 4418 },
+      "single_over80": { "label": "יחיד/ה מעל גיל 80", "ceiling": 4460 },
+      "couple_under70": { "label": "זוג עד גיל 70", "ceiling": 6912 },
+      "couple_70_80": { "label": "זוג גיל 70-80", "ceiling": 6981 },
+      "couple_over80": { "label": "זוג מעל גיל 80", "ceiling": 7048 },
+      "single_1child_under70": { "label": "יחיד/ה + ילד עד גיל 70", "ceiling": 7305 },
+      "single_1child_70_80": { "label": "יחיד/ה + ילד גיל 70-80", "ceiling": 7374 },
+      "single_1child_over80": { "label": "יחיד/ה + ילד מעל גיל 80", "ceiling": 7442 },
+      "single_2children_under70": { "label": "יחיד/ה + 2 ילדים עד גיל 70", "ceiling": 8426 },
+      "single_2children_70_80": { "label": "יחיד/ה + 2 ילדים גיל 70-80", "ceiling": 8496 },
+      "single_2children_over80": { "label": "יחיד/ה + 2 ילדים מעל גיל 80", "ceiling": 8563 },
+      "couple_1child_under70": { "label": "זוג + ילד עד גיל 70", "ceiling": 8035 },
+      "couple_1child_70_80": { "label": "זוג + ילד גיל 70-80", "ceiling": 8102 },
+      "couple_1child_over80": { "label": "זוג + ילד מעל גיל 80", "ceiling": 8171 },
+      "couple_2children_under70": { "label": "זוג + 2 ילדים עד גיל 70", "ceiling": 9156 },
+      "couple_2children_70_80": { "label": "זוג + 2 ילדים גיל 70-80", "ceiling": 9226 },
+      "couple_2children_over80": { "label": "זוג + 2 ילדים מעל גיל 80", "ceiling": 9292 }
+    },
+    "incomeDeductions": {
+      "oldAgePension": {
+        "deductionRate": 1.0,
+        "description": "קצבת זיקנה - נלקחת במלואה"
+      },
+      "pensionIncome": {
+        "exemption": 1790,
+        "deductionRate": 0.60,
+        "description": "הכנסה מפנסיה - סכום מותר ליחיד 1,790₪ וזוג 2,823₪, הכנסה עודפת 60% קיזוז"
+      },
+      "workIncome": {
+        "exemption": 3236,
+        "deductionRate": 0.60,
+        "description": "הכנסה מעבודה - סכום מותר ליחיד 3,236₪ וזוג 3,786₪, הכנסה עודפת 60% קיזוז"
+      },
+      "imputedIncome": {
+        "deductionRate": 1.0,
+        "description": "הכנסה רעיונית מנכסים - נלקחת במלואה"
+      }
+    },
+    "notes": "חישוב משוער בלבד. נוסחאות קיזוז אלו עשויות להשתנות. לבדיקה מדויקת, יש לפנות לביטוח הלאומי."
+  }}

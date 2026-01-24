@@ -1,0 +1,70 @@
+{
+  "id": "vehicle-income-supplement",
+  "title": "זכאות לתוספת הבטחת הכנסה עם רכב",
+  "description": "בדיקת זכאות לתוספת הבטחת הכנסה כאשר שווי הרכב מעל הסכום המירבי (65,343 ₪ - 01.2026)",
+  "source": "המוסד לביטוח לאומי",
+  "questions": [
+    {
+      "id": "q1_license",
+      "type": "yesno",
+      "question": "יש לך רישיון נהיגה בר תוקף?",
+      "options": [
+        { "value": "yes", "label": "כן", "next": "q2_authorized" },
+        { "value": "no", "label": "לא", "next": "q4_special_cases" }
+      ]
+    },
+    {
+      "id": "q2_authorized",
+      "type": "yesno",
+      "question": "הורשית על ידי המוסד לביטוח לאומי לנהוג ברכבו של המוגבל בניידות?",
+      "options": [
+        { "value": "yes", "label": "כן", "next": "q3_proximity" },
+        { "value": "no", "label": "לא", "next": "q4_special_cases" }
+      ]
+    },
+    {
+      "id": "q3_proximity",
+      "type": "yesno",
+      "question": "האם אתה קרוב משפחה או מטפל הגר עם המוגבל בניידות באותו בניין או בניין סמוך שהמרחק בינו לבית המוגבל בניידות אינו עולה על 1500 מטר בקו אווירי (אלא אם אלה הבניינים הקרובים ביותר זה לזה באותו תחום יישוב)?",
+      "options": [
+        { "value": "yes", "label": "כן", "result": "eligible" },
+        { "value": "no", "label": "לא", "next": "q4_special_cases" }
+      ]
+    },
+    {
+      "id": "q4_special_cases",
+      "type": "radio",
+      "question": "האם מתקיים אחד מהמקרים הבאים?",
+      "options": [
+        { "value": "authorized_driver", "label": "הוכרת כמורשה נהיגה ברכב של מי שזכאי לקצבת ניידות (גם אם הנכה אינו בן זוגך או ילדך)", "result": "eligible" },
+        { "value": "leg_disability", "label": "אתה, בן/בת זוגך או ילדך נכה ברגליו והוכר על ידי רופא המוסד", "result": "eligible" },
+        { "value": "child_disability_allowance", "label": "לילדך משולמת גמלה לילד נכה", "result": "eligible" },
+        { "value": "license_deposited", "label": "אתה או בן/בת זוגך חולים, ורישיון הרכב של החולה הופקד במשרד הרישוי", "result": "eligible" },
+        { "value": "transporting_sick", "label": "אתה מסיע ברכבך בן משפחה חולה לצורך טיפולים רפואיים ובתדירות גבוהה (האישור יינתן בהתאם לחוות דעת של רופא הביטוח הלאומי)", "result": "eligible" },
+        { "value": "two_vehicles", "label": "אתה הורה לילד נכה או מקבל ניידות, ויש בבעלותך או בשימושך שני כלי רכב - קנית רכב חדש ועדיין לא הספקת למכור את הרכב הישן", "result": "eligible_3_months" },
+        { "value": "child_allowance_ended", "label": "אתה הורה לילד נכה, וסיימה הזכאות לקצבת ילד נכה", "result": "eligible_3_months" },
+        { "value": "widowed_no_license", "label": "אתה אלמן או אלמנה, אין לך רישיון נהיגה, ובן הזוג שנפטר היה בעלים של הרכב", "result": "eligible_3_months" },
+        { "value": "owner_deceased_imprisoned", "label": "נקבעה זכאות לקצבה לבעל רכב על פי הכללים המפורטים, ובעל הרכב נפטר או שנכנס למאסר או למעצר", "result": "eligible_3_months" },
+        { "value": "none", "label": "אף אחד מאלה", "result": "not_eligible" }
+      ]
+    }
+  ],
+  "results": {
+    "eligible": {
+      "status": "success",
+      "title": "זכאי לתוספת הבטחת הכנסה",
+      "message": "לא תישלל תוספת הבטחת הכנסה עקב הרכב"
+    },
+    "eligible_3_months": {
+      "status": "warning",
+      "title": "זכאי לתוספת הבטחת הכנסה עד 3 חודשים",
+      "message": "הזכאות לתוספת הבטחת הכנסה היא לתקופה של עד 3 חודשים בלבד"
+    },
+    "not_eligible": {
+      "status": "error",
+      "title": "לא זכאי לתוספת הבטחת הכנסה",
+      "message": "תוספת הבטחת הכנסה תישלל עקב הרכב בשווי מעל הסכום המירבי"
+    }
+  },
+  "disclaimer": "שאלון זה למטרות הערכה בלבד. הזכאות הסופית לתוספת הבטחת הכנסה תיקבע על ידי פקיד מוסמך של המוסד לביטוח הלאומי בעבודתו בהוראות החוק וחוקי הביטוח הלאומי."
+}
