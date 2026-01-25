@@ -62,13 +62,14 @@
 
     <script src="questionnaire-engine.js"></script>
     <script>
-        // Get questionnaire ID from URL parameter
+        // Get questionnaire ID and optional question from URL parameters
         const urlParams = new URLSearchParams(window.location.search);
         const questionnaireId = urlParams.get('id') || 'child-definition';
+        const startQuestion = urlParams.get('question');
 
         // Initialize the questionnaire
         const questionnaire = new QuestionnaireEngine('questionnaires/' + questionnaireId + '.json');
-        questionnaire.init();
+        questionnaire.init(startQuestion);
     </script>
 </body>
 </html>

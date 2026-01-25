@@ -27,13 +27,14 @@ class QuestionnaireEngine {
 
     /**
      * Initialize the questionnaire
+     * @param {string} startQuestionId - Optional question ID to start from
      */
-    async init() {
+    async init(startQuestionId = null) {
         try {
             await this.loadData();
             this.setupEventListeners();
             this.renderHeader();
-            this.startQuestionnaire();
+            this.startQuestionnaire(startQuestionId);
         } catch (error) {
             console.error('Error initializing questionnaire:', error);
             this.showError('שגיאה בטעינת השאלון');
@@ -76,12 +77,22 @@ class QuestionnaireEngine {
 
     /**
      * Start or restart the questionnaire
+     * @param {string} startQuestionId - Optional question ID to start from
      */
-    startQuestionnaire() {
+    startQuestionnaire(startQuestionId = null) {
         this.answers = {};
         this.questionHistory = [];
         this.resultEl.classList.add('hidden');
         this.navEl.classList.add('hidden');
+
+        // If a specific question is requested, go directly to it
+        if (startQuestionId) {
+            const question = this.data.questions.find(q => q.id === startQuestionId);
+            if (question) {
+                this.showQuestion(startQuestionId);
+                return;
+            }
+        }
 
         // Show intro if exists, otherwise show first question
         if (this.data.intro) {
