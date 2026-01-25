@@ -83,7 +83,7 @@
       "title": "עונה להגדרת ילד",
       "message": "הילד/ה עונה להגדרת ילד בקצבת אזרח ותיק",
       "link": {
-        "url": "questionnaire.html?id=income-supplement-eligibility&question=q0a_has_children",
+        "url": "questionnaire.html?id=income-supplement-eligibility&question=q0b_family_composition",
         "text": "חזור לשאלון בדיקת זכאות להשלמת הכנסה"
       }
     },
@@ -92,7 +92,7 @@
       "title": "לא עונה להגדרת ילד",
       "message": "הילד/ה לא עונה להגדרת ילד בקצבת אזרח ותיק",
       "link": {
-        "url": "questionnaire.html?id=income-supplement-eligibility&question=q0a_has_children",
+        "url": "questionnaire.html?id=income-supplement-eligibility&question=q0b_family_composition",
         "text": "חזור לשאלון בדיקת זכאות להשלמת הכנסה"
       }
     }
