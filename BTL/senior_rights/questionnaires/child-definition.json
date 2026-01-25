@@ -81,12 +81,20 @@
     "eligible": {
       "status": "success",
       "title": "עונה להגדרת ילד",
-      "message": "הילד/ה עונה להגדרת ילד בקצבת אזרח ותיק"
+      "message": "הילד/ה עונה להגדרת ילד בקצבת אזרח ותיק",
+      "link": {
+        "url": "questionnaire.html?id=income-supplement-eligibility&question=q0a_has_children",
+        "text": "חזור לשאלון בדיקת זכאות להשלמת הכנסה"
+      }
     },
     "not_eligible": {
       "status": "error",
       "title": "לא עונה להגדרת ילד",
-      "message": "הילד/ה לא עונה להגדרת ילד בקצבת אזרח ותיק"
+      "message": "הילד/ה לא עונה להגדרת ילד בקצבת אזרח ותיק",
+      "link": {
+        "url": "questionnaire.html?id=income-supplement-eligibility&question=q0a_has_children",
+        "text": "חזור לשאלון בדיקת זכאות להשלמת הכנסה"
+      }
     }
   },
   "disclaimer": "שאלון זה למטרות הערכה בלבד. הזכאות הסופית לתוספת הבטחת הכנסה תיקבע על ידי פקיד מוסמך של המוסד לביטוח הלאומי בעבודתו בהוראות החוק וחוקי הביטוח הלאומי."
