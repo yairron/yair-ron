@@ -11,6 +11,7 @@ class QuestionnaireEngine {
         this.currentQuestionId = null;
         this.answers = {};
         this.questionHistory = [];
+        this.hideResultLink = false; // hide external return link when requested
 
         // Sub-questionnaire state
         this.parentState = null;  // Stores parent questionnaire state when running sub-questionnaire
@@ -28,9 +29,11 @@ class QuestionnaireEngine {
     /**
      * Initialize the questionnaire
      * @param {string} startQuestionId - Optional question ID to start from
+     * @param {boolean} hideResultLink - When true, hide external return link in result screen
      */
-    async init(startQuestionId = null) {
+    async init(startQuestionId = null, hideResultLink = false) {
         try {
+            this.hideResultLink = hideResultLink;
             await this.loadData();
             this.setupEventListeners();
             this.renderHeader();
@@ -801,13 +804,17 @@ class QuestionnaireEngine {
         // Hide questions
         this.contentEl.innerHTML = '';
 
+        const linkHtml = (result.link && !this.hideResultLink)
+            ? `<a href="${result.link.url}" class="result-link btn btn-primary">${result.link.text}</a><br><small class="skip-link" style="margin-top: 10px; display: inline-block;"><a href="javascript:void(0)" class="skip-button">דלק על השלב הזה →</a></small>`
+            : '';
+
         // Show result
         this.resultEl.className = `result-container ${result.status}`;
         this.resultEl.innerHTML = `
             <div class="result-icon"></div>
             <h2 class="result-title">${result.title}</h2>
             <p class="result-message">${result.message}</p>
-               ${result.link ? `<a href="${result.link.url}" class="result-link btn btn-primary">${result.link.text}</a><br><small class="skip-link" style="margin-top: 10px; display: inline-block;"><a href="javascript:void(0)" class="skip-button">דלק על השלב הזה →</a></small>` : ''}
+               ${linkHtml}
             ${result.calculator ? this.renderCalculator(result.calculator) : ''}
             ${this.renderAnswersSummary()}
         `;

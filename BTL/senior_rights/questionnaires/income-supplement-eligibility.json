@@ -203,11 +203,15 @@
       },
       "pensionIncome": {
         "exemption": 1790,
+        "exemption_single": 1790,
+        "exemption_couple": 2823,
         "deductionRate": 0.60,
         "description": "הכנסה מפנסיה - סכום מותר ליחיד 1,790₪ וזוג 2,823₪, הכנסה עודפת 60% קיזוז"
       },
       "workIncome": {
         "exemption": 3236,
+        "exemption_single": 3236,
+        "exemption_couple": 3786,
         "deductionRate": 0.60,
         "description": "הכנסה מעבודה - סכום מותר ליחיד 3,236₪ וזוג 3,786₪, הכנסה עודפת 60% קיזוז"
       },
