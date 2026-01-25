@@ -14,7 +14,7 @@
       "type": "radio",
       "question": "האם יש לך ילד מתחת לגיל 24 שגר איתך ואת/ה המפרנס/ת שלו?",
       "options": [
-        { "value": "yes", "label": "כן", "result": "redirect_child_definition" },
+        { "value": "yes", "label": "כן", "subQuestionnaire": "child-definition", "returnTo": "q0b_family_composition" },
         { "value": "no", "label": "לא", "next": "q0b_family_composition" },
         { "value": "skip", "label": "דלג על שאלה זו", "next": "q0b_family_composition" }
       ]
@@ -173,15 +173,6 @@
       "status": "warning",
       "title": "יתכן ולחברים בקיבוץ/מושב שיתופי זכאות להשלמת הכנסה",
       "message": "יתכן ולחבר קיבוץ/מושב שיתופי יש זכאות להשלמת הכנסה בתנאים מסוימים. לפרטים נוספים, אנא צרו קשר עם סניף הביטוח הלאומי או פנו למוקד הטלפוני *6050."
-    },
-    "redirect_child_definition": {
-      "status": "warning",
-      "title": "בדיקה תחילית של הגדרת הילד",
-      "message": "לפני שתמשיכו בשאלון, יש לוודא שהילד עומד בהגדרה של 'ילד' לצורך קבלת השלמת הכנסה. יש לחץ על הקישור להצגת קריטריונים, ולאחר מכן חזרו לשאלון זה.",
-      "link": {
-        "url": "questionnaire.html?id=child-definition",
-        "text": "מעבר לשאלון הגדרת ילד"
-      }
     }
   },
   "calculationRules": {

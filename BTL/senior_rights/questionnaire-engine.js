@@ -809,26 +809,6 @@ class QuestionnaireEngine {
 
         // Show navigation
         this.navEl.classList.remove('hidden');
-
-            // Setup skip button if this is a redirect result
-            if (resultKey === 'redirect_child_definition') {
-                const skipBtn = this.resultEl.querySelector('.skip-button');
-                if (skipBtn) {
-                    skipBtn.addEventListener('click', (e) => {
-                        e.preventDefault();
-                        // Hide the current warning container before jumping ahead
-                        this.resultEl.classList.add('hidden');
-                        this.resultEl.innerHTML = '';
-                        this.navEl.classList.add('hidden');
-
-                        // Jump to the next question after q0a_has_children
-                        const nextQuestion = this.data.questions.find(q => q.id === 'q0b_family_composition');
-                        if (nextQuestion) {
-                            this.showQuestion('q0b_family_composition');
-                        }
-                    });
-                }
-            }
     }
 
     /**
