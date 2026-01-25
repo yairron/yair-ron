@@ -1,0 +1,967 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>שאלון אינטק חכם - זכויות אזרח ותיק</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+            overflow: hidden;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 30px;
+            text-align: center;
+        }
+
+        .back-button {
+            display: inline-block;
+            background: rgba(255,255,255,0.25);
+            backdrop-filter: blur(10px);
+            padding: 12px 24px;
+            border-radius: 25px;
+            color: white;
+            text-decoration: none;
+            font-size: 1rem;
+            font-weight: 600;
+            transition: all 0.3s;
+            margin-bottom: 16px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+        }
+
+        .back-button:hover {
+            background: rgba(255,255,255,0.35);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(0,0,0,0.25);
+        }
+
+        .back-button::before {
+            content: '← ';
+            margin-left: 5px;
+        }
+
+        .header h1 {
+            font-size: 2em;
+            margin-bottom: 10px;
+        }
+
+        .header p {
+            font-size: 1.1em;
+            opacity: 0.9;
+        }
+
+        .progress-bar {
+            background: #f0f0f0;
+            height: 8px;
+            position: relative;
+        }
+
+        .progress-fill {
+            background: linear-gradient(90deg, #667eea 0%, #764ba2 100%);
+            height: 100%;
+            width: 0%;
+            transition: width 0.3s ease;
+        }
+
+        .content {
+            padding: 40px;
+        }
+
+        .section {
+            margin-bottom: 40px;
+            display: none;
+        }
+
+        .section.active {
+            display: block;
+            animation: fadeIn 0.5s;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .section-title {
+            font-size: 1.5em;
+            color: #667eea;
+            margin-bottom: 10px;
+            border-bottom: 3px solid #667eea;
+            padding-bottom: 10px;
+        }
+
+        .section-description {
+            color: #666;
+            margin-bottom: 30px;
+            font-size: 0.95em;
+        }
+
+        .question {
+            margin-bottom: 30px;
+            padding: 20px;
+            background: #f9f9f9;
+            border-radius: 10px;
+            border-right: 4px solid #667eea;
+        }
+
+        .question-text {
+            font-size: 1.1em;
+            font-weight: 600;
+            margin-bottom: 15px;
+            color: #333;
+        }
+
+        .question-impacts {
+            font-size: 0.85em;
+            color: #888;
+            margin-bottom: 10px;
+            font-style: italic;
+        }
+
+        .options {
+            margin-top: 15px;
+        }
+
+        .option {
+            margin-bottom: 12px;
+            padding: 12px 15px;
+            background: white;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+        }
+
+        .option:hover {
+            border-color: #667eea;
+            background: #f0f4ff;
+        }
+
+        .option input[type="radio"],
+        .option input[type="checkbox"] {
+            margin-left: 10px;
+            cursor: pointer;
+            width: 20px;
+            height: 20px;
+        }
+
+        .option label {
+            cursor: pointer;
+            flex: 1;
+            user-select: none;
+        }
+
+        .option.selected {
+            border-color: #667eea;
+            background: #f0f4ff;
+            font-weight: 600;
+        }
+
+        .sub-question {
+            margin-top: 15px;
+            margin-right: 30px;
+            padding: 15px;
+            background: #fff8e1;
+            border-radius: 8px;
+            display: none;
+        }
+
+        .sub-question.show {
+            display: block;
+        }
+
+        .buttons {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 2px solid #e0e0e0;
+        }
+
+        .btn {
+            padding: 12px 30px;
+            border: none;
+            border-radius: 8px;
+            font-size: 1em;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+        }
+
+        .btn-secondary {
+            background: #e0e0e0;
+            color: #666;
+        }
+
+        .btn-secondary:hover {
+            background: #d0d0d0;
+        }
+
+        .btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        /* תוצאות */
+        .results {
+            display: none;
+        }
+
+        .results.show {
+            display: block;
+        }
+
+        .results-header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .results-header h2 {
+            font-size: 2em;
+            color: #667eea;
+            margin-bottom: 10px;
+        }
+
+        .results-summary {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin-bottom: 40px;
+        }
+
+        .summary-card {
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+            color: white;
+        }
+
+        .summary-card.high {
+            background: linear-gradient(135deg, #11998e 0%, #38ef7d 100%);
+        }
+
+        .summary-card.medium {
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+        }
+
+        .summary-card.low {
+            background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+        }
+
+        .summary-card.info {
+            background: linear-gradient(135deg, #fa709a 0%, #fee140 100%);
+        }
+
+        .summary-card .number {
+            font-size: 3em;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        .summary-card .label {
+            font-size: 1em;
+        }
+
+        .benefits-section {
+            margin-bottom: 40px;
+        }
+
+        .benefits-section h3 {
+            font-size: 1.5em;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 3px solid;
+        }
+
+        .benefits-section.high h3 {
+            color: #11998e;
+            border-color: #11998e;
+        }
+
+        .benefits-section.medium h3 {
+            color: #f5576c;
+            border-color: #f5576c;
+        }
+
+        .benefits-section.low h3 {
+            color: #4facfe;
+            border-color: #4facfe;
+        }
+
+        .benefit-card {
+            padding: 20px;
+            margin-bottom: 15px;
+            border-radius: 10px;
+            border-right: 5px solid;
+            background: #f9f9f9;
+        }
+
+        .benefit-card.high {
+            border-color: #11998e;
+            background: #e8f8f5;
+        }
+
+        .benefit-card.medium {
+            border-color: #f5576c;
+            background: #fff0f3;
+        }
+
+        .benefit-card.low {
+            border-color: #4facfe;
+            background: #e8f8ff;
+        }
+
+        .benefit-title {
+            font-size: 1.3em;
+            font-weight: bold;
+            margin-bottom: 10px;
+            color: #333;
+        }
+
+        .benefit-reason {
+            font-size: 1em;
+            color: #666;
+            margin-bottom: 10px;
+        }
+
+        .benefit-action {
+            font-size: 1em;
+            font-weight: 600;
+            padding: 10px;
+            background: white;
+            border-radius: 5px;
+            margin-bottom: 8px;
+        }
+
+        .benefit-urgency {
+            display: inline-block;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 0.85em;
+            font-weight: bold;
+            color: white;
+        }
+
+        .benefit-urgency.high {
+            background: #e74c3c;
+        }
+
+        .benefit-urgency.medium {
+            background: #f39c12;
+        }
+
+        .benefit-urgency.low {
+            background: #3498db;
+        }
+
+        .benefit-note {
+            margin-top: 10px;
+            padding: 10px;
+            background: #fff8dc;
+            border-radius: 5px;
+            font-size: 0.9em;
+            font-style: italic;
+        }
+
+        /* ריכוז כל הקצבאות בסיכום */
+        .full-benefits-wrapper {
+            margin-top: 40px;
+            padding: 20px;
+            background: #f4f6fb;
+            border-radius: 12px;
+            border: 1px solid #e0e6f0;
+        }
+
+        .full-benefits-title {
+            font-size: 1.4em;
+            margin-bottom: 12px;
+            color: #34495e;
+        }
+
+        .full-benefit-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 12px;
+        }
+
+        .full-benefit-card {
+            padding: 14px;
+            border-radius: 10px;
+            background: white;
+            border-right: 5px solid #dfe6f2;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+        }
+
+        .full-benefit-card.high { border-color: #11998e; }
+        .full-benefit-card.medium { border-color: #f5576c; }
+        .full-benefit-card.low { border-color: #4facfe; }
+
+        .full-benefit-name {
+            font-weight: 700;
+            margin-bottom: 6px;
+            color: #2c3e50;
+        }
+
+        .full-benefit-audience {
+            font-size: 0.95em;
+            color: #607d8b;
+            line-height: 1.5;
+        }
+
+        .info-card {
+            padding: 15px;
+            margin-bottom: 10px;
+            background: #fff8dc;
+            border-radius: 8px;
+            border-right: 4px solid #f39c12;
+        }
+
+        .info-card .note {
+            font-weight: 600;
+            color: #333;
+        }
+
+        .print-button {
+            margin-top: 30px;
+            text-align: center;
+        }
+
+        @media print {
+            body {
+                background: white;
+            }
+            .buttons, .print-button {
+                display: none;
+            }
+        }
+
+        .loading {
+            text-align: center;
+            padding: 40px;
+        }
+
+        .spinner {
+            border: 4px solid #f3f3f3;
+            border-top: 4px solid #667eea;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 20px;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <a href="../BTL_index.html" class="back-button">חזרה לדף ראשי</a>
+            <h1>🧠 שאלון אינטק חכם (בפיתוח)</h1>
+            <p>זכויות אזרח ותיק - ביטוח לאומי</p>
+        </div>
+        
+        <div class="progress-bar">
+            <div class="progress-fill" id="progressFill"></div>
+        </div>
+
+        <div class="content">
+            <!-- שאלון -->
+            <form id="questionnaireForm">
+                <div id="sectionsContainer"></div>
+                
+                <div class="buttons">
+                    <button type="button" class="btn btn-secondary" id="prevBtn" style="display: none;">← הקודם</button>
+                    <button type="button" class="btn btn-primary" id="nextBtn">הבא →</button>
+                    <button type="button" class="btn btn-primary" id="submitBtn" style="display: none;">סיום וצפייה בתוצאות</button>
+                </div>
+            </form>
+
+            <!-- תוצאות -->
+            <div class="results" id="results">
+                <div class="results-header">
+                    <h2>📊 מפת הזכויות האישית שלך</h2>
+                    <p>להלן ניתוח מפורט של הזכויות הרלוונטיות עבורך</p>
+                </div>
+
+                <div class="results-summary" id="resultsSummary"></div>
+
+                <div id="highProbability" class="benefits-section high">
+                    <h3>✅ זכאות בסבירות גבוהה</h3>
+                    <div id="highBenefits"></div>
+                </div>
+
+                <div id="mediumProbability" class="benefits-section medium">
+                    <h3>⚠️ דורש בדיקה נוספת - סבירות בינונית</h3>
+                    <div id="mediumBenefits"></div>
+                </div>
+
+                <div id="notRelevant" class="benefits-section low">
+                    <h3>❌ לא רלוונטי כרגע</h3>
+                    <div id="notRelevantBenefits"></div>
+                </div>
+
+                <div id="additionalInfo">
+                    <h3 style="color: #f39c12; margin-bottom: 20px;">💡 מידע נוסף והערות חשובות</h3>
+                    <div id="infoBenefits"></div>
+                </div>
+
+                <!-- ריכוז מלא של כל הקצבאות מהאינדקס -->
+                <div id="fullBenefitsContainer" class="full-benefits-wrapper" style="display: none;">
+                    <div class="full-benefits-title">📑 כל הקצבאות והתשלומים לפי הטופס (ממופה לסבירות)</div>
+
+                    <div class="benefits-section high" id="fullHighBlock">
+                        <h3>✅ סבירות גבוהה</h3>
+                        <div id="fullHighList" class="full-benefit-list"></div>
+                    </div>
+
+                    <div class="benefits-section medium" id="fullMediumBlock">
+                        <h3>⚠️ סבירות בינונית</h3>
+                        <div id="fullMediumList" class="full-benefit-list"></div>
+                    </div>
+
+                    <div class="benefits-section low" id="fullLowBlock">
+                        <h3>❌ לא רלוונטי כרגע</h3>
+                        <div id="fullLowList" class="full-benefit-list"></div>
+                    </div>
+                </div>
+
+                <div class="print-button">
+                    <button class="btn btn-primary" onclick="window.print()">🖨️ הדפס תוצאות</button>
+                    <button class="btn btn-secondary" onclick="location.reload()">🔄 מלא שאלון מחדש</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="intake_engine.js"></script>
+    <script>
+        let questionsData = null;
+        let benefitsIndexData = null;
+        let allBenefits = [];
+        let currentSection = 0;
+        let answers = {};
+
+        const benefitAliasMap = {
+            'קצבת אזרח ותיק (זקנה)': ['קצבת אזרח ותיק', 'קצבת זקנה'],
+            'תוספת ותק': ['תוספת ותק'],
+            'תוספת דחיית קצבה': ['תוספת דחיית קצבה'],
+            'תוספת תלויים לאזרח ותיק': ['תוספת תלויים', 'תוספות תלויים', 'תוספת תלויים לנכה'],
+            'השלמת הכנסה לאזרח ותיק': ['השלמת הכנסה', 'הבטחת הכנסה', 'השלמת/הבטחת הכנסה'],
+            'קצבת שאירים': ['קצבת שאירים (אלמן/ה)', 'שאירים'],
+            'קצבת נכות כללית': ['נכות כללית'],
+            'קצבת שירותים מיוחדים (שרמ)': ['שירותים מיוחדים', 'שר"מ', 'שר״מ'],
+            'גמלת סיעוד': ['גמלת סיעוד', 'הגדלת גמלת סיעוד'],
+            'תשלום כספי בגמלת סיעוד': ['תשלום כספי בגמלת סיעוד'],
+            'דמי אבטלה': ['דמי אבטלה'],
+            'מענק הסתגלות': ['דמי הסתגלות', 'מענק הסתגלות'],
+            'גמלת ילד נכה': ['גמלת ילד נכה', 'גמלת ילד נכה / תוספת ילד נכה'],
+            'הבטחת הכנסה': ['הבטחת הכנסה']
+        };
+
+        const normalizeBenefitName = (name = '') => name.replace(/[()\s"׳״'\-]/g, '').toLowerCase();
+
+        const markBenefitStatus = (map, benefitName, status) => {
+            const norm = normalizeBenefitName(benefitName);
+            if (!norm) return;
+            map.set(norm, status);
+
+            // הלימה לשמות באינדקס לפי אליאסים
+            Object.entries(benefitAliasMap).forEach(([canonical, aliases]) => {
+                const allNames = [canonical, ...aliases];
+                if (allNames.some(name => normalizeBenefitName(name) === norm)) {
+                    allNames.forEach(n => map.set(normalizeBenefitName(n), status));
+                }
+            });
+        };
+
+        // טעינת השאלות מקובץ JSON
+        async function loadQuestions() {
+            try {
+                const [questionsRes, benefitsRes] = await Promise.all([
+                    fetch('intake_questions.json'),
+                    fetch('data/benefits-index.json')
+                ]);
+
+                questionsData = await questionsRes.json();
+                benefitsIndexData = await benefitsRes.json();
+                allBenefits = (benefitsIndexData?.categories || []).flatMap(cat =>
+                    (cat.items || []).map(item => ({ ...item, category: cat.title }))
+                );
+
+                renderCurrentSection();
+            } catch (error) {
+                console.error('שגיאה בטעינת השאלות:', error);
+                alert('שגיאה בטעינת השאלון. אנא רענן את הדף.');
+            }
+        }
+
+        // רינדור של חלק נוכחי
+        function renderCurrentSection() {
+            const container = document.getElementById('sectionsContainer');
+            container.innerHTML = '';
+
+            const section = questionsData.sections[currentSection];
+            const sectionDiv = document.createElement('div');
+            sectionDiv.className = 'section active';
+            sectionDiv.innerHTML = `
+                <h2 class="section-title">${section.title}</h2>
+                <p class="section-description">${section.description}</p>
+            `;
+
+            section.questions.forEach(question => {
+                const questionDiv = renderQuestion(question);
+                sectionDiv.appendChild(questionDiv);
+            });
+
+            container.appendChild(sectionDiv);
+            updateProgress();
+            updateButtons();
+
+            // גלילה כך שכותרת הפרק תהיה בראש החלון
+            const containerTop = container.getBoundingClientRect().top + window.scrollY;
+            window.scrollTo({ top: containerTop - 20, behavior: 'smooth' });
+        }
+
+        // רינדור של שאלה בודדת
+        function renderQuestion(question) {
+            const questionDiv = document.createElement('div');
+            questionDiv.className = 'question';
+            
+            let html = `<div class="question-text">${question.text}</div>`;
+            
+            if (question.impacts && question.impacts.length > 0) {
+                html += `<div class="question-impacts">משפיע על: ${question.impacts.join(', ')}</div>`;
+            }
+
+            html += '<div class="options">';
+
+            question.options.forEach((option, index) => {
+                const inputType = question.type === 'checkbox' ? 'checkbox' : 'radio';
+                const optionId = `${question.id}_${index}`;
+                const isSelected = question.type === 'checkbox'
+                    ? Array.isArray(answers[question.id]) && answers[question.id].includes(option.value)
+                    : answers[question.id] === option.value;
+                
+                html += `
+                    <div class="option${isSelected ? ' selected' : ''}" data-question="${question.id}" data-value="${option.value}">
+                        <input type="${inputType}" 
+                               id="${optionId}" 
+                               name="${question.id}" 
+                               value="${option.value}"
+                               ${question.type === 'checkbox'
+                                    ? (Array.isArray(answers[question.id]) && answers[question.id].includes(option.value) ? 'checked' : '')
+                                    : (answers[question.id] === option.value ? 'checked' : '')}>
+                        <label for="${optionId}">${option.label}</label>
+                    </div>
+                `;
+            });
+
+            html += '</div>';
+
+            // תת-שאלה אם קיימת
+            if (question.subQuestion) {
+                html += `
+                    <div class="sub-question" id="sub_${question.id}">
+                        <div class="question-text">${question.subQuestion.text}</div>
+                        <input type="${question.subQuestion.type}" 
+                               id="${question.subQuestion.id}" 
+                               name="${question.subQuestion.id}"
+                               min="${question.subQuestion.min || ''}"
+                               max="${question.subQuestion.max || ''}"
+                               value="${answers[question.subQuestion.id] || ''}"
+                               style="padding: 8px; border: 2px solid #ddd; border-radius: 5px; width: 150px;">
+                    </div>
+                `;
+            }
+
+            questionDiv.innerHTML = html;
+
+            // הוספת אירועים
+            questionDiv.querySelectorAll('.option').forEach(optionDiv => {
+                optionDiv.addEventListener('click', function(event) {
+                    const input = this.querySelector('input');
+                    const questionId = this.dataset.question;
+                    const value = this.dataset.value;
+
+                    if (question.type === 'radio') {
+                        // רדיו - רק אחד נבחר
+                        questionDiv.querySelectorAll('.option').forEach(opt => opt.classList.remove('selected'));
+                        this.classList.add('selected');
+                        input.checked = true;
+                        answers[questionId] = value;
+                    } else {
+                        // צ'קבוקס - מרובה
+                        const isInputTarget = event.target === input;
+                        const isLabelTarget = event.target.tagName === 'LABEL';
+
+                        // אם לחצו על הרקע של האופציה (לא על input/label) נהפוך את ה-checkbox
+                        if (!isInputTarget && !isLabelTarget) {
+                            input.checked = !input.checked;
+                        }
+
+                        const isChecked = input.checked;
+                        this.classList.toggle('selected', isChecked);
+
+                        if (!answers[questionId]) answers[questionId] = [];
+                        if (isChecked) {
+                            if (!answers[questionId].includes(value)) {
+                                answers[questionId].push(value);
+                            }
+                        } else {
+                            answers[questionId] = answers[questionId].filter(v => v !== value);
+                        }
+                    }
+
+                    // בדיקת תת-שאלה
+                    if (question.subQuestion) {
+                        const subQuestionDiv = document.getElementById(`sub_${questionId}`);
+                        const condition = question.subQuestion.condition;
+                        if (condition && condition[questionId] === value) {
+                            subQuestionDiv.classList.add('show');
+                        } else {
+                            subQuestionDiv.classList.remove('show');
+                        }
+                    }
+                });
+            });
+
+            // שמירת תת-תשובה
+            if (question.subQuestion) {
+                const subInput = questionDiv.querySelector(`#${question.subQuestion.id}`);
+                if (subInput) {
+                    subInput.addEventListener('input', function() {
+                        answers[question.subQuestion.id] = this.value;
+                    });
+                }
+            }
+
+            return questionDiv;
+        }
+
+        // עדכון פס התקדמות
+        function updateProgress() {
+            const progress = ((currentSection + 1) / questionsData.sections.length) * 100;
+            document.getElementById('progressFill').style.width = progress + '%';
+        }
+
+        // עדכון כפתורים
+        function updateButtons() {
+            const prevBtn = document.getElementById('prevBtn');
+            const nextBtn = document.getElementById('nextBtn');
+            const submitBtn = document.getElementById('submitBtn');
+
+            prevBtn.style.display = currentSection > 0 ? 'block' : 'none';
+            
+            if (currentSection === questionsData.sections.length - 1) {
+                nextBtn.style.display = 'none';
+                submitBtn.style.display = 'block';
+            } else {
+                nextBtn.style.display = 'block';
+                submitBtn.style.display = 'none';
+            }
+        }
+
+        // כפתור הבא
+        document.getElementById('nextBtn').addEventListener('click', () => {
+            if (currentSection < questionsData.sections.length - 1) {
+                currentSection++;
+                renderCurrentSection();
+            }
+        });
+
+        // כפתור קודם
+        document.getElementById('prevBtn').addEventListener('click', () => {
+            if (currentSection > 0) {
+                currentSection--;
+                renderCurrentSection();
+            }
+        });
+
+        // כפתור סיום
+        document.getElementById('submitBtn').addEventListener('click', () => {
+            showResults();
+        });
+
+        // הצגת תוצאות
+        function showResults() {
+            // ניתוח התשובות
+            const report = analyzeIntakeQuestionnaire(answers);
+            
+            // הסתרת הטופס והצגת התוצאות
+            document.getElementById('questionnaireForm').style.display = 'none';
+            document.getElementById('results').classList.add('show');
+
+            // סיכום
+            const summary = report.summary;
+            document.getElementById('resultsSummary').innerHTML = `
+                <div class="summary-card high">
+                    <div class="number">${summary.high_probability}</div>
+                    <div class="label">זכאות גבוהה</div>
+                </div>
+                <div class="summary-card medium">
+                    <div class="number">${summary.medium_probability}</div>
+                    <div class="label">דורש בדיקה</div>
+                </div>
+                <div class="summary-card low">
+                    <div class="number">${summary.not_relevant}</div>
+                    <div class="label">לא רלוונטי</div>
+                </div>
+                <div class="summary-card info">
+                    <div class="number">${summary.additional_info}</div>
+                    <div class="label">הערות</div>
+                </div>
+            `;
+
+            // זכאות גבוהה
+            const highBenefits = document.getElementById('highBenefits');
+            if (report.details.high_probability.length > 0) {
+                highBenefits.innerHTML = report.details.high_probability.map(b => `
+                    <div class="benefit-card high">
+                        <div class="benefit-title">✅ ${b.benefit}</div>
+                        <div class="benefit-reason">📋 ${b.reason}</div>
+                        <div class="benefit-action">🎯 ${b.action}</div>
+                        ${b.urgency ? `<span class="benefit-urgency ${b.urgency === 'גבוהה' || b.urgency.includes('דחופה') ? 'high' : b.urgency === 'בינונית' ? 'medium' : 'low'}">${b.urgency}</span>` : ''}
+                        ${b.note ? `<div class="benefit-note">💡 ${b.note}</div>` : ''}
+                    </div>
+                `).join('');
+            } else {
+                document.getElementById('highProbability').style.display = 'none';
+            }
+
+            // זכאות בינונית
+            const mediumBenefits = document.getElementById('mediumBenefits');
+            if (report.details.medium_probability.length > 0) {
+                mediumBenefits.innerHTML = report.details.medium_probability.map(b => `
+                    <div class="benefit-card medium">
+                        <div class="benefit-title">⚠️ ${b.benefit}</div>
+                        <div class="benefit-reason">📋 ${b.reason}</div>
+                        <div class="benefit-action">🎯 ${b.action}</div>
+                        ${b.urgency ? `<span class="benefit-urgency ${b.urgency === 'גבוהה' ? 'high' : b.urgency === 'בינונית' ? 'medium' : 'low'}">${b.urgency}</span>` : ''}
+                        ${b.note ? `<div class="benefit-note">💡 ${b.note}</div>` : ''}
+                    </div>
+                `).join('');
+            } else {
+                document.getElementById('mediumProbability').style.display = 'none';
+            }
+
+            // לא רלוונטי
+            const notRelevantBenefits = document.getElementById('notRelevantBenefits');
+            if (report.details.not_relevant.length > 0) {
+                notRelevantBenefits.innerHTML = report.details.not_relevant.map(b => `
+                    <div class="benefit-card low">
+                        <div class="benefit-title">❌ ${b.benefit}</div>
+                        <div class="benefit-reason">📋 ${b.reason}</div>
+                    </div>
+                `).join('');
+            } else {
+                document.getElementById('notRelevant').style.display = 'none';
+            }
+
+            // מידע נוסף
+            const infoBenefits = document.getElementById('infoBenefits');
+            if (report.details.additional_info.length > 0) {
+                infoBenefits.innerHTML = report.details.additional_info.map(b => `
+                    <div class="info-card">
+                        <div class="note"><strong>${b.benefit || ''}</strong> ${b.note}</div>
+                        ${b.urgency ? `<span class="benefit-urgency ${b.urgency === 'חשוב' ? 'high' : 'medium'}">${b.urgency}</span>` : ''}
+                    </div>
+                `).join('');
+            } else {
+                document.getElementById('additionalInfo').style.display = 'none';
+            }
+
+            // ריכוז מלא של כל הקצבאות והתשלומים מהאינדקס
+            buildFullBenefitsSummary(report);
+
+            // גלילה לראש הדף
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        function buildFullBenefitsSummary(report) {
+            if (!allBenefits || allBenefits.length === 0) return;
+
+            const statusMap = new Map();
+            markBenefitStatusList(report.details.high_probability || [], 'high');
+            markBenefitStatusList(report.details.medium_probability || [], 'medium');
+            markBenefitStatusList(report.details.not_relevant || [], 'low');
+
+            const grouped = { high: [], medium: [], low: [] };
+            allBenefits.forEach(item => {
+                const status = statusMap.get(normalizeBenefitName(item.name)) || 'low';
+                grouped[status].push(item);
+            });
+
+            renderFullList('fullHighBlock', 'fullHighList', grouped.high, 'high');
+            renderFullList('fullMediumBlock', 'fullMediumList', grouped.medium, 'medium');
+            renderFullList('fullLowBlock', 'fullLowList', grouped.low, 'low');
+
+            document.getElementById('fullBenefitsContainer').style.display = 'block';
+
+            function markBenefitStatusList(list, status) {
+                list.forEach(item => markBenefitStatus(statusMap, item.benefit || item.name, status));
+            }
+        }
+
+        function renderFullList(blockId, listId, items, cssClass) {
+            const block = document.getElementById(blockId);
+            const listEl = document.getElementById(listId);
+            if (!items || items.length === 0) {
+                block.style.display = 'none';
+                return;
+            }
+            block.style.display = 'block';
+            listEl.innerHTML = items.map(item => `
+                <div class="full-benefit-card ${cssClass}">
+                    <div class="full-benefit-name">${item.name}</div>
+                    <div class="full-benefit-audience">${item.audience || ''}</div>
+                </div>
+            `).join('');
+        }
+
+        // טעינה ראשונית
+        loadQuestions();
+    </script>
+</body>
+</html>
