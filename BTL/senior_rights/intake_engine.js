@@ -6,12 +6,32 @@
 class IntakeAnalyzer {
     constructor(answers) {
         this.answers = answers;
+        // Derived fields from intro questions
+        this.ageCategory = this.computeAgeCategory();
+        this.residency = this.answers.q0_residency || this.answers.q2_residency;
         this.results = {
             high_probability: [],
             medium_probability: [],
             not_relevant: [],
             additional_info: []
         };
+    }
+
+    /**
+     * Compute age category from numeric age and gender.
+     * Categories: under_retirement | retirement_to_70 | above_70
+     */
+    computeAgeCategory() {
+        const ageNum = parseInt(this.answers.q0_age, 10);
+        const gender = this.answers.q0_gender; // 'male' | 'female'
+        if (isNaN(ageNum)) {
+            // fallback to previous categorical answer if present
+            return this.answers.q1_age || 'under_retirement';
+        }
+        const retirementAge = gender === 'female' ? 62 : 67;
+        if (ageNum < retirementAge) return 'under_retirement';
+        if (ageNum <= 70) return 'retirement_to_70';
+        return 'above_70';
     }
 
     /**
@@ -37,8 +57,8 @@ class IntakeAnalyzer {
      * קצבת אזרח ותיק
      */
     analyzeSeniorCitizenPension() {
-        const age = this.answers.q1_age;
-        const residency = this.answers.q2_residency;
+        const age = this.ageCategory;
+        const residency = this.residency;
         const currentBenefits = this.answers.q17_current_benefits || [];
 
         if (residency === 'abroad') {
@@ -76,7 +96,7 @@ class IntakeAnalyzer {
      * השלמת הכנסה / הבטחת הכנסה
      */
     analyzeIncomeSupplementGuarantee() {
-        const age = this.answers.q1_age;
+        const age = this.ageCategory;
         const incomeLevel = this.answers.q7_income_level;
         const assets = this.answers.q8_assets || [];
         const vehicles = this.answers.q9b_vehicles;
@@ -132,7 +152,7 @@ class IntakeAnalyzer {
      * גמלת סיעוד
      */
     analyzeNursingBenefit() {
-        const age = this.answers.q1_age;
+        const age = this.ageCategory;
         const difficulty = this.answers.q9_daily_difficulty;
         const assistance = this.answers.q11_daily_assistance;
         const difficultyTypes = this.answers.q10_difficulty_types || [];
@@ -204,7 +224,7 @@ class IntakeAnalyzer {
         const disability = this.answers.q12_disability;
         const previousClaim = this.answers.q13_previous_claim;
         const workLimitation = this.answers.q14_work_limitation;
-        const age = this.answers.q1_age;
+        const age = this.ageCategory;
         const currentBenefits = this.answers.q17_current_benefits || [];
 
         if (currentBenefits.includes('disability')) {
@@ -278,7 +298,7 @@ class IntakeAnalyzer {
      * שירותים מיוחדים (שר״מ)
      */
     analyzeSpecialServices() {
-        const age = this.answers.q1_age;
+        const age = this.ageCategory;
         const difficulty = this.answers.q9_daily_difficulty;
         
         if (age === 'above_70' && (difficulty === 'moderate' || difficulty === 'severe')) {

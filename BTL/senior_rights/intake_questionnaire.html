@@ -401,6 +401,14 @@
             font-style: italic;
         }
 
+        /* שגיאות ולידציה */
+        .validation-error {
+            color: #e74c3c;
+            margin-top: 8px;
+            font-size: 0.9em;
+            font-weight: 600;
+        }
+
         /* ריכוז כל הקצבאות בסיכום */
         .full-benefits-wrapper {
             margin-top: 40px;
@@ -619,20 +627,45 @@
         // טעינת השאלות מקובץ JSON
         async function loadQuestions() {
             try {
+                const ts = Date.now();
                 const [questionsRes, benefitsRes] = await Promise.all([
-                    fetch('intake_questions.json'),
-                    fetch('data/benefits-index.json')
+                    fetch(`intake_questions.json?ts=${ts}`, { cache: 'no-cache' }),
+                    fetch(`data/benefits-index.json?ts=${ts}`, { cache: 'no-cache' })
                 ]);
 
-                questionsData = await questionsRes.json();
-                benefitsIndexData = await benefitsRes.json();
+                if (!questionsRes.ok) {
+                    throw new Error(`טעינת שאלות נכשלה: ${questionsRes.status} ${questionsRes.statusText}`);
+                }
+                if (!benefitsRes.ok) {
+                    throw new Error(`טעינת אינדקס קצבאות נכשלה: ${benefitsRes.status} ${benefitsRes.statusText}`);
+                }
+
+                try {
+                    questionsData = await questionsRes.json();
+                } catch (e) {
+                    throw new Error('פורמט JSON לשאלות אינו תקין');
+                }
+                try {
+                    benefitsIndexData = await benefitsRes.json();
+                } catch (e) {
+                    throw new Error('פורמט JSON לאינדקס הקצבאות אינו תקין');
+                }
+
                 allBenefits = (benefitsIndexData?.categories || []).flatMap(cat =>
                     (cat.items || []).map(item => ({ ...item, category: cat.title }))
                 );
 
                 renderCurrentSection();
             } catch (error) {
-                console.error('שגיאה בטעינת השאלות:', error);
+                console.error('שגיאה בטעינת השאלון:', error);
+                const container = document.getElementById('sectionsContainer');
+                container.innerHTML = `
+                    <div class="info-card">
+                        <div class="note">אירעה שגיאה בטעינת השאלון</div>
+                        <div>נסה לרענן את הדף. אם הבעיה נמשכת, בדוק את החיבור לאינטרנט או פנה לתמיכה.</div>
+                        <div style="margin-top:8px; color:#888; font-size:0.9em;">פירוט טכני: ${error.message}</div>
+                    </div>
+                `;
                 alert('שגיאה בטעינת השאלון. אנא רענן את הדף.');
             }
         }
@@ -642,22 +675,53 @@
             const container = document.getElementById('sectionsContainer');
             container.innerHTML = '';
 
+            if (!questionsData || !Array.isArray(questionsData.sections)) {
+                console.error('questionsData.sections לא מוגדר או אינו מערך', questionsData);
+                container.innerHTML = `
+                    <div class="info-card">
+                        <div class="note">לא נמצאו שאלות להצגה</div>
+                        <div>ייתכן שהקובץ לא נטען או מבנה הנתונים השתנה.</div>
+                    </div>
+                `;
+                return;
+            }
+
             const section = questionsData.sections[currentSection];
+            if (!section) {
+                console.error('פרק לא נמצא עבור אינדקס', { currentSection, total: questionsData.sections.length });
+                container.innerHTML = `
+                    <div class="info-card">
+                        <div class="note">שגיאה: פרק מספר ${currentSection + 1} לא נמצא</div>
+                        <div>סך הפרקים: ${questionsData.sections.length}</div>
+                    </div>
+                `;
+                return;
+            }
+
             const sectionDiv = document.createElement('div');
             sectionDiv.className = 'section active';
             sectionDiv.innerHTML = `
-                <h2 class="section-title">${section.title}</h2>
-                <p class="section-description">${section.description}</p>
+                <h2 class="section-title">${section.title || 'פרק ללא כותרת'}</h2>
+                <p class="section-description">${section.description || ''}</p>
             `;
 
-            section.questions.forEach(question => {
-                const questionDiv = renderQuestion(question);
-                sectionDiv.appendChild(questionDiv);
-            });
+            if (!Array.isArray(section.questions) || section.questions.length === 0) {
+                console.warn('אין שאלות בפרק', section);
+                const warn = document.createElement('div');
+                warn.className = 'info-card';
+                warn.innerHTML = '<div class="note">אין שאלות בפרק זה</div>';
+                sectionDiv.appendChild(warn);
+            } else {
+                section.questions.forEach(question => {
+                    const questionDiv = renderQuestion(question);
+                    sectionDiv.appendChild(questionDiv);
+                });
+            }
 
             container.appendChild(sectionDiv);
             updateProgress();
             updateButtons();
+            updateConditionalQuestions(); // עדכן הסתרה/הצגה של שאלות תנאיות
 
             // גלילה כך שכותרת הפרק תהיה בראש החלון
             const containerTop = container.getBoundingClientRect().top + window.scrollY;
@@ -668,6 +732,7 @@
         function renderQuestion(question) {
             const questionDiv = document.createElement('div');
             questionDiv.className = 'question';
+            questionDiv.setAttribute('data-qid', question.id);
             
             let html = `<div class="question-text">${question.text}</div>`;
             
@@ -675,28 +740,51 @@
                 html += `<div class="question-impacts">משפיע על: ${question.impacts.join(', ')}</div>`;
             }
 
-            html += '<div class="options">';
-
-            question.options.forEach((option, index) => {
-                const inputType = question.type === 'checkbox' ? 'checkbox' : 'radio';
-                const optionId = `${question.id}_${index}`;
-                const isSelected = question.type === 'checkbox'
-                    ? Array.isArray(answers[question.id]) && answers[question.id].includes(option.value)
-                    : answers[question.id] === option.value;
-                
+            // שדה קלט מספר או טקסט
+            if (question.type === 'number' || question.type === 'text') {
                 html += `
-                    <div class="option${isSelected ? ' selected' : ''}" data-question="${question.id}" data-value="${option.value}">
-                        <input type="${inputType}" 
-                               id="${optionId}" 
-                               name="${question.id}" 
-                               value="${option.value}"
-                               ${question.type === 'checkbox'
-                                    ? (Array.isArray(answers[question.id]) && answers[question.id].includes(option.value) ? 'checked' : '')
-                                    : (answers[question.id] === option.value ? 'checked' : '')}>
-                        <label for="${optionId}">${option.label}</label>
+                    <div class="options">
+                        <input type="${question.type}" 
+                               id="${question.id}" 
+                               name="${question.id}"
+                               min="${question.min || ''}"
+                               max="${question.max || ''}"
+                               ${question.required ? 'required' : ''}
+                               placeholder="${question.placeholder || ''}"
+                               value="${answers[question.id] || ''}"
+                               style="padding: 12px; border: 2px solid #ddd; border-radius: 8px; width: 200px; font-size: 1em;">
                     </div>
                 `;
-            });
+            } else {
+                // רדיו או צ'קבוקס
+                html += '<div class="options">';
+
+                question.options.forEach((option, index) => {
+                    const inputType = question.type === 'checkbox' ? 'checkbox' : 'radio';
+                    const optionId = `${question.id}_${index}`;
+                    const isSelected = question.type === 'checkbox'
+                        ? Array.isArray(answers[question.id]) && answers[question.id].includes(option.value)
+                        : answers[question.id] === option.value;
+
+                    const checkedAttr = (function(){
+                        if (question.type === 'checkbox') {
+                            return (Array.isArray(answers[question.id]) && answers[question.id].includes(option.value)) ? 'checked' : '';
+                        }
+                        return (answers[question.id] === option.value) ? 'checked' : '';
+                    })();
+
+                    const selectedClass = isSelected ? ' selected' : '';
+
+                    html += `
+                        <div class="option${selectedClass}" data-question="${question.id}" data-value="${option.value}">
+                            <input type="${inputType}" 
+                                   id="${optionId}" 
+                                   name="${question.id}" 
+                                   value="${option.value}" ${checkedAttr}>
+                            <label for="${optionId}">${option.label}</label>
+                        </div>
+                    `;
+                });
 
             html += '</div>';
 
@@ -715,10 +803,23 @@
                     </div>
                 `;
             }
+            } // סיום בלוק רדיו/צ'קבוקס
 
             questionDiv.innerHTML = html;
 
             // הוספת אירועים
+            // קלט מסוג מספר/טקסט – שמירת ערך ישירות
+            if (question.type === 'number' || question.type === 'text') {
+                const inputEl = questionDiv.querySelector('input');
+                if (inputEl) {
+                    inputEl.addEventListener('input', function() {
+                        answers[question.id] = this.value;
+                        updateConditionalQuestions(); // עדכן תנאים
+                    });
+                }
+            }
+
+            // אפשרויות רדיו/צ'קבוקס
             questionDiv.querySelectorAll('.option').forEach(optionDiv => {
                 optionDiv.addEventListener('click', function(event) {
                     const input = this.querySelector('input');
@@ -731,6 +832,7 @@
                         this.classList.add('selected');
                         input.checked = true;
                         answers[questionId] = value;
+                        updateConditionalQuestions(); // עדכן תנאים
                     } else {
                         // צ'קבוקס - מרובה
                         const isInputTarget = event.target === input;
@@ -752,6 +854,7 @@
                         } else {
                             answers[questionId] = answers[questionId].filter(v => v !== value);
                         }
+                        updateConditionalQuestions(); // עדכן תנאים
                     }
 
                     // בדיקת תת-שאלה
@@ -780,6 +883,113 @@
             return questionDiv;
         }
 
+        // בדיקת עמידה בכללי ולידציה בפרק הנוכחי
+        function validateCurrentSection() {
+            // הסרת שגיאות קודמות
+            document.querySelectorAll('.validation-error').forEach(el => el.remove());
+
+            const section = questionsData.sections[currentSection];
+            let valid = true;
+
+            const conditionMet = (cond) => {
+                if (!cond) return true;
+                return Object.entries(cond).every(([qid, expected]) => {
+                    const ans = answers[qid];
+                    if (Array.isArray(expected)) return expected.includes(ans);
+                    return ans === expected;
+                });
+            };
+
+            const showError = (qid, message) => {
+                const qEl = document.querySelector(`.question[data-qid="${qid}"]`);
+                if (!qEl) return;
+                const err = document.createElement('div');
+                err.className = 'validation-error';
+                err.textContent = message;
+                qEl.appendChild(err);
+            };
+
+            section.questions.forEach(q => {
+                if (!q.required) return;
+                if (q.condition && !conditionMet(q.condition)) return; // אל תחייב אם התנאי לא מתקיים
+
+                const val = answers[q.id];
+                if (q.type === 'number') {
+                    const num = Number(val);
+                    const hasVal = val !== undefined && val !== '' && !Number.isNaN(num);
+                    if (!hasVal) {
+                        showError(q.id, 'נא להזין ערך מספרי');
+                        valid = false;
+                        return;
+                    }
+                    if (q.min !== undefined && num < q.min) {
+                        showError(q.id, `הערך נמוך מהמותר (מינימום ${q.min})`);
+                        valid = false;
+                        return;
+                    }
+                    if (q.max !== undefined && num > q.max) {
+                        showError(q.id, `הערך גבוה מהמותר (מקסימום ${q.max})`);
+                        valid = false;
+                        return;
+                    }
+                } else if (q.type === 'text') {
+                    if (!val || String(val).trim() === '') {
+                        showError(q.id, 'שדה חובה');
+                        valid = false;
+                        return;
+                    }
+                } else if (q.type === 'radio') {
+                    if (!val) {
+                        showError(q.id, 'נא לבחור אפשרות');
+                        valid = false;
+                        return;
+                    }
+                } else if (q.type === 'checkbox') {
+                    if (!Array.isArray(val) || val.length === 0) {
+                        showError(q.id, 'נא לבחור לפחות אפשרות אחת');
+                        valid = false;
+                        return;
+                    }
+                }
+            });
+
+            if (!valid) {
+                // גלילה לשגיאה הראשונה
+                const firstErr = document.querySelector('.validation-error');
+                if (firstErr) {
+                    const top = firstErr.getBoundingClientRect().top + window.scrollY - 60;
+                    window.scrollTo({ top, behavior: 'smooth' });
+                }
+            }
+            return valid;
+        }
+
+        // עדכון הסתרה/הצגה של שאלות תנאיות בתוך הפרק הנוכחי
+        function updateConditionalQuestions() {
+            const section = questionsData.sections[currentSection];
+            if (!section || !Array.isArray(section.questions)) return;
+
+            section.questions.forEach(q => {
+                if (!q.condition) return; // בחור רק שאלות עם תנאים
+
+                // בדוק אם התנאי מתקיים
+                let conditionMet = true;
+                Object.entries(q.condition).forEach(([depQid, expectedVals]) => {
+                    const depAnswer = answers[depQid];
+                    const expected = Array.isArray(expectedVals) ? expectedVals : [expectedVals];
+                    if (!expected.includes(depAnswer)) {
+                        conditionMet = false;
+                    }
+                });
+
+                // הסתר/הראה את השאלה
+                const qEl = document.querySelector(`.question[data-qid="${q.id}"]`);
+                if (qEl) {
+                    qEl.style.display = conditionMet ? 'block' : 'none';
+                }
+            });
+        }
+
         // עדכון פס התקדמות
         function updateProgress() {
             const progress = ((currentSection + 1) / questionsData.sections.length) * 100;
@@ -805,6 +1015,7 @@
 
         // כפתור הבא
         document.getElementById('nextBtn').addEventListener('click', () => {
+            if (!validateCurrentSection()) return;
             if (currentSection < questionsData.sections.length - 1) {
                 currentSection++;
                 renderCurrentSection();
@@ -821,6 +1032,7 @@
 
         // כפתור סיום
         document.getElementById('submitBtn').addEventListener('click', () => {
+            if (!validateCurrentSection()) return;
             showResults();
         });
 

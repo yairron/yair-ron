@@ -1072,7 +1072,7 @@ class QuestionnaireEngine {
         if (vehicleValue > extendedThreshold) {
             return {
                 deduction: 0,
-                note: 'שווי הרכב גבוה מ-65,343 ₪ - אין זכאות לקצבה (אלא במקרים מיוחדים בלבד). יש לפנות לביטוח הלאומי לבדיקה ידנית.'
+                note: '<span style="color: #d32f2f; font-weight: bold;">שווי רכב גבוה מהתקרה המקסימלית - יש אפשרות לקצבה רק במקרים מיוחדים. לפרטים נוספים מומלץ לפנות לביטוח הלאומי</span>'
             };
         }
 

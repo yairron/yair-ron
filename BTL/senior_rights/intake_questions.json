@@ -2,29 +2,37 @@
   "metadata": {
     "title": "שאלון אינטק חכם - זכויות אזרח ותיק",
     "description": "שאלון לזיהוי זכויות רלוונטיות מביטוח לאומי",
-    "version": "1.0",
-    "date": "2026-01-25"
+    "version": "2.0",
+    "date": "2026-01-26"
   },
   "sections": [
     {
-      "id": "section_1",
-      "title": "חלק א׳ - סינון בסיסי",
-      "description": "שאלות יסוד לזיהוי זכאות בסיסית",
+      "id": "section_0",
+      "title": "חלק א׳ - פרטים בסיסיים",
+      "description": "מידע ראשוני לזיהוי זכויות",
       "questions": [
         {
-          "id": "q1_age",
+          "id": "q0_gender",
           "type": "radio",
           "required": true,
-          "text": "מה גילך?",
+          "text": "מהו מינך?",
           "options": [
-            {"value": "under_retirement", "label": "מתחת לגיל פרישה (גברים מתחת ל-67, נשים מתחת ל-62)"},
-            {"value": "retirement_to_70", "label": "בגיל פרישה עד 70"},
-            {"value": "above_70", "label": "מעל גיל 70"}
+            {"value": "male", "label": "אני גבר"},
+            {"value": "female", "label": "אני אישה"}
           ],
-          "impacts": ["אזרח ותיק", "סיעוד", "שר״מ"]
+          "impacts": ["גיל פרישה", "זכאות בסיסית"]
         },
         {
-          "id": "q2_residency",
+          "id": "q0_age",
+          "type": "number",
+          "required": true,
+          "text": "בן/בת כמה את/ה?",
+          "min": 18,
+          "max": 120,
+          "impacts": ["כל הקצבאות", "גיל פרישה", "אזרח ותיק"]
+        },
+        {
+          "id": "q0_residency",
           "type": "radio",
           "required": true,
           "text": "מה סטטוס התושבות שלך?",
@@ -38,9 +46,9 @@
       ]
     },
     {
-      "id": "section_2",
-      "title": "חלק ב׳ - מצב משפחתי ותלויים",
-      "description": "פרטים משפחתיים המשפיעים על תוספות",
+      "id": "section_1",
+      "title": "חלק ב׳ - מצב משפחתי",
+      "description": "מידע משפחתי המשפיע על תוספות וזכויות",
       "questions": [
         {
           "id": "q3_marital",
@@ -53,7 +61,7 @@
             {"value": "divorced", "label": "גרוש/ה"},
             {"value": "widowed", "label": "אלמן/ה"}
           ],
-          "impacts": ["תוספות זוג", "השלמת הכנסה"]
+          "impacts": ["תוספות זוג", "השלמת הכנסה", "קצבת שאירים"]
         },
         {
           "id": "q4_partner_living",
@@ -65,56 +73,11 @@
             {"value": "no", "label": "לא"}
           ],
           "impacts": ["תוספות תלויים"]
-        },
-        {
-          "id": "q5_dependent_children",
-          "type": "radio",
-          "required": true,
-          "text": "האם יש ילדים הנתמכים על־ידך מתחת לגיל 24?",
-          "options": [
-            {"value": "no", "label": "לא"},
-            {"value": "1", "label": "כן - ילד 1"},
-            {"value": "2", "label": "כן - 2 ילדים"},
-            {"value": "3_plus", "label": "כן - 3 ילדים ומעלה"}
-          ],
-          "impacts": ["תוספות תלויים", "השלמת הכנסה"]
-        },
-        {
-          "id": "q6a_disabled_child",
-          "type": "radio",
-          "required": true,
-          "text": "האם יש לך ילד עם נכות מוכרת (בכל גיל)?",
-          "options": [
-            {"value": "no", "label": "לא"},
-            {"value": "yes", "label": "כן"}
-          ],
-          "subQuestion": {
-            "id": "q6a_child_age",
-            "type": "number",
-            "condition": {"q6a_disabled_child": "yes"},
-            "text": "גיל הילד:",
-            "min": 0,
-            "max": 100
-          },
-          "impacts": ["תוספות תלויים", "גמלת ילד נכה", "השלמת הכנסה"]
-        },
-        {
-          "id": "q6b_orphans",
-          "type": "radio",
-          "required": true,
-          "text": "האם יש ילדים יתומים הנתמכים על־ידך?",
-          "options": [
-            {"value": "no", "label": "לא"},
-            {"value": "1", "label": "כן - יתום 1"},
-            {"value": "2", "label": "כן - 2 יתומים"},
-            {"value": "3_plus", "label": "כן - 3 יתומים ומעלה"}
-          ],
-          "impacts": ["קצבאות שאירים", "תוספות מיוחדות"]
         }
       ]
     },
     {
-      "id": "section_3",
+      "id": "section_2",
       "title": "חלק ג׳ - הכנסות ונכסים",
       "description": "מידע כלכלי לבדיקת זכאות",
       "questions": [
@@ -185,7 +148,7 @@
       ]
     },
     {
-      "id": "section_4",
+      "id": "section_3",
       "title": "חלק ד׳ - תפקוד יומיומי",
       "description": "הערכת צורך בסיוע (קריטי לזכאות סיעוד)",
       "questions": [
@@ -233,19 +196,19 @@
       ]
     },
     {
-      "id": "section_5",
-      "title": "חלק ה׳ - מצב רפואי ותעסוקתי",
-      "description": "נכות ומגבלות",
+      "id": "section_4",
+      "title": "חלק ה׳ - נכות וקצבאות קיימות",
+      "description": "רקע על נכות וקצבאות שכבר מתקבלות",
       "questions": [
         {
           "id": "q12_disability",
           "type": "radio",
           "required": true,
-          "text": "האם קיימת נכות רפואית מוכרת?",
+          "text": "האם קיימת נכות רפואית מוכרת על ידי ביטוח לאומי?",
           "options": [
-            {"value": "yes", "label": "כן"},
-            {"value": "no", "label": "לא"},
-            {"value": "not_checked", "label": "לא נבדק"}
+            {"value": "yes", "label": "כן - מוכרת"},
+            {"value": "no", "label": "לא - אין נכות"},
+            {"value": "not_checked", "label": "לא נבדקה"}
           ],
           "impacts": ["נכות כללית", "סיעוד"]
         },
@@ -253,7 +216,7 @@
           "id": "q13_previous_claim",
           "type": "radio",
           "required": true,
-          "text": "האם הוגשה בעבר תביעה לנכות / סיעוד?",
+          "text": "האם הוגשה בעבר תביעה לנכות או סיעוד?",
           "options": [
             {"value": "approved", "label": "כן - אושרה"},
             {"value": "rejected", "label": "כן - נדחתה"},
@@ -261,48 +224,22 @@
           ]
         },
         {
-          "id": "q14_work_limitation",
-          "type": "radio",
+          "id": "q17_current_benefits",
+          "type": "checkbox",
           "required": true,
-          "text": "האם יש מגבלה שמונעת עבודה?",
+          "text": "אילו קצבאות מביטוח לאומי אתה מקבל כרגע?",
           "options": [
-            {"value": "not_relevant", "label": "לא רלוונטי (בגיל פרישה)"},
-            {"value": "yes", "label": "כן"},
-            {"value": "no", "label": "לא"}
+            {"value": "senior", "label": "אזרח ותיק"},
+            {"value": "nursing", "label": "סיעוד"},
+            {"value": "disability", "label": "נכות"},
+            {"value": "survivors", "label": "שאירים"},
+            {"value": "none", "label": "אף אחת"}
           ]
-        },
-        {
-          "id": "q14a_work_end_reason",
-          "type": "radio",
-          "required": true,
-          "text": "האם סיימת עבודה בשנים האחרונות עקב:",
-          "options": [
-            {"value": "layoff", "label": "פיטורים"},
-            {"value": "closure", "label": "סגירת מקום עבודה"},
-            {"value": "health", "label": "מצב בריאותי"},
-            {"value": "retirement", "label": "יציאה לגמלאות"},
-            {"value": "other", "label": "אחר"},
-            {"value": "not_relevant", "label": "לא רלוונטי"}
-          ],
-          "impacts": ["דמי הסתגלות"]
-        },
-        {
-          "id": "q14b_work_end_age",
-          "type": "radio",
-          "required": true,
-          "text": "האם הפסקת עבודה לאחר גיל פרישה (67 גבר / 62-65 אישה)?",
-          "options": [
-            {"value": "yes", "label": "כן"},
-            {"value": "no", "label": "לא"},
-            {"value": "not_relevant", "label": "לא רלוונטי"}
-          ],
-          "impacts": ["דמי הסתגלות"],
-          "critical": true
         }
       ]
     },
     {
-      "id": "section_6",
+      "id": "section_5",
       "title": "חלק ו׳ - מגורים וסיוע",
       "description": "סביבת מגורים ומטפלים",
       "questions": [
@@ -332,9 +269,9 @@
       ]
     },
     {
-      "id": "section_7",
-      "title": "חלק ז׳ - היסטוריה ביטוחית",
-      "description": "רקע תשלומים וזכויות",
+      "id": "section_6",
+      "title": "חלק ז׳ - היסטוריה ביטוחית ותעסוקה",
+      "description": "רקע תשלומים, עבודה וזכויות קודמות",
       "questions": [
         {
           "id": "q13a_insurance_months",
@@ -351,6 +288,45 @@
           "critical": true
         },
         {
+          "id": "q14_work_limitation",
+          "type": "radio",
+          "required": true,
+          "text": "האם יש מגבלה שמונעת עבודה?",
+          "options": [
+            {"value": "not_relevant", "label": "לא רלוונטי (בגיל פרישה)"},
+            {"value": "yes", "label": "כן"},
+            {"value": "no", "label": "לא"}
+          ]
+        },
+        {
+          "id": "q14a_work_end_reason",
+          "type": "radio",
+          "required": true,
+          "text": "האם סיימת עבודה בשנים האחרונות?",
+          "options": [
+            {"value": "layoff", "label": "פיטורים"},
+            {"value": "closure", "label": "סגירת מקום עבודה"},
+            {"value": "health", "label": "מצב בריאותי"},
+            {"value": "retirement", "label": "יציאה לגמלאות"},
+            {"value": "other", "label": "אחר"},
+            {"value": "not_relevant", "label": "לא סיימתי עבודה"}
+          ],
+          "impacts": ["דמי הסתגלות"]
+        },
+        {
+          "id": "q14b_work_end_age",
+          "type": "radio",
+          "required": false,
+          "text": "האם הפסקת עבודה לאחר גיל פרישה (67 גבר / 62-65 אישה)?",
+          "condition": {"q14a_work_end_reason": ["layoff", "closure", "health", "retirement", "other"]},
+          "options": [
+            {"value": "yes", "label": "כן"},
+            {"value": "no", "label": "לא"}
+          ],
+          "impacts": ["דמי הסתגלות"],
+          "critical": true
+        },
+        {
           "id": "q13b_unemployment_benefit",
           "type": "radio",
           "required": true,
@@ -361,19 +337,6 @@
             {"value": "no", "label": "לא"}
           ],
           "impacts": ["חישוב זכויות עבר", "רצף ביטוחי"]
-        },
-        {
-          "id": "q17_current_benefits",
-          "type": "checkbox",
-          "required": true,
-          "text": "האם מתקבלות כיום קצבאות מביטוח לאומי?",
-          "options": [
-            {"value": "senior", "label": "אזרח ותיק"},
-            {"value": "nursing", "label": "סיעוד"},
-            {"value": "disability", "label": "נכות"},
-            {"value": "survivors", "label": "שאירים"},
-            {"value": "none", "label": "אין"}
-          ]
         },
         {
           "id": "q18_condition_worsening",
@@ -390,15 +353,507 @@
           "id": "q19a_past_benefits",
           "type": "checkbox",
           "required": true,
-          "text": "האם קיבלת אי פעם אחת מהקצבאות הבאות?",
+          "text": "אילו קצבאות קיבלת בעבר?",
           "options": [
             {"value": "unemployment", "label": "דמי אבטלה"},
             {"value": "adaptation", "label": "דמי הסתגלות"},
             {"value": "income_supplement", "label": "הבטחת / השלמת הכנסה"},
-            {"value": "nursing", "label": "סיעוד"},
-            {"value": "disability", "label": "נכות"},
             {"value": "none", "label": "לא קיבלתי"}
           ]
+        }
+      ]
+    },
+    {
+      "id": "section_7",
+      "title": "חלק ח׳ - 🧓 אזרחים ותיקים ושאירים",
+      "description": "אבחון זכויות קצבאות אזרח ותיק, תוספות ושאירים",
+      "questions": [
+        {
+          "id": "q_senior_1",
+          "type": "radio",
+          "required": true,
+          "text": "האם את/ה מעל גיל פרישה? (גברים 67+, נשים 62+)",
+          "options": [
+            {"value": "yes", "label": "כן"},
+            {"value": "no", "label": "לא"},
+            {"value": "close", "label": "קרוב לגיל פרישה (שנה-שנתיים)"}
+          ],
+          "impacts": ["קצבת אזרח ותיק", "תוספת ותק", "תוספת דחיית קצבה"]
+        },
+        {
+          "id": "q_senior_2",
+          "type": "radio",
+          "required": false,
+          "text": "האם המשכת לעבוד אחרי גיל הפרישה?",
+          "condition": {"q_senior_1": "yes"},
+          "options": [
+            {"value": "yes_still", "label": "כן, אני עובד/ת עדיין"},
+            {"value": "yes_past", "label": "כן, עבדתי בעבר"},
+            {"value": "no", "label": "לא"}
+          ],
+          "impacts": ["תוספת דחיית קצבה"]
+        },
+        {
+          "id": "q_senior_3",
+          "type": "radio",
+          "required": false,
+          "text": "כמה שנות ביטוח יש לך?",
+          "condition": {"q_senior_1": ["yes", "close"]},
+          "options": [
+            {"value": "high", "label": "מעל 20 שנה"},
+            {"value": "medium", "label": "10-20 שנה"},
+            {"value": "low", "label": "פחות מ-10 שנים"},
+            {"value": "unknown", "label": "לא יודע/ת"}
+          ],
+          "impacts": ["תוספת ותק", "זכאות בסיסית"]
+        }
+      ]
+    },
+    {
+      "id": "section_8",
+      "title": "חלק ט׳ - ♿ נכות, סיעוד ותפקוד",
+      "description": "אבחון זכאות לקצבאות נכות, סיעוד ושירותים מיוחדים",
+      "questions": [
+        {
+          "id": "q_disability_1",
+          "type": "radio",
+          "required": true,
+          "text": "מהי דרגת הנכות המוכרת?",
+          "condition": {"q12_disability": "yes"},
+          "options": [
+            {"value": "high", "label": "75% ומעלה"},
+            {"value": "medium", "label": "50-74%"},
+            {"value": "low", "label": "20-49%"},
+            {"value": "minimal", "label": "פחות מ-20%"},
+            {"value": "unknown", "label": "לא יודע/ת"}
+          ],
+          "impacts": ["סוג תשלום נכות", "מענק נכות"]
+        },
+        {
+          "id": "q_disability_2",
+          "type": "radio",
+          "required": true,
+          "text": "האם אתה זקוק/ה לעזרה משמעותית בפעולות יומיומיות?",
+          "options": [
+            {"value": "yes_severe", "label": "כן - עזרה רבה"},
+            {"value": "yes_moderate", "label": "כן - עזרה חלקית"},
+            {"value": "minimal", "label": "מעט"},
+            {"value": "no", "label": "לא"}
+          ],
+          "impacts": ["קצבת שירותים מיוחדים (שרמ)", "גמלת סיעוד"]
+        },
+        {
+          "id": "q_disability_3",
+          "type": "radio",
+          "required": true,
+          "text": "האם יש ירידה תפקודית הקשורה לגיל?",
+          "options": [
+            {"value": "yes", "label": "כן"},
+            {"value": "no", "label": "לא"},
+            {"value": "unknown", "label": "לא בטוח/ה"}
+          ],
+          "impacts": ["גמלת סיעוד"]
+        },
+        {
+          "id": "q_disability_4",
+          "type": "radio",
+          "required": false,
+          "text": "האם את/ה מקבל/ת כיום גמלת סיעוד?",
+          "condition": {"q_disability_3": "yes"},
+          "options": [
+            {"value": "yes_services", "label": "כן - בשירותים"},
+            {"value": "yes_cash", "label": "כן - בכסף"},
+            {"value": "no", "label": "לא"}
+          ],
+          "impacts": ["תשלום כספי בגמלת סיעוד", "הגדלת רמת סיעוד"]
+        },
+        {
+          "id": "q_disability_5",
+          "type": "radio",
+          "required": false,
+          "text": "האם אתה מעוניין/ת לקבל תשלום כספי במקום שירותים?",
+          "condition": {"q_disability_4": "yes_services"},
+          "options": [
+            {"value": "yes", "label": "כן"},
+            {"value": "no", "label": "לא"},
+            {"value": "unknown", "label": "רוצה מידע נוסף"}
+          ],
+          "impacts": ["תשלום כספי בגמלת סיעוד"]
+        }
+      ]
+    },
+    {
+      "id": "section_9",
+      "title": "חלק י׳ - 🚗 ניידות",
+      "description": "אבחון זכויות קצבת ניידות והטבות רכב",
+      "questions": [
+        {
+          "id": "q_mobility_1",
+          "type": "radio",
+          "required": true,
+          "text": "האם יש לך ליקוי ברגליים המוכר על ידי משרד הבריאות?",
+          "options": [
+            {"value": "yes_recognized", "label": "כן - מוכר"},
+            {"value": "yes_not_recognized", "label": "יש ליקוי אך לא הוכר"},
+            {"value": "no", "label": "אין ליקוי"},
+            {"value": "unknown", "label": "לא בטוח/ה"}
+          ],
+          "impacts": ["קצבת ניידות", "הלוואה עומדת לרכב", "מענק לרכישת רכב"]
+        },
+        {
+          "id": "q_mobility_2",
+          "type": "radio",
+          "required": false,
+          "text": "האם יש לך רכב מותאם?",
+          "condition": {"q_mobility_1": ["yes_recognized", "yes_not_recognized"]},
+          "options": [
+            {"value": "yes", "label": "כן"},
+            {"value": "no_want", "label": "לא, אבל מעוניין/ת"},
+            {"value": "no", "label": "לא ולא מעוניין/ת"}
+          ],
+          "impacts": ["הלוואה עומדת לרכב", "מענק לרכישת רכב", "השתתפות בהוצאות רכב"]
+        },
+        {
+          "id": "q_mobility_3",
+          "type": "radio",
+          "required": false,
+          "text": "האם אתה מקבל/ת כרגע קצבת ניידות?",
+          "condition": {"q_mobility_1": "yes_recognized"},
+          "options": [
+            {"value": "yes", "label": "כן"},
+            {"value": "no", "label": "לא"}
+          ],
+          "impacts": ["השתתפות בהוצאות רכב"]
+        }
+      ]
+    },
+    {
+      "id": "section_10",
+      "title": "חלק יא׳ - 💼 הכנסה, עבודה ואבטלה",
+      "description": "אבחון זכויות הבטחת הכנסה, דמי אבטלה והשלמת הכנסה",
+      "questions": [
+        {
+          "id": "q_income_1",
+          "type": "radio",
+          "required": true,
+          "text": "האם הכנסתך החודשית נמוכה מהמינימום הנדרש (תקרת הבטחת/השלמת הכנסה)?",
+          "options": [
+            {"value": "yes", "label": "כן - הכנסה נמוכה מאוד"},
+            {"value": "borderline", "label": "על הגבול"},
+            {"value": "no", "label": "לא"},
+            {"value": "unknown", "label": "לא יודע/ת"}
+          ],
+          "impacts": ["הבטחת הכנסה", "השלמת הכנסה (למי שעובד)"]
+        },
+        {
+          "id": "q_income_2",
+          "type": "radio",
+          "required": false,
+          "text": "האם את/ה עובד/ת כרגע?",
+          "condition": {"q_income_1": ["yes", "borderline"]},
+          "options": [
+            {"value": "yes_fulltime", "label": "כן - משרה מלאה"},
+            {"value": "yes_parttime", "label": "כן - משרה חלקית"},
+            {"value": "no", "label": "לא עובד/ת"}
+          ],
+          "impacts": ["השלמת הכנסה (למי שעובד)"]
+        },
+        {
+          "id": "q_income_3",
+          "type": "radio",
+          "required": true,
+          "text": "האם פוטרת או סיימת עבודה לאחרונה?",
+          "options": [
+            {"value": "yes_recent", "label": "כן - בחודשים האחרונים"},
+            {"value": "yes_past", "label": "כן - לפני יותר מחצי שנה"},
+            {"value": "no", "label": "לא"}
+          ],
+          "impacts": ["דמי אבטלה"]
+        },
+        {
+          "id": "q_income_4",
+          "type": "radio",
+          "required": false,
+          "text": "מהי הסיבה לסיום העבודה?",
+          "condition": {"q_income_3": ["yes_recent", "yes_past"]},
+          "options": [
+            {"value": "layoff", "label": "פיטורים"},
+            {"value": "resignation", "label": "התפטרות"},
+            {"value": "health", "label": "סיבה רפואית"},
+            {"value": "other", "label": "אחר"}
+          ],
+          "impacts": ["דמי אבטלה", "גמלת הבטחת הכנסה לנכה"]
+        },
+        {
+          "id": "q_income_5",
+          "type": "radio",
+          "required": false,
+          "text": "האם יש לך נכות שמונעת עבודה אך אינך מקבל/ת קצבת נכות?",
+          "condition": {"q_income_1": ["yes", "borderline"]},
+          "options": [
+            {"value": "yes", "label": "כן"},
+            {"value": "no", "label": "לא"}
+          ],
+          "impacts": ["גמלת הבטחת הכנסה לנכה"]
+        }
+      ]
+    },
+    {
+      "id": "section_11",
+      "title": "חלק יב׳ - 🧑‍⚕️ נפגעי עבודה ותאונות",
+      "description": "אבחון זכויות לנפגעי עבודה",
+      "questions": [
+        {
+          "id": "q_work_injury_1",
+          "type": "radio",
+          "required": true,
+          "text": "האם נפגעת בעבודה או בדרך אליה/ממנה?",
+          "options": [
+            {"value": "yes_recent", "label": "כן - לאחרונה"},
+            {"value": "yes_past", "label": "כן - בעבר"},
+            {"value": "no", "label": "לא"}
+          ],
+          "impacts": ["דמי פגיעה בעבודה", "קצבת נכות מעבודה", "מענק נכות מעבודה"]
+        },
+        {
+          "id": "q_work_injury_2",
+          "type": "radio",
+          "required": false,
+          "text": "האם הפגיעה הותירה נכות קבועה?",
+          "condition": {"q_work_injury_1": ["yes_recent", "yes_past"]},
+          "options": [
+            {"value": "yes_severe", "label": "כן - נכות משמעותית"},
+            {"value": "yes_moderate", "label": "כן - נכות חלקית"},
+            {"value": "no", "label": "לא"},
+            {"value": "unknown", "label": "עדיין לא נבדק"}
+          ],
+          "impacts": ["קצבת נכות מעבודה", "מענק נכות מעבודה"]
+        },
+        {
+          "id": "q_work_injury_3",
+          "type": "radio",
+          "required": false,
+          "text": "האם הגשת תביעה לביטוח לאומי בגין הפגיעה?",
+          "condition": {"q_work_injury_1": ["yes_recent", "yes_past"]},
+          "options": [
+            {"value": "yes_approved", "label": "כן - אושרה"},
+            {"value": "yes_rejected", "label": "כן - נדחתה"},
+            {"value": "yes_pending", "label": "כן - בתהליך"},
+            {"value": "no", "label": "לא"}
+          ],
+          "impacts": ["זכויות נוספות או ערעור"]
+        },
+        {
+          "id": "q_work_injury_4",
+          "type": "radio",
+          "required": true,
+          "text": "האם בן/בת משפחה נפטר/ה עקב פגיעה בעבודה?",
+          "options": [
+            {"value": "yes", "label": "כן"},
+            {"value": "no", "label": "לא"}
+          ],
+          "impacts": ["גמלת תלויים לנפגע עבודה שנפטר"]
+        }
+      ]
+    },
+    {
+      "id": "section_12",
+      "title": "חלק יג׳ - 👨‍👩‍👧 ילדים וגדלים",
+      "description": "שאלות ספציפיות לילדים בגיל הלימוד ובהריון",
+      "questions": [
+        {
+          "id": "q_family_1",
+          "type": "radio",
+          "required": false,
+          "text": "כמה ילדים יש לך מתחת לגיל 18?",
+          "options": [
+            {"value": "0", "label": "אין"},
+            {"value": "1-2", "label": "1-2 ילדים"},
+            {"value": "3-4", "label": "3-4 ילדים"},
+            {"value": "5+", "label": "5 ילדים או יותר"}
+          ],
+          "impacts": ["קצבת ילדים"]
+        },
+        {
+          "id": "q_family_2",
+          "type": "radio",
+          "required": true,
+          "text": "האם את בהריון או ילדת בשנה האחרונה?",
+          "options": [
+            {"value": "pregnant", "label": "בהריון כרגע"},
+            {"value": "recent_birth", "label": "ילדתי בשנה האחרונה"},
+            {"value": "no", "label": "לא"}
+          ],
+          "impacts": ["מענק לידה", "דמי לידה", "דמי שמירת היריון"]
+        },
+        {
+          "id": "q_family_3",
+          "type": "radio",
+          "required": false,
+          "text": "האם את עובדת?",
+          "condition": {"q_family_2": ["pregnant", "recent_birth"]},
+          "options": [
+            {"value": "yes", "label": "כן"},
+            {"value": "no", "label": "לא"}
+          ],
+          "impacts": ["דמי לידה"]
+        },
+        {
+          "id": "q_family_4",
+          "type": "radio",
+          "required": false,
+          "text": "האם קיים סיכון רפואי בהריון?",
+          "condition": {"q_family_2": "pregnant"},
+          "options": [
+            {"value": "yes", "label": "כן"},
+            {"value": "no", "label": "לא"}
+          ],
+          "impacts": ["דמי שמירת היריון"]
+        },
+        {
+          "id": "q_family_5",
+          "type": "radio",
+          "required": true,
+          "text": "האם אתה הורה משמורן שאינו מקבל מזונות מההורה השני?",
+          "options": [
+            {"value": "yes", "label": "כן"},
+            {"value": "no", "label": "לא"},
+            {"value": "partial", "label": "מקבל חלקית בלבד"}
+          ],
+          "impacts": ["מזונות (תשלום במקום החייב)"]
+        }
+      ]
+    },
+    {
+      "id": "section_13",
+      "title": "חלק יד׳ - 🧠 ילדים עם מוגבלות",
+      "description": "אבחון זכויות ילדים עם צרכים מיוחדים",
+      "questions": [
+        {
+          "id": "q_special_child_1",
+          "type": "radio",
+          "required": false,
+          "text": "האם יש לך ילד עם מוגבלות רפואית או תפקודית שעדיין לא שאלנו על כך?",
+          "options": [
+            {"value": "yes_recognized", "label": "כן - מוכרת"},
+            {"value": "yes_not_recognized", "label": "כן - לא מוכרת"},
+            {"value": "suspected", "label": "חשד למוגבלות"},
+            {"value": "no", "label": "לא"}
+          ],
+          "impacts": ["גמלת ילד נכה"]
+        },
+        {
+          "id": "q_special_child_2",
+          "type": "radio",
+          "required": false,
+          "text": "מהי דרגת המוגבלות?",
+          "condition": {"q_special_child_1": ["yes_recognized", "yes_not_recognized"]},
+          "options": [
+            {"value": "severe", "label": "חמורה"},
+            {"value": "moderate", "label": "בינונית"},
+            {"value": "mild", "label": "קלה"},
+            {"value": "unknown", "label": "לא יודע/ת"}
+          ],
+          "impacts": ["גמלת ילד נכה - דרגה"]
+        },
+        {
+          "id": "q_special_child_3",
+          "type": "radio",
+          "required": false,
+          "text": "גיל הילד:",
+          "condition": {"q_special_child_1": ["yes_recognized", "yes_not_recognized", "suspected"]},
+          "options": [
+            {"value": "0-3", "label": "0-3 שנים"},
+            {"value": "3-18", "label": "3-18 שנים"},
+            {"value": "18+", "label": "מעל 18"}
+          ],
+          "impacts": ["גמלת ילד נכה - תנאי גיל"]
+        }
+      ]
+    },
+    {
+      "id": "section_14",
+      "title": "חלק טו׳ - 🕊️ אוכלוסיות מיוחדות",
+      "description": "אבחון זכויות לנפגעי פעולות איבה וחיילים משוחררים",
+      "questions": [
+        {
+          "id": "q_special_pop_1",
+          "type": "radio",
+          "required": true,
+          "text": "האם נפגעת מפעולת איבה (טרור, מלחמה)?",
+          "options": [
+            {"value": "yes_recognized", "label": "כן - מוכר"},
+            {"value": "yes_not_recognized", "label": "כן - לא הוכר"},
+            {"value": "no", "label": "לא"}
+          ],
+          "impacts": ["קצבת נפגעי פעולות איבה"]
+        },
+        {
+          "id": "q_special_pop_2",
+          "type": "radio",
+          "required": false,
+          "text": "האם הנפגע/ת נפטר/ה?",
+          "condition": {"q_special_pop_1": ["yes_recognized", "yes_not_recognized"]},
+          "options": [
+            {"value": "yes", "label": "כן"},
+            {"value": "no", "label": "לא"}
+          ],
+          "impacts": ["גמלת תלויים לנפגע איבה"]
+        },
+        {
+          "id": "q_special_pop_3",
+          "type": "radio",
+          "required": true,
+          "text": "האם השתחררת לאחרונה משירות חובה?",
+          "options": [
+            {"value": "yes_recent", "label": "כן - בחודשים האחרונים"},
+            {"value": "yes_past", "label": "כן - לפני יותר משנה"},
+            {"value": "no", "label": "לא"}
+          ],
+          "impacts": ["מענק שחרור לחיילים משוחררים"]
+        }
+      ]
+    },
+    {
+      "id": "section_15",
+      "title": "חלק טז׳ - 💰 מענקים ותשלומים מיוחדים",
+      "description": "אבחון זכאות למענקים חד-פעמיים ומיוחדים",
+      "questions": [
+        {
+          "id": "q_grants_1",
+          "type": "radio",
+          "required": true,
+          "text": "האם אתה בתקופת מעבר/שיקום (נכות חדשה, תאונה, מחלה)?",
+          "options": [
+            {"value": "yes", "label": "כן"},
+            {"value": "no", "label": "לא"}
+          ],
+          "impacts": ["מענק הסתגלות"]
+        },
+        {
+          "id": "q_grants_2",
+          "type": "radio",
+          "required": true,
+          "text": "האם אתה במצב כלכלי או רפואי קשה במיוחד?",
+          "options": [
+            {"value": "yes_financial", "label": "כן - מצוקה כלכלית"},
+            {"value": "yes_medical", "label": "כן - מצב רפואי חריג"},
+            {"value": "yes_both", "label": "שניהם"},
+            {"value": "no", "label": "לא"}
+          ],
+          "impacts": ["מענק חד־פעמי במצוקה"]
+        },
+        {
+          "id": "q_grants_3",
+          "type": "radio",
+          "required": true,
+          "text": "האם הוכרת לאחרונה כזכאי לקצבה בדיעבד (רטרואקטיבית)?",
+          "options": [
+            {"value": "yes", "label": "כן"},
+            {"value": "pending", "label": "בתהליך"},
+            {"value": "no", "label": "לא"}
+          ],
+          "impacts": ["תשלומים רטרואקטיביים"]
         }
       ]
     }
