@@ -1,8 +1,9 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="he" dir="rtl">
 <head>
   <meta charset="UTF-8">
-  <title>404 - Not Found</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>404 - דף לא נמצא</title>
   <script 
       src="https://cdn.counter.dev/script.js" 
       data-id="87cd2eee-d5db-43dc-9575-16e58a14c32d" 
@@ -11,29 +12,122 @@
       referrerpolicy="no-referrer"></script>
 
 <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
     body {
-      background-color: #f8f8f8;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
       color: #333;
-      font-family: Arial, sans-serif;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
       text-align: center;
-      padding-top: 100px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      padding: 20px;
     }
+
+    .container {
+      background: white;
+      border-radius: 20px;
+      padding: 40px;
+      box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+      max-width: 600px;
+      width: 100%;
+    }
+
     .icon {
-      font-size: 100px;
+      font-size: 80px;
       margin-bottom: 20px;
+      display: block;
     }
+
     h1 {
-      font-size: 36px;
-      margin-bottom: 10px;
+      font-size: 48px;
+      margin-bottom: 15px;
+      color: #2E5B8A;
     }
-    p {
+
+    .subtitle {
       font-size: 18px;
+      color: #666;
+      margin-bottom: 40px;
+    }
+
+    .links-container {
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+    }
+
+    .link-button {
+      display: inline-block;
+      padding: 16px 30px;
+      background: linear-gradient(135deg, #2E5B8A 0%, #4A90B5 100%);
+      color: white;
+      text-decoration: none;
+      border-radius: 10px;
+      font-size: 16px;
+      font-weight: 600;
+      transition: transform 0.3s, box-shadow 0.3s;
+      box-shadow: 0 4px 15px rgba(46, 91, 138, 0.3);
+    }
+
+    .link-button:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(46, 91, 138, 0.4);
+    }
+
+    .link-button.secondary {
+      background: linear-gradient(135deg, #E8A840 0%, #F5B860 100%);
+      box-shadow: 0 4px 15px rgba(232, 168, 64, 0.3);
+    }
+
+    .link-button.secondary:hover {
+      box-shadow: 0 6px 20px rgba(232, 168, 64, 0.4);
+    }
+
+    .link-icon {
+      margin-right: 8px;
+    }
+
+    @media (max-width: 600px) {
+      .container {
+        padding: 30px 20px;
+      }
+
+      h1 {
+        font-size: 36px;
+      }
+
+      .icon {
+        font-size: 60px;
+      }
+
+      .link-button {
+        padding: 14px 20px;
+        font-size: 14px;
+      }
     }
   </style>
 </head>
 <body>
-  <div class="icon">🚫</div>
-  <h1>404 - No Entrance</h1>
-  <p>You entered a wrong address.</p>
+  <div class="container">
+    <span class="icon">🚫</span>
+    <h1>404</h1>
+    <p class="subtitle">הדף שחיפשת לא נמצא</p>
+    
+    <div class="links-container">
+      <a href="BTL/index.html" class="link-button">
+        <span class="link-icon">📋</span>ביטוח לאומי - ייעוץ לקשיש
+      </a>
+      <a href="mda/index.html" class="link-button secondary">
+        <span class="link-icon">🏥</span>מדא - קורס בכיריים
+      </a>
+    </div>
+  </div>
 </body>
 </html>
