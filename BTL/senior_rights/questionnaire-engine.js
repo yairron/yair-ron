@@ -299,6 +299,9 @@ class QuestionnaireEngine {
      * Render number input field
      */
     renderNumberInput(question) {
+        // Get existing value if it was already answered
+        const existingValue = this.answers[question.id]?.value || this.answers[question.storeAs]?.value || '';
+        
         return `
             <div class="number-input-container">
                 <div class="number-input-wrapper">
@@ -307,7 +310,7 @@ class QuestionnaireEngine {
                            class="number-input"
                            placeholder="${question.placeholder || '0'}"
                            min="0"
-                           value=""
+                           value="${existingValue}"
                            onfocus="this.select()">
                     <span class="number-input-suffix">${question.suffix || '₪'}</span>
                 </div>
@@ -914,7 +917,7 @@ class QuestionnaireEngine {
 
         // Store the calculated value from sub-questionnaire
         if (calculatedValue !== undefined) {
-            this.answers['q0c_imputed_income_amount'] = {
+            this.answers['q4_imputed_income_amount'] = {
                 question: 'הכנסה רעיונית חודשית מנכסים (מחושב)',
                 value: calculatedValue,
                 label: `${calculatedValue.toLocaleString('he-IL')}₪ לחודש`
@@ -933,14 +936,8 @@ class QuestionnaireEngine {
         this.resultEl.classList.add('hidden');
         this.navEl.classList.add('hidden');
 
-        // Go to the return question's next (skip the number input since we have the value)
-        const returnQuestion = this.data.questions.find(q => q.id === returnTo);
-        if (returnQuestion && returnQuestion.next) {
-            this.showQuestion(returnQuestion.next);
-        } else {
-            // Fallback - show q1_family_composition
-            this.showQuestion('q1_family_composition');
-        }
+        // Go to the return question to show it with the calculated value
+        this.showQuestion(returnTo);
     }
 
     /**
@@ -1061,7 +1058,7 @@ class QuestionnaireEngine {
                     </tr>
                     <tr>
                         <td class="calc-label">הכנסה רעיונית מנכסים:</td>
-                        <td class="calc-value">${calculation.incomes.imputedIncome.toLocaleString('he-IL')}₪</td>
+                        <td class="calc-value">${calculation.incomes.imputedIncome.toLocaleString('he-IL', { maximumFractionDigits: 0 })}₪</td>
                     </tr>
                     <tr class="calculation-row-total">
                         <td class="calc-label"><strong>סה"כ הכנסה נטו:</strong></td>
@@ -1118,11 +1115,14 @@ class QuestionnaireEngine {
      */
     calculateIncomeSupplementEligibility() {
         const rules = this.data.calculationRules;
-        const familyCompositionValue = this.answers['q0b_family_composition']?.value;
-        const familyCompositionLabel = this.answers['q0b_family_composition']?.label;
+        const familyCompositionValue = this.answers['q4_family_composition']?.value;
+        const familyCompositionLabel = this.answers['q4_family_composition']?.label;
 
         // Get ceiling for this family composition
-        const ceiling = rules.familyCompositions[familyCompositionValue]?.ceiling || 0;
+        let ceiling = 0;
+        if (familyCompositionValue && rules.familyCompositions && rules.familyCompositions[familyCompositionValue]) {
+            ceiling = rules.familyCompositions[familyCompositionValue].ceiling;
+        }
 
         // Determine family/age context
         const isCoupleFamily = !!familyCompositionValue?.includes('couple');
