@@ -327,6 +327,10 @@ const RIGHTS_DATA = {
           <li>הכנסה עודפת מעל המותר: 60% ממנה מקוזזת מההשלמה</li>
         </ol>
 
+        <h5>💰 חישוב הכנסה רעיונית מנכסים פיננסיים</h5>
+        <p>למי שיש פיקדונות, חסכונות או השקעות, עשוי להיות חישוב של "הכנסה רעיונית" מנכסים אלה. הכנסה זו מופחתת מסכום ההשלמה.</p>
+        <p><a href="imputed_income_guide.html" target="_blank" style="color: #9c27b0; text-decoration: none; font-weight: 600;">📖 מדריך מפורט: חישוב הכנסה רעיונית מנכסים פיננסיים</a></p>
+
         <h4>דוגמאות לחישוב השלמת הכנסה</h4>
 
         <div style="background: #fff8e1; padding: 15px; border-radius: 8px; margin: 15px 0;">

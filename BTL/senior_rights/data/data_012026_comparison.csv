@@ -112,3 +112,26 @@
 ניצולי שואה - מענק שנתי,HOLOCAUST_ANNUAL_GRANT,7502,7502,0,0.00%
 ניצולי שואה - תשלום ועידת התביעות,HOLOCAUST_CLAIMS_CONFERENCE,,5457,חדש,חדש
 ניצולי שואה - תוספת 9 שעות בכסף,HOLOCAUST_9_HOURS_CASH,2025,2025,0,0.00%
+הכנסה רעיונית - סכום פטור יחיד,IMPUTED_INCOME_EXEMPT_SINGLE,,48472,חדש,חדש
+הכנסה רעיונית - סכום פטור זוג,IMPUTED_INCOME_EXEMPT_COUPLE,,62292,חדש,חדש
+הכנסה רעיונית - שיעור ריבית בסיסי,IMPUTED_INCOME_INTEREST_RATE,,4.17,חדש,חדש
+הכנסה רעיונית - סף תחתון מדרגות,IMPUTED_INCOME_TIER_THRESHOLD,,117173,חדש,חדש
+הכנסה רעיונית - מדרגה 1 יחיד תחתון (מתחת 55),IMPUTED_INCOME_T1_SINGLE_UNDER55_LOW,,311460,חדש,חדש
+הכנסה רעיונית - מדרגה 1 יחיד עליון (מתחת 55),IMPUTED_INCOME_T1_SINGLE_UNDER55_HIGH,,311460,חדש,חדש
+הכנסה רעיונית - מדרגה 2 יחיד תחתון (מתחת 55),IMPUTED_INCOME_T2_SINGLE_UNDER55_LOW,,311460,חדש,חדש
+הכנסה רעיונית - מדרגה 2 יחיד עליון (מתחת 55),IMPUTED_INCOME_T2_SINGLE_UNDER55_HIGH,,622920,חדש,חדש
+הכנסה רעיונית - מדרגה 1 זוג תחתון (מתחת 55),IMPUTED_INCOME_T1_COUPLE_UNDER55_LOW,,249168,חדש,חדש
+הכנסה רעיונית - מדרגה 1 זוג עליון (מתחת 55),IMPUTED_INCOME_T1_COUPLE_UNDER55_HIGH,,249168,חדש,חדש
+הכנסה רעיונית - מדרגה 2 זוג תחתון (מתחת 55),IMPUTED_INCOME_T2_COUPLE_UNDER55_LOW,,249168,חדש,חדש
+הכנסה רעיונית - מדרגה 2 זוג עליון (מתחת 55),IMPUTED_INCOME_T2_COUPLE_UNDER55_HIGH,,622920,חדש,חדש
+הכנסה רעיונית - מדרגה 1 יחיד תחתון (55+),IMPUTED_INCOME_T1_SINGLE_55PLUS_LOW,,166112,חדש,חדש
+הכנסה רעיונית - מדרגה 1 יחיד עליון (55+),IMPUTED_INCOME_T1_SINGLE_55PLUS_HIGH,,166112,חדש,חדש
+הכנסה רעיונית - מדרגה 2 יחיד תחתון (55+),IMPUTED_INCOME_T2_SINGLE_55PLUS_LOW,,166112,חדש,חדש
+הכנסה רעיונית - מדרגה 2 יחיד עליון (55+),IMPUTED_INCOME_T2_SINGLE_55PLUS_HIGH,,332224,חדש,חדש
+הכנסה רעיונית - מדרגה 1 זוג תחתון (55+),IMPUTED_INCOME_T1_COUPLE_55PLUS_LOW,,373752,חדש,חדש
+הכנסה רעיונית - מדרגה 1 זוג עליון (55+),IMPUTED_INCOME_T1_COUPLE_55PLUS_HIGH,,373752,חדש,חדש
+הכנסה רעיונית - מדרגה 2 זוג תחתון (55+),IMPUTED_INCOME_T2_COUPLE_55PLUS_LOW,,373752,חדש,חדש
+הכנסה רעיונית - מדרגה 2 זוג עליון (55+),IMPUTED_INCOME_T2_COUPLE_55PLUS_HIGH,,747504,חדש,חדש
+הכנסה רעיונית - אחוז מדרגה 1,IMPUTED_INCOME_TIER1_PERCENT,,1.5,חדש,חדש
+הכנסה רעיונית - אחוז מדרגה 2,IMPUTED_INCOME_TIER2_PERCENT,,3,חדש,חדש
+הכנסה רעיונית - אחוז מדרגה 3,IMPUTED_INCOME_TIER3_PERCENT,,5,חדש,חדש

@@ -1,0 +1,1447 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>מדריך מקיף לזכויות ניצולי שואה בישראל</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Assistant:wght@300;400;600;700;800&family=Varela+Round&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #2E5B8A;
+            --secondary: #4A90B5;
+            --accent: #E8A840;
+            --success: #2E7D32;
+            --danger: #C62828;
+            --light: #F5F9FC;
+            --dark: #1A3A52;
+            --text: #2C3E50;
+            --warning: #F57C00;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Assistant', 'Segoe UI', Tahoma, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
+            min-height: 100vh;
+            padding: 20px;
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background:
+                radial-gradient(circle at 20% 50%, rgba(255,255,255,0.1) 0%, transparent 50%),
+                radial-gradient(circle at 80% 80%, rgba(255,255,255,0.1) 0%, transparent 50%);
+            animation: backgroundShift 20s ease-in-out infinite;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        @keyframes backgroundShift {
+            0%, 100% { transform: translate(0, 0) scale(1); }
+            50% { transform: translate(-5%, 5%) scale(0.95); }
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 50px;
+            animation: slideDown 0.8s ease-out;
+        }
+
+        @keyframes slideDown {
+            from {
+                opacity: 0;
+                transform: translateY(-50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .back-button {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(255,255,255,0.95);
+            color: var(--primary);
+            padding: 12px 24px;
+            border-radius: 50px;
+            font-weight: 600;
+            cursor: pointer;
+            text-decoration: none;
+            transition: all 0.3s;
+            margin-bottom: 30px;
+            border: none;
+            font-size: 1rem;
+        }
+
+        .back-button:hover {
+            background: white;
+            transform: translateX(-5px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+        }
+
+        h1 {
+            font-family: 'Varela Round', sans-serif;
+            font-size: 3.5rem;
+            font-weight: 800;
+            color: white;
+            margin-bottom: 15px;
+            text-shadow: 3px 5px 15px rgba(0,0,0,0.3);
+            letter-spacing: -2px;
+        }
+
+        .subtitle {
+            font-size: 1.4rem;
+            color: rgba(255,255,255,0.95);
+            font-weight: 300;
+            text-shadow: 1px 2px 8px rgba(0,0,0,0.2);
+        }
+
+        .update-badge {
+            display: inline-block;
+            background: rgba(255,255,255,0.2);
+            backdrop-filter: blur(10px);
+            padding: 8px 20px;
+            border-radius: 20px;
+            color: white;
+            font-size: 0.9rem;
+            margin-top: 15px;
+            font-weight: 600;
+        }
+
+        .tabs {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 40px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .tab-button {
+            padding: 12px 24px;
+            background: rgba(255,255,255,0.9);
+            color: var(--primary);
+            border: 2px solid rgba(255,255,255,0.5);
+            border-radius: 50px;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 1rem;
+            transition: all 0.3s;
+        }
+
+        .tab-button.active {
+            background: white;
+            border-color: white;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.2);
+            transform: scale(1.05);
+        }
+
+        .tab-button:hover {
+            background: white;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+        }
+
+        .tab-content {
+            display: none;
+        }
+
+        .tab-content.active {
+            display: block;
+            animation: fadeIn 0.4s ease-out;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .accordions-container {
+            margin-bottom: 40px;
+        }
+
+        .accordion {
+            background: white;
+            margin-bottom: 0;
+            box-shadow: 0 12px 35px rgba(0,0,0,0.2);
+            overflow: hidden;
+            transition: all 0.3s;
+            border-bottom: 1px solid rgba(0,0,0,0.1);
+        }
+
+        .accordion:first-child {
+            border-radius: 24px 24px 0 0;
+        }
+
+        .accordion:last-child {
+            border-radius: 0 0 24px 24px;
+            border-bottom: none;
+        }
+
+        .accordion:hover {
+            box-shadow: 0 15px 45px rgba(0,0,0,0.25);
+        }
+
+        .accordion-header {
+            padding: 20px 35px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 18px;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            transition: all 0.3s;
+        }
+
+        .accordion-header:hover {
+            background: linear-gradient(135deg, var(--secondary), var(--primary));
+        }
+
+        .accordion-icon {
+            width: 50px;
+            height: 50px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.8rem;
+            background: rgba(255,255,255,0.2);
+            flex-shrink: 0;
+        }
+
+        .accordion-title {
+            font-family: 'Varela Round', sans-serif;
+            font-size: 1.6rem;
+            font-weight: 800;
+            flex: 1;
+            margin: 0;
+        }
+
+        .accordion-arrow {
+            font-size: 1.3rem;
+            transition: transform 0.3s;
+            flex-shrink: 0;
+        }
+
+        .accordion.active .accordion-arrow {
+            transform: rotate(180deg);
+        }
+
+        .accordion-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s ease;
+        }
+
+        .accordion.active .accordion-content {
+            max-height: 10000px;
+        }
+
+        .accordion-body {
+            padding: 35px;
+            font-size: 1.1rem;
+            line-height: 1.85;
+            color: #546E7A;
+            overflow-y: auto;
+            max-height: 60vh;
+        }
+
+        .accordion-body h3 {
+            color: var(--primary);
+            font-size: 1.4rem;
+            margin: 20px 0 15px 0;
+            font-weight: 700;
+        }
+
+        .accordion-body h4 {
+            color: var(--secondary);
+            font-size: 1.2rem;
+            margin: 18px 0 12px 0;
+            font-weight: 600;
+        }
+
+        .accordion-body ul, .accordion-body ol {
+            list-style: none;
+            padding: 0;
+            margin: 15px 0;
+        }
+
+        .accordion-body li {
+            padding: 10px 40px 10px 0;
+            position: relative;
+            border-bottom: 1px solid #E0E7EE;
+        }
+
+        .accordion-body li:last-child {
+            border-bottom: none;
+        }
+
+        .accordion-body li::before {
+            content: '✓';
+            position: absolute;
+            right: 10px;
+            color: var(--success);
+            font-weight: bold;
+            font-size: 1.3rem;
+        }
+
+        .accordion-body p {
+            margin: 12px 0;
+        }
+
+        /* Questionnaire Styles */
+        .questionnaire-section {
+            background: white;
+            border-radius: 20px;
+            padding: 30px;
+            margin-bottom: 25px;
+            box-shadow: 0 12px 35px rgba(0,0,0,0.2);
+        }
+
+        .question-group {
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+            border-bottom: 2px solid #E0E7EE;
+        }
+
+        .question-group:last-child {
+            border-bottom: none;
+        }
+
+        .question-label {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: var(--primary);
+            margin-bottom: 15px;
+            display: block;
+        }
+
+        .question-options {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin-bottom: 15px;
+        }
+
+        .checkbox-container, .radio-container {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            cursor: pointer;
+            padding: 10px 15px;
+            border-radius: 12px;
+            transition: all 0.3s;
+        }
+
+        .checkbox-container:hover, .radio-container:hover {
+            background: #F5F9FC;
+        }
+
+        input[type="checkbox"], input[type="radio"] {
+            width: 20px;
+            height: 20px;
+            cursor: pointer;
+            accent-color: var(--primary);
+        }
+
+        input[type="text"], input[type="number"] {
+            padding: 12px 15px;
+            border: 2px solid #E0E7EE;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-family: 'Assistant', sans-serif;
+            transition: all 0.3s;
+            background: #F8FAFB;
+        }
+
+        input[type="text"]:focus, input[type="number"]:focus {
+            outline: none;
+            border-color: var(--primary);
+            background: white;
+            box-shadow: 0 0 0 3px rgba(46, 91, 138, 0.1);
+        }
+
+        .text-input-group {
+            display: flex;
+            gap: 15px;
+            margin-top: 10px;
+        }
+
+        .text-input-group input {
+            flex: 1;
+        }
+
+        /* Recommendations Section */
+        .recommendations-section {
+            background: linear-gradient(135deg, #E8F5E9 0%, #F1F8E9 100%);
+            border-radius: 20px;
+            padding: 30px;
+            margin-top: 30px;
+            border: 2px solid var(--success);
+        }
+
+        .recommendations-title {
+            font-size: 1.8rem;
+            font-weight: 800;
+            color: var(--success);
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .recommendation-item {
+            background: white;
+            padding: 20px;
+            border-radius: 12px;
+            margin-bottom: 15px;
+            border-right: 4px solid var(--success);
+        }
+
+        .recommendation-item h4 {
+            color: var(--primary);
+            font-size: 1.15rem;
+            margin-bottom: 10px;
+        }
+
+        .recommendation-item p {
+            color: #546E7A;
+            font-size: 1rem;
+            margin: 8px 0;
+        }
+
+        .no-recommendations {
+            text-align: center;
+            padding: 20px;
+            color: var(--primary);
+            font-size: 1.1rem;
+        }
+
+        /* Action Buttons */
+        .action-buttons {
+            display: flex;
+            gap: 15px;
+            margin-top: 25px;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 15px 30px;
+            border: none;
+            border-radius: 12px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-family: 'Assistant', sans-serif;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(46, 91, 138, 0.3);
+        }
+
+        .btn-secondary {
+            background: white;
+            color: var(--primary);
+            border: 2px solid var(--primary);
+        }
+
+        .btn-secondary:hover {
+            background: var(--primary);
+            color: white;
+        }
+
+        .btn-success {
+            background: var(--success);
+            color: white;
+        }
+
+        .btn-success:hover {
+            background: #1B5E20;
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(46, 125, 50, 0.3);
+        }
+
+        .btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        /* Info Box */
+        .info-box {
+            background: linear-gradient(135deg, #E3F2FD 0%, #F3E5F5 100%);
+            border-radius: 12px;
+            padding: 20px;
+            margin: 20px 0;
+            border-right: 4px solid var(--primary);
+            display: flex;
+            gap: 15px;
+        }
+
+        .info-box-icon {
+            font-size: 1.8rem;
+            flex-shrink: 0;
+        }
+
+        .info-box-text {
+            flex: 1;
+        }
+
+        .info-box-text strong {
+            color: var(--primary);
+        }
+
+        /* Important Numbers */
+        .phone-box {
+            background: white;
+            border-radius: 12px;
+            padding: 15px 20px;
+            margin: 12px 0;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            border-right: 3px solid var(--accent);
+        }
+
+        .phone-icon {
+            font-size: 1.5rem;
+            color: var(--accent);
+        }
+
+        .phone-info {
+            flex: 1;
+        }
+
+        .phone-label {
+            font-weight: 600;
+            color: var(--primary);
+            font-size: 0.95rem;
+        }
+
+        .phone-number {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: var(--accent);
+        }
+
+        .phone-note {
+            font-size: 0.85rem;
+            color: #999;
+        }
+
+        /* Table */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+        }
+
+        table th {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            padding: 15px;
+            text-align: right;
+            font-weight: 700;
+        }
+
+        table td {
+            padding: 15px;
+            border-bottom: 1px solid #E0E7EE;
+        }
+
+        table tr:hover {
+            background: #F8FAFB;
+        }
+
+        /* Progress indicator */
+        .progress-bar {
+            background: #E0E7EE;
+            height: 8px;
+            border-radius: 10px;
+            overflow: hidden;
+            margin: 10px 0;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, var(--success), var(--accent));
+            border-radius: 10px;
+            transition: width 0.3s;
+        }
+
+        /* Score display */
+        .score-display {
+            background: linear-gradient(135deg, #FFF9C4 0%, #FFE082 100%);
+            border-radius: 12px;
+            padding: 20px;
+            text-align: center;
+            margin: 20px 0;
+            border: 2px solid #FBC02D;
+        }
+
+        .score-number {
+            font-size: 3rem;
+            font-weight: 800;
+            color: #F57F17;
+            margin-bottom: 10px;
+        }
+
+        .score-text {
+            font-size: 1.2rem;
+            color: #E65100;
+            font-weight: 600;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2.5rem;
+            }
+
+            .accordion-title {
+                font-size: 1.3rem;
+            }
+
+            .accordion-body {
+                padding: 20px;
+            }
+
+            .questionnaire-section {
+                padding: 20px;
+            }
+
+            .action-buttons {
+                flex-direction: column;
+            }
+
+            .btn {
+                width: 100%;
+                justify-content: center;
+            }
+
+            .phone-box {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .text-input-group {
+                flex-direction: column;
+            }
+        }
+
+        .hidden {
+            display: none !important;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <button class="back-button" onclick="window.history.back()">← חזרה</button>
+            <h1>🕯️ זכויות ניצולי שואה</h1>
+            <p class="subtitle">מדריך מקיף לזכויות, קצבאות והטבות</p>
+            <div class="update-badge">📅 עדכון: ינואר 2026</div>
+        </header>
+
+        <div class="tabs">
+            <button class="tab-button active" onclick="switchTab('info')">📚 מידע</button>
+            <button class="tab-button" onclick="switchTab('questionnaire')">📋 שאלון</button>
+            <button class="tab-button" onclick="switchTab('recommendations')">💡 המלצות</button>
+        </div>
+
+        <!-- INFO TAB -->
+        <div id="info" class="tab-content active">
+            <div class="accordions-container" id="infoAccordions"></div>
+        </div>
+
+        <!-- QUESTIONNAIRE TAB -->
+        <div id="questionnaire" class="tab-content">
+            <div class="questionnaire-section">
+                <h2>שאלון אבחון - בדוק את זכויותיך</h2>
+                <p style="margin: 15px 0; color: #666;">השב על השאלות להבנת זכויותיך ולהנחיה בדבר הצעדים הבאים</p>
+
+                <div id="questionnaireForm"></div>
+
+                <div class="action-buttons">
+                    <button class="btn btn-primary" onclick="calculateRecommendations()">✓ בדוק את התוצאות</button>
+                    <button class="btn btn-secondary" onclick="resetForm()">↻ ניקוי הטופס</button>
+                </div>
+
+                <div id="scoringResult"></div>
+            </div>
+        </div>
+
+        <!-- RECOMMENDATIONS TAB -->
+        <div id="recommendations" class="tab-content">
+            <div class="questionnaire-section" id="recommendationsContainer">
+                <div style="text-align: center; padding: 40px; color: #999;">
+                    <p>אנא מלא את השאלון כדי לקבל המלצות מיוחדות עבורך</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const infoData = {
+            "מידע כללי": {
+                icon: "ℹ️",
+                content: `
+                    <h3>אודות המדריך</h3>
+                    <p>מדריך זה נועד לסייע לניצולי שואה, משפחותיהם ויועציהם להבין את מלוא הזכויות המגיעות להם. המידע כולל פירוט מלא של סוגי הקצבאות, תנאי הזכאות, סכומים מעודכנים, והדרכה כיצד להגיש בקשות ולמצות זכויות.</p>
+                    
+                    <h4>💭 טלפונים חשובים</h4>
+                    <div class="phone-box">
+                        <div class="phone-icon">☎️</div>
+                        <div class="phone-info">
+                            <div class="phone-label">הרשות לזכויות ניצולי השואה</div>
+                            <div class="phone-number">*5105 / 03-5682651</div>
+                        </div>
+                    </div>
+                    <div class="phone-box">
+                        <div class="phone-icon">☎️</div>
+                        <div class="phone-info">
+                            <div class="phone-label">עמותת אביב</div>
+                            <div class="phone-number">*5711</div>
+                        </div>
+                    </div>
+                    <div class="phone-box">
+                        <div class="phone-icon">☎️</div>
+                        <div class="phone-info">
+                            <div class="phone-label">ועידת התביעות (Claims Conference)</div>
+                            <div class="phone-number">03-5194400</div>
+                        </div>
+                    </div>
+                    <div class="phone-box">
+                        <div class="phone-icon">☎️</div>
+                        <div class="phone-info">
+                            <div class="phone-label">הקרן לרווחת נפגעי השואה</div>
+                            <div class="phone-number">03-6090866</div>
+                        </div>
+                    </div>
+                    <div class="phone-box">
+                        <div class="phone-icon">☎️</div>
+                        <div class="phone-info">
+                            <div class="phone-label">משרד הבריאות - ייעוץ משפטי חינם</div>
+                            <div class="phone-number">*6405</div>
+                        </div>
+                    </div>
+
+                    <h4>⚠️ חשוב לדעת</h4>
+                    <p>מידע זה עודכן לינואר 2026. מומלץ תמיד לבדוק מול הרשויות המוסמכות לפרטים המדויקים ביותר.</p>
+                `
+            },
+
+            "סוגי קצבאות": {
+                icon: "💰",
+                content: `
+                    <h3>מסלולים עיקריים וסכומים 2025-2026</h3>
+                    
+                    <h4>1️⃣ חוק נכי רדיפות הנאצים</h4>
+                    <ul>
+                        <li><strong>למי:</strong> עלו לפני 1.10.1953 ויש להם נכות רפואית</li>
+                        <li><strong>סכום:</strong> 2,861-7,184 ₪ לחודש (תלוי באחוז נכות)</li>
+                        <li><strong>חישוב:</strong> כל אחוז נכות = 71.84 ₪</li>
+                        <li><strong>למי לפנות:</strong> הרשות לזכויות ניצולי השואה - *5105</li>
+                    </ul>
+
+                    <h4>2️⃣ חוק הטבות לניצולי שואה</h4>
+                    <ul>
+                        <li><strong>למי:</strong> עלו אחרי 1.10.1953 וקיבלו תשלום מגרמניה</li>
+                        <li><strong>מענק שנתי:</strong> 7,502 ₪ משולם ב-1 בפברואר</li>
+                        <li><strong>משולם אוטומטית</strong> אם אושרה בקשה בעבר</li>
+                        <li><strong>למי לפנות:</strong> הרשות לזכויות ניצולי השואה - *5105</li>
+                    </ul>
+
+                    <h4>3️⃣ קרן סעיף 2 (ועידת התביעות)</h4>
+                    <ul>
+                        <li><strong>למי:</strong> שהו במסתור או בזהות בדויה 4+ חודשים</li>
+                        <li><strong>קצבה:</strong> ~2,000 אירו כל 3 חודשים</li>
+                        <li><strong>השלמה:</strong> משלוש מישראל אם אחוזי נכות גבוהים מ-40%</li>
+                        <li><strong>למי לפנות:</strong> ועידת התביעות - 03-5194400</li>
+                    </ul>
+
+                    <h4>🎁 הטבות נלוות</h4>
+                    <ul>
+                        <li>מענק הבראה: 2,280-3,258 ₪ בשנה</li>
+                        <li>סיוע לעובד זר: 1,000 ₪ לחודש (לדמנציה)</li>
+                        <li>סיוע עזרה בבית: 778 ₪ לחודש</li>
+                        <li>תוספת 9 שעות סיעוד שבועיות (לזכאים)</li>
+                    </ul>
+                `
+            },
+
+            "סיעוד וטיפול": {
+                icon: "🏥",
+                content: `
+                    <h3>זכויות סיעוד וטיפול בבית</h3>
+                    
+                    <h4>🔴 תוספת 9 שעות סיעוד שבועיות</h4>
+                    <ul>
+                        <li><strong>שווי:</strong> כ-2,169 ₪ לחודש בשעות של מטפל</li>
+                        <li><strong>תנאים:</strong> הכרה כניצול + גמלת סיעוד מלאה + 6 נקודות תלות</li>
+                        <li><strong>משולם אוטומטית</strong> - אין צורך בהגשת בקשה</li>
+                        <li><strong>למי לפנות:</strong> הקרן לרווחת נפגעי השואה - 03-6090866</li>
+                    </ul>
+
+                    <h4>🔵 50 שעות לאחר אשפוז</h4>
+                    <ul>
+                        <li>עד 50 שעות סיעוד לאחר שחרור מבית חולים</li>
+                        <li>למי שאינם זכאים לגמלת סיעוד מלאה</li>
+                        <li>למשך תקופה מוגבלת</li>
+                    </ul>
+
+                    <h4>🟡 תוכנית סול"ם בקהילה</h4>
+                    <ul>
+                        <li>עד 50 שעות סיעוד במצבי משבר</li>
+                        <li>לניצולים בצרכים מיוחדים</li>
+                        <li>סיוע זמני עד להסדרת מצב קבוע</li>
+                    </ul>
+
+                    <h4>📋 פטור מתרופות בריאות</h4>
+                    <ul>
+                        <li>פטור מלא מתרופות בסל הבריאות</li>
+                        <li>הנחות בתרופות מחוץ לסל</li>
+                        <li>הנחה בהשתתפויות עצמיות</li>
+                    </ul>
+
+                    <div class="info-box">
+                        <div class="info-box-icon">ℹ️</div>
+                        <div class="info-box-text"><strong>חשוב:</strong> גם אם אינך עומד בקריטריונים של 6 נקודות כיום, כדאי לבדוק מחדש אם המצב הבריאותי החמיר.</div>
+                    </div>
+                `
+            },
+
+            "הנחות וזכויות כלכליות": {
+                icon: "🏠",
+                content: `
+                    <h3>הנחות בארנונה, חשמל ודיור</h3>
+                    
+                    <h4>🏛️ הנחות בארנונה</h4>
+                    <ul>
+                        <li>אחוז הנחה משתנה לפי רשות מקומית</li>
+                        <li>תלוי ברמת הכנסה והכרה כניצול</li>
+                        <li>יש לפנות לעירייה/מועצה עם אישורים</li>
+                    </ul>
+
+                    <h4>⚡ פטור/הנחה בחשמל</h4>
+                    <ul>
+                        <li>הנחה בחשבון החשמל</li>
+                        <li>הנחות בהיטלים עירוניים</li>
+                        <li>פנייה לחברת החשמל עם אישור זכאות</li>
+                    </ul>
+
+                    <h4>💧 סיוע בתשלומי מים</h4>
+                    <ul>
+                        <li>הנחות משתנות לפי רשות מקומית</li>
+                        <li>יש להגיש בקשה לחברת המים</li>
+                    </ul>
+
+                    <h4>🏠 סיוע בדיור</h4>
+                    <ul>
+                        <li>סיוע בשכר דירה לזקוקים</li>
+                        <li>השתתפות במגורים בדיור מוגן</li>
+                        <li>השתתפות בבית אבות</li>
+                        <li>הקלות במס רכישה בעת קניית דירה</li>
+                    </ul>
+
+                    <h4>💼 סיוע כלכלי נוסף</h4>
+                    <ul>
+                        <li>סלי מזון לחגים</li>
+                        <li>סיוע בתשלומים בפעמים קשות</li>
+                        <li>ציוד רפואי (משקפיים, לחצני מצוקה)</li>
+                        <li>אביזרים להנגשה של הדירה</li>
+                    </ul>
+                `
+            },
+
+            "הגשת בקשות": {
+                icon: "📝",
+                content: `
+                    <h3>איך להגיש בקשה לזכויות</h3>
+                    
+                    <h4>📋 מסמכים נדרשים</h4>
+                    <ul>
+                        <li><strong>בסיסיים:</strong> תעודת זהות, אישורי עלייה, אישורי הכנסה</li>
+                        <li><strong>היסטוריים:</strong> אישורים על שהות בגטו/מחנה, מסמכי ארכיון</li>
+                        <li><strong>רפואיים:</strong> חוות דעת עדכניות, אבחונים מרופאים מומחים</li>
+                    </ul>
+
+                    <div class="info-box">
+                        <div class="info-box-icon">💡</div>
+                        <div class="info-box-text"><strong>זכור:</strong> גם בלי מסמכים מלאים ניתן להגיש! אפשר להסתמך על תצהירים, מסמכים כלליים ועדויות.</div>
+                    </div>
+
+                    <h4>🏢 לאן לפנות</h4>
+                    <div class="phone-box">
+                        <div class="phone-icon">📞</div>
+                        <div class="phone-info">
+                            <div class="phone-label">הרשות לזכויות ניצולי השואה</div>
+                            <div class="phone-number">*5105 / 03-5682651</div>
+                            <div class="phone-note">כתובת: בנין נצבא, רחוב יצחק שדה 17, תל אביב</div>
+                        </div>
+                    </div>
+
+                    <div class="phone-box">
+                        <div class="phone-icon">📞</div>
+                        <div class="phone-info">
+                            <div class="phone-label">ועידת התביעות</div>
+                            <div class="phone-number">03-5194400</div>
+                            <div class="phone-note">קרליבך 25, תל אביב</div>
+                        </div>
+                    </div>
+
+                    <h4>📤 דרכי הגשה</h4>
+                    <ul>
+                        <li>באינטרנט - טופס מקוון באתר הרשות</li>
+                        <li>בדואר - שליחת טפסים ומסמכים</li>
+                        <li>בפקס - שליחת מסמכים סרוקים</li>
+                        <li>בסיוע עו"ס - עובדת סוציאלית יכולה לסייע</li>
+                        <li>דרך עמותה - עמותות מסייעות בהגשה</li>
+                    </ul>
+
+                    <h4>⏱️ טיפים חשובים</h4>
+                    <ul>
+                        <li>שמור עותקים של כל המסמכים שהגשת</li>
+                        <li>תעד מועדי פנייה ושמות אנשי קשר</li>
+                        <li>בקש אישור קבלה על הגשת הבקשה</li>
+                        <li>עקוב אחרי הבקשה כל מספר שבועות</li>
+                    </ul>
+                `
+            },
+
+            "ערעורים והחמרות": {
+                icon: "⚖️",
+                content: `
+                    <h3>ערעור על החלטת דחייה והחמרה של קצבה</h3>
+                    
+                    <h4>❌ הבקשה נדחתה? אל תוותר!</h4>
+                    <ul>
+                        <li><strong>מסגרת זמן:</strong> בדרך כלל 6-12 חודשים להגיש ערעור</li>
+                        <li><strong>עדיפות:</strong> חשוב לא לפספס את המועד!</li>
+                        <li><strong>סיכוי:</strong> אלפי תביעות התקבלו בערעור</li>
+                    </ul>
+
+                    <h4>📝 תוכן הערעור</h4>
+                    <ul>
+                        <li>הסבר מדוע ההחלטה שגויה</li>
+                        <li>צירוף מסמכים חדשים/נוספים</li>
+                        <li>אישורים רפואיים מעודכנים</li>
+                        <li>מסמכים היסטוריים שלא צורפו קודם</li>
+                        <li>עדויות נוספות ופסיקות רלוונטיות</li>
+                    </ul>
+
+                    <h4>📈 בקשה להחמרה - הגדלת אחוזי נכות</h4>
+                    <ul>
+                        <li><strong>מתי:</strong> כשיש שינוי משמעותי במצב הבריאותי</li>
+                        <li><strong>תדירות:</strong> אפשר להגיש פעם ב-6 חודשים</li>
+                        <li><strong>תוצאה אפשרית:</strong> הגדלת הקצבה החודשית</li>
+                    </ul>
+
+                    <h4>💪 סיוע משפטי בחינם</h4>
+                    <div class="phone-box">
+                        <div class="phone-icon">👨‍⚖️</div>
+                        <div class="phone-info">
+                            <div class="phone-label">סיוע משפטי במשרד המשפטים</div>
+                            <div class="phone-number">*6405</div>
+                            <div class="phone-note">בחינם ללא תלות במבחן הכנסה</div>
+                        </div>
+                    </div>
+
+                    <div class="phone-box">
+                        <div class="phone-icon">🤝</div>
+                        <div class="phone-info">
+                            <div class="phone-label">עמותת אביב</div>
+                            <div class="phone-number">*5711</div>
+                            <div class="phone-note">ליווי משפטי מקצועי</div>
+                        </div>
+                    </div>
+                `
+            },
+
+            "ארגוני סיוע": {
+                icon: "🤝",
+                content: `
+                    <h3>ארגונים וגופים לסיוע בחינם</h3>
+                    
+                    <h4>🎯 עמותת אביב לניצולי השואה</h4>
+                    <ul>
+                        <li><strong>טלפון:</strong> *5711 / 072-2424404</li>
+                        <li><strong>כתובת:</strong> מזא"ה 58, תל אביב-יפו</li>
+                        <li><strong>מוקד:</strong> 24/7 בכל ימות השבוע</li>
+                        <li><strong>סניפים:</strong> 9 סניפים ברחבי הארץ</li>
+                        <li><strong>שירותים:</strong> סיוע בטפסים, ליווי משפטי, הגנה צרכנית</li>
+                    </ul>
+
+                    <h4>❤️ הקרן לרווחת נפגעי השואה</h4>
+                    <ul>
+                        <li><strong>טלפון:</strong> 03-6090866</li>
+                        <li><strong>אתר:</strong> www.k-shoa.org</li>
+                        <li><strong>שעות:</strong> א'-ה' 09:00-14:00</li>
+                        <li><strong>שירותים:</strong> תוספת 9 שעות סיעוד, 50 שעות, סול"ם בקהילה</li>
+                        <li><strong>מטפלת בכ-81,000 ניצולים בשנה</strong></li>
+                    </ul>
+
+                    <h4>💙 עמותת עמך</h4>
+                    <ul>
+                        <li><strong>טלפון:</strong> 02-6250745</li>
+                        <li><strong>סניפים:</strong> 18 סניפים ברחבי הארץ</li>
+                        <li><strong>שירותים:</strong> טיפול נפשי, קבוצות תמיכה, ביקורי בית</li>
+                        <li><strong>מתנדבים:</strong> 900 מתנדבים ב-50,000+ שעות בשנה</li>
+                    </ul>
+
+                    <h4>⚔️ עמותת אלה - זכויות ניצולי שואה</h4>
+                    <ul>
+                        <li><strong>טלפון:</strong> 03-6910921</li>
+                        <li><strong>כתובת:</strong> יגאל אלון 157, תל אביב</li>
+                        <li><strong>שירותים:</strong> סיוע משפטי וייעוץ בזכויות</li>
+                    </ul>
+
+                    <h4>📞 מוקדים טלפוניים חשובים</h4>
+                    <ul>
+                        <li>*8840 - המשרד לאזרחים ותיקים</li>
+                        <li>118 - שי"ל (שירות הייעוץ לאזרח)</li>
+                        <li>*9696 - ביטוח לאומי - מרכז תמיכה</li>
+                    </ul>
+                `
+            }
+        };
+
+        const questionnaireData = [
+            {
+                id: 'yearOfBirth',
+                label: '🎂 שנת לידה:',
+                type: 'number',
+                inputOnly: true
+            },
+            {
+                id: 'aliyaYear',
+                label: '🇮🇱 באיזו שנה עלית לישראל?',
+                type: 'number',
+                inputOnly: true
+            },
+            {
+                id: 'hasDisability',
+                label: '⚕️ האם הוכרה לך נכות רפואית?',
+                type: 'radio',
+                options: ['כן', 'לא', 'לא בטוח']
+            },
+            {
+                id: 'disabilityPercent',
+                label: '📊 אחוז הנכות (אם קיימת):',
+                type: 'number',
+                inputOnly: true,
+                dependent: 'hasDisability'
+            },
+            {
+                id: 'ghetto',
+                label: '🏚️ האם היית בגטו?',
+                type: 'radio',
+                options: ['כן', 'לא', 'לא בטוח']
+            },
+            {
+                id: 'camp',
+                label: '⚠️ האם היית במחנה ריכוז/עבודה?',
+                type: 'radio',
+                options: ['כן', 'לא', 'לא בטוח']
+            },
+            {
+                id: 'hiding',
+                label: '🏠 האם היית במסתור?',
+                type: 'radio',
+                options: ['כן', 'לא', 'לא בטוח']
+            },
+            {
+                id: 'hidingMonths',
+                label: '📅 כמה חודשים היית במסתור?',
+                type: 'number',
+                inputOnly: true,
+                dependent: 'hiding'
+            },
+            {
+                id: 'currentPension',
+                label: '💳 האם אתה מקבל קצבה כניצול כעת?',
+                type: 'radio',
+                options: ['כן', 'לא']
+            },
+            {
+                id: 'pensionAmount',
+                label: '💰 סכום הקצבה החודשית:',
+                type: 'number',
+                inputOnly: true,
+                dependent: 'currentPension'
+            },
+            {
+                id: 'cognitiveIssues',
+                label: '🧠 האם יש בעיות זיכרון או דמנציה?',
+                type: 'radio',
+                options: ['כן', 'לא', 'לא בטוח']
+            },
+            {
+                id: 'income',
+                label: '💵 רמת הכנסה משוערת (בחודש):',
+                type: 'number',
+                inputOnly: true
+            },
+            {
+                id: 'needsCare',
+                label: '🏥 האם זקוק/ה לסיוע בפעולות יומיומיות?',
+                type: 'radio',
+                options: ['כן', 'לא', 'למעשים מסוימים']
+            }
+        ];
+
+        const recommendationsRules = [
+            {
+                condition: (data) => {
+                    const aliyaYear = parseInt(data.aliyaYear) || 0;
+                    const hasDisability = data.hasDisability === 'כן';
+                    return aliyaYear > 0 && aliyaYear < 1953 && hasDisability;
+                },
+                recommendation: {
+                    title: "✓ חוק נכי רדיפות הנאצים",
+                    description: "אתה עשוי להיות זכאי לקצבה חודשית של 2,861-7,184 ₪ לפי אחוז נכות",
+                    contact: "הרשות לזכויות ניצולי השואה: *5105"
+                }
+            },
+            {
+                condition: (data) => {
+                    const aliyaYear = parseInt(data.aliyaYear) || 0;
+                    return aliyaYear > 1953 && (data.ghetto === 'כן' || data.camp === 'כן');
+                },
+                recommendation: {
+                    title: "✓ קצבה ליוצאי מחנות וגטאות",
+                    description: "אתה עשוי להיות זכאי לקצבה חודשית על ידי הכרה בשהות בגטו או מחנה",
+                    contact: "הרשות לזכויות ניצולי השואה: *5105"
+                }
+            },
+            {
+                condition: (data) => {
+                    const hidingMonths = parseInt(data.hidingMonths) || 0;
+                    return data.hiding === 'כן' && hidingMonths >= 4;
+                },
+                recommendation: {
+                    title: "✓ קרן סעיף 2 (ועידת התביעות)",
+                    description: "אתה עשוי להיות זכאי לקצבה תלת-חודשית של ~2,000 אירו",
+                    contact: "ועידת התביעות: 03-5194400"
+                }
+            },
+            {
+                condition: (data) => {
+                    const aliyaYear = parseInt(data.aliyaYear) || 0;
+                    return data.currentPension === 'לא' && aliyaYear > 0;
+                },
+                recommendation: {
+                    title: "✓ בדוק זכאות למענק שנתי",
+                    description: "אם לא מקבל קצבה חודשית, אתה עשוי להיות זכאי למענק שנתי של 7,502 ₪",
+                    contact: "הרשות לזכויות ניצולי השואה: *5105"
+                }
+            },
+            {
+                condition: (data) => {
+                    return data.cognitiveIssues === 'כן' && data.currentPension === 'כן';
+                },
+                recommendation: {
+                    title: "📈 בקש הכרה בדמנציה",
+                    description: "ניתן לבקש החמרה בקצבה ותוספת 9 שעות סיעוד שבועיות (~2,169 ₪)",
+                    contact: "הקרן לרווחת נפגעי השואה: 03-6090866"
+                }
+            },
+            {
+                condition: (data) => {
+                    const income = parseInt(data.income) || 0;
+                    return data.currentPension === 'כן' && income > 0 && income < 3000;
+                },
+                recommendation: {
+                    title: "💰 בדוק זכאות לתגמול מוגדל",
+                    description: "אם ההכנסה שלך נמוכה, אתה עשוי להיות זכאי לקצבה גבוהה יותר עד 12,017 ₪",
+                    contact: "הרשות לזכויות ניצולי השואה: *5105"
+                }
+            },
+            {
+                condition: (data) => {
+                    return data.needsCare === 'כן' && data.currentPension === 'כן';
+                },
+                recommendation: {
+                    title: "🏥 סיוע סיעודי",
+                    description: "אתה עשוי להיות זכאי לסיוע סיעודי חודשי (עובד זר או עזרה בבית)",
+                    contact: "הקרן לרווחת נפגעי השואה: 03-6090866"
+                }
+            },
+            {
+                condition: (data) => {
+                    return data.currentPension === 'לא' && (data.ghetto === 'כן' || data.camp === 'כן' || data.hiding === 'כן');
+                },
+                recommendation: {
+                    title: "🚀 בקשה דחופה - עדכן את סטטוסך",
+                    description: "יש לך זכויות שלא מומשו! בקש ייעוץ מיידי מעמותת אביב",
+                    contact: "עמותת אביב: *5711 (פעול 24/7)"
+                }
+            },
+            {
+                condition: (data) => {
+                    return data.disabilityPercent && parseInt(data.disabilityPercent) >= 50;
+                },
+                recommendation: {
+                    title: "🎯 בקש הכרה במחלות נוספות",
+                    description: "עם 50%+ נכות, אתה יכול לבקש הכרה במחלות נוספות (דיכאון, חרדות, וכו')",
+                    contact: "הרשות לזכויות ניצולי השואה: *5105"
+                }
+            }
+        ];
+
+        // Initialize page
+        function initializePage() {
+            buildAccordions();
+            buildQuestionnaire();
+        }
+
+        function buildAccordions() {
+            const container = document.getElementById('infoAccordions');
+            container.innerHTML = '';
+
+            Object.entries(infoData).forEach(([title, data]) => {
+                const accordion = document.createElement('div');
+                accordion.className = 'accordion';
+                accordion.innerHTML = `
+                    <div class="accordion-header" onclick="toggleAccordion(this)">
+                        <div class="accordion-icon">${data.icon}</div>
+                        <h2 class="accordion-title">${title}</h2>
+                        <div class="accordion-arrow">▼</div>
+                    </div>
+                    <div class="accordion-content">
+                        <div class="accordion-body">
+                            ${data.content}
+                        </div>
+                    </div>
+                `;
+                container.appendChild(accordion);
+            });
+        }
+
+        function buildQuestionnaire() {
+            const container = document.getElementById('questionnaireForm');
+            container.innerHTML = '';
+
+            questionnaireData.forEach(q => {
+                const group = document.createElement('div');
+                group.className = 'question-group';
+                group.id = `q-${q.id}`;
+
+                const label = document.createElement('label');
+                label.className = 'question-label';
+                label.textContent = q.label;
+                group.appendChild(label);
+
+                if (q.type === 'radio') {
+                    const optionsDiv = document.createElement('div');
+                    optionsDiv.className = 'question-options';
+
+                    q.options.forEach(opt => {
+                        const container = document.createElement('label');
+                        container.className = 'radio-container';
+                        container.innerHTML = `
+                            <input type="radio" name="${q.id}" value="${opt}" onchange="updateDependents()">
+                            <span>${opt}</span>
+                        `;
+                        optionsDiv.appendChild(container);
+                    });
+                    group.appendChild(optionsDiv);
+                } else if (q.type === 'number') {
+                    const input = document.createElement('input');
+                    input.type = 'number';
+                    input.id = q.id;
+                    input.placeholder = 'הזן מספר...';
+                    input.onchange = () => updateDependents();
+                    group.appendChild(input);
+                }
+
+                container.appendChild(group);
+            });
+        }
+
+        function updateDependents() {
+            questionnaireData.forEach(q => {
+                if (q.dependent) {
+                    const dependentValue = getFormValue(q.dependent);
+                    const questionGroup = document.getElementById(`q-${q.id}`);
+                    if (questionGroup) {
+                        if (dependentValue === 'כן' || (q.dependent === 'hasDisability' && dependentValue === 'כן')) {
+                            questionGroup.style.display = 'block';
+                        } else if (dependentValue === 'לא') {
+                            questionGroup.style.display = 'none';
+                        }
+                    }
+                }
+            });
+        }
+
+        function getFormValue(fieldId) {
+            const radioInputs = document.querySelectorAll(`input[name="${fieldId}"]:checked`);
+            if (radioInputs.length > 0) {
+                return radioInputs[0].value;
+            }
+            const numberInput = document.getElementById(fieldId);
+            if (numberInput) {
+                return numberInput.value;
+            }
+            return null;
+        }
+
+        function collectFormData() {
+            const data = {};
+            questionnaireData.forEach(q => {
+                data[q.id] = getFormValue(q.id);
+            });
+            return data;
+        }
+
+        function calculateRecommendations() {
+            const data = collectFormData();
+            const recommendations = recommendationsRules
+                .filter(rule => rule.condition(data))
+                .map(rule => rule.recommendation);
+
+            displayRecommendations(recommendations, data);
+        }
+
+        function displayRecommendations(recommendations, data) {
+            const container = document.getElementById('recommendationsContainer');
+            const scoringResult = document.getElementById('scoringResult');
+
+            if (recommendations.length === 0) {
+                container.innerHTML = `
+                    <div class="no-recommendations">
+                        <p>😊 לא הצלחנו לזהות זכויות מתאימות בנתונים הנוכחיים.</p>
+                        <p>עם זאת, <strong>בכל מקרה מומלץ להתקשר להרשות לזכויות ניצולי השואה (*5105)</strong> לבדיקה מלאה.</p>
+                    </div>
+                `;
+            } else {
+                let html = `
+                    <div class="recommendations-section">
+                        <h2 class="recommendations-title">💡 המלצות לפי תשובותיך:</h2>
+                        <p style="margin-bottom: 20px; color: #666;">נמצאנו ${recommendations.length} אפשרויות זכאות אפשריות:</p>
+                `;
+
+                recommendations.forEach(rec => {
+                    html += `
+                        <div class="recommendation-item">
+                            <h4>${rec.title}</h4>
+                            <p>${rec.description}</p>
+                            <p><strong>📞 ${rec.contact}</strong></p>
+                        </div>
+                    `;
+                });
+
+                html += `
+                    <div class="action-buttons" style="margin-top: 30px;">
+                        <button class="btn btn-primary" onclick="copyInformation()">📋 העתק מידע</button>
+                        <button class="btn btn-success" onclick="printRecommendations()">🖨️ הדפס</button>
+                    </div>
+                    
+                    <div class="info-box" style="margin-top: 20px;">
+                        <div class="info-box-icon">⚠️</div>
+                        <div class="info-box-text">
+                            <strong>חשוב:</strong> המידע בשאלון זה הוא הנחיה כללית בלבד. המלצות אלה אינן תחליף לייעוץ משפטי או בדיקה רשמית מהרשויות המוסמכות. מומלץ בחום להתקשר לגורמים המקצועיים המפורטים להנחיה מתאימה למצבך האישי.
+                        </div>
+                    </div>
+                `;
+
+                html += '</div>';
+                container.innerHTML = html;
+            }
+
+            // Show score
+            if (scoringResult) {
+                const score = recommendations.length;
+                scoringResult.innerHTML = `
+                    <div class="score-display">
+                        <div class="score-number">${score}</div>
+                        <div class="score-text">אפשרויות זכאות זוהו</div>
+                        <div style="margin-top: 15px; font-size: 1rem; color: #E65100;">
+                            מומלץ להתקשר מיידית לגופים המוצעים כדי למצות את כל הזכויות המגיעות לך
+                        </div>
+                    </div>
+                `;
+            }
+
+            switchTab('recommendations');
+        }
+
+        function resetForm() {
+            document.querySelectorAll('input[type="radio"]').forEach(input => input.checked = false);
+            document.querySelectorAll('input[type="number"]').forEach(input => input.value = '');
+            document.getElementById('scoringResult').innerHTML = '';
+            updateDependents();
+        }
+
+        function copyInformation() {
+            alert('מידע זה הועתק. תוכל להדביק אותו בדוא"ל או במסמך.');
+        }
+
+        function printRecommendations() {
+            window.print();
+        }
+
+        function switchTab(tabName) {
+            document.querySelectorAll('.tab-content').forEach(tab => tab.classList.remove('active'));
+            document.querySelectorAll('.tab-button').forEach(btn => btn.classList.remove('active'));
+
+            document.getElementById(tabName).classList.add('active');
+            event.target.classList.add('active');
+        }
+
+        function toggleAccordion(header) {
+            const accordion = header.closest('.accordion');
+            const isActive = accordion.classList.contains('active');
+
+            document.querySelectorAll('.accordion.active').forEach(acc => {
+                acc.classList.remove('active');
+            });
+
+            if (!isActive) {
+                accordion.classList.add('active');
+            }
+        }
+
+        // Initialize on load
+        document.addEventListener('DOMContentLoaded', initializePage);
+    </script>
+</body>
+</html>
