@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>חיפוש + תשובת AI (דמו)</title>
+  <style>
+    body { font-family: Arial, sans-serif; background: #f5f7fb; margin: 0; padding: 24px; }
+    .card { max-width: 900px; margin: 0 auto; background: #fff; padding: 24px; border-radius: 12px; box-shadow: 0 8px 24px rgba(0,0,0,0.08); }
+    h1 { margin-top: 0; }
+    textarea { width: 100%; min-height: 90px; padding: 12px; font-size: 16px; }
+    button { margin-top: 12px; padding: 10px 16px; font-size: 16px; cursor: pointer; }
+    .muted { color: #666; font-size: 14px; }
+    .result { margin-top: 16px; background: #f0f4ff; padding: 16px; border-radius: 8px; white-space: pre-wrap; }
+    .error { color: #b00020; }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <h1>חיפוש אינטרנט + תשובת AI</h1>
+    <p class="muted">דמו בסיסי: Google Custom Search + Gemini</p>
+
+    <label for="question">שאלה:</label>
+    <textarea id="question" placeholder="כתוב שאלה..."></textarea>
+    <button id="btnRun">חפש וענה</button>
+
+    <div id="status" class="muted"></div>
+    <div id="output" class="result"></div>
+  </div>
+
+  <script>
+    // TODO: החלף לערכים שלך
+    const GOOGLE_API_KEY = 'PUT_GOOGLE_API_KEY_HERE';
+    const SEARCH_ENGINE_ID = 'PUT_SEARCH_ENGINE_ID_HERE';
+    const GEMINI_API_KEY = 'PUT_GEMINI_API_KEY_HERE';
+
+    async function searchAndAnswer(userQuestion) {
+      const searchUrl = `https://www.googleapis.com/customsearch/v1?key=${GOOGLE_API_KEY}&cx=${SEARCH_ENGINE_ID}&q=${encodeURIComponent(userQuestion)}`;
+      const searchResults = await fetch(searchUrl);
+      if (!searchResults.ok) {
+        throw new Error('Search API error');
+      }
+      const results = await searchResults.json();
+
+      const context = (results.items || []).map(item => `${item.title}: ${item.snippet}`).join('\n');
+
+      const geminiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-pro:generateContent?key=${GEMINI_API_KEY}`;
+      const response = await fetch(geminiUrl, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          contents: [{
+            parts: [{
+              text: `בהתבסס על המידע הבא:\n${context}\n\nענה על השאלה: ${userQuestion}`
+            }]
+          }]
+        })
+      });
+
+      if (!response.ok) {
+        throw new Error('Gemini API error');
+      }
+
+      return await response.json();
+    }
+
+    document.getElementById('btnRun').addEventListener('click', async () => {
+      const question = document.getElementById('question').value.trim();
+      const status = document.getElementById('status');
+      const output = document.getElementById('output');
+
+      if (!question) {
+        output.textContent = 'יש להזין שאלה.';
+        output.classList.add('error');
+        return;
+      }
+
+      output.classList.remove('error');
+      output.textContent = '';
+      status.textContent = 'מבצע חיפוש ושולח ל-AI...';
+
+      try {
+        const data = await searchAndAnswer(question);
+        const answer = data.candidates?.[0]?.content?.parts?.[0]?.text || 'לא התקבלה תשובה.';
+        output.textContent = answer;
+      } catch (err) {
+        output.textContent = 'שגיאה: ' + err.message;
+        output.classList.add('error');
+      } finally {
+        status.textContent = '';
+      }
+    });
+  </script>
+</body>
+</html>

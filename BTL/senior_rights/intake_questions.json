@@ -1,289 +1,620 @@
 {
   "metadata": {
-    "title": "שאלון אינטק חכם - זכויות ביטוח לאומי (גרסה מעודכנת)",
-    "description": "שאלון לזיהוי זכויות רלוונטיות מביטוח לאומי",
-    "version": "3.0",
-    "date": "2026-01-26"
+    "title": "טופס תביעה לקצבת אזרח ותיק",
+    "description": "שאלון דינמי על בסיס טופס 480",
+    "version": "2.0",
+    "formNumber": "480",
+    "date": "2026-02-01"
   },
   "sections": [
     {
-      "id": "section_0",
-      "title": "חלק א׳ - פרטים בסיסיים",
-      "description": "מידע ראשוני לזיהוי זכויות",
+      "id": "section_1",
+      "title": "סעיף 1 - פרטי הפונה",
+      "description": "מידע בסיסי",
       "questions": [
         {
-          "id": "q0_gender",
+          "id": "q1_1_gender",
           "type": "radio",
           "required": true,
-          "text": "מהו מינך?",
+          "text": "מין",
           "options": [
-            {"value": "male", "label": "אני גבר"},
-            {"value": "female", "label": "אני אישה"}
-          ],
-          "impacts": ["גיל פרישה"]
+            {"value": "male", "label": "זכר"},
+            {"value": "female", "label": "נקבה"}
+          ]
         },
         {
-          "id": "q0_age",
+          "id": "q1_2_age",
           "type": "number",
           "required": true,
-          "text": "בן/בת כמה את/ה?",
+          "text": "בן כמה את/ה?",
           "min": 18,
           "max": 120,
-          "impacts": ["כל הקצבאות", "גיל פרישה"]
-        },
-        {
-          "id": "q0_residency",
-          "type": "radio",
-          "required": true,
-          "text": "מה סטטוס התושבות שלך?",
-          "options": [
-            {"value": "permanent", "label": "תושב ישראל קבוע"},
-            {"value": "returning", "label": "תושב חוזר"},
-            {"value": "abroad", "label": "שוהה בחו״ל מעל 6 חודשים בשנה"}
-          ],
-          "impacts": ["זכאות בסיסית"]
-        }
-      ]
-    },
-    {
-      "id": "section_1",
-      "title": "חלק ב׳ - מצב משפחתי",
-      "description": "מידע משפחתי בסיסי",
-      "questions": [
-        {
-          "id": "q1_marital",
-          "type": "radio",
-          "required": true,
-          "text": "מה מצבך המשפחתי?",
-          "options": [
-            {"value": "single", "label": "רווק/ה"},
-            {"value": "married", "label": "נשוי/אה"},
-            {"value": "divorced", "label": "גרוש/ה"},
-            {"value": "widowed", "label": "אלמן/ה"}
-          ],
-          "impacts": ["תוספות זוג"]
-        },
-        {
-          "id": "q1_household_members",
-          "type": "checkbox",
-          "required": true,
-          "text": "מי מבני משפחתך מתגורר איתך בבית?",
-          "options": [
-            {"value": "spouse", "label": "בן/בת זוג"},
-            {"value": "children_under18", "label": "ילדים מתחת לגיל 18"},
-            {"value": "children_18_24", "label": "ילדים בין גיל 18 ל-24"},
-            {"value": "parents", "label": "הורים"},
-            {"value": "other", "label": "אחרים"}
-          ],
-          "impacts": ["תוספות תלויים"]
+          "placeholder": "גיל"
         }
       ]
     },
     {
       "id": "section_2",
-      "title": "חלק ג׳ - מצב כלכלי",
-      "description": "מידע כלכלי ונכסים",
+      "title": "סעיף 2 - פרטי בן/בת הזוג",
+      "description": "לרבות ידוע/ה בציבור",
       "questions": [
         {
-          "id": "q2_income_sources",
-          "type": "checkbox",
+          "id": "q2_1_has_spouse",
+          "type": "radio",
           "required": true,
-          "text": "מהם מקורות ההכנסה שלך? (ניתן לבחור יותר מאחד)",
+          "text": "האם יש לך בן/בת זוג?",
           "options": [
-            {"value": "work", "label": "עבודה"},
-            {"value": "pension", "label": "פנסיה"},
-            {"value": "senior_pension", "label": "קצבת אזרח ותיק"},
-            {"value": "rental", "label": "השכרת נכס"},
-            {"value": "none", "label": "אין הכנסה קבועה"}
+            {"value": "no", "label": "לא"},
+            {"value": "yes", "label": "כן"}
           ]
         },
         {
-          "id": "q2_income_level",
+          "id": "q2_2_spouse_gender",
           "type": "radio",
-          "required": true,
-          "text": "סך הכנסה חודשית משוערת (ברוטו)",
+          "required": false,
+          "text": "מין בן/בת הזוג:",
           "options": [
-            {"value": "below_threshold", "label": "מתחת לתקרת השלמת הכנסה"},
-            {"value": "above_threshold", "label": "מעל התקרה"},
-            {"value": "unknown", "label": "לא יודע / לא בטוח"}
+            {"value": "male", "label": "זכר"},
+            {"value": "female", "label": "נקבה"}
           ],
-          "impacts": ["השלמת הכנסה", "הבטחת הכנסה"]
+          "condition": {"q2_1_has_spouse": "yes"}
         },
         {
-          "id": "q2_assets",
-          "type": "checkbox",
-          "required": true,
-          "text": "אילו נכסים יש לך?",
-          "options": [
-            {"value": "apartment", "label": "דירה נוספת"},
-            {"value": "savings", "label": "חסכונות / ניירות ערך"},
-            {"value": "none", "label": "אין"}
-          ],
-          "impacts": ["השלמת הכנסה"]
+          "id": "q2_2a_spouse_age",
+          "type": "number",
+          "required": false,
+          "text": "גיל בן/בת הזוג",
+          "min": 18,
+          "max": 120,
+          "placeholder": "גיל",
+          "condition": {"q2_1_has_spouse": "yes"}
         },
         {
-          "id": "q2_household_benefits",
-          "type": "checkbox",
-          "required": true,
-          "text": "האם מישהו מבני הבית מקבל קצבה/תגמולים מהביטוח הלאומי?",
-          "options": [
-            {"value": "senior", "label": "אזרח ותיק"},
-            {"value": "disability", "label": "נכות"},
-            {"value": "nursing", "label": "סיעוד"},
-            {"value": "survivors", "label": "שאירים"},
-            {"value": "none", "label": "אף אחד"}
-          ]
-        },
-        {
-          "id": "q2_economic_hardship",
+          "id": "q2_3_spouse_lives_together",
           "type": "radio",
-          "required": true,
-          "text": "האם אתה במצב כלכלי חריג?",
+          "required": false,
+          "text": "האם בן/בת הזוג גר/ה איתך?",
           "options": [
-            {"value": "yes", "label": "כן"},
-            {"value": "no", "label": "לא"}
+            {"value": "no", "label": "לא"},
+            {"value": "yes", "label": "כן"}
           ],
-          "impacts": ["מענקים חד־פעמיים"]
-        },
-        {
-          "id": "q2_kibbutz",
-          "type": "radio",
-          "required": true,
-          "text": "האם אתה חבר קיבוץ או מושב שיתופי?",
-          "options": [
-            {"value": "kibbutz_shitufi", "label": "קיבוץ שיתופי"},
-            {"value": "kibbutz_mithadesh", "label": "קיבוץ מתחדש"},
-            {"value": "moshav_shitufi", "label": "מושב שיתופי"},
-            {"value": "no", "label": "לא"}
-          ],
-          "impacts": ["אופן חישוב הכנסה"],
-          "critical": true
-        },
-        {
-          "id": "q2_vehicles",
-          "type": "radio",
-          "required": true,
-          "text": "כמה כלי רכב בבעלותך או בשימוש קבוע?",
-          "options": [
-            {"value": "none", "label": "אין"},
-            {"value": "one", "label": "רכב אחד"},
-            {"value": "two", "label": "שני רכבים"},
-            {"value": "three_plus", "label": "שלושה ומעלה"}
-          ],
-          "impacts": ["השלמת הכנסה"]
+          "condition": {"q2_1_has_spouse": "yes"}
         }
       ]
     },
     {
       "id": "section_3",
-      "title": "חלק ד׳ - מצב בריאותי ותפקודי",
-      "description": "מידע על בריאות וניידות",
+      "title": "סעיף 3 - פרטי הכנסות",
+      "description": "אנא סמן את כל סוגי ההכנסות הרלוונטיים והזן את הסכומים המתאימים",
       "questions": [
         {
-          "id": "q3_household_disability",
-          "type": "radio",
+          "id": "q3_income_applicant",
+          "type": "income_table",
           "required": true,
-          "text": "האם למישהו מבני ביתך מוגדרת נכות?",
-          "options": [
-            {"value": "yes", "label": "כן"},
-            {"value": "no", "label": "לא"}
-          ],
-          "impacts": ["נכות"]
+          "text": "הכנסות של מגיש הבקשה",
+          "items": [
+            {
+              "id": "employed_income",
+              "label": "עבודה שכירה",
+              "amountLabel": "סכום ברוטו לחודש (₪)"
+            },
+            {
+              "id": "self_employed_income",
+              "label": "עבודה עצמאית",
+              "amountLabel": "סכום ברוטו לחודש (₪)"
+            },
+            {
+              "id": "rental_income",
+              "label": "דמי שכירות: מדירה, קרקע, חנות או מבנה",
+              "amountLabel": "סכום ברוטו לחודש (₪)"
+            },
+            {
+              "id": "interest_income",
+              "label": "ריבית מחסכונות או דיבידנד ממניות",
+              "amountLabel": "סכום ברוטו לחודש (₪)"
+            },
+            {
+              "id": "pension_local",
+              "label": "פנסיה בארץ",
+              "amountLabel": "סכום ברוטו לחודש (₪)"
+            },
+            {
+              "id": "pension_foreign",
+              "label": "פנסיה בחו״ל",
+              "amountLabel": "סכום ברוטו לחודש (₪)"
+            },
+            {
+              "id": "annuity_foreign",
+              "label": "רנטה בחו״ל",
+              "amountLabel": "סכום ברוטו לחודש (₪)"
+            },
+            {
+              "id": "government_benefits",
+              "label": "תגמולים ממשרד הביטחון או האוצר",
+              "amountLabel": "סכום ברוטו לחודש (₪)"
+            },
+            {
+              "id": "severance_pay",
+              "label": "פיצויי פרישה (שולמו או ישולמו)",
+              "amountLabel": "סכום (₪)"
+            },
+            {
+              "id": "investment_portfolio",
+              "label": "תיק השקעות (בארץ או בחו״ל)",
+              "amountLabel": "סכום (₪)"
+            },
+            {
+              "id": "other_income",
+              "label": "אחר",
+              "amountLabel": "סכום ברוטו לחודש (₪)",
+              "hasDetails": true,
+              "detailsLabel": "פרט סוג הכנסה"
+            }
+          ]
         },
         {
-          "id": "q3_household_nursing",
-          "type": "radio",
-          "required": true,
-          "text": "האם מישהו מבני בית חולה סיעודי?",
-          "options": [
-            {"value": "yes", "label": "כן"},
-            {"value": "no", "label": "לא"}
-          ],
-          "impacts": ["סיעוד"]
-        },
-        {
-          "id": "q3_household_mobility",
-          "type": "radio",
-          "required": true,
-          "text": "האם מישהו מבני ביתך מוגבל בניידות?",
-          "options": [
-            {"value": "yes", "label": "כן"},
-            {"value": "no", "label": "לא"}
-          ],
-          "impacts": ["ניידות"]
-        },
-        {
-          "id": "q3_work_injury",
-          "type": "radio",
-          "required": true,
-          "text": "האם מישהו מבני הבית מוגדר כנפגע תאונת עבודה?",
-          "options": [
-            {"value": "yes", "label": "כן"},
-            {"value": "no", "label": "לא"}
-          ],
-          "impacts": ["פגיעה בעבודה"]
-        },
-        {
-          "id": "q3_pregnancy",
-          "type": "radio",
-          "required": true,
-          "text": "האם את או מישהו מבני הבית בהריון?",
-          "options": [
-            {"value": "yes", "label": "כן"},
-            {"value": "no", "label": "לא"}
-          ],
-          "impacts": ["דמי לידה"]
-        },
-        {
-          "id": "q3_hostage_victim",
-          "type": "radio",
-          "required": true,
-          "text": "האם מישהו מבני הבית מוגדר נפגע פעולות איבה?",
-          "options": [
-            {"value": "yes", "label": "כן"},
-            {"value": "no", "label": "לא"}
-          ],
-          "impacts": ["נפגעי פעולות איבה"]
-        },
-        {
-          "id": "q3_medical_hardship",
-          "type": "radio",
-          "required": true,
-          "text": "האם אתה במצב רפואי/תפקודי חריג?",
-          "options": [
-            {"value": "yes", "label": "כן"},
-            {"value": "no", "label": "לא"}
-          ],
-          "impacts": ["סיעוד", "שירותים מיוחדים"]
+          "id": "q3_income_spouse",
+          "type": "income_table",
+          "required": false,
+          "text": "הכנסות של בן/בת הזוג",
+          "condition": {"q2_1_has_spouse": "yes"},
+          "items": [
+            {
+              "id": "employed_income",
+              "label": "עבודה שכירה",
+              "amountLabel": "סכום ברוטו לחודש (₪)"
+            },
+            {
+              "id": "self_employed_income",
+              "label": "עבודה עצמאית",
+              "amountLabel": "סכום ברוטו לחודש (₪)"
+            },
+            {
+              "id": "rental_income",
+              "label": "דמי שכירות: מדירה, קרקע, חנות או מבנה",
+              "amountLabel": "סכום ברוטו לחודש (₪)"
+            },
+            {
+              "id": "interest_income",
+              "label": "ריבית מחסכונות או דיבידנד ממניות",
+              "amountLabel": "סכום ברוטו לחודש (₪)"
+            },
+            {
+              "id": "pension_local",
+              "label": "פנסיה בישראל",
+              "amountLabel": "סכום ברוטו לחודש (₪)"
+            },
+            {
+              "id": "pension_foreign",
+              "label": "פנסיה בחו״ל",
+              "amountLabel": "סכום ברוטו לחודש (₪)"
+            },
+            {
+              "id": "annuity_foreign",
+              "label": "רנטה בחו״ל",
+              "amountLabel": "סכום ברוטו לחודש (₪)"
+            },
+            {
+              "id": "government_benefits",
+              "label": "תגמולים ממשרד הביטחון או האוצר",
+              "amountLabel": "סכום ברוטו לחודש (₪)"
+            },
+            {
+              "id": "severance_pay",
+              "label": "פיצויי פרישה (שולמו או ישולמו)",
+              "amountLabel": "סכום (₪)"
+            },
+            {
+              "id": "investment_portfolio",
+              "label": "תיק השקעות (בארץ או בחו״ל)",
+              "amountLabel": "סכום (₪)"
+            },
+            {
+              "id": "other_income",
+              "label": "אחר",
+              "amountLabel": "סכום ברוטו לחודש (₪)",
+              "hasDetails": true,
+              "detailsLabel": "פרט סוג הכנסה"
+            }
+          ]
         }
       ]
     },
     {
       "id": "section_4",
-      "title": "חלק ה׳ - בדיקת זכויות",
-      "description": "אילו זכויות תרצה לחקור?",
+      "title": "סעיף 4 - וותק ביטוח",
+      "description": "סכום החודשים הצבורים בביטוח לאומי",
       "questions": [
         {
-          "id": "q4_benefits_check",
-          "type": "checkbox",
-          "required": true,
-          "text": "אילו זכויות תרצה לחקור? (בחר את הרלוונטיות לך)",
+          "id": "q4_1_veteran_months_applicant",
+          "type": "radio",
+          "required": false,
+          "text": "כמה חודשי צבירת וותק יש לך בביטוח לאומי?",
           "options": [
-            {"value": "senior_citizen", "label": "קצבת אזרח ותיק וזכויות גיל"},
-            {"value": "disability", "label": "קצבת נכות"},
-            {"value": "nursing", "label": "גמלת סיעוד"},
-            {"value": "income_supplement", "label": "השלמת / הבטחת הכנסה"},
-            {"value": "survivors", "label": "קצבות שאירים"},
-            {"value": "work_injury", "label": "זכויות נפגעי עבודה"},
-            {"value": "hostage_victims", "label": "זכויות נפגעי פעולות איבה"},
-            {"value": "maternity", "label": "דמי לידה וקצבות אמהות"},
-            {"value": "unemployment", "label": "דמי אבטלה"},
-            {"value": "mobility", "label": "זכויות ניידות"},
-            {"value": "children_benefits", "label": "קצבת ילדים"},
-            {"value": "child_disability", "label": "זכויות ילדים עם מוגבלות"},
-            {"value": "special_grants", "label": "מענקים חד־פעמיים"},
-            {"value": "support_services", "label": "שירותים וסיוע"}
+            {"value": "less_6m", "label": "פחות מחצי שנה"},
+            {"value": "more_1y", "label": "יותר משנה"},
+            {"value": "more_5y", "label": "יותר מחמש שנים"},
+            {"value": "more_10y", "label": "יותר מ-10 שנים"},
+            {"value": "more_20y", "label": "יותר מ-20 שנים"},
+            {"value": "more_25y", "label": "יותר מ-25 שנים"},
+            {"value": "more_35y", "label": "יותר מ-35 שנים"}
           ]
+        },
+        {
+          "id": "q4_2_veteran_months_spouse",
+          "type": "radio",
+          "required": false,
+          "text": "כמה חודשי צבירת וותק יש לבן/בת הזוג בביטוח לאומי?",
+          "options": [
+            {"value": "less_6m", "label": "פחות מחצי שנה"},
+            {"value": "more_1y", "label": "יותר משנה"},
+            {"value": "more_5y", "label": "יותר מחמש שנים"},
+            {"value": "more_10y", "label": "יותר מ-10 שנים"},
+            {"value": "more_20y", "label": "יותר מ-20 שנים"},
+            {"value": "more_25y", "label": "יותר מ-25 שנים"},
+            {"value": "more_35y", "label": "יותר מ-35 שנים"}
+          ],
+          "condition": {"q2_1_has_spouse": "yes"}
+        }
+      ]
+    },
+    {
+      "id": "section_5",
+      "title": "סעיף 5 - קצבאות שמקבלים כיום",
+      "description": "אנא סמן אם אתה מקבל כיום קצבה והזן את הסכום החודשי",
+      "questions": [
+        {
+          "id": "q5_benefits_applicant",
+          "type": "table",
+          "required": false,
+          "text": "קצבאות של מגיש הבקשה",
+          "columns": [
+            {"id": "benefit_name", "label": "סוג קצבה"},
+            {"id": "receives", "label": "מקבל", "type": "select", "options": [
+              {"value": "", "label": "-"},
+              {"value": "yes", "label": "כן"},
+              {"value": "no", "label": "לא"}
+            ]},
+            {"id": "amount", "label": "סכום חודשי (₪)", "type": "number"}
+          ],
+          "rows": [
+            {"benefit_name": "קצבת זיקנה"},
+            {"benefit_name": "השלמת הכנסה"},
+            {"benefit_name": "דמי סיעוד"},
+            {"benefit_name": "גמלת נכות"},
+            {"benefit_name": "קצבת ניידות"}
+          ]
+        },
+        {
+          "id": "q5_benefits_spouse",
+          "type": "table",
+          "required": false,
+          "text": "קצבאות של בן/בת הזוג",
+          "condition": {"q2_1_has_spouse": "yes"},
+          "columns": [
+            {"id": "benefit_name", "label": "סוג קצבה"},
+            {"id": "receives", "label": "מקבל", "type": "select", "options": [
+              {"value": "", "label": "-"},
+              {"value": "yes", "label": "כן"},
+              {"value": "no", "label": "לא"}
+            ]},
+            {"id": "amount", "label": "סכום חודשי (₪)", "type": "number"}
+          ],
+          "rows": [
+            {"benefit_name": "קצבת זיקנה"},
+            {"benefit_name": "השלמת הכנסה"},
+            {"benefit_name": "דמי סיעוד"},
+            {"benefit_name": "גמלת נכות"},
+            {"benefit_name": "קצבת ניידות"}
+          ]
+        }
+      ]
+    },
+    {
+      "id": "section_6",
+      "title": "סעיף 6 - פרטי ילדים עד גיל 24",
+      "description": "",
+      "questions": [
+        {
+          "id": "q6_1_has_children",
+          "type": "radio",
+          "required": true,
+          "text": "האם יש לך ילדים עד גיל 24?",
+          "options": [
+            {"value": "yes", "label": "כן"},
+            {"value": "no", "label": "לא"}
+          ]
+        },
+        {
+          "id": "q6_2_children_residence",
+          "type": "radio",
+          "required": false,
+          "text": "עם מי מתגוררים הילדים?",
+          "options": [
+            {"value": "with_me_only", "label": "איתי בלבד"},
+            {"value": "with_me_and_spouse", "label": "איתי ועם בן/בת זוגי"},
+            {"value": "with_spouse_only", "label": "עם בן/בת זוגי בנפרד / גרוש/ה – בלבד"}
+          ],
+          "condition": {"q6_1_has_children": "yes"}
+        },
+        {
+          "id": "q6_children_table",
+          "type": "table",
+          "required": false,
+          "text": "פרטי הילדים המתגוררים איתי",
+          "columns": [
+            {"id": "child_name", "label": "שם הילד"},
+            {"id": "child_age", "label": "גיל", "type": "number"},
+            {"id": "child_income_gross", "label": "הכנסה ברוטו מעבודה", "type": "number", "defaultValue": "0"},
+            {"id": "child_has_car", "label": "יש/אין רכב", "type": "select", "defaultValue": "no", "options": [
+              {"value": "yes", "label": "יש"},
+              {"value": "no", "label": "אין"}
+            ]}
+          ],
+          "condition": {
+            "q6_1_has_children": "yes",
+            "q6_2_children_residence": ["with_me_only", "with_me_and_spouse"]
+          }
+        }
+      ]
+    },
+    {
+      "id": "section_7",
+      "title": "סעיף 7 - פרטים על שהות בחו״ל",
+      "description": "",
+      "questions": [
+        {
+          "id": "q7_abroad_residence",
+          "type": "radio",
+          "required": true,
+          "text": "האם שהית בחו״ל תקופות העולות על 5 שנים מגיל 18?",
+          "options": [
+            {"value": "no", "label": "לא"},
+            {"value": "yes", "label": "כן"}
+          ]
+        }
+      ]
+    },
+    {
+      "id": "section_8",
+      "title": "סעיף 8 - פרטים על עבודה",
+      "description": "תאריכי עבודה ודחיית קצבה",
+      "questions": [
+        {
+          "id": "q8_work_details",
+          "type": "dual_column_table",
+          "required": false,
+          "text": "פרטים על עבודה",
+          "columns": [
+            {"id": "applicant", "label": "מגיש בקשה"},
+            {"id": "spouse", "label": "בן/בת הזוג"}
+          ],
+          "rows": [
+            {
+              "id": "continues_working",
+              "label": "ממשיך לעבוד",
+              "type": "radio",
+              "options": [
+                {"value": "yes", "label": "כן"},
+                {"value": "no", "label": "לא"}
+              ]
+            },
+            {
+              "id": "work_stop_date",
+              "label": "תאריך הפסקת עבודה",
+              "type": "date"
+            },
+            {
+              "id": "pension_eligibility",
+              "label": "זכאי לפנסיה כיום או בעתיד",
+              "type": "radio",
+              "options": [
+                {"value": "yes", "label": "כן"},
+                {"value": "no", "label": "לא"}
+              ]
+            },
+            {
+              "id": "severance_payment",
+              "label": "פיצויי פרישה שולמו או ישולמו",
+              "type": "radio",
+              "options": [
+                {"value": "yes", "label": "כן"},
+                {"value": "no", "label": "לא"}
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "section_9",
+      "title": "סעיף 9 - חבר קיבוץ או מושב שיתופי",
+      "description": "",
+      "questions": [
+        {
+          "id": "q9_kibbutz_member",
+          "type": "radio",
+          "required": true,
+          "text": "האם אתה חבר קיבוץ או מושב שיתופי?",
+          "options": [
+            {"value": "no", "label": "לא"},
+            {"value": "yes", "label": "כן"}
+          ]
+        }
+      ]
+    },
+    {
+      "id": "section_10",
+      "title": "סעיף 10 - נכסים",
+      "description": "",
+      "questions": [
+        {
+          "id": "q10_assets_table",
+          "type": "dual_column_table",
+          "required": false,
+          "text": "שאלות בנכסים",
+          "columns": [
+            {"id": "applicant", "label": "המבקש"},
+            {"id": "spouse", "label": "בן/בת הזוג"}
+          ],
+          "rows": [
+            {
+              "id": "apartment_residence",
+              "label": "דירת מגורים בה אני גר",
+              "type": "radio",
+              "options": [
+                {"value": "no", "label": "לא"},
+                {"value": "yes", "label": "כן"}
+              ]
+            },
+            {
+              "id": "apartment_additional",
+              "label": "דירה נוספת בכתובת ________",
+              "type": "radio",
+              "options": [
+                {"value": "no", "label": "לא"},
+                {"value": "yes", "label": "כן"}
+              ]
+            },
+            {
+              "id": "store",
+              "label": "חנות בכתובת ________",
+              "type": "radio",
+              "options": [
+                {"value": "no", "label": "לא"},
+                {"value": "yes", "label": "כן"}
+              ]
+            },
+            {
+              "id": "warehouse",
+              "label": "מחסן בכתובת ________",
+              "type": "radio",
+              "options": [
+                {"value": "no", "label": "לא"},
+                {"value": "yes", "label": "כן"}
+              ]
+            },
+            {
+              "id": "land",
+              "label": "קרקע",
+              "type": "radio",
+              "options": [
+                {"value": "no", "label": "לא"},
+                {"value": "yes", "label": "כן"}
+              ]
+            },
+            {
+              "id": "agricultural_land",
+              "label": "אדמות חקלאיות",
+              "type": "radio",
+              "options": [
+                {"value": "no", "label": "לא"},
+                {"value": "yes", "label": "כן"}
+              ]
+            },
+            {
+              "id": "farm",
+              "label": "משק חקלאי",
+              "type": "radio",
+              "options": [
+                {"value": "no", "label": "לא"},
+                {"value": "yes", "label": "כן"}
+              ]
+            },
+            {
+              "id": "other",
+              "label": "אחר, פרטו ________",
+              "type": "radio",
+              "options": [
+                {"value": "no", "label": "לא"},
+                {"value": "yes", "label": "כן"}
+              ]
+            },
+            {
+              "id": "none",
+              "label": "אין בבעלותי נכס",
+              "type": "radio",
+              "options": [
+                {"value": "no", "label": "לא"},
+                {"value": "yes", "label": "כן"}
+              ]
+            },
+            {
+              "id": "renting_property",
+              "label": "אני משכיר דירה או אחד מהנכסים שבבעלותי למישהו אחר",
+              "type": "radio",
+              "options": [
+                {"value": "no", "label": "לא"},
+                {"value": "yes", "label": "כן"}
+              ]
+            },
+            {
+              "id": "additional_units",
+              "label": "יש יחידות דיור או דירות שנבנו בסמוך, מעל או מתחת לבית מגוריי",
+              "type": "radio",
+              "options": [
+                {"value": "no", "label": "לא"},
+                {"value": "yes", "label": "כן"}
+              ]
+            },
+            {
+              "id": "parent_passed",
+              "label": "אחד מהורי נפטר",
+              "type": "radio",
+              "options": [
+                {"value": "no", "label": "לא"},
+                {"value": "yes", "label": "כן"}
+              ]
+            },
+            {
+              "id": "received_property",
+              "label": "קיבלתי דירה או נכס כלשהו בירושה או במתנה",
+              "type": "radio",
+              "options": [
+                {"value": "no", "label": "לא"},
+                {"value": "yes", "label": "כן"}
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "section_11",
+      "title": "סעיף 11 - פרטים על רכב",
+      "description": "",
+      "questions": [
+        {
+          "id": "q11_1_has_vehicle",
+          "type": "radio",
+          "required": false,
+          "text": "האם יש לך או לבן/בת הזוג או לילד שבחזקתך רכב או אופנוע בשימוש?",
+          "options": [
+            {"value": "no", "label": "לא"},
+            {"value": "yes", "label": "כן"}
+          ]
+        },
+        {
+          "id": "q11_2_mobility_vehicle",
+          "type": "radio",
+          "required": false,
+          "text": "האם הרכב הוא רכב ניידות המשמש למוגבל בניידות (בן/בת זוג, ילד, הורה בלבד)?",
+          "options": [
+            {"value": "no", "label": "לא"},
+            {"value": "yes", "label": "כן"}
+          ],
+          "condition": {"q11_1_has_vehicle": "yes"}
+        },
+        {
+          "id": "q11_3_medical_vehicle",
+          "type": "radio",
+          "required": false,
+          "text": "האם הרכב שבבעלותך או בשימושך נדרש לצרכים רפואיים?",
+          "options": [
+            {"value": "no", "label": "לא"},
+            {"value": "yes", "label": "כן"}
+          ],
+          "condition": {"q11_1_has_vehicle": "yes"}
         }
       ]
     }

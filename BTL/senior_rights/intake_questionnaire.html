@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>שאלון אינטק חכם - זכויות אזרח ותיק</title>
+    <title>שאלון לפונה לייעוץ לקשיש (עדיין בפיתוח)</title>
     <style>
         * {
             margin: 0;
@@ -137,11 +137,9 @@
             color: #333;
         }
 
-        .question-impacts {
-            font-size: 0.85em;
-            color: #888;
-            margin-bottom: 10px;
-            font-style: italic;
+        .required {
+            color: #e74c3c;
+            margin-right: 3px;
         }
 
         .options {
@@ -240,7 +238,20 @@
             cursor: not-allowed;
         }
 
-        /* תוצאות */
+        .btn-small {
+            padding: 6px 12px;
+            font-size: 0.9em;
+            background: #e74c3c;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        .btn-small:hover {
+            background: #c0392b;
+        }
+
         .results {
             display: none;
         }
@@ -260,148 +271,11 @@
             margin-bottom: 10px;
         }
 
-        .results-summary {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 20px;
-            margin-bottom: 40px;
-        }
-
-        .summary-card {
-            padding: 20px;
-            border-radius: 10px;
+        .print-button {
+            margin-top: 30px;
             text-align: center;
-            color: white;
         }
 
-        .summary-card.high {
-            background: linear-gradient(135deg, #11998e 0%, #38ef7d 100%);
-        }
-
-        .summary-card.medium {
-            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
-        }
-
-        .summary-card.low {
-            background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
-        }
-
-        .summary-card.info {
-            background: linear-gradient(135deg, #fa709a 0%, #fee140 100%);
-        }
-
-        .summary-card .number {
-            font-size: 3em;
-            font-weight: bold;
-            margin-bottom: 10px;
-        }
-
-        .summary-card .label {
-            font-size: 1em;
-        }
-
-        .benefits-section {
-            margin-bottom: 40px;
-        }
-
-        .benefits-section h3 {
-            font-size: 1.5em;
-            margin-bottom: 20px;
-            padding-bottom: 10px;
-            border-bottom: 3px solid;
-        }
-
-        .benefits-section.high h3 {
-            color: #11998e;
-            border-color: #11998e;
-        }
-
-        .benefits-section.medium h3 {
-            color: #f5576c;
-            border-color: #f5576c;
-        }
-
-        .benefits-section.low h3 {
-            color: #4facfe;
-            border-color: #4facfe;
-        }
-
-        .benefit-card {
-            padding: 20px;
-            margin-bottom: 15px;
-            border-radius: 10px;
-            border-right: 5px solid;
-            background: #f9f9f9;
-        }
-
-        .benefit-card.high {
-            border-color: #11998e;
-            background: #e8f8f5;
-        }
-
-        .benefit-card.medium {
-            border-color: #f5576c;
-            background: #fff0f3;
-        }
-
-        .benefit-card.low {
-            border-color: #4facfe;
-            background: #e8f8ff;
-        }
-
-        .benefit-title {
-            font-size: 1.3em;
-            font-weight: bold;
-            margin-bottom: 10px;
-            color: #333;
-        }
-
-        .benefit-reason {
-            font-size: 1em;
-            color: #666;
-            margin-bottom: 10px;
-        }
-
-        .benefit-action {
-            font-size: 1em;
-            font-weight: 600;
-            padding: 10px;
-            background: white;
-            border-radius: 5px;
-            margin-bottom: 8px;
-        }
-
-        .benefit-urgency {
-            display: inline-block;
-            padding: 5px 15px;
-            border-radius: 20px;
-            font-size: 0.85em;
-            font-weight: bold;
-            color: white;
-        }
-
-        .benefit-urgency.high {
-            background: #e74c3c;
-        }
-
-        .benefit-urgency.medium {
-            background: #f39c12;
-        }
-
-        .benefit-urgency.low {
-            background: #3498db;
-        }
-
-        .benefit-note {
-            margin-top: 10px;
-            padding: 10px;
-            background: #fff8dc;
-            border-radius: 5px;
-            font-size: 0.9em;
-            font-style: italic;
-        }
-
-        /* שגיאות ולידציה */
         .validation-error {
             color: #e74c3c;
             margin-top: 8px;
@@ -409,771 +283,1762 @@
             font-weight: 600;
         }
 
-        /* ריכוז כל הקצבאות בסיכום */
-        .full-benefits-wrapper {
-            margin-top: 40px;
-            padding: 20px;
-            background: #f4f6fb;
-            border-radius: 12px;
-            border: 1px solid #e0e6f0;
+        .dynamic-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 15px;
         }
 
-        .full-benefits-title {
-            font-size: 1.4em;
-            margin-bottom: 12px;
-            color: #34495e;
+        .dynamic-table th,
+        .dynamic-table td {
+            border: 1px solid #ddd;
+            padding: 12px;
+            text-align: right;
         }
 
-        .full-benefit-list {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-            gap: 12px;
-        }
-
-        .full-benefit-card {
-            padding: 14px;
-            border-radius: 10px;
-            background: white;
-            border-right: 5px solid #dfe6f2;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
-        }
-
-        .full-benefit-card.high { border-color: #11998e; }
-        .full-benefit-card.medium { border-color: #f5576c; }
-        .full-benefit-card.low { border-color: #4facfe; }
-
-        .full-benefit-name {
-            font-weight: 700;
-            margin-bottom: 6px;
-            color: #2c3e50;
-        }
-
-        .full-benefit-audience {
-            font-size: 0.95em;
-            color: #607d8b;
-            line-height: 1.5;
-        }
-
-        .info-card {
-            padding: 15px;
-            margin-bottom: 10px;
-            background: #fff8dc;
-            border-radius: 8px;
-            border-right: 4px solid #f39c12;
-        }
-
-        .info-card .note {
+        .dynamic-table th {
+            background: #667eea;
+            color: white;
             font-weight: 600;
-            color: #333;
         }
 
-        .print-button {
-            margin-top: 30px;
-            text-align: center;
+        .dynamic-table tr:nth-child(even) {
+            background: #f9f9f9;
         }
 
-        @media print {
-            body {
-                background: white;
-            }
-            .buttons, .print-button {
-                display: none;
-            }
+        .add-row-form {
+            margin-top: 15px;
+            padding: 15px;
+            background: #f0f4ff;
+            border-radius: 8px;
         }
 
-        .loading {
-            text-align: center;
-            padding: 40px;
+        .add-row-form label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: 600;
         }
 
-        .spinner {
-            border: 4px solid #f3f3f3;
-            border-top: 4px solid #667eea;
-            border-radius: 50%;
-            width: 50px;
-            height: 50px;
-            animation: spin 1s linear infinite;
-            margin: 0 auto 20px;
+        .add-row-form input {
+            width: 100%;
+            padding: 8px;
+            border: 2px solid #e0e0e0;
+            border-radius: 4px;
+            margin-bottom: 10px;
         }
 
-        @keyframes spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
+        .income-table-container {
+            margin-top: 15px;
+        }
+
+        .income-table-container .dynamic-table td {
+            vertical-align: middle;
+        }
+
+        .income-table-container .dynamic-table input[type="number"] {
+            padding: 8px;
+        }
+
+        .income-table-container .dynamic-table input[type="checkbox"]:disabled + label,
+        .income-table-container .dynamic-table input[disabled] {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        input[type="number"],
+        input[type="text"],
+        input[type="date"],
+        textarea {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            font-size: 1em;
+            font-family: inherit;
+        }
+
+        textarea {
+            resize: vertical;
+            min-height: 100px;
+        }
+
+        input:focus,
+        textarea:focus {
+            outline: none;
+            border-color: #667eea;
         }
     </style>
 </head>
 <body>
     <div class="container">
         <div class="header">
-            <a href="../index.html" class="back-button">חזרה לדף ראשי</a>
-            <h1>🧠 שאלון אינטק חכם (בפיתוח)</h1>
-            <p>זכויות אזרח ותיק - ביטוח לאומי</p>
+            <a href="../index.html" class="back-button">חזרה לדף הבית</a>
+            <h1>שאלון לפונה לייעוץ לקשיש (עדיין בפיתוח)</h1>
+            <p>אנא מלא/י את השאלון בקפידה</p>
         </div>
-        
         <div class="progress-bar">
             <div class="progress-fill" id="progressFill"></div>
         </div>
-
         <div class="content">
-            <!-- שאלון -->
-            <form id="questionnaireForm">
-                <div id="sectionsContainer"></div>
-                
-                <div class="buttons">
-                    <button type="button" class="btn btn-secondary" id="prevBtn" style="display: none;">← הקודם</button>
-                    <button type="button" class="btn btn-primary" id="nextBtn">הבא →</button>
-                    <button type="button" class="btn btn-primary" id="submitBtn" style="display: none;">סיום וצפייה בתוצאות</button>
-                </div>
-            </form>
-
-            <!-- תוצאות -->
-            <div class="results" id="results">
-                <div class="results-header">
-                    <h2>📊 מפת הזכויות האישית שלך</h2>
-                    <p>להלן ניתוח מפורט של הזכויות הרלוונטיות עבורך</p>
-                </div>
-
-                <div class="results-summary" id="resultsSummary"></div>
-
-                <div id="highProbability" class="benefits-section high">
-                    <h3>✅ זכאות בסבירות גבוהה</h3>
-                    <div id="highBenefits"></div>
-                </div>
-
-                <div id="mediumProbability" class="benefits-section medium">
-                    <h3>⚠️ דורש בדיקה נוספת - סבירות בינונית</h3>
-                    <div id="mediumBenefits"></div>
-                </div>
-
-                <div id="notRelevant" class="benefits-section low">
-                    <h3>❌ לא רלוונטי כרגע</h3>
-                    <div id="notRelevantBenefits"></div>
-                </div>
-
-                <div id="additionalInfo">
-                    <h3 style="color: #f39c12; margin-bottom: 20px;">💡 מידע נוסף והערות חשובות</h3>
-                    <div id="infoBenefits"></div>
-                </div>
-
-                <!-- ריכוז מלא של כל הקצבאות מהאינדקס -->
-                <div id="fullBenefitsContainer" class="full-benefits-wrapper" style="display: none;">
-                    <div class="full-benefits-title">📑 כל הקצבאות והתשלומים לפי הטופס (ממופה לסבירות)</div>
-
-                    <div class="benefits-section high" id="fullHighBlock">
-                        <h3>✅ סבירות גבוהה</h3>
-                        <div id="fullHighList" class="full-benefit-list"></div>
-                    </div>
-
-                    <div class="benefits-section medium" id="fullMediumBlock">
-                        <h3>⚠️ סבירות בינונית</h3>
-                        <div id="fullMediumList" class="full-benefit-list"></div>
-                    </div>
-
-                    <div class="benefits-section low" id="fullLowBlock">
-                        <h3>❌ לא רלוונטי כרגע</h3>
-                        <div id="fullLowList" class="full-benefit-list"></div>
-                    </div>
-                </div>
-
-                <div class="print-button">
-                    <button class="btn btn-primary" onclick="window.print()">🖨️ הדפס תוצאות</button>
-                    <button class="btn btn-secondary" onclick="location.reload()">🔄 מלא שאלון מחדש</button>
-                </div>
-            </div>
+            <div id="questionnaire"></div>
         </div>
     </div>
 
-    <script src="intake_engine.js"></script>
     <script>
-        let questionsData = null;
-        let benefitsIndexData = null;
-        let allBenefits = [];
+        console.log('Script started loading...');
+        let questionsData = [];
         let currentSection = 0;
         let answers = {};
 
-        const benefitAliasMap = {
-            'קצבת אזרח ותיק (זקנה)': ['קצבת אזרח ותיק', 'קצבת זקנה'],
-            'תוספת ותק': ['תוספת ותק'],
-            'תוספת דחיית קצבה': ['תוספת דחיית קצבה'],
-            'תוספת תלויים לאזרח ותיק': ['תוספת תלויים', 'תוספות תלויים', 'תוספת תלויים לנכה'],
-            'השלמת הכנסה לאזרח ותיק': ['השלמת הכנסה', 'הבטחת הכנסה', 'השלמת/הבטחת הכנסה'],
-            'קצבת שאירים': ['קצבת שאירים (אלמן/ה)', 'שאירים'],
-            'קצבת נכות כללית': ['נכות כללית'],
-            'קצבת שירותים מיוחדים (שרמ)': ['שירותים מיוחדים', 'שר"מ', 'שר״מ'],
-            'גמלת סיעוד': ['גמלת סיעוד', 'הגדלת גמלת סיעוד'],
-            'תשלום כספי בגמלת סיעוד': ['תשלום כספי בגמלת סיעוד'],
-            'דמי אבטלה': ['דמי אבטלה'],
-            'מענק הסתגלות': ['דמי הסתגלות', 'מענק הסתגלות'],
-            'גמלת ילד נכה': ['גמלת ילד נכה', 'גמלת ילד נכה / תוספת ילד נכה'],
-            'הבטחת הכנסה': ['הבטחת הכנסה']
-        };
-
-        const normalizeBenefitName = (name = '') => name.replace(/[()\s"׳״'\-]/g, '').toLowerCase();
-
-        const markBenefitStatus = (map, benefitName, status) => {
-            const norm = normalizeBenefitName(benefitName);
-            if (!norm) return;
-            map.set(norm, status);
-
-            // הלימה לשמות באינדקס לפי אליאסים
-            Object.entries(benefitAliasMap).forEach(([canonical, aliases]) => {
-                const allNames = [canonical, ...aliases];
-                if (allNames.some(name => normalizeBenefitName(name) === norm)) {
-                    allNames.forEach(n => map.set(normalizeBenefitName(n), status));
-                }
+        // Load questions from JSON file
+        console.log('Starting to fetch intake_questions.json...');
+        fetch('intake_questions.json')
+            .then(response => {
+                console.log('Response received:', response.status);
+                return response.json();
+            })
+            .then(data => {
+                console.log('Data loaded:', data);
+                questionsData = data.sections;
+                console.log('questionsData set, rendering section:', currentSection);
+                renderSection(currentSection);
+            })
+            .catch(error => {
+                console.error('Error loading questions:', error);
+                document.getElementById('questionnaire').innerHTML = 
+                    '<div class="error">שגיאה בטעינת השאלון. אנא נסה שוב מאוחר יותר.<br>שגיאה: ' + error.message + '</div>';
             });
-        };
 
-        // טעינת השאלות מקובץ JSON
-        async function loadQuestions() {
-            try {
-                const ts = Date.now();
-                const [questionsRes, benefitsRes] = await Promise.all([
-                    fetch(`intake_questions.json?ts=${ts}`, { cache: 'no-cache' }),
-                    fetch(`data/benefits-index.json?ts=${ts}`, { cache: 'no-cache' })
-                ]);
-
-                if (!questionsRes.ok) {
-                    throw new Error(`טעינת שאלות נכשלה: ${questionsRes.status} ${questionsRes.statusText}`);
-                }
-                if (!benefitsRes.ok) {
-                    throw new Error(`טעינת אינדקס קצבאות נכשלה: ${benefitsRes.status} ${benefitsRes.statusText}`);
-                }
-
-                try {
-                    questionsData = await questionsRes.json();
-                } catch (e) {
-                    throw new Error('פורמט JSON לשאלות אינו תקין');
-                }
-                try {
-                    benefitsIndexData = await benefitsRes.json();
-                } catch (e) {
-                    throw new Error('פורמט JSON לאינדקס הקצבאות אינו תקין');
-                }
-
-                allBenefits = (benefitsIndexData?.categories || []).flatMap(cat =>
-                    (cat.items || []).map(item => ({ ...item, category: cat.title }))
-                );
-
-                renderCurrentSection();
-            } catch (error) {
-                console.error('שגיאה בטעינת השאלון:', error);
-                const container = document.getElementById('sectionsContainer');
-                container.innerHTML = `
-                    <div class="info-card">
-                        <div class="note">אירעה שגיאה בטעינת השאלון</div>
-                        <div>נסה לרענן את הדף. אם הבעיה נמשכת, בדוק את החיבור לאינטרנט או פנה לתמיכה.</div>
-                        <div style="margin-top:8px; color:#888; font-size:0.9em;">פירוט טכני: ${error.message}</div>
-                    </div>
-                `;
-                alert('שגיאה בטעינת השאלון. אנא רענן את הדף.');
-            }
-        }
-
-        // רינדור של חלק נוכחי
-        function renderCurrentSection() {
-            const container = document.getElementById('sectionsContainer');
-            container.innerHTML = '';
-
-            if (!questionsData || !Array.isArray(questionsData.sections)) {
-                console.error('questionsData.sections לא מוגדר או אינו מערך', questionsData);
-                container.innerHTML = `
-                    <div class="info-card">
-                        <div class="note">לא נמצאו שאלות להצגה</div>
-                        <div>ייתכן שהקובץ לא נטען או מבנה הנתונים השתנה.</div>
-                    </div>
-                `;
+        function renderSection(sectionIndex) {
+            const container = document.getElementById('questionnaire');
+            if (!container) {
+                console.error('Container element not found!');
                 return;
             }
-
-            const section = questionsData.sections[currentSection];
+            
+            const section = questionsData[sectionIndex];
+            console.log('Rendering section:', sectionIndex, section);
+            
             if (!section) {
-                console.error('פרק לא נמצא עבור אינדקס', { currentSection, total: questionsData.sections.length });
-                container.innerHTML = `
-                    <div class="info-card">
-                        <div class="note">שגיאה: פרק מספר ${currentSection + 1} לא נמצא</div>
-                        <div>סך הפרקים: ${questionsData.sections.length}</div>
-                    </div>
-                `;
+                console.log('No section at index', sectionIndex, 'calling showResults');
+                showResults();
                 return;
             }
 
-            const sectionDiv = document.createElement('div');
-            sectionDiv.className = 'section active';
-            sectionDiv.innerHTML = `
-                <h2 class="section-title">${section.title || 'פרק ללא כותרת'}</h2>
-                <p class="section-description">${section.description || ''}</p>
+            if (section.condition && !checkCondition(section.condition)) {
+                const nextIndex = getNextSectionIndex(sectionIndex, 1);
+                if (nextIndex === -1) {
+                    showResults();
+                    return;
+                }
+                currentSection = nextIndex;
+                renderSection(currentSection);
+                return;
+            }
+
+            let html = `
+                <div class="section active">
+                    <h2 class="section-title">${section.title}</h2>
+                    ${section.description ? `<p class="section-description">${section.description}</p>` : ''}
+                    <div class="questions-container">
             `;
 
-            if (!Array.isArray(section.questions) || section.questions.length === 0) {
-                console.warn('אין שאלות בפרק', section);
-                const warn = document.createElement('div');
-                warn.className = 'info-card';
-                warn.innerHTML = '<div class="note">אין שאלות בפרק זה</div>';
-                sectionDiv.appendChild(warn);
-            } else {
-                section.questions.forEach(question => {
-                    const questionDiv = renderQuestion(question);
-                    sectionDiv.appendChild(questionDiv);
-                });
-            }
+            section.questions.forEach(question => {
+                // Render all questions, but hide those that don't meet conditions
+                const shouldShow = !question.condition || checkCondition(question.condition);
+                html += renderQuestion(question, shouldShow);
+            });
 
-            container.appendChild(sectionDiv);
+            html += `
+                    </div>
+                    <div class="buttons">
+                        ${sectionIndex > 0 ? '<button class="btn btn-secondary" onclick="previousSection()">הקודם</button>' : '<div></div>'}
+                        <button class="btn btn-primary" onclick="nextSection()">${sectionIndex < questionsData.length - 1 ? 'הבא' : 'סיום'}</button>
+                    </div>
+                </div>
+            `;
+
+            container.innerHTML = html;
             updateProgress();
-            updateButtons();
-            updateConditionalQuestions(); // עדכן הסתרה/הצגה של שאלות תנאיות
-
-            // גלילה כך שכותרת הפרק תהיה בראש החלון
-            const containerTop = container.getBoundingClientRect().top + window.scrollY;
-            window.scrollTo({ top: containerTop - 20, behavior: 'smooth' });
+            attachEventListeners();
         }
 
-        // רינדור של שאלה בודדת
-        function renderQuestion(question) {
-            const questionDiv = document.createElement('div');
-            questionDiv.className = 'question';
-            questionDiv.setAttribute('data-qid', question.id);
-            
-            let html = `<div class="question-text">${question.text}</div>`;
-            
-            if (question.impacts && question.impacts.length > 0) {
-                html += `<div class="question-impacts">משפיע על: ${question.impacts.join(', ')}</div>`;
+        function getNextSectionIndex(startIndex, direction) {
+            let idx = startIndex + direction;
+            while (idx >= 0 && idx < questionsData.length) {
+                const section = questionsData[idx];
+                if (!section.condition || checkCondition(section.condition)) {
+                    return idx;
+                }
+                idx += direction;
             }
+            return -1;
+        }
 
-            // שדה קלט מספר או טקסט
-            if (question.type === 'number' || question.type === 'text') {
-                html += `
-                    <div class="options">
-                        <input type="${question.type}" 
-                               id="${question.id}" 
-                               name="${question.id}"
-                               min="${question.min || ''}"
-                               max="${question.max || ''}"
-                               ${question.required ? 'required' : ''}
-                               placeholder="${question.placeholder || ''}"
-                               value="${answers[question.id] || ''}"
-                               style="padding: 12px; border: 2px solid #ddd; border-radius: 8px; width: 200px; font-size: 1em;">
-                    </div>
-                `;
-            } else {
-                // רדיו או צ'קבוקס
-                html += '<div class="options">';
+        function renderQuestion(question, shouldShow = true) {
+            const value = answers[question.id] || '';
+            
+            let html = `<div class="question" id="${question.id}_container" style="display: ${shouldShow ? 'block' : 'none'};">`;
+            html += `<div class="question-text">`;
+            if (question.required) {
+                html += '<span class="required">*</span>';
+            }
+            html += `${question.text}</div>`;
 
-                question.options.forEach((option, index) => {
-                    const inputType = question.type === 'checkbox' ? 'checkbox' : 'radio';
-                    const optionId = `${question.id}_${index}`;
-                    const isSelected = question.type === 'checkbox'
-                        ? Array.isArray(answers[question.id]) && answers[question.id].includes(option.value)
-                        : answers[question.id] === option.value;
+            switch (question.type) {
+                case 'radio':
+                    html += '<div class="options">';
+                    question.options.forEach(option => {
+                        const checked = value === option.value ? 'checked' : '';
+                        const selectedClass = value === option.value ? 'selected' : '';
+                        html += `
+                            <div class="option ${selectedClass}">
+                                <input type="radio" 
+                                       id="${question.id}_${option.value}" 
+                                       name="${question.id}" 
+                                       value="${option.value}" 
+                                       ${checked}
+                                       onchange="handleAnswer('${question.id}', this.value)">
+                                <label for="${question.id}_${option.value}">${option.label}</label>
+                            </div>
+                        `;
+                    });
+                    html += '</div>';
+                    break;
 
-                    const checkedAttr = (function(){
-                        if (question.type === 'checkbox') {
-                            return (Array.isArray(answers[question.id]) && answers[question.id].includes(option.value)) ? 'checked' : '';
-                        }
-                        return (answers[question.id] === option.value) ? 'checked' : '';
-                    })();
+                case 'checkbox':
+                    html += '<div class="options">';
+                    question.options.forEach(option => {
+                        const checked = (answers[question.id] && answers[question.id].includes(option.value)) ? 'checked' : '';
+                        const selectedClass = checked ? 'selected' : '';
+                        html += `
+                            <div class="option ${selectedClass}">
+                                <input type="checkbox" 
+                                       id="${question.id}_${option.value}" 
+                                       name="${question.id}" 
+                                       value="${option.value}" 
+                                       ${checked}
+                                       onchange="handleCheckboxAnswer('${question.id}')">
+                                <label for="${question.id}_${option.value}">${option.label}</label>
+                            </div>
+                        `;
+                    });
+                    html += '</div>';
+                    break;
 
-                    const selectedClass = isSelected ? ' selected' : '';
-
-                    html += `
-                        <div class="option${selectedClass}" data-question="${question.id}" data-value="${option.value}">
-                            <input type="${inputType}" 
-                                   id="${optionId}" 
+                case 'number':
+                    html += `<input type="number" 
+                                   id="${question.id}" 
                                    name="${question.id}" 
-                                   value="${option.value}" ${checkedAttr}>
-                            <label for="${optionId}">${option.label}</label>
-                        </div>
-                    `;
-                });
+                                   value="${value}"
+                                   placeholder="${question.placeholder || ''}"
+                                   onchange="handleAnswer('${question.id}', this.value)">`;
+                    break;
+
+                case 'text':
+                case 'textarea':
+                    if (question.type === 'textarea') {
+                        html += `<textarea 
+                                       id="${question.id}" 
+                                       name="${question.id}" 
+                                       placeholder="${question.placeholder || ''}"
+                                       onchange="handleAnswer('${question.id}', this.value)">${value}</textarea>`;
+                    } else {
+                        html += `<input type="text" 
+                                       id="${question.id}" 
+                                       name="${question.id}" 
+                                       value="${value}"
+                                       placeholder="${question.placeholder || ''}"
+                                       onchange="handleAnswer('${question.id}', this.value)">`;
+                    }
+                    break;
+
+                case 'date':
+                    html += `<input type="date" 
+                                   id="${question.id}" 
+                                   name="${question.id}" 
+                                   value="${value}"
+                                   onchange="handleAnswer('${question.id}', this.value)">`;
+                    break;
+
+                case 'radio_with_amount':
+                    html += '<div class="options">';
+                    question.options.forEach(option => {
+                        const checked = value === option.value ? 'checked' : '';
+                        const selectedClass = value === option.value ? 'selected' : '';
+                        html += `
+                            <div class="option ${selectedClass}">
+                                <input type="radio" 
+                                       id="${question.id}_${option.value}" 
+                                       name="${question.id}" 
+                                       value="${option.value}" 
+                                       ${checked}
+                                       onchange="handleAnswer('${question.id}', this.value)">
+                                <label for="${question.id}_${option.value}">${option.label}</label>
+                            </div>
+                        `;
+                        if (option.hasAmount && value === option.value) {
+                            const amountValue = answers[question.id + '_amount'] || '';
+                            html += `
+                                <div class="sub-question show">
+                                    <label>סכום חודשי (₪):</label>
+                                    <input type="number" 
+                                           id="${question.id}_amount" 
+                                           value="${amountValue}"
+                                           onchange="handleAnswer('${question.id}_amount', this.value)"
+                                           style="margin-top: 8px;">
+                                </div>
+                            `;
+                        }
+                    });
+                    html += '</div>';
+                    break;
+
+                case 'dual_column_table':
+                    html += renderDualColumnTable(question);
+                    break;
+
+                case 'income_table':
+                    html += renderIncomeTable(question);
+                    break;
+
+                case 'table':
+                    html += renderTable(question);
+                    break;
+            }
 
             html += '</div>';
+            return html;
+        }
 
-            // תת-שאלה אם קיימת
-            if (question.subQuestion) {
+        function renderIncomeTable(question) {
+            const incomeData = answers[question.id] || {};
+            let html = `
+                <div class="income-table-container">
+                    <table class="dynamic-table">
+                        <thead>
+                            <tr>
+                                <th style="width: 50%;">סוג הכנסה</th>
+                                <th style="width: 15%; text-align: center;">יש</th>
+                                <th style="width: 35%;">סכום (₪)</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+            `;
+
+            question.items.forEach(item => {
+                const hasIncome = incomeData[item.id]?.has || false;
+                const amount = incomeData[item.id]?.amount || '';
+                const details = incomeData[item.id]?.details || '';
+                
                 html += `
-                    <div class="sub-question" id="sub_${question.id}">
-                        <div class="question-text">${question.subQuestion.text}</div>
-                        <input type="${question.subQuestion.type}" 
-                               id="${question.subQuestion.id}" 
-                               name="${question.subQuestion.id}"
-                               min="${question.subQuestion.min || ''}"
-                               max="${question.subQuestion.max || ''}"
-                               value="${answers[question.subQuestion.id] || ''}"
-                               style="padding: 8px; border: 2px solid #ddd; border-radius: 5px; width: 150px;">
+                    <tr>
+                        <td>${item.label}</td>
+                        <td style="text-align: center;">
+                            <input type="checkbox" 
+                                   id="${question.id}_${item.id}_has"
+                                   ${hasIncome ? 'checked' : ''}
+                                   onchange="handleIncomeTableChange('${question.id}', '${item.id}', 'has', this.checked)"
+                                   style="width: 20px; height: 20px; cursor: pointer;">
+                        </td>
+                        <td>
+                            <input type="number" 
+                                   id="${question.id}_${item.id}_amount"
+                                   value="${amount}"
+                                   placeholder="${item.amountLabel}"
+                                   min="0"
+                                   step="0.01"
+                                   ${!hasIncome ? 'disabled' : ''}
+                                   onchange="handleIncomeTableChange('${question.id}', '${item.id}', 'amount', this.value)"
+                                   style="padding: 8px; border: 2px solid ${hasIncome ? '#667eea' : '#e0e0e0'}; border-radius: 4px; width: 100%;">
+                `;
+                
+                if (item.hasDetails) {
+                    html += `
+                            <input type="text" 
+                                   id="${question.id}_${item.id}_details"
+                                   value="${details}"
+                                   placeholder="${item.detailsLabel}"
+                                   ${!hasIncome ? 'disabled' : ''}
+                                   onchange="handleIncomeTableChange('${question.id}', '${item.id}', 'details', this.value)"
+                                   style="padding: 8px; border: 2px solid ${hasIncome ? '#667eea' : '#e0e0e0'}; border-radius: 4px; width: 100%; margin-top: 8px;">
+                    `;
+                }
+                
+                html += `
+                        </td>
+                    </tr>
+                `;
+            });
+
+            html += `
+                        </tbody>
+                    </table>
+                </div>
+            `;
+
+            return html;
+        }
+
+        function handleIncomeTableChange(questionId, itemId, field, value) {
+            if (!answers[questionId]) {
+                answers[questionId] = {};
+            }
+            if (!answers[questionId][itemId]) {
+                answers[questionId][itemId] = { has: false, amount: '', details: '' };
+            }
+            
+            answers[questionId][itemId][field] = value;
+            
+            // If unchecking "has", clear the amount and details
+            if (field === 'has' && !value) {
+                answers[questionId][itemId].amount = '';
+                answers[questionId][itemId].details = '';
+                const amountInput = document.getElementById(`${questionId}_${itemId}_amount`);
+                const detailsInput = document.getElementById(`${questionId}_${itemId}_details`);
+                if (amountInput) {
+                    amountInput.value = '';
+                    amountInput.disabled = true;
+                    amountInput.style.borderColor = '#e0e0e0';
+                }
+                if (detailsInput) {
+                    detailsInput.value = '';
+                    detailsInput.disabled = true;
+                    detailsInput.style.borderColor = '#e0e0e0';
+                }
+            } else if (field === 'has' && value) {
+                // Enable the amount input when checking "has"
+                const amountInput = document.getElementById(`${questionId}_${itemId}_amount`);
+                const detailsInput = document.getElementById(`${questionId}_${itemId}_details`);
+                if (amountInput) {
+                    amountInput.disabled = false;
+                    amountInput.style.borderColor = '#667eea';
+                    amountInput.focus(); // Focus on amount field when checking
+                }
+                if (detailsInput) {
+                    detailsInput.disabled = false;
+                    detailsInput.style.borderColor = '#667eea';
+                }
+            }
+        }
+
+        function renderDualColumnTable(question) {
+            const tableData = answers[question.id] || {};
+            let html = `
+                <div class="table-container">
+                    <table class="dynamic-table">
+                        <thead>
+                            <tr>
+                                <th style="width: 40%;"></th>
+            `;
+            
+            question.columns.forEach(col => {
+                html += `<th style="width: 30%; text-align: center;">${col.label}</th>`;
+            });
+            html += `</tr></thead><tbody>`;
+
+            question.rows.forEach(row => {
+                html += `<tr><td><strong>${row.label}</strong></td>`;
+                
+                question.columns.forEach(col => {
+                    const cellId = `${question.id}_${row.id}_${col.id}`;
+                    const cellValue = tableData[row.id] && tableData[row.id][col.id] ? tableData[row.id][col.id] : '';
+                    
+                    html += '<td style="text-align: center;">';
+                    
+                    if (row.type === 'radio' && row.options) {
+                        row.options.forEach((opt, idx) => {
+                            const checked = cellValue === opt.value ? 'checked' : '';
+                            html += `
+                                <label style="margin: 0 8px; display: inline-flex; align-items: center;">
+                                    <input type="radio" 
+                                           name="${cellId}"
+                                           value="${opt.value}"
+                                           ${checked}
+                                           onchange="handleDualColumnTableChange('${question.id}', '${row.id}', '${col.id}', this.value)"
+                                           style="margin-left: 5px;">
+                                    ${opt.label}
+                                </label>
+                            `;
+                        });
+                    } else if (row.type === 'date') {
+                        html += `
+                            <input type="date" 
+                                   id="${cellId}"
+                                   value="${cellValue}"
+                                   onchange="handleDualColumnTableChange('${question.id}', '${row.id}', '${col.id}', this.value)"
+                                   style="padding: 6px; border: 1px solid #ddd; border-radius: 4px;">
+                        `;
+                    } else {
+                        html += `
+                            <input type="text" 
+                                   id="${cellId}"
+                                   value="${cellValue}"
+                                   onchange="handleDualColumnTableChange('${question.id}', '${row.id}', '${col.id}', this.value)"
+                                   style="width: 100%; padding: 6px; border: 1px solid #ddd; border-radius: 4px;">
+                        `;
+                    }
+                    
+                    html += '</td>';
+                });
+                
+                html += '</tr>';
+            });
+
+            html += `
+                    </tbody>
+                    </table>
+                </div>
+            `;
+
+            return html;
+        }
+
+        function handleDualColumnTableChange(questionId, rowId, colId, value) {
+            if (!answers[questionId]) {
+                answers[questionId] = {};
+            }
+            if (!answers[questionId][rowId]) {
+                answers[questionId][rowId] = {};
+            }
+            answers[questionId][rowId][colId] = value;
+        }
+
+        function renderTable(question) {
+            const tableData = answers[question.id] || [];
+            let html = `
+                <div class="table-container">
+                    <table class="dynamic-table">
+                        <thead>
+                            <tr>
+            `;
+            
+            question.columns.forEach(col => {
+                html += `<th>${col.label}</th>`;
+            });
+            html += `<th>פעולות</th></tr></thead><tbody id="${question.id}_tbody">`;
+
+            tableData.forEach((row, rowIndex) => {
+                html += '<tr>';
+                question.columns.forEach(col => {
+                    if (col.type === 'select' && Array.isArray(col.options)) {
+                        const selectedValue = row[col.id] || '';
+                        const selectedOption = col.options.find(opt => opt.value === selectedValue);
+                        html += `<td>${selectedOption ? selectedOption.label : ''}</td>`;
+                    } else {
+                        html += `<td>${row[col.id] || ''}</td>`;
+                    }
+                });
+                html += `<td><button class="btn-small" onclick="deleteTableRow('${question.id}', ${rowIndex})">מחק</button></td>`;
+                html += '</tr>';
+            });
+
+            html += `
+                    </tbody>
+                    </table>
+                    <button class="btn btn-secondary" style="margin-top: 15px;" onclick="showAddRowForm('${question.id}')">הוסף שורה</button>
+                    <div id="${question.id}_form" class="add-row-form" style="display: none;">
+            `;
+
+            question.columns.forEach(col => {
+                if (col.type === 'select' && Array.isArray(col.options)) {
+                    html += `
+                    <div style="margin-bottom: 10px;">
+                        <label>${col.label}</label>
+                        <select id="${question.id}_${col.id}_input" style="width: 100%; padding: 8px; border: 2px solid #e0e0e0; border-radius: 4px;">
+                            <option value="">בחר</option>
+                `;
+                    col.options.forEach(opt => {
+                        const isDefaultNo = col.defaultValue === opt.value;
+                        html += `<option value="${opt.value}" ${isDefaultNo ? 'selected' : ''}>${opt.label}</option>`;
+                    });
+                    html += `
+                        </select>
                     </div>
                 `;
-            }
-            } // סיום בלוק רדיו/צ'קבוקס
-
-            questionDiv.innerHTML = html;
-
-            // הוספת אירועים
-            // קלט מסוג מספר/טקסט – שמירת ערך ישירות
-            if (question.type === 'number' || question.type === 'text') {
-                const inputEl = questionDiv.querySelector('input');
-                if (inputEl) {
-                    inputEl.addEventListener('input', function() {
-                        answers[question.id] = this.value;
-                        updateConditionalQuestions(); // עדכן תנאים
-                    });
-                }
-            }
-
-            // אפשרויות רדיו/צ'קבוקס
-            questionDiv.querySelectorAll('.option').forEach(optionDiv => {
-                optionDiv.addEventListener('click', function(event) {
-                    const input = this.querySelector('input');
-                    const questionId = this.dataset.question;
-                    const value = this.dataset.value;
-
-                    if (question.type === 'radio') {
-                        // רדיו - רק אחד נבחר
-                        questionDiv.querySelectorAll('.option').forEach(opt => opt.classList.remove('selected'));
-                        this.classList.add('selected');
-                        input.checked = true;
-                        answers[questionId] = value;
-                        updateConditionalQuestions(); // עדכן תנאים
-                    } else {
-                        // צ'קבוקס - מרובה
-                        const isInputTarget = event.target === input;
-                        const isLabelTarget = event.target.tagName === 'LABEL';
-
-                        // אם לחצו על הרקע של האופציה (לא על input/label) נהפוך את ה-checkbox
-                        if (!isInputTarget && !isLabelTarget) {
-                            input.checked = !input.checked;
-                        }
-
-                        const isChecked = input.checked;
-                        this.classList.toggle('selected', isChecked);
-
-                        if (!answers[questionId]) answers[questionId] = [];
-                        if (isChecked) {
-                            if (!answers[questionId].includes(value)) {
-                                answers[questionId].push(value);
-                            }
-                        } else {
-                            answers[questionId] = answers[questionId].filter(v => v !== value);
-                        }
-                        updateConditionalQuestions(); // עדכן תנאים
-                    }
-
-                    // בדיקת תת-שאלה
-                    if (question.subQuestion) {
-                        const subQuestionDiv = document.getElementById(`sub_${questionId}`);
-                        const condition = question.subQuestion.condition;
-                        if (condition && condition[questionId] === value) {
-                            subQuestionDiv.classList.add('show');
-                        } else {
-                            subQuestionDiv.classList.remove('show');
-                        }
-                    }
-                });
-            });
-
-            // שמירת תת-תשובה
-            if (question.subQuestion) {
-                const subInput = questionDiv.querySelector(`#${question.subQuestion.id}`);
-                if (subInput) {
-                    subInput.addEventListener('input', function() {
-                        answers[question.subQuestion.id] = this.value;
-                    });
-                }
-            }
-
-            return questionDiv;
-        }
-
-        // בדיקת עמידה בכללי ולידציה בפרק הנוכחי
-        function validateCurrentSection() {
-            // הסרת שגיאות קודמות
-            document.querySelectorAll('.validation-error').forEach(el => el.remove());
-
-            const section = questionsData.sections[currentSection];
-            let valid = true;
-
-            const conditionMet = (cond) => {
-                if (!cond) return true;
-                return Object.entries(cond).every(([qid, expected]) => {
-                    const ans = answers[qid];
-                    if (Array.isArray(expected)) return expected.includes(ans);
-                    return ans === expected;
-                });
-            };
-
-            const showError = (qid, message) => {
-                const qEl = document.querySelector(`.question[data-qid="${qid}"]`);
-                if (!qEl) return;
-                const err = document.createElement('div');
-                err.className = 'validation-error';
-                err.textContent = message;
-                qEl.appendChild(err);
-            };
-
-            section.questions.forEach(q => {
-                if (!q.required) return;
-                if (q.condition && !conditionMet(q.condition)) return; // אל תחייב אם התנאי לא מתקיים
-
-                const val = answers[q.id];
-                if (q.type === 'number') {
-                    const num = Number(val);
-                    const hasVal = val !== undefined && val !== '' && !Number.isNaN(num);
-                    if (!hasVal) {
-                        showError(q.id, 'נא להזין ערך מספרי');
-                        valid = false;
-                        return;
-                    }
-                    if (q.min !== undefined && num < q.min) {
-                        showError(q.id, `הערך נמוך מהמותר (מינימום ${q.min})`);
-                        valid = false;
-                        return;
-                    }
-                    if (q.max !== undefined && num > q.max) {
-                        showError(q.id, `הערך גבוה מהמותר (מקסימום ${q.max})`);
-                        valid = false;
-                        return;
-                    }
-                } else if (q.type === 'text') {
-                    if (!val || String(val).trim() === '') {
-                        showError(q.id, 'שדה חובה');
-                        valid = false;
-                        return;
-                    }
-                } else if (q.type === 'radio') {
-                    if (!val) {
-                        showError(q.id, 'נא לבחור אפשרות');
-                        valid = false;
-                        return;
-                    }
-                } else if (q.type === 'checkbox') {
-                    if (!Array.isArray(val) || val.length === 0) {
-                        showError(q.id, 'נא לבחור לפחות אפשרות אחת');
-                        valid = false;
-                        return;
-                    }
+                } else {
+                    const defaultVal = col.defaultValue ? ` value="${col.defaultValue}"` : '';
+                    html += `
+                    <div style="margin-bottom: 10px;">
+                        <label>${col.label}</label>
+                        <input type="${col.type || 'text'}" 
+                               id="${question.id}_${col.id}_input"${defaultVal}>
+                    </div>
+                `;
                 }
             });
 
-            if (!valid) {
-                // גלילה לשגיאה הראשונה
-                const firstErr = document.querySelector('.validation-error');
-                if (firstErr) {
-                    const top = firstErr.getBoundingClientRect().top + window.scrollY - 60;
-                    window.scrollTo({ top, behavior: 'smooth' });
-                }
-            }
-            return valid;
+            html += `
+                        <button class="btn btn-primary" onclick="addTableRow('${question.id}')">הוסף</button>
+                        <button class="btn btn-secondary" onclick="hideAddRowForm('${question.id}')">ביטול</button>
+                    </div>
+                </div>
+            `;
+
+            return html;
         }
 
-        // עדכון הסתרה/הצגה של שאלות תנאיות בתוך הפרק הנוכחי
+        function checkCondition(condition) {
+            if (!condition) return true;
+            
+            for (const [questionId, expectedValue] of Object.entries(condition)) {
+                const actualValue = answers[questionId];
+                
+                if (Array.isArray(expectedValue)) {
+                    if (!expectedValue.includes(actualValue)) {
+                        return false;
+                    }
+                } else {
+                    if (actualValue !== expectedValue) {
+                        return false;
+                    }
+                }
+            }
+            
+            return true;
+        }
+
+        function handleAnswer(questionId, value) {
+            answers[questionId] = value;
+            updateConditionalQuestions();
+        }
+
+        function handleCheckboxAnswer(questionId) {
+            const checkboxes = document.querySelectorAll(`input[name="${questionId}"]:checked`);
+            answers[questionId] = Array.from(checkboxes).map(cb => cb.value);
+            updateConditionalQuestions();
+        }
+
         function updateConditionalQuestions() {
-            const section = questionsData.sections[currentSection];
-            if (!section || !Array.isArray(section.questions)) return;
+            const section = questionsData[currentSection];
+            if (!section) return;
 
-            section.questions.forEach(q => {
-                if (!q.condition) return; // בחור רק שאלות עם תנאים
+            section.questions.forEach(question => {
+                const container = document.getElementById(`${question.id}_container`);
+                if (!container) return;
 
-                // בדוק אם התנאי מתקיים
-                let conditionMet = true;
-                Object.entries(q.condition).forEach(([depQid, expectedVals]) => {
-                    const depAnswer = answers[depQid];
-                    const expected = Array.isArray(expectedVals) ? expectedVals : [expectedVals];
-                    if (!expected.includes(depAnswer)) {
-                        conditionMet = false;
-                    }
-                });
-
-                // הסתר/הראה את השאלה
-                const qEl = document.querySelector(`.question[data-qid="${q.id}"]`);
-                if (qEl) {
-                    qEl.style.display = conditionMet ? 'block' : 'none';
+                if (question.condition && !checkCondition(question.condition)) {
+                    container.style.display = 'none';
+                } else {
+                    container.style.display = 'block';
                 }
             });
         }
 
-        // עדכון פס התקדמות
+        function attachEventListeners() {
+            // Add event listeners for option selection visual feedback
+            document.querySelectorAll('.option').forEach(option => {
+                option.addEventListener('click', function() {
+                    const input = this.querySelector('input');
+                    if (input && input.type === 'radio') {
+                        this.closest('.options').querySelectorAll('.option').forEach(opt => {
+                            opt.classList.remove('selected');
+                        });
+                        this.classList.add('selected');
+                    } else if (input && input.type === 'checkbox') {
+                        this.classList.toggle('selected');
+                    }
+                });
+            });
+        }
+
+        function nextSection() {
+            if (validateSection()) {
+                const nextIndex = getNextSectionIndex(currentSection, 1);
+                if (nextIndex === -1) {
+                    showResults();
+                    return;
+                }
+                currentSection = nextIndex;
+                renderSection(currentSection);
+                window.scrollTo(0, 0);
+            }
+        }
+
+        function previousSection() {
+            const prevIndex = getNextSectionIndex(currentSection, -1);
+            if (prevIndex !== -1) {
+                currentSection = prevIndex;
+                renderSection(currentSection);
+                window.scrollTo(0, 0);
+            }
+        }
+
+        function validateSection() {
+            const section = questionsData[currentSection];
+            let isValid = true;
+            let errorMessages = [];
+
+            section.questions.forEach(question => {
+                if (question.required && (!question.condition || checkCondition(question.condition))) {
+                    const value = answers[question.id];
+                    
+                    // Special validation for income_table
+                    if (question.type === 'income_table') {
+                        const incomeData = value || {};
+                        let hasAtLeastOne = false;
+                        let missingAmounts = [];
+                        
+                        question.items.forEach(item => {
+                            if (incomeData[item.id]?.has) {
+                                hasAtLeastOne = true;
+                                if (!incomeData[item.id].amount || incomeData[item.id].amount === '') {
+                                    missingAmounts.push(item.label);
+                                }
+                            }
+                        });
+                        
+                        if (missingAmounts.length > 0) {
+                            errorMessages.push(`נא למלא סכום עבור: ${missingAmounts.join(', ')}`);
+                            isValid = false;
+                        }
+                    } else if (!value || (Array.isArray(value) && value.length === 0)) {
+                        errorMessages.push(`אנא השב/י על השאלה: ${question.text}`);
+                        isValid = false;
+                    }
+                }
+            });
+
+            if (!isValid) {
+                alert(errorMessages.join('\n'));
+            }
+
+            return isValid;
+        }
+
         function updateProgress() {
-            const progress = ((currentSection + 1) / questionsData.sections.length) * 100;
+            const progress = ((currentSection + 1) / questionsData.length) * 100;
             document.getElementById('progressFill').style.width = progress + '%';
         }
 
-        // עדכון כפתורים
-        function updateButtons() {
-            const prevBtn = document.getElementById('prevBtn');
-            const nextBtn = document.getElementById('nextBtn');
-            const submitBtn = document.getElementById('submitBtn');
+        function showAddRowForm(questionId) {
+            document.getElementById(`${questionId}_form`).style.display = 'block';
+        }
 
-            prevBtn.style.display = currentSection > 0 ? 'block' : 'none';
+        function hideAddRowForm(questionId) {
+            document.getElementById(`${questionId}_form`).style.display = 'none';
+        }
+
+        function addTableRow(questionId) {
+            const section = questionsData[currentSection];
+            const question = section.questions.find(q => q.id === questionId);
             
-            if (currentSection === questionsData.sections.length - 1) {
-                nextBtn.style.display = 'none';
-                submitBtn.style.display = 'block';
-            } else {
-                nextBtn.style.display = 'block';
-                submitBtn.style.display = 'none';
+            const newRow = {};
+            let allFilled = true;
+
+            question.columns.forEach(col => {
+                const input = document.getElementById(`${questionId}_${col.id}_input`);
+                if (!input) {
+                    allFilled = false;
+                    return;
+                }
+
+                const value = input.value ? input.value.trim() : '';
+                if (value) {
+                    newRow[col.id] = value;
+                    if (input.tagName === 'SELECT') {
+                        input.value = '';
+                    } else {
+                        input.value = '';
+                    }
+                } else {
+                    allFilled = false;
+                }
+            });
+
+            if (!allFilled) {
+                alert('אנא מלא/י את כל השדות');
+                return;
+            }
+
+            if (!answers[questionId]) {
+                answers[questionId] = [];
+            }
+            answers[questionId].push(newRow);
+
+            renderSection(currentSection);
+            hideAddRowForm(questionId);
+        }
+
+        function deleteTableRow(questionId, rowIndex) {
+            if (confirm('האם אתה בטוח שברצונך למחוק שורה זו?')) {
+                answers[questionId].splice(rowIndex, 1);
+                renderSection(currentSection);
             }
         }
 
-        // כפתור הבא
-        document.getElementById('nextBtn').addEventListener('click', () => {
-            if (!validateCurrentSection()) return;
-            if (currentSection < questionsData.sections.length - 1) {
-                currentSection++;
-                renderCurrentSection();
+
+
+        function formatAnswer(question, answer) {
+            if (question.type === 'dual_column_table') {
+                let html = '<table class="dynamic-table"><thead><tr>';
+                html += '<th></th>';
+                question.columns.forEach(col => {
+                    html += `<th>${col.label}</th>`;
+                });
+                html += '</tr></thead><tbody>';
+                
+                question.rows.forEach(row => {
+                    html += `<tr><td><strong>${row.label}</strong></td>`;
+                    question.columns.forEach(col => {
+                        const cellValue = answer[row.id] && answer[row.id][col.id] ? answer[row.id][col.id] : '';
+                        let displayValue = cellValue;
+                        
+                        if (row.type === 'radio' && row.options && cellValue) {
+                            const opt = row.options.find(o => o.value === cellValue);
+                            displayValue = opt ? opt.label : cellValue;
+                        }
+                        
+                        html += `<td style="text-align: center;">${displayValue}</td>`;
+                    });
+                    html += '</tr>';
+                });
+                
+                html += '</tbody></table>';
+                return html;
+            } else if (question.type === 'income_table') {
+                let html = '<table class="dynamic-table"><thead><tr>';
+                html += '<th>סוג הכנסה</th><th>סכום (₪)</th>';
+                html += '</tr></thead><tbody>';
+                
+                let totalIncome = 0;
+                question.items.forEach(item => {
+                    if (answer[item.id]?.has && answer[item.id]?.amount) {
+                        const amount = parseFloat(answer[item.id].amount) || 0;
+                        totalIncome += amount;
+                        html += '<tr>';
+                        html += `<td>${item.label}`;
+                        if (answer[item.id].details) {
+                            html += ` - ${answer[item.id].details}`;
+                        }
+                        html += '</td>';
+                        html += `<td style="text-align: left;">${amount.toLocaleString('he-IL')} ₪</td>`;
+                        html += '</tr>';
+                    }
+                });
+                
+                if (totalIncome > 0) {
+                    html += `<tr style="background: #f0f4ff; font-weight: 600;"><td>סה"כ הכנסות</td><td style="text-align: left;">${totalIncome.toLocaleString('he-IL')} ₪</td></tr>`;
+                }
+                
+                html += '</tbody></table>';
+                return html;
+            } else if (question.type === 'table' && Array.isArray(answer)) {
+                let html = '<table class="dynamic-table"><thead><tr>';
+                question.columns.forEach(col => {
+                    html += `<th>${col.label}</th>`;
+                });
+                html += '</tr></thead><tbody>';
+                answer.forEach(row => {
+                    html += '<tr>';
+                    question.columns.forEach(col => {
+                        html += `<td>${row[col.id] || ''}</td>`;
+                    });
+                    html += '</tr>';
+                });
+                html += '</tbody></table>';
+                return html;
+            } else if (Array.isArray(answer)) {
+                return answer.join(', ');
+            } else if (question.type === 'radio' || question.type === 'radio_with_amount') {
+                const option = question.options.find(opt => opt.value === answer);
+                let result = option ? option.label : answer;
+                if (answers[question.id + '_amount']) {
+                    result += ` - ${answers[question.id + '_amount']} ₪`;
+                }
+                return result;
             }
-        });
+            return answer;
+        }
 
-        // כפתור קודם
-        document.getElementById('prevBtn').addEventListener('click', () => {
-            if (currentSection > 0) {
-                currentSection--;
-                renderCurrentSection();
-            }
-        });
-
-        // כפתור סיום
-        document.getElementById('submitBtn').addEventListener('click', () => {
-            if (!validateCurrentSection()) return;
-            showResults();
-        });
-
-        // הצגת תוצאות
-        function showResults() {
-            // ניתוח התשובות
-            const report = analyzeIntakeQuestionnaire(answers);
+        // ==================== אלגוריתם חישוב זכאות ====================
+        
+        // קבועים מנתוני 2026
+        const CONSTANTS_2026 = {
+            // גילאי פרישה
+            RETIREMENT_AGE_MEN: 67,
+            RETIREMENT_AGE_WOMEN: {
+                '1959': 62,
+                '1960': 62.33, // 62 שנים ו-4 חודשים
+                '1961': 62.67, // 62 שנים ו-8 חודשים
+                '1962': 63,
+                '1963': 63.33,
+                '1964': 63.67,
+                '1965': 64,
+                '1966': 64.33,
+                '1967': 65
+            },
+            FULL_ELIGIBILITY_AGE: 70, // גיל זכאות מוחלטת ללא מבחן הכנסות
             
-            // הסתרת הטופס והצגת התוצאות
-            document.getElementById('questionnaireForm').style.display = 'none';
-            document.getElementById('results').classList.add('show');
+            // קצבה בסיסית
+            BASIC_PENSION_SINGLE: 1838,
+            BASIC_PENSION_SINGLE_80: 1941,
+            SPOUSE_SUPPLEMENT: 924,
+            BASIC_PENSION_COUPLE: 2762, // יחיד + בן זוג
+            
+            // מבחן הכנסות - זכאות מלאה
+            INCOME_TEST_SINGLE_FULL: 10113,
+            INCOME_TEST_MARRIED_FULL: 13484,
+            INCOME_TEST_PER_CHILD: 964,
+            
+            // מבחן הכנסות - זכאות חלקית
+            INCOME_TEST_SINGLE_PARTIAL_MAX: 14302, // 1.414 * INCOME_TEST_SINGLE_FULL
+            INCOME_TEST_MARRIED_PARTIAL_MAX: 20141, // 1.494 * INCOME_TEST_MARRIED_FULL
+            
+            // השלמת הכנסה
+            INCOME_SUPPLEMENT_SINGLE_UNDER70: 4375,
+            INCOME_SUPPLEMENT_COUPLE_UNDER70: 6912,
+            INCOME_SUPPLEMENT_SINGLE_1_CHILD_UNDER70: 7305,
+            INCOME_SUPPLEMENT_SINGLE_2_CHILDREN_UNDER70: 8426,
+            INCOME_SUPPLEMENT_COUPLE_1_CHILD_UNDER70: 8035,
+            INCOME_SUPPLEMENT_COUPLE_2_CHILDREN_UNDER70: 9156,
+            
+            INCOME_SUPPLEMENT_SINGLE_70_80: 4418,
+            INCOME_SUPPLEMENT_COUPLE_70_80: 6981,
+            INCOME_SUPPLEMENT_SINGLE_1_CHILD_70_80: 7374,
+            INCOME_SUPPLEMENT_SINGLE_2_CHILDREN_70_80: 8496,
+            INCOME_SUPPLEMENT_COUPLE_1_CHILD_70_80: 8102,
+            INCOME_SUPPLEMENT_COUPLE_2_CHILDREN_70_80: 9226,
+            
+            INCOME_SUPPLEMENT_SINGLE_80: 4460,
+            INCOME_SUPPLEMENT_COUPLE_80: 7048,
+            INCOME_SUPPLEMENT_SINGLE_1_CHILD_80: 7442,
+            INCOME_SUPPLEMENT_SINGLE_2_CHILDREN_80: 8563,
+            INCOME_SUPPLEMENT_COUPLE_1_CHILD_80: 8171,
+            INCOME_SUPPLEMENT_COUPLE_2_CHILDREN_80: 9292,
+            
+            // שיעורים
+            VETERAN_SUPPLEMENT_RATE: 0.02, // 2% לשנה
+            MAX_VETERAN_SUPPLEMENT: 0.50, // מקסימום 50%
+            INCOME_REDUCTION_RATE: 0.60, // 60% מהעודף מופחת
+        };
 
-            // סיכום
-            const summary = report.summary;
-            document.getElementById('resultsSummary').innerHTML = `
-                <div class="summary-card high">
-                    <div class="number">${summary.high_probability}</div>
-                    <div class="label">זכאות גבוהה</div>
-                </div>
-                <div class="summary-card medium">
-                    <div class="number">${summary.medium_probability}</div>
-                    <div class="label">דורש בדיקה</div>
-                </div>
-                <div class="summary-card low">
-                    <div class="number">${summary.not_relevant}</div>
-                    <div class="label">לא רלוונטי</div>
-                </div>
-                <div class="summary-card info">
-                    <div class="number">${summary.additional_info}</div>
-                    <div class="label">הערות</div>
+        // חישוב גיל פרישה לנשים
+        function getRetirementAgeWomen(birthYear) {
+            if (birthYear <= 1959) return 62;
+            if (birthYear >= 1967) return 65;
+            return CONSTANTS_2026.RETIREMENT_AGE_WOMEN[birthYear.toString()] || 65;
+        }
+
+        // חישוב גיל מדויק
+        function calculateAge(birthYear) {
+            const currentYear = 2026;
+            return currentYear - birthYear;
+        }
+
+        // חישוב הכנסות ממסמך השאלון
+        function calculateTotalIncome() {
+            let totalIncome = 0;
+            
+            // הכנסות מסעיף 3 (income_table) - היחיד
+            const incomeTable = answers['q3_income_applicant'];
+            if (incomeTable && typeof incomeTable === 'object') {
+                Object.keys(incomeTable).forEach(key => {
+                    if (incomeTable[key].has && incomeTable[key].amount) {
+                        totalIncome += parseFloat(incomeTable[key].amount) || 0;
+                    }
+                });
+            }
+            
+            return totalIncome;
+        }
+
+        // חישוב הכנסות בן/בת זוג
+        function calculateSpouseIncome() {
+            let spouseIncome = 0;
+            
+            // הכנסות מסעיף 3 (spouse income_table) - בן הזוג
+            const spouseIncomeTable = answers['q3_income_spouse'];
+            if (spouseIncomeTable && typeof spouseIncomeTable === 'object') {
+                Object.keys(spouseIncomeTable).forEach(key => {
+                    if (spouseIncomeTable[key].has && spouseIncomeTable[key].amount) {
+                        spouseIncome += parseFloat(spouseIncomeTable[key].amount) || 0;
+                    }
+                });
+            }
+            
+            return spouseIncome;
+        }
+
+        // בדיקה אם יש בן/בת זוג
+        function hasSpouse() {
+            return answers['q2_1_has_spouse'] === 'yes';
+        }
+
+        // ספירת ילדים עד גיל 24
+        function countChildren() {
+            const childrenTable = answers['q6_children_table'];
+            if (!Array.isArray(childrenTable)) return 0;
+            
+            // מקסימום 2 ילדים לצורך חישוב
+            return Math.min(childrenTable.length, 2);
+        }
+
+        // חישוב זכאות לקצבת אזרח ותיק - מגיש הבקשה
+        function calculateOldAgePensionApplicant() {
+            const gender = answers['q1_1_gender'];
+            const age = answers['q1_2_age'];
+            const hasSpouseValue = hasSpouse();
+            const totalIncome = calculateTotalIncome();
+            const spouseIncome = hasSpouseValue ? calculateSpouseIncome() : 0;
+            const familyIncome = totalIncome + spouseIncome;
+            const childrenCount = countChildren();
+            const vetMonths = getVeteranMonths();
+            
+            let result = {
+                eligible: false,
+                type: '', // 'full', 'partial', 'none'
+                reason: '',
+                amount: 0,
+                details: []
+            };
+
+            // בדיקת גיל פרישה
+            let retirementAge;
+            if (gender === 'male') {
+                retirementAge = CONSTANTS_2026.RETIREMENT_AGE_MEN;
+            } else {
+                const birthYear = 2026 - age;
+                retirementAge = getRetirementAgeWomen(birthYear);
+            }
+
+            if (age < retirementAge) {
+                result.reason = `טרם הגעת לגיל פרישה (${retirementAge}). גיל נוכחי: ${age}`;
+                return result;
+            }
+
+            // מעל גיל 70 - זכאות מוחלטת ללא מבחן הכנסות
+            if (age >= CONSTANTS_2026.FULL_ELIGIBILITY_AGE) {
+                result.eligible = true;
+                result.type = 'full';
+                result.reason = `מעל גיל 70 - זכאות מוחלטת ללא מבחן הכנסות`;
+                
+                // חישוב קצבה בסיסית - ללא תוספת בן זוג (כל אחד בנפרד)
+                let basePension = age >= 80 ? CONSTANTS_2026.BASIC_PENSION_SINGLE_80 : CONSTANTS_2026.BASIC_PENSION_SINGLE;
+                result.details.push(`קצבה בסיסית: ${basePension.toLocaleString('he-IL')} ₪`);
+                
+                // תוספת וותק
+                const veteranSupplement = calculateVeteranSupplement(vetMonths);
+                const pensionWithVeteran = Math.round(basePension * (1 + veteranSupplement));
+                if (veteranSupplement > 0) {
+                    result.details.push(`תוספת וותק (${Math.round(veteranSupplement * 100)}%): +${Math.round(pensionWithVeteran - basePension).toLocaleString('he-IL')} ₪`);
+                }
+                
+                // תוספת דחיה
+                const workDetails = answers['q8_work_details'];
+                const applicantWorkStopDate = workDetails && workDetails.applicant && workDetails.applicant.work_stop_date ? workDetails.applicant.work_stop_date : null;
+                const deferralSupplement = calculateDeferralSupplement(gender, age, applicantWorkStopDate);
+                if (deferralSupplement > 0) {
+                    const pensionWithDeferral = Math.round(pensionWithVeteran * (1 + deferralSupplement));
+                    result.details.push(`תוספת דחיה (${Math.round(deferralSupplement * 100)}%): +${Math.round(pensionWithDeferral - pensionWithVeteran).toLocaleString('he-IL')} ₪`);
+                    result.amount = pensionWithDeferral;
+                } else {
+                    result.amount = pensionWithVeteran;
+                }
+                
+                result.details.push(`סה"כ קצבה: ${result.amount.toLocaleString('he-IL')} ₪`);
+                return result;
+            }
+
+            // מבחן הכנסות לגילאי פרישה-70
+            let fullEligibilityThreshold;
+            let partialEligibilityThreshold;
+            
+            if (hasSpouseValue) {
+                fullEligibilityThreshold = CONSTANTS_2026.INCOME_TEST_MARRIED_FULL;
+                partialEligibilityThreshold = CONSTANTS_2026.INCOME_TEST_MARRIED_PARTIAL_MAX;
+            } else {
+                fullEligibilityThreshold = CONSTANTS_2026.INCOME_TEST_SINGLE_FULL;
+                partialEligibilityThreshold = CONSTANTS_2026.INCOME_TEST_SINGLE_PARTIAL_MAX;
+            }
+
+            // תוספת לכל ילד
+            fullEligibilityThreshold += (childrenCount * CONSTANTS_2026.INCOME_TEST_PER_CHILD);
+            partialEligibilityThreshold += (childrenCount * CONSTANTS_2026.INCOME_TEST_PER_CHILD);
+
+            result.details.push(`הכנסה משפחתית: ${familyIncome.toLocaleString('he-IL')} ₪`);
+            result.details.push(`תקרת זכאות מלאה: ${fullEligibilityThreshold.toLocaleString('he-IL')} ₪`);
+            result.details.push(`תקרת זכאות חלקית: ${partialEligibilityThreshold.toLocaleString('he-IL')} ₪`);
+
+            // זכאות מלאה
+            if (familyIncome <= fullEligibilityThreshold) {
+                result.eligible = true;
+                result.type = 'full';
+                result.reason = 'זכאי לקצבה מלאה';
+                
+                let basePension = age >= 80 ? CONSTANTS_2026.BASIC_PENSION_SINGLE_80 : CONSTANTS_2026.BASIC_PENSION_SINGLE;
+                result.details.push(`קצבה בסיסית: ${basePension.toLocaleString('he-IL')} ₪`);
+                
+                // תוספת וותק
+                const veteranSupplement = calculateVeteranSupplement(vetMonths);
+                const pensionWithVeteran = Math.round(basePension * (1 + veteranSupplement));
+                if (veteranSupplement > 0) {
+                    result.details.push(`תוספת וותק (${Math.round(veteranSupplement * 100)}%): +${Math.round(pensionWithVeteran - basePension).toLocaleString('he-IL')} ₪`);
+                }
+                
+                // תוספת דחיה
+                const workDetails = answers['q8_work_details'];
+                const applicantWorkStopDate = workDetails && workDetails.applicant && workDetails.applicant.work_stop_date ? workDetails.applicant.work_stop_date : null;
+                const deferralSupplement = calculateDeferralSupplement(gender, age, applicantWorkStopDate);
+                if (deferralSupplement > 0) {
+                    const pensionWithDeferral = Math.round(pensionWithVeteran * (1 + deferralSupplement));
+                    result.details.push(`תוספת דחיה (${Math.round(deferralSupplement * 100)}%): +${Math.round(pensionWithDeferral - pensionWithVeteran).toLocaleString('he-IL')} ₪`);
+                    result.amount = pensionWithDeferral;
+                } else {
+                    result.amount = pensionWithVeteran;
+                }
+                
+                result.details.push(`סה"כ קצבה: ${result.amount.toLocaleString('he-IL')} ₪`);
+                
+                return result;
+            }
+            
+            // זכאות חלקית
+            if (familyIncome <= partialEligibilityThreshold) {
+                result.eligible = true;
+                result.type = 'partial';
+                result.reason = 'זכאי לקצבה חלקית';
+                
+                let basePension = age >= 80 ? CONSTANTS_2026.BASIC_PENSION_SINGLE_80 : CONSTANTS_2026.BASIC_PENSION_SINGLE;
+                
+                const excessIncome = familyIncome - fullEligibilityThreshold;
+                const reduction = excessIncome * CONSTANTS_2026.INCOME_REDUCTION_RATE;
+                const partialPension = Math.max(0, basePension - reduction);
+                
+                result.details.push(`קצבה בסיסית: ${basePension.toLocaleString('he-IL')} ₪`);
+                result.details.push(`עודף הכנסה: ${excessIncome.toLocaleString('he-IL')} ₪`);
+                result.details.push(`קיזוז (60%): ${Math.round(reduction).toLocaleString('he-IL')} ₪`);
+                
+                // תוספת וותק
+                const veteranSupplement = calculateVeteranSupplement(vetMonths);
+                const pensionWithVeteran = Math.round(partialPension * (1 + veteranSupplement));
+                if (veteranSupplement > 0) {
+                    result.details.push(`תוספת וותק (${Math.round(veteranSupplement * 100)}%): +${Math.round(pensionWithVeteran - partialPension).toLocaleString('he-IL')} ₪`);
+                }
+                
+                // תוספת דחיה
+                const workDetails = answers['q8_work_details'];
+                const applicantWorkStopDate = workDetails && workDetails.applicant && workDetails.applicant.work_stop_date ? workDetails.applicant.work_stop_date : null;
+                const deferralSupplement = calculateDeferralSupplement(gender, age, applicantWorkStopDate);
+                if (deferralSupplement > 0) {
+                    const pensionWithDeferral = Math.round(pensionWithVeteran * (1 + deferralSupplement));
+                    result.details.push(`תוספת דחיה (${Math.round(deferralSupplement * 100)}%): +${Math.round(pensionWithDeferral - pensionWithVeteran).toLocaleString('he-IL')} ₪`);
+                    result.amount = pensionWithDeferral;
+                } else {
+                    result.amount = pensionWithVeteran;
+                }
+                
+                result.details.push(`סה"כ קצבה: ${result.amount.toLocaleString('he-IL')} ₪`);
+                
+                return result;
+            }
+
+            // אין זכאות
+            result.reason = `ההכנסה המשפחתית (${familyIncome.toLocaleString('he-IL')} ₪) גבוהה מתקרת הזכאות (${partialEligibilityThreshold.toLocaleString('he-IL')} ₪)`;
+            return result;
+        }
+
+        // חישוב זכאות לקצבת אזרח ותיק - בן/בת הזוג
+        function calculateOldAgePensionSpouse() {
+            if (!hasSpouse()) {
+                return {
+                    eligible: false,
+                    type: '',
+                    reason: 'אין בן/בת זוג',
+                    amount: 0,
+                    details: []
+                };
+            }
+
+            const spouseGender = answers['q2_2_spouse_gender'];
+            const spouseAge = parseInt(answers['q2_2a_spouse_age']) || 0;
+            const hasSpouseValue = hasSpouse();
+            const totalIncome = calculateTotalIncome();
+            const spouseIncome = calculateSpouseIncome();
+            const familyIncome = totalIncome + spouseIncome;
+            const childrenCount = countChildren();
+            const spouseVetMonths = getSpouseVeteranMonths();
+            
+            let result = {
+                eligible: false,
+                type: '',
+                reason: '',
+                amount: 0,
+                details: []
+            };
+
+            // בדיקת גיל פרישה
+            let retirementAge;
+            if (spouseGender === 'male') {
+                retirementAge = CONSTANTS_2026.RETIREMENT_AGE_MEN;
+            } else {
+                const birthYear = 2026 - spouseAge;
+                retirementAge = getRetirementAgeWomen(birthYear);
+            }
+
+            if (spouseAge < retirementAge) {
+                result.reason = `בן/בת הזוג טרם הגעו לגיל פרישה (${retirementAge}). גיל נוכחי: ${spouseAge}`;
+                return result;
+            }
+
+            // מעל גיל 70 - זכאות מוחלטת ללא מבחן הכנסות
+            if (spouseAge >= CONSTANTS_2026.FULL_ELIGIBILITY_AGE) {
+                result.eligible = true;
+                result.type = 'full';
+                result.reason = `מעל גיל 70 - זכאות מוחלטת ללא מבחן הכנסות`;
+                
+                // חישוב קצבה בסיסית - ללא תוספת (כל אחד בנפרד)
+                let basePension = spouseAge >= 80 ? CONSTANTS_2026.BASIC_PENSION_SINGLE_80 : CONSTANTS_2026.BASIC_PENSION_SINGLE;
+                result.details.push(`קצבה בסיסית: ${basePension.toLocaleString('he-IL')} ₪`);
+                
+                // תוספת וותק
+                const veteranSupplement = calculateVeteranSupplement(spouseVetMonths);
+                const pensionWithVeteran = Math.round(basePension * (1 + veteranSupplement));
+                if (veteranSupplement > 0) {
+                    result.details.push(`תוספת וותק (${Math.round(veteranSupplement * 100)}%): +${Math.round(pensionWithVeteran - basePension).toLocaleString('he-IL')} ₪`);
+                }
+                
+                // תוספת דחיה
+                const workDetails = answers['q8_work_details'];
+                const spouseWorkStopDate = workDetails && workDetails.spouse && workDetails.spouse.work_stop_date ? workDetails.spouse.work_stop_date : null;
+                const deferralSupplement = calculateDeferralSupplement(spouseGender, spouseAge, spouseWorkStopDate);
+                if (deferralSupplement > 0) {
+                    const pensionWithDeferral = Math.round(pensionWithVeteran * (1 + deferralSupplement));
+                    result.details.push(`תוספת דחיה (${Math.round(deferralSupplement * 100)}%): +${Math.round(pensionWithDeferral - pensionWithVeteran).toLocaleString('he-IL')} ₪`);
+                    result.amount = pensionWithDeferral;
+                } else {
+                    result.amount = pensionWithVeteran;
+                }
+                
+                result.details.push(`סה"כ קצבה: ${result.amount.toLocaleString('he-IL')} ₪`);
+                return result;
+            }
+
+            // מבחן הכנסות לגילאי פרישה-70
+            let fullEligibilityThreshold;
+            let partialEligibilityThreshold;
+            
+            if (hasSpouseValue) {
+                fullEligibilityThreshold = CONSTANTS_2026.INCOME_TEST_MARRIED_FULL;
+                partialEligibilityThreshold = CONSTANTS_2026.INCOME_TEST_MARRIED_PARTIAL_MAX;
+            } else {
+                fullEligibilityThreshold = CONSTANTS_2026.INCOME_TEST_SINGLE_FULL;
+                partialEligibilityThreshold = CONSTANTS_2026.INCOME_TEST_SINGLE_PARTIAL_MAX;
+            }
+
+            // תוספת לכל ילד
+            fullEligibilityThreshold += (childrenCount * CONSTANTS_2026.INCOME_TEST_PER_CHILD);
+            partialEligibilityThreshold += (childrenCount * CONSTANTS_2026.INCOME_TEST_PER_CHILD);
+
+            result.details.push(`הכנסה משפחתית: ${familyIncome.toLocaleString('he-IL')} ₪`);
+            result.details.push(`תקרת זכאות מלאה: ${fullEligibilityThreshold.toLocaleString('he-IL')} ₪`);
+            result.details.push(`תקרת זכאות חלקית: ${partialEligibilityThreshold.toLocaleString('he-IL')} ₪`);
+
+            // זכאות מלאה
+            if (familyIncome <= fullEligibilityThreshold) {
+                result.eligible = true;
+                result.type = 'full';
+                result.reason = 'זכאי לקצבה מלאה';
+                
+                let basePension = spouseAge >= 80 ? CONSTANTS_2026.BASIC_PENSION_SINGLE_80 : CONSTANTS_2026.BASIC_PENSION_SINGLE;
+                result.details.push(`קצבה בסיסית: ${basePension.toLocaleString('he-IL')} ₪`);
+                
+                // תוספת וותק
+                const veteranSupplement = calculateVeteranSupplement(spouseVetMonths);
+                const pensionWithVeteran = Math.round(basePension * (1 + veteranSupplement));
+                if (veteranSupplement > 0) {
+                    result.details.push(`תוספת וותק (${Math.round(veteranSupplement * 100)}%): +${Math.round(pensionWithVeteran - basePension).toLocaleString('he-IL')} ₪`);
+                }
+                
+                // תוספת דחיה
+                const workDetails = answers['q8_work_details'];
+                const spouseWorkStopDate = workDetails && workDetails.spouse && workDetails.spouse.work_stop_date ? workDetails.spouse.work_stop_date : null;
+                const deferralSupplement = calculateDeferralSupplement(spouseGender, spouseAge, spouseWorkStopDate);
+                if (deferralSupplement > 0) {
+                    const pensionWithDeferral = Math.round(pensionWithVeteran * (1 + deferralSupplement));
+                    result.details.push(`תוספת דחיה (${Math.round(deferralSupplement * 100)}%): +${Math.round(pensionWithDeferral - pensionWithVeteran).toLocaleString('he-IL')} ₪`);
+                    result.amount = pensionWithDeferral;
+                } else {
+                    result.amount = pensionWithVeteran;
+                }
+                
+                result.details.push(`סה"כ קצבה: ${result.amount.toLocaleString('he-IL')} ₪`);
+                return result;
+            }
+            
+            // זכאות חלקית
+            if (familyIncome <= partialEligibilityThreshold) {
+                result.eligible = true;
+                result.type = 'partial';
+                result.reason = 'זכאי לקצבה חלקית';
+                
+                let basePension = spouseAge >= 80 ? CONSTANTS_2026.BASIC_PENSION_SINGLE_80 : CONSTANTS_2026.BASIC_PENSION_SINGLE;
+                
+                const excessIncome = familyIncome - fullEligibilityThreshold;
+                const reduction = excessIncome * CONSTANTS_2026.INCOME_REDUCTION_RATE;
+                const partialPension = Math.max(0, basePension - reduction);
+                
+                result.details.push(`קצבה בסיסית: ${basePension.toLocaleString('he-IL')} ₪`);
+                result.details.push(`עודף הכנסה: ${excessIncome.toLocaleString('he-IL')} ₪`);
+                result.details.push(`קיזוז (60%): ${Math.round(reduction).toLocaleString('he-IL')} ₪`);
+                
+                // תוספת וותק
+                const veteranSupplement = calculateVeteranSupplement(spouseVetMonths);
+                const pensionWithVeteran = Math.round(partialPension * (1 + veteranSupplement));
+                if (veteranSupplement > 0) {
+                    result.details.push(`תוספת וותק (${Math.round(veteranSupplement * 100)}%): +${Math.round(pensionWithVeteran - partialPension).toLocaleString('he-IL')} ₪`);
+                }
+                
+                // תוספת דחיה
+                const workDetails = answers['q8_work_details'];
+                const spouseWorkStopDate = workDetails && workDetails.spouse && workDetails.spouse.work_stop_date ? workDetails.spouse.work_stop_date : null;
+                const deferralSupplement = calculateDeferralSupplement(spouseGender, spouseAge, spouseWorkStopDate);
+                if (deferralSupplement > 0) {
+                    const pensionWithDeferral = Math.round(pensionWithVeteran * (1 + deferralSupplement));
+                    result.details.push(`תוספת דחיה (${Math.round(deferralSupplement * 100)}%): +${Math.round(pensionWithDeferral - pensionWithVeteran).toLocaleString('he-IL')} ₪`);
+                    result.amount = pensionWithDeferral;
+                } else {
+                    result.amount = pensionWithVeteran;
+                }
+                
+                result.details.push(`סה"כ קצבה: ${result.amount.toLocaleString('he-IL')} ₪`);
+                return result;
+            }
+
+            // אין זכאות
+            result.reason = `ההכנסה המשפחתית (${familyIncome.toLocaleString('he-IL')} ₪) גבוהה מתקרת הזכאות (${partialEligibilityThreshold.toLocaleString('he-IL')} ₪)`;
+            return result;
+        }
+
+        // חישוב תוספת וותק
+        function getVeteranMonths() {
+            const vetOption = answers['q4_1_veteran_months_applicant'];
+            const rangeMap = {
+                'less_6m': 3,
+                'more_1y': 12,
+                'more_5y': 60,
+                'more_10y': 120,
+                'more_20y': 240,
+                'more_25y': 300,
+                'more_35y': 420
+            };
+            return rangeMap[vetOption] || 0;
+        }
+        
+        // חישוב תוספת וותק לבן זוג
+        function getSpouseVeteranMonths() {
+            const vetOption = answers['q4_2_veteran_months_spouse'];
+            const rangeMap = {
+                'less_6m': 3,
+                'more_1y': 12,
+                'more_5y': 60,
+                'more_10y': 120,
+                'more_20y': 240,
+                'more_25y': 300,
+                'more_35y': 420
+            };
+            return rangeMap[vetOption] || 0;
+        }
+
+        // חישוב אחוז תוספת וותק
+        function calculateVeteranSupplement(months) {
+            // לפי החוק - כל שנה (12 חודשים) צבירה מעל 10 שנים (120 חודשים) מוסיפה 2%
+            // עד מקסימום 50% (כ-35 שנים + 120 חודשים)
+            
+            if (months <= 120) {
+                // עד 10 שנים - ללא תוספת וותק
+                return 0;
+            }
+            
+            const excessMonths = months - 120;
+            const excessYears = excessMonths / 12;
+            const supplement = Math.min(0.50, excessYears * 0.02);
+            return supplement;
+        }
+
+        // חישוב אחוז תוספת דחיה
+        function calculateDeferralSupplement(gender, age, workStopDate) {
+            // תוספת דחיה: 5% לכל שנה שהוכתשה הקצבה מגיל הפרישה עד גיל 70
+            // מקסימום 25% (עד גיל 70)
+            
+            if (!workStopDate) {
+                return 0; // לא הוכתשה קצבה
+            }
+            
+            // חישוב גיל פרישה
+            let retirementAge;
+            if (gender === 'male') {
+                retirementAge = CONSTANTS_2026.RETIREMENT_AGE_MEN;
+            } else {
+                const birthYear = 2026 - age;
+                retirementAge = getRetirementAgeWomen(birthYear);
+            }
+            
+            // חישוב שנת הפסקת העבודה
+            const stopDateParts = workStopDate.split('-');
+            if (stopDateParts.length !== 3) {
+                return 0; // תאריך לא תקין
+            }
+            
+            const stopYear = parseInt(stopDateParts[0]);
+            const stopMonth = parseInt(stopDateParts[1]);
+            
+            // חישוב שנים שהוכתשה קצבה (מגיל פרישה)
+            const currentYear = 2026;
+            const yearsDeferred = currentYear - stopYear;
+            
+            // מקסימום דחיה עד גיל 70
+            const maxDeferralYears = Math.max(0, 70 - Math.ceil(retirementAge));
+            const actualDeferralYears = Math.min(yearsDeferred, maxDeferralYears);
+            
+            if (actualDeferralYears <= 0) {
+                return 0;
+            }
+            
+            // תוספת דחיה: 5% לשנה, עד 25%
+            const deferralSupplement = Math.min(0.25, actualDeferralYears * 0.05);
+            return deferralSupplement;
+        }
+
+        // חישוב זכאות להשלמת הכנסה
+        function calculateIncomeSupplement() {
+            const age = answers['q1_2_age'];
+            const hasSpouseValue = hasSpouse();
+            const spouseAge = hasSpouseValue ? parseInt(answers['q2_2a_spouse_age']) : 0;
+            
+            let totalIncome = calculateTotalIncome();
+            let spouseIncome = hasSpouseValue ? calculateSpouseIncome() : 0;
+            
+            // הוספת קצבאות זקנה קיימות או צפויות להכנסה
+            if (answers['q5_benefits_applicant'] && Array.isArray(answers['q5_benefits_applicant'])) {
+                const applicantOldAgePension = answers['q5_benefits_applicant'].find(row => row.benefit_name === 'קצבת זיקנה');
+                if (applicantOldAgePension && applicantOldAgePension.receives === 'yes') {
+                    const amount = parseInt(applicantOldAgePension.amount) || 0;
+                    totalIncome += amount;
+                }
+            }
+
+            // הוספת קצבת בן זוג אם קיימת
+            if (hasSpouseValue && answers['q5_benefits_spouse'] && Array.isArray(answers['q5_benefits_spouse'])) {
+                const spouseOldAgePension = answers['q5_benefits_spouse'].find(row => row.benefit_name === 'קצבת זיקנה');
+                if (spouseOldAgePension && spouseOldAgePension.receives === 'yes') {
+                    const amount = parseInt(spouseOldAgePension.amount) || 0;
+                    spouseIncome += amount;
+                }
+            }
+
+            const familyIncome = totalIncome + spouseIncome;
+            const childrenCount = countChildren();
+            
+            let result = {
+                eligible: false,
+                type: '',
+                reason: '',
+                supplementAmount: 0,
+                threshold: 0,
+                details: []
+            };
+
+            // קביעת תקרת השלמת הכנסה לפי גיל (המבוגר מבין השניים), מצב משפחתי וילדים
+            let incomeSupplementThreshold;
+            
+            // בתרחיש של זוג, משתמשים בגיל של המבוגר מבין השניים
+            let ageForThreshold = age;
+            if (hasSpouseValue && spouseAge > age) {
+                ageForThreshold = spouseAge;
+            }
+            
+            if (ageForThreshold < 70) {
+                if (hasSpouseValue) {
+                    if (childrenCount === 0) {
+                        incomeSupplementThreshold = CONSTANTS_2026.INCOME_SUPPLEMENT_COUPLE_UNDER70;
+                    } else if (childrenCount === 1) {
+                        incomeSupplementThreshold = CONSTANTS_2026.INCOME_SUPPLEMENT_COUPLE_1_CHILD_UNDER70;
+                    } else {
+                        incomeSupplementThreshold = CONSTANTS_2026.INCOME_SUPPLEMENT_COUPLE_2_CHILDREN_UNDER70;
+                    }
+                } else {
+                    if (childrenCount === 0) {
+                        incomeSupplementThreshold = CONSTANTS_2026.INCOME_SUPPLEMENT_SINGLE_UNDER70;
+                    } else if (childrenCount === 1) {
+                        incomeSupplementThreshold = CONSTANTS_2026.INCOME_SUPPLEMENT_SINGLE_1_CHILD_UNDER70;
+                    } else {
+                        incomeSupplementThreshold = CONSTANTS_2026.INCOME_SUPPLEMENT_SINGLE_2_CHILDREN_UNDER70;
+                    }
+                }
+            } else if (ageForThreshold < 80) {
+                if (hasSpouseValue) {
+                    if (childrenCount === 0) {
+                        incomeSupplementThreshold = CONSTANTS_2026.INCOME_SUPPLEMENT_COUPLE_70_80;
+                    } else if (childrenCount === 1) {
+                        incomeSupplementThreshold = CONSTANTS_2026.INCOME_SUPPLEMENT_COUPLE_1_CHILD_70_80;
+                    } else {
+                        incomeSupplementThreshold = CONSTANTS_2026.INCOME_SUPPLEMENT_COUPLE_2_CHILDREN_70_80;
+                    }
+                } else {
+                    if (childrenCount === 0) {
+                        incomeSupplementThreshold = CONSTANTS_2026.INCOME_SUPPLEMENT_SINGLE_70_80;
+                    } else if (childrenCount === 1) {
+                        incomeSupplementThreshold = CONSTANTS_2026.INCOME_SUPPLEMENT_SINGLE_1_CHILD_70_80;
+                    } else {
+                        incomeSupplementThreshold = CONSTANTS_2026.INCOME_SUPPLEMENT_SINGLE_2_CHILDREN_70_80;
+                    }
+                }
+            } else { // age >= 80
+                if (hasSpouseValue) {
+                    if (childrenCount === 0) {
+                        incomeSupplementThreshold = CONSTANTS_2026.INCOME_SUPPLEMENT_COUPLE_80;
+                    } else if (childrenCount === 1) {
+                        incomeSupplementThreshold = CONSTANTS_2026.INCOME_SUPPLEMENT_COUPLE_1_CHILD_80;
+                    } else {
+                        incomeSupplementThreshold = CONSTANTS_2026.INCOME_SUPPLEMENT_COUPLE_2_CHILDREN_80;
+                    }
+                } else {
+                    if (childrenCount === 0) {
+                        incomeSupplementThreshold = CONSTANTS_2026.INCOME_SUPPLEMENT_SINGLE_80;
+                    } else if (childrenCount === 1) {
+                        incomeSupplementThreshold = CONSTANTS_2026.INCOME_SUPPLEMENT_SINGLE_1_CHILD_80;
+                    } else {
+                        incomeSupplementThreshold = CONSTANTS_2026.INCOME_SUPPLEMENT_SINGLE_2_CHILDREN_80;
+                    }
+                }
+            }
+
+            result.threshold = incomeSupplementThreshold;
+            
+            // פירוט הכנסה - חשוב להראות הכנסה משפחתית שלמה
+            const workIncomeApplicant = calculateTotalIncome();
+            const workIncomeSpouse = hasSpouseValue ? calculateSpouseIncome() : 0;
+            
+            // מחשבים קצבאות זקנה קיימות
+            let pensionApplicant = 0;
+            if (answers['q5_benefits_applicant'] && Array.isArray(answers['q5_benefits_applicant'])) {
+                const applicantOldAgePension = answers['q5_benefits_applicant'].find(row => row.benefit_name === 'קצבת זיקנה');
+                if (applicantOldAgePension && applicantOldAgePension.receives === 'yes') {
+                    pensionApplicant = parseInt(applicantOldAgePension.amount) || 0;
+                }
+            }
+            
+            let pensionSpouse = 0;
+            if (hasSpouseValue && answers['q5_benefits_spouse'] && Array.isArray(answers['q5_benefits_spouse'])) {
+                const spouseOldAgePension = answers['q5_benefits_spouse'].find(row => row.benefit_name === 'קצבת זיקנה');
+                if (spouseOldAgePension && spouseOldAgePension.receives === 'yes') {
+                    pensionSpouse = parseInt(spouseOldAgePension.amount) || 0;
+                }
+            }
+            
+            if (hasSpouseValue) {
+                if (workIncomeApplicant > 0) {
+                    result.details.push(`הכנסה מעבודה של מגיש הבקשה: ${workIncomeApplicant.toLocaleString('he-IL')} ₪`);
+                }
+                if (pensionApplicant > 0) {
+                    result.details.push(`קצבת זקנה של מגיש הבקשה: ${pensionApplicant.toLocaleString('he-IL')} ₪`);
+                }
+                if (workIncomeSpouse > 0) {
+                    result.details.push(`הכנסה מעבודה של בן/בת הזוג: ${workIncomeSpouse.toLocaleString('he-IL')} ₪`);
+                }
+                if (pensionSpouse > 0) {
+                    result.details.push(`קצבת זקנה של בן/בת הזוג: ${pensionSpouse.toLocaleString('he-IL')} ₪`);
+                }
+            } else {
+                if (workIncomeApplicant > 0) {
+                    result.details.push(`הכנסה מעבודה: ${workIncomeApplicant.toLocaleString('he-IL')} ₪`);
+                }
+                if (pensionApplicant > 0) {
+                    result.details.push(`קצבת זקנה: ${pensionApplicant.toLocaleString('he-IL')} ₪`);
+                }
+            }
+            result.details.push(`סה"כ הכנסה משפחתית כוללת: ${familyIncome.toLocaleString('he-IL')} ₪`);
+            result.details.push(`תקרת השלמת הכנסה (לפי גיל המבוגר: ${ageForThreshold}): ${incomeSupplementThreshold.toLocaleString('he-IL')} ₪`);
+
+            if (familyIncome < incomeSupplementThreshold) {
+                result.eligible = true;
+                result.type = 'eligible';
+                result.supplementAmount = incomeSupplementThreshold - familyIncome;
+                result.reason = 'זכאי להשלמת הכנסה';
+                result.details.push(`סכום השלמה: ${result.supplementAmount.toLocaleString('he-IL')} ₪`);
+                result.details.push(`הכנסה כוללת לאחר השלמה: ${incomeSupplementThreshold.toLocaleString('he-IL')} ₪`);
+            } else {
+                result.reason = `ההכנסה המשפחתית שווה או גבוהה מתקרת ההשלמה`;
+            }
+
+            return result;
+        }
+
+        // פונקציה ראשית להצגת תוצאות
+        function showResults() {
+            const container = document.getElementById('questionnaire');
+            
+            // חישוב זכאויות
+            const oldAgePensionApplicant = calculateOldAgePensionApplicant();
+            const oldAgePensionSpouse = hasSpouse() ? calculateOldAgePensionSpouse() : null;
+            const incomeSupplement = calculateIncomeSupplement();
+            
+            let html = `
+                <div class="results show">
+                    <div class="results-header">
+                        <h2>📋 סיכום ותוצאות אבחון זכאות</h2>
+                        <p>על פי התשובות שסיפקת, הנה ניתוח הזכאות שלך לקצבאות:</p>
+                    </div>
+
+                    <!-- קצבת אזרח ותיק - מגיש הבקשה -->
+                    <div style="background: ${oldAgePensionApplicant.eligible ? '#e8f5e9' : '#ffebee'}; padding: 25px; border-radius: 12px; border-right: 5px solid ${oldAgePensionApplicant.eligible ? '#4caf50' : '#f44336'}; margin: 25px 0;">
+                        <h3 style="color: ${oldAgePensionApplicant.eligible ? '#2e7d32' : '#c62828'}; margin-bottom: 15px;">
+                            ${oldAgePensionApplicant.eligible ? '✅' : '❌'} קצבת אזרח ותיק (קצבת זקנה) - מגיש הבקשה
+                        </h3>
+                        <p style="font-size: 1.1em; font-weight: 600; margin-bottom: 10px;">
+                            <strong>סטטוס:</strong> ${oldAgePensionApplicant.eligible ? (oldAgePensionApplicant.type === 'full' ? 'זכאי לקצבה מלאה' : 'זכאי לקצבה חלקית') : 'לא זכאי'}
+                        </p>
+                        <p style="margin-bottom: 10px;"><strong>הסבר:</strong> ${oldAgePensionApplicant.reason}</p>
+                        ${oldAgePensionApplicant.amount > 0 ? `<p style="font-size: 1.3em; font-weight: bold; color: #1976d2;">💰 סכום משוער: ${oldAgePensionApplicant.amount.toLocaleString('he-IL')} ₪ לחודש</p>` : ''}
+                        ${oldAgePensionApplicant.details.length > 0 ? `
+                            <div style="background: white; padding: 15px; border-radius: 8px; margin-top: 15px;">
+                                <h4>פירוט החישוב:</h4>
+                                <ul style="margin: 10px 0 0 20px;">
+                                    ${oldAgePensionApplicant.details.map(detail => `<li>${detail}</li>`).join('')}
+                                </ul>
+                            </div>
+                        ` : ''}
+                    </div>
+
+                    ${oldAgePensionSpouse ? `
+                    <!-- קצבת אזרח ותיק - בן/בת הזוג -->
+                    <div style="background: ${oldAgePensionSpouse.eligible ? '#e8f5e9' : '#ffebee'}; padding: 25px; border-radius: 12px; border-right: 5px solid ${oldAgePensionSpouse.eligible ? '#4caf50' : '#f44336'}; margin: 25px 0;">
+                        <h3 style="color: ${oldAgePensionSpouse.eligible ? '#2e7d32' : '#c62828'}; margin-bottom: 15px;">
+                            ${oldAgePensionSpouse.eligible ? '✅' : '❌'} קצבת אזרח ותיק (קצבת זקנה) - בן/בת הזוג
+                        </h3>
+                        <p style="font-size: 1.1em; font-weight: 600; margin-bottom: 10px;">
+                            <strong>סטטוס:</strong> ${oldAgePensionSpouse.eligible ? (oldAgePensionSpouse.type === 'full' ? 'זכאי לקצבה מלאה' : 'זכאי לקצבה חלקית') : 'לא זכאי'}
+                        </p>
+                        <p style="margin-bottom: 10px;"><strong>הסבר:</strong> ${oldAgePensionSpouse.reason}</p>
+                        ${oldAgePensionSpouse.amount > 0 ? `<p style="font-size: 1.3em; font-weight: bold; color: #1976d2;">💰 סכום משוער: ${oldAgePensionSpouse.amount.toLocaleString('he-IL')} ₪ לחודש</p>` : ''}
+                        ${oldAgePensionSpouse.details.length > 0 ? `
+                            <div style="background: white; padding: 15px; border-radius: 8px; margin-top: 15px;">
+                                <h4>פירוט החישוב:</h4>
+                                <ul style="margin: 10px 0 0 20px;">
+                                    ${oldAgePensionSpouse.details.map(detail => `<li>${detail}</li>`).join('')}
+                                </ul>
+                            </div>
+                        ` : ''}
+                    </div>
+                    ` : ''}
+                    
+                    ${oldAgePensionApplicant.eligible && oldAgePensionSpouse && oldAgePensionSpouse.eligible ? `
+                    <!-- סה"כ קצבאות זיקנה לזוג -->
+                    <div style="background: #fff3e0; padding: 25px; border-radius: 12px; border-right: 5px solid #ff9800; margin: 25px 0;">
+                        <h3 style="color: #f57c00; margin-bottom: 15px;">
+                            💰 סה"כ קצבאות זיקנה לזוג
+                        </h3>
+                        <p style="font-size: 1.3em; font-weight: bold; color: #d84315;">
+                            ${(oldAgePensionApplicant.amount + oldAgePensionSpouse.amount).toLocaleString('he-IL')} ₪ לחודש
+                        </p>
+                        <p style="font-size: 0.95em; color: #555;">
+                            מגיש הבקשה: ${oldAgePensionApplicant.amount.toLocaleString('he-IL')} ₪ + בן/בת הזוג: ${oldAgePensionSpouse.amount.toLocaleString('he-IL')} ₪
+                        </p>
+                    </div>
+                    ` : ''}
+
+                    <!-- השלמת הכנסה -->
+                    <div style="background: ${incomeSupplement.eligible ? '#e3f2fd' : '#fff3e0'}; padding: 25px; border-radius: 12px; border-right: 5px solid ${incomeSupplement.eligible ? '#2196f3' : '#ff9800'}; margin: 25px 0;">
+                        <h3 style="color: ${incomeSupplement.eligible ? '#1565c0' : '#f57c00'}; margin-bottom: 15px;">
+                            ${incomeSupplement.eligible ? '✅' : '⚠️'} תוספת השלמת הכנסה
+                        </h3>
+                        <p style="font-size: 1.1em; font-weight: 600; margin-bottom: 10px;">
+                            <strong>סטטוס:</strong> ${incomeSupplement.eligible ? 'זכאי להשלמת הכנסה' : 'לא זכאי'}
+                        </p>
+                        <p style="margin-bottom: 10px;"><strong>הסבר:</strong> ${incomeSupplement.reason}</p>
+                        ${incomeSupplement.supplementAmount > 0 ? `<p style="font-size: 1.3em; font-weight: bold; color: #1976d2;">💰 סכום השלמה משוער: ${incomeSupplement.supplementAmount.toLocaleString('he-IL')} ₪ לחודש</p>` : ''}
+                        ${incomeSupplement.details.length > 0 ? `
+                            <div style="background: white; padding: 15px; border-radius: 8px; margin-top: 15px;">
+                                <h4>פירוט החישוב:</h4>
+                                <ul style="margin: 10px 0 0 20px;">
+                                    ${incomeSupplement.details.map(detail => `<li>${detail}</li>`).join('')}
+                                </ul>
+                            </div>
+                        ` : ''}
+                    </div>
+
+                    <!-- סיכום נתוני השאלון -->
+                    <div style="background: #f5f5f5; padding: 25px; border-radius: 12px; margin: 25px 0;">
+                        <h3 style="margin-bottom: 20px;">📊 סיכום התשובות שלך</h3>
+            `;
+
+            // הצגת תשובות לפי סעיפים
+            let lastSectionWasIncome = false;
+            questionsData.forEach((section, index) => {
+                html += `
+                    <div style="margin-bottom: 20px;">
+                        <h4 style="color: #667eea; margin-bottom: 10px;">${section.title}</h4>
+                        <div style="background: white; padding: 15px; border-radius: 8px;">
+                `;
+
+                section.questions.forEach(question => {
+                    const answer = answers[question.id];
+                    if (answer !== undefined && answer !== null && answer !== '') {
+                        const formattedAnswer = formatAnswer(question, answer);
+                        html += `
+                            <div style="margin-bottom: 12px; padding-bottom: 12px; border-bottom: 1px solid #e0e0e0;">
+                                <strong>${question.text}</strong><br>
+                                <span style="color: #555;">${formattedAnswer}</span>
+                            </div>
+                        `;
+                        
+                        // אם זה טבלת הכנסה של בן הזוג, הוסף סה"כ הכנסה משפחתית
+                        if (question.id === 'q3_income_spouse') {
+                            const totalAppIncome = calculateTotalIncome();
+                            const totalSpouseIncome = calculateSpouseIncome();
+                            const totalFamilyIncome = totalAppIncome + totalSpouseIncome;
+                            html += `
+                                <div style="margin-bottom: 12px; padding: 15px; background: #e3f2fd; border-radius: 6px; border-right: 4px solid #2196f3; font-weight: 600;">
+                                    <strong style="color: #1565c0;">💰 סה"כ הכנסה משפחתית: ${totalFamilyIncome.toLocaleString('he-IL')} ₪</strong>
+                                </div>
+                            `;
+                        }
+                    }
+                });
+
+                html += `
+                        </div>
+                    </div>
+                `;
+            });
+
+            html += `
+                    </div>
+
+                    <!-- המלצות והצעדים הבאים -->
+                    <div style="background: #fff8e1; padding: 25px; border-radius: 12px; border-right: 5px solid #ffc107; margin: 25px 0;">
+                        <h3 style="color: #f57f17; margin-bottom: 15px;">📌 המלצות וצעדים הבאים</h3>
+                        <ul style="margin: 15px 0 0 20px; line-height: 1.8;">
+                            ${oldAgePensionApplicant.eligible || (oldAgePensionSpouse && oldAgePensionSpouse.eligible) || incomeSupplement.eligible ? `
+                                <li><strong>הגש תביעה:</strong> מומלץ להגיש תביעה לביטוח הלאומי בהקדם</li>
+                                <li><strong>מסמכים נדרשים:</strong> הכן תעודת זהות, אישורי הכנסה, אישור מהבנק</li>
+                                <li><strong>זמן טיפול:</strong> התביעה מטופלת בדרך כלל תוך 30-45 יום</li>
+                            ` : `
+                                <li><strong>בדיקה חוזרת:</strong> מומלץ לבדוק שוב בעת שינוי במצב ההכנסות או הגיל</li>
+                                <li><strong>ייעוץ:</strong> פנה לעובד סוציאלי או למוקד הביטוח הלאומי לייעוץ נוסף</li>
+                            `}
+                            <li><strong>מוקד הביטוח הלאומי:</strong> *6050 או 02-6371200</li>
+                            <li><strong>אתר הביטוח הלאומי:</strong> <a href="https://www.btl.gov.il" target="_blank">btl.gov.il</a></li>
+                        </ul>
+                    </div>
+
+                    <!-- כפתור הדפסה -->
+                    <div class="print-button">
+                        <button class="btn btn-primary" onclick="window.print()">🖨️ הדפס דו"ח</button>
+                        <button class="btn btn-secondary" onclick="location.reload()" style="margin-right: 10px;">🔄 התחל מחדש</button>
+                    </div>
+
+                    <!-- הצהרת מדיניות -->
+                    <div style="background: #fafafa; padding: 20px; border-radius: 8px; margin-top: 25px; font-size: 0.9em; color: #666;">
+                        <p><strong>⚠️ הצהרה:</strong> תוצאות אבחון זה הן לצרכי הערכה בלבד ואינן מהוות החלטה רשמית. הזכאות הסופית נקבעת על ידי הביטוח הלאומי בהתאם לחוק ולבדיקת המסמכים. הנתונים מבוססים על נתוני 2026 ועשויים להשתנות.</p>
+                    </div>
                 </div>
             `;
 
-            // זכאות גבוהה
-            const highBenefits = document.getElementById('highBenefits');
-            if (report.details.high_probability.length > 0) {
-                highBenefits.innerHTML = report.details.high_probability.map(b => `
-                    <div class="benefit-card high">
-                        <div class="benefit-title">✅ ${b.benefit}</div>
-                        <div class="benefit-reason">📋 ${b.reason}</div>
-                        <div class="benefit-action">🎯 ${b.action}</div>
-                        ${b.urgency ? `<span class="benefit-urgency ${b.urgency === 'גבוהה' || b.urgency.includes('דחופה') ? 'high' : b.urgency === 'בינונית' ? 'medium' : 'low'}">${b.urgency}</span>` : ''}
-                        ${b.note ? `<div class="benefit-note">💡 ${b.note}</div>` : ''}
-                    </div>
-                `).join('');
-            } else {
-                document.getElementById('highProbability').style.display = 'none';
-            }
-
-            // זכאות בינונית
-            const mediumBenefits = document.getElementById('mediumBenefits');
-            if (report.details.medium_probability.length > 0) {
-                mediumBenefits.innerHTML = report.details.medium_probability.map(b => `
-                    <div class="benefit-card medium">
-                        <div class="benefit-title">⚠️ ${b.benefit}</div>
-                        <div class="benefit-reason">📋 ${b.reason}</div>
-                        <div class="benefit-action">🎯 ${b.action}</div>
-                        ${b.urgency ? `<span class="benefit-urgency ${b.urgency === 'גבוהה' ? 'high' : b.urgency === 'בינונית' ? 'medium' : 'low'}">${b.urgency}</span>` : ''}
-                        ${b.note ? `<div class="benefit-note">💡 ${b.note}</div>` : ''}
-                    </div>
-                `).join('');
-            } else {
-                document.getElementById('mediumProbability').style.display = 'none';
-            }
-
-            // לא רלוונטי
-            const notRelevantBenefits = document.getElementById('notRelevantBenefits');
-            if (report.details.not_relevant.length > 0) {
-                notRelevantBenefits.innerHTML = report.details.not_relevant.map(b => `
-                    <div class="benefit-card low">
-                        <div class="benefit-title">❌ ${b.benefit}</div>
-                        <div class="benefit-reason">📋 ${b.reason}</div>
-                    </div>
-                `).join('');
-            } else {
-                document.getElementById('notRelevant').style.display = 'none';
-            }
-
-            // מידע נוסף
-            const infoBenefits = document.getElementById('infoBenefits');
-            if (report.details.additional_info.length > 0) {
-                infoBenefits.innerHTML = report.details.additional_info.map(b => `
-                    <div class="info-card">
-                        <div class="note"><strong>${b.benefit || ''}</strong> ${b.note}</div>
-                        ${b.urgency ? `<span class="benefit-urgency ${b.urgency === 'חשוב' ? 'high' : 'medium'}">${b.urgency}</span>` : ''}
-                    </div>
-                `).join('');
-            } else {
-                document.getElementById('additionalInfo').style.display = 'none';
-            }
-
-            // ריכוז מלא של כל הקצבאות והתשלומים מהאינדקס
-            buildFullBenefitsSummary(report);
-
-            // גלילה לראש הדף
-            window.scrollTo({ top: 0, behavior: 'smooth' });
+            container.innerHTML = html;
+            window.scrollTo(0, 0);
         }
-
-        function buildFullBenefitsSummary(report) {
-            if (!allBenefits || allBenefits.length === 0) return;
-
-            const statusMap = new Map();
-            markBenefitStatusList(report.details.high_probability || [], 'high');
-            markBenefitStatusList(report.details.medium_probability || [], 'medium');
-            markBenefitStatusList(report.details.not_relevant || [], 'low');
-
-            const grouped = { high: [], medium: [], low: [] };
-            allBenefits.forEach(item => {
-                const status = statusMap.get(normalizeBenefitName(item.name)) || 'low';
-                grouped[status].push(item);
-            });
-
-            renderFullList('fullHighBlock', 'fullHighList', grouped.high, 'high');
-            renderFullList('fullMediumBlock', 'fullMediumList', grouped.medium, 'medium');
-            renderFullList('fullLowBlock', 'fullLowList', grouped.low, 'low');
-
-            document.getElementById('fullBenefitsContainer').style.display = 'block';
-
-            function markBenefitStatusList(list, status) {
-                list.forEach(item => markBenefitStatus(statusMap, item.benefit || item.name, status));
-            }
-        }
-
-        function renderFullList(blockId, listId, items, cssClass) {
-            const block = document.getElementById(blockId);
-            const listEl = document.getElementById(listId);
-            if (!items || items.length === 0) {
-                block.style.display = 'none';
-                return;
-            }
-            block.style.display = 'block';
-            listEl.innerHTML = items.map(item => `
-                <div class="full-benefit-card ${cssClass}">
-                    <div class="full-benefit-name">${item.name}</div>
-                    <div class="full-benefit-audience">${item.audience || ''}</div>
-                </div>
-            `).join('');
-        }
-
-        // טעינה ראשונית
-        loadQuestions();
     </script>
 </body>
 </html>
