@@ -269,20 +269,20 @@
           "required": false,
           "text": "קצבאות של מגיש הבקשה",
           "columns": [
-            {"id": "benefit_name", "label": "סוג קצבה"},
+            {"id": "benefit_name", "label": "סוג קצבה", "type": "select", "options": [
+              {"value": "", "label": "בחר קצבה..."},
+              {"value": "קצבת זקנה", "label": "קצבת זקנה"},
+              {"value": "השלמת הכנסה", "label": "השלמת הכנסה"},
+              {"value": "קצבת שארים", "label": "קצבת שארים"},
+              {"value": "קצבת סיעוד", "label": "קצבת סיעוד"},
+              {"value": "ניצולי שואה", "label": "ניצולי שואה"}
+            ]},
             {"id": "receives", "label": "מקבל", "type": "select", "options": [
               {"value": "", "label": "-"},
               {"value": "yes", "label": "כן"},
               {"value": "no", "label": "לא"}
             ]},
             {"id": "amount", "label": "סכום חודשי (₪)", "type": "number"}
-          ],
-          "rows": [
-            {"benefit_name": "קצבת זיקנה"},
-            {"benefit_name": "השלמת הכנסה"},
-            {"benefit_name": "דמי סיעוד"},
-            {"benefit_name": "גמלת נכות"},
-            {"benefit_name": "קצבת ניידות"}
           ]
         },
         {
@@ -292,20 +292,20 @@
           "text": "קצבאות של בן/בת הזוג",
           "condition": {"q2_1_has_spouse": "yes"},
           "columns": [
-            {"id": "benefit_name", "label": "סוג קצבה"},
+            {"id": "benefit_name", "label": "סוג קצבה", "type": "select", "options": [
+              {"value": "", "label": "בחר קצבה..."},
+              {"value": "קצבת זקנה", "label": "קצבת זקנה"},
+              {"value": "השלמת הכנסה", "label": "השלמת הכנסה"},
+              {"value": "קצבת שארים", "label": "קצבת שארים"},
+              {"value": "קצבת סיעוד", "label": "קצבת סיעוד"},
+              {"value": "ניצולי שואה", "label": "ניצולי שואה"}
+            ]},
             {"id": "receives", "label": "מקבל", "type": "select", "options": [
               {"value": "", "label": "-"},
               {"value": "yes", "label": "כן"},
               {"value": "no", "label": "לא"}
             ]},
             {"id": "amount", "label": "סכום חודשי (₪)", "type": "number"}
-          ],
-          "rows": [
-            {"benefit_name": "קצבת זיקנה"},
-            {"benefit_name": "השלמת הכנסה"},
-            {"benefit_name": "דמי סיעוד"},
-            {"benefit_name": "גמלת נכות"},
-            {"benefit_name": "קצבת ניידות"}
           ]
         }
       ]
@@ -385,24 +385,17 @@
           "type": "dual_column_table",
           "required": false,
           "text": "פרטים על עבודה",
+          "dynamicRows": true,
           "columns": [
             {"id": "applicant", "label": "מגיש בקשה"},
             {"id": "spouse", "label": "בן/בת הזוג"}
           ],
           "rows": [
             {
-              "id": "continues_working",
-              "label": "ממשיך לעבוד",
-              "type": "radio",
-              "options": [
-                {"value": "yes", "label": "כן"},
-                {"value": "no", "label": "לא"}
-              ]
-            },
-            {
               "id": "work_stop_date",
-              "label": "תאריך הפסקת עבודה",
-              "type": "date"
+              "label": "מתי הפסקת לעבוד?",
+              "type": "date",
+              "showIfNoWorkIncome": true
             },
             {
               "id": "pension_eligibility",

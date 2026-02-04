@@ -724,6 +724,25 @@
 
         function renderDualColumnTable(question) {
             const tableData = answers[question.id] || {};
+            
+            // בדיקה אם צריך לטפל בלוגיקה דינמית לסעיף 8
+            const isDynamic = question.dynamicRows || false;
+            let hasWorkIncomeApplicant = false;
+            let hasWorkIncomeSpouse = false;
+            
+            if (isDynamic && question.id === 'q8_work_details') {
+                // בדיקה האם יש הכנסה מעבודה בסעיף 3
+                const incomeTableApplicant = answers['q3_income_applicant'];
+                if (incomeTableApplicant && incomeTableApplicant.employed_income) {
+                    hasWorkIncomeApplicant = incomeTableApplicant.employed_income.has === true;
+                }
+                
+                const incomeTableSpouse = answers['q3_income_spouse'];
+                if (incomeTableSpouse && incomeTableSpouse.employed_income) {
+                    hasWorkIncomeSpouse = incomeTableSpouse.employed_income.has === true;
+                }
+            }
+            
             let html = `
                 <div class="table-container">
                     <table class="dynamic-table">
@@ -738,15 +757,29 @@
             html += `</tr></thead><tbody>`;
 
             question.rows.forEach(row => {
+                // סינון שורות לפי תנאים דינמיים
+                const shouldShowRowApplicant = !isDynamic || !row.showIfNoWorkIncome || !hasWorkIncomeApplicant;
+                const shouldShowRowSpouse = !isDynamic || !row.showIfNoWorkIncome || !hasWorkIncomeSpouse;
+                
+                // אם לא צריך להציג את השורה בשתי העמודות - דלג עליה
+                if (isDynamic && row.showIfNoWorkIncome && hasWorkIncomeApplicant && hasWorkIncomeSpouse) {
+                    return; // Skip this row entirely
+                }
+                
                 html += `<tr><td><strong>${row.label}</strong></td>`;
                 
                 question.columns.forEach(col => {
                     const cellId = `${question.id}_${row.id}_${col.id}`;
                     const cellValue = tableData[row.id] && tableData[row.id][col.id] ? tableData[row.id][col.id] : '';
                     
+                    // בדיקה אם צריך להציג את התא הזה
+                    const shouldShowCell = col.id === 'applicant' ? shouldShowRowApplicant : shouldShowRowSpouse;
+                    
                     html += '<td style="text-align: center;">';
                     
-                    if (row.type === 'radio' && row.options) {
+                    if (!shouldShowCell) {
+                        html += '<span style="color: #999;">-</span>';
+                    } else if (row.type === 'radio' && row.options) {
                         row.options.forEach((opt, idx) => {
                             const checked = cellValue === opt.value ? 'checked' : '';
                             html += `
@@ -1176,16 +1209,16 @@
             SPOUSE_SUPPLEMENT: 924,
             BASIC_PENSION_COUPLE: 2762, // יחיד + בן זוג
             
-            // מבחן הכנסות - זכאות מלאה
+            // מבחן הכנסות - זכאות מלאה (עדכון ינואר 2026)
             INCOME_TEST_SINGLE_FULL: 10113,
             INCOME_TEST_MARRIED_FULL: 13484,
             INCOME_TEST_PER_CHILD: 964,
             
-            // מבחן הכנסות - זכאות חלקית
-            INCOME_TEST_SINGLE_PARTIAL_MAX: 14302, // 1.414 * INCOME_TEST_SINGLE_FULL
-            INCOME_TEST_MARRIED_PARTIAL_MAX: 20141, // 1.494 * INCOME_TEST_MARRIED_FULL
+            // מבחן הכנסות - זכאות חלקית (עדכון ינואר 2026)
+            INCOME_TEST_SINGLE_PARTIAL_MAX: 14402,
+            INCOME_TEST_MARRIED_PARTIAL_MAX: 20082,
             
-            // השלמת הכנסה
+            // השלמת הכנסה - מגיל פרישה עד 70
             INCOME_SUPPLEMENT_SINGLE_UNDER70: 4375,
             INCOME_SUPPLEMENT_COUPLE_UNDER70: 6912,
             INCOME_SUPPLEMENT_SINGLE_1_CHILD_UNDER70: 7305,
@@ -1193,6 +1226,7 @@
             INCOME_SUPPLEMENT_COUPLE_1_CHILD_UNDER70: 8035,
             INCOME_SUPPLEMENT_COUPLE_2_CHILDREN_UNDER70: 9156,
             
+            // השלמת הכנסה - גיל 70-80
             INCOME_SUPPLEMENT_SINGLE_70_80: 4418,
             INCOME_SUPPLEMENT_COUPLE_70_80: 6981,
             INCOME_SUPPLEMENT_SINGLE_1_CHILD_70_80: 7374,
@@ -1200,6 +1234,7 @@
             INCOME_SUPPLEMENT_COUPLE_1_CHILD_70_80: 8102,
             INCOME_SUPPLEMENT_COUPLE_2_CHILDREN_70_80: 9226,
             
+            // השלמת הכנסה - גיל 80 ומעלה
             INCOME_SUPPLEMENT_SINGLE_80: 4460,
             INCOME_SUPPLEMENT_COUPLE_80: 7048,
             INCOME_SUPPLEMENT_SINGLE_1_CHILD_80: 7442,
@@ -1213,7 +1248,118 @@
             INCOME_REDUCTION_RATE: 0.60, // 60% מהעודף מופחת
         };
 
-        // חישוב גיל פרישה לנשים
+        // ==================== חישובי גיל פרישה לנשים ====================
+        
+        // חישוב גיל פרישה מדויק לנשים (בשנים וחודשים)
+        function getRetirementAgeWomenDetailed(birthYear, birthMonth) {
+            // טבלה מדויקת לפי הביטוח הלאומי:
+            // עד 31.12.1959: 62 שנים
+            // 1.1.1960-31.12.1960: 62 שנים ו-4 חודשים
+            // 1.1.1961-31.12.1961: 62 שנים ו-8 חודשים
+            // 1.1.1962-31.12.1962: 63 שנים
+            // 1.1.1963-31.12.1963: 63 שנים ו-4 חודשים
+            // 1.1.1964-31.12.1964: 63 שנים ו-8 חודשים
+            // 1.1.1965-31.12.1965: 64 שנים
+            // 1.1.1966-31.12.1966: 64 שנים ו-4 חודשים
+            // 1.1.1967 ואילך: 65 שנים
+            
+            const retirementAgesWomen = {
+                1959: 62.0,
+                1960: 62 + 4/12,      // 62.333...
+                1961: 62 + 8/12,      // 62.666...
+                1962: 63.0,
+                1963: 63 + 4/12,      // 63.333...
+                1964: 63 + 8/12,      // 63.666...
+                1965: 64.0,
+                1966: 64 + 4/12,      // 64.333...
+                1967: 65.0
+            };
+            
+            if (birthYear <= 1959) return 62.0;
+            if (birthYear >= 1967) return 65.0;
+            return retirementAgesWomen[birthYear] || 65.0;
+        }
+
+        // חישוב גיל מדויק (בשנים וחודשים)
+        function calculateAgeDetailed(birthYear, birthMonth) {
+            const currentYear = 2026;
+            const currentMonth = 2; // פברואר
+            
+            let ageInYears = currentYear - birthYear;
+            let ageInMonths = currentMonth - (birthMonth || 1);
+            
+            if (ageInMonths < 0) {
+                ageInYears--;
+                ageInMonths += 12;
+            }
+            
+            const preciseAge = ageInYears + ageInMonths / 12;
+            return {
+                years: ageInYears,
+                months: ageInMonths,
+                precise: preciseAge
+            };
+        }
+
+        // בדיקה אם אישה הגיעה לגיל פרישה
+        function hasReachedRetirementAgeWomen(gender, age, birthYear, birthMonth) {
+            if (gender === 'male') {
+                // גברים: גיל פרישה קבוע 67
+                return age >= 67;
+            }
+            
+            // לנשים: בדיקה מדויקת לפי גיל ושנת לידה
+            const retirementAgeWomen = getRetirementAgeWomenDetailed(birthYear, birthMonth);
+            const ageDetailed = calculateAgeDetailed(birthYear, birthMonth);
+            
+            return ageDetailed.precise >= retirementAgeWomen;
+        }
+
+        // בדיקה אם הגיעה לגיל 70 (זכאות מוחלטת)
+        function hasReachedAbsoluteEligibilityAge(age, birthYear, birthMonth) {
+            // גיל 70 הוא גיל הזכאות המוחלט (ללא מבחן הכנסות) לכל אחד
+            return age >= 70;
+        }
+
+        // חישוב שנות דחיה מדויקות (בין גיל פרישה ל-70)
+        function calculateDeferralYears(gender, birthYear, birthMonth, workStopDate) {
+            if (!workStopDate) return 0;
+            
+            const retirementAgeWomen = getRetirementAgeWomenDetailed(birthYear, birthMonth);
+            const retirementAgeByGender = gender === 'male' ? 67 : retirementAgeWomen;
+            
+            // חישוב תאריך הגעה לגיל פרישה
+            const retirementYears = Math.floor(retirementAgeByGender);
+            const retirementMonths = Math.round((retirementAgeByGender % 1) * 12);
+            
+            const retirementDate = new Date(birthYear + retirementYears, (birthMonth || 1) - 1 + retirementMonths, 1);
+            
+            // תאריך עצירת קבלת הקצבה
+            const [stopYear, stopMonth, stopDay] = workStopDate.split('-').map(Number);
+            const workStopDateObj = new Date(stopYear, stopMonth - 1, stopDay);
+            
+            // חישוב הפרש בשנים וחודשים
+            if (workStopDateObj < retirementDate) {
+                return 0; // עוד לא הגיע לגיל פרישה
+            }
+            
+            // חישוב בדיוק של שנים וחודשים
+            let deferralYears = 2026 - stopYear;
+            let deferralMonths = 2 - (stopMonth || 1);
+            
+            if (deferralMonths < 0) {
+                deferralYears--;
+                deferralMonths += 12;
+            }
+            
+            const preciseDeferralYears = deferralYears + deferralMonths / 12;
+            
+            // הגבלה: עד גיל 70
+            const maxDeferralYears = 70 - Math.ceil(retirementAgeByGender);
+            return Math.min(preciseDeferralYears, maxDeferralYears);
+        }
+
+        // חישוב גיל פרישה לנשים (פשוט)
         function getRetirementAgeWomen(birthYear) {
             if (birthYear <= 1959) return 62;
             if (birthYear >= 1967) return 65;
@@ -1281,7 +1427,6 @@
             const hasSpouseValue = hasSpouse();
             const totalIncome = calculateTotalIncome();
             const spouseIncome = hasSpouseValue ? calculateSpouseIncome() : 0;
-            const familyIncome = totalIncome + spouseIncome;
             const childrenCount = countChildren();
             const vetMonths = getVeteranMonths();
             
@@ -1303,7 +1448,18 @@
             }
 
             if (age < retirementAge) {
-                result.reason = `טרם הגעת לגיל פרישה (${retirementAge}). גיל נוכחי: ${age}`;
+                const birthYear = 2026 - age;
+                const detailedRetirementAge = getRetirementAgeWomenDetailed(birthYear, null);
+                const ageDetailed = calculateAgeDetailed(birthYear, 1);
+                
+                // בנשים: הצג בדיוק של חודשים
+                if (gender === 'female') {
+                    const yearsToRetirement = Math.floor(detailedRetirementAge - ageDetailed.precise);
+                    const monthsToRetirement = Math.round((detailedRetirementAge - ageDetailed.precise) * 12);
+                    result.reason = `טרם הגעת לגיל פרישה. גיל פרישה: ${Math.floor(detailedRetirementAge)} שנים ו-${Math.round((detailedRetirementAge % 1) * 12)} חודשים. עוד ${monthsToRetirement} חודשים עד הגעה לגיל הפרישה.`;
+                } else {
+                    result.reason = `טרם הגעת לגיל פרישה (${retirementAge}). גיל נוכחי: ${age}`;
+                }
                 return result;
             }
 
@@ -1341,13 +1497,25 @@
             }
 
             // מבחן הכנסות לגילאי פרישה-70
+            // חישוב נפרד לפי הכנסות המגיש בלבד (לא משפחתי)
+            // קביעת תקרות: יחיד או זוג
             let fullEligibilityThreshold;
             let partialEligibilityThreshold;
+            let useMarriedThreshold = false;
             
-            if (hasSpouseValue) {
+            // לוגיקה לבחירת תקרה:
+            // 1. אם אין בן זוג - תקרת יחיד
+            // 2. אם יש בן זוג שלא הגיע לגיל פרישה - תקרת יחיד
+            // 3. אם יש בן זוג שהגיע לגיל פרישה אבל אין לו ותק מספיק - תקרת זוג
+            // 4. אם יש בן זוג שהגיע לגיל פרישה ויש לו ותק מספיק (זכאי לקצבה) - תקרת יחיד
+            
+            if (hasSpouseValue && hasSpouseReachedRetirementAge() && !hasSpouseSufficientVeteran()) {
+                // בן הזוג הגיע לגיל פרישה אבל אין לו זכאות - תקרת זוג
+                useMarriedThreshold = true;
                 fullEligibilityThreshold = CONSTANTS_2026.INCOME_TEST_MARRIED_FULL;
                 partialEligibilityThreshold = CONSTANTS_2026.INCOME_TEST_MARRIED_PARTIAL_MAX;
             } else {
+                // כל המצבים האחרים - תקרת יחיד
                 fullEligibilityThreshold = CONSTANTS_2026.INCOME_TEST_SINGLE_FULL;
                 partialEligibilityThreshold = CONSTANTS_2026.INCOME_TEST_SINGLE_PARTIAL_MAX;
             }
@@ -1356,12 +1524,13 @@
             fullEligibilityThreshold += (childrenCount * CONSTANTS_2026.INCOME_TEST_PER_CHILD);
             partialEligibilityThreshold += (childrenCount * CONSTANTS_2026.INCOME_TEST_PER_CHILD);
 
-            result.details.push(`הכנסה משפחתית: ${familyIncome.toLocaleString('he-IL')} ₪`);
+            result.details.push(`הכנסה אישית של המגיש: ${totalIncome.toLocaleString('he-IL')} ₪`);
+            result.details.push(`סוג תקרה: ${useMarriedThreshold ? 'זוג' : 'יחיד'}`);
             result.details.push(`תקרת זכאות מלאה: ${fullEligibilityThreshold.toLocaleString('he-IL')} ₪`);
             result.details.push(`תקרת זכאות חלקית: ${partialEligibilityThreshold.toLocaleString('he-IL')} ₪`);
 
             // זכאות מלאה
-            if (familyIncome <= fullEligibilityThreshold) {
+            if (totalIncome <= fullEligibilityThreshold) {
                 result.eligible = true;
                 result.type = 'full';
                 result.reason = 'זכאי לקצבה מלאה';
@@ -1394,14 +1563,14 @@
             }
             
             // זכאות חלקית
-            if (familyIncome <= partialEligibilityThreshold) {
+            if (totalIncome <= partialEligibilityThreshold) {
                 result.eligible = true;
                 result.type = 'partial';
                 result.reason = 'זכאי לקצבה חלקית';
                 
                 let basePension = age >= 80 ? CONSTANTS_2026.BASIC_PENSION_SINGLE_80 : CONSTANTS_2026.BASIC_PENSION_SINGLE;
                 
-                const excessIncome = familyIncome - fullEligibilityThreshold;
+                const excessIncome = totalIncome - fullEligibilityThreshold;
                 const reduction = excessIncome * CONSTANTS_2026.INCOME_REDUCTION_RATE;
                 const partialPension = Math.max(0, basePension - reduction);
                 
@@ -1434,7 +1603,7 @@
             }
 
             // אין זכאות
-            result.reason = `ההכנסה המשפחתית (${familyIncome.toLocaleString('he-IL')} ₪) גבוהה מתקרת הזכאות (${partialEligibilityThreshold.toLocaleString('he-IL')} ₪)`;
+            result.reason = `ההכנסה האישית של המגיש (${totalIncome.toLocaleString('he-IL')} ₪) גבוהה מתקרת הזכאות (${partialEligibilityThreshold.toLocaleString('he-IL')} ₪)`;
             return result;
         }
 
@@ -1455,7 +1624,6 @@
             const hasSpouseValue = hasSpouse();
             const totalIncome = calculateTotalIncome();
             const spouseIncome = calculateSpouseIncome();
-            const familyIncome = totalIncome + spouseIncome;
             const childrenCount = countChildren();
             const spouseVetMonths = getSpouseVeteranMonths();
             
@@ -1477,7 +1645,17 @@
             }
 
             if (spouseAge < retirementAge) {
-                result.reason = `בן/בת הזוג טרם הגעו לגיל פרישה (${retirementAge}). גיל נוכחי: ${spouseAge}`;
+                const birthYear = 2026 - spouseAge;
+                const detailedRetirementAge = getRetirementAgeWomenDetailed(birthYear, null);
+                const ageDetailed = calculateAgeDetailed(birthYear, 1);
+                
+                // בנשים: הצג בדיוק של חודשים
+                if (spouseGender === 'female') {
+                    const monthsToRetirement = Math.round((detailedRetirementAge - ageDetailed.precise) * 12);
+                    result.reason = `בן/בת הזוג טרם הגעו לגיל פרישה. גיל פרישה: ${Math.floor(detailedRetirementAge)} שנים ו-${Math.round((detailedRetirementAge % 1) * 12)} חודשים. עוד ${monthsToRetirement} חודשים עד הגעה לגיל הפרישה.`;
+                } else {
+                    result.reason = `בן/בת הזוג טרם הגעו לגיל פרישה (${retirementAge}). גיל נוכחי: ${spouseAge}`;
+                }
                 return result;
             }
 
@@ -1515,13 +1693,24 @@
             }
 
             // מבחן הכנסות לגילאי פרישה-70
+            // חישוב נפרד לפי הכנסות בן/בת הזוג בלבד (לא משפחתי)
+            // קביעת תקרות: יחיד או זוג
             let fullEligibilityThreshold;
             let partialEligibilityThreshold;
+            let useMarriedThreshold = false;
             
-            if (hasSpouseValue) {
+            // לוגיקה לבחירת תקרה:
+            // 1. אם המגיש לא הגיע לגיל פרישה - תקרת יחיד
+            // 2. אם המגיש הגיע לגיל פרישה אבל אין לו ותק מספיק - תקרת זוג
+            // 3. אם המגיש הגיע לגיל פרישה ויש לו ותק מספיק (זכאי לקצבה) - תקרת יחיד
+            
+            if (hasApplicantReachedRetirementAge() && !hasApplicantSufficientVeteran()) {
+                // המגיש הגיע לגיל פרישה אבל אין לו זכאות - תקרת זוג
+                useMarriedThreshold = true;
                 fullEligibilityThreshold = CONSTANTS_2026.INCOME_TEST_MARRIED_FULL;
                 partialEligibilityThreshold = CONSTANTS_2026.INCOME_TEST_MARRIED_PARTIAL_MAX;
             } else {
+                // כל המצבים האחרים - תקרת יחיד
                 fullEligibilityThreshold = CONSTANTS_2026.INCOME_TEST_SINGLE_FULL;
                 partialEligibilityThreshold = CONSTANTS_2026.INCOME_TEST_SINGLE_PARTIAL_MAX;
             }
@@ -1530,12 +1719,13 @@
             fullEligibilityThreshold += (childrenCount * CONSTANTS_2026.INCOME_TEST_PER_CHILD);
             partialEligibilityThreshold += (childrenCount * CONSTANTS_2026.INCOME_TEST_PER_CHILD);
 
-            result.details.push(`הכנסה משפחתית: ${familyIncome.toLocaleString('he-IL')} ₪`);
+            result.details.push(`הכנסה אישית של בן/בת הזוג: ${spouseIncome.toLocaleString('he-IL')} ₪`);
+            result.details.push(`סוג תקרה: ${useMarriedThreshold ? 'זוג' : 'יחיד'}`);
             result.details.push(`תקרת זכאות מלאה: ${fullEligibilityThreshold.toLocaleString('he-IL')} ₪`);
             result.details.push(`תקרת זכאות חלקית: ${partialEligibilityThreshold.toLocaleString('he-IL')} ₪`);
 
             // זכאות מלאה
-            if (familyIncome <= fullEligibilityThreshold) {
+            if (spouseIncome <= fullEligibilityThreshold) {
                 result.eligible = true;
                 result.type = 'full';
                 result.reason = 'זכאי לקצבה מלאה';
@@ -1567,14 +1757,14 @@
             }
             
             // זכאות חלקית
-            if (familyIncome <= partialEligibilityThreshold) {
+            if (spouseIncome <= partialEligibilityThreshold) {
                 result.eligible = true;
                 result.type = 'partial';
                 result.reason = 'זכאי לקצבה חלקית';
                 
                 let basePension = spouseAge >= 80 ? CONSTANTS_2026.BASIC_PENSION_SINGLE_80 : CONSTANTS_2026.BASIC_PENSION_SINGLE;
                 
-                const excessIncome = familyIncome - fullEligibilityThreshold;
+                const excessIncome = spouseIncome - fullEligibilityThreshold;
                 const reduction = excessIncome * CONSTANTS_2026.INCOME_REDUCTION_RATE;
                 const partialPension = Math.max(0, basePension - reduction);
                 
@@ -1606,7 +1796,7 @@
             }
 
             // אין זכאות
-            result.reason = `ההכנסה המשפחתית (${familyIncome.toLocaleString('he-IL')} ₪) גבוהה מתקרת הזכאות (${partialEligibilityThreshold.toLocaleString('he-IL')} ₪)`;
+            result.reason = `ההכנסה האישית של בן/בת הזוג (${spouseIncome.toLocaleString('he-IL')} ₪) גבוהה מתקרת הזכאות (${partialEligibilityThreshold.toLocaleString('he-IL')} ₪)`;
             return result;
         }
 
@@ -1640,6 +1830,53 @@
             return rangeMap[vetOption] || 0;
         }
 
+        // בדיקה אם המגיש הגיע לגיל פרישה
+        function hasApplicantReachedRetirementAge() {
+            const gender = answers['q1_1_gender'];
+            const age = answers['q1_2_age'];
+            
+            let retirementAge;
+            if (gender === 'male') {
+                retirementAge = CONSTANTS_2026.RETIREMENT_AGE_MEN;
+            } else {
+                const birthYear = 2026 - age;
+                retirementAge = getRetirementAgeWomen(birthYear);
+            }
+            
+            return age >= retirementAge;
+        }
+        
+        // בדיקה אם בן/בת הזוג הגיע לגיל פרישה
+        function hasSpouseReachedRetirementAge() {
+            if (!hasSpouse()) return false;
+            
+            const spouseGender = answers['q2_2_spouse_gender'];
+            const spouseAge = parseInt(answers['q2_2a_spouse_age']) || 0;
+            
+            let retirementAge;
+            if (spouseGender === 'male') {
+                retirementAge = CONSTANTS_2026.RETIREMENT_AGE_MEN;
+            } else {
+                const birthYear = 2026 - spouseAge;
+                retirementAge = getRetirementAgeWomen(birthYear);
+            }
+            
+            return spouseAge >= retirementAge;
+        }
+        
+        // בדיקה אם למגיש יש ותק מספיק (מעל שנה)
+        function hasApplicantSufficientVeteran() {
+            const vetMonths = getVeteranMonths();
+            return vetMonths >= 12; // לפחות שנה
+        }
+        
+        // בדיקה אם לבן/בת הזוג יש ותק מספיק (מעל שנה)
+        function hasSpouseSufficientVeteran() {
+            if (!hasSpouse()) return false;
+            const vetMonths = getSpouseVeteranMonths();
+            return vetMonths >= 12; // לפחות שנה
+        }
+
         // חישוב אחוז תוספת וותק
         function calculateVeteranSupplement(months) {
             // לפי החוק - כל שנה (12 חודשים) צבירה מעל 10 שנים (120 חודשים) מוסיפה 2%
@@ -1659,7 +1896,8 @@
         // חישוב אחוז תוספת דחיה
         function calculateDeferralSupplement(gender, age, workStopDate) {
             // תוספת דחיה: 5% לכל שנה שהוכתשה הקצבה מגיל הפרישה עד גיל 70
-            // מקסימום 25% (עד גיל 70)
+            // גברים: מקסימום 15% (3 שנים מגיל 67 עד 70)
+            // נשים: מקסימום עד 40% (8 שנים מגיל 62 עד 70)
             
             if (!workStopDate) {
                 return 0; // לא הוכתשה קצבה
@@ -1685,186 +1923,35 @@
             
             // חישוב שנים שהוכתשה קצבה (מגיל פרישה)
             const currentYear = 2026;
-            const yearsDeferred = currentYear - stopYear;
+            const currentMonth = 2; // פברואר
+            
+            let yearsDeferred = currentYear - stopYear;
+            let monthsDeferred = currentMonth - stopMonth;
+            
+            if (monthsDeferred < 0) {
+                yearsDeferred--;
+                monthsDeferred += 12;
+            }
+            
+            const preciseDeferralYears = yearsDeferred + monthsDeferred / 12;
             
             // מקסימום דחיה עד גיל 70
-            const maxDeferralYears = Math.max(0, 70 - Math.ceil(retirementAge));
-            const actualDeferralYears = Math.min(yearsDeferred, maxDeferralYears);
+            const maxDeferralYears = 70 - Math.ceil(retirementAge);
+            const actualDeferralYears = Math.min(preciseDeferralYears, maxDeferralYears);
             
             if (actualDeferralYears <= 0) {
                 return 0;
             }
             
-            // תוספת דחיה: 5% לשנה, עד 25%
-            const deferralSupplement = Math.min(0.25, actualDeferralYears * 0.05);
+            // תוספת דחיה: 5% לשנה
+            // גברים: מקסימום 15% (3 שנים)
+            // נשים: מקסימום 40% (8 שנים)
+            const maxSupplement = gender === 'male' ? 0.15 : 0.40;
+            const deferralSupplement = Math.min(maxSupplement, actualDeferralYears * 0.05);
             return deferralSupplement;
         }
 
         // חישוב זכאות להשלמת הכנסה
-        function calculateIncomeSupplement() {
-            const age = answers['q1_2_age'];
-            const hasSpouseValue = hasSpouse();
-            const spouseAge = hasSpouseValue ? parseInt(answers['q2_2a_spouse_age']) : 0;
-            
-            let totalIncome = calculateTotalIncome();
-            let spouseIncome = hasSpouseValue ? calculateSpouseIncome() : 0;
-            
-            // הוספת קצבאות זקנה קיימות או צפויות להכנסה
-            if (answers['q5_benefits_applicant'] && Array.isArray(answers['q5_benefits_applicant'])) {
-                const applicantOldAgePension = answers['q5_benefits_applicant'].find(row => row.benefit_name === 'קצבת זיקנה');
-                if (applicantOldAgePension && applicantOldAgePension.receives === 'yes') {
-                    const amount = parseInt(applicantOldAgePension.amount) || 0;
-                    totalIncome += amount;
-                }
-            }
-
-            // הוספת קצבת בן זוג אם קיימת
-            if (hasSpouseValue && answers['q5_benefits_spouse'] && Array.isArray(answers['q5_benefits_spouse'])) {
-                const spouseOldAgePension = answers['q5_benefits_spouse'].find(row => row.benefit_name === 'קצבת זיקנה');
-                if (spouseOldAgePension && spouseOldAgePension.receives === 'yes') {
-                    const amount = parseInt(spouseOldAgePension.amount) || 0;
-                    spouseIncome += amount;
-                }
-            }
-
-            const familyIncome = totalIncome + spouseIncome;
-            const childrenCount = countChildren();
-            
-            let result = {
-                eligible: false,
-                type: '',
-                reason: '',
-                supplementAmount: 0,
-                threshold: 0,
-                details: []
-            };
-
-            // קביעת תקרת השלמת הכנסה לפי גיל (המבוגר מבין השניים), מצב משפחתי וילדים
-            let incomeSupplementThreshold;
-            
-            // בתרחיש של זוג, משתמשים בגיל של המבוגר מבין השניים
-            let ageForThreshold = age;
-            if (hasSpouseValue && spouseAge > age) {
-                ageForThreshold = spouseAge;
-            }
-            
-            if (ageForThreshold < 70) {
-                if (hasSpouseValue) {
-                    if (childrenCount === 0) {
-                        incomeSupplementThreshold = CONSTANTS_2026.INCOME_SUPPLEMENT_COUPLE_UNDER70;
-                    } else if (childrenCount === 1) {
-                        incomeSupplementThreshold = CONSTANTS_2026.INCOME_SUPPLEMENT_COUPLE_1_CHILD_UNDER70;
-                    } else {
-                        incomeSupplementThreshold = CONSTANTS_2026.INCOME_SUPPLEMENT_COUPLE_2_CHILDREN_UNDER70;
-                    }
-                } else {
-                    if (childrenCount === 0) {
-                        incomeSupplementThreshold = CONSTANTS_2026.INCOME_SUPPLEMENT_SINGLE_UNDER70;
-                    } else if (childrenCount === 1) {
-                        incomeSupplementThreshold = CONSTANTS_2026.INCOME_SUPPLEMENT_SINGLE_1_CHILD_UNDER70;
-                    } else {
-                        incomeSupplementThreshold = CONSTANTS_2026.INCOME_SUPPLEMENT_SINGLE_2_CHILDREN_UNDER70;
-                    }
-                }
-            } else if (ageForThreshold < 80) {
-                if (hasSpouseValue) {
-                    if (childrenCount === 0) {
-                        incomeSupplementThreshold = CONSTANTS_2026.INCOME_SUPPLEMENT_COUPLE_70_80;
-                    } else if (childrenCount === 1) {
-                        incomeSupplementThreshold = CONSTANTS_2026.INCOME_SUPPLEMENT_COUPLE_1_CHILD_70_80;
-                    } else {
-                        incomeSupplementThreshold = CONSTANTS_2026.INCOME_SUPPLEMENT_COUPLE_2_CHILDREN_70_80;
-                    }
-                } else {
-                    if (childrenCount === 0) {
-                        incomeSupplementThreshold = CONSTANTS_2026.INCOME_SUPPLEMENT_SINGLE_70_80;
-                    } else if (childrenCount === 1) {
-                        incomeSupplementThreshold = CONSTANTS_2026.INCOME_SUPPLEMENT_SINGLE_1_CHILD_70_80;
-                    } else {
-                        incomeSupplementThreshold = CONSTANTS_2026.INCOME_SUPPLEMENT_SINGLE_2_CHILDREN_70_80;
-                    }
-                }
-            } else { // age >= 80
-                if (hasSpouseValue) {
-                    if (childrenCount === 0) {
-                        incomeSupplementThreshold = CONSTANTS_2026.INCOME_SUPPLEMENT_COUPLE_80;
-                    } else if (childrenCount === 1) {
-                        incomeSupplementThreshold = CONSTANTS_2026.INCOME_SUPPLEMENT_COUPLE_1_CHILD_80;
-                    } else {
-                        incomeSupplementThreshold = CONSTANTS_2026.INCOME_SUPPLEMENT_COUPLE_2_CHILDREN_80;
-                    }
-                } else {
-                    if (childrenCount === 0) {
-                        incomeSupplementThreshold = CONSTANTS_2026.INCOME_SUPPLEMENT_SINGLE_80;
-                    } else if (childrenCount === 1) {
-                        incomeSupplementThreshold = CONSTANTS_2026.INCOME_SUPPLEMENT_SINGLE_1_CHILD_80;
-                    } else {
-                        incomeSupplementThreshold = CONSTANTS_2026.INCOME_SUPPLEMENT_SINGLE_2_CHILDREN_80;
-                    }
-                }
-            }
-
-            result.threshold = incomeSupplementThreshold;
-            
-            // פירוט הכנסה - חשוב להראות הכנסה משפחתית שלמה
-            const workIncomeApplicant = calculateTotalIncome();
-            const workIncomeSpouse = hasSpouseValue ? calculateSpouseIncome() : 0;
-            
-            // מחשבים קצבאות זקנה קיימות
-            let pensionApplicant = 0;
-            if (answers['q5_benefits_applicant'] && Array.isArray(answers['q5_benefits_applicant'])) {
-                const applicantOldAgePension = answers['q5_benefits_applicant'].find(row => row.benefit_name === 'קצבת זיקנה');
-                if (applicantOldAgePension && applicantOldAgePension.receives === 'yes') {
-                    pensionApplicant = parseInt(applicantOldAgePension.amount) || 0;
-                }
-            }
-            
-            let pensionSpouse = 0;
-            if (hasSpouseValue && answers['q5_benefits_spouse'] && Array.isArray(answers['q5_benefits_spouse'])) {
-                const spouseOldAgePension = answers['q5_benefits_spouse'].find(row => row.benefit_name === 'קצבת זיקנה');
-                if (spouseOldAgePension && spouseOldAgePension.receives === 'yes') {
-                    pensionSpouse = parseInt(spouseOldAgePension.amount) || 0;
-                }
-            }
-            
-            if (hasSpouseValue) {
-                if (workIncomeApplicant > 0) {
-                    result.details.push(`הכנסה מעבודה של מגיש הבקשה: ${workIncomeApplicant.toLocaleString('he-IL')} ₪`);
-                }
-                if (pensionApplicant > 0) {
-                    result.details.push(`קצבת זקנה של מגיש הבקשה: ${pensionApplicant.toLocaleString('he-IL')} ₪`);
-                }
-                if (workIncomeSpouse > 0) {
-                    result.details.push(`הכנסה מעבודה של בן/בת הזוג: ${workIncomeSpouse.toLocaleString('he-IL')} ₪`);
-                }
-                if (pensionSpouse > 0) {
-                    result.details.push(`קצבת זקנה של בן/בת הזוג: ${pensionSpouse.toLocaleString('he-IL')} ₪`);
-                }
-            } else {
-                if (workIncomeApplicant > 0) {
-                    result.details.push(`הכנסה מעבודה: ${workIncomeApplicant.toLocaleString('he-IL')} ₪`);
-                }
-                if (pensionApplicant > 0) {
-                    result.details.push(`קצבת זקנה: ${pensionApplicant.toLocaleString('he-IL')} ₪`);
-                }
-            }
-            result.details.push(`סה"כ הכנסה משפחתית כוללת: ${familyIncome.toLocaleString('he-IL')} ₪`);
-            result.details.push(`תקרת השלמת הכנסה (לפי גיל המבוגר: ${ageForThreshold}): ${incomeSupplementThreshold.toLocaleString('he-IL')} ₪`);
-
-            if (familyIncome < incomeSupplementThreshold) {
-                result.eligible = true;
-                result.type = 'eligible';
-                result.supplementAmount = incomeSupplementThreshold - familyIncome;
-                result.reason = 'זכאי להשלמת הכנסה';
-                result.details.push(`סכום השלמה: ${result.supplementAmount.toLocaleString('he-IL')} ₪`);
-                result.details.push(`הכנסה כוללת לאחר השלמה: ${incomeSupplementThreshold.toLocaleString('he-IL')} ₪`);
-            } else {
-                result.reason = `ההכנסה המשפחתית שווה או גבוהה מתקרת ההשלמה`;
-            }
-
-            return result;
-        }
-
         // פונקציה ראשית להצגת תוצאות
         function showResults() {
             const container = document.getElementById('questionnaire');
@@ -1872,7 +1959,33 @@
             // חישוב זכאויות
             const oldAgePensionApplicant = calculateOldAgePensionApplicant();
             const oldAgePensionSpouse = hasSpouse() ? calculateOldAgePensionSpouse() : null;
-            const incomeSupplement = calculateIncomeSupplement();
+            
+            // חישוב פרטי גיל ופרישה למגיש הבקשה
+            const gender = answers['q1_1_gender'];
+            const age = answers['q1_2_age'];
+            const birthYear = 2026 - age;
+            const retirementAge = gender === 'male' ? 67 : getRetirementAgeWomen(birthYear);
+            const hasReachedRetirement = age >= retirementAge;
+            const hasReachedPension = age >= 70;
+            
+            // חישוב פרטי גיל ופרישה לבן/בת הזוג
+            let spouseAgeInfo = '';
+            if (hasSpouse()) {
+                const spouseGender = answers['q2_2_spouse_gender'];
+                const spouseAge = parseInt(answers['q2_2a_spouse_age']) || 0;
+                const spouseBirthYear = 2026 - spouseAge;
+                const spouseRetirementAge = spouseGender === 'male' ? 67 : getRetirementAgeWomen(spouseBirthYear);
+                const spouseHasReachedRetirement = spouseAge >= spouseRetirementAge;
+                const spouseHasReachedPension = spouseAge >= 70;
+                
+                spouseAgeInfo = `
+                    <p style="margin-bottom: 10px; font-size: 0.95em;">
+                        <strong>גיל:</strong> ${spouseAge} | 
+                        <strong>גיל פרישה:</strong> ${Math.floor(spouseRetirementAge)} ${spouseHasReachedRetirement ? '✅ הגיע' : '❌ טרם הגיע'} | 
+                        <strong>גיל פנסיה (70):</strong> ${spouseHasReachedPension ? '✅ הגיע' : '❌ טרם הגיע'}
+                    </p>
+                `;
+            }
             
             let html = `
                 <div class="results show">
@@ -1886,6 +1999,11 @@
                         <h3 style="color: ${oldAgePensionApplicant.eligible ? '#2e7d32' : '#c62828'}; margin-bottom: 15px;">
                             ${oldAgePensionApplicant.eligible ? '✅' : '❌'} קצבת אזרח ותיק (קצבת זקנה) - מגיש הבקשה
                         </h3>
+                        <p style="margin-bottom: 10px; font-size: 0.95em;">
+                            <strong>גיל:</strong> ${age} | 
+                            <strong>גיל פרישה:</strong> ${Math.floor(retirementAge)} ${hasReachedRetirement ? '✅ הגיע' : '❌ טרם הגיע'} | 
+                            <strong>גיל פנסיה (70):</strong> ${hasReachedPension ? '✅ הגיע' : '❌ טרם הגיע'}
+                        </p>
                         <p style="font-size: 1.1em; font-weight: 600; margin-bottom: 10px;">
                             <strong>סטטוס:</strong> ${oldAgePensionApplicant.eligible ? (oldAgePensionApplicant.type === 'full' ? 'זכאי לקצבה מלאה' : 'זכאי לקצבה חלקית') : 'לא זכאי'}
                         </p>
@@ -1907,6 +2025,7 @@
                         <h3 style="color: ${oldAgePensionSpouse.eligible ? '#2e7d32' : '#c62828'}; margin-bottom: 15px;">
                             ${oldAgePensionSpouse.eligible ? '✅' : '❌'} קצבת אזרח ותיק (קצבת זקנה) - בן/בת הזוג
                         </h3>
+                        ${spouseAgeInfo}
                         <p style="font-size: 1.1em; font-weight: 600; margin-bottom: 10px;">
                             <strong>סטטוס:</strong> ${oldAgePensionSpouse.eligible ? (oldAgePensionSpouse.type === 'full' ? 'זכאי לקצבה מלאה' : 'זכאי לקצבה חלקית') : 'לא זכאי'}
                         </p>
@@ -1937,26 +2056,6 @@
                         </p>
                     </div>
                     ` : ''}
-
-                    <!-- השלמת הכנסה -->
-                    <div style="background: ${incomeSupplement.eligible ? '#e3f2fd' : '#fff3e0'}; padding: 25px; border-radius: 12px; border-right: 5px solid ${incomeSupplement.eligible ? '#2196f3' : '#ff9800'}; margin: 25px 0;">
-                        <h3 style="color: ${incomeSupplement.eligible ? '#1565c0' : '#f57c00'}; margin-bottom: 15px;">
-                            ${incomeSupplement.eligible ? '✅' : '⚠️'} תוספת השלמת הכנסה
-                        </h3>
-                        <p style="font-size: 1.1em; font-weight: 600; margin-bottom: 10px;">
-                            <strong>סטטוס:</strong> ${incomeSupplement.eligible ? 'זכאי להשלמת הכנסה' : 'לא זכאי'}
-                        </p>
-                        <p style="margin-bottom: 10px;"><strong>הסבר:</strong> ${incomeSupplement.reason}</p>
-                        ${incomeSupplement.supplementAmount > 0 ? `<p style="font-size: 1.3em; font-weight: bold; color: #1976d2;">💰 סכום השלמה משוער: ${incomeSupplement.supplementAmount.toLocaleString('he-IL')} ₪ לחודש</p>` : ''}
-                        ${incomeSupplement.details.length > 0 ? `
-                            <div style="background: white; padding: 15px; border-radius: 8px; margin-top: 15px;">
-                                <h4>פירוט החישוב:</h4>
-                                <ul style="margin: 10px 0 0 20px;">
-                                    ${incomeSupplement.details.map(detail => `<li>${detail}</li>`).join('')}
-                                </ul>
-                            </div>
-                        ` : ''}
-                    </div>
 
                     <!-- סיכום נתוני השאלון -->
                     <div style="background: #f5f5f5; padding: 25px; border-radius: 12px; margin: 25px 0;">
