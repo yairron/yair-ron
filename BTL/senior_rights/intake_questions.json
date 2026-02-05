@@ -386,6 +386,7 @@
           "required": false,
           "text": "פרטים על עבודה",
           "dynamicRows": true,
+          "hideSpouseColumn": {"q2_1_has_spouse": "no"},
           "columns": [
             {"id": "applicant", "label": "מגיש בקשה"},
             {"id": "spouse", "label": "בן/בת הזוג"}
@@ -394,8 +395,9 @@
             {
               "id": "work_stop_date",
               "label": "מתי הפסקת לעבוד?",
-              "type": "date",
-              "showIfNoWorkIncome": true
+              "type": "month_year",
+              "showIfNoWorkIncome": true,
+              "description": "הזן חודש ושנה (למשל: 01/2025)"
             },
             {
               "id": "pension_eligibility",

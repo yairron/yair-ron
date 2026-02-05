@@ -743,6 +743,12 @@
                 }
             }
             
+            // בדיקה אם צריך להסתיר עמודת בן/בת זוג
+            let hasSpouseValue = true;
+            if (question.hideSpouseColumn) {
+                hasSpouseValue = answers['q2_1_has_spouse'] === 'yes';
+            }
+            
             let html = `
                 <div class="table-container">
                     <table class="dynamic-table">
@@ -751,7 +757,11 @@
                                 <th style="width: 40%;"></th>
             `;
             
+            // הצגת עמודות - התנאי להסתרת בן/בת זוג
             question.columns.forEach(col => {
+                if (col.id === 'spouse' && !hasSpouseValue) {
+                    return; // דלג על עמודת בן/בת זוג אם אין בן/בת זוג
+                }
                 html += `<th style="width: 30%; text-align: center;">${col.label}</th>`;
             });
             html += `</tr></thead><tbody>`;
@@ -769,6 +779,11 @@
                 html += `<tr><td><strong>${row.label}</strong></td>`;
                 
                 question.columns.forEach(col => {
+                    // דלג על עמודת בן/בת זוג אם אין בן/בת זוג
+                    if (col.id === 'spouse' && !hasSpouseValue) {
+                        return;
+                    }
+                    
                     const cellId = `${question.id}_${row.id}_${col.id}`;
                     const cellValue = tableData[row.id] && tableData[row.id][col.id] ? tableData[row.id][col.id] : '';
                     
@@ -794,6 +809,17 @@
                                 </label>
                             `;
                         });
+                    } else if (row.type === 'month_year') {
+                        html += `
+                            <input type="text" 
+                                   id="${cellId}"
+                                   value="${cellValue}"
+                                   placeholder="MM/YYYY"
+                                   onchange="handleDualColumnTableChange('${question.id}', '${row.id}', '${col.id}', this.value)"
+                                   pattern="(0[1-9]|1[0-2])/[0-9]{4}"
+                                   style="padding: 6px; border: 1px solid #ddd; border-radius: 4px; width: 100px; text-align: center;"
+                                   title="הזן בפורמט MM/YYYY (למשל: 01/2025)">
+                        `;
                     } else if (row.type === 'date') {
                         html += `
                             <input type="date" 
