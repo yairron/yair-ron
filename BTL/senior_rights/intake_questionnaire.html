@@ -452,8 +452,8 @@
             html += `
                     </div>
                     <div class="buttons">
-                        ${sectionIndex > 0 ? '<button class="btn btn-secondary" onclick="previousSection()">הקודם</button>' : '<div></div>'}
-                        <button class="btn btn-primary" onclick="nextSection()">${sectionIndex < questionsData.length - 1 ? 'הבא' : 'סיום'}</button>
+                        ${sectionIndex > 0 ? '<button class="btn btn-secondary">הקודם</button>' : '<div></div>'}
+                        <button class="btn btn-primary">${sectionIndex < questionsData.length - 1 ? 'הבא' : 'סיום'}</button>
                     </div>
                 </div>
             `;
@@ -464,14 +464,17 @@
         }
 
         function getNextSectionIndex(startIndex, direction) {
+            console.log('getNextSectionIndex called:', startIndex, direction, 'length:', questionsData.length);
             let idx = startIndex + direction;
             while (idx >= 0 && idx < questionsData.length) {
                 const section = questionsData[idx];
                 if (!section.condition || checkCondition(section.condition)) {
+                    console.log('Found next section at index:', idx);
                     return idx;
                 }
                 idx += direction;
             }
+            console.log('No next section found, returning -1');
             return -1;
         }
 
@@ -915,13 +918,30 @@
                         </select>
                     </div>
                 `;
-                } else {
+                } else if (col.type === 'month_year') {
                     const defaultVal = col.defaultValue ? ` value="${col.defaultValue}"` : '';
                     html += `
                     <div style="margin-bottom: 10px;">
                         <label>${col.label}</label>
-                        <input type="${col.type || 'text'}" 
-                               id="${question.id}_${col.id}_input"${defaultVal}>
+                        <input type="text" 
+                               id="${question.id}_${col.id}_input"${defaultVal}
+                               placeholder="MM/YYYY"
+                               pattern="^(0[1-9]|1[0-2])/[0-9]{4}$"
+                               title="הזן בפורמט MM/YYYY (למשל: 01/2025)"
+                               style="padding: 8px; border: 2px solid #e0e0e0; border-radius: 4px; width: 150px;">
+                    </div>
+                `;
+                } else {
+                    const defaultVal = col.defaultValue ? ` value="${col.defaultValue}"` : '';
+                    const placeholder = col.placeholder ? ` placeholder="${col.placeholder}"` : '';
+                    const pattern = col.pattern ? ` pattern="${col.pattern}"` : '';
+                    const title = col.title ? ` title="${col.title}"` : '';
+                    const inputType = col.type || 'text';
+                    html += `
+                    <div style="margin-bottom: 10px;">
+                        <label>${col.label}</label>
+                        <input type="${inputType}" 
+                               id="${question.id}_${col.id}_input"${defaultVal}${placeholder}${pattern}${title}>
                     </div>
                 `;
                 }
@@ -999,12 +1019,33 @@
                     }
                 });
             });
+
+            // Attach event listeners to buttons
+            const buttons = document.querySelectorAll('.buttons button');
+            console.log('attachEventListeners: found', buttons.length, 'buttons');
+            buttons.forEach((btn, idx) => {
+                console.log('Button', idx, ':', btn.textContent.trim());
+                btn.addEventListener('click', function(e) {
+                    console.log('Button clicked:', btn.textContent.trim());
+                    e.preventDefault();
+                    if (btn.textContent.trim() === 'הקודם') {
+                        previousSection();
+                    } else if (btn.textContent.trim() === 'הבא' || btn.textContent.trim() === 'סיום') {
+                        nextSection();
+                    }
+                });
+            });
         }
 
         function nextSection() {
-            if (validateSection()) {
+            console.log('nextSection called, currentSection:', currentSection, 'questionsData.length:', questionsData.length);
+            const isValid = validateSection();
+            console.log('validateSection returned:', isValid);
+            if (isValid) {
                 const nextIndex = getNextSectionIndex(currentSection, 1);
+                console.log('nextIndex:', nextIndex);
                 if (nextIndex === -1) {
+                    console.log('Calling showResults');
                     showResults();
                     return;
                 }
@@ -1084,6 +1125,7 @@
             
             const newRow = {};
             let allFilled = true;
+            const formatErrors = [];
 
             question.columns.forEach(col => {
                 const input = document.getElementById(`${questionId}_${col.id}_input`);
@@ -1094,6 +1136,14 @@
 
                 const value = input.value ? input.value.trim() : '';
                 if (value) {
+                    const effectivePattern = col.pattern || (col.type === 'month_year' ? '^(0[1-9]|1[0-2])/[0-9]{4}$' : null);
+                    if (effectivePattern) {
+                        const regex = new RegExp(effectivePattern);
+                        if (!regex.test(value)) {
+                            allFilled = false;
+                            formatErrors.push(col.label);
+                        }
+                    }
                     newRow[col.id] = value;
                     if (input.tagName === 'SELECT') {
                         input.value = '';
@@ -1106,12 +1156,21 @@
             });
 
             if (!allFilled) {
+                if (formatErrors.length > 0) {
+                    return;
+                }
                 alert('אנא מלא/י את כל השדות');
                 return;
             }
 
             if (!answers[questionId]) {
                 answers[questionId] = [];
+            }
+            if ((questionId === 'q5_benefits_applicant' || questionId === 'q5_benefits_spouse') && newRow.benefit_name === 'קצבת זקנה') {
+                if (!newRow.start_date) {
+                    alert('יש להזין מתאריך עבור קצבת זקנה (MM/YYYY)');
+                    return;
+                }
             }
             answers[questionId].push(newRow);
 
@@ -1432,9 +1491,48 @@
             return spouseIncome;
         }
 
-        // בדיקה אם יש בן/בת זוג
-        function hasSpouse() {
-            return answers['q2_1_has_spouse'] === 'yes';
+        // בדיקה אם יש הכנסה מעבודה (עבודה שכירה או עצמאית)
+        function hasEmploymentIncome() {
+            const incomeTable = answers['q3_income_applicant'];
+            if (!incomeTable || typeof incomeTable !== 'object') {
+                return false;
+            }
+            
+            // בדיקה אם יש הכנסה משכר עבודה או עבודה עצמאית
+            const hasEmployed = incomeTable['employed_income'] && incomeTable['employed_income'].has && incomeTable['employed_income'].amount > 0;
+            const hasSelfEmployed = incomeTable['self_employed_income'] && incomeTable['self_employed_income'].has && incomeTable['self_employed_income'].amount > 0;
+            
+            return hasEmployed || hasSelfEmployed;
+        }
+
+        // בדיקה אם לבן/בת הזוג יש הכנסה מעבודה
+        function spouseHasEmploymentIncome() {
+            const incomeTable = answers['q3_income_spouse'];
+            if (!incomeTable || typeof incomeTable !== 'object') {
+                return false;
+            }
+            
+            // בדיקה אם יש הכנסה משכר עבודה או עבודה עצמאית
+            const hasEmployed = incomeTable['employed_income'] && incomeTable['employed_income'].has && incomeTable['employed_income'].amount > 0;
+            const hasSelfEmployed = incomeTable['self_employed_income'] && incomeTable['self_employed_income'].has && incomeTable['self_employed_income'].amount > 0;
+            
+            return hasEmployed || hasSelfEmployed;
+        }
+
+        // בדיקה אם יש זכאות לתוספת דחיה
+        // תוספת דחיה ניתנת רק אם יש הכנסה מעבודה בין גיל הפרישה לגיל הפנסיה
+        function isEligibleForDeferralSupplement(gender, age) {
+            // בדיקה אם אדם נמצא בטווח של זכאות חלקית או מלאה (בגיל בין פרישה ל-70)
+            let retirementAge;
+            if (gender === 'male') {
+                retirementAge = CONSTANTS_2026.RETIREMENT_AGE_MEN;
+            } else {
+                const birthYear = 2026 - age;
+                retirementAge = getRetirementAgeWomen(birthYear);
+            }
+            
+            // זכאות לתוספת דחיה רק אם בטווח הגילאים הנכון
+            return age >= retirementAge && age <= 70;
         }
 
         // ספירת ילדים עד גיל 24
@@ -1446,11 +1544,115 @@
             return Math.min(childrenTable.length, 2);
         }
 
+        // בדיקת קצבאות קיימות שהמשתמש מקבל
+        function getCurrentBenefits(benefitsTableId) {
+            const benefitsTable = answers[benefitsTableId];
+            const currentBenefits = [];
+            
+            if (Array.isArray(benefitsTable)) {
+                benefitsTable.forEach(row => {
+                    // אם יש סוג קצבה וסכום - זה אומר שהמשתמש מקבל את הקצבה
+                    if (row.benefit_name && row.amount) {
+                        currentBenefits.push({
+                            name: row.benefit_name,
+                            amount: parseFloat(row.amount) || 0,
+                            startDate: row.start_date || null
+                        });
+                    }
+                });
+            }
+            
+            return currentBenefits;
+        }
+
+        // השוואת קצבת זקנה קיימת לקצבה המחושבת
+        function comparePensionAmounts(benefitsTableId, calculatedAmount, pensionType = 'קצבת זקנה') {
+            const currentBenefits = getCurrentBenefits(benefitsTableId);
+            const currentPension = currentBenefits.find(b => b.name === pensionType);
+            
+            if (!currentPension) {
+                return null; // לא מקבל קצבה כרגע
+            }
+            
+            const difference = calculatedAmount - currentPension.amount;
+            const percentDifference = Math.abs(difference / currentPension.amount * 100);
+            
+            return {
+                currentAmount: currentPension.amount,
+                calculatedAmount: calculatedAmount,
+                difference: difference,
+                percentDifference: percentDifference,
+                isSignificant: percentDifference > 10 // הבדל של יותר מ-10% נחשב משמעותי
+            };
+        }
+
+        // יצירת הודעת השוואה והמלצות
+        function generateComparisonMessage(comparison, personType = 'מגיש הבקשה') {
+            if (!comparison) {
+                return '';
+            }
+            
+            let message = `<div style="background: #e1f5fe; padding: 20px; border-radius: 8px; margin: 20px 0; border-right: 5px solid #0288d1;">
+                <h4 style="color: #01579b; margin-bottom: 15px;">🔍 השוואת קצבה נוכחית לקצבה מחושבת - ${personType}</h4>
+                <div style="background: white; padding: 15px; border-radius: 6px; margin-bottom: 15px;">
+                    <p style="margin-bottom: 8px;"><strong>הקצבה שאתה מקבל כיום:</strong> ${comparison.currentAmount.toLocaleString('he-IL')} ₪</p>
+                    <p style="margin-bottom: 8px;"><strong>הקצבה המחושבת לפי הנתונים:</strong> ${comparison.calculatedAmount.toLocaleString('he-IL')} ₪</p>
+                    <p style="margin-bottom: 8px; font-size: 1.1em;"><strong>הבדל:</strong> 
+                        <span style="color: ${comparison.difference >= 0 ? '#2e7d32' : '#c62828'}; font-weight: bold;">
+                            ${comparison.difference >= 0 ? '+' : ''}${comparison.difference.toLocaleString('he-IL')} ₪ 
+                            (${comparison.difference >= 0 ? '+' : ''}${Math.round(comparison.percentDifference * (comparison.difference >= 0 ? 1 : -1))}%)
+                        </span>
+                    </p>
+                </div>`;
+            
+            if (comparison.isSignificant) {
+                if (comparison.difference > 0) {
+                    // הקצבה המחושבת גבוהה מהקצבה הנוכחית
+                    message += `
+                        <div style="background: #fff9c4; padding: 15px; border-radius: 6px; border-right: 4px solid #f57f17;">
+                            <h5 style="color: #f57f17; margin-bottom: 10px;">⚠️ המלצה חשובה:</h5>
+                            <p style="margin-bottom: 8px;">על פי החישוב, יתכן שאתה זכאי לקצבה גבוהה יותר ממה שאתה מקבל כיום!</p>
+                            <p style="margin-bottom: 8px;"><strong>צעדים מומלצים:</strong></p>
+                            <ul style="margin: 10px 0 0 20px; line-height: 1.6;">
+                                <li>פנה למוקד הביטוח הלאומי (*6050) ובדוק מדוע הקצבה נמוכה מהצפוי</li>
+                                <li>יתכן שחסרים נתונים במערכת (כמו תוספת ותק, תוספת דחיה וכו')</li>
+                                <li>הכן אישורים רלוונטיים (תלוש שכר, אישור ותק וכדומה)</li>
+                                <li>שקול להגיש בקשה לתיקון סכום הקצבה</li>
+                                <li>ניתן להגיש ערעור אם ההחלטה הקודמת לא נראית נכונה</li>
+                            </ul>
+                        </div>`;
+                } else {
+                    // הקצבה הנוכחית גבוהה מהקצבה המחושבת
+                    message += `
+                        <div style="background: #ffebee; padding: 15px; border-radius: 6px; border-right: 4px solid #d32f2f;">
+                            <h5 style="color: #c62828; margin-bottom: 10px;">⚠️ שים לב:</h5>
+                            <p style="margin-bottom: 8px;">הקצבה שאתה מקבל כיום גבוהה מהחישוב התיאורטי.</p>
+                            <p style="margin-bottom: 8px;"><strong>סיבות אפשריות:</strong></p>
+                            <ul style="margin: 10px 0 0 20px; line-height: 1.6;">
+                                <li>יתכן שקיבלת תוספות מיוחדות שלא נכללו בשאלון</li>
+                                <li>יש ערכים היסטוריים שהוקפאו (למשל מנתוני הכנסות ישנות)</li>
+                                <li>אפשרי שנעשתה טעות בהזנת הנתונים בשאלון</li>
+                                <li>יתכן ששיעורי התוספות השתנו לאחרונה</li>
+                            </ul>
+                            <p style="margin-top: 10px; font-weight: 600;">💡 מומלץ לבדוק את פירוט הקצבה בתלוש שלך ולוודא שכל הנתונים בשאלון הוזנו נכון.</p>
+                        </div>`;
+                }
+            } else {
+                message += `
+                    <div style="background: #e8f5e9; padding: 15px; border-radius: 6px; border-right: 4px solid #4caf50;">
+                        <p style="color: #2e7d32; margin: 0;"><strong>✅ הכל תקין:</strong> הקצבה שאתה מקבל קרובה מאוד לחישוב התיאורטי. ההבדל קטן ולא משמעותי.</p>
+                    </div>`;
+            }
+            
+            message += `</div>`;
+            return message;
+        }
+
         // חישוב זכאות לקצבת אזרח ותיק - מגיש הבקשה
         function calculateOldAgePensionApplicant() {
             const gender = answers['q1_1_gender'];
             const age = answers['q1_2_age'];
-            const hasSpouseValue = hasSpouse();
+            const hasSpouseValue = answers['q2_1_has_spouse'] === 'yes';
             const totalIncome = calculateTotalIncome();
             const spouseIncome = hasSpouseValue ? calculateSpouseIncome() : 0;
             const childrenCount = countChildren();
@@ -1489,42 +1691,7 @@
                 return result;
             }
 
-            // מעל גיל 70 - זכאות מוחלטת ללא מבחן הכנסות
-            if (age >= CONSTANTS_2026.FULL_ELIGIBILITY_AGE) {
-                result.eligible = true;
-                result.type = 'full';
-                result.reason = `מעל גיל 70 - זכאות מוחלטת ללא מבחן הכנסות`;
-                
-                // חישוב קצבה בסיסית - ללא תוספת בן זוג (כל אחד בנפרד)
-                let basePension = age >= 80 ? CONSTANTS_2026.BASIC_PENSION_SINGLE_80 : CONSTANTS_2026.BASIC_PENSION_SINGLE;
-                result.details.push(`קצבה בסיסית: ${basePension.toLocaleString('he-IL')} ₪`);
-                
-                // תוספת וותק
-                const veteranSupplement = calculateVeteranSupplement(vetMonths);
-                const pensionWithVeteran = Math.round(basePension * (1 + veteranSupplement));
-                if (veteranSupplement > 0) {
-                    result.details.push(`תוספת וותק (${Math.round(veteranSupplement * 100)}%): +${Math.round(pensionWithVeteran - basePension).toLocaleString('he-IL')} ₪`);
-                }
-                
-                // תוספת דחיה
-                const workDetails = answers['q8_work_details'];
-                const applicantWorkStopDate = workDetails && workDetails.applicant && workDetails.applicant.work_stop_date ? workDetails.applicant.work_stop_date : null;
-                const deferralSupplement = calculateDeferralSupplement(gender, age, applicantWorkStopDate);
-                if (deferralSupplement > 0) {
-                    const pensionWithDeferral = Math.round(pensionWithVeteran * (1 + deferralSupplement));
-                    result.details.push(`תוספת דחיה (${Math.round(deferralSupplement * 100)}%): +${Math.round(pensionWithDeferral - pensionWithVeteran).toLocaleString('he-IL')} ₪`);
-                    result.amount = pensionWithDeferral;
-                } else {
-                    result.amount = pensionWithVeteran;
-                }
-                
-                result.details.push(`סה"כ קצבה: ${result.amount.toLocaleString('he-IL')} ₪`);
-                return result;
-            }
-
-            // מבחן הכנסות לגילאי פרישה-70
-            // חישוב נפרד לפי הכנסות המגיש בלבד (לא משפחתי)
-            // קביעת תקרות: יחיד או זוג
+            // קביעת תקרות הכנסה (נדרש גם לבדיקת זכאות לתוספת דחיה)
             let fullEligibilityThreshold;
             let partialEligibilityThreshold;
             let useMarriedThreshold = false;
@@ -1550,6 +1717,48 @@
             fullEligibilityThreshold += (childrenCount * CONSTANTS_2026.INCOME_TEST_PER_CHILD);
             partialEligibilityThreshold += (childrenCount * CONSTANTS_2026.INCOME_TEST_PER_CHILD);
 
+            const deferralEligibleByIncome = hasEmploymentIncome() && totalIncome > fullEligibilityThreshold;
+
+            // מעל גיל 70 - זכאות מוחלטת ללא מבחן הכנסות
+            if (age >= CONSTANTS_2026.FULL_ELIGIBILITY_AGE) {
+                result.eligible = true;
+                result.type = 'full';
+                result.reason = `מעל גיל 70 - זכאות מוחלטת ללא מבחן הכנסות`;
+                
+                // חישוב קצבה בסיסית - ללא תוספת בן זוג (כל אחד בנפרד)
+                let basePension = age >= 80 ? CONSTANTS_2026.BASIC_PENSION_SINGLE_80 : CONSTANTS_2026.BASIC_PENSION_SINGLE;
+                result.details.push(`קצבה בסיסית: ${basePension.toLocaleString('he-IL')} ₪`);
+                
+                // תוספת וותק
+                const veteranSupplement = calculateVeteranSupplement(vetMonths);
+                const pensionWithVeteran = Math.round(basePension * (1 + veteranSupplement));
+                if (veteranSupplement > 0) {
+                    result.details.push(`תוספת וותק (${Math.round(veteranSupplement * 100)}%): +${Math.round(pensionWithVeteran - basePension).toLocaleString('he-IL')} ₪`);
+                }
+                
+                // תוספת דחיה
+                const applicantPensionRow = Array.isArray(answers['q5_benefits_applicant']) ? 
+                    answers['q5_benefits_applicant'].find(row => row.benefit_name === 'קצבת זקנה') : null;
+                const applicantPensionStartDate = applicantPensionRow ? applicantPensionRow.start_date : null;
+                
+                const deferralSupplement = deferralEligibleByIncome ?
+                    calculateDeferralSupplementNew(gender, age, applicantPensionStartDate) : 0;
+                if (deferralSupplement > 0) {
+                    const pensionWithDeferral = Math.round(pensionWithVeteran * (1 + deferralSupplement));
+                    result.details.push(`תוספת דחיה (${Math.round(deferralSupplement * 100)}%): +${Math.round(pensionWithDeferral - pensionWithVeteran).toLocaleString('he-IL')} ₪`);
+                    result.amount = pensionWithDeferral;
+                } else {
+                    result.amount = pensionWithVeteran;
+                }
+                
+                result.details.push(`סה"כ קצבה מחושבת: ${result.amount.toLocaleString('he-IL')} ₪`);
+                return result;
+            }
+
+            // מבחן הכנסות לגילאי פרישה-70
+            // חישוב נפרד לפי הכנסות המגיש בלבד (לא משפחתי)
+            // קביעת תקרות: יחיד או זוג (חושב כבר למעלה)
+
             result.details.push(`הכנסה אישית של המגיש: ${totalIncome.toLocaleString('he-IL')} ₪`);
             result.details.push(`סוג תקרה: ${useMarriedThreshold ? 'זוג' : 'יחיד'}`);
             result.details.push(`תקרת זכאות מלאה: ${fullEligibilityThreshold.toLocaleString('he-IL')} ₪`);
@@ -1572,9 +1781,11 @@
                 }
                 
                 // תוספת דחיה
-                const workDetails = answers['q8_work_details'];
-                const applicantWorkStopDate = workDetails && workDetails.applicant && workDetails.applicant.work_stop_date ? workDetails.applicant.work_stop_date : null;
-                const deferralSupplement = calculateDeferralSupplement(gender, age, applicantWorkStopDate);
+                const applicantPensionRow2 = Array.isArray(answers['q5_benefits_applicant']) ? 
+                    answers['q5_benefits_applicant'].find(row => row.benefit_name === 'קצבת זקנה') : null;
+                const applicantPensionStartDate2 = applicantPensionRow2 ? applicantPensionRow2.start_date : null;
+                const deferralSupplement = deferralEligibleByIncome ?
+                    calculateDeferralSupplementNew(gender, age, applicantPensionStartDate2) : 0;
                 if (deferralSupplement > 0) {
                     const pensionWithDeferral = Math.round(pensionWithVeteran * (1 + deferralSupplement));
                     result.details.push(`תוספת דחיה (${Math.round(deferralSupplement * 100)}%): +${Math.round(pensionWithDeferral - pensionWithVeteran).toLocaleString('he-IL')} ₪`);
@@ -1583,7 +1794,7 @@
                     result.amount = pensionWithVeteran;
                 }
                 
-                result.details.push(`סה"כ קצבה: ${result.amount.toLocaleString('he-IL')} ₪`);
+                result.details.push(`סה"כ קצבה מחושבת: ${result.amount.toLocaleString('he-IL')} ₪`);
                 
                 return result;
             }
@@ -1611,31 +1822,55 @@
                     result.details.push(`תוספת וותק (${Math.round(veteranSupplement * 100)}%): +${Math.round(pensionWithVeteran - partialPension).toLocaleString('he-IL')} ₪`);
                 }
                 
-                // תוספת דחיה
-                const workDetails = answers['q8_work_details'];
-                const applicantWorkStopDate = workDetails && workDetails.applicant && workDetails.applicant.work_stop_date ? workDetails.applicant.work_stop_date : null;
-                const deferralSupplement = calculateDeferralSupplement(gender, age, applicantWorkStopDate);
+                // תוספת דחיה - רק אם יש הכנסה מעבודה שמונעת קצבה מלאה
+                let deferralSupplement = 0;
+                if (isEligibleForDeferralSupplement(gender, age) && deferralEligibleByIncome) {
+                    const applicantPensionRow1 = Array.isArray(answers['q5_benefits_applicant']) ? 
+                        answers['q5_benefits_applicant'].find(row => row.benefit_name === 'קצבת זקנה') : null;
+                    const applicantPensionStartDate1 = applicantPensionRow1 ? applicantPensionRow1.start_date : null;
+                    
+                    deferralSupplement = calculateDeferralSupplementNew(gender, age, applicantPensionStartDate1);
+                }
+                
                 if (deferralSupplement > 0) {
                     const pensionWithDeferral = Math.round(pensionWithVeteran * (1 + deferralSupplement));
                     result.details.push(`תוספת דחיה (${Math.round(deferralSupplement * 100)}%): +${Math.round(pensionWithDeferral - pensionWithVeteran).toLocaleString('he-IL')} ₪`);
                     result.amount = pensionWithDeferral;
-                } else {
-                    result.amount = pensionWithVeteran;
                 }
                 
-                result.details.push(`סה"כ קצבה: ${result.amount.toLocaleString('he-IL')} ₪`);
+                result.details.push(`סה"כ קצבה מחושבת: ${result.amount.toLocaleString('he-IL')} ₪`);
+                
+                // הוספת הערות לגבי תוספת ותק ודחיה
+                const vetOption = getVeteranMonths();
+                if (vetOption === 'dont_know') {
+                    result.details.push(`⚠️ <strong>הערה חשובה:</strong> יתכן ואתה זכאי/ת גם לתוספת ותק - יש לבדוק במשרדי ביטוח לאומי`);
+                } else if (vetOption === '60_months_10years' || vetOption === '144_months_total') {
+                    result.details.push(`⚠️ <strong>הערה חשובה:</strong> יתכן ואתה זכאי/ת לתוספת ותק נוספת בנוסף לקצבה המחושבת - יש לבדוק במשרדי ביטוח לאומי`);
+                }
+                
+                // הוספת הערה לגבי תוספת דחיה אם רלוונטי
+                if (age >= CONSTANTS_2026.RETIREMENT_AGE_MEN && hasEmploymentIncome() && totalIncome > fullEligibilityThreshold) {
+                    result.details.push(`⚠️ <strong>הערה חשובה:</strong> יתכן ואתה זכאי/ת גם לתוספת דחיה בגלל המשך העבודה - יש לבדוק במשרדי ביטוח לאומי`);
+                }
                 
                 return result;
             }
 
             // אין זכאות
             result.reason = `ההכנסה האישית של המגיש (${totalIncome.toLocaleString('he-IL')} ₪) גבוהה מתקרת הזכאות (${partialEligibilityThreshold.toLocaleString('he-IL')} ₪)`;
+            
+            // הוספת הערות גם כאשר אין זכאות
+            const vetOptionNoEligibility = getVeteranMonths();
+            if (vetOptionNoEligibility === 'dont_know') {
+                result.details.push(`⚠️ <strong>הערה חשובה:</strong> על אף שאין זכאות כרגע בגלל הכנסה גבוהה, יתכן שתהיה זכאות לתוספת ותק אם תתאמת את הכנסותיך - יש לבדוק במשרדי ביטוח לאומי`);
+            }
+            
             return result;
         }
 
         // חישוב זכאות לקצבת אזרח ותיק - בן/בת הזוג
         function calculateOldAgePensionSpouse() {
-            if (!hasSpouse()) {
+            if (answers['q2_1_has_spouse'] !== 'yes') {
                 return {
                     eligible: false,
                     type: '',
@@ -1647,7 +1882,7 @@
 
             const spouseGender = answers['q2_2_spouse_gender'];
             const spouseAge = parseInt(answers['q2_2a_spouse_age']) || 0;
-            const hasSpouseValue = hasSpouse();
+            const hasSpouseValue = answers['q2_1_has_spouse'] === 'yes';
             const totalIncome = calculateTotalIncome();
             const spouseIncome = calculateSpouseIncome();
             const childrenCount = countChildren();
@@ -1685,42 +1920,7 @@
                 return result;
             }
 
-            // מעל גיל 70 - זכאות מוחלטת ללא מבחן הכנסות
-            if (spouseAge >= CONSTANTS_2026.FULL_ELIGIBILITY_AGE) {
-                result.eligible = true;
-                result.type = 'full';
-                result.reason = `מעל גיל 70 - זכאות מוחלטת ללא מבחן הכנסות`;
-                
-                // חישוב קצבה בסיסית - ללא תוספת (כל אחד בנפרד)
-                let basePension = spouseAge >= 80 ? CONSTANTS_2026.BASIC_PENSION_SINGLE_80 : CONSTANTS_2026.BASIC_PENSION_SINGLE;
-                result.details.push(`קצבה בסיסית: ${basePension.toLocaleString('he-IL')} ₪`);
-                
-                // תוספת וותק
-                const veteranSupplement = calculateVeteranSupplement(spouseVetMonths);
-                const pensionWithVeteran = Math.round(basePension * (1 + veteranSupplement));
-                if (veteranSupplement > 0) {
-                    result.details.push(`תוספת וותק (${Math.round(veteranSupplement * 100)}%): +${Math.round(pensionWithVeteran - basePension).toLocaleString('he-IL')} ₪`);
-                }
-                
-                // תוספת דחיה
-                const workDetails = answers['q8_work_details'];
-                const spouseWorkStopDate = workDetails && workDetails.spouse && workDetails.spouse.work_stop_date ? workDetails.spouse.work_stop_date : null;
-                const deferralSupplement = calculateDeferralSupplement(spouseGender, spouseAge, spouseWorkStopDate);
-                if (deferralSupplement > 0) {
-                    const pensionWithDeferral = Math.round(pensionWithVeteran * (1 + deferralSupplement));
-                    result.details.push(`תוספת דחיה (${Math.round(deferralSupplement * 100)}%): +${Math.round(pensionWithDeferral - pensionWithVeteran).toLocaleString('he-IL')} ₪`);
-                    result.amount = pensionWithDeferral;
-                } else {
-                    result.amount = pensionWithVeteran;
-                }
-                
-                result.details.push(`סה"כ קצבה: ${result.amount.toLocaleString('he-IL')} ₪`);
-                return result;
-            }
-
-            // מבחן הכנסות לגילאי פרישה-70
-            // חישוב נפרד לפי הכנסות בן/בת הזוג בלבד (לא משפחתי)
-            // קביעת תקרות: יחיד או זוג
+            // קביעת תקרות הכנסה (נדרש גם לבדיקת זכאות לתוספת דחיה)
             let fullEligibilityThreshold;
             let partialEligibilityThreshold;
             let useMarriedThreshold = false;
@@ -1745,6 +1945,48 @@
             fullEligibilityThreshold += (childrenCount * CONSTANTS_2026.INCOME_TEST_PER_CHILD);
             partialEligibilityThreshold += (childrenCount * CONSTANTS_2026.INCOME_TEST_PER_CHILD);
 
+            const spouseDeferralEligibleByIncome = spouseHasEmploymentIncome() && spouseIncome > fullEligibilityThreshold;
+
+            // מעל גיל 70 - זכאות מוחלטת ללא מבחן הכנסות
+            if (spouseAge >= CONSTANTS_2026.FULL_ELIGIBILITY_AGE) {
+                result.eligible = true;
+                result.type = 'full';
+                result.reason = `מעל גיל 70 - זכאות מוחלטת ללא מבחן הכנסות`;
+                
+                // חישוב קצבה בסיסית - ללא תוספת (כל אחד בנפרד)
+                let basePension = spouseAge >= 80 ? CONSTANTS_2026.BASIC_PENSION_SINGLE_80 : CONSTANTS_2026.BASIC_PENSION_SINGLE;
+                result.details.push(`קצבה בסיסית: ${basePension.toLocaleString('he-IL')} ₪`);
+                
+                // תוספת וותק
+                const veteranSupplement = calculateVeteranSupplement(spouseVetMonths);
+                const pensionWithVeteran = Math.round(basePension * (1 + veteranSupplement));
+                if (veteranSupplement > 0) {
+                    result.details.push(`תוספת וותק (${Math.round(veteranSupplement * 100)}%): +${Math.round(pensionWithVeteran - basePension).toLocaleString('he-IL')} ₪`);
+                }
+                
+                // תוספת דחיה
+                const spousePensionRow = Array.isArray(answers['q5_benefits_spouse']) ? 
+                    answers['q5_benefits_spouse'].find(row => row.benefit_name === 'קצבת זקנה') : null;
+                const spousePensionStartDate = spousePensionRow ? spousePensionRow.start_date : null;
+                
+                const deferralSupplement = spouseDeferralEligibleByIncome ?
+                    calculateDeferralSupplementNew(spouseGender, spouseAge, spousePensionStartDate) : 0;
+                if (deferralSupplement > 0) {
+                    const pensionWithDeferral = Math.round(pensionWithVeteran * (1 + deferralSupplement));
+                    result.details.push(`תוספת דחיה (${Math.round(deferralSupplement * 100)}%): +${Math.round(pensionWithDeferral - pensionWithVeteran).toLocaleString('he-IL')} ₪`);
+                    result.amount = pensionWithDeferral;
+                } else {
+                    result.amount = pensionWithVeteran;
+                }
+                
+                result.details.push(`סה"כ קצבה מחושבת: ${result.amount.toLocaleString('he-IL')} ₪`);
+                return result;
+            }
+
+            // מבחן הכנסות לגילאי פרישה-70
+            // חישוב נפרד לפי הכנסות בן/בת הזוג בלבד (לא משפחתי)
+            // קביעת תקרות: יחיד או זוג (חושב כבר למעלה)
+
             result.details.push(`הכנסה אישית של בן/בת הזוג: ${spouseIncome.toLocaleString('he-IL')} ₪`);
             result.details.push(`סוג תקרה: ${useMarriedThreshold ? 'זוג' : 'יחיד'}`);
             result.details.push(`תקרת זכאות מלאה: ${fullEligibilityThreshold.toLocaleString('he-IL')} ₪`);
@@ -1766,10 +2008,16 @@
                     result.details.push(`תוספת וותק (${Math.round(veteranSupplement * 100)}%): +${Math.round(pensionWithVeteran - basePension).toLocaleString('he-IL')} ₪`);
                 }
                 
-                // תוספת דחיה
-                const workDetails = answers['q8_work_details'];
-                const spouseWorkStopDate = workDetails && workDetails.spouse && workDetails.spouse.work_stop_date ? workDetails.spouse.work_stop_date : null;
-                const deferralSupplement = calculateDeferralSupplement(spouseGender, spouseAge, spouseWorkStopDate);
+                // תוספת דחיה - רק אם יש הכנסה מעבודה שמונעת קצבה מלאה
+                let deferralSupplement = 0;
+                if (isEligibleForDeferralSupplement(spouseGender, spouseAge) && spouseDeferralEligibleByIncome) {
+                    const spousePensionRow1 = Array.isArray(answers['q5_benefits_spouse']) ? 
+                        answers['q5_benefits_spouse'].find(row => row.benefit_name === 'קצבת זקנה') : null;
+                    const spousePensionStartDate1 = spousePensionRow1 ? spousePensionRow1.start_date : null;
+                    
+                    deferralSupplement = calculateDeferralSupplementNew(spouseGender, spouseAge, spousePensionStartDate1);
+                }
+                
                 if (deferralSupplement > 0) {
                     const pensionWithDeferral = Math.round(pensionWithVeteran * (1 + deferralSupplement));
                     result.details.push(`תוספת דחיה (${Math.round(deferralSupplement * 100)}%): +${Math.round(pensionWithDeferral - pensionWithVeteran).toLocaleString('he-IL')} ₪`);
@@ -1778,7 +2026,7 @@
                     result.amount = pensionWithVeteran;
                 }
                 
-                result.details.push(`סה"כ קצבה: ${result.amount.toLocaleString('he-IL')} ₪`);
+                result.details.push(`סה"כ קצבה מחושבת: ${result.amount.toLocaleString('he-IL')} ₪`);
                 return result;
             }
             
@@ -1806,54 +2054,62 @@
                 }
                 
                 // תוספת דחיה
-                const workDetails = answers['q8_work_details'];
-                const spouseWorkStopDate = workDetails && workDetails.spouse && workDetails.spouse.work_stop_date ? workDetails.spouse.work_stop_date : null;
-                const deferralSupplement = calculateDeferralSupplement(spouseGender, spouseAge, spouseWorkStopDate);
+                const spousePensionRow2 = Array.isArray(answers['q5_benefits_spouse']) ? 
+                    answers['q5_benefits_spouse'].find(row => row.benefit_name === 'קצבת זקנה') : null;
+                const spousePensionStartDate2 = spousePensionRow2 ? spousePensionRow2.start_date : null;
+                
+                const deferralSupplement = spouseDeferralEligibleByIncome ?
+                    calculateDeferralSupplementNew(spouseGender, spouseAge, spousePensionStartDate2) : 0;
                 if (deferralSupplement > 0) {
                     const pensionWithDeferral = Math.round(pensionWithVeteran * (1 + deferralSupplement));
                     result.details.push(`תוספת דחיה (${Math.round(deferralSupplement * 100)}%): +${Math.round(pensionWithDeferral - pensionWithVeteran).toLocaleString('he-IL')} ₪`);
                     result.amount = pensionWithDeferral;
-                } else {
-                    result.amount = pensionWithVeteran;
                 }
                 
-                result.details.push(`סה"כ קצבה: ${result.amount.toLocaleString('he-IL')} ₪`);
+                result.details.push(`סה"כ קצבה מחושבת: ${result.amount.toLocaleString('he-IL')} ₪`);
+                
+                // הוספת הערות לגבי תוספת ותק ודחיה
+                const spouseVetOption = getSpouseVeteranMonths();
+                if (spouseVetOption === 'dont_know') {
+                    result.details.push(`⚠️ <strong>הערה חשובה:</strong> יתכן ובן/בת הזוג זכאי/ת גם לתוספת ותק - יש לבדוק במשרדי ביטוח לאומי`);
+                } else if (spouseVetOption === '60_months_10years' || spouseVetOption === '144_months_total') {
+                    result.details.push(`⚠️ <strong>הערה חשובה:</strong> יתכן ובן/בת הזוג זכאי/ת לתוספת ותק נוספת בנוסף לקצבה המחושבת - יש לבדוק במשרדי ביטוח לאומי`);
+                }
+                
+                // הוספת הערה לגבי תוספת דחיה אם רלוונטי
+                if (spouseAge >= (spouseGender === 'male' ? 67 : getRetirementAgeWomen(2026 - spouseAge)) && spouseHasEmploymentIncome() && spouseIncome > fullEligibilityThreshold) {
+                    result.details.push(`⚠️ <strong>הערה חשובה:</strong> יתכן ובן/בת הזוג זכאי/ת גם לתוספת דחיה בגלל המשך העבודה - יש לבדוק במשרדי ביטוח לאומי`);
+                }
+                
                 return result;
             }
 
             // אין זכאות
             result.reason = `ההכנסה האישית של בן/בת הזוג (${spouseIncome.toLocaleString('he-IL')} ₪) גבוהה מתקרת הזכאות (${partialEligibilityThreshold.toLocaleString('he-IL')} ₪)`;
+            
+            // הוספת הערות גם כאשר אין זכאות
+            const spouseVetOptionNoEligibility = getSpouseVeteranMonths();
+            if (spouseVetOptionNoEligibility === 'dont_know') {
+                result.details.push(`⚠️ <strong>הערה חשובה:</strong> על אף שאין זכאות כרגע בגלל הכנסה גבוהה, יתכן שתהיה זכאות לתוספת ותק אם תתאמת את הכנסות בן/בת הזוג - יש לבדוק במשרדי ביטוח לאומי`);
+            }
+            
             return result;
         }
 
         // חישוב תוספת וותק
         function getVeteranMonths() {
             const vetOption = answers['q4_1_veteran_months_applicant'];
-            const rangeMap = {
-                'less_6m': 3,
-                'more_1y': 12,
-                'more_5y': 60,
-                'more_10y': 120,
-                'more_20y': 240,
-                'more_25y': 300,
-                'more_35y': 420
-            };
-            return rangeMap[vetOption] || 0;
+            // החזור את בחירת המשתמש ישירות (לא חישוב של חודשים)
+            // ערכים אפשריים: '60_months_10years', '144_months_total', 'dont_know'
+            return vetOption || null;
         }
         
         // חישוב תוספת וותק לבן זוג
         function getSpouseVeteranMonths() {
             const vetOption = answers['q4_2_veteran_months_spouse'];
-            const rangeMap = {
-                'less_6m': 3,
-                'more_1y': 12,
-                'more_5y': 60,
-                'more_10y': 120,
-                'more_20y': 240,
-                'more_25y': 300,
-                'more_35y': 420
-            };
-            return rangeMap[vetOption] || 0;
+            // החזור את בחירת המשתמש ישירות (לא חישוב של חודשים)
+            // ערכים אפשריים: '60_months_10years', '144_months_total', 'dont_know'
+            return vetOption || null;
         }
 
         // בדיקה אם המגיש הגיע לגיל פרישה
@@ -1874,7 +2130,7 @@
         
         // בדיקה אם בן/בת הזוג הגיע לגיל פרישה
         function hasSpouseReachedRetirementAge() {
-            if (!hasSpouse()) return false;
+            if (answers['q2_1_has_spouse'] !== 'yes') return false;
             
             const spouseGender = answers['q2_2_spouse_gender'];
             const spouseAge = parseInt(answers['q2_2a_spouse_age']) || 0;
@@ -1890,36 +2146,44 @@
             return spouseAge >= retirementAge;
         }
         
-        // בדיקה אם למגיש יש ותק מספיק (מעל שנה)
+        // בדיקה אם למגיש יש ותק מספיק (עומד בתנאי זכאות)
         function hasApplicantSufficientVeteran() {
-            const vetMonths = getVeteranMonths();
-            return vetMonths >= 12; // לפחות שנה
+            const vetOption = getVeteranMonths();
+            // אם עונה "כן" לאחד מתנאי הזכאות - זכאי
+            if (vetOption === '60_months_10years' || vetOption === '144_months_total') {
+                return true;
+            }
+            // אם "לא יודע" או לא ענה - בעייתי
+            return false;
         }
         
-        // בדיקה אם לבן/בת הזוג יש ותק מספיק (מעל שנה)
+        // בדיקה אם לבן/בת הזוג יש ותק מספיק (עומד בתנאי זכאות)
         function hasSpouseSufficientVeteran() {
-            if (!hasSpouse()) return false;
-            const vetMonths = getSpouseVeteranMonths();
-            return vetMonths >= 12; // לפחות שנה
+            if (answers['q2_1_has_spouse'] !== 'yes') return false;
+            const vetOption = getSpouseVeteranMonths();
+            // אם עונה "כן" לאחד מתנאי הזכאות - זכאי
+            if (vetOption === '60_months_10years' || vetOption === '144_months_total') {
+                return true;
+            }
+            // אם "לא יודע" או לא ענה - בעייתי
+            return false;
         }
 
         // חישוב אחוז תוספת וותק
-        function calculateVeteranSupplement(months) {
-            // לפי החוק - כל שנה (12 חודשים) צבירה מעל 10 שנים (120 חודשים) מוסיפה 2%
-            // עד מקסימום 50% (כ-35 שנים + 120 חודשים)
-            
-            if (months <= 120) {
-                // עד 10 שנים - ללא תוספת וותק
-                return 0;
-            }
-            
-            const excessMonths = months - 120;
-            const excessYears = excessMonths / 12;
-            const supplement = Math.min(0.50, excessYears * 0.02);
-            return supplement;
+        function calculateVeteranSupplement(vetOption) {
+            // לא מחשבים תוספת ותק בעצמנו - רק הערה במסך סיכום
+            // המחשבון לא יכול לחשב בדיוק בלי מספר חודשים מדויק
+            return 0;
         }
 
-        // חישוב אחוז תוספת דחיה
+        // חישוב אחוז תוספת דחיה מעודכן - לפי הלוגיקה החדשה
+        function calculateDeferralSupplementNew(gender, age, pensionStartDate) {
+            // לא מחשבים תוספת דחיה בדיוק - רק הערה במסך סיכום
+            // המחשבון לא יכול לחשב בדיוק בלי נתונים מלאים מהביטוח הלאומי
+            return 0;
+        }
+
+        // חישוב אחוז תוספת דחיה (הפונקציה הישנה - עדיין בשימוש למקומות מסויימים)
         function calculateDeferralSupplement(gender, age, workStopDate) {
             // תוספת דחיה: 5% לכל שנה שהוכתשה הקצבה מגיל הפרישה עד גיל 70
             // גברים: מקסימום 15% (3 שנים מגיל 67 עד 70)
@@ -1984,7 +2248,28 @@
             
             // חישוב זכאויות
             const oldAgePensionApplicant = calculateOldAgePensionApplicant();
-            const oldAgePensionSpouse = hasSpouse() ? calculateOldAgePensionSpouse() : null;
+            const oldAgePensionSpouse = answers['q2_1_has_spouse'] === 'yes' ? calculateOldAgePensionSpouse() : null;
+            
+            // השוואת קצבאות קיימות לקצבאות מחושבות
+            let applicantComparison = null;
+            let spouseComparison = null;
+            
+            if (oldAgePensionApplicant.eligible && oldAgePensionApplicant.amount > 0) {
+                applicantComparison = comparePensionAmounts('q5_benefits_applicant', oldAgePensionApplicant.amount);
+            }
+            
+            if (oldAgePensionSpouse && oldAgePensionSpouse.eligible && oldAgePensionSpouse.amount > 0) {
+                spouseComparison = comparePensionAmounts('q5_benefits_spouse', oldAgePensionSpouse.amount);
+            }
+            
+            // בדיקה אם המשתמש מקבל כבר קצבת זקנה
+            const applicantBenefits = answers['q5_benefits_applicant'];
+            const applicantReceivesPension = Array.isArray(applicantBenefits) && 
+                applicantBenefits.some(row => row.benefit_name === 'קצבת זקנה');
+            
+            const spouseBenefits = answers['q5_benefits_spouse'];
+            const spouseReceivesPension = Array.isArray(spouseBenefits) && 
+                spouseBenefits.some(row => row.benefit_name === 'קצבת זקנה');
             
             // חישוב פרטי גיל ופרישה למגיש הבקשה
             const gender = answers['q1_1_gender'];
@@ -1996,7 +2281,7 @@
             
             // חישוב פרטי גיל ופרישה לבן/בת הזוג
             let spouseAgeInfo = '';
-            if (hasSpouse()) {
+            if (answers['q2_1_has_spouse'] === 'yes') {
                 const spouseGender = answers['q2_2_spouse_gender'];
                 const spouseAge = parseInt(answers['q2_2a_spouse_age']) || 0;
                 const spouseBirthYear = 2026 - spouseAge;
@@ -2034,15 +2319,30 @@
                             <strong>סטטוס:</strong> ${oldAgePensionApplicant.eligible ? (oldAgePensionApplicant.type === 'full' ? 'זכאי לקצבה מלאה' : 'זכאי לקצבה חלקית') : 'לא זכאי'}
                         </p>
                         <p style="margin-bottom: 10px;"><strong>הסבר:</strong> ${oldAgePensionApplicant.reason}</p>
-                        ${oldAgePensionApplicant.amount > 0 ? `<p style="font-size: 1.3em; font-weight: bold; color: #1976d2;">💰 סכום משוער: ${oldAgePensionApplicant.amount.toLocaleString('he-IL')} ₪ לחודש</p>` : ''}
-                        ${oldAgePensionApplicant.details.length > 0 ? `
-                            <div style="background: white; padding: 15px; border-radius: 8px; margin-top: 15px;">
-                                <h4>פירוט החישוב:</h4>
-                                <ul style="margin: 10px 0 0 20px;">
-                                    ${oldAgePensionApplicant.details.map(detail => `<li>${detail}</li>`).join('')}
-                                </ul>
+                        ${!applicantReceivesPension && oldAgePensionApplicant.eligible ? `
+                            <div style="background: #fff3e0; padding: 15px; border-radius: 8px; margin: 15px 0; border-right: 4px solid #ff9800;">
+                                <p style="font-size: 1.2em; font-weight: bold; color: #e65100; margin-bottom: 10px;">
+                                    💡 יתכן ואתה זכאי לקצבת אזרח ותיק
+                                </p>
+                                <p style="margin: 5px 0;">✓ יתכן ואתה זכאי גם לתוספת ותק</p>
+                                <p style="margin: 5px 0;">✓ יתכן ואתה זכאי גם לתוספת דחיית קצבה</p>
+                                <p style="margin-top: 15px; font-weight: 600; color: #d84315;">
+                                    👉 מומלץ לפנות בהקדם לביטוח הלאומי להגשת תביעה לקצבת אזרח ותיק
+                                </p>
                             </div>
                         ` : ''}
+                        ${applicantReceivesPension && oldAgePensionApplicant.amount > 0 ? `<p style="font-size: 1.3em; font-weight: bold; color: #1976d2;">💰 סכום משוער: ${oldAgePensionApplicant.amount.toLocaleString('he-IL')} ₪ לחודש</p>` : ''}
+                        ${!oldAgePensionApplicant.eligible ? `
+                            <div style="background: #ffebee; padding: 15px; border-radius: 8px; margin: 15px 0; border-right: 4px solid #f44336;">
+                                <p style="font-size: 1.1em; font-weight: 600; color: #c62828;">
+                                    ⚠️ כנראה אינך זכאי לקצבת זקנה במועד זה
+                                </p>
+                                <p style="margin-top: 10px; color: #555;">
+                                    מומלץ לפנות לביטוח הלאומי לבדיקת זכאותך המדויקת
+                                </p>
+                            </div>
+                        ` : ''}
+                        ${applicantComparison ? generateComparisonMessage(applicantComparison, 'מגיש הבקשה') : ''}
                     </div>
 
                     ${oldAgePensionSpouse ? `
@@ -2056,19 +2356,34 @@
                             <strong>סטטוס:</strong> ${oldAgePensionSpouse.eligible ? (oldAgePensionSpouse.type === 'full' ? 'זכאי לקצבה מלאה' : 'זכאי לקצבה חלקית') : 'לא זכאי'}
                         </p>
                         <p style="margin-bottom: 10px;"><strong>הסבר:</strong> ${oldAgePensionSpouse.reason}</p>
-                        ${oldAgePensionSpouse.amount > 0 ? `<p style="font-size: 1.3em; font-weight: bold; color: #1976d2;">💰 סכום משוער: ${oldAgePensionSpouse.amount.toLocaleString('he-IL')} ₪ לחודש</p>` : ''}
-                        ${oldAgePensionSpouse.details.length > 0 ? `
-                            <div style="background: white; padding: 15px; border-radius: 8px; margin-top: 15px;">
-                                <h4>פירוט החישוב:</h4>
-                                <ul style="margin: 10px 0 0 20px;">
-                                    ${oldAgePensionSpouse.details.map(detail => `<li>${detail}</li>`).join('')}
-                                </ul>
+                        ${!spouseReceivesPension && oldAgePensionSpouse.eligible ? `
+                            <div style="background: #fff3e0; padding: 15px; border-radius: 8px; margin: 15px 0; border-right: 4px solid #ff9800;">
+                                <p style="font-size: 1.2em; font-weight: bold; color: #e65100; margin-bottom: 10px;">
+                                    💡 יתכן ובן/בת הזוג זכאי/ת לקצבת אזרח ותיק
+                                </p>
+                                <p style="margin: 5px 0;">✓ יתכן ובן/בת הזוג זכאי/ת גם לתוספת ותק</p>
+                                <p style="margin: 5px 0;">✓ יתכן ובן/בת הזוג זכאי/ת גם לתוספת דחיית קצבה</p>
+                                <p style="margin-top: 15px; font-weight: 600; color: #d84315;">
+                                    👉 מומלץ לפנות בהקדם לביטוח הלאומי להגשת תביעה לקצבת אזרח ותיק
+                                </p>
                             </div>
                         ` : ''}
+                        ${spouseReceivesPension && oldAgePensionSpouse.amount > 0 ? `<p style="font-size: 1.3em; font-weight: bold; color: #1976d2;">💰 סכום משוער: ${oldAgePensionSpouse.amount.toLocaleString('he-IL')} ₪ לחודש</p>` : ''}
+                        ${!oldAgePensionSpouse.eligible ? `
+                            <div style="background: #ffebee; padding: 15px; border-radius: 8px; margin: 15px 0; border-right: 4px solid #f44336;">
+                                <p style="font-size: 1.1em; font-weight: 600; color: #c62828;">
+                                    ⚠️ כנראה בן/בת הזוג אינו/ה זכאי/ת לקצבת זקנה במועד זה
+                                </p>
+                                <p style="margin-top: 10px; color: #555;">
+                                    מומלץ לפנות לביטוח הלאומי לבדיקת זכאותו/ה המדויקת
+                                </p>
+                            </div>
+                        ` : ''}
+                        ${spouseComparison ? generateComparisonMessage(spouseComparison, 'בן/בת הזוג') : ''}
                     </div>
                     ` : ''}
                     
-                    ${oldAgePensionApplicant.eligible && oldAgePensionSpouse && oldAgePensionSpouse.eligible ? `
+                    ${applicantReceivesPension && spouseReceivesPension && oldAgePensionApplicant.eligible && oldAgePensionSpouse && oldAgePensionSpouse.eligible && oldAgePensionApplicant.amount > 0 && oldAgePensionSpouse.amount > 0 ? `
                     <!-- סה"כ קצבאות זיקנה לזוג -->
                     <div style="background: #fff3e0; padding: 25px; border-radius: 12px; border-right: 5px solid #ff9800; margin: 25px 0;">
                         <h3 style="color: #f57c00; margin-bottom: 15px;">

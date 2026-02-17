@@ -1,0 +1,871 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>מסמכי מקורות מידע</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Assistant:wght@300;400;600;700;800&family=Varela+Round&display=swap" rel="stylesheet">
+    <!-- Marked.js for Markdown rendering -->
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    <style>
+        :root {
+            --primary: #2E5B8A;
+            --secondary: #4A90B5;
+            --accent: #E8A840;
+            --success: #2E7D32;
+            --danger: #C62828;
+            --light: #F5F9FC;
+            --dark: #1A3A52;
+            --text: #2C3E50;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Assistant', 'Segoe UI', Tahoma, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
+            min-height: 100vh;
+            padding: 20px;
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background:
+                radial-gradient(circle at 20% 50%, rgba(255,255,255,0.1) 0%, transparent 50%),
+                radial-gradient(circle at 80% 80%, rgba(255,255,255,0.1) 0%, transparent 50%);
+            animation: backgroundShift 20s ease-in-out infinite;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        @keyframes backgroundShift {
+            0%, 100% { transform: translate(0, 0) scale(1); }
+            50% { transform: translate(-5%, 5%) scale(0.95); }
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 50px;
+            animation: slideDown 0.8s ease-out;
+        }
+
+        @keyframes slideDown {
+            from {
+                opacity: 0;
+                transform: translateY(-50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        h1 {
+            font-family: 'Varela Round', sans-serif;
+            font-size: 3rem;
+            font-weight: 800;
+            color: white;
+            margin-bottom: 15px;
+            text-shadow: 3px 5px 15px rgba(0,0,0,0.3);
+            letter-spacing: -2px;
+        }
+
+        .subtitle {
+            font-size: 1.3rem;
+            color: rgba(255,255,255,0.95);
+            font-weight: 300;
+            text-shadow: 1px 2px 8px rgba(0,0,0,0.2);
+        }
+
+        .back-button {
+            display: inline-block;
+            background: rgba(255,255,255,0.25);
+            backdrop-filter: blur(10px);
+            padding: 12px 24px;
+            border-radius: 25px;
+            color: white;
+            text-decoration: none;
+            font-size: 1rem;
+            font-weight: 600;
+            transition: all 0.3s;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+        }
+
+        .back-button:hover {
+            background: rgba(255,255,255,0.35);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(0,0,0,0.25);
+        }
+
+        .back-button::before {
+            content: '← ';
+            margin-left: 5px;
+        }
+
+        .files-list {
+            animation: fadeIn 0.8s ease-out 0.3s both;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .file-card {
+            background: white;
+            border-radius: 16px;
+            margin-bottom: 15px;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+            overflow: hidden;
+            transition: all 0.3s;
+        }
+
+        .file-card:hover {
+            box-shadow: 0 12px 35px rgba(0,0,0,0.2);
+        }
+
+        .file-card-header {
+            padding: 20px 25px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            transition: all 0.3s;
+            cursor: pointer;
+        }
+
+        .file-card:hover .file-card-header {
+            background: linear-gradient(135deg, var(--secondary), var(--primary));
+        }
+
+        .file-card-icon {
+            width: 50px;
+            height: 50px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            background: rgba(255,255,255,0.2);
+            flex-shrink: 0;
+        }
+
+        .file-card-title {
+            font-family: 'Varela Round', sans-serif;
+            font-size: 1.3rem;
+            font-weight: 700;
+            flex: 1;
+            margin: 0;
+        }
+
+        .file-card-arrow {
+            font-size: 1.2rem;
+            transition: transform 0.3s;
+            width: 30px;
+            text-align: center;
+            flex-shrink: 0;
+        }
+
+        .file-card.active .file-card-arrow {
+            transform: rotate(180deg);
+        }
+
+        .file-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s ease;
+        }
+
+        .file-card.active .file-content {
+            max-height: 80vh;
+            overflow: auto;
+        }
+
+        .file-body {
+            padding: 30px;
+            background: #fafbfc;
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: var(--text);
+        }
+
+        /* Markdown content styling */
+        .file-body h1 {
+            font-size: 2rem;
+            color: var(--primary);
+            margin: 0 0 20px 0;
+            text-shadow: none;
+            letter-spacing: 0;
+        }
+
+        .file-body h2 {
+            font-size: 1.6rem;
+            color: var(--primary);
+            margin: 30px 0 15px 0;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #e0e7ee;
+        }
+
+        .file-body h3 {
+            font-size: 1.4rem;
+            color: var(--secondary);
+            margin: 25px 0 12px 0;
+        }
+
+        .file-body h4 {
+            font-size: 1.2rem;
+            color: var(--dark);
+            margin: 20px 0 10px 0;
+        }
+
+        .file-body p {
+            margin: 15px 0;
+        }
+
+        .file-body ul, .file-body ol {
+            margin: 15px 0;
+            padding-right: 30px;
+        }
+
+        .file-body li {
+            margin: 8px 0;
+        }
+
+        .file-body table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            font-size: 0.95rem;
+            background: white;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        .file-body th {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            padding: 12px 15px;
+            text-align: right;
+            font-weight: 600;
+        }
+
+        .file-body td {
+            padding: 10px 15px;
+            border-bottom: 1px solid #e0e7ee;
+        }
+
+        .file-body tr:last-child td {
+            border-bottom: none;
+        }
+
+        .file-body tr:nth-child(even) {
+            background: #f8f9fa;
+        }
+
+        .file-body tr:hover {
+            background: #e8f4fc;
+        }
+
+        .file-body code {
+            background: #f0f3f6;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-family: 'Courier New', monospace;
+            font-size: 0.9em;
+        }
+
+        .file-body pre {
+            background: #1a3a52;
+            color: #f8f9fa;
+            padding: 20px;
+            border-radius: 8px;
+            overflow-x: auto;
+            margin: 20px 0;
+        }
+
+        .file-body pre code {
+            background: transparent;
+            padding: 0;
+            color: inherit;
+        }
+
+        .file-body blockquote {
+            border-right: 4px solid var(--accent);
+            padding: 15px 20px;
+            margin: 20px 0;
+            background: #fff8e1;
+            border-radius: 0 8px 8px 0;
+            font-style: italic;
+        }
+
+        .file-body hr {
+            border: none;
+            border-top: 2px solid #e0e7ee;
+            margin: 30px 0;
+        }
+
+        .file-body a {
+            color: var(--secondary);
+            text-decoration: none;
+            border-bottom: 1px dashed var(--secondary);
+            transition: all 0.2s;
+        }
+
+        .file-body a:hover {
+            color: var(--primary);
+            border-bottom-style: solid;
+        }
+
+        /* תתי-אקורדיונים */
+        .sub-accordion {
+            margin: 15px 0;
+            border: 1px solid #E0E7EE;
+            border-radius: 12px;
+            overflow: hidden;
+            background: #F8FAFB;
+        }
+
+        .sub-accordion-header {
+            padding: 18px 25px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background: linear-gradient(135deg, #E3E9EE 0%, #D6DCE2 100%);
+            transition: all 0.3s;
+        }
+
+        .sub-accordion-header:hover {
+            background: linear-gradient(135deg, #D6DCE2 0%, #C9D0D6 100%);
+        }
+
+        .sub-accordion-title {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: var(--primary);
+            margin: 0;
+            flex: 1;
+        }
+
+        .sub-accordion-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s ease;
+        }
+
+        .sub-accordion.active > .sub-accordion-content {
+            max-height: 80vh;
+            overflow: auto;
+            -webkit-overflow-scrolling: touch;
+        }
+
+        .sub-accordion-body {
+            padding: 20px 25px;
+            background: white;
+        }
+
+        /* רמות קינון - עיצוב מותאם לפי עומק */
+        /* רמה 1: H1 - כותרות ראשיות */
+        .sub-accordion[data-level="1"] {
+            margin: 20px 0;
+            border: 2px solid #E0E7EE;
+        }
+
+        .sub-accordion[data-level="1"] .sub-accordion-header {
+            padding: 20px 25px;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+        }
+
+        .sub-accordion[data-level="1"] .sub-accordion-header:hover {
+            background: linear-gradient(135deg, var(--secondary), var(--primary));
+        }
+
+        .sub-accordion[data-level="1"] .sub-accordion-title {
+            font-size: 1.4rem;
+            color: white;
+        }
+
+        /* רמה 2: H2 - תתי-אקורדיונים ראשיים */
+        .sub-accordion[data-level="2"] {
+            margin: 15px 0;
+        }
+
+        .sub-accordion[data-level="2"] .sub-accordion-header {
+            padding: 18px 25px;
+        }
+
+        .sub-accordion[data-level="2"] .sub-accordion-title {
+            font-size: 1.2rem;
+        }
+
+        /* רמה 3: H3 - מקוננים בתוך H2 */
+        .sub-accordion[data-level="3"] {
+            margin: 12px 0;
+            background: #FAFBFC;
+        }
+
+        .sub-accordion[data-level="3"] .sub-accordion-header {
+            padding: 15px 20px;
+            background: linear-gradient(135deg, #BBDEFB 0%, #90CAF9 100%);
+        }
+
+        .sub-accordion[data-level="3"] .sub-accordion-header:hover {
+            background: linear-gradient(135deg, #90CAF9 0%, #64B5F6 100%);
+        }
+
+        .sub-accordion[data-level="3"] .sub-accordion-title {
+            font-size: 1.1rem;
+            padding-right: 15px;
+        }
+
+        /* רמה 4: H4 - מקוננים בתוך H3 */
+        .sub-accordion[data-level="4"] {
+            margin: 10px 0;
+            background: #FCFCFD;
+            border-color: #E8ECF0;
+        }
+
+        .sub-accordion[data-level="4"] .sub-accordion-header {
+            padding: 12px 18px;
+            background: linear-gradient(135deg, #C8E6C9 0%, #A5D6A7 100%);
+        }
+
+        .sub-accordion[data-level="4"] .sub-accordion-header:hover {
+            background: linear-gradient(135deg, #A5D6A7 0%, #81C784 100%);
+        }
+
+        .sub-accordion[data-level="4"] .sub-accordion-title {
+            font-size: 1.05rem;
+            padding-right: 25px;
+        }
+
+        /* רמה 5: H5 - מקוננים בתוך H4 */
+        .sub-accordion[data-level="5"] {
+            margin: 8px 0;
+            background: #FEFEFE;
+            border-color: #EDF0F3;
+        }
+
+        .sub-accordion[data-level="5"] .sub-accordion-header {
+            padding: 10px 15px;
+            background: linear-gradient(135deg, #FFE0B2 0%, #FFCC80 100%);
+        }
+
+        .sub-accordion[data-level="5"] .sub-accordion-header:hover {
+            background: linear-gradient(135deg, #FFCC80 0%, #FFB74D 100%);
+        }
+
+        .sub-accordion[data-level="5"] .sub-accordion-title {
+            font-size: 1rem;
+            padding-right: 35px;
+        }
+
+        /* רמה 6: H6 - מקוננים בתוך H5 */
+        .sub-accordion[data-level="6"] {
+            margin: 6px 0;
+            background: #FFFFFF;
+            border-color: #F0F2F4;
+        }
+
+        .sub-accordion[data-level="6"] .sub-accordion-header {
+            padding: 8px 12px;
+            background: linear-gradient(135deg, #F8BBD0 0%, #F48FB1 100%);
+        }
+
+        .sub-accordion[data-level="6"] .sub-accordion-header:hover {
+            background: linear-gradient(135deg, #F48FB1 0%, #F06292 100%);
+        }
+
+        .sub-accordion[data-level="6"] .sub-accordion-title {
+            font-size: 0.95rem;
+            padding-right: 45px;
+        }
+
+        .loading-spinner {
+            text-align: center;
+            padding: 40px;
+            color: #546E7A;
+        }
+
+        .error-message {
+            text-align: center;
+            padding: 40px;
+            color: var(--danger);
+            background: #ffebee;
+            border-radius: 8px;
+        }
+
+        .info-box {
+            background: rgba(255,255,255,0.95);
+            border-radius: 20px;
+            padding: 30px;
+            margin-top: 40px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+            border-right: 4px solid var(--accent);
+            animation: fadeIn 0.8s ease-out 0.6s both;
+        }
+
+        .info-box-header {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 15px;
+        }
+
+        .info-box-icon {
+            font-size: 2rem;
+        }
+
+        .info-box h3 {
+            font-family: 'Varela Round', sans-serif;
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: var(--accent);
+            margin: 0;
+        }
+
+        .info-box p {
+            font-size: 1.05rem;
+            line-height: 1.8;
+            color: #546E7A;
+            margin: 0;
+        }
+
+        footer {
+            text-align: center;
+            margin-top: 60px;
+            padding: 30px;
+            color: rgba(255,255,255,0.9);
+            font-size: 1rem;
+        }
+
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2.2rem;
+            }
+
+            .subtitle {
+                font-size: 1.1rem;
+            }
+
+            .file-card-header {
+                padding: 15px 20px;
+            }
+
+            .file-card-title {
+                font-size: 1.1rem;
+            }
+
+            .file-body {
+                padding: 20px;
+                font-size: 1rem;
+            }
+
+            .file-body table {
+                font-size: 0.85rem;
+            }
+
+            .file-body th, .file-body td {
+                padding: 8px 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <a href="index.html" class="back-button">חזרה לדף ראשי</a>
+            <h1>📄 מסמכי מקורות מידע</h1>
+            <p class="subtitle">מסמכים ומקורות מידע רשמיים בנושא ביטוח לאומי וזכויות</p>
+        </header>
+
+        <div id="filesList" class="files-list">
+            <div class="loading-spinner">טוען רשימת מסמכים...</div>
+        </div>
+
+        <div class="info-box">
+            <div class="info-box-header">
+                <span class="info-box-icon">ℹ️</span>
+                <h3>אודות המסמכים</h3>
+            </div>
+            <p>
+                מסמכים אלו מכילים מידע ממקורות רשמיים כגון חוזרי ביטוח לאומי, חוקים ותקנות.
+                המידע מוצג לנוחיות הקריאה בלבד ואינו מהווה תחליף למקורות הרשמיים.
+            </p>
+        </div>
+    </div>
+
+    <footer>
+        <p>🤖 פותח עם ❤️ לסיוע לאזרחים ותיקים בישראל</p>
+    </footer>
+
+    <script>
+        // רשימת קבצי ה-MD עם שמות מתורגמים
+        const mdFiles = [
+            {
+                file: 'Senior_Pensions_Survivors_01_2026.md',
+                title: 'קצבאות אזרח ותיק ושאירים - ינואר 2026',
+                icon: '📊'
+            },
+            {
+                file: 'חוק_הביטוח_הלאומי_קצבאות_אזרח_ותיק_2026.md',
+                title: 'חוק הביטוח הלאומי - קצבאות אזרח ותיק 2026',
+                icon: '📜'
+            },
+            {
+                file: 'הגדרת_תלויים_בקצבת_זיקנה_וקצבת_שאירים.md',
+                title: 'הגדרת תלויים בקצבת זקנה וקצבת שאירים',
+                icon: '👨‍👩‍👧‍👦'
+            },
+            {
+                file: 'כלי_אבחון_ראשוני.md',
+                title: 'כלי אבחון ראשוני',
+                icon: '🔍'
+            }
+        ];
+
+        // יצירת רשימת הקבצים
+        function createFilesList() {
+            const container = document.getElementById('filesList');
+            let html = '';
+
+            mdFiles.forEach((fileInfo, index) => {
+                html += `
+                    <div class="file-card" data-file="${fileInfo.file}" data-index="${index}">
+                        <div class="file-card-header" onclick="toggleFile(${index})">
+                            <div class="file-card-icon">${fileInfo.icon}</div>
+                            <h2 class="file-card-title">${fileInfo.title}</h2>
+                            <span class="file-card-arrow">▼</span>
+                        </div>
+                        <div class="file-content">
+                            <div class="file-body" id="content-${index}">
+                                <div class="loading-spinner">טוען תוכן...</div>
+                            </div>
+                        </div>
+                    </div>
+                `;
+            });
+
+            container.innerHTML = html;
+        }
+
+        // פונקציה רקורסיבית לעיבוד כותרות מקוננות (H1-H6)
+        function processNestedHeadings(container, depth = 0) {
+            // מצא את כל הכותרות H1-H6 בכל הרמות
+            const allHeadings = Array.from(container.querySelectorAll('h1, h2, h3, h4, h5, h6'));
+
+            // סנן רק כותרות שהן ילדים ישירים של container או של אלמנטים שאינם sub-accordion
+            const headings = allHeadings.filter(heading => {
+                let parent = heading.parentElement;
+                while (parent && parent !== container) {
+                    if (parent.classList && parent.classList.contains('sub-accordion')) {
+                        return false;
+                    }
+                    parent = parent.parentElement;
+                }
+                return true;
+            });
+
+            headings.forEach((heading, index) => {
+                // מצא את כל האלמנטים עד הכותרת הבאה
+                let contentElements = [];
+                let nextElement = heading.nextElementSibling;
+
+                // קבע את הרמה של הכותרת הנוכחית
+                const currentLevel = parseInt(heading.tagName.substring(1));
+
+                // אסוף תוכן עד שנפגוש כותרת באותה רמה או גבוהה יותר
+                while (nextElement) {
+                    const nextTagName = nextElement.tagName;
+
+                    if (nextTagName && nextTagName.match(/^H[1-6]$/)) {
+                        const nextLevel = parseInt(nextTagName.substring(1));
+                        if (nextLevel <= currentLevel) {
+                            break;
+                        }
+                    }
+
+                    contentElements.push(nextElement);
+                    nextElement = nextElement.nextElementSibling;
+                }
+
+                if (contentElements.length > 0) {
+                    // צור תת-אקורדיון
+                    const subAccordion = document.createElement('div');
+                    subAccordion.className = 'sub-accordion';
+                    subAccordion.classList.remove('active');
+                    subAccordion.setAttribute('data-level', currentLevel);
+
+                    const subHeader = document.createElement('div');
+                    subHeader.className = 'sub-accordion-header';
+
+                    const subTitle = document.createElement('div');
+                    subTitle.className = 'sub-accordion-title';
+                    subTitle.innerHTML = heading.innerHTML;
+
+                    subHeader.appendChild(subTitle);
+
+                    const subContent = document.createElement('div');
+                    subContent.className = 'sub-accordion-content';
+
+                    const subBody = document.createElement('div');
+                    subBody.className = 'sub-accordion-body';
+
+                    // העבר את כל האלמנטים לגוף התת-אקורדיון
+                    contentElements.forEach(el => {
+                        subBody.appendChild(el);
+                    });
+
+                    subContent.appendChild(subBody);
+                    subAccordion.appendChild(subHeader);
+                    subAccordion.appendChild(subContent);
+
+                    // החלף את הכותרת בתת-אקורדיון
+                    heading.parentNode.replaceChild(subAccordion, heading);
+
+                    // רקורסיה: עבד כותרות מקוננות בתוך התת-אקורדיון שנוצר
+                    processNestedHeadings(subBody, depth + 1);
+
+                    // הוסף מאזין אירועים
+                    subHeader.addEventListener('click', (event) => {
+                        event.stopPropagation();
+
+                        const wasActive = subAccordion.classList.contains('active');
+
+                        // מצא את האקורדיון האב
+                        let parentAccordionBody = subAccordion.parentElement;
+                        while (parentAccordionBody && !parentAccordionBody.classList.contains('file-body') && !parentAccordionBody.classList.contains('sub-accordion-body')) {
+                            parentAccordionBody = parentAccordionBody.parentElement;
+                        }
+
+                        // סגור את כל תתי-האקורדיונים באותו רמה (באותו הורה)
+                        if (parentAccordionBody) {
+                            const siblingAccordions = parentAccordionBody.querySelectorAll(':scope > .sub-accordion.active');
+                            siblingAccordions.forEach(activeSubAccordion => {
+                                if (activeSubAccordion !== subAccordion) {
+                                    activeSubAccordion.classList.remove('active');
+                                }
+                            });
+                        }
+
+                        // פתח/סגור את התת-אקורדיון הנוכחי
+                        subAccordion.classList.toggle('active');
+
+                        // אם נפתח האקורדיון, סגור את כל תתי-האקורדיונים בתוכו
+                        if (!wasActive) {
+                            const nestedSubAccordions = subAccordion.querySelectorAll('.sub-accordion.active');
+                            nestedSubAccordions.forEach(nestedSubAcc => {
+                                nestedSubAcc.classList.remove('active');
+                            });
+
+                            setTimeout(() => {
+                                subAccordion.scrollIntoView({
+                                    behavior: 'smooth',
+                                    block: 'start',
+                                    inline: 'nearest'
+                                });
+                            }, 450);
+                        }
+                    });
+                }
+            });
+        }
+
+        // המרת כותרות לתתי-אקורדיונים
+        function convertHeadingsToSubAccordions(contentDiv) {
+            processNestedHeadings(contentDiv, 0);
+        }
+
+        // טעינת תוכן קובץ MD
+        async function loadFileContent(index) {
+            const fileInfo = mdFiles[index];
+            const contentDiv = document.getElementById(`content-${index}`);
+
+            // אם התוכן כבר נטען, לא צריך לטעון שוב
+            if (contentDiv.dataset.loaded === 'true') {
+                return;
+            }
+
+            try {
+                const response = await fetch(`files/${fileInfo.file}`);
+                if (!response.ok) {
+                    throw new Error('Failed to load file');
+                }
+                const markdown = await response.text();
+
+                // המרת Markdown ל-HTML
+                const html = marked.parse(markdown);
+                contentDiv.innerHTML = html;
+
+                // המרת כותרות לאקורדיונים מקוננים
+                convertHeadingsToSubAccordions(contentDiv);
+
+                contentDiv.dataset.loaded = 'true';
+            } catch (error) {
+                console.error('Error loading file:', error);
+                contentDiv.innerHTML = `
+                    <div class="error-message">
+                        ⚠️ שגיאה בטעינת הקובץ<br>
+                        <small>${fileInfo.file}</small>
+                    </div>
+                `;
+            }
+        }
+
+        // פתיחה/סגירה של קובץ
+        function toggleFile(index) {
+            const cards = document.querySelectorAll('.file-card');
+            const clickedCard = cards[index];
+            const wasActive = clickedCard.classList.contains('active');
+
+            // סגור את כל הקבצים האחרים
+            cards.forEach((card, i) => {
+                if (i !== index) {
+                    card.classList.remove('active');
+                }
+            });
+
+            // פתח/סגור את הקובץ הנוכחי
+            clickedCard.classList.toggle('active');
+
+            // אם נפתח, טען את התוכן
+            if (!wasActive) {
+                loadFileContent(index);
+                // גלול לקובץ
+                setTimeout(() => {
+                    clickedCard.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }, 400);
+            }
+        }
+
+        // אתחול
+        document.addEventListener('DOMContentLoaded', createFilesList);
+    </script>
+</body>
+</html>

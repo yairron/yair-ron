@@ -229,30 +229,22 @@
           "id": "q4_1_veteran_months_applicant",
           "type": "radio",
           "required": false,
-          "text": "כמה חודשי צבירת וותק יש לך בביטוח לאומי?",
+          "text": "בבדיקת זכאותך לקצבת אזרח ותיק, איזו מהאפשרויות הבאות חלה עליך?",
           "options": [
-            {"value": "less_6m", "label": "פחות מחצי שנה"},
-            {"value": "more_1y", "label": "יותר משנה"},
-            {"value": "more_5y", "label": "יותר מחמש שנים"},
-            {"value": "more_10y", "label": "יותר מ-10 שנים"},
-            {"value": "more_20y", "label": "יותר מ-20 שנים"},
-            {"value": "more_25y", "label": "יותר מ-25 שנים"},
-            {"value": "more_35y", "label": "יותר מ-35 שנים"}
+            {"value": "60_months_10years", "label": "עבדתי יותר מ-60 חודשים בעשר השנים האחרונות"},
+            {"value": "144_months_total", "label": "עבדתי יותר מ-144 חודשים מאז גיל 18"},
+            {"value": "dont_know", "label": "אני לא יודע"}
           ]
         },
         {
           "id": "q4_2_veteran_months_spouse",
           "type": "radio",
           "required": false,
-          "text": "כמה חודשי צבירת וותק יש לבן/בת הזוג בביטוח לאומי?",
+          "text": "בבדיקת זכאות בן/בת הזוג לקצבת אזרח ותיק, איזו מהאפשרויות הבאות חלה עליו/ה?",
           "options": [
-            {"value": "less_6m", "label": "פחות מחצי שנה"},
-            {"value": "more_1y", "label": "יותר משנה"},
-            {"value": "more_5y", "label": "יותר מחמש שנים"},
-            {"value": "more_10y", "label": "יותר מ-10 שנים"},
-            {"value": "more_20y", "label": "יותר מ-20 שנים"},
-            {"value": "more_25y", "label": "יותר מ-25 שנים"},
-            {"value": "more_35y", "label": "יותר מ-35 שנים"}
+            {"value": "60_months_10years", "label": "עבד/ה יותר מ-60 חודשים בעשר השנים האחרונות"},
+            {"value": "144_months_total", "label": "עבד/ה יותר מ-144 חודשים מאז גיל 18"},
+            {"value": "dont_know", "label": "אני לא יודע"}
           ],
           "condition": {"q2_1_has_spouse": "yes"}
         }
@@ -261,13 +253,13 @@
     {
       "id": "section_5",
       "title": "סעיף 5 - קצבאות שמקבלים כיום",
-      "description": "אנא סמן אם אתה מקבל כיום קצבה והזן את הסכום החודשי",
+      "description": "סמן רק קצבאות שאתה כבר מקבל בפועל (לא קצבאות עתידיות). הקצבאות לא ייכללו בחישוב הכנסה. נשווה את הסכום שאתה מקבל לחישוב התיאורטי.",
       "questions": [
         {
           "id": "q5_benefits_applicant",
           "type": "table",
           "required": false,
-          "text": "קצבאות של מגיש הבקשה",
+          "text": "קצבאות של מגיש הבקשה (סמן רק קצבאות שאתה כבר מקבל בפועל)",
           "columns": [
             {"id": "benefit_name", "label": "סוג קצבה", "type": "select", "options": [
               {"value": "", "label": "בחר קצבה..."},
@@ -277,19 +269,15 @@
               {"value": "קצבת סיעוד", "label": "קצבת סיעוד"},
               {"value": "ניצולי שואה", "label": "ניצולי שואה"}
             ]},
-            {"id": "receives", "label": "מקבל", "type": "select", "options": [
-              {"value": "", "label": "-"},
-              {"value": "yes", "label": "כן"},
-              {"value": "no", "label": "לא"}
-            ]},
-            {"id": "amount", "label": "סכום חודשי (₪)", "type": "number"}
+            {"id": "amount", "label": "סכום חודשי (₪)", "type": "number"},
+            {"id": "start_date", "label": "מתאריך (MM/YYYY)", "type": "month_year", "placeholder": "01/2023", "pattern": "^(0[1-9]|1[0-2])/\\d{4}$", "title": "הזן בפורמט MM/YYYY"}
           ]
         },
         {
           "id": "q5_benefits_spouse",
           "type": "table",
           "required": false,
-          "text": "קצבאות של בן/בת הזוג",
+          "text": "קצבאות של בן/בת הזוג (סמן רק קצבאות שבן/בת הזוג כבר מקבל/ת בפועל)",
           "condition": {"q2_1_has_spouse": "yes"},
           "columns": [
             {"id": "benefit_name", "label": "סוג קצבה", "type": "select", "options": [
@@ -300,12 +288,8 @@
               {"value": "קצבת סיעוד", "label": "קצבת סיעוד"},
               {"value": "ניצולי שואה", "label": "ניצולי שואה"}
             ]},
-            {"id": "receives", "label": "מקבל", "type": "select", "options": [
-              {"value": "", "label": "-"},
-              {"value": "yes", "label": "כן"},
-              {"value": "no", "label": "לא"}
-            ]},
-            {"id": "amount", "label": "סכום חודשי (₪)", "type": "number"}
+            {"id": "amount", "label": "סכום חודשי (₪)", "type": "number"},
+            {"id": "start_date", "label": "מתאריך (MM/YYYY)", "type": "month_year", "placeholder": "01/2023", "pattern": "^(0[1-9]|1[0-2])/\\d{4}$", "title": "הזן בפורמט MM/YYYY"}
           ]
         }
       ]
