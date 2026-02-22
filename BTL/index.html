@@ -104,9 +104,17 @@
             letter-spacing: -2px;
         }
 
+        .support-info {
+            font-size: 1.2rem;
+            color: #FFD54F;
+            font-weight: 700;
+            text-shadow: 1px 2px 8px rgba(0,0,0,0.3);
+            margin-bottom: 8px;
+        }
+
         .subtitle {
-            font-size: 1.4rem;
-            color: rgba(255,255,255,0.95);
+            font-size: 1.1rem;
+            color: rgba(255,255,255,0.85);
             font-weight: 300;
             text-shadow: 1px 2px 8px rgba(0,0,0,0.2);
         }
@@ -279,7 +287,7 @@
         }
 
         .accordion-content.show {
-            max-height: 500px;
+            max-height: 2000px;
         }
 
         .accordion-links {
@@ -306,15 +314,56 @@
         }
 
         .nested-accordion {
-            margin-top: 12px;
+            margin: 10px 0;
         }
 
-        .nested-accordion .accordion-header {
-            padding: 18px 24px;
+        .nested-accordion-header {
+            display: block;
+            padding: 15px 20px;
+            background: white;
+            border-radius: 12px;
+            color: var(--text);
+            font-size: 1.1rem;
+            font-weight: 600;
+            border-right: 4px solid var(--accent);
+            cursor: pointer;
+            transition: all 0.2s;
+            position: relative;
         }
 
-        .nested-accordion .accordion-links {
-            padding: 15px 24px;
+        .nested-accordion-header:hover {
+            background: #e3f2fd;
+            transform: translateX(-5px);
+        }
+
+.nested-accordion-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease-out;
+            padding: 0 10px;
+        }
+
+        .nested-accordion-content.show {
+            max-height: 1500px;
+        }
+
+        .nested-accordion-content a {
+            display: block;
+            padding: 12px 18px;
+            margin: 8px 0;
+            background: white;
+            border-radius: 10px;
+            text-decoration: none;
+            color: #1976D2;
+            font-size: 1rem;
+            font-weight: 500;
+            transition: all 0.2s;
+            border-right: 3px solid var(--secondary);
+        }
+
+        .nested-accordion-content a:hover {
+            background: #e3f2fd;
+            transform: translateX(-5px);
         }
 
         @media (max-width: 768px) {
@@ -344,6 +393,7 @@
     <div class="container">
         <header>
             <h1>🏛️ ביטוח לאומי</h1>
+            <p class="support-info">מרכז תמיכה ומידע טלפוני ארצי בטלפון <span dir="ltr">*9696</span></p>
             <p class="subtitle">מידע וזכויות לאזרחים ותיקים בישראל</p>
         </header>
 
@@ -397,11 +447,32 @@
                     <div class="accordion-links">
                         <a href="senior_rights/benefits-index.html">📚 ריכוז קצבאות ותשלומים</a>
                         <a href="Information_Sources.html">📄 מסמכי מקורות מידע</a>
+
+                        <div class="nested-accordion">
+                            <div class="nested-accordion-header" onclick="toggleNestedAccordion(this)">
+                                🧮 מחשבוני עזר באתר הביטוח הלאומי
+                            </div>
+                            <div class="nested-accordion-content">
+                                <a href="https://www.btl.gov.il/Simulators/Pages/default.aspx" target="_blank">📋 קישור לרשימת מחשבונים של הביטוח הלאומי</a>
+                                <a href="https://www.btl.gov.il/Simulators/ziknaCalc/Pages/default.aspx" target="_blank">👴 מחשבון אזרח ותיק (גיל פרישה וסכום קצבה)</a>
+                                <a href="https://www.btl.gov.il/Simulators/ziknaCalc/Pages/vetek.aspx" target="_blank">👴 מחשבון תוספת ותק</a>
+                                <a href="https://www.btl.gov.il/Simulators/Pages/bdikatZakauutLshteGimlaoot.aspx" target="_blank">🔍 מחשבון בדיקת האפשרות לקבל יותר מקצבה אחת</a>
+                                <a href="https://www.btl.gov.il/Simulators/Pages/IncomeSupportCalc.aspx" target="_blank">💰 מחשבון הבטחת הכנסה (השלמת הכנסה)</a>
+                                <a href="https://www.btl.gov.il/Simulators/SiudCalculators/Pages/default.aspx" target="_blank">🏥 מחשבון סיעוד</a>
+                                <a href="https://www.btl.gov.il/Simulators/Pages/SherimIndexCalc.aspx" target="_blank">👨‍👩‍👧 מחשבון שאירים</a>
+                                <a href="https://www.btl.gov.il/Simulators/NehutIndex/Pages/default.aspx" target="_blank">♿ מחשבון נכות כללית</a>
+                                <a href="https://www.btl.gov.il/Simulators/NayadutCalc/Pages/default.aspx" target="_blank">🚗 מחשבון ניידות</a>
+                                <a href="https://www.btl.gov.il/Simulators/n_advoda/Pages/default.aspx" target="_blank">⚠️ מחשבון נפגעי עבודה</a>
+                                <a href="https://www.btl.gov.il/Simulators/peulotEiva/Pages/default.aspx" target="_blank">🛡️ מחשבון נפגעי פעולות איבה</a>
+                            </div>
+                        </div>
+
  <!--                       <a href="senior_rights/intake_questionnaire.html">🧠 שאלון אינטק לפונה לביטוח הלאומי</a> -->
                         <a href="senior_rights/questionnaire.html?id=income-supplement-eligibility">💰 בדיקת זכאות להשלמת הכנסה</a>
-                        <a href="senior_rights/questionnaire.html?id=child-definition&hideReturn=true">👶 הגדרת ילד להשלמת הכנסה אזרח ותיק</a>
+                        <a href="senior_rights/questionnaire.html?id=child-definition&hideReturn=true">👶 כלי להגדרת ילד להשלמת הכנסה אזרח ותיק</a>
                         <a href="senior_rights/questionnaire.html?id=vehicle-income-supplement">🚗 זכאות להשלמת הכנסה עם רכב מעל תקרת רכב</a>
                         <a href="senior_rights/questionnaire.html?id=imputed-income-calculator">🏠 חישוב הכנסה רעיונית מנכסים</a>
+                        <a href="senior_rights/dependents_definition_old_age_survivors.html">📜 הגדרת תלויים בקצבת זיקנה ושאירים</a>
                     </div>
                 </div>
             </div>
@@ -450,6 +521,12 @@
 
     <script>
         function toggleAccordion(header) {
+            const content = header.nextElementSibling;
+            header.classList.toggle('active');
+            content.classList.toggle('show');
+        }
+
+        function toggleNestedAccordion(header) {
             const content = header.nextElementSibling;
             header.classList.toggle('active');
             content.classList.toggle('show');

@@ -287,6 +287,54 @@
             .benefit-name { font-size: 1rem; }
             .benefit-details { padding: 15px; }
         }
+
+        .btl-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: var(--primary);
+            color: white;
+            padding: 10px 14px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            border: 1px solid var(--primary);
+            transition: all 0.2s;
+            margin-bottom: 16px;
+            font-size: 0.95rem;
+        }
+        .btl-link:hover {
+            background: var(--secondary);
+            color: white;
+            border-color: var(--secondary);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+        }
+
+        .search-box {
+            margin-bottom: 25px;
+            position: relative;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        .search-box input {
+            width: 100%;
+            padding: 15px 20px;
+            border-radius: 30px;
+            border: 2px solid #e0e0e0;
+            font-size: 1.1rem;
+            font-family: inherit;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+            transition: all 0.3s;
+            outline: none;
+        }
+        
+        .search-box input:focus {
+            border-color: var(--primary);
+            box-shadow: 0 6px 15px rgba(103, 58, 183, 0.15);
+        }
     </style>
 </head>
 <body>
@@ -297,6 +345,10 @@
             <p class="subtitle">38 סוגי קצבאות, גמלאות ומענקים - לפי נושא וקהל יעד</p>
             <div class="last-update" id="lastUpdate">טוען...</div>
         </header>
+
+        <div class="search-box">
+            <input type="text" id="searchInput" placeholder="🔍 חיפוש קצבה..." oninput="filterBenefits()">
+        </div>
 
         <div id="accordion"></div>
 
@@ -368,6 +420,15 @@
                     subContent.className = 'sub-accordion-content';
 
                     let detailsHTML = '<div class="benefit-details">';
+
+                    // Link to BTL website
+                    if (item.url) {
+                        detailsHTML += `
+                            <a href="${item.url}" target="_blank" class="btl-link">
+                                🌐 מעבר לדף הקצבה באתר ביטוח לאומי
+                            </a>
+                        `;
+                    }
 
                     // Audience
                     if (item.audience) {
@@ -504,15 +565,54 @@
                         content.style.maxHeight = null;
                     }
                 });
-
-                // Open first category by default
-                if (index === 0) {
-                    setTimeout(() => header.click(), 100);
-                }
             });
         }
 
         document.addEventListener('DOMContentLoaded', loadBenefits);
+
+        function filterBenefits() {
+            const input = document.getElementById('searchInput');
+            const filter = input.value.toLowerCase();
+            const categories = document.querySelectorAll('.accordion-card');
+
+            categories.forEach(category => {
+                const items = category.querySelectorAll('.sub-accordion');
+                let hasVisibleItems = false;
+
+                items.forEach(item => {
+                    const text = item.textContent.toLowerCase();
+                    if (text.includes(filter)) {
+                        item.style.display = "";
+                        hasVisibleItems = true;
+                    } else {
+                        item.style.display = "none";
+                    }
+                });
+
+                if (hasVisibleItems) {
+                    category.style.display = "";
+                    
+                    const header = category.querySelector('.accordion-header');
+                    const content = category.querySelector('.accordion-content');
+                    
+                    if (filter !== "") {
+                        // Expand if filtering
+                        if (!header.classList.contains('active')) {
+                            header.classList.add('active');
+                        }
+                        content.style.maxHeight = content.scrollHeight + "px";
+                    } else {
+                        // Collapse if filter cleared
+                        if (header.classList.contains('active')) {
+                            header.classList.remove('active');
+                            content.style.maxHeight = null;
+                        }
+                    }
+                } else {
+                    category.style.display = "none";
+                }
+            });
+        }
     </script>
 </body>
 </html>

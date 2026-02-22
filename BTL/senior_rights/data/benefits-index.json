@@ -9,6 +9,7 @@
         {
           "id": 1,
           "name": "קצבת אזרח ותיק (זקנה)",
+          "url": "https://www.btl.gov.il/benefits/old_age/Pages/default.aspx",
           "audience": "תושבי ישראל שהגיעו לגיל פרישה ועומדים בתנאי תושבות וביטוח.",
           "criteria": [
             "גיל פרישה: נשים 62-65 (לפי תאריך לידה), גברים 67",
@@ -26,6 +27,7 @@
         {
           "id": 2,
           "name": "תוספת ותק",
+          "url": "https://www.btl.gov.il/benefits/old_age/Shum/Pages/Tosafot.aspx",
           "audience": "אזרחים ותיקים עם שנות ביטוח רבות מעבר למינימום הנדרש.",
           "criteria": [
             "2% לכל שנת ביטוח מעבר ל-10 שנים",
@@ -36,6 +38,7 @@
         {
           "id": 3,
           "name": "תוספת דחיית קצבה",
+          "url": "https://www.btl.gov.il/benefits/old_age/Pages/t-dchiyatkitsba.aspx",
           "audience": "מי שדחה קבלת קצבת זקנה והמשיך לעבוד מעבר לגיל הזכאות.",
           "criteria": [],
           "amounts": [
@@ -45,6 +48,7 @@
         {
           "id": 4,
           "name": "תוספת תלויים לאזרח ותיק",
+          "url": "https://www.btl.gov.il/benefits/old_age/Pages/%D7%AA%D7%95%D7%A1%D7%A4%D7%AA%20%D7%91%D7%A2%D7%93%20%D7%91%D7%9F%20%D7%96%D7%95%D7%92%20%D7%95%D7%99%D7%9C%D7%93%D7%99%D7%9D.aspx",
           "audience": "אזרח ותיק שיש לו בן/בת זוג או ילדים תלויים.",
           "criteria": [
             "בן/בת זוג: תוספת לפי הכנסותיו/ה",
@@ -55,6 +59,7 @@
         {
           "id": 5,
           "name": "השלמת הכנסה לאזרח ותיק",
+          "url": "https://www.btl.gov.il/benefits/old_age/hashHachZ/Pages/default.aspx",
           "audience": "אזרחים ותיקים עם הכנסות נמוכות מתחת לתקרות שנקבעו.",
           "criteria": [
             "נועדה להבטיח הכנסה מינימלית",
@@ -65,6 +70,7 @@
         {
           "id": 6,
           "name": "קצבת שאירים",
+          "url": "https://www.btl.gov.il/benefits/Survivors_%20Insurance/Pages/default.aspx",
           "audience": "אלמנות, אלמנים ויתומים של מבוטחים שנפטרו.",
           "criteria": [
             "הנפטר היה תושב ישראל בעת פטירתו",
@@ -84,6 +90,7 @@
         {
           "id": 7,
           "name": "השלמת הכנסה לשאירים",
+          "url": "https://www.btl.gov.il/benefits/Survivors_%20Insurance/Pages/default.aspx",
           "audience": "שאירים עם הכנסות נמוכות.",
           "criteria": [
             "נועדה להבטיח הכנסה מינימלית לשאירים",
@@ -94,6 +101,7 @@
         {
           "id": 8,
           "name": "מענק פטירה",
+          "url": "https://www.btl.gov.il/benefits/Survivors_%20Insurance/Pages/%D7%9E%D7%A2%D7%A0%D7%A7%20%D7%A4%D7%98%D7%99%D7%A8%D7%94.aspx",
           "audience": "בן/בת זוג או מי שטיפל בנפטר בסמוך לפטירה.",
           "criteria": [
             "הנפטר היה מבוטח או קיבל קצבה מביטוח לאומי",
@@ -112,6 +120,7 @@
         {
           "id": 9,
           "name": "קצבת נכות כללית",
+          "url": "https://www.btl.gov.il/benefits/Disability/Pages/default.aspx",
           "audience": "תושבים בגיל עבודה עם נכות רפואית ואובדן כושר השתכרות.",
           "criteria": [
             "גיל: 18 עד 12 חודשים אחרי גיל פרישה",
@@ -130,6 +139,7 @@
         {
           "id": 10,
           "name": "תוספת תלויים לנכה",
+          "url": "https://www.btl.gov.il/benefits/Disability/Pages/%D7%A9%D7%99%D7%A2%D7%95%D7%A8%D7%99%20%D7%94%D7%A7%D7%A6%D7%91%D7%94.aspx",
           "audience": "נכים המקבלים קצבת נכות כללית ויש להם בן/בת זוג או ילדים תלויים.",
           "criteria": [
             "קבלת קצבת נכות כללית",
@@ -144,6 +154,7 @@
         {
           "id": 11,
           "name": "מענק נכות (חד-פעמי)",
+          "url": "https://www.btl.gov.il/benefits/Disability/Pages/default.aspx",
           "audience": "נכים עם אחוזי נכות שאינם מזכים בקצבה חודשית.",
           "criteria": [
             "נכות רפואית בין 40%-59%",
@@ -155,6 +166,7 @@
         {
           "id": 12,
           "name": "קצבת שירותים מיוחדים (שר״מ)",
+          "url": "https://www.btl.gov.il/benefits/Attendance_Allowance/Pages/default.aspx",
           "audience": "נכים הזקוקים לעזרה משמעותית בפעולות יומיומיות או להשגחה מתמדת.",
           "criteria": [
             "מקבלי נכות כללית עם 60%+ נכות רפואית",
@@ -173,6 +185,7 @@
         {
           "id": 13,
           "name": "גמלת סיעוד",
+          "url": "https://www.btl.gov.il/benefits/Long_Term_Care/Pages/default.aspx",
           "audience": "אזרחים ותיקים עם ירידה תפקודית הזקוקים לעזרה בבית.",
           "criteria": [
             "גיל: גיל פרישה",
@@ -192,6 +205,7 @@
         {
           "id": 14,
           "name": "תשלום כספי בגמלת סיעוד",
+          "url": "https://www.btl.gov.il/benefits/Long_Term_Care/Pages/default.aspx",
           "audience": "מקבלי סיעוד שבחרו בכסף במקום שירותים (בכפוף לתנאים).",
           "criteria": [
             "זכאי לגמלת סיעוד",
@@ -210,6 +224,7 @@
         {
           "id": 15,
           "name": "קצבת ניידות",
+          "url": "https://www.btl.gov.il/benefits/Mobility/Pages/default.aspx",
           "audience": "אנשים עם ליקוי ברגליים המוכר ע״י משרד הבריאות.",
           "criteria": [
             "גיל: 3 שנים עד גיל פרישה",
@@ -225,6 +240,7 @@
         {
           "id": 16,
           "name": "הלוואה עומדת לרכב",
+          "url": "https://www.btl.gov.il/benefits/Mobility/Pages/default.aspx",
           "audience": "זכאי ניידות לצורך רכישת רכב מותאם.",
           "criteria": [
             "קבלת קצבת ניידות",
@@ -236,6 +252,7 @@
         {
           "id": 17,
           "name": "מענק לרכישת רכב",
+          "url": "https://www.btl.gov.il/benefits/Mobility/Pages/default.aspx",
           "audience": "זכאי ניידות ללא יכולת מימון עצמית.",
           "criteria": [
             "נכות גבוהה בניידות",
@@ -247,6 +264,7 @@
         {
           "id": 18,
           "name": "השתתפות בהוצאות רכב",
+          "url": "https://www.btl.gov.il/benefits/Mobility/Pages/default.aspx",
           "audience": "זכאי ניידות המחזיקים רכב בפועל.",
           "criteria": [],
           "amounts": [
@@ -263,6 +281,7 @@
         {
           "id": 19,
           "name": "הבטחת הכנסה",
+          "url": "https://www.btl.gov.il/benefits/Income_support/Pages/default.aspx",
           "audience": "תושבים בגיל עבודה ללא הכנסה מספקת.",
           "criteria": [
             "גיל: 20+ (מקרים מיוחדים מ-18)",
@@ -278,6 +297,7 @@
         {
           "id": 20,
           "name": "השלמת הכנסה (למי שעובד)",
+          "url": "https://www.btl.gov.il/benefits/Income_support/Pages/default.aspx",
           "audience": "עובדים עם שכר נמוך מאוד.",
           "criteria": [
             "עובד אך ההכנסה נמוכה מהסף",
@@ -288,6 +308,7 @@
         {
           "id": 21,
           "name": "דמי אבטלה",
+          "url": "https://www.btl.gov.il/benefits/unemployment/Pages/default.aspx",
           "audience": "עובדים שכירים שפוטרו או סיימו עבודה ועומדים בתנאי אכשרה.",
           "criteria": [
             "גיל: 20-67 (יוצאי צבא מ-18)",
@@ -304,6 +325,7 @@
         {
           "id": 22,
           "name": "גמלת הבטחת הכנסה לנכה",
+          "url": "https://www.btl.gov.il/benefits/Income_support/Pages/default.aspx",
           "audience": "נכים שאינם זכאים לנכות כללית אך אין להם הכנסה.",
           "criteria": [
             "נכות רפואית שאינה מזכה בקצבת נכות כללית",
@@ -322,6 +344,7 @@
         {
           "id": 23,
           "name": "דמי פגיעה בעבודה",
+          "url": "https://www.btl.gov.il/benefits/work_injury/Pages/default.aspx",
           "audience": "עובדים שנפגעו בעבודה או בדרך אליה.",
           "criteria": [
             "פגיעה בעבודה: תאונה או מחלת מקצוע",
@@ -336,6 +359,7 @@
         {
           "id": 24,
           "name": "קצבת נכות מעבודה",
+          "url": "https://www.btl.gov.il/benefits/Work_Injury/Work_injury_benefit/Pages/default.aspx",
           "audience": "נפגעי עבודה עם נכות קבועה.",
           "criteria": [
             "נכות יציבה: 20%+",
@@ -347,6 +371,7 @@
         {
           "id": 25,
           "name": "מענק נכות מעבודה",
+          "url": "https://www.btl.gov.il/benefits/Work_Injury/Work_injury_benefit/Pages/default.aspx",
           "audience": "נפגעי עבודה עם נכות בשיעור נמוך יחסית.",
           "criteria": [
             "נכות 9%-19%",
@@ -357,6 +382,7 @@
         {
           "id": 26,
           "name": "גמלת תלויים לנפגע עבודה שנפטר",
+          "url": "https://www.btl.gov.il/benefits/Work_Injury/%D7%96%D7%9B%D7%95%D7%99%D7%95%D7%AA%20%D7%91%D7%A0%D7%99%20%D7%9E%D7%A9%D7%A4%D7%97%D7%94%20%D7%A9%D7%9C%20%D7%A0%D7%A4%D7%98%D7%A8%20%D7%9E%D7%A4%D7%92%D7%99%D7%A2%D7%94%20%D7%91%D7%A2%D7%91%D7%95%D7%93%D7%94/Pages/default.aspx",
           "audience": "בני משפחה של נפגע עבודה שנפטר.",
           "criteria": [
             "אלמנה/אלמן, יתומים, הורים תלויים",
@@ -374,6 +400,7 @@
         {
           "id": 27,
           "name": "קצבת ילדים",
+          "url": "https://www.btl.gov.il/benefits/children/Pages/default.aspx",
           "audience": "הורים לילדים תושבי ישראל.",
           "criteria": [
             "קצבה אוניברסלית - ללא מבחן הכנסות",
@@ -389,6 +416,7 @@
         {
           "id": 28,
           "name": "מענק לידה",
+          "url": "https://www.btl.gov.il/benefits/Pages/maanakleda.aspx",
           "audience": "יולדות תושבות ישראל.",
           "criteria": [],
           "amounts": [
@@ -401,6 +429,7 @@
         {
           "id": 29,
           "name": "דמי לידה",
+          "url": "https://www.btl.gov.il/benefits/maternity/Childbirth_Allowance/Pages/default.aspx",
           "audience": "נשים עובדות לאחר לידה.",
           "criteria": [
             "הפסקת עבודה בזמן ההיריון/לידה",
@@ -414,6 +443,7 @@
         {
           "id": 30,
           "name": "דמי שמירת היריון",
+          "url": "https://www.btl.gov.il/benefits/maternity/Risk_Pregnancy/Pages/default.aspx",
           "audience": "נשים שנבצר מהן לעבוד עקב היריון בסיכון.",
           "criteria": [
             "הריון בסיכון: אישור רפואי",
@@ -425,6 +455,7 @@
         {
           "id": 31,
           "name": "מזונות (תשלום במקום החייב)",
+          "url": "https://www.btl.gov.il/benefits/Alimony/Pages/default.aspx",
           "audience": "הורה משמורן שאינו מקבל מזונות בפועל.",
           "criteria": [
             "פסק דין למזונות",
@@ -444,6 +475,7 @@
         {
           "id": 32,
           "name": "גמלת ילד נכה",
+          "url": "https://www.btl.gov.il/benefits/Disabled_Child/Pages/default.aspx",
           "audience": "ילדים עם מוגבלות רפואית או תפקודית משמעותית.",
           "criteria": [
             "גיל: מלידה עד 18 שנים ו-3 חודשים",
@@ -466,6 +498,7 @@
         {
           "id": 33,
           "name": "קצבת נפגעי פעולות איבה",
+          "url": "https://www.btl.gov.il/benefits/Victims_of_Hostilities/Casualties_benefits/TgmuliNehut/Pages/default.aspx",
           "audience": "נפגעים מפעולות איבה שהוכרו.",
           "criteria": [
             "פגיעה באירוע איבה (פיגוע, טילים, חטיפה)",
@@ -477,6 +510,7 @@
         {
           "id": 34,
           "name": "גמלת תלויים לנפגע איבה",
+          "url": "https://www.btl.gov.il/benefits/Victims_of_Hostilities/%D7%AA%D7%92%D7%9E%D7%95%D7%9C%D7%99%D7%9D%20%D7%9C%D7%9E%D7%A9%D7%A4%D7%97%D7%95%D7%AA%20%D7%94%D7%A0%D7%A1%D7%A4%D7%99%D7%9D%20%D7%91%D7%A4%D7%A2%D7%95%D7%9C%D7%95%D7%AA%20%D7%90%D7%99%D7%91%D7%94/Pages/default.aspx",
           "audience": "משפחות של נפגע איבה שנפטר.",
           "criteria": [],
           "amounts": [
@@ -488,6 +522,7 @@
         {
           "id": 35,
           "name": "מענק שחרור לחיילים משוחררים",
+          "url": "https://www.btl.gov.il/benefits/Demobilized_Soldier/Pages/default.aspx",
           "audience": "חיילים משוחררים משירות חובה.",
           "criteria": [],
           "amounts": [],
@@ -503,6 +538,7 @@
         {
           "id": 36,
           "name": "מענק הסתגלות",
+          "url": "https://www.btl.gov.il/benefits/old_age/Pages/default.aspx",
           "audience": "אוכלוסיות ייחודיות בתקופות מעבר (נכות, שיקום).",
           "criteria": [],
           "amounts": [],
@@ -511,6 +547,7 @@
         {
           "id": 37,
           "name": "מענק חד-פעמי במצוקה",
+          "url": "https://www.btl.gov.il/benefits/Income_support/Pages/default.aspx",
           "audience": "מבוטחים במצב כלכלי או רפואי חריג.",
           "criteria": [
             "מצוקה כלכלית או רפואית חריגה",
@@ -521,6 +558,7 @@
         {
           "id": 38,
           "name": "תשלומים רטרואקטיביים",
+          "url": "https://www.btl.gov.il/benefits/Pages/default.aspx",
           "audience": "מי שהוכר בדיעבד כזכאי לקצבה.",
           "criteria": [
             "כאשר תביעה מאושרת בדיעבד, משלם ביטוח לאומי את כל התקופה שהייתה זכאות",
