@@ -345,7 +345,7 @@
 
         <div class="card">
             <div class="input-group">
-                <label>הזינו מספר תעודת זהות (7, 8 או 9 ספרות):</label>
+                <label>הזינו מספר תעודת זהות (4 עד 9 ספרות):</label>
                 <div class="input-row">
                     <input type="text" id="idInput" maxlength="9" placeholder="הקלידו מספר..."
                            inputmode="numeric" pattern="[0-9]*"
@@ -366,12 +366,10 @@
                     מספר תעודת זהות ישראלית מורכב מ-9 ספרות. הספרה התשיעית היא ספרת ביקורת
                     המחושבת לפי אלגוריתם לוהן (Luhn).
                     <br>
-                    <strong>7 ספרות:</strong> הכלי בודק אם הוספת שני אפסים מקדימים יוצרת מספר תקין.
-                    אם לא - מוסיף אפס אחד ומחשב את ספרת הביקורת.
-                    <br>
-                    <strong>8 ספרות:</strong> הכלי מחשב את ספרת הביקורת ומוסיף אותה כספרה תשיעית.
-                    <br>
                     <strong>9 ספרות:</strong> הכלי בודק האם מספר תעודת הזהות תקין.
+                    <br>
+                    <strong>4-8 ספרות:</strong> הכלי משלים אפסים מקדימים ובודק אם ספרת הביקורת תקינה.
+                    אם לא - משלים אפסים מקדימים עם ספרה אחת פחות ומחשב את ספרת הביקורת.
                 </p>
             </div>
         </div>
@@ -430,12 +428,12 @@
                 return;
             }
 
-            if (input.length < 7 || input.length > 9) {
+            if (input.length < 4 || input.length > 9) {
                 resultDiv.className = 'result-box invalid';
                 resultDiv.innerHTML =
                     '<div class="result-icon">❌</div>' +
                     '<div class="result-title">קלט לא תקין</div>' +
-                    '<div class="result-detail">יש להזין 7, 8 או 9 ספרות (הוזנו ' + input.length + ' ספרות)</div>';
+                    '<div class="result-detail">יש להזין בין 4 ל-9 ספרות (הוזנו ' + input.length + ' ספרות)</div>';
                 return;
             }
 
@@ -458,64 +456,35 @@
                 return;
             }
 
-            if (input.length === 7) {
-                // Try with two leading zeros
-                var withTwoZeros = '00' + input;
-                if (isValidId(withTwoZeros)) {
-                    resultDiv.className = 'result-box calculated';
-                    resultDiv.innerHTML =
-                        '<div class="result-icon">🔢</div>' +
-                        '<div class="result-title">מספר תעודת הזהות המלא (עם שני אפסים מקדימים)</div>' +
-                        '<div class="result-id">' + formatId(withTwoZeros) + '</div>' +
-                        '<div class="result-detail">הוספת 00 מקדימה יוצרת מספר עם ספרת ביקורת תקינה</div>';
-                } else {
-                    // Add one leading zero and calculate check digit
-                    var withOneZero = '0' + input;
-                    var checkDigit = calcCheckDigit(withOneZero);
-                    var fullId = withOneZero + checkDigit;
-                    resultDiv.className = 'result-box calculated';
-                    resultDiv.innerHTML =
-                        '<div class="result-icon">🔢</div>' +
-                        '<div class="result-title">מספר תעודת הזהות המלא</div>' +
-                        '<div class="result-id">' + formatId(fullId) + '</div>' +
-                        '<div class="result-detail">אפס מקדים אחד + ספרת ביקורת מחושבת: ' + checkDigit + '</div>';
-                }
+            // 4-8 digits: general logic
+            var missing = 9 - input.length;
+
+            // Step 1: All missing digits are leading zeros
+            var padded = '0'.repeat(missing) + input;
+            if (isValidId(padded)) {
+                resultDiv.className = 'result-box calculated';
+                resultDiv.innerHTML =
+                    '<div class="result-icon">🔢</div>' +
+                    '<div class="result-title">מספר תעודת הזהות המלא</div>' +
+                    '<div class="result-id">' + formatId(padded) + '</div>' +
+                    '<div class="result-detail">' + missing + ' אפסים מקדימים, ספרת ביקורת תקינה</div>';
                 return;
             }
 
-            if (input.length === 8) {
-                // Add one leading zero to make 9 digits, check if valid
-                var withZero = '0' + input;
-                if (isValidId(withZero)) {
-                    resultDiv.className = 'result-box calculated';
-                    resultDiv.innerHTML =
-                        '<div class="result-icon">🔢</div>' +
-                        '<div class="result-title">מספר תעודת הזהות המלא</div>' +
-                        '<div class="result-id">' + formatId(withZero) + '</div>' +
-                        '<div class="result-detail">אפס מקדים + ספרת ביקורת תקינה</div>';
-                } else {
-                    // Check digit doesn't match - warn user
-                    var first7 = input.substring(0, 7);
-                    var userDigit = input.charAt(7);
-                    var correctCheckDigit = calcCheckDigit('0' + first7);
-                    resultDiv.className = 'result-box warning';
-                    resultDiv.innerHTML =
-                        '<div class="result-icon">⚠️</div>' +
-                        '<div class="result-title">ספרת הביקורת אינה תואמת</div>' +
-                        '<div class="result-detail">' +
-                            'הספרה השמינית שהוזנה: <strong>' + userDigit + '</strong>' +
-                            '<br>ספרת הביקורת הנכונה: <strong>' + correctCheckDigit + '</strong>' +
-                        '</div>' +
-                        '<div class="result-detail">ייתכן שהספרה האחרונה שהוזנה שגויה.</div>' +
-                        '<button class="btn-confirm" onclick="recheckAs7(\'' + first7 + '\')">בדוק מחדש עם 7 הספרות הראשונות בלבד</button>';
-                }
-                return;
-            }
-        }
-
-        function recheckAs7(sevenDigits) {
-            document.getElementById('idInput').value = sevenDigits;
-            checkId();
+            // Step 2: Check digit missing at end + (missing-1) leading zeros
+            var leadingZeros = missing - 1;
+            var eightDigits = '0'.repeat(leadingZeros) + input;
+            var checkDigit = calcCheckDigit(eightDigits);
+            var fullId = eightDigits + checkDigit;
+            var detail = leadingZeros > 0
+                ? leadingZeros + ' אפסים מקדימים + ספרת ביקורת מחושבת: ' + checkDigit
+                : 'ספרת ביקורת מחושבת: ' + checkDigit;
+            resultDiv.className = 'result-box calculated';
+            resultDiv.innerHTML =
+                '<div class="result-icon">🔢</div>' +
+                '<div class="result-title">מספר תעודת הזהות המלא</div>' +
+                '<div class="result-id">' + formatId(fullId) + '</div>' +
+                '<div class="result-detail">' + detail + '</div>';
         }
 
         function clearAll() {
