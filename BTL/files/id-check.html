@@ -409,15 +409,33 @@
         }
 
         function checkId() {
-            var input = document.getElementById('idInput').value.trim();
+            var input = document.getElementById('idInput').value.replace(/\s/g, '');
             var resultDiv = document.getElementById('result');
+
+            if (input.length === 0) {
+                resultDiv.className = 'result-box invalid';
+                resultDiv.innerHTML =
+                    '<div class="result-icon">❌</div>' +
+                    '<div class="result-title">לא הוזן מספר</div>' +
+                    '<div class="result-detail">יש להזין מספר תעודת זהות</div>';
+                return;
+            }
+
+            if (/[^0-9]/.test(input)) {
+                resultDiv.className = 'result-box invalid';
+                resultDiv.innerHTML =
+                    '<div class="result-icon">❌</div>' +
+                    '<div class="result-title">קלט לא תקין</div>' +
+                    '<div class="result-detail">יש להזין ספרות בלבד, ללא אותיות או תווים מיוחדים</div>';
+                return;
+            }
 
             if (input.length < 7 || input.length > 9) {
                 resultDiv.className = 'result-box invalid';
                 resultDiv.innerHTML =
                     '<div class="result-icon">❌</div>' +
                     '<div class="result-title">קלט לא תקין</div>' +
-                    '<div class="result-detail">יש להזין 7, 8 או 9 ספרות</div>';
+                    '<div class="result-detail">יש להזין 7, 8 או 9 ספרות (הוזנו ' + input.length + ' ספרות)</div>';
                 return;
             }
 
