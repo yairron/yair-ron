@@ -178,7 +178,27 @@
             max-height: 0;
             overflow: hidden;
             background: #fafafa;
+            transition: max-height 0.3s ease, overflow 0s 0.3s;
+        }
+
+        .sub-accordion-content.scrollable {
+            overflow-y: auto;
             transition: max-height 0.3s ease;
+        }
+
+        .sub-accordion-content::-webkit-scrollbar {
+            width: 8px;
+        }
+        .sub-accordion-content::-webkit-scrollbar-track {
+            background: #f0f0f0;
+            border-radius: 4px;
+        }
+        .sub-accordion-content::-webkit-scrollbar-thumb {
+            background: #b0b0b0;
+            border-radius: 4px;
+        }
+        .sub-accordion-content::-webkit-scrollbar-thumb:hover {
+            background: #909090;
         }
 
         .benefit-details {
@@ -489,6 +509,7 @@
                         links.querySelectorAll('.sub-accordion-header.active').forEach(sh => {
                             if (sh !== subHeader) {
                                 sh.classList.remove('active');
+                                sh.nextElementSibling.classList.remove('scrollable');
                                 sh.nextElementSibling.style.maxHeight = null;
                             }
                         });
@@ -496,7 +517,12 @@
                         // Toggle current sub-accordion
                         subHeader.classList.toggle('active');
                         if (!wasActive) {
-                            subContent.style.maxHeight = subContent.scrollHeight + 'px';
+                            var maxH = 400;
+                            var needsScroll = subContent.scrollHeight > maxH;
+                            subContent.style.maxHeight = (needsScroll ? maxH : subContent.scrollHeight) + 'px';
+                            if (needsScroll) {
+                                subContent.classList.add('scrollable');
+                            }
                             // Update parent content height
                             setTimeout(() => {
                                 content.style.maxHeight = content.scrollHeight + 'px';
@@ -509,6 +535,7 @@
                                 });
                             }, 350);
                         } else {
+                            subContent.classList.remove('scrollable');
                             subContent.style.maxHeight = null;
                         }
                     });
@@ -533,6 +560,7 @@
                                 // Close all sub-accordions in this accordion
                                 otherContent.querySelectorAll('.sub-accordion-header.active').forEach(sh => {
                                     sh.classList.remove('active');
+                                    sh.nextElementSibling.classList.remove('scrollable');
                                     sh.nextElementSibling.style.maxHeight = null;
                                 });
                                 otherContent.style.maxHeight = null;
@@ -546,6 +574,7 @@
                         // Close all sub-accordions when opening main
                         content.querySelectorAll('.sub-accordion-header.active').forEach(sh => {
                             sh.classList.remove('active');
+                            sh.nextElementSibling.classList.remove('scrollable');
                             sh.nextElementSibling.style.maxHeight = null;
                         });
                         content.style.maxHeight = content.scrollHeight + 'px';
@@ -560,6 +589,7 @@
                         // Close all sub-accordions when closing main
                         content.querySelectorAll('.sub-accordion-header.active').forEach(sh => {
                             sh.classList.remove('active');
+                            sh.nextElementSibling.classList.remove('scrollable');
                             sh.nextElementSibling.style.maxHeight = null;
                         });
                         content.style.maxHeight = null;
