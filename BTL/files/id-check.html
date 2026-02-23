@@ -230,6 +230,35 @@
             border: 2px solid var(--secondary);
         }
 
+        .result-box.warning {
+            display: block;
+            background: linear-gradient(135deg, #FFF8E1, #FFECB3);
+            border: 2px solid var(--accent);
+        }
+
+        .result-box.warning .result-title { color: #E65100; }
+
+        .btn-confirm {
+            display: inline-block;
+            margin-top: 15px;
+            padding: 12px 28px;
+            background: linear-gradient(135deg, var(--accent), #F4A020);
+            color: white;
+            border: none;
+            border-radius: 14px;
+            font-size: 1.05rem;
+            font-weight: 700;
+            font-family: 'Assistant', sans-serif;
+            cursor: pointer;
+            transition: all 0.3s;
+            box-shadow: 0 4px 12px rgba(232,168,64,0.3);
+        }
+
+        .btn-confirm:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 18px rgba(232,168,64,0.4);
+        }
+
         .result-icon {
             font-size: 3rem;
             margin-bottom: 10px;
@@ -437,17 +466,38 @@
             }
 
             if (input.length === 8) {
-                // Calculate check digit and append
-                var checkDigit = calcCheckDigit(input);
-                var fullId = input + checkDigit;
-                resultDiv.className = 'result-box calculated';
-                resultDiv.innerHTML =
-                    '<div class="result-icon">🔢</div>' +
-                    '<div class="result-title">מספר תעודת הזהות המלא</div>' +
-                    '<div class="result-id">' + formatId(fullId) + '</div>' +
-                    '<div class="result-detail">ספרת הביקורת המחושבת: ' + checkDigit + '</div>';
+                // Add one leading zero to make 9 digits, check if valid
+                var withZero = '0' + input;
+                if (isValidId(withZero)) {
+                    resultDiv.className = 'result-box calculated';
+                    resultDiv.innerHTML =
+                        '<div class="result-icon">🔢</div>' +
+                        '<div class="result-title">מספר תעודת הזהות המלא</div>' +
+                        '<div class="result-id">' + formatId(withZero) + '</div>' +
+                        '<div class="result-detail">אפס מקדים + ספרת ביקורת תקינה</div>';
+                } else {
+                    // Check digit doesn't match - warn user
+                    var first7 = input.substring(0, 7);
+                    var userDigit = input.charAt(7);
+                    var correctCheckDigit = calcCheckDigit('0' + first7);
+                    resultDiv.className = 'result-box warning';
+                    resultDiv.innerHTML =
+                        '<div class="result-icon">⚠️</div>' +
+                        '<div class="result-title">ספרת הביקורת אינה תואמת</div>' +
+                        '<div class="result-detail">' +
+                            'הספרה השמינית שהוזנה: <strong>' + userDigit + '</strong>' +
+                            '<br>ספרת הביקורת הנכונה: <strong>' + correctCheckDigit + '</strong>' +
+                        '</div>' +
+                        '<div class="result-detail">ייתכן שהספרה האחרונה שהוזנה שגויה.</div>' +
+                        '<button class="btn-confirm" onclick="recheckAs7(\'' + first7 + '\')">בדוק מחדש עם 7 הספרות הראשונות בלבד</button>';
+                }
                 return;
             }
+        }
+
+        function recheckAs7(sevenDigits) {
+            document.getElementById('idInput').value = sevenDigits;
+            checkId();
         }
 
         function clearAll() {
