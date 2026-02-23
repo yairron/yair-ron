@@ -197,6 +197,27 @@
             background: #ddd;
         }
 
+        .checkbox-row {
+            margin-bottom: 15px;
+        }
+
+        .checkbox-label {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            cursor: pointer;
+            font-size: 1.05rem;
+            font-weight: 600;
+            color: var(--text);
+        }
+
+        .checkbox-label input[type="checkbox"] {
+            width: 20px;
+            height: 20px;
+            cursor: pointer;
+            accent-color: var(--primary);
+        }
+
         .buttons-row {
             display: flex;
             gap: 12px;
@@ -354,6 +375,13 @@
                 </div>
             </div>
 
+            <div class="checkbox-row">
+                <label class="checkbox-label">
+                    <input type="checkbox" id="lastIsCheck">
+                    <span class="checkbox-text">הספרה האחרונה היא ספרת ביקורת</span>
+                </label>
+            </div>
+
             <div class="buttons-row">
                 <button class="btn btn-clear" onclick="clearAll()">נקה</button>
             </div>
@@ -437,6 +465,8 @@
                 return;
             }
 
+            var lastIsCheck = document.getElementById('lastIsCheck').checked;
+
             if (input.length === 9) {
                 // Full 9-digit ID - just validate
                 if (isValidId(input)) {
@@ -456,9 +486,41 @@
                 return;
             }
 
-            // 4-8 digits: general logic
+            // 4-8 digits
             var missing = 9 - input.length;
 
+            if (lastIsCheck) {
+                // Checkbox mode: last digit is treated as check digit
+                var significant = input.substring(0, input.length - 1);
+                var userCheckDigit = input.charAt(input.length - 1);
+                var leadingZeros = 9 - input.length;
+                var eightDigits = '0'.repeat(leadingZeros) + significant;
+                var calculatedCheck = calcCheckDigit(eightDigits);
+                var fullId = eightDigits + calculatedCheck;
+
+                if (userCheckDigit == calculatedCheck) {
+                    resultDiv.className = 'result-box calculated';
+                    resultDiv.innerHTML =
+                        '<div class="result-icon">🔢</div>' +
+                        '<div class="result-title">מספר תעודת הזהות המלא</div>' +
+                        '<div class="result-id">' + formatId(fullId) + '</div>' +
+                        '<div class="result-detail">' + leadingZeros + ' אפסים מקדימים, ספרת ביקורת תואמת</div>';
+                } else {
+                    resultDiv.className = 'result-box warning';
+                    resultDiv.innerHTML =
+                        '<div class="result-icon">⚠️</div>' +
+                        '<div class="result-title">ספרת הביקורת אינה תואמת</div>' +
+                        '<div class="result-detail">' +
+                            'הספרה שהוזנה: <strong>' + userCheckDigit + '</strong>' +
+                            '<br>ספרת הביקורת הנכונה: <strong>' + calculatedCheck + '</strong>' +
+                        '</div>' +
+                        '<div class="result-detail">ייתכן שהספרה האחרונה שגויה ואינה ספרת ביקורת.</div>' +
+                        '<button class="btn-confirm" onclick="retryWithoutLastDigit()">הסר את הספרה האחרונה ובדוק מחדש</button>';
+                }
+                return;
+            }
+
+            // Regular mode (no checkbox)
             // Step 1: All missing digits are leading zeros
             var padded = '0'.repeat(missing) + input;
             if (isValidId(padded)) {
@@ -487,8 +549,17 @@
                 '<div class="result-detail">' + detail + '</div>';
         }
 
+        function retryWithoutLastDigit() {
+            var inputEl = document.getElementById('idInput');
+            var checkboxEl = document.getElementById('lastIsCheck');
+            inputEl.value = inputEl.value.slice(0, -1);
+            checkboxEl.checked = false;
+            checkId();
+        }
+
         function clearAll() {
             document.getElementById('idInput').value = '';
+            document.getElementById('lastIsCheck').checked = false;
             var resultDiv = document.getElementById('result');
             resultDiv.className = 'result-box';
             resultDiv.innerHTML = '';
