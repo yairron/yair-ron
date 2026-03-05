@@ -1,0 +1,1764 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>מדריך מקיף לקצבת שאירים 2026</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Assistant:wght@300;400;600;700;800&family=Varela+Round&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #2E5B8A;
+            --secondary: #4A90B5;
+            --accent: #E8A840;
+            --success: #2E7D32;
+            --danger: #C62828;
+            --light: #F5F9FC;
+            --dark: #1A3A52;
+            --text: #2C3E50;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Assistant', 'Segoe UI', Tahoma, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
+            min-height: 100vh;
+            padding: 20px;
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background:
+                radial-gradient(circle at 20% 50%, rgba(255,255,255,0.1) 0%, transparent 50%),
+                radial-gradient(circle at 80% 80%, rgba(255,255,255,0.1) 0%, transparent 50%);
+            animation: backgroundShift 20s ease-in-out infinite;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        @keyframes backgroundShift {
+            0%, 100% { transform: translate(0, 0) scale(1); }
+            50% { transform: translate(-5%, 5%) scale(0.95); }
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 50px;
+            animation: slideDown 0.8s ease-out;
+        }
+
+        @keyframes slideDown {
+            from { opacity: 0; transform: translateY(-50px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        h1 {
+            font-family: 'Varela Round', sans-serif;
+            font-size: 3rem;
+            font-weight: 800;
+            color: white;
+            margin-bottom: 15px;
+            text-shadow: 3px 5px 15px rgba(0,0,0,0.3);
+            letter-spacing: -1px;
+        }
+
+        .subtitle {
+            font-size: 1.4rem;
+            color: rgba(255,255,255,0.95);
+            font-weight: 300;
+            text-shadow: 1px 2px 8px rgba(0,0,0,0.2);
+        }
+
+        .update-badge {
+            display: inline-block;
+            background: rgba(255,255,255,0.2);
+            backdrop-filter: blur(10px);
+            padding: 8px 20px;
+            border-radius: 20px;
+            color: white;
+            font-size: 0.9rem;
+            margin-top: 15px;
+            font-weight: 600;
+        }
+
+        .back-button {
+            display: inline-block;
+            background: rgba(255,255,255,0.25);
+            backdrop-filter: blur(10px);
+            padding: 12px 24px;
+            border-radius: 25px;
+            color: white;
+            text-decoration: none;
+            font-size: 1rem;
+            font-weight: 600;
+            transition: all 0.3s;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+        }
+
+        .back-button:hover {
+            background: rgba(255,255,255,0.35);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(0,0,0,0.25);
+        }
+
+        .back-button::before {
+            content: '← ';
+            margin-left: 5px;
+        }
+
+        .accordions-container {
+            margin-bottom: 40px;
+            animation: fadeIn 0.8s ease-out 0.3s both;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* אקורדיונים ראשיים */
+        .accordion {
+            background: white;
+            border-radius: 0;
+            margin-bottom: 0;
+            box-shadow: 0 12px 35px rgba(0,0,0,0.2);
+            overflow: hidden;
+            transition: all 0.3s;
+            border-bottom: 1px solid rgba(0,0,0,0.1);
+        }
+
+        .accordion:first-child { border-radius: 24px 24px 0 0; }
+        .accordion:last-child { border-radius: 0 0 24px 24px; border-bottom: none; }
+        .accordion:only-child { border-radius: 24px; }
+        .accordion:hover { box-shadow: 0 15px 45px rgba(0,0,0,0.25); }
+
+        .accordion-header {
+            padding: 20px 35px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 18px;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            transition: all 0.3s;
+            position: relative;
+        }
+
+        .accordion-header:hover {
+            background: linear-gradient(135deg, var(--secondary), var(--primary));
+        }
+
+        .accordion-icon {
+            width: 60px;
+            height: 60px;
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            background: rgba(255,255,255,0.2);
+            flex-shrink: 0;
+        }
+
+        .accordion-title {
+            font-family: 'Varela Round', sans-serif;
+            font-size: 1.6rem;
+            font-weight: 800;
+            flex: 1;
+            margin: 0;
+        }
+
+        .accordion-arrow {
+            font-size: 1.5rem;
+            transition: transform 0.3s;
+            width: 40px;
+            text-align: center;
+            flex-shrink: 0;
+        }
+
+        .accordion.active .accordion-arrow { transform: rotate(180deg); }
+
+        .accordion-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s ease;
+        }
+
+        .accordion.active .accordion-content {
+            max-height: 10000px;
+            height: 80vh;
+            overflow: auto;
+            -webkit-overflow-scrolling: touch;
+        }
+
+        .accordion-body {
+            padding: 35px;
+            font-size: 1.1rem;
+            line-height: 1.9;
+            color: #546E7A;
+        }
+
+        /* תתי-אקורדיונים */
+        .sub-accordion {
+            margin: 15px 0;
+            border: 1px solid #E0E7EE;
+            border-radius: 12px;
+            overflow: hidden;
+            background: #F8FAFB;
+        }
+
+        .sub-accordion-header {
+            padding: 18px 25px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background: linear-gradient(135deg, #F8FAFB 0%, #EEF2F5 100%);
+            transition: all 0.3s;
+        }
+
+        .sub-accordion-header:hover {
+            background: linear-gradient(135deg, #EEF2F5 0%, #E3E9EE 100%);
+        }
+
+        .sub-accordion-title {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: var(--primary);
+            margin: 0;
+            flex: 1;
+        }
+
+        .sub-accordion-arrow {
+            font-size: 1rem;
+            transition: transform 0.3s;
+            color: var(--secondary);
+            flex-shrink: 0;
+            margin-right: 10px;
+        }
+
+        .sub-accordion.active > .sub-accordion-header .sub-accordion-arrow {
+            transform: rotate(180deg);
+        }
+
+        .sub-accordion-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s ease;
+        }
+
+        .sub-accordion.active > .sub-accordion-content {
+            max-height: 80vh;
+            overflow: auto;
+            -webkit-overflow-scrolling: touch;
+        }
+
+        .sub-accordion-body {
+            padding: 20px 25px;
+            background: white;
+        }
+
+        /* תת-תתי-אקורדיונים (רמה 3) */
+        .sub-sub-accordion {
+            margin: 12px 0;
+            border: 1px solid #BBDEFB;
+            border-radius: 10px;
+            overflow: hidden;
+            background: #FAFBFC;
+        }
+
+        .sub-sub-accordion-header {
+            padding: 14px 20px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background: linear-gradient(135deg, #E3F2FD 0%, #BBDEFB 100%);
+            transition: all 0.3s;
+        }
+
+        .sub-sub-accordion-header:hover {
+            background: linear-gradient(135deg, #BBDEFB 0%, #90CAF9 100%);
+        }
+
+        .sub-sub-accordion-title {
+            font-size: 1.05rem;
+            font-weight: 700;
+            color: var(--dark);
+            margin: 0;
+            flex: 1;
+        }
+
+        .sub-sub-accordion-arrow {
+            font-size: 0.9rem;
+            transition: transform 0.3s;
+            color: var(--primary);
+            flex-shrink: 0;
+            margin-right: 10px;
+        }
+
+        .sub-sub-accordion.active > .sub-sub-accordion-header .sub-sub-accordion-arrow {
+            transform: rotate(180deg);
+        }
+
+        .sub-sub-accordion-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s ease;
+        }
+
+        .sub-sub-accordion.active > .sub-sub-accordion-content {
+            max-height: 5000px;
+            overflow: auto;
+            -webkit-overflow-scrolling: touch;
+        }
+
+        .sub-sub-accordion-body {
+            padding: 18px 20px;
+            background: white;
+        }
+
+        /* תוכן כללי */
+        .content-section p {
+            margin: 10px 0;
+        }
+
+        .content-section strong {
+            color: var(--dark);
+        }
+
+        .note-box {
+            background: #FFF8E1;
+            border-right: 4px solid var(--accent);
+            border-radius: 8px;
+            padding: 12px 18px;
+            margin: 15px 0;
+            font-size: 1rem;
+        }
+
+        .note-box.info {
+            background: #E3F2FD;
+            border-right-color: var(--secondary);
+        }
+
+        .note-box.success {
+            background: #E8F5E9;
+            border-right-color: var(--success);
+        }
+
+        .note-box.danger {
+            background: #FFEBEE;
+            border-right-color: var(--danger);
+        }
+
+        /* טבלאות */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 15px 0;
+            font-size: 1rem;
+            background: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+        }
+
+        th {
+            background: var(--primary);
+            color: white;
+            padding: 12px 16px;
+            text-align: right;
+            font-weight: 700;
+        }
+
+        td {
+            padding: 11px 16px;
+            border-bottom: 1px solid #E0E7EE;
+            color: #546E7A;
+        }
+
+        tr:last-child td { border-bottom: none; }
+        tr:nth-child(even) td { background: #F5F9FC; }
+        tr:hover td { background: #EEF2F5; }
+
+        /* רשימות */
+        .check-list {
+            list-style: none;
+            padding: 0;
+            margin: 15px 0;
+        }
+
+        .check-list li {
+            padding: 10px 0;
+            padding-right: 30px;
+            position: relative;
+            border-bottom: 1px solid #E0E7EE;
+            color: #546E7A;
+        }
+
+        .check-list li:last-child { border-bottom: none; }
+
+        .check-list li::before {
+            content: '✓';
+            position: absolute;
+            right: 0;
+            color: var(--success);
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
+
+        /* קישורים */
+        .link-item {
+            display: block;
+            padding: 11px 18px;
+            margin-bottom: 8px;
+            background: #F5F9FC;
+            border-radius: 10px;
+            color: var(--secondary);
+            text-decoration: none;
+            transition: all 0.3s;
+            font-weight: 600;
+        }
+
+        .link-item:hover {
+            background: var(--secondary);
+            color: white;
+            transform: translateX(-4px);
+        }
+
+        /* info-box footer */
+        .info-box {
+            background: rgba(255,255,255,0.95);
+            border-radius: 20px;
+            padding: 30px;
+            margin-top: 40px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+            border-right: 4px solid var(--accent);
+            animation: fadeIn 0.8s ease-out 0.6s both;
+        }
+
+        .info-box-header {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 15px;
+        }
+
+        .info-box-icon { font-size: 2rem; }
+
+        .info-box h3 {
+            font-family: 'Varela Round', sans-serif;
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: var(--accent);
+            margin: 0;
+        }
+
+        .info-box p {
+            font-size: 1.05rem;
+            line-height: 1.8;
+            color: #546E7A;
+            margin: 0;
+        }
+
+        footer {
+            text-align: center;
+            margin-top: 60px;
+            padding: 30px;
+            color: rgba(255,255,255,0.9);
+            font-size: 1rem;
+        }
+
+        @media (max-width: 768px) {
+            h1 { font-size: 2rem; }
+            .subtitle { font-size: 1.1rem; }
+            .accordion-header { padding: 18px 20px; }
+            .accordion-title { font-size: 1.3rem; }
+            .accordion-body { padding: 20px; }
+            .sub-accordion-body { padding: 15px 18px; }
+            table { font-size: 0.9rem; }
+            th, td { padding: 9px 11px; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <a href="../index.html" class="back-button">חזרה לדף ראשי</a>
+            <h1>👨‍👩‍👧 מדריך מקיף לקצבת שאירים 2026</h1>
+            <p class="subtitle">ביטוח לאומי – זכויות, תנאים וסכומים מעודכנים</p>
+            <div class="update-badge">עדכון: ינואר 2026 | עלייה של 2.4% במדד</div>
+        </header>
+
+        <div class="accordions-container">
+
+            <!-- 1 - מהי קצבת שאירים -->
+            <div class="accordion">
+                <div class="accordion-header">
+                    <div class="accordion-icon">ℹ️</div>
+                    <h2 class="accordion-title">מהי קצבת שאירים?</h2>
+                    <span class="accordion-arrow">▼</span>
+                </div>
+                <div class="accordion-content">
+                    <div class="accordion-body content-section">
+                        <p><strong>קצבת שאירים</strong> היא קצבה חודשית שמשלם המוסד לביטוח לאומי לבני משפחתו של אדם שנפטר, במטרה להבטיח את אמצעי הקיום שלהם לאחר אובדן המפרנס.</p>
+                        <p>הקצבה משולמת לאלמן, לאלמנה וליתומים של תושב ישראל שנפטר, ובלבד שהנפטר היה מבוטח בביטוח לאומי ועמד בתנאים שנקבעו בחוק.</p>
+                        <div class="note-box info">
+                            <strong>הקצבה מוצמדת למדד המחירים לצרכן</strong> ומתעדכנת אחת לשנה. בינואר 2026 עלו הסכומים בשיעור של <strong>2.4%</strong> בהתאם לשינוי במדד.
+                        </div>
+                        <p><strong>מועד תשלום:</strong> הקצבה משולמת ב-26 לכל חודש (קצבאות ארוכות-מועד).</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 2 - מי הם שאירים -->
+            <div class="accordion">
+                <div class="accordion-header">
+                    <div class="accordion-icon">👨‍👩‍👧</div>
+                    <h2 class="accordion-title">מי הם "שאירים" לפי החוק?</h2>
+                    <span class="accordion-arrow">▼</span>
+                </div>
+                <div class="accordion-content">
+                    <div class="accordion-body content-section">
+                        <p>"שאירים" הזכאים לקצבה כוללים:</p>
+                        <table>
+                            <tr><th>קטגוריה</th><th>תיאור</th></tr>
+                            <tr><td><strong>אלמנה</strong></td><td>אישה שנפטר בן זוגה (נשוי או ידוע בציבור)</td></tr>
+                            <tr><td><strong>אלמן</strong></td><td>גבר שנפטרה בת זוגו (נשוי או ידוע בציבור) – בתנאים נוספים</td></tr>
+                            <tr><td><strong>יתום/ה</strong></td><td>ילד שנפטר אחד מהוריו או שניהם</td></tr>
+                        </table>
+                        <div class="note-box info">
+                            <strong>בני זוג מאותו מין:</strong> הזכות מוכרת – בת זוג של אישה שנפטרה נחשבת "אלמנה", ובן זוג של גבר שנפטר נחשב "אלמן".
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 3 - תנאי הזכאות -->
+            <div class="accordion">
+                <div class="accordion-header">
+                    <div class="accordion-icon">✅</div>
+                    <h2 class="accordion-title">תנאי הזכאות – ארבעת התנאים המצטברים</h2>
+                    <span class="accordion-arrow">▼</span>
+                </div>
+                <div class="accordion-content">
+                    <div class="accordion-body content-section">
+                        <p>הקצבה משולמת רק למי שעומד על <strong>כל ארבעת</strong> התנאים הבאים:</p>
+                        <ul class="check-list">
+                            <li>הנפטר היה מבוטח בביטוח שאירים בעת פטירתו</li>
+                            <li>הנפטר השלים תקופת אכשרה (תקופת ביטוח מינימלית)</li>
+                            <li>התובע/ת נמנה עם שאיריו של הנפטר לפי הגדרות החוק</li>
+                            <li>אין פיגור בתשלום דמי הביטוח</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 4 - תנאי 1: הנפטר היה מבוטח -->
+            <div class="accordion">
+                <div class="accordion-header">
+                    <div class="accordion-icon">🔐</div>
+                    <h2 class="accordion-title">תנאי 1: הנפטר היה מבוטח בביטוח שאירים</h2>
+                    <span class="accordion-arrow">▼</span>
+                </div>
+                <div class="accordion-content">
+                    <div class="accordion-body content-section">
+
+                        <div class="sub-accordion">
+                            <div class="sub-accordion-header">
+                                <div class="sub-accordion-title">מיהו "מבוטח" בביטוח שאירים?</div>
+                                <span class="sub-accordion-arrow">▼</span>
+                            </div>
+                            <div class="sub-accordion-content">
+                                <div class="sub-accordion-body">
+                                    <p>כל <strong>תושב ישראל</strong> מגיל 18 ועד גיל הפרישה מבוטח אוטומטית בביטוח שאירים – לרבות עובדי שכר, עצמאיים, ואנשים שאינם עובדים.</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="sub-accordion">
+                            <div class="sub-accordion-header">
+                                <div class="sub-accordion-title">חריגים – מי אינו מבוטח?</div>
+                                <span class="sub-accordion-arrow">▼</span>
+                            </div>
+                            <div class="sub-accordion-content">
+                                <div class="sub-accordion-body">
+                                    <ul class="check-list">
+                                        <li><strong>מי שהיה מבוגר מדי בעת עלייתו לישראל</strong> – גבר שהגיע לגיל הפרישה (67) ביום שנעשה לראשונה תושב ישראל אינו מבוטח.</li>
+                                        <li><strong>אישה</strong> שהגיעה לגיל הפרישה שלה (62–65, בהתאם לחודש לידתה) ביום שנעשתה לראשונה תושבת ישראל – אינה מבוטחת.</li>
+                                        <li><strong>תושב חוץ</strong> – מי שאינו תושב ישראל.</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="sub-accordion">
+                            <div class="sub-accordion-header">
+                                <div class="sub-accordion-title">ביטוח בפרק הזמן לפני הפטירה</div>
+                                <span class="sub-accordion-arrow">▼</span>
+                            </div>
+                            <div class="sub-accordion-content">
+                                <div class="sub-accordion-body">
+                                    <p>הנפטר חייב להיות <strong>מבוטח פעיל בעת הפטירה</strong> – כלומר, לא פקעה חברותו בביטוח הלאומי.</p>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+            <!-- 5 - תנאי 2: תקופת אכשרה -->
+            <div class="accordion">
+                <div class="accordion-header">
+                    <div class="accordion-icon">📅</div>
+                    <h2 class="accordion-title">תנאי 2: תקופת אכשרה</h2>
+                    <span class="accordion-arrow">▼</span>
+                </div>
+                <div class="accordion-content">
+                    <div class="accordion-body content-section">
+
+                        <div class="sub-accordion">
+                            <div class="sub-accordion-header">
+                                <div class="sub-accordion-title">מהי תקופת אכשרה?</div>
+                                <span class="sub-accordion-arrow">▼</span>
+                            </div>
+                            <div class="sub-accordion-content">
+                                <div class="sub-accordion-body">
+                                    <p><strong>תקופת אכשרה</strong> (תקופת ביטוח) היא מספר החודשים המינימלי שבהם היה הנפטר מבוטח בביטוח לאומי (שילם דמי ביטוח). ללא השלמת תקופה זו, השאירים אינם זכאים לקצבה חודשית.</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="sub-accordion">
+                            <div class="sub-accordion-header">
+                                <div class="sub-accordion-title">שלושת מסלולי תקופת האכשרה</div>
+                                <span class="sub-accordion-arrow">▼</span>
+                            </div>
+                            <div class="sub-accordion-content">
+                                <div class="sub-accordion-body">
+                                    <p>ניתן לעמוד בתנאי האכשרה בדרך <strong>אחת</strong> מבין שלוש האפשרויות:</p>
+
+                                    <div class="sub-sub-accordion">
+                                        <div class="sub-sub-accordion-header">
+                                            <div class="sub-sub-accordion-title">מסלול א' – 60 חודשים ב-10 השנים האחרונות (הנפוץ)</div>
+                                            <span class="sub-sub-accordion-arrow">▼</span>
+                                        </div>
+                                        <div class="sub-sub-accordion-content">
+                                            <div class="sub-sub-accordion-body">
+                                                <p><strong>60 חודשים</strong> (5 שנים) – רצופים או לא רצופים – <strong>בתוך 10 השנים שקדמו לפטירה</strong>.</p>
+                                                <p>אין חובה לרצף; מספיק שסך חודשי הביטוח הגיעו ל-60 בתוך עשר השנים האחרונות.</p>
+                                                <div class="note-box info">
+                                                    <strong>דוגמה:</strong> אדם שעבד כשכיר בין גיל 55 ל-60 ופרש לגמלאות, ונפטר בגיל 63 – אם בתוך 10 השנים האחרונות (גיל 53–63) היו לו לפחות 60 חודשי ביטוח, הוא עומד בתנאי.
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="sub-sub-accordion">
+                                        <div class="sub-sub-accordion-header">
+                                            <div class="sub-sub-accordion-title">מסלול ב' – 144 חודשים כולל (12 שנים מצטברות)</div>
+                                            <span class="sub-sub-accordion-arrow">▼</span>
+                                        </div>
+                                        <div class="sub-sub-accordion-content">
+                                            <div class="sub-sub-accordion-body">
+                                                <p><strong>144 חודשים</strong> (12 שנים) – רצופים או לא רצופים – <strong>בכל תקופת הביטוח מאז שנעשה תושב ישראל</strong>.</p>
+                                                <div class="note-box info">
+                                                    <strong>מתי רלוונטי?</strong> כשהנפטר הפסיק לעבוד הרבה לפני הפטירה (למשל, פרש 15 שנה לפני מותו), ולכן מסלול א' לא מספיק, אך יש לו צבירה היסטורית ארוכה.
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="sub-sub-accordion">
+                                        <div class="sub-sub-accordion-header">
+                                            <div class="sub-sub-accordion-title">מסלול ג' – 60 חודשים עם יחס ביטוח/אי-ביטוח (לעולים)</div>
+                                            <span class="sub-sub-accordion-arrow">▼</span>
+                                        </div>
+                                        <div class="sub-sub-accordion-content">
+                                            <div class="sub-sub-accordion-body">
+                                                <p><strong>60 חודשים</strong> – ממועד היות תושב ישראל לראשונה, בתנאי שמספר החודשים שבהם <strong>לא</strong> היה מבוטח אינו עולה על מספר החודשים שכן היה מבוטח (לפחות 50% כיסוי).</p>
+                                                <div class="note-box info">
+                                                    <strong>מתי רלוונטי?</strong> לעולים חדשים שעלו בגיל מבוגר יחסית ולא הספיקו לצבור 144 חודשים, אך שמרו על ביטוח עקבי.
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="sub-accordion">
+                            <div class="sub-accordion-header">
+                                <div class="sub-accordion-title">מקרים שבהם לא נדרשת תקופת אכשרה כלל</div>
+                                <span class="sub-accordion-arrow">▼</span>
+                            </div>
+                            <div class="sub-accordion-content">
+                                <div class="sub-accordion-body">
+                                    <p>בחמישה מקרים מיוחדים ניתנת הקצבה גם ללא השלמת תקופת אכשרה:</p>
+                                    <table>
+                                        <tr><th>מקרה</th><th>פירוט</th></tr>
+                                        <tr><td><strong>פטירה תוך שנה מהיות תושב ישראל</strong></td><td>אם הנפטר נפטר בתוך 12 חודשים מיום שנעשה לראשונה תושב ישראל</td></tr>
+                                        <tr><td><strong>פטירה לפני גיל 19</strong></td><td>הנפטר נפטר בגיל שמתחת ל-19 שנה</td></tr>
+                                        <tr><td><strong>חייל בשירות סדיר</strong></td><td>חייל צה"ל שלא מלאו לו 24 שנים ומשרת שירות חובה</td></tr>
+                                        <tr><td><strong>שירות לאומי בהתנדבות</strong></td><td>מי שלא מלאו לו 24 שנים ומשרת שירות לאומי</td></tr>
+                                        <tr><td><strong>עתודאי</strong></td><td>מי שלא מלאו לו 24 שנים, לומד בעתודה ושירותו הסדיר נדחה</td></tr>
+                                    </table>
+                                    <div class="note-box">
+                                        גם אם הנפטר לא השלים תקופת אכשרה, <strong>אם הנפטרת הייתה אם לילדים</strong> – הילדים בלבד (ולא האלמן) יהיו זכאים לקצבת שאירים.
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+            <!-- 6 - תנאי 3: הגדרות שאיר -->
+            <div class="accordion">
+                <div class="accordion-header">
+                    <div class="accordion-icon">📜</div>
+                    <h2 class="accordion-title">תנאי 3: הגדרות שאיר מפורטות</h2>
+                    <span class="accordion-arrow">▼</span>
+                </div>
+                <div class="accordion-content">
+                    <div class="accordion-body content-section">
+
+                        <!-- 6.1 אלמנה -->
+                        <div class="sub-accordion">
+                            <div class="sub-accordion-header">
+                                <div class="sub-accordion-title">👩 הגדרת אלמנה</div>
+                                <span class="sub-accordion-arrow">▼</span>
+                            </div>
+                            <div class="sub-accordion-content">
+                                <div class="sub-accordion-body">
+                                    <p><strong>אלמנה</strong> היא אישה שהייתה נשואה לנפטר או <strong>ידועה בציבור</strong> שלו, שחייתה עמו <strong>תחת קורת גג אחת עד לפטירתו</strong>.</p>
+
+                                    <div class="sub-sub-accordion">
+                                        <div class="sub-sub-accordion-header">
+                                            <div class="sub-sub-accordion-title">תנאי א' – משך הקשר</div>
+                                            <span class="sub-sub-accordion-arrow">▼</span>
+                                        </div>
+                                        <div class="sub-sub-accordion-content">
+                                            <div class="sub-sub-accordion-body">
+                                                <p>אחד מבין שניים:</p>
+                                                <ul class="check-list">
+                                                    <li>הייתה נשואה לנפטר / ידועה בציבור שלו לפחות <strong>שנה אחת</strong> עד לפטירתו</li>
+                                                    <li><strong>חצי שנה בלבד</strong> – אם הייתה בת <strong>55 שנה ומעלה</strong> בעת פטירתו</li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="sub-sub-accordion">
+                                        <div class="sub-sub-accordion-header">
+                                            <div class="sub-sub-accordion-title">מה קורה כשהאלמנה חיה בנפרד מהנפטר?</div>
+                                            <span class="sub-sub-accordion-arrow">▼</span>
+                                        </div>
+                                        <div class="sub-sub-accordion-content">
+                                            <div class="sub-sub-accordion-body">
+                                                <p>אישה שחיה בנפרד חייבת לעמוד על <strong>אחד</strong> מהתנאים הבאים:</p>
+                                                <ul class="check-list">
+                                                    <li>תקופת הפירוד הייתה <strong>קצרה מ-36 חודשים</strong></li>
+                                                    <li>היא גרה יחד עם הנפטר <strong>בשנה האחרונה לחייו</strong> (או חלק ממנה)</li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="sub-sub-accordion">
+                                        <div class="sub-sub-accordion-header">
+                                            <div class="sub-sub-accordion-title">מה קורה עם נישואים מחדש?</div>
+                                            <span class="sub-sub-accordion-arrow">▼</span>
+                                        </div>
+                                        <div class="sub-sub-accordion-content">
+                                            <div class="sub-sub-accordion-body">
+                                                <div class="note-box danger">
+                                                    אלמנה שנישאה מחדש או שחיה כידועה בציבור עם גבר אחר – <strong>מאבדת את הזכאות לקצבת שאירים</strong>, למעט במקרים מסוימים הנקבעים בחוק.
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- 6.2 אלמן -->
+                        <div class="sub-accordion">
+                            <div class="sub-accordion-header">
+                                <div class="sub-accordion-title">👨 הגדרת אלמן</div>
+                                <span class="sub-accordion-arrow">▼</span>
+                            </div>
+                            <div class="sub-accordion-content">
+                                <div class="sub-accordion-body">
+                                    <p><strong>אלמן</strong> הוא גבר שהיה נשוי לנפטרת או <strong>ידוע בציבור</strong> שלה, שחי עמה <strong>תחת קורת גג אחת עד לפטירתה</strong>.</p>
+
+                                    <div class="sub-sub-accordion">
+                                        <div class="sub-sub-accordion-header">
+                                            <div class="sub-sub-accordion-title">תנאי א' – משך הקשר</div>
+                                            <span class="sub-sub-accordion-arrow">▼</span>
+                                        </div>
+                                        <div class="sub-sub-accordion-content">
+                                            <div class="sub-sub-accordion-body">
+                                                <p>אחד מבין שניים:</p>
+                                                <ul class="check-list">
+                                                    <li>היה נשוי לה / ידוע בציבור שלה לפחות <strong>שנה אחת</strong> עד לפטירתה</li>
+                                                    <li><strong>חצי שנה בלבד</strong> – אם היה בן <strong>55 שנה ומעלה</strong> בעת פטירתה</li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="sub-sub-accordion">
+                                        <div class="sub-sub-accordion-header">
+                                            <div class="sub-sub-accordion-title">תנאי סף לאלמן – מבחן הכנסות</div>
+                                            <span class="sub-sub-accordion-arrow">▼</span>
+                                        </div>
+                                        <div class="sub-sub-accordion-content">
+                                            <div class="sub-sub-accordion-body">
+                                                <p>בשונה מאלמנה, <strong>אלמן שאין עמו ילדים</strong> חייב לעמוד ב<strong>מבחן הכנסות</strong>. אם יש עמו יתום הזכאי לקצבת שאירים – אין בדיקת הכנסות.</p>
+                                                <table>
+                                                    <tr><th>תנאי</th><th>פירוט</th></tr>
+                                                    <tr><td><strong>יש עמו יתום</strong></td><td>פוטר ממבחן הכנסות</td></tr>
+                                                    <tr><td><strong>מבחן הכנסות</strong></td><td>הכנסות מכל המקורות אינן עולות על <strong>7,848 ₪ לחודש</strong> (החל מ-01.01.2026)</td></tr>
+                                                </table>
+                                                <div class="note-box danger">
+                                                    אלמן שלא הגיע לגיל 40 ואין עמו ילדים – <strong>אינו זכאי לקצבה חודשית</strong>, אלא למענק שאירים חד-פעמי בלבד.
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="sub-sub-accordion">
+                                        <div class="sub-sub-accordion-header">
+                                            <div class="sub-sub-accordion-title">מה קורה כשהאלמן חי בנפרד מהנפטרת?</div>
+                                            <span class="sub-sub-accordion-arrow">▼</span>
+                                        </div>
+                                        <div class="sub-sub-accordion-content">
+                                            <div class="sub-sub-accordion-body">
+                                                <p>גבר שחי בנפרד חייב לעמוד על <strong>אחד</strong> מהתנאים הבאים:</p>
+                                                <ul class="check-list">
+                                                    <li>תקופת הפירוד הייתה <strong>קצרה מ-36 חודשים</strong></li>
+                                                    <li>הוא והנפטרת גרו יחד <strong>בשנה האחרונה לחייה</strong> (או בחלק ממנה)</li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- 6.3 יתום -->
+                        <div class="sub-accordion">
+                            <div class="sub-accordion-header">
+                                <div class="sub-accordion-title">👶 הגדרת יתום</div>
+                                <span class="sub-accordion-arrow">▼</span>
+                            </div>
+                            <div class="sub-accordion-content">
+                                <div class="sub-accordion-body">
+                                    <p><strong>יתום/ה</strong> הוא/היא ילד/ה של הנפטר/ת העונה על <strong>כל</strong> התנאים הבאים:</p>
+
+                                    <div class="sub-sub-accordion">
+                                        <div class="sub-sub-accordion-header">
+                                            <div class="sub-sub-accordion-title">גיל הילד – טבלת זכאות</div>
+                                            <span class="sub-sub-accordion-arrow">▼</span>
+                                        </div>
+                                        <div class="sub-sub-accordion-content">
+                                            <div class="sub-sub-accordion-body">
+                                                <table>
+                                                    <tr><th>תנאי גיל</th><th>מצב</th></tr>
+                                                    <tr><td><strong>עד גיל 18</strong></td><td>תמיד נחשב יתום</td></tr>
+                                                    <tr><td><strong>גיל 18–20</strong></td><td>רק אם לומד/ת בישיבה גבוהה, אוניברסיטה, מכללה, הכשרה מקצועית – ועיקר זמנו/ה מוקדש ללימודים</td></tr>
+                                                    <tr><td><strong>גיל 18–24</strong></td><td>חייל/ת בשירות חובה (צה"ל)</td></tr>
+                                                    <tr><td><strong>גיל 18–24</strong></td><td>משרת/ת שירות לאומי בהתנדבות</td></tr>
+                                                    <tr><td><strong>גיל 18–24</strong></td><td>לומד/ת בעתודה ושירות סדיר נדחה</td></tr>
+                                                    <tr><td><strong>ללא הגבלת גיל</strong></td><td>ילד/ה עם נכות</td></tr>
+                                                </table>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="sub-sub-accordion">
+                                        <div class="sub-sub-accordion-header">
+                                            <div class="sub-sub-accordion-title">יתום שהתייתם משני הוריו</div>
+                                            <span class="sub-sub-accordion-arrow">▼</span>
+                                        </div>
+                                        <div class="sub-sub-accordion-content">
+                                            <div class="sub-sub-accordion-body">
+                                                <div class="note-box success">
+                                                    <strong>ילד שהתייתם משני הוריו</strong> זכאי לקצבת שאירים <strong>מכוח כל הורה בנפרד</strong> – כלומר, עשוי לקבל <strong>שתי קצבאות שאירים</strong> בו-זמנית, אם קיימת זכאות מכוח שני ההורים.
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+            <!-- 7 - תנאי 4: דמי ביטוח -->
+            <div class="accordion">
+                <div class="accordion-header">
+                    <div class="accordion-icon">💳</div>
+                    <h2 class="accordion-title">תנאי 4: אין פיגור בתשלום דמי ביטוח</h2>
+                    <span class="accordion-arrow">▼</span>
+                </div>
+                <div class="accordion-content">
+                    <div class="accordion-body content-section">
+                        <p>אם <strong>הנפטר</strong> פיגר בחייו בתשלום דמי הביטוח הלאומי, שאיריו עלולים לאבד את הזכאות לקצבה או לקבל קצבה מופחתת.</p>
+                        <table>
+                            <tr><th>מצב</th><th>תוצאה</th></tr>
+                            <tr><td><strong>המעסיק פיגר (ולא הנפטר עצמו)</strong></td><td>שאירי הנפטר <strong>אינם</strong> נפגעים – הפיגור הוא על המעסיק</td></tr>
+                            <tr><td><strong>הנפטר פיגר</strong></td><td>עשוי לפגוע בזכאות או לגרום לקצבה מופחתת</td></tr>
+                            <tr><td><strong>מטעמי צדק</strong></td><td>בית הדין לעבודה רשאי להעניק את הקצבה גם בפיגור – <strong>אין צורך בתביעה מיוחדת</strong></td></tr>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 8 - סכומי הקצבה -->
+            <div class="accordion">
+                <div class="accordion-header">
+                    <div class="accordion-icon">💰</div>
+                    <h2 class="accordion-title">סכומי הקצבה לשנת 2026</h2>
+                    <span class="accordion-arrow">▼</span>
+                </div>
+                <div class="accordion-content">
+                    <div class="accordion-body content-section">
+                        <div class="note-box info">
+                            <strong>עדכון 2026:</strong> קצבת השאירים עלתה ב-<strong>2.4%</strong> (הצמדה למדד המחירים לצרכן). תחולה מ-01.01.2026.
+                        </div>
+
+                        <!-- 8.1 -->
+                        <div class="sub-accordion">
+                            <div class="sub-accordion-header">
+                                <div class="sub-accordion-title">קצבה לאלמן/ה</div>
+                                <span class="sub-accordion-arrow">▼</span>
+                            </div>
+                            <div class="sub-accordion-content">
+                                <div class="sub-accordion-body">
+                                    <table>
+                                        <tr><th>מצב</th><th>סכום חודשי (₪)</th></tr>
+                                        <tr><td><strong>אלמן/ה עד גיל 40 ללא ילדים</strong></td><td>❌ לא זכאי לקצבה – רק למענק חד-פעמי</td></tr>
+                                        <tr><td><strong>אלמן/ה בגיל 40–49 ללא ילדים</strong></td><td><strong>1,381 ₪</strong></td></tr>
+                                        <tr><td><strong>אלמן/ה בגיל 50 ומעלה ללא ילדים</strong></td><td><strong>1,838 ₪</strong></td></tr>
+                                        <tr><td><strong>אלמן/ה בגיל 80 ומעלה ללא ילדים</strong></td><td><strong>1,941 ₪</strong></td></tr>
+                                        <tr><td><strong>אלמן/ה עם ילד אחד</strong></td><td><strong>2,700 ₪</strong></td></tr>
+                                        <tr><td><strong>אלמן/ה עם שני ילדים</strong></td><td><strong>3,562 ₪</strong></td></tr>
+                                        <tr><td><strong>כל ילד נוסף</strong></td><td><strong>+862 ₪</strong></td></tr>
+                                        <tr><td><strong>אלמן/ה המקבל/ת קצבת אזרח ותיק (50% קצבת שאירים)</strong></td><td><strong>919 ₪</strong></td></tr>
+                                    </table>
+                                    <div class="note-box">
+                                        <strong>הבהרה לגיל 80+:</strong> הסכום הגבוה יותר (1,941 ₪) נובע מ<strong>תוספת מיוחדת לגיל 80+</strong> בגובה 103 ₪ לחודש.
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- 8.2 -->
+                        <div class="sub-accordion">
+                            <div class="sub-accordion-header">
+                                <div class="sub-accordion-title">קצבה ליתומים</div>
+                                <span class="sub-accordion-arrow">▼</span>
+                            </div>
+                            <div class="sub-accordion-content">
+                                <div class="sub-accordion-body">
+                                    <table>
+                                        <tr><th>מצב</th><th>סכום חודשי (₪)</th></tr>
+                                        <tr><td><strong>קצבה לכל יתום</strong></td><td><strong>2,284 ₪</strong></td></tr>
+                                        <tr><td><strong>תוספת ותק ליתומים</strong></td><td>2% לכל שנת ביטוח (מהשנה הראשונה)</td></tr>
+                                    </table>
+                                    <p><strong>מתי ליתום תשולם קצבה עצמאית (ולא דרך ההורה)?</strong></p>
+                                    <ul class="check-list">
+                                        <li>כשההורה הנותר אינו זכאי לקצבת שאירים (למשל: הורה גרוש שאינו עומד בתנאים)</li>
+                                        <li>כשההורה בחר לקבל קצבת נכות במקום קצבת שאירים (שלילת כפל קצבאות)</li>
+                                        <li>כשהילד התייתם משני הוריו</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- 8.3 -->
+                        <div class="sub-accordion">
+                            <div class="sub-accordion-header">
+                                <div class="sub-accordion-title">תוספת ותק</div>
+                                <span class="sub-accordion-arrow">▼</span>
+                            </div>
+                            <div class="sub-accordion-content">
+                                <div class="sub-accordion-body">
+                                    <p><strong>שיעור התוספת:</strong> 2% מסכום הקצבה הבסיסית <strong>לכל שנת ביטוח מלאה</strong>.</p>
+                                    <p><strong>תקרה:</strong> תוספת הותק לא תעלה על <strong>50% מהקצבה הבסיסית</strong>.</p>
+                                    <p><strong>זכאים לתוספת ותק:</strong> אלמן/ה, יתום שהתייתם משני הוריו, יתום שהורהו אינו זכאי לקצבת שאירים.</p>
+
+                                    <div class="sub-sub-accordion">
+                                        <div class="sub-sub-accordion-header">
+                                            <div class="sub-sub-accordion-title">טבלת חישוב ותק</div>
+                                            <span class="sub-sub-accordion-arrow">▼</span>
+                                        </div>
+                                        <div class="sub-sub-accordion-content">
+                                            <div class="sub-sub-accordion-body">
+                                                <table>
+                                                    <tr><th>שנות ביטוח</th><th>תוספת</th></tr>
+                                                    <tr><td>פחות מ-1 שנה</td><td>0%</td></tr>
+                                                    <tr><td>שנה 1</td><td>2%</td></tr>
+                                                    <tr><td>5 שנים</td><td>10%</td></tr>
+                                                    <tr><td>10 שנים</td><td>20%</td></tr>
+                                                    <tr><td>20 שנים</td><td>40%</td></tr>
+                                                    <tr><td>25 שנים ומעלה</td><td><strong>50% (מקסימום)</strong></td></tr>
+                                                </table>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="sub-sub-accordion">
+                                        <div class="sub-sub-accordion-header">
+                                            <div class="sub-sub-accordion-title">דוגמה מספרית</div>
+                                            <span class="sub-sub-accordion-arrow">▼</span>
+                                        </div>
+                                        <div class="sub-sub-accordion-content">
+                                            <div class="sub-sub-accordion-body">
+                                                <p>אלמן/ה בגיל 50+ ללא ילדים: קצבה בסיסית <strong>1,838 ₪</strong></p>
+                                                <p>הנפטר היה מבוטח 20 שנה → תוספת ותק 40% = <strong>735 ₪</strong></p>
+                                                <p><strong>סה"כ קצבה: 2,573 ₪</strong></p>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="sub-sub-accordion">
+                                        <div class="sub-sub-accordion-header">
+                                            <div class="sub-sub-accordion-title">שינויים בחישוב תוספת הותק לאורך השנים</div>
+                                            <span class="sub-sub-accordion-arrow">▼</span>
+                                        </div>
+                                        <div class="sub-sub-accordion-content">
+                                            <div class="sub-sub-accordion-body">
+                                                <ul class="check-list">
+                                                    <li>עד 2016: תוספת מ-10 שנות ביטוח ואילך (2% על כל שנה מעל 10)</li>
+                                                    <li>2017: תוספת מ-9 שנות ביטוח ואילך</li>
+                                                    <li>ינואר 2018: תוספת מ-4 שנות ביטוח ואילך</li>
+                                                    <li><strong>ינואר 2019 ואילך: תוספת מהשנה הראשונה</strong></li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- 8.4 -->
+                        <div class="sub-accordion">
+                            <div class="sub-accordion-header">
+                                <div class="sub-accordion-title">תוספת השלמת הכנסה ומענק חימום</div>
+                                <span class="sub-accordion-arrow">▼</span>
+                            </div>
+                            <div class="sub-accordion-content">
+                                <div class="sub-accordion-body">
+                                    <p>אלמן/ה שהכנסתם נמוכה עשויים לקבל <strong>תוספת השלמת הכנסה</strong> על פי חוק הבטחת הכנסה, שנועדה להבטיח הכנסה מינימלית.</p>
+                                    <div class="note-box">
+                                        אלמן/ה שיש עמם ילד עד גיל 20 הלומד במוסד חינוכי – <strong>אינם</strong> זכאים לתוספת השלמת הכנסה בעד אותו ילד.
+                                    </div>
+
+                                    <div class="sub-sub-accordion">
+                                        <div class="sub-sub-accordion-header">
+                                            <div class="sub-sub-accordion-title">מענק חימום שנתי</div>
+                                            <span class="sub-sub-accordion-arrow">▼</span>
+                                        </div>
+                                        <div class="sub-sub-accordion-content">
+                                            <div class="sub-sub-accordion-body">
+                                                <p>משולם אחת לשנה (בחודש אוקטובר) למי שעונה על הקריטריונים הבאים:</p>
+                                                <ul class="check-list">
+                                                    <li>מקבל קצבת שאירים</li>
+                                                    <li>מקבל תוספת השלמת הכנסה לקצבה באחד החודשים: אוקטובר, נובמבר או דצמבר</li>
+                                                    <li>מתגורר באזור המוגדר "קר" לפי חוק הבטחת הכנסה, לפחות שני חודשים</li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+            <!-- 9 - מבחן הכנסות לאלמן -->
+            <div class="accordion">
+                <div class="accordion-header">
+                    <div class="accordion-icon">🧮</div>
+                    <h2 class="accordion-title">מבחן הכנסות לאלמן</h2>
+                    <span class="accordion-arrow">▼</span>
+                </div>
+                <div class="accordion-content">
+                    <div class="accordion-body content-section">
+
+                        <div class="sub-accordion">
+                            <div class="sub-accordion-header">
+                                <div class="sub-accordion-title">מתי נדרש מבחן הכנסות?</div>
+                                <span class="sub-accordion-arrow">▼</span>
+                            </div>
+                            <div class="sub-accordion-content">
+                                <div class="sub-accordion-body">
+                                    <p><strong>אלמן שאין עמו ילד</strong> הזכאי לקצבת שאירים חייב לעמוד במבחן הכנסות. <strong>אלמן שיש עמו ילד</strong> פטור ממבחן זה.</p>
+                                    <div class="note-box info">
+                                        <strong>תקרת ההכנסה לשנת 2026: 7,848 ₪ לחודש</strong> (בתוקף מ-01.01.2026)
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="sub-accordion">
+                            <div class="sub-accordion-header">
+                                <div class="sub-accordion-title">ניכוי 2,093 ₪ – פעם אחת מסך ההכנסות</div>
+                                <span class="sub-accordion-arrow">▼</span>
+                            </div>
+                            <div class="sub-accordion-content">
+                                <div class="sub-accordion-body">
+                                    <p>מסך ההכנסות מהמקורות הבאים מנוכים <strong>2,093 ₪ פעם אחת</strong> (החל ב-01.01.2026) – לא מכל הכנסה בנפרד, אלא מהסכום הכולל שלהן יחד:</p>
+                                    <ul class="check-list">
+                                        <li>הכנסה מעבודה כשכיר או כעצמאי</li>
+                                        <li>הכנסה מפנסיה</li>
+                                        <li>הכנסה חודשית המשתלמת לראשונה בגיל פרישה – קופת גמל, ביטוח מנהלים או כל תוכנית ביטוח אחרת</li>
+                                    </ul>
+                                    <div class="note-box info">
+                                        <strong>דוגמה:</strong> הכנסה מפנסיה 7,200 ₪ → לאחר ניכוי <strong>2,093 ₪</strong> → הכנסה לבדיקה: <strong>5,396 ₪</strong> → זכאי לקצבה (מתחת לתקרה של 7,848 ₪)
+                                    </div>
+                                    <div class="note-box">
+                                        גם אם יש הכנסות ממספר מקורות מהרשימה לעיל (למשל: עבודה + פנסיה), הניכוי הוא <strong>2,093 ₪ פעם אחת בלבד</strong> מהסכום הכולל שלהן.
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="sub-accordion">
+                            <div class="sub-accordion-header">
+                                <div class="sub-accordion-title">כיצד נחשבות הכנסות מסוגים שונים?</div>
+                                <span class="sub-accordion-arrow">▼</span>
+                            </div>
+                            <div class="sub-accordion-content">
+                                <div class="sub-accordion-body">
+
+                                    <div class="sub-sub-accordion">
+                                        <div class="sub-sub-accordion-header">
+                                            <div class="sub-sub-accordion-title">עבודה כשכיר / עצמאי, פנסיה וקופת גמל</div>
+                                            <span class="sub-sub-accordion-arrow">▼</span>
+                                        </div>
+                                        <div class="sub-sub-accordion-content">
+                                            <div class="sub-sub-accordion-body">
+                                                <p>הכנסות אלה מסוכמות יחד, ומהסכום הכולל מנוכים <strong>2,093 ₪ פעם אחת</strong>. יתרת הסכום נלקחת בחשבון בבדיקת הזכאות.</p>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="sub-sub-accordion">
+                                        <div class="sub-sub-accordion-header">
+                                            <div class="sub-sub-accordion-title">קצבת אזרח ותיק שמקבל האלמן</div>
+                                            <span class="sub-sub-accordion-arrow">▼</span>
+                                        </div>
+                                        <div class="sub-sub-accordion-content">
+                                            <div class="sub-sub-accordion-body">
+                                                <table>
+                                                    <tr><th>מצב האלמן</th><th>אופן חישוב קצבת האזרח הוותיק</th></tr>
+                                                    <tr><td><strong>שכיר</strong></td><td>✅ <strong>לא נלקחת בחשבון</strong></td></tr>
+                                                    <tr><td><strong>עצמאי / לא עובד</strong></td><td>נלקחת <strong>במלואה</strong></td></tr>
+                                                </table>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="sub-sub-accordion">
+                                        <div class="sub-sub-accordion-header">
+                                            <div class="sub-sub-accordion-title">פנסיית שאירים של האישה המנוחה</div>
+                                            <span class="sub-sub-accordion-arrow">▼</span>
+                                        </div>
+                                        <div class="sub-sub-accordion-content">
+                                            <div class="sub-sub-accordion-body">
+                                                <table>
+                                                    <tr><th>מצב האלמן</th><th>אופן חישוב פנסיית השאירים</th></tr>
+                                                    <tr><td><strong>שכיר</strong></td><td>נכללת בחישוב – כפופה לניכוי 2,093 ₪ מהסכום הכולל</td></tr>
+                                                    <tr><td><strong>עצמאי / לא עובד</strong></td><td>נלקחת <strong>במלואה</strong></td></tr>
+                                                </table>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="sub-sub-accordion">
+                                        <div class="sub-sub-accordion-header">
+                                            <div class="sub-sub-accordion-title">תגמול לנפגע איבה / נכה רדיפות הנאצים ממשרד האוצר</div>
+                                            <span class="sub-sub-accordion-arrow">▼</span>
+                                        </div>
+                                        <div class="sub-sub-accordion-content">
+                                            <div class="sub-sub-accordion-body">
+                                                <table>
+                                                    <tr><th>מצב האלמן</th><th>אופן חישוב התגמול</th></tr>
+                                                    <tr><td><strong>שכיר</strong></td><td>✅ <strong>לא נלקח בחשבון</strong></td></tr>
+                                                    <tr><td><strong>עצמאי / לא עובד</strong></td><td>נלקח <strong>במלואו</strong></td></tr>
+                                                </table>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="sub-accordion">
+                            <div class="sub-accordion-header">
+                                <div class="sub-accordion-title">התקופה שבה נבדקות ההכנסות</div>
+                                <span class="sub-accordion-arrow">▼</span>
+                            </div>
+                            <div class="sub-accordion-content">
+                                <div class="sub-accordion-body">
+                                    <p><strong>בשנת הפטירה</strong> – נבחרת האפשרות הנוחה יותר לאלמן מבין השתיים:</p>
+                                    <ul class="check-list">
+                                        <li>12 החודשים שקדמו לחודש הפטירה (כולל חודש הפטירה), <strong>או</strong></li>
+                                        <li>כל השנה שבה נפטרה האישה (מינואר עד דצמבר)</li>
+                                    </ul>
+                                    <p><strong>משנת הפטירה ואילך</strong> – ההכנסות נבדקות לפי <strong>שנת מס שוטפת</strong> (ינואר–דצמבר) בכל שנה.</p>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+            <!-- 10 - תקופות ביטוח מיוחדות לאישה נשואה -->
+            <div class="accordion">
+                <div class="accordion-header">
+                    <div class="accordion-icon">🏠</div>
+                    <h2 class="accordion-title">תקופות ביטוח מיוחדות לאישה נשואה שנפטרה</h2>
+                    <span class="accordion-arrow">▼</span>
+                </div>
+                <div class="accordion-content">
+                    <div class="accordion-body content-section">
+
+                        <div class="sub-accordion">
+                            <div class="sub-accordion-header">
+                                <div class="sub-accordion-title">מה מיוחד לגבי אישה?</div>
+                                <span class="sub-accordion-arrow">▼</span>
+                            </div>
+                            <div class="sub-accordion-content">
+                                <div class="sub-accordion-body">
+                                    <p>בנוסף לתקופות הביטוח הרגילות, אישה נשואה עשויה להיחשב <strong>"מבוטחת" גם בתקופות שבהן לא עבדה</strong> ("עקרת בית"). הדבר מתאפשר בתנאים הבאים:</p>
+                                    <ul class="check-list">
+                                        <li>תקופה שבה האישה <strong>לא עובדת</strong> ומצויה <strong>בנישואים תקפים</strong></li>
+                                        <li>תקופה שבה האישה לא עובדת והיא <strong>אלמנה המקבלת קצבת שאירים או קצבת תלויים</strong> חודשית</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="sub-accordion">
+                            <div class="sub-accordion-header">
+                                <div class="sub-accordion-title">תנאי לביטוח כ"עקרת בית"</div>
+                                <span class="sub-accordion-arrow">▼</span>
+                            </div>
+                            <div class="sub-accordion-content">
+                                <div class="sub-accordion-body">
+                                    <ul class="check-list">
+                                        <li><strong>נשים שנולדו בארץ</strong> – מבוטחות אוטומטית בתקופות הנ"ל</li>
+                                        <li><strong>נשים שלא נולדו בארץ</strong> – מבוטחות בתנאי שעלו לארץ <strong>לפני גיל הפרישה</strong> (62–65 בהתאם לחודש הלידה)</li>
+                                    </ul>
+                                    <div class="note-box success">
+                                        <strong>חשיבות:</strong> אישה שנפטרה, שלא עמדה בתקופת האכשרה על בסיס עבודה, עשויה לעמוד בה הודות לתקופות ה"עקרת בית" – מה שמאפשר לשאיריה (ילדיה) לקבל קצבה.
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+            <!-- 11 - גמלת שאירים מיוחדת לעולים -->
+            <div class="accordion">
+                <div class="accordion-header">
+                    <div class="accordion-icon">✈️</div>
+                    <h2 class="accordion-title">גמלת שאירים מיוחדת לעולים</h2>
+                    <span class="accordion-arrow">▼</span>
+                </div>
+                <div class="accordion-content">
+                    <div class="accordion-body content-section">
+
+                        <div class="sub-accordion">
+                            <div class="sub-accordion-header">
+                                <div class="sub-accordion-title">למי מיועדת הגמלה המיוחדת?</div>
+                                <span class="sub-accordion-arrow">▼</span>
+                            </div>
+                            <div class="sub-accordion-content">
+                                <div class="sub-accordion-body">
+                                    <p><strong>גמלת שאירים מיוחדת</strong> משולמת לאלמנה וליתומים של <strong>תושב ישראל שלא היה מבוטח</strong> בשל גילו הגבוה ביום עלייתו.</p>
+                                    <p><strong>מי זכאי:</strong> גבר שהיה בן 60–62 ומעלה ביום עלייתו לישראל – אלמנתו ויתומיו עשויים לקבל את הגמלה המיוחדת.</p>
+                                    <div class="note-box danger">
+                                        <strong>מי אינו זכאי:</strong><br>
+                                        • אלמן ויתומים של אישה עולה שענתה על הגדרת עקרת בית – <strong>אינם זכאים</strong> לגמלה המיוחדת.<br>
+                                        • יתומים של עולה שלא ענתה על הגדרת עקרת בית – <strong>כן זכאים</strong> (האלמן לא).
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="sub-accordion">
+                            <div class="sub-accordion-header">
+                                <div class="sub-accordion-title">שיעורי הגמלה המיוחדת ושהות בחוץ לארץ</div>
+                                <span class="sub-accordion-arrow">▼</span>
+                            </div>
+                            <div class="sub-accordion-content">
+                                <div class="sub-accordion-body">
+                                    <p><strong>שיעורי הגמלה שווים לשיעורי קצבת השאירים הרגילה</strong>, אך <strong>ללא תוספת ותק</strong>.</p>
+                                    <table>
+                                        <tr><th>תקופת שהייה בחו"ל</th><th>מה קורה?</th></tr>
+                                        <tr><td><strong>עד 3 חודשים ברציפות</strong></td><td>הקצבה ממשיכה להיות מועברת לחשבון הבנק בישראל</td></tr>
+                                        <tr><td><strong>מעל 3 חודשים / הגירה</strong></td><td>הזכאות נבדקת מחדש על ידי הביטוח הלאומי</td></tr>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+            <!-- 12 - שילוב קצבאות -->
+            <div class="accordion">
+                <div class="accordion-header">
+                    <div class="accordion-icon">🔗</div>
+                    <h2 class="accordion-title">שילוב קצבת שאירים עם קצבאות אחרות</h2>
+                    <span class="accordion-arrow">▼</span>
+                </div>
+                <div class="accordion-content">
+                    <div class="accordion-body content-section">
+
+                        <div class="sub-accordion">
+                            <div class="sub-accordion-header">
+                                <div class="sub-accordion-title">קצבת שאירים + קצבת אזרח ותיק (זקנה)</div>
+                                <span class="sub-accordion-arrow">▼</span>
+                            </div>
+                            <div class="sub-accordion-content">
+                                <div class="sub-accordion-body">
+                                    <p>בדרך כלל לא ניתן לקבל בו-זמנית קצבת שאירים מלאה וקצבת זקנה מלאה:</p>
+                                    <table>
+                                        <tr><th>מצב</th><th>הסדר</th></tr>
+                                        <tr><td><strong>אלמן/ה שהגיע/ה לגיל הפרישה</strong> ועמד/ה בתקופת האכשרה כ<strong>עובד/ת מבוטח/ת</strong></td><td>זכאי/ת לקצבת זקנה מלאה <strong>+ 50%</strong> מקצבת השאירים = <strong>919 ₪</strong> (2026)</td></tr>
+                                        <tr><td><strong>אלמנה</strong> שזכאית לזקנה רק על בסיס ביטוח "עקרת בית"</td><td><strong>בוחרת</strong> – קצבת שאירים <strong>או</strong> קצבת זקנה (לא שתיהן)</td></tr>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="sub-accordion">
+                            <div class="sub-accordion-header">
+                                <div class="sub-accordion-title">קצבת שאירים + קצבת נכות</div>
+                                <span class="sub-accordion-arrow">▼</span>
+                            </div>
+                            <div class="sub-accordion-content">
+                                <div class="sub-accordion-body">
+                                    <ul class="check-list">
+                                        <li>בדרך כלל לא ניתן לקבל שתיהן. יש לבחור את הקצבה הגבוהה יותר.</li>
+                                        <li><strong>ילד עם נכות</strong> שהוא גם יתום – יתכן ויוכל לקבל שתי הקצבאות (יש לבדוק נסיבות ספציפיות).</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="sub-accordion">
+                            <div class="sub-accordion-header">
+                                <div class="sub-accordion-title">קצבת שאירים מהביטוח הלאומי + קצבת שאירים מקרן פנסיה / ביטוח מנהלים</div>
+                                <span class="sub-accordion-arrow">▼</span>
+                            </div>
+                            <div class="sub-accordion-content">
+                                <div class="sub-accordion-body">
+                                    <ul class="check-list">
+                                        <li>קצבת השאירים מהביטוח הלאומי וקצבת השאירים מקרן הפנסיה / ביטוח מנהלים <strong>מקבילות ואינן מקזזות זו את זו</strong> – ניתן לקבל את שתיהן.</li>
+                                        <li>אם הנפטר היה מבוטח בקרן פנסיה / ביטוח מנהלים / ביטוח חיים, השאירים עשויים לקבל <strong>קצבת שאירים פנסיונית נוספת</strong> מהגוף המנהל – בהתאם לתנאי הקרן.</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+            <!-- 13 - מענק שאירים -->
+            <div class="accordion">
+                <div class="accordion-header">
+                    <div class="accordion-icon">🎁</div>
+                    <h2 class="accordion-title">מענק שאירים חד-פעמי</h2>
+                    <span class="accordion-arrow">▼</span>
+                </div>
+                <div class="accordion-content">
+                    <div class="accordion-body content-section">
+                        <p><strong>מענק שאירים</strong> הוא תשלום חד-פעמי בשיעור של <strong>36 קצבאות שאירים חודשיות</strong>, המשולם במקרים הבאים:</p>
+                        <table>
+                            <tr><th>מצב</th><th>זכאות</th></tr>
+                            <tr><td><strong>אלמן/ה שלא מלאו לו/ה 40 ואין ילדים</strong></td><td>מענק חד-פעמי (ולא קצבה חודשית)</td></tr>
+                            <tr><td><strong>אלמן שהיה לו ילד, הילד גדל ויצא מהגדרת יתום, וכעת הכנסות האלמן גבוהות מהתקרה</strong></td><td>קצבה נפסקת, משולם מענק</td></tr>
+                            <tr><td><strong>מי שהגיש תביעה ולא מתקיים תנאי זכאות</strong></td><td>עשוי לקבל מענק</td></tr>
+                        </table>
+                        <div class="note-box danger">
+                            <strong>חשוב:</strong> אלמן שקיבל מענק בגלל הכנסות גבוהות ולאחר מכן הכנסותיו ירדו – <strong>אינו זכאי שוב לקצבה חודשית</strong>.
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 14 - הגשת תביעה -->
+            <div class="accordion">
+                <div class="accordion-header">
+                    <div class="accordion-icon">📋</div>
+                    <h2 class="accordion-title">הגשת תביעה</h2>
+                    <span class="accordion-arrow">▼</span>
+                </div>
+                <div class="accordion-content">
+                    <div class="accordion-body content-section">
+
+                        <div class="sub-accordion">
+                            <div class="sub-accordion-header">
+                                <div class="sub-accordion-title">מועד הגשה</div>
+                                <span class="sub-accordion-arrow">▼</span>
+                            </div>
+                            <div class="sub-accordion-content">
+                                <div class="sub-accordion-body">
+                                    <ul class="check-list">
+                                        <li>יש להגיש תביעה <strong>לא יאוחר מ-12 חודשים</strong> מיום הפטירה.</li>
+                                        <li>אם הוגשה תביעה <strong>לאחר 12 חודשים</strong> – הקצבה תשולם רטרואקטיבית לא יותר מ-<strong>12 חודשים</strong> לאחור.</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="sub-accordion">
+                            <div class="sub-accordion-header">
+                                <div class="sub-accordion-title">איך מגישים?</div>
+                                <span class="sub-accordion-arrow">▼</span>
+                            </div>
+                            <div class="sub-accordion-content">
+                                <div class="sub-accordion-body">
+                                    <ul class="check-list">
+                                        <li><strong>דרך האינטרנט:</strong> באתר הביטוח הלאומי (btl.gov.il) – שירות אישי</li>
+                                        <li><strong>הגשה פיזית:</strong> בסניף הביטוח הלאומי הקרוב</li>
+                                        <li><strong>הגשת מסמכים:</strong> באפשרות גם לשלוח מסמכים דרך האתר</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="sub-accordion">
+                            <div class="sub-accordion-header">
+                                <div class="sub-accordion-title">מסמכים נדרשים</div>
+                                <span class="sub-accordion-arrow">▼</span>
+                            </div>
+                            <div class="sub-accordion-content">
+                                <div class="sub-accordion-body">
+                                    <ul class="check-list">
+                                        <li>תעודת פטירה</li>
+                                        <li>מסמכי נישואין / הוכחת ידועים בציבור</li>
+                                        <li>תעודות לידה של הילדים</li>
+                                        <li>מסמכי הכנסה (לאלמן הנדרש במבחן הכנסות)</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="sub-accordion">
+                            <div class="sub-accordion-header">
+                                <div class="sub-accordion-title">מחשבון לבדיקת זכאות</div>
+                                <span class="sub-accordion-arrow">▼</span>
+                            </div>
+                            <div class="sub-accordion-content">
+                                <div class="sub-accordion-body">
+                                    <a href="https://www.btl.gov.il/Simulators/Pages/SherimCalc.aspx" target="_blank" class="link-item">🧮 מחשבון שאירים של הביטוח הלאומי – לבדיקת זכאות ראשונית</a>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+            <!-- 15 - ערעור -->
+            <div class="accordion">
+                <div class="accordion-header">
+                    <div class="accordion-icon">⚖️</div>
+                    <h2 class="accordion-title">ערעור על החלטת הביטוח הלאומי</h2>
+                    <span class="accordion-arrow">▼</span>
+                </div>
+                <div class="accordion-content">
+                    <div class="accordion-body content-section">
+                        <p>אם הביטוח הלאומי דחה את התביעה או שהזכאי אינו מסכים להחלטה:</p>
+                        <ul class="check-list">
+                            <li>ניתן <strong>לערער לבית הדין האזורי לעבודה</strong> – בתוך <strong>12 חודשים</strong> מיום קבלת ההחלטה.</li>
+                            <li>מומלץ להיוועץ בעורך דין המתמחה בביטוח לאומי.</li>
+                            <li>ניתן גם לפנות ל<strong>אגף פניות הציבור</strong> של הביטוח הלאומי לבירורים ראשוניים.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 16 - שאלות נפוצות -->
+            <div class="accordion">
+                <div class="accordion-header">
+                    <div class="accordion-icon">❓</div>
+                    <h2 class="accordion-title">שאלות נפוצות</h2>
+                    <span class="accordion-arrow">▼</span>
+                </div>
+                <div class="accordion-content">
+                    <div class="accordion-body content-section">
+
+                        <div class="sub-accordion">
+                            <div class="sub-accordion-header">
+                                <div class="sub-accordion-title">אלמנה שנישאה מחדש – מה קורה לקצבה?</div>
+                                <span class="sub-accordion-arrow">▼</span>
+                            </div>
+                            <div class="sub-accordion-content">
+                                <div class="sub-accordion-body">
+                                    <p>הקצבה נפסקת. במקרים מסוימים (לפי חוק) ייתכן שתהיה זכאות חלקית – יש לבדוק עם הביטוח הלאומי.</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="sub-accordion">
+                            <div class="sub-accordion-header">
+                                <div class="sub-accordion-title">בעלי עבד רק 3 שנים ונפטר – האם אני זכאית לקצבה?</div>
+                                <span class="sub-accordion-arrow">▼</span>
+                            </div>
+                            <div class="sub-accordion-content">
+                                <div class="sub-accordion-body">
+                                    <div class="note-box success">
+                                        כן! החל מינואר 2019, תוספת הותק מחושבת מהשנה הראשונה לביטוח. הקצבה הבסיסית תשולם גם אם הנפטר ביטח פחות מ-5 שנים (בכפוף לתנאי האכשרה).
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="sub-accordion">
+                            <div class="sub-accordion-header">
+                                <div class="sub-accordion-title">בעלי היה עצמאי ולא שילם כמה חודשים דמי ביטוח – מה קורה?</div>
+                                <span class="sub-accordion-arrow">▼</span>
+                            </div>
+                            <div class="sub-accordion-content">
+                                <div class="sub-accordion-body">
+                                    <p>הדבר עלול לפגוע בזכאות. עם זאת, ניתן לפנות לבית הדין ולבקש הענקה "מטעמי צדק". מומלץ להיוועץ בעורך דין.</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="sub-accordion">
+                            <div class="sub-accordion-header">
+                                <div class="sub-accordion-title">האם ידועים בציבור מאותו מין זכאים לקצבת שאירים?</div>
+                                <span class="sub-accordion-arrow">▼</span>
+                            </div>
+                            <div class="sub-accordion-content">
+                                <div class="sub-accordion-body">
+                                    <div class="note-box success">
+                                        כן. החוק מכיר בבני/בנות זוג מאותו מין – בת זוג של אישה שנפטרה נחשבת "אלמנה", ובן זוג של גבר שנפטר נחשב "אלמן".
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="sub-accordion">
+                            <div class="sub-accordion-header">
+                                <div class="sub-accordion-title">הילד שלי בן 19 ולומד באוניברסיטה – האם הוא ממשיך להיות "יתום"?</div>
+                                <span class="sub-accordion-arrow">▼</span>
+                            </div>
+                            <div class="sub-accordion-content">
+                                <div class="sub-accordion-body">
+                                    <p>כן, עד גיל 20, בתנאי שעיקר זמנו מוקדש ללימודים.</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="sub-accordion">
+                            <div class="sub-accordion-header">
+                                <div class="sub-accordion-title">האם אני יכולה לקבל גם קצבת שאירים וגם קצבת אזרח ותיק?</div>
+                                <span class="sub-accordion-arrow">▼</span>
+                            </div>
+                            <div class="sub-accordion-content">
+                                <div class="sub-accordion-body">
+                                    <p>כן, בתנאים מסוימים – קצבת זקנה מלאה + 50% קצבת שאירים (<strong>919 ₪</strong> נוסף לקצבת הזקנה), אם עמדת בתקופת האכשרה כ<strong>עובדת מבוטחת</strong>.</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="sub-accordion">
+                            <div class="sub-accordion-header">
+                                <div class="sub-accordion-title">מתי הקצבה משולמת?</div>
+                                <span class="sub-accordion-arrow">▼</span>
+                            </div>
+                            <div class="sub-accordion-content">
+                                <div class="sub-accordion-body">
+                                    <p>ב-<strong>26 לכל חודש</strong>.</p>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+            <!-- נספח - טבלת סיכום -->
+            <div class="accordion">
+                <div class="accordion-header">
+                    <div class="accordion-icon">📊</div>
+                    <h2 class="accordion-title">נספח: טבלת סיכום סכומי קצבת שאירים 2026</h2>
+                    <span class="accordion-arrow">▼</span>
+                </div>
+                <div class="accordion-content">
+                    <div class="accordion-body content-section">
+                        <table>
+                            <tr><th>קטגוריה</th><th>סכום בסיסי (₪)</th></tr>
+                            <tr><td>אלמן/ה גיל 40–49 ללא ילדים</td><td>1,381</td></tr>
+                            <tr><td>אלמן/ה גיל 50–79 ללא ילדים</td><td>1,838</td></tr>
+                            <tr><td>אלמן/ה גיל 80+ ללא ילדים</td><td>1,941</td></tr>
+                            <tr><td>אלמן/ה עם ילד אחד</td><td>2,700</td></tr>
+                            <tr><td>אלמן/ה עם שני ילדים</td><td>3,562</td></tr>
+                            <tr><td>כל ילד נוסף (3+)</td><td>+862</td></tr>
+                            <tr><td>50% קצבת שאירים (לאזרח ותיק)</td><td>919</td></tr>
+                            <tr><td>קצבה ליתום</td><td>2,284</td></tr>
+                            <tr><td>תוספת ותק (לכל שנת ביטוח)</td><td>2% מהקצבה הבסיסית</td></tr>
+                            <tr><td>תוספת ותק מקסימלית</td><td>50% מהקצבה הבסיסית</td></tr>
+                            <tr><td>תקרת הכנסה לאלמן (מבחן הכנסות)</td><td>7,848/חודש</td></tr>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+        </div><!-- end accordions-container -->
+
+        <div class="info-box">
+            <div class="info-box-header">
+                <span class="info-box-icon">🔗</span>
+                <h3>קישורים שימושיים</h3>
+            </div>
+            <a href="https://www.btl.gov.il/benefits/Survivors_%20Insurance/Pages/default.aspx" target="_blank" class="link-item">🏛️ אתר הביטוח הלאומי – שאירים</a>
+            <a href="https://www.btl.gov.il/benefits/Survivors_%20Insurance/tnaaiZakaut/Pages/default.aspx" target="_blank" class="link-item">📋 תנאי הזכאות – שאירים (btl.gov.il)</a>
+            <a href="https://www.btl.gov.il/Simulators/Pages/SherimCalc.aspx" target="_blank" class="link-item">🧮 מחשבון קצבת שאירים</a>
+            <a href="https://www.kolzchut.org.il/he/%D7%A7%D7%A6%D7%91%D7%AA_%D7%A9%D7%90%D7%99%D7%A8%D7%99%D7%9D" target="_blank" class="link-item">📚 כל זכות – קצבת שאירים</a>
+            <a href="https://www.btl.gov.il/About/contact_us/Pages/default.aspx" target="_blank" class="link-item">📞 פנייה לסניף הביטוח הלאומי | מוקד: *6050</a>
+        </div>
+
+        <div class="info-box" style="margin-top:20px; border-right-color: var(--secondary);">
+            <div class="info-box-header">
+                <span class="info-box-icon">ℹ️</span>
+                <h3 style="color: var(--secondary);">הערה חשובה</h3>
+            </div>
+            <p>מסמך זה הוכן לצרכי מידע כללי. הסכומים מתייחסים לשנת 2026 ועודכנו בינואר 2026. לפרטים מחייבים ולבירורים אישיים יש לפנות ישירות למוסד לביטוח לאומי.</p>
+        </div>
+
+    </div><!-- end container -->
+
+    <footer>
+        <p>🤖 פותח עם ❤️ לסיוע לאזרחים ותיקים בישראל</p>
+    </footer>
+
+    <script>
+        // אקורדיונים ראשיים
+        document.querySelectorAll('.accordion-header').forEach(header => {
+            header.addEventListener('click', () => {
+                const accordion = header.closest('.accordion');
+                const wasActive = accordion.classList.contains('active');
+
+                // סגור אחרים
+                document.querySelectorAll('.accordion.active').forEach(other => {
+                    if (other !== accordion) {
+                        other.classList.remove('active');
+                        other.querySelectorAll('.sub-accordion.active, .sub-sub-accordion.active').forEach(s => s.classList.remove('active'));
+                    }
+                });
+
+                accordion.classList.toggle('active');
+
+                if (!wasActive) {
+                    accordion.querySelectorAll('.sub-accordion.active, .sub-sub-accordion.active').forEach(s => s.classList.remove('active'));
+                    setTimeout(() => {
+                        accordion.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                    }, 450);
+                }
+            });
+        });
+
+        // תתי-אקורדיונים (רמה 2)
+        document.querySelectorAll('.sub-accordion-header').forEach(header => {
+            header.addEventListener('click', e => {
+                e.stopPropagation();
+                const sub = header.closest('.sub-accordion');
+                const wasActive = sub.classList.contains('active');
+
+                // סגור אחים באותה רמה
+                const parent = sub.parentElement;
+                parent.querySelectorAll(':scope > .sub-accordion.active').forEach(other => {
+                    if (other !== sub) {
+                        other.classList.remove('active');
+                        other.querySelectorAll('.sub-sub-accordion.active').forEach(s => s.classList.remove('active'));
+                    }
+                });
+
+                sub.classList.toggle('active');
+
+                if (!wasActive) {
+                    sub.querySelectorAll('.sub-sub-accordion.active').forEach(s => s.classList.remove('active'));
+                    setTimeout(() => {
+                        sub.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                    }, 450);
+                }
+            });
+        });
+
+        // תת-תתי-אקורדיונים (רמה 3)
+        document.querySelectorAll('.sub-sub-accordion-header').forEach(header => {
+            header.addEventListener('click', e => {
+                e.stopPropagation();
+                const sub = header.closest('.sub-sub-accordion');
+                const wasActive = sub.classList.contains('active');
+
+                // סגור אחים באותה רמה
+                const parent = sub.parentElement;
+                parent.querySelectorAll(':scope > .sub-sub-accordion.active').forEach(other => {
+                    if (other !== sub) other.classList.remove('active');
+                });
+
+                sub.classList.toggle('active');
+
+                if (!wasActive) {
+                    setTimeout(() => {
+                        sub.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                    }, 450);
+                }
+            });
+        });
+    </script>
+</body>
+</html>
