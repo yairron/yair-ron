@@ -349,8 +349,6 @@
 
         <div class="card">
 
-            <div id="today-retirement-notice" style="background: #FFF8E1; border-right: 4px solid #E8A840; border-radius: 10px; padding: 12px 18px; margin-bottom: 22px; font-size: 1.05rem; color: #2C3E50; line-height: 1.6;"></div>
-
             <div class="input-group">
                 <label>תאריך לידה:</label>
                 <div class="input-row">
@@ -534,47 +532,6 @@
                 r.classList.remove('highlight');
             });
         }
-
-        function showTodayRetirement() {
-            var notice = document.getElementById('today-retirement-notice');
-            if (!notice) return;
-
-            var today = new Date();
-            var todayDay   = today.getDate();
-            var todayMonth = today.getMonth() + 1;
-            var todayYear  = today.getFullYear();
-
-            var matches = [];
-
-            for (var i = 0; i < retirementTable.length; i++) {
-                var entry = retirementTable[i];
-                // birth_date + entry.years + entry.months = today
-                var birthMonth = todayMonth - entry.months;
-                var birthYear  = todayYear  - entry.years;
-                if (birthMonth <= 0) {
-                    birthMonth += 12;
-                    birthYear  -= 1;
-                }
-                // Verify this birth year maps to exactly this entry
-                if (getRetirementEntry(birthYear) !== entry) continue;
-
-                var dd = String(todayDay).padStart(2, '0');
-                var mm = String(birthMonth).padStart(2, '0');
-                matches.push(dd + '/' + mm + '/' + birthYear);
-            }
-
-            if (matches.length === 0) {
-                notice.style.display = 'none';
-                return;
-            }
-
-            var todayStr = String(todayDay).padStart(2, '0') + '/' +
-                           String(todayMonth).padStart(2, '0') + '/' + todayYear;
-            notice.innerHTML = '<strong>📅 היום ' + todayStr +
-                ' הוא יום הפרישה של נשים ילידות ' + matches.join(', ') + '</strong>';
-        }
-
-        showTodayRetirement();
     </script>
 </body>
 </html>
