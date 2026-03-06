@@ -1,0 +1,537 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>מחשבון גיל פרישה לנשים</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Assistant:wght@300;400;600;700;800&family=Varela+Round&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #2E5B8A;
+            --secondary: #4A90B5;
+            --accent: #E8A840;
+            --success: #2E7D32;
+            --danger: #C62828;
+            --light: #F5F9FC;
+            --dark: #1A3A52;
+            --text: #2C3E50;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Assistant', 'Segoe UI', Tahoma, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
+            min-height: 100vh;
+            padding: 20px;
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background:
+                radial-gradient(circle at 20% 50%, rgba(255,255,255,0.1) 0%, transparent 50%),
+                radial-gradient(circle at 80% 80%, rgba(255,255,255,0.1) 0%, transparent 50%);
+            animation: backgroundShift 20s ease-in-out infinite;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        @keyframes backgroundShift {
+            0%, 100% { transform: translate(0, 0) scale(1); }
+            50% { transform: translate(-5%, 5%) scale(0.95); }
+        }
+
+        .container {
+            max-width: 700px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 40px;
+            animation: slideDown 0.8s ease-out;
+        }
+
+        @keyframes slideDown {
+            from { opacity: 0; transform: translateY(-50px); }
+            to   { opacity: 1; transform: translateY(0); }
+        }
+
+        h1 {
+            font-family: 'Varela Round', sans-serif;
+            font-size: 2.4rem;
+            font-weight: 800;
+            color: white;
+            margin-bottom: 15px;
+            text-shadow: 3px 5px 15px rgba(0,0,0,0.3);
+            letter-spacing: -2px;
+        }
+
+        .back-button {
+            display: inline-block;
+            background: rgba(255,255,255,0.25);
+            backdrop-filter: blur(10px);
+            padding: 12px 24px;
+            border-radius: 25px;
+            color: white;
+            text-decoration: none;
+            font-size: 1rem;
+            font-weight: 600;
+            transition: all 0.3s;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            margin-bottom: 20px;
+        }
+
+        .back-button:hover {
+            background: rgba(255,255,255,0.35);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(0,0,0,0.25);
+        }
+
+        .back-button::before {
+            content: '← ';
+            margin-left: 4px;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to   { opacity: 1; transform: translateY(0); }
+        }
+
+        .card {
+            background: rgba(255,255,255,0.95);
+            border-radius: 24px;
+            padding: 35px;
+            box-shadow: 0 12px 35px rgba(0,0,0,0.2);
+            animation: fadeIn 0.8s ease-out 0.3s both;
+        }
+
+        .input-group {
+            margin-bottom: 20px;
+        }
+
+        .input-group label {
+            display: block;
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: var(--text);
+            margin-bottom: 10px;
+        }
+
+        .input-row {
+            display: flex;
+            gap: 12px;
+            align-items: center;
+        }
+
+        .input-group input[type="text"] {
+            flex: 1;
+            padding: 14px 18px;
+            border: 2px solid #ddd;
+            border-radius: 14px;
+            font-size: 1.3rem;
+            font-family: 'Assistant', sans-serif;
+            text-align: center;
+            letter-spacing: 2px;
+            direction: ltr;
+            transition: border-color 0.3s;
+        }
+
+        .input-group input[type="text"]:focus {
+            outline: none;
+            border-color: var(--secondary);
+            box-shadow: 0 0 0 3px rgba(74,144,181,0.2);
+        }
+
+        .input-group input[readonly] {
+            background: #F1F8E9;
+            border-color: #A5D6A7;
+            color: var(--success);
+            font-weight: 700;
+            cursor: default;
+        }
+
+        .btn {
+            padding: 14px 30px;
+            border: none;
+            border-radius: 14px;
+            font-size: 1.1rem;
+            font-weight: 700;
+            font-family: 'Assistant', sans-serif;
+            cursor: pointer;
+            transition: all 0.3s;
+            white-space: nowrap;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            box-shadow: 0 4px 15px rgba(46,91,138,0.3);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(46,91,138,0.4);
+        }
+
+        .btn-clear {
+            background: #eee;
+            color: var(--text);
+        }
+
+        .btn-clear:hover {
+            background: #ddd;
+        }
+
+        .buttons-row {
+            display: flex;
+            gap: 12px;
+            justify-content: center;
+            margin-top: 10px;
+            margin-bottom: 25px;
+        }
+
+        .result-box {
+            display: none;
+            padding: 25px;
+            border-radius: 16px;
+            text-align: center;
+            animation: fadeIn 0.4s ease-out;
+        }
+
+        .result-box.show-result {
+            display: block;
+            background: linear-gradient(135deg, #E3F2FD, #BBDEFB);
+            border: 2px solid var(--secondary);
+        }
+
+        .result-box.show-error {
+            display: block;
+            background: linear-gradient(135deg, #FFEBEE, #FFCDD2);
+            border: 2px solid var(--danger);
+        }
+
+        .result-icon {
+            font-size: 3rem;
+            margin-bottom: 10px;
+        }
+
+        .result-title {
+            font-family: 'Varela Round', sans-serif;
+            font-size: 1.4rem;
+            font-weight: 700;
+            margin-bottom: 8px;
+            color: var(--primary);
+        }
+
+        .result-box.show-error .result-title {
+            color: var(--danger);
+        }
+
+        .result-date {
+            font-size: 2.2rem;
+            font-weight: 800;
+            letter-spacing: 2px;
+            direction: ltr;
+            display: inline-block;
+            color: var(--text);
+            margin: 8px 0;
+        }
+
+        .result-age {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--primary);
+            margin-top: 6px;
+        }
+
+        .result-detail {
+            font-size: 1rem;
+            color: #546E7A;
+            margin-top: 6px;
+        }
+
+        .table-section {
+            margin-top: 30px;
+        }
+
+        .table-section h3 {
+            font-family: 'Varela Round', sans-serif;
+            font-size: 1.15rem;
+            color: var(--primary);
+            margin-bottom: 12px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 1rem;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+        }
+
+        th {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            padding: 11px 16px;
+            text-align: right;
+            font-weight: 700;
+        }
+
+        td {
+            padding: 10px 16px;
+            border-bottom: 1px solid #E0E7EE;
+            color: #546E7A;
+        }
+
+        tr:last-child td { border-bottom: none; }
+        tr:nth-child(even) td { background: #F5F9FC; }
+        tr.highlight td { background: #E8F5E9; font-weight: 700; color: var(--success); }
+
+        .info-section {
+            margin-top: 25px;
+            padding: 20px;
+            background: #f0f4f8;
+            border-radius: 14px;
+            border-right: 4px solid var(--accent);
+        }
+
+        .info-section h3 {
+            font-family: 'Varela Round', sans-serif;
+            font-size: 1.1rem;
+            color: var(--accent);
+            margin-bottom: 10px;
+        }
+
+        .info-section p {
+            font-size: 0.95rem;
+            color: #546E7A;
+            line-height: 1.7;
+        }
+
+        footer {
+            text-align: center;
+            margin-top: 40px;
+            padding: 20px;
+            color: rgba(255,255,255,0.9);
+            font-size: 0.95rem;
+        }
+
+        @media (max-width: 600px) {
+            h1 { font-size: 1.8rem; }
+            .card { padding: 22px; }
+            .input-row { flex-direction: column; }
+            .buttons-row { flex-direction: column; }
+            .btn { width: 100%; }
+            .result-date { font-size: 1.7rem; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <a href="../index.html" class="back-button">חזרה לדף ראשי</a>
+            <h1>👩 מחשבון גיל פרישה לנשים</h1>
+        </header>
+
+        <div class="card">
+
+            <div class="input-group">
+                <label>תאריך לידה:</label>
+                <div class="input-row">
+                    <input type="text" id="birthInput" placeholder="DD/MM/YYYY" maxlength="10"
+                           inputmode="numeric"
+                           oninput="formatDateInput(this)" onkeypress="handleEnter(event)">
+                    <button class="btn btn-primary" onclick="calculate()">חשב</button>
+                </div>
+            </div>
+
+            <div class="input-group">
+                <label>תאריך פרישה:</label>
+                <div class="input-row">
+                    <input type="text" id="retirementOutput" placeholder="DD/MM/YYYY" readonly>
+                </div>
+            </div>
+
+            <div class="buttons-row">
+                <button class="btn btn-clear" onclick="clearAll()">נקה</button>
+            </div>
+
+            <div id="result" class="result-box"></div>
+
+            <div class="table-section">
+                <h3>👩 גיל פרישה לנשים לפי שנת לידה</h3>
+                <table id="retirementTable">
+                    <tr>
+                        <th>שנת לידה</th>
+                        <th>גיל פרישה</th>
+                    </tr>
+                    <tr><td>עד 31.12.1959</td><td>62</td></tr>
+                    <tr><td>1.1.1960 – 31.12.1960</td><td>62 שנים ו-4 חודשים</td></tr>
+                    <tr><td>1.1.1961 – 31.12.1961</td><td>62 שנים ו-8 חודשים</td></tr>
+                    <tr><td>1.1.1962 – 31.12.1962</td><td>63</td></tr>
+                    <tr><td>1.1.1963 – 31.12.1963</td><td>63 שנים ו-4 חודשים</td></tr>
+                    <tr><td>1.1.1964 – 31.12.1964</td><td>63 שנים ו-8 חודשים</td></tr>
+                    <tr><td>1.1.1965 – 31.12.1965</td><td>64</td></tr>
+                    <tr><td>1.1.1966 – 31.12.1966</td><td>64 שנים ו-4 חודשים</td></tr>
+                    <tr><td>1.1.1967 ואילך</td><td>65</td></tr>
+                </table>
+            </div>
+
+            <div class="info-section">
+                <h3>איך זה עובד?</h3>
+                <p>
+                    הזינו את תאריך הלידה בפורמט DD/MM/YYYY. המחשבון קובע את גיל הפרישה לפי שנת הלידה
+                    ומחשב את תאריך הפרישה המדויק על ידי הוספת גיל הפרישה לתאריך הלידה.
+                    <br><br>
+                    <strong>הערה:</strong> גיל הפרישה לגברים הוא 67 ללא תלות בשנת הלידה.
+                    לחישוב מדויק באתר הביטוח הלאומי השתמשו במחשבון הרשמי.
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <p>🤖 פותח עם ❤️ לסיוע לאזרחים ותיקים בישראל</p>
+    </footer>
+
+    <script>
+        var retirementTable = [
+            { maxYear: 1959, years: 62, months: 0,  label: '62' },
+            { maxYear: 1960, years: 62, months: 4,  label: '62 שנים ו-4 חודשים' },
+            { maxYear: 1961, years: 62, months: 8,  label: '62 שנים ו-8 חודשים' },
+            { maxYear: 1962, years: 63, months: 0,  label: '63' },
+            { maxYear: 1963, years: 63, months: 4,  label: '63 שנים ו-4 חודשים' },
+            { maxYear: 1964, years: 63, months: 8,  label: '63 שנים ו-8 חודשים' },
+            { maxYear: 1965, years: 64, months: 0,  label: '64' },
+            { maxYear: 1966, years: 64, months: 4,  label: '64 שנים ו-4 חודשים' },
+            { maxYear: 9999, years: 65, months: 0,  label: '65' }
+        ];
+
+        function formatDateInput(input) {
+            var digits = input.value.replace(/\D/g, '');
+            var formatted = digits;
+            if (digits.length > 2) formatted = digits.substring(0,2) + '/' + digits.substring(2);
+            if (digits.length > 4) formatted = digits.substring(0,2) + '/' + digits.substring(2,4) + '/' + digits.substring(4,8);
+            input.value = formatted;
+            // Auto-calculate when date is complete
+            if (digits.length === 8) calculate();
+        }
+
+        function handleEnter(e) {
+            if (e.key === 'Enter') calculate();
+        }
+
+        function getRetirementEntry(year) {
+            for (var i = 0; i < retirementTable.length; i++) {
+                if (year <= retirementTable[i].maxYear) return retirementTable[i];
+            }
+            return retirementTable[retirementTable.length - 1];
+        }
+
+        function calculate() {
+            var input = document.getElementById('birthInput').value;
+            var resultDiv = document.getElementById('result');
+            var outputEl = document.getElementById('retirementOutput');
+
+            // Reset table highlights
+            var rows = document.querySelectorAll('#retirementTable tr');
+            rows.forEach(function(r) { r.classList.remove('highlight'); });
+
+            var digits = input.replace(/\D/g, '');
+
+            if (digits.length === 0) {
+                outputEl.value = '';
+                resultDiv.className = 'result-box show-error';
+                resultDiv.innerHTML =
+                    '<div class="result-icon">❌</div>' +
+                    '<div class="result-title">לא הוזן תאריך</div>' +
+                    '<div class="result-detail">יש להזין תאריך לידה בפורמט DD/MM/YYYY</div>';
+                return;
+            }
+
+            if (digits.length < 8) {
+                outputEl.value = '';
+                resultDiv.className = 'result-box show-error';
+                resultDiv.innerHTML =
+                    '<div class="result-icon">❌</div>' +
+                    '<div class="result-title">תאריך חסר</div>' +
+                    '<div class="result-detail">יש להזין תאריך מלא: DD/MM/YYYY</div>';
+                return;
+            }
+
+            var day   = parseInt(digits.substring(0,2), 10);
+            var month = parseInt(digits.substring(2,4), 10);
+            var year  = parseInt(digits.substring(4,8), 10);
+
+            if (day < 1 || day > 31 || month < 1 || month > 12 || year < 1900 || year > 2010) {
+                outputEl.value = '';
+                resultDiv.className = 'result-box show-error';
+                resultDiv.innerHTML =
+                    '<div class="result-icon">❌</div>' +
+                    '<div class="result-title">תאריך לא תקין</div>' +
+                    '<div class="result-detail">בדקו שהיום, החודש והשנה תקינים</div>';
+                return;
+            }
+
+            var entry = getRetirementEntry(year);
+            var retYear  = year + entry.years;
+            var retMonth = month + entry.months;
+            if (retMonth > 12) {
+                retYear  += Math.floor((retMonth - 1) / 12);
+                retMonth  = ((retMonth - 1) % 12) + 1;
+            }
+
+            var dd = String(day).padStart(2, '0');
+            var mm = String(retMonth).padStart(2, '0');
+            var retDateStr = dd + '/' + mm + '/' + retYear;
+
+            outputEl.value = retDateStr;
+
+            // Highlight matching row in table (rows index 1-9, retirementTable 0-8)
+            var entryIdx = retirementTable.indexOf(entry);
+            if (rows[entryIdx + 1]) rows[entryIdx + 1].classList.add('highlight');
+
+            var today = new Date();
+            var retDate = new Date(retYear, retMonth - 1, day);
+            var isPast = retDate <= today;
+
+            resultDiv.className = 'result-box show-result';
+            resultDiv.innerHTML =
+                '<div class="result-icon">' + (isPast ? '✅' : '🗓️') + '</div>' +
+                '<div class="result-title">' + (isPast ? 'הגיע גיל הפרישה' : 'תאריך הפרישה') + '</div>' +
+                '<div class="result-date">' + retDateStr + '</div>' +
+                '<div class="result-age">גיל פרישה: ' + entry.label + '</div>' +
+                '<div class="result-detail">' + (isPast
+                    ? 'גיל הפרישה כבר הגיע – ניתן לפנות לביטוח הלאומי לבדיקת זכאות לקצבת אזרח ותיק'
+                    : 'תאריך הפרישה עדיין לא הגיע') +
+                '</div>';
+        }
+
+        function clearAll() {
+            document.getElementById('birthInput').value = '';
+            document.getElementById('retirementOutput').value = '';
+            var resultDiv = document.getElementById('result');
+            resultDiv.className = 'result-box';
+            resultDiv.innerHTML = '';
+            // Remove table highlights
+            document.querySelectorAll('#retirementTable tr').forEach(function(r) {
+                r.classList.remove('highlight');
+            });
+        }
+    </script>
+</body>
+</html>
