@@ -349,6 +349,8 @@
 
         <div class="card">
 
+            <div id="today-retirement-notice" style="background: #FFF8E1; border-right: 4px solid #E8A840; border-radius: 10px; padding: 12px 18px; margin-bottom: 22px; font-size: 1rem; color: #2C3E50; line-height: 1.9;"></div>
+
             <div class="input-group">
                 <label>תאריך לידה:</label>
                 <div class="input-row">
@@ -520,6 +522,75 @@
                     : 'תאריך הפרישה עדיין לא הגיע') +
                 '</div>';
         }
+
+        function showRetirementStepNotice() {
+            var notice = document.getElementById('today-retirement-notice');
+            if (!notice) return;
+
+            var steps = [
+                { minYear: 0,    maxYear: 1959, years: 62, months: 0,  label: 'עד 1959' },
+                { minYear: 1960, maxYear: 1960, years: 62, months: 4,  label: '1960' },
+                { minYear: 1961, maxYear: 1961, years: 62, months: 8,  label: '1961' },
+                { minYear: 1962, maxYear: 1962, years: 63, months: 0,  label: '1962' },
+                { minYear: 1963, maxYear: 1963, years: 63, months: 4,  label: '1963' },
+                { minYear: 1964, maxYear: 1964, years: 63, months: 8,  label: '1964' },
+                { minYear: 1965, maxYear: 1965, years: 64, months: 0,  label: '1965' },
+                { minYear: 1966, maxYear: 1966, years: 64, months: 4,  label: '1966' },
+                { minYear: 1967, maxYear: 9999, years: 65, months: 0,  label: '1967 ואילך' }
+            ];
+
+            function calcDate(birthYear, birthMonth, birthDay, addYears, addMonths) {
+                var m = birthMonth + addMonths;
+                var y = birthYear + addYears;
+                if (m > 12) { y += Math.floor((m - 1) / 12); m = ((m - 1) % 12) + 1; }
+                return new Date(y, m - 1, birthDay);
+            }
+
+            function fmt(d) {
+                return String(d.getDate()).padStart(2,'0') + '/' +
+                       String(d.getMonth()+1).padStart(2,'0') + '/' + d.getFullYear();
+            }
+
+            var today = new Date();
+            today.setHours(0,0,0,0);
+
+            var lastCompleted = null, currentActive = null, nextUpcoming = null;
+
+            for (var i = 0; i < steps.length; i++) {
+                var s = steps[i];
+                var maxBirthYear = s.maxYear === 9999 ? 1967 : s.maxYear;
+                var minBirthYear = s.minYear === 0 ? 1900 : s.minYear;
+                var firstRet = calcDate(minBirthYear, 1,  1,  s.years, s.months);
+                var lastRet  = calcDate(maxBirthYear, 12, 31, s.years, s.months);
+
+                if (lastRet < today) {
+                    if (!lastCompleted || lastRet > lastCompleted.lastRet)
+                        lastCompleted = { step: s, lastRet: lastRet };
+                } else if (firstRet <= today && lastRet >= today) {
+                    currentActive = { step: s, firstRet: firstRet, lastRet: lastRet };
+                } else if (firstRet > today) {
+                    if (!nextUpcoming || firstRet < nextUpcoming.firstRet)
+                        nextUpcoming = { step: s, firstRet: firstRet };
+                }
+            }
+
+            var lines = [];
+            if (currentActive) {
+                lines.push('<strong>📅 מדרגת גיל הפרישה לילידות ' + currentActive.step.label +
+                    ' בתהליך — הפרישה האחרונה במדרגה זו תהיה ב-' + fmt(currentActive.lastRet) + '</strong>');
+            } else if (lastCompleted) {
+                lines.push('<strong>📅 מדרגת גיל הפרישה לילידות ' + lastCompleted.step.label +
+                    ' הסתיימה ב-' + fmt(lastCompleted.lastRet) + '</strong>');
+            }
+            if (nextUpcoming) {
+                lines.push('<strong>⏭️ מדרגת גיל הפרישה לילידות ' + nextUpcoming.step.label +
+                    ' תחל ב-' + fmt(nextUpcoming.firstRet) + '</strong>');
+            }
+
+            notice.innerHTML = lines.join('<br>');
+        }
+
+        showRetirementStepNotice();
 
         function clearAll() {
             document.getElementById('birthInput').value = '';
