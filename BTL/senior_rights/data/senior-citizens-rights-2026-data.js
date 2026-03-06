@@ -10,6 +10,23 @@ const SENIOR_RIGHTS_2026_DATA = {
                 <p><strong>גיל הפרישה לגברים:</strong> 67</p>
                 
                 <h3>גיל הפרישה לנשים לפי שנת לידה</h3>
+                <div style="background: #E3F2FD; border: 1px solid #BBDEFB; border-radius: 12px; padding: 18px 20px; margin: 12px 0 16px 0;">
+                    <p style="font-weight: 700; color: #1A3A52; margin-bottom: 14px; font-size: 1.05rem;">🧮 מחשבון תאריך פרישה</p>
+                    <div style="display: flex; align-items: center; gap: 14px; flex-wrap: wrap;">
+                        <div style="display: flex; align-items: center; gap: 8px;">
+                            <label style="font-weight: 600; color: #2C3E50; white-space: nowrap;">תאריך לידה:</label>
+                            <input type="text" id="woman-birth-date" placeholder="DD/MM/YYYY" maxlength="10"
+                                   style="padding: 8px 12px; border: 2px solid #90CAF9; border-radius: 8px; font-size: 1rem; font-family: inherit; width: 140px; direction: ltr; text-align: center;"
+                                   oninput="calcWomanRetirement(this)">
+                        </div>
+                        <div style="display: flex; align-items: center; gap: 8px;">
+                            <label style="font-weight: 600; color: #2C3E50; white-space: nowrap;">תאריך פרישה:</label>
+                            <input type="text" id="retirement-date-result" placeholder="DD/MM/YYYY" readonly
+                                   style="padding: 8px 12px; border: 2px solid #A5D6A7; border-radius: 8px; font-size: 1rem; font-family: inherit; width: 140px; direction: ltr; text-align: center; background: #F1F8E9; font-weight: 700; color: #2E7D32; cursor: default;">
+                        </div>
+                    </div>
+                    <p id="retirement-age-label" style="color: #546E7A; font-size: 0.9rem; margin: 10px 0 0 0; min-height: 1.2em;"></p>
+                </div>
                 <ul>
                     <li>נשים שנולדו עד 31.12.1959: גיל 62</li>
                     <li>נשים שנולדו מ-1.1.1960 עד 31.12.1960: 62 + 4 חודשים</li>
@@ -21,8 +38,6 @@ const SENIOR_RIGHTS_2026_DATA = {
                     <li>נשים שנולדו מ-1.1.1966 עד 31.12.1966: 64 + 4 חודשים</li>
                     <li>נשים שנולדו מ-1.1.1967 ואילך: 65</li>
                 </ul>
-                
-                <p><strong>** לחישוב גיל פרישה מדויק יש להשתמש במחשבון באתר הביטוח הלאומי</strong></p>
                 
                 <h3>גיל הזכאות המוחלט</h3>
                 <p><strong>70 - ללא מבחן הכנסות</strong></p>

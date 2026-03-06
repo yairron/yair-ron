@@ -538,6 +538,58 @@
         `;
         document.head.appendChild(style);
 
+        function calcWomanRetirement(input) {
+            var val = input.value.replace(/[^\d]/g, '');
+            // Auto-format as DD/MM/YYYY
+            var formatted = val;
+            if (val.length > 2) formatted = val.substring(0,2) + '/' + val.substring(2);
+            if (val.length > 4) formatted = val.substring(0,2) + '/' + val.substring(2,4) + '/' + val.substring(4,8);
+            if (input.value !== formatted) input.value = formatted;
+
+            var resultEl = document.getElementById('retirement-date-result');
+            var labelEl  = document.getElementById('retirement-age-label');
+            if (!resultEl) return;
+
+            if (val.length < 8) {
+                resultEl.value = '';
+                if (labelEl) labelEl.textContent = '';
+                return;
+            }
+
+            var day   = parseInt(val.substring(0,2), 10);
+            var month = parseInt(val.substring(2,4), 10);
+            var year  = parseInt(val.substring(4,8), 10);
+
+            if (day < 1 || day > 31 || month < 1 || month > 12 || year < 1900 || year > 2010) {
+                resultEl.value = 'תאריך לא תקין';
+                if (labelEl) labelEl.textContent = '';
+                return;
+            }
+
+            var retYears, retMonths, ageLabel;
+            if      (year <= 1959) { retYears = 62; retMonths = 0; ageLabel = 'גיל פרישה: 62'; }
+            else if (year === 1960) { retYears = 62; retMonths = 4; ageLabel = 'גיל פרישה: 62 שנים ו-4 חודשים'; }
+            else if (year === 1961) { retYears = 62; retMonths = 8; ageLabel = 'גיל פרישה: 62 שנים ו-8 חודשים'; }
+            else if (year === 1962) { retYears = 63; retMonths = 0; ageLabel = 'גיל פרישה: 63'; }
+            else if (year === 1963) { retYears = 63; retMonths = 4; ageLabel = 'גיל פרישה: 63 שנים ו-4 חודשים'; }
+            else if (year === 1964) { retYears = 63; retMonths = 8; ageLabel = 'גיל פרישה: 63 שנים ו-8 חודשים'; }
+            else if (year === 1965) { retYears = 64; retMonths = 0; ageLabel = 'גיל פרישה: 64'; }
+            else if (year === 1966) { retYears = 64; retMonths = 4; ageLabel = 'גיל פרישה: 64 שנים ו-4 חודשים'; }
+            else                    { retYears = 65; retMonths = 0; ageLabel = 'גיל פרישה: 65'; }
+
+            var retYear  = year + retYears;
+            var retMonth = month + retMonths;
+            if (retMonth > 12) {
+                retYear  += Math.floor((retMonth - 1) / 12);
+                retMonth  = ((retMonth - 1) % 12) + 1;
+            }
+
+            var dd = String(day).padStart(2, '0');
+            var mm = String(retMonth).padStart(2, '0');
+            resultEl.value = dd + '/' + mm + '/' + retYear;
+            if (labelEl) labelEl.textContent = ageLabel;
+        }
+
         function displayContent() {
             try {
                 console.log('🔍 בדיקה נתונים:', typeof SENIOR_RIGHTS_2026_DATA);
