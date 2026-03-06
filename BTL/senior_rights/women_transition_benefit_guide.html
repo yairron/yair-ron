@@ -1,0 +1,1096 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>מדריך מקיף למענק מעבר לנשים</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Assistant:wght@300;400;600;700;800&family=Varela+Round&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #2E5B8A;
+            --secondary: #4A90B5;
+            --accent: #E8A840;
+            --success: #2E7D32;
+            --danger: #C62828;
+            --light: #F5F9FC;
+            --dark: #1A3A52;
+            --text: #2C3E50;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Assistant', 'Segoe UI', Tahoma, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
+            min-height: 100vh;
+            padding: 20px;
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background:
+                radial-gradient(circle at 20% 50%, rgba(255,255,255,0.1) 0%, transparent 50%),
+                radial-gradient(circle at 80% 80%, rgba(255,255,255,0.1) 0%, transparent 50%);
+            animation: backgroundShift 20s ease-in-out infinite;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        @keyframes backgroundShift {
+            0%, 100% { transform: translate(0, 0) scale(1); }
+            50% { transform: translate(-5%, 5%) scale(0.95); }
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 50px;
+            animation: slideDown 0.8s ease-out;
+        }
+
+        @keyframes slideDown {
+            from { opacity: 0; transform: translateY(-50px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        h1 {
+            font-family: 'Varela Round', sans-serif;
+            font-size: 3rem;
+            font-weight: 800;
+            color: white;
+            margin-bottom: 15px;
+            text-shadow: 3px 5px 15px rgba(0,0,0,0.3);
+            letter-spacing: -1px;
+        }
+
+        .subtitle {
+            font-size: 1.4rem;
+            color: rgba(255,255,255,0.95);
+            font-weight: 300;
+            text-shadow: 1px 2px 8px rgba(0,0,0,0.2);
+        }
+
+        .support-info {
+            font-size: 1.2rem;
+            color: #FFD54F;
+            font-weight: 700;
+            text-shadow: 1px 2px 8px rgba(0,0,0,0.3);
+            margin-bottom: 8px;
+        }
+
+        .update-badge {
+            display: inline-block;
+            background: rgba(255,255,255,0.2);
+            backdrop-filter: blur(10px);
+            padding: 8px 20px;
+            border-radius: 20px;
+            color: white;
+            font-size: 0.9rem;
+            margin-top: 15px;
+            font-weight: 600;
+        }
+
+        .back-button {
+            display: inline-block;
+            background: rgba(255,255,255,0.25);
+            backdrop-filter: blur(10px);
+            padding: 12px 24px;
+            border-radius: 25px;
+            color: white;
+            text-decoration: none;
+            font-size: 1rem;
+            font-weight: 600;
+            transition: all 0.3s;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+        }
+
+        .back-button:hover {
+            background: rgba(255,255,255,0.35);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(0,0,0,0.25);
+        }
+
+        .back-button::before {
+            content: '← ';
+            margin-left: 5px;
+        }
+
+        .accordions-container {
+            margin-bottom: 40px;
+            animation: fadeIn 0.8s ease-out 0.3s both;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* אקורדיונים ראשיים */
+        .accordion {
+            background: white;
+            border-radius: 0;
+            margin-bottom: 0;
+            box-shadow: 0 12px 35px rgba(0,0,0,0.2);
+            overflow: hidden;
+            transition: all 0.3s;
+            border-bottom: 1px solid rgba(0,0,0,0.1);
+        }
+
+        .accordion:first-child { border-radius: 24px 24px 0 0; }
+        .accordion:last-child { border-radius: 0 0 24px 24px; border-bottom: none; }
+        .accordion:only-child { border-radius: 24px; }
+        .accordion:hover { box-shadow: 0 15px 45px rgba(0,0,0,0.25); }
+
+        .accordion-header {
+            padding: 20px 35px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 18px;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            transition: all 0.3s;
+            position: relative;
+        }
+
+        .accordion-header:hover {
+            background: linear-gradient(135deg, var(--secondary), var(--primary));
+        }
+
+        .accordion-icon {
+            width: 60px;
+            height: 60px;
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            background: rgba(255,255,255,0.2);
+            flex-shrink: 0;
+        }
+
+        .accordion-title {
+            font-family: 'Varela Round', sans-serif;
+            font-size: 1.6rem;
+            font-weight: 800;
+            flex: 1;
+            margin: 0;
+        }
+
+        .accordion-arrow {
+            font-size: 1.5rem;
+            transition: transform 0.3s;
+            width: 40px;
+            text-align: center;
+            flex-shrink: 0;
+        }
+
+        .accordion.active .accordion-arrow { transform: rotate(180deg); }
+
+        .accordion-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s ease;
+        }
+
+        .accordion.active .accordion-content {
+            max-height: 10000px;
+            height: 80vh;
+            overflow: auto;
+            -webkit-overflow-scrolling: touch;
+        }
+
+        .accordion-body {
+            padding: 35px;
+            font-size: 1.1rem;
+            line-height: 1.9;
+            color: #546E7A;
+        }
+
+        /* תתי-אקורדיונים */
+        .sub-accordion {
+            margin: 15px 0;
+            border: 1px solid #E0E7EE;
+            border-radius: 12px;
+            overflow: hidden;
+            background: #F8FAFB;
+        }
+
+        .sub-accordion-header {
+            padding: 18px 25px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background: linear-gradient(135deg, #F8FAFB 0%, #EEF2F5 100%);
+            transition: all 0.3s;
+        }
+
+        .sub-accordion-header:hover {
+            background: linear-gradient(135deg, #EEF2F5 0%, #E3E9EE 100%);
+        }
+
+        .sub-accordion-title {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: var(--primary);
+            margin: 0;
+            flex: 1;
+        }
+
+        .sub-accordion-arrow {
+            font-size: 1rem;
+            transition: transform 0.3s;
+            color: var(--secondary);
+            flex-shrink: 0;
+            margin-right: 10px;
+        }
+
+        .sub-accordion.active > .sub-accordion-header .sub-accordion-arrow {
+            transform: rotate(180deg);
+        }
+
+        .sub-accordion-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s ease;
+        }
+
+        .sub-accordion.active > .sub-accordion-content {
+            max-height: 80vh;
+            overflow: auto;
+            -webkit-overflow-scrolling: touch;
+        }
+
+        .sub-accordion-body {
+            padding: 20px 25px;
+            background: white;
+        }
+
+        /* תת-תתי-אקורדיונים (רמה 3) */
+        .sub-sub-accordion {
+            margin: 12px 0;
+            border: 1px solid #BBDEFB;
+            border-radius: 10px;
+            overflow: hidden;
+            background: #FAFBFC;
+        }
+
+        .sub-sub-accordion-header {
+            padding: 14px 20px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background: linear-gradient(135deg, #E3F2FD 0%, #BBDEFB 100%);
+            transition: all 0.3s;
+        }
+
+        .sub-sub-accordion-header:hover {
+            background: linear-gradient(135deg, #BBDEFB 0%, #90CAF9 100%);
+        }
+
+        .sub-sub-accordion-title {
+            font-size: 1.05rem;
+            font-weight: 700;
+            color: var(--dark);
+            margin: 0;
+            flex: 1;
+        }
+
+        .sub-sub-accordion-arrow {
+            font-size: 0.9rem;
+            transition: transform 0.3s;
+            color: var(--primary);
+            flex-shrink: 0;
+            margin-right: 10px;
+        }
+
+        .sub-sub-accordion.active > .sub-sub-accordion-header .sub-sub-accordion-arrow {
+            transform: rotate(180deg);
+        }
+
+        .sub-sub-accordion-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s ease;
+        }
+
+        .sub-sub-accordion.active > .sub-sub-accordion-content {
+            max-height: 5000px;
+            overflow: auto;
+            -webkit-overflow-scrolling: touch;
+        }
+
+        .sub-sub-accordion-body {
+            padding: 18px 20px;
+            background: white;
+        }
+
+        /* תוכן כללי */
+        .content-section p {
+            margin: 10px 0;
+        }
+
+        .content-section strong {
+            color: var(--dark);
+        }
+
+        .note-box {
+            background: #FFF8E1;
+            border-right: 4px solid var(--accent);
+            border-radius: 8px;
+            padding: 12px 18px;
+            margin: 15px 0;
+            font-size: 1rem;
+        }
+
+        .note-box.info {
+            background: #E3F2FD;
+            border-right-color: var(--secondary);
+        }
+
+        .note-box.success {
+            background: #E8F5E9;
+            border-right-color: var(--success);
+        }
+
+        .note-box.danger {
+            background: #FFEBEE;
+            border-right-color: var(--danger);
+        }
+
+        /* טבלאות */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 15px 0;
+            font-size: 1rem;
+            background: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+        }
+
+        th {
+            background: var(--primary);
+            color: white;
+            padding: 12px 16px;
+            text-align: right;
+            font-weight: 700;
+        }
+
+        td {
+            padding: 11px 16px;
+            border-bottom: 1px solid #E0E7EE;
+            color: #546E7A;
+        }
+
+        tr:last-child td { border-bottom: none; }
+        tr:nth-child(even) td { background: #F5F9FC; }
+        tr:hover td { background: #EEF2F5; }
+
+        /* רשימות */
+        .check-list {
+            list-style: none;
+            padding: 0;
+            margin: 15px 0;
+        }
+
+        .check-list li {
+            padding: 10px 0;
+            padding-right: 30px;
+            position: relative;
+            border-bottom: 1px solid #E0E7EE;
+            color: #546E7A;
+        }
+
+        .check-list li:last-child { border-bottom: none; }
+
+        .check-list li::before {
+            content: '✓';
+            position: absolute;
+            right: 0;
+            color: var(--success);
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
+
+        .x-list {
+            list-style: none;
+            padding: 0;
+            margin: 15px 0;
+        }
+
+        .x-list li {
+            padding: 10px 0;
+            padding-right: 30px;
+            position: relative;
+            border-bottom: 1px solid #E0E7EE;
+            color: #546E7A;
+        }
+
+        .x-list li:last-child { border-bottom: none; }
+
+        .x-list li::before {
+            content: '✗';
+            position: absolute;
+            right: 0;
+            color: var(--danger);
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
+
+        /* קישורים */
+        .link-item {
+            display: block;
+            padding: 11px 18px;
+            margin-bottom: 8px;
+            background: #F5F9FC;
+            border-radius: 10px;
+            color: var(--secondary);
+            text-decoration: none;
+            transition: all 0.3s;
+            font-weight: 600;
+        }
+
+        .link-item:hover {
+            background: var(--secondary);
+            color: white;
+            transform: translateX(-4px);
+        }
+
+        /* info-box footer */
+        .info-box {
+            background: rgba(255,255,255,0.95);
+            border-radius: 20px;
+            padding: 30px;
+            margin-top: 40px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+            border-right: 4px solid var(--accent);
+            animation: fadeIn 0.8s ease-out 0.6s both;
+        }
+
+        .info-box-header {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 15px;
+        }
+
+        .info-box-icon { font-size: 2rem; }
+
+        .info-box h3 {
+            font-family: 'Varela Round', sans-serif;
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: var(--accent);
+            margin: 0;
+        }
+
+        .info-box p {
+            font-size: 1.05rem;
+            line-height: 1.8;
+            color: #546E7A;
+            margin: 0;
+        }
+
+        footer {
+            text-align: center;
+            margin-top: 60px;
+            padding: 30px;
+            color: rgba(255,255,255,0.9);
+            font-size: 1rem;
+        }
+
+        @media (max-width: 768px) {
+            h1 { font-size: 2rem; }
+            .subtitle { font-size: 1.1rem; }
+            .accordion-header { padding: 18px 20px; }
+            .accordion-title { font-size: 1.3rem; }
+            .accordion-body { padding: 20px; }
+            .sub-accordion-body { padding: 15px 18px; }
+            table { font-size: 0.9rem; }
+            th, td { padding: 9px 11px; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <a href="../index.html" class="back-button">חזרה לדף ראשי</a>
+            <h1>👩 מדריך מקיף למענק מעבר לנשים</h1>
+            <p class="support-info">מרכז תמיכה ומידע טלפוני ארצי בטלפון <span dir="ltr">*9696</span></p>
+            <p class="subtitle">ביטוח לאומי – זכויות, תנאים וסכומים מעודכנים</p>
+            <div class="update-badge">עדכון: מרץ 2026 | סכומים מעודכנים ל-01.01.2026</div>
+        </header>
+
+        <div class="accordions-container">
+
+            <!-- 1 - רקע -->
+            <div class="accordion">
+                <div class="accordion-header">
+                    <div class="accordion-icon">ℹ️</div>
+                    <h2 class="accordion-title">רקע — מה זה מענק מעבר ולמה הוא קיים?</h2>
+                    <span class="accordion-arrow">▼</span>
+                </div>
+                <div class="accordion-content">
+                    <div class="accordion-body content-section">
+                        <p>בשנת 2004 תוקן חוק גיל פרישה, והחל מינואר 2020 עולה גיל הפרישה לנשים בהדרגה מ-62 לעבר 65. ההעלאה חלה על נשים שנולדו מינואר 1960 ואילך, ומתפרשת על פני כ-11 שנים בהתאם לתאריך הלידה.</p>
+                        <p>בעקבות העלאה זו, נשים שהגיעו לגיל 62 עלולות היו למצוא עצמן ב"חלל" — הן כבר לא יכולות לעבוד כרגיל, אך טרם הגיעו לגיל הפרישה החדש שלהן.</p>
+                        <div class="note-box info">
+                            <strong>מענק המעבר</strong> הוקם כדי לגשר על אותה פרצת הכנסה עבור נשים שגיל פרישתן הועלה.
+                        </div>
+                        <p><strong>מקור רשמי:</strong> <a href="https://www.btl.gov.il/benefits/old_age/MankMavrATR/Pages/default.aspx" target="_blank" class="link-item">ביטוח לאומי — מענק מעבר לנשים בגיל 62</a></p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 2 - מי זכאית -->
+            <div class="accordion">
+                <div class="accordion-header">
+                    <div class="accordion-icon">👩</div>
+                    <h2 class="accordion-title">מי זכאית — קהל היעד</h2>
+                    <span class="accordion-arrow">▼</span>
+                </div>
+                <div class="accordion-content">
+                    <div class="accordion-body content-section">
+                        <p>המענק מיועד לנשים שנולדו <strong>בין ינואר 1960 לדצמבר 1966</strong>, שגיל הפרישה שלהן הועלה בעקבות הרפורמה, ושבהגיען לגיל 62 אינן עומדות עדיין בגיל הפרישה המעודכן.</p>
+                        <div class="note-box">
+                            <strong>חשוב:</strong> נשים שנולדו לפני ינואר 1960 פרשו לפי הגיל הישן (62) ולכן אינן זכאיות. נשים שנולדו אחרי דצמבר 1966 אינן נכללות בתיקון הספציפי הזה.
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 3 - תנאי הזכאות -->
+            <div class="accordion">
+                <div class="accordion-header">
+                    <div class="accordion-icon">✅</div>
+                    <h2 class="accordion-title">תנאי הזכאות — כל התנאים חייבים להתקיים יחד</h2>
+                    <span class="accordion-arrow">▼</span>
+                </div>
+                <div class="accordion-content">
+                    <div class="accordion-body content-section">
+
+                        <!-- תנאי 1 -->
+                        <div class="sub-accordion">
+                            <div class="sub-accordion-header">
+                                <h3 class="sub-accordion-title">1. היעדר הכנסות מעבודה</h3>
+                                <span class="sub-accordion-arrow">▼</span>
+                            </div>
+                            <div class="sub-accordion-content">
+                                <div class="sub-accordion-body">
+                                    <p>אסור שתהיה הכנסה מעבודה — לא כשכירה ולא כעצמאית — מגיל 62 ועד גיל 62 ו-4 חודשים.</p>
+                                    <div class="note-box info">
+                                        <strong>תנאי זה נבדק בכל אחד מ-4 חודשי הזכאות בנפרד.</strong> כלומר, חודש שבו עבדה האישה לא יינתן עבורו מענק, אך החודשים האחרים עשויים עדיין להיות זכאים.
+                                    </div>
+                                    <div class="note-box">
+                                        <strong>לעצמאיות שימי לב:</strong> אם את עצמאית, עליך לסגור את התיק כעצמאית במחלקת הגבייה של הביטוח הלאומי לפני הגשת הבקשה.
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- תנאי 2 -->
+                        <div class="sub-accordion">
+                            <div class="sub-accordion-header">
+                                <h3 class="sub-accordion-title">2. תקרת הכנסה מפנסיה ו/או קצבאות</h3>
+                                <span class="sub-accordion-arrow">▼</span>
+                            </div>
+                            <div class="sub-accordion-content">
+                                <div class="sub-accordion-body">
+                                    <p>הכנסה מפנסיה, מתגמולים או מקצבאות — <strong>אינה עולה על 10,120 ש"ח לחודש</strong> (נכון ל-01.01.2026).</p>
+                                    <ul class="check-list">
+                                        <li>הסכום מתעדכן מדי שנה בהתאם לעדכון הקצבאות.</li>
+                                        <li>הכנסה מפנסיה תיחשב אפילו אם היא אינה גורמת לשלילת קצבת אזרח ותיק רגילה.</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- תנאי 3 -->
+                        <div class="sub-accordion">
+                            <div class="sub-accordion-header">
+                                <h3 class="sub-accordion-title">3. תקרת הכנסה שנתית שאינה מעבודה</h3>
+                                <span class="sub-accordion-arrow">▼</span>
+                            </div>
+                            <div class="sub-accordion-content">
+                                <div class="sub-accordion-body">
+                                    <p>הכנסה שנתית שאינה מעבודה (כגון שכר דירה, ריבית על חסכונות, דיבידנדים, מענקי פרישה וכדומה) — <strong>אינה עולה על 60,000 ש"ח</strong> בשנת המס שבה מלאו לאישה 61 שנים.</p>
+                                    <div class="note-box info">
+                                        הבחינה נעשית <strong>שנה לפני</strong> הגשת הבקשה, לפי שנת המס הרלוונטית.
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- תנאי 4 -->
+                        <div class="sub-accordion">
+                            <div class="sub-accordion-header">
+                                <h3 class="sub-accordion-title">4. צבירת תקופת ביטוח</h3>
+                                <span class="sub-accordion-arrow">▼</span>
+                            </div>
+                            <div class="sub-accordion-content">
+                                <div class="sub-accordion-body">
+                                    <p>האישה צברה תקופת ביטוח כנדרש לקבלת קצבת אזרח ותיק — אחת מהאפשרויות הבאות:</p>
+                                    <ul class="check-list">
+                                        <li><strong>60 חודשים</strong> (5 שנים) מגיל 52 ואילך, <strong>או</strong></li>
+                                        <li><strong>144 חודשים</strong> (12 שנים) מגיל 18 ואילך.</li>
+                                    </ul>
+                                    <div class="note-box success">
+                                        לחלופין — האישה <strong>פטורה</strong> מצבירת תקופת ביטוח (לדוגמה: עולה חדשה הפטורה לפי חוק).
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+            <!-- 4 - מי אינה זכאית -->
+            <div class="accordion">
+                <div class="accordion-header">
+                    <div class="accordion-icon">🚫</div>
+                    <h2 class="accordion-title">מי אינה זכאית — שלילת הזכאות</h2>
+                    <span class="accordion-arrow">▼</span>
+                </div>
+                <div class="accordion-content">
+                    <div class="accordion-body content-section">
+
+                        <!-- מקבלות גמלאות -->
+                        <div class="sub-accordion">
+                            <div class="sub-accordion-header">
+                                <h3 class="sub-accordion-title">מקבלות גמלאות מסוימות</h3>
+                                <span class="sub-accordion-arrow">▼</span>
+                            </div>
+                            <div class="sub-accordion-content">
+                                <div class="sub-accordion-body">
+                                    <p>לא ניתן לשלם מענק מעבר למי שמקבלת אחת מהגמלאות הבאות:</p>
+                                    <ul class="x-list">
+                                        <li>גמלת הבטחת הכנסה</li>
+                                        <li>דמי מזונות מהביטוח הלאומי</li>
+                                        <li>קצבת נכות כללית</li>
+                                        <li>דמי אבטלה — כולל מי שמקבלת דמי אבטלה מוגדלים לתקופה של 300 ימים</li>
+                                    </ul>
+                                    <div class="note-box info">
+                                        <strong>שימי לב:</strong> תנאי זה נבדק <strong>בכל חודש</strong> מתוך 4 חודשי הזכאות. כלומר ייתכן שבחודש מסוים לא תהיי זכאית (כי מקבלת דמי אבטלה), אך בחודשים האחרים — כן.
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- חל"ת -->
+                        <div class="sub-accordion">
+                            <div class="sub-accordion-header">
+                                <h3 class="sub-accordion-title">חל"ת מרצון</h3>
+                                <span class="sub-accordion-arrow">▼</span>
+                            </div>
+                            <div class="sub-accordion-content">
+                                <div class="sub-accordion-body">
+                                    <p>מי שנמצאת בחופשה ללא תשלום (חל"ת) מרצון — אינה זכאית למענק.</p>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+            <!-- 5 - תקופת התשלום -->
+            <div class="accordion">
+                <div class="accordion-header">
+                    <div class="accordion-icon">📅</div>
+                    <h2 class="accordion-title">תקופת התשלום</h2>
+                    <span class="accordion-arrow">▼</span>
+                </div>
+                <div class="accordion-content">
+                    <div class="accordion-body content-section">
+                        <p>המענק ישולם לתקופה של <strong>עד 4 חודשים</strong> בלבד, <strong>מהחודש שבו מלאו לאישה 62 שנים</strong>.</p>
+                        <ul class="check-list">
+                            <li>אין הארכה מעבר לכך.</li>
+                            <li>ניתן לקבל פחות מ-4 חודשים אם אחד מהתנאים לא מתקיים בחלק מהתקופה — לדוגמה: עבדה בחודש אחד — אותו חודש ישלל.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 6 - סכום המענק -->
+            <div class="accordion">
+                <div class="accordion-header">
+                    <div class="accordion-icon">💰</div>
+                    <h2 class="accordion-title">סכום המענק</h2>
+                    <span class="accordion-arrow">▼</span>
+                </div>
+                <div class="accordion-content">
+                    <div class="accordion-body content-section">
+                        <p>סכום המענק נקבע בהתאם לשני פרמטרים עיקריים:</p>
+
+                        <!-- סכום לפי שנת לידה -->
+                        <div class="sub-accordion">
+                            <div class="sub-accordion-header">
+                                <h3 class="sub-accordion-title">סכום מרבי לפי שנת לידה</h3>
+                                <span class="sub-accordion-arrow">▼</span>
+                            </div>
+                            <div class="sub-accordion-content">
+                                <div class="sub-accordion-body">
+                                    <table>
+                                        <tr>
+                                            <th>שנת לידה</th>
+                                            <th>סכום מרבי לחודש</th>
+                                        </tr>
+                                        <tr><td>1960 – 1962</td><td><strong>4,000 ש"ח</strong></td></tr>
+                                        <tr><td>1963</td><td><strong>3,750 ש"ח</strong></td></tr>
+                                        <tr><td>1964</td><td><strong>3,500 ש"ח</strong></td></tr>
+                                        <tr><td>1965</td><td><strong>3,250 ש"ח</strong></td></tr>
+                                        <tr><td>1966</td><td><strong>3,000 ש"ח</strong></td></tr>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- חישוב הסכום -->
+                        <div class="sub-accordion">
+                            <div class="sub-accordion-header">
+                                <h3 class="sub-accordion-title">כיצד מחשבים את הסכום בפועל?</h3>
+                                <span class="sub-accordion-arrow">▼</span>
+                            </div>
+                            <div class="sub-accordion-content">
+                                <div class="sub-accordion-body">
+                                    <p>סכום המענק שיתקבל בפועל הוא <strong>ההפרש</strong> שבין התקרה הקבועה בחוק (10,120 ש"ח נכון ל-2026) לבין הכנסת האישה מפנסיה או מקצבאות באותו חודש — <strong>ולא יעלה</strong> על הסכום המרבי לפי שנת לידתה.</p>
+
+                                    <!-- דוגמה 1 -->
+                                    <div class="sub-sub-accordion">
+                                        <div class="sub-sub-accordion-header">
+                                            <h4 class="sub-sub-accordion-title">דוגמה 1: פנסיה נמוכה (2,000 ש"ח)</h4>
+                                            <span class="sub-sub-accordion-arrow">▼</span>
+                                        </div>
+                                        <div class="sub-sub-accordion-content">
+                                            <div class="sub-sub-accordion-body">
+                                                <p>אישה שנולדה ב-1961 ומקבלת קצבת פנסיה של 2,000 ש"ח לחודש:</p>
+                                                <table>
+                                                    <tr><th>שלב</th><th>חישוב</th><th>תוצאה</th></tr>
+                                                    <tr><td>תקרה חוקית</td><td>—</td><td>10,120 ש"ח</td></tr>
+                                                    <tr><td>פנסיה</td><td>—</td><td>2,000 ש"ח</td></tr>
+                                                    <tr><td>הפרש</td><td>10,120 − 2,000</td><td>8,120 ש"ח</td></tr>
+                                                    <tr><td>תקרה מרבית (שנת לידה 1961)</td><td>—</td><td>4,000 ש"ח</td></tr>
+                                                    <tr><td><strong>מענק שיתקבל</strong></td><td>מינימום(8,120, 4,000)</td><td><strong>4,000 ש"ח</strong></td></tr>
+                                                </table>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <!-- דוגמה 2 -->
+                                    <div class="sub-sub-accordion">
+                                        <div class="sub-sub-accordion-header">
+                                            <h4 class="sub-sub-accordion-title">דוגמה 2: פנסיה גבוהה (7,500 ש"ח)</h4>
+                                            <span class="sub-sub-accordion-arrow">▼</span>
+                                        </div>
+                                        <div class="sub-sub-accordion-content">
+                                            <div class="sub-sub-accordion-body">
+                                                <p>אישה שנולדה ב-1964 ומקבלת פנסיה של 7,500 ש"ח לחודש:</p>
+                                                <table>
+                                                    <tr><th>שלב</th><th>חישוב</th><th>תוצאה</th></tr>
+                                                    <tr><td>תקרה חוקית</td><td>—</td><td>10,120 ש"ח</td></tr>
+                                                    <tr><td>פנסיה</td><td>—</td><td>7,500 ש"ח</td></tr>
+                                                    <tr><td>הפרש</td><td>10,120 − 7,500</td><td>2,620 ש"ח</td></tr>
+                                                    <tr><td>תקרה מרבית (שנת לידה 1964)</td><td>—</td><td>3,500 ש"ח</td></tr>
+                                                    <tr><td><strong>מענק שיתקבל</strong></td><td>מינימום(2,620, 3,500)</td><td><strong>2,620 ש"ח</strong></td></tr>
+                                                </table>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="note-box info">
+                                        <strong>הכנסה שנתית שאינה מעבודה</strong> (שכר דירה, ריבית וכדומה) עשויה להשפיע על הזכאות (ראה סעיף תנאי הזכאות), אך אינה מחושבת לצורך גובה המענק החודשי — אלא רק לצורך קביעת הזכאות עצמה.
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+            <!-- 7 - הגשת הבקשה -->
+            <div class="accordion">
+                <div class="accordion-header">
+                    <div class="accordion-icon">📋</div>
+                    <h2 class="accordion-title">הגשת הבקשה</h2>
+                    <span class="accordion-arrow">▼</span>
+                </div>
+                <div class="accordion-content">
+                    <div class="accordion-body content-section">
+
+                        <!-- מועד הגשה -->
+                        <div class="sub-accordion">
+                            <div class="sub-accordion-header">
+                                <h3 class="sub-accordion-title">מועד הגשה</h3>
+                                <span class="sub-accordion-arrow">▼</span>
+                            </div>
+                            <div class="sub-accordion-content">
+                                <div class="sub-accordion-body">
+                                    <p>ניתן להגיש את הבקשה <strong>עד גיל 64</strong>.</p>
+                                    <div class="note-box success">
+                                        על פי החוק, ניתן לבחון תשלום המענק <strong>רטרואקטיבית עד 24 חודשים</strong> לאחור — לכן כדאי לבדוק זכאות גם אם הזדמנות הוחמצה.
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- הטופס הרשמי -->
+                        <div class="sub-accordion">
+                            <div class="sub-accordion-header">
+                                <h3 class="sub-accordion-title">הטופס הרשמי</h3>
+                                <span class="sub-accordion-arrow">▼</span>
+                            </div>
+                            <div class="sub-accordion-content">
+                                <div class="sub-accordion-body">
+                                    <p><strong>טופס בל/434</strong> — "תביעה למענק מעבר בגין העלאת גיל הפרישה"</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- מסמכים נדרשים -->
+                        <div class="sub-accordion">
+                            <div class="sub-accordion-header">
+                                <h3 class="sub-accordion-title">מסמכים נדרשים</h3>
+                                <span class="sub-accordion-arrow">▼</span>
+                            </div>
+                            <div class="sub-accordion-content">
+                                <div class="sub-accordion-body">
+
+                                    <!-- לשכירות -->
+                                    <div class="sub-sub-accordion">
+                                        <div class="sub-sub-accordion-header">
+                                            <h4 class="sub-sub-accordion-title">לשכירות לשעבר</h4>
+                                            <span class="sub-sub-accordion-arrow">▼</span>
+                                        </div>
+                                        <div class="sub-sub-accordion-content">
+                                            <div class="sub-sub-accordion-body">
+                                                <ul class="check-list">
+                                                    <li>תלוש משכורת אחרון</li>
+                                                    <li>אישור מעסיק על סיום עבודה</li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <!-- לעצמאיות -->
+                                    <div class="sub-sub-accordion">
+                                        <div class="sub-sub-accordion-header">
+                                            <h4 class="sub-sub-accordion-title">לעצמאיות לשעבר</h4>
+                                            <span class="sub-sub-accordion-arrow">▼</span>
+                                        </div>
+                                        <div class="sub-sub-accordion-content">
+                                            <div class="sub-sub-accordion-body">
+                                                <ul class="check-list">
+                                                    <li>הצהרה על הכנסות</li>
+                                                    <li>אישור סגירת תיק עצמאית במחלקת הגבייה</li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <!-- לכלל המגישות -->
+                                    <div class="sub-sub-accordion">
+                                        <div class="sub-sub-accordion-header">
+                                            <h4 class="sub-sub-accordion-title">לכלל המגישות</h4>
+                                            <span class="sub-sub-accordion-arrow">▼</span>
+                                        </div>
+                                        <div class="sub-sub-accordion-content">
+                                            <div class="sub-sub-accordion-body">
+                                                <ul class="check-list">
+                                                    <li>אישורים על הכנסות ממקורות נוספים (פנסיה, שכירות, ריבית, דיבידנד)</li>
+                                                    <li>פרטי חשבון בנק לתשלום</li>
+                                                </ul>
+                                                <div class="note-box danger">
+                                                    <strong>שימי לב:</strong> הביטוח הלאומי עשוי לבקש אישור להעברת מידע ממקורות שונים. <strong>אי הסכמה להעברת המידע תשלול את הזכאות למענק.</strong>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+            <!-- 8 - קישורים שימושיים -->
+            <div class="accordion">
+                <div class="accordion-header">
+                    <div class="accordion-icon">🔗</div>
+                    <h2 class="accordion-title">קישורים שימושיים</h2>
+                    <span class="accordion-arrow">▼</span>
+                </div>
+                <div class="accordion-content">
+                    <div class="accordion-body content-section">
+                        <table>
+                            <tr>
+                                <th>נושא</th>
+                                <th>קישור</th>
+                            </tr>
+                            <tr>
+                                <td>דף ראשי — מענק מעבר</td>
+                                <td><a href="https://www.btl.gov.il/benefits/old_age/MankMavrATR/Pages/default.aspx" target="_blank" class="link-item">btl.gov.il — מענק מעבר</a></td>
+                            </tr>
+                            <tr>
+                                <td>תנאי הזכאות</td>
+                                <td><a href="https://www.btl.gov.il/benefits/old_age/MankMavrATR/Pages/MankMavrTnaim.aspx" target="_blank" class="link-item">btl.gov.il — תנאי הזכאות</a></td>
+                            </tr>
+                            <tr>
+                                <td>סכום המענק</td>
+                                <td><a href="https://www.btl.gov.il/benefits/old_age/MankMavrATR/Pages/ScomMankMavr.aspx" target="_blank" class="link-item">btl.gov.il — סכום המענק</a></td>
+                            </tr>
+                            <tr>
+                                <td>הגשת בקשה</td>
+                                <td><a href="https://www.btl.gov.il/benefits/old_age/MankMavrATR/Pages/BksaMankMavr.aspx" target="_blank" class="link-item">btl.gov.il — הגשת בקשה</a></td>
+                            </tr>
+                            <tr>
+                                <td>לוח תשלומים</td>
+                                <td><a href="https://www.btl.gov.il/Pages/BenefitsPaymentDates.aspx" target="_blank" class="link-item">btl.gov.il — לוח תשלומים</a></td>
+                            </tr>
+                            <tr>
+                                <td>שירות אישי</td>
+                                <td><a href="https://ps.btl.gov.il" target="_blank" class="link-item">ps.btl.gov.il</a></td>
+                            </tr>
+                            <tr>
+                                <td>ערעור על החלטות</td>
+                                <td><a href="https://www.btl.gov.il/benefits/old_age/Pages/erur.aspx" target="_blank" class="link-item">btl.gov.il — ערעור</a></td>
+                            </tr>
+                            <tr>
+                                <td>מוקד לאזרחים ותיקים</td>
+                                <td>טלפון *9696</td>
+                            </tr>
+                            <tr>
+                                <td>מוקד כללי</td>
+                                <td>טלפון *6050</td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+        </div><!-- end accordions-container -->
+
+        <div class="info-box">
+            <div class="info-box-header">
+                <span class="info-box-icon">⚠️</span>
+                <h3>הערה חשובה</h3>
+            </div>
+            <p>
+                אתר הביטוח הלאומי כולל מידע כללי בלבד. אין להתייחס למידע זה כנוסח מחייב של החוק.
+                לשאלות פרטניות — יש לפנות לסניף הביטוח הלאומי הקרוב או למוקד הטלפוני.
+            </p>
+        </div>
+    </div>
+
+    <footer>
+        <p>
+            🤖 פותח עם ❤️ לסיוע לאזרחים ותיקים בישראל<br>
+            צור קשר: <a href="mailto:yairron@gmail.com" style="color:white;font-weight:600;">יאיר רון</a>
+        </p>
+    </footer>
+
+    <script>
+        // אקורדיונים ראשיים
+        document.querySelectorAll('.accordion-header').forEach(header => {
+            header.addEventListener('click', () => {
+                const accordion = header.closest('.accordion');
+                const wasActive = accordion.classList.contains('active');
+
+                // סגור אחרים
+                document.querySelectorAll('.accordion.active').forEach(other => {
+                    if (other !== accordion) {
+                        other.classList.remove('active');
+                        other.querySelectorAll('.sub-accordion.active, .sub-sub-accordion.active').forEach(s => s.classList.remove('active'));
+                    }
+                });
+
+                accordion.classList.toggle('active');
+
+                if (!wasActive) {
+                    accordion.querySelectorAll('.sub-accordion.active, .sub-sub-accordion.active').forEach(s => s.classList.remove('active'));
+                    setTimeout(() => {
+                        accordion.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                    }, 450);
+                }
+            });
+        });
+
+        // תתי-אקורדיונים (רמה 2)
+        document.querySelectorAll('.sub-accordion-header').forEach(header => {
+            header.addEventListener('click', e => {
+                e.stopPropagation();
+                const sub = header.closest('.sub-accordion');
+                const wasActive = sub.classList.contains('active');
+
+                // סגור אחים באותה רמה
+                const parent = sub.parentElement;
+                parent.querySelectorAll(':scope > .sub-accordion.active').forEach(other => {
+                    if (other !== sub) {
+                        other.classList.remove('active');
+                        other.querySelectorAll('.sub-sub-accordion.active').forEach(s => s.classList.remove('active'));
+                    }
+                });
+
+                sub.classList.toggle('active');
+
+                if (!wasActive) {
+                    sub.querySelectorAll('.sub-sub-accordion.active').forEach(s => s.classList.remove('active'));
+                    setTimeout(() => {
+                        sub.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                    }, 450);
+                }
+            });
+        });
+
+        // תת-תתי-אקורדיונים (רמה 3)
+        document.querySelectorAll('.sub-sub-accordion-header').forEach(header => {
+            header.addEventListener('click', e => {
+                e.stopPropagation();
+                const sub = header.closest('.sub-sub-accordion');
+                const wasActive = sub.classList.contains('active');
+
+                // סגור אחים באותה רמה
+                const parent = sub.parentElement;
+                parent.querySelectorAll(':scope > .sub-sub-accordion.active').forEach(other => {
+                    if (other !== sub) other.classList.remove('active');
+                });
+
+                sub.classList.toggle('active');
+
+                if (!wasActive) {
+                    setTimeout(() => {
+                        sub.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                    }, 450);
+                }
+            });
+        });
+    </script>
+</body>
+</html>
