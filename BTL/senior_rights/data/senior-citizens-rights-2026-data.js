@@ -11,6 +11,8 @@ const SENIOR_RIGHTS_2026_DATA = {
                 
                 <h3>גיל הפרישה לנשים לפי שנת לידה</h3>
                 <div style="background: #E3F2FD; border: 1px solid #BBDEFB; border-radius: 12px; padding: 18px 20px; margin: 12px 0 16px 0;">
+                    <p style="color: #1A3A52; margin-bottom: 6px; font-size: 0.95rem;"><strong>📅 מדרגת גיל הפרישה לילידות 1962 הסתיימה ב-31/12/2025</strong></p>
+                    <p style="color: #1A3A52; margin-bottom: 14px; font-size: 0.95rem;"><strong>⏭️ מדרגת גיל הפרישה לילידות 1963 תחל ב-01/05/2026</strong></p>
                     <p style="font-weight: 700; color: #1A3A52; margin-bottom: 14px; font-size: 1.05rem;">🧮 מחשבון תאריך פרישה</p>
                     <div style="display: flex; align-items: center; gap: 14px; flex-wrap: wrap;">
                         <div style="display: flex; align-items: center; gap: 8px;">
