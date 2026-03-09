@@ -1,0 +1,1184 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>פניה לייעוץ – בל/4300</title>
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'Arial', 'David', sans-serif;
+    font-size: 10.8pt;
+    background: #e8e8e8;
+    color: #000;
+    direction: rtl;
+  }
+
+  /* ===== SCREEN TOOLBAR ===== */
+  #toolbar {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    background: #1a1a2e;
+    color: #fff;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 10px 20px;
+    z-index: 1000;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.4);
+    font-size: 14px;
+  }
+  #toolbar h1 { font-size: 15px; font-weight: 700; margin-left: auto; }
+  .tb-btn {
+    background: #e94560;
+    color: #fff;
+    border: none;
+    padding: 7px 18px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 13px;
+    font-family: Arial, sans-serif;
+    font-weight: 600;
+    transition: background 0.2s;
+  }
+  .tb-btn:hover { background: #c73652; }
+  .tb-btn.secondary {
+    background: transparent;
+    border: 1.5px solid #888;
+    color: #ccc;
+  }
+  .tb-btn.secondary:hover { background: #333; border-color: #aaa; color: #fff; }
+
+  /* ===== PAGE WRAPPER ===== */
+  #pages-wrapper {
+    margin-top: 56px;
+    padding: 24px 0 40px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 32px;
+  }
+
+  /* ===== A4 PAGE ===== */
+  .form-page {
+    width: 210mm;
+    min-height: 297mm;
+    background: #fff;
+    padding: 8mm 14mm;
+    position: relative;
+    box-shadow: 0 2px 20px rgba(0,0,0,0.18);
+  }
+
+  /* ===== FIELD INPUTS ===== */
+  input[type="text"], input[type="date"], textarea {
+    border: none;
+    border-bottom: 1px solid #999;
+    background: #f0f4ff;
+    font-family: 'Arial', sans-serif;
+    font-size: 10.2pt;
+    color: #000;
+    width: 100%;
+    padding: 1px 3px;
+    outline: none;
+    direction: rtl;
+    transition: background 0.15s, border-color 0.15s;
+  }
+  input[type="text"]:focus, input[type="date"]:focus, textarea:focus {
+    background: #dde8ff;
+    border-bottom-color: #2255cc;
+  }
+  textarea { resize: none; }
+
+  /* digit inputs */
+  .digit-input {
+    width: 100%;
+    height: 100%;
+    border: none;
+    background: transparent;
+    text-align: center;
+    font-size: 10.2pt;
+    font-family: 'Arial', sans-serif;
+    font-weight: 700;
+    color: #000;
+    padding: 0;
+    outline: none;
+  }
+  .digit-input:focus { background: #dde8ff; }
+
+  /* Hide native checkbox, draw custom box */
+  input[type="checkbox"] {
+    appearance: none;
+    -webkit-appearance: none;
+    width: 13px;
+    height: 13px;
+    cursor: pointer;
+    margin: 0;
+    flex-shrink: 0;
+    position: relative;
+    display: inline-block;
+    vertical-align: middle;
+    background: #fff;
+    /* thin borders on top and left, thick on bottom and right */
+    border-top: 1px solid #666;
+    border-left: 1px solid #666;
+    border-bottom: 2.5px solid #111;
+    border-right: 2.5px solid #111;
+  }
+  input[type="checkbox"]:checked::after {
+    content: '';
+    position: absolute;
+    left: 1px;
+    top: 0px;
+    width: 5px;
+    height: 9px;
+    border: 2px solid #000;
+    border-top: none;
+    border-left: none;
+    transform: rotate(45deg) translate(-1px, -1px);
+  }
+
+  /* ===== SECTION FRAME (gray border around section) ===== */
+  /* ===== SECTION FRAME (gray surround for section 1) ===== */
+  .section-frame {
+    position: relative;
+    background: #c8c8c8;        /* gray fill – visible as border on sides/bottom */
+    border-radius: 8px;
+    padding: 0 6px 12px 6px;   /* sides = 6px, bottom = 12px (same as header height) */
+    margin-bottom: 5mm;
+    margin-top: 10px;
+  }
+  .section-frame > .section-box {
+    margin-bottom: 0;
+    margin-top: 0;
+    border-radius: 0 0 4px 4px;
+    overflow: hidden;
+    background: #fff;
+  }
+
+  /* ===== SECTION BOX ===== */
+  .section-box {
+    border: none;
+    border-radius: 6px;
+    margin-bottom: 5mm;
+    margin-top: 10px;
+    overflow: visible;
+    position: relative;
+  }
+
+  /* ===== SECTION HEADER (numbered) ===== */
+  .section-header {
+    background: #c8c8c8;
+    font-weight: bold;
+    font-size: 10.2pt;
+    padding: 3px 20px 3px 8px;
+    display: block;
+    text-align: right;
+    border-bottom: 1px solid #888;
+    border-radius: 4px 4px 0 0;
+    direction: rtl;
+  }
+  .section-num {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 22px; height: 22px;
+    background: #111;
+    color: #fff;
+    border-radius: 50%;
+    font-size: 11pt;
+    font-weight: bold;
+    flex-shrink: 0;
+    position: absolute;
+    top: -6px;
+    right: -6px;
+    border: 2px solid #fff;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.4);
+    z-index: 10;
+  }
+
+  /* ===== SUB-HEADER (bold dark bar) ===== */
+  .sub-header {
+    background: #d0d0d0;
+    font-weight: bold;
+    font-size: 10.2pt;
+    padding: 2px 6px;
+    border-top: 1px solid #999;
+    border-bottom: 1px solid #999;
+  }
+  .sub-header.underline { text-decoration: underline; }
+
+  /* ===== SECTION LABEL (lighter bar) ===== */
+  .section-label {
+    font-weight: bold;
+    font-size: 10.2pt;
+    padding: 2px 6px;
+    background: #d4d4d4;
+    border-bottom: 1px solid #aaa;
+  }
+
+  /* ===== TABLE ROWS (row-group / rg-cell) ===== */
+  .row-group {
+    display: flex;
+    border-bottom: 1.5px solid #bbb;
+  }
+  .row-group:last-child { border-bottom: none; }
+
+  .rg-cell {
+    flex: 1;
+    border-left: 1.5px solid #bbb;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    min-height: 22px;
+  }
+  .rg-cell:last-child { border-left: none; }
+
+  /* Label sits at top, centered horizontally */
+  .rg-cell .lbl {
+    font-size: 9pt;
+    color: #333;
+    font-weight: bold;
+    text-align: right;
+    padding: 1px 4px 0;
+    white-space: nowrap;
+    border-bottom: 1.5px solid #ddd;
+    background: #ececec;
+  }
+
+  /* Input area fills remainder */
+  .rg-cell .rg-input-wrap {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    padding: 1px 3px;
+  }
+  .rg-cell .rg-input-wrap input[type="text"] {
+    border-bottom: none;
+    background: transparent;
+    padding: 0;
+  }
+  .rg-cell .rg-input-wrap input[type="text"]:focus {
+    background: #dde8ff;
+  }
+
+  /* ===== DIGIT ROW ===== */
+  /* Container: full border around all digits */
+  .digit-row {
+    display: flex;
+    flex-direction: row;
+    border: 1px solid #888;
+    width: 100%;
+  }
+
+  /* Every digit cell: equal flex, no pseudo tricks */
+  .digit-cell {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 0;
+    height: 20px;
+    position: relative;
+  }
+  /* Thin separator: 60% height, touching bottom, via pseudo-element */
+  .digit-cell::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    height: 60%;
+    width: 1px;
+    background: #999;
+  }
+  /* First cell (rightmost in RTL): no separator */
+  .digit-row > .digit-cell:first-child::before {
+    display: none;
+  }
+  /* Last cell (leftmost in RTL): no separator before it */
+  .digit-row > .digit-cell:last-child::before {
+    display: none;
+  }
+
+  /* Check-digit: thick FULL-HEIGHT separator – keep unchanged */
+  .digit-cell.check-digit {
+    border-left: 2px solid #333 !important;
+  }
+  .digit-cell.check-digit::before {
+    display: none;
+  }
+
+  /* First DOM cell of phone (rightmost): no separator */
+  .digit-cell.phone-last::before {
+    display: none;
+  }
+
+  .digit-cell.phone-sep-red::before {
+    background: #999 !important;
+  }
+  /* Line between 9 and 0: on phone-last cell (idx=9, first-child) */
+  .digit-cell.phone-last::before {
+    display: block !important;
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    height: 60%;
+    width: 1px;
+    background: #999;
+  }
+
+  /* Force separator in 2-cell ib fields (scan_pages, scan_doc) */
+  .digit-cell.ib-sep::before {
+    display: block !important;
+    content: "" !important;
+    position: absolute !important;
+    left: 0 !important;
+    bottom: 0 !important;
+    height: 60% !important;
+    width: 1px !important;
+    background: #999 !important;
+  }
+
+  /* Phone area-code separator: thick FULL-HEIGHT – keep unchanged */
+  .digit-cell.area-separator {
+    border-left: 2px solid #444 !important;
+  }
+  .digit-cell.area-separator::before {
+    display: none;
+  }
+
+
+  /* ===== FORM-TABLE (section 1 / counselor row) ===== */
+  .form-table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  .form-table td {
+    border: 1.5px solid #aaa;
+    padding: 0;
+    vertical-align: top;
+  }
+  .form-table .label-cell {
+    background: #e0e0e0;
+    white-space: nowrap;
+    font-size: 9pt;
+    text-align: center;
+    font-weight: bold;
+    color: #222;
+    padding: 2px 4px;
+    vertical-align: middle;
+  }
+  .form-table .input-cell {
+    background: #fff;
+    vertical-align: middle;
+    padding: 1px 4px;
+  }
+
+  /* ===== CAUSE TABLE (4-column) ===== */
+  .cause-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 10.2pt;
+  }
+  .cause-table td {
+    border: 1.5px solid #bbb;
+    padding: 2px 5px;
+    vertical-align: top;
+  }
+  .cause-table .col-header {
+    background: #d0d0d0;
+    text-align: center;
+    font-weight: bold;
+    font-size: 10.2pt;
+    padding: 2px 5px;
+    border: 1.5px solid #999;
+  }
+
+  /* ===== CHECKBOX ROWS ===== */
+  .cb-row {
+    display: flex;
+    align-items: flex-start;
+    gap: 4px;
+    padding: 1px 0;
+    font-size: 10.2pt;
+  }
+  .cb-row label { cursor: pointer; line-height: 1.3; }
+  .cb-row input[type="checkbox"] { margin-top: 2px; }
+
+  /* underline text fields (inline) */
+  .ul-input {
+    border: none;
+    border-bottom: 1px solid #888;
+    background: #f0f4ff;
+    font-size: 10.2pt;
+    font-family: Arial, sans-serif;
+    outline: none;
+    padding: 0 2px;
+    color: #000;
+  }
+  .ul-input:focus { background: #dde8ff; border-bottom-color: #2255cc; }
+
+  /* free text areas */
+  .free-text-area {
+    width: 100%;
+    border: none;
+    font-size: 10.2pt;
+    font-family: Arial, sans-serif;
+    direction: rtl;
+    padding: 2px 3px;
+    background: #f9f9ff;
+    outline: none;
+    display: block;
+    resize: none;
+    color: #000;
+    border-bottom: 1px solid #aaa;
+  }
+  .free-text-area:focus { background: #dde8ff; border-bottom-color: #2255cc; }
+
+  /* ===== TOP HEADER ===== */
+  .top-box-area {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    margin-bottom: 4mm;
+    gap: 0;
+  }
+  .header-logo {
+    flex-shrink: 0;
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    padding-left: 26px;
+  }
+  .bituach-logo { width: 90px; height: 90px; display: block; }
+  .header-center {
+    flex: 1;
+    text-align: right;
+    font-size: 10.2pt;
+    line-height: 1.65;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    padding-top: 2px;
+  }
+  .header-center .org-title { font-size: 12pt; font-weight: 900; }
+  .header-center .form-title { font-size: 13pt; font-weight: 900; margin-top: 3px; }
+
+  /* Internal-use box */
+  .internal-box {
+    border: 1px solid #555;
+    padding: 0;
+    font-size: 10pt;
+    width: 78mm;
+    flex-shrink: 0;
+    display: flex;
+    flex-direction: row;
+    align-items: stretch;
+    min-height: 28mm;
+  }
+  /* Side title column */
+  .ib-side-title {
+    border-left: 1px solid #999;
+    padding: 4px 5px;
+    font-size: 9.5pt;
+    font-weight: bold;
+    text-align: center;
+    writing-mode: horizontal-tb;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    line-height: 1.5;
+    background: #f5f5f5;
+    flex-shrink: 0;
+    width: 14mm;
+  }
+  /* Content area */
+  .ib-content {
+    flex: 1;
+    padding: 4px 5px;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+  .ib-field-full { display: flex; flex-direction: column; gap: 1px; }
+  .ib-field-full label { font-size: 9pt; color: #555; text-align: right; }
+  .ib-bottom-row { display: flex; flex-direction: row; gap: 4px; align-items: flex-start; }
+  .ib-field-small {
+    flex: 1;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 4px;
+  }
+  .ib-field-medium {
+    flex: 2;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 4px;
+  }
+  .ib-field-small label,
+  .ib-field-medium label {
+    font-size: 9pt;
+    color: #333;
+    text-align: right;
+    line-height: 1.2;
+    white-space: nowrap;
+    flex-shrink: 0;
+  }
+  .ib-field-small .digit-row,
+  .ib-field-medium .digit-row {
+    flex: 1;
+  }
+
+  /* Digit rows inside internal-box: taller, bottom border on cells */
+  .ib-digit-row {
+    height: 22px !important;
+    border-bottom: 1px solid #888;
+  }
+  .ib-digit-row .digit-cell {
+    border-bottom: none !important;
+    border-left: none !important;
+    position: relative;
+  }
+  /* Thin separator lines at 60% height, touching bottom */
+  .ib-digit-row .digit-cell::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    height: 60%;
+    width: 1px;
+    background: #999;
+  }
+  /* No left line on the leftmost cell (scan-id-first / last DOM child) */
+  .ib-digit-row .digit-cell.scan-id-first::before {
+    display: none;
+  }
+  /* No left line on last-child (leftmost cell) in all ib-digit-rows */
+  .ib-digit-row > .digit-cell:last-child::before {
+    display: none;
+  }
+  /* check-digit in scan_id: thick separator to its left (between it and idx=1) */
+  .ib-digit-row .digit-cell.check-digit {
+    border-left: 3px solid #333 !important;
+  }
+  /* scan_id: thick line between digit 9 and digit 8 */
+  .digit-cell.scan-id-check::before {
+    display: block !important;
+    content: "" !important;
+    position: absolute !important;
+    left: 0 !important;
+    bottom: 0 !important;
+    width: 2px !important;
+    height: 100% !important;
+    background: #333 !important;
+  }
+  /* scan_id: no line before digit 1 (leftmost) */
+  .ib-digit-row .digit-cell.scan-id-first::before {
+    display: none;
+  }
+
+  /* page footer */
+  .page-footer {
+    font-size: 8pt;
+    color: #777;
+    text-align: right;
+    position: absolute;
+    bottom: 6mm;
+    right: 14mm;
+  }
+
+  /* ===== PRINT ===== */
+  @page {
+    size: A4;
+    margin: 0;
+  }
+
+  @media print {
+    html, body { background: #fff; margin: 0; padding: 0; }
+    #toolbar { display: none !important; }
+    #pages-wrapper { margin: 0 !important; padding: 0 !important; gap: 0 !important; display: block !important; }
+
+    /* Force background colors to print */
+    * { -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; }
+
+    /* Each form-page = exactly one A4 page */
+    .form-page {
+      box-shadow: none !important;
+      width: 210mm !important;
+      height: 297mm !important;
+      min-height: 0 !important;
+      padding: 8mm 14mm !important;
+      margin: 0 !important;
+      overflow: hidden !important;
+      page-break-after: always !important;
+      break-after: page !important;
+      display: block !important;
+    }
+    .form-page:last-child {
+      page-break-after: avoid !important;
+      break-after: avoid !important;
+    }
+
+    /* Gray frames */
+    .section-frame { background: #c8c8c8 !important; border-radius: 8px !important; }
+    .section-header { background: #c8c8c8 !important; }
+    .section-num { background: #111 !important; color: #fff !important; }
+    .sub-header { background: #d0d0d0 !important; }
+    .section-label { background: #e0e0e0 !important; }
+    .col-header { background: #d8d8d8 !important; }
+    .rg-cell .lbl { background: #ececec !important; }
+    .section-box { background: #fff !important; }
+
+    /* Inputs */
+    input[type="text"], textarea { background: transparent !important; border-bottom-color: #aaa !important; }
+    .digit-input { background: transparent !important; }
+    input[type="checkbox"] {
+      border-top: 1px solid #666 !important;
+      border-left: 1px solid #666 !important;
+      border-bottom: 2.5px solid #111 !important;
+      border-right: 2.5px solid #111 !important;
+    }
+  }
+
+  /* ===== PAGE 2: increased line spacing ×1.3 ===== */
+  #page2 .cb-row { padding-top: 2.6px; padding-bottom: 2.6px; }
+  #page2 .section-label { padding-top: 3.9px; padding-bottom: 3.9px; }
+  #page2 > .section-box > div { line-height: 1.69; }
+  #page2 label { line-height: 1.69; }
+  #page2 .cb-row label { line-height: 1.69; }
+
+</style>
+</head>
+<body>
+
+<div id="toolbar">
+  <button class="tb-btn" onclick="window.print()">🖨 הדפס</button>
+  <button class="tb-btn secondary" onclick="clearAll()">🗑 נקה הכל</button>
+  <h1>פניה לייעוץ – בל/4300</h1>
+</div>
+
+<div id="pages-wrapper">
+
+<!-- ==================== PAGE 1 ==================== -->
+<div class="form-page" id="page1">
+
+  <!-- TOP HEADER -->
+  <div class="top-box-area">
+    <div class="header-logo">
+      <img src="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiPz4KPHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciCiAgICAgdmlld0JveD0iMjAuMiAtMS41IDI2LjIgMjYuMiIKICAgICB3aWR0aD0iMTAwIiBoZWlnaHQ9IjEwMCI+CiAgPCEtLSBDaXJjbGUgYmFja2dyb3VuZDogYmxhY2sgLS0+CiAgPGNpcmNsZSBjeD0iMzMuMyIgY3k9IjExLjU4IiByPSIxMS41OCIgZmlsbD0iIzAwMDAwMCIvPgogIDwhLS0gV2hpdGUgZmlndXJlIHBhdGhzIChzYW1lIGFzIGJlZm9yZSwganVzdCB0aGUgaW5uZXIgZGV0YWlsKSAtLT4KICA8ZyB0cmFuc2Zvcm09Im1hdHJpeCgwLjgxMTQ4NDQ3LDAsMCwtMC44MTE0ODQ0NywtOTUuNDYwNTMsMTc1LjEzNzYyKSI+CiAgICA8cGF0aCBkPSJtIDE1Ni4yNzQxNCwxOTcuMjIxOTUgYyAwLjQ0LC0wLjI2OCAwLjg4NSwtMC41MzIgMS4zMzEsLTAuNzkxIDAuMTY4LC0wLjE3OSAwLjE0NSwtMC40MjcgLTAuMDY0LC0wLjU2OSAtMC4zMTgsLTAuMTk1IC0wLjYzOCwtMC4zODcgLTAuOTYxLC0wLjU3NiAwLjAyMSwtMC40NDQgMC4wNDUsLTAuODg5IDAuMDczLC0xLjMzNCAwLjAwMywtMC4yMTIgLTAuMjM1LC0wLjMwNiAtMC40MzksLTAuMyAtMC40NTksMC4wMjUgLTAuOTE4LDAuMDU3IC0xLjM3NSwwLjA5OSAtMC4yMTcsMC4wMjUgLTAuNDQ3LDAuMTUyIC0wLjQ4NiwwLjM1OSAtMC4xLDAuNjc2IC0wLjE4LDEuMzUzIC0wLjI0NCwyLjAzMiAtMC4wMDYsMC4wOTQgMC4wMjYsMC4xNzMgMC4wODEsMC4yMzUgMC4wMjMsMC4wNSAwLjA2LDAuMDk2IDAuMTE1LDAuMTM1IDAuNDIxLDAuMjYzIDAuODQxLDAuNTI4IDEuMjU5LDAuNzk1IDAuMjI1LDAuMTQzIDAuNTI4LDAuMDkzIDAuNzEsLTAuMDg1IiBmaWxsPSIjZmZmZmZmIi8+CiAgICA8cGF0aCBkPSJtIDE1OC4xNDIwNCwyMTEuMTA0ODUgYyAwLjQ0MSwwLjAwMiAwLjg4MSwtMC4wMDUgMS4zMjIsLTAuMDIyIDAuMTc3LC0wLjAxIDAuNDI1LC0wLjA4MyAwLjQ1MywtMC4yNjggMC4xNDgsLTEuNTg1IDAuMjIzLC0zLjE3MyAwLjI3NywtNC43NjIgMC4wMDEsLTAuMjY2IC0wLjIzMSwtMC40MjIgLTAuNTEyLC0wLjY1MyAtMC4yNDMsLTAuMTcyIC0wLjQsLTAuNDUzIC0wLjc0MSwtMC40NjUgLTAuMzcsLTAuMDEzIC0wLjUyLDAuMjcxIC0wLjgxMywwLjQ4NyAtMC4xNTMsMC4xMzkgLTAuNTI0LDAuMzk2IC0wLjUyOSwwLjY1IDAuMDE5LDEuNTk0IDAuMDQ3LDMuMTg2IDAuMTAyLDQuNzc5IDAuMDE2LDAuMTg2IDAuMjY5LDAuMjUgMC40NDEsMC4yNTQiIGZpbGw9IiNmZmZmZmYiLz4KICAgIDxwYXRoIGQ9Im0gMTU1LjMzMjE0LDIwNS45NDM1NSBjIDAuNjk5LC0wLjQyNCAxLjM5MywtMC44NTUgMi4wODQsLTEuMjkxIDAuMjI1LC0wLjE1OSAwLjI2NCwtMC40MzcgMC4wOTcsLTAuNjQ2IC0wLjQ3NSwtMC4zMDQgLTAuOTQ5LC0wLjYxMSAtMS40MjEsLTAuOTIxIC0wLjE3OSwtMC4yIC0wLjQ4OSwtMC4yNTEgLTAuNzI1LC0wLjEgLTAuNzQ5LDAuNTEzIC0xLjQ5NiwxLjAyNyAtMi4yNDIsMS41NDIgLTAuMjU0LDAuMTg5IC0wLjI2NiwwLjM0NyAtMC4yNjIsMC40NyAwLjEzNSwxLjg1MyAwLjM1NCwzLjcwOCAwLjgyNSw1LjUxNyAwLjA1NSwwLjE3NiAwLjI3NCwwLjI3NSAwLjQ1OCwwLjMwNSAwLjQxMiwwLjA1OCAwLjgyNCwwLjEwNyAxLjIzOSwwLjE0NyAwLjE1NCwwLjAxMiAwLjM5NiwtMC4wMjkgMC4zNzgsLTAuMjExIC0wLjIzLC0xLjU5NiAtMC4zNTMsLTMuMjA0IC0wLjQzMSwtNC44MTIiIGZpbGw9IiNmZmZmZmYiLz4KICAgIDxwYXRoIGQ9Im0gMTUwLjY5Mzg0LDE5Mi43NTgyNSBjIC0wLjExMSwwLjI0IC0wLjMxNiwwLjc1MSAtMC40MTUsMC45OTYgLTAuMDUzLDAuMTQxIDAuMDYxLDAuMjA3IDAuMjA2LDAuMTY5IDQuMjgxLC0xLjE0MiA5LjAzNCwtMS4zMjUgMTMuNDUzLC0wLjQ5MyAwLjMxMSwxLjE1MiAwLjUxMywyLjMyNCAwLjY1NywzLjUwMiAtMS4zOTksMC45MyAtMi43OTQsMS44NjUgLTQuMTg2LDIuODA0IC0wLjIyNiwwLjE2MyAtMC4yNiwwLjQ0OCAtMC4wOTUsMC42NTkgMC40MzQsMC4zMTcgMC44NjQsMC42MzUgMS4yOTUsMC45NTUgMC4xNzMsMC4yIDAuNDc3LDAuMjQ2IDAuNzA1LDAuMDk0IDEuNDQ4LC0xLjAzNyAyLjg3NiwtMi4wOTYgNC4yNjIsLTMuMiAwLjEyNSwtMC4xMDggMC4xMjgsLTAuMjY2IDAuMDc2LC0wLjQwNSAtMC4xODQsLTEuMzU2IC0wLjQ2MSwtMi43MDMgLTAuOTE1LC00LjAwOCAwLjIzNywwLjA2MSAwLjQ3NCwwLjEyNCAwLjcwNywwLjE5MiAwLjE0NiwwLjA0IDAuMjQyLC0wLjAyOSAwLjE5MSwtMC4xNjUgLTAuMDcxLC0wLjE3MSAtMC4zNywtMC44NDYgLTAuNDU1LC0xLjAzNSAtMC4wNzcsLTAuMTc1IC0wLjE4MywtMC4yNzEgLTAuMzc4LC0wLjM0MSAtNC40MjUsLTEuNTY2IC0xMC40MDcsLTEuNTc2IC0xNC43MywtMC4wNjUgLTAuMTk1LDAuMDY4IC0wLjM3MSwwLjE1MiAtMC4zNzgsMC4zNDEiIGZpbGw9IiNmZmZmZmYiLz4KICAgIDxwYXRoIGQ9Im0gMTY0LjYxNDE0LDIwNC42OTA4NSBjIC0xLjc4NywtMS4yNzggLTMuNTk3LC0yLjUzIC01LjQxOCwtMy43NjcgLTAuMjQxLC0wLjE1MyAtMC41NjIsLTAuMTEzIC0wLjc0NiwwLjA5NCBsIC0xLjM3MiwwLjkxNyBjIC0wLjE2OCwwLjIxNyAtMC4xMjIsMC41MDQgMC4xMDcsMC42NyAxLjcxOSwxLjE2MiAzLjQ1MywyLjMwNiA1LjIwOSwzLjQyIC0wLjEwOCwxLjU1MiAtMC4yNzQsMy4xMDMgLTAuNTgzLDQuNjM2IC0wLjAyNywwLjE3NyAwLjIwNCwwLjIxMyAwLjM1MiwwLjE5NiAwLjM5NywtMC4wNTIgMC43OTIsLTAuMTEzIDEuMTg2LC0wLjE4NCAwLjE4NCwtMC4wMzYgMC4zODksLTAuMTQyIDAuNDUsLTAuMzEzIDAuNTMyLC0xLjcyNCAwLjc5NCwtMy41MDQgMC45NTUsLTUuMjg1IDAuMDA5LC0wLjIgMC4wMDgsLTAuMjc0IC0wLjE0LC0wLjM4NCIgZmlsbD0iI2ZmZmZmZiIvPgogICAgPHBhdGggZD0ibSAxNjguMTk3NjQsMjAzLjY3NTk1IGMgLTAuOTgyLC0wLjk0OCAtMi4wMzUsLTEuODM1IC0zLjExNSwtMi42OTEgLTAuMTk5LC0wLjE0NyAtMC40NjYsLTAuMTA2IC0wLjYxMywwLjA4MSAtMC4zOTQsMC4yOTQgLTAuNzksMC41ODUgLTEuMTkxLDAuODczIC0wLjE1LDAuMjA2IC0wLjEyNCwwLjQ4MyAwLjA4NiwwLjY0NyAxLjAyNCwwLjczOCAyLjAzNywxLjQ4OSAzLjAyOSwyLjI2MyAtMC4xNzQsMS43NDYgLTAuNDc1LDMuNDg5IC0xLjA1NCw1LjE2NSAtMC4wNDksMC4xNTYgMC4xMTcsMC4xOTEgMC4yNTMsMC4xNiAwLjMzLC0wLjA4MSAwLjY1NywtMC4xNzIgMC45ODEsLTAuMjcxIDAuMTcxLC0wLjA1NiAwLjMzMiwtMC4xNzggMC40MDQsLTAuMzMxIDAuNzY5LC0xLjgxIDEuMTM3LC0zLjYzNyAxLjMyNywtNS41NjEgMC4wMDgsLTAuMTQ0IC0wLjAwMSwtMC4yMjYgLTAuMTA3LC0wLjMzNSIgZmlsbD0iI2ZmZmZmZiIvPgogICAgPHBhdGggZD0ibSAxNTAuOTU0NDQsMjA0LjkwODA1IGMgNC4wMjMsLTIuOTk4IDguMjEyLC01LjgyNSAxMi41MDUsLTguNSAwLjE1NywtMC4xMjIgMC4xODEsLTAuMjM1IDAuMTcyLC0wLjM4OCAtMC4wNzcsLTAuNTk2IC0wLjE2OCwtMS4xODkgLTAuMjgsLTEuNzgxIC0wLjA0NywtMC4yMDEgLTAuMjYyLC0wLjMzNSAtMC40NzgsLTAuMzY3IC0wLjQ0LC0wLjA1NSAtMC44OCwtMC4xIC0xLjMyMiwtMC4xMzggLTAuMTk4LC0wLjAxMyAtMC40MjQsMC4wNzcgLTAuNDExLDAuMjg0IDAuMDQxLDAuMzc2IDAuMDc3LDAuNzUyIDAuMTA5LDEuMTI5IC00LjMzMSwyLjQwNyAtOC40MzYsNS4yMjUgLTEyLjA3Niw4LjQyNiAtMC4xNzgsMC4xNjIgLTAuMTI2LDAuNDU3IC0wLjEyMywwLjUxMSAwLjE5MiwxLjkyNCAwLjU2MiwzLjg0OCAxLjMzLDUuNjU4IDAuMDcyLDAuMTUzIDAuMjM0LDAuMjc1IDAuNDA1LDAuMzMxIDAuMzI0LDAuMDk5IDAuNjUxLDAuMTg4IDAuOTgsMC4yNzEgMC4xMzYsMC4wMzEgMC4zMDMsLTAuMDA1IDAuMjU0LC0wLjE2MSAtMC41OTEsLTEuNzExIC0wLjg5MywtMy40OTEgLTEuMDY1LC01LjI3NSIgZmlsbD0iI2ZmZmZmZiIvPgogICAgPHBhdGggZD0ibSAxNTMuMTE4NjQsMTk5LjI5NTc1IGMgMC40MjIsLTAuMjkxIDAuODQ5LC0wLjU3OCAxLjI3OSwtMC44NiAwLjIwMSwtMC4xNzQgMC4xNjksLTAuNDU1IC0wLjA0MSwtMC42MTUgLTAuNDI3LC0wLjMwOCAtMC44NTUsLTAuNjE3IC0xLjI4NCwtMC45MjQgMC4wOSwtMC44OTggMC4yMDksLTEuNzk0IDAuMzcsLTIuNjg0IDAuMDI3LC0wLjE5MyAtMC4xNjQsLTAuMjggLTAuMzUzLC0wLjI1OCAtMC4zOTgsMC4wNTkgLTAuNzk4LDAuMTI1IC0xLjE5NCwwLjE5OCAtMC4yMDYsMC4wNDQgLTAuMzk0LDAuMTg5IC0wLjQ0OSwwLjM3NyAtMC4yNzcsMS4xIC0wLjQ2NCwyLjIxNyAtMC41OTMsMy4zMzggLTAuMDA1LDAuMDYxIDAuMDA0LDAuMTIgMC4wMjUsMC4xNzIgMC4wMTgsMC4wNSAwLjA0OSwwLjA5NiAwLjA5NCwwLjEzNiAwLjQ5NCwwLjQwNyAwLjk5MywwLjgxMSAxLjQ5NCwxLjIxMiAwLjIxLDAuMTUyIDAuNDA4LDAuMTE2IDAuNjUyLC0wLjA5MiIgZmlsbD0iI2ZmZmZmZiIvPgogIDwvZz4KPC9zdmc+" alt="לוגו הביטוח הלאומי" class="bituach-logo">
+    </div>
+    <div class="header-center">
+      <div class="org-title">המוסד לביטוח לאומי</div>
+      <div>מינהל הגמלאות</div>
+      <div>אגף הייעוץ לאזרח הוותיק ומשפחתו</div>
+      <div class="form-title">פניה לייעוץ</div>
+    </div>
+    <div class="internal-box">
+      <div class="ib-side-title">לשימוש<br>פנימי<br>בלבד<br>(סריקה)</div>
+      <div class="ib-content">
+        <!-- מס' זהות / דרכון -->
+        <div class="ib-field-full">
+          <div class="digit-row ib-digit-row">
+              <div class="digit-cell scan-id-check"><input class="digit-input" data-group="scan_id" data-idx="8" maxlength="1" inputmode="numeric"></div>
+              <div class="digit-cell"><input class="digit-input" data-group="scan_id" data-idx="7" maxlength="1" inputmode="numeric"></div>
+              <div class="digit-cell"><input class="digit-input" data-group="scan_id" data-idx="6" maxlength="1" inputmode="numeric"></div>
+              <div class="digit-cell"><input class="digit-input" data-group="scan_id" data-idx="5" maxlength="1" inputmode="numeric"></div>
+              <div class="digit-cell"><input class="digit-input" data-group="scan_id" data-idx="4" maxlength="1" inputmode="numeric"></div>
+              <div class="digit-cell"><input class="digit-input" data-group="scan_id" data-idx="3" maxlength="1" inputmode="numeric"></div>
+              <div class="digit-cell"><input class="digit-input" data-group="scan_id" data-idx="2" maxlength="1" inputmode="numeric"></div>
+              <div class="digit-cell"><input class="digit-input" data-group="scan_id" data-idx="1" maxlength="1" inputmode="numeric"></div>
+              <div class="digit-cell scan-id-first"><input class="digit-input" data-group="scan_id" data-idx="0" maxlength="1" inputmode="numeric"></div>
+          </div>
+          <label>מס' זהות / דרכון</label>
+        </div>
+        <!-- שורה תחתונה: דפים | סוג המסמך -->
+        <div class="ib-bottom-row" style="align-items:center; margin-top:auto; position:relative; padding-bottom:10px;">
+          <div class="digit-row ib-digit-row" style="flex:none; width:51px;">
+            <div class="digit-cell ib-sep"><input class="digit-input" data-group="scan_pages" data-idx="1" maxlength="1" inputmode="numeric"></div>
+            <div class="digit-cell"><input class="digit-input" data-group="scan_pages" data-idx="0" maxlength="1" inputmode="numeric"></div>
+          </div>
+          <label style="font-size:9pt; color:#333; flex-shrink:0; margin-left:4px;">דפים</label>
+          <div style="display:flex; flex-direction:row; align-items:center; gap:4px; position:absolute; left:5px;">
+            <label style="flex-shrink:0; text-align:right; line-height:1.2; font-size:9pt; color:#333;">סוג<br>המסמך</label>
+            <div class="digit-row ib-digit-row" style="flex:none; width:51px;">
+              <div class="digit-cell ib-sep"><input class="digit-input" data-group="scan_doc" data-idx="1" maxlength="1" inputmode="numeric"></div>
+              <div class="digit-cell"><input class="digit-input" data-group="scan_doc" data-idx="0" maxlength="1" inputmode="numeric"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SECTION 1: פרטי היועץ -->
+  <div class="section-frame" id="section-counselor">
+  <span class="section-num">1</span>
+  <div class="section-box" style="margin-bottom:0; border-radius: 4px 4px 0 0;">
+    <div class="section-header">
+      פרטי היועץ
+    </div>
+    <!-- שורת כותרות + שורת נתונים -->
+    <table class="form-table" style="border:none;">
+      <!-- שורת כותרות -->
+      <tr>
+        <td class="label-cell" style="width:90px; text-align:right;">תאריך</td>
+        <td class="label-cell" style="text-align:right;">שם משפחה</td>
+        <td class="label-cell" style="text-align:right;">שם פרטי</td>
+        <td class="label-cell" style="width:185px; text-align:right;">מספר זהות</td>
+      </tr>
+      <!-- שורת נתונים -->
+      <tr>
+        <td class="input-cell" style="width:90px;">
+          <input type="text" id="counselor_date" placeholder="DD/MM/YYYY" maxlength="10" inputmode="numeric" style="direction:ltr; text-align:center;">
+        </td>
+        <td class="input-cell">
+          <input type="text" id="counselor_lastname" maxlength="30">
+        </td>
+        <td class="input-cell">
+          <input type="text" id="counselor_firstname" maxlength="30">
+        </td>
+        <td class="input-cell" style="width:185px; padding:4px 3px;">
+          <div class="digit-row" id="counselor_id_row">
+            <div class="digit-cell check-digit"><input class="digit-input" data-group="counselor_id" data-idx="8" maxlength="1" inputmode="numeric"></div>
+            <div class="digit-cell"><input class="digit-input" data-group="counselor_id" data-idx="7" maxlength="1" inputmode="numeric"></div>
+            <div class="digit-cell"><input class="digit-input" data-group="counselor_id" data-idx="6" maxlength="1" inputmode="numeric"></div>
+            <div class="digit-cell"><input class="digit-input" data-group="counselor_id" data-idx="5" maxlength="1" inputmode="numeric"></div>
+            <div class="digit-cell"><input class="digit-input" data-group="counselor_id" data-idx="4" maxlength="1" inputmode="numeric"></div>
+            <div class="digit-cell"><input class="digit-input" data-group="counselor_id" data-idx="3" maxlength="1" inputmode="numeric"></div>
+            <div class="digit-cell"><input class="digit-input" data-group="counselor_id" data-idx="2" maxlength="1" inputmode="numeric"></div>
+            <div class="digit-cell"><input class="digit-input" data-group="counselor_id" data-idx="1" maxlength="1" inputmode="numeric"></div>
+            <div class="digit-cell"><input class="digit-input" data-group="counselor_id" data-idx="0" maxlength="1" inputmode="numeric"></div>
+          </div>
+        </td>
+      </tr>
+    </table>
+  </div><!-- /section-box -->
+  </div><!-- /section-frame -->
+
+  <!-- SECTION 2: פרטי הייעוץ -->
+  <div class="section-frame">
+  <span class="section-num">2</span>
+  <div class="section-box" style="margin-bottom:0; border-radius: 4px 4px 0 0;">
+    <div class="section-header">
+      פרטי הייעוץ
+    </div>
+
+    <!-- Sub: מקבל הייעוץ - אזרח ותיק (underlined) -->
+    <div class="sub-header underline">מקבל הייעוץ – אזרח ותיק</div>
+
+    <!-- Row 1: מספר זהות | שם משפחה | שם פרטי -->
+    <div class="row-group">
+      <!-- מספר זהות: fixed width, digit row -->
+      <div class="rg-cell" style="flex:none; width:160px; border-left:1.5px solid #bbb;">
+        <div class="lbl">מספר זהות</div>
+        <div class="rg-input-wrap" style="padding:2px;">
+          <div class="digit-row" style="border:1px solid #888; width:100%;">
+            <div class="digit-cell check-digit"><input class="digit-input" data-group="client_id" data-idx="8" maxlength="1" inputmode="numeric"></div>
+            <div class="digit-cell"><input class="digit-input" data-group="client_id" data-idx="7" maxlength="1" inputmode="numeric"></div>
+            <div class="digit-cell"><input class="digit-input" data-group="client_id" data-idx="6" maxlength="1" inputmode="numeric"></div>
+            <div class="digit-cell"><input class="digit-input" data-group="client_id" data-idx="5" maxlength="1" inputmode="numeric"></div>
+            <div class="digit-cell"><input class="digit-input" data-group="client_id" data-idx="4" maxlength="1" inputmode="numeric"></div>
+            <div class="digit-cell"><input class="digit-input" data-group="client_id" data-idx="3" maxlength="1" inputmode="numeric"></div>
+            <div class="digit-cell"><input class="digit-input" data-group="client_id" data-idx="2" maxlength="1" inputmode="numeric"></div>
+            <div class="digit-cell"><input class="digit-input" data-group="client_id" data-idx="1" maxlength="1" inputmode="numeric"></div>
+            <div class="digit-cell"><input class="digit-input" data-group="client_id" data-idx="0" maxlength="1" inputmode="numeric"></div>
+          </div>
+        </div>
+      </div>
+      <!-- שם משפחה -->
+      <div class="rg-cell" style="flex:1.4; border-left:1.5px solid #bbb;">
+        <div class="lbl">שם משפחה</div>
+        <div class="rg-input-wrap"><input type="text" id="client_lastname" maxlength="30"></div>
+      </div>
+      <!-- שם פרטי -->
+      <div class="rg-cell" style="flex:1.4;">
+        <div class="lbl">שם פרטי</div>
+        <div class="rg-input-wrap"><input type="text" id="client_firstname" maxlength="30"></div>
+      </div>
+    </div>
+
+    <!-- Row 2: כתובת -->
+    <div class="row-group">
+      <div class="rg-cell" style="flex:2.5; border-left:1.5px solid #bbb;">
+        <div class="lbl">רחוב / תא דואר</div>
+        <div class="rg-input-wrap"><input type="text" id="client_street" maxlength="40"></div>
+      </div>
+      <div class="rg-cell" style="flex:0.65; border-left:1.5px solid #bbb;">
+        <div class="lbl">מס' בית</div>
+        <div class="rg-input-wrap"><input type="text" id="client_house" maxlength="6"></div>
+      </div>
+      <div class="rg-cell" style="flex:0.55; border-left:1.5px solid #bbb;">
+        <div class="lbl">כניסה</div>
+        <div class="rg-input-wrap"><input type="text" id="client_entrance" maxlength="4"></div>
+      </div>
+      <div class="rg-cell" style="flex:0.55; border-left:1.5px solid #bbb;">
+        <div class="lbl">דירה</div>
+        <div class="rg-input-wrap"><input type="text" id="client_apt" maxlength="6"></div>
+      </div>
+      <div class="rg-cell" style="flex:1.3; border-left:1.5px solid #bbb;">
+        <div class="lbl">יישוב</div>
+        <div class="rg-input-wrap"><input type="text" id="client_city" maxlength="30"></div>
+      </div>
+      <div class="rg-cell" style="flex:0.7;">
+        <div class="lbl">מיקוד</div>
+        <div class="rg-input-wrap"><input type="text" id="client_zip" maxlength="7" inputmode="numeric"></div>
+      </div>
+    </div>
+
+    <!-- Row 3: טלפון קווי | טלפון נייד | מצב משפחתי -->
+    <div class="row-group">
+      <!-- טלפון קווי: 9 digits -->
+      <div class="rg-cell" style="flex:1.8; border-left:1.5px solid #bbb;">
+        <div class="lbl">טלפון קווי</div>
+        <div class="rg-input-wrap" style="padding:2px;">
+          <div class="digit-row" style="width:100%;">
+            <div class="digit-cell phone-last"><input class="digit-input" data-group="phone_land" data-idx="8" maxlength="1" inputmode="numeric"></div>
+            <div class="digit-cell"><input class="digit-input" data-group="phone_land" data-idx="7" maxlength="1" inputmode="numeric"></div>
+            <div class="digit-cell"><input class="digit-input" data-group="phone_land" data-idx="6" maxlength="1" inputmode="numeric"></div>
+            <div class="digit-cell"><input class="digit-input" data-group="phone_land" data-idx="5" maxlength="1" inputmode="numeric"></div>
+            <div class="digit-cell"><input class="digit-input" data-group="phone_land" data-idx="4" maxlength="1" inputmode="numeric"></div>
+            <div class="digit-cell"><input class="digit-input" data-group="phone_land" data-idx="3" maxlength="1" inputmode="numeric"></div>
+            <div class="digit-cell area-separator"><input class="digit-input" data-group="phone_land" data-idx="2" maxlength="1" inputmode="numeric"></div>
+            <div class="digit-cell"><input class="digit-input" data-group="phone_land" data-idx="1" maxlength="1" inputmode="numeric"></div>
+            <div class="digit-cell"><input class="digit-input" data-group="phone_land" data-idx="0" maxlength="1" inputmode="numeric"></div>
+          </div>
+        </div>
+      </div>
+      <!-- טלפון נייד: 10 digits -->
+      <div class="rg-cell" style="flex:2; border-left:1.5px solid #bbb;">
+        <div class="lbl">טלפון נייד</div>
+        <div class="rg-input-wrap" style="padding:2px;">
+          <div class="digit-row" style="width:100%;">
+            <div class="digit-cell phone-last"><input class="digit-input" data-group="phone_mobile" data-idx="9" maxlength="1" inputmode="numeric"></div>
+            <div class="digit-cell phone-sep-red"><input class="digit-input" data-group="phone_mobile" data-idx="8" maxlength="1" inputmode="numeric"></div>
+            <div class="digit-cell"><input class="digit-input" data-group="phone_mobile" data-idx="7" maxlength="1" inputmode="numeric"></div>
+            <div class="digit-cell"><input class="digit-input" data-group="phone_mobile" data-idx="6" maxlength="1" inputmode="numeric"></div>
+            <div class="digit-cell"><input class="digit-input" data-group="phone_mobile" data-idx="5" maxlength="1" inputmode="numeric"></div>
+            <div class="digit-cell"><input class="digit-input" data-group="phone_mobile" data-idx="4" maxlength="1" inputmode="numeric"></div>
+            <div class="digit-cell area-separator"><input class="digit-input" data-group="phone_mobile" data-idx="3" maxlength="1" inputmode="numeric"></div>
+            <div class="digit-cell"><input class="digit-input" data-group="phone_mobile" data-idx="2" maxlength="1" inputmode="numeric"></div>
+            <div class="digit-cell"><input class="digit-input" data-group="phone_mobile" data-idx="1" maxlength="1" inputmode="numeric"></div>
+            <div class="digit-cell"><input class="digit-input" data-group="phone_mobile" data-idx="0" maxlength="1" inputmode="numeric"></div>
+          </div>
+        </div>
+      </div>
+      <!-- מצב משפחתי -->
+      <div class="rg-cell" style="flex:1.2;">
+        <div class="lbl">מצב משפחתי</div>
+        <div class="rg-input-wrap"><input type="text" id="client_family_status" maxlength="20"></div>
+      </div>
+    </div>
+
+    <!-- Sub: מקבל הייעוץ - אחר -->
+    <div class="sub-header">מקבל הייעוץ – אחר</div>
+    <div class="row-group" style="min-height:38px;">
+      <div class="rg-cell" style="flex:1.8; border-left:1.5px solid #bbb;">
+        <div class="lbl">שם משפחה</div>
+        <div class="rg-input-wrap" style="min-height:22px;"><input type="text" id="other_lastname" maxlength="30"></div>
+      </div>
+      <div class="rg-cell" style="flex:1.8; border-left:1.5px solid #bbb;">
+        <div class="lbl">שם פרטי</div>
+        <div class="rg-input-wrap"><input type="text" id="other_firstname" maxlength="30"></div>
+      </div>
+      <div class="rg-cell" style="flex:1.4; border-left:1.5px solid #bbb;">
+        <div class="lbl">מס' טלפון</div>
+        <div class="rg-input-wrap"><input type="text" id="other_phone" maxlength="15" inputmode="numeric"></div>
+      </div>
+      <div class="rg-cell" style="flex:1.4;">
+        <div class="lbl">קרבה לאזרח הותיק</div>
+        <div class="rg-input-wrap"><input type="text" id="other_relation" maxlength="20"></div>
+      </div>
+    </div>
+
+    <!-- Sub: סיבת הפניה (centered) -->
+    <div class="sub-header" style="text-align:center;">סיבת הפניה (אוכלוסיית יעד)</div>
+
+    <!-- 4-column cause table -->
+    <table class="cause-table">
+      <tr>
+        <td class="col-header" style="width:25%;">אזרח ותיק</td>
+        <td class="col-header" style="width:25%;">סיעוד</td>
+        <td class="col-header" style="width:25%;">גיל</td>
+        <td class="col-header" style="width:25%;">אחר</td>
+      </tr>
+      <tr>
+        <td><div class="cb-row"><input type="checkbox" id="cb_tova1"><label for="cb_tova1">מגיש תביעה לקצבת אזרח ותיק</label></div></td>
+        <td><div class="cb-row"><input type="checkbox" id="cb_siyud1"><label for="cb_siyud1">מגיש תביעה לגמלת סיעוד</label></div></td>
+        <td><div class="cb-row"><input type="checkbox" id="cb_90plus"><label for="cb_90plus">בני 90 פלוס</label></div></td>
+        <td><div class="cb-row"><input type="checkbox" id="cb_alman"><label for="cb_alman">אלמן/ה</label></div></td>
+      </tr>
+      <tr>
+        <td><div class="cb-row"><input type="checkbox" id="cb_tova2"><label for="cb_tova2">מקבל קצבת אזרח ותיק</label></div></td>
+        <td><div class="cb-row"><input type="checkbox" id="cb_siyud2"><label for="cb_siyud2">מקבל גמלת סיעוד</label></div></td>
+        <td><div class="cb-row"><input type="checkbox" id="cb_100"><label for="cb_100">בני מאה</label></div></td>
+        <td><div class="cb-row"><input type="checkbox" id="cb_shoah"><label for="cb_shoah">ניצול שואה</label></div></td>
+      </tr>
+      <tr>
+        <td><div class="cb-row"><input type="checkbox" id="cb_hachnasat"><label for="cb_hachnasat">מקבל השלמת הכנסה</label></div></td>
+        <td><div class="cb-row"><input type="checkbox" id="cb_siyud3"><label for="cb_siyud3">בקרת סיעוד</label></div></td>
+        <td></td>
+        <td><div class="cb-row"><input type="checkbox" id="cb_nehe"><label for="cb_nehe">נכה כללי שעובר לאגף אזרח ותיק</label></div></td>
+      </tr>
+      <tr>
+        <td><div class="cb-row"><input type="checkbox" id="cb_tova3"><label for="cb_tova3">מקבל קצבה אחרת</label></div></td>
+        <td><div class="cb-row"><input type="checkbox" id="cb_siyud4"><label for="cb_siyud4">אזרח ותיק שתביעתו לסיעוד נדחתה</label></div></td>
+        <td></td>
+        <td><div class="cb-row"><input type="checkbox" id="cb_agaf_yiuts"><label for="cb_agaf_yiuts">פניה לשירות אגף הייעוץ לאזרח הוותיק ומשפחתו (ימי מידע, בקשה לביקור חברתי ועוד)</label></div></td>
+      </tr>
+      <tr>
+        <td colspan="3"></td>
+        <td><div class="cb-row"><input type="checkbox" id="cb_russia"><label for="cb_russia">אמנת רוסיה</label></div></td>
+      </tr>
+    </table>
+
+    <!-- פניה ע"י פקיד תביעות -->
+    <div style="padding:3px 6px; border-top:1px solid #bbb; margin-top:5px; font-size:10.2pt;">
+      <div style="display:flex; flex-wrap:wrap; align-items:center; gap:4px;">
+        <input type="checkbox" id="cb_pakid">
+        <label for="cb_pakid">פניה ע"י פקיד תביעות בסניף –</label>
+        <strong>סוג הפקיד:</strong>
+        &nbsp;
+        <label style="display:flex;align-items:center;gap:3px;"><input type="checkbox" id="cb_pakid_azrach"> אגף אזרח ותיק</label>
+        <label style="display:flex;align-items:center;gap:3px;"><input type="checkbox" id="cb_pakid_siyud"> סיעוד</label>
+        <label style="display:flex;align-items:center;gap:3px;"><input type="checkbox" id="cb_pakid_dalpak"> דלפק קדמי</label>
+        <label style="display:flex;align-items:center;gap:3px;"><input type="checkbox" id="cb_pakid_givia"> גבייה</label>
+        <label style="display:flex;align-items:center;gap:3px;"><input type="checkbox" id="cb_pakid_acher"> אחר</label>
+      </div>
+    </div>
+
+    <!-- גורם קהילתי -->
+    <div style="padding:3px 6px; border-top:1px solid #bbb; margin-top:5px; font-size:10.2pt; display:flex; align-items:center; gap:4px; flex-wrap:wrap;">
+      <input type="checkbox" id="cb_kehila">
+      <label for="cb_kehila">אזרח ותיק שהופנה ע"י גורם קהילתי. שם הגורם הקהילתי</label>
+      <input type="text" id="kehila_name" maxlength="30" style="flex:1; min-width:60px; border:none; border-bottom:1px solid #888; background:#f0f4ff; font-size:10.2pt; outline:none;">
+      <span style="flex-shrink:0;">מס' טל'</span>
+      <input type="text" id="kehila_phone" maxlength="15" inputmode="numeric" style="width:80px; flex-shrink:0; border:none; border-bottom:1px solid #888; background:#f0f4ff; font-size:10.2pt; outline:none;">
+    </div>
+
+    <!-- פרויקט מוסדי -->
+    <div style="padding:3px 6px; border-top:1px solid #bbb; margin-top:5px; font-size:10.2pt; display:flex; align-items:center; gap:4px;">
+      <input type="checkbox" id="cb_project">
+      <label for="cb_project">אזרח ותיק שנכלל במסגרת פרויקט מוסדי, פרט:</label>
+      <input type="text" id="project_detail" maxlength="60" style="flex:1; border:none; border-bottom:1px solid #888; background:#f0f4ff; font-size:10.2pt; outline:none;">
+    </div>
+
+  </div><!-- /section-box -->
+  </div><!-- /section-frame -->
+
+  <!-- גיל הפונה -->
+  <div style="margin-top:1em; display:flex; align-items:center; gap:8px; font-size:10.2pt; direction:rtl;">
+    <label for="client_age" style="font-weight:bold;">גיל הפונה</label>
+    <input type="text" id="client_age" maxlength="3" inputmode="numeric"
+      style="width:36px; height:22px; border:1.5px solid #555; background:#fff; font-size:10.2pt;
+             text-align:center; outline:none; font-family:Arial,sans-serif;">
+  </div>
+
+  <div class="page-footer">בל/4300 (07.2024)</div>
+</div>
+<!-- ==================== END PAGE 1 ==================== -->
+
+
+<!-- ==================== PAGE 2 ==================== -->
+<div class="form-page" id="page2" style="min-height:297mm;">
+
+  <div class="section-frame">
+  <div class="section-box" style="margin-bottom:0; border-radius: 4px 4px 0 0; background:#fff;">
+
+    <!-- אופן הפניה -->
+    <div class="section-label">אופן הפניה</div>
+
+    <!-- הגיע בעצמו -->
+    <div style="padding:3px 6px; border-bottom:1px solid #ccc;">
+      <div class="cb-row"><input type="checkbox" id="cb_arrived_self"><label for="cb_arrived_self">הגיע בעצמו</label></div>
+    </div>
+
+    <!-- שיחת טלפון + שתי תת-אפשרויות מוזחות -->
+    <div style="padding:3px 6px; border-bottom:1px solid #ccc;">
+      <!-- שורה ראשית -->
+      <div style="display:flex; align-items:center; gap:6px;">
+        <input type="checkbox" id="cb_phone_call">
+        <label for="cb_phone_call" style="font-size:10.2pt;">שיחת טלפון <strong>(יש לבחור אחת משתי האפשרויות):</strong></label>
+        <span style="display:inline-flex; align-items:center; gap:4px; font-size:10.2pt; margin-right:8px;" id="phone_9696_wrap">
+          <input type="checkbox" id="cb_phone_9696"> מרכז מידע טלפוני ארצי 9696*
+        </span>
+      </div>
+      <!-- שורה שניה: מיושרת תחת cb_phone_9696 -->
+      <div style="margin-top:2px; display:flex; align-items:center;">
+        <!-- spacer: רוחב של checkbox ראשי + gap + label "שיחת טלפון..." + margin -->
+        <span id="phone_spacer" style="visibility:hidden; white-space:nowrap; font-size:10.2pt; padding-left:6px;">
+          <input type="checkbox" style="pointer-events:none; opacity:0;"> שיחת טלפון <strong>(יש לבחור אחת משתי האפשרויות):</strong>&nbsp;&nbsp;
+        </span>
+        <label style="display:flex;align-items:center;gap:4px;font-size:10.2pt;"><input type="checkbox" id="cb_phone_dept"> נתב שיחות/טלפון במחלקה</label>
+      </div>
+    </div>
+
+    <!-- פניה בדואר אלקטרוני -->
+    <div style="padding:3px 6px; border-bottom:1px solid #ccc;">
+      <div class="cb-row"><input type="checkbox" id="cb_email_ref"><label for="cb_email_ref">פניה באמצעות דואר אלקטרוני</label></div>
+    </div>
+
+    <!-- פניה ביוזמת -->
+    <div class="section-label">פניה ביוזמת</div>
+    <div style="padding:3px 6px; border-bottom:1px solid #ccc; display:flex; gap:24px; align-items:center;">
+      <label style="display:flex;align-items:center;gap:4px;font-size:10.2pt;"><input type="checkbox" id="cb_init_client"> מקבל הייעוץ</label>
+      <label style="display:flex;align-items:center;gap:4px;font-size:10.2pt;"><input type="checkbox" id="cb_init_counselor"> היועץ</label>
+    </div>
+
+    <!-- נושאים שעלו - 2 rows of items -->
+    <div class="section-label">נושאים שעלו בפנייה – זכויות במוסד לביטוח לאומי <span style="font-weight:normal;">(בחירה מרובה)</span></div>
+    <div style="padding:4px 6px; border-bottom:1px solid #ccc; font-size:10.2pt;">
+      <!-- שורה 1 -->
+      <div style="display:flex; gap:6px 16px; flex-wrap:nowrap; margin-bottom:3px;">
+        <label style="display:flex;align-items:center;gap:3px;white-space:nowrap;"><input type="checkbox" id="cb_n_kitzba"> קצבה לאזרח ותיק</label>
+        <label style="display:flex;align-items:center;gap:3px;white-space:nowrap;"><input type="checkbox" id="cb_n_shairim"> שאירים</label>
+        <label style="display:flex;align-items:center;gap:3px;white-space:nowrap;"><input type="checkbox" id="cb_n_hachnasa"> השלמת הכנסה</label>
+        <label style="display:flex;align-items:center;gap:3px;white-space:nowrap;"><input type="checkbox" id="cb_n_siyud"> סיעוד</label>
+        <label style="display:flex;align-items:center;gap:3px;white-space:nowrap;"><input type="checkbox" id="cb_n_iva"> איבה</label>
+        <label style="display:flex;align-items:center;gap:3px;white-space:nowrap;"><input type="checkbox" id="cb_n_asir"> אסירי ציון</label>
+        <label style="display:flex;align-items:center;gap:3px;white-space:nowrap;"><input type="checkbox" id="cb_n_nechut"> נכות מעבודה</label>
+      </div>
+      <!-- שורה 2 -->
+      <div style="display:flex; gap:6px 16px; flex-wrap:nowrap; align-items:center;">
+        <label style="display:flex;align-items:center;gap:3px;white-space:nowrap;"><input type="checkbox" id="cb_n_shram"> שר"מ</label>
+        <label style="display:flex;align-items:center;gap:3px;white-space:nowrap;"><input type="checkbox" id="cb_n_nayad"> ניידות</label>
+        <label style="display:flex;align-items:center;gap:3px;white-space:nowrap;"><input type="checkbox" id="cb_n_givia"> גביה</label>
+        <label style="display:flex;align-items:center;gap:3px;white-space:nowrap;"><input type="checkbox" id="cb_n_yiuts"> שירותי הייעוץ לאזרח הותיק ומשפ'</label>
+        <label style="display:flex;align-items:center;gap:3px;white-space:nowrap;"><input type="checkbox" id="cb_n_zchuyot"> זכויות ושירותים בקהילה</label>
+        <label style="display:flex;align-items:center;gap:3px;white-space:nowrap;"><input type="checkbox" id="cb_n_acher"> אחר</label>
+      </div>
+    </div>
+
+    <!-- אופן הסיוע - 3 rows matching original -->
+    <div class="section-label">אופן הסיוע <span style="font-weight:normal;">(בחירה מרובה)</span></div>
+    <div style="padding:4px 6px; border-bottom:1px solid #ccc; font-size:10.2pt; display:grid; grid-template-columns:auto auto auto; grid-template-rows:auto auto auto; direction:rtl; row-gap:3px; column-gap:20px; justify-content:start;">
+      <!-- עמודה ימין -->
+      <label style="display:flex;align-items:center;gap:3px;"><input type="checkbox" id="cb_s_forms"> סיוע במילוי טפסים ו/או קבלת מסמכים</label>
+      <label style="display:flex;align-items:center;gap:3px;"><input type="checkbox" id="cb_s_translate"> תרגום</label>
+      <label style="display:flex;align-items:center;gap:3px;"><input type="checkbox" id="cb_s_explain"> הסברה</label>
+      <!-- עמודה אמצע -->
+      <label style="display:flex;align-items:center;gap:3px;"><input type="checkbox" id="cb_s_pakid"> בירור אצל פקיד תביעות</label>
+      <label style="display:flex;align-items:center;gap:3px;"><input type="checkbox" id="cb_s_community"> הפניה לשירותים אחרים בקהילה</label>
+      <label style="display:flex;align-items:center;gap:3px;"><input type="checkbox" id="cb_s_letter"> כתיבת מכתב</label>
+      <!-- עמודה שמאל -->
+      <label style="display:flex;align-items:center;gap:3px;"><input type="checkbox" id="cb_s_support"> שיחת תמיכה</label>
+      <label style="display:flex;align-items:center;gap:3px;"><input type="checkbox" id="cb_s_send"> שליחת אישורים וטפסים</label>
+      <span></span>
+    </div>
+
+    <!-- פירוט הפניה - multiline with underlines -->
+    <div class="section-label">פירוט הפניה</div>
+    <div style="padding:4px 6px;">
+      <textarea id="referral_detail" class="free-text-area" rows="4" style="height:65px;"></textarea>
+    </div>
+
+    <!-- תשובות היועץ - multiline with underlines -->
+    <div class="section-label">תשובות היועץ</div>
+    <div style="padding:4px 6px;">
+      <textarea id="counselor_answers" class="free-text-area" rows="4" style="height:65px;"></textarea>
+    </div>
+
+  </div><!-- /section-box -->
+  </div><!-- /section-frame -->
+
+  <div class="page-footer" style="position:absolute; bottom:6mm; right:14mm;">בל/4300 (07.2024)</div>
+
+</div><!-- /page2 -->
+<!-- ==================== END PAGE 2 ==================== -->
+
+</div><!-- /pages-wrapper -->
+
+<script>
+function digitByIdx(group, idx) {
+  return document.querySelector('.digit-input[data-group="' + group + '"][data-idx="' + idx + '"]');
+}
+function digitCount(group) {
+  return document.querySelectorAll('.digit-input[data-group="' + group + '"]').length;
+}
+
+document.querySelectorAll('.digit-input').forEach(function(inp) {
+  inp.addEventListener('keydown', function(e) {
+    var group = this.dataset.group;
+    var idx   = parseInt(this.dataset.idx);
+    var next;
+    if (e.key === 'Backspace') {
+      if (this.value === '' && idx > 0) {
+        next = digitByIdx(group, idx - 1);
+        if (next) { next.focus(); next.select(); }
+      }
+      return;
+    }
+    if (e.key === 'ArrowLeft') {
+      next = digitByIdx(group, idx + 1);
+      if (next) { next.focus(); next.select(); }
+      e.preventDefault();
+    }
+    if (e.key === 'ArrowRight') {
+      next = digitByIdx(group, idx - 1);
+      if (next) { next.focus(); next.select(); }
+      e.preventDefault();
+    }
+  });
+
+  inp.addEventListener('input', function() {
+    var val = this.value.replace(/[^0-9]/g, '');
+    this.value = val.slice(-1);
+    if (this.value) {
+      var group = this.dataset.group;
+      var idx   = parseInt(this.dataset.idx);
+      var next  = digitByIdx(group, idx + 1);
+      if (next) { next.focus(); next.select(); }
+    }
+  });
+
+  inp.addEventListener('focus', function() { this.select(); });
+});
+
+document.querySelectorAll('.digit-input').forEach(function(inp) {
+  inp.addEventListener('paste', function(e) {
+    e.preventDefault();
+    var text  = (e.clipboardData || window.clipboardData).getData('text').replace(/[^0-9]/g, '');
+    var group = this.dataset.group;
+    var idx   = parseInt(this.dataset.idx);
+    var count = digitCount(group);
+    for (var i = 0; i < text.length && (idx + i) < count; i++) {
+      var cell = digitByIdx(group, idx + i);
+      if (cell) cell.value = text[i];
+    }
+    var last = digitByIdx(group, Math.min(idx + text.length, count - 1));
+    if (last) last.focus();
+  });
+});
+
+var dateInp = document.getElementById('counselor_date');
+if (dateInp) {
+  dateInp.addEventListener('input', function() {
+    var v = this.value.replace(/[^0-9]/g, '').slice(0, 8);
+    var out = v.length > 4 ? v.slice(0,2)+'/'+v.slice(2,4)+'/'+v.slice(4)
+            : v.length > 2 ? v.slice(0,2)+'/'+v.slice(2) : v;
+    this.value = out;
+  });
+}
+
+window.addEventListener('beforeprint', function() {
+  document.title = ' ';
+});
+window.addEventListener('afterprint', function() {
+  document.title = ' ';
+});
+
+function clearAll() {
+  if (!confirm('האם לנקות את כל הנתונים בטופס?')) return;
+  var section1 = document.getElementById('section-counselor');
+  document.querySelectorAll('input[type="text"], input:not([type]), textarea').forEach(function(el) {
+    if (!section1.contains(el)) el.value = '';
+  });
+  document.querySelectorAll('input[type="checkbox"]').forEach(function(el) {
+    if (!section1.contains(el)) el.checked = false;
+  });
+}
+</script>
+</body>
+</html>
