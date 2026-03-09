@@ -616,6 +616,8 @@
       page-break-after: always !important;
       break-after: page !important;
       display: block !important;
+      transform: none !important;
+      transform-origin: unset !important;
     }
     .form-page:last-child {
       page-break-after: avoid !important;
@@ -649,6 +651,38 @@
   #page2 > .section-box > div { line-height: 1.69; }
   #page2 label { line-height: 1.69; }
   #page2 .cb-row label { line-height: 1.69; }
+
+  /* ===== RESPONSIVE ===== */
+  @media (max-width: 820px) {
+    body { overflow-x: hidden; }
+
+    #toolbar {
+      flex-wrap: wrap;
+      justify-content: flex-start;
+      padding: 7px 10px;
+      gap: 7px;
+      min-height: unset;
+    }
+    #toolbar h1 {
+      font-size: 13px;
+      margin-left: 0;
+      flex: 1;
+      min-width: 100%;
+      text-align: center;
+      order: -1;
+    }
+    .tb-btn {
+      padding: 6px 14px;
+      font-size: 12px;
+    }
+
+    #pages-wrapper {
+      padding-left: 0;
+      padding-right: 0;
+      align-items: flex-start;
+      overflow-x: hidden;
+    }
+  }
 
 </style>
 </head>
@@ -1178,6 +1212,51 @@ function clearAll() {
   document.querySelectorAll('input[type="checkbox"]').forEach(function(el) {
     if (!section1.contains(el)) el.checked = false;
   });
+}
+
+/* ===== Responsive scaling of A4 pages ===== */
+function responsiveForms() {
+  var toolbar = document.getElementById('toolbar');
+  var wrapper = document.getElementById('pages-wrapper');
+  var pages   = document.querySelectorAll('.form-page');
+
+  if (toolbar && wrapper) {
+    wrapper.style.marginTop = toolbar.offsetHeight + 'px';
+  }
+
+  if (window.innerWidth > 820) {
+    pages.forEach(function(p) {
+      p.style.transform       = '';
+      p.style.transformOrigin = '';
+      p.style.marginBottom    = '';
+      p.style.marginLeft      = '';
+      p.style.marginRight     = '';
+    });
+    return;
+  }
+
+  var naturalW = 794;
+  var scale = (window.innerWidth - 8) / naturalW;
+  var sideOffset = Math.round(naturalW * (1 - scale) / 2);
+  pages.forEach(function(p) {
+    var h = p.scrollHeight;
+    p.style.transform       = 'scale(' + scale + ')';
+    p.style.transformOrigin = 'top center';
+    p.style.marginBottom    = Math.round(h * scale - h) + 'px';
+    p.style.marginLeft      = '-' + sideOffset + 'px';
+    p.style.marginRight     = '-' + sideOffset + 'px';
+  });
+}
+
+window.addEventListener('resize', responsiveForms);
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', function() {
+    responsiveForms();
+    setTimeout(responsiveForms, 150);
+  });
+} else {
+  responsiveForms();
+  setTimeout(responsiveForms, 150);
 }
 </script>
 </body>
