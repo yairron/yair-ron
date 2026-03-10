@@ -49,6 +49,7 @@
     color: #ccc;
   }
   .tb-btn.secondary:hover { background: #333; border-color: #aaa; color: #fff; }
+  a.tb-btn { text-decoration: none; display: inline-flex; align-items: center; }
 
   /* ===== PAGE WRAPPER ===== */
   #pages-wrapper {
@@ -590,6 +591,45 @@
     right: 14mm;
   }
 
+  /* ===== WARNING MODAL ===== */
+  #id-warn-modal {
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.45);
+    z-index: 9999;
+    display: none;
+    align-items: center;
+    justify-content: center;
+  }
+  #id-warn-modal.show { display: flex; }
+  #id-warn-box {
+    background: #fff;
+    border-radius: 12px;
+    padding: 28px 32px;
+    max-width: 340px;
+    width: 90%;
+    text-align: center;
+    box-shadow: 0 8px 32px rgba(0,0,0,0.3);
+    direction: rtl;
+    font-family: Arial, sans-serif;
+  }
+  #id-warn-msg { font-size: 15px; line-height: 1.6; margin-bottom: 22px; color: #222; }
+  #id-warn-btns { display: flex; gap: 12px; justify-content: center; }
+  .id-warn-btn {
+    padding: 9px 28px;
+    border: none;
+    border-radius: 8px;
+    font-size: 14px;
+    font-family: Arial, sans-serif;
+    font-weight: 700;
+    cursor: pointer;
+    transition: background 0.2s;
+  }
+  .id-warn-btn.back  { background: #e94560; color: #fff; }
+  .id-warn-btn.back:hover  { background: #c73652; }
+  .id-warn-btn.cont  { background: #e0e0e0; color: #333; }
+  .id-warn-btn.cont:hover  { background: #c8c8c8; }
+
   /* ===== PRINT ===== */
   @page {
     size: A4;
@@ -599,6 +639,7 @@
   @media print {
     html, body { background: #fff; margin: 0; padding: 0; }
     #toolbar { display: none !important; }
+    #id-warn-modal { display: none !important; }
     #pages-wrapper { margin: 0 !important; padding: 0 !important; gap: 0 !important; display: block !important; }
 
     /* Force background colors to print */
@@ -610,7 +651,7 @@
       width: 210mm !important;
       height: 297mm !important;
       min-height: 0 !important;
-      padding: 8mm 14mm !important;
+      padding: 24mm 14mm 8mm !important;
       margin: 0 !important;
       overflow: hidden !important;
       page-break-after: always !important;
@@ -692,6 +733,17 @@
   <button class="tb-btn" onclick="window.print()">🖨 הדפס</button>
   <button class="tb-btn secondary" onclick="clearAll()">🗑 נקה הכל</button>
   <h1>פניה לייעוץ – בל/4300</h1>
+  <a href="../index.html" class="tb-btn secondary">&#8592; חזרה</a>
+</div>
+
+<div id="id-warn-modal">
+  <div id="id-warn-box">
+    <div id="id-warn-msg"></div>
+    <div id="id-warn-btns">
+      <button class="id-warn-btn back" id="id-warn-back">חזרה</button>
+      <button class="id-warn-btn cont" id="id-warn-cont">המשך</button>
+    </div>
+  </div>
 </div>
 
 <div id="pages-wrapper">
@@ -1213,6 +1265,97 @@ function clearAll() {
     if (!section1.contains(el)) el.checked = false;
   });
 }
+
+/* ===== Custom warning modal ===== */
+function showIdWarn(msg, onBack) {
+  var modal   = document.getElementById('id-warn-modal');
+  var msgEl   = document.getElementById('id-warn-msg');
+  var backBtn = document.getElementById('id-warn-back');
+  var contBtn = document.getElementById('id-warn-cont');
+  msgEl.innerHTML = msg;
+  modal.classList.add('show');
+
+  function close() {
+    modal.classList.remove('show');
+    backBtn.onclick = null;
+    contBtn.onclick = null;
+  }
+  backBtn.onclick = function() { close(); onBack(); };
+  contBtn.onclick = function() { close(); };
+}
+
+/* ===== ID validation for client_id (section 2) ===== */
+function isValidId(nineDigits) {
+  var digits = nineDigits.split('').map(Number);
+  var weights = [1, 2, 1, 2, 1, 2, 1, 2, 1];
+  var sum = 0;
+  for (var i = 0; i < 9; i++) {
+    var val = digits[i] * weights[i];
+    if (val > 9) val -= 9;
+    sum += val;
+  }
+  return sum % 10 === 0;
+}
+
+document.querySelectorAll('.digit-input[data-group="client_id"]').forEach(function(inp) {
+  inp.addEventListener('input', function() {
+    var idStr = '';
+    for (var i = 0; i < 9; i++) {
+      var cell = digitByIdx('client_id', i);
+      if (!cell || cell.value === '') return; // not all filled yet
+      idStr += cell.value;
+    }
+    if (!isValidId(idStr)) {
+      alert('מספר תעודת זהות לא תקין!\nאנא בדוק את הספרות שהוזנו.');
+    }
+  });
+
+  inp.addEventListener('blur', function() {
+    setTimeout(function() {
+      // If focus moved to another client_id cell — do nothing
+      var focused = document.activeElement;
+      if (focused && focused.dataset && focused.dataset.group === 'client_id') return;
+
+      var filledCount = 0;
+      var firstEmpty = null;
+      for (var i = 0; i < 9; i++) {
+        var cell = digitByIdx('client_id', i);
+        if (cell && cell.value !== '') {
+          filledCount++;
+        } else if (firstEmpty === null) {
+          firstEmpty = cell;
+        }
+      }
+
+      if (filledCount > 0 && filledCount < 9) {
+        var target = firstEmpty;
+        showIdWarn('מספר תעודת זהות לא הושלם!<br>אנא השלם את כל 9 הספרות.', function() {
+          if (target) target.focus();
+        });
+      }
+    }, 150);
+  });
+});
+
+/* ===== Name fields blur: warn if client_id is completely empty ===== */
+['client_lastname', 'client_firstname'].forEach(function(fieldId) {
+  var el = document.getElementById(fieldId);
+  if (!el) return;
+  el.addEventListener('blur', function() {
+    if (!this.value.trim()) return;
+    var idFilled = 0;
+    for (var i = 0; i < 9; i++) {
+      var cell = digitByIdx('client_id', i);
+      if (cell && cell.value !== '') idFilled++;
+    }
+    if (idFilled === 0) {
+      showIdWarn('שדה מספר תעודת זהות לא מולא.', function() {
+        var firstCell = digitByIdx('client_id', 0);
+        if (firstCell) firstCell.focus();
+      });
+    }
+  });
+});
 
 /* ===== Responsive scaling of A4 pages ===== */
 function responsiveForms() {
