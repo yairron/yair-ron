@@ -665,6 +665,8 @@
 
     <script src="data/rights-data.js"></script>
     <script>
+        let NII_CONSTANTS = {};
+
         // הגדרות אקורדיון
         const ACCORDIONS_CONFIG = {
             social_security: {
@@ -712,7 +714,9 @@
                 // יצירת תוכן לכל קטגוריה
                 for (const [key, config] of Object.entries(ACCORDIONS_CONFIG)) {
                     const data = RIGHTS_DATA.categories[key];
-                    const content = data ? data.content : '<p style="text-align: center; color: #999; padding: 40px;">⏳ המידע יתעדכן בקרוב...</p>';
+                    const content = data
+                        ? (typeof data.contentFn === 'function' ? data.contentFn(NII_CONSTANTS) : data.content)
+                        : '<p style="text-align: center; color: #999; padding: 40px;">⏳ המידע יתעדכן בקרוב...</p>';
 
                     html += `
                         <div class="accordion" data-category="${key}">
@@ -995,11 +999,21 @@
         }
 
 
-        // טעינה כשהדף מוכן
-        if (document.readyState === 'loading') {
-            document.addEventListener('DOMContentLoaded', displayData);
-        } else {
+        // טעינת nii-constants.json ואז הצגת הנתונים
+        async function init() {
+            try {
+                const resp = await fetch('data/nii-constants.json');
+                NII_CONSTANTS = await resp.json();
+            } catch(e) {
+                console.warn('⚠️ לא ניתן לטעון nii-constants.json, משתמש בערכי ברירת מחדל');
+            }
             displayData();
+        }
+
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', init);
+        } else {
+            init();
         }
     </script>
 </body>

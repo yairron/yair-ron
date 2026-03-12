@@ -6,7 +6,13 @@ const RIGHTS_DATA = {
   "categories": {
     "social_security": {
       "title": "קצבאות זקנה וזכויות ביטוח לאומי",
-      "content": `
+      "contentFn": function(nii) {
+        const c = key => nii[key] ? '₪' + nii[key].value.toLocaleString('he-IL') : '—';
+        const v = key => nii[key] ? nii[key].value : 0;
+        const fmt = num => Math.round(num).toLocaleString('he-IL');
+        const p = key => nii[key] ? nii[key].value + '%' : '—';
+        const age = key => nii[key] ? nii[key].value : '—';
+        return `
        <a href="https://www.kolzchut.org.il/he/%D7%96%D7%9B%D7%95%D7%AA%D7%95%D7%9F_%D7%A7%D7%A6%D7%91%D7%AA_%D7%96%D7%99%D7%A7%D7%A0%D7%94" target="_blank" class="link-item">🏛️  זכותון קצבת זיקנה - כל זכות. כל המידע על קצבת זיקנה במקום אחד</a>
         <h2 class="no-accordion">📋 קצבת אזרח ותיק (קצבת זקנה) - מדריך מלא 2026</h2>
 
@@ -15,9 +21,9 @@ const RIGHTS_DATA = {
         <div class="conditions-box">
           <h4>⏰ גילאי הפרישה</h4>
           <ul>
-            <li><strong>גברים:</strong> 67 שנים</li>
+            <li><strong>גברים:</strong> ${age('retirement_age_male')} שנים</li>
             <li><strong>נשים:</strong> משתנה לפי שנת לידה (ראה טבלה להלן)</li>
-            <li><strong>גיל הזכאות המוחלט:</strong> 70 שנים - ללא מבחן הכנסות</li>
+            <li><strong>גיל הזכאות המוחלט:</strong> ${age('retirement_age_unconditional')} שנים - ללא מבחן הכנסות</li>
           </ul>
         </div>
 
@@ -44,12 +50,12 @@ const RIGHTS_DATA = {
 
         <h3>💰 סכומי הקצבה הבסיסית לשנת 2026</h3>
         <ul>
-          <li><strong>יחיד/ה:</strong> ₪1,838 לחודש</li>
-          <li><strong>יחיד/ה בגיל 80 ומעלה:</strong> ₪1,941 לחודש</li>
-          <li><strong>יחיד עם בן זוג שאינו מקבל קצבה:</strong> ₪2,762 לחודש</li>
-          <li><strong>זוג שניהם מקבלים:</strong> ₪1,838 לכל אחד (₪3,676 סה"כ)</li>
-          <li><strong>תוספת לבן/בת זוג:</strong> ₪924</li>
-          <li><strong>תוספת לכל ילד (עד 2 ילדים):</strong> ₪581</li>
+          <li><strong>יחיד/ה:</strong> ${c('pension_single_basic')} לחודש</li>
+          <li><strong>יחיד/ה בגיל 80 ומעלה:</strong> ${c('pension_single_over80')} לחודש</li>
+          <li><strong>יחיד עם בן זוג שאינו מקבל קצבה:</strong> ${c('pension_couple_basic')} לחודש</li>
+          <li><strong>זוג שניהם מקבלים:</strong> ${c('pension_single_basic')} לכל אחד (₪${fmt(v('pension_single_basic') * 2)} סה"כ)</li>
+          <li><strong>תוספת לבן/בת זוג:</strong> ${c('pension_spouse_supplement')}</li>
+          <li><strong>תוספת לכל ילד (עד 2 ילדים):</strong> ${c('pension_child_supplement')}</li>
         </ul>
 
         <h3>💵 מבחן הכנסות (בין גיל פרישה לגיל 70)</h3>
@@ -65,34 +71,34 @@ const RIGHTS_DATA = {
           <tbody>
             <tr>
               <td style="padding: 10px; border: 1px solid #ddd; font-weight: bold;">יחיד</td>
-              <td style="padding: 10px; border: 1px solid #ddd; text-align: center;">עד ₪10,113</td>
-              <td style="padding: 10px; border: 1px solid #ddd; text-align: center;">₪10,113-₪14,302</td>
-              <td style="padding: 10px; border: 1px solid #ddd; text-align: center;">מעל ₪14,302</td>
+              <td style="padding: 10px; border: 1px solid #ddd; text-align: center;">עד ${c('income_test_single_full')}</td>
+              <td style="padding: 10px; border: 1px solid #ddd; text-align: center;">${c('income_test_single_full')}-${c('income_test_single_partial')}</td>
+              <td style="padding: 10px; border: 1px solid #ddd; text-align: center;">מעל ${c('income_test_single_partial')}</td>
             </tr>
             <tr>
               <td style="padding: 10px; border: 1px solid #ddd; font-weight: bold;">נשוי</td>
-              <td style="padding: 10px; border: 1px solid #ddd; text-align: center;">עד ₪13,484</td>
-              <td style="padding: 10px; border: 1px solid #ddd; text-align: center;">₪13,484-₪20,141</td>
-              <td style="padding: 10px; border: 1px solid #ddd; text-align: center;">מעל ₪20,141</td>
+              <td style="padding: 10px; border: 1px solid #ddd; text-align: center;">עד ${c('income_test_married_full')}</td>
+              <td style="padding: 10px; border: 1px solid #ddd; text-align: center;">${c('income_test_married_full')}-${c('income_test_married_partial')}</td>
+              <td style="padding: 10px; border: 1px solid #ddd; text-align: center;">מעל ${c('income_test_married_partial')}</td>
             </tr>
           </tbody>
         </table>
-        <p><strong>הפחתה:</strong> 60% מההכנסה העודפת מעל התקרה מופחתת מסכום הקצבה</p>
+        <p><strong>הפחתה:</strong> ${p('income_test_deduction_rate')} מההכנסה העודפת מעל התקרה מופחתת מסכום הקצבה</p>
 
         <h4 >📐 נוסחת חישוב הקצבה החלקית</h4>
         <div style="background: #e8f5e9; padding: 20px; border-radius: 10px; border-right: 4px solid #4caf50; margin: 20px 0;">
           <h5 class="no-accordion">📊 הנוסחה לחישוב קצבה חלקית:</h5>
           <p style="font-size: 1.2em; font-weight: bold; text-align: center; background: white; padding: 15px; border-radius: 8px; margin: 15px 0;">
-            קצבה חלקית = קצבה מלאה - [60% × (הכנסה ברוטו - תקרת קצבה מלאה)]
+            קצבה חלקית = קצבה מלאה - [${p('income_test_deduction_rate')} × (הכנסה ברוטו - תקרת קצבה מלאה)]
           </p>
         </div>
 
         <h5 class="no-accordion">📋 נתונים בסיסיים לחישוב (2026):</h5>
         <ul>
-          <li><strong>קצבה בסיסית:</strong> ₪1,838 (מגיל פרישה עד גיל 80)</li>
-          <li><strong>קצבה בסיסית:</strong> ₪1,941 (מגיל 80 ומעלה)</li>
-          <li><strong>תוספת בן/בת זוג:</strong> ₪924</li>
-          <li><strong>תוספת ותק:</strong> 2% לכל שנת ביטוח (מקסימום 50%)</li>
+          <li><strong>קצבה בסיסית:</strong> ${c('pension_single_basic')} (מגיל פרישה עד גיל 80)</li>
+          <li><strong>קצבה בסיסית:</strong> ${c('pension_single_over80')} (מגיל 80 ומעלה)</li>
+          <li><strong>תוספת בן/בת זוג:</strong> ${c('pension_spouse_supplement')}</li>
+          <li><strong>תוספת ותק:</strong> ${p('seniority_bonus_rate')} לכל שנת ביטוח (מקסימום ${p('seniority_bonus_max')})</li>
         </ul>
 
         <h4>💡 דוגמאות חישוב מפורטות</h4>
@@ -101,31 +107,31 @@ const RIGHTS_DATA = {
         <div style="background: #fff8e1; padding: 20px; border-radius: 10px; margin: 15px 0;">
           <h5 class="no-accordion">📋 נתוני המקרה:</h5>
           <ul>
-            <li>דוד, בן 67, יחיד</li>
+            <li>דוד, בן ${age('retirement_age_male')}, יחיד</li>
             <li>הכנסה מעבודה: ₪11,500 ברוטו</li>
-            <li>ותק ביטוח: 25 שנים (תוספת ותק מקסימלית 50%)</li>
-            <li><strong>מצב:</strong> הכנסה בטווח הזכאות לקצבה חלקית (₪10,113 - ₪14,302)</li>
+            <li>ותק ביטוח: 25 שנים (תוספת ותק מקסימלית ${p('seniority_bonus_max')})</li>
+            <li><strong>מצב:</strong> הכנסה בטווח הזכאות לקצבה חלקית (${c('income_test_single_full')} - ${c('income_test_single_partial')})</li>
           </ul>
 
           <h5 class="no-accordion">💡 חישוב:</h5>
           <p><strong>שלב 1: חישוב קצבה בסיסית עם ותק</strong></p>
           <ul>
-            <li>קצבה בסיסית: ₪1,838</li>
-            <li>תוספת ותק (50%): ₪1,838 × 50% = ₪919</li>
-            <li><strong>קצבה מלאה עם ותק: ₪1,838 + ₪919 = ₪2,757</strong></li>
+            <li>קצבה בסיסית: ${c('pension_single_basic')}</li>
+            <li>תוספת ותק (${p('seniority_bonus_max')}): ${c('pension_single_basic')} × ${p('seniority_bonus_max')} = ₪${fmt(v('pension_single_basic') * v('seniority_bonus_max') / 100)}</li>
+            <li><strong>קצבה מלאה עם ותק: ${c('pension_single_basic')} + ₪${fmt(v('pension_single_basic') * v('seniority_bonus_max') / 100)} = ₪${fmt(v('pension_single_basic') * (1 + v('seniority_bonus_max') / 100))}</strong></li>
           </ul>
 
           <p><strong>שלב 2: חישוב עודף הכנסה</strong></p>
           <ul>
-            <li>עודף הכנסה: ₪11,500 - ₪10,113 = ₪1,387</li>
-            <li>קיזוז (60% מהעודף): ₪1,387 × 60% = ₪832</li>
+            <li>עודף הכנסה: ₪11,500 - ${c('income_test_single_full')} = ₪${fmt(11500 - v('income_test_single_full'))}</li>
+            <li>קיזוז (${p('income_test_deduction_rate')} מהעודף): ₪${fmt(11500 - v('income_test_single_full'))} × ${p('income_test_deduction_rate')} = ₪${fmt((11500 - v('income_test_single_full')) * v('income_test_deduction_rate') / 100)}</li>
           </ul>
 
           <p><strong>שלב 3: חישוב קצבה חלקית</strong></p>
           <ul>
-            <li>קצבה חלקית: ₪2,757 - ₪832 = ₪1,925</li>
-            <li>ניכוי ביטוח בריאות: ₪237</li>
-            <li style="font-size: 1.2em; font-weight: bold; color: #2e7d32;">✅ סה״כ לקבלה בפועל: ₪1,925 - ₪237 = ₪1,688</li>
+            <li>קצבה חלקית: ₪${fmt(v('pension_single_basic') * (1 + v('seniority_bonus_max') / 100))} - ₪${fmt((11500 - v('income_test_single_full')) * v('income_test_deduction_rate') / 100)} = ₪${fmt(v('pension_single_basic') * (1 + v('seniority_bonus_max') / 100) - (11500 - v('income_test_single_full')) * v('income_test_deduction_rate') / 100)}</li>
+            <li>ניכוי ביטוח בריאות: ${c('health_insurance_deduction_single')}</li>
+            <li style="font-size: 1.2em; font-weight: bold; color: #2e7d32;">✅ סה״כ לקבלה בפועל: ₪${fmt(v('pension_single_basic') * (1 + v('seniority_bonus_max') / 100) - (11500 - v('income_test_single_full')) * v('income_test_deduction_rate') / 100)} - ${c('health_insurance_deduction_single')} = ₪${fmt(v('pension_single_basic') * (1 + v('seniority_bonus_max') / 100) - (11500 - v('income_test_single_full')) * v('income_test_deduction_rate') / 100 - v('health_insurance_deduction_single'))}</li>
           </ul>
         </div>
 
@@ -136,32 +142,32 @@ const RIGHTS_DATA = {
             <li>משה (68) ורחל (65), נשואים</li>
             <li>משה: הכנסה ₪8,000, ותק 20 שנים (תוספת 40%)</li>
             <li>רחל: הכנסה ₪7,500, ותק 18 שנים (תוספת 36%)</li>
-            <li><strong>הכנסה משפחתית כוללת: ₪15,500</strong> (בטווח ₪13,484-₪20,141)</li>
+            <li><strong>הכנסה משפחתית כוללת: ₪15,500</strong> (בטווח ${c('income_test_married_full')}-${c('income_test_married_partial')})</li>
           </ul>
 
           <h5 class="no-accordion">💡 חישוב עבור משה:</h5>
           <ul>
-            <li>קצבה בסיסית: ₪1,838</li>
-            <li>תוספת ותק (40%): ₪1,838 × 40% = ₪735</li>
-            <li>קצבה מלאה: ₪1,838 + ₪735 = ₪2,573</li>
-            <li><em>⚠ משה מתחת לתקרת קצבה מלאה ליחיד (₪10,113), אך נבדק לפי הכנסה משפחתית</em></li>
-            <li>עודף משפחתי: ₪15,500 - ₪13,484 = ₪2,016</li>
-            <li>קיזוז (60%): ₪2,016 × 60% = ₪1,210</li>
-            <li><strong>קצבה חלקית למשה: ₪2,573 - ₪1,210 = ₪1,363</strong></li>
+            <li>קצבה בסיסית: ${c('pension_single_basic')}</li>
+            <li>תוספת ותק (40%): ${c('pension_single_basic')} × 40% = ₪${fmt(v('pension_single_basic') * 0.4)}</li>
+            <li>קצבה מלאה: ${c('pension_single_basic')} + ₪${fmt(v('pension_single_basic') * 0.4)} = ₪${fmt(v('pension_single_basic') * 1.4)}</li>
+            <li><em>⚠ משה מתחת לתקרת קצבה מלאה ליחיד (${c('income_test_single_full')}), אך נבדק לפי הכנסה משפחתית</em></li>
+            <li>עודף משפחתי: ₪15,500 - ${c('income_test_married_full')} = ₪${fmt(15500 - v('income_test_married_full'))}</li>
+            <li>קיזוז (${p('income_test_deduction_rate')}): ₪${fmt(15500 - v('income_test_married_full'))} × ${p('income_test_deduction_rate')} = ₪${fmt((15500 - v('income_test_married_full')) * v('income_test_deduction_rate') / 100)}</li>
+            <li><strong>קצבה חלקית למשה: ₪${fmt(v('pension_single_basic') * 1.4)} - ₪${fmt((15500 - v('income_test_married_full')) * v('income_test_deduction_rate') / 100)} = ₪${fmt(v('pension_single_basic') * 1.4 - (15500 - v('income_test_married_full')) * v('income_test_deduction_rate') / 100)}</strong></li>
           </ul>
 
           <h5 class="no-accordion">💡 חישוב עבור רחל:</h5>
           <ul>
-            <li>קצבה בסיסית: ₪1,838</li>
-            <li>תוספת ותק (36%): ₪1,838 × 36% = ₪662</li>
-            <li>קצבה מלאה: ₪1,838 + ₪662 = ₪2,500</li>
-            <li>קיזוז זהה: ₪1,210</li>
-            <li><strong>קצבה חלקית לרחל: ₪2,500 - ₪1,210 = ₪1,290</strong></li>
+            <li>קצבה בסיסית: ${c('pension_single_basic')}</li>
+            <li>תוספת ותק (36%): ${c('pension_single_basic')} × 36% = ₪${fmt(v('pension_single_basic') * 0.36)}</li>
+            <li>קצבה מלאה: ${c('pension_single_basic')} + ₪${fmt(v('pension_single_basic') * 0.36)} = ₪${fmt(v('pension_single_basic') * 1.36)}</li>
+            <li>קיזוז זהה: ₪${fmt((15500 - v('income_test_married_full')) * v('income_test_deduction_rate') / 100)}</li>
+            <li><strong>קצבה חלקית לרחל: ₪${fmt(v('pension_single_basic') * 1.36)} - ₪${fmt((15500 - v('income_test_married_full')) * v('income_test_deduction_rate') / 100)} = ₪${fmt(v('pension_single_basic') * 1.36 - (15500 - v('income_test_married_full')) * v('income_test_deduction_rate') / 100)}</strong></li>
           </ul>
 
           <p style="font-size: 1.1em; font-weight: bold; color: #1565c0; margin-top: 15px;">
-            ✅ סה״כ קצבאות למשפחה: ₪1,363 + ₪1,290 = ₪2,653<br>
-            לאחר ניכוי ביטוח בריאות (₪340): ₪2,313
+            ✅ סה״כ קצבאות למשפחה: ₪${fmt(v('pension_single_basic') * 1.4 - (15500 - v('income_test_married_full')) * v('income_test_deduction_rate') / 100)} + ₪${fmt(v('pension_single_basic') * 1.36 - (15500 - v('income_test_married_full')) * v('income_test_deduction_rate') / 100)} = ₪${fmt(v('pension_single_basic') * 2.76 - 2 * (15500 - v('income_test_married_full')) * v('income_test_deduction_rate') / 100)}<br>
+            לאחר ניכוי ביטוח בריאות (${c('health_insurance_deduction_couple')}): ₪${fmt(v('pension_single_basic') * 2.76 - 2 * (15500 - v('income_test_married_full')) * v('income_test_deduction_rate') / 100 - v('health_insurance_deduction_couple'))}
           </p>
         </div>
 
@@ -177,15 +183,15 @@ const RIGHTS_DATA = {
 
           <h5 class="no-accordion">💡 חישוב:</h5>
           <ul>
-            <li>קצבה בסיסית ליחיד: ₪1,838</li>
-            <li>תוספת בן/בת זוג: ₪924</li>
-            <li>קצבה בסיסית כוללת: ₪1,838 + ₪924 = ₪2,762</li>
-            <li>תוספת ותק (44%): ₪2,762 × 44% = ₪1,215</li>
-            <li>קצבה מלאה עם ותק: ₪2,762 + ₪1,215 = ₪3,977</li>
-            <li>עודף הכנסה: ₪15,000 - ₪13,484 = ₪1,516</li>
-            <li>קיזוז (60%): ₪1,516 × 60% = ₪910</li>
-            <li>קצבה חלקית: ₪3,977 - ₪910 = ₪3,067</li>
-            <li style="font-size: 1.2em; font-weight: bold; color: #6a1b9a;">✅ סה״כ לקבלה בפועל: ₪3,067 - ₪237 = ₪2,830</li>
+            <li>קצבה בסיסית ליחיד: ${c('pension_single_basic')}</li>
+            <li>תוספת בן/בת זוג: ${c('pension_spouse_supplement')}</li>
+            <li>קצבה בסיסית כוללת: ${c('pension_single_basic')} + ${c('pension_spouse_supplement')} = ${c('pension_couple_basic')}</li>
+            <li>תוספת ותק (44%): ${c('pension_couple_basic')} × 44% = ₪${fmt(v('pension_couple_basic') * 0.44)}</li>
+            <li>קצבה מלאה עם ותק: ${c('pension_couple_basic')} + ₪${fmt(v('pension_couple_basic') * 0.44)} = ₪${fmt(v('pension_couple_basic') * 1.44)}</li>
+            <li>עודף הכנסה: ₪15,000 - ${c('income_test_married_full')} = ₪${fmt(15000 - v('income_test_married_full'))}</li>
+            <li>קיזוז (${p('income_test_deduction_rate')}): ₪${fmt(15000 - v('income_test_married_full'))} × ${p('income_test_deduction_rate')} = ₪${fmt((15000 - v('income_test_married_full')) * v('income_test_deduction_rate') / 100)}</li>
+            <li>קצבה חלקית: ₪${fmt(v('pension_couple_basic') * 1.44)} - ₪${fmt((15000 - v('income_test_married_full')) * v('income_test_deduction_rate') / 100)} = ₪${fmt(v('pension_couple_basic') * 1.44 - (15000 - v('income_test_married_full')) * v('income_test_deduction_rate') / 100)}</li>
+            <li style="font-size: 1.2em; font-weight: bold; color: #6a1b9a;">✅ סה״כ לקבלה בפועל: ₪${fmt(v('pension_couple_basic') * 1.44 - (15000 - v('income_test_married_full')) * v('income_test_deduction_rate') / 100)} - ${c('health_insurance_deduction_single')} = ₪${fmt(v('pension_couple_basic') * 1.44 - (15000 - v('income_test_married_full')) * v('income_test_deduction_rate') / 100 - v('health_insurance_deduction_single'))}</li>
           </ul>
         </div>
 
@@ -193,28 +199,28 @@ const RIGHTS_DATA = {
         <div style="background: #fce4ec; padding: 20px; border-radius: 10px; margin: 15px 0;">
           <h5 class="no-accordion">📋 נתוני המקרה:</h5>
           <ul>
-            <li>אברהם, בן 67, נשוי</li>
+            <li>אברהם, בן ${age('retirement_age_male')}, נשוי</li>
             <li>הכנסה מעבודה: ₪10,000</li>
-            <li>ותק: 25 שנים (תוספת 50%)</li>
+            <li>ותק: 25 שנים (תוספת ${p('seniority_bonus_max')})</li>
             <li>אשתו בת 58, עובדת ומרוויחה ₪8,500 (לא הגיעה לגיל פרישה)</li>
             <li><strong>הכנסה כוללת של המשפחה: ₪18,500</strong></li>
           </ul>
 
           <div style="background: #fff3e0; padding: 15px; border-radius: 8px; border-right: 4px solid #ff9800; margin: 15px 0;">
-            <p><strong>⚠ שימו לב:</strong> במקרה זה, הכנסת בן/בת הזוג שטרם הגיע לגיל פרישה נכללת במבחן ההכנסות. מכיוון שההכנסה המשפחתית (₪18,500) נמוכה מהתקרה המבטלת זכאות (₪20,141), אברהם זכאי לקצבה חלקית.</p>
+            <p><strong>⚠ שימו לב:</strong> במקרה זה, הכנסת בן/בת הזוג שטרם הגיע לגיל פרישה נכללת במבחן ההכנסות. מכיוון שההכנסה המשפחתית (₪18,500) נמוכה מהתקרה המבטלת זכאות (${c('income_test_married_partial')}), אברהם זכאי לקצבה חלקית.</p>
           </div>
 
           <h5 class="no-accordion">💡 חישוב:</h5>
           <ul>
-            <li>קצבה בסיסית ליחיד: ₪1,838</li>
-            <li>תוספת בן/בת זוג: ₪924</li>
-            <li>קצבה בסיסית כוללת: ₪2,762</li>
-            <li>תוספת ותק (50%): ₪2,762 × 50% = ₪1,381</li>
-            <li>קצבה מלאה: ₪2,762 + ₪1,381 = ₪4,143</li>
-            <li>עודף הכנסה משפחתי: ₪18,500 - ₪13,484 = ₪5,016</li>
-            <li>קיזוז (60%): ₪5,016 × 60% = ₪3,010</li>
-            <li>קצבה חלקית: ₪4,143 - ₪3,010 = ₪1,133</li>
-            <li style="font-size: 1.2em; font-weight: bold; color: #c62828;">✅ סה״כ לקבלה בפועל: ₪1,133 - ₪237 = ₪896</li>
+            <li>קצבה בסיסית ליחיד: ${c('pension_single_basic')}</li>
+            <li>תוספת בן/בת זוג: ${c('pension_spouse_supplement')}</li>
+            <li>קצבה בסיסית כוללת: ${c('pension_couple_basic')}</li>
+            <li>תוספת ותק (${p('seniority_bonus_max')}): ${c('pension_couple_basic')} × ${p('seniority_bonus_max')} = ₪${fmt(v('pension_couple_basic') * v('seniority_bonus_max') / 100)}</li>
+            <li>קצבה מלאה: ${c('pension_couple_basic')} + ₪${fmt(v('pension_couple_basic') * v('seniority_bonus_max') / 100)} = ₪${fmt(v('pension_couple_basic') * (1 + v('seniority_bonus_max') / 100))}</li>
+            <li>עודף הכנסה משפחתי: ₪18,500 - ${c('income_test_married_full')} = ₪${fmt(18500 - v('income_test_married_full'))}</li>
+            <li>קיזוז (${p('income_test_deduction_rate')}): ₪${fmt(18500 - v('income_test_married_full'))} × ${p('income_test_deduction_rate')} = ₪${fmt((18500 - v('income_test_married_full')) * v('income_test_deduction_rate') / 100)}</li>
+            <li>קצבה חלקית: ₪${fmt(v('pension_couple_basic') * (1 + v('seniority_bonus_max') / 100))} - ₪${fmt((18500 - v('income_test_married_full')) * v('income_test_deduction_rate') / 100)} = ₪${fmt(v('pension_couple_basic') * (1 + v('seniority_bonus_max') / 100) - (18500 - v('income_test_married_full')) * v('income_test_deduction_rate') / 100)}</li>
+            <li style="font-size: 1.2em; font-weight: bold; color: #c62828;">✅ סה״כ לקבלה בפועל: ₪${fmt(v('pension_couple_basic') * (1 + v('seniority_bonus_max') / 100) - (18500 - v('income_test_married_full')) * v('income_test_deduction_rate') / 100)} - ${c('health_insurance_deduction_single')} = ₪${fmt(v('pension_couple_basic') * (1 + v('seniority_bonus_max') / 100) - (18500 - v('income_test_married_full')) * v('income_test_deduction_rate') / 100 - v('health_insurance_deduction_single'))}</li>
           </ul>
         </div>
 
@@ -222,23 +228,23 @@ const RIGHTS_DATA = {
         <div class="conditions-box">
           <h4 class="no-accordion">💎 פרטי תוספת הוותק</h4>
           <ul>
-            <li><strong>שיעור:</strong> 2% לכל שנת ביטוח מלאה (12 חודשים)</li>
-            <li><strong>תוספת מקסימלית:</strong> 50% (עבור 25 שנות ביטוח ומעלה)</li>
+            <li><strong>שיעור:</strong> ${p('seniority_bonus_rate')} לכל שנת ביטוח מלאה (12 חודשים)</li>
+            <li><strong>תוספת מקסימלית:</strong> ${p('seniority_bonus_max')} (עבור 25 שנות ביטוח ומעלה)</li>
             <li><strong>חישוב:</strong> על הקצבה הבסיסית + תוספות בני משפחה</li>
-            <li><strong>דוגמה:</strong> 25 שנות ביטוח = 50% תוספת = ₪919 (על ₪1,838)</li>
-            <li><strong>סה"כ עם וותק מקסימלי:</strong> ₪2,757 ליחיד</li>
+            <li><strong>דוגמה:</strong> 25 שנות ביטוח = ${p('seniority_bonus_max')} תוספת = ₪${fmt(v('pension_single_basic') * v('seniority_bonus_max') / 100)} (על ${c('pension_single_basic')})</li>
+            <li><strong>סה"כ עם וותק מקסימלי:</strong> ₪${fmt(v('pension_single_basic') * (1 + v('seniority_bonus_max') / 100))} ליחיד</li>
           </ul>
         </div>
 
         <h3>⏳ תוספת דחיית קצבה</h3>
         <p>מי שדוחה את קבלת הקצבה בשל הכנסות מעבודה זכאי לתוספת נוספת:</p>
         <ul>
-          <li><strong>שיעור:</strong> 5% לכל שנת דחייה</li>
+          <li><strong>שיעור:</strong> ${p('deferral_bonus_rate')} לכל שנת דחייה</li>
           <li><strong>תנאי:</strong> דחייה בגלל הכנסות מעבודה בלבד</li>
           <li><strong>תנאי:</strong> גובה ההכנסות מעבודה עוברות את התקרה לקבלת קצבה מלאה</li>
-          <li><strong>תקופת הדחייה:</strong> מגיל פרישה (67/62-65) עד גיל 70</li>
-          <li><strong>תוספת מקסימלית לגבר:</strong> 15% (3 שנות דחייה)</li>
-          <li><strong>תוספת מקסימלית לאישה:</strong> עד 40% (8 שנות דחייה)</li>
+          <li><strong>תקופת הדחייה:</strong> מגיל פרישה (${age('retirement_age_male')}/62-65) עד גיל ${age('retirement_age_unconditional')}</li>
+          <li><strong>תוספת מקסימלית לגבר:</strong> ${p('deferral_bonus_max_male')} (3 שנות דחייה)</li>
+          <li><strong>תוספת מקסימלית לאישה:</strong> עד ${p('deferral_bonus_max_female')} (8 שנות דחייה)</li>
           <li><strong>חישוב:</strong> על הקצבה הבסיסית + תוספת ותק</li>
         </ul>
 
@@ -246,13 +252,13 @@ const RIGHTS_DATA = {
         <div style="background: #f0f8ff; padding: 20px; border-radius: 10px; border-right: 4px solid #667eea;">
           <p><strong>גבר בן 70, היה מבוטח 35 שנים, דחה קצבה 3 שנים בשל עבודה:</strong></p>
           <ul>
-            <li>קצבה בסיסית (בגיל 70): ₪1,838</li>
-            <li>תוספת ותק מקסימלית (50%): ₪919</li>
-            <li>ביניים: ₪2,757</li>
-            <li>תוספת דחייה (15%): ₪413.55</li>
-            <li><strong>סה"כ קצבה: ₪3,170.55 לחודש</strong></li>
+            <li>קצבה בסיסית (בגיל ${age('retirement_age_unconditional')}): ${c('pension_single_basic')}</li>
+            <li>תוספת ותק מקסימלית (${p('seniority_bonus_max')}): ₪${fmt(v('pension_single_basic') * v('seniority_bonus_max') / 100)}</li>
+            <li>ביניים: ₪${fmt(v('pension_single_basic') * (1 + v('seniority_bonus_max') / 100))}</li>
+            <li>תוספת דחייה (${p('deferral_bonus_max_male')}): ₪${fmt(v('pension_single_basic') * (1 + v('seniority_bonus_max') / 100) * v('deferral_bonus_max_male') / 100)}</li>
+            <li><strong>סה"כ קצבה: ₪${fmt(v('pension_single_basic') * (1 + v('seniority_bonus_max') / 100) * (1 + v('deferral_bonus_max_male') / 100))} לחודש</strong></li>
           </ul>
-          <p style="margin-top: 15px;"><em>בגיל 80: הקצבה הבסיסית תעלה ל-₪1,941 והקצבה הכוללת תהיה גבוהה יותר</em></p>
+          <p style="margin-top: 15px;"><em>בגיל 80: הקצבה הבסיסית תעלה ל-${c('pension_single_over80')} והקצבה הכוללת תהיה גבוהה יותר</em></p>
         </div>
 
         <h3>💸 תוספת השלמת הכנסה</h3>
@@ -270,12 +276,12 @@ const RIGHTS_DATA = {
             </tr>
           </thead>
           <tbody>
-            <tr><td style="padding: 10px; border: 1px solid #ddd;">יחיד/ה</td><td style="padding: 10px; border: 1px solid #ddd; text-align: center; font-weight: bold; color: #667eea;">₪4,375</td></tr>
-            <tr><td style="padding: 10px; border: 1px solid #ddd;">זוג</td><td style="padding: 10px; border: 1px solid #ddd; text-align: center; font-weight: bold; color: #667eea;">₪6,912</td></tr>
-            <tr><td style="padding: 10px; border: 1px solid #ddd;">יחיד/ה + ילד</td><td style="padding: 10px; border: 1px solid #ddd; text-align: center; font-weight: bold; color: #667eea;">₪7,305</td></tr>
-            <tr><td style="padding: 10px; border: 1px solid #ddd;">יחיד/ה + 2 ילדים</td><td style="padding: 10px; border: 1px solid #ddd; text-align: center; font-weight: bold; color: #667eea;">₪8,426</td></tr>
-            <tr><td style="padding: 10px; border: 1px solid #ddd;">זוג + ילד</td><td style="padding: 10px; border: 1px solid #ddd; text-align: center; font-weight: bold; color: #667eea;">₪8,035</td></tr>
-            <tr><td style="padding: 10px; border: 1px solid #ddd;">זוג + 2 ילדים</td><td style="padding: 10px; border: 1px solid #ddd; text-align: center; font-weight: bold; color: #667eea;">₪9,156</td></tr>
+            <tr><td style="padding: 10px; border: 1px solid #ddd;">יחיד/ה</td><td style="padding: 10px; border: 1px solid #ddd; text-align: center; font-weight: bold; color: #667eea;">${c('income_supplement_single_under70')}</td></tr>
+            <tr><td style="padding: 10px; border: 1px solid #ddd;">זוג</td><td style="padding: 10px; border: 1px solid #ddd; text-align: center; font-weight: bold; color: #667eea;">${c('income_supplement_couple_under70')}</td></tr>
+            <tr><td style="padding: 10px; border: 1px solid #ddd;">יחיד/ה + ילד</td><td style="padding: 10px; border: 1px solid #ddd; text-align: center; font-weight: bold; color: #667eea;">${c('income_supplement_single_1child_under70')}</td></tr>
+            <tr><td style="padding: 10px; border: 1px solid #ddd;">יחיד/ה + 2 ילדים</td><td style="padding: 10px; border: 1px solid #ddd; text-align: center; font-weight: bold; color: #667eea;">${c('income_supplement_single_2children_under70')}</td></tr>
+            <tr><td style="padding: 10px; border: 1px solid #ddd;">זוג + ילד</td><td style="padding: 10px; border: 1px solid #ddd; text-align: center; font-weight: bold; color: #667eea;">${c('income_supplement_couple_1child_under70')}</td></tr>
+            <tr><td style="padding: 10px; border: 1px solid #ddd;">זוג + 2 ילדים</td><td style="padding: 10px; border: 1px solid #ddd; text-align: center; font-weight: bold; color: #667eea;">${c('income_supplement_couple_2children_under70')}</td></tr>
           </tbody>
         </table>
 
@@ -288,12 +294,12 @@ const RIGHTS_DATA = {
             </tr>
           </thead>
           <tbody>
-            <tr><td style="padding: 10px; border: 1px solid #ddd;">יחיד/ה</td><td style="padding: 10px; border: 1px solid #ddd; text-align: center; font-weight: bold; color: #667eea;">₪4,418</td></tr>
-            <tr><td style="padding: 10px; border: 1px solid #ddd;">זוג</td><td style="padding: 10px; border: 1px solid #ddd; text-align: center; font-weight: bold; color: #667eea;">₪6,981</td></tr>
-            <tr><td style="padding: 10px; border: 1px solid #ddd;">יחיד/ה + ילד</td><td style="padding: 10px; border: 1px solid #ddd; text-align: center; font-weight: bold; color: #667eea;">₪7,374</td></tr>
-            <tr><td style="padding: 10px; border: 1px solid #ddd;">יחיד/ה + 2 ילדים</td><td style="padding: 10px; border: 1px solid #ddd; text-align: center; font-weight: bold; color: #667eea;">₪8,496</td></tr>
-            <tr><td style="padding: 10px; border: 1px solid #ddd;">זוג + ילד</td><td style="padding: 10px; border: 1px solid #ddd; text-align: center; font-weight: bold; color: #667eea;">₪8,102</td></tr>
-            <tr><td style="padding: 10px; border: 1px solid #ddd;">זוג + 2 ילדים</td><td style="padding: 10px; border: 1px solid #ddd; text-align: center; font-weight: bold; color: #667eea;">₪9,226</td></tr>
+            <tr><td style="padding: 10px; border: 1px solid #ddd;">יחיד/ה</td><td style="padding: 10px; border: 1px solid #ddd; text-align: center; font-weight: bold; color: #667eea;">${c('income_supplement_single_70_80')}</td></tr>
+            <tr><td style="padding: 10px; border: 1px solid #ddd;">זוג</td><td style="padding: 10px; border: 1px solid #ddd; text-align: center; font-weight: bold; color: #667eea;">${c('income_supplement_couple_70_80')}</td></tr>
+            <tr><td style="padding: 10px; border: 1px solid #ddd;">יחיד/ה + ילד</td><td style="padding: 10px; border: 1px solid #ddd; text-align: center; font-weight: bold; color: #667eea;">${c('income_supplement_single_1child_70_80')}</td></tr>
+            <tr><td style="padding: 10px; border: 1px solid #ddd;">יחיד/ה + 2 ילדים</td><td style="padding: 10px; border: 1px solid #ddd; text-align: center; font-weight: bold; color: #667eea;">${c('income_supplement_single_2children_70_80')}</td></tr>
+            <tr><td style="padding: 10px; border: 1px solid #ddd;">זוג + ילד</td><td style="padding: 10px; border: 1px solid #ddd; text-align: center; font-weight: bold; color: #667eea;">${c('income_supplement_couple_1child_70_80')}</td></tr>
+            <tr><td style="padding: 10px; border: 1px solid #ddd;">זוג + 2 ילדים</td><td style="padding: 10px; border: 1px solid #ddd; text-align: center; font-weight: bold; color: #667eea;">${c('income_supplement_couple_2children_70_80')}</td></tr>
           </tbody>
         </table>
 
@@ -306,26 +312,26 @@ const RIGHTS_DATA = {
             </tr>
           </thead>
           <tbody>
-            <tr><td style="padding: 10px; border: 1px solid #ddd;">יחיד/ה</td><td style="padding: 10px; border: 1px solid #ddd; text-align: center; font-weight: bold; color: #667eea;">₪4,460</td></tr>
-            <tr><td style="padding: 10px; border: 1px solid #ddd;">זוג</td><td style="padding: 10px; border: 1px solid #ddd; text-align: center; font-weight: bold; color: #667eea;">₪7,048</td></tr>
-            <tr><td style="padding: 10px; border: 1px solid #ddd;">יחיד/ה + ילד</td><td style="padding: 10px; border: 1px solid #ddd; text-align: center; font-weight: bold; color: #667eea;">₪7,442</td></tr>
-            <tr><td style="padding: 10px; border: 1px solid #ddd;">יחיד/ה + 2 ילדים</td><td style="padding: 10px; border: 1px solid #ddd; text-align: center; font-weight: bold; color: #667eea;">₪8,563</td></tr>
-            <tr><td style="padding: 10px; border: 1px solid #ddd;">זוג + ילד</td><td style="padding: 10px; border: 1px solid #ddd; text-align: center; font-weight: bold; color: #667eea;">₪8,171</td></tr>
-            <tr><td style="padding: 10px; border: 1px solid #ddd;">זוג + 2 ילדים</td><td style="padding: 10px; border: 1px solid #ddd; text-align: center; font-weight: bold; color: #667eea;">₪9,292</td></tr>
+            <tr><td style="padding: 10px; border: 1px solid #ddd;">יחיד/ה</td><td style="padding: 10px; border: 1px solid #ddd; text-align: center; font-weight: bold; color: #667eea;">${c('income_supplement_single_over80')}</td></tr>
+            <tr><td style="padding: 10px; border: 1px solid #ddd;">זוג</td><td style="padding: 10px; border: 1px solid #ddd; text-align: center; font-weight: bold; color: #667eea;">${c('income_supplement_couple_over80')}</td></tr>
+            <tr><td style="padding: 10px; border: 1px solid #ddd;">יחיד/ה + ילד</td><td style="padding: 10px; border: 1px solid #ddd; text-align: center; font-weight: bold; color: #667eea;">${c('income_supplement_single_1child_over80')}</td></tr>
+            <tr><td style="padding: 10px; border: 1px solid #ddd;">יחיד/ה + 2 ילדים</td><td style="padding: 10px; border: 1px solid #ddd; text-align: center; font-weight: bold; color: #667eea;">${c('income_supplement_single_2children_over80')}</td></tr>
+            <tr><td style="padding: 10px; border: 1px solid #ddd;">זוג + ילד</td><td style="padding: 10px; border: 1px solid #ddd; text-align: center; font-weight: bold; color: #667eea;">${c('income_supplement_couple_1child_over80')}</td></tr>
+            <tr><td style="padding: 10px; border: 1px solid #ddd;">זוג + 2 ילדים</td><td style="padding: 10px; border: 1px solid #ddd; text-align: center; font-weight: bold; color: #667eea;">${c('income_supplement_couple_2children_over80')}</td></tr>
           </tbody>
         </table>
 
         <h4>נוסחת החישוב</h4>
         <ol>
-          <li>קובעים את הסכום המקסימלי להשלמה (₪4,375 יחיד / ₪6,912 זוג)</li>
+          <li>קובעים את הסכום המקסימלי להשלמה (${c('income_supplement_single_under70')} יחיד / ${c('income_supplement_couple_under70')} זוג)</li>
           <li>בודקים הכנסות קיימות:
             <ul>
               <li>קצבת זקנה - מותרת עד התקרה המלאה</li>
-              <li>הכנסה מעבודה - מותרת: יחיד ₪3,236, זוג ₪3,786</li>
-              <li>קצבת פנסיה - מותרת: יחיד ₪1,790, זוג ₪2,823</li>
+              <li>הכנסה מעבודה - מותרת: יחיד ${c('work_income_exempt_single')}, זוג ${c('work_income_exempt_couple')}</li>
+              <li>קצבת פנסיה - מותרת: יחיד ${c('pension_income_exempt_single')}, זוג ${c('pension_income_exempt_couple')}</li>
             </ul>
           </li>
-          <li>הכנסה עודפת מעל המותר: 60% ממנה מקוזזת מההשלמה</li>
+          <li>הכנסה עודפת מעל המותר: ${p('income_test_deduction_rate')} ממנה מקוזזת מההשלמה</li>
         </ol>
 
         <h5>💰 חישוב הכנסה רעיונית מנכסים פיננסיים</h5>
@@ -337,24 +343,24 @@ const RIGHTS_DATA = {
         <div style="background: #fff8e1; padding: 15px; border-radius: 8px; margin: 15px 0;">
           <h5>דוגמה 1 - יחיד:</h5>
           <ul>
-            <li>קצבת זקנה: ₪1,838</li>
+            <li>קצבת זקנה: ${c('pension_single_basic')}</li>
             <li>פנסיה: ₪2,500</li>
-            <li>חישוב: פנסיה עודפת = 2,500 - 1,790 = ₪710</li>
-            <li>קיזוז: 60% × 710 = ₪426</li>
-            <li>השלמה: 4,375 - 1,838 - 426 = ₪2,111</li>
-            <li><strong>סה"כ הכנסה: ₪6,449</strong></li>
+            <li>חישוב: פנסיה עודפת = 2,500 - ${v('pension_income_exempt_single')} = ₪${fmt(2500 - v('pension_income_exempt_single'))}</li>
+            <li>קיזוז: ${p('income_test_deduction_rate')} × ${fmt(2500 - v('pension_income_exempt_single'))} = ₪${fmt((2500 - v('pension_income_exempt_single')) * v('income_test_deduction_rate') / 100)}</li>
+            <li>השלמה: ${v('income_supplement_single_under70')} - ${v('pension_single_basic')} - ${fmt((2500 - v('pension_income_exempt_single')) * v('income_test_deduction_rate') / 100)} = ₪${fmt(v('income_supplement_single_under70') - v('pension_single_basic') - (2500 - v('pension_income_exempt_single')) * v('income_test_deduction_rate') / 100)}</li>
+            <li><strong>סה"כ הכנסה: ₪${fmt(v('pension_single_basic') + 2500 + v('income_supplement_single_under70') - v('pension_single_basic') - (2500 - v('pension_income_exempt_single')) * v('income_test_deduction_rate') / 100)}</strong></li>
           </ul>
         </div>
 
         <div style="background: #e8f5e9; padding: 15px; border-radius: 8px; margin: 15px 0;">
           <h5>דוגמה 2 - זוג:</h5>
           <ul>
-            <li>קצבת זקנה לכל אחד: ₪1,838 (סה"כ ₪3,676)</li>
+            <li>קצבת זקנה לכל אחד: ${c('pension_single_basic')} (סה"כ ₪${fmt(v('pension_single_basic') * 2)})</li>
             <li>הכנסה מעבודה: ₪4,200</li>
-            <li>חישוב: הכנסה עודפת = 4,200 - 3,786 = ₪414</li>
-            <li>קיזוז: 60% × 414 = ₪248</li>
-            <li>השלמה: 6,912 - 3,676 - 248 = ₪2,988</li>
-            <li><strong>סה"כ הכנסה: ₪10,876</strong></li>
+            <li>חישוב: הכנסה עודפת = 4,200 - ${v('work_income_exempt_couple')} = ₪${fmt(4200 - v('work_income_exempt_couple'))}</li>
+            <li>קיזוז: ${p('income_test_deduction_rate')} × ${fmt(4200 - v('work_income_exempt_couple'))} = ₪${fmt((4200 - v('work_income_exempt_couple')) * v('income_test_deduction_rate') / 100)}</li>
+            <li>השלמה: ${v('income_supplement_couple_under70')} - ${fmt(v('pension_single_basic') * 2)} - ${fmt((4200 - v('work_income_exempt_couple')) * v('income_test_deduction_rate') / 100)} = ₪${fmt(v('income_supplement_couple_under70') - v('pension_single_basic') * 2 - (4200 - v('work_income_exempt_couple')) * v('income_test_deduction_rate') / 100)}</li>
+            <li><strong>סה"כ הכנסה: ₪${fmt(v('pension_single_basic') * 2 + 4200 + v('income_supplement_couple_under70') - v('pension_single_basic') * 2 - (4200 - v('work_income_exempt_couple')) * v('income_test_deduction_rate') / 100)}</strong></li>
           </ul>
         </div>
 
@@ -373,7 +379,8 @@ const RIGHTS_DATA = {
           <li>✅ מענק חימום</li>
           <li>✅ פטור מהשתתפות עצמית בקבלת מימון למכשירי השיקום והניידות (רפורמה בציוד השיקומי)</li>         
         </ul>
-      `,
+      `;
+      },
       "updatedAt": "2026-01-16T00:00:00.000Z"
     },
 
