@@ -986,17 +986,31 @@
   },
   "nursing_income_test_full_single": {
     "id": "NII-128",
-    "value": 8280,
+    "value": 13618,
     "type": "currency",
     "label": "מבחן הכנסות לסיעוד — תקרה לגמלה מלאה, יחיד",
-    "updated": "2026-01"
+    "updated": "2026-02"
   },
   "nursing_income_test_full_couple": {
     "id": "NII-129",
-    "value": 12420,
+    "value": 20427,
     "type": "currency",
     "label": "מבחן הכנסות לסיעוד — תקרה לגמלה מלאה, זוג",
-    "updated": "2026-01"
+    "updated": "2026-02"
+  },
+  "nursing_income_test_half_single": {
+    "id": "NII-169",
+    "value": 20427,
+    "type": "currency",
+    "label": "מבחן הכנסות לסיעוד — תקרה לגמלה בהיקף חצי, יחיד",
+    "updated": "2026-02"
+  },
+  "nursing_income_test_half_couple": {
+    "id": "NII-170",
+    "value": 30641,
+    "type": "currency",
+    "label": "מבחן הכנסות לסיעוד — תקרה לגמלה בהיקף חצי, זוג",
+    "updated": "2026-02"
   },
 
   "holocaust_annual_grant": {

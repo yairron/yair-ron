@@ -482,7 +482,9 @@ const RIGHTS_DATA = {
 
     "nursing": {
       "title": "זכויות סיעוד",
-      "content": `
+      "contentFn": function(nii) {
+        const c = key => nii[key] ? '₪' + nii[key].value.toLocaleString('he-IL') : '—';
+        return `
         <a href="https://www.kolzchut.org.il/he/%D7%92%D7%9E%D7%9C%D7%AA_%D7%A1%D7%99%D7%A2%D7%95%D7%93" target="_blank" class="link-item">🏛️  פורטל גמלת סיעוד - כל זכות. כל המידע ודרכי המימוש לגמלת סיעוד, הניתנת למי שהגיעו לגיל פרישה, מתגוררים בקהילה.</a>
       <h2 class="no-accordion">❤️ גמלת סיעוד - מדריך מקיף</h2>
 
@@ -502,53 +504,72 @@ const RIGHTS_DATA = {
               <td style="padding: 10px; border: 1px solid #ddd; text-align: center; font-weight: bold;">1</td>
               <td style="padding: 10px; border: 1px solid #ddd; text-align: center;">2.5-3</td>
               <td style="padding: 10px; border: 1px solid #ddd; text-align: center;">5.5 שעות</td>
-              <td style="padding: 10px; border: 1px solid #ddd; text-align: center;">₪1,659</td>
+              <td style="padding: 10px; border: 1px solid #ddd; text-align: center;">${c('nursing_level_1_cash')}</td>
               <td style="padding: 10px; border: 1px solid #ddd;">ניתן לקבל בכסף מלא</td>
             </tr>
             <tr>
               <td style="padding: 10px; border: 1px solid #ddd; text-align: center; font-weight: bold;">2</td>
               <td style="padding: 10px; border: 1px solid #ddd; text-align: center;">3.5-4.5</td>
               <td style="padding: 10px; border: 1px solid #ddd; text-align: center;">10 שעות</td>
-              <td style="padding: 10px; border: 1px solid #ddd; text-align: center;">₪2,410</td>
-              <td style="padding: 10px; border: 1px solid #ddd;">המרה חלקית עד ₪965 (4 יח"ש)</td>
+              <td style="padding: 10px; border: 1px solid #ddd; text-align: center;">${c('nursing_level_2_cash')}</td>
+              <td style="padding: 10px; border: 1px solid #ddd;">המרה חלקית עד ${c('nursing_level_2_conversion')} (4 יח"ש)</td>
             </tr>
             <tr>
               <td style="padding: 10px; border: 1px solid #ddd; text-align: center; font-weight: bold;">3</td>
               <td style="padding: 10px; border: 1px solid #ddd; text-align: center;">5-6</td>
               <td style="padding: 10px; border: 1px solid #ddd; text-align: center;">15 שעות</td>
-              <td style="padding: 10px; border: 1px solid #ddd; text-align: center;">₪4,097</td>
-              <td style="padding: 10px; border: 1px solid #ddd;">המרה חלקית עד ₪1,350 (6 יח"ש)</td>
+              <td style="padding: 10px; border: 1px solid #ddd; text-align: center;">${c('nursing_level_3_cash')}</td>
+              <td style="padding: 10px; border: 1px solid #ddd;">המרה חלקית עד ${c('nursing_level_3_conversion')} (6 יח"ש)</td>
             </tr>
             <tr>
               <td style="padding: 10px; border: 1px solid #ddd; text-align: center; font-weight: bold;">4</td>
               <td style="padding: 10px; border: 1px solid #ddd; text-align: center;">6.5-7.5</td>
               <td style="padding: 10px; border: 1px solid #ddd; text-align: center;">21 (18 עם זר)</td>
-              <td style="padding: 10px; border: 1px solid #ddd; text-align: center;">₪5,061</td>
-              <td style="padding: 10px; border: 1px solid #ddd;">המרה חלקית עד ₪1,434 (7 יח"ש)</td>
+              <td style="padding: 10px; border: 1px solid #ddd; text-align: center;">${c('nursing_level_4_cash')}</td>
+              <td style="padding: 10px; border: 1px solid #ddd;">המרה חלקית עד ${c('nursing_level_4_conversion')} (7 יח"ש)</td>
             </tr>
             <tr>
               <td style="padding: 10px; border: 1px solid #ddd; text-align: center; font-weight: bold;">5</td>
               <td style="padding: 10px; border: 1px solid #ddd; text-align: center;">8-9</td>
               <td style="padding: 10px; border: 1px solid #ddd; text-align: center;">26 (22 עם זר)</td>
-              <td style="padding: 10px; border: 1px solid #ddd; text-align: center;">₪6,266</td>
-              <td style="padding: 10px; border: 1px solid #ddd;">המרה חלקית עד ₪1,884 (9 יח"ש)</td>
+              <td style="padding: 10px; border: 1px solid #ddd; text-align: center;">${c('nursing_level_5_cash')}</td>
+              <td style="padding: 10px; border: 1px solid #ddd;">המרה חלקית עד ${c('nursing_level_5_conversion')} (9 יח"ש)</td>
             </tr>
             <tr>
               <td style="padding: 10px; border: 1px solid #ddd; text-align: center; font-weight: bold;">6</td>
               <td style="padding: 10px; border: 1px solid #ddd; text-align: center;">9.5+</td>
               <td style="padding: 10px; border: 1px solid #ddd; text-align: center;">30 (26 עם זר)</td>
-              <td style="padding: 10px; border: 1px solid #ddd; text-align: center;">₪7,230</td>
-              <td style="padding: 10px; border: 1px solid #ddd;">המרה חלקית עד ₪2,249 (10 יח"ש)</td>
+              <td style="padding: 10px; border: 1px solid #ddd; text-align: center;">${c('nursing_level_6_cash')}</td>
+              <td style="padding: 10px; border: 1px solid #ddd;">המרה חלקית עד ${c('nursing_level_6_conversion')} (10 יח"ש)</td>
             </tr>
           </tbody>
         </table>
 
-        <h3>💵 מבחן הכנסות לגמלת סיעוד (נכון לינואר 2026 - יתעדכן באפריל 2026)</h3>
-        <ul>
-          <li><strong>גמלה מלאה:</strong> הכנסה עד ₪12,796 לחודש</li>
-          <li><strong>גמלה בהיקף חצי:</strong> הכנסה ₪12,796-₪19,194 לחודש</li>
-          <li><strong>אין זכאות:</strong> הכנסה מעל ₪19,194 לחודש</li>
-        </ul>
+        <h3>💵 מבחן הכנסות לגמלת סיעוד (נכון לפברואר 2026)</h3>
+        <table style="width: 100%; border-collapse: collapse; margin: 20px 0;">
+          <thead>
+            <tr style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white;">
+              <th style="padding: 12px; border: 1px solid #ddd;">מצב משפחתי</th>
+              <th style="padding: 12px; border: 1px solid #ddd;">גמלה מלאה</th>
+              <th style="padding: 12px; border: 1px solid #ddd;">גמלה בהיקף חצי</th>
+              <th style="padding: 12px; border: 1px solid #ddd;">ללא זכאות</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td style="padding: 10px; border: 1px solid #ddd; font-weight: bold;">יחיד/ה</td>
+              <td style="padding: 10px; border: 1px solid #ddd; text-align: center;">עד ${c('nursing_income_test_full_single')}</td>
+              <td style="padding: 10px; border: 1px solid #ddd; text-align: center;">${c('nursing_income_test_full_single')}–${c('nursing_income_test_half_single')}</td>
+              <td style="padding: 10px; border: 1px solid #ddd; text-align: center;">מעל ${c('nursing_income_test_half_single')}</td>
+            </tr>
+            <tr>
+              <td style="padding: 10px; border: 1px solid #ddd; font-weight: bold;">זוג</td>
+              <td style="padding: 10px; border: 1px solid #ddd; text-align: center;">עד ${c('nursing_income_test_full_couple')}</td>
+              <td style="padding: 10px; border: 1px solid #ddd; text-align: center;">${c('nursing_income_test_full_couple')}–${c('nursing_income_test_half_couple')}</td>
+              <td style="padding: 10px; border: 1px solid #ddd; text-align: center;">מעל ${c('nursing_income_test_half_couple')}</td>
+            </tr>
+          </tbody>
+        </table>
 
         <h3>🎯 אפשרויות מימוש הגמלה</h3>
         <table style="width: 100%; border-collapse: collapse; margin: 20px 0;">
@@ -592,8 +613,9 @@ const RIGHTS_DATA = {
             </tr>
           </tbody>
         </table>
-      `,
-      "updatedAt": "2026-01-16T00:00:00.000Z"
+      `;
+      },
+      "updatedAt": "2026-02-01T00:00:00.000Z"
     },
 
     "holocaust_survivors": {
