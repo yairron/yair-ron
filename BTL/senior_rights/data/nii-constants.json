@@ -702,6 +702,14 @@
     "label": "קצבת נכות — תוספת בן/בת זוג (60%)",
     "updated": "2026-01"
   },
+  "disability_spouse_income_ceiling": {
+    "id": "NII-174",
+    "value": 7848,
+    "type": "currency",
+    "label": "תקרת הכנסת בן/בת זוג לזכאות לתוספת בן/בת זוג בגמלת נכות כללית",
+    "source": "https://www.btl.gov.il/benefits/Disability/Pages/%D7%A9%D7%99%D7%A2%D7%95%D7%A8%D7%99%20%D7%94%D7%A7%D7%A6%D7%91%D7%94.aspx",
+    "updated": "2026-01"
+  },
   "disability_child": {
     "id": "NII-092",
     "value": 1214,
@@ -1022,9 +1030,9 @@
   },
   "holocaust_nursing_hours_9_value": {
     "id": "NII-131",
-    "value": 2025,
+    "value": 2169,
     "type": "currency",
-    "label": "שווי כספי תוספת 9 שעות סיעוד שבועיות לניצולי שואה",
+    "label": "שווי כספי תוספת 9 שעות סיעוד שבועיות לניצולי שואה (6+ נקודות תלות)",
     "updated": "2026-01"
   },
   "holocaust_claims_conference_monthly": {
@@ -1040,6 +1048,38 @@
     "type": "currency",
     "label": "הכנסה מרבית לזכאות לסול\"ם (שירות סיעוד לאחר אשפוז)",
     "updated": "2025-01"
+  },
+  "holocaust_nursing_partial_5_5": {
+    "id": "NII-171",
+    "value": 1500,
+    "type": "currency",
+    "label": "תוספת סיעוד חודשית לניצולי שואה עם 5–5.5 נקודות תלות",
+    "source": "https://www.kolzchut.org.il/he/%D7%A2%D7%96%D7%A8%D7%94_%D7%A1%D7%99%D7%A2%D7%95%D7%93%D7%99%D7%AA_%D7%9C%D7%98%D7%95%D7%95%D7%97_%D7%90%D7%A8%D7%95%D7%9A_%D7%9C%D7%A0%D7%99%D7%A6%D7%95%D7%9C%D7%99_%D7%A9%D7%95%D7%90%D7%94",
+    "updated": "2026-01"
+  },
+  "holocaust_nursing_reduced_income": {
+    "id": "NII-172",
+    "value": 963,
+    "type": "currency",
+    "label": "תוספת סיעוד מופחתת לניצולי שואה עם 6+ נקודות תלות שהכנסתם עולה על תקרה עד ₪2,000",
+    "source": "https://www.kolzchut.org.il/he/%D7%A2%D7%96%D7%A8%D7%94_%D7%A1%D7%99%D7%A2%D7%95%D7%93%D7%99%D7%AA_%D7%9C%D7%98%D7%95%D7%95%D7%97_%D7%90%D7%A8%D7%95%D7%9A_%D7%9C%D7%A0%D7%99%D7%A6%D7%95%D7%9C%D7%99_%D7%A9%D7%95%D7%90%D7%94",
+    "updated": "2026-01"
+  },
+  "holocaust_nursing_1_5_2": {
+    "id": "NII-173",
+    "value": 428,
+    "type": "currency",
+    "label": "תוספת סיעוד חודשית לניצולי שואה עם 1.5–2 נקודות תלות (תלוי הכנסה)",
+    "source": "https://www.kolzchut.org.il/he/%D7%A2%D7%96%D7%A8%D7%94_%D7%A1%D7%99%D7%A2%D7%95%D7%93%D7%99%D7%AA_%D7%9C%D7%98%D7%95%D7%95%D7%97_%D7%90%D7%A8%D7%95%D7%9A_%D7%9C%D7%A0%D7%99%D7%A6%D7%95%D7%9C%D7%99_%D7%A9%D7%95%D7%90%D7%94",
+    "updated": "2026-01"
+  },
+  "holocaust_nursing_hour_rate": {
+    "id": "NII-175",
+    "value": 241,
+    "type": "currency",
+    "label": "שווי שעת סיעוד שבועית אחת לניצולי שואה (בחודש)",
+    "source": "https://www.kolzchut.org.il/he/%D7%A2%D7%96%D7%A8%D7%94_%D7%A1%D7%99%D7%A2%D7%95%D7%93%D7%99%D7%AA_%D7%9C%D7%98%D7%95%D7%95%D7%97_%D7%90%D7%A8%D7%95%D7%9A_%D7%9C%D7%A0%D7%99%D7%A6%D7%95%D7%9C%D7%99_%D7%A9%D7%95%D7%90%D7%94",
+    "updated": "2026-01"
   },
 
   "disabled_child_100": {

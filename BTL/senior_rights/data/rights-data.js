@@ -410,7 +410,7 @@ const RIGHTS_DATA = {
             <tr><td style="padding: 10px; border: 1px solid #ddd;">חלקית 60%</td><td style="padding: 10px; border: 1px solid #ddd; text-align: center; font-weight: bold;">${c('disability_60')}</td><td style="padding: 10px; border: 1px solid #ddd; text-align: center;">${c('disability_spouse_60')}</td><td style="padding: 10px; border: 1px solid #ddd; text-align: center;">${c('disability_child_60')}</td></tr>
           </tbody>
         </table>
-        <p><small>תוספת בן/בת זוג: בתנאי שהכנסותיו עד ₪7,848 ברוטו בחודש ואינו מקבל קצבה אחרת</small></p>
+        <p><small>תוספת בן/בת זוג: בתנאי שהכנסותיו עד ${c('disability_spouse_income_ceiling')} ברוטו בחודש ואינו מקבל קצבה אחרת</small></p>
 
         <h3>🔄 מעבר מנכות כללית לקצבת זקנה</h3>
         <div class="conditions-box">
@@ -620,18 +620,20 @@ const RIGHTS_DATA = {
 
     "holocaust_survivors": {
       "title": "זכויות ניצולי שואה",
-      "content": `
+      "contentFn": function(nii) {
+        const c = key => nii[key] ? '₪' + nii[key].value.toLocaleString('he-IL') : '—';
+        return `
       <a href="https://www.btl.gov.il/benefits/Long_Term_Care/Pages/nitzoleShoaa.aspx" target="_blank" class="link-item">🏛️  ניצולי שואה – זכאות לתוספת שעות סיעוד - הביטוח הלאומי </a>
-      <a href="https://www.kolzchut.org.il/he/%D7%96%D7%9B%D7%95%D7%99%D7%95%D7%AA_%D7%A0%D7%99%D7%A6%D7%95%D7%9C%D7%99_%D7%A9%D7%95%D7%90%D7%94#.D7.A7.D7.A6.D7.91.D7.90.D7.95.D7.AA_.D7.95.D7.A4.D7.95.D7.A8.D7.98.D7.9C.D7.99_.D7.9E.D7.99.D7.93.D7.A2_.D7.9E.D7.A8.D7.9B.D7.96.D7.99.D7.99.D7.9D" target="_blank" class="link-item">🔦 פורטל המידע הלאומי לזכויות ניצולי השואה בישראל - כל זכות</a>  
+      <a href="https://www.kolzchut.org.il/he/%D7%96%D7%9B%D7%95%D7%99%D7%95%D7%AA_%D7%A0%D7%99%D7%A6%D7%95%D7%9C%D7%99_%D7%A9%D7%95%D7%90%D7%94#.D7.A7.D7.A6.D7.91.D7.90.D7.95.D7.AA_.D7.95.D7.A4.D7.95.D7.A8.D7.98.D7.9C.D7.99_.D7.9E.D7.99.D7.93.D7.A2_.D7.9E.D7.A8.D7.9B.D7.96.D7.99.D7.99.D7.9D" target="_blank" class="link-item">🔦 פורטל המידע הלאומי לזכויות ניצולי השואה בישראל - כל זכות</a>
       <h2 class="no-accordion">🕯️ זכויות ניצולי שואה - מדריך מקיף 2026</h2>
 
         <h3>💰 קצבאות ומענקים</h3>
         <ul>
-          <li><strong>מענק שנתי:</strong> ₪7,502 (למי שלא מקבלים רנטה חודשית)</li>
+          <li><strong>מענק שנתי:</strong> ${c('holocaust_annual_grant')} (למי שלא מקבלים רנטה חודשית)</li>
           <li><strong>רנטה גרמנית (BEG):</strong> תשלום חודשי משתנה + תוספת 100-400 יורו</li>
           <li><strong>קרן סעיף 2:</strong> כ-€2,000 לרבעון</li>
-          <li><strong>יוצאי רומניה/בולגריה:</strong> מינימום ₪2,860 לחודש</li>
-          <li><strong>תשלום שנתי ועידת התביעות 2026:</strong> ₪5,457 (1,350€) - לזכאי קרן הסיוע</li>
+          <li><strong>יוצאי רומניה/בולגריה:</strong> זכאים לקצבה מיוחדת — לבירור אישי של כלל הזכויות פנה לרשות לזכויות ניצולי השואה: <a href="https://www.gov.il/he/departments/holocaust-survivors-rights/govil-landing-page" target="_blank">אתר הרשות</a> או חייג *5105</li>
+          <li><strong>תשלום שנתי ועידת התביעות 2026:</strong> ${c('holocaust_claims_conference_monthly')} (1,350€) - לזכאי קרן הסיוע</li>
         </ul>
 
         <h3>🏥 תוספת שעות סיעוד לניצולי שואה</h3>
@@ -663,11 +665,11 @@ const RIGHTS_DATA = {
           <h5>💎 אפשרויות מימוש:</h5>
           <ul>
             <li><strong>שעות טיפול בבית:</strong> 9 שעות שבועיות בפועל מספק מורשה</li>
-            <li><strong>תשלום בכסף:</strong> ₪2,025 לחודש (רק למי שמקבל גמלה בכסף מהביטוח הלאומי)</li>
+            <li><strong>תשלום בכסף:</strong> ${c('holocaust_nursing_hours_9_value')} לחודש (רק למי שמקבל גמלה בכסף מהביטוח הלאומי)</li>
           </ul>
         </div>
 
-        <h4>תוספת חלקית לניצולים עם פחות נקודות (2025 - לאימות בשנת 2026)</h4>
+        <h4>תוספת חלקית לניצולים עם פחות נקודות (2026)</h4>
         <table style="width: 100%; border-collapse: collapse; margin: 20px 0;">
           <thead>
             <tr style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white;">
@@ -678,18 +680,19 @@ const RIGHTS_DATA = {
           <tbody>
             <tr>
               <td style="padding: 10px; border: 1px solid #ddd;">5-5.5 נקודות</td>
-              <td style="padding: 10px; border: 1px solid #ddd;">סיוע כספי ₪1,200</td>
+              <td style="padding: 10px; border: 1px solid #ddd;">סיוע כספי ${c('holocaust_nursing_partial_5_5')} לחודש</td>
             </tr>
             <tr>
               <td style="padding: 10px; border: 1px solid #ddd;">6 נקודות + גמלה מופחתת</td>
-              <td style="padding: 10px; border: 1px solid #ddd;">4.5 שעות (כ-₪970 בכסף)</td>
+              <td style="padding: 10px; border: 1px solid #ddd;">סיוע כספי ${c('holocaust_nursing_reduced_income')} לחודש</td>
             </tr>
             <tr>
               <td style="padding: 10px; border: 1px solid #ddd;">1.5-2 נקודות (לא זכאים לסיעוד)</td>
-              <td style="padding: 10px; border: 1px solid #ddd;">2 שעות (כ-₪430 בכסף)</td>
+              <td style="padding: 10px; border: 1px solid #ddd;">סיוע כספי ${c('holocaust_nursing_1_5_2')} לחודש</td>
             </tr>
           </tbody>
         </table>
+        <p><small>הערה: שוויה של שעת סיעוד שבועית אחת הוא ${c('holocaust_nursing_hour_rate')} בחודש</small></p>
 
         <h3>🏥 סיוע סיעודי קצר מועד (סול"ם)</h3>
         <p><strong>לניצולי שואה שאינם זכאים לגמלת סיעוד</strong></p>
@@ -698,7 +701,7 @@ const RIGHTS_DATA = {
         <ul>
           <li>עד 50 שעות סיעוד למשך חודשיים</li>
           <li>הגשת בקשה דרך עו"ס בבית החולים בלבד</li>
-          <li><strong>תנאי:</strong> הכנסה עד ₪10,733 (לא כולל רנטות)</li>
+          <li><strong>תנאי:</strong> הכנסה עד ${c('holocaust_solem_income_ceiling')} (לא כולל רנטות)</li>
         </ul>
 
         <h4>סול"ם בקהילה:</h4>
@@ -724,8 +727,9 @@ const RIGHTS_DATA = {
           <li>✅ סיוע בטיפולי שיניים</li>
           <li>✅ מענקים לציוד רפואי</li>
         </ul>
-      `,
-      "updatedAt": "2026-01-16T00:00:00.000Z"
+      `;
+      },
+      "updatedAt": "2026-02-01T00:00:00.000Z"
     },
 
     "summary": {
@@ -779,7 +783,7 @@ const RIGHTS_DATA = {
             <tr>
               <td style="padding: 10px; border: 1px solid #ddd; font-weight: bold;">ניצולי שואה - תוספת סיעוד</td>
               <td style="padding: 10px; border: 1px solid #ddd;">ניצול שואה + גמלת סיעוד רמה 3-6</td>
-              <td style="padding: 10px; border: 1px solid #ddd;">9 שעות שבועיות או ₪2,025</td>
+              <td style="padding: 10px; border: 1px solid #ddd;">9 שעות שבועיות או ₪2,169</td>
               <td style="padding: 10px; border: 1px solid #ddd; text-align: center;">לא</td>
               <td style="padding: 10px; border: 1px solid #ddd;">בנוסף לגמלת סיעוד רגילה</td>
             </tr>
