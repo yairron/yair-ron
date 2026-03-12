@@ -623,6 +623,7 @@ const RIGHTS_DATA = {
       "contentFn": function(nii) {
         const c = key => nii[key] ? '₪' + nii[key].value.toLocaleString('he-IL') : '—';
         const e = key => nii[key] ? '€' + nii[key].value.toLocaleString('he-IL') : '—';
+        const n = key => nii[key] ? nii[key].value : '—';
         return `
       <a href="https://www.btl.gov.il/benefits/Long_Term_Care/Pages/nitzoleShoaa.aspx" target="_blank" class="link-item">🏛️  ניצולי שואה – זכאות לתוספת שעות סיעוד - הביטוח הלאומי </a>
       <a href="https://www.kolzchut.org.il/he/%D7%96%D7%9B%D7%95%D7%99%D7%95%D7%AA_%D7%A0%D7%99%D7%A6%D7%95%D7%9C%D7%99_%D7%A9%D7%95%D7%90%D7%94#.D7.A7.D7.A6.D7.91.D7.90.D7.95.D7.AA_.D7.95.D7.A4.D7.95.D7.A8.D7.98.D7.9C.D7.99_.D7.9E.D7.99.D7.93.D7.A2_.D7.9E.D7.A8.D7.9B.D7.96.D7.99.D7.99.D7.9D" target="_blank" class="link-item">🔦 פורטל המידע הלאומי לזכויות ניצולי השואה בישראל - כל זכות</a>
@@ -665,7 +666,7 @@ const RIGHTS_DATA = {
 
           <h5>💎 אפשרויות מימוש:</h5>
           <ul>
-            <li><strong>שעות טיפול בבית:</strong> 9 שעות שבועיות בפועל מספק מורשה</li>
+            <li><strong>שעות טיפול בבית:</strong> ${n('holocaust_nursing_hours_count')} שעות שבועיות בפועל מספק מורשה</li>
             <li><strong>תשלום בכסף:</strong> ${c('holocaust_nursing_hours_9_value')} לחודש (רק למי שמקבל גמלה בכסף מהביטוח הלאומי)</li>
           </ul>
         </div>
@@ -738,6 +739,7 @@ const RIGHTS_DATA = {
       "contentFn": function(nii) {
         const c = key => nii[key] ? '₪' + nii[key].value.toLocaleString('he-IL') : '—';
         const p = key => nii[key] ? nii[key].value + '%' : '—';
+        const age = key => nii[key] ? nii[key].value : '—';
         return `
         <h2 class="no-accordion">📊 תקציר - השפעות הדדיות בין ההטבות</h2>
 
@@ -765,7 +767,7 @@ const RIGHTS_DATA = {
           <tbody>
             <tr>
               <td style="padding: 10px; border: 1px solid #ddd; font-weight: bold;">קצבת אזרח ותיק</td>
-              <td style="padding: 10px; border: 1px solid #ddd;">גיל פרישה + מבחן הכנסה או גיל 70</td>
+              <td style="padding: 10px; border: 1px solid #ddd;">גיל פרישה + מבחן הכנסה או גיל ${age('retirement_age_unconditional')}</td>
               <td style="padding: 10px; border: 1px solid #ddd;">יחיד: ${c('pension_single_basic')}<br>+80: ${c('pension_single_over80')}<br>עם בן זוג: ${c('pension_couple_basic')}<br>ותק: עד ${p('seniority_bonus_max')}<br>דחייה: עד ${p('deferral_bonus_max_male')}-${p('deferral_bonus_max_female')}</td>
               <td style="padding: 10px; border: 1px solid #ddd; text-align: center;">כן</td>
               <td style="padding: 10px; border: 1px solid #ddd;">בסיס לזכאות להטבות</td>
@@ -787,7 +789,7 @@ const RIGHTS_DATA = {
             <tr>
               <td style="padding: 10px; border: 1px solid #ddd; font-weight: bold;">ניצולי שואה - תוספת סיעוד</td>
               <td style="padding: 10px; border: 1px solid #ddd;">ניצול שואה + גמלת סיעוד רמה 3-6</td>
-              <td style="padding: 10px; border: 1px solid #ddd;">9 שעות שבועיות או ${c('holocaust_nursing_hours_9_value')}</td>
+              <td style="padding: 10px; border: 1px solid #ddd;">${age('holocaust_nursing_hours_count')} שעות שבועיות או ${c('holocaust_nursing_hours_9_value')}</td>
               <td style="padding: 10px; border: 1px solid #ddd; text-align: center;">לא</td>
               <td style="padding: 10px; border: 1px solid #ddd;">בנוסף לגמלת סיעוד רגילה</td>
             </tr>
@@ -825,7 +827,10 @@ const RIGHTS_DATA = {
 
     "special_grants": {
       "title": "מענקים ותשלומים מיוחדים",
-      "content": `
+      "contentFn": function(nii) {
+        const c = key => nii[key] ? '₪' + nii[key].value.toLocaleString('he-IL') : '—';
+        const fmt = num => Math.round(num).toLocaleString('he-IL');
+        return `
         <h2 class="no-accordion">💰 מענקים ותשלומים מיוחדים</h2>
 
         <h3>💔 קצבת שאירים - מדריך מקיף</h3>
@@ -899,7 +904,7 @@ const RIGHTS_DATA = {
           <h5>4️⃣ תנאים מיוחדים לאלמן (ללא ילדים)</h5>
           <p>אלמן ללא ילדים זכאי לקצבה <strong>רק אם</strong>:</p>
           <ul>
-            <li>הכנסותיו החודשיות הברוטו אינן עולות על <strong>₪7,848</strong> (נכון ל-1.1.2026)</li>
+            <li>הכנסותיו החודשיות הברוטו אינן עולות על <strong>${c('disability_spouse_income_ceiling')}</strong> (נכון ל-1.1.2026)</li>
           </ul>
         </div>
 
@@ -909,9 +914,9 @@ const RIGHTS_DATA = {
           <h6>הכנסות שנלקחות בחשבון במבחן:</h6>
           <p><strong>כל ההכנסות הבאות נספרות:</strong></p>
           <ul>
-            <li><strong>הכנסה מעבודה</strong> - כשכיר או עצמאי (עם הפחתה של ₪1,905)</li>
-            <li><strong>פנסיה</strong> - מכל מקור (עם הפחתה של ₪1,905)</li>
-            <li><strong>קופת גמל</strong> - תשלום חודשי (עם הפחתה של ₪1,905)</li>
+            <li><strong>הכנסה מעבודה</strong> - כשכיר או עצמאי (עם הפחתה של ${c('survivors_income_allowed_employed')})</li>
+            <li><strong>פנסיה</strong> - מכל מקור (עם הפחתה של ${c('survivors_income_allowed_employed')})</li>
+            <li><strong>קופת גמל</strong> - תשלום חודשי (עם הפחתה של ${c('survivors_income_allowed_employed')})</li>
             <li><strong>קצבת זקנה (אזרח ותיק)</strong> - נספרת במלואה</li>
             <li><strong>השלמת הכנסה</strong> - נספרת במלואה</li>
             <li><strong>הכנסות משכירות או ריבית</strong> - נספרות במלואה</li>
@@ -956,19 +961,19 @@ const RIGHTS_DATA = {
             <tr>
               <td style="padding: 10px; border: 1px solid #ddd;">אלמן/ה ללא ילדים</td>
               <td style="padding: 10px; border: 1px solid #ddd; text-align: center;">גיל 40-50</td>
-              <td style="padding: 10px; border: 1px solid #ddd; text-align: center; font-weight: bold; color: #667eea;">₪1,381</td>
+              <td style="padding: 10px; border: 1px solid #ddd; text-align: center; font-weight: bold; color: #667eea;">${c('survivors_widow_40_49')}</td>
             </tr>
             <tr>
               <td style="padding: 10px; border: 1px solid #ddd;">אלמן/ה ללא ילדים</td>
               <td style="padding: 10px; border: 1px solid #ddd; text-align: center;">גיל 50 ומעלה</td>
-              <td style="padding: 10px; border: 1px solid #ddd; text-align: center; font-weight: bold; color: #667eea;">₪1,838</td>
+              <td style="padding: 10px; border: 1px solid #ddd; text-align: center; font-weight: bold; color: #667eea;">${c('survivors_widow_over50')}</td>
             </tr>
           </tbody>
         </table>
 
         <h5>קצבת יתומים:</h5>
         <ul>
-          <li><strong>₪2,434</strong> לכל ילד (נכון ל-1.1.2026)</li>
+          <li><strong>השלמת הכנסה ליתומים משני הורים: ${c('orphan_both_parents_first')}</strong> לכל ילד (נכון ל-1.1.2026)</li>
           <li><strong>יתום משני הוריו</strong> זכאי לקצבה מכוח כל הורה בנפרד</li>
         </ul>
 
@@ -983,7 +988,7 @@ const RIGHTS_DATA = {
         <p>יתומים הלומדים לפחות 24 שעות שבועיות מכיתה ט' עד גיל 20 זכאים לדמי מחיה:</p>
         <ul>
           <li>אם להורה משולמת קצבת שאירים - דמי המחיה כלולים בקצבה</li>
-          <li>אם להורה לא משולמת קצבת שאירים - דמי מחיה: <strong>₪822</strong></li>
+          <li>אם להורה לא משולמת קצבת שאירים - דמי מחיה: <strong>${c('livelihood_allowance_9')}</strong></li>
           <li>יתום משני הורים המקבל שתי קצבאות - זכאי לדמי מחיה כפולים</li>
         </ul>
 
@@ -1234,14 +1239,14 @@ const RIGHTS_DATA = {
         <div class="conditions-box">
           <h5 class="no-accordion">3️⃣ מגבלה על הכנסות מפנסיה וקצבאות</h5>
           <ul>
-            <li>הכנסה מפנסיה, תגמולים או קצבאות אינה יכולה לעלות על <strong>₪10,120 לחודש</strong> (נכון לינואר 2026)</li>
+            <li>הכנסה מפנסיה, תגמולים או קצבאות אינה יכולה לעלות על <strong>${c('transition_grant_income_allowed')} לחודש</strong> (נכון לינואר 2026)</li>
           </ul>
         </div>
 
         <div class="conditions-box">
           <h5 class="no-accordion">4️⃣ מגבלה על הכנסות שלא מעבודה</h5>
           <ul>
-            <li>הכנסה שנתית שלא מעבודה (משכירות, ריבית על השקעות, מענקי פרישה וכו') לא יכולה לעלות על <strong>₪60,000</strong> בשנת המס שבה מלאו לך 61 שנים</li>
+            <li>הכנסה שנתית שלא מעבודה (משכירות, ריבית על השקעות, מענקי פרישה וכו') לא יכולה לעלות על <strong>${c('transition_grant_annual_income_limit')}</strong> בשנת המס שבה מלאו לך 61 שנים</li>
           </ul>
         </div>
 
@@ -1286,28 +1291,28 @@ const RIGHTS_DATA = {
           <tbody>
             <tr>
               <td style="padding: 10px; border: 1px solid #ddd; text-align: center; font-weight: bold;">1960-1962</td>
-              <td style="padding: 10px; border: 1px solid #ddd; text-align: center; color: #667eea; font-weight: bold;">₪4,000</td>
-              <td style="padding: 10px; border: 1px solid #ddd; text-align: center; font-weight: bold;">₪16,000</td>
+              <td style="padding: 10px; border: 1px solid #ddd; text-align: center; color: #667eea; font-weight: bold;">${c('transition_grant_max')}</td>
+              <td style="padding: 10px; border: 1px solid #ddd; text-align: center; font-weight: bold;">₪${fmt(nii['transition_grant_max'].value * 4)}</td>
             </tr>
             <tr>
               <td style="padding: 10px; border: 1px solid #ddd; text-align: center; font-weight: bold;">1963</td>
-              <td style="padding: 10px; border: 1px solid #ddd; text-align: center; color: #667eea; font-weight: bold;">₪3,750</td>
-              <td style="padding: 10px; border: 1px solid #ddd; text-align: center; font-weight: bold;">₪15,000</td>
+              <td style="padding: 10px; border: 1px solid #ddd; text-align: center; color: #667eea; font-weight: bold;">${c('transition_grant_1963')}</td>
+              <td style="padding: 10px; border: 1px solid #ddd; text-align: center; font-weight: bold;">₪${fmt(nii['transition_grant_1963'].value * 4)}</td>
             </tr>
             <tr>
               <td style="padding: 10px; border: 1px solid #ddd; text-align: center; font-weight: bold;">1964</td>
-              <td style="padding: 10px; border: 1px solid #ddd; text-align: center; color: #667eea; font-weight: bold;">₪3,500</td>
-              <td style="padding: 10px; border: 1px solid #ddd; text-align: center; font-weight: bold;">₪14,000</td>
+              <td style="padding: 10px; border: 1px solid #ddd; text-align: center; color: #667eea; font-weight: bold;">${c('transition_grant_1964')}</td>
+              <td style="padding: 10px; border: 1px solid #ddd; text-align: center; font-weight: bold;">₪${fmt(nii['transition_grant_1964'].value * 4)}</td>
             </tr>
             <tr>
               <td style="padding: 10px; border: 1px solid #ddd; text-align: center; font-weight: bold;">1965</td>
-              <td style="padding: 10px; border: 1px solid #ddd; text-align: center; color: #667eea; font-weight: bold;">₪3,250</td>
-              <td style="padding: 10px; border: 1px solid #ddd; text-align: center; font-weight: bold;">₪13,000</td>
+              <td style="padding: 10px; border: 1px solid #ddd; text-align: center; color: #667eea; font-weight: bold;">${c('transition_grant_1965')}</td>
+              <td style="padding: 10px; border: 1px solid #ddd; text-align: center; font-weight: bold;">₪${fmt(nii['transition_grant_1965'].value * 4)}</td>
             </tr>
             <tr>
               <td style="padding: 10px; border: 1px solid #ddd; text-align: center; font-weight: bold;">1966</td>
-              <td style="padding: 10px; border: 1px solid #ddd; text-align: center; color: #667eea; font-weight: bold;">₪3,000</td>
-              <td style="padding: 10px; border: 1px solid #ddd; text-align: center; font-weight: bold;">₪12,000</td>
+              <td style="padding: 10px; border: 1px solid #ddd; text-align: center; color: #667eea; font-weight: bold;">${c('transition_grant_min')}</td>
+              <td style="padding: 10px; border: 1px solid #ddd; text-align: center; font-weight: bold;">₪${fmt(nii['transition_grant_min'].value * 4)}</td>
             </tr>
           </tbody>
         </table>
@@ -1337,7 +1342,8 @@ const RIGHTS_DATA = {
           <p>המידע במסמך זה הוא כללי ונועד לספק מידע ראשוני. לקבלת מידע מדויק ועדכני ולבדיקת זכאות אישית, יש לפנות ישירות למוסד לביטוח לאומי.</p>
           <p style="margin-top: 10px;"><em>מסמך זה הוכן בתאריך ינואר 2026</em></p>
         </div>
-      `,
+      `;
+      },
       "updatedAt": "2026-01-16T00:00:00.000Z"
     }
   }

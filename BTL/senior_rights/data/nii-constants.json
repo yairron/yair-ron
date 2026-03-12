@@ -374,7 +374,7 @@
     "id": "NII-052",
     "value": 2093,
     "type": "currency",
-    "label": "הכנסה מותרת לאלמן שכיר (נוסף על לוח י')",
+    "label": "סכום ההפחתה מהכנסה מעבודה/פנסיה/קופת גמל במבחן הכנסות לקצבת שאירים (נוסף על לוח י')",
     "updated": "2026-01"
   },
   "survivors_pension_employed_ceiling": {
@@ -390,20 +390,6 @@
     "value": 123,
     "type": "currency",
     "label": "ניכוי ביטוח בריאות מקצבה — עם השלמת הכנסה",
-    "updated": "2026-01"
-  },
-  "health_deduction_without_supplement": {
-    "id": "NII-055",
-    "value": 237,
-    "type": "currency",
-    "label": "ניכוי ביטוח בריאות מקצבה — ללא השלמת הכנסה (יחיד)",
-    "updated": "2026-01"
-  },
-  "health_deduction_couple_without_supplement": {
-    "id": "NII-056",
-    "value": 340,
-    "type": "currency",
-    "label": "ניכוי ביטוח בריאות מקצבה — זוג ללא השלמת הכנסה",
     "updated": "2026-01"
   },
 
@@ -706,8 +692,36 @@
     "id": "NII-174",
     "value": 7848,
     "type": "currency",
-    "label": "תקרת הכנסת בן/בת זוג לזכאות לתוספת בן/בת זוג בגמלת נכות כללית",
+    "label": "תקרת הכנסה לזכאות לתוספת בן/בת זוג (נכות כללית) ולקצבת שאירים לאלמן ללא ילדים",
     "source": "https://www.btl.gov.il/benefits/Disability/Pages/%D7%A9%D7%99%D7%A2%D7%95%D7%A8%D7%99%20%D7%94%D7%A7%D7%A6%D7%91%D7%94.aspx",
+    "updated": "2026-01"
+  },
+  "transition_grant_annual_income_limit": {
+    "id": "NII-179",
+    "value": 60000,
+    "type": "currency",
+    "label": "מגבלת הכנסה שנתית שלא מעבודה לזכאות למענק מעבר לנשים",
+    "updated": "fixed"
+  },
+  "transition_grant_1963": {
+    "id": "NII-180",
+    "value": 3750,
+    "type": "currency",
+    "label": "מענק מעבר לנשים שנולדו בשנת 1963",
+    "updated": "2026-01"
+  },
+  "transition_grant_1964": {
+    "id": "NII-181",
+    "value": 3500,
+    "type": "currency",
+    "label": "מענק מעבר לנשים שנולדו בשנת 1964",
+    "updated": "2026-01"
+  },
+  "transition_grant_1965": {
+    "id": "NII-182",
+    "value": 3250,
+    "type": "currency",
+    "label": "מענק מעבר לנשים שנולדו בשנת 1965",
     "updated": "2026-01"
   },
   "disability_child": {
@@ -1027,6 +1041,13 @@
     "type": "currency",
     "label": "מענק שנתי לניצולי שואה ללא רנטה חודשית",
     "updated": "2026-01"
+  },
+  "holocaust_nursing_hours_count": {
+    "id": "NII-177",
+    "value": 9,
+    "type": "number",
+    "label": "מספר שעות סיעוד שבועיות לניצולי שואה",
+    "updated": "fixed"
   },
   "holocaust_nursing_hours_9_value": {
     "id": "NII-131",
