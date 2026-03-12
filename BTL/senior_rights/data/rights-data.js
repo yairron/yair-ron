@@ -386,7 +386,9 @@ const RIGHTS_DATA = {
 
     "disability": {
       "title": "גמלת נכות כללית וקצבת שירותים מיוחדים",
-      "content": `
+      "contentFn": function(nii) {
+        const c = key => nii[key] ? '₪' + nii[key].value.toLocaleString('he-IL') : '—';
+        return `
         <h2 class="no-accordion">♿ גמלת נכות כללית וקצבת שירותים מיוחדים</h2>
 
         <h3>🏥 גמלת נכות כללית</h3>
@@ -395,17 +397,20 @@ const RIGHTS_DATA = {
         <table style="width: 100%; border-collapse: collapse; margin: 20px 0;">
           <thead>
             <tr style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white;">
-              <th style="padding: 12px; border: 1px solid #ddd;">אחוז נכות</th>
-              <th style="padding: 12px; border: 1px solid #ddd;">סכום חודשי</th>
+              <th style="padding: 12px; border: 1px solid #ddd;">דרגת אי-כושר</th>
+              <th style="padding: 12px; border: 1px solid #ddd;">קצבה בסיסית</th>
+              <th style="padding: 12px; border: 1px solid #ddd;">תוספת בן/זוג</th>
+              <th style="padding: 12px; border: 1px solid #ddd;">תוספת ילד</th>
             </tr>
           </thead>
           <tbody>
-            <tr><td style="padding: 10px; border: 1px solid #ddd;">100% (אי כושר השתכרות מלאה)</td><td style="padding: 10px; border: 1px solid #ddd; text-align: center; font-weight: bold;">₪4,771</td></tr>
-            <tr><td style="padding: 10px; border: 1px solid #ddd;">99%-74%</td><td style="padding: 10px; border: 1px solid #ddd; text-align: center;">₪3,211-₪4,241</td></tr>
-            <tr><td style="padding: 10px; border: 1px solid #ddd;">73%-50%</td><td style="padding: 10px; border: 1px solid #ddd; text-align: center;">₪2,386-₪3,111</td></tr>
+            <tr><td style="padding: 10px; border: 1px solid #ddd;">מלאה (100% / 75%)</td><td style="padding: 10px; border: 1px solid #ddd; text-align: center; font-weight: bold;">${c('disability_full')}</td><td style="padding: 10px; border: 1px solid #ddd; text-align: center;">${c('disability_spouse')}</td><td style="padding: 10px; border: 1px solid #ddd; text-align: center;">${c('disability_child')}</td></tr>
+            <tr><td style="padding: 10px; border: 1px solid #ddd;">חלקית 74%</td><td style="padding: 10px; border: 1px solid #ddd; text-align: center; font-weight: bold;">${c('disability_74')}</td><td style="padding: 10px; border: 1px solid #ddd; text-align: center;">${c('disability_spouse_74')}</td><td style="padding: 10px; border: 1px solid #ddd; text-align: center;">${c('disability_child_74')}</td></tr>
+            <tr><td style="padding: 10px; border: 1px solid #ddd;">חלקית 65%</td><td style="padding: 10px; border: 1px solid #ddd; text-align: center; font-weight: bold;">${c('disability_65')}</td><td style="padding: 10px; border: 1px solid #ddd; text-align: center;">${c('disability_spouse_65')}</td><td style="padding: 10px; border: 1px solid #ddd; text-align: center;">${c('disability_child_65')}</td></tr>
+            <tr><td style="padding: 10px; border: 1px solid #ddd;">חלקית 60%</td><td style="padding: 10px; border: 1px solid #ddd; text-align: center; font-weight: bold;">${c('disability_60')}</td><td style="padding: 10px; border: 1px solid #ddd; text-align: center;">${c('disability_spouse_60')}</td><td style="padding: 10px; border: 1px solid #ddd; text-align: center;">${c('disability_child_60')}</td></tr>
           </tbody>
         </table>
-        <p><strong>תוספת לבן/בת זוג:</strong> ₪1,541</p>
+        <p><small>תוספת בן/בת זוג: בתנאי שהכנסותיו עד ₪7,848 ברוטו בחודש ואינו מקבל קצבה אחרת</small></p>
 
         <h3>🔄 מעבר מנכות כללית לקצבת זקנה</h3>
         <div class="conditions-box">
@@ -431,15 +436,15 @@ const RIGHTS_DATA = {
             </tr>
           </thead>
           <tbody>
-            <tr><td style="padding: 10px; border: 1px solid #ddd;">50%</td><td style="padding: 10px; border: 1px solid #ddd; text-align: center; font-weight: bold;">₪1,943</td></tr>
-            <tr><td style="padding: 10px; border: 1px solid #ddd;">65%</td><td style="padding: 10px; border: 1px solid #ddd; text-align: center; font-weight: bold;">₪3,101</td></tr>
-            <tr><td style="padding: 10px; border: 1px solid #ddd;">75%</td><td style="padding: 10px; border: 1px solid #ddd; text-align: center; font-weight: bold;">₪3,578</td></tr>
-            <tr><td style="padding: 10px; border: 1px solid #ddd;">100%</td><td style="padding: 10px; border: 1px solid #ddd; text-align: center; font-weight: bold;">₪4,771</td></tr>
-            <tr><td style="padding: 10px; border: 1px solid #ddd;">112%</td><td style="padding: 10px; border: 1px solid #ddd; text-align: center; font-weight: bold;">₪4,501</td></tr>
-            <tr><td style="padding: 10px; border: 1px solid #ddd;">188%</td><td style="padding: 10px; border: 1px solid #ddd; text-align: center; font-weight: bold;">₪7,181</td></tr>
-            <tr><td style="padding: 10px; border: 1px solid #ddd;">235%</td><td style="padding: 10px; border: 1px solid #ddd; text-align: center; font-weight: bold;">₪9,126</td></tr>
-            <tr><td style="padding: 10px; border: 1px solid #ddd;">תוספת מונשם</td><td style="padding: 10px; border: 1px solid #ddd; text-align: center; font-weight: bold;">₪10,774</td></tr>
-            <tr><td style="padding: 10px; border: 1px solid #ddd;">188% + תוספת 2 מטפלים</td><td style="padding: 10px; border: 1px solid #ddd; text-align: center; font-weight: bold;">₪7,182</td></tr>
+            <tr><td style="padding: 10px; border: 1px solid #ddd;">50%</td><td style="padding: 10px; border: 1px solid #ddd; text-align: center; font-weight: bold;">${c('special_services_50')}</td></tr>
+            <tr><td style="padding: 10px; border: 1px solid #ddd;">65%</td><td style="padding: 10px; border: 1px solid #ddd; text-align: center; font-weight: bold;">${c('special_services_65')}</td></tr>
+            <tr><td style="padding: 10px; border: 1px solid #ddd;">75%</td><td style="padding: 10px; border: 1px solid #ddd; text-align: center; font-weight: bold;">${c('special_services_75')}</td></tr>
+            <tr><td style="padding: 10px; border: 1px solid #ddd;">100%</td><td style="padding: 10px; border: 1px solid #ddd; text-align: center; font-weight: bold;">${c('special_services_100')}</td></tr>
+            <tr><td style="padding: 10px; border: 1px solid #ddd;">112%</td><td style="padding: 10px; border: 1px solid #ddd; text-align: center; font-weight: bold;">${c('special_services_112')}</td></tr>
+            <tr><td style="padding: 10px; border: 1px solid #ddd;">188%</td><td style="padding: 10px; border: 1px solid #ddd; text-align: center; font-weight: bold;">${c('special_services_188')}</td></tr>
+            <tr><td style="padding: 10px; border: 1px solid #ddd;">235%</td><td style="padding: 10px; border: 1px solid #ddd; text-align: center; font-weight: bold;">${c('special_services_235')}</td></tr>
+            <tr><td style="padding: 10px; border: 1px solid #ddd;">תוספת מונשם</td><td style="padding: 10px; border: 1px solid #ddd; text-align: center; font-weight: bold;">${c('special_services_ventilated')}</td></tr>
+            <tr><td style="padding: 10px; border: 1px solid #ddd;">188% + תוספת 2 מטפלים</td><td style="padding: 10px; border: 1px solid #ddd; text-align: center; font-weight: bold;">${c('special_services_188_2caregivers')}</td></tr>
           </tbody>
         </table>
 
@@ -452,8 +457,8 @@ const RIGHTS_DATA = {
             </tr>
           </thead>
           <tbody>
-            <tr><td style="padding: 10px; border: 1px solid #ddd;">ילד עם נכות 100%</td><td style="padding: 10px; border: 1px solid #ddd; text-align: center; font-weight: bold;">₪3,820</td></tr>
-            <tr><td style="padding: 10px; border: 1px solid #ddd;">תוספת לילד נכה מונשם</td><td style="padding: 10px; border: 1px solid #ddd; text-align: center; font-weight: bold;">₪10,774</td></tr>
+            <tr><td style="padding: 10px; border: 1px solid #ddd;">ילד עם נכות 100%</td><td style="padding: 10px; border: 1px solid #ddd; text-align: center; font-weight: bold;">${c('disabled_child_100')}</td></tr>
+            <tr><td style="padding: 10px; border: 1px solid #ddd;">תוספת לילד נכה מונשם</td><td style="padding: 10px; border: 1px solid #ddd; text-align: center; font-weight: bold;">${c('special_services_ventilated')}</td></tr>
           </tbody>
         </table>
 
@@ -470,7 +475,8 @@ const RIGHTS_DATA = {
             <li>לרוב מקבלי שר"מ בדרגה גבוהה מקבלים רמות סיעוד גבוהות</li>
           </ul>
         </div>
-      `,
+      `;
+      },
       "updatedAt": "2026-01-16T00:00:00.000Z"
     },
 

@@ -646,25 +646,88 @@
     "updated": "2026-01"
   },
 
-  "disability_single": {
+  "disability_full": {
     "id": "NII-090",
-    "value": 3037,
+    "value": 4711,
     "type": "currency",
-    "label": "קצבת נכות כללית — יחיד",
+    "label": "קצבת נכות כללית — דרגה מלאה (100% / 75%)",
+    "updated": "2026-01"
+  },
+  "disability_74": {
+    "id": "NII-159",
+    "value": 3211,
+    "type": "currency",
+    "label": "קצבת נכות כללית — דרגה חלקית 74%",
+    "updated": "2026-01"
+  },
+  "disability_65": {
+    "id": "NII-160",
+    "value": 2894,
+    "type": "currency",
+    "label": "קצבת נכות כללית — דרגה חלקית 65%",
+    "updated": "2026-01"
+  },
+  "disability_60": {
+    "id": "NII-161",
+    "value": 2718,
+    "type": "currency",
+    "label": "קצבת נכות כללית — דרגה חלקית 60%",
     "updated": "2026-01"
   },
   "disability_spouse": {
     "id": "NII-091",
     "value": 1518,
     "type": "currency",
-    "label": "קצבת נכות — תוספת בן/בת זוג",
+    "label": "קצבת נכות — תוספת בן/בת זוג (דרגה מלאה)",
+    "updated": "2026-01"
+  },
+  "disability_spouse_74": {
+    "id": "NII-162",
+    "value": 1123,
+    "type": "currency",
+    "label": "קצבת נכות — תוספת בן/בת זוג (74%)",
+    "updated": "2026-01"
+  },
+  "disability_spouse_65": {
+    "id": "NII-163",
+    "value": 987,
+    "type": "currency",
+    "label": "קצבת נכות — תוספת בן/בת זוג (65%)",
+    "updated": "2026-01"
+  },
+  "disability_spouse_60": {
+    "id": "NII-164",
+    "value": 911,
+    "type": "currency",
+    "label": "קצבת נכות — תוספת בן/בת זוג (60%)",
     "updated": "2026-01"
   },
   "disability_child": {
     "id": "NII-092",
     "value": 1214,
     "type": "currency",
-    "label": "קצבת נכות — תוספת ילד",
+    "label": "קצבת נכות — תוספת ילד (דרגה מלאה)",
+    "updated": "2026-01"
+  },
+  "disability_child_74": {
+    "id": "NII-165",
+    "value": 898,
+    "type": "currency",
+    "label": "קצבת נכות — תוספת ילד (74%)",
+    "updated": "2026-01"
+  },
+  "disability_child_65": {
+    "id": "NII-166",
+    "value": 789,
+    "type": "currency",
+    "label": "קצבת נכות — תוספת ילד (65%)",
+    "updated": "2026-01"
+  },
+  "disability_child_60": {
+    "id": "NII-167",
+    "value": 728,
+    "type": "currency",
+    "label": "קצבת נכות — תוספת ילד (60%)",
     "updated": "2026-01"
   },
   "disability_addition_80": {
@@ -834,6 +897,13 @@
     "value": 7182,
     "type": "currency",
     "label": "קצבת שירותים מיוחדים — 188% + 2 מטפלים (חדש 2026)",
+    "updated": "2026-01"
+  },
+  "disabled_child_100": {
+    "id": "NII-168",
+    "value": 3820,
+    "type": "currency",
+    "label": "גמלת ילד נכה — 100% נכות",
     "updated": "2026-01"
   },
 
