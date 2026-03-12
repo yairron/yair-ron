@@ -626,7 +626,7 @@
             <a href="../index.html" class="back-button">חזרה לדף ראשי </a>
             <h1>🌟 זכויות אזרחים ותיקים</h1>
             <p class="support-info">מרכז תמיכה ומידע טלפוני ארצי בטלפון <span dir="ltr">*9696</span></p>
-            <p class="subtitle">מידע לצרכי עיון בלבד - מעודכן מהמקורות הרשמיים לינואר 2026</p>
+            <p class="subtitle" id="pageSubtitle">מידע לצרכי עיון בלבד - מעודכן מהמקורות הרשמיים לינואר 2026</p>
             <div class="update-badge" id="updateBadge">⏳ טוען מידע...</div>
         </header>
 
@@ -1004,6 +1004,10 @@
             try {
                 const resp = await fetch('data/nii-constants.json');
                 NII_CONSTANTS = await resp.json();
+                if (NII_CONSTANTS._meta && NII_CONSTANTS._meta.source) {
+                    document.getElementById('pageSubtitle').textContent =
+                        `מידע לצרכי עיון בלבד - מעודכן מהמקורות הרשמיים (${NII_CONSTANTS._meta.source})`;
+                }
             } catch(e) {
                 console.warn('⚠️ לא ניתן לטעון nii-constants.json, משתמש בערכי ברירת מחדל');
             }
