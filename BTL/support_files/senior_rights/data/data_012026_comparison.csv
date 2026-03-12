@@ -1,0 +1,137 @@
+שם השדה,מזהה,ערך 2025,ערך 2026,הפרש,אחוז שינוי
+קצבה בסיסית ליחיד,BASIC_PENSION_SINGLE,1795,1838,43,2.40%
+קצבה בסיסית ליחיד מגיל 80,BASIC_PENSION_SINGLE_80,1896,1941,45,2.37%
+קצבת זוגות,BASIC_PENSION_COUPLE,2697,2762,65,2.41%
+יחיד + ילד,BASIC_PENSION_COUPLE_1_CHILD,2363,2419,56,2.37%
+יחיד + 2 ילדים,BASIC_PENSION_COUPLE_2_CHILDREN,2834,2874,40,1.41%
+זוג + ילד,BASIC_PENSION_COUPLE_PLUS_1,3265,3343,78,2.39%
+זוג + 2 ילדים,BASIC_PENSION_COUPLE_PLUS_2,3833,3924,91,2.37%
+תוספת בן/בת זוג (ילד שאיר),SPOUSE_SUPPLEMENT,842,924,82,9.74%
+קצבת שאירים - אלמן/ה,SURVIVOR_PENSION_SINGLE,1795,1838,43,2.40%
+קצבת שאירים - ילד שאיר בודד,SURVIVOR_PENSION_CHILD,1115,1142,27,2.42%
+קצבת שאירים - אלמן/ה/צעיר/ה,SURVIVOR_PENSION_WIDOW_CHILD,1348,1381,33,2.45%
+קצבת שאירים מגיל 80,SURVIVOR_PENSION_80,1896,1941,45,2.37%
+דמי מחיה - 6.5%,LIVING_ALLOWANCE_6_5,667,683,16,2.40%
+דמי מחיה - 9%,LIVING_ALLOWANCE_9,924,946,22,2.38%
+הכנסה מותרת לצורך דמי מחיה,ALLOWANCE_PAYMENT_SINGLE,15180,15696,516,3.40%
+תוספת לכל ילד נוסף,ALLOWANCE_PER_CHILD_EXTRA,932,964,32,3.43%
+השלמת הכנסה עד גיל 70 - יחיד,INCOME_SUPPLEMENT_SINGLE_UNDER70,4273,4375,102,2.39%
+השלמת הכנסה עד גיל 70 - זוג,INCOME_SUPPLEMENT_COUPLE_UNDER70,6751,6912,161,2.38%
+השלמת הכנסה עד גיל 70 - יחיד + ילד,INCOME_SUPPLEMENT_SINGLE_1_CHILD_UNDER70,,7305,חדש,חדש
+השלמת הכנסה עד גיל 70 - יחיד + 2 ילדים,INCOME_SUPPLEMENT_SINGLE_2_CHILDREN_UNDER70,,8426,חדש,חדש
+השלמת הכנסה עד גיל 70 - זוג + ילד,INCOME_SUPPLEMENT_COUPLE_1_CHILD_UNDER70,,8035,חדש,חדש
+השלמת הכנסה עד גיל 70 - זוג + 2 ילדים,INCOME_SUPPLEMENT_COUPLE_2_CHILDREN_UNDER70,,9156,חדש,חדש
+השלמת הכנסה גיל 70-80 - יחיד,INCOME_SUPPLEMENT_SINGLE_70_80,,4418,חדש,חדש
+השלמת הכנסה גיל 70-80 - זוג,INCOME_SUPPLEMENT_COUPLE_70_80,,6981,חדש,חדש
+השלמת הכנסה גיל 70-80 - יחיד + ילד,INCOME_SUPPLEMENT_SINGLE_1_CHILD_70_80,,7374,חדש,חדש
+השלמת הכנסה גיל 70-80 - יחיד + 2 ילדים,INCOME_SUPPLEMENT_SINGLE_2_CHILDREN_70_80,,8496,חדש,חדש
+השלמת הכנסה גיל 70-80 - זוג + ילד,INCOME_SUPPLEMENT_COUPLE_1_CHILD_70_80,,8102,חדש,חדש
+השלמת הכנסה גיל 70-80 - זוג + 2 ילדים,INCOME_SUPPLEMENT_COUPLE_2_CHILDREN_70_80,,9226,חדש,חדש
+השלמת הכנסה מגיל 80 - יחיד,INCOME_SUPPLEMENT_SINGLE_80,,4460,חדש,חדש
+השלמת הכנסה מגיל 80 - זוג,INCOME_SUPPLEMENT_COUPLE_80,,7048,חדש,חדש
+השלמת הכנסה מגיל 80 - יחיד + ילד,INCOME_SUPPLEMENT_SINGLE_1_CHILD_80,,7442,חדש,חדש
+השלמת הכנסה מגיל 80 - יחיד + 2 ילדים,INCOME_SUPPLEMENT_SINGLE_2_CHILDREN_80,,8563,חדש,חדש
+השלמת הכנסה מגיל 80 - זוג + ילד,INCOME_SUPPLEMENT_COUPLE_1_CHILD_80,,8171,חדש,חדש
+השלמת הכנסה מגיל 80 - זוג + 2 ילדים,INCOME_SUPPLEMENT_COUPLE_2_CHILDREN_80,,9292,חדש,חדש
+יתומים - ילד,SURVIVORS_PENSION_YACHID,2377,2434,57,2.40%
+יתומים - שני ילדים,SURVIVORS_PENSION_2_CHILDREN,3486,3569,83,2.38%
+יתומים - כל ילד נוסף,SURVIVORS_PENSION_PER_CHILD,1014,1038,24,2.37%
+ניכוי ביטוח בריאות - יחיד עם ה"ה,HEALTH_INSURANCE_SINGLE,120,123,3,2.50%
+ניכוי ביטוח בריאות - יחיד ללא ה"ה,HEALTH_INSURANCE_COUPLE_NO_SUPPLEMENT,231,237,6,2.60%
+ניכוי ביטוח בריאות - זוג ללא ה"ה,HEALTH_INSURANCE_COUPLE,332,340,8,2.41%
+הכנסה מעבודה - יחיד (פנסיה),INCOME_FROM_WORK_SINGLE,1731,1790,59,3.41%
+הכנסה מעבודה - זוג (פנסיה),INCOME_FROM_WORK_COUPLE,2730,2823,93,3.41%
+הכנסה מעבודה - יחיד,INCOME_FROM_WORK_SINGLE_FULL,3129,3236,107,3.42%
+הכנסה מעבודה - זוג,INCOME_FROM_WORK_COUPLE_FULL,3662,3786,124,3.39%
+הבטחה עצמאי,INCOME_SUPPLEMENT_ADDITION,4502,4655,153,3.40%
+הכנסה מסכום בסיסי X 4 - יחיד,TOTAL_INCOME_4X_SINGLE,40556,41528,972,2.40%
+הכנסה מסכום בסיסי X 6 - זוג,TOTAL_INCOME_6X_COUPLE,60834,62292,1458,2.40%
+מבחן הכנסות - יחיד - זכאות מלאה,INCOME_TEST_SINGLE_FULL,9781,10113,332,3.39%
+מבחן הכנסות - נשוי - זכאות מלאה,INCOME_TEST_MARRIED_FULL,13040,13484,444,3.40%
+תוספת לכל תלוי נוסף - מבחן הכנסות,INCOME_TEST_PER_CHILD,932,964,32,3.43%
+שווי רכב שללי,AVERAGE_WAGE,63812,65343,1531,2.40%
+שווי רכב לא נחשב לעובד,MIN_WAGE_NOT_MARRIED,19150,19610,460,2.40%
+שווי רכב לא נחשב ללאו עובד,MIN_WAGE_NOT_MARRIED_2,10964,11227,263,2.40%
+מדור עובד לפני גיל פרישה 25%,WORKER_BEFORE_RETIREMENT_25,3329,3442,113,3.39%
+מדור עובד מעל גיל פרישה 17%,WORKER_ABOVE_RETIREMENT_17,2264,2341,77,3.40%
+לוח י' - פרס 1 ללא תלויים,MAX_TRANSIT_GRANT,7590,7848,258,3.40%
+לוח י' - פרס 2 עם תלויי,MAX_TRANSIT_GRANT_DEPENDENT,10120,10464,344,3.40%
+אלמן שכיר או בפרישה,WIDOW_BEREAVED,2024,2093,69,3.41%
+פנסיית שאירים לאלמן שכיר,PENSION_SURVIVORS,9430,9430,0,0.00%
+גמלת נכות כללית - 100%,DISABILITY_100,4556,4771,215,4.72%
+גמלת נכות כללית - 74%-99%,DISABILITY_74_99,3190-4100,3211-4241,21-141,0.66%-3.44%
+גמלת נכות כללית - 50%-73%,DISABILITY_50_73,2278-3008,2386-3111,108-103,4.74%-3.42%
+תוספת בן/בת זוג - נכות,DISABILITY_SPOUSE_SUPPLEMENT,1468,1541,73,4.97%
+קצבת נכות - יחיד,DISABILITY_SINGLE,2937,3037,100,3.41%
+קצבת נכות - בן זוג,DISABILITY_COUPLE,1468,1518,50,3.41%
+קצבת נכות - ילד,DISABILITY_CHILD,1175,1214,39,3.32%
+נכות רפואית 80%,DISABILITY_ADDITION_80,565,585,20,3.54%
+נכות רפואית 79% - 50%,DISABILITY_ADDITION_79_50,439,454,15,3.42%
+נכות רפואית 49%-40%,DISABILITY_ADDITION_49_40,189,196,7,3.70%
+סכום 2 נכה,DISABILITY_SUM_2,565,585,20,3.54%
+סכום 3 נכה שוטף,DISABILITY_SUM_3,587,607,20,3.41%
+סכום 3 נכה מלאי,DISABILITY_SUM_3_FULL,294,304,10,3.40%
+סכום 4 נכה מלאי,DISABILITY_SUM_4_FULL,350,362,12,3.43%
+סכום 4 נכה שוטף 75%,DISABILITY_SUM_4_CURRENT_75,467,482,15,3.21%
+סכום 4 נכה שוטף 74%,DISABILITY_SUM_4_CURRENT_74,346,357,11,3.18%
+סכום 4 נכה שוטף 65%,DISABILITY_SUM_4_CURRENT_65,304,313,9,2.96%
+סכום 4 נכה שוטף 60%,DISABILITY_SUM_4_CURRENT_60,280,289,9,3.21%
+סכום 4 נכה שהיה במוסד,DISABILITY_SUM_4_MOBILITY,127,131,4,3.15%
+מעבודה שלא נותנו לניכוי,DISABILITY_LINKED_NO_WAITING,6689,6919,230,3.44%
+מדור להכנסה שלא מעבודה,DISABILITY_EXTRA_WORK,1514,1566,52,3.44%
+מענק פטירה,SPECIAL_GRANT,10268,10514,246,2.40%
+דמי כיס - 20%,POCKET_MONEY_20,587,607,20,3.41%
+דמי כיס - 36%,POCKET_MONEY_36,646,662,16,2.48%
+מענק חימום,EMPLOYER_GRANT,649,649,0,0.00%
+הכנסה מותרת לעניין מענק מעבר,TRANSIT_GRANT,9787,10120,333,3.40%
+שירותים מיוחדים - 50%,SPECIAL_SERVICES_50,2278,1943,-335,-14.71%
+שירותים מיוחדים - 65%,SPECIAL_SERVICES_65,2961,3101,140,4.73%
+שירותים מיוחדים - 75%,SPECIAL_SERVICES_75,3417,3578,161,4.71%
+שירותים מיוחדים - 100%,SPECIAL_SERVICES_100,4556,4771,215,4.72%
+שירותים מיוחדים - 112%,SPECIAL_SERVICES_112,5102,4501,-601,-11.78%
+שירותים מיוחדים - 188%,SPECIAL_SERVICES_188,8565,7181,-1384,-16.16%
+שירותים מיוחדים - 235%,SPECIAL_SERVICES_235,,9126,חדש,חדש
+שירותים מיוחדים - תוספת מונשם,SPECIAL_SERVICES_VENTILATED,,10774,חדש,חדש
+שירותים מיוחדים - 188% + 2 מטפלים,SPECIAL_SERVICES_188_2_CAREGIVERS,,7182,חדש,חדש
+גמלת ילד נכה - 100%,CHILD_DISABILITY_100,3694,3820,126,3.41%
+גמלת ילד נכה - תוספת מונשם,CHILD_DISABILITY_VENTILATED,10421,10774,353,3.39%
+סיעוד רמה 1 - שעות,NURSING_LEVEL_1_HOURS,9,5.5,-3.5,-38.89%
+סיעוד רמה 1 - כסף,NURSING_LEVEL_1_CASH,1572,1659,87,5.53%
+סיעוד רמה 2 - כסף,NURSING_LEVEL_2_CASH,2290,2410,120,5.24%
+סיעוד רמה 2 - המרה מקסימלית,NURSING_LEVEL_2_CONVERSION,915,965,50,5.46%
+סיעוד רמה 3 - שעות,NURSING_LEVEL_3_HOURS,17,15,-2,-11.76%
+סיעוד רמה 3 - כסף,NURSING_LEVEL_3_CASH,3893,4097,204,5.24%
+סיעוד רמה 3 - המרה מקסימלית,NURSING_LEVEL_3_CONVERSION,1350,1350,0,0.00%
+סיעוד רמה 4 - שעות,NURSING_LEVEL_4_HOURS,20,21,1,5.00%
+סיעוד רמה 4 - כסף,NURSING_LEVEL_4_CASH,4580,5061,481,10.50%
+סיעוד רמה 4 - המרה מקסימלית,NURSING_LEVEL_4_CONVERSION,,1434,חדש,חדש
+סיעוד רמה 5 - כסף,NURSING_LEVEL_5_CASH,5954,6266,312,5.24%
+סיעוד רמה 5 - המרה מקסימלית,NURSING_LEVEL_5_CONVERSION,,1884,חדש,חדש
+סיעוד רמה 6 - כסף,NURSING_LEVEL_6_CASH,6870,7230,360,5.24%
+סיעוד רמה 6 - המרה מקסימלית,NURSING_LEVEL_6_CONVERSION,,2249,חדש,חדש
+ניצולי שואה - מענק שנתי,HOLOCAUST_ANNUAL_GRANT,7502,7502,0,0.00%
+ניצולי שואה - תשלום ועידת התביעות,HOLOCAUST_CLAIMS_CONFERENCE,,5457,חדש,חדש
+ניצולי שואה - תוספת 9 שעות בכסף,HOLOCAUST_9_HOURS_CASH,2025,2025,0,0.00%
+הכנסה רעיונית - סכום פטור יחיד,IMPUTED_INCOME_EXEMPT_SINGLE,,48472,חדש,חדש
+הכנסה רעיונית - סכום פטור זוג,IMPUTED_INCOME_EXEMPT_COUPLE,,62292,חדש,חדש
+הכנסה רעיונית - שיעור ריבית בסיסי,IMPUTED_INCOME_INTEREST_RATE,,4.17,חדש,חדש
+הכנסה רעיונית - סף תחתון מדרגות,IMPUTED_INCOME_TIER_THRESHOLD,,117173,חדש,חדש
+הכנסה רעיונית - מדרגה 1 יחיד תחתון (מתחת 55),IMPUTED_INCOME_T1_SINGLE_UNDER55_LOW,,,חדש,חדש
+הכנסה רעיונית - מדרגה 1 יחיד עליון (מתחת 55),IMPUTED_INCOME_T1_SINGLE_UNDER55_HIGH,,,חדש,חדש
+הכנסה רעיונית - מדרגה 2 יחיד תחתון (מתחת 55),IMPUTED_INCOME_T2_SINGLE_UNDER55_LOW,,117173,חדש,חדש
+הכנסה רעיונית - מדרגה 2 יחיד עליון (מתחת 55),IMPUTED_INCOME_T2_SINGLE_UNDER55_HIGH,,249168,חדש,חדש
+הכנסה רעיונית - מדרגה 1 זוג תחתון (מתחת 55),IMPUTED_INCOME_T1_COUPLE_UNDER55_LOW,,117173,חדש,חדש
+הכנסה רעיונית - מדרגה 1 זוג עליון (מתחת 55),IMPUTED_INCOME_T1_COUPLE_UNDER55_HIGH,,311460,חדש,חדש
+הכנסה רעיונית - מדרגה 2 זוג תחתון (מתחת 55),IMPUTED_INCOME_T2_COUPLE_UNDER55_LOW,,311460,חדש,חדש
+הכנסה רעיונית - מדרגה 2 זוג עליון (מתחת 55),IMPUTED_INCOME_T2_COUPLE_UNDER55_HIGH,,622920,חדש,חדש
+הכנסה רעיונית - מדרגה 1 יחיד תחתון (55+),IMPUTED_INCOME_T1_SINGLE_55PLUS_LOW,,117173,חדש,חדש
+הכנסה רעיונית - מדרגה 1 יחיד עליון (55+),IMPUTED_INCOME_T1_SINGLE_55PLUS_HIGH,,166112,חדש,חדש
+הכנסה רעיונית - מדרגה 2 יחיד תחתון (55+),IMPUTED_INCOME_T2_SINGLE_55PLUS_LOW,,166112,חדש,חדש
+הכנסה רעיונית - מדרגה 2 יחיד עליון (55+),IMPUTED_INCOME_T2_SINGLE_55PLUS_HIGH,,332224,חדש,חדש
+הכנסה רעיונית - מדרגה 1 זוג תחתון (55+),IMPUTED_INCOME_T1_COUPLE_55PLUS_LOW,,117173,חדש,חדש
+הכנסה רעיונית - מדרגה 1 זוג עליון (55+),IMPUTED_INCOME_T1_COUPLE_55PLUS_HIGH,,373752,חדש,חדש
+הכנסה רעיונית - מדרגה 2 זוג תחתון (55+),IMPUTED_INCOME_T2_COUPLE_55PLUS_LOW,,373752,חדש,חדש
+הכנסה רעיונית - מדרגה 2 זוג עליון (55+),IMPUTED_INCOME_T2_COUPLE_55PLUS_HIGH,,747504,חדש,חדש
+הכנסה רעיונית - אחוז מדרגה 1,IMPUTED_INCOME_TIER1_PERCENT,,1.5,חדש,חדש
+הכנסה רעיונית - אחוז מדרגה 2,IMPUTED_INCOME_TIER2_PERCENT,,3,חדש,חדש
+הכנסה רעיונית - אחוז מדרגה 3,IMPUTED_INCOME_TIER3_PERCENT,,5,חדש,חדש
