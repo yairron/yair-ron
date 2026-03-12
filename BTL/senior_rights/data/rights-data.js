@@ -622,6 +622,7 @@ const RIGHTS_DATA = {
       "title": "זכויות ניצולי שואה",
       "contentFn": function(nii) {
         const c = key => nii[key] ? '₪' + nii[key].value.toLocaleString('he-IL') : '—';
+        const e = key => nii[key] ? '€' + nii[key].value.toLocaleString('he-IL') : '—';
         return `
       <a href="https://www.btl.gov.il/benefits/Long_Term_Care/Pages/nitzoleShoaa.aspx" target="_blank" class="link-item">🏛️  ניצולי שואה – זכאות לתוספת שעות סיעוד - הביטוח הלאומי </a>
       <a href="https://www.kolzchut.org.il/he/%D7%96%D7%9B%D7%95%D7%99%D7%95%D7%AA_%D7%A0%D7%99%D7%A6%D7%95%D7%9C%D7%99_%D7%A9%D7%95%D7%90%D7%94#.D7.A7.D7.A6.D7.91.D7.90.D7.95.D7.AA_.D7.95.D7.A4.D7.95.D7.A8.D7.98.D7.9C.D7.99_.D7.9E.D7.99.D7.93.D7.A2_.D7.9E.D7.A8.D7.9B.D7.96.D7.99.D7.99.D7.9D" target="_blank" class="link-item">🔦 פורטל המידע הלאומי לזכויות ניצולי השואה בישראל - כל זכות</a>
@@ -633,7 +634,7 @@ const RIGHTS_DATA = {
           <li><strong>רנטה גרמנית (BEG):</strong> תשלום חודשי משתנה + תוספת 100-400 יורו</li>
           <li><strong>קרן סעיף 2:</strong> כ-€2,000 לרבעון</li>
           <li><strong>יוצאי רומניה/בולגריה:</strong> זכאים לקצבה מיוחדת — לבירור אישי של כלל הזכויות פנה לרשות לזכויות ניצולי השואה: <a href="https://www.gov.il/he/departments/holocaust-survivors-rights/govil-landing-page" target="_blank">אתר הרשות</a> או חייג *5105</li>
-          <li><strong>תשלום שנתי ועידת התביעות 2026:</strong> ${c('holocaust_claims_conference_monthly')} (1,350€) - לזכאי קרן הסיוע</li>
+          <li><strong>תשלום שנתי ועידת התביעות 2026:</strong> ${c('holocaust_claims_conference_monthly')} (${e('holocaust_claims_conference_euro')}) - לזכאי קרן הסיוע</li>
         </ul>
 
         <h3>🏥 תוספת שעות סיעוד לניצולי שואה</h3>
@@ -734,7 +735,10 @@ const RIGHTS_DATA = {
 
     "summary": {
       "title": "תקציר - השפעות הדדיות בין ההטבות",
-      "content": `
+      "contentFn": function(nii) {
+        const c = key => nii[key] ? '₪' + nii[key].value.toLocaleString('he-IL') : '—';
+        const p = key => nii[key] ? nii[key].value + '%' : '—';
+        return `
         <h2 class="no-accordion">📊 תקציר - השפעות הדדיות בין ההטבות</h2>
 
         <div style="background: #fff3e0; padding: 20px; border-radius: 10px; border-right: 4px solid #ff9800; margin: 20px 0;">
@@ -762,35 +766,35 @@ const RIGHTS_DATA = {
             <tr>
               <td style="padding: 10px; border: 1px solid #ddd; font-weight: bold;">קצבת אזרח ותיק</td>
               <td style="padding: 10px; border: 1px solid #ddd;">גיל פרישה + מבחן הכנסה או גיל 70</td>
-              <td style="padding: 10px; border: 1px solid #ddd;">יחיד: ₪1,838<br>+80: ₪1,941<br>עם בן זוג: ₪2,762<br>ותק: עד 50%<br>דחייה: עד 15-40%</td>
+              <td style="padding: 10px; border: 1px solid #ddd;">יחיד: ${c('pension_single_basic')}<br>+80: ${c('pension_single_over80')}<br>עם בן זוג: ${c('pension_couple_basic')}<br>ותק: עד ${p('seniority_bonus_max')}<br>דחייה: עד ${p('deferral_bonus_max_male')}-${p('deferral_bonus_max_female')}</td>
               <td style="padding: 10px; border: 1px solid #ddd; text-align: center;">כן</td>
               <td style="padding: 10px; border: 1px solid #ddd;">בסיס לזכאות להטבות</td>
             </tr>
             <tr>
               <td style="padding: 10px; border: 1px solid #ddd; font-weight: bold;">השלמת הכנסה</td>
               <td style="padding: 10px; border: 1px solid #ddd;">הכנסות נמוכות + קצבת זקנה</td>
-              <td style="padding: 10px; border: 1px solid #ddd;">יחיד: עד ₪4,375<br>זוג: עד ₪6,912</td>
+              <td style="padding: 10px; border: 1px solid #ddd;">יחיד: עד ${c('income_supplement_single_under70')}<br>זוג: עד ${c('income_supplement_couple_under70')}</td>
               <td style="padding: 10px; border: 1px solid #ddd; text-align: center;">לא</td>
               <td style="padding: 10px; border: 1px solid #ddd;">מזכה בהטבות נוספות</td>
             </tr>
             <tr>
               <td style="padding: 10px; border: 1px solid #ddd; font-weight: bold;">גמלת סיעוד</td>
               <td style="padding: 10px; border: 1px solid #ddd;">גיל פרישה + תלות בזולת</td>
-              <td style="padding: 10px; border: 1px solid #ddd;">רמה 1: ₪1,659<br>רמה 6: ₪7,230<br>או שעות טיפול</td>
+              <td style="padding: 10px; border: 1px solid #ddd;">רמה 1: ${c('nursing_level_1_cash')}<br>רמה 6: ${c('nursing_level_6_cash')}<br>או שעות טיפול</td>
               <td style="padding: 10px; border: 1px solid #ddd; text-align: center;">לא</td>
               <td style="padding: 10px; border: 1px solid #ddd;">ללא השפעה על הטבות אחרות</td>
             </tr>
             <tr>
               <td style="padding: 10px; border: 1px solid #ddd; font-weight: bold;">ניצולי שואה - תוספת סיעוד</td>
               <td style="padding: 10px; border: 1px solid #ddd;">ניצול שואה + גמלת סיעוד רמה 3-6</td>
-              <td style="padding: 10px; border: 1px solid #ddd;">9 שעות שבועיות או ₪2,169</td>
+              <td style="padding: 10px; border: 1px solid #ddd;">9 שעות שבועיות או ${c('holocaust_nursing_hours_9_value')}</td>
               <td style="padding: 10px; border: 1px solid #ddd; text-align: center;">לא</td>
               <td style="padding: 10px; border: 1px solid #ddd;">בנוסף לגמלת סיעוד רגילה</td>
             </tr>
             <tr>
               <td style="padding: 10px; border: 1px solid #ddd; font-weight: bold;">נכות כללית</td>
               <td style="padding: 10px; border: 1px solid #ddd;">נכות רפואית לפני גיל פרישה</td>
-              <td style="padding: 10px; border: 1px solid #ddd;">100%: ₪4,771<br>+ תוספת בן זוג</td>
+              <td style="padding: 10px; border: 1px solid #ddd;">100%: ${c('disability_full')}<br>+ תוספת בן זוג</td>
               <td style="padding: 10px; border: 1px solid #ddd; text-align: center;">כן</td>
               <td style="padding: 10px; border: 1px solid #ddd;">עוברת לקצבת זקנה בגיל פרישה</td>
             </tr>
@@ -814,8 +818,9 @@ const RIGHTS_DATA = {
             <li>שמירה על מסמכים רפואיים ותעסוקתיים חשובה לתביעות</li>
           </ul>
         </div>
-      `,
-      "updatedAt": "2026-01-16T00:00:00.000Z"
+      `;
+      },
+      "updatedAt": "2026-02-01T00:00:00.000Z"
     },
 
     "special_grants": {
