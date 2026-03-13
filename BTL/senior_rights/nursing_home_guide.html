@@ -545,8 +545,15 @@
             }
         `;
         document.head.appendChild(style);
-        function displayContent() {
+        async function displayContent() {
             try {
+                // טעינת ערכי NII
+                let nii = {};
+                try {
+                    const niiResp = await fetch('data/nii-constants.json');
+                    nii = await niiResp.json();
+                } catch(e) { console.warn('NII constants load failed:', e); }
+
                 console.log('🔍 בדיקה נתונים:', typeof NURSING_HOME_DATA);
                 if (typeof NURSING_HOME_DATA === 'undefined') {
                     console.error('❌ NURSING_HOME_DATA לא קיים');
@@ -563,7 +570,7 @@
 
                 // יצירת אקורדיונים ראשיים
                 NURSING_HOME_DATA.sections.forEach((section, index) => {
-                    const contentHtml = buildSectionContent(section);
+                    const contentHtml = buildSectionContent(section, nii);
                     html += `
                         <div class="accordion" data-section="${section.id}">
                             <div class="accordion-header">
@@ -606,36 +613,32 @@
             }
         }
 
-        function buildSectionContent(section) {
+        function buildSectionContent(section, nii) {
             let html = '';
 
             if (section.subsections) {
                 section.subsections.forEach(sub => {
-                    html += buildSubsectionContent(sub, 2);
+                    html += buildSubsectionContent(sub, 2, nii);
                 });
             }
 
             return html;
         }
 
-        function buildSubsectionContent(item, level) {
+        function buildSubsectionContent(item, level, nii) {
             let html = '';
 
             if (item.subsections && item.subsections.length > 0) {
                 // אם יש תת-סעיפים, צור כותרת שתהפוך לאקורדיון
                 html += `<h${level} class="no-accordion">${item.title}</h${level}>`;
                 item.subsections.forEach(sub => {
-                    html += buildSubsectionContent(sub, level + 1);
+                    html += buildSubsectionContent(sub, level + 1, nii);
                 });
             } else {
                 // אם אין תת-סעיפים, צור כותרת רגילה עם תוכן
-                if (level === 2 || level === 3 || level === 4) {
-                    html += `<h${level}>${item.title}</h${level}>`;
-                    html += `<div>${item.content}</div>`;
-                } else {
-                    html += `<h${level}>${item.title}</h${level}>`;
-                    html += `<div>${item.content}</div>`;
-                }
+                const content = item.contentFn ? item.contentFn(nii) : (item.content || '');
+                html += `<h${level}>${item.title}</h${level}>`;
+                html += `<div>${content}</div>`;
             }
 
             return html;

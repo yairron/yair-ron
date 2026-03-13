@@ -4,11 +4,17 @@ const SENIOR_RIGHTS_2026_DATA = {
         {
             icon: "💰",
             title: "קצבת אזרח ותיק (קצבת זקנה)",
-            content: `
+            contentFn: function(nii) {
+                const c = key => nii[key] ? '₪' + nii[key].value.toLocaleString('he-IL') : '—';
+                const v = key => nii[key] ? nii[key].value : 0;
+                const fmt = num => Math.round(num).toLocaleString('he-IL');
+                const p = key => nii[key] ? nii[key].value + '%' : '—';
+                const age = key => nii[key] ? nii[key].value : '—';
+                return `
                 <h2>גילאי פרישה וזכאות</h2>
-                
-                <p><strong>גיל הפרישה לגברים:</strong> 67</p>
-                
+
+                <p><strong>גיל הפרישה לגברים:</strong> ${age('retirement_age_male')}</p>
+
                 <h3>גיל הפרישה לנשים לפי שנת לידה</h3>
                 <div style="background: #E3F2FD; border: 1px solid #BBDEFB; border-radius: 12px; padding: 18px 20px; margin: 12px 0 16px 0;">
                     <p style="color: #1A3A52; margin-bottom: 6px; font-size: 0.95rem;"><strong>📅 מדרגת גיל הפרישה לילידות 1962 הסתיימה ב-31/12/2025</strong></p>
@@ -40,73 +46,78 @@ const SENIOR_RIGHTS_2026_DATA = {
                     <li>נשים שנולדו מ-1.1.1966 עד 31.12.1966: 64 + 4 חודשים</li>
                     <li>נשים שנולדו מ-1.1.1967 ואילך: 65</li>
                 </ul>
-                
+
                 <h3>גיל הזכאות המוחלט</h3>
-                <p><strong>70 - ללא מבחן הכנסות</strong></p>
-                <p>החל מגיל 70, הקצבה משולמת ללא כל מבחן הכנסות, גם למי שעובד ומרוויח.</p>
-                
+                <p><strong>${age('retirement_age_unconditional')} - ללא מבחן הכנסות</strong></p>
+                <p>החל מגיל ${age('retirement_age_unconditional')}, הקצבה משולמת ללא כל מבחן הכנסות, גם למי שעובד ומרוויח.</p>
+
                 <h2>מבחן הכנסות</h2>
-                <p>בין גיל הפרישה לגיל 70: קיים מבחן הכנסות מעבודה</p>
-                
+                <p>בין גיל הפרישה לגיל ${age('retirement_age_unconditional')}: קיים מבחן הכנסות מעבודה</p>
+
                 <h3>תקרות הכנסה לשנת 2026</h3>
-                <p><strong>יחיד:</strong> זכאות מלאה עד 10,113 ₪, זכאות חלקית עד 14,402 ₪, אין זכאות מעל 14,402 ₪</p>
-                <p><strong>נשוי:</strong> זכאות מלאה עד 13,484 ₪, זכאות חלקית עד 20,082 ₪, אין זכאות מעל 20,082 ₪</p>
-                <p><strong>הפחתה:</strong> 60% מההכנסה העודפת מעל התקרה מופחתת מסכום הקצבה</p>
-                
+                <p><strong>יחיד:</strong> זכאות מלאה עד ${c('income_test_single_full')}, זכאות חלקית עד ${c('income_test_single_partial')}, אין זכאות מעל ${c('income_test_single_partial')}</p>
+                <p><strong>נשוי:</strong> זכאות מלאה עד ${c('income_test_married_full')}, זכאות חלקית עד ${c('income_test_married_partial')}, אין זכאות מעל ${c('income_test_married_partial')}</p>
+                <p><strong>הפחתה:</strong> ${p('income_test_deduction_rate')} מההכנסה העודפת מעל התקרה מופחתת מסכום הקצבה</p>
+
                 <p><strong>** חשוב מאוד:</strong> הכנסה מפנסיה (קרן פנסיה, ביטוח מנהלים) אינה נכללת במבחן ההכנסות!</p>
                 <p>רק הכנסות מעבודה (שכיר או עצמאי) והכנסות מנכסים (השכרה, ריבית) נחשבות.</p>
-                
+
                 <h2>סכומי הקצבה הבסיסית לשנת 2026</h2>
                 <p><strong>עדכון:</strong> קצבאות אזרח ותיק עלו ב-2.4% בינואר 2026 (הצמדה למדד המחירים)</p>
-                
+
                 <ul>
-                    <li><strong>יחיד/ה:</strong> 1,838 ₪ לחודש (עליה של 43 ₪ לעומת 2025)</li>
-                    <li><strong>יחיד/ה בגיל 80 ומעלה:</strong> 1,941 ₪ לחודש (תוספת 103 ₪)</li>
-                    <li><strong>יחיד עם בן זוג שאינו מקבל קצבה:</strong> 2,762 ₪ לחודש (עליה של 65 ₪)</li>
-                    <li><strong>זוג שניהם מקבלים:</strong> 1,838 ₪ לכל אחד (3,676 ₪ סה"כ)</li>
-                    <li><strong>תוספת לבן/בת זוג:</strong> 924 ₪</li>
-                    <li><strong>תוספת לכל ילד (עד 2 ילדים):</strong> 581 ₪</li>
+                    <li><strong>יחיד/ה:</strong> ${c('pension_single_basic')} לחודש (עליה של 43 ₪ לעומת 2025)</li>
+                    <li><strong>יחיד/ה בגיל 80 ומעלה:</strong> ${c('pension_single_over80')} לחודש (תוספת 103 ₪)</li>
+                    <li><strong>יחיד עם בן זוג שאינו מקבל קצבה:</strong> ${c('pension_couple_basic')} לחודש (עליה של 65 ₪)</li>
+                    <li><strong>זוג שניהם מקבלים:</strong> ${c('pension_single_basic')} לכל אחד (₪${fmt(v('pension_single_basic') * 2)} סה"כ)</li>
+                    <li><strong>תוספת לבן/בת זוג:</strong> ${c('pension_spouse_supplement')}</li>
+                    <li><strong>תוספת לכל ילד (עד 2 ילדים):</strong> ${c('pension_child_supplement')}</li>
                 </ul>
-                
+
                 <h2>תוספת ותק</h2>
                 <p>תוספת ותק היא תוספת לקצבה בהתאם למספר שנות הביטוח במוסד לביטוח לאומי.</p>
                 <ul>
-                    <li><strong>שיעור:</strong> 2% לכל שנת ביטוח מלאה (12 חודשים), החל מהשנה הראשונה</li>
-                    <li><strong>תוספת מקסימלית:</strong> 50% (עבור <strong>25 שנות ביטוח ומעלה</strong>)</li>
+                    <li><strong>שיעור:</strong> ${p('seniority_bonus_rate')} לכל שנת ביטוח מלאה (12 חודשים), החל מהשנה הראשונה</li>
+                    <li><strong>תוספת מקסימלית:</strong> ${p('seniority_bonus_max')} (עבור <strong>25 שנות ביטוח ומעלה</strong>)</li>
                     <li><strong>חישוב:</strong> על הקצבה הבסיסית + תוספות בני משפחה</li>
-                    <li><strong>דוגמה:</strong> 25 שנות ביטוח = 50% תוספת = 919 ₪ (על 1,838 ₪)</li>
-                    <li><strong>סה"כ עם ותק מקסימלי:</strong> 2,757 ₪ ליחיד</li>
+                    <li><strong>דוגמה:</strong> 25 שנות ביטוח = ${p('seniority_bonus_max')} תוספת = ₪${fmt(v('pension_single_basic') * v('seniority_bonus_max') / 100)} (על ${c('pension_single_basic')})</li>
+                    <li><strong>סה"כ עם ותק מקסימלי:</strong> ₪${fmt(v('pension_single_basic') * (1 + v('seniority_bonus_max') / 100))} ליחיד</li>
                 </ul>
-                <p><strong>** מרבית מקבלי הקצבה זכאים לתוספת ותק של 50% (אחרי 25 שנות ביטוח)</strong></p>
+                <p><strong>** מרבית מקבלי הקצבה זכאים לתוספת ותק של ${p('seniority_bonus_max')} (אחרי 25 שנות ביטוח)</strong></p>
                 <p><a href="https://www.kolzchut.org.il/he/%D7%AA%D7%95%D7%A1%D7%A4%D7%AA_%D7%95%D7%AA%D7%A7_%D7%9C%D7%A7%D7%A6%D7%91%D7%AA_%D7%96%D7%99%D7%A7%D7%A0%D7%94" target="_blank">תוספת ותק באתר כל זכות</a></p>
-                
+
                 <h2>תוספת דחיית קצבה</h2>
                 <p>מי שדוחה את קבלת הקצבה בשל הכנסות מעבודה שעוברות את תקרת הזכאות לקצבת זקנה מלאה, זכאי לתוספת נוספת:</p>
                 <ul>
-                    <li><strong>שיעור:</strong> 5% לכל שנת דחייה</li>
+                    <li><strong>שיעור:</strong> ${p('deferral_bonus_rate')} לכל שנת דחייה</li>
                     <li><strong>תנאי:</strong> דחייה בגלל הכנסות מעבודה בלבד (לא הכנסות אחרות)</li>
-                    <li><strong>תקופת הדחייה:</strong> מגיל פרישה עד גיל 70</li>
-                    <li><strong>תוספת מקסימלית לגבר:</strong> 15% (3 שנות דחייה - מגיל 67 עד 70)</li>
-                    <li><strong>תוספת מקסימלית לאישה:</strong> עד 40% (8 שנות דחייה - תלוי בגיל פרישה)</li>
+                    <li><strong>תקופת הדחייה:</strong> מגיל פרישה עד גיל ${age('retirement_age_unconditional')}</li>
+                    <li><strong>תוספת מקסימלית לגבר:</strong> ${p('deferral_bonus_max_male')} (3 שנות דחייה - מגיל ${age('retirement_age_male')} עד ${age('retirement_age_unconditional')})</li>
+                    <li><strong>תוספת מקסימלית לאישה:</strong> עד ${p('deferral_bonus_max_female')} (8 שנות דחייה - תלוי בגיל פרישה)</li>
                     <li><strong>חישוב:</strong> על הקצבה הבסיסית + תוספת ותק</li>
                 </ul>
                 <p><strong>** חשוב:</strong> תוספת הדחייה אינה משולמת בדיעבד - יש להגיש תביעה לקצבה בזמן אמת</p>
-                
+
                 <h3>דוגמה מקיפה לחישוב קצבה</h3>
-                <p>גבר בן 70, היה מבוטח 25 שנים, דחה קצבה 3 שנים בשל עבודה:</p>
+                <p>גבר בן ${age('retirement_age_unconditional')}, היה מבוטח 25 שנים, דחה קצבה 3 שנים בשל עבודה:</p>
                 <ul>
-                    <li>1. קצבה בסיסית: 1,838 ₪</li>
-                    <li>2. תוספת ותק (50% - מקסימום): 919 ₪</li>
-                    <li>3. קצבה אחרי ותק: 2,757 ₪</li>
-                    <li>4. תוספת דחייה (15% על 2,757): 414 ₪</li>
-                    <li>5. <strong>סה"כ קצבה חודשית: 3,171 ₪</strong></li>
+                    <li>1. קצבה בסיסית: ${c('pension_single_basic')}</li>
+                    <li>2. תוספת ותק (${p('seniority_bonus_max')} - מקסימום): ₪${fmt(v('pension_single_basic') * v('seniority_bonus_max') / 100)}</li>
+                    <li>3. קצבה אחרי ותק: ₪${fmt(v('pension_single_basic') * (1 + v('seniority_bonus_max') / 100))}</li>
+                    <li>4. תוספת דחייה (${p('deferral_bonus_max_male')} על ₪${fmt(v('pension_single_basic') * (1 + v('seniority_bonus_max') / 100))}): ₪${fmt(v('pension_single_basic') * (1 + v('seniority_bonus_max') / 100) * v('deferral_bonus_max_male') / 100)}</li>
+                    <li>5. <strong>סה"כ קצבה חודשית: ₪${fmt(v('pension_single_basic') * (1 + v('seniority_bonus_max') / 100) * (1 + v('deferral_bonus_max_male') / 100))}</strong></li>
                 </ul>
-            `
+            `;
+            }
         },
         {
             icon: "💵",
             title: "גמלת השלמת הכנסה",
-            content: `
+            contentFn: function(nii) {
+                const c = key => nii[key] ? '₪' + nii[key].value.toLocaleString('he-IL') : '—';
+                const v = key => nii[key] ? nii[key].value : 0;
+                const p = key => nii[key] ? nii[key].value + '%' : '—';
+                return `
                 <h2>מדריך מפורט: השלמת הכנסה לקצבת אזרח ותיק (מעודכן לשנת 2026)</h2>
                 <p>חוברת זו מרכזת את המידע העדכני ביותר (נכון לשנת 2026) בנושא תוספת השלמת הכנסה לקצבת אזרח ותיק. התוספת נועדה להבטיח הכנסה מינימלית לקיום בכבוד עבור מי שקצבת הזקנה שלו והכנסותיו האחרות אינן מספיקות.</p>
 
@@ -118,7 +129,7 @@ const SENIOR_RIGHTS_2026_DATA = {
                     <li><strong>קבלת קצבת אזרח ותיק:</strong> המבקש זכאי לקצבה מהביטוח הלאומי.</li>
                     <li><strong>מבחן הכנסות:</strong> סך ההכנסות (מפנסיה, עבודה, נכסים וכו') אינו עולה על "ההכנסה המקסימלית" המזכה.</li>
                     <li><strong>תושבות:</strong> תושב ישראל ב-24 החודשים האחרונים.</li>
-                    <li><strong>מבחן נכסים ורכב:</strong> בבעלות המבקש אין נכסים (מלבד דירת מגורים שבה גר המבוטח) או רכב מעל שווי מסוים (46,317 ₪).</li>
+                    <li><strong>מבחן נכסים ורכב:</strong> בבעלות המבקש אין נכסים (מלבד דירת מגורים שבה גר המבוטח) או רכב מעל שווי מסוים (${c('vehicle_threshold_base')}).</li>
                 </ol>
 
                 <h3>2. זכאות זוגית: שני תרחישים מרכזיים</h3>
@@ -146,30 +157,35 @@ const SENIOR_RIGHTS_2026_DATA = {
                   <thead>
                     <tr style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white;">
                       <th style="padding: 12px; border: 1px solid #ddd;">סוג המשפחה</th>
-                      <th style="padding: 12px; border: 1px solid #ddd;">גיל פרישה עד גיל 80</th>
-                      <th style="padding: 12px; border: 1px solid #ddd;">מגיל 80 ומעלה</th>
+                      <th style="padding: 12px; border: 1px solid #ddd;">גיל פרישה עד 70</th>
+                      <th style="padding: 12px; border: 1px solid #ddd;">גיל 70 עד 80</th>
+                      <th style="padding: 12px; border: 1px solid #ddd;">גיל 80 ומעלה</th>
                     </tr>
                   </thead>
                   <tbody>
                     <tr>
                       <td style="padding: 10px; border: 1px solid #ddd;"><strong>יחיד</strong></td>
-                      <td style="padding: 10px; border: 1px solid #ddd;">4,471 ₪</td>
-                      <td style="padding: 10px; border: 1px solid #ddd;">4,562 ₪</td>
+                      <td style="padding: 10px; border: 1px solid #ddd;">${c('income_supplement_single_under70')}</td>
+                      <td style="padding: 10px; border: 1px solid #ddd;">${c('income_supplement_single_70_80')}</td>
+                      <td style="padding: 10px; border: 1px solid #ddd;">${c('income_supplement_single_over80')}</td>
                     </tr>
                     <tr>
                       <td style="padding: 10px; border: 1px solid #ddd;"><strong>זוג</strong></td>
-                      <td style="padding: 10px; border: 1px solid #ddd;">7,065 ₪</td>
-                      <td style="padding: 10px; border: 1px solid #ddd;">7,208 ₪</td>
+                      <td style="padding: 10px; border: 1px solid #ddd;">${c('income_supplement_couple_under70')}</td>
+                      <td style="padding: 10px; border: 1px solid #ddd;">${c('income_supplement_couple_70_80')}</td>
+                      <td style="padding: 10px; border: 1px solid #ddd;">${c('income_supplement_couple_over80')}</td>
                     </tr>
                     <tr>
                       <td style="padding: 10px; border: 1px solid #ddd;"><strong>יחיד + ילד</strong></td>
-                      <td style="padding: 10px; border: 1px solid #ddd;">6,560 ₪</td>
-                      <td style="padding: 10px; border: 1px solid #ddd;">6,651 ₪</td>
+                      <td style="padding: 10px; border: 1px solid #ddd;">${c('income_supplement_single_1child_under70')}</td>
+                      <td style="padding: 10px; border: 1px solid #ddd;">${c('income_supplement_single_1child_70_80')}</td>
+                      <td style="padding: 10px; border: 1px solid #ddd;">${c('income_supplement_single_1child_over80')}</td>
                     </tr>
                     <tr>
                       <td style="padding: 10px; border: 1px solid #ddd;"><strong>זוג + ילד</strong></td>
-                      <td style="padding: 10px; border: 1px solid #ddd;">8,245 ₪</td>
-                      <td style="padding: 10px; border: 1px solid #ddd;">8,388 ₪</td>
+                      <td style="padding: 10px; border: 1px solid #ddd;">${c('income_supplement_couple_1child_under70')}</td>
+                      <td style="padding: 10px; border: 1px solid #ddd;">${c('income_supplement_couple_1child_70_80')}</td>
+                      <td style="padding: 10px; border: 1px solid #ddd;">${c('income_supplement_couple_1child_over80')}</td>
                     </tr>
                   </tbody>
                 </table>
@@ -177,12 +193,12 @@ const SENIOR_RIGHTS_2026_DATA = {
                 <h3>4. תקרת ההכנסה המזכה</h3>
                 <p>כדי לקבל השלמת הכנסה, הכנסותיך ברוטו (שאינן מעבודה) חייבות להיות נמוכות מהסכומים הבאים:</p>
                 <ul>
-                    <li><strong>יחיד:</strong> פחות מ-4,471 ₪.</li>
-                    <li><strong>זוג:</strong> פחות מ-7,065 ₪.</li>
+                    <li><strong>יחיד:</strong> פחות מ-${c('income_supplement_single_under70')}.</li>
+                    <li><strong>זוג:</strong> פחות מ-${c('income_supplement_couple_under70')}.</li>
                 </ul>
 
                 <h3>5. השפעת הכנסות מעבודה ומפנסיה</h3>
-                
+
                 <h4>הכנסה מפנסיה (קצבה חודשית)</h4>
                 <p>כל שקל שמתקבל מפנסיה (או הכנסה שאינה מעבודה כגון שכירות) מקוזז בשלמותו (100%) מסכום השלמת ההכנסה.</p>
                 <div style="background: #f5f5f5; padding: 10px; border-radius: 5px; margin: 10px 0;">
@@ -190,31 +206,31 @@ const SENIOR_RIGHTS_2026_DATA = {
                 </div>
 
                 <h4>הכנסה מעבודה (שכר)</h4>
-                <p>קיים תמריץ ליציאה לעבודה. חלק מהשכר אינו נספר ("הכנסה פטורה"), ומעבר לו הקיזוז הוא חלקי (60%).</p>
+                <p>קיים תמריץ ליציאה לעבודה. חלק מהשכר אינו נספר ("הכנסה פטורה"), ומעבר לו הקיזוז הוא חלקי (${p('income_test_deduction_rate')}).</p>
                 <ul>
                     <li><strong>הסכום הפטור (נכון ל-2026):</strong>
                         <ul>
-                            <li>ליחיד: כ-2,981 ₪.</li>
-                            <li>לזוג: כ-3,533 ₪.</li>
+                            <li>ליחיד: ${c('work_income_exempt_single')}.</li>
+                            <li>לזוג: ${c('work_income_exempt_couple')}.</li>
                         </ul>
                     </li>
-                    <li><strong>אופן החישוב:</strong> על כל שקל שמעבר לסכום הפטור, מופחתים 60 אגורות מסכום השלמת ההכנסה.</li>
+                    <li><strong>אופן החישוב:</strong> על כל שקל שמעבר לסכום הפטור, מופחתים ${p('income_test_deduction_rate')} מסכום השלמת ההכנסה.</li>
                 </ul>
 
                 <h3>6. השפעת נכסים ורכב</h3>
-                
+
                 <h4>נכסים פיננסיים (חסכונות, פקדונות, מניות)</h4>
                 <p>דירת המגורים שבה גר המבוטח אינה נספרת. נכסים אחרים נבדקים כך:</p>
                 <ul>
-                    <li><strong>סכום פטור ליחיד:</strong> עד 41,528 ₪.</li>
-                    <li><strong>סכום פטור לזוג:</strong> עד 62,292 ₪.</li>
-                    <li><strong>מעבר לפטור:</strong> מחשבים "ריבית רעיונית" שנתית של <strong>4.17%</strong>. היתרה מחולקת ב-12 ומהווה "הכנסה חודשית" המקוזזת מהקצבה.</li>
+                    <li><strong>סכום פטור ליחיד:</strong> עד ${c('imputed_income_exempt_single')}.</li>
+                    <li><strong>סכום פטור לזוג:</strong> עד ${c('imputed_income_exempt_couple')}.</li>
+                    <li><strong>מעבר לפטור:</strong> מחשבים "ריבית רעיונית" שנתית של <strong>${p('imputed_income_rate')}</strong>. היתרה מחולקת ב-12 ומהווה "הכנסה חודשית" המקוזזת מהקצבה.</li>
                 </ul>
 
                 <h4>בעלות על רכב</h4>
                 <p>בעלות על רכב עלולה לשלול זכאות, אלא אם מתקיים אחד מהתנאים הבאים:</p>
                 <ul>
-                    <li>שווי הרכב נמוך מ-46,317 ₪ (והוא הרכב היחיד).</li>
+                    <li>שווי הרכב נמוך מ-${c('vehicle_threshold_base')} (והוא הרכב היחיד).</li>
                     <li>הרכב משמש לצרכים רפואיים (נכות של המבוטח או בן משפחה).</li>
                     <li>המבוטח עובד ומשתכר מעל סכום מסוים וזקוק לרכב כדי להגיע לעבודה.</li>
                 </ul>
@@ -239,15 +255,20 @@ const SENIOR_RIGHTS_2026_DATA = {
                     <li><strong>בריאות:</strong> הנחה ברכישת תרופות.</li>
                     <li><strong>דיור:</strong> סיוע בשכר דירה ממשרד הבינוי והשיכון.</li>
                 </ul>
-            `
+            `;
+            }
         },
         {
             icon: "🏥",
             title: "גמלת סיעוד",
-            content: `
+            contentFn: function(nii) {
+                const c = key => nii[key] ? '₪' + nii[key].value.toLocaleString('he-IL') : '—';
+                const v = key => nii[key] ? nii[key].value : 0;
+                const fmt = num => Math.round(num).toLocaleString('he-IL');
+                return `
                 <h2>גמלת סיעוד</h2>
                 <p>גמלת סיעוד מיועדת לאזרחים ותיקים הזקוקים לעזרה בפעולות יומיומיות.</p>
-                
+
                 <h3>תנאי זכאות</h3>
                 <ul>
                     <li>אזרח ישראל ותושב ישראל</li>
@@ -255,36 +276,42 @@ const SENIOR_RIGHTS_2026_DATA = {
                     <li>תלות בעזרת הזולת לפעולות יומיומיות (רחצה, אכילה, לבוש וכו')</li>
                     <li>עמידה במבחן הכנסות (עבור חצי גמלה)</li>
                 </ul>
-                
+
                 <h3>סכומי גמלת סיעוד 2026</h3>
                 <p><strong>עדכון:</strong> גמלאות סיעוד עלו ב-2.4% בינואר 2026</p>
-                
-                <h4>גמלה מלאה בכסף (ללא העסקת עובד זר)</h4>
+
+                <h4>גמלה מלאה — שווי כספי</h4>
                 <ul>
-                    <li><strong>דרגה 1 (קלה):</strong> 1,659 ₪</li>
-                    <li><strong>דרגה 2:</strong> 2,489 ₪</li>
-                    <li><strong>דרגה 3:</strong> 3,318 ₪</li>
-                    <li><strong>דרגה 4:</strong> 4,976 ₪</li>
-                    <li><strong>דרגה 5:</strong> 5,805 ₪</li>
-                    <li><strong>דרגה 6 (קשה):</strong> 7,238 ₪</li>
+                    <li><strong>דרגה 1 (קלה):</strong> ${c('nursing_level_1_cash')}</li>
+                    <li><strong>דרגה 2:</strong> ${c('nursing_level_2_cash')}</li>
+                    <li><strong>דרגה 3:</strong> ${c('nursing_level_3_cash')}</li>
+                    <li><strong>דרגה 4:</strong> ${c('nursing_level_4_cash')}</li>
+                    <li><strong>דרגה 5:</strong> ${c('nursing_level_5_cash')}</li>
+                    <li><strong>דרגה 6 (קשה):</strong> ${c('nursing_level_6_cash')}</li>
                 </ul>
-                
+
                 <h4>חצי גמלה (עקב מבחן הכנסות)</h4>
                 <ul>
-                    <li><strong>דרגה 1:</strong> 829 ₪</li>
-                    <li><strong>דרגה 6:</strong> 3,618 ₪</li>
+                    <li><strong>דרגה 1:</strong> ₪${fmt(v('nursing_level_1_cash') / 2)}</li>
+                    <li><strong>דרגה 6:</strong> ₪${fmt(v('nursing_level_6_cash') / 2)}</li>
                 </ul>
-                
+
                 <p><strong>** גמלת סיעוד יכולה להינתן גם בשירותים:</strong> מטפל סיעודי, שירותי כביסה, לחצן מצוקה, מרכז יום ועוד</p>
-                
-                <h3>מבחן הכנסות לחצי גמלה</h3>
+
+                <h3>מבחן הכנסות</h3>
+                <p>תקרת הכנסות לקבלת גמלה מלאה:</p>
+                <ul>
+                    <li><strong>יחיד:</strong> עד ${c('nursing_income_test_full_single')} הכנסה חודשית</li>
+                    <li><strong>זוג:</strong> עד ${c('nursing_income_test_full_couple')} הכנסה חודשית</li>
+                </ul>
                 <p>תקרת הכנסות לקבלת חצי גמלה:</p>
                 <ul>
-                    <li><strong>יחיד:</strong> 8,280 ₪ הכנסה חודשית</li>
-                    <li><strong>זוג:</strong> 12,420 ₪ הכנסה חודשית</li>
+                    <li><strong>יחיד:</strong> עד ${c('nursing_income_test_half_single')} הכנסה חודשית</li>
+                    <li><strong>זוג:</strong> עד ${c('nursing_income_test_half_couple')} הכנסה חודשית</li>
                 </ul>
-                <p><strong>** מעל תקרות אלה - זכאות לגמלה מלאה (ללא מבחן הכנסות)</strong></p>
-            `
+                <p><strong>** מעל תקרות אלה — אין זכאות לגמלת סיעוד</strong></p>
+            `;
+            }
         },
         {
             icon: "🕯️",
@@ -298,28 +325,28 @@ const SENIOR_RIGHTS_2026_DATA = {
                     <li>יהודי שהיה בברית המועצות בתקופת המלחמה</li>
                     <li>יהודי שהיה בארצות שסבלו מרדיפות נאציות (צפון אפריקה, עיראק וכו')</li>
                 </ul>
-                
+
                 <h3>קצבאות מיוחדות</h3>
-                
+
                 <h4>תוספת לניצולי שואה לקצבת זקנה</h4>
                 <ul>
                     <li><strong>תוספת חודשית:</strong> כ-4,200 ₪ (הסכום המדויק משתנה)</li>
                     <li>התוספת משולמת באופן אוטומטי למוכרים כניצולי שואה</li>
                 </ul>
-                
+
                 <h4>רנטה מגרמניה</h4>
                 <ul>
                     <li>ניצולי שואה זכאים לרנטה חודשית מגרמניה</li>
                     <li>הסכום משתנה לפי תקופת הרדיפה ומצב הבריאות</li>
                     <li>הרנטה אינה פוגעת בזכאות לקצבאות מביטוח לאומי</li>
                 </ul>
-                
+
                 <h4>קצבת שארים מיוחדת</h4>
                 <ul>
                     <li>אלמן/ת של ניצול שואה זכאי/ת לקצבת שארים מוגדלת</li>
                     <li>הקצבה כוללת את התוספת המיוחדת לניצולי שואה</li>
                 </ul>
-                
+
                 <h3>הטבות נוספות</h3>
                 <ul>
                     <li>פטור מתשלום דמי ביטוח בריאות</li>
@@ -335,39 +362,45 @@ const SENIOR_RIGHTS_2026_DATA = {
         {
             icon: "👥",
             title: "קצבת שארים",
-            content: `
+            contentFn: function(nii) {
+                const c = key => nii[key] ? '₪' + nii[key].value.toLocaleString('he-IL') : '—';
+                const v = key => nii[key] ? nii[key].value : 0;
+                const fmt = num => Math.round(num).toLocaleString('he-IL');
+                const pct = key => nii[key] ? nii[key].value : 0;
+                return `
                 <h2>קצבת שארים</h2>
                 <p>קצבת שארים משולמת לבני משפחה של אדם שנפטר והיה מבוטח בביטוח לאומי.</p>
-                
+
                 <h3>זכאים לקצבה</h3>
                 <ul>
                     <li>אלמן/אלמנה</li>
                     <li>יתומים (עד גיל 18, או עד 22 אם לומדים, או עד 24 אם בשירות צבאי)</li>
                     <li>הורים תלויים (במקרים מסוימים)</li>
                 </ul>
-                
+
                 <h3>סכומי קצבת שארים 2026</h3>
                 <p><strong>עדכון:</strong> קצבת שארים עלתה ב-2.4% בינואר 2026</p>
-                
+
                 <h4>אלמן/אלמנה</h4>
                 <ul>
-                    <li><strong>בסיסי:</strong> 2,392 ₪</li>
-                    <li><strong>עם תוספת ותק (50%):</strong> 3,588 ₪</li>
-                    <li><strong>תוספת לכל ילד:</strong> 716 ₪</li>
+                    <li><strong>בסיסי:</strong> ${c('survivors_widow_over50')}</li>
+                    <li><strong>עם תוספת ותק (${pct('seniority_bonus_max')}%):</strong> ₪${fmt(v('survivors_widow_over50') * (1 + pct('seniority_bonus_max') / 100))}</li>
+                    <li><strong>תוספת לכל ילד:</strong> ${c('survivors_orphan')}</li>
                 </ul>
-                
+
                 <h4>יתום (לכל ילד)</h4>
                 <ul>
-                    <li><strong>יתום מאב או מאם:</strong> 895 ₪</li>
-                    <li><strong>יתום משני הורים:</strong> 1,791 ₪</li>
+                    <li><strong>יתום מאב או מאם:</strong> ${c('survivors_orphan')}</li>
+                    <li><strong>יתום משני הורים:</strong> ${c('orphan_both_parents_first')}</li>
                 </ul>
-                
+
                 <h4>תוספת למשפחה</h4>
                 <ul>
-                    <li><strong>אלמנה + יתום אחד:</strong> 3,588 + 716 = 4,304 ₪</li>
-                    <li><strong>אלמנה + 2 יתומים:</strong> 3,588 + 1,432 = 5,020 ₪</li>
+                    <li><strong>אלמנה + יתום אחד:</strong> ₪${fmt(v('survivors_widow_over50') * (1 + pct('seniority_bonus_max') / 100))} + ${c('survivors_orphan')} = ₪${fmt(v('survivors_widow_over50') * (1 + pct('seniority_bonus_max') / 100) + v('survivors_orphan'))}</li>
+                    <li><strong>אלמנה + 2 יתומים:</strong> ₪${fmt(v('survivors_widow_over50') * (1 + pct('seniority_bonus_max') / 100))} + ₪${fmt(v('survivors_orphan') * 2)} = ₪${fmt(v('survivors_widow_over50') * (1 + pct('seniority_bonus_max') / 100) + v('survivors_orphan') * 2)}</li>
                 </ul>
-            `
+            `;
+            }
         },
         {
             icon: "🎁",
@@ -380,7 +413,7 @@ const SENIOR_RIGHTS_2026_DATA = {
                     <li><strong>מקבלי הבטחת הכנסה:</strong> פטור מלא או חלקי</li>
                     <li>יש לפנות למחלקת הגבייה ברשות המקומית</li>
                 </ul>
-                
+
                 <h2>הנחות במס הכנסה</h2>
                 <h3>נקודות זיכוי נוספות</h3>
                 <ul>
@@ -388,14 +421,14 @@ const SENIOR_RIGHTS_2026_DATA = {
                     <li><strong>ניצולי שואה:</strong> 3 נקודות זיכוי נוספות</li>
                     <li>פטור ממס על קצבת זקנה (עד תקרה מסוימת)</li>
                 </ul>
-                
+
                 <h2>הנחות בתחבורה ציבורית</h2>
                 <ul>
                     <li><strong>גיל 75+:</strong> נסיעות חינם בתחבורה ציבורית</li>
                     <li><strong>גיל 62-74:</strong> הנחה של 50% ברכבת ישראל</li>
                     <li><strong>ניצולי שואה:</strong> נסיעות חינם בכל גיל</li>
                 </ul>
-                
+
                 <h2>הנחות בתרבות ונופש</h2>
                 <ul>
                     <li>כניסה חינם או במחיר מופחת למוזיאונים</li>
@@ -403,7 +436,7 @@ const SENIOR_RIGHTS_2026_DATA = {
                     <li>הנחות בקולנוע ותיאטרון</li>
                     <li>מלונות ובתי הבראה - מחירים מיוחדים לאזרחים ותיקים</li>
                 </ul>
-                
+
                 <h2>שירותי בריאות</h2>
                 <ul>
                     <li>פטור מתשלום השתתפות עצמית (למקבלי השלמת הכנסה)</li>
@@ -411,7 +444,7 @@ const SENIOR_RIGHTS_2026_DATA = {
                     <li>בדיקות גריאטריות תקופתיות</li>
                     <li>שירותי פיזיותרפיה ושיקום</li>
                 </ul>
-                
+
                 <h2>שירותים חברתיים</h2>
                 <ul>
                     <li>מועדוני אזרחים ותיקים</li>
@@ -431,7 +464,7 @@ const SENIOR_RIGHTS_2026_DATA = {
                     <li><strong>טלפון:</strong> *6050 (מוקד טלפוני)</li>
                     <li><strong>שעות פעילות:</strong> ראשון-חמישי 08:00-16:00</li>
                 </ul>
-                
+
                 <h3>מוקדים ייעודיים</h3>
                 <ul>
                     <li><strong>מוקד קצבאות זקנה:</strong> *6050 שלוחה 3</li>
@@ -439,36 +472,36 @@ const SENIOR_RIGHTS_2026_DATA = {
                     <li><strong>מוקד סיעוד:</strong> *6050 שלוחה 5</li>
                     <li><strong>מוקד ניצולי שואה:</strong> *6050 שלוחה 9</li>
                 </ul>
-                
+
                 <h3>סניפי ביטוח לאומי</h3>
                 <p>ניתן למצוא את הסניף הקרוב באתר הביטוח הלאומי.</p>
                 <p>מומלץ לתאם פגישה מראש דרך האתר או בטלפון.</p>
-                
+
                 <h2>ארגונים נוספים</h2>
-                
+
                 <h3>ארגון נכי המלחמה בנאצים</h3>
                 <ul>
                     <li><strong>טלפון:</strong> 03-6838282</li>
                     <li><strong>כתובת:</strong> דרך מנחם בגין 132, תל אביב</li>
                 </ul>
-                
+
                 <h3>קול זכות (מידע על זכויות)</h3>
                 <ul>
                     <li><strong>טלפון:</strong> *6050</li>
                     <li><strong>אתר:</strong> www.kolzchut.org.il</li>
                 </ul>
-                
+
                 <h3>משרד הרווחה - מחלקה גריאטרית</h3>
                 <ul>
                     <li><strong>טלפון:</strong> 02-5085940</li>
                 </ul>
-                
+
                 <h3>אשל - האיגוד הארצי לתכנון ולפיתוח שירותים לזקן בישראל</h3>
                 <ul>
                     <li><strong>טלפון:</strong> 03-6874714</li>
                     <li><strong>אתר:</strong> www.eshelnet.org.il</li>
                 </ul>
-                
+
                 <h2>סיכום והערות חשובות</h2>
                 <ul>
                     <li>1. כל הסכומים במסמך זה מעודכנים לינואר 2026 ועשויים להשתנות במהלך השנה</li>
@@ -479,10 +512,10 @@ const SENIOR_RIGHTS_2026_DATA = {
                     <li>6. למקבלי קצבאות מומלץ לעדכן את פרטיהם (כתובת, חשבון בנק וכו') בזמן</li>
                     <li>7. זכאות לקצבאות עשויה להשתנות עקב שינויים בהכנסות, במצב המשפחתי או במצב הבריאותי</li>
                 </ul>
-                
+
                 <p><strong>מסמך זה הוכן כמדריך כללי ואינו מהווה ייעוץ משפטי או פיננסי.</strong></p>
                 <p><strong>לשאלות ספציפיות יש לפנות למוסד לביטוח לאומי או לגורם מקצועי מתאים.</strong></p>
-                
+
                 <p style="text-align: center; margin-top: 30px;"><strong>עודכן לאחרונה: ינואר 2026</strong></p>
             `
         }

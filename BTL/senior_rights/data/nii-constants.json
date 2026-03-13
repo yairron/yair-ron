@@ -938,35 +938,35 @@
   },
   "nursing_level_2_cash": {
     "id": "NII-118",
-    "value": 2410,
+    "value": 2413,
     "type": "currency",
     "label": "גמלת סיעוד — רמה 2 (שווי כספי)",
     "updated": "2026-01"
   },
   "nursing_level_3_cash": {
     "id": "NII-119",
-    "value": 4097,
+    "value": 4102,
     "type": "currency",
     "label": "גמלת סיעוד — רמה 3 (שווי כספי)",
     "updated": "2026-01"
   },
   "nursing_level_4_cash": {
     "id": "NII-120",
-    "value": 5061,
+    "value": 5066,
     "type": "currency",
     "label": "גמלת סיעוד — רמה 4 (שווי כספי)",
     "updated": "2026-01"
   },
   "nursing_level_5_cash": {
     "id": "NII-121",
-    "value": 6266,
+    "value": 6273,
     "type": "currency",
     "label": "גמלת סיעוד — רמה 5 (שווי כספי)",
     "updated": "2026-01"
   },
   "nursing_level_6_cash": {
     "id": "NII-122",
-    "value": 7230,
+    "value": 7238,
     "type": "currency",
     "label": "גמלת סיעוד — רמה 6 (שווי כספי)",
     "updated": "2026-01"
@@ -1288,5 +1288,112 @@
     "type": "currency",
     "label": "ניכוי דמי ביטוח בריאות מקצבת זקנה — זוג",
     "updated": "2026-01"
+  },
+
+  "holocaust_persecution_enhanced_100": {
+    "id": "NII-183",
+    "value": 13141,
+    "type": "currency",
+    "label": "תגמול מוגדל לפי הכנסה לנכי רדיפות הנאצים — נכות 100% (מקסימום)",
+    "source": "הרשות לזכויות ניצולי השואה",
+    "updated": "2025-07"
+  },
+
+  "cpi_rate_2026": {
+    "id": "NII-184",
+    "value": 2.4,
+    "type": "percent",
+    "label": "שיעור עליית מדד המחירים לצרכן — עדכון ינואר 2026",
+    "updated": "2026-01"
+  },
+
+  "holocaust_persecution_rate_per_pct": {
+    "id": "NII-185",
+    "value": 71.83,
+    "type": "currency",
+    "label": "תגמול חודשי לנכי רדיפות הנאצים — שווי כל אחוז נכות",
+    "source": "https://www.gov.il/he/pages/rights_subject1?chapterIndex=2",
+    "updated": "2026-01"
+  },
+  "holocaust_persecution_min_25pct": {
+    "id": "NII-186",
+    "value": 2861,
+    "type": "currency",
+    "label": "תגמול חודשי לנכי רדיפות הנאצים — מינימום (25% נכות)",
+    "source": "https://www.gov.il/he/pages/rights_subject1?chapterIndex=2",
+    "updated": "2026-01"
+  },
+  "holocaust_persecution_max_100pct": {
+    "id": "NII-187",
+    "value": 7184,
+    "type": "currency",
+    "label": "תגמול חודשי לנכי רדיפות הנאצים — מקסימום (100% נכות)",
+    "source": "https://www.gov.il/he/pages/rights_subject1?chapterIndex=2",
+    "updated": "2026-01"
+  },
+  "holocaust_persecution_enhanced_min_25pct": {
+    "id": "NII-188",
+    "value": 7064,
+    "type": "currency",
+    "label": "תגמול מוגדל למעוטי הכנסה — מינימום (25% נכות)",
+    "source": "https://www.gov.il/he/pages/rights_subject1?chapterIndex=2",
+    "updated": "2026-01"
+  },
+
+  "holocaust_recreation_grant": {
+    "id": "NII-189",
+    "value": 2510,
+    "type": "currency",
+    "label": "מענק הבראה כספי לנכי רדיפות הנאצים",
+    "source": "https://www.gov.il/he/pages/rights_subject1?chapterIndex=2",
+    "updated": "2026-01"
+  },
+  "holocaust_recreation_travel": {
+    "id": "NII-190",
+    "value": 112,
+    "type": "currency",
+    "label": "דמי נסיעות להבראה כספית — נכי רדיפות הנאצים",
+    "source": "https://www.gov.il/he/pages/rights_subject1?chapterIndex=2",
+    "updated": "2026-01"
+  },
+  "holocaust_recreation_travel_treatment": {
+    "id": "NII-191",
+    "value": 171,
+    "type": "currency",
+    "label": "דמי נסיעות להבראה עם טיפולים — נכי רדיפות הנאצים",
+    "source": "https://www.gov.il/he/pages/rights_subject1?chapterIndex=2",
+    "updated": "2026-01"
+  },
+
+  "holocaust_foreign_worker_aid": {
+    "id": "NII-192",
+    "value": 1000,
+    "type": "currency",
+    "label": "סיוע חודשי לעובד זר לניצולי שואה עם דמנציה",
+    "updated": "2026-01"
+  },
+  "holocaust_home_help_aid": {
+    "id": "NII-193",
+    "value": 778,
+    "type": "currency",
+    "label": "סיוע חודשי בעזרה בבית לניצולי שואה",
+    "updated": "2026-01"
+  },
+
+  "holocaust_section2_monthly_euro": {
+    "id": "NII-194",
+    "value": 667,
+    "type": "euro",
+    "label": "קצבת קרן סעיף 2 (ועידת התביעות) — חודשי (באירו)",
+    "note": "בתוקף מאפריל 2024",
+    "updated": "2024-04"
+  },
+  "holocaust_section2_quarterly_euro": {
+    "id": "NII-195",
+    "value": 2001,
+    "type": "euro",
+    "label": "קצבת קרן סעיף 2 (ועידת התביעות) — רבעוני (באירו)",
+    "note": "בתוקף מאפריל 2024",
+    "updated": "2024-04"
   }
 }

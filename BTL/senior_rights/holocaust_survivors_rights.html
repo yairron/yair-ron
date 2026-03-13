@@ -131,6 +131,19 @@
             margin-bottom: 8px;
         }
 
+        .nii-error-banner {
+            display: none;
+            background: #fff3cd;
+            border: 2px solid #f0a500;
+            color: #7a5000;
+            text-align: center;
+            padding: 12px 20px;
+            border-radius: 10px;
+            font-size: 1rem;
+            font-weight: 600;
+            margin-bottom: 20px;
+        }
+
         .update-badge {
             display: inline-block;
             background: rgba(255,255,255,0.2);
@@ -681,6 +694,7 @@
 </head>
 <body>
     <div class="container">
+        <div id="nii-error-banner" class="nii-error-banner">⚠️ הערכים אינם מעודכנים עקב תקלה באתר</div>
         <header>
             <button class="back-button" onclick="window.history.back()">← חזרה</button>
             <h1>🕯️ זכויות ניצולי שואה</h1>
@@ -785,15 +799,15 @@
                     <h4>1️⃣ חוק נכי רדיפות הנאצים</h4>
                     <ul>
                         <li><strong>למי:</strong> עלו לפני 1.10.1953 ויש להם נכות רפואית</li>
-                        <li><strong>סכום:</strong> 2,861-7,184 ₪ לחודש (תלוי באחוז נכות)</li>
-                        <li><strong>חישוב:</strong> כל אחוז נכות = 71.84 ₪</li>
+                        <li><strong>סכום:</strong> <span data-nii="holocaust_persecution_min_25pct">2,861</span>-<span data-nii="holocaust_persecution_max_100pct">7,184</span> ₪ לחודש (תלוי באחוז נכות)</li>
+                        <li><strong>חישוב:</strong> כל אחוז נכות = <span data-nii="holocaust_persecution_rate_per_pct">71.84</span> ₪</li>
                         <li><strong>למי לפנות:</strong> הרשות לזכויות ניצולי השואה - *5105</li>
                     </ul>
 
                     <h4>2️⃣ חוק הטבות לניצולי שואה</h4>
                     <ul>
                         <li><strong>למי:</strong> עלו אחרי 1.10.1953 וקיבלו תשלום מגרמניה</li>
-                        <li><strong>מענק שנתי:</strong> 7,502 ₪ משולם ב-1 בפברואר</li>
+                        <li><strong>מענק שנתי:</strong> <span data-nii="holocaust_annual_grant">7,502</span> ₪ משולם ב-1 בפברואר</li>
                         <li><strong>משולם אוטומטית</strong> אם אושרה בקשה בעבר</li>
                         <li><strong>למי לפנות:</strong> הרשות לזכויות ניצולי השואה - *5105</li>
                     </ul>
@@ -801,16 +815,16 @@
                     <h4>3️⃣ קרן סעיף 2 (ועידת התביעות)</h4>
                     <ul>
                         <li><strong>למי:</strong> שהו במסתור או בזהות בדויה 4+ חודשים</li>
-                        <li><strong>קצבה:</strong> ~2,000 אירו כל 3 חודשים</li>
+                        <li><strong>קצבה:</strong> <span data-nii="holocaust_section2_quarterly_euro">2,001</span> אירו כל 3 חודשים</li>
                         <li><strong>השלמה:</strong> משלוש מישראל אם אחוזי נכות גבוהים מ-40%</li>
                         <li><strong>למי לפנות:</strong> ועידת התביעות - 03-5194400</li>
                     </ul>
 
                     <h4>🎁 הטבות נלוות</h4>
                     <ul>
-                        <li>מענק הבראה: 2,280-3,258 ₪ בשנה</li>
-                        <li>סיוע לעובד זר: 1,000 ₪ לחודש (לדמנציה)</li>
-                        <li>סיוע עזרה בבית: 778 ₪ לחודש</li>
+                        <li>מענק הבראה: <span data-nii="holocaust_recreation_grant">2,510</span> ₪ בשנה</li>
+                        <li>סיוע לעובד זר: <span data-nii="holocaust_foreign_worker_aid">1,000</span> ₪ לחודש (לדמנציה)</li>
+                        <li>סיוע עזרה בבית: <span data-nii="holocaust_home_help_aid">778</span> ₪ לחודש</li>
                         <li>תוספת 9 שעות סיעוד שבועיות (לזכאים)</li>
                     </ul>
                 `
@@ -823,7 +837,7 @@
                     
                     <h4>🔴 תוספת 9 שעות סיעוד שבועיות</h4>
                     <ul>
-                        <li><strong>שווי:</strong> כ-2,169 ₪ לחודש בשעות של מטפל</li>
+                        <li><strong>שווי:</strong> כ-<span data-nii="holocaust_nursing_hours_9_value">2,169</span> ₪ לחודש בשעות של מטפל</li>
                         <li><strong>תנאים:</strong> הכרה כניצול + גמלת סיעוד מלאה + 6 נקודות תלות</li>
                         <li><strong>משולם אוטומטית</strong> - אין צורך בהגשת בקשה</li>
                         <li><strong>למי לפנות:</strong> הקרן לרווחת נפגעי השואה - 03-6090866</li>
@@ -1199,7 +1213,7 @@
                 },
                 recommendation: {
                     title: "💰 בדוק זכאות לתגמול מוגדל",
-                    description: "אם ההכנסה שלך נמוכה, אתה עשוי להיות זכאי לקצבה גבוהה יותר עד 12,017 ₪",
+                    description: "אם ההכנסה שלך נמוכה, אתה עשוי להיות זכאי לקצבה גבוהה יותר עד 13,141 ₪",
                     contact: "הרשות לזכויות ניצולי השואה: *5105"
                 }
             },
@@ -1236,9 +1250,27 @@
         ];
 
         // Initialize page
-        function initializePage() {
+        async function initializePage() {
             buildAccordions();
             buildQuestionnaire();
+            try {
+                const resp = await fetch('data/nii-constants.json');
+                const nii = await resp.json();
+                const v = key => nii[key] ? nii[key].value : null;
+                const fmt = n => n !== null ? Math.round(n).toLocaleString('he-IL') : '—';
+                document.querySelectorAll('[data-nii]').forEach(el => {
+                    const key = el.dataset.nii;
+                    if (nii[key]) el.textContent = nii[key].value.toLocaleString('he-IL');
+                });
+                recommendationsRules[0].recommendation.description = `אתה עשוי להיות זכאי לקצבה חודשית של ${fmt(v('holocaust_persecution_min_25pct'))}-${fmt(v('holocaust_persecution_max_100pct'))} ₪ לפי אחוז נכות`;
+                recommendationsRules[2].recommendation.description = `אתה עשוי להיות זכאי לקצבה תלת-חודשית של ${fmt(v('holocaust_section2_quarterly_euro'))} אירו`;
+                recommendationsRules[3].recommendation.description = `אם לא מקבל קצבה חודשית, אתה עשוי להיות זכאי למענק שנתי של ${fmt(v('holocaust_annual_grant'))} ₪`;
+                recommendationsRules[4].recommendation.description = `ניתן לבקש החמרה בקצבה ותוספת 9 שעות סיעוד שבועיות (~${fmt(v('holocaust_nursing_hours_9_value'))} ₪)`;
+                recommendationsRules[5].recommendation.description = `אם ההכנסה שלך נמוכה, אתה עשוי להיות זכאי לקצבה גבוהה יותר עד ${fmt(v('holocaust_persecution_enhanced_100'))} ₪`;
+            } catch(e) {
+                console.warn('NII load failed', e);
+                document.getElementById('nii-error-banner').style.display = 'block';
+            }
         }
 
         function buildAccordions() {

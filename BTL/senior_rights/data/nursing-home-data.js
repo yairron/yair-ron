@@ -97,7 +97,11 @@ const NURSING_HOME_DATA = {
             },
             {
               "title": "שלב 6: חישוב ההשתתפות העצמית",
-              "content": "<h4>מי מחשב?</h4><p>ועדה כלכלית של משרד הבריאות</p><h4>זמן תשובה:</h4><p>עד 13 ימי עבודה מקבלת כל המסמכים</p><h4>אופן החישוב (בסדר יורד - cascade):</h4><ol><li><strong>הכנסות שוטפות</strong> של המועמד/ת ובן/בת זוג - קצבאות, פנסיה, גמלאות</li><li><strong>הכנסות מנכסי מקרקעין</strong> של המועמד/ת ובן/בת זוג - שכר דירה (אם משכירים את הדירה)</li><li><strong>נכסים כספיים</strong> של המועמד/ת ובן/בת זוג - חסכונות מעל 20,000 ₪</li><li><strong>הכנסות שוטפות של הילדים</strong> (מעל גיל 21, המתגוררים בישראל)</li></ol><h4>עקרונות חישוב:</h4><ul><li>הגביה מתבצעת <strong>בסדר יורד</strong> - רק אם אין מספיק מהשלב הקודם</li><li>קיימת הפחתה של 500 ₪ מההשתתפות של כל ילד (מאז 2019)</li><li>טווח ההשתתפות: בין 37% מקצבת זקנה ועד לכיסוי מלא</li></ul><h4>⚠️ נקודות חשובות:</h4><ul><li>קשיש יחיד עם דירה - <strong>חייב להשכיר</strong> את הדירה ולהעביר את השכר למשרד</li><li>חסכונות מעל 20,000 ₪ - עלולים לדחות את הקוד עד שהחסכונות יירדו</li></ul><h4>🧮 כלי עזר:</h4><p>קיים <a href='https://me.health.gov.il/older-adult/services-rights/hospitalization/nursing-hospitalization/nursing-code-calculator/' target='_blank' style='color:#4A90B5;font-weight:600;'>מחשבון קוד סיעודי מקוון</a> באתר משרד הבריאות לסימולציה ראשונית</p>"
+              contentFn: (nii) => {
+                const v = key => nii[key] ? nii[key].value : 0;
+                const fmt = n => Math.round(n).toLocaleString('he-IL');
+                return `<h4>מי מחשב?</h4><p>ועדה כלכלית של משרד הבריאות</p><h4>זמן תשובה:</h4><p>עד 13 ימי עבודה מקבלת כל המסמכים</p><h4>אופן החישוב (בסדר יורד - cascade):</h4><ol><li><strong>הכנסות שוטפות</strong> של המועמד/ת ובן/בת זוג - קצבאות, פנסיה, גמלאות</li><li><strong>הכנסות מנכסי מקרקעין</strong> של המועמד/ת ובן/בת זוג - שכר דירה (אם משכירים את הדירה)</li><li><strong>נכסים כספיים</strong> של המועמד/ת ובן/בת זוג - חסכונות מעל ${fmt(v('nursing_home_savings_threshold'))} ₪</li><li><strong>הכנסות שוטפות של הילדים</strong> (מעל גיל 21, המתגוררים בישראל)</li></ol><h4>עקרונות חישוב:</h4><ul><li>הגביה מתבצעת <strong>בסדר יורד</strong> - רק אם אין מספיק מהשלב הקודם</li><li>קיימת הפחתה של ${fmt(v('nursing_home_children_deduction'))} ₪ מההשתתפות של כל ילד (מאז 2019)</li><li>טווח ההשתתפות: בין 37% מקצבת זקנה ועד לכיסוי מלא</li></ul><h4>⚠️ נקודות חשובות:</h4><ul><li>קשיש יחיד עם דירה - <strong>חייב להשכיר</strong> את הדירה ולהעביר את השכר למשרד</li><li>חסכונות מעל ${fmt(v('nursing_home_savings_threshold'))} ₪ - עלולים לדחות את הקוד עד שהחסכונות יירדו</li></ul><h4>🧮 כלי עזר:</h4><p>קיים <a href='https://me.health.gov.il/older-adult/services-rights/hospitalization/nursing-hospitalization/nursing-code-calculator/' target='_blank' style='color:#4A90B5;font-weight:600;'>מחשבון קוד סיעודי מקוון</a> באתר משרד הבריאות לסימולציה ראשונית</p>`;
+              }
             },
             {
               "title": "שלב 7: חתימה על התחייבויות",
@@ -115,7 +119,11 @@ const NURSING_HOME_DATA = {
         },
         {
           "title": "סכומים ומימון",
-          "content": "<h4>מימון משרד הבריאות:</h4><p>עד <strong>10,000 ₪</strong> לחודש למוסד</p><h4>עלויות בית אבות סיעודי:</h4><p>בדרך כלל בין <strong>12,000-20,000+ ₪</strong> לחודש</p><h4>ההשתתפות העצמית:</h4><p>ההפרש בין המימון לעלות המלאה</p><h4>מה כולל המימון?</h4><ul><li>✅ טיפול סיעודי והשגחה רפואית 24/7</li><li>✅ דיור, ארוחות, חשמל, מים</li><li>✅ תרופות וטיפולים רפואיים</li><li>✅ פיזיותרפיה, ריפוי בעיסוק</li><li>✅ מוצרי ספיגה, מתקני עזר</li><li>✅ פעילויות חברתיות ותרבותיות</li><li>✅ שירותי כביסה וניקיון</li></ul><h4>⚠️ חשוב:</h4><p>התשלום למוסד הוא <strong>יחיד</strong> - אסור למוסד לגבות תשלומים נוספים!</p>"
+          contentFn: (nii) => {
+            const v = key => nii[key] ? nii[key].value : 0;
+            const fmt = n => Math.round(n).toLocaleString('he-IL');
+            return `<h4>מימון משרד הבריאות:</h4><p>עד <strong>${fmt(v('nursing_home_health_ministry_max'))} ₪</strong> לחודש למוסד</p><h4>עלויות בית אבות סיעודי:</h4><p>בדרך כלל בין <strong>${fmt(v('nursing_home_cost_min'))}-${fmt(v('nursing_home_cost_max'))}+ ₪</strong> לחודש</p><h4>ההשתתפות העצמית:</h4><p>ההפרש בין המימון לעלות המלאה</p><h4>מה כולל המימון?</h4><ul><li>✅ טיפול סיעודי והשגחה רפואית 24/7</li><li>✅ דיור, ארוחות, חשמל, מים</li><li>✅ תרופות וטיפולים רפואיים</li><li>✅ פיזיותרפיה, ריפוי בעיסוק</li><li>✅ מוצרי ספיגה, מתקני עזר</li><li>✅ פעילויות חברתיות ותרבותיות</li><li>✅ שירותי כביסה וניקיון</li></ul><h4>⚠️ חשוב:</h4><p>התשלום למוסד הוא <strong>יחיד</strong> - אסור למוסד לגבות תשלומים נוספים!</p>`;
+          }
         },
         {
           "title": "\"טרום קוד\" - פתרון זמני",
@@ -157,7 +165,11 @@ const NURSING_HOME_DATA = {
             },
             {
               "title": "שלב 5: קביעת ההשתתפות העצמית",
-              "content": "<h4>הקשיש ובן/בת הזוג:</h4><ul><li>העברת <strong>80%</strong> מקצבת הזקנה למימון בית אבות</li><li>אם יש פנסיה: העברת <strong>כל הפנסיה</strong> + <strong>65%</strong> מקצבת הזקנה</li><li>השארת כ-<strong>500 ₪</strong> \"דמי כיס\" לקשיש</li></ul><h4>הילדים:</h4><ul><li>השתתפות נוספת בהתאם להכנסותיהם</li><li>קיימת מדרגיות: ככל שההכנסה גבוהה יותר - ההשתתפות גבוהה יותר</li><li>ילד שכבר משלם עבור הורה אחר - לא ישלם פעמיים</li><li>התחשבות בהוצאות מיוחדות (ילדים, משכנתא, ילד נכה)</li></ul><h4>מימון משרד הרווחה:</h4><p>ההפרש בין עלות בית האבות לבין ההשתתפויות</p>"
+              contentFn: (nii) => {
+                const v = key => nii[key] ? nii[key].value : 0;
+                const fmt = n => Math.round(n).toLocaleString('he-IL');
+                return `<h4>הקשיש ובן/בת הזוג:</h4><ul><li>העברת <strong>80%</strong> מקצבת הזקנה למימון בית אבות</li><li>אם יש פנסיה: העברת <strong>כל הפנסיה</strong> + <strong>65%</strong> מקצבת הזקנה</li><li>השארת כ-<strong>${fmt(v('nursing_home_pocket_money'))} ₪</strong> "דמי כיס" לקשיש</li></ul><h4>הילדים:</h4><ul><li>השתתפות נוספת בהתאם להכנסותיהם</li><li>קיימת מדרגיות: ככל שההכנסה גבוהה יותר - ההשתתפות גבוהה יותר</li><li>ילד שכבר משלם עבור הורה אחר - לא ישלם פעמיים</li><li>התחשבות בהוצאות מיוחדות (ילדים, משכנתא, ילד נכה)</li></ul><h4>מימון משרד הרווחה:</h4><p>ההפרש בין עלות בית האבות לבין ההשתתפויות</p>`;
+              }
             },
             {
               "title": "שלב 6: ועדת הצבה",
@@ -175,7 +187,11 @@ const NURSING_HOME_DATA = {
         },
         {
           "title": "סכומים ומימון",
-          "content": "<h4>עלויות בית אבות לעצמאיים/תשושים:</h4><p>בדרך כלל <strong>8,000-13,000 ₪</strong> לחודש</p><h4>מה כולל?</h4><ul><li>✅ דיור וארוחות (3 עיקריות + ביניים)</li><li>✅ חשמל ומים</li><li>✅ שירותי ניקיון</li><li>✅ טיפול רפואי שוטף</li><li>✅ פעילויות חברתיות ותרבותיות</li><li>✅ חוגים והעשרה</li></ul><h4>מה לא כלול?</h4><ul><li>❌ תרופות</li><li>❌ שירותי אמבולנס</li><li>❌ כבלים וטלפון</li></ul>"
+          contentFn: (nii) => {
+            const v = key => nii[key] ? nii[key].value : 0;
+            const fmt = n => Math.round(n).toLocaleString('he-IL');
+            return `<h4>עלויות בית אבות לעצמאיים/תשושים:</h4><p>בדרך כלל <strong>${fmt(v('nursing_home_independent_min'))}-${fmt(v('nursing_home_independent_max'))} ₪</strong> לחודש</p><h4>מה כולל?</h4><ul><li>✅ דיור וארוחות (3 עיקריות + ביניים)</li><li>✅ חשמל ומים</li><li>✅ שירותי ניקיון</li><li>✅ טיפול רפואי שוטף</li><li>✅ פעילויות חברתיות ותרבותיות</li><li>✅ חוגים והעשרה</li></ul><h4>מה לא כלול?</h4><ul><li>❌ תרופות</li><li>❌ שירותי אמבולנס</li><li>❌ כבלים וטלפון</li></ul>`;
+          }
         },
         {
           "title": "ערעור והתנגדות",
@@ -190,7 +206,11 @@ const NURSING_HOME_DATA = {
       "subsections": [
         {
           "title": "השוואה: משרד הבריאות vs משרד הרווחה",
-          "content": "<table style='width:100%;border-collapse:collapse;'><tr style='background:#f0f0f0;'><th style='border:1px solid #ddd;padding:10px;text-align:right;'>קריטריון</th><th style='border:1px solid #ddd;padding:10px;text-align:right;'>משרד הבריאות</th><th style='border:1px solid #ddd;padding:10px;text-align:right;'>משרד הרווחה</th></tr><tr><td style='border:1px solid #ddd;padding:10px;'><strong>אוכלוסיית יעד</strong></td><td style='border:1px solid #ddd;padding:10px;'>סיעודיים, תשושי נפש</td><td style='border:1px solid #ddd;padding:10px;'>עצמאיים, תשושי גוף</td></tr><tr><td style='border:1px solid #ddd;padding:10px;'><strong>רמת טיפול</strong></td><td style='border:1px solid #ddd;padding:10px;'>24 שעות ביממה</td><td style='border:1px solid #ddd;padding:10px;'>חלקי, לא מסביב לשעון</td></tr><tr><td style='border:1px solid #ddd;padding:10px;'><strong>לאן פונים?</strong></td><td style='border:1px solid #ddd;padding:10px;'>לשכת הבריאות המחוזית</td><td style='border:1px solid #ddd;padding:10px;'>מחלקה לשירותים חברתיים</td></tr><tr><td style='border:1px solid #ddd;padding:10px;'><strong>סוג בתי אבות</strong></td><td style='border:1px solid #ddd;padding:10px;'>ברישיון משרד הבריאות</td><td style='border:1px solid #ddd;padding:10px;'>ברישיון משרד הרווחה</td></tr><tr><td style='border:1px solid #ddd;padding:10px;'><strong>משך תהליך</strong></td><td style='border:1px solid #ddd;padding:10px;'>1-3 חודשים</td><td style='border:1px solid #ddd;padding:10px;'>2-3 חודשים</td></tr><tr><td style='border:1px solid #ddd;padding:10px;'><strong>מימון ממשלתי</strong></td><td style='border:1px solid #ddd;padding:10px;'>עד 10,000 ₪ לחודש</td><td style='border:1px solid #ddd;padding:10px;'>משתנה - ההפרש בין עלות להשתתפות</td></tr><tr><td style='border:1px solid #ddd;padding:10px;'><strong>עלות בית אבות</strong></td><td style='border:1px solid #ddd;padding:10px;'>12,000-20,000+ ₪</td><td style='border:1px solid #ddd;padding:10px;'>8,000-13,000 ₪</td></tr><tr><td style='border:1px solid #ddd;padding:10px;'><strong>מה כלול?</strong></td><td style='border:1px solid #ddd;padding:10px;'>כולל תרופות וטיפולים</td><td style='border:1px solid #ddd;padding:10px;'>לא כולל תרופות</td></tr><tr><td style='border:1px solid #ddd;padding:10px;'><strong>השתתפות מהקשיש</strong></td><td style='border:1px solid #ddd;padding:10px;'>לפי חישוב מורכב</td><td style='border:1px solid #ddd;padding:10px;'>80% קצבה או 100% פנסיה + 65% קצבה</td></tr><tr><td style='border:1px solid #ddd;padding:10px;'><strong>השתתפות הילדים</strong></td><td style='border:1px solid #ddd;padding:10px;'>לפי הכנסה - מדורג</td><td style='border:1px solid #ddd;padding:10px;'>לפי הכנסה - מדורג</td></tr><tr><td style='border:1px solid #ddd;padding:10px;'><strong>תוקף אישור</strong></td><td style='border:1px solid #ddd;padding:10px;'>3 חודשים למימוש</td><td style='border:1px solid #ddd;padding:10px;'>ללא הגבלת זמן</td></tr><tr><td style='border:1px solid #ddd;padding:10px;'><strong>אפשרות \"טרום קוד\"</strong></td><td style='border:1px solid #ddd;padding:10px;'>כן, בחלק מהמקומות</td><td style='border:1px solid #ddd;padding:10px;'>לא</td></tr></table>"
+          contentFn: (nii) => {
+            const v = key => nii[key] ? nii[key].value : 0;
+            const fmt = n => Math.round(n).toLocaleString('he-IL');
+            return `<table style='width:100%;border-collapse:collapse;'><tr style='background:#f0f0f0;'><th style='border:1px solid #ddd;padding:10px;text-align:right;'>קריטריון</th><th style='border:1px solid #ddd;padding:10px;text-align:right;'>משרד הבריאות</th><th style='border:1px solid #ddd;padding:10px;text-align:right;'>משרד הרווחה</th></tr><tr><td style='border:1px solid #ddd;padding:10px;'><strong>אוכלוסיית יעד</strong></td><td style='border:1px solid #ddd;padding:10px;'>סיעודיים, תשושי נפש</td><td style='border:1px solid #ddd;padding:10px;'>עצמאיים, תשושי גוף</td></tr><tr><td style='border:1px solid #ddd;padding:10px;'><strong>רמת טיפול</strong></td><td style='border:1px solid #ddd;padding:10px;'>24 שעות ביממה</td><td style='border:1px solid #ddd;padding:10px;'>חלקי, לא מסביב לשעון</td></tr><tr><td style='border:1px solid #ddd;padding:10px;'><strong>לאן פונים?</strong></td><td style='border:1px solid #ddd;padding:10px;'>לשכת הבריאות המחוזית</td><td style='border:1px solid #ddd;padding:10px;'>מחלקה לשירותים חברתיים</td></tr><tr><td style='border:1px solid #ddd;padding:10px;'><strong>סוג בתי אבות</strong></td><td style='border:1px solid #ddd;padding:10px;'>ברישיון משרד הבריאות</td><td style='border:1px solid #ddd;padding:10px;'>ברישיון משרד הרווחה</td></tr><tr><td style='border:1px solid #ddd;padding:10px;'><strong>משך תהליך</strong></td><td style='border:1px solid #ddd;padding:10px;'>1-3 חודשים</td><td style='border:1px solid #ddd;padding:10px;'>2-3 חודשים</td></tr><tr><td style='border:1px solid #ddd;padding:10px;'><strong>מימון ממשלתי</strong></td><td style='border:1px solid #ddd;padding:10px;'>עד ${fmt(v('nursing_home_health_ministry_max'))} ₪ לחודש</td><td style='border:1px solid #ddd;padding:10px;'>משתנה - ההפרש בין עלות להשתתפות</td></tr><tr><td style='border:1px solid #ddd;padding:10px;'><strong>עלות בית אבות</strong></td><td style='border:1px solid #ddd;padding:10px;'>${fmt(v('nursing_home_cost_min'))}-${fmt(v('nursing_home_cost_max'))}+ ₪</td><td style='border:1px solid #ddd;padding:10px;'>${fmt(v('nursing_home_independent_min'))}-${fmt(v('nursing_home_independent_max'))} ₪</td></tr><tr><td style='border:1px solid #ddd;padding:10px;'><strong>מה כלול?</strong></td><td style='border:1px solid #ddd;padding:10px;'>כולל תרופות וטיפולים</td><td style='border:1px solid #ddd;padding:10px;'>לא כולל תרופות</td></tr><tr><td style='border:1px solid #ddd;padding:10px;'><strong>השתתפות מהקשיש</strong></td><td style='border:1px solid #ddd;padding:10px;'>לפי חישוב מורכב</td><td style='border:1px solid #ddd;padding:10px;'>80% קצבה או 100% פנסיה + 65% קצבה</td></tr><tr><td style='border:1px solid #ddd;padding:10px;'><strong>השתתפות הילדים</strong></td><td style='border:1px solid #ddd;padding:10px;'>לפי הכנסה - מדורג</td><td style='border:1px solid #ddd;padding:10px;'>לפי הכנסה - מדורג</td></tr><tr><td style='border:1px solid #ddd;padding:10px;'><strong>תוקף אישור</strong></td><td style='border:1px solid #ddd;padding:10px;'>3 חודשים למימוש</td><td style='border:1px solid #ddd;padding:10px;'>ללא הגבלת זמן</td></tr><tr><td style='border:1px solid #ddd;padding:10px;'><strong>אפשרות "טרום קוד"</strong></td><td style='border:1px solid #ddd;padding:10px;'>כן, בחלק מהמקומות</td><td style='border:1px solid #ddd;padding:10px;'>לא</td></tr></table>`;
+          }
         },
         {
           "title": "מסמכים נדרשים - סיכום משווה",
@@ -366,7 +386,11 @@ const NURSING_HOME_DATA = {
           "subsections": [
             {
               "title": "כמה עולה בית אבות סיעודי?",
-              "content": "<p><strong>חדר משותף:</strong> 14,000-21,000 ₪/חודש</p><p><strong>חדר פרטי:</strong> 22,500-34,000 ₪/חודש</p><p><strong>תשושי נפש:</strong> דומה</p><p>המחיר תלוי במיקום ובמוסד.</p>"
+              contentFn: (nii) => {
+                const v = key => nii[key] ? nii[key].value : 0;
+                const fmt = n => Math.round(n).toLocaleString('he-IL');
+                return `<p><strong>חדר משותף:</strong> ${fmt(v('nursing_home_shared_room_min'))}-${fmt(v('nursing_home_shared_room_max'))} ₪/חודש</p><p><strong>חדר פרטי:</strong> ${fmt(v('nursing_home_private_room_min'))}-${fmt(v('nursing_home_private_room_max'))} ₪/חודש</p><p><strong>תשושי נפש:</strong> דומה</p><p>המחיר תלוי במיקום ובמוסד.</p>`;
+              }
             },
             {
               "title": "האם יש סיוע מהמדינה במימון?",
@@ -394,7 +418,11 @@ const NURSING_HOME_DATA = {
             },
             {
               "title": "האם יש פגיעה בקצבת הזקנה?",
-              "content": "<ul><li>הקצבה <strong>לא מבוטלת</strong></li><li>אבל רובה עובר למימון בית האבות</li><li>נשאר \"דמי כיס\" של כ-500 ₪</li></ul>"
+              contentFn: (nii) => {
+                const v = key => nii[key] ? nii[key].value : 0;
+                const fmt = n => Math.round(n).toLocaleString('he-IL');
+                return `<ul><li>הקצבה <strong>לא מבוטלת</strong></li><li>אבל רובה עובר למימון בית האבות</li><li>נשאר "דמי כיס" של כ-${fmt(v('nursing_home_pocket_money'))} ₪</li></ul>`;
+              }
             },
             {
               "title": "מה אם ילד גר בחו\"ל?",

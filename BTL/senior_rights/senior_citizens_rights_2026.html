@@ -599,7 +599,15 @@
             if (labelEl) labelEl.textContent = ageLabel;
         }
 
-        function displayContent() {
+        let NII_CONSTANTS = {};
+
+        async function displayContent() {
+            try {
+                const resp = await fetch('data/nii-constants.json');
+                NII_CONSTANTS = await resp.json();
+            } catch(e) {
+                console.warn('⚠️ לא ניתן לטעון nii-constants.json, משתמש בערכי ברירת מחדל');
+            }
             try {
                 console.log('🔍 בדיקה נתונים:', typeof SENIOR_RIGHTS_2026_DATA);
                 if (typeof SENIOR_RIGHTS_2026_DATA === 'undefined') {
@@ -626,7 +634,7 @@
                             </div>
                             <div class="accordion-content">
                                 <div class="accordion-body">
-                                    ${section.content}
+                                    ${typeof section.contentFn === 'function' ? section.contentFn(NII_CONSTANTS) : (section.content || '')}
                                 </div>
                             </div>
                         </div>
