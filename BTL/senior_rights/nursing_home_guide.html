@@ -490,10 +490,23 @@
                 padding: 25px;
             }
         }
+        .nii-error-banner {
+            display: none;
+            background: #fff3cd;
+            border: 2px solid #f0a500;
+            color: #7a5000;
+            text-align: center;
+            padding: 12px 20px;
+            border-radius: 10px;
+            font-size: 1rem;
+            font-weight: 600;
+            margin-bottom: 20px;
+        }
     </style>
 </head>
 <body>
     <div class="container">
+        <div id="nii-error-banner" class="nii-error-banner">⚠️ הערכים אינם מעודכנים עקב תקלה באתר</div>
         <header>
             <a href="../index.html" class="back-button">חזרה לדף ראשי</a>
             <h1>📋 מדריך מפורט בנושא מוסד אישפוז</h1>
@@ -552,7 +565,10 @@
                 try {
                     const niiResp = await fetch('data/nii-constants.json');
                     nii = await niiResp.json();
-                } catch(e) { console.warn('NII constants load failed:', e); }
+                } catch(e) {
+                    console.warn('NII constants load failed:', e);
+                    document.getElementById('nii-error-banner').style.display = 'block';
+                }
 
                 console.log('🔍 בדיקה נתונים:', typeof NURSING_HOME_DATA);
                 if (typeof NURSING_HOME_DATA === 'undefined') {

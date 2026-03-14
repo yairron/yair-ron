@@ -450,6 +450,13 @@
     "label": "שיעור ריבית רעיונית שנתי על חסכונות",
     "updated": "2026-01"
   },
+  "imputed_income_rate_decimal": {
+    "id": "NII-064b",
+    "value": 0.0417,
+    "type": "rate",
+    "label": "שיעור ריבית רעיונית שנתי על חסכונות (עשרוני לחישוב)",
+    "updated": "2026-01"
+  },
   "imputed_income_bracket_threshold": {
     "id": "NII-065",
     "value": 117173,
@@ -570,9 +577,16 @@
     "label": "מדור לצורך השלמת הכנסה — עובד מעל גיל פרישה (17% מהשכר הממוצע)",
     "updated": "2026-01"
   },
+  "vehicle_deduction_rate": {
+    "id": "NII-082",
+    "value": 0.03,
+    "type": "rate",
+    "label": "שיעור חישוב שווי הרכב להפחתה מהשלמת הכנסה (3%)",
+    "updated": "2026-01"
+  },
 
   "transition_grant_income_allowed": {
-    "id": "NII-082",
+    "id": "NII-082b",
     "value": 10120,
     "type": "currency",
     "label": "הכנסה מותרת לעניין מענק מעבר לנשים",
@@ -1110,13 +1124,6 @@
     "updated": "2026-01"
   },
 
-  "disabled_child_100": {
-    "id": "NII-134",
-    "value": 3820,
-    "type": "currency",
-    "label": "גמלת ילד נכה — נכות 100%",
-    "updated": "2026-01"
-  },
   "disabled_child_ventilated": {
     "id": "NII-135",
     "value": 10774,

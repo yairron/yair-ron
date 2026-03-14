@@ -1,70 +1,209 @@
 {
   "id": "vehicle-income-supplement",
-  "title": "זכאות לתוספת הבטחת הכנסה עם רכב",
-  "description": "בדיקת זכאות לתוספת הבטחת הכנסה כאשר שווי הרכב מעל הסכום המירבי (65,343 ₪ - 01.2026)",
+  "title": "השפעת הרכב על תוספת הבטחת הכנסה",
+  "description": "בדיקת זכאות וחישוב ההפחתה מתוספת הבטחת הכנסה בשל שווי הרכב (01.2026)",
   "source": "המוסד לביטוח לאומי",
   "questions": [
     {
-      "id": "q1_license",
-      "type": "yesno",
-      "question": "יש לך רישיון נהיגה בר תוקף?",
+      "id": "q0_vehicle_count",
+      "type": "radio",
+      "question": "כמה כלי רכב יש בבעלותך, בשימושך, או בבעלות/שימוש בן/בת זוגך או ילדך הגר/ה איתך?",
       "options": [
-        { "value": "yes", "label": "כן", "next": "q2_authorized" },
-        { "value": "no", "label": "לא", "next": "q4_special_cases" }
+        { "value": "one",      "label": "רכב אחד",        "next": "q1_vehicle_value" },
+        { "value": "two_plus", "label": "שניים ומעלה",    "next": "q0b_two_vehicles" }
       ]
     },
     {
-      "id": "q2_authorized",
+      "id": "q0b_two_vehicles",
+      "type": "radio",
+      "question": "יש לך שני כלי רכב או יותר. האם מתקיים אחד מהמקרים הבאים?",
+      "description": "בדרך כלל, שני כלי רכב שוללים זכאות לתוספת. אך יש חריג אחד לתקופה של עד 3 חודשים:",
+      "options": [
+        { "value": "disability_transport", "label": "אחד הרכבים משמש להסעת ילד נכה או מקבל קצבת ניידות", "next": "q1_vehicle_value_second" },
+        { "value": "new_car",              "label": "רכשת רכב חדש ועדיין לא הספקת למכור את הישן (הורה לילד נכה / מקבל קצבת ניידות) — עד 3 חודשים", "result": "eligible_3months" },
+        { "value": "none",                 "label": "אף אחד מאלה", "result": "not_eligible_two_vehicles" }
+      ]
+    },
+    {
+      "id": "q1_vehicle_value_second",
+      "type": "number_input",
+      "question": "מה שווי הרכב השני (שאינו מיועד להסעת הנכה) לפי מחירון לוי יצחק? (בש\"ח)",
+      "description": "הרכב המיועד להסעת הנכה אינו נכנס לתחשיב. הזן את שווי הרכב השני בלבד.",
+      "placeholder": "0",
+      "suffix": "₪",
+      "storeAs": "vehicle_value",
+      "conditionalNext": [
+        { "if": { "gt": "vehicleRules.extendedThreshold" }, "next": "q2e_exceptions" },
+        { "else": "q3_retirement_age" }
+      ]
+    },
+    {
+      "id": "q1_vehicle_value",
+      "type": "number_input",
+      "question": "מה שווי הרכב לפי מחירון לוי יצחק? (בש\"ח)",
+      "description": "ניתן לבדוק שווי רכב באתר מחירון לוי יצחק.",
+      "placeholder": "0",
+      "suffix": "₪",
+      "storeAs": "vehicle_value",
+      "conditionalNext": [
+        { "if": { "gt": "vehicleRules.extendedThreshold" }, "next": "q2a_license" },
+        { "else": "q3_retirement_age" }
+      ]
+    },
+    {
+      "id": "q2a_license",
+      "type": "yesno",
+      "question": "האם יש לך רישיון נהיגה בר-תוקף?",
+      "options": [
+        { "value": "yes", "label": "כן", "next": "q2b_nii_auth" },
+        { "value": "no",  "label": "לא", "next": "q2e_exceptions" }
+      ]
+    },
+    {
+      "id": "q2b_nii_auth",
       "type": "yesno",
       "question": "הורשית על ידי המוסד לביטוח לאומי לנהוג ברכבו של המוגבל בניידות?",
       "options": [
-        { "value": "yes", "label": "כן", "next": "q3_proximity" },
-        { "value": "no", "label": "לא", "next": "q4_special_cases" }
+        { "value": "yes", "label": "כן", "next": "q2c_proximity" },
+        { "value": "no",  "label": "לא", "next": "q2e_exceptions" }
       ]
     },
     {
-      "id": "q3_proximity",
+      "id": "q2c_proximity",
       "type": "yesno",
-      "question": "האם אתה קרוב משפחה או מטפל הגר עם המוגבל בניידות באותו בניין או בניין סמוך שהמרחק בינו לבית המוגבל בניידות אינו עולה על 1500 מטר בקו אווירי (אלא אם אלה הבניינים הקרובים ביותר זה לזה באותו תחום יישוב)?",
+      "question": "האם אתה קרוב משפחה של המוגבל בניידות, או מטפל הגר עמו — באותו בניין או בבניין סמוך שהמרחק בינכם אינו עולה על 1,500 מטר בקו אווירי?",
+      "description": "לרבות: אם אלה הבניינים הקרובים ביותר זה לזה באותו תחום יישוב, גם אם המרחק עולה על 1,500 מטר.",
       "options": [
-        { "value": "yes", "label": "כן", "result": "eligible" },
-        { "value": "no", "label": "לא", "next": "q4_special_cases" }
+        { "value": "yes", "label": "כן", "result": "eligible_permanent" },
+        { "value": "no",  "label": "לא", "next": "q2e_exceptions" }
       ]
     },
     {
-      "id": "q4_special_cases",
+      "id": "q2e_exceptions",
       "type": "radio",
-      "question": "האם מתקיים אחד מהמקרים הבאים?",
+      "question": "גם כאשר שווי הרכב עולה על {rules.vehicleRules.extendedThreshold} ₪, הזכאות אינה נשללת במקרים הבאים. האם מתקיים אחד מהם?",
       "options": [
-        { "value": "authorized_driver", "label": "הוכרת כמורשה נהיגה ברכב של מי שזכאי לקצבת ניידות (גם אם הנכה אינו בן זוגך או ילדך)", "result": "eligible" },
-        { "value": "leg_disability", "label": "אתה, בן/בת זוגך או ילדך נכה ברגליו והוכר על ידי רופא המוסד", "result": "eligible" },
-        { "value": "child_disability_allowance", "label": "לילדך משולמת גמלה לילד נכה", "result": "eligible" },
-        { "value": "license_deposited", "label": "אתה או בן/בת זוגך חולים, ורישיון הרכב של החולה הופקד במשרד הרישוי", "result": "eligible" },
-        { "value": "transporting_sick", "label": "אתה מסיע ברכבך בן משפחה חולה לצורך טיפולים רפואיים ובתדירות גבוהה (האישור יינתן בהתאם לחוות דעת של רופא הביטוח הלאומי)", "result": "eligible" },
-        { "value": "two_vehicles", "label": "אתה הורה לילד נכה או מקבל ניידות, ויש בבעלותך או בשימושך שני כלי רכב - קנית רכב חדש ועדיין לא הספקת למכור את הרכב הישן", "result": "eligible_3_months" },
-        { "value": "child_allowance_ended", "label": "אתה הורה לילד נכה, וסיימה הזכאות לקצבת ילד נכה", "result": "eligible_3_months" },
-        { "value": "widowed_no_license", "label": "אתה אלמן או אלמנה, אין לך רישיון נהיגה, ובן הזוג שנפטר היה בעלים של הרכב", "result": "eligible_3_months" },
-        { "value": "owner_deceased_imprisoned", "label": "נקבעה זכאות לקצבה לבעל רכב על פי הכללים המפורטים, ובעל הרכב נפטר או שנכנס למאסר או למעצר", "result": "eligible_3_months" },
-        { "value": "none", "label": "אף אחד מאלה", "result": "not_eligible" }
+        { "value": "leg_disability",      "label": "אתה, בן/בת זוגך או ילדך נכה ברגליו והוכר על ידי רופא המוסד לביטוח לאומי",                                                                                          "result": "eligible_permanent" },
+        { "value": "child_disability",    "label": "לילדך משולמת גמלת ילד נכה",                                                                                                                                          "result": "eligible_permanent" },
+        { "value": "license_deposited",   "label": "אתה או בן/בת זוגך חולים, ורישיון הרכב של החולה הופקד במשרד הרישוי",                                                                                                 "result": "eligible_permanent" },
+        { "value": "transporting_sick",   "label": "אתה מסיע ברכבך בן משפחה חולה לצורך טיפולים רפואיים ובתדירות גבוהה (טעון אישור רופא ביטוח לאומי)",                                                                  "result": "eligible_permanent" },
+        { "value": "child_end",           "label": "אתה הורה לילד נכה, וסיימה הזכאות לגמלת ילד נכה (עד 3 חודשים)",                                                                                                      "result": "eligible_3months"   },
+        { "value": "widowed_no_license",  "label": "אתה אלמן/ה, אין לך רישיון נהיגה, ובן הזוג שנפטר היה בעלים של הרכב (עד 3 חודשים)",                                                                                  "result": "eligible_3months"   },
+        { "value": "owner_deceased",      "label": "נקבעה זכאות לתוספת לבעל הרכב, ובעל הרכב נפטר או נכנס למאסר/מעצר (עד 3 חודשים)",                                                                                    "result": "eligible_3months"   },
+        { "value": "none",                "label": "אף אחד מאלה",                                                                                                                                                         "result": "not_eligible_high_value" }
+      ]
+    },
+    {
+      "id": "q3_retirement_age",
+      "type": "yesno",
+      "question": "האם אתה או בן/בת זוגך הגעתם לגיל פרישה?",
+      "description": "גיל פרישה: 67 לגברים. לנשים — בין 62 ל-65 בהתאם לשנת הלידה.",
+      "options": [
+        { "value": "yes", "label": "כן", "storeAs": { "retirement_age": "yes" }, "next": "q4_work_status" },
+        { "value": "no",  "label": "לא", "storeAs": { "retirement_age": "no" },  "next": "q4_work_status" }
+      ]
+    },
+    {
+      "id": "q4_work_status",
+      "type": "radio",
+      "question": "מה מצב העסקה שלך?",
+      "options": [
+        { "value": "working",     "label": "עובד/ת שכיר/ה או עצמאי/ת",  "storeAs": { "work_status": "working" },     "next": "q5_work_income" },
+        { "value": "not_working", "label": "אינני עובד/ת",               "storeAs": { "work_status": "not_working", "work_income": 0 }, "next": "q4b_not_working_special" }
+      ]
+    },
+    {
+      "id": "q4b_not_working_special",
+      "type": "radio",
+      "question": "האם אחד מהמצבים הבאים מתאר את מצבך?",
+      "description": "במקרים מסוימים, גם מי שאינו עובד נחשב כ'עובד' לצורך חישוב שווי הרכב.",
+      "options": [
+        { "value": "dismissed",    "label": "פוטרת/התפטרת (ב-3 החודשים האחרונים), אתה זכאי לדמי אבטלה, וב-3 החודשים לפני כן קיבלת קצבת הבטחת הכנסה", "storeAs": { "dismissed_grace": "yes" }, "next": "q4c_dismissed_income" },
+        { "value": "income_drop",  "label": "הכנסתי ירדה (ב-3 החודשים האחרונים) וב-3 החודשים לפני הירידה קיבלתי קצבת הבטחת הכנסה",                 "storeAs": { "income_drop_grace": "yes" }, "next": "q6_special_status" },
+        { "value": "none",         "label": "אף אחד מאלה",                                                                                                "next": "q6_special_status" }
+      ]
+    },
+    {
+      "id": "q4c_dismissed_income",
+      "type": "number_input",
+      "question": "מה הייתה הכנסתך החודשית מעבודה לפני הפיטורין? (בש\"ח)",
+      "description": "לצורך חישוב שווי הרכב בתקופת המעבר, אתה נחשב כמי שעובד בהכנסה זו.",
+      "placeholder": "0",
+      "suffix": "₪ לחודש",
+      "storeAs": "work_income",
+      "next": "q6_special_status"
+    },
+    {
+      "id": "q5_work_income",
+      "type": "number_input",
+      "question": "מה הכנסתך החודשית מעבודה? (בש\"ח)",
+      "description": "הזן את ההכנסה הברוטו מעבודה בחודש. סף ההכנסה הגבוהה: {rules.vehicleRules.workIncomeThreshold.regular} ₪/חודש (לפני גיל פרישה) או {rules.vehicleRules.workIncomeThreshold.retirement} ₪/חודש (מגיל פרישה).",
+      "placeholder": "0",
+      "suffix": "₪ לחודש",
+      "storeAs": "work_income",
+      "next": "q6_special_status"
+    },
+    {
+      "id": "q6_special_status",
+      "type": "yesno",
+      "question": "האם אתה מקבל קצבת שאירים מהביטוח הלאומי, או קצבת תלויים בנפגע עבודה?",
+      "options": [
+        { "value": "yes", "label": "כן", "storeAs": { "special_status": "special"  }, "result": "calculate_vehicle_deduction" },
+        { "value": "no",  "label": "לא", "storeAs": { "special_status": "regular"  }, "result": "calculate_vehicle_deduction" }
       ]
     }
   ],
   "results": {
-    "eligible": {
-      "status": "success",
-      "title": "זכאי לתוספת הבטחת הכנסה",
-      "message": "לא תישלל תוספת הבטחת הכנסה עקב הרכב"
-    },
-    "eligible_3_months": {
-      "status": "warning",
-      "title": "זכאי לתוספת הבטחת הכנסה עד 3 חודשים",
-      "message": "הזכאות לתוספת הבטחת הכנסה היא לתקופה של עד 3 חודשים בלבד"
-    },
-    "not_eligible": {
+    "not_eligible_two_vehicles": {
       "status": "error",
-      "title": "לא זכאי לתוספת הבטחת הכנסה",
-      "message": "תוספת הבטחת הכנסה תישלל עקב הרכב בשווי מעל הסכום המירבי"
+      "title": "לא זכאי/ת לתוספת הבטחת הכנסה",
+      "message": "בעלות על שניים או יותר כלי רכב שוללת זכאות לתוספת הבטחת הכנסה."
+    },
+    "eligible_3months": {
+      "status": "warning",
+      "title": "זכאי/ת לתוספת — לתקופה של עד 3 חודשים",
+      "message": "במקרה שתיארת, הרכב אינו שולל זכאות לתוספת הבטחת הכנסה — אך רק לתקופה של עד 3 חודשים. לאחר מכן יש לפנות לביטוח הלאומי לבחינה מחדש."
+    },
+    "eligible_permanent": {
+      "status": "success",
+      "title": "הרכב אינו שולל זכאות לתוספת",
+      "message": "על פי המקרה שתיארת, הרכב אינו שולל את הזכאות לתוספת הבטחת הכנסה, גם אם שוויו עולה על {rules.vehicleRules.extendedThreshold} ₪. יש לפנות לביטוח הלאומי לאישור רשמי."
+    },
+    "not_eligible_high_value": {
+      "status": "error",
+      "title": "לא זכאי/ת לתוספת הבטחת הכנסה",
+      "message": "שווי הרכב עולה על {rules.vehicleRules.extendedThreshold} ₪ ואף אחד מהחריגים אינו מתקיים — הזכאות לתוספת הבטחת הכנסה נשללת בשל הרכב. לפרטים ניתן לפנות לביטוח הלאומי (*6050)."
+    },
+    "calculate_vehicle_deduction": {
+      "status": "info",
+      "title": "חישוב השפעת הרכב על תוספת הבטחת הכנסה",
+      "dynamic": true,
+      "type": "calculate_vehicle"
     }
   },
-  "disclaimer": "שאלון זה למטרות הערכה בלבד. הזכאות הסופית לתוספת הבטחת הכנסה תיקבע על ידי פקיד מוסמך של המוסד לביטוח הלאומי בעבודתו בהוראות החוק וחוקי הביטוח הלאומי."
+  "calculationRules": {
+    "vehicleRules": {
+      "extendedThreshold": 65343,
+      "baseThreshold": 46138,
+      "deductionRate": 0.03,
+      "deductions": {
+        "high_income_worker": 19610,
+        "other": 11227
+      },
+      "workIncomeThreshold": {
+        "regular": 3442,
+        "retirement": 2341
+      }
+    }
+  },
+  "niiMapping": {
+    "vehicleRules.extendedThreshold":           "vehicle_threshold_extended",
+    "vehicleRules.baseThreshold":               "vehicle_threshold_base",
+    "vehicleRules.deductions.high_income_worker":"vehicle_exempt_worker",
+    "vehicleRules.deductions.other":            "vehicle_exempt_non_worker",
+    "vehicleRules.workIncomeThreshold.regular":  "housing_allowance_worker_before_retirement",
+    "vehicleRules.workIncomeThreshold.retirement":"housing_allowance_worker_after_retirement",
+    "vehicleRules.deductionRate":                "vehicle_deduction_rate"
+  },
+  "disclaimer": "שאלון זה למטרות הערכה בלבד. הזכאות הסופית תיקבע על ידי פקיד מוסמך של המוסד לביטוח הלאומי בהתאם להוראות החוק."
 }

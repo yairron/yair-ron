@@ -5,7 +5,7 @@
   "source": "המוסד לביטוח לאומי",
   "intro": {
     "title": "מהי הכנסה רעיונית מנכסים?",
-    "content": "<p>בבדיקת הזכאות לתוספת השלמת הכנסה, הביטוח הלאומי מחשב <strong>הכנסה רעיונית</strong> מנכסים שבבעלותך - גם אם אינך מקבל מהם הכנסה בפועל.</p><h4>אילו נכסים נלקחים בחשבון?</h4><ul><li><strong>נכסים פיננסיים:</strong> חסכונות, פיקדונות, תוכניות חיסכון, קרנות השתלמות, ניירות ערך, קופות גמל</li><li><strong>נדל\\\"ן:</strong> דירה נוספת (מעבר לדירת המגורים), קרקע, נכס מסחרי, משק חקלאי</li><li><strong>רכוש אחר:</strong> רכב ששוויו מעל 65,343₪ (למעט חריגים)</li></ul><h4>מה לא נלקח בחשבון?</h4><ul><li>דירת המגורים שלך</li><li>רכב ששוויו עד 65,343₪</li><li>כספים בקופת גמל שאינם ניתנים למשיכה</li><li>פיצויי פיטורין שלא נמשכו</li></ul><h4>כיצד מחושבת ההכנסה הרעיונית?</h4><p>החישוב נעשה <strong>בשני חלקים</strong>:</p><ul><li><strong>חלק א\\' - חישוב בסיסי (4.17%):</strong> הסכום שמעל סכום הפטור (<strong>48,472₪ ליחיד / 62,292₪ לזוג</strong>) מוכפל בשיעור הריבית של 4.17% ומחולק ב-12 חודשים</li><li><strong>חלק ב\\' - חישוב מדרגות:</strong> הסכום שמעל 117,173₪ מחולק למדרגות לפי גיל ומצב משפחתי:<ul style=\\\"margin-top: 5px;\\\"><li><strong>מתחת לגיל 55:</strong> ליחידים - רק 3% ו-5% (אין 1.5%). לזוגות - 1.5%, 3%, 5%</li><li><strong>גיל 55 ומעלה:</strong> ליחידים ולזוגות - 1.5%, 3%, 5% (תקרות שונות לכל קבוצה)</li></ul></li></ul><p style=\\\"margin-top: 10px;\\\"><strong>הכנסה רעיונית סופית = חלק א\\' + חלק ב\\'</strong></p><p>ההכנסה הרעיונית המחושבת מתווספת להכנסותיך ועשויה להשפיע על גובה תוספת השלמת ההכנסה.</p>",
+    "content": "<p>בבדיקת הזכאות לתוספת השלמת הכנסה, הביטוח הלאומי מחשב <strong>הכנסה רעיונית</strong> מנכסים שבבעלותך - גם אם אינך מקבל מהם הכנסה בפועל.</p><h4>אילו נכסים נלקחים בחשבון?</h4><ul><li><strong>נכסים פיננסיים:</strong> חסכונות, פיקדונות, תוכניות חיסכון, קרנות השתלמות, ניירות ערך, קופות גמל</li><li><strong>נדל\"ן:</strong> דירה נוספת (מעבר לדירת המגורים), קרקע, נכס מסחרי, משק חקלאי</li><li><strong>רכוש אחר:</strong> רכב ששוויו מעל {rules.vehicleRules.extendedThreshold}₪ (למעט חריגים)</li></ul><h4>מה לא נלקח בחשבון?</h4><ul><li>דירת המגורים שלך</li><li>רכב ששוויו עד {rules.vehicleRules.extendedThreshold}₪</li><li>כספים בקופת גמל שאינם ניתנים למשיכה</li><li>פיצויי פיטורין שלא נמשכו</li></ul><h4>כיצד מחושבת ההכנסה הרעיונית?</h4><p>החישוב נעשה <strong>בשני חלקים</strong>:</p><ul><li><strong>חלק א' - חישוב בסיסי ({rules.assetRules.baseRateDisplay}%):</strong> הסכום שמעל סכום הפטור (<strong>{rules.assetRules.exemptions.single}₪ ליחיד / {rules.assetRules.exemptions.couple}₪ לזוג</strong>) מוכפל בשיעור הריבית של {rules.assetRules.baseRateDisplay}% ומחולק ב-12 חודשים</li><li><strong>חלק ב' - חישוב מדרגות:</strong> הסכום שמעל {rules.assetRules.tierThreshold}₪ מחולק למדרגות לפי גיל ומצב משפחתי:<ul style=\"margin-top: 5px;\"><li><strong>מתחת לגיל 55:</strong> ליחידים - רק {rules.assetRules.bracket2Rate}% ו-{rules.assetRules.bracket3Rate}% (אין {rules.assetRules.bracket1Rate}%). לזוגות - {rules.assetRules.bracket1Rate}%, {rules.assetRules.bracket2Rate}%, {rules.assetRules.bracket3Rate}%</li><li><strong>גיל 55 ומעלה:</strong> ליחידים ולזוגות - {rules.assetRules.bracket1Rate}%, {rules.assetRules.bracket2Rate}%, {rules.assetRules.bracket3Rate}% (תקרות שונות לכל קבוצה)</li></ul></li></ul><p style=\"margin-top: 10px;\"><strong>הכנסה רעיונית סופית = חלק א' + חלק ב'</strong></p><p>ההכנסה הרעיונית המחושבת מתווספת להכנסותיך ועשויה להשפיע על גובה תוספת השלמת ההכנסה.</p>",
     "buttonText": "המשך לחישוב"
   },
   "questions": [
@@ -41,7 +41,7 @@
         {
           "id": "liquid_assets",
           "label": "שווי כספים נזילים",
-          "description": "עו\"ש, פיקדונות, חסכונות, תוכניות חיסכון. פטור עד 41,528₪ ליחיד",
+          "description": "עו\"ש, פיקדונות, חסכונות, תוכניות חיסכון. פטור עד {rules.assetRules.exemptions.single}₪ ליחיד",
           "type": "currency"
         },
         {
@@ -71,6 +71,65 @@
       "title": "תוצאות החישוב",
       "message": "להלן סיכום הנכסים וההכנסה הרעיונית המחושבת"
     }
+  },
+  "calculationRules": {
+    "assetRules": {
+      "baseRate": 0.0417,
+      "baseRateDisplay": 4.17,
+      "tierThreshold": 117173,
+      "tier3Rate": 0.05,
+      "bracket1Rate": 1.5,
+      "bracket2Rate": 3,
+      "bracket3Rate": 5,
+      "exemptions": {
+        "single": 41528,
+        "couple": 62292
+      },
+      "profiles": {
+        "single_under55": {
+          "hasTier1_5pct": false,
+          "tier1": 131995,
+          "tier2": 999999999,
+          "tier1Rate": 0.03,
+          "tier2Rate": 0.05
+        },
+        "couple_under55": {
+          "hasTier1_5pct": true,
+          "tier1": 194287,
+          "tier2": 311460,
+          "tier1Rate": 0.015,
+          "tier2Rate": 0.03
+        },
+        "single_55plus": {
+          "hasTier1_5pct": true,
+          "tier1": 48939,
+          "tier2": 166112,
+          "tier1Rate": 0.015,
+          "tier2Rate": 0.03
+        },
+        "couple_55plus": {
+          "hasTier1_5pct": true,
+          "tier1": 256579,
+          "tier2": 373752,
+          "tier1Rate": 0.015,
+          "tier2Rate": 0.03
+        }
+      }
+    },
+    "vehicleRules": {
+      "extendedThreshold": 65343
+    }
+  },
+  "niiMapping": {
+    "assetRules.baseRate":             "imputed_income_rate_decimal",
+    "assetRules.exemptions.single":    "imputed_income_exempt_single",
+    "assetRules.exemptions.couple":    "imputed_income_exempt_couple",
+    "assetRules.baseRateDisplay":      "imputed_income_rate",
+    "assetRules.tierThreshold":        "imputed_income_bracket_threshold",
+    "assetRules.bracket1Rate":         "imputed_income_bracket_rate_1",
+    "assetRules.bracket2Rate":         "imputed_income_bracket_rate_2",
+    "assetRules.bracket3Rate":         "imputed_income_bracket_rate_3",
+    "vehicleRules.extendedThreshold":  "vehicle_threshold_extended"
   },
   "disclaimer": "שאלון זה למטרות הערכה בלבד. הזכאות הסופית לתוספת הבטחת הכנסה תיקבע על ידי פקיד מוסמך של המוסד לביטוח הלאומי בעבודתו בהוראות החוק וחוקי הביטוח הלאומי."
 }

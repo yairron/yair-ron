@@ -42,7 +42,7 @@ class QuestionnaireEngine {
     }
 
     /**
-     * Load questionnaire data from JSON file
+     * Load questionnaire data from JSON file, then apply NII mapping if defined
      */
     async loadData() {
         const response = await fetch(this.jsonPath);
@@ -50,6 +50,36 @@ class QuestionnaireEngine {
             throw new Error(`HTTP error! status: ${response.status}`);
         }
         this.data = await response.json();
+
+        if (this.data.niiMapping) {
+            try {
+                const niiPath = this.jsonPath.replace(/questionnaires\/[^/]+\.json$/, 'data/nii-constants.json');
+                const niiResp = await fetch(niiPath);
+                if (niiResp.ok) {
+                    const nii = await niiResp.json();
+                    this.applyNiiMapping(nii);
+                }
+            } catch(e) {
+                console.warn('⚠️ לא ניתן לטעון nii-constants.json — משתמש בערכי ברירת מחדל', e);
+            }
+        }
+    }
+
+    /**
+     * Apply niiMapping: populate calculationRules fields from nii-constants.json values
+     */
+    applyNiiMapping(nii) {
+        if (!this.data.calculationRules) this.data.calculationRules = {};
+        Object.entries(this.data.niiMapping).forEach(([rulePath, niiKey]) => {
+            if (nii[niiKey]?.value === undefined) return;
+            const parts = rulePath.split('.');
+            let obj = this.data.calculationRules;
+            for (let i = 0; i < parts.length - 1; i++) {
+                if (!obj[parts[i]]) obj[parts[i]] = {};
+                obj = obj[parts[i]];
+            }
+            obj[parts[parts.length - 1]] = nii[niiKey].value;
+        });
     }
 
     /**
@@ -110,10 +140,18 @@ class QuestionnaireEngine {
      */
     showIntro() {
         const intro = this.data.intro;
+        const backToParentHtml = this.parentState ? `
+            <button class="back-to-previous" id="btn-back-to-parent">
+                <span class="back-arrow">→</span>
+                <span>חזרה לשאלון הראשי</span>
+            </button>
+        ` : '';
+
         this.contentEl.innerHTML = `
             <div class="intro-container">
+                ${backToParentHtml}
                 <h3 class="intro-title">${intro.title}</h3>
-                <div class="intro-content">${intro.content}</div>
+                <div class="intro-content">${this.resolveDescriptionTemplates(intro.content)}</div>
                 <button class="btn btn-primary intro-button" id="btn-start">
                     ${intro.buttonText || 'המשך'}
                 </button>
@@ -129,6 +167,12 @@ class QuestionnaireEngine {
                     this.showQuestion(firstQuestion.id);
                 }
             });
+        }
+
+        // Setup back-to-parent button listener
+        const backToParentBtn = this.contentEl.querySelector('#btn-back-to-parent');
+        if (backToParentBtn) {
+            backToParentBtn.addEventListener('click', () => this.returnFromSubQuestionnaire(undefined, 'not_eligible'));
         }
     }
 
@@ -175,6 +219,10 @@ class QuestionnaireEngine {
         const backBtn = this.contentEl.querySelector('#btn-back');
         if (backBtn) {
             backBtn.addEventListener('click', () => this.goBack());
+        }
+        const backToParentBtn = this.contentEl.querySelector('#btn-back-to-parent');
+        if (backToParentBtn) {
+            backToParentBtn.addEventListener('click', () => this.returnFromSubQuestionnaire(undefined, 'not_eligible'));
         }
     }
 
@@ -239,17 +287,24 @@ class QuestionnaireEngine {
             </button>
         ` : '';
 
+        const backToParentHtml = (!showBackButton && this.parentState) ? `
+            <button class="back-to-previous" id="btn-back-to-parent">
+                <span class="back-arrow">→</span>
+                <span>חזרה לשאלון הראשי</span>
+            </button>
+        ` : '';
+
         const descriptionHtml = question.description
             ? `<div class="question-description">${this.resolveDescriptionTemplates(question.description)}</div>`
             : '';
 
         return `
             <div class="question-container" data-question-id="${question.id}">
-                ${backButtonHtml}
+                ${backButtonHtml}${backToParentHtml}
                 <div class="question-header">
                     <div class="question-number">שאלה ${questionNumber}</div>
                 </div>
-                <div class="question-text">${question.question}</div>
+                <div class="question-text">${this.resolveDescriptionTemplates(question.question)}</div>
                 ${descriptionHtml}
                 <div class="options-container ${question.type === 'yesno' ? 'options-yesno' : ''}">
                     ${optionsHtml}
@@ -294,7 +349,7 @@ class QuestionnaireEngine {
             <button class="option-button ${opt.value === 'yes' ? 'yes-btn' : 'no-btn'}"
                     data-value="${opt.value}"
                     data-question-id="${question.id}">
-                ${opt.label}
+                ${this.resolveDescriptionTemplates(opt.label)}
             </button>
         `).join('');
     }
@@ -307,7 +362,7 @@ class QuestionnaireEngine {
             <button class="option-button"
                     data-value="${opt.value}"
                     data-question-id="${question.id}">
-                ${opt.label}
+                ${this.resolveDescriptionTemplates(opt.label)}
             </button>
         `).join('');
     }
@@ -347,7 +402,7 @@ class QuestionnaireEngine {
             return `
                 <div class="asset-field">
                     <label for="asset-${field.id}">${field.label}</label>
-                    <p class="asset-field-description">${field.description}</p>
+                    <p class="asset-field-description">${this.resolveDescriptionTemplates(field.description)}</p>
                     <div class="asset-input-wrapper">
                         <input type="number"
                                id="asset-${field.id}"
@@ -433,13 +488,13 @@ class QuestionnaireEngine {
                 label: `${value.toLocaleString('he-IL')}₪`
             };
 
-            // Go to next question
-            if (question.next) {
-                // If next references a result key, show the result directly
-                if (this.data.results && this.data.results[question.next]) {
-                    this.showResult(question.next);
+            // Go to next question — conditionalNext takes priority over next
+            const nextId = this.resolveConditionalNext(question, value) || question.next;
+            if (nextId) {
+                if (this.data.results && this.data.results[nextId]) {
+                    this.showResult(nextId);
                 } else {
-                    this.showQuestion(question.next);
+                    this.showQuestion(nextId);
                 }
             }
         });
@@ -450,6 +505,33 @@ class QuestionnaireEngine {
                 submitBtn.click();
             }
         });
+    }
+
+    /**
+     * Resolve conditionalNext: evaluate conditions against a numeric value and calculationRules.
+     * Each condition: { "if": { "gt"|"gte"|"lt"|"lte": "rules.path" }, "next": "..." }
+     * Last entry may be { "else": "..." }
+     */
+    resolveConditionalNext(question, numericValue) {
+        if (!question.conditionalNext) return null;
+        const rules = this.data.calculationRules || {};
+        const resolvePath = path => path.split('.').reduce((obj, k) => obj?.[k], rules);
+
+        for (const cond of question.conditionalNext) {
+            if (cond.else !== undefined) return cond.else;
+            if (cond.if) {
+                const [op, rulePath] = Object.entries(cond.if)[0];
+                const threshold = resolvePath(rulePath);
+                if (threshold === undefined) continue;
+                const match =
+                    (op === 'gt'  && numericValue >  threshold) ||
+                    (op === 'gte' && numericValue >= threshold) ||
+                    (op === 'lt'  && numericValue <  threshold) ||
+                    (op === 'lte' && numericValue <= threshold);
+                if (match) return cond.next;
+            }
+        }
+        return null;
     }
 
     /**
@@ -819,6 +901,7 @@ class QuestionnaireEngine {
         };
 
         // Support storing additional fields (e.g., work status, preset numeric values)
+        // _hidden: true so these internal values don't appear in the answers summary
         if (selectedOption.storeAs) {
             Object.entries(selectedOption.storeAs).forEach(([key, storeValue]) => {
                 this.answers[key] = {
@@ -826,7 +909,8 @@ class QuestionnaireEngine {
                     value: storeValue,
                     label: typeof storeValue === 'number'
                         ? storeValue.toLocaleString('he-IL')
-                        : storeValue
+                        : storeValue,
+                    _hidden: true
                 };
             });
         }
@@ -834,7 +918,7 @@ class QuestionnaireEngine {
         // Determine next action
         if (selectedOption.subQuestionnaire) {
             // Load sub-questionnaire
-            this.loadSubQuestionnaire(selectedOption.subQuestionnaire, selectedOption.returnTo);
+            this.loadSubQuestionnaire(selectedOption.subQuestionnaire, selectedOption.returnTo, selectedOption.returnStoreAs);
         } else if (selectedOption.result) {
             // Show result
             this.showResult(selectedOption.result);
@@ -847,14 +931,16 @@ class QuestionnaireEngine {
     /**
      * Load a sub-questionnaire
      */
-    async loadSubQuestionnaire(questionnaireId, returnToQuestion) {
+    async loadSubQuestionnaire(questionnaireId, returnToQuestion, returnStoreAs) {
         // Save current state
         this.parentState = {
             data: this.data,
             answers: { ...this.answers },
             questionHistory: [...this.questionHistory],
             currentQuestionId: this.currentQuestionId,
-            jsonPath: this.jsonPath
+            jsonPath: this.jsonPath,
+            triggerQuestionId: this.currentQuestionId,
+            returnStoreAs: returnStoreAs || null
         };
         this.returnToQuestion = returnToQuestion;
 
@@ -891,8 +977,10 @@ class QuestionnaireEngine {
     /**
      * Return from sub-questionnaire to parent questionnaire
      */
-    async returnFromSubQuestionnaire(calculatedValue) {
+    async returnFromSubQuestionnaire(calculatedValue, resultKey) {
         if (!this.parentState) return;
+
+        const triggerQuestionId = this.parentState.triggerQuestionId;
 
         // Restore parent state
         this.data = this.parentState.data;
@@ -901,11 +989,12 @@ class QuestionnaireEngine {
         this.jsonPath = this.parentState.jsonPath;
 
         // Store the calculated value from sub-questionnaire
+        const returnStoreAs = this.parentState.returnStoreAs || 'q4_imputed_income_amount';
         if (calculatedValue !== undefined) {
-            this.answers['q4_imputed_income_amount'] = {
-                question: 'הכנסה רעיונית חודשית מנכסים (מחושב)',
+            this.answers[returnStoreAs] = {
+                question: returnStoreAs === 'q7_vehicle_value' ? 'שווי רכב (מחושב מהשאלון)' : 'הכנסה רעיונית חודשית מנכסים (מחושב)',
                 value: calculatedValue,
-                label: `${calculatedValue.toLocaleString('he-IL')}₪ לחודש`
+                label: `${calculatedValue.toLocaleString('he-IL')}₪`
             };
         }
 
@@ -921,8 +1010,13 @@ class QuestionnaireEngine {
         this.resultEl.classList.add('hidden');
         this.navEl.classList.add('hidden');
 
-        // Go to the return question to show it with the calculated value
-        this.showQuestion(returnTo);
+        // If child not eligible — clear the trigger answer and return to that question
+        if (resultKey === 'not_eligible') {
+            delete this.answers[triggerQuestionId];
+            this.showQuestion(triggerQuestionId);
+        } else {
+            this.showQuestion(returnTo);
+        }
     }
 
     /**
@@ -949,12 +1043,25 @@ class QuestionnaireEngine {
         this.resultEl.innerHTML = `
             <div class="result-icon"></div>
             <h2 class="result-title">${result.title}</h2>
-            <p class="result-message">${result.message}</p>
-               ${result.link ? `<a href="${result.link.url}" class="result-link btn btn-primary">${result.link.text}</a><br><small class="skip-link" style="margin-top: 10px; display: inline-block;"><a href="javascript:void(0)" class="skip-button">דלק על השלב הזה →</a></small>` : ''}
+            <p class="result-message">${this.resolveDescriptionTemplates(result.message || '')}</p>
+               ${result.link ? (this.parentState
+                    ? `<button class="result-link btn btn-primary" id="btn-return-to-parent">${result.link.text}</button>`
+                    : `<a href="${result.link.url}" class="result-link btn btn-primary">${result.link.text}</a>`)
+                + `<br><small class="skip-link" style="margin-top: 10px; display: inline-block;"><a href="javascript:void(0)" class="skip-button">דלק על השלב הזה →</a></small>` : ''}
             ${result.calculator ? this.renderCalculator(result.calculator) : ''}
             ${this.renderAnswersSummary()}
         `;
         this.resultEl.classList.remove('hidden');
+
+        // Setup return button if in sub-questionnaire
+        if (this.parentState) {
+            const returnBtn = this.resultEl.querySelector('#btn-return-to-parent');
+            if (returnBtn) {
+                returnBtn.addEventListener('click', () => {
+                    this.returnFromSubQuestionnaire(undefined, resultKey);
+                });
+            }
+        }
 
         // Setup calculator if exists
         if (result.calculator) {
@@ -971,6 +1078,12 @@ class QuestionnaireEngine {
     showDynamicResult(resultKey) {
         const result = this.data.results[resultKey];
         if (!result) return;
+
+        // Vehicle deduction calculation (standalone vehicle questionnaire)
+        if (result.type === 'calculate_vehicle') {
+            this.showVehicleDeductionResult(result);
+            return;
+        }
 
         // Calculate income supplement
         const calculation = this.calculateIncomeSupplementEligibility();
@@ -1092,6 +1205,132 @@ class QuestionnaireEngine {
         this.resultEl.classList.remove('hidden');
 
         // Show navigation
+        this.navEl.classList.remove('hidden');
+    }
+
+    /**
+     * Show vehicle deduction result for standalone vehicle questionnaire
+     */
+    showVehicleDeductionResult(result) {
+        const rules = this.data.calculationRules?.vehicleRules || {};
+
+        const vehicleValue    = parseFloat(this.answers['vehicle_value']?.value) || 0;
+        const retirementAge   = this.answers['retirement_age']?.value === 'yes';
+        const workStatus      = this.answers['work_status']?.value || 'not_working';
+        const workIncome      = parseFloat(this.answers['work_income']?.value) || 0;
+        const specialStatus   = this.answers['special_status']?.value === 'special';
+        const dismissedGrace  = this.answers['dismissed_grace']?.value === 'yes';
+        const incomeDropGrace = this.answers['income_drop_grace']?.value === 'yes';
+
+        const deductionRate   = rules.deductionRate || 0.03;
+        const incomeThreshold = retirementAge
+            ? (rules.workIncomeThreshold?.retirement || 2341)
+            : (rules.workIncomeThreshold?.regular    || 3442);
+
+        // Grace period overrides: treat as "working" with adjusted income
+        let effectiveWorkStatus = workStatus;
+        let effectiveWorkIncome = workIncome;
+        let graceNote = '';
+        if (dismissedGrace) {
+            effectiveWorkStatus = 'working';
+            graceNote = 'חישוב זה מתבסס על תקופת מעבר של עד 3 חודשים לאחר הפיטורין/ההתפטרות. לאחר מכן יש לפנות לביטוח הלאומי לעדכון.';
+        } else if (incomeDropGrace) {
+            effectiveWorkStatus = 'working';
+            effectiveWorkIncome = rules.workIncomeThreshold?.regular || 3442; // 25% מהשכר הממוצע
+            graceNote = 'חישוב זה מתבסס על תקופת מעבר של עד 3 חודשים לאחר ירידת ההכנסה — ההכנסה המיוחסת: 25% מהשכר הממוצע. לאחר מכן יש לפנות לביטוח הלאומי לעדכון.';
+        }
+
+        let deductionBase, categoryLabel;
+        if (effectiveWorkStatus === 'working' && effectiveWorkIncome > incomeThreshold) {
+            deductionBase = rules.deductions?.high_income_worker || 19610;
+            categoryLabel = `עובד/ת המשתכר/ת מעל ${incomeThreshold.toLocaleString('he-IL')} ₪/חודש`;
+        } else {
+            deductionBase = rules.deductions?.other || 11227;
+            if (effectiveWorkStatus === 'not_working') {
+                categoryLabel = specialStatus
+                    ? 'לא עובד/ת — מקבל/ת קצבת שאירים / תלויים בנפגע עבודה'
+                    : 'לא עובד/ת';
+            } else {
+                categoryLabel = `עובד/ת המשתכר/ת עד ${incomeThreshold.toLocaleString('he-IL')} ₪/חודש`;
+            }
+        }
+        if (dismissedGrace)  categoryLabel += ' (תקופת מעבר — פוטר/ה או התפטר/ה)';
+        if (incomeDropGrace) categoryLabel += ' (תקופת מעבר — ירידת הכנסה)';
+
+        const adjustedValue    = Math.max(0, vehicleValue - deductionBase);
+        const monthlyDeduction = Math.round(adjustedValue * deductionRate);
+
+        let statusClass, statusTitle;
+        if (monthlyDeduction === 0) {
+            statusClass = 'success';
+            statusTitle = 'שווי הרכב אינו מפחית את תוספת הבטחת ההכנסה';
+        } else {
+            statusClass = 'info';
+            statusTitle = `הרכב מפחית את התוספת ב־${monthlyDeduction.toLocaleString('he-IL')} ₪ לחודש`;
+        }
+
+        this.contentEl.innerHTML = '';
+        this.resultEl.className  = `result-container ${statusClass}`;
+        this.resultEl.innerHTML  = `
+            <div class="result-icon"></div>
+            <h2 class="result-title">${result.title}</h2>
+
+            <div class="calculation-details">
+                <h4>פירוט החישוב</h4>
+                <table class="calculation-table">
+                    <tr>
+                        <td class="calc-label">שווי הרכב (לוי יצחק):</td>
+                        <td class="calc-value">${vehicleValue.toLocaleString('he-IL')} ₪</td>
+                    </tr>
+                    <tr>
+                        <td class="calc-label">קטגוריה:</td>
+                        <td class="calc-value">${categoryLabel}</td>
+                    </tr>
+                    <tr>
+                        <td class="calc-label">ניכוי בסיסי — שלב 1:</td>
+                        <td class="calc-value">− ${deductionBase.toLocaleString('he-IL')} ₪</td>
+                    </tr>
+                    <tr>
+                        <td class="calc-label">שווי לחישוב (לאחר ניכוי):</td>
+                        <td class="calc-value">${adjustedValue.toLocaleString('he-IL')} ₪</td>
+                    </tr>
+                    <tr class="calculation-row-supplement">
+                        <td class="calc-label"><strong>הפחתה חודשית מהתוספת — שלב 2 (× ${(deductionRate * 100).toFixed(0)}%):</strong></td>
+                        <td class="calc-value"><strong>${monthlyDeduction.toLocaleString('he-IL')} ₪</strong></td>
+                    </tr>
+                </table>
+
+                <div class="eligibility-result ${statusClass}" style="margin-top:15px;padding:15px;border-radius:8px;">
+                    <h3>${statusTitle}</h3>
+                </div>
+
+                ${graceNote ? `<p class="calculation-note" style="margin-top:10px;background:#fff3cd;padding:10px;border-radius:6px;"><strong>תקופת מעבר:</strong> ${graceNote}</p>` : ''}
+                <p class="calculation-note" style="margin-top:15px;">
+                    <strong>שימו לב:</strong> זהו חישוב משוער בלבד.
+                    לבדיקה מדויקת יש לפנות לביטוח הלאומי (*6050).
+                </p>
+            </div>
+
+            ${this.parentState ? `
+                <button class="btn btn-primary return-to-parent" id="btn-return-to-parent">
+                    חזרה לשאלון בדיקת הזכאות עם נתוני הרכב
+                </button>
+            ` : ''}
+
+            ${this.renderAnswersSummary()}
+        `;
+        this.resultEl.classList.remove('hidden');
+
+        // Setup return button if in sub-questionnaire
+        if (this.parentState) {
+            const returnBtn = this.resultEl.querySelector('#btn-return-to-parent');
+            if (returnBtn) {
+                returnBtn.addEventListener('click', () => {
+                    this.returnFromSubQuestionnaire(vehicleValue);
+                });
+            }
+        }
+
         this.navEl.classList.remove('hidden');
     }
 
@@ -1416,9 +1655,9 @@ class QuestionnaireEngine {
     renderAnswersSummary() {
         if (Object.keys(this.answers).length === 0) return '';
 
-        const answersHtml = Object.values(this.answers).map(answer => `
+        const answersHtml = Object.values(this.answers).filter(a => !a._hidden).map(answer => `
             <div class="answer-item">
-                <span class="answer-question">${answer.question}</span>
+                <span class="answer-question">${this.resolveDescriptionTemplates(answer.question)}</span>
                 <span class="answer-value">${answer.label}</span>
             </div>
         `).join('');

@@ -343,10 +343,23 @@
                 padding: 15px;
             }
         }
+        .nii-error-banner {
+            display: none;
+            background: #fff3cd;
+            border: 2px solid #f0a500;
+            color: #7a5000;
+            text-align: center;
+            padding: 12px 20px;
+            border-radius: 10px;
+            font-size: 1rem;
+            font-weight: 600;
+            margin-bottom: 20px;
+        }
     </style>
 </head>
 <body>
     <div class="container">
+        <div id="nii-error-banner" class="nii-error-banner">⚠️ הערכים אינם מעודכנים עקב תקלה באתר</div>
         <header>
             <button class="back-button" onclick="window.location.href='senior_rights.html'">← חזרה</button>
             <h1>💰 חישוב הכנסה רעיונית</h1>
@@ -367,14 +380,14 @@
             <div class="info-box">
                 <div class="info-box-title">🔹 חלק א' - חישוב בסיסי</div>
                 <div class="info-box-text">
-                    הסכום שמעל סכום הפטור (<strong>48,472 ₪ ליחיד</strong> או <strong>62,292 ₪ לזוג</strong>) מוכפל בשיעור הריבית (4.17%) ומחולק ב-12 חודשים.
+                    הסכום שמעל סכום הפטור (<strong><span data-nii-key="imputed_income_exempt_single" data-nii-format="currency">41,528 ₪</span> ליחיד</strong> או <strong><span data-nii-key="imputed_income_exempt_couple" data-nii-format="currency">62,292 ₪</span> לזוג</strong>) מוכפל בשיעור הריבית (<span data-nii-key="imputed_income_rate" data-nii-format="percent">4.17%</span>) ומחולק ב-12 חודשים.
                 </div>
             </div>
 
             <div class="info-box">
                 <div class="info-box-title">🔹 חלק ב' - חישוב מדרגות</div>
                 <div class="info-box-text">
-                    הסכום שמעל הסף התחתון (117,173 ₪) מחולק למדרגות, כאשר כל מדרגה מוכפלת באחוז מסוים (1.5%, 3%, או 5%) ומחולקת ב-12.
+                    הסכום שמעל הסף התחתון (<span data-nii-key="imputed_income_bracket_threshold" data-nii-format="currency">117,173 ₪</span>) מחולק למדרגות, כאשר כל מדרגה מוכפלת באחוז מסוים (1.5%, 3%, או 5%) ומחולקת ב-12.
                 </div>
             </div>
         </div>
@@ -403,19 +416,19 @@
                         <tr>
                             <td>מדרגה 1</td>
                             <td>-</td>
-                            <td>117,173 ₪ - 311,460 ₪</td>
+                            <td><span data-nii-key="imputed_income_bracket_threshold" data-nii-format="currency">117,173 ₪</span> - <span data-nii-key="imputed_bracket_couple_under55_mid" data-nii-format="currency">311,460 ₪</span></td>
                             <td class="highlight">1.5%</td>
                         </tr>
                         <tr>
                             <td>מדרגה 2</td>
-                            <td>117,173 ₪ - 249,168 ₪</td>
-                            <td>311,460 ₪ - 622,920 ₪</td>
+                            <td><span data-nii-key="imputed_income_bracket_threshold" data-nii-format="currency">117,173 ₪</span> - <span data-nii-key="imputed_bracket_single_under55_upper" data-nii-format="currency">249,168 ₪</span></td>
+                            <td><span data-nii-key="imputed_bracket_couple_under55_mid" data-nii-format="currency">311,460 ₪</span> - <span data-nii-key="imputed_bracket_couple_under55_upper" data-nii-format="currency">622,920 ₪</span></td>
                             <td class="highlight">3%</td>
                         </tr>
                         <tr>
                             <td>מדרגה 3</td>
-                            <td>249,168 ₪ ומעלה</td>
-                            <td>622,920 ₪ ומעלה</td>
+                            <td><span data-nii-key="imputed_bracket_single_under55_upper" data-nii-format="currency">249,168 ₪</span> ומעלה</td>
+                            <td><span data-nii-key="imputed_bracket_couple_under55_upper" data-nii-format="currency">622,920 ₪</span> ומעלה</td>
                             <td class="highlight">5%</td>
                         </tr>
                     </tbody>
@@ -436,20 +449,20 @@
                     <tbody>
                         <tr>
                             <td>מדרגה 1</td>
-                            <td>117,173 ₪ - 166,112 ₪</td>
-                            <td>117,173 ₪ - 373,752 ₪</td>
+                            <td><span data-nii-key="imputed_income_bracket_threshold" data-nii-format="currency">117,173 ₪</span> - <span data-nii-key="imputed_bracket_single_over55_mid" data-nii-format="currency">166,112 ₪</span></td>
+                            <td><span data-nii-key="imputed_income_bracket_threshold" data-nii-format="currency">117,173 ₪</span> - <span data-nii-key="imputed_bracket_couple_over55_mid" data-nii-format="currency">373,752 ₪</span></td>
                             <td class="highlight">1.5%</td>
                         </tr>
                         <tr>
                             <td>מדרגה 2</td>
-                            <td>166,112 ₪ - 332,224 ₪</td>
-                            <td>373,752 ₪ - 747,504 ₪</td>
+                            <td><span data-nii-key="imputed_bracket_single_over55_mid" data-nii-format="currency">166,112 ₪</span> - <span data-nii-key="imputed_bracket_single_over55_upper" data-nii-format="currency">332,224 ₪</span></td>
+                            <td><span data-nii-key="imputed_bracket_couple_over55_mid" data-nii-format="currency">373,752 ₪</span> - <span data-nii-key="imputed_bracket_couple_over55_upper" data-nii-format="currency">747,504 ₪</span></td>
                             <td class="highlight">3%</td>
                         </tr>
                         <tr>
                             <td>מדרגה 3</td>
-                            <td>332,224 ₪ ומעלה</td>
-                            <td>747,504 ₪ ומעלה</td>
+                            <td><span data-nii-key="imputed_bracket_single_over55_upper" data-nii-format="currency">332,224 ₪</span> ומעלה</td>
+                            <td><span data-nii-key="imputed_bracket_couple_over55_upper" data-nii-format="currency">747,504 ₪</span> ומעלה</td>
                             <td class="highlight">5%</td>
                         </tr>
                     </tbody>
@@ -475,7 +488,7 @@
                         סכום הפטור
                     </div>
                     <div class="step-content">
-                        <p>62,292 ₪ מתוך הפיקדון <strong>לא ישפיעו על הזכאות</strong> (סכום פטור לזוג).</p>
+                        <p><span data-nii-key="imputed_income_exempt_couple" data-nii-format="currency">62,292 ₪</span> מתוך הפיקדון <strong>לא ישפיעו על הזכאות</strong> (סכום פטור לזוג).</p>
                         <div class="formula">
                             הסכום לחישוב = 200,000 - 62,292 = 137,708 ₪
                         </div>
@@ -488,9 +501,9 @@
                         חישוב בסיסי (חלק א')
                     </div>
                     <div class="step-content">
-                        <p>ההפרש (137,708 ₪) <strong>בין 62,292 ₪ לבין 200,000 ₪</strong> יוכפל בשיעור הריבית (4.17%) ויחולק ב-12 חודשים.</p>
+                        <p>ההפרש (137,708 ₪) <strong>בין 62,292 ₪ לבין 200,000 ₪</strong> יוכפל בשיעור הריבית (<span data-nii-key="imputed_income_rate" data-nii-format="percent">4.17%</span>) ויחולק ב-12 חודשים.</p>
                         <div class="formula">
-                            137,708 × 4.17% ÷ 12 = 478.54 ₪
+                            137,708 × <span data-nii-key="imputed_income_rate" data-nii-format="percent">4.17%</span> ÷ 12 = 478.54 ₪
                         </div>
                         <p style="margin-top: 10px;"><strong>תוצאת החישוב הראשוני: 478.54 ₪</strong></p>
                     </div>
@@ -502,7 +515,7 @@
                         חישוב מדרגה ראשונה (חלק ב')
                     </div>
                     <div class="step-content">
-                        <p>תחושב המדרגה הראשונה על סכום הפיקדון שמעל 117,173 ₪.</p>
+                        <p>תחושב המדרגה הראשונה על סכום הפיקדון שמעל <span data-nii-key="imputed_income_bracket_threshold" data-nii-format="currency">117,173 ₪</span>.</p>
                         <div class="formula">
                             200,000 - 117,173 = 82,827 ₪
                         </div>
@@ -540,8 +553,8 @@
             <div class="info-box">
                 <div class="info-box-title">📌 סכום הפטור (2026)</div>
                 <div class="info-box-text">
-                    <strong>48,472 ₪</strong> ליחיד/ה<br>
-                    <strong>62,292 ₪</strong> לזוג<br>
+                    <strong><span data-nii-key="imputed_income_exempt_single" data-nii-format="currency">41,528 ₪</span></strong> ליחיד/ה<br>
+                    <strong><span data-nii-key="imputed_income_exempt_couple" data-nii-format="currency">62,292 ₪</span></strong> לזוג<br>
                     סכומים אלה לא נכללים בחישוב ההכנסה הרעיונית.
                 </div>
             </div>
@@ -549,7 +562,7 @@
             <div class="info-box">
                 <div class="info-box-title">📌 שיעור ריבית</div>
                 <div class="info-box-text">
-                    <strong>4.17%</strong> - זהו שיעור הריבית הקבוע לחישוב (עדכון שנתי אפשרי).
+                    <strong><span data-nii-key="imputed_income_rate" data-nii-format="percent">4.17%</span></strong> - זהו שיעור הריבית הקבוע לחישוב (עדכון שנתי אפשרי).
                 </div>
             </div>
 
@@ -557,7 +570,7 @@
                 <div class="info-box-title">📌 חישוב כפול</div>
                 <div class="info-box-text">
                     יש לבצע <strong>שני חישובים נפרדים</strong> ולחבר אותם:<br>
-                    1. חישוב בסיסי עם שיעור הריבית (4.17%)<br>
+                    1. חישוב בסיסי עם שיעור הריבית (<span data-nii-key="imputed_income_rate" data-nii-format="percent">4.17%</span>)<br>
                     2. חישוב מדרגות לפי האחוזים (1.5%, 3%, 5%)
                 </div>
             </div>
@@ -582,5 +595,32 @@
             </div>
         </div>
     </div>
+
+    <script>
+        async function loadNiiData() {
+            try {
+                const resp = await fetch('data/nii-constants.json');
+                const nii = await resp.json();
+                renderPage(nii);
+            } catch(e) {
+                console.warn('⚠️ לא ניתן לטעון nii-constants.json');
+                document.getElementById('nii-error-banner').style.display = 'block';
+            }
+        }
+
+        function renderPage(nii) {
+            document.querySelectorAll('[data-nii-key]').forEach(el => {
+                const key = el.dataset.niiKey;
+                const format = el.dataset.niiFormat;
+                if (!nii[key]) return;
+                const val = nii[key].value;
+                if (format === 'percent') el.textContent = val + '%';
+                else if (format === 'currency') el.textContent = val.toLocaleString('he-IL') + ' ₪';
+                else el.textContent = val;
+            });
+        }
+
+        loadNiiData();
+    </script>
 </body>
 </html>
