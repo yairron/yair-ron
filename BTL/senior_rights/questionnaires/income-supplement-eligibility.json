@@ -44,24 +44,24 @@
       "question": "מהו הרכב המשפחה וקבוצת הגיל שלך?",
       "description": "בחר את המצב שתואם לך ביותר",
       "options": [
-        { "value": "single_under70", "label": "יחיד/ה עד גיל 70", "next": "q5_old_age_pension", "ceil": 4375 },
-        { "value": "single_70_80", "label": "יחיד/ה גיל 70-80", "next": "q5_old_age_pension", "ceil": 4418 },
-        { "value": "single_over80", "label": "יחיד/ה מעל גיל 80", "next": "q5_old_age_pension", "ceil": 4460 },
-        { "value": "couple_under70", "label": "זוג עד גיל 70", "next": "q5_old_age_pension", "ceil": 6912 },
-        { "value": "couple_70_80", "label": "זוג גיל 70-80", "next": "q5_old_age_pension", "ceil": 6981 },
-        { "value": "couple_over80", "label": "זוג מעל גיל 80", "next": "q5_old_age_pension", "ceil": 7048 },
-        { "value": "single_1child_under70", "label": "יחיד/ה + ילד עד גיל 70", "next": "q5_old_age_pension", "ceil": 7305 },
-        { "value": "single_1child_70_80", "label": "יחיד/ה + ילד גיל 70-80", "next": "q5_old_age_pension", "ceil": 7374 },
-        { "value": "single_1child_over80", "label": "יחיד/ה + ילד מעל גיל 80", "next": "q5_old_age_pension", "ceil": 7442 },
-        { "value": "single_2children_under70", "label": "יחיד/ה + 2 ילדים עד גיל 70", "next": "q5_old_age_pension", "ceil": 8426 },
-        { "value": "single_2children_70_80", "label": "יחיד/ה + 2 ילדים גיל 70-80", "next": "q5_old_age_pension", "ceil": 8496 },
-        { "value": "single_2children_over80", "label": "יחיד/ה + 2 ילדים מעל גיל 80", "next": "q5_old_age_pension", "ceil": 8563 },
-        { "value": "couple_1child_under70", "label": "זוג + ילד עד גיל 70", "next": "q5_old_age_pension", "ceil": 8035 },
-        { "value": "couple_1child_70_80", "label": "זוג + ילד גיל 70-80", "next": "q5_old_age_pension", "ceil": 8102 },
-        { "value": "couple_1child_over80", "label": "זוג + ילד מעל גיל 80", "next": "q5_old_age_pension", "ceil": 8171 },
-        { "value": "couple_2children_under70", "label": "זוג + 2 ילדים עד גיל 70", "next": "q5_old_age_pension", "ceil": 9156 },
-        { "value": "couple_2children_70_80", "label": "זוג + 2 ילדים גיל 70-80", "next": "q5_old_age_pension", "ceil": 9226 },
-        { "value": "couple_2children_over80", "label": "זוג + 2 ילדים מעל גיל 80", "next": "q5_old_age_pension", "ceil": 9292 }
+        { "value": "single_under70", "label": "יחיד/ה עד גיל 70", "next": "q5_old_age_pension" },
+        { "value": "single_70_80", "label": "יחיד/ה גיל 70-80", "next": "q5_old_age_pension" },
+        { "value": "single_over80", "label": "יחיד/ה מעל גיל 80", "next": "q5_old_age_pension" },
+        { "value": "couple_under70", "label": "זוג עד גיל 70", "next": "q5_old_age_pension" },
+        { "value": "couple_70_80", "label": "זוג גיל 70-80", "next": "q5_old_age_pension" },
+        { "value": "couple_over80", "label": "זוג מעל גיל 80", "next": "q5_old_age_pension" },
+        { "value": "single_1child_under70", "label": "יחיד/ה + ילד עד גיל 70", "next": "q5_old_age_pension" },
+        { "value": "single_1child_70_80", "label": "יחיד/ה + ילד גיל 70-80", "next": "q5_old_age_pension" },
+        { "value": "single_1child_over80", "label": "יחיד/ה + ילד מעל גיל 80", "next": "q5_old_age_pension" },
+        { "value": "single_2children_under70", "label": "יחיד/ה + 2 ילדים עד גיל 70", "next": "q5_old_age_pension" },
+        { "value": "single_2children_70_80", "label": "יחיד/ה + 2 ילדים גיל 70-80", "next": "q5_old_age_pension" },
+        { "value": "single_2children_over80", "label": "יחיד/ה + 2 ילדים מעל גיל 80", "next": "q5_old_age_pension" },
+        { "value": "couple_1child_under70", "label": "זוג + ילד עד גיל 70", "next": "q5_old_age_pension" },
+        { "value": "couple_1child_70_80", "label": "זוג + ילד גיל 70-80", "next": "q5_old_age_pension" },
+        { "value": "couple_1child_over80", "label": "זוג + ילד מעל גיל 80", "next": "q5_old_age_pension" },
+        { "value": "couple_2children_under70", "label": "זוג + 2 ילדים עד גיל 70", "next": "q5_old_age_pension" },
+        { "value": "couple_2children_70_80", "label": "זוג + 2 ילדים גיל 70-80", "next": "q5_old_age_pension" },
+        { "value": "couple_2children_over80", "label": "זוג + 2 ילדים מעל גיל 80", "next": "q5_old_age_pension" }
       ]
     },
     {
@@ -78,7 +78,7 @@
       "id": "q6_pension_income",
       "type": "number_input",
       "question": "כמה הכנסה מפנסיה (מעבידים קודמים, קרנות פנסיה וכו') את/ה מקבל/ת בחודש? (בש\"ח)",
-      "description": "הזן את הסכום החודשי לפני ניכויים. אם לא מקבל/ת פנסיה, הזן 0. לידיעתך: סכום מותר ליחיד - 1,790₪ | לזוג - 2,823₪. כל סכום עודף מעליהם יקוזז ב-60% מהתוספת",
+      "description": "הזן את הסכום החודשי לפני ניכויים. אם לא מקבל/ת פנסיה, הזן 0. לידיעתך: סכום מותר ליחיד - {rules.incomeDeductions.pensionIncome.exemption_single}₪ | לזוג - {rules.incomeDeductions.pensionIncome.exemption_couple}₪. כל סכום עודף מעליהם יקוזז ב-60% מהתוספת",
       "placeholder": "0",
       "suffix": "₪ לחודש",
       "next": "q7_work_income",
@@ -98,7 +98,7 @@
       "id": "q7b_work_income_amount",
       "type": "number_input",
       "question": "כמה הכנסה מעבודה/עסק את/ה מקבל/ת בחודש? (בש\"ח)",
-      "description": "הזן את סכום ההכנסה החודשית נטו (לאחר ניכוי מס אך לפני ניכויים אחרים). לידיעתך: סכום מותר לשכיר ליחיד - 3,236₪ | לזוג - 3,786₪. כל סכום עודף מעליהם יקוזז ב-60% מהתוספת",
+      "description": "הזן את סכום ההכנסה החודשית נטו (לאחר ניכוי מס אך לפני ניכויים אחרים). לידיעתך: סכום מותר לשכיר יחיד - {rules.incomeDeductions.workIncome.exemption_single}₪ | זוג - {rules.incomeDeductions.workIncome.exemption_couple}₪ | עצמאי - {rules.incomeDeductions.workIncome.exemption_self_employed}₪. כל סכום עודף יקוזז ב-60% מהתוספת",
       "placeholder": "0",
       "suffix": "₪ לחודש",
       "next": "q8_imputed_income",
@@ -111,8 +111,8 @@
       "options": [
         { "value": "yes_unknown", "label": "כן, אבל אני לא יודע/ת מה ההכנסה הרעיונית", "subQuestionnaire": "imputed-income-calculator", "returnTo": "q8b_imputed_income_amount" },
         { "value": "yes_known", "label": "כן, יודע/ת את סכום ההכנסה הרעיונית החודשית", "next": "q8b_imputed_income_amount" },
-        { "value": "no", "label": "לא, אין לי נכסים מעבר לדירת המגורים", "next": "q9_vehicle" },
-        { "value": "skip", "label": "דלג על שאלה זו", "next": "q9_vehicle" }
+        { "value": "no", "label": "לא, אין לי נכסים מעבר לדירת המגורים", "next": "q8c_special_status" },
+        { "value": "skip", "label": "דלג על שאלה זו", "next": "q8c_special_status" }
       ]
     },
     {
@@ -122,8 +122,19 @@
       "description": "הזן את סכום ההכנסה הרעיונית החודשית. אם לא זכאי/ת להכנסה רעיונית, הזן 0",
       "placeholder": "0",
       "suffix": "₪ לחודש",
-      "next": "q9_vehicle",
+      "next": "q8c_special_status",
       "storeAs": "q4_imputed_income_amount"
+    },
+    {
+      "id": "q8c_special_status",
+      "type": "yesno",
+      "question": "האם את/ה מקבל/ת קצבת שאירים או קצבת תלויים בנפגע עבודה?",
+      "description": "מידע זה משפיע על חישוב הניכוי ממחירון הרכב (אם יש רכב)",
+      "options": [
+        { "value": "yes", "label": "כן", "next": "q9_vehicle", "storeAs": { "q8_special_status": "special" } },
+        { "value": "no", "label": "לא", "next": "q9_vehicle", "storeAs": { "q8_special_status": "regular" } },
+        { "value": "skip", "label": "דלג על שאלה זו", "next": "q9_vehicle" }
+      ]
     },
     {
       "id": "q9_vehicle",
@@ -212,8 +223,9 @@
         "exemption": 3236,
         "exemption_single": 3236,
         "exemption_couple": 3786,
+        "exemption_self_employed": 4655,
         "deductionRate": 0.60,
-        "description": "הכנסה מעבודה - סכום מותר ליחיד 3,236₪ וזוג 3,786₪, הכנסה עודפת 60% קיזוז"
+        "description": "הכנסה מעבודה - סכום מותר לשכיר יחיד 3,236₪, זוג 3,786₪, עצמאי 4,655₪ — הכנסה עודפת 60% קיזוז"
       },
       "imputedIncome": {
         "deductionRate": 1.0,
@@ -223,6 +235,8 @@
     "vehicleRules": {
       "baseThreshold": 46138,
       "extendedThreshold": 65343,
+      "extendedThresholdConditions": ["retirement_age", "survivors_benefit", "work_injury_dependents"],
+      "deductionRate": 0.03,
       "deductions": {
         "high_income_worker": 19610,
         "low_income_worker": 10380,
@@ -232,6 +246,51 @@
       "workIncomeThreshold": {
         "regular": 3442,
         "retirement": 2341
+      },
+      "descriptions": {
+        "high_income_worker": "עובד (שכיר/עצמאי) שהכנסתו מהעבודה עולה על 3,442 ₪/חודש (או 2,341 ₪ לעובד בגיל פרישה)",
+        "low_income_worker": "עובד שהכנסתו מהעבודה אינה עולה על 3,442 ₪/חודש (או 2,341 ₪ לעובד בגיל פרישה)",
+        "non_worker_regular": "לא עובד — לא בגיל פרישה ואינו מקבל קצבת שאירים/תלויים בנפגע עבודה",
+        "non_worker_extended": "לא עובד — הגיע לגיל פרישה, מקבל קצבת שאירים, או מקבל קצבת תלויים בנפגע עבודה"
+      }
+    },
+    "assetRules": {
+      "baseRate": 0.0417,
+      "tierThreshold": 117173,
+      "tier3Rate": 0.05,
+      "exemptions": {
+        "single": 41528,
+        "couple": 62292
+      },
+      "profiles": {
+        "single_under55": {
+          "hasTier1_5pct": false,
+          "tier1": 131995,
+          "tier2": 999999999,
+          "tier1Rate": 0.03,
+          "tier2Rate": 0.05
+        },
+        "couple_under55": {
+          "hasTier1_5pct": true,
+          "tier1": 194287,
+          "tier2": 311460,
+          "tier1Rate": 0.015,
+          "tier2Rate": 0.03
+        },
+        "single_55plus": {
+          "hasTier1_5pct": true,
+          "tier1": 48939,
+          "tier2": 166112,
+          "tier1Rate": 0.015,
+          "tier2Rate": 0.03
+        },
+        "couple_55plus": {
+          "hasTier1_5pct": true,
+          "tier1": 256579,
+          "tier2": 373752,
+          "tier1Rate": 0.015,
+          "tier2Rate": 0.03
+        }
       }
     },
     "notes": "חישוב משוער בלבד. נוסחאות קיזוז אלו עשויות להשתנות. לבדיקה מדויקת, יש לפנות לביטוח הלאומי."

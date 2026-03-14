@@ -222,6 +222,13 @@ header .source-badge {
     font-size: 1.3rem;
     font-weight: 700;
     color: var(--dark);
+    margin-bottom: 10px;
+    line-height: 1.6;
+}
+
+.question-description {
+    font-size: 0.95rem;
+    color: #666;
     margin-bottom: 20px;
     line-height: 1.6;
 }

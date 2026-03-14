@@ -1828,4 +1828,101 @@
 ---
 
 *סריקה בוצעה ב-2026-03-11 — כל הנתונים מבוססים על חוזר תשלומים 33 ינואר 2026 של המוסד לביטוח לאומי ועל הקבצים המפורטים לעיל.*
+
+---
+
+## יומן שינויים — 2026-03-14
+
+### תיקוני באגים במנוע השאלון (`questionnaire-engine.js`)
+
+#### 1. תיקון פטור נכסים ליחיד — `setupAssetsFormListeners`
+
+| | ערך ישן (שגוי) | ערך נכון |
+|--|----------------|---------|
+| פטור נכסים — יחיד מתחת 55 | 48,472 ₪ | 41,528 ₪ |
+| פטור נכסים — יחיד 55+ | 48,472 ₪ | 41,528 ₪ |
+
+הערך הנכון (41,528 ₪) מאומת מ-NII-062 ומהאתר הרשמי של ביטוח לאומי.
+
+#### 2. תיקון שיעור ניכוי רכב — `calculateVehicleDeduction`
+
+שיעור הניכוי על רכב (`0.03`) היה מקודד קשה (hardcoded) בקוד. תוקן לקריאה דינמית מ-`vehicleRules.deductionRate` בנתוני JSON.
+
+#### 3. תיקון הודעת אזהרה רכב — `calculateVehicleDeduction`
+
+הסף `65,343 ₪` בהודעת אזהרה ("שווי הרכב גבוה מ-65,343 ₪") היה מחרוזת קשיחה. תוקן לקריאה דינמית: `extendedThreshold.toLocaleString('he-IL')`.
+
+---
+
+### שינויים בשאלון השלמת הכנסה (`income-supplement-eligibility.json`)
+
+#### 4. הסרת שדות `ceil` מיותרים ב-q4_family_composition
+
+18 שדות `ceil` הוסרו מאפשרויות השאלה `q4_family_composition`. שדות אלו היו נתוני מת (dead data) — המנוע קורא תמיד מ-`calculationRules.familyCompositions[key].ceiling` ולא מהאפשרויות עצמן.
+
+#### 5. תיאורים דינמיים ב-q6 ו-q7b
+
+תיאורי השאלות `q6_pension_income` ו-`q7b_work_income` עודכנו מערכים סטטיים לתבניות דינמיות באמצעות `{rules.X.Y}`:
+
+| שאלה | ערך ישן (סטטי) | פלייסהולדר חדש |
+|------|----------------|----------------|
+| q6 — פטור יחיד | 1,790 ₪ (קשיח) | `{rules.incomeDeductions.pensionIncome.exemption_single}` |
+| q6 — פטור זוג | 2,823 ₪ (קשיח) | `{rules.incomeDeductions.pensionIncome.exemption_couple}` |
+| q7b — פטור יחיד | 3,236 ₪ (קשיח) | `{rules.incomeDeductions.workIncome.exemption_single}` |
+| q7b — פטור זוג | 3,786 ₪ (קשיח) | `{rules.incomeDeductions.workIncome.exemption_couple}` |
+| q7b — פטור עצמאי | 4,655 ₪ (קשיח) | `{rules.incomeDeductions.workIncome.exemption_self_employed}` |
+
+---
+
+### תוספות למנוע השאלון (`questionnaire-engine.js`)
+
+#### 6. הצגת שדה `description` בשאלות
+
+שדה `description` קיים ב-JSON של שאלות אך **לא הוצג** בממשק. נוסף rendering ב-`renderQuestion`:
+
+```javascript
+const descriptionHtml = question.description
+    ? `<div class="question-description">${this.resolveDescriptionTemplates(question.description)}</div>`
+    : '';
+```
+
+#### 7. מתודה `resolveDescriptionTemplates`
+
+נוספה מתודה חדשה הממירה פלייסהולדרים מסוג `{rules.X.Y}` לערכים מ-`calculationRules`:
+
+```javascript
+resolveDescriptionTemplates(text) {
+    if (!this.data.calculationRules) return text;
+    return text.replace(/\{rules\.([^}]+)\}/g, (match, path) => {
+        const value = path.split('.').reduce((obj, key) => obj?.[key], this.data.calculationRules);
+        if (value === undefined || value === null) return match;
+        return typeof value === 'number' ? value.toLocaleString('he-IL') : value;
+    });
+}
+```
+
+---
+
+### תוספת CSS (`questionnaire-style.css`)
+
+נוסף סגנון לתיאורי שאלות:
+
+```css
+.question-description {
+    font-size: 0.95rem;
+    color: #666;
+    margin-bottom: 20px;
+    line-height: 1.6;
+}
+```
+
+---
+
+### עדכון קובץ השוואה (`data_012026_comparison.csv`)
+
+| שדה | מזהה | ערך ישן | ערך חדש |
+|-----|------|---------|---------|
+| הכנסה רעיונית — סכום פטור יחיד | IMPUTED_INCOME_EXEMPT_SINGLE | 48,472 | 41,528 |
+
+עודכן להתאים לערך הרשמי NII-062.
 *עדכון תיקונים: 2026-03-13*

@@ -239,6 +239,10 @@ class QuestionnaireEngine {
             </button>
         ` : '';
 
+        const descriptionHtml = question.description
+            ? `<div class="question-description">${this.resolveDescriptionTemplates(question.description)}</div>`
+            : '';
+
         return `
             <div class="question-container" data-question-id="${question.id}">
                 ${backButtonHtml}
@@ -246,11 +250,24 @@ class QuestionnaireEngine {
                     <div class="question-number">שאלה ${questionNumber}</div>
                 </div>
                 <div class="question-text">${question.question}</div>
+                ${descriptionHtml}
                 <div class="options-container ${question.type === 'yesno' ? 'options-yesno' : ''}">
                     ${optionsHtml}
                 </div>
             </div>
         `;
+    }
+
+    /**
+     * Resolve {rules.X.Y} placeholders in description text using calculationRules
+     */
+    resolveDescriptionTemplates(text) {
+        if (!this.data.calculationRules) return text;
+        return text.replace(/\{rules\.([^}]+)\}/g, (match, path) => {
+            const value = path.split('.').reduce((obj, key) => obj?.[key], this.data.calculationRules);
+            if (value === undefined || value === null) return match;
+            return typeof value === 'number' ? value.toLocaleString('he-IL') : value;
+        });
     }
 
     /**
@@ -448,56 +465,23 @@ class QuestionnaireEngine {
         const familyStatus = this.answers['q1_family_status']?.value || 'single';
         const ageGroup = this.answers['q1_5_age']?.value || '55plus';
 
-        // Thresholds based on family status and age
-        // tier1 = size of tier 1 above 117,173
-        // tier2 = size of tier 2
-        // hasTier1_5pct = whether there's a 1.5% tier (single under 55 has no 1.5% tier)
-        let thresholds;
-        
-        if (ageGroup === 'under55') {
-            if (familyStatus === 'single') {
-                // Under 55, Single: No 1.5% tier, only 3% and 5%
-                thresholds = { 
-                    exemption: 48472, 
-                    tier1: 131995,  // 249,168 - 117,173
-                    tier2: 999999999,  // No upper limit for tier 2
-                    hasTier1_5pct: false,
-                    tier1Rate: 0.03,  // First tier is 3%
-                    tier2Rate: 0.05
-                };
-            } else {
-                // Under 55, Couple: 1.5%, 3%, 5%
-                thresholds = { 
-                    exemption: 62292, 
-                    tier1: 194287,  // 311,460 - 117,173
-                    tier2: 311460,  // 622,920 - 311,460
-                    hasTier1_5pct: true,
-                    tier1Rate: 0.015,
-                    tier2Rate: 0.03
-                };
-            }
-        } else {
-            // 55+
-            if (familyStatus === 'single') {
-                thresholds = { 
-                    exemption: 48472, 
-                    tier1: 48939,   // 166,112 - 117,173
-                    tier2: 166112,  // 332,224 - 166,112
-                    hasTier1_5pct: true,
-                    tier1Rate: 0.015,
-                    tier2Rate: 0.03
-                };
-            } else {
-                thresholds = { 
-                    exemption: 62292, 
-                    tier1: 256579,  // 373,752 - 117,173
-                    tier2: 373752,  // 747,504 - 373,752
-                    hasTier1_5pct: true,
-                    tier1Rate: 0.015,
-                    tier2Rate: 0.03
-                };
-            }
-        }
+        // Build thresholds from calculationRules.assetRules (JSON-driven, no hardcoded values)
+        const assetRules = this.data.calculationRules?.assetRules;
+        const profileKey = `${familyStatus}_${ageGroup}`;
+        const profile = assetRules?.profiles?.[profileKey] || {};
+        const exemptions = assetRules?.exemptions || {};
+
+        const thresholds = {
+            exemption: familyStatus === 'single' ? (exemptions.single || 41528) : (exemptions.couple || 62292),
+            tier1: profile.tier1,
+            tier2: profile.tier2,
+            hasTier1_5pct: profile.hasTier1_5pct,
+            tier1Rate: profile.tier1Rate,
+            tier2Rate: profile.tier2Rate,
+            baseRate: assetRules?.baseRate || 0.0417,
+            tierThreshold: assetRules?.tierThreshold || 117173,
+            tier3Rate: assetRules?.tier3Rate || 0.05
+        };
 
         submitBtn.addEventListener('click', () => {
             const inputs = form.querySelectorAll('.asset-input');
@@ -551,8 +535,8 @@ class QuestionnaireEngine {
         // Apply exemption for liquid assets
         const taxableAssets = Math.max(0, totalFinancialAssets - thresholds.exemption);
 
-        // PART B: Tier calculation (only on amounts above 117,173₪)
-        const tierThreshold = 117173;
+        // PART B: Tier calculation (only on amounts above tier threshold)
+        const tierThreshold = thresholds.tierThreshold || 117173;
         let tiersYearlyIncome = 0;
         let tierBreakdown = [];
 
@@ -640,7 +624,7 @@ class QuestionnaireEngine {
                     const tier1Income = thresholds.tier1 * thresholds.tier1Rate;
                     const tier2Income = thresholds.tier2 * thresholds.tier2Rate;
                     const tier3Amount = amountAboveThreshold - thresholds.tier1 - thresholds.tier2;
-                    const tier3Income = tier3Amount * 0.05;
+                    const tier3Income = tier3Amount * (thresholds.tier3Rate || 0.05);
                     tiersYearlyIncome = tier1Income + tier2Income + tier3Income;
                     tierBreakdown.push(
                         { 
@@ -672,10 +656,10 @@ class QuestionnaireEngine {
             }
         }
 
-        // PART A: Base calculation (4.17% on all taxable assets)
-        const baseYearlyIncome = taxableAssets * 0.0417;
+        // PART A: Base calculation on all taxable assets
+        const baseYearlyIncome = taxableAssets * (thresholds.baseRate || 0.0417);
 
-        // Total yearly income = Base (4.17%) + Tiers (1.5%/3%/5%)
+        // Total yearly income = Base + Tiers
         const yearlyImputedIncome = baseYearlyIncome + tiersYearlyIncome;
 
         const monthlyImputedIncome = yearlyImputedIncome / 12;
@@ -687,6 +671,7 @@ class QuestionnaireEngine {
             totalAssets: totalFinancialAssets,
             exemption: thresholds.exemption,
             taxableAssets: taxableAssets,
+            baseRate: thresholds.baseRate || 0.0417,
             baseYearlyIncome: baseYearlyIncome,
             baseMonthlyIncome: baseYearlyIncome / 12,
             tiersYearlyIncome: tiersYearlyIncome,
@@ -751,7 +736,7 @@ class QuestionnaireEngine {
                     <h4 style="margin: 0 0 10px 0; color: #2e7d32;">📊 פירוט החישוב</h4>
                     
                     <div class="result-row">
-                        <span class="result-label">חלק א' - חישוב בסיסי (4.17%):</span>
+                        <span class="result-label">חלק א' - חישוב בסיסי (${(result.baseRate * 100).toFixed(2)}%):</span>
                         <span class="result-value">${result.baseMonthlyIncome.toLocaleString('he-IL', { maximumFractionDigits: 2 })}₪/חודש</span>
                     </div>
                     
@@ -1078,7 +1063,7 @@ class QuestionnaireEngine {
                         <td class="calc-value">${calculation.deductions.vehicleDeductionBase.toLocaleString('he-IL')}₪</td>
                     </tr>
                     <tr>
-                        <td class="calc-label">קיזוז רכב (3% מהערך לאחר הפחתה):</td>
+                        <td class="calc-label">קיזוז רכב (${(calculation.deductions.vehicleDeductionRate * 100).toFixed(0)}% מהערך לאחר הפחתה):</td>
                         <td class="calc-value">-${calculation.deductions.vehicleDeduction.toLocaleString('he-IL')}₪</td>
                     </tr>
                     ${calculation.deductions.vehicleNote ? `
@@ -1135,16 +1120,20 @@ class QuestionnaireEngine {
         const imputedIncome = parseFloat(this.answers['q4_imputed_income_amount']?.value) || 0;
         const vehicleValue = parseFloat(this.answers['q7_vehicle_value']?.value) || 0;
         const workStatus = this.answers['q6_work_status']?.value || this.answers['q6_work_status']?.label || 'not_working';
+        const isSpecialStatus = this.answers['q8_special_status']?.value === 'special';
 
         // Get exemption amounts for display
         const pensionExemption = isCoupleFamily ? (rules.incomeDeductions.pensionIncome.exemption_couple || 2823) : (rules.incomeDeductions.pensionIncome.exemption_single || rules.incomeDeductions.pensionIncome.exemption || 1790);
-        const workExemption = isCoupleFamily ? (rules.incomeDeductions.workIncome.exemption_couple || 3786) : (rules.incomeDeductions.workIncome.exemption_single || rules.incomeDeductions.workIncome.exemption || 3236);
+        const isSelfEmployed = workStatus === 'self_employed';
+        const workExemption = isSelfEmployed
+            ? (rules.incomeDeductions.workIncome.exemption_self_employed || 4655)
+            : isCoupleFamily ? (rules.incomeDeductions.workIncome.exemption_couple || 3786) : (rules.incomeDeductions.workIncome.exemption_single || rules.incomeDeductions.workIncome.exemption || 3236);
 
         // Calculate deductions according to rules
         const pensionDeduction = this.calculatePensionDeduction(pensionIncome, rules, isCoupleFamily);
-        const workDeduction = this.calculateWorkDeduction(workIncome, rules, isCoupleFamily);
+        const workDeduction = this.calculateWorkDeduction(workIncome, rules, isCoupleFamily, workStatus);
         const imputedDeduction = imputedIncome * rules.incomeDeductions.imputedIncome.deductionRate;
-        const vehicleDeductionInfo = this.calculateVehicleDeduction(vehicleValue, workIncome, workStatus, isRetirementAge, rules.vehicleRules);
+        const vehicleDeductionInfo = this.calculateVehicleDeduction(vehicleValue, workIncome, workStatus, isRetirementAge, isSpecialStatus, rules.vehicleRules);
         const vehicleDeduction = vehicleDeductionInfo.deduction;
         const vehicleDeductionBase = vehicleDeductionInfo.deductionBase || 0;
 
@@ -1184,6 +1173,7 @@ class QuestionnaireEngine {
                 imputedDeduction: imputedDeduction,
                 vehicleDeduction: vehicleDeduction,
                 vehicleDeductionBase: vehicleDeductionBase,
+                vehicleDeductionRate: rules.vehicleRules?.deductionRate || 0.03,
                 vehicleNote: vehicleDeductionInfo.note
             },
             netIncome: netIncome,
@@ -1209,9 +1199,12 @@ class QuestionnaireEngine {
     /**
      * Calculate work income deduction according to rules
      */
-    calculateWorkDeduction(workIncome, rules, isCoupleFamily = false) {
+    calculateWorkDeduction(workIncome, rules, isCoupleFamily = false, workStatus = '') {
         const rule = rules.incomeDeductions.workIncome;
-        const exemption = isCoupleFamily ? (rule.exemption_couple || rule.exemption) : (rule.exemption_single || rule.exemption);
+        const isSelfEmployed = workStatus === 'self_employed';
+        const exemption = isSelfEmployed
+            ? (rule.exemption_self_employed || rule.exemption_single || rule.exemption)
+            : isCoupleFamily ? (rule.exemption_couple || rule.exemption) : (rule.exemption_single || rule.exemption);
         if (workIncome <= exemption) {
             return 0;
         }
@@ -1226,7 +1219,7 @@ class QuestionnaireEngine {
      * 2. 46,138 to 65,343 ₪ = subtract deduction base (depends on work/retirement age), then 3% of remainder
      * 3. Above 65,343 ₪ = no eligibility (special cases only)
      */
-    calculateVehicleDeduction(vehicleValue, workIncome, workStatus, isRetirementAge, vehicleRules) {
+    calculateVehicleDeduction(vehicleValue, workIncome, workStatus, isRetirementAge, isSpecialStatus, vehicleRules) {
         if (!vehicleValue || vehicleValue <= 0 || !vehicleRules) {
             return { deduction: 0, note: '', deductionBase: 0 };
         }
@@ -1246,7 +1239,7 @@ class QuestionnaireEngine {
         if (vehicleValue > extendedThreshold) {
             return {
                 deduction: 0,
-                note: 'שווי הרכב גבוה מ-65,343 ₪ - אין זכאות לקצבה (אלא במקרים מיוחדים בלבד). יש לפנות לביטוח הלאומי לבדיקה ידנית.',
+                note: `שווי הרכב גבוה מ-${extendedThreshold.toLocaleString('he-IL')} ₪ - אין זכאות לקצבה (אלא במקרים מיוחדים בלבד). יש לפנות לביטוח הלאומי לבדיקה ידנית.`,
                 deductionBase: 0
             };
         }
@@ -1272,20 +1265,20 @@ class QuestionnaireEngine {
             }
         } else {
             // Non-worker
-            if (isRetirementAge) {
-                // Retirement age non-worker: 11,227 ₪
+            if (isRetirementAge || isSpecialStatus) {
+                // Retirement age / survivors benefit / work injury dependents: 11,227 ₪
                 deductionBase = vehicleRules.deductions.non_worker_extended; // 11,227
-                employmentStatus = 'לא עובד/ת - גיל פרישה';
+                employmentStatus = isRetirementAge ? 'לא עובד/ת - גיל פרישה' : 'לא עובד/ת - מקבל/ת קצבת שאירים/תלויים';
             } else {
                 // Regular non-worker: 10,380 ₪
                 deductionBase = vehicleRules.deductions.non_worker_regular;  // 10,380
-                employmentStatus = 'לא עובד/ת - מתחת לגיל פרישה';
+                employmentStatus = 'לא עובד/ת';
             }
         }
 
         // Calculate: (vehicle value - deduction base) * 3%
         const adjustedValue = vehicleValue - deductionBase;
-        const deduction = adjustedValue > 0 ? adjustedValue * 0.03 : 0;
+        const deduction = adjustedValue > 0 ? adjustedValue * vehicleRules.deductionRate : 0;
 
         return {
             deduction: deduction,
