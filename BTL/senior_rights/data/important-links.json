@@ -19,12 +19,12 @@
         },
         {
           "name": "שירותים מקוונים",
-          "url": "https://www.btl.gov.il/Pages/default.aspx",
+          "url": "https://ps.btl.gov.il/",
           "description": "הגשת תביעות, עדכון פרטים, ובדיקת זכאות"
         },
         {
           "name": "קצבאות זקנה",
-          "url": "https://www.btl.gov.il/benefits/old_age/Pages/default.aspx",
+          "url": "https://www.btl.gov.il/benefits/Old_Age/Pages/default.aspx",
           "description": "מידע מפורט על קצבאות זקנה ותנאי זכאות"
         },
         {
@@ -56,7 +56,7 @@
         },
         {
           "name": "זכויות אזרחים ותיקים",
-          "url": "https://www.gov.il/he/service/senior_citizen_card",
+          "url": "https://www.gov.il/he/service/senior_citizen_certificate",
           "description": "מידע על תעודת אזרח ותיק והטבות"
         },
         {
@@ -115,7 +115,7 @@
         },
         {
           "name": "עזר מציון",
-          "url": "https://www.ami.org.il/communities/elders",
+          "url": "https://www.ami.org.il/help-for-the-elderly/",
           "description": "סיוע וליווי בקבלת זכויות"
         }
       ]
@@ -132,13 +132,13 @@
         },
         {
           "name": "קופות החולים",
-          "url": "https://www.health.gov.il",
+          "url": "https://www.gov.il/he/subjects/health_funds",
           "description": "מידע על קופות החולים וביטוח בריאות"
         },
         {
           "name": "משרד הרווחה",
-          "url": "https://www.gov.il/he/departments/units/senior-citizens-unit/govil-landing-page",
-          "description": "שירותי סיעוד ורווחה לאזרח הוותיק"
+          "url": "https://www.gov.il/he/departments/units/senior_citizens_administration",
+          "description": "מינהל אזרחים ותיקים במשרד הרווחה"
         }
       ]
     },
@@ -180,11 +180,6 @@
           "description": "הזדקנות מיטבית - שירותים לאזרחים ותיקים"
         },
         {
-          "name": "ארגון נכי מלחמה בנאצים",
-          "url": "https://www.amichaiyisrael.org.il",
-          "description": "זכויות ותמיכה לנכי השואה"
-        },
-        {
           "name": "עמותת לתת",
           "url": "https://www.latet.org.il",
           "description": "סיוע למשפחות נזקקות ולאזרחים ותיקים"
@@ -203,13 +198,13 @@
       "links": [
         {
           "name": "חוק הביטוח הלאומי",
-          "url": "http://www.btl.gov.il/Laws1/00_0001_000000.pdf",
+          "url": "https://www.btl.gov.il/Laws1/00_0001_000000.pdf",
           "description": "אתר הביטוח הלאומי"
         },
         {
-          "name": "חוק הביטוח הלאומי - חילן",
-          "url": "https://www.hilan.co.il/%D7%9E%D7%A8%D7%9B%D7%96-%D7%99%D7%93%D7%A2/%D7%97%D7%A7%D7%99%D7%A7%D7%94/%D7%93%D7%99%D7%A0%D7%99-%D7%91%D7%99%D7%98%D7%95%D7%97-%D7%9C%D7%90%D7%95%D7%9E%D7%99/%D7%97%D7%95%D7%A7-%D7%94%D7%91%D7%99%D7%98%D7%95%D7%97-%D7%94%D7%9C%D7%90%D7%95%D7%9E%D7%99/%D7%A4%D7%A8%D7%A7-%D7%90-%D7%A4%D7%A8%D7%A9%D7%A0%D7%95%D7%AA-%D7%95%D7%94%D7%95%D7%A8%D7%90%D7%95%D7%AA-%D7%9B%D7%9C%D7%9C%D7%99%D7%95%D7%AA/",
-          "description": "נוסח חוק הביטוח הלאומי "
+          "name": "חוק הביטוח הלאומי - נבו",
+          "url": "https://www.nevo.co.il/law_html/law01/050_003.htm",
+          "description": "נוסח החוק המלא באתר נבו"
         },
         {
           "name": "עדכון קצבאות",

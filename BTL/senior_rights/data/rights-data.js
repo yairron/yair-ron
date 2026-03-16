@@ -486,7 +486,7 @@ const RIGHTS_DATA = {
         const c = key => nii[key] ? '₪' + nii[key].value.toLocaleString('he-IL') : '—';
         return `
         <a href="https://www.kolzchut.org.il/he/%D7%92%D7%9E%D7%9C%D7%AA_%D7%A1%D7%99%D7%A2%D7%95%D7%93" target="_blank" class="link-item">🏛️  פורטל גמלת סיעוד - כל זכות. כל המידע ודרכי המימוש לגמלת סיעוד, הניתנת למי שהגיעו לגיל פרישה, מתגוררים בקהילה.</a>
-      <h2 class="no-accordion">❤️ גמלת סיעוד - מדריך מקיף</h2>
+      <h2 class="no-accordion">❤️ גמלת סיעוד</h2>
 
         <h3>📊 רמות גמלת הסיעוד 2026 - טבלה מפורטת</h3>
         <table style="width: 100%; border-collapse: collapse; margin: 20px 0;">

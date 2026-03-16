@@ -259,6 +259,115 @@
         .category-section:nth-child(4) { animation-delay: 0.4s; opacity: 0; }
         .category-section:nth-child(5) { animation-delay: 0.5s; opacity: 0; }
 
+        /* ===== חיפוש ===== */
+        .search-section {
+            background: white;
+            border-radius: 15px;
+            padding: 20px 25px;
+            margin-bottom: 25px;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+        }
+
+        .search-wrapper {
+            position: relative;
+            margin-bottom: 12px;
+        }
+
+        .search-input {
+            width: 100%;
+            padding: 14px 20px;
+            padding-left: 45px;
+            border: 2px solid #e0e0e0;
+            border-radius: 30px;
+            font-size: 1.05em;
+            font-family: inherit;
+            direction: rtl;
+            transition: border-color 0.3s, box-shadow 0.3s;
+            outline: none;
+        }
+
+        .search-input:focus {
+            border-color: #667eea;
+            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.15);
+        }
+
+        .search-input::placeholder {
+            color: #aaa;
+        }
+
+        .search-clear {
+            position: absolute;
+            left: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            background: none;
+            border: none;
+            font-size: 1.15em;
+            color: #bbb;
+            cursor: pointer;
+            padding: 4px 6px;
+            line-height: 1;
+            border-radius: 50%;
+            transition: color 0.2s;
+        }
+
+        .search-clear:hover {
+            color: #666;
+        }
+
+        .search-footer {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .btl-search-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+            color: #667eea;
+            text-decoration: none;
+            font-size: 0.95em;
+            font-weight: 600;
+            transition: color 0.2s;
+        }
+
+        .btl-search-link:hover {
+            color: #764ba2;
+            text-decoration: underline;
+        }
+
+        .search-hint {
+            font-size: 0.85em;
+            color: #aaa;
+        }
+
+        .no-results {
+            background: #fff8e1;
+            border-right: 4px solid #ffc107;
+            border-radius: 10px;
+            padding: 15px 18px;
+            margin-bottom: 15px;
+            color: #555;
+        }
+
+        .no-results p {
+            margin-bottom: 6px;
+        }
+
+        .no-results strong {
+            color: #333;
+        }
+
+        .direct-open-links {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            margin-top: 12px;
+        }
+
         @media (max-width: 768px) {
             h1 {
                 font-size: 1.8em;
@@ -286,6 +395,34 @@
             <p class="support-info">מרכז תמיכה ומידע טלפוני ארצי בטלפון <span dir="ltr">*9696</span></p>
             <p class="subtitle">טפסים חשובים לאזרחים ותיקים - קצבאות, סיעוד, והנחות</p>
         </header>
+
+        <!-- חיפוש -->
+        <div class="search-section">
+            <div id="noResults" class="no-results" style="display:none">
+                <p>לא נמצאו טפסים תואמים בדף זה עבור "<strong id="noResultsQuery"></strong>".</p>
+                <div id="directOpenSection" style="display:none">
+                    <p>אם אתה מחפש <strong id="formNumberDisplay"></strong>, ניתן לנסות לפתוח אותו ישירות:</p>
+                    <div class="direct-open-links">
+                        <a id="directPdfLink" href="#" class="form-link pdf" target="_blank" rel="noopener noreferrer">פתח PDF ישירות</a>
+                        <a id="directOnlineLink" href="#" class="form-link" target="_blank" rel="noopener noreferrer">נסה מילוי מקוון</a>
+                    </div>
+                </div>
+            </div>
+            <div class="search-wrapper">
+                <input type="text" id="formSearch" class="search-input"
+                       placeholder="חפש לפי מספר טופס או שם..." autocomplete="off"
+                       oninput="handleSearch(this.value)">
+                <button class="search-clear" id="clearBtn" onclick="clearSearch()" style="display:none" title="נקה חיפוש">✕</button>
+            </div>
+            <div class="search-footer">
+                <a id="btlSearchLink"
+                   href="https://www.btl.gov.il/%d7%98%d7%a4%d7%a1%d7%99%d7%9d%20%d7%95%d7%90%d7%99%d7%a9%d7%95%d7%a8%d7%99%d7%9d/forms/Pages/default.aspx"
+                   class="btl-search-link" target="_blank" rel="noopener noreferrer">
+                    🔍 כל הטפסים באתר הביטוח הלאומי
+                </a>
+                <span class="search-hint">חפש מספר, שם או נושא</span>
+            </div>
+        </div>
 
         <!-- טפסים לאזרחים ותיקים -->
         <div class="category-section">
@@ -524,6 +661,97 @@
             const content = header.nextElementSibling;
             header.classList.toggle('collapsed');
             content.classList.toggle('collapsed');
+        }
+
+        const BTL_FORMS_BASE = 'https://www.btl.gov.il/%d7%98%d7%a4%d7%a1%d7%99%d7%9d%20%d7%95%d7%90%d7%99%d7%a9%d7%95%d7%a8%d7%99%d7%9d/forms/Pages/default.aspx';
+        const BTL_SEARCH_BASE = 'https://www.btl.gov.il/Pages/BlSearchAiResults.aspx';
+
+        function handleSearch(query) {
+            const clearBtn         = document.getElementById('clearBtn');
+            const noResults        = document.getElementById('noResults');
+            const noResultsQuery   = document.getElementById('noResultsQuery');
+            const directSection    = document.getElementById('directOpenSection');
+            const formNumDisplay   = document.getElementById('formNumberDisplay');
+            const directPdfLink    = document.getElementById('directPdfLink');
+            const directOnlineLink = document.getElementById('directOnlineLink');
+            const btlSearchLink    = document.getElementById('btlSearchLink');
+
+            query = query.trim();
+            clearBtn.style.display = query ? 'block' : 'none';
+
+            // --- עדכון קישור BTL ---
+            if (query) {
+                btlSearchLink.href = BTL_SEARCH_BASE + '?query=' + encodeURIComponent(query);
+                btlSearchLink.title = `חפש "${query}" באתר הביטוח הלאומי`;
+            } else {
+                btlSearchLink.href = BTL_FORMS_BASE;
+                btlSearchLink.removeAttribute('title');
+            }
+
+            // --- ריסט ---
+            if (!query) {
+                document.querySelectorAll('.form-item').forEach(item => item.style.display = '');
+                document.querySelectorAll('.category-section').forEach(section => {
+                    section.style.display = '';
+                    section.querySelector('.category-header').classList.add('collapsed');
+                    section.querySelector('.accordion-content').classList.add('collapsed');
+                });
+                noResults.style.display = 'none';
+                return;
+            }
+
+            // --- סינון ---
+            const q = query.toLowerCase();
+            let totalVisible = 0;
+
+            document.querySelectorAll('.category-section').forEach(section => {
+                let sectionVisible = 0;
+                section.querySelectorAll('.form-item').forEach(item => {
+                    const texts = [
+                        item.querySelector('.form-number')?.textContent   || '',
+                        item.querySelector('.form-name')?.textContent     || '',
+                        item.querySelector('.form-description')?.textContent || ''
+                    ];
+                    const matches = texts.some(t => t.toLowerCase().includes(q));
+                    item.style.display = matches ? '' : 'none';
+                    if (matches) sectionVisible++;
+                });
+
+                if (sectionVisible > 0) {
+                    section.style.display = '';
+                    section.querySelector('.category-header').classList.remove('collapsed');
+                    section.querySelector('.accordion-content').classList.remove('collapsed');
+                } else {
+                    section.style.display = 'none';
+                }
+                totalVisible += sectionVisible;
+            });
+
+            // --- אין תוצאות ---
+            if (totalVisible === 0) {
+                noResultsQuery.textContent = query;
+                noResults.style.display = 'block';
+
+                const numMatch = query.match(/\d+/);
+                if (numMatch) {
+                    const num = numMatch[0];
+                    formNumDisplay.textContent = `טופס ${num}`;
+                    directPdfLink.href    = `https://www.btl.gov.il/%d7%98%d7%a4%d7%a1%d7%99%d7%9d%20%d7%95%d7%90%d7%99%d7%a9%d7%95%d7%a8%d7%99%d7%9d/Documents/T${num}.pdf`;
+                    directOnlineLink.href = `https://govforms.gov.il/mw/forms/T${num}@btl.gov.il`;
+                    directSection.style.display = 'block';
+                } else {
+                    directSection.style.display = 'none';
+                }
+            } else {
+                noResults.style.display = 'none';
+            }
+        }
+
+        function clearSearch() {
+            const input = document.getElementById('formSearch');
+            input.value = '';
+            handleSearch('');
+            input.focus();
         }
     </script>
 </body>
