@@ -1,0 +1,706 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>זכויות אזרחים ותיקים - מדריך מקיף 2026</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Assistant:wght@300;400;600;700;800&family=Varela+Round&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #2E5B8A;
+            --secondary: #4A90B5;
+            --accent: #E8A840;
+            --success: #2E7D32;
+            --danger: #C62828;
+            --light: #F5F9FC;
+            --dark: #1A3A52;
+            --text: #2C3E50;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Assistant', 'Segoe UI', Tahoma, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
+            min-height: 100vh;
+            padding: 20px;
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background:
+                radial-gradient(circle at 20% 50%, rgba(255,255,255,0.1) 0%, transparent 50%),
+                radial-gradient(circle at 80% 80%, rgba(255,255,255,0.1) 0%, transparent 50%);
+            animation: backgroundShift 20s ease-in-out infinite;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        @keyframes backgroundShift {
+            0%, 100% { transform: translate(0, 0) scale(1); }
+            50% { transform: translate(-5%, 5%) scale(0.95); }
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 50px;
+            animation: slideDown 0.8s ease-out;
+        }
+
+        @keyframes slideDown {
+            from { opacity: 0; transform: translateY(-50px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        h1 {
+            font-family: 'Varela Round', sans-serif;
+            font-size: 3.5rem;
+            font-weight: 800;
+            color: white;
+            margin-bottom: 15px;
+            text-shadow: 3px 5px 15px rgba(0,0,0,0.3);
+            letter-spacing: -2px;
+        }
+
+        .support-info {
+            font-size: 1.2rem;
+            color: #FFD54F;
+            font-weight: 700;
+            text-shadow: 1px 2px 8px rgba(0,0,0,0.3);
+            margin-bottom: 8px;
+        }
+
+        .subtitle {
+            font-size: 1.1rem;
+            color: rgba(255,255,255,0.85);
+            font-weight: 300;
+            text-shadow: 1px 2px 8px rgba(0,0,0,0.2);
+        }
+
+        .update-badge {
+            display: inline-block;
+            background: rgba(255,255,255,0.2);
+            backdrop-filter: blur(10px);
+            padding: 8px 20px;
+            border-radius: 20px;
+            color: white;
+            font-size: 0.9rem;
+            margin-top: 15px;
+            font-weight: 600;
+        }
+
+        .accordions-container {
+            margin-bottom: 40px;
+            animation: fadeIn 0.8s ease-out 0.3s both;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .accordion {
+            background: white;
+            border-radius: 0;
+            margin-bottom: 0;
+            box-shadow: 0 12px 35px rgba(0,0,0,0.2);
+            overflow: hidden;
+            transition: all 0.3s;
+            border-bottom: 1px solid rgba(0,0,0,0.1);
+        }
+
+        .accordion:first-child { border-radius: 24px 24px 0 0; }
+        .accordion:last-child { border-radius: 0 0 24px 24px; border-bottom: none; }
+        .accordion:only-child { border-radius: 24px; }
+        .accordion:hover { box-shadow: 0 15px 45px rgba(0,0,0,0.25); }
+
+        .accordion-header {
+            padding: 20px 35px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 18px;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            transition: all 0.3s;
+        }
+
+        .accordion-header:hover {
+            background: linear-gradient(135deg, var(--secondary), var(--primary));
+        }
+
+        .accordion-icon {
+            width: 60px;
+            height: 60px;
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            background: rgba(255,255,255,0.2);
+            flex-shrink: 0;
+        }
+
+        .accordion-title {
+            font-family: 'Varela Round', sans-serif;
+            font-size: 1.8rem;
+            font-weight: 800;
+            flex: 1;
+            margin: 0;
+        }
+
+        .accordion-arrow {
+            font-size: 1.5rem;
+            transition: transform 0.3s;
+            width: 40px;
+            text-align: center;
+            flex-shrink: 0;
+        }
+
+        .accordion.active .accordion-arrow { transform: rotate(180deg); }
+
+        .accordion-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s ease;
+        }
+
+        .accordion.active .accordion-content {
+            max-height: 10000px;
+            height: 80vh;
+            overflow: auto;
+            -webkit-overflow-scrolling: touch;
+        }
+
+        .accordion-body {
+            padding: 35px;
+            font-size: 1.15rem;
+            line-height: 1.9;
+            color: #546E7A;
+        }
+
+        .accordion-body h4 {
+            color: var(--primary);
+            font-size: 1.3rem;
+            margin: 25px 0 15px 0;
+            font-weight: 700;
+        }
+
+        .accordion-body ul {
+            list-style: none;
+            padding: 0;
+            margin: 15px 0;
+        }
+
+        .accordion-body ol {
+            padding-right: 25px;
+            margin: 15px 0;
+        }
+
+        .accordion-body ol li {
+            padding: 6px 0;
+            border-bottom: none;
+        }
+
+        .accordion-body ol li::before {
+            content: '';
+        }
+
+        .accordion-body li {
+            padding: 12px 0;
+            padding-right: 35px;
+            position: relative;
+            border-bottom: 1px solid #E0E7EE;
+        }
+
+        .accordion-body li:last-child { border-bottom: none; }
+
+        .accordion-body li::before {
+            content: '✓';
+            position: absolute;
+            right: 0;
+            color: var(--success);
+            font-weight: bold;
+            font-size: 1.4rem;
+        }
+
+        /* תתי-אקורדיונים */
+        .sub-accordion {
+            margin: 15px 0;
+            border: 1px solid #E0E7EE;
+            border-radius: 12px;
+            overflow: hidden;
+            background: #F8FAFB;
+        }
+
+        .sub-accordion-header {
+            padding: 18px 25px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background: linear-gradient(135deg, #F8FAFB 0%, #EEF2F5 100%);
+            transition: all 0.3s;
+        }
+
+        .sub-accordion-header:hover {
+            background: linear-gradient(135deg, #EEF2F5 0%, #E3E9EE 100%);
+        }
+
+        .sub-accordion-title {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: var(--primary);
+            margin: 0;
+            flex: 1;
+        }
+
+        .sub-accordion-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s ease;
+        }
+
+        .sub-accordion.active > .sub-accordion-content {
+            max-height: 80vh;
+            overflow: auto;
+            -webkit-overflow-scrolling: touch;
+        }
+
+        .sub-accordion-body { padding: 20px 25px; background: white; }
+
+        /* רמות קינון */
+        .sub-accordion[data-level="3"] .sub-accordion-header {
+            padding: 18px 25px;
+        }
+        .sub-accordion[data-level="3"] .sub-accordion-title { font-size: 1.2rem; }
+
+        .sub-accordion[data-level="4"] {
+            margin: 12px 0;
+            background: #FAFBFC;
+        }
+        .sub-accordion[data-level="4"] .sub-accordion-header {
+            padding: 15px 20px;
+            background: linear-gradient(135deg, #E3F2FD 0%, #BBDEFB 100%);
+        }
+        .sub-accordion[data-level="4"] .sub-accordion-header:hover {
+            background: linear-gradient(135deg, #BBDEFB 0%, #90CAF9 100%);
+        }
+        .sub-accordion[data-level="4"] .sub-accordion-title {
+            font-size: 1.1rem;
+            padding-right: 15px;
+        }
+
+        .sub-accordion[data-level="5"] {
+            margin: 10px 0;
+            background: #FCFCFD;
+        }
+        .sub-accordion[data-level="5"] .sub-accordion-header {
+            padding: 12px 18px;
+            background: linear-gradient(135deg, #E8F5E9 0%, #C8E6C9 100%);
+        }
+        .sub-accordion[data-level="5"] .sub-accordion-header:hover {
+            background: linear-gradient(135deg, #C8E6C9 0%, #A5D6A7 100%);
+        }
+        .sub-accordion[data-level="5"] .sub-accordion-title {
+            font-size: 1.05rem;
+            padding-right: 25px;
+        }
+
+        h2.no-accordion, h3.no-accordion, h4.no-accordion {
+            color: var(--primary);
+            font-weight: 700;
+            margin: 25px 0 15px 0;
+        }
+        h2.no-accordion { font-size: 1.5rem; }
+        h3.no-accordion { font-size: 1.3rem; }
+        h4.no-accordion { font-size: 1.2rem; }
+
+        .conditions-box {
+            background: #FFF8E1;
+            border-right: 4px solid var(--accent);
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 12px;
+        }
+
+        .conditions-box h4 {
+            color: var(--accent);
+            font-size: 1.2rem;
+            margin: 0 0 10px 0;
+        }
+
+        .info-box {
+            background: rgba(255,255,255,0.95);
+            border-radius: 20px;
+            padding: 30px;
+            margin-top: 40px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+            border-right: 4px solid var(--accent);
+            animation: fadeIn 0.8s ease-out 0.6s both;
+        }
+
+        .info-box-header {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 15px;
+        }
+
+        .info-box-icon { font-size: 2rem; }
+
+        .info-box h3 {
+            font-family: 'Varela Round', sans-serif;
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: var(--accent);
+            margin: 0;
+        }
+
+        .info-box p {
+            font-size: 1.05rem;
+            line-height: 1.8;
+            color: #546E7A;
+            margin: 0;
+        }
+
+        .links-section {
+            margin-top: 25px;
+            padding-top: 20px;
+            border-top: 2px solid #E0E7EE;
+        }
+
+        .links-title {
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 15px;
+            font-size: 1.1rem;
+        }
+
+        .link-item {
+            display: block;
+            padding: 12px 18px;
+            margin-bottom: 10px;
+            background: #F5F9FC;
+            border-radius: 12px;
+            color: var(--secondary);
+            text-decoration: none;
+            transition: all 0.3s;
+            font-weight: 600;
+        }
+
+        .link-item:hover {
+            background: var(--secondary);
+            color: white;
+            transform: translateX(-5px);
+            box-shadow: 0 4px 12px rgba(74,144,181,0.3);
+        }
+
+        .loading {
+            text-align: center;
+            padding: 60px 20px;
+            background: white;
+            border-radius: 24px;
+            box-shadow: 0 12px 35px rgba(0,0,0,0.2);
+        }
+
+        .loading-spinner {
+            width: 60px;
+            height: 60px;
+            border: 6px solid #E0E7EE;
+            border-top-color: var(--primary);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 20px;
+        }
+
+        @keyframes spin { to { transform: rotate(360deg); } }
+
+        footer {
+            text-align: center;
+            margin-top: 60px;
+            padding: 30px;
+            color: rgba(255,255,255,0.9);
+            font-size: 1rem;
+        }
+
+        .back-button {
+            display: inline-block;
+            background: rgba(255,255,255,0.25);
+            backdrop-filter: blur(10px);
+            padding: 12px 24px;
+            border-radius: 25px;
+            color: white;
+            text-decoration: none;
+            font-size: 1rem;
+            font-weight: 600;
+            transition: all 0.3s;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+        }
+
+        .back-button:hover {
+            background: rgba(255,255,255,0.35);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(0,0,0,0.25);
+        }
+
+        .back-button::before { content: '← '; margin-left: 5px; }
+
+        @media (max-width: 768px) {
+            h1 { font-size: 2.5rem; }
+            .accordion-header { padding: 20px 25px; }
+            .accordion-title { font-size: 1.4rem; }
+            .accordion-body { padding: 25px; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <a href="../index.html" class="back-button">חזרה לדף ראשי</a>
+            <h1>📋 זכויות אזרחים ותיקים</h1>
+            <p class="support-info">מרכז תמיכה ומידע טלפוני ארצי בטלפון <span dir="ltr">*9696</span></p>
+            <p class="subtitle">מדריך מקיף 2026 — כל הזכויות במקום אחד</p>
+            <div class="update-badge">מעודכן לינואר 2026</div>
+        </header>
+
+        <div id="content">
+            <div class="loading">
+                <div class="loading-spinner"></div>
+                <p style="color:#546E7A;font-size:1.2rem;font-weight:600;">טוען מידע מעודכן...</p>
+            </div>
+        </div>
+
+        <div class="info-box">
+            <div class="info-box-header">
+                <span class="info-box-icon">ℹ️</span>
+                <h3>הערה חשובה</h3>
+            </div>
+            <p>
+                המידע באתר זה מיועד לידיעה כללית בלבד ואינו מהווה בסיס לפעולה מכל סוג.
+                יש לפנות לגורמים המוסמכים לקבלת מידע מדויק ומעודכן על הזכויות המגיעות לכם באופן אישי.
+            </p>
+            <div class="links-section">
+                <div class="links-title">🔗 קישורים למקורות מידע רשמיים:</div>
+                <a href="https://www.btl.gov.il" target="_blank" class="link-item">🏛️ אתר הביטוח הלאומי</a>
+                <a href="https://www.gov.il/he/Departments/molsa" target="_blank" class="link-item">🏢 משרד הרווחה והשירותים החברתיים</a>
+                <a href="https://www.health.gov.il" target="_blank" class="link-item">🏥 משרד הבריאות</a>
+                <a href="https://www.kolzchut.org.il" target="_blank" class="link-item">📋 כל זכות — מידע על זכויות</a>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <p>🤖 פותח עם ❤️ לסיוע לאזרחים ותיקים בישראל</p>
+    </footer>
+
+    <script src="data/senior_rights_full.js"></script>
+    <script>
+        // הגדרות אקורדיון — 10 הפרקים מהמדריך המקיף
+        const ACCORDIONS_CONFIG = {
+            old_age_pension:     { title: '👴 קצבת אזרח ותיק (קצבת זקנה)',               icon: '👴' },
+            income_supplement:   { title: '💰 גמלת השלמת הכנסה',                          icon: '💰' },
+            nursing:             { title: '❤️ גמלת סיעוד',                                icon: '❤️' },
+            disability:          { title: '♿ גמלת נכות כללית וקצבת שירותים מיוחדים',    icon: '♿' },
+            survivors:           { title: '🕊️ קצבת שארים',                               icon: '🕊️' },
+            transition_grant:    { title: '🎁 מענק מעבר לנשים בגיל 62',                   icon: '🎁' },
+            holocaust_survivors: { title: '🕯️ זכויות ניצולי שואה',                       icon: '🕯️' },
+            additional_benefits: { title: '🌟 הטבות נוספות',                              icon: '🌟' },
+            interactions:        { title: '📊 השפעות הדדיות בין הקצבאות',                icon: '📊' },
+            contact:             { title: '📞 כתובות ויצירת קשר',                         icon: '📞' }
+        };
+
+        let NII_CONSTANTS = {};
+
+        // הצגת המידע
+        function displayData() {
+            try {
+                if (typeof RIGHTS_DATA === 'undefined' || !RIGHTS_DATA.categories) {
+                    throw new Error('אין נתונים זמינים');
+                }
+
+                let html = '<div class="accordions-container">';
+
+                for (const [key, config] of Object.entries(ACCORDIONS_CONFIG)) {
+                    const data = RIGHTS_DATA.categories[key];
+                    const content = data
+                        ? (typeof data.contentFn === 'function' ? data.contentFn(NII_CONSTANTS) : data.content)
+                        : '<p style="text-align:center;color:#999;padding:40px;">⏳ המידע יתעדכן בקרוב...</p>';
+
+                    html += `
+                        <div class="accordion" data-category="${key}">
+                            <div class="accordion-header">
+                                <div class="accordion-icon">${config.icon}</div>
+                                <h2 class="accordion-title">${config.title}</h2>
+                                <span class="accordion-arrow">▼</span>
+                            </div>
+                            <div class="accordion-content">
+                                <div class="accordion-body">${content}</div>
+                            </div>
+                        </div>
+                    `;
+                }
+
+                html += '</div>';
+                document.getElementById('content').innerHTML = html;
+                convertHeadingsToSubAccordions();
+                initAccordions();
+
+            } catch (error) {
+                console.error('שגיאה בטעינת הנתונים:', error);
+                document.getElementById('content').innerHTML = `
+                    <div class="loading">
+                        <p style="color:var(--danger);font-size:1.2rem;font-weight:600;">⚠️ אירעה שגיאה בטעינת המידע</p>
+                        <p style="color:#546E7A;margin-top:10px;">אנא רענן את הדף או נסה שוב מאוחר יותר</p>
+                    </div>
+                `;
+            }
+        }
+
+        // פונקציה רקורסיבית לעיבוד כותרות מקוננות
+        function processNestedHeadings(container, depth = 0) {
+            const allHeadings = Array.from(container.querySelectorAll('h2, h3, h4, h5, h6'));
+
+            const headings = allHeadings.filter(heading => {
+                let parent = heading.parentElement;
+                while (parent && parent !== container) {
+                    if (parent.classList && parent.classList.contains('sub-accordion')) return false;
+                    parent = parent.parentElement;
+                }
+                return true;
+            });
+
+            headings.forEach(heading => {
+                if (heading.classList.contains('no-accordion')) return;
+
+                let contentElements = [];
+                let nextElement = heading.nextElementSibling;
+                const currentLevel = parseInt(heading.tagName.substring(1));
+
+                while (nextElement) {
+                    const nextTagName = nextElement.tagName;
+                    if (nextTagName && nextTagName.match(/^H[2-6]$/)) {
+                        const nextLevel = parseInt(nextTagName.substring(1));
+                        if (nextLevel <= currentLevel) break;
+                    }
+                    contentElements.push(nextElement);
+                    nextElement = nextElement.nextElementSibling;
+                }
+
+                if (contentElements.length > 0) {
+                    const subAccordion = document.createElement('div');
+                    subAccordion.className = 'sub-accordion';
+                    subAccordion.setAttribute('data-level', currentLevel);
+
+                    const subHeader = document.createElement('div');
+                    subHeader.className = 'sub-accordion-header';
+
+                    const subTitle = document.createElement('div');
+                    subTitle.className = 'sub-accordion-title';
+                    subTitle.innerHTML = heading.innerHTML;
+
+                    subHeader.appendChild(subTitle);
+
+                    const subContent = document.createElement('div');
+                    subContent.className = 'sub-accordion-content';
+
+                    const subBody = document.createElement('div');
+                    subBody.className = 'sub-accordion-body';
+
+                    contentElements.forEach(el => subBody.appendChild(el));
+
+                    subContent.appendChild(subBody);
+                    subAccordion.appendChild(subHeader);
+                    subAccordion.appendChild(subContent);
+
+                    heading.parentNode.replaceChild(subAccordion, heading);
+                    processNestedHeadings(subBody, depth + 1);
+
+                    subHeader.addEventListener('click', (event) => {
+                        event.stopPropagation();
+                        const wasActive = subAccordion.classList.contains('active');
+
+                        let parentBody = subAccordion.parentElement;
+                        while (parentBody && !parentBody.classList.contains('accordion-body') && !parentBody.classList.contains('sub-accordion-body')) {
+                            parentBody = parentBody.parentElement;
+                        }
+
+                        if (parentBody) {
+                            parentBody.querySelectorAll(':scope > .sub-accordion.active').forEach(sib => {
+                                if (sib !== subAccordion) sib.classList.remove('active');
+                            });
+                        }
+
+                        subAccordion.classList.toggle('active');
+
+                        if (!wasActive) {
+                            subAccordion.querySelectorAll('.sub-accordion.active').forEach(n => n.classList.remove('active'));
+                            setTimeout(() => {
+                                subAccordion.scrollIntoView({ behavior: 'smooth', block: 'start', inline: 'nearest' });
+                            }, 450);
+                        }
+                    });
+                }
+            });
+        }
+
+        function convertHeadingsToSubAccordions() {
+            document.querySelectorAll('.accordion-body').forEach(body => {
+                processNestedHeadings(body, 0);
+            });
+        }
+
+        function initAccordions() {
+            const accordions = document.querySelectorAll('.accordion');
+            accordions.forEach(accordion => {
+                const header = accordion.querySelector('.accordion-header');
+                header.addEventListener('click', () => {
+                    const wasActive = accordion.classList.contains('active');
+                    accordions.forEach(other => {
+                        if (other !== accordion) other.classList.remove('active');
+                    });
+                    accordion.classList.toggle('active');
+
+                    if (!wasActive) {
+                        accordion.querySelectorAll('.sub-accordion.active').forEach(s => s.classList.remove('active'));
+                        setTimeout(() => {
+                            accordion.scrollIntoView({ behavior: 'smooth', block: 'start', inline: 'nearest' });
+                        }, 450);
+                    }
+                });
+            });
+        }
+
+        // טעינת nii-constants.json ואז הצגת הנתונים
+        async function init() {
+            try {
+                const resp = await fetch('data/nii-constants.json');
+                NII_CONSTANTS = await resp.json();
+            } catch(e) {
+                console.warn('⚠️ לא ניתן לטעון nii-constants.json, משתמש בערכי ברירת מחדל');
+            }
+            displayData();
+        }
+
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', init);
+        } else {
+            init();
+        }
+    </script>
+</body>
+</html>

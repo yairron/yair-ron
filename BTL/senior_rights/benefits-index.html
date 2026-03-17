@@ -99,13 +99,20 @@
             transition: transform 0.25s;
             font-size: 1.2rem;
         }
-        .accordion-header.active .arrow { transform: rotate(-90deg); }
+        .accordion-card.active .accordion-header .arrow { transform: rotate(-90deg); }
 
         .accordion-content {
             max-height: 0;
             overflow: hidden;
             background: #f8f9fa;
             transition: max-height 0.4s ease;
+        }
+
+        .accordion-card.active .accordion-content {
+            max-height: 10000px;
+            height: 80vh;
+            overflow: auto;
+            -webkit-overflow-scrolling: touch;
         }
 
         .accordion-links { padding: 18px 26px; }
@@ -170,7 +177,7 @@
             font-size: 1rem;
         }
 
-        .sub-accordion-header.active .sub-accordion-arrow {
+        .sub-accordion.active .sub-accordion-header .sub-accordion-arrow {
             transform: rotate(-90deg);
         }
 
@@ -178,12 +185,13 @@
             max-height: 0;
             overflow: hidden;
             background: #fafafa;
-            transition: max-height 0.3s ease, overflow 0s 0.3s;
+            transition: max-height 0.4s ease;
         }
 
-        .sub-accordion-content.scrollable {
-            overflow-y: auto;
-            transition: max-height 0.3s ease;
+        .sub-accordion.active .sub-accordion-content {
+            max-height: 80vh;
+            overflow: auto;
+            -webkit-overflow-scrolling: touch;
         }
 
         .sub-accordion-content::-webkit-scrollbar {
@@ -503,40 +511,24 @@
                     // Sub-accordion click handler
                     subHeader.addEventListener('click', (e) => {
                         e.stopPropagation();
-                        const wasActive = subHeader.classList.contains('active');
+                        const wasActive = subAccordion.classList.contains('active');
 
                         // Close all sibling sub-accordions
-                        links.querySelectorAll('.sub-accordion-header.active').forEach(sh => {
-                            if (sh !== subHeader) {
-                                sh.classList.remove('active');
-                                sh.nextElementSibling.classList.remove('scrollable');
-                                sh.nextElementSibling.style.maxHeight = null;
-                            }
+                        links.querySelectorAll('.sub-accordion.active').forEach(sa => {
+                            if (sa !== subAccordion) sa.classList.remove('active');
                         });
 
                         // Toggle current sub-accordion
-                        subHeader.classList.toggle('active');
+                        subAccordion.classList.toggle('active');
+
                         if (!wasActive) {
-                            var maxH = 400;
-                            var needsScroll = subContent.scrollHeight > maxH;
-                            subContent.style.maxHeight = (needsScroll ? maxH : subContent.scrollHeight) + 'px';
-                            if (needsScroll) {
-                                subContent.classList.add('scrollable');
-                            }
-                            // Update parent content height
-                            setTimeout(() => {
-                                content.style.maxHeight = content.scrollHeight + 'px';
-                            }, 50);
-                            // Scroll to sub-accordion
                             setTimeout(() => {
                                 subAccordion.scrollIntoView({
                                     behavior: 'smooth',
-                                    block: 'start'
+                                    block: 'nearest',
+                                    inline: 'nearest'
                                 });
-                            }, 350);
-                        } else {
-                            subContent.classList.remove('scrollable');
-                            subContent.style.maxHeight = null;
+                            }, 450);
                         }
                     });
                 });
@@ -548,51 +540,29 @@
 
                 // Main accordion click handler
                 header.addEventListener('click', () => {
-                    const wasActive = header.classList.contains('active');
+                    const wasActive = card.classList.contains('active');
 
                     // Close all other main accordions
-                    container.querySelectorAll('.accordion-card').forEach(otherCard => {
+                    container.querySelectorAll('.accordion-card.active').forEach(otherCard => {
                         if (otherCard !== card) {
-                            const otherHeader = otherCard.querySelector('.accordion-header');
-                            const otherContent = otherCard.querySelector('.accordion-content');
-                            if (otherHeader.classList.contains('active')) {
-                                otherHeader.classList.remove('active');
-                                // Close all sub-accordions in this accordion
-                                otherContent.querySelectorAll('.sub-accordion-header.active').forEach(sh => {
-                                    sh.classList.remove('active');
-                                    sh.nextElementSibling.classList.remove('scrollable');
-                                    sh.nextElementSibling.style.maxHeight = null;
-                                });
-                                otherContent.style.maxHeight = null;
-                            }
+                            otherCard.classList.remove('active');
+                            otherCard.querySelectorAll('.sub-accordion.active').forEach(sa => sa.classList.remove('active'));
                         }
                     });
 
                     // Toggle current accordion
-                    header.classList.toggle('active');
+                    card.classList.toggle('active');
+
                     if (!wasActive) {
                         // Close all sub-accordions when opening main
-                        content.querySelectorAll('.sub-accordion-header.active').forEach(sh => {
-                            sh.classList.remove('active');
-                            sh.nextElementSibling.classList.remove('scrollable');
-                            sh.nextElementSibling.style.maxHeight = null;
-                        });
-                        content.style.maxHeight = content.scrollHeight + 'px';
-                        // Scroll to accordion
+                        card.querySelectorAll('.sub-accordion.active').forEach(sa => sa.classList.remove('active'));
                         setTimeout(() => {
                             card.scrollIntoView({
                                 behavior: 'smooth',
-                                block: 'start'
+                                block: 'start',
+                                inline: 'nearest'
                             });
-                        }, 350);
-                    } else {
-                        // Close all sub-accordions when closing main
-                        content.querySelectorAll('.sub-accordion-header.active').forEach(sh => {
-                            sh.classList.remove('active');
-                            sh.nextElementSibling.classList.remove('scrollable');
-                            sh.nextElementSibling.style.maxHeight = null;
-                        });
-                        content.style.maxHeight = null;
+                        }, 450);
                     }
                 });
             });
