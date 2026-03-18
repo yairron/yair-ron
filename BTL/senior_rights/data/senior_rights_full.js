@@ -115,7 +115,7 @@ const RIGHTS_DATA = {
           <p>📌 <strong>שכר ממוצע במשק (2026):</strong> ₪${NII.average_wage.value.toLocaleString('he-IL')}</p>
         </div>
 
-        <h4>א. הכנסה מעבודה</h4>
+        <h4>א. הכנסה רק מעבודה</h4>
         <p>הכנסה ממשכורת או מעסק עצמאי — ברוטו, לפני ניכויים.</p>
 
         <h5>1. יחיד (ללא בן/ת זוג, או ב"ז שאינו עונה על ההגדרה)</h5>
@@ -176,7 +176,7 @@ const RIGHTS_DATA = {
           <p>📌 כל אחד זכאי לתוספת ותק בהתאם לשנות ביטוחו/ה האישיות</p>
         </div>
 
-        <h4>ב. הכנסה מנכסים</h4>
+        <h4>ב. הכנסה רק מנכסים</h4>
         <p>כולל: שכר דירה, ריבית, דיבידנד, רווחי הון (חודשי = שנתי÷12), הכנסה מהשכרת רכוש.</p>
         <div class="conditions-box" style="background:#fff3e0;">
           <p>⚠️ <strong>הבדל מהותי:</strong> תקרות הכנסה מנכסים גבוהות פי 3 מתקרות הכנסת עבודה</p>
@@ -251,7 +251,7 @@ const RIGHTS_DATA = {
           <p style="margin-top:8px;">⚠️ אם הדירה רשומה על שם אחד בלבד — כל ₪84,000 ייוחסו לו ויאבד זכאות (מעל ₪${NII.income_test_married_asset_partial_with_pension.value.toLocaleString('he-IL')})</p>
         </div>
 
-        <h4>ג. הכנסה משולבת (מעבודה ומנכסים)</h4>
+        <h4>ג. הכנסה משולבת (גם מעבודה וגם מנכסים)</h4>
         <p>כאשר יש הכנסה הן מעבודה והן מנכסים — שתי ההכנסות <strong>נסכמות יחד</strong> לבדיקת התקרה.</p>
         <table style="width:100%;border-collapse:collapse;margin:12px 0;">
           <thead><tr style="background:linear-gradient(135deg,#667eea,#764ba2);color:white;">
