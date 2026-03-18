@@ -502,15 +502,16 @@ const RIGHTS_DATA = {
         <h3>2.4 השפעת הכנסות על ההשלמה</h3>
 
         <h4>הכנסה מפנסיה (הכנסה שאינה מעבודה)</h4>
-        <p>כל שקל שמתקבל מפנסיה מקוזז בשלמותו (100%) מסכום השלמת ההכנסה.</p>
-        <div class="conditions-box"><p><strong>דוגמה:</strong> יחיד זכאי להשלמה ₪2,000 ויש לו פנסיה ₪1,000 → יקבל רק ₪1,000 השלמה.</p></div>
-
+        <ul>
+           <li><strong>הכנסה פטורה מפנסיה:</strong> ליחיד ₪${NII.pension_income_exempt_single.value.toLocaleString('he-IL')} | לזוג ₪${NII.pension_income_exempt_couple.value.toLocaleString('he-IL')}</li>
+          <li> כל שקל מעבר לפטור מקוזז בשלמותו (100%) מסכום השלמת ההכנסה.</li>
+        </ul>
+        
         <h4>הכנסה מעבודה (שכר)</h4>
         <p>קיים תמריץ ליציאה לעבודה — חלק מהשכר אינו נספר ("הכנסה פטורה").</p>
         <ul>
-          <li><strong>הסכום הפטור:</strong> ליחיד ₪${NII.work_income_exempt_single.value.toLocaleString('he-IL')} | לזוג ₪${NII.work_income_exempt_couple.value.toLocaleString('he-IL')}</li>
-          <li><strong>הכנסה פטורה מפנסיה:</strong> ליחיד ₪${NII.pension_income_exempt_single.value.toLocaleString('he-IL')} | לזוג ₪${NII.pension_income_exempt_couple.value.toLocaleString('he-IL')}</li>
-          <li>על כל שקל מעבר לפטור — מופחתים ${NII.income_test_deduction_rate.value}% מסכום השלמת ההכנסה.</li>
+          <li><strong>סכום הפטור:</strong> ליחיד ₪${NII.work_income_exempt_single.value.toLocaleString('he-IL')} | לזוג ₪${NII.work_income_exempt_couple.value.toLocaleString('he-IL')}</li>
+          <li>מכל שקל מעבר לפטור — מופחתים ${NII.income_test_deduction_rate.value}% מסכום השלמת ההכנסה.</li>
         </ul>
 
         <h4>נכסים פיננסיים (חסכונות, פקדונות, מניות)</h4>
@@ -531,10 +532,11 @@ const RIGHTS_DATA = {
         <h3>2.5 נוסחת חישוב הזכאות</h3>
         <ol style="padding-right:25px;margin:15px 0;">
           <li style="margin-bottom:8px;">קבע את <strong>הקצבה המקסימלית</strong> לפי הרכב משפחתי וגיל.</li>
-          <li style="margin-bottom:8px;">חשב <strong>הכנסות לא מעבודה</strong>: פנסיה + הכנסה מנכסים (מעבר לפטור) — כל שקל מקוזז במלואו.</li>
-          <li style="margin-bottom:8px;">חשב <strong>הכנסות מעבודה</strong>: (שכר ברוטו פחות הסכום הפטור) × ${NII.imputed_income_rate_decimal.value}.</li>
-          <li style="margin-bottom:8px;"><strong>הפחת</strong> תוצאות שלבים 2–3 מהקצבה המקסימלית.</li>
-          <li>התוצאה היא <strong>סכום הקצבה בפועל</strong>.</li>
+          <li style="margin-bottom:8px;">חשב <strong>ניכוי מפנסיה פרטית</strong>: (סכום הפנסיה − פטור פנסיה [יחיד: ₪${NII.pension_income_exempt_single.value.toLocaleString('he-IL')} | זוג: ₪${NII.pension_income_exempt_couple.value.toLocaleString('he-IL')}]) × 100% — כל שקל עודף מנוכה במלואו.</li>
+          <li style="margin-bottom:8px;">חשב <strong>ניכוי מנכסים פיננסיים</strong>: (שווי נכסים − פטור נכסים [יחיד: ₪${NII.imputed_income_exempt_single.value.toLocaleString('he-IL')} | זוג: ₪${NII.imputed_income_exempt_couple.value.toLocaleString('he-IL')}]) × ${NII.imputed_income_rate.value}% ÷ 12 = הכנסה רעיונית חודשית — מנוכה במלואה.</li>
+          <li style="margin-bottom:8px;">חשב <strong>ניכוי מהכנסת עבודה</strong>: (שכר ברוטו − פטור עבודה [יחיד: ₪${NII.work_income_exempt_single.value.toLocaleString('he-IL')} | זוג: ₪${NII.work_income_exempt_couple.value.toLocaleString('he-IL')}]) × ${NII.income_test_deduction_rate.value}%.</li>
+          <li style="margin-bottom:8px;"><strong>הפחת</strong> את קצבת הזקנה בפועל ואת תוצאות שלבים 2–4 מהקצבה המקסימלית.</li>
+          <li>התוצאה היא <strong>סכום השלמת ההכנסה בפועל</strong> (לא תרד מ-₪0).</li>
         </ol>
 
         <h3>2.6 דוגמאות לחישוב השלמת הכנסה</h3>
