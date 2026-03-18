@@ -107,26 +107,204 @@ const RIGHTS_DATA = {
         </ul>
 
         <h3>1.3 מבחן הכנסות (בין גיל הפרישה ל-${NII.retirement_age_unconditional.value})</h3>
-        <table style="width:100%;border-collapse:collapse;margin:15px 0;">
+        <div class="conditions-box">
+          <p>📅 המבחן חל <strong>מגיל פרישה ועד גיל ${NII.retirement_age_unconditional.value}</strong> — מגיל ${NII.retirement_age_unconditional.value} הקצבה משולמת ללא מבחן הכנסות.</p>
+          <p>📌 <strong>שיעור הפחתה:</strong> ${NII.income_test_deduction_rate.value}% מכל שקל שמעל תקרת הקצבה המלאה</p>
+          <p>📌 קצבה חלקית מתחת ₪${Math.round(NII.pension_single_basic.value * 0.1).toLocaleString('he-IL')} (10% מהקצבה הבסיסית) שוללת זכאות לקצבת זיקנה</p>
+          <p>📌 <strong>פנסיה פרטית</strong> (קרן פנסיה, ביטוח מנהלים, קרן השתלמות) — <strong>אינה נכללת</strong> במבחן</p>
+          <p>📌 <strong>שכר ממוצע במשק (2026):</strong> ₪${NII.average_wage.value.toLocaleString('he-IL')}</p>
+        </div>
+
+        <h4>א. הכנסה מעבודה</h4>
+        <p>הכנסה ממשכורת או מעסק עצמאי — ברוטו, לפני ניכויים.</p>
+
+        <h5>1. יחיד (ללא בן/ת זוג, או ב"ז שאינו עונה על ההגדרה)</h5>
+        <p>כולל: רווק/ה, גרוש/ה, אלמן/ה, ונשוי/ה שהכנסת ב"ז עולה על ₪${NII.income_test_spouse_ceiling.value.toLocaleString('he-IL')}/חודש</p>
+        <table style="width:100%;border-collapse:collapse;margin:12px 0;">
           <thead><tr style="background:linear-gradient(135deg,#667eea,#764ba2);color:white;">
-            <th style="padding:10px;border:1px solid #ddd;">סטטוס</th>
-            <th style="padding:10px;border:1px solid #ddd;">זכאות מלאה</th>
-            <th style="padding:10px;border:1px solid #ddd;">זכאות חלקית</th>
-            <th style="padding:10px;border:1px solid #ddd;">אין זכאות</th>
+            <th style="padding:9px 10px;border:1px solid #ddd;">הכנסה חודשית מעבודה (ברוטו)</th>
+            <th style="padding:9px 10px;border:1px solid #ddd;">מצב קצבה</th>
+            <th style="padding:9px 10px;border:1px solid #ddd;">הערה</th>
           </tr></thead>
           <tbody>
-            <tr><td style="padding:9px;border:1px solid #ddd;">יחיד</td><td style="padding:9px;border:1px solid #ddd;">עד ₪${NII.income_test_single_full.value.toLocaleString('he-IL')}</td><td style="padding:9px;border:1px solid #ddd;">₪${NII.income_test_single_full.value.toLocaleString('he-IL')}–₪${NII.income_test_single_partial.value.toLocaleString('he-IL')}</td><td style="padding:9px;border:1px solid #ddd;">מעל ₪${NII.income_test_single_partial.value.toLocaleString('he-IL')}</td></tr>
-            <tr><td style="padding:9px;border:1px solid #ddd;">נשוי</td><td style="padding:9px;border:1px solid #ddd;">עד ₪${NII.income_test_married_full.value.toLocaleString('he-IL')}</td><td style="padding:9px;border:1px solid #ddd;">₪${NII.income_test_married_full.value.toLocaleString('he-IL')}–₪${NII.income_test_married_partial.value.toLocaleString('he-IL')}</td><td style="padding:9px;border:1px solid #ddd;">מעל ₪${NII.income_test_married_partial.value.toLocaleString('he-IL')}</td></tr>
+            <tr style="background:#f8fff8;"><td style="padding:9px;border:1px solid #ddd;">עד ₪${NII.income_test_single_full.value.toLocaleString('he-IL')}</td><td style="padding:9px;border:1px solid #ddd;color:#2E7D32;font-weight:bold;">קצבה מלאה</td><td style="padding:9px;border:1px solid #ddd;">ללא קיצוץ</td></tr>
+            <tr style="background:#fffef8;"><td style="padding:9px;border:1px solid #ddd;">₪${NII.income_test_single_full.value.toLocaleString('he-IL')} – ₪${NII.income_test_single_partial.value.toLocaleString('he-IL')}</td><td style="padding:9px;border:1px solid #ddd;color:#E65100;font-weight:bold;">קצבה חלקית</td><td style="padding:9px;border:1px solid #ddd;">מינוס ${NII.income_test_deduction_rate.value}% מהחריגה</td></tr>
+            <tr style="background:#fff8f8;"><td style="padding:9px;border:1px solid #ddd;">מעל ₪${NII.income_test_single_partial.value.toLocaleString('he-IL')}</td><td style="padding:9px;border:1px solid #ddd;color:#C62828;font-weight:bold;">אין זכאות</td><td style="padding:9px;border:1px solid #ddd;">קצבה מושהית עד גיל ${NII.retirement_age_unconditional.value}</td></tr>
           </tbody>
         </table>
-        <ul>
-          <li><strong>הפחתה:</strong> ${NII.income_test_deduction_rate.value}% מההכנסה העודפת מעל התקרה מופחתת מסכום הקצבה.</li>
-          <li><strong>חשוב:</strong> הכנסה מפנסיה (קרן פנסיה, ביטוח מנהלים) <strong>אינה נכללת</strong> במבחן — רק הכנסות מעבודה והכנסות מנכסים (השכרה, ריבית).</li>
-        </ul>
         <div class="conditions-box">
-          <h4>נוסחת חישוב קצבה חלקית</h4>
-          <p style="font-family:monospace;background:#f5f5f5;padding:10px;border-radius:6px;direction:rtl;">קצבה חלקית = קצבה מלאה − [${NII.income_test_deduction_rate.value}% × (הכנסה ברוטו − תקרת קצבה מלאה)]</p>
+          <p><strong>נוסחה:</strong> קצבה = קצבה מלאה − (${NII.income_test_deduction_rate.value}% × [הכנסה − ₪${NII.income_test_single_full.value.toLocaleString('he-IL')}])</p>
+          <p><strong>דוגמה:</strong> הכנסה ₪11,000 → חריגה ₪${(11000 - NII.income_test_single_full.value).toLocaleString('he-IL')} → קיצוץ ₪${Math.round((11000 - NII.income_test_single_full.value) * NII.income_test_deduction_rate.value / 100).toLocaleString('he-IL')}</p>
+          <p>⚠️ הקצבה החלקית לא תרד מ-10% מהקצבה הבסיסית (₪${Math.round(NII.pension_single_basic.value * 0.1).toLocaleString('he-IL')})</p>
         </div>
+
+        <h5>2. נשוי/ה — בן/ת הזוג עונה על הגדרת "בן זוג" ואינו/ה מקבל/ת קצבה</h5>
+        <p>תנאים: נשואים שנה לפחות, ב"ז בגיל 50–${NII.retirement_age_unconditional.value} (או מעל ${NII.retirement_age_unconditional.value} ואינו מקבל קצבה), והכנסת ב"ז אינה עולה על ₪${NII.income_test_spouse_ceiling.value.toLocaleString('he-IL')}/חודש</p>
+        <table style="width:100%;border-collapse:collapse;margin:12px 0;">
+          <thead><tr style="background:linear-gradient(135deg,#667eea,#764ba2);color:white;">
+            <th style="padding:9px 10px;border:1px solid #ddd;">הכנסה חודשית מעבודה (ברוטו)</th>
+            <th style="padding:9px 10px;border:1px solid #ddd;">מצב קצבה</th>
+            <th style="padding:9px 10px;border:1px solid #ddd;">הערה</th>
+          </tr></thead>
+          <tbody>
+            <tr style="background:#f8fff8;"><td style="padding:9px;border:1px solid #ddd;">עד ₪${NII.income_test_married_full.value.toLocaleString('he-IL')}</td><td style="padding:9px;border:1px solid #ddd;color:#2E7D32;font-weight:bold;">קצבה מלאה</td><td style="padding:9px;border:1px solid #ddd;">כולל תוספת בן/ת הזוג</td></tr>
+            <tr style="background:#fffef8;"><td style="padding:9px;border:1px solid #ddd;">₪${NII.income_test_married_full.value.toLocaleString('he-IL')} – ₪${NII.income_test_married_partial.value.toLocaleString('he-IL')}</td><td style="padding:9px;border:1px solid #ddd;color:#E65100;font-weight:bold;">קצבה חלקית</td><td style="padding:9px;border:1px solid #ddd;">מינוס ${NII.income_test_deduction_rate.value}% מהחריגה</td></tr>
+            <tr style="background:#fff8f8;"><td style="padding:9px;border:1px solid #ddd;">מעל ₪${NII.income_test_married_partial.value.toLocaleString('he-IL')}</td><td style="padding:9px;border:1px solid #ddd;color:#C62828;font-weight:bold;">אין זכאות</td><td style="padding:9px;border:1px solid #ddd;">קצבה מושהית עד גיל ${NII.retirement_age_unconditional.value}</td></tr>
+          </tbody>
+        </table>
+        <div class="conditions-box">
+          <p><strong>נוסחה:</strong> קצבה = קצבה מלאה − (${NII.income_test_deduction_rate.value}% × [הכנסה − ₪${NII.income_test_married_full.value.toLocaleString('he-IL')}])</p>
+          <p><strong>דוגמה:</strong> הכנסה ₪15,000 → חריגה ₪${(15000 - NII.income_test_married_full.value).toLocaleString('he-IL')} → קיצוץ ₪${Math.round((15000 - NII.income_test_married_full.value) * NII.income_test_deduction_rate.value / 100).toLocaleString('he-IL')}</p>
+          <p>📌 הקצבה המשולמת כוללת תוספת עבור בן/ת הזוג כל עוד הכנסת ב"ז אינה עולה על ₪${NII.income_test_spouse_ceiling.value.toLocaleString('he-IL')}</p>
+        </div>
+
+        <h5>3. שני בני הזוג זכאים לקצבה בזכות עצמם</h5>
+        <p>כל אחד מהם עובר מבחן הכנסה <strong>עצמאי</strong> כ"יחיד" לצורכי חישוב קצבתו.</p>
+        <table style="width:100%;border-collapse:collapse;margin:12px 0;">
+          <thead><tr style="background:linear-gradient(135deg,#667eea,#764ba2);color:white;">
+            <th style="padding:9px 10px;border:1px solid #ddd;">מבוטח/ת</th>
+            <th style="padding:9px 10px;border:1px solid #ddd;">תקרה לקצבה מלאה</th>
+            <th style="padding:9px 10px;border:1px solid #ddd;">תקרה — אין זכאות</th>
+          </tr></thead>
+          <tbody>
+            <tr><td style="padding:9px;border:1px solid #ddd;">כל אחד מבני הזוג</td><td style="padding:9px;border:1px solid #ddd;font-weight:bold;color:#2E7D32;">₪${NII.income_test_single_full.value.toLocaleString('he-IL')}</td><td style="padding:9px;border:1px solid #ddd;font-weight:bold;color:#C62828;">₪${NII.income_test_single_partial.value.toLocaleString('he-IL')}</td></tr>
+          </tbody>
+        </table>
+        <div class="conditions-box">
+          <p>📌 כל בן/ת זוג מגיש/ה תביעה נפרדת ומקבל/ת קצבה נפרדת לפי הכנסתו/ה האישית</p>
+          <p>📌 הכנסת בן/ת הזוג אינה מצטרפת לחישוב הכנסת המבוטח/ת</p>
+          <p>📌 כל אחד זכאי לתוספת ותק בהתאם לשנות ביטוחו/ה האישיות</p>
+        </div>
+
+        <h4>ב. הכנסה מנכסים</h4>
+        <p>כולל: שכר דירה, ריבית, דיבידנד, רווחי הון (חודשי = שנתי÷12), הכנסה מהשכרת רכוש.</p>
+        <div class="conditions-box" style="background:#fff3e0;">
+          <p>⚠️ <strong>הבדל מהותי:</strong> תקרות הכנסה מנכסים גבוהות פי 3 מתקרות הכנסת עבודה</p>
+          <p>⚠️ פנסיה מקרן פנסיה / ביטוח מנהלים / קרן השתלמות — אינה נכנסת לחישוב זה</p>
+          <p>⚠️ <strong>אין תוספת דחייה</strong> בשל חריגה מהכנסה מנכסים</p>
+        </div>
+
+        <h5>1. יחיד — הכנסה מנכסים</h5>
+        <table style="width:100%;border-collapse:collapse;margin:12px 0;">
+          <thead><tr style="background:linear-gradient(135deg,#667eea,#764ba2);color:white;">
+            <th style="padding:9px 10px;border:1px solid #ddd;">הכנסה חודשית מנכסים (ברוטו)</th>
+            <th style="padding:9px 10px;border:1px solid #ddd;">מצב קצבה</th>
+            <th style="padding:9px 10px;border:1px solid #ddd;">הערה</th>
+          </tr></thead>
+          <tbody>
+            <tr style="background:#f8fff8;"><td style="padding:9px;border:1px solid #ddd;">עד ₪${NII.income_test_single_asset_full.value.toLocaleString('he-IL')}</td><td style="padding:9px;border:1px solid #ddd;color:#2E7D32;font-weight:bold;">קצבה מלאה</td><td style="padding:9px;border:1px solid #ddd;">ללא קיצוץ</td></tr>
+            <tr style="background:#fffef8;"><td style="padding:9px;border:1px solid #ddd;">₪${NII.income_test_single_asset_full.value.toLocaleString('he-IL')} – ₪${NII.income_test_single_asset_partial.value.toLocaleString('he-IL')}</td><td style="padding:9px;border:1px solid #ddd;color:#E65100;font-weight:bold;">קצבה חלקית</td><td style="padding:9px;border:1px solid #ddd;">מינוס ${NII.income_test_deduction_rate.value}% מהחריגה</td></tr>
+            <tr style="background:#fff8f8;"><td style="padding:9px;border:1px solid #ddd;">מעל ₪${NII.income_test_single_asset_partial.value.toLocaleString('he-IL')}</td><td style="padding:9px;border:1px solid #ddd;color:#C62828;font-weight:bold;">אין זכאות</td><td style="padding:9px;border:1px solid #ddd;">אין תוספת דחייה</td></tr>
+          </tbody>
+        </table>
+
+        <h5>2א. נשוי/ה — ב"ז עונה להגדרה ואינו/ה מקבל/ת קצבה</h5>
+        <table style="width:100%;border-collapse:collapse;margin:12px 0;">
+          <thead><tr style="background:linear-gradient(135deg,#667eea,#764ba2);color:white;">
+            <th style="padding:9px 10px;border:1px solid #ddd;">הכנסה חודשית מנכסים (ברוטו)</th>
+            <th style="padding:9px 10px;border:1px solid #ddd;">מצב קצבה</th>
+            <th style="padding:9px 10px;border:1px solid #ddd;">הערה</th>
+          </tr></thead>
+          <tbody>
+            <tr style="background:#f8fff8;"><td style="padding:9px;border:1px solid #ddd;">עד ₪${NII.income_test_married_asset_full.value.toLocaleString('he-IL')}</td><td style="padding:9px;border:1px solid #ddd;color:#2E7D32;font-weight:bold;">קצבה מלאה</td><td style="padding:9px;border:1px solid #ddd;">ללא קיצוץ</td></tr>
+            <tr style="background:#fffef8;"><td style="padding:9px;border:1px solid #ddd;">₪${NII.income_test_married_asset_full.value.toLocaleString('he-IL')} – ₪${NII.income_test_married_asset_partial_no_pension.value.toLocaleString('he-IL')}</td><td style="padding:9px;border:1px solid #ddd;color:#E65100;font-weight:bold;">קצבה חלקית</td><td style="padding:9px;border:1px solid #ddd;">מינוס ${NII.income_test_deduction_rate.value}% מהחריגה</td></tr>
+            <tr style="background:#fff8f8;"><td style="padding:9px;border:1px solid #ddd;">מעל ₪${NII.income_test_married_asset_partial_no_pension.value.toLocaleString('he-IL')}</td><td style="padding:9px;border:1px solid #ddd;color:#C62828;font-weight:bold;">אין זכאות</td><td style="padding:9px;border:1px solid #ddd;">אין תוספת דחייה</td></tr>
+          </tbody>
+        </table>
+
+        <h5>2ב. נשוי/ה — ב"ז עונה להגדרה ומקבל/ת קצבה מהביטוח הלאומי</h5>
+        <table style="width:100%;border-collapse:collapse;margin:12px 0;">
+          <thead><tr style="background:linear-gradient(135deg,#667eea,#764ba2);color:white;">
+            <th style="padding:9px 10px;border:1px solid #ddd;">הכנסה חודשית מנכסים (ברוטו)</th>
+            <th style="padding:9px 10px;border:1px solid #ddd;">מצב קצבה</th>
+            <th style="padding:9px 10px;border:1px solid #ddd;">הערה</th>
+          </tr></thead>
+          <tbody>
+            <tr style="background:#f8fff8;"><td style="padding:9px;border:1px solid #ddd;">עד ₪${NII.income_test_married_asset_full.value.toLocaleString('he-IL')}</td><td style="padding:9px;border:1px solid #ddd;color:#2E7D32;font-weight:bold;">קצבה מלאה</td><td style="padding:9px;border:1px solid #ddd;">ללא קיצוץ</td></tr>
+            <tr style="background:#fffef8;"><td style="padding:9px;border:1px solid #ddd;">₪${NII.income_test_married_asset_full.value.toLocaleString('he-IL')} – ₪${NII.income_test_married_asset_partial_with_pension.value.toLocaleString('he-IL')}</td><td style="padding:9px;border:1px solid #ddd;color:#E65100;font-weight:bold;">קצבה חלקית</td><td style="padding:9px;border:1px solid #ddd;">מינוס ${NII.income_test_deduction_rate.value}% מהחריגה</td></tr>
+            <tr style="background:#fff8f8;"><td style="padding:9px;border:1px solid #ddd;">מעל ₪${NII.income_test_married_asset_partial_with_pension.value.toLocaleString('he-IL')}</td><td style="padding:9px;border:1px solid #ddd;color:#C62828;font-weight:bold;">אין זכאות</td><td style="padding:9px;border:1px solid #ddd;">אין תוספת דחייה</td></tr>
+          </tbody>
+        </table>
+
+        <h5>3. שני בני הזוג זכאים — הכנסה מנכסים</h5>
+        <p>כל אחד נבחן בנפרד. הכנסה מנכסים משותפים מתחלקת לפי חלק בבעלות (בד"כ 50/50 לפי טאבו).</p>
+        <table style="width:100%;border-collapse:collapse;margin:12px 0;">
+          <thead><tr style="background:linear-gradient(135deg,#667eea,#764ba2);color:white;">
+            <th style="padding:9px 10px;border:1px solid #ddd;">מבוטח/ת</th>
+            <th style="padding:9px 10px;border:1px solid #ddd;">תקרת קצבה מלאה</th>
+            <th style="padding:9px 10px;border:1px solid #ddd;">תקרת אין זכאות</th>
+          </tr></thead>
+          <tbody>
+            <tr><td style="padding:9px;border:1px solid #ddd;">כל אחד מבני הזוג</td><td style="padding:9px;border:1px solid #ddd;font-weight:bold;color:#2E7D32;">₪${NII.income_test_married_asset_full.value.toLocaleString('he-IL')}</td><td style="padding:9px;border:1px solid #ddd;font-weight:bold;color:#C62828;">₪${NII.income_test_married_asset_partial_with_pension.value.toLocaleString('he-IL')}</td></tr>
+          </tbody>
+        </table>
+        <div class="conditions-box" style="background:#e8f5e9;">
+          <p><strong>דוגמה — שכר דירה ושני בני זוג זכאים:</strong></p>
+          <ul style="margin:8px 0 0 20px;">
+            <li>דירה משותפת (50/50) עם שכר דירה ₪84,000/חודש</li>
+            <li>קצבה מלאה של כל אחד (כולל ותק ${NII.seniority_bonus_max.value}%): ₪${Math.round(NII.pension_single_basic.value * (1 + NII.seniority_bonus_max.value / 100)).toLocaleString('he-IL')}</li>
+            <li>חלקו של כל אחד: ₪84,000 ÷ 2 = ₪42,000/חודש</li>
+            <li>חריגה: ₪42,000 − ₪${NII.income_test_married_asset_full.value.toLocaleString('he-IL')} = ₪${(42000 - NII.income_test_married_asset_full.value).toLocaleString('he-IL')}</li>
+            <li>קיצוץ: ${NII.income_test_deduction_rate.value}% × ₪${(42000 - NII.income_test_married_asset_full.value).toLocaleString('he-IL')} = ₪${Math.round((42000 - NII.income_test_married_asset_full.value) * NII.income_test_deduction_rate.value / 100).toLocaleString('he-IL')}</li>
+            <li>▶ <strong>קצבה לכל אחד: ₪${(Math.round(NII.pension_single_basic.value * (1 + NII.seniority_bonus_max.value / 100)) - Math.round((42000 - NII.income_test_married_asset_full.value) * NII.income_test_deduction_rate.value / 100)).toLocaleString('he-IL')}/חודש</strong></li>
+          </ul>
+          <p style="margin-top:8px;">⚠️ אם הדירה רשומה על שם אחד בלבד — כל ₪84,000 ייוחסו לו ויאבד זכאות (מעל ₪${NII.income_test_married_asset_partial_with_pension.value.toLocaleString('he-IL')})</p>
+        </div>
+
+        <h4>ג. הכנסה משולבת (מעבודה ומנכסים)</h4>
+        <p>כאשר יש הכנסה הן מעבודה והן מנכסים — שתי ההכנסות <strong>נסכמות יחד</strong> לבדיקת התקרה.</p>
+        <table style="width:100%;border-collapse:collapse;margin:12px 0;">
+          <thead><tr style="background:linear-gradient(135deg,#667eea,#764ba2);color:white;">
+            <th style="padding:9px 10px;border:1px solid #ddd;">הרכב משפחתי</th>
+            <th style="padding:9px 10px;border:1px solid #ddd;">תקרת עבודה (לקצבה מלאה)</th>
+            <th style="padding:9px 10px;border:1px solid #ddd;">תקרת נכסים (לקצבה מלאה)</th>
+          </tr></thead>
+          <tbody>
+            <tr><td style="padding:9px;border:1px solid #ddd;">יחיד</td><td style="padding:9px;border:1px solid #ddd;font-weight:bold;">₪${NII.income_test_single_full.value.toLocaleString('he-IL')}</td><td style="padding:9px;border:1px solid #ddd;font-weight:bold;">₪${NII.income_test_single_asset_combined.value.toLocaleString('he-IL')}</td></tr>
+            <tr style="background:#f5f5f5;"><td style="padding:9px;border:1px solid #ddd;">זוג (ב"ז לא מקבל קצבה)</td><td style="padding:9px;border:1px solid #ddd;font-weight:bold;">₪${NII.income_test_married_full.value.toLocaleString('he-IL')}</td><td style="padding:9px;border:1px solid #ddd;font-weight:bold;">₪${NII.income_test_married_asset_combined.value.toLocaleString('he-IL')}</td></tr>
+            <tr><td style="padding:9px;border:1px solid #ddd;">נשואים זכאים — כל אחד בנפרד</td><td style="padding:9px;border:1px solid #ddd;font-weight:bold;">₪${NII.income_test_single_full.value.toLocaleString('he-IL')}</td><td style="padding:9px;border:1px solid #ddd;font-weight:bold;">₪${NII.income_test_single_asset_combined.value.toLocaleString('he-IL')}</td></tr>
+          </tbody>
+        </table>
+        <div class="conditions-box">
+          <p>📌 תקרת נכסים-בלבד = תקרת עבודה × 3 | תקרת נכסים-במשולב = תקרת עבודה × 2</p>
+          <p>📌 אין זכאות כאשר הקצבה המחושבת יורדת מ-₪${Math.round(NII.pension_single_basic.value * 0.1).toLocaleString('he-IL')}/חודש</p>
+        </div>
+
+        <h4>ד. מה נחשב / לא נחשב הכנסה</h4>
+
+        <h5>✅ נחשב הכנסה</h5>
+        <ul>
+          <li>שכר עבודה (ברוטו), משכורת, הכנסה מעסק</li>
+          <li>שכר דירה (לפני ניכוי הוצאות)</li>
+          <li>ריבית מפיקדונות / אגרות חוב</li>
+          <li>דיבידנד ממניות</li>
+          <li>הכנסה מהשכרת נכס</li>
+          <li>רווח הון מניירות ערך (מחושב כהכנסה חודשית = שנתי ÷ 12)</li>
+        </ul>
+
+        <h5>❌ לא נחשב הכנסה</h5>
+        <ul>
+          <li>קצבה מקרן פנסיה / ביטוח מנהלים / קרן השתלמות</li>
+          <li>קצבת אזרח ותיק עצמה</li>
+          <li>קצבת שאירים</li>
+          <li>הכנסות פטורות ממס (לדוגמה: מכירת דירה יחידה)</li>
+          <li>גמלאות ביטוח לאומי אחרות (נכות, סיעוד וכו')</li>
+        </ul>
+
+        <h4>ה. תוספת דחייה</h4>
+        <p>מי שלא קיבל קצבה בגין הכנסה מעבודה שחרגה מהתקרה — זכאי ל-<strong>5% לכל שנה</strong> שבה נמנעה ממנו הקצבה.</p>
+        <div class="conditions-box" style="background:#fff3e0;">
+          <p>⚠️ תוספת דחייה ניתנת <strong>רק</strong> בשל חריגה מהכנסת עבודה — <strong>לא</strong> בשל הכנסה מנכסים</p>
+          <p>⚠️ מי שוויתר מרצון על הקצבה (גם אם הגיע להכנסה נמוכה) לא יקבל תוספת דחייה</p>
+        </div>
+
+        <h4>ו. הגדרת בן/ת זוג לצורך התוספת</h4>
+        <p>בן/ת זוג מוכר/ת לצורך תוספת הקצבה והגדלת תקרת ההכנסה — צריך/ה לעמוד בכל התנאים:</p>
+        <ul>
+          <li>נשואים (או ידועים בציבור) שנה לפחות</li>
+          <li>בן/ת הזוג בגיל 50–${NII.retirement_age_unconditional.value}, ו/או מעל ${NII.retirement_age_unconditional.value} ואינו/ה מקבל/ת קצבה בזכות עצמו/ה</li>
+          <li>הכנסת בן/ת הזוג מ<strong>כל המקורות</strong> (כולל פנסיה) אינה עולה על ₪${NII.income_test_spouse_ceiling.value.toLocaleString('he-IL')}/חודש</li>
+        </ul>
 
         <h3>1.4 סכומי הקצבה הבסיסית לשנת 2026</h3>
         <div class="conditions-box"><p>⬆️ קצבאות אזרח ותיק עלו ב-${NII.cpi_rate_2026.value}% בינואר 2026 (הצמדה למדד המחירים)</p></div>
@@ -181,34 +359,49 @@ const RIGHTS_DATA = {
 
         <h4>דוגמה 2: זוג שניהם זכאים</h4>
         <div class="conditions-box">
-          <p><strong>נתונים:</strong> משה (68) הכנסה ₪8,000 ותק 20 שנים (40%); רחל (65) הכנסה ₪7,500 ותק 18 שנים (36%). הכנסה משפחתית: ₪15,500.</p>
+          <p><strong>נתונים:</strong> משה (68) הכנסה ₪8,000 ותק 20 שנים (40%); רחל (65) הכנסה ₪7,500 ותק 18 שנים (36%).</p>
+          <div style="background:#e8f5e9;border-right:3px solid #43a047;padding:10px;margin:10px 0;border-radius:6px;">
+            <p>📌 כל אחד נבחן בנפרד כ"יחיד" — הכנסת בן/בת הזוג אינה נכללת במבחן.</p>
+          </div>
           <ul>
-            <li>משה: ₪${Math.round(NII.pension_single_basic.value * 1.4).toLocaleString('he-IL')} מלא − ₪${Math.round((15500 - NII.income_test_married_full.value) * NII.income_test_deduction_rate.value / 100).toLocaleString('he-IL')} קיזוז = <strong>₪${(Math.round(NII.pension_single_basic.value * 1.4) - Math.round((15500 - NII.income_test_married_full.value) * NII.income_test_deduction_rate.value / 100)).toLocaleString('he-IL')}</strong></li>
-            <li>רחל: ₪${Math.round(NII.pension_single_basic.value * 1.36).toLocaleString('he-IL')} מלא − ₪${Math.round((15500 - NII.income_test_married_full.value) * NII.income_test_deduction_rate.value / 100).toLocaleString('he-IL')} קיזוז = <strong>₪${(Math.round(NII.pension_single_basic.value * 1.36) - Math.round((15500 - NII.income_test_married_full.value) * NII.income_test_deduction_rate.value / 100)).toLocaleString('he-IL')}</strong></li>
-            <li>✅ <strong>סה"כ: ₪${(Math.round(NII.pension_single_basic.value * 1.4) - Math.round((15500 - NII.income_test_married_full.value) * NII.income_test_deduction_rate.value / 100) + Math.round(NII.pension_single_basic.value * 1.36) - Math.round((15500 - NII.income_test_married_full.value) * NII.income_test_deduction_rate.value / 100)).toLocaleString('he-IL')} | אחרי ניכוי ₪${NII.health_insurance_deduction_couple.value.toLocaleString('he-IL')}: ₪${(Math.round(NII.pension_single_basic.value * 1.4) - Math.round((15500 - NII.income_test_married_full.value) * NII.income_test_deduction_rate.value / 100) + Math.round(NII.pension_single_basic.value * 1.36) - Math.round((15500 - NII.income_test_married_full.value) * NII.income_test_deduction_rate.value / 100) - NII.health_insurance_deduction_couple.value).toLocaleString('he-IL')}</strong></li>
+            <li>משה: ₪8,000 &lt; ₪${NII.income_test_single_full.value.toLocaleString('he-IL')} → קצבה מלאה | קצבה + ותק 40%: ₪${NII.pension_single_basic.value.toLocaleString('he-IL')} + ₪${Math.round(NII.pension_single_basic.value * 0.4).toLocaleString('he-IL')} = <strong>₪${Math.round(NII.pension_single_basic.value * 1.4).toLocaleString('he-IL')}</strong></li>
+            <li>רחל: ₪7,500 &lt; ₪${NII.income_test_single_full.value.toLocaleString('he-IL')} → קצבה מלאה | קצבה + ותק 36%: ₪${NII.pension_single_basic.value.toLocaleString('he-IL')} + ₪${Math.round(NII.pension_single_basic.value * 0.36).toLocaleString('he-IL')} = <strong>₪${Math.round(NII.pension_single_basic.value * 1.36).toLocaleString('he-IL')}</strong></li>
+            <li>✅ <strong>סה"כ: ₪${(Math.round(NII.pension_single_basic.value * 1.4) + Math.round(NII.pension_single_basic.value * 1.36)).toLocaleString('he-IL')} | אחרי ניכוי ₪${NII.health_insurance_deduction_single.value.toLocaleString('he-IL')} × 2 (ביטוח בריאות יחיד לכל אחד): ₪${(Math.round(NII.pension_single_basic.value * 1.4) + Math.round(NII.pension_single_basic.value * 1.36) - NII.health_insurance_deduction_single.value * 2).toLocaleString('he-IL')}</strong></li>
           </ul>
         </div>
 
         <h4>דוגמה 3: יחיד עם בן/בת זוג שאינם זכאים</h4>
         <div class="conditions-box">
-          <p><strong>נתונים:</strong> יוסף (68), הכנסה ₪15,000, ותק 22 שנים (44%). אשתו לא הגיעה לגיל פרישה, אין לה הכנסה.</p>
+          <p><strong>נתונים:</strong> יוסף (68), הכנסה ₪15,000, ותק 22 שנים (44%). אשתו (55) — אינה עובדת, הכנסתה ₪0.</p>
+          <div style="background:#e8f5e9;border-right:3px solid #43a047;padding:10px;margin:10px 0;border-radius:6px;">
+            <p>📌 הכנסת האשה ₪0 &lt; ₪${NII.income_test_spouse_ceiling.value.toLocaleString('he-IL')} → מוכרת כ"בן זוג" → יוסף נבחן כנשוי.</p>
+          </div>
+          <div style="background:#fff3e0;border-right:3px solid #ff9800;padding:10px;margin:10px 0;border-radius:6px;">
+            <p>⚠️ מעמד האשה לצורך ביטוח לאומי — אחד מאלה:</p>
+            <ul style="margin:6px 0 0 20px;">
+              <li><strong>עקרת בית</strong> — אינה משלמת דמי ביטוח לאומי כלל</li>
+              <li><strong>"לא עובדת" (מבוטחת עצמאית)</strong> — משלמת ביטוח לאומי עצמאי מופחת</li>
+            </ul>
+          </div>
           <ul>
-            <li>קצבה + תוספת בן זוג: ₪${NII.pension_couple_basic.value.toLocaleString('he-IL')} + ותק 44% (₪${Math.round(NII.pension_couple_basic.value * 0.44).toLocaleString('he-IL')}) = ₪${Math.round(NII.pension_couple_basic.value * 1.44).toLocaleString('he-IL')}</li>
-            <li>עודף: ₪15,000 − ₪${NII.income_test_married_full.value.toLocaleString('he-IL')} = ₪${(15000 - NII.income_test_married_full.value).toLocaleString('he-IL')} → קיזוז: ₪${Math.round((15000 - NII.income_test_married_full.value) * NII.income_test_deduction_rate.value / 100).toLocaleString('he-IL')}</li>
-            <li>✅ <strong>לקבלה: ₪${Math.round(NII.pension_couple_basic.value * 1.44).toLocaleString('he-IL')} − ₪${Math.round((15000 - NII.income_test_married_full.value) * NII.income_test_deduction_rate.value / 100).toLocaleString('he-IL')} − ₪${NII.health_insurance_deduction_single.value.toLocaleString('he-IL')} = ₪${(Math.round(NII.pension_couple_basic.value * 1.44) - Math.round((15000 - NII.income_test_married_full.value) * NII.income_test_deduction_rate.value / 100) - NII.health_insurance_deduction_single.value).toLocaleString('he-IL')}</strong></li>
+            <li>קצבה + תוספת בן/בת זוג + ותק 44%: ₪${NII.pension_couple_basic.value.toLocaleString('he-IL')} + ₪${Math.round(NII.pension_couple_basic.value * 0.44).toLocaleString('he-IL')} = ₪${Math.round(NII.pension_couple_basic.value * 1.44).toLocaleString('he-IL')}</li>
+            <li>עודף: ₪15,000 − ₪${NII.income_test_married_full.value.toLocaleString('he-IL')} = ₪${(15000 - NII.income_test_married_full.value).toLocaleString('he-IL')} → קיזוז ${NII.income_test_deduction_rate.value}%: ₪${Math.round((15000 - NII.income_test_married_full.value) * NII.income_test_deduction_rate.value / 100).toLocaleString('he-IL')}</li>
+            <li>קצבה חלקית: ₪${Math.round(NII.pension_couple_basic.value * 1.44).toLocaleString('he-IL')} − ₪${Math.round((15000 - NII.income_test_married_full.value) * NII.income_test_deduction_rate.value / 100).toLocaleString('he-IL')} = ₪${(Math.round(NII.pension_couple_basic.value * 1.44) - Math.round((15000 - NII.income_test_married_full.value) * NII.income_test_deduction_rate.value / 100)).toLocaleString('he-IL')}</li>
+            <li>ניכוי ביטוח בריאות <strong>יחיד</strong> (של יוסף בלבד — האשה אינה מקבלת קצבה): ₪${NII.health_insurance_deduction_single.value.toLocaleString('he-IL')}</li>
+            <li>✅ <strong>לקבלה: ₪${(Math.round(NII.pension_couple_basic.value * 1.44) - Math.round((15000 - NII.income_test_married_full.value) * NII.income_test_deduction_rate.value / 100) - NII.health_insurance_deduction_single.value).toLocaleString('he-IL')}</strong></li>
           </ul>
         </div>
 
         <h4>דוגמה 4: יחיד עם בן/בת זוג שעובד</h4>
         <div class="conditions-box">
-          <p><strong>נתונים:</strong> אברהם (${NII.retirement_age_male.value}), הכנסה ₪10,000, ותק 25 שנים (${NII.seniority_bonus_max.value}%). אשתו (58) עובדת, מרוויחה ₪8,500. הכנסה משפחתית: ₪18,500.</p>
+          <p><strong>נתונים:</strong> אברהם (${NII.retirement_age_male.value}), הכנסה ₪10,000, ותק 25 שנים (${NII.seniority_bonus_max.value}%). אשתו (58) עובדת, מרוויחה ₪8,500.</p>
           <div style="background:#fff3e0;border-right:3px solid #ff9800;padding:10px;margin:10px 0;border-radius:6px;">
-            <p>⚠️ הכנסת בן/בת הזוג שטרם הגיע לגיל פרישה נכללת במבחן. ₪18,500 &lt; ₪${NII.income_test_married_partial.value.toLocaleString('he-IL')} — זכאי לקצבה חלקית.</p>
+            <p>⚠️ הכנסת בת הזוג ₪8,500 &gt; ₪${NII.income_test_spouse_ceiling.value.toLocaleString('he-IL')} — בת הזוג אינה מוכרת כ"בן זוג" לצורך הקצבה. אברהם נבחן כ<strong>יחיד</strong>.</p>
           </div>
           <ul>
-            <li>קצבה + תוספת בן זוג + ותק ${NII.seniority_bonus_max.value}%: ₪${Math.round(NII.pension_couple_basic.value * (1 + NII.seniority_bonus_max.value / 100)).toLocaleString('he-IL')} מלא</li>
-            <li>עודף ₪${(18500 - NII.income_test_married_full.value).toLocaleString('he-IL')} → קיזוז ₪${Math.round((18500 - NII.income_test_married_full.value) * NII.income_test_deduction_rate.value / 100).toLocaleString('he-IL')}</li>
-            <li>✅ <strong>לקבלה: ₪${Math.round(NII.pension_couple_basic.value * (1 + NII.seniority_bonus_max.value / 100)).toLocaleString('he-IL')} − ₪${Math.round((18500 - NII.income_test_married_full.value) * NII.income_test_deduction_rate.value / 100).toLocaleString('he-IL')} − ₪${NII.health_insurance_deduction_single.value.toLocaleString('he-IL')} = ₪${(Math.round(NII.pension_couple_basic.value * (1 + NII.seniority_bonus_max.value / 100)) - Math.round((18500 - NII.income_test_married_full.value) * NII.income_test_deduction_rate.value / 100) - NII.health_insurance_deduction_single.value).toLocaleString('he-IL')}</strong></li>
+            <li>נבחנת הכנסת אברהם בלבד: ₪10,000 &lt; ₪${NII.income_test_single_full.value.toLocaleString('he-IL')} → <strong>קצבה מלאה</strong></li>
+            <li>קצבת יחיד + ותק ${NII.seniority_bonus_max.value}%: ₪${NII.pension_single_basic.value.toLocaleString('he-IL')} + ₪${Math.round(NII.pension_single_basic.value * NII.seniority_bonus_max.value / 100).toLocaleString('he-IL')} = ₪${Math.round(NII.pension_single_basic.value * (1 + NII.seniority_bonus_max.value / 100)).toLocaleString('he-IL')}</li>
+            <li>✅ <strong>לקבלה: ₪${Math.round(NII.pension_single_basic.value * (1 + NII.seniority_bonus_max.value / 100)).toLocaleString('he-IL')} − ₪${NII.health_insurance_deduction_single.value.toLocaleString('he-IL')} (ביטוח בריאות) = ₪${(Math.round(NII.pension_single_basic.value * (1 + NII.seniority_bonus_max.value / 100)) - NII.health_insurance_deduction_single.value).toLocaleString('he-IL')}</strong></li>
           </ul>
         </div>
 

@@ -356,6 +356,70 @@
     "updated": "fixed"
   },
 
+  "income_test_single_asset_full": {
+    "id": "NII-196",
+    "value": 30339,
+    "type": "currency",
+    "label": "מבחן הכנסות מנכסים — יחיד, תקרה לזכאות מלאה",
+    "updated": "2026-01"
+  },
+  "income_test_single_asset_partial": {
+    "id": "NII-197",
+    "value": 34627,
+    "type": "currency",
+    "label": "מבחן הכנסות מנכסים — יחיד, תקרה לזכאות חלקית",
+    "updated": "2026-01"
+  },
+  "income_test_married_asset_full": {
+    "id": "NII-198",
+    "value": 40452,
+    "type": "currency",
+    "label": "מבחן הכנסות מנכסים — נשוי, תקרה לזכאות מלאה (לכל תרחיש)",
+    "updated": "2026-01"
+  },
+  "income_test_married_asset_partial_no_pension": {
+    "id": "NII-199",
+    "value": 47050,
+    "type": "currency",
+    "label": "מבחן הכנסות מנכסים — נשוי, בן/זוג לא מקבל קצבה, תקרה לזכאות חלקית",
+    "updated": "2026-01"
+  },
+  "income_test_married_asset_partial_with_pension": {
+    "id": "NII-200",
+    "value": 44740,
+    "type": "currency",
+    "label": "מבחן הכנסות מנכסים — נשוי/שני זכאים, תקרה לזכאות חלקית",
+    "updated": "2026-01"
+  },
+  "income_test_single_asset_combined": {
+    "id": "NII-201",
+    "value": 20226,
+    "type": "currency",
+    "label": "מבחן הכנסות משולב (עבודה+נכסים) — יחיד, תקרת נכסים לקצבה מלאה",
+    "updated": "2026-01"
+  },
+  "income_test_married_asset_combined": {
+    "id": "NII-202",
+    "value": 26968,
+    "type": "currency",
+    "label": "מבחן הכנסות משולב (עבודה+נכסים) — נשוי, תקרת נכסים לקצבה מלאה",
+    "updated": "2026-01"
+  },
+  "average_wage": {
+    "id": "NII-203",
+    "value": 13769,
+    "type": "currency",
+    "label": "שכר ממוצע במשק — בסיס לחישוב תקרות הכנסה (ינואר 2026)",
+    "updated": "2026-01"
+  },
+  "income_test_spouse_ceiling": {
+    "id": "NII-204",
+    "value": 7848,
+    "type": "currency",
+    "label": "מבחן הכנסות אזרח ותיק — תקרת הכנסת בן/ת הזוג (כל המקורות) להכרה כ'בן זוג'",
+    "updated": "2026-01"
+  },
+
   "survivors_income_test_no_dependents": {
     "id": "NII-050",
     "value": 7848,
