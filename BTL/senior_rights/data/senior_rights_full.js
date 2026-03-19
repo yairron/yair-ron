@@ -421,162 +421,153 @@ const RIGHTS_DATA = {
     // 2. גמלת השלמת הכנסה
     // ─────────────────────────────────────────────────────────────────────
     income_supplement: {
-      contentFn: (NII) => `
-        <a href="https://www.kolzchut.org.il/he/%D7%AA%D7%95%D7%A1%D7%A4%D7%AA_%D7%94%D7%A9%D7%9C%D7%9E%D7%AA_%D7%94%D7%9B%D7%A0%D7%A1%D7%94_%D7%9C%D7%A7%D7%A6%D7%91%D7%AA_%D7%96%D7%99%D7%A7%D7%A0%D7%94" target="_blank" class="link-item">🔗 השלמת הכנסה — כל זכות</a>
-        <p>תוספת זו נועדה להבטיח הכנסה מינימלית לקיום בכבוד עבור מי שקצבת הזקנה שלו והכנסותיו האחרות אינן מספיקות.</p>
+      contentFn: (NII) => {
+        const c = key => NII[key] ? '₪' + NII[key].value.toLocaleString('he-IL') : '—';
+        const v = key => NII[key] ? NII[key].value : 0;
+        const fmt = num => Math.round(num).toLocaleString('he-IL');
+        const p = key => NII[key] ? NII[key].value + '%' : '—';
+        return `
+        <p>השלמת הכנסה ניתנת למי שהכנסותיו נמוכות ומיועדת להבטיח רמת חיים מינימלית.</p>
+        <a href="https://www.kolzchut.org.il/he/%D7%AA%D7%95%D7%A1%D7%A4%D7%AA_%D7%94%D7%A9%D7%9C%D7%9E%D7%AA_%D7%94%D7%9B%D7%A0%D7%A1%D7%94_%D7%9C%D7%A7%D7%A6%D7%91%D7%AA_%D7%96%D7%99%D7%A7%D7%A0%D7%94#.D7.9E.D7.99_.D7.96.D7.9B.D7.90.D7.99.3F" target="_blank" class="link-item">🏛️  השלמת הכנסה - כל זכות. כל המידע על השלמת הכנסה</a>
 
-        <h3>2.1 תנאי זכאות בסיסיים</h3>
-        <ul>
-          <li><strong>קבלת קצבת אזרח ותיק:</strong> המבקש זכאי לקצבה מהביטוח הלאומי.</li>
-          <li><strong>מבחן הכנסות:</strong> סך ההכנסות אינו עולה על "ההכנסה המקסימלית" המזכה.</li>
-          <li><strong>תושבות:</strong> תושב ישראל ב-24 החודשים האחרונים.</li>
-          <li><strong>מבחן נכסים ורכב:</strong> אין נכסים (מלבד דירת מגורים) ורכב מעל שווי ₪${NII.vehicle_threshold_base.value.toLocaleString('he-IL')}.</li>
-        </ul>
+           <h3>תנאי זכאות בסיסיים</h3>
+                <p>כדי להיות זכאי להשלמת הכנסה מלאה, על המבקש לעמוד בארבעה תנאים מצטברים:</p>
+                <ol>
+                    <li><strong>קבלת קצבת אזרח ותיק:</strong> המבקש זכאי לקצבה מהביטוח הלאומי.</li>
+                   <li><strong>תושבות:</strong> תושב ישראל ב-24 החודשים האחרונים.</li>
+                    <li><strong>מבחן הכנסות:</strong> סך ההכנסות (מפנסיה, עבודה, נכסים וכו') אינו עולה על "ההכנסה המקסימלית" המזכה.</li>
+                    <li><strong>מבחן נכסים ורכב:</strong> בבעלות המבקש אין נכסים (מלבד דירת מגורים שבה גר המבוטח) או רכב מעל שווי מסוים (${c('vehicle_threshold_base')}).</li>
+                    <li><strong>הערה:</strong> הכנסות או נכסים מעל התקרה, יתכן ויאפשרו קבלת השלמת הכנסה חלקית.</li>
 
-        <h3>2.2 זכאות זוגית — שני תרחישים</h3>
+                    </ol>
 
-        <h4>א. שני בני הזוג זכאים לקצבת אזרח ותיק</h4>
-        <ul>
-          <li>בודקים סך הכנסות משותפות לפי תקרת "זוג".</li>
-          <li>הוותק של כל אחד נשמר ומתווסף לתקרה המשותפת.</li>
-          <li>ההשלמה משולמת בדרך כלל לבעל הקצבה הגבוהה.</li>
-        </ul>
+                <h3>זכאות זוגית: שני תרחישים מרכזיים</h3>
 
-        <h4>ב. רק אחד מבני הזוג זכאי לקצבת אזרח ותיק</h4>
-        <ul>
-          <li>המבוטח יקבל "תוספת עבור בן זוג" בקצבת הזקנה שלו.</li>
-          <li>זכאות להשלמת הכנסה תחושב לפי תעריף של <strong>זוג</strong>.</li>
-          <li>הכנסות בן הזוג הצעיר נלקחות בחשבון במלואן.</li>
-        </ul>
+                <h4>א. שני בני הזוג זכאים לקצבת אזרח ותיק</h4>
+                <p>כאשר שני בני הזוג מקבלים קצבה אישית, הם נחשבים כ"זוג" לעניין השלמת ההכנסה.</p>
+                <ul>
+                    <li><strong>החישוב:</strong> בודקים את סך ההכנסות המשותפות של שניהם. אם הסכום נמוך מתקרת ה"זוג" (בתוספת הוותק של שניהם), הם יקבלו השלמה מלאה. אם הסכום מעל תקרת "זוג". תבדק הזכאות שלהם להשלמה חלקית..</li>
+                    <li><strong>תוספת ותק:</strong> הוותק של כל אחד מבני הזוג נשמר ומתווסף לתקרה המשותפת.</li>
+                    <li><strong>חלוקה:</strong> התוספת משולמת בדרך כלל לאחד מבני הזוג (לרוב זה שזכאי לקצבה הגבוהה יותר).</li>
+                </ul>
 
-        <h3>2.3 סכומי קצבה מקסימליים (קצבת זקנה + השלמת הכנסה)</h3>
+                <h4>ב. רק אחד מבני הזוג זכאי לקצבת אזרח ותיק (והשני "בן זוג")</h4>
+                <p>מצב זה קורה כשאחד מבני הזוג הגיע לגיל פרישה והשני טרם הגיע לגיל, אך עונה על הגדרת "בן זוג" (מתגורר עמו ואין לו הכנסות גבוהות).</p>
+                <ul>
+                    <li><strong>תוספת בן זוג:</strong> המבוטח יקבל בקצבת הזקנה שלו "תוספת עבור בן זוג".</li>
+                    <li><strong>השלמת הכנסה:</strong> הזכאות תחושב לפי תעריף של <strong>זוג</strong>.</li>
+                </ul> 
 
-        <h4>עד גיל 70</h4>
-        <table style="width:100%;border-collapse:collapse;margin:15px 0;">
-          <thead><tr style="background:linear-gradient(135deg,#667eea,#764ba2);color:white;">
-            <th style="padding:10px;border:1px solid #ddd;">הרכב המשפחה</th>
-            <th style="padding:10px;border:1px solid #ddd;">סכום הקצבה</th>
-          </tr></thead>
-          <tbody>
-            <tr><td style="padding:9px;border:1px solid #ddd;">יחיד/ה</td><td style="padding:9px;border:1px solid #ddd;font-weight:bold;">₪${NII.income_supplement_single_under70.value.toLocaleString('he-IL')}</td></tr>
-            <tr><td style="padding:9px;border:1px solid #ddd;">זוג</td><td style="padding:9px;border:1px solid #ddd;font-weight:bold;">₪${NII.income_supplement_couple_under70.value.toLocaleString('he-IL')}</td></tr>
-            <tr><td style="padding:9px;border:1px solid #ddd;">יחיד/ה + ילד</td><td style="padding:9px;border:1px solid #ddd;">₪${NII.income_supplement_single_1child_under70.value.toLocaleString('he-IL')}</td></tr>
-            <tr><td style="padding:9px;border:1px solid #ddd;">יחיד/ה + 2 ילדים</td><td style="padding:9px;border:1px solid #ddd;">₪${NII.income_supplement_single_2children_under70.value.toLocaleString('he-IL')}</td></tr>
-            <tr><td style="padding:9px;border:1px solid #ddd;">זוג + ילד</td><td style="padding:9px;border:1px solid #ddd;">₪${NII.income_supplement_couple_1child_under70.value.toLocaleString('he-IL')}</td></tr>
-            <tr><td style="padding:9px;border:1px solid #ddd;">זוג + 2 ילדים</td><td style="padding:9px;border:1px solid #ddd;">₪${NII.income_supplement_couple_2children_under70.value.toLocaleString('he-IL')}</td></tr>
-          </tbody>
-        </table>
 
-        <h4>מגיל 70 עד גיל 80</h4>
-        <table style="width:100%;border-collapse:collapse;margin:15px 0;">
-          <thead><tr style="background:linear-gradient(135deg,#667eea,#764ba2);color:white;">
-            <th style="padding:10px;border:1px solid #ddd;">הרכב המשפחה</th>
-            <th style="padding:10px;border:1px solid #ddd;">סכום הקצבה</th>
-          </tr></thead>
-          <tbody>
-            <tr><td style="padding:9px;border:1px solid #ddd;">יחיד/ה</td><td style="padding:9px;border:1px solid #ddd;font-weight:bold;">₪${NII.income_supplement_single_70_80.value.toLocaleString('he-IL')}</td></tr>
-            <tr><td style="padding:9px;border:1px solid #ddd;">זוג</td><td style="padding:9px;border:1px solid #ddd;font-weight:bold;">₪${NII.income_supplement_couple_70_80.value.toLocaleString('he-IL')}</td></tr>
-            <tr><td style="padding:9px;border:1px solid #ddd;">יחיד/ה + ילד</td><td style="padding:9px;border:1px solid #ddd;">₪${NII.income_supplement_single_1child_70_80.value.toLocaleString('he-IL')}</td></tr>
-            <tr><td style="padding:9px;border:1px solid #ddd;">יחיד/ה + 2 ילדים</td><td style="padding:9px;border:1px solid #ddd;">₪${NII.income_supplement_single_2children_70_80.value.toLocaleString('he-IL')}</td></tr>
-            <tr><td style="padding:9px;border:1px solid #ddd;">זוג + ילד</td><td style="padding:9px;border:1px solid #ddd;">₪${NII.income_supplement_couple_1child_70_80.value.toLocaleString('he-IL')}</td></tr>
-            <tr><td style="padding:9px;border:1px solid #ddd;">זוג + 2 ילדים</td><td style="padding:9px;border:1px solid #ddd;">₪${NII.income_supplement_couple_2children_70_80.value.toLocaleString('he-IL')}</td></tr>
-          </tbody>
-        </table>
+        <h3>סכומים מירביים קצבת זיקנה + השלמת הכנסה 2026</h3>
+                <p>הסכומים להלן הם הסכומים הכוללים שהמבוטח יקבל (הקצבה הבסיסית + התוספת):</p>
 
-        <h4>מגיל 80 ומעלה</h4>
-        <table style="width:100%;border-collapse:collapse;margin:15px 0;">
-          <thead><tr style="background:linear-gradient(135deg,#667eea,#764ba2);color:white;">
-            <th style="padding:10px;border:1px solid #ddd;">הרכב המשפחה</th>
-            <th style="padding:10px;border:1px solid #ddd;">סכום הקצבה</th>
-          </tr></thead>
-          <tbody>
-            <tr><td style="padding:9px;border:1px solid #ddd;">יחיד/ה</td><td style="padding:9px;border:1px solid #ddd;font-weight:bold;">₪${NII.income_supplement_single_over80.value.toLocaleString('he-IL')}</td></tr>
-            <tr><td style="padding:9px;border:1px solid #ddd;">זוג</td><td style="padding:9px;border:1px solid #ddd;font-weight:bold;">₪${NII.income_supplement_couple_over80.value.toLocaleString('he-IL')}</td></tr>
-            <tr><td style="padding:9px;border:1px solid #ddd;">יחיד/ה + ילד</td><td style="padding:9px;border:1px solid #ddd;">₪${NII.income_supplement_single_1child_over80.value.toLocaleString('he-IL')}</td></tr>
-            <tr><td style="padding:9px;border:1px solid #ddd;">יחיד/ה + 2 ילדים</td><td style="padding:9px;border:1px solid #ddd;">₪${NII.income_supplement_single_2children_over80.value.toLocaleString('he-IL')}</td></tr>
-            <tr><td style="padding:9px;border:1px solid #ddd;">זוג + ילד</td><td style="padding:9px;border:1px solid #ddd;">₪${NII.income_supplement_couple_1child_over80.value.toLocaleString('he-IL')}</td></tr>
-            <tr><td style="padding:9px;border:1px solid #ddd;">זוג + 2 ילדים</td><td style="padding:9px;border:1px solid #ddd;">₪${NII.income_supplement_couple_2children_over80.value.toLocaleString('he-IL')}</td></tr>
-          </tbody>
-        </table>
+                <table style="width: 100%; border-collapse: collapse; margin: 20px 0;">
+                  <thead>
+                    <tr style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white;">
+                      <th style="padding: 12px; border: 1px solid #ddd;">סוג המשפחה</th>
+                      <th style="padding: 12px; border: 1px solid #ddd;">גיל פרישה עד 70</th>
+                      <th style="padding: 12px; border: 1px solid #ddd;">גיל 70 עד 80</th>
+                      <th style="padding: 12px; border: 1px solid #ddd;">גיל 80 ומעלה</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td style="padding: 10px; border: 1px solid #ddd;"><strong>יחיד</strong></td>
+                      <td style="padding: 10px; border: 1px solid #ddd;">${c('income_supplement_single_under70')}</td>
+                      <td style="padding: 10px; border: 1px solid #ddd;">${c('income_supplement_single_70_80')}</td>
+                      <td style="padding: 10px; border: 1px solid #ddd;">${c('income_supplement_single_over80')}</td>
+                    </tr>
+                    <tr>
+                      <td style="padding: 10px; border: 1px solid #ddd;"><strong>זוג</strong></td>
+                      <td style="padding: 10px; border: 1px solid #ddd;">${c('income_supplement_couple_under70')}</td>
+                      <td style="padding: 10px; border: 1px solid #ddd;">${c('income_supplement_couple_70_80')}</td>
+                      <td style="padding: 10px; border: 1px solid #ddd;">${c('income_supplement_couple_over80')}</td>
+                    </tr>
+                    <tr>
+                      <td style="padding: 10px; border: 1px solid #ddd;"><strong>יחיד + ילד</strong></td>
+                      <td style="padding: 10px; border: 1px solid #ddd;">${c('income_supplement_single_1child_under70')}</td>
+                      <td style="padding: 10px; border: 1px solid #ddd;">${c('income_supplement_single_1child_70_80')}</td>
+                      <td style="padding: 10px; border: 1px solid #ddd;">${c('income_supplement_single_1child_over80')}</td>
+                    </tr>
+                    <tr>
+                      <td style="padding: 10px; border: 1px solid #ddd;"><strong>זוג + ילד</strong></td>
+                      <td style="padding: 10px; border: 1px solid #ddd;">${c('income_supplement_couple_1child_under70')}</td>
+                      <td style="padding: 10px; border: 1px solid #ddd;">${c('income_supplement_couple_1child_70_80')}</td>
+                      <td style="padding: 10px; border: 1px solid #ddd;">${c('income_supplement_couple_1child_over80')}</td>
+                    </tr>
+                  </tbody>
+                </table>
 
-        <h3>2.4 השפעת הכנסות על ההשלמה</h3>
-
-        <h4>הכנסה מפנסיה (הכנסה שאינה מעבודה)</h4>
-        <ul>
-           <li><strong>הכנסה פטורה מפנסיה:</strong> ליחיד ₪${NII.pension_income_exempt_single.value.toLocaleString('he-IL')} | לזוג ₪${NII.pension_income_exempt_couple.value.toLocaleString('he-IL')}</li>
-          <li> כל שקל מעבר לפטור מקוזז בשלמותו (100%) מסכום השלמת ההכנסה.</li>
-        </ul>
         
-        <h4>הכנסה מעבודה (שכר)</h4>
-        <p>קיים תמריץ ליציאה לעבודה — חלק מהשכר אינו נספר ("הכנסה פטורה").</p>
-        <ul>
-          <li><strong>סכום הפטור:</strong> ליחיד ₪${NII.work_income_exempt_single.value.toLocaleString('he-IL')} | לזוג ₪${NII.work_income_exempt_couple.value.toLocaleString('he-IL')}</li>
-          <li>מכל שקל מעבר לפטור — מופחתים ${NII.income_test_deduction_rate.value}% מסכום השלמת ההכנסה.</li>
-        </ul>
-
-        <h4>נכסים פיננסיים (חסכונות, פקדונות, מניות)</h4>
-        <ul>
-          <li><strong>סכום פטור ליחיד:</strong> עד ₪${NII.imputed_income_exempt_single.value.toLocaleString('he-IL')}</li>
-          <li><strong>סכום פטור לזוג:</strong> עד ₪${NII.imputed_income_exempt_couple.value.toLocaleString('he-IL')}</li>
-          <li><strong>מעבר לפטור:</strong> מחשבים "ריבית רעיונית" שנתית של ${NII.imputed_income_rate.value}%, מחולקת ב-12 לחישוב הכנסה חודשית.</li>
-        </ul>
-
-        <h4>בעלות על רכב</h4>
-        <p>בעלות על רכב עלולה לשלול זכאות, אלא אם:</p>
-        <ul>
-          <li>שווי הרכב נמוך מ-₪${NII.vehicle_threshold_base.value.toLocaleString('he-IL')} (והוא הרכב היחיד).</li>
-          <li>הרכב משמש לצרכים רפואיים (נכות של המבוטח או בן משפחה).</li>
-          <li>המבוטח עובד ומשתכר מעל סכום מסוים וזקוק לרכב לעבודה.</li>
-        </ul>
-
-        <h3>2.5 נוסחת חישוב הזכאות</h3>
-        <ol style="padding-right:25px;margin:15px 0;">
-          <li style="margin-bottom:8px;">קבע את <strong>הקצבה המקסימלית</strong> לפי הרכב משפחתי וגיל.</li>
-          <li style="margin-bottom:8px;">חשב <strong>ניכוי מפנסיה פרטית</strong>: (סכום הפנסיה − פטור פנסיה [יחיד: ₪${NII.pension_income_exempt_single.value.toLocaleString('he-IL')} | זוג: ₪${NII.pension_income_exempt_couple.value.toLocaleString('he-IL')}]) × 100% — כל שקל עודף מנוכה במלואו.</li>
-          <li style="margin-bottom:8px;">חשב <strong>ניכוי מנכסים פיננסיים</strong>: (שווי נכסים − פטור נכסים [יחיד: ₪${NII.imputed_income_exempt_single.value.toLocaleString('he-IL')} | זוג: ₪${NII.imputed_income_exempt_couple.value.toLocaleString('he-IL')}]) × ${NII.imputed_income_rate.value}% ÷ 12 = הכנסה רעיונית חודשית — מנוכה במלואה.</li>
-          <li style="margin-bottom:8px;">חשב <strong>ניכוי מהכנסת עבודה</strong>: (שכר ברוטו − פטור עבודה [יחיד: ₪${NII.work_income_exempt_single.value.toLocaleString('he-IL')} | זוג: ₪${NII.work_income_exempt_couple.value.toLocaleString('he-IL')}]) × ${NII.income_test_deduction_rate.value}%.</li>
-          <li style="margin-bottom:8px;"><strong>הפחת</strong> את קצבת הזקנה בפועל ואת תוצאות שלבים 2–4 מהקצבה המקסימלית.</li>
-          <li>התוצאה היא <strong>סכום השלמת ההכנסה בפועל</strong> (לא תרד מ-₪0).</li>
+        <h3>תקרות הכנסה וחישוב זכאות</h3>
+        <ol>
+          <li>קובעים את הסכום המקסימלי להשלמה (${c('income_supplement_single_under70')} יחיד / ${c('income_supplement_couple_under70')} זוג)</li>
+          <li>בודקים הכנסות קיימות:
+            <ul>
+              <li>קצבת זקנה - מותרת עד התקרה המלאה</li>
+              <li>הכנסה מעבודה - מותרת: יחיד ${c('work_income_exempt_single')}, זוג ${c('work_income_exempt_couple')} — ${p('income_test_deduction_rate')} מהכנסה עודפת מקוזז מההשלמה</li>
+              <li>קצבת פנסיה - מותרת: יחיד ${c('pension_income_exempt_single')}, זוג ${c('pension_income_exempt_couple')} — כל שקל מפנסיה עודפת מקוזז מההשלמה</li>
+            </ul>
+          </li>
         </ol>
 
-        <h3>2.6 דוגמאות לחישוב השלמת הכנסה</h3>
+        <h4>💰 חישוב הכנסה רעיונית מנכסים פיננסיים</h4>
+        <p>למי שיש פיקדונות, חסכונות או השקעות, עשוי להיות חישוב של "הכנסה רעיונית" מנכסים אלה. הכנסה זו מופחתת מסכום ההשלמה.</p>
+        <p><a href="imputed_income_guide.html" target="_blank" style="color: #9c27b0; text-decoration: none; font-weight: 600;">📖 מדריך מפורט: חישוב הכנסה רעיונית מנכסים פיננסיים</a></p>
 
-        <h4>דוגמה 1 — יחיד עם פנסיה</h4>
-        <div class="conditions-box">
+        <h4>בעלות על רכב</h4>
+                <p>בעלות על רכב עלולה לשלול זכאות, אלא אם מתקיים אחד מהתנאים הבאים:</p>
+                <ul>
+                    <li>שווי הרכב נמוך מ-${c('vehicle_threshold_base')} (והוא הרכב היחיד).</li>
+                    <li>הרכב משמש לצרכים רפואיים (נכות של המבוטח או בן משפחה).</li>
+                    <li>המבוטח עובד ומשתכר מעל סכום מסוים וזקוק לרכב כדי להגיע לעבודה.</li>
+                </ul>
+        <a href="questionnaire.html?id=vehicle-income-supplement" target="_blank" class="link-item" style="display:inline-block; margin-top:10px; font-size:1.1rem; font-weight:700; background: linear-gradient(135deg, #667eea, #764ba2); color:white; border-radius:12px; padding:12px 20px; text-decoration:none;">🚗 מחשבון להשפעת רכב על זכאות השלמת הכנסה</a>
+
+        <h3>דוגמאות לחישוב השלמת הכנסה</h3>
+
+        <div style="background: #fff8e1; padding: 15px; border-radius: 8px; margin: 15px 0;">
+          <h4>דוגמה 1 - יחיד:</h4>
           <ul>
-            <li>קצבת זקנה: ₪${NII.pension_single_basic.value.toLocaleString('he-IL')} | פנסיה: ₪2,500</li>
-            <li>פנסיה עודפת (מעבר ל-₪${NII.pension_income_exempt_single.value.toLocaleString('he-IL')}): ₪${(2500 - NII.pension_income_exempt_single.value).toLocaleString('he-IL')} → קיזוז ${NII.income_test_deduction_rate.value}%: ₪${Math.round((2500 - NII.pension_income_exempt_single.value) * NII.income_test_deduction_rate.value / 100).toLocaleString('he-IL')}</li>
-            <li>השלמה: ₪${NII.income_supplement_single_under70.value.toLocaleString('he-IL')} − ₪${NII.pension_single_basic.value.toLocaleString('he-IL')} − ₪${Math.round((2500 - NII.pension_income_exempt_single.value) * NII.income_test_deduction_rate.value / 100).toLocaleString('he-IL')} = <strong>₪${(NII.income_supplement_single_under70.value - NII.pension_single_basic.value - Math.round((2500 - NII.pension_income_exempt_single.value) * NII.income_test_deduction_rate.value / 100)).toLocaleString('he-IL')}</strong></li>
-            <li>✅ <strong>סה"כ הכנסה: ₪${(2500 + NII.income_supplement_single_under70.value - Math.round((2500 - NII.pension_income_exempt_single.value) * NII.income_test_deduction_rate.value / 100)).toLocaleString('he-IL')}</strong></li>
+            <li>קצבת זקנה: ${c('pension_single_basic')}</li>
+            <li>פנסיה: ₪2,500</li>
+            <li>חישוב: פנסיה עודפת = 2,500 - ${v('pension_income_exempt_single')} = ₪${fmt(2500 - v('pension_income_exempt_single'))}</li>
+            <li>קיזוז: 100% × ${fmt(2500 - v('pension_income_exempt_single'))} = ₪${fmt(2500 - v('pension_income_exempt_single'))}</li>
+            <li>השלמה: ${v('income_supplement_single_under70')} - ${v('pension_single_basic')} - ${fmt(2500 - v('pension_income_exempt_single'))} = ₪${fmt(v('income_supplement_single_under70') - v('pension_single_basic') - (2500 - v('pension_income_exempt_single')))}</li>
+            <li><strong>סה"כ הכנסה: ₪${fmt(v('pension_single_basic') + 2500 + v('income_supplement_single_under70') - v('pension_single_basic') - (2500 - v('pension_income_exempt_single')))}</strong></li>
           </ul>
         </div>
 
-        <h4>דוגמה 2 — זוג עם הכנסה מעבודה</h4>
-        <div class="conditions-box">
+        <div style="background: #e8f5e9; padding: 15px; border-radius: 8px; margin: 15px 0;">
+          <h4>דוגמה 2 - זוג:</h4>
           <ul>
-            <li>קצבת זקנה לכל אחד: ₪${NII.pension_single_basic.value.toLocaleString('he-IL')} (סה"כ ₪${(NII.pension_single_basic.value * 2).toLocaleString('he-IL')})</li>
-            <li>הכנסה מעבודה: ₪4,200 | עודף (מעל ₪${NII.work_income_exempt_couple.value.toLocaleString('he-IL')}): ₪${(4200 - NII.work_income_exempt_couple.value).toLocaleString('he-IL')} → קיזוז ${NII.income_test_deduction_rate.value}%: ₪${Math.round((4200 - NII.work_income_exempt_couple.value) * NII.income_test_deduction_rate.value / 100).toLocaleString('he-IL')}</li>
-            <li>השלמה: ₪${NII.income_supplement_couple_under70.value.toLocaleString('he-IL')} − ₪${(NII.pension_single_basic.value * 2).toLocaleString('he-IL')} − ₪${Math.round((4200 - NII.work_income_exempt_couple.value) * NII.income_test_deduction_rate.value / 100).toLocaleString('he-IL')} = <strong>₪${(NII.income_supplement_couple_under70.value - (NII.pension_single_basic.value * 2) - Math.round((4200 - NII.work_income_exempt_couple.value) * NII.income_test_deduction_rate.value / 100)).toLocaleString('he-IL')}</strong></li>
-            <li>✅ <strong>סה"כ הכנסה: ₪${(4200 + NII.income_supplement_couple_under70.value - Math.round((4200 - NII.work_income_exempt_couple.value) * NII.income_test_deduction_rate.value / 100)).toLocaleString('he-IL')}</strong></li>
+            <li>קצבת זקנה לכל אחד: ${c('pension_single_basic')} + ${p('seniority_bonus_max')} ותק = ₪${fmt(v('pension_single_basic') * (1 + v('seniority_bonus_max') / 100))} (סה"כ ₪${fmt(v('pension_single_basic') * (1 + v('seniority_bonus_max') / 100) * 2)})</li>
+            <li>הכנסה מעבודה: ₪4,200</li>
+            <li>חישוב: הכנסה עודפת = 4,200 - ${v('work_income_exempt_couple')} = ₪${fmt(4200 - v('work_income_exempt_couple'))}</li>
+            <li>קיזוז: ${p('income_test_deduction_rate')} × ${fmt(4200 - v('work_income_exempt_couple'))} = ₪${fmt((4200 - v('work_income_exempt_couple')) * v('income_test_deduction_rate') / 100)}</li>
+            <li>השלמה: ${v('income_supplement_couple_under70')} - ${fmt(v('pension_single_basic') * (1 + v('seniority_bonus_max') / 100) * 2)} - ${fmt((4200 - v('work_income_exempt_couple')) * v('income_test_deduction_rate') / 100)} = ₪${fmt(v('income_supplement_couple_under70') - v('pension_single_basic') * (1 + v('seniority_bonus_max') / 100) * 2 - (4200 - v('work_income_exempt_couple')) * v('income_test_deduction_rate') / 100)}</li>
+            <li><strong>סה"כ הכנסה: ₪${fmt(v('pension_single_basic') * (1 + v('seniority_bonus_max') / 100) * 2)} (קצבות) + ₪4,200 (עבודה) + ₪${fmt(v('income_supplement_couple_under70') - v('pension_single_basic') * (1 + v('seniority_bonus_max') / 100) * 2 - (4200 - v('work_income_exempt_couple')) * v('income_test_deduction_rate') / 100)} (השלמה) = ₪${fmt(v('pension_single_basic') * (1 + v('seniority_bonus_max') / 100) * 2 + 4200 + v('income_supplement_couple_under70') - v('pension_single_basic') * (1 + v('seniority_bonus_max') / 100) * 2 - (4200 - v('work_income_exempt_couple')) * v('income_test_deduction_rate') / 100)}</strong></li>
           </ul>
         </div>
 
-        <h3>2.7 הטבות נלוות לזכאים</h3>
-        <p>קבלת השלמת הכנסה מקנה זכאות אוטומטית למגוון הטבות:</p>
+        <h3>🎁 הטבות נלוות להשלמת הכנסה</h3>
+        <p>מקבלי השלמת הכנסה זכאים להטבות נוספות:</p>
         <ul>
-          <li>✅ הנחה משמעותית בחשבון חשמל</li>
+          <li>✅ הנחה בחשמל</li>
           <li>✅ הנחה בארנונה (עד 100%)</li>
           <li>✅ הנחה בתשלומי בזק</li>
-          <li>✅ הטבה בחשבון מים</li>
-          <li>✅ סיוע בשכר דירה ממשרד הבינוי והשיכון</li>
+          <li>✅ הטבה בחשבון המים</li>
+          <li>✅ סיוע בשכר דירה</li>
           <li>✅ דיור בבתי גיל הזהב (לחסרי דירה)</li>
           <li>✅ השתתפות בהחזרי משכנתא</li>
           <li>✅ פטור מתשלום לקופת חולים</li>
           <li>✅ הנחה בתרופות בקופות החולים</li>
           <li>✅ מענק חימום</li>
-          <li>✅ פטור מהשתתפות עצמית בקבלת מימון למכשירי שיקום וניידות</li>
+          <li>✅ פטור מהשתתפות עצמית בקבלת מימון למכשירי השיקום והניידות (רפורמה בציוד השיקומי)</li>
         </ul>
-      `
+        `;
+      }
     },
 
     // ─────────────────────────────────────────────────────────────────────
