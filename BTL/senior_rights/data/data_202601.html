@@ -16,6 +16,7 @@
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             min-height: 100vh;
             padding: 20px;
+            padding-top: 72px;
             direction: rtl;
         }
 
@@ -194,36 +195,6 @@
             border-bottom: 2px solid #333;
         }
 
-        .back-button-container {
-            text-align: center;
-            margin-bottom: 20px;
-        }
-
-        .back-button {
-            display: inline-block;
-            background: rgba(255,255,255,0.25);
-            backdrop-filter: blur(10px);
-            padding: 12px 24px;
-            border-radius: 25px;
-            color: white;
-            text-decoration: none;
-            font-size: 1rem;
-            font-weight: 600;
-            transition: all 0.3s;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
-        }
-
-        .back-button:hover {
-            background: rgba(255,255,255,0.35);
-            transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(0,0,0,0.25);
-        }
-
-        .back-button::before {
-            content: '← ';
-            margin-left: 5px;
-        }
-
         /* התאמה למסכים קטנים */
         @media (max-width: 768px) {
             body {
@@ -298,10 +269,8 @@
     </style>
 </head>
 <body>
+    <header></header>
     <div class="container">
-        <div class="back-button-container">
-            <a href="../../index.html" class="back-button">חזרה לדף ראשי</a>
-        </div>
         <h1>עדכון קצבאות אזרח ותיק ושארים</h1>
         <p class="subtitle">עדכון ינואר 2026 | מקור: ביטוח לאומי</p>
 
@@ -1520,5 +1489,6 @@
         // Open first accordion by default
         document.querySelector('.accordion-header').click();
     </script>
+    <script src="hamburger-nav.js"></script>
 </body>
 </html>
