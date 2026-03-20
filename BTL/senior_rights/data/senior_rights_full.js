@@ -496,6 +496,18 @@ const RIGHTS_DATA = {
                       <td style="padding: 10px; border: 1px solid #ddd;">${c('income_supplement_couple_1child_70_80')}</td>
                       <td style="padding: 10px; border: 1px solid #ddd;">${c('income_supplement_couple_1child_over80')}</td>
                     </tr>
+                    <tr>
+                      <td style="padding: 10px; border: 1px solid #ddd;"><strong>יחיד + 2 ילדים</strong></td>
+                      <td style="padding: 10px; border: 1px solid #ddd;">${c('income_supplement_single_2children_under70')}</td>
+                      <td style="padding: 10px; border: 1px solid #ddd;">${c('income_supplement_single_2children_70_80')}</td>
+                      <td style="padding: 10px; border: 1px solid #ddd;">${c('income_supplement_single_2children_over80')}</td>
+                    </tr>
+                    <tr>
+                      <td style="padding: 10px; border: 1px solid #ddd;"><strong>זוג + 2 ילדים</strong></td>
+                      <td style="padding: 10px; border: 1px solid #ddd;">${c('income_supplement_couple_2children_under70')}</td>
+                      <td style="padding: 10px; border: 1px solid #ddd;">${c('income_supplement_couple_2children_70_80')}</td>
+                      <td style="padding: 10px; border: 1px solid #ddd;">${c('income_supplement_couple_2children_over80')}</td>
+                    </tr>
                   </tbody>
                 </table>
 

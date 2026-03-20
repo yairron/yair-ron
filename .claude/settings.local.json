@@ -19,7 +19,19 @@
       "Bash(while IFS=: read -r line text)",
       "Bash(do echo \"rights-data.js,$line,\"\"$text\"\"\")",
       "Bash(done)",
-      "Bash(git push)"
+      "Bash(git push)",
+      "Bash(git -C 'g:/My Drive/התנדבות/אתרים/yair-main' status --short)",
+      "Bash(git -C \"g:/My Drive/התנדבות/אתרים/yair-main\" checkout HEAD -- \"BTL/files/\")",
+      "Bash(git -C 'g:/My Drive/התנדבות/אתרים/yair-main' add BTL/senior_rights/data/rights-data.js BTL/senior_rights/data/nii-constants.json BTL/files/data_mapping.md)",
+      "Bash(git -C 'g:/My Drive/התנדבות/אתרים/yair-main' checkout main -- BTL/support_files/)",
+      "Bash(git -C \"g:/My Drive/התנדבות/אתרים/yair-main\" checkout -b feature/nursing-dynamic)",
+      "WebFetch(domain:www.btl.gov.il)",
+      "WebSearch",
+      "Bash(python3:*)",
+      "WebFetch(domain:www.gov.il)",
+      "WebFetch(domain:www.kolzchut.org.il)",
+      "WebFetch(domain:www.avivonline.org.il)",
+      "WebFetch(domain:www.aviv.org.il)"
     ]
   }
 }
