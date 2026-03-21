@@ -419,6 +419,13 @@
     "label": "מבחן הכנסות אזרח ותיק — תקרת הכנסת בן/ת הזוג (כל המקורות) להכרה כ'בן זוג'",
     "updated": "2026-01"
   },
+  "min_insurance_premium_abroad": {
+    "id": "NII-205",
+    "value": 266,
+    "type": "currency",
+    "label": "דמי ביטוח לאומי מינימליים לחודש — תושב ישראל השוהה בחו\"ל שאינו עובד",
+    "updated": "2026-01"
+  },
 
   "survivors_income_test_no_dependents": {
     "id": "NII-050",
