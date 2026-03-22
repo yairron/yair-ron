@@ -545,6 +545,48 @@
     "label": "השלמת הכנסה — מספר יציאות מקסימלי לחו\"ל בשנה קלנדרית",
     "updated": "2026-01"
   },
+  "income_supplement_abroad_retroactive_days": {
+    "id": "NII-238",
+    "value": 100,
+    "type": "number",
+    "label": "השלמת הכנסה — ימי שהייה בחו\"ל הגוררים שלילה רטרואקטיבית על כל השנה",
+    "updated": "2026-01"
+  },
+  "income_supplement_abroad_medical_max_months": {
+    "id": "NII-239",
+    "value": 6,
+    "type": "number",
+    "label": "השלמת הכנסה — שהייה מקסימלית בחו\"ל לצורך טיפול רפואי (חודשים)",
+    "updated": "2026-01"
+  },
+  "income_supplement_abroad_mourning_max_weeks": {
+    "id": "NII-240",
+    "value": 3,
+    "type": "number",
+    "label": "השלמת הכנסה — שהייה מקסימלית בחו\"ל לצורך אבל על קרוב משפחה מדרגה ראשונה (שבועות)",
+    "updated": "2026-01"
+  },
+  "income_supplement_abroad_hajj_max_days": {
+    "id": "NII-241",
+    "value": 23,
+    "type": "number",
+    "label": "השלמת הכנסה — שהייה מקסימלית לחאג' ראשון בחיים ללא פגיעה בגמלה (ימים)",
+    "updated": "2026-01"
+  },
+  "residency_recognition_abroad_max_years": {
+    "id": "NII-242",
+    "value": 5,
+    "type": "number",
+    "label": "הגדרת תושב — מספר שנים שהביטוח הלאומי מכיר בתושבות ישראלית לאחר עזיבת הארץ",
+    "updated": "2026-01"
+  },
+  "income_supplement_reporting_deadline_days": {
+    "id": "NII-243",
+    "value": 30,
+    "type": "number",
+    "label": "השלמת הכנסה — מספר ימים לדיווח על שינוי שעשוי להשפיע על הזכאות",
+    "updated": "2026-01"
+  },
 
   "survivors_income_test_no_dependents": {
     "id": "NII-050",

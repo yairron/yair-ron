@@ -563,6 +563,246 @@ const RIGHTS_DATA = {
           </ul>
         </div>
 
+        <h3>✈️ השלמת הכנסה ויציאה לחו"ל</h3>
+
+        <div style="background:#ffebee;padding:15px;border-radius:8px;margin:15px 0;border-right:4px solid #d32f2f;">
+          <p>⚠️ <strong>חובה לדווח על כל יציאה</strong> לחו"ל לסניף הביטוח הלאומי לפני היציאה — כולל יציאות של בן/בת הזוג.<br>
+          אי-דיווח עלול לגרום לתשלום ביתר שיידרש בחזרה.</p>
+        </div>
+
+        <h4>📋 פירוט מגבלות יציאה לחו"ל (בכל שנה קלנדרית)</h4>
+
+        <div style="background:#e8f5e9;padding:15px;border-radius:8px;margin:10px 0;border-right:4px solid #4caf50;">
+          <strong>✅ יציאה ראשונה — עד ${v('income_supplement_abroad_max_days')} יום</strong>
+          <p style="margin:8px 0 0 0;">התוספת משולמת במלואה — גם עבור החודש שיצאת בו וגם עבור החודש שחזרת בו.</p>
+        </div>
+
+        <div style="background:#fff8e1;padding:15px;border-radius:8px;margin:10px 0;border-right:4px solid #ff9800;">
+          <strong>⚠️ יציאה ראשונה — מעל ${v('income_supplement_abroad_max_days')} ימים</strong>
+          <p style="margin:8px 0 0 0;">מהחודש שבו שהייתך עברה את ${v('income_supplement_abroad_max_days')} הימים — נפסקת התוספת לאותם חודשים.</p>
+          <p style="margin:4px 0 0 0;color:#666;font-size:0.9em;"><em>דוגמה: יצאת בינואר, חזרת בסוף אוגוסט (מעל ${v('income_supplement_abroad_max_days')} יום) — עד החודש שעברת את ${v('income_supplement_abroad_max_days')} היום, התוספת משולמת. מהחודש שבו עברת — לא.</em></p>
+        </div>
+
+        <div style="background:#fff3e0;padding:15px;border-radius:8px;margin:10px 0;border-right:4px solid #ff5722;">
+          <strong>⚠️ יציאה שנייה ושלישית — ללא קשר לסה"כ הימים</strong>
+          <p style="margin:8px 0 0 0;">לא תשולם תוספת עבור החודש שיצאת בו ועבור החודש שחזרת בו — גם אם סך ימי השהייה עדיין נמוך מ-${v('income_supplement_abroad_max_days')} ימים.</p>
+        </div>
+
+        <div style="background:#fce4ec;padding:15px;border-radius:8px;margin:10px 0;border-right:4px solid #e91e63;">
+          <strong>🚫 יציאה ${v('income_supplement_abroad_max_trips')+1} ומעלה</strong>
+          <p style="margin:8px 0 0 0;">החל מהיציאה ה-${v('income_supplement_abroad_max_trips')+1} — נפסקת התוספת לחלוטין לשאר השנה, גם אם סה"כ הימים נמוך מ-${v('income_supplement_abroad_retroactive_days')}.</p>
+        </div>
+
+        <div style="background:#ffebee;padding:15px;border-radius:8px;margin:10px 0;border-right:4px solid #b71c1c;">
+          <strong>🔴 ${v('income_supplement_abroad_retroactive_days')} ימים ומעלה בשנה — שלילה רטרואקטיבית!</strong>
+          <p style="margin:8px 0 0 0;">מי ששהה בחו"ל ${v('income_supplement_abroad_retroactive_days')} ימים ומעלה בשנה קלנדרית אחת — הביטוח הלאומי שולל את התוספת <strong>רטרואקטיבית על כל ימי השהייה באותה שנה</strong>. גם הכסף שהתקבל בנסיעות הראשונות ייתבע בחזרה.</p>
+        </div>
+
+        <h4>📊 סיכום תקופות שהייה מותרת בחו"ל</h4>
+
+        <p>יחידת המדידה: שנה קלנדרית (1 בינואר – 31 בדצמבר). יום היציאה ויום החזרה אינם נספרים.</p>
+        <table style="width:100%;border-collapse:collapse;margin:15px 0;">
+          <thead><tr style="background:linear-gradient(135deg,#667eea,#764ba2);color:white;">
+            <th style="padding:10px;border:1px solid #ddd;">מס׳ יציאות</th>
+            <th style="padding:10px;border:1px solid #ddd;">סה"כ ימים בחו"ל</th>
+            <th style="padding:10px;border:1px solid #ddd;">השלמת הכנסה</th>
+            <th style="padding:10px;border:1px solid #ddd;">הערות</th>
+          </tr></thead>
+          <tbody>
+            <tr>
+              <td style="padding:9px;border:1px solid #ddd;">יציאה 1</td>
+              <td style="padding:9px;border:1px solid #ddd;">עד ${v('income_supplement_abroad_max_days')} יום</td>
+              <td style="padding:9px;border:1px solid #ddd;color:#388e3c;font-weight:bold;">משולמת מלאה</td>
+              <td style="padding:9px;border:1px solid #ddd;">גם חודש יציאה וחודש חזרה נספרים</td>
+            </tr>
+            <tr style="background:#fffde7;">
+              <td style="padding:9px;border:1px solid #ddd;">יציאה 1</td>
+              <td style="padding:9px;border:1px solid #ddd;">${v('income_supplement_abroad_max_days')+1}–${v('income_supplement_abroad_retroactive_days')-1} יום</td>
+              <td style="padding:9px;border:1px solid #ddd;color:#f57f17;">נפסקת מהיום שחצה ${v('income_supplement_abroad_max_days')}</td>
+              <td style="padding:9px;border:1px solid #ddd;">מהחודש שבו עבר את ${v('income_supplement_abroad_max_days')} הימים</td>
+            </tr>
+            <tr>
+              <td style="padding:9px;border:1px solid #ddd;">יציאות 2–${v('income_supplement_abroad_max_trips')}</td>
+              <td style="padding:9px;border:1px solid #ddd;">עד ${v('income_supplement_abroad_retroactive_days')-1} יום</td>
+              <td style="padding:9px;border:1px solid #ddd;color:#e65100;">נפסקת בחודשי יציאה וחזרה</td>
+              <td style="padding:9px;border:1px solid #ddd;">מהיציאה השנייה ואילך</td>
+            </tr>
+            <tr style="background:#fce4ec;">
+              <td style="padding:9px;border:1px solid #ddd;">יציאה ${v('income_supplement_abroad_max_trips')+1}+</td>
+              <td style="padding:9px;border:1px solid #ddd;">כל סה"כ</td>
+              <td style="padding:9px;border:1px solid #ddd;color:#c62828;font-weight:bold;">נפסקת מחודש היציאה ה-${v('income_supplement_abroad_max_trips')+1}</td>
+              <td style="padding:9px;border:1px solid #ddd;">גם אם פחות מ-${v('income_supplement_abroad_retroactive_days')} ימים בסה"כ</td>
+            </tr>
+            <tr style="background:#ffebee;">
+              <td style="padding:9px;border:1px solid #ddd;">כל יציאה</td>
+              <td style="padding:9px;border:1px solid #ddd;font-weight:bold;">${v('income_supplement_abroad_retroactive_days')}+ יום</td>
+              <td style="padding:9px;border:1px solid #ddd;color:#b71c1c;font-weight:bold;">שלילה רטרואקטיבית לכל השנה</td>
+              <td style="padding:9px;border:1px solid #ddd;">גם על נסיעות קודמות באותה שנה</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <h4>🏥 מקרים מיוחדים שמאפשרים המשך קבלת השלמת הכנסה</h4>
+
+        <div style="background:#e8f5e9;padding:15px;border-radius:8px;margin:10px 0;border-right:4px solid #43a047;">
+          <strong>🏥 טיפול רפואי בחו"ל</strong>
+          <p style="margin:8px 0 0 0;">מי שיצא לחו"ל לצורך קבלת טיפול רפואי ממשיך לקבל את התוספת עד <strong>${v('income_supplement_abroad_medical_max_months')} חודשי שהייה</strong> בחו"ל.</p>
+          <p style="margin:4px 0 0 0;">יש לפנות לסניף לפני היציאה (או בהקדם האפשרי) ולהגיש אסמכתאות רפואיות.</p>
+        </div>
+
+        <div style="background:#e8f5e9;padding:15px;border-radius:8px;margin:10px 0;border-right:4px solid #43a047;">
+          <strong>⚫ אבל על בן משפחה מדרגה ראשונה</strong>
+          <p style="margin:8px 0 0 0;">יציאה לחו"ל לתקופה של עד <strong>${v('income_supplement_abroad_mourning_max_weeks')} שבועות</strong> לצורך אבל (בן/בת זוג, הורה, ילד, אח/אחות) אינה נספרת במניין היציאות לאותה שנה — לפי שיקול דעתו של הביטוח הלאומי. יש להגיש אסמכתא.</p>
+        </div>
+
+        <div style="background:#e8f5e9;padding:15px;border-radius:8px;margin:10px 0;border-right:4px solid #43a047;">
+          <strong>☪️ עלייה לרגל לחאג' — למוסלמים</strong>
+          <p style="margin:8px 0 0 0;">מוסלמים שיצאו לחאג׳ לראשונה בחייהם, לתקופה של עד <strong>${v('income_supplement_abroad_hajj_max_days')} ימים</strong>, הגמלה אינה נפגעת.</p>
+        </div>
+
+        <h4>👫 בני זוג</h4>
+
+        <ul>
+          <li>כאשר שני בני הזוג מקבלים גמלה ביחד — <strong>כל אחד נספר בנפרד</strong>, אם יצאו בנפרד וחזרו בנפרד (ללא ימים חופפים).</li>
+          <li>אם אחד מבני הזוג שהה בחו"ל וגרר שלילת תוספת לזוג — נבדקת זכאות בן/בת הזוג שנשאר/ה בארץ <strong>כ"יחיד/ה"</strong> לאותה תקופה.</li>
+        </ul>
+
+        <h4>🏠 הגדרת "תושב" לצורך השלמת הכנסה</h4>
+
+        <p>הביטוח הלאומי מכיר בתושבות ישראלית במשך <strong>${v('residency_recognition_abroad_max_years')} השנים הראשונות</strong> לאחר עזיבת הארץ. לאחר מכן — נשלל מעמד "התושב" וניתן לאבד זכאות לקצבאות.</p>
+
+        <h4>✅ רשימת פעולות לפני יציאה לחו"ל</h4>
+
+        <ol>
+          <li>בדקו כמה נסיעות ביצעתם כבר השנה הנוכחית (מינואר).</li>
+          <li>בדקו כמה ימים שהיתם בחו"ל השנה (לא כולל יום יציאה ויום חזרה).</li>
+          <li>אם זו הנסיעה השנייה ומעלה — קחו בחשבון שאין תוספת בחודשי היציאה והחזרה.</li>
+          <li>אם מתכננים יותר מ-${v('income_supplement_abroad_max_days')} יום — פנו לסניף מראש.</li>
+          <li>הודיעו לסניף הביטוח הלאומי על היציאה — גם על יציאת בן/בת הזוג.</li>
+          <li>לטיפול רפואי: הכינו מראש אסמכתאות רפואיות לצרף לבקשת ארכה (עד ${v('income_supplement_abroad_medical_max_months')} חודשים).</li>
+        </ol>
+
+        <h4>📩 קיבלתם דרישת החזר מהביטוח הלאומי?</h4>
+
+        <div class="conditions-box">
+          <p><strong>אל תתעלמו!</strong> אפשרויות פעולה:</p>
+          <ul>
+            <li>פנו לסניף — בקשו פירוט חישוב ובדקו שאין טעות.</li>
+            <li>ניתן לבקש פריסת תשלומים.</li>
+            <li>במקרים של מצוקה — ניתן לבקש הקלה / מחיקה חלקית.</li>
+            <li>ניתן לערער לבית הדין האזורי לעבודה (<strong>סיוע משפטי חינם — ✳️6405</strong>).</li>
+          </ul>
+        </div>
+
+        <h3>📋 חובת דיווח על שינויים במצב הכספי או המשפחתי</h3>
+        <h4>⏱ חובת הדיווח — הכלל הבסיסי</h4>
+
+        <div style="background:#ffebee;padding:15px;border-radius:8px;margin:10px 0;border-right:4px solid #d32f2f;">
+          <p style="font-size:1.1em;font-weight:bold;">⏱ ${v('income_supplement_reporting_deadline_days')} יום — לא יותר</p>
+          <p style="margin:8px 0 0 0;">על כל שינוי שעשוי להשפיע על הזכאות יש להודיע לסניף הביטוח הלאומי תוך <strong>${v('income_supplement_reporting_deadline_days')} יום</strong> ממועד השינוי.</p>
+          <p style="margin:4px 0 0 0;">אי-דיווח עלול לגרום לתשלום ביתר שיצור חוב שהביטוח הלאומי יתבע בחזרה.</p>
+        </div>
+
+        <h4>📋 מה חייבים לדווח</h4>
+
+        <p>חובה לדווח על כל שינוי בנושאים הבאים (לכל אחד מבני הזוג):</p>
+        <table style="width:100%;border-collapse:collapse;margin:15px 0;">
+          <thead><tr style="background:linear-gradient(135deg,#667eea,#764ba2);color:white;">
+            <th style="padding:10px;border:1px solid #ddd;">אירוע / שינוי</th>
+            <th style="padding:10px;border:1px solid #ddd;">מה לדווח ומדוע</th>
+          </tr></thead>
+          <tbody>
+            <tr>
+              <td style="padding:9px;border:1px solid #ddd;font-weight:bold;">שינוי בהכנסה מעבודה</td>
+              <td style="padding:9px;border:1px solid #ddd;">שכר חדש, תחילת עבודה, הפסקת עבודה — כל שינוי. ההכנסה משפיעה ישירות על גובה התוספת.</td>
+            </tr>
+            <tr style="background:#f9f9f9;">
+              <td style="padding:9px;border:1px solid #ddd;font-weight:bold;">שינוי בפנסיה</td>
+              <td style="padding:9px;border:1px solid #ddd;">עלייה, ירידה, פנסיה חדשה ממקור נוסף, היוון (קבלת כסף חד-פעמי).</td>
+            </tr>
+            <tr>
+              <td style="padding:9px;border:1px solid #ddd;font-weight:bold;">שינוי בנכסים פיננסיים</td>
+              <td style="padding:9px;border:1px solid #ddd;">פיקדון חדש, מימוש קופת גמל, ירושה כספית — מעל ${c('imputed_income_exempt_single')} ליחיד / ${c('imputed_income_exempt_couple')} לזוג.</td>
+            </tr>
+            <tr style="background:#f9f9f9;">
+              <td style="padding:9px;border:1px solid #ddd;font-weight:bold;">רכישה / מכירה של נדל"ן</td>
+              <td style="padding:9px;border:1px solid #ddd;">כל נכס מלבד דירת המגורים — כולל חנות, מגרש, דירה שנייה, גם ריק.</td>
+            </tr>
+            <tr>
+              <td style="padding:9px;border:1px solid #ddd;font-weight:bold;">שינוי ברכב</td>
+              <td style="padding:9px;border:1px solid #ddd;">רכישה, מכירה, שינוי שווי. שווי מעל ${c('vehicle_threshold_extended')} עשוי לפגוע בזכאות.</td>
+            </tr>
+            <tr style="background:#f9f9f9;">
+              <td style="padding:9px;border:1px solid #ddd;font-weight:bold;">שינוי במצב המשפחתי</td>
+              <td style="padding:9px;border:1px solid #ddd;">נישואין, גירושין, פטירת בן/בת זוג — משנה את מדרג הסכומים.</td>
+            </tr>
+            <tr>
+              <td style="padding:9px;border:1px solid #ddd;font-weight:bold;">שינוי בהכנסות בן/בת הזוג</td>
+              <td style="padding:9px;border:1px solid #ddd;">הכנסות הזוג נחשבות ביחד — כל שינוי שלו/שלה משפיע גם עליך.</td>
+            </tr>
+            <tr style="background:#f9f9f9;">
+              <td style="padding:9px;border:1px solid #ddd;font-weight:bold;">קבלת ירושה</td>
+              <td style="padding:9px;border:1px solid #ddd;">קבלת ירושה משפיעה על הנכסים — יש לדווח עליה.</td>
+            </tr>
+            <tr>
+              <td style="padding:9px;border:1px solid #ddd;font-weight:bold;">שינוי בכתובת</td>
+              <td style="padding:9px;border:1px solid #ddd;">מעבר דירה — עדכון בסניף הקרוב.</td>
+            </tr>
+            <tr style="background:#f9f9f9;">
+              <td style="padding:9px;border:1px solid #ddd;font-weight:bold;">יציאה לחו"ל</td>
+              <td style="padding:9px;border:1px solid #ddd;">כל יציאה — ראו תת-אקורדיון "השלמת הכנסה ויציאה לחו"ל".</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <h4>🚫 נושאים שאין צורך לדווח עליהם</h4>
+
+        <ul>
+          <li>קצבת ילדים</li>
+          <li>גמלת ילד נכה</li>
+          <li>קצבת שירותים מיוחדים (שר"מ)</li>
+          <li>גמלת ניידות</li>
+          <li>גמלת סיעוד</li>
+          <li>קצבאות מיוחדות לנכי עבודה</li>
+          <li>קצבה/הטבה לנזקקים לפי חוק שירותי הסעד</li>
+          <li>תשלומים לחסידי אומות העולם מהקונגרס היהודי העולמי</li>
+          <li>קצבה לניצולי שואה מקרן סעיף 2 של ועידת התביעות</li>
+          <li>תמיכה כספית מרצון מבני משפחה / עמותות — שניתנת ללא תמורה</li>
+        </ul>
+
+        <h4>💰 בעת שינוי כלכלי</h4>
+
+        <ul>
+          <li>קיבלתם העלאה / ירידה בשכר → <strong>דיווח תוך ${v('income_supplement_reporting_deadline_days')} יום.</strong></li>
+          <li>שינוי בפנסיה (חדש, הפסקה, שינוי) → <strong>דיווח תוך ${v('income_supplement_reporting_deadline_days')} יום.</strong></li>
+          <li>פתחתם/סגרתם פיקדון → בדקו אם יתרה עולה על ${c('imputed_income_exempt_single')} ליחיד / ${c('imputed_income_exempt_couple')} לזוג. אם כן — <strong>דיווח.</strong></li>
+          <li>קיבלתם ירושה → <strong>דיווח מיידי</strong> (כסף וגם נדל"ן).</li>
+          <li>רכשתם / מכרתם נכס → <strong>דיווח מיידי.</strong></li>
+          <li>קניתם / מכרתם רכב → בדקו שווי. אם שווי חדש עוקף ${c('vehicle_threshold_extended')} — <strong>דיווח מיד.</strong></li>
+        </ul>
+
+        <h4>👨‍👩‍👧 בעת שינוי אישי/משפחתי</h4>
+
+        <ul>
+          <li>נישאתם / התגרשתם → <strong>דיווח תוך ${v('income_supplement_reporting_deadline_days')} יום</strong> — משנה את סכום הגמלה.</li>
+          <li>בן/בת זוג נפטר/ה → <strong>דיווח מיידי</strong> — מעבר למדרג של יחיד/ה.</li>
+          <li>בן/בת זוג יצא/ה לחו"ל → גם על זה מדווחים.</li>
+          <li>עברתם דירה → עדכון כתובת בסניף.</li>
+        </ul>
+
+        <h4>📩 קיבלתם דרישת החזר מהביטוח הלאומי?</h4>
+
+        <div class="conditions-box">
+          <p>לביטוח הלאומי שמורה הזכות לחקור חשדות לקבלת כספים שלא כדין. הסכום עלול להיות גבוה — במיוחד אם מדובר בשנים.</p>
+          <p><strong>אל תתעלמו!</strong> אפשרויות פעולה:</p>
+          <ul>
+            <li>פנו לסניף — בקשו פירוט חישוב ובדקו שאין טעות.</li>
+            <li>ניתן לבקש פריסת תשלומים.</li>
+            <li>במקרים של מצוקה — ניתן לבקש הקלה / מחיקה חלקית.</li>
+            <li>ניתן לערער לבית הדין האזורי לעבודה (<strong>סיוע משפטי חינם — *6405</strong>).</li>
+          </ul>
+        </div>
+
         <h3>🎁 הטבות נלוות להשלמת הכנסה</h3>
         <p>מקבלי השלמת הכנסה זכאים להטבות נוספות:</p>
         <ul>
