@@ -515,6 +515,31 @@
                 const workCouple   = fmt(g('income_test_married_full'));
                 const workSingle3x = fmt(g('income_test_single_full') * 3);
                 const workCouple3x = fmt(g('income_test_married_full') * 3);
+                const mAge1 = g('men_insurance_age_r1');
+                const mAge2 = g('men_insurance_age_r2');
+                const mAge3 = g('men_insurance_age_r3');
+                const mAge4 = g('men_insurance_age_r4');
+                const mAge5 = g('men_insurance_age_r5');
+                const mAge6 = g('men_insurance_age_r6');
+                const mAge7 = g('men_insurance_age_r7');
+                const wAge1  = g('women_retirement_age_r1');
+                const wAge2  = g('women_retirement_age_r2');
+                const wAge3  = g('women_retirement_age_r3');
+                const wAge4  = g('women_retirement_age_r4');
+                const wAge5  = g('women_retirement_age_r5');
+                const wAge6  = g('women_retirement_age_r6');
+                const wAge7  = g('women_retirement_age_r7');
+                const wAge8  = g('women_retirement_age_r8');
+                const wAge9  = g('women_retirement_age_r9');
+                const wAge10 = g('women_retirement_age_r10');
+                const wAge11 = g('women_retirement_age_r11');
+                const wAge12 = g('women_retirement_age_r12');
+                const wAge13 = g('women_retirement_age_r13');
+                const wAge14 = g('women_retirement_age_r14');
+                const wAge15 = g('women_retirement_age_r15');
+                const wAge16 = g('women_retirement_age_r16');
+                const wAge17 = g('women_retirement_age_r17');
+                const wAge18 = g('women_retirement_age_r18');
                 return `
         <a href="https://www.btl.gov.il/benefits/old_age/specialpension/Pages/meyuchedet.aspx" target="_blank" class="link-item">🔗 דף הגמלה המיוחדת — אתר הביטוח הלאומי</a>
 
@@ -522,7 +547,7 @@
         <p>גמלת זיקנה מיוחדת (הנקראת גם: <strong>גמלת אזרח ותיק מיוחדת</strong>) היא רשת הביטחון שמדינת ישראל פרסה לאוכלוסיה שאינה יכולה לצבור ביטוח זיקנה רגיל — בעיקר עולים שהגיעו ארצה בגיל מאוחר, ותושבים חוזרים שלא הספיקו לצבור תקופת אכשרה מספקת.</p>
         <p>הגמלה ממומנת ישירות מתקציב <strong>משרד האוצר</strong> (לא מקופת הביטוח הלאומי) ומשולמת בפועל על-ידי המוסד לביטוח לאומי.</p>
         <div class="conditions-box">
-            <h4>⚖️ הבסיס החוקי</h4>
+            <h4 class="no-accordion">⚖️ הבסיס החוקי</h4>
             <p>על פי חוק הביטוח הלאומי, תושב ישראל מבוטח בביטוח זיקנה רק אם עלה לארץ לפני הגיל הקבוע בחוק. מי שעלה מאוחר יותר אינו נכנס כלל לביטוח — כלומר גם אם ישלם דמי ביטוח, לא תיצבר לו תקופת אכשרה.</p>
         </div>
 
@@ -531,11 +556,58 @@
         <h3>1. עולים חדשים שלא נכנסו לביטוח זיקנה</h3>
         <p>תושב ישראל שעלה לארץ לראשונה <strong>לאחר הגיל הקבוע בחוק</strong> ואינו מבוטח בביטוח אזרח ותיק.</p>
         <ul>
-            <li><strong>גברים</strong> — שעלו לראשונה לאחר הגיל המפורט ב<a href="https://www.btl.gov.il/benefits/old_age/Conditions_of_eligibility/mevutach/Pages/geverMevuta.aspx" target="_blank" style="color:#2E5B8A;">טבלת הביטוח לגברים</a></li>
-            <li><strong>נשים</strong> — שעלו לראשונה לאחר הגיל המפורט ב<a href="https://www.btl.gov.il/benefits/old_age/Conditions_of_eligibility/gilMezake/Pages/gilPrisha.aspx" target="_blank" style="color:#2E5B8A;">טבלת גיל הפרישה לנשים</a></li>
+            <li>
+                <strong>גברים</strong> — שעלו לראשונה לאחר הגיל המפורט בטבלה
+                <table style="width:100%;border-collapse:collapse;margin:12px 0 8px 0;">
+                    <thead><tr style="background:linear-gradient(135deg,#2E5B8A,#4A90B5);color:white;">
+                        <th style="padding:9px 12px;border:1px solid #ddd;text-align:right;">תאריך לידה</th>
+                        <th style="padding:9px 12px;border:1px solid #ddd;text-align:center;">גיל ביטוח מינימלי</th>
+                    </tr></thead>
+                    <tbody>
+                        <tr style="background:#f9f9f9;"><td style="padding:8px 12px;border:1px solid #ddd;">עד 06/1944</td><td style="padding:8px 12px;border:1px solid #ddd;text-align:center;font-weight:bold;color:#2E5B8A;">${mAge1}</td></tr>
+                        <tr><td style="padding:8px 12px;border:1px solid #ddd;">07/1944 – 08/1944</td><td style="padding:8px 12px;border:1px solid #ddd;text-align:center;font-weight:bold;color:#2E5B8A;">${mAge2}</td></tr>
+                        <tr style="background:#f9f9f9;"><td style="padding:8px 12px;border:1px solid #ddd;">09/1944 – 04/1945</td><td style="padding:8px 12px;border:1px solid #ddd;text-align:center;font-weight:bold;color:#2E5B8A;">${mAge3}</td></tr>
+                        <tr><td style="padding:8px 12px;border:1px solid #ddd;">05/1945 – 12/1945</td><td style="padding:8px 12px;border:1px solid #ddd;text-align:center;font-weight:bold;color:#2E5B8A;">${mAge4}</td></tr>
+                        <tr style="background:#f9f9f9;"><td style="padding:8px 12px;border:1px solid #ddd;">01/1946 – 08/1946</td><td style="padding:8px 12px;border:1px solid #ddd;text-align:center;font-weight:bold;color:#2E5B8A;">${mAge5}</td></tr>
+                        <tr><td style="padding:8px 12px;border:1px solid #ddd;">09/1946 – 04/1947</td><td style="padding:8px 12px;border:1px solid #ddd;text-align:center;font-weight:bold;color:#2E5B8A;">${mAge6}</td></tr>
+                        <tr style="background:#f9f9f9;"><td style="padding:8px 12px;border:1px solid #ddd;">מ-05/1947 ואילך</td><td style="padding:8px 12px;border:1px solid #ddd;text-align:center;font-weight:bold;color:#2E5B8A;">${mAge7}</td></tr>
+                    </tbody>
+                </table>
+                <a href="https://www.btl.gov.il/benefits/old_age/Conditions_of_eligibility/mevutach/Pages/geverMevuta.aspx" target="_blank" style="color:#4A90B5;font-size:0.85rem;">🔗 מקור: טבלת הביטוח לגברים — אתר הביטוח הלאומי</a>
+            </li>
+            <li>
+                <strong>נשים</strong> — שעלו לראשונה לאחר הגיל המפורט בטבלה
+                <table style="width:100%;border-collapse:collapse;margin:12px 0 8px 0;">
+                    <thead><tr style="background:linear-gradient(135deg,#2E5B8A,#4A90B5);color:white;">
+                        <th style="padding:9px 12px;border:1px solid #ddd;text-align:right;">תאריך לידה</th>
+                        <th style="padding:9px 12px;border:1px solid #ddd;text-align:center;">גיל פרישה</th>
+                    </tr></thead>
+                    <tbody>
+                        <tr style="background:#f9f9f9;"><td style="padding:8px 12px;border:1px solid #ddd;">עד 06/1944</td><td style="padding:8px 12px;border:1px solid #ddd;text-align:center;font-weight:bold;color:#2E5B8A;">${wAge1}</td></tr>
+                        <tr><td style="padding:8px 12px;border:1px solid #ddd;">07/1944 – 08/1944</td><td style="padding:8px 12px;border:1px solid #ddd;text-align:center;font-weight:bold;color:#2E5B8A;">${wAge2}</td></tr>
+                        <tr style="background:#f9f9f9;"><td style="padding:8px 12px;border:1px solid #ddd;">09/1944 – 04/1945</td><td style="padding:8px 12px;border:1px solid #ddd;text-align:center;font-weight:bold;color:#2E5B8A;">${wAge3}</td></tr>
+                        <tr><td style="padding:8px 12px;border:1px solid #ddd;">05/1945 – 12/1945</td><td style="padding:8px 12px;border:1px solid #ddd;text-align:center;font-weight:bold;color:#2E5B8A;">${wAge4}</td></tr>
+                        <tr style="background:#f9f9f9;"><td style="padding:8px 12px;border:1px solid #ddd;">01/1946 – 08/1946</td><td style="padding:8px 12px;border:1px solid #ddd;text-align:center;font-weight:bold;color:#2E5B8A;">${wAge5}</td></tr>
+                        <tr><td style="padding:8px 12px;border:1px solid #ddd;">09/1946 – 04/1947</td><td style="padding:8px 12px;border:1px solid #ddd;text-align:center;font-weight:bold;color:#2E5B8A;">${wAge6}</td></tr>
+                        <tr style="background:#f9f9f9;"><td style="padding:8px 12px;border:1px solid #ddd;">05/1947 – 12/1959</td><td style="padding:8px 12px;border:1px solid #ddd;text-align:center;font-weight:bold;color:#2E5B8A;">${wAge7}</td></tr>
+                        <tr><td style="padding:8px 12px;border:1px solid #ddd;">01/1960 – 12/1960</td><td style="padding:8px 12px;border:1px solid #ddd;text-align:center;font-weight:bold;color:#2E5B8A;">${wAge8}</td></tr>
+                        <tr style="background:#f9f9f9;"><td style="padding:8px 12px;border:1px solid #ddd;">01/1961 – 12/1961</td><td style="padding:8px 12px;border:1px solid #ddd;text-align:center;font-weight:bold;color:#2E5B8A;">${wAge9}</td></tr>
+                        <tr><td style="padding:8px 12px;border:1px solid #ddd;">01/1962 – 12/1962</td><td style="padding:8px 12px;border:1px solid #ddd;text-align:center;font-weight:bold;color:#2E5B8A;">${wAge10}</td></tr>
+                        <tr style="background:#f9f9f9;"><td style="padding:8px 12px;border:1px solid #ddd;">01/1963 – 12/1963</td><td style="padding:8px 12px;border:1px solid #ddd;text-align:center;font-weight:bold;color:#2E5B8A;">${wAge11}</td></tr>
+                        <tr><td style="padding:8px 12px;border:1px solid #ddd;">01/1964 – 12/1964</td><td style="padding:8px 12px;border:1px solid #ddd;text-align:center;font-weight:bold;color:#2E5B8A;">${wAge12}</td></tr>
+                        <tr style="background:#f9f9f9;"><td style="padding:8px 12px;border:1px solid #ddd;">01/1965 – 12/1965</td><td style="padding:8px 12px;border:1px solid #ddd;text-align:center;font-weight:bold;color:#2E5B8A;">${wAge13}</td></tr>
+                        <tr><td style="padding:8px 12px;border:1px solid #ddd;">01/1966 – 12/1966</td><td style="padding:8px 12px;border:1px solid #ddd;text-align:center;font-weight:bold;color:#2E5B8A;">${wAge14}</td></tr>
+                        <tr style="background:#f9f9f9;"><td style="padding:8px 12px;border:1px solid #ddd;">01/1967 – 12/1967</td><td style="padding:8px 12px;border:1px solid #ddd;text-align:center;font-weight:bold;color:#2E5B8A;">${wAge15}</td></tr>
+                        <tr><td style="padding:8px 12px;border:1px solid #ddd;">01/1968 – 12/1968</td><td style="padding:8px 12px;border:1px solid #ddd;text-align:center;font-weight:bold;color:#2E5B8A;">${wAge16}</td></tr>
+                        <tr style="background:#f9f9f9;"><td style="padding:8px 12px;border:1px solid #ddd;">01/1969 – 12/1969</td><td style="padding:8px 12px;border:1px solid #ddd;text-align:center;font-weight:bold;color:#2E5B8A;">${wAge17}</td></tr>
+                        <tr><td style="padding:8px 12px;border:1px solid #ddd;">01/1970 ואילך</td><td style="padding:8px 12px;border:1px solid #ddd;text-align:center;font-weight:bold;color:#2E5B8A;">${wAge18}</td></tr>
+                    </tbody>
+                </table>
+                <a href="https://www.btl.gov.il/benefits/old_age/Conditions_of_eligibility/gilMezake/Pages/gilPrisha.aspx" target="_blank" style="color:#4A90B5;font-size:0.85rem;">🔗 מקור: טבלת גיל הפרישה לנשים — אתר הביטוח הלאומי</a>
+            </li>
         </ul>
         <div class="conditions-box">
-            <h4>⛔ חשוב</h4>
+            <h4 class="no-accordion">⛔ חשוב</h4>
             <p>עולה שהגיע לאחר גיל זה אינו זכאי לקצבת זיקנה רגילה ועשוי להיות זכאי לגמלה מיוחדת בלבד.</p>
         </div>
 

@@ -427,6 +427,125 @@
     "updated": "2026-01"
   },
 
+  "men_insurance_age_r1": {
+    "id": "NII-206",
+    "value": "60",
+    "type": "text",
+    "label": "גיל ביטוח זיקנה לגברים — נולד עד 06/1944",
+    "updated": "2026-01"
+  },
+  "men_insurance_age_r2": {
+    "id": "NII-207",
+    "value": "60 ו-4 חודשים",
+    "type": "text",
+    "label": "גיל ביטוח זיקנה לגברים — נולד 07/1944–08/1944",
+    "updated": "2026-01"
+  },
+  "men_insurance_age_r3": {
+    "id": "NII-208",
+    "value": "60 ו-8 חודשים",
+    "type": "text",
+    "label": "גיל ביטוח זיקנה לגברים — נולד 09/1944–04/1945",
+    "updated": "2026-01"
+  },
+  "men_insurance_age_r4": {
+    "id": "NII-209",
+    "value": "61",
+    "type": "text",
+    "label": "גיל ביטוח זיקנה לגברים — נולד 05/1945–12/1945",
+    "updated": "2026-01"
+  },
+  "men_insurance_age_r5": {
+    "id": "NII-210",
+    "value": "61 ו-4 חודשים",
+    "type": "text",
+    "label": "גיל ביטוח זיקנה לגברים — נולד 01/1946–08/1946",
+    "updated": "2026-01"
+  },
+  "men_insurance_age_r6": {
+    "id": "NII-211",
+    "value": "61 ו-8 חודשים",
+    "type": "text",
+    "label": "גיל ביטוח זיקנה לגברים — נולד 09/1946–04/1947",
+    "updated": "2026-01"
+  },
+  "men_insurance_age_r7": {
+    "id": "NII-212",
+    "value": "62",
+    "type": "text",
+    "label": "גיל ביטוח זיקנה לגברים — נולד מ-05/1947 ואילך",
+    "updated": "2026-01"
+  },
+
+  "women_retirement_age_r1":  { "id": "NII-213", "value": "60",             "type": "text", "label": "גיל פרישה לנשים — נולדה עד 06/1944",          "updated": "2026-01" },
+  "women_retirement_age_r2":  { "id": "NII-214", "value": "60 ו-4 חודשים",  "type": "text", "label": "גיל פרישה לנשים — נולדה 07/1944–08/1944",     "updated": "2026-01" },
+  "women_retirement_age_r3":  { "id": "NII-215", "value": "60 ו-8 חודשים",  "type": "text", "label": "גיל פרישה לנשים — נולדה 09/1944–04/1945",     "updated": "2026-01" },
+  "women_retirement_age_r4":  { "id": "NII-216", "value": "61",             "type": "text", "label": "גיל פרישה לנשים — נולדה 05/1945–12/1945",     "updated": "2026-01" },
+  "women_retirement_age_r5":  { "id": "NII-217", "value": "61 ו-4 חודשים",  "type": "text", "label": "גיל פרישה לנשים — נולדה 01/1946–08/1946",     "updated": "2026-01" },
+  "women_retirement_age_r6":  { "id": "NII-218", "value": "61 ו-8 חודשים",  "type": "text", "label": "גיל פרישה לנשים — נולדה 09/1946–04/1947",     "updated": "2026-01" },
+  "women_retirement_age_r7":  { "id": "NII-219", "value": "62",             "type": "text", "label": "גיל פרישה לנשים — נולדה 05/1947–12/1959",     "updated": "2026-01" },
+  "women_retirement_age_r8":  { "id": "NII-220", "value": "62 ו-4 חודשים",  "type": "text", "label": "גיל פרישה לנשים — נולדה 01/1960–12/1960",     "updated": "2026-01" },
+  "women_retirement_age_r9":  { "id": "NII-221", "value": "62 ו-8 חודשים",  "type": "text", "label": "גיל פרישה לנשים — נולדה 01/1961–12/1961",     "updated": "2026-01" },
+  "women_retirement_age_r10": { "id": "NII-222", "value": "63",             "type": "text", "label": "גיל פרישה לנשים — נולדה 01/1962–12/1962",     "updated": "2026-01" },
+  "women_retirement_age_r11": { "id": "NII-223", "value": "63 ו-3 חודשים",  "type": "text", "label": "גיל פרישה לנשים — נולדה 01/1963–12/1963",     "updated": "2026-01" },
+  "women_retirement_age_r12": { "id": "NII-224", "value": "63 ו-6 חודשים",  "type": "text", "label": "גיל פרישה לנשים — נולדה 01/1964–12/1964",     "updated": "2026-01" },
+  "women_retirement_age_r13": { "id": "NII-225", "value": "63 ו-9 חודשים",  "type": "text", "label": "גיל פרישה לנשים — נולדה 01/1965–12/1965",     "updated": "2026-01" },
+  "women_retirement_age_r14": { "id": "NII-226", "value": "64",             "type": "text", "label": "גיל פרישה לנשים — נולדה 01/1966–12/1966",     "updated": "2026-01" },
+  "women_retirement_age_r15": { "id": "NII-227", "value": "64 ו-3 חודשים",  "type": "text", "label": "גיל פרישה לנשים — נולדה 01/1967–12/1967",     "updated": "2026-01" },
+  "women_retirement_age_r16": { "id": "NII-228", "value": "64 ו-6 חודשים",  "type": "text", "label": "גיל פרישה לנשים — נולדה 01/1968–12/1968",     "updated": "2026-01" },
+  "women_retirement_age_r17": { "id": "NII-229", "value": "64 ו-9 חודשים",  "type": "text", "label": "גיל פרישה לנשים — נולדה 01/1969–12/1969",     "updated": "2026-01" },
+  "women_retirement_age_r18": { "id": "NII-230", "value": "65",             "type": "text", "label": "גיל פרישה לנשים — נולדה 01/1970 ואילך",        "updated": "2026-01" },
+
+  "qualification_period_old_age_months": {
+    "id": "NII-231",
+    "value": 144,
+    "type": "number",
+    "label": "תקופת אכשרה לקצבת זיקנה — חודשים (12 שנה)",
+    "updated": "2026-01"
+  },
+  "abroad_stay_short_max_months": {
+    "id": "NII-232",
+    "value": 3,
+    "type": "number",
+    "label": "שהות זמנית בחו\"ל — מספר חודשים מקסימלי לתשלום קצבה אוטומטי",
+    "updated": "2026-01"
+  },
+  "abroad_stay_no_treaty_min_insurance_months": {
+    "id": "NII-233",
+    "value": 144,
+    "type": "number",
+    "label": "שהות ממושכת בחו\"ל ללא אמנה — מינימום חודשי ביטוח לקבלת קצבה (12 שנה)",
+    "updated": "2026-01"
+  },
+  "abroad_stay_no_treaty_recent_months": {
+    "id": "NII-234",
+    "value": 12,
+    "type": "number",
+    "label": "שהות ממושכת בחו\"ל ללא אמנה — חודשי ביטוח נדרשים סמוך לגיל הזכאות",
+    "updated": "2026-01"
+  },
+  "posted_worker_abroad_max_months": {
+    "id": "NII-235",
+    "value": 24,
+    "type": "number",
+    "label": "עובד שנשלח לחו\"ל ע\"י מעסיק ישראלי — תקופת שהות מקסימלית תוך תשלום ביטוח בישראל (חודשים)",
+    "updated": "2026-01"
+  },
+  "income_supplement_abroad_max_days": {
+    "id": "NII-236",
+    "value": 72,
+    "type": "number",
+    "label": "השלמת הכנסה — ימי שהייה בחו\"ל מקסימליים בשנה קלנדרית מבלי לאבד זכאות",
+    "updated": "2026-01"
+  },
+  "income_supplement_abroad_max_trips": {
+    "id": "NII-237",
+    "value": 3,
+    "type": "number",
+    "label": "השלמת הכנסה — מספר יציאות מקסימלי לחו\"ל בשנה קלנדרית",
+    "updated": "2026-01"
+  },
+
   "survivors_income_test_no_dependents": {
     "id": "NII-050",
     "value": 7848,

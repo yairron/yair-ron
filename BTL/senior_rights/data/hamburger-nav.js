@@ -8,6 +8,7 @@
         const path = window.location.pathname.replace(/\\/g, '/');
         if (path.match(/\/senior_rights\/data\//)) return '../../';
         if (path.match(/\/senior_rights\//))       return '../';
+        if (path.match(/\/new_immigrants\//))       return '../';
         return '';
     }
     const bp = getBasePath();
@@ -15,6 +16,12 @@
     // ─── Menu data (all links relative to BTL/) ───────────────────────────────
     const MENU = [
         { icon: '🌟', text: 'זכויות אזרחים ותיקים',    href: bp + 'senior_rights/senior_rights_full.html' },
+        {
+            icon: '🌍', text: 'זכויות עולים חדשים', children: [
+                { icon: '🌍', text: 'זכויות עולים חדשים',      href: bp + 'new_immigrants/new_immigrants_full.html' },
+                { icon: '👴', text: 'גמלת זיקנה מיוחדת',       href: bp + 'new_immigrants/gimlat_zikna_meyuchedet.html' },
+            ]
+        },
         { icon: '🔗', text: 'קישורים חשובים',           href: bp + 'senior_rights/important-links.html' },
         { icon: '📋', text: 'טפסי ביטוח לאומי',         href: bp + 'senior_rights/forms.html' },
         {
