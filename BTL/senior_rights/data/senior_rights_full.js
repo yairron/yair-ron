@@ -522,7 +522,49 @@ const RIGHTS_DATA = {
               <li>קצבת פנסיה - מותרת: יחיד ${c('pension_income_exempt_single')}, זוג ${c('pension_income_exempt_couple')} — כל שקל מפנסיה עודפת מקוזז מההשלמה</li>
             </ul>
           </li>
+          <li>דרך החישוב:
+            <ul>
+              <li>בודקים אם הפנסיה מעל תקרת הפנסיה (יחיד ${c('pension_income_exempt_single')} / זוג ${c('pension_income_exempt_couple')}).
+                אם כן — כל שקל שמעל תקרת הפנסיה יורד במלואו מגמלת ההשלמה, ומצרפים את יתרת הפנסיה (עד תקרת הפנסיה) להכנסה מעבודה.</li>
+              <li>אם הפנסיה נמוכה מהתקרה — מצרפים את הפנסיה כולה להכנסה מעבודה.</li>
+              <li>אם הסכום המצורף (פנסיה + עבודה) נמוך מתקרת הכנסה מעבודה (יחיד ${c('work_income_exempt_single')} / זוג ${c('work_income_exempt_couple')}) — מקבלים גמלה מלאה (בניכוי קצבת הזיקנה).</li>
+              <li>אם הסכום המצורף גבוה מתקרת הכנסה מעבודה — מורידים מהגמלה ${p('income_test_deduction_rate')} מהעודף.</li>
+              <li>אם הגמלה לאחר כל ההורדות נמוכה מקצבת הזיקנה — אין זכאות להשלמה.</li>
+            </ul>
+          </li>
         </ol>
+
+        <h4>🧮 מחשבון זכאות להשלמת הכנסה</h4>
+        <div style="background:#f0f7ff;padding:20px;border-radius:12px;border:2px solid #3b82f6;margin:10px 0;">
+          <div style="display:grid;gap:14px;margin-bottom:18px;">
+            <div>
+              <label for="is-calc-status" style="display:block;font-weight:700;margin-bottom:5px;">מצב משפחתי:</label>
+              <select id="is-calc-status" onchange="calcIncomeSupplement()" style="width:100%;padding:9px 12px;border:1px solid #93c5fd;border-radius:8px;font-size:1rem;background:white;cursor:pointer;">
+                <option value="single">יחיד/ה</option>
+                <option value="couple">זוג</option>
+              </select>
+            </div>
+            <div>
+              <label for="is-calc-old-age" style="display:block;font-weight:700;margin-bottom:5px;">קצבת אזרח ותיק (₪ לחודש):</label>
+              <input type="number" id="is-calc-old-age" oninput="calcIncomeSupplement()" min="0" placeholder="0" style="width:100%;padding:9px 12px;border:1px solid #93c5fd;border-radius:8px;font-size:1rem;">
+            </div>
+            <div>
+              <label for="is-calc-pension" style="display:block;font-weight:700;margin-bottom:5px;">הכנסה מפנסיה (₪ לחודש):</label>
+              <input type="number" id="is-calc-pension" oninput="calcIncomeSupplement()" min="0" placeholder="0" style="width:100%;padding:9px 12px;border:1px solid #93c5fd;border-radius:8px;font-size:1rem;">
+            </div>
+            <div>
+              <label for="is-calc-work" style="display:block;font-weight:700;margin-bottom:5px;">הכנסה מעבודה — ברוטו (₪ לחודש):</label>
+              <input type="number" id="is-calc-work" oninput="calcIncomeSupplement()" min="0" placeholder="0" style="width:100%;padding:9px 12px;border:1px solid #93c5fd;border-radius:8px;font-size:1rem;">
+            </div>
+          </div>
+          <div id="is-calc-result" style="display:none;"></div>
+          <div style="background:#fff8e1;border:2px solid #f59e0b;border-radius:10px;padding:14px 16px;margin-top:16px;">
+            <p style="margin:0 0 6px 0;font-weight:700;color:#92400e;font-size:1em;">⚠️ שימו לב — חישוב חלקי בלבד!</p>
+            <p style="margin:0 0 8px 0;color:#78350f;font-size:0.93em;">יש סעיפי הכנסות נוספים שמשפיעים על השלמת הכנסה (הכנסה רעיונית מנכסים, שכר דירה ועוד).</p>
+            <a href="https://www.btl.gov.il/Simulators/Pages/IncomeSupportCalc.aspx" target="_blank" style="display:inline-block;background:#f59e0b;color:white;font-weight:700;padding:8px 16px;border-radius:8px;text-decoration:none;font-size:0.95em;">🔗 לחישוב מפורט — מחשבון הביטוח הלאומי</a>
+            <p style="margin:8px 0 0 0;color:#92400e;font-size:0.88em;">המחשבון עושה הערכה גסה. החישוב הסופי נעשה על ידי הפקיד המוסמך בביטוח הלאומי.</p>
+          </div>
+        </div>
 
         <h4>💰 חישוב הכנסה רעיונית מנכסים פיננסיים</h4>
         <p>למי שיש פיקדונות, חסכונות או השקעות, עשוי להיות חישוב של "הכנסה רעיונית" מנכסים אלה. הכנסה זו מופחתת מסכום ההשלמה.</p>

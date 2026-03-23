@@ -685,6 +685,114 @@
             });
         }
 
+        // מחשבון זכאות להשלמת הכנסה
+        function calcIncomeSupplement() {
+            const statusEl = document.getElementById('is-calc-status');
+            const oldAgeEl = document.getElementById('is-calc-old-age');
+            const pensionEl = document.getElementById('is-calc-pension');
+            const workEl   = document.getElementById('is-calc-work');
+            const resultEl = document.getElementById('is-calc-result');
+            if (!statusEl || !resultEl) return;
+
+            const isCouple      = statusEl.value === 'couple';
+            const oldAgePension = parseFloat(oldAgeEl?.value) || 0;
+            const pensionIncome = parseFloat(pensionEl?.value) || 0;
+            const workIncome    = parseFloat(workEl?.value)   || 0;
+
+            const N = NII_CONSTANTS;
+            const fmt = n => Math.round(n).toLocaleString('he-IL');
+
+            const maxBenefit    = isCouple ? (N.income_supplement_couple_under70?.value || 6912) : (N.income_supplement_single_under70?.value || 4375);
+            const pensionCeiling = isCouple ? (N.pension_income_exempt_couple?.value  || 2823)  : (N.pension_income_exempt_single?.value  || 1790);
+            const workCeiling   = isCouple ? (N.work_income_exempt_couple?.value      || 3786)  : (N.work_income_exempt_single?.value      || 3236);
+            const deductionPct  = N.income_test_deduction_rate?.value || 60;
+            const deductionRate = deductionPct / 100;
+
+            // שלב 1: עודף פנסיה (ניכוי 100%)
+            const excessPension    = Math.max(0, pensionIncome - pensionCeiling);
+            // שלב 2: פנסיה אפקטיבית (עד תקרה)
+            const effectivePension = Math.min(pensionIncome, pensionCeiling);
+            // שלב 3: פנסיה אפקטיבית + עבודה
+            const combined         = workIncome + effectivePension;
+            // שלב 4: עודף מעל תקרת עבודה (ניכוי 60%)
+            const excessCombined   = Math.max(0, combined - workCeiling);
+            // שלב 5: גמלה אחרי ניכויים
+            const grossBenefit     = maxBenefit - Math.round(excessCombined * deductionRate) - excessPension;
+            // שלב 6: בניכוי קצבת זיקנה
+            const supplement       = Math.round(grossBenefit - oldAgePension);
+            const isEligible       = supplement > 0;
+
+            let html = '';
+            if (!isEligible) {
+                html = `<div style="background:#ffebee;padding:14px 16px;border-radius:8px;border-right:4px solid #c62828;">
+                    <p style="font-size:1.05em;font-weight:700;color:#c62828;margin:0;">❌ על סמך הנתונים שהזנת — אין זכאות להשלמת הכנסה</p>
+                    <p style="margin:8px 0 0 0;color:#555;font-size:0.95em;">תקרת הגמלה לאחר ניכויים (₪${fmt(grossBenefit)}) אינה עולה על קצבת האזרח הוותיק.</p>
+                </div>`;
+            } else {
+                const statusLabel = isCouple ? 'זוג' : 'יחיד/ה';
+                html = `
+                <div style="background:#e8f5e9;padding:12px 16px;border-radius:8px;border-right:4px solid #2e7d32;margin-bottom:14px;">
+                    <p style="font-size:1.15em;font-weight:700;color:#1b5e20;margin:0;">✅ גמלה משוערת: ₪${fmt(supplement)} לחודש</p>
+                </div>
+                <p style="font-weight:700;margin:0 0 8px 0;color:#1a3a52;">פירוט שלבי החישוב:</p>
+                <table style="width:100%;border-collapse:collapse;font-size:0.93em;">
+                  <thead>
+                    <tr style="background:linear-gradient(135deg,#667eea,#764ba2);color:white;">
+                      <th style="padding:9px 10px;border:1px solid #ddd;text-align:right;">שלב</th>
+                      <th style="padding:9px 10px;border:1px solid #ddd;text-align:left;width:110px;">סכום</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td style="padding:8px 10px;border:1px solid #ddd;">סכום מקסימלי להשלמה (${statusLabel})</td>
+                      <td style="padding:8px 10px;border:1px solid #ddd;font-weight:600;">₪${fmt(maxBenefit)}</td>
+                    </tr>
+                    ${excessPension > 0
+                        ? `<tr style="background:#fff3e0;">
+                            <td style="padding:8px 10px;border:1px solid #ddd;">פנסיה (₪${fmt(pensionIncome)}) מעל תקרה (₪${fmt(pensionCeiling)}) — ניכוי 100% על עודף ₪${fmt(excessPension)}</td>
+                            <td style="padding:8px 10px;border:1px solid #ddd;color:#c62828;">− ₪${fmt(excessPension)}</td>
+                           </tr>
+                           <tr>
+                            <td style="padding:8px 10px;border:1px solid #ddd;">פנסיה אפקטיבית לצורך חישוב עבודה (עד תקרה)</td>
+                            <td style="padding:8px 10px;border:1px solid #ddd;">₪${fmt(effectivePension)}</td>
+                           </tr>`
+                        : `<tr style="background:#e8f5e9;">
+                            <td style="padding:8px 10px;border:1px solid #ddd;">פנסיה (₪${fmt(pensionIncome)}) עד התקרה (₪${fmt(pensionCeiling)}) — אין ניכוי</td>
+                            <td style="padding:8px 10px;border:1px solid #ddd;color:#2e7d32;">₪0</td>
+                           </tr>`}
+                    <tr style="background:#f5f5f5;">
+                      <td style="padding:8px 10px;border:1px solid #ddd;">פנסיה אפקטיבית (₪${fmt(effectivePension)}) + עבודה (₪${fmt(workIncome)}) = סכום משולב</td>
+                      <td style="padding:8px 10px;border:1px solid #ddd;">₪${fmt(combined)}</td>
+                    </tr>
+                    ${excessCombined > 0
+                        ? `<tr style="background:#fff3e0;">
+                            <td style="padding:8px 10px;border:1px solid #ddd;">סכום משולב מעל תקרת עבודה (₪${fmt(workCeiling)}) — ניכוי ${deductionPct}% על עודף ₪${fmt(excessCombined)}</td>
+                            <td style="padding:8px 10px;border:1px solid #ddd;color:#e65100;">− ₪${fmt(Math.round(excessCombined * deductionRate))}</td>
+                           </tr>`
+                        : `<tr style="background:#e8f5e9;">
+                            <td style="padding:8px 10px;border:1px solid #ddd;">סכום משולב עד תקרת עבודה (₪${fmt(workCeiling)}) — אין ניכוי עבודה</td>
+                            <td style="padding:8px 10px;border:1px solid #ddd;color:#2e7d32;">₪0</td>
+                           </tr>`}
+                    <tr style="background:#f5f5f5;font-weight:600;">
+                      <td style="padding:8px 10px;border:1px solid #ddd;">תקרת גמלה לאחר ניכויים</td>
+                      <td style="padding:8px 10px;border:1px solid #ddd;">₪${fmt(grossBenefit)}</td>
+                    </tr>
+                    <tr>
+                      <td style="padding:8px 10px;border:1px solid #ddd;">בניכוי קצבת אזרח ותיק</td>
+                      <td style="padding:8px 10px;border:1px solid #ddd;color:#c62828;">− ₪${fmt(oldAgePension)}</td>
+                    </tr>
+                    <tr style="background:#e8f5e9;font-weight:700;">
+                      <td style="padding:8px 10px;border:1px solid #ddd;color:#1b5e20;">השלמת הכנסה משוערת</td>
+                      <td style="padding:8px 10px;border:1px solid #ddd;color:#1b5e20;font-size:1.05em;">₪${fmt(supplement)}</td>
+                    </tr>
+                  </tbody>
+                </table>`;
+            }
+
+            resultEl.innerHTML = html;
+            resultEl.style.display = 'block';
+        }
+
         // טעינת nii-constants.json ואז הצגת הנתונים
         async function init() {
             try {
