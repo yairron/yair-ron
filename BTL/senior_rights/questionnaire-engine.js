@@ -750,10 +750,10 @@ class QuestionnaireEngine {
         // Total yearly income = Base + Tiers
         const yearlyImputedIncome = baseYearlyIncome + tiersYearlyIncome;
 
-        const monthlyImputedIncome = yearlyImputedIncome / 12;
+        const monthlyImputedIncome = Math.round(yearlyImputedIncome / 12);
 
         // Total monthly income includes both imputed and actual income from assets
-        const totalMonthlyIncome = monthlyImputedIncome + monthlyIncomeFromAssets;
+        const totalMonthlyIncome = Math.round(monthlyImputedIncome + monthlyIncomeFromAssets);
 
         return {
             totalAssets: totalFinancialAssets,
@@ -765,7 +765,7 @@ class QuestionnaireEngine {
             tiersYearlyIncome: tiersYearlyIncome,
             tiersMonthlyIncome: tiersYearlyIncome / 12,
             tierBreakdown: tierBreakdown,
-            yearlyImputedIncome: yearlyImputedIncome,
+            yearlyImputedIncome: Math.round(yearlyImputedIncome),
             monthlyImputedIncome: monthlyImputedIncome,
             monthlyIncomeFromAssets: monthlyIncomeFromAssets,
             totalMonthlyIncome: totalMonthlyIncome
@@ -1156,6 +1156,9 @@ class QuestionnaireEngine {
         if (resultKey === 'not_eligible') {
             delete this.answers[triggerQuestionId];
             this.showQuestion(triggerQuestionId);
+        } else if (this.data.results && this.data.results[returnTo]) {
+            // returnTo points to a result, not a question
+            this.showResult(returnTo);
         } else {
             this.showQuestion(returnTo);
         }
@@ -1190,6 +1193,7 @@ class QuestionnaireEngine {
                     ? `<button class="result-link btn btn-primary" id="btn-return-to-parent">${result.link.text}</button>`
                     : `<a href="${result.link.url}" class="result-link btn btn-primary">${result.link.text}</a>`)
                 + `<br><small class="skip-link" style="margin-top: 10px; display: inline-block;"><a href="javascript:void(0)" class="skip-button">דלק על השלב הזה →</a></small>` : ''}
+            ${this.parentState && !result.link ? `<button class="btn btn-primary" id="btn-return-to-parent" style="margin-top:16px;">← חזרה לשאלון בדיקת הזכאות</button>` : ''}
             ${result.calculator ? this.renderCalculator(result.calculator) : ''}
             ${this.renderAnswersSummary()}
         `;
