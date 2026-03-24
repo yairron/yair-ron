@@ -1369,8 +1369,10 @@ class QuestionnaireEngine {
             : isCoupleFamily ? (rules.incomeDeductions.workIncome.exemption_couple || 3786) : (rules.incomeDeductions.workIncome.exemption_single || rules.incomeDeductions.workIncome.exemption || 3236);
 
         // Calculate deductions according to rules
+        // פנסיה אפקטיבית = מינימום(פנסיה, תקרת פנסיה) — לחיבור עם הכנסת עבודה
+        const effectivePension = Math.min(pensionIncome, pensionExemption);
         const pensionDeduction = this.calculatePensionDeduction(pensionIncome, rules, isCoupleFamily);
-        const workDeduction = this.calculateWorkDeduction(workIncome, rules, isCoupleFamily, workStatus);
+        const workDeduction = this.calculateWorkDeduction(workIncome, rules, isCoupleFamily, workStatus, effectivePension);
         const imputedDeduction = imputedIncome * rules.incomeDeductions.imputedIncome.deductionRate;
         const vehicleDeductionInfo = this.calculateVehicleDeduction(vehicleValue, workIncome, workStatus, isRetirementAge, isSpecialStatus, rules.vehicleRules);
         const vehicleDeduction = vehicleDeductionInfo.deduction;
@@ -1426,29 +1428,26 @@ class QuestionnaireEngine {
      */
     calculatePensionDeduction(pensionIncome, rules, isCoupleFamily = false) {
         const rule = rules.incomeDeductions.pensionIncome;
-        // Backward compatibility: support single exemption or separate single/couple
         const exemption = isCoupleFamily ? (rule.exemption_couple || rule.exemption) : (rule.exemption_single || rule.exemption);
-        if (pensionIncome <= exemption) {
-            return 0;
-        }
-        const taxableAmount = pensionIncome - exemption;
-        return taxableAmount * rule.deductionRate;
+        // עודף פנסיה מעל התקרה מנוכה במלואו (100%) — כל שקל עודף מקוזז שקל אחד
+        return Math.max(0, pensionIncome - exemption);
     }
 
     /**
-     * Calculate work income deduction according to rules
+     * Calculate work income deduction according to rules.
+     * effectivePension = min(pension, pensionCeiling) מחובר להכנסת עבודה לפני בדיקת התקרה,
+     * בהתאם לנוסחת החישוב הנכונה (כמו ב-senior_rights_full).
      */
-    calculateWorkDeduction(workIncome, rules, isCoupleFamily = false, workStatus = '') {
+    calculateWorkDeduction(workIncome, rules, isCoupleFamily = false, workStatus = '', effectivePension = 0) {
         const rule = rules.incomeDeductions.workIncome;
         const isSelfEmployed = workStatus === 'self_employed';
         const exemption = isSelfEmployed
             ? (rule.exemption_self_employed || rule.exemption_single || rule.exemption)
             : isCoupleFamily ? (rule.exemption_couple || rule.exemption) : (rule.exemption_single || rule.exemption);
-        if (workIncome <= exemption) {
-            return 0;
-        }
-        const taxableAmount = workIncome - exemption;
-        return taxableAmount * rule.deductionRate;
+        // מחברים פנסיה אפקטיבית + עבודה, בודקים עודף מעל תקרת עבודה, ומנכים 60%
+        const combined = workIncome + effectivePension;
+        const excessCombined = Math.max(0, combined - exemption);
+        return Math.round(excessCombined * rule.deductionRate);
     }
 
     /**
