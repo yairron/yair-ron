@@ -1277,39 +1277,39 @@ class QuestionnaireEngine {
                         <td class="calc-value">${calculation.incomes.oldAgePension.toLocaleString('he-IL')}₪</td>
                     </tr>
                     <tr>
-                        <td class="calc-label">תקרת הכנסה מפנסיה:</td>
-                        <td class="calc-value">${calculation.deductions.pensionExemption.toLocaleString('he-IL')}₪</td>
-                    </tr>
-                    <tr>
-                        <td class="calc-label">הכנסה מפנסיה (לפני קיזוז):</td>
+                        <td class="calc-label">הכנסה מפנסיה:</td>
                         <td class="calc-value">${calculation.incomes.pensionIncome.toLocaleString('he-IL')}₪</td>
                     </tr>
                     <tr>
-                        <td class="calc-label">קיזוז - הכנסה מפנסיה:</td>
-                        <td class="calc-value">-${calculation.deductions.pensionDeduction.toLocaleString('he-IL')}₪</td>
+                        <td class="calc-label">פטור פנסיה (עד ${calculation.deductions.pensionExemption.toLocaleString('he-IL')}₪):</td>
+                        <td class="calc-value">${calculation.deductions.pensionDeduction === 0 ? 'פטורה במלואה' : `${(calculation.incomes.pensionIncome - calculation.deductions.pensionDeduction).toLocaleString('he-IL')}₪ פטורים`}</td>
                     </tr>
                     <tr>
-                        <td class="calc-label">תקרת הכנסה מעבודה:</td>
-                        <td class="calc-value">${calculation.deductions.workExemption.toLocaleString('he-IL')}₪</td>
+                        <td class="calc-label">פנסיה נספרת כהכנסה:</td>
+                        <td class="calc-value">+${calculation.deductions.pensionDeduction.toLocaleString('he-IL')}₪</td>
                     </tr>
                     <tr>
-                        <td class="calc-label">הכנסה מעבודה (לפני קיזוז):</td>
+                        <td class="calc-label">הכנסה מעבודה:</td>
                         <td class="calc-value">${calculation.incomes.workIncome.toLocaleString('he-IL')}₪</td>
                     </tr>
                     <tr>
-                        <td class="calc-label">קיזוז - הכנסה מעבודה:</td>
-                        <td class="calc-value">-${calculation.deductions.workDeduction.toLocaleString('he-IL')}₪</td>
+                        <td class="calc-label">פטור עבודה (עד ${calculation.deductions.workExemption.toLocaleString('he-IL')}₪, כולל פנסיה):</td>
+                        <td class="calc-value">${calculation.deductions.workDeduction === 0 ? 'פטורה במלואה' : `עודף × 60%`}</td>
                     </tr>
                     <tr>
-                        <td class="calc-label">הכנסה רעיונית מנכסים:</td>
-                        <td class="calc-value">${calculation.incomes.imputedIncome.toLocaleString('he-IL', { maximumFractionDigits: 0 })}₪</td>
+                        <td class="calc-label">עבודה נספרת כהכנסה:</td>
+                        <td class="calc-value">+${calculation.deductions.workDeduction.toLocaleString('he-IL')}₪</td>
+                    </tr>
+                    <tr>
+                        <td class="calc-label">הכנסה רעיונית מנכסים (נספרת במלואה):</td>
+                        <td class="calc-value">+${calculation.incomes.imputedIncome.toLocaleString('he-IL', { maximumFractionDigits: 0 })}₪</td>
                     </tr>
                     <tr class="calculation-row-total">
                         <td class="calc-label"><strong>סה"כ הכנסה נטו:</strong></td>
                         <td class="calc-value"><strong>${calculation.netIncome.toLocaleString('he-IL')}₪</strong></td>
                     </tr>
                     <tr>
-                        <td class="calc-label">זכות להשלמה (אחרי קיזוזי הכנסה):</td>
+                        <td class="calc-label">זכות להשלמה (תקרה פחות הכנסה נטו):</td>
                         <td class="calc-value">${calculation.estimatedSupplementBeforeVehicle.toLocaleString('he-IL')}₪</td>
                     </tr>
                     ${calculation.incomes.vehicleValue ? `
