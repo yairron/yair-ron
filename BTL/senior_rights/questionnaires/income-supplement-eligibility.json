@@ -99,7 +99,11 @@
       "type": "radio",
       "question": "האם יש לך נכסים (חסכונות, נדל\"ן מעבר לדירת מגורים, השקעות וכו') שעשויים להיחשב כהכנסה רעיונית?",
       "options": [
-        { "value": "yes_unknown", "label": "כן, אבל אני לא יודע/ת מה ההכנסה הרעיונית", "subQuestionnaire": "imputed-income-calculator", "returnTo": "q8b_imputed_income_amount" },
+        { "value": "yes_unknown", "label": "כן, אבל אני לא יודע/ת מה ההכנסה הרעיונית", "subQuestionnaire": "imputed-income-calculator", "returnTo": "q8b_imputed_income_amount",
+          "preAnswers": {
+            "q1_family_status": { "from": "q4_family_composition", "transform": "family_type" }
+          }
+        },
         { "value": "yes_known", "label": "כן, יודע/ת את סכום ההכנסה הרעיונית החודשית", "next": "q8b_imputed_income_amount" },
         { "value": "no", "label": "לא, אין לי נכסים מעבר לדירת המגורים", "next": "q8c_special_status" },
         { "value": "skip", "label": "דלג על שאלה זו", "next": "q8c_special_status" }
@@ -132,7 +136,15 @@
       "question": "האם יש לך רכב בבעלותך?",
       "description": "אנחנו משתמשים בשווי לפי מחירון לוי יצחק.",
       "options": [
-        { "value": "yes", "label": "כן", "subQuestionnaire": "vehicle-income-supplement", "returnTo": "calculate_eligibility", "returnStoreAs": "q7_vehicle_value" },
+        { "value": "yes", "label": "כן", "subQuestionnaire": "vehicle-income-supplement", "returnTo": "calculate_eligibility", "returnStoreAs": "q7_vehicle_value",
+          "preAnswers": {
+            "q3_retirement_age":      { "from": "q4_family_composition", "transform": "retirement_age" },
+            "q4_work_status":         { "from": "q7_work_income",        "transform": "vehicle_work_status" },
+            "q4b_not_working_special":{ "from": "q7_work_income",        "transform": "none_when_not_working" },
+            "q5_work_income":         { "from": "q3_work_income_amount", "transform": "copy" },
+            "q6_special_status":      { "from": "q8_special_status",     "transform": "special_status" }
+          }
+        },
         { "value": "no", "label": "לא", "result": "calculate_eligibility" },
         { "value": "skip", "label": "דלג על שאלה זו", "result": "calculate_eligibility" }
       ]

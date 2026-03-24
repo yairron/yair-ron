@@ -195,6 +195,12 @@ class QuestionnaireEngine {
             return;
         }
 
+        // Auto-advance pre-answered questions (set by parent via preAnswers mapping)
+        if (this.answers[questionId]?.preAnswered) {
+            this._advancePreAnswered(question);
+            return;
+        }
+
         this.currentQuestionId = questionId;
 
         // Add to history if not already there
@@ -917,8 +923,8 @@ class QuestionnaireEngine {
 
         // Determine next action
         if (selectedOption.subQuestionnaire) {
-            // Load sub-questionnaire
-            this.loadSubQuestionnaire(selectedOption.subQuestionnaire, selectedOption.returnTo, selectedOption.returnStoreAs);
+            // Load sub-questionnaire (pass preAnswers if parent defined them)
+            this.loadSubQuestionnaire(selectedOption.subQuestionnaire, selectedOption.returnTo, selectedOption.returnStoreAs, selectedOption.preAnswers || null);
         } else if (selectedOption.result) {
             // Show result
             this.showResult(selectedOption.result);
@@ -931,7 +937,7 @@ class QuestionnaireEngine {
     /**
      * Load a sub-questionnaire
      */
-    async loadSubQuestionnaire(questionnaireId, returnToQuestion, returnStoreAs) {
+    async loadSubQuestionnaire(questionnaireId, returnToQuestion, returnStoreAs, preAnswers) {
         // Save current state
         this.parentState = {
             data: this.data,
@@ -956,11 +962,16 @@ class QuestionnaireEngine {
             // Reset for sub-questionnaire
             this.questionHistory = [];
 
+            // Apply parent pre-answers (Approach B: parent-driven mapping)
+            if (preAnswers && Object.keys(preAnswers).length > 0) {
+                this._applyPreAnswers(preAnswers);
+            }
+
             // Update header
             this.renderHeader();
 
-            // Start sub-questionnaire
-            if (this.data.intro) {
+            // Start sub-questionnaire (skip intro when embedded in parent flow)
+            if (this.data.intro && !preAnswers) {
                 this.showIntro();
             } else {
                 const firstQuestion = this.data.questions[0];
@@ -971,6 +982,137 @@ class QuestionnaireEngine {
         } catch (error) {
             console.error('Error loading sub-questionnaire:', error);
             this.showError('שגיאה בטעינת שאלון המשנה');
+        }
+    }
+
+    /**
+     * Apply preAnswers mapping from parent option (Approach B).
+     * Transforms parent answers into child question pre-answers and auto-skips them.
+     */
+    _applyPreAnswers(preAnswers) {
+        const transforms = {
+            // 'single_under70' / 'couple_70_80' → { value: 'single'|'couple' }
+            family_type: (src) => {
+                if (!src) return null;
+                const isCouple = (src.value || '').startsWith('couple');
+                return isCouple
+                    ? { value: 'couple', label: 'זוג (נשוי/אה)', storeAs: {} }
+                    : { value: 'single', label: 'יחיד/ה (לא נשוי/אה)', storeAs: {} };
+            },
+            // family_composition → retirement age (70+ = yes)
+            retirement_age: (src) => {
+                if (!src) return null;
+                const val = src.value || '';
+                const isRetired = val.includes('70_80') || val.includes('over80');
+                const ansVal = isRetired ? 'yes' : 'no';
+                return {
+                    value: ansVal,
+                    label: isRetired ? 'כן' : 'לא',
+                    storeAs: { retirement_age: { question: 'גיל פרישה', value: ansVal, label: isRetired ? 'כן' : 'לא', _hidden: true } }
+                };
+            },
+            // parent work status (not_working / employed / self_employed) → vehicle's working/not_working
+            vehicle_work_status: (src) => {
+                if (!src) return null;
+                const val = src.value || 'not_working';
+                const isWorking = val !== 'not_working';
+                const ansVal = isWorking ? 'working' : 'not_working';
+                const extra = { work_status: { question: 'מצב עסקה', value: ansVal, label: isWorking ? 'עובד/ת' : 'אינני עובד/ת', _hidden: true } };
+                if (!isWorking) extra.work_income = { question: 'הכנסה מעבודה', value: 0, label: '0₪', _hidden: true };
+                return { value: ansVal, label: isWorking ? 'עובד/ת שכיר/ה או עצמאי/ת' : 'אינני עובד/ת', storeAs: extra };
+            },
+            // Pre-answer q4b as "none" only when parent is not_working; skip if working
+            none_when_not_working: (src) => {
+                if (!src || (src.value || '') !== 'not_working') return null;
+                return { value: 'none', label: 'אף אחד מאלה', storeAs: {} };
+            },
+            // Copy value/label as-is; skip if source missing
+            copy: (src) => {
+                if (!src) return null;
+                return { value: src.value, label: src.label, storeAs: {} };
+            },
+            // parent storeAs key 'special' / 'regular' → vehicle yes/no
+            special_status: (src) => {
+                if (!src) return null;
+                const isSpecial = src.value === 'special';
+                const ansVal = isSpecial ? 'yes' : 'no';
+                return {
+                    value: ansVal,
+                    label: isSpecial ? 'כן' : 'לא',
+                    storeAs: { special_status: { question: 'קצבת שאירים', value: isSpecial ? 'special' : 'regular', label: isSpecial ? 'כן' : 'לא', _hidden: true } }
+                };
+            }
+        };
+
+        for (const [targetId, mapping] of Object.entries(preAnswers)) {
+            const srcAnswer = this.answers[mapping.from];
+            const transform = transforms[mapping.transform];
+            if (!transform) continue;
+
+            const result = transform(srcAnswer);
+            if (!result) continue; // transform said "don't apply"
+
+            // Find child question text for the answer object
+            const childQ = this.data.questions.find(q => q.id === targetId);
+
+            this.answers[targetId] = {
+                question: childQ?.question || targetId,
+                value: result.value,
+                label: result.label,
+                preAnswered: true,
+                _hidden: true
+            };
+
+            // Apply storeAs side-effects
+            for (const [key, val] of Object.entries(result.storeAs || {})) {
+                this.answers[key] = val;
+            }
+        }
+    }
+
+    /**
+     * Auto-advance a question that was pre-answered by parent mapping.
+     */
+    _advancePreAnswered(question) {
+        const preAnswer = this.answers[question.id];
+        if (!this.questionHistory.includes(question.id)) {
+            this.questionHistory.push(question.id);
+        }
+
+        // For option-based questions: find matching option → apply storeAs → follow next/result
+        const matchingOption = question.options?.find(o => o.value === preAnswer.value);
+        if (matchingOption) {
+            // Apply option-level storeAs (only if not already set by _applyPreAnswers)
+            if (matchingOption.storeAs && typeof matchingOption.storeAs === 'object') {
+                for (const [key, val] of Object.entries(matchingOption.storeAs)) {
+                    if (!this.answers[key]) {
+                        this.answers[key] = { question: question.question, value: val, label: String(val), _hidden: true };
+                    }
+                }
+            }
+            if (matchingOption.result) {
+                this.showResult(matchingOption.result);
+            } else if (matchingOption.next) {
+                this.showQuestion(matchingOption.next);
+            }
+            return;
+        }
+
+        // For number_input questions: apply question-level storeAs string → follow question.next
+        if (question.type === 'number_input' && typeof question.storeAs === 'string') {
+            if (!this.answers[question.storeAs]) {
+                this.answers[question.storeAs] = {
+                    question: question.question,
+                    value: preAnswer.value,
+                    label: preAnswer.label,
+                    _hidden: true
+                };
+            }
+        }
+        if (question.next) {
+            this.showQuestion(question.next);
+        } else if (question.result) {
+            this.showResult(question.result);
         }
     }
 
@@ -1373,7 +1515,7 @@ class QuestionnaireEngine {
         const effectivePension = Math.min(pensionIncome, pensionExemption);
         const pensionDeduction = this.calculatePensionDeduction(pensionIncome, rules, isCoupleFamily);
         const workDeduction = this.calculateWorkDeduction(workIncome, rules, isCoupleFamily, workStatus, effectivePension);
-        const imputedDeduction = imputedIncome * rules.incomeDeductions.imputedIncome.deductionRate;
+        const imputedDeduction = Math.round(imputedIncome * rules.incomeDeductions.imputedIncome.deductionRate);
         const vehicleDeductionInfo = this.calculateVehicleDeduction(vehicleValue, workIncome, workStatus, isRetirementAge, isSpecialStatus, rules.vehicleRules);
         const vehicleDeduction = vehicleDeductionInfo.deduction;
         const vehicleDeductionBase = vehicleDeductionInfo.deductionBase || 0;
@@ -1386,7 +1528,7 @@ class QuestionnaireEngine {
 
         // Calculate final supplement (after vehicle deduction)
         // If vehicle deduction is greater than supplement, final supplement is 0
-        const estimatedSupplement = Math.max(0, estimatedSupplementBeforeVehicle - vehicleDeduction);
+        const estimatedSupplement = Math.round(Math.max(0, estimatedSupplementBeforeVehicle - vehicleDeduction));
 
         // Total net income including vehicle deduction (for eligibility check)
         const netIncome = netIncomeWithoutVehicle + vehicleDeduction;
@@ -1430,7 +1572,7 @@ class QuestionnaireEngine {
         const rule = rules.incomeDeductions.pensionIncome;
         const exemption = isCoupleFamily ? (rule.exemption_couple || rule.exemption) : (rule.exemption_single || rule.exemption);
         // עודף פנסיה מעל התקרה מנוכה במלואו (100%) — כל שקל עודף מקוזז שקל אחד
-        return Math.max(0, pensionIncome - exemption);
+        return Math.round(Math.max(0, pensionIncome - exemption));
     }
 
     /**
