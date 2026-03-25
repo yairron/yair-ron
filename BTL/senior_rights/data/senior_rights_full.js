@@ -429,7 +429,7 @@ const RIGHTS_DATA = {
         return `
         <p>השלמת הכנסה ניתנת למי שהכנסותיו נמוכות ומיועדת להבטיח רמת חיים מינימלית — הן למקבלי <strong>קצבת זיקנה</strong> והן למקבלי <strong>גמלת שאירים</strong>.</p>
         <a href="https://www.kolzchut.org.il/he/%D7%AA%D7%95%D7%A1%D7%A4%D7%AA_%D7%94%D7%A9%D7%9C%D7%9E%D7%AA_%D7%94%D7%9B%D7%A0%D7%A1%D7%94_%D7%9C%D7%A7%D7%A6%D7%91%D7%AA_%D7%96%D7%99%D7%A7%D7%A0%D7%94#.D7.9E.D7.99_.D7.96.D7.9B.D7.90.D7.99.3F" target="_blank" class="link-item">🏛️ השלמת הכנסה לקצבת זיקנה — כל זכות</a>
-        <a href="https://www.kolzchut.org.il/he/%D7%AA%D7%95%D7%A1%D7%A4%D7%AA_%D7%94%D7%A9%D7%9C%D7%9E%D7%AA_%D7%94%D7%9B%D7%A0%D7%A1%D7%94_%D7%9C%D7%92%D7%9E%D7%9C%D7%AA_%D7%A9%D7%90%D7%99%D7%A8%D7%99%D7%9D" target="_blank" class="link-item">🏛️ השלמת הכנסה לגמלת שאירים — כל זכות</a>
+        <a href="https://www.kolzchut.org.il/he/%D7%AA%D7%95%D7%A1%D7%A4%D7%AA_%D7%94%D7%A9%D7%9C%D7%9E%D7%AA_%D7%94%D7%9B%D7%A0%D7%A1%D7%94_%D7%9C%D7%A7%D7%A6%D7%91%D7%AA_%D7%A9%D7%90%D7%99%D7%A8%D7%99%D7%9D" target="_blank" class="link-item">🏛️ השלמת הכנסה לגמלת שאירים — כל זכות</a>
 
            <h3>תנאי זכאות בסיסיים</h3>
 
