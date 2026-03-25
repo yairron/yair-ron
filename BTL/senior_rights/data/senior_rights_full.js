@@ -645,7 +645,7 @@ const RIGHTS_DATA = {
                     <li>הרכב משמש לצרכים רפואיים (נכות של המבוטח או בן משפחה).</li>
                     <li>המבוטח עובד ומשתכר מעל סכום מסוים וזקוק לרכב כדי להגיע לעבודה.</li>
                 </ul>
-        <a href="questionnaire.html?id=vehicle-income-supplement" target="_blank" class="link-item" style="display:inline-block; margin-top:10px; font-size:1.1rem; font-weight:700; background: linear-gradient(135deg, #667eea, #764ba2); color:white; border-radius:12px; padding:12px 20px; text-decoration:none;">🚗 מחשבון להשפעת רכב על זכאות השלמת הכנסה</a>
+        <a href="questionnaire.html?id=vehicle-income-supplement" class="link-item" style="display:inline-block; margin-top:10px; font-size:1.1rem; font-weight:700; background: linear-gradient(135deg, #667eea, #764ba2); color:white; border-radius:12px; padding:12px 20px; text-decoration:none;">🚗 מחשבון להשפעת רכב על זכאות השלמת הכנסה</a>
 
         <h3>דוגמאות לחישוב השלמת הכנסה</h3>
 
