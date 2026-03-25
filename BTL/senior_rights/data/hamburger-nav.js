@@ -331,25 +331,22 @@
         `;
         document.body.appendChild(panel);
 
-        // Add buttons to header
-        const header = document.querySelector('header');
-        if (header) {
-            // Hamburger (right)
-            const btn = document.createElement('button');
-            btn.className = 'hnav-hamburger-btn';
-            btn.setAttribute('aria-label', 'פתח תפריט ניווט');
-            btn.innerHTML = '&#9776;';
-            btn.addEventListener('click', openMenu);
-            header.appendChild(btn);
+        // Add buttons — appended to body (fixed-position, so parent doesn't matter)
+        // Hamburger (right)
+        const btn = document.createElement('button');
+        btn.className = 'hnav-hamburger-btn';
+        btn.setAttribute('aria-label', 'פתח תפריט ניווט');
+        btn.innerHTML = '&#9776;';
+        btn.addEventListener('click', openMenu);
+        document.body.appendChild(btn);
 
-            // Back arrow (left)
-            const back = document.createElement('button');
-            back.className = 'hnav-back-btn';
-            back.setAttribute('aria-label', 'חזור לדף הקודם');
-            back.innerHTML = '&#8592; חזור';
-            back.addEventListener('click', function () { history.back(); });
-            header.appendChild(back);
-        }
+        // Back arrow (left)
+        const back = document.createElement('button');
+        back.className = 'hnav-back-btn';
+        back.setAttribute('aria-label', 'חזור לדף הקודם');
+        back.innerHTML = '&#8592; חזור';
+        back.addEventListener('click', function () { history.back(); });
+        document.body.appendChild(back);
     }
 
     // ─── 1d: Open / close / toggle ───────────────────────────────────────────
