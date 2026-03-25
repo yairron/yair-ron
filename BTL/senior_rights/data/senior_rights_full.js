@@ -712,8 +712,13 @@ const RIGHTS_DATA = {
         </div>
 
         <div style="background:#fce4ec;padding:15px;border-radius:8px;margin:10px 0;border-right:4px solid #e91e63;">
-          <strong>🚫 יציאה ${v('income_supplement_abroad_max_trips')+1} ומעלה</strong>
-          <p style="margin:8px 0 0 0;">החל מהיציאה ה-${v('income_supplement_abroad_max_trips')+1} — נפסקת התוספת לחלוטין לשאר השנה, גם אם סה"כ הימים נמוך מ-${v('income_supplement_abroad_retroactive_days')}.</p>
+          <strong>🚫 יציאה ${v('income_supplement_abroad_max_trips')+1} — עצירת תוספת לאותה תקופה</strong>
+          <p style="margin:8px 0 0 0;">ביציאה ה-${v('income_supplement_abroad_max_trips')+1} — לא תשולם תוספת עבור אותה תקופה, גם אם סה"כ הימים עדיין נמוך מ-${v('income_supplement_abroad_max_days')}. <strong>אין שלילה רטרואקטיבית</strong> — רק אותה יציאה נפגעת.</p>
+        </div>
+
+        <div style="background:#ffebee;padding:15px;border-radius:8px;margin:10px 0;border-right:4px solid #b71c1c;">
+          <strong>🔴 יציאה ${v('income_supplement_abroad_max_trips')+2} ומעלה — שלילה רטרואקטיבית לכל השנה!</strong>
+          <p style="margin:8px 0 0 0;">החל מהיציאה ה-${v('income_supplement_abroad_max_trips')+2} — הביטוח הלאומי שולל את התוספת <strong>רטרואקטיבית על כל ימי השהייה באותה שנה</strong>. גם הכסף שהתקבל בנסיעות הראשונות ייתבע בחזרה.</p>
         </div>
 
         <div style="background:#ffebee;padding:15px;border-radius:8px;margin:10px 0;border-right:4px solid #b71c1c;">
@@ -751,16 +756,22 @@ const RIGHTS_DATA = {
               <td style="padding:9px;border:1px solid #ddd;">מהיציאה השנייה ואילך</td>
             </tr>
             <tr style="background:#fce4ec;">
-              <td style="padding:9px;border:1px solid #ddd;">יציאה ${v('income_supplement_abroad_max_trips')+1}+</td>
+              <td style="padding:9px;border:1px solid #ddd;">יציאה ${v('income_supplement_abroad_max_trips')+1}</td>
               <td style="padding:9px;border:1px solid #ddd;">כל סה"כ</td>
-              <td style="padding:9px;border:1px solid #ddd;color:#c62828;font-weight:bold;">נפסקת מחודש היציאה ה-${v('income_supplement_abroad_max_trips')+1}</td>
-              <td style="padding:9px;border:1px solid #ddd;">גם אם פחות מ-${v('income_supplement_abroad_retroactive_days')} ימים בסה"כ</td>
+              <td style="padding:9px;border:1px solid #ddd;color:#c62828;font-weight:bold;">נפסקת לאותה תקופה בלבד</td>
+              <td style="padding:9px;border:1px solid #ddd;">אין שלילה רטרואקטיבית — רק אותה יציאה נפגעת</td>
+            </tr>
+            <tr style="background:#ffebee;">
+              <td style="padding:9px;border:1px solid #ddd;">יציאה ${v('income_supplement_abroad_max_trips')+2}+</td>
+              <td style="padding:9px;border:1px solid #ddd;">כל סה"כ</td>
+              <td style="padding:9px;border:1px solid #ddd;color:#b71c1c;font-weight:bold;">שלילה רטרואקטיבית לכל השנה</td>
+              <td style="padding:9px;border:1px solid #ddd;">גם על נסיעות קודמות + חובת החזר כספים</td>
             </tr>
             <tr style="background:#ffebee;">
               <td style="padding:9px;border:1px solid #ddd;">כל יציאה</td>
               <td style="padding:9px;border:1px solid #ddd;font-weight:bold;">${v('income_supplement_abroad_retroactive_days')}+ יום</td>
               <td style="padding:9px;border:1px solid #ddd;color:#b71c1c;font-weight:bold;">שלילה רטרואקטיבית לכל השנה</td>
-              <td style="padding:9px;border:1px solid #ddd;">גם על נסיעות קודמות באותה שנה</td>
+              <td style="padding:9px;border:1px solid #ddd;">גם על נסיעות קודמות + חובת החזר כספים</td>
             </tr>
           </tbody>
         </table>

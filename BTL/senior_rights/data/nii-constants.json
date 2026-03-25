@@ -547,9 +547,9 @@
   },
   "income_supplement_abroad_retroactive_days": {
     "id": "NII-238",
-    "value": 100,
+    "value": 101,
     "type": "number",
-    "label": "השלמת הכנסה — ימי שהייה בחו\"ל הגוררים שלילה רטרואקטיבית על כל השנה",
+    "label": "השלמת הכנסה — ימי שהייה בחו\"ל הגוררים שלילה רטרואקטיבית על כל השנה (מ-101 יום ומעלה)",
     "updated": "2026-01"
   },
   "income_supplement_abroad_medical_max_months": {
