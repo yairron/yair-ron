@@ -629,8 +629,8 @@ const RIGHTS_DATA = {
           <div style="background:#fff8e1;border:2px solid #f59e0b;border-radius:10px;padding:14px 16px;margin-top:16px;">
             <p style="margin:0 0 6px 0;font-weight:700;color:#92400e;font-size:1em;">⚠️ שימו לב — חישוב חלקי בלבד!</p>
             <p style="margin:0 0 8px 0;color:#78350f;font-size:0.93em;">יש סעיפי הכנסות נוספים שמשפיעים על השלמת הכנסה (הכנסה רעיונית מנכסים, שכר דירה ועוד).</p>
-            <a href="https://www.btl.gov.il/Simulators/Pages/IncomeSupportCalc.aspx" target="_blank" style="display:inline-block;background:#f59e0b;color:white;font-weight:700;padding:8px 16px;border-radius:8px;text-decoration:none;font-size:0.95em;">🔗 לחישוב מפורט — מחשבון הביטוח הלאומי</a>
-            <p style="margin:8px 0 0 0;color:#92400e;font-size:0.88em;">המחשבון עושה הערכה גסה. החישוב הסופי נעשה על ידי הפקיד המוסמך בביטוח הלאומי.</p>
+            <a href="questionnaire.html?id=income-supplement-eligibility" style="display:inline-block;background:#f59e0b;color:white;font-weight:700;padding:8px 16px;border-radius:8px;text-decoration:none;font-size:0.95em;">🔗 לחישוב מפורט עבור למחשבון המלא</a>
+            <p style="margin:8px 0 0 0;color:#92400e;font-size:0.88em;">המחשבונים באתר זה נועדו להערכה גסה בלבד. החישוב הסופי נעשה על ידי הפקיד המוסמך בביטוח הלאומי.</p>
           </div>
         </div>
 
