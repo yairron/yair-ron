@@ -513,7 +513,7 @@
         // הגדרות אקורדיון — 10 הפרקים מהמדריך המקיף
         const ACCORDIONS_CONFIG = {
             old_age_pension:     { title: '👴 קצבת אזרח ותיק (קצבת זקנה)',               icon: '👴' },
-            income_supplement:   { title: '💰 גמלת השלמת הכנסה',                          icon: '💰' },
+            income_supplement:   { title: '💰 גמלת השלמת הכנסה — זיקנה ושאירים',          icon: '💰' },
             nursing:             { title: '❤️ גמלת סיעוד',                                icon: '❤️' },
             disability:          { title: '♿ גמלת נכות כללית וקצבת שירותים מיוחדים',    icon: '♿' },
             survivors:           { title: '🕊️ קצבת שארים',                               icon: '🕊️' },
@@ -685,16 +685,41 @@
             });
         }
 
+        // עדכון תצוגת המחשבון לפי סוג הגמלה
+        function updateCalcType() {
+            const type = document.getElementById('is-calc-type')?.value;
+            const statusEl = document.getElementById('is-calc-status');
+            const labelEl = document.getElementById('is-calc-old-age-label');
+            if (!statusEl || !type) return;
+            const coupleOptions = statusEl.querySelectorAll('option[value^="couple"]');
+            if (type === 'survivors') {
+                coupleOptions.forEach(opt => { opt.style.display = 'none'; opt.disabled = true; });
+                if (statusEl.value.startsWith('couple')) statusEl.value = 'single';
+                if (labelEl) labelEl.textContent = 'גמלת שאירים';
+            } else {
+                coupleOptions.forEach(opt => { opt.style.display = ''; opt.disabled = false; });
+                if (labelEl) labelEl.textContent = 'קצבת אזרח ותיק';
+            }
+            calcIncomeSupplement();
+        }
+
         // מחשבון זכאות להשלמת הכנסה
         function calcIncomeSupplement() {
+            const typeEl    = document.getElementById('is-calc-type');
             const statusEl = document.getElementById('is-calc-status');
+            const ageEl    = document.getElementById('is-calc-age');
             const oldAgeEl = document.getElementById('is-calc-old-age');
             const pensionEl = document.getElementById('is-calc-pension');
             const workEl   = document.getElementById('is-calc-work');
             const resultEl = document.getElementById('is-calc-result');
             if (!statusEl || !resultEl) return;
 
-            const isCouple      = statusEl.value === 'couple';
+            const benefitType   = typeEl?.value || 'old_age';
+            const isSurvivors   = benefitType === 'survivors';
+            const benefitTypeLabel = isSurvivors ? 'גמלת שאירים' : 'קצבת אזרח ותיק';
+            const status        = isSurvivors && statusEl.value.startsWith('couple') ? 'single' : (statusEl.value || 'single');
+            const isCouple      = status.startsWith('couple');
+            const ageGroup      = ageEl?.value || 'under70';
             const oldAgePension = parseFloat(oldAgeEl?.value) || 0;
             const pensionIncome = parseFloat(pensionEl?.value) || 0;
             const workIncome    = parseFloat(workEl?.value)   || 0;
@@ -702,7 +727,9 @@
             const N = NII_CONSTANTS;
             const fmt = n => Math.round(n).toLocaleString('he-IL');
 
-            const maxBenefit    = isCouple ? (N.income_supplement_couple_under70?.value || 6912) : (N.income_supplement_single_under70?.value || 4375);
+            const ageSuffix  = ageGroup === 'over80' ? 'over80' : ageGroup === '70_80' ? '70_80' : 'under70';
+            const benefitKey = `income_supplement_${status}_${ageSuffix}`;
+            const maxBenefit = N[benefitKey]?.value || (isCouple ? 6912 : 4375);
             const pensionCeiling = isCouple ? (N.pension_income_exempt_couple?.value  || 2823)  : (N.pension_income_exempt_single?.value  || 1790);
             const workCeiling   = isCouple ? (N.work_income_exempt_couple?.value      || 3786)  : (N.work_income_exempt_single?.value      || 3236);
             const deductionPct  = N.income_test_deduction_rate?.value || 60;
@@ -726,10 +753,14 @@
             if (!isEligible) {
                 html = `<div style="background:#ffebee;padding:14px 16px;border-radius:8px;border-right:4px solid #c62828;">
                     <p style="font-size:1.05em;font-weight:700;color:#c62828;margin:0;">❌ על סמך הנתונים שהזנת — אין זכאות להשלמת הכנסה</p>
-                    <p style="margin:8px 0 0 0;color:#555;font-size:0.95em;">תקרת הגמלה לאחר ניכויים (₪${fmt(grossBenefit)}) אינה עולה על קצבת האזרח הוותיק.</p>
+                    <p style="margin:8px 0 0 0;color:#555;font-size:0.95em;">תקרת הגמלה לאחר ניכויים (₪${fmt(grossBenefit)}) אינה עולה על ${benefitTypeLabel}.</p>
                 </div>`;
             } else {
-                const statusLabel = isCouple ? 'זוג' : 'יחיד/ה';
+                const statusLabels = {
+                    single: 'יחיד/ה', single_1child: 'יחיד/ה + ילד אחד', single_2children: 'יחיד/ה + 2 ילדים',
+                    couple: 'זוג', couple_1child: 'זוג + ילד אחד', couple_2children: 'זוג + 2 ילדים'
+                };
+                const statusLabel = statusLabels[status] || status;
                 html = `
                 <div style="background:#e8f5e9;padding:12px 16px;border-radius:8px;border-right:4px solid #2e7d32;margin-bottom:14px;">
                     <p style="font-size:1.15em;font-weight:700;color:#1b5e20;margin:0;">✅ גמלה משוערת: ₪${fmt(supplement)} לחודש</p>
@@ -778,7 +809,7 @@
                       <td style="padding:8px 10px;border:1px solid #ddd;">₪${fmt(grossBenefit)}</td>
                     </tr>
                     <tr>
-                      <td style="padding:8px 10px;border:1px solid #ddd;">בניכוי קצבת אזרח ותיק</td>
+                      <td style="padding:8px 10px;border:1px solid #ddd;">בניכוי ${benefitTypeLabel}</td>
                       <td style="padding:8px 10px;border:1px solid #ddd;color:#c62828;">− ₪${fmt(oldAgePension)}</td>
                     </tr>
                     <tr style="background:#e8f5e9;font-weight:700;">

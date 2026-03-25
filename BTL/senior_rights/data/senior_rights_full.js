@@ -427,19 +427,31 @@ const RIGHTS_DATA = {
         const fmt = num => Math.round(num).toLocaleString('he-IL');
         const p = key => NII[key] ? NII[key].value + '%' : '—';
         return `
-        <p>השלמת הכנסה ניתנת למי שהכנסותיו נמוכות ומיועדת להבטיח רמת חיים מינימלית.</p>
-        <a href="https://www.kolzchut.org.il/he/%D7%AA%D7%95%D7%A1%D7%A4%D7%AA_%D7%94%D7%A9%D7%9C%D7%9E%D7%AA_%D7%94%D7%9B%D7%A0%D7%A1%D7%94_%D7%9C%D7%A7%D7%A6%D7%91%D7%AA_%D7%96%D7%99%D7%A7%D7%A0%D7%94#.D7.9E.D7.99_.D7.96.D7.9B.D7.90.D7.99.3F" target="_blank" class="link-item">🏛️  השלמת הכנסה - כל זכות. כל המידע על השלמת הכנסה</a>
+        <p>השלמת הכנסה ניתנת למי שהכנסותיו נמוכות ומיועדת להבטיח רמת חיים מינימלית — הן למקבלי <strong>קצבת זיקנה</strong> והן למקבלי <strong>גמלת שאירים</strong>.</p>
+        <a href="https://www.kolzchut.org.il/he/%D7%AA%D7%95%D7%A1%D7%A4%D7%AA_%D7%94%D7%A9%D7%9C%D7%9E%D7%AA_%D7%94%D7%9B%D7%A0%D7%A1%D7%94_%D7%9C%D7%A7%D7%A6%D7%91%D7%AA_%D7%96%D7%99%D7%A7%D7%A0%D7%94#.D7.9E.D7.99_.D7.96.D7.9B.D7.90.D7.99.3F" target="_blank" class="link-item">🏛️ השלמת הכנסה לקצבת זיקנה — כל זכות</a>
+        <a href="https://www.kolzchut.org.il/he/%D7%AA%D7%95%D7%A1%D7%A4%D7%AA_%D7%94%D7%A9%D7%9C%D7%9E%D7%AA_%D7%94%D7%9B%D7%A0%D7%A1%D7%94_%D7%9C%D7%92%D7%9E%D7%9C%D7%AA_%D7%A9%D7%90%D7%99%D7%A8%D7%99%D7%9D" target="_blank" class="link-item">🏛️ השלמת הכנסה לגמלת שאירים — כל זכות</a>
 
            <h3>תנאי זכאות בסיסיים</h3>
-                <p>כדי להיות זכאי להשלמת הכנסה מלאה, על המבקש לעמוד בארבעה תנאים מצטברים:</p>
-                <ol>
-                    <li><strong>קבלת קצבת אזרח ותיק:</strong> המבקש זכאי לקצבה מהביטוח הלאומי.</li>
-                   <li><strong>תושבות:</strong> תושב ישראל ב-24 החודשים האחרונים.</li>
-                    <li><strong>מבחן הכנסות:</strong> סך ההכנסות (מפנסיה, עבודה, נכסים וכו') אינו עולה על "ההכנסה המקסימלית" המזכה.</li>
-                    <li><strong>מבחן נכסים ורכב:</strong> בבעלות המבקש אין נכסים (מלבד דירת מגורים שבה גר המבוטח) או רכב מעל שווי מסוים (${c('vehicle_threshold_base')}).</li>
-                    <li><strong>הערה:</strong> הכנסות או נכסים מעל התקרה, יתכן ויאפשרו קבלת השלמת הכנסה חלקית.</li>
 
-                    </ol>
+                <h4>א. קצבת זיקנה (אזרח ותיק)</h4>
+                <ol>
+                    <li><strong>קבלת קצבת אזרח ותיק:</strong> המבקש מקבל קצבה מהביטוח הלאומי.</li>
+                    <li><strong>תושבות:</strong> תושב ישראל ב-24 החודשים האחרונים.</li>
+                    <li><strong>מבחן הכנסות:</strong> סך ההכנסות (מפנסיה, עבודה, נכסים וכו') אינו עולה על התקרה המזכה.</li>
+                    <li><strong>מבחן נכסים ורכב:</strong> בבעלות המבקש אין נכסים (מלבד דירת מגורים) או רכב מעל שווי (${c('vehicle_threshold_base')}).</li>
+                </ol>
+                <p style="color:#666;font-size:0.93em;">⚠️ הכנסות או נכסים מעל התקרה עשויים לאפשר השלמת הכנסה חלקית.</p>
+
+                <h4>ב. גמלת שאירים</h4>
+                <ol>
+                    <li><strong>קבלת גמלת שאירים:</strong> המבקש/ת מקבל/ת גמלת שאירים מהביטוח הלאומי.</li>
+                    <li><strong>תושבות:</strong> תושב ישראל ב-24 החודשים האחרונים.</li>
+                    <li><strong>מבחן הכנסות:</strong> סך ההכנסות (מפנסיה, עבודה, נכסים וכו') אינו עולה על התקרה המזכה.</li>
+                    <li><strong>מבחן נכסים ורכב:</strong> אין נכסים (מלבד דירת מגורים) או רכב מעל שווי (${c('vehicle_threshold_base')}).</li>
+                    <li><strong>רישום בלשכת התעסוקה:</strong> אלמן/ה ללא ילדים מתחת לגיל 18 — חייב/ת להיות רשומ/ה בלשכת התעסוקה כמחפש/ת עבודה.</li>
+                    <li><strong>ילד בלימודים:</strong> ילד מעל גיל 18 הלומד במוסד חינוכי <strong>אינו</strong> נספר לצורך חישוב ההשלמה.</li>
+                </ol>
+                <p style="color:#666;font-size:0.93em;">⚠️ הכנסות או נכסים מעל התקרה עשויים לאפשר השלמת הכנסה חלקית.</p>
 
                 <h3>זכאות זוגית: שני תרחישים מרכזיים</h3>
 
@@ -456,11 +468,16 @@ const RIGHTS_DATA = {
                 <ul>
                     <li><strong>תוספת בן זוג:</strong> המבוטח יקבל בקצבת הזקנה שלו "תוספת עבור בן זוג".</li>
                     <li><strong>השלמת הכנסה:</strong> הזכאות תחושב לפי תעריף של <strong>זוג</strong>.</li>
-                </ul> 
+                </ul>
+
+                <div style="background:#e3f2fd;padding:12px 16px;border-radius:8px;border-right:4px solid #1976d2;margin-top:12px;">
+                    <strong>📌 גמלת שאירים — אין קטגוריית "זוג"</strong>
+                    <p style="margin:6px 0 0 0;font-size:0.93em;">השלמת הכנסה לגמלת שאירים מחושבת תמיד לפי מדרג יחיד/ה בלבד. אין תקרה מיוחדת לזוג בגמלת שאירים — גם כשיש ילדים, הזכאות נקבעת לפי מספר הילדים ולא לפי "זוג".</p>
+                </div>
 
 
         <h3>סכומים מירביים קצבת זיקנה + השלמת הכנסה 2026</h3>
-                <p>הסכומים להלן הם הסכומים הכוללים שהמבוטח יקבל (הקצבה הבסיסית + התוספת):</p>
+                <p>הסכומים להלן הם התקרות לקצבת זיקנה + השלמת ההכנסה (הקצבה הבסיסית + תוספת מקסימלית):</p>
 
                 <table style="width: 100%; border-collapse: collapse; margin: 20px 0;">
                   <thead>
@@ -511,7 +528,39 @@ const RIGHTS_DATA = {
                   </tbody>
                 </table>
 
-        
+        <h3>סכומים מירביים גמלת שאירים + השלמת הכנסה 2026</h3>
+        <p>לגמלת שאירים אין קטגוריית "זוג" — התקרה נקבעת לפי מצב יחיד/ה ומספר ילדים בלבד:</p>
+        <table style="width: 100%; border-collapse: collapse; margin: 20px 0;">
+          <thead>
+            <tr style="background: linear-gradient(135deg, #43a047 0%, #1b5e20 100%); color: white;">
+              <th style="padding: 12px; border: 1px solid #ddd;">סוג המשפחה</th>
+              <th style="padding: 12px; border: 1px solid #ddd;">תחת גיל 70</th>
+              <th style="padding: 12px; border: 1px solid #ddd;">גיל 70 עד 80</th>
+              <th style="padding: 12px; border: 1px solid #ddd;">גיל 80 ומעלה</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td style="padding: 10px; border: 1px solid #ddd;"><strong>יחיד/ה (ללא ילדים)</strong></td>
+              <td style="padding: 10px; border: 1px solid #ddd;">${c('income_supplement_single_under70')}</td>
+              <td style="padding: 10px; border: 1px solid #ddd;">${c('income_supplement_single_70_80')}</td>
+              <td style="padding: 10px; border: 1px solid #ddd;">${c('income_supplement_single_over80')}</td>
+            </tr>
+            <tr>
+              <td style="padding: 10px; border: 1px solid #ddd;"><strong>יחיד/ה + ילד אחד</strong></td>
+              <td style="padding: 10px; border: 1px solid #ddd;">${c('income_supplement_single_1child_under70')}</td>
+              <td style="padding: 10px; border: 1px solid #ddd;">${c('income_supplement_single_1child_70_80')}</td>
+              <td style="padding: 10px; border: 1px solid #ddd;">${c('income_supplement_single_1child_over80')}</td>
+            </tr>
+            <tr>
+              <td style="padding: 10px; border: 1px solid #ddd;"><strong>יחיד/ה + 2 ילדים</strong></td>
+              <td style="padding: 10px; border: 1px solid #ddd;">${c('income_supplement_single_2children_under70')}</td>
+              <td style="padding: 10px; border: 1px solid #ddd;">${c('income_supplement_single_2children_70_80')}</td>
+              <td style="padding: 10px; border: 1px solid #ddd;">${c('income_supplement_single_2children_over80')}</td>
+            </tr>
+          </tbody>
+        </table>
+
         <h3>תקרות הכנסה וחישוב זכאות</h3>
         <ol>
           <li>קובעים את הסכום המקסימלי להשלמה (${c('income_supplement_single_under70')} יחיד / ${c('income_supplement_couple_under70')} זוג)</li>
@@ -538,14 +587,33 @@ const RIGHTS_DATA = {
         <div style="background:#f0f7ff;padding:20px;border-radius:12px;border:2px solid #3b82f6;margin:10px 0;">
           <div style="display:grid;gap:14px;margin-bottom:18px;">
             <div>
-              <label for="is-calc-status" style="display:block;font-weight:700;margin-bottom:5px;">מצב משפחתי:</label>
-              <select id="is-calc-status" onchange="calcIncomeSupplement()" style="width:100%;padding:9px 12px;border:1px solid #93c5fd;border-radius:8px;font-size:1rem;background:white;cursor:pointer;">
-                <option value="single">יחיד/ה</option>
-                <option value="couple">זוג</option>
+              <label for="is-calc-type" style="display:block;font-weight:700;margin-bottom:5px;">סוג גמלה:</label>
+              <select id="is-calc-type" onchange="updateCalcType()" style="width:100%;padding:9px 12px;border:1px solid #93c5fd;border-radius:8px;font-size:1rem;background:white;cursor:pointer;">
+                <option value="old_age">קצבת זיקנה</option>
+                <option value="survivors">גמלת שאירים</option>
               </select>
             </div>
             <div>
-              <label for="is-calc-old-age" style="display:block;font-weight:700;margin-bottom:5px;">קצבת אזרח ותיק (₪ לחודש):</label>
+              <label for="is-calc-status" style="display:block;font-weight:700;margin-bottom:5px;">מצב משפחתי:</label>
+              <select id="is-calc-status" onchange="calcIncomeSupplement()" style="width:100%;padding:9px 12px;border:1px solid #93c5fd;border-radius:8px;font-size:1rem;background:white;cursor:pointer;">
+                <option value="single">יחיד/ה</option>
+                <option value="single_1child">יחיד/ה + ילד אחד</option>
+                <option value="single_2children">יחיד/ה + 2 ילדים</option>
+                <option value="couple">זוג</option>
+                <option value="couple_1child">זוג + ילד אחד</option>
+                <option value="couple_2children">זוג + 2 ילדים</option>
+              </select>
+            </div>
+            <div>
+              <label for="is-calc-age" style="display:block;font-weight:700;margin-bottom:5px;">גיל:</label>
+              <select id="is-calc-age" onchange="calcIncomeSupplement()" style="width:100%;padding:9px 12px;border:1px solid #93c5fd;border-radius:8px;font-size:1rem;background:white;cursor:pointer;">
+                <option value="under70">מתחת לגיל 70</option>
+                <option value="70_80">גיל 70–80</option>
+                <option value="over80">מעל גיל 80</option>
+              </select>
+            </div>
+            <div>
+              <label for="is-calc-old-age" style="display:block;font-weight:700;margin-bottom:5px;"><span id="is-calc-old-age-label">קצבת אזרח ותיק</span> (₪ לחודש):</label>
               <input type="number" id="is-calc-old-age" oninput="calcIncomeSupplement()" min="0" placeholder="0" style="width:100%;padding:9px 12px;border:1px solid #93c5fd;border-radius:8px;font-size:1rem;">
             </div>
             <div>
@@ -602,6 +670,19 @@ const RIGHTS_DATA = {
             <li>קיזוז: ${p('income_test_deduction_rate')} × ${fmt(4200 - v('work_income_exempt_couple'))} = ₪${fmt((4200 - v('work_income_exempt_couple')) * v('income_test_deduction_rate') / 100)}</li>
             <li>השלמה: ${v('income_supplement_couple_under70')} - ${fmt(v('pension_single_basic') * (1 + v('seniority_bonus_max') / 100) * 2)} - ${fmt((4200 - v('work_income_exempt_couple')) * v('income_test_deduction_rate') / 100)} = ₪${fmt(v('income_supplement_couple_under70') - v('pension_single_basic') * (1 + v('seniority_bonus_max') / 100) * 2 - (4200 - v('work_income_exempt_couple')) * v('income_test_deduction_rate') / 100)}</li>
             <li><strong>סה"כ הכנסה: ₪${fmt(v('pension_single_basic') * (1 + v('seniority_bonus_max') / 100) * 2)} (קצבות) + ₪4,200 (עבודה) + ₪${fmt(v('income_supplement_couple_under70') - v('pension_single_basic') * (1 + v('seniority_bonus_max') / 100) * 2 - (4200 - v('work_income_exempt_couple')) * v('income_test_deduction_rate') / 100)} (השלמה) = ₪${fmt(v('pension_single_basic') * (1 + v('seniority_bonus_max') / 100) * 2 + 4200 + v('income_supplement_couple_under70') - v('pension_single_basic') * (1 + v('seniority_bonus_max') / 100) * 2 - (4200 - v('work_income_exempt_couple')) * v('income_test_deduction_rate') / 100)}</strong></li>
+          </ul>
+        </div>
+
+        <div style="background: #e8f4fd; padding: 15px; border-radius: 8px; margin: 15px 0; border-right: 4px solid #1976d2;">
+          <h4>דוגמה 3 — גמלת שאירים (אלמנה, גיל 55, ילד אחד):</h4>
+          <ul>
+            <li>גמלת שאירים: ${c('survivors_widow_over50')} (אלמנה מגיל 50) + ${c('survivors_orphan')} (ילד שאיר) = ₪${fmt(v('survivors_widow_over50') + v('survivors_orphan'))}</li>
+            <li>פנסיה נוספת: ₪0 (אין)</li>
+            <li>הכנסה מעבודה: ₪0 (אין)</li>
+            <li>תקרת ההשלמה (יחיד/ה + ילד אחד, תחת גיל 70): ${c('income_supplement_single_1child_under70')}</li>
+            <li>חישוב: ${v('income_supplement_single_1child_under70')} − ${fmt(v('survivors_widow_over50') + v('survivors_orphan'))} = ₪${fmt(v('income_supplement_single_1child_under70') - v('survivors_widow_over50') - v('survivors_orphan'))}</li>
+            <li><strong>השלמת הכנסה משוערת: ₪${fmt(v('income_supplement_single_1child_under70') - v('survivors_widow_over50') - v('survivors_orphan'))}</strong></li>
+            <li><strong>סה"כ הכנסה: ₪${fmt(v('survivors_widow_over50') + v('survivors_orphan'))} (גמלה) + ₪${fmt(v('income_supplement_single_1child_under70') - v('survivors_widow_over50') - v('survivors_orphan'))} (השלמה) = ₪${fmt(v('income_supplement_single_1child_under70'))}</strong></li>
           </ul>
         </div>
 
