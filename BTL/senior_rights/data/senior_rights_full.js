@@ -650,7 +650,7 @@ const RIGHTS_DATA = {
         <h3>דוגמאות לחישוב השלמת הכנסה</h3>
 
         <div style="background: #fff8e1; padding: 15px; border-radius: 8px; margin: 15px 0;">
-          <h4>דוגמה 1 - יחיד:</h4>
+          <h4>דוגמה 1 — קצבת זיקנה, יחיד:</h4>
           <ul>
             <li>קצבת זקנה: ${c('pension_single_basic')}</li>
             <li>פנסיה: ₪2,500</li>
@@ -662,7 +662,7 @@ const RIGHTS_DATA = {
         </div>
 
         <div style="background: #e8f5e9; padding: 15px; border-radius: 8px; margin: 15px 0;">
-          <h4>דוגמה 2 - זוג:</h4>
+          <h4>דוגמה 2 — קצבת זיקנה, זוג:</h4>
           <ul>
             <li>קצבת זקנה לכל אחד: ${c('pension_single_basic')} + ${p('seniority_bonus_max')} ותק = ₪${fmt(v('pension_single_basic') * (1 + v('seniority_bonus_max') / 100))} (סה"כ ₪${fmt(v('pension_single_basic') * (1 + v('seniority_bonus_max') / 100) * 2)})</li>
             <li>הכנסה מעבודה: ₪4,200</li>
