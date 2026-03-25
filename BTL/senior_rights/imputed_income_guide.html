@@ -79,27 +79,31 @@
         }
 
         .back-button {
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            background: rgba(255,255,255,0.95);
-            color: var(--primary);
+            display: inline-block;
+            background: rgba(255,255,255,0.25);
+            backdrop-filter: blur(10px);
             padding: 12px 24px;
-            border-radius: 50px;
-            font-weight: 600;
-            cursor: pointer;
+            border-radius: 25px;
+            color: white;
             text-decoration: none;
-            transition: all 0.3s;
-            margin-bottom: 30px;
-            border: none;
             font-size: 1rem;
+            font-weight: 600;
+            transition: all 0.3s;
+            margin-bottom: 20px;
+            margin-left: 10px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            border: none;
+            cursor: pointer;
+            font-family: inherit;
         }
 
         .back-button:hover {
-            background: white;
-            transform: translateX(-5px);
-            box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+            background: rgba(255,255,255,0.35);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(0,0,0,0.25);
         }
+
+        .back-button::before { content: '← '; margin-left: 5px; }
 
         h1 {
             font-family: 'Varela Round', sans-serif;
@@ -361,7 +365,8 @@
     <div class="container">
         <div id="nii-error-banner" class="nii-error-banner">⚠️ הערכים אינם מעודכנים עקב תקלה באתר</div>
         <header>
-            <button class="back-button" onclick="window.location.href='senior_rights.html'">← חזרה</button>
+            <a href="senior_rights_full.html" class="back-button">חזרה</a>
+            <a href="../index.html" class="back-button">חזרה לדף ראשי</a>
             <h1>💰 חישוב הכנסה רעיונית</h1>
             <p class="subtitle">מנכסים פיננסיים - מדריך מפורט</p>
             <div class="update-badge">📅 נתוני 2026</div>
@@ -622,5 +627,6 @@
 
         loadNiiData();
     </script>
+    <script src="data/hamburger-nav.js"></script>
 </body>
 </html>
