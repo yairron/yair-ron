@@ -15,6 +15,7 @@
 
     // ─── Menu data (all links relative to BTL/) ───────────────────────────────
     const MENU = [
+        { icon: '🏠', text: 'דף ראשי',                   href: bp + 'index.html' },
         { icon: '🌟', text: 'זכויות אזרחים ותיקים',    href: bp + 'senior_rights/senior_rights_full.html' },
         {
             icon: '🌍', text: 'זכויות עולים חדשים', children: [
