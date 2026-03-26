@@ -1298,6 +1298,38 @@ function isValidId(nineDigits) {
   return sum % 10 === 0;
 }
 
+function showIdSuggest(altId, onYes) {
+  var modal   = document.getElementById('id-warn-modal');
+  var msgEl   = document.getElementById('id-warn-msg');
+  var backBtn = document.getElementById('id-warn-back');
+  var contBtn = document.getElementById('id-warn-cont');
+
+  msgEl.innerHTML = 'האם מספר תעודת הזהות שלך הוא<br>'
+    + '<strong dir="ltr" style="font-size:18px;letter-spacing:3px">' + altId + '</strong>?<br>'
+    + '<small style="color:#666">(עם 0 בהתחלה, ללא ה-4 בסוף)</small>';
+
+  var origBack = backBtn.textContent;
+  var origCont = contBtn.textContent;
+  backBtn.textContent = 'לא';
+  contBtn.textContent = 'כן, החלף';
+
+  modal.classList.add('show');
+
+  function close() {
+    modal.classList.remove('show');
+    backBtn.onclick = null;
+    contBtn.onclick = null;
+    backBtn.textContent = origBack;
+    contBtn.textContent = origCont;
+  }
+
+  backBtn.onclick = function() { close(); };
+  contBtn.onclick = function() {
+    close();
+    onYes();
+  };
+}
+
 document.querySelectorAll('.digit-input[data-group="client_id"]').forEach(function(inp) {
   inp.addEventListener('input', function() {
     var idStr = '';
@@ -1308,6 +1340,16 @@ document.querySelectorAll('.digit-input[data-group="client_id"]').forEach(functi
     }
     if (!isValidId(idStr)) {
       alert('מספר תעודת זהות לא תקין!\nאנא בדוק את הספרות שהוזנו.');
+    } else if (idStr[8] === '4') {
+      var altId = '0' + idStr.substring(0, 8);
+      if (isValidId(altId)) {
+        showIdSuggest(altId, function() {
+          for (var j = 0; j < 9; j++) {
+            var cell = digitByIdx('client_id', j);
+            if (cell) cell.value = altId[j];
+          }
+        });
+      }
     }
   });
 

@@ -313,6 +313,58 @@
             margin-top: 8px;
         }
 
+        .suggest-section {
+            margin-top: 18px;
+            padding: 16px;
+            background: linear-gradient(135deg, #FFF8E1, #FFECB3);
+            border: 2px solid var(--accent);
+            border-radius: 12px;
+        }
+
+        .suggest-section .suggest-title {
+            font-size: 1rem;
+            font-weight: 700;
+            color: #E65100;
+            margin-bottom: 6px;
+        }
+
+        .suggest-buttons {
+            display: flex;
+            gap: 12px;
+            justify-content: center;
+            margin-top: 12px;
+        }
+
+        .btn-yes {
+            padding: 10px 24px;
+            background: linear-gradient(135deg, var(--accent), #F4A020);
+            color: white;
+            border: none;
+            border-radius: 10px;
+            font-size: 1rem;
+            font-weight: 700;
+            font-family: 'Assistant', sans-serif;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .btn-yes:hover { transform: translateY(-2px); }
+
+        .btn-no {
+            padding: 10px 24px;
+            background: #ddd;
+            color: var(--text);
+            border: none;
+            border-radius: 10px;
+            font-size: 1rem;
+            font-weight: 700;
+            font-family: 'Assistant', sans-serif;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .btn-no:hover { background: #ccc; }
+
         .info-section {
             margin-top: 30px;
             padding: 20px;
@@ -471,11 +523,27 @@
             if (input.length === 9) {
                 // Full 9-digit ID - just validate
                 if (isValidId(input)) {
+                    var suggestHtml = '';
+                    if (input[8] === '4') {
+                        var altId = '0' + input.substring(0, 8);
+                        if (isValidId(altId)) {
+                            suggestHtml =
+                                '<div class="suggest-section">' +
+                                '<div class="suggest-title">⚠️ האם ייתכן שמספר תעודת הזהות שלך הוא:</div>' +
+                                '<div class="result-id" style="font-size:1.6rem">' + formatId(altId) + '</div>' +
+                                '<div style="font-size:0.9rem;color:#795548;margin-top:4px">(עם 0 בהתחלה, ללא ה-4 בסוף)</div>' +
+                                '<div class="suggest-buttons">' +
+                                '<button class="btn-yes" onclick="replaceId(\'' + altId + '\')">כן, החלף</button>' +
+                                '<button class="btn-no" onclick="dismissSuggest()">לא</button>' +
+                                '</div></div>';
+                        }
+                    }
                     resultDiv.className = 'result-box valid';
                     resultDiv.innerHTML =
                         '<div class="result-icon">✅</div>' +
                         '<div class="result-title">מספר תעודת זהות תקין</div>' +
-                        '<div class="result-id">' + formatId(input) + '</div>';
+                        '<div class="result-id">' + formatId(input) + '</div>' +
+                        suggestHtml;
                 } else {
                     resultDiv.className = 'result-box invalid';
                     resultDiv.innerHTML =
@@ -548,6 +616,16 @@
                 '<div class="result-title">מספר תעודת הזהות המלא</div>' +
                 '<div class="result-id">' + formatId(fullId) + '</div>' +
                 '<div class="result-detail">' + detail + '</div>';
+        }
+
+        function replaceId(altId) {
+            document.getElementById('idInput').value = altId;
+            checkId();
+        }
+
+        function dismissSuggest() {
+            var s = document.querySelector('.suggest-section');
+            if (s) s.remove();
         }
 
         function retryWithoutLastDigit() {
