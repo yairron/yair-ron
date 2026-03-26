@@ -816,7 +816,7 @@
             }
 
             try {
-                const response = await fetch(`files/${fileInfo.file}`);
+                const response = await fetch(`support_files/files/${fileInfo.file}`);
                 if (!response.ok) {
                     throw new Error('Failed to load file');
                 }
