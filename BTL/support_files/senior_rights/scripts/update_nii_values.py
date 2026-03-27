@@ -23,7 +23,7 @@ from pathlib import Path
 sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding="utf-8", errors="replace")
 sys.stderr = io.TextIOWrapper(sys.stderr.buffer, encoding="utf-8", errors="replace")
 
-REPO_ROOT = Path(__file__).parent
+REPO_ROOT = Path(__file__).parent.parent.parent.parent
 JSON_PATH = REPO_ROOT / "BTL" / "senior_rights" / "data" / "nii-constants.json"
 HTML_DIRS = [REPO_ROOT / "BTL" / "senior_rights"]
 
