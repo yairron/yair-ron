@@ -386,6 +386,49 @@
             line-height: 1.7;
         }
 
+        /* ===== OPTIONS LIST (< 8 digits) ===== */
+        .options-header {
+            margin-top: 18px;
+            font-size: 0.95rem;
+            font-weight: 700;
+            color: #546E7A;
+            text-align: right;
+        }
+        .options-list {
+            margin-top: 10px;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+        .option-row {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 10px 14px;
+            background: rgba(255,255,255,0.6);
+            border-radius: 10px;
+            border: 1px solid #ddd;
+            flex-wrap: wrap;
+        }
+        .option-primary {
+            background: linear-gradient(135deg, #E3F2FD, #BBDEFB);
+            border-color: var(--secondary);
+        }
+        .option-id {
+            font-size: 1.4rem;
+            font-weight: 800;
+            letter-spacing: 3px;
+            direction: ltr;
+            color: var(--text);
+            flex-shrink: 0;
+        }
+        .option-primary .option-id { font-size: 1.7rem; }
+        .option-desc {
+            font-size: 0.88rem;
+            color: #546E7A;
+            direction: rtl;
+        }
+
         @media (max-width: 768px) {
             h1 {
                 font-size: 1.8rem;
@@ -457,6 +500,18 @@
     </div>
 
     <script>
+        // Calculate check digit for a base of any length (1–8 digits)
+        function calcCheckDigitGeneral(baseStr) {
+            var digits = baseStr.split('').map(Number);
+            var sum = 0;
+            for (var i = 0; i < digits.length; i++) {
+                var val = digits[i] * ((i % 2 === 0) ? 1 : 2);
+                if (val > 9) val -= 9;
+                sum += val;
+            }
+            return (10 - (sum % 10)) % 10;
+        }
+
         // Calculate the check digit for 8 digits (returns the 9th digit)
         function calcCheckDigit(eightDigits) {
             var digits = eightDigits.split('').map(Number);
@@ -590,32 +645,71 @@
             }
 
             // Regular mode (no checkbox)
-            // Step 1: All missing digits are leading zeros
-            var padded = '0'.repeat(missing) + input;
-            if (isValidId(padded)) {
-                resultDiv.className = 'result-box calculated';
-                resultDiv.innerHTML =
-                    '<div class="result-icon">🔢</div>' +
-                    '<div class="result-title">מספר תעודת הזהות המלא</div>' +
-                    '<div class="result-id">' + formatId(padded) + '</div>' +
-                    '<div class="result-detail">' + missing + ' אפסים מקדימים, ספרת ביקורת תקינה</div>';
+            var padded9 = '0'.repeat(missing) + input;
+            var hasValidPad = isValidId(padded9);
+
+            if (input.length === 8) {
+                // N=8: single result (existing behaviour)
+                if (hasValidPad) {
+                    resultDiv.className = 'result-box calculated';
+                    resultDiv.innerHTML =
+                        '<div class="result-icon">🔢</div>' +
+                        '<div class="result-title">מספר תעודת הזהות המלא</div>' +
+                        '<div class="result-id">' + formatId(padded9) + '</div>' +
+                        '<div class="result-detail">אפס מקדים אחד, ספרת ביקורת תקינה</div>';
+                } else {
+                    var chk = calcCheckDigit(input);
+                    resultDiv.className = 'result-box calculated';
+                    resultDiv.innerHTML =
+                        '<div class="result-icon">🔢</div>' +
+                        '<div class="result-title">מספר תעודת הזהות המלא</div>' +
+                        '<div class="result-id">' + formatId(input + chk) + '</div>' +
+                        '<div class="result-detail">ספרת ביקורת מחושבת: ' + chk + '</div>';
+                }
                 return;
             }
 
-            // Step 2: Check digit missing at end + (missing-1) leading zeros
-            var leadingZeros = missing - 1;
-            var eightDigits = '0'.repeat(leadingZeros) + input;
-            var checkDigit = calcCheckDigit(eightDigits);
-            var fullId = eightDigits + checkDigit;
-            var detail = leadingZeros > 0
-                ? leadingZeros + ' אפסים מקדימים + ספרת ביקורת מחושבת: ' + checkDigit
-                : 'ספרת ביקורת מחושבת: ' + checkDigit;
-            resultDiv.className = 'result-box calculated';
-            resultDiv.innerHTML =
-                '<div class="result-icon">🔢</div>' +
-                '<div class="result-title">מספר תעודת הזהות המלא</div>' +
-                '<div class="result-id">' + formatId(fullId) + '</div>' +
-                '<div class="result-detail">' + detail + '</div>';
+            // N < 8: build all options (bases from N to 8 digits)
+            var computedOptions = [];
+            for (var k = 0; k <= 8 - input.length; k++) {
+                var base = '0'.repeat(k) + input;
+                var chk = calcCheckDigitGeneral(base);
+                computedOptions.push({ zeros: k, full: base + chk, check: chk });
+            }
+
+            var html = '';
+            if (hasValidPad) {
+                html +=
+                    '<div class="result-icon">✅</div>' +
+                    '<div class="result-title">מספר תקין עם ' + missing + ' אפסים מקדימים</div>' +
+                    '<div class="result-id">' + formatId(padded9) + '</div>' +
+                    '<div class="result-detail">ספרת הביקורת כבר כלולה במספר שהוזן</div>' +
+                    '<div class="options-header">אפשרויות עם ספרת ביקורת מחושבת:</div>';
+            } else {
+                html +=
+                    '<div class="result-icon">🔢</div>' +
+                    '<div class="result-title">אפשרויות לחישוב ספרת ביקורת</div>';
+            }
+
+            html += '<div class="options-list">';
+            for (var i = 0; i < computedOptions.length; i++) {
+                var opt = computedOptions[i];
+                var fullLen = opt.full.length;
+                var isPrimary = fullLen === 9;
+                var zerosDesc = opt.zeros === 0
+                    ? 'ללא אפסים מקדימים'
+                    : opt.zeros + ' אפס' + (opt.zeros > 1 ? 'ים' : '') + ' מקדים' + (opt.zeros > 1 ? 'ים' : '');
+                html +=
+                    '<div class="option-row' + (isPrimary ? ' option-primary' : '') + '">' +
+                    '<span class="option-id">' + formatId(opt.full) + '</span>' +
+                    '<span class="option-desc">' + zerosDesc + ' + ביקורת <strong>' + opt.check + '</strong>' +
+                    (isPrimary ? ' — מספר זהות ישראלי מלא' : ' — ' + fullLen + ' ספרות') +
+                    '</span></div>';
+            }
+            html += '</div>';
+
+            resultDiv.className = 'result-box ' + (hasValidPad ? 'valid' : 'calculated');
+            resultDiv.innerHTML = html;
         }
 
         function replaceId(altId) {
