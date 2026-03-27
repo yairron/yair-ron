@@ -669,13 +669,12 @@
                 return;
             }
 
-            // N < 8: build all options (bases from N to 8 digits)
+            // N < 8: one computed option — pad to exactly 8-digit base, add check digit → 9-digit result
             var computedOptions = [];
-            for (var k = 0; k <= 8 - input.length; k++) {
-                var base = '0'.repeat(k) + input;
-                var chk = calcCheckDigitGeneral(base);
-                computedOptions.push({ zeros: k, full: base + chk, check: chk });
-            }
+            var k = 8 - input.length;
+            var base = '0'.repeat(k) + input;
+            var chk = calcCheckDigitGeneral(base);
+            computedOptions.push({ zeros: k, full: base + chk, check: chk });
 
             var html = '';
             if (hasValidPad) {
