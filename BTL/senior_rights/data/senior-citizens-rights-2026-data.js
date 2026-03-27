@@ -462,7 +462,7 @@ const SENIOR_RIGHTS_2026_DATA = {
                 <h4>יתום (לכל ילד)</h4>
                 <ul>
                     <li><strong>יתום מאב או מאם:</strong> ${c('survivors_orphan')}</li>
-                    <li><strong>יתום משני הורים:</strong> ${c('orphan_both_parents_first')}</li>
+                    <li><strong>יתום משני הורים (אם שני ההורים היו זכאים לקצבה):</strong> ${c('orphan_both_parents_first')}</li>
                 </ul>
 
                 <h4>תוספת למשפחה</h4>

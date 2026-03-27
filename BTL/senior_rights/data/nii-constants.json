@@ -137,23 +137,23 @@
 
   "orphan_both_parents_first": {
     "id": "NII-019",
-    "value": 2434,
+    "value": 2284,
     "type": "currency",
-    "label": "קצבת שאירים ליתום משני הוריו — ילד ראשון",
+    "label": "קצבת שאירים ליתום משני הוריו — לכל ילד",
     "updated": "2026-01"
   },
-  "orphan_both_parents_two": {
+  "survivors_spouse_1child": {
     "id": "NII-020",
-    "value": 3569,
+    "value": 2700,
     "type": "currency",
-    "label": "קצבת שאירים לשני יתומים משני הוריהם",
+    "label": "קצבת שאירים לאלמן/ה עם ילד אחד",
     "updated": "2026-01"
   },
-  "orphan_both_parents_additional": {
+  "survivors_spouse_2children": {
     "id": "NII-021",
-    "value": 1038,
+    "value": 3562,
     "type": "currency",
-    "label": "תוספת לכל ילד נוסף יתום משני ההורים",
+    "label": "קצבת שאירים לאלמן/ה עם שני ילדים",
     "updated": "2026-01"
   },
 
@@ -614,6 +614,14 @@
     "value": 9430,
     "type": "currency",
     "label": "תקרת פנסיית שאירים לאלמן שכיר",
+    "updated": "2026-01"
+  },
+
+  "survivors_spouse_half_with_pension": {
+    "id": "NII-055",
+    "value": 919,
+    "type": "currency",
+    "label": "קצבת שאירים (50%) לאלמן/ה המקבל/ת גם קצבת אזרח ותיק",
     "updated": "2026-01"
   },
 
