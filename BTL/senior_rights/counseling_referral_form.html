@@ -630,6 +630,31 @@
   .id-warn-btn.cont  { background: #e0e0e0; color: #333; }
   .id-warn-btn.cont:hover  { background: #c8c8c8; }
 
+  /* ===== PDF ATTACHMENTS ===== */
+  #attachments-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 32px;
+    padding: 0 0 40px;
+  }
+  .pdf-attachment {
+    position: relative;
+    width: 210mm;
+  }
+  .pdf-remove-btn {
+    position: absolute;
+    top: -36px;
+    left: 0;
+  }
+  .pdf-attachment iframe {
+    width: 210mm;
+    height: 297mm;
+    border: none;
+    display: block;
+    box-shadow: 0 2px 20px rgba(0,0,0,0.18);
+  }
+
   /* ===== PRINT ===== */
   @page {
     size: A4;
@@ -663,6 +688,23 @@
     .form-page:last-child {
       page-break-after: avoid !important;
       break-after: avoid !important;
+    }
+
+    /* PDF attachments in print */
+    #attachments-wrapper { display: block !important; padding: 0 !important; }
+    .pdf-remove-btn { display: none !important; }
+    .pdf-attachment {
+      width: 210mm !important;
+      height: 297mm !important;
+      page-break-before: always !important;
+      break-before: page !important;
+      position: relative !important;
+    }
+    .pdf-attachment iframe {
+      width: 100% !important;
+      height: 100% !important;
+      border: none !important;
+      display: block !important;
     }
 
     /* Gray frames */
@@ -733,6 +775,8 @@
 <div id="toolbar">
   <button class="tb-btn" onclick="window.print()">🖨 הדפס</button>
   <button class="tb-btn secondary" onclick="clearAll()">🗑 נקה הכל</button>
+  <button class="tb-btn secondary" onclick="document.getElementById('pdf-file-input').click()">📎 צרף מסמך PDF</button>
+  <input type="file" id="pdf-file-input" accept=".pdf" style="display:none" onchange="attachPDF(this)">
   <h1>פניה לייעוץ – בל/4300</h1>
   <a href="../index.html" class="tb-btn secondary">&#8592; חזרה</a>
 </div>
@@ -1177,6 +1221,8 @@
 
 </div><!-- /pages-wrapper -->
 
+<div id="attachments-wrapper"></div>
+
 <script>
 function digitByIdx(group, idx) {
   return document.querySelector('.digit-input[data-group="' + group + '"][data-idx="' + idx + '"]');
@@ -1451,6 +1497,33 @@ if (document.readyState === 'loading') {
 } else {
   responsiveForms();
   setTimeout(responsiveForms, 150);
+}
+
+function attachPDF(input) {
+  if (!input.files || !input.files[0]) return;
+  var file = input.files[0];
+  var url = URL.createObjectURL(file);
+  var wrapper = document.getElementById('attachments-wrapper');
+
+  var container = document.createElement('div');
+  container.className = 'pdf-attachment';
+
+  var removeBtn = document.createElement('button');
+  removeBtn.className = 'tb-btn secondary pdf-remove-btn';
+  removeBtn.textContent = '✕ הסר מסמך';
+  removeBtn.onclick = function() {
+    URL.revokeObjectURL(url);
+    wrapper.removeChild(container);
+  };
+
+  var iframe = document.createElement('iframe');
+  iframe.src = url;
+
+  container.appendChild(removeBtn);
+  container.appendChild(iframe);
+  wrapper.appendChild(container);
+
+  input.value = '';
 }
 </script>
     <script src="data/hamburger-nav.js"></script>
