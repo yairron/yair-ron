@@ -31,7 +31,20 @@
       "WebFetch(domain:www.gov.il)",
       "WebFetch(domain:www.kolzchut.org.il)",
       "WebFetch(domain:www.avivonline.org.il)",
-      "WebFetch(domain:www.aviv.org.il)"
+      "WebFetch(domain:www.aviv.org.il)",
+      "Bash(curl -s -L -A \"Mozilla/5.0 \\(Windows NT 10.0; Win64; x64\\) AppleWebKit/537.36\" \"https://www.btl.gov.il/benefits/old_age/shehutBechul/Pages/emHashlamatHachnasa.aspx\")",
+      "Read(//tmp/**)",
+      "Bash(ls /tmp/*.html)",
+      "Read(//g/My Drive/התנדבות/אתרים/yair-main/$TEMP/**)",
+      "Bash(curl -s -L -A \"Mozilla/5.0 \\(Windows NT 10.0; Win64; x64\\) AppleWebKit/537.36\" \"https://www.btl.gov.il/benefits/old_age/shehutBechul/Pages/default.aspx\" -o old_age_abroad.html)",
+      "Bash(curl -s -L -A \"Mozilla/5.0 \\(Windows NT 10.0; Win64; x64\\) AppleWebKit/537.36\" \"https://www.btl.gov.il/benefits/old_age/shehutBechul/Pages/emHashlamatHachnasa.aspx\" -o income_supplement_abroad.html)",
+      "Bash(curl -s -L -A \"Mozilla/5.0 \\(Windows NT 10.0; Win64; x64\\) AppleWebKit/537.36\" \"https://www.btl.gov.il/benefits/Income_support/Pages/%D7%A9%D7%94%D7%95%D7%AA%20%D7%91%D7%97%D7%95%D7%9C.aspx\" -o income_support_abroad.html)",
+      "Bash(ls -la *.html)",
+      "Bash(curl -s -L -A \"Mozilla/5.0 \\(Windows NT 10.0; Win64; x64\\) AppleWebKit/537.36\" \"https://www.btl.gov.il/benefits/old_age/shehutBechul/Pages/amna.aspx\" -o sub_amna.html)",
+      "Bash(curl -s -L -A \"Mozilla/5.0 \\(Windows NT 10.0; Win64; x64\\) AppleWebKit/537.36\" \"https://www.btl.gov.il/benefits/old_age/shehutBechul/Pages/lloHashlamatHachnasa.aspx\" -o sub_notreaty.html)",
+      "Bash(curl -s -L -A \"Mozilla/5.0 \\(Windows NT 10.0; Win64; x64\\) AppleWebKit/537.36\" \"https://www.btl.gov.il/benefits/old_age/shehutBechul/Pages/kitsbaUSA.aspx\" -o sub_usa.html)",
+      "Bash(curl -s -L -A \"Mozilla/5.0 \\(Windows NT 10.0; Win64; x64\\) AppleWebKit/537.36\" \"https://www.btl.gov.il/benefits/old_age/shehutBechul/Pages/emHashlamatHachnasa.aspx\" -o sub_supplement.html)",
+      "Bash(curl -s -L -A \"Mozilla/5.0 \\(Windows NT 10.0; Win64; x64\\) AppleWebKit/537.36\" \"https://www.btl.gov.il/benefits/old_age/shehutBechul/Pages/ziknaMeyuchedet.aspx\" -o sub_special.html)"
     ]
   }
 }
