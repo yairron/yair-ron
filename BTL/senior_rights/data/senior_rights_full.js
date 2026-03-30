@@ -13,8 +13,32 @@ const RIGHTS_DATA = {
         <a href="https://www.kolzchut.org.il/he/%D7%96%D7%9B%D7%95%D7%AA%D7%95%D7%9F_%D7%A7%D7%A6%D7%91%D7%AA_%D7%96%D7%99%D7%A7%D7%A0%D7%94" target="_blank" class="link-item">🔗 זכותון קצבת זיקנה — כל זכות</a>
 
         <h3>1.1 גילאי פרישה וזכאות</h3>
+        <p style="color:#2E7D32;font-weight:700;font-size:1.05em;"><strong>גיל הזכאות המוחלט לגברים ולנשים: ${NII.retirement_age_unconditional.value}</strong> — החל מגיל ${NII.retirement_age_unconditional.value} הקצבה משולמת ללא כל מבחן הכנסות, גם למי שעובד ומרוויח.</p>
         <p><strong>גיל הפרישה לגברים:</strong> ${NII.retirement_age_male.value}</p>
         <p><strong>גיל הפרישה לנשים לפי שנת לידה:</strong></p>
+        <div class="rc-card">
+          <div class="conditions-box" style="margin:0 0 16px 0;">
+            <p>📅 מדרגת גיל הפרישה לילידות 1962 הסתיימה ב-31/12/2025</p>
+            <p>⏭️ מדרגת גיל הפרישה לילידות 1963 תחל ב-01/05/2026</p>
+          </div>
+          <div class="rc-input-group">
+            <label>תאריך לידה:</label>
+            <div class="rc-input-row">
+              <input type="text" id="rc-birth-input" placeholder="DD/MM/YYYY" maxlength="10" inputmode="numeric" oninput="rcFormatDate(this)" onkeypress="rcHandleEnter(event)">
+              <button class="rc-btn rc-btn-primary" onclick="rcCalculate()">חשב</button>
+            </div>
+          </div>
+          <div class="rc-input-group">
+            <label>תאריך פרישה:</label>
+            <div class="rc-input-row">
+              <input type="text" id="rc-retirement-output" placeholder="DD/MM/YYYY" readonly>
+            </div>
+          </div>
+          <div class="rc-buttons-row">
+            <button class="rc-btn rc-btn-clear" onclick="rcClearAll()">נקה</button>
+          </div>
+          <div id="rc-result" class="rc-result-box"></div>
+        </div>
         <table style="width:100%;border-collapse:collapse;margin:15px 0;">
           <thead><tr style="background:linear-gradient(135deg,#667eea,#764ba2);color:white;">
             <th style="padding:10px;border:1px solid #ddd;">שנת לידה</th>
@@ -32,11 +56,6 @@ const RIGHTS_DATA = {
             <tr><td style="padding:9px;border:1px solid #ddd;text-align:center;">1967 ואילך</td><td style="padding:9px;border:1px solid #ddd;text-align:center;font-weight:bold;color:#667eea;">65</td></tr>
           </tbody>
         </table>
-        <div class="conditions-box">
-          <p>📅 מדרגת גיל הפרישה לילידות 1962 הסתיימה ב-31/12/2025</p>
-          <p>⏭️ מדרגת גיל הפרישה לילידות 1963 תחל ב-01/05/2026</p>
-        </div>
-        <p><strong>גיל הזכאות המוחלט: ${NII.retirement_age_unconditional.value}</strong> — החל מגיל ${NII.retirement_age_unconditional.value} הקצבה משולמת ללא כל מבחן הכנסות, גם למי שעובד ומרוויח.</p>
 
         <h3>1.2 תקופת אכשרה</h3>
         <p>
@@ -1506,6 +1525,34 @@ const RIGHTS_DATA = {
         <p>בעקבות העלאת גיל הפרישה לנשים, נשים שנולדו בין ינואר 1960 לדצמבר 1966 עשויות להיות זכאיות למענק מעבר.</p>
         <p><strong>מטרת המענק:</strong> לסייע לנשים בפרק הזמן שבין גיל 62 ועד לקבלת קצבת אזרח ותיק.</p>
 
+        ${(() => {
+          const fmt = d => String(d.getDate()).padStart(2,'0') + '/' + String(d.getMonth()+1).padStart(2,'0') + '/' + d.getFullYear();
+          const today = new Date();
+          const tomorrow = new Date(today); tomorrow.setDate(today.getDate() + 1);
+
+          const birth62 = new Date(today); birth62.setFullYear(today.getFullYear() - 62);
+          const birth62Year = birth62.getFullYear();
+
+          const in4m = new Date(today); in4m.setMonth(today.getMonth() + 4);
+
+          const birth64 = new Date(tomorrow); birth64.setFullYear(tomorrow.getFullYear() - 64);
+
+          let grantAmount;
+          if      (birth62Year <= 1962) grantAmount = NII.transition_grant_max.value;
+          else if (birth62Year === 1963) grantAmount = NII.transition_grant_1963.value;
+          else if (birth62Year === 1964) grantAmount = NII.transition_grant_1964.value;
+          else if (birth62Year === 1965) grantAmount = NII.transition_grant_1965.value;
+          else                           grantAmount = NII.transition_grant_min.value;
+
+          if (birth62Year < 1960 || birth62Year > 1966) return '';
+
+          return '<div class="tg-daily-notice">'
+            + '<p>👩 נשים שנולדו ב-<strong>' + fmt(birth62) + '</strong> הגיעו היום לגיל 62 ועשויות להיות זכאיות למענק מעבר. בתנאי שלא תהיה להן הכנסה מעבודה במשך 4 חודשים עד <strong>' + fmt(in4m) + '</strong>.</p>'
+            + '<p>סכום המענק הצפוי לילידות <strong>' + birth62Year + '</strong>: <strong>₪' + grantAmount.toLocaleString('he-IL') + ' לחודש</strong>.</p>'
+            + '<p>📋 נשים שנולדו ב-<strong>' + fmt(birth64) + '</strong> יהיו מחר בנות 64 — המועד האחרון עבורן להגיש תביעה למענק מעבר.</p>'
+            + '</div>';
+        })()}
+
         <h3>6.1 משך התשלום</h3>
         <ul>
           <li>המענק משולם לתקופה של <strong>4 חודשים לכל היותר</strong>.</li>
@@ -1514,36 +1561,21 @@ const RIGHTS_DATA = {
         </ul>
 
         <h3>6.2 תנאי זכאות למענק</h3>
-
-        <h4>גיל ושנת לידה</h4>
-        <p>נשים שנולדו בין ינואר 1960 לדצמבר 1966.</p>
-
-        <h4>היעדר הכנסות מעבודה</h4>
-        <p>אסור שיהיו הכנסות כשכירה או כעצמאית מגיל 62 ועד גיל 62 ו-4 חודשים.</p>
-
-        <h4>מגבלה על הכנסות מפנסיה וקצבאות</h4>
-        <p>הכנסה מפנסיה, תגמולים או קצבאות לא יכולה לעלות על <strong>₪${NII.transition_grant_income_allowed.value.toLocaleString('he-IL')} לחודש</strong>.</p>
-
-        <h4>מגבלה על הכנסות שלא מעבודה</h4>
-        <p>הכנסה שנתית שלא מעבודה (משכירות, ריבית, מענקי פרישה) לא יכולה לעלות על <strong>₪${NII.transition_grant_annual_income_limit.value.toLocaleString('he-IL')}</strong> בשנת המס שבה מלאו לאישה 61 שנים.</p>
-
-        <h4>תקופת ביטוח — אחד מהתנאים</h4>
         <ul>
-          <li>✅ 60 חודשי ביטוח (5 שנים) מגיל 52, <strong>או</strong></li>
-          <li>✅ 144 חודשי ביטוח (12 שנים) מגיל 18.</li>
+          <li>אין לך הכנסות מעבודה (כשכירה או כעצמאית) מגיל ${NII.women_retirement_age_r7.value} ועד גיל ${NII.women_retirement_age_r8.value}.</li>
+          <li>הכנסתך מפנסיה, מתגמולים או מקצבאות אינה עולה על <strong>₪${NII.transition_grant_income_allowed.value.toLocaleString('he-IL')} (החל ב-01.01.2026) לחודש</strong>.</li>
+          <li>הכנסתך השנתית שלא מעבודה (כגון משכירות, ריבית על השקעות, מענקי פרישה וכדו') אינה עולה על <strong>₪${NII.transition_grant_annual_income_limit.value.toLocaleString('he-IL')}</strong> בשנת המס שבה מלאו לך 61 שנים.</li>
+          <li>צברת תקופת ביטוח כנדרש לקבלת קצבת אזרח ותיק (60 חודשים מגיל 52 או 144 חודשים מגיל 18) או שאת פטורה מצבירת תקופת ביטוח.</li>
         </ul>
 
-        <h4>אין קבלת קצבאות אחרות</h4>
+        <h3>6.3 תנאים לשלילת זכאות</h3>
         <ul>
-          <li>❌ קצבת הבטחת הכנסה</li>
-          <li>❌ דמי מזונות</li>
-          <li>❌ קצבת נכות כללית</li>
-          <li>❌ דמי אבטלה</li>
-          <li>❌ דמי אבטלה מוגדלים (300 ימים)</li>
-          <li>❌ שהות בחופשה ללא תשלום (חל"ת) מרצון</li>
+          <li>מי שמקבלת קצבת הבטחת הכנסה, דמי מזונות, קצבת נכות כללית או דמי אבטלה. <strong>שימי לב — תנאי זה נבדק בכל חודש מ-4 חודשי הזכאות.</strong></li>
+          <li>מי שמקבלת דמי אבטלה מוגדלים, לתקופה של 300 ימים.</li>
+          <li>מי ששוהה בחופשה ללא תשלום (חל"ת) מרצון.</li>
         </ul>
 
-        <h3>6.3 סכום המענק</h3>
+        <h3>6.4 סכום המענק</h3>
         <table style="width:100%;border-collapse:collapse;margin:15px 0;">
           <thead><tr style="background:linear-gradient(135deg,#667eea,#764ba2);color:white;">
             <th style="padding:10px;border:1px solid #ddd;">שנת לידה</th>
@@ -1559,7 +1591,7 @@ const RIGHTS_DATA = {
           </tbody>
         </table>
 
-        <h3>6.4 הגשת בקשה למענק</h3>
+        <h3>6.5 הגשת בקשה למענק</h3>
         <ul>
           <li><strong>מועד הגשה:</strong> ניתן להגיש את הבקשה עד גיל 64.</li>
           <li>✅ מילוי טופס בסניף מחלקת אזרח ותיק.</li>
