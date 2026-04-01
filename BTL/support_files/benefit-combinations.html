@@ -1,0 +1,676 @@
+<!-- מערכת כפל קצבאות – ממשק משתמש -->
+<!-- תיעוד מלא: BTL/support_files/files/כפל_קצבאות_תיעוד.md -->
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>שילוב של יותר מקצבה אחת</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Assistant:wght@300;400;600;700;800&family=Varela+Round&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #2E5B8A;
+            --secondary: #4A90B5;
+            --accent: #E8A840;
+            --success: #2E7D32;
+            --danger: #C62828;
+            --light: #F5F9FC;
+            --dark: #1A3A52;
+            --text: #2C3E50;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Assistant', 'Segoe UI', Tahoma, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
+            min-height: 100vh;
+            padding: 20px;
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background:
+                radial-gradient(circle at 20% 50%, rgba(255,255,255,0.1) 0%, transparent 50%),
+                radial-gradient(circle at 80% 80%, rgba(255,255,255,0.1) 0%, transparent 50%);
+            animation: backgroundShift 20s ease-in-out infinite;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        @keyframes backgroundShift {
+            0%, 100% { transform: translate(0, 0) scale(1); }
+            50% { transform: translate(-5%, 5%) scale(0.95); }
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 40px;
+            animation: slideDown 0.8s ease-out;
+        }
+
+        @keyframes slideDown {
+            from { opacity: 0; transform: translateY(-50px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        h1 {
+            font-family: 'Varela Round', sans-serif;
+            font-size: 3.5rem;
+            font-weight: 800;
+            color: white;
+            margin-bottom: 15px;
+            text-shadow: 3px 5px 15px rgba(0,0,0,0.3);
+            letter-spacing: -2px;
+        }
+
+        .support-info {
+            font-size: 1.2rem;
+            color: #FFD54F;
+            font-weight: 700;
+            text-shadow: 1px 2px 8px rgba(0,0,0,0.3);
+            margin-bottom: 8px;
+        }
+
+        .subtitle {
+            font-size: 1.1rem;
+            color: rgba(255,255,255,0.85);
+            font-weight: 300;
+            text-shadow: 1px 2px 8px rgba(0,0,0,0.2);
+        }
+
+        .update-badge {
+            display: inline-block;
+            background: rgba(255,255,255,0.2);
+            backdrop-filter: blur(10px);
+            padding: 8px 20px;
+            border-radius: 20px;
+            color: white;
+            font-size: 0.9rem;
+            margin-top: 15px;
+            font-weight: 600;
+        }
+
+        .back-button {
+            display: inline-block;
+            background: rgba(255,255,255,0.25);
+            backdrop-filter: blur(10px);
+            padding: 12px 24px;
+            border-radius: 25px;
+            color: white;
+            text-decoration: none;
+            font-size: 1rem;
+            font-weight: 600;
+            transition: all 0.3s;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+        }
+
+        .back-button:hover {
+            background: rgba(255,255,255,0.35);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(0,0,0,0.25);
+        }
+
+        .back-button::before { content: '← '; margin-left: 5px; }
+
+        /* ===== Main card ===== */
+        .main-card {
+            background: white;
+            border-radius: 24px;
+            box-shadow: 0 12px 40px rgba(0,0,0,0.25);
+            padding: 35px;
+            animation: fadeIn 0.8s ease-out 0.3s both;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* ===== Fields row ===== */
+        .fields-row {
+            display: flex;
+            gap: 20px;
+            margin-bottom: 30px;
+            align-items: flex-start;
+        }
+
+        .field-group {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .field-label {
+            font-family: 'Varela Round', sans-serif;
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: var(--dark);
+        }
+
+        /* ===== Searchable select (field 1) ===== */
+        .select-wrapper {
+            position: relative;
+        }
+
+        .select-input {
+            width: 100%;
+            padding: 12px 16px;
+            font-family: 'Assistant', sans-serif;
+            font-size: 1rem;
+            border: 2px solid #CBD5E0;
+            border-radius: 12px;
+            background: var(--light);
+            color: var(--text);
+            cursor: pointer;
+            outline: none;
+            transition: border-color 0.2s;
+            text-align: right;
+        }
+
+        .select-input:focus {
+            border-color: var(--secondary);
+            background: white;
+        }
+
+        .dropdown-list {
+            position: absolute;
+            top: calc(100% + 4px);
+            right: 0;
+            left: 0;
+            background: white;
+            border: 2px solid var(--secondary);
+            border-radius: 12px;
+            max-height: 260px;
+            overflow-y: auto;
+            z-index: 100;
+            box-shadow: 0 8px 24px rgba(0,0,0,0.15);
+            display: none;
+        }
+
+        .dropdown-list.open { display: block; }
+
+        .dropdown-item {
+            padding: 10px 16px;
+            cursor: pointer;
+            font-size: 0.95rem;
+            color: var(--text);
+            transition: background 0.15s;
+            border-bottom: 1px solid #EDF2F7;
+        }
+
+        .dropdown-item:last-child { border-bottom: none; }
+
+        .dropdown-item:hover,
+        .dropdown-item.highlighted {
+            background: #EBF4FA;
+            color: var(--primary);
+        }
+
+        .dropdown-item.no-results {
+            color: #999;
+            cursor: default;
+            font-style: italic;
+        }
+
+        /* ===== Possible benefits button (field 2) ===== */
+        .possible-btn {
+            width: 100%;
+            padding: 12px 16px;
+            font-family: 'Assistant', sans-serif;
+            font-size: 1rem;
+            font-weight: 600;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            border: none;
+            border-radius: 12px;
+            cursor: pointer;
+            transition: opacity 0.2s, transform 0.1s;
+            text-align: center;
+        }
+
+        .possible-btn:hover:not(:disabled) { opacity: 0.9; transform: translateY(-1px); }
+        .possible-btn:disabled { opacity: 0.45; cursor: not-allowed; transform: none; }
+
+        /* Possible list */
+        .possible-list {
+            display: none;
+            flex-direction: column;
+            gap: 6px;
+            margin-top: 8px;
+            max-height: 260px;
+            overflow-y: auto;
+        }
+
+        .possible-list.open { display: flex; }
+
+        .possible-item {
+            padding: 10px 14px;
+            background: #EBF4FA;
+            border: 1.5px solid #B3D4E8;
+            border-radius: 10px;
+            cursor: pointer;
+            font-size: 0.95rem;
+            color: var(--primary);
+            font-weight: 600;
+            transition: background 0.15s, border-color 0.15s;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .possible-item:hover {
+            background: #D1EAF7;
+            border-color: var(--secondary);
+        }
+
+        .possible-item.selected {
+            background: var(--primary);
+            color: white;
+            border-color: var(--dark);
+        }
+
+        .possible-item.conditional {
+            background: #FFF8E1;
+            border-color: #F9A825;
+            color: #7B5C00;
+        }
+
+        .possible-item.conditional:hover {
+            background: #FFF0B0;
+            border-color: #F57F17;
+        }
+
+        .possible-item.conditional.selected {
+            background: #F9A825;
+            color: white;
+            border-color: #E65100;
+        }
+
+        .badge-conditional {
+            font-size: 0.72rem;
+            font-weight: 700;
+            background: #F9A825;
+            color: white;
+            padding: 2px 7px;
+            border-radius: 8px;
+            white-space: nowrap;
+            flex-shrink: 0;
+        }
+
+        .possible-item.selected .badge-conditional {
+            background: rgba(255,255,255,0.35);
+        }
+
+        .no-possible {
+            color: #999;
+            font-style: italic;
+            font-size: 0.95rem;
+            padding: 8px 0;
+        }
+
+        /* ===== Detail frame ===== */
+        .detail-frame {
+            border: 2px solid #CBD5E0;
+            border-radius: 16px;
+            overflow: hidden;
+        }
+
+        .detail-title {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            padding: 14px 24px;
+            font-family: 'Varela Round', sans-serif;
+            font-size: 1.2rem;
+            font-weight: 700;
+        }
+
+        .detail-body {
+            padding: 24px;
+            min-height: 90px;
+            font-size: 1.05rem;
+            line-height: 1.8;
+            color: var(--text);
+            background: var(--light);
+        }
+
+        .detail-body.empty {
+            color: #AAB;
+            font-style: italic;
+        }
+
+        .detail-body a {
+            color: var(--secondary);
+            font-weight: 700;
+            text-decoration: none;
+        }
+
+        .detail-body a:hover { text-decoration: underline; }
+
+        /* ===== Clear button ===== */
+        .clear-row {
+            display: flex;
+            gap: 20px;
+            margin: -14px 0 20px;
+        }
+        .clear-col { flex: 1; display: flex; justify-content: center; }
+        .clear-col + .clear-col { visibility: hidden; }
+        .clear-btn {
+            padding: 7px 24px;
+            font-family: 'Assistant', sans-serif;
+            font-size: 0.9rem;
+            font-weight: 600;
+            background: transparent;
+            color: #94A3B8;
+            border: 1.5px solid #CBD5E0;
+            border-radius: 20px;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        .clear-btn:hover {
+            background: #F5F9FC;
+            color: var(--primary);
+            border-color: var(--secondary);
+        }
+
+        /* ===== Disclaimer ===== */
+        .disclaimer {
+            margin-top: 18px;
+            padding: 14px 20px;
+            background: #FFF8E1;
+            border: 1.5px solid #F9A825;
+            border-radius: 12px;
+            font-size: 0.95rem;
+            line-height: 1.7;
+            color: #5D4037;
+            text-align: center;
+        }
+        .disclaimer strong { font-weight: 700; }
+        .disclaimer a { color: #1565C0; font-weight: 600; text-decoration: none; }
+        .disclaimer a:hover { text-decoration: underline; }
+
+        /* ===== Responsive ===== */
+        @media (max-width: 768px) {
+            h1 { font-size: 2.5rem; }
+        }
+
+        @media (max-width: 600px) {
+            h1 { font-size: 2rem; }
+            .fields-row { flex-direction: column; }
+            .main-card { padding: 20px; }
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <header>
+        <a href="../index.html" class="back-button">חזרה לדף ראשי</a>
+        <h1>🔗 שילוב של יותר מקצבה אחת</h1>
+        <p class="support-info">מרכז תמיכה ומידע טלפוני ארצי בטלפון <span dir="ltr">*9696</span></p>
+        <p class="subtitle">בדוק אילו קצבאות ניתן לקבל במקביל — מדריך 2026</p>
+        <div class="update-badge">מעודכן לינואר 2026</div>
+    </header>
+
+    <div class="main-card">
+        <div class="fields-row">
+            <!-- Field 1: searchable select -->
+            <div class="field-group">
+                <span class="field-label">בחר קצבה</span>
+                <div class="select-wrapper">
+                    <input
+                        type="text"
+                        id="benefitSearch"
+                        class="select-input"
+                        placeholder="הקלד או בחר מהרשימה..."
+                        autocomplete="off"
+                        readonly
+                    >
+                    <div class="dropdown-list" id="dropdownList"></div>
+                </div>
+            </div>
+
+            <!-- Field 2: possible benefits -->
+            <div class="field-group">
+                <span class="field-label">קצבאות אפשריות</span>
+                <button class="possible-btn" id="possibleBtn" disabled>
+                    הצג קצבאות אפשריות
+                </button>
+                <div class="possible-list" id="possibleList"></div>
+            </div>
+        </div>
+
+        <!-- Clear button -->
+        <div class="clear-row">
+            <div class="clear-col"><button class="clear-btn" id="clearBtn">נקה הכל</button></div>
+            <div class="clear-col"></div>
+        </div>
+
+        <!-- Detail frame -->
+        <div class="detail-frame">
+            <div class="detail-title">פירוט</div>
+            <div class="detail-body empty" id="detailBody">
+                בחר קצבה ולאחר מכן לחץ על אחת מהקצבאות האפשריות
+            </div>
+        </div>
+
+        <!-- Disclaimer -->
+        <div class="disclaimer">
+            <strong>המידע כאן לצורך ידיעה כללית בלבד.</strong>
+            מומלץ לפנות לאתר הביטוח הלאומי למידע שלם ומדויק:
+            <a href="https://www.btl.gov.il/" target="_blank" rel="noopener">www.btl.gov.il</a>
+        </div>
+    </div>
+</div>
+
+<script>
+(async function () {
+    const DATA_URL = 'json/btl_benefit_combinations_results.json';
+    const NII_URL  = '../senior_rights/data/nii-constants.json';
+
+    let rawData = null;
+    let niiData = null;
+    let selectedA = null;  // { id, name }
+    let selectedB = null;  // { id, name }
+
+    // ── Load data ──────────────────────────────────────────
+    try {
+        const [r1, r2] = await Promise.all([fetch(DATA_URL), fetch(NII_URL)]);
+        rawData = await r1.json();
+        niiData = await r2.json();
+    } catch (e) {
+        document.getElementById('detailBody').textContent = 'שגיאה בטעינת הנתונים';
+        return;
+    }
+
+    // ── Build sorted benefits list from A entries ──────────
+    const benefitsMap = new Map();
+    for (const entry of Object.values(rawData)) {
+        if (!benefitsMap.has(entry.aId)) benefitsMap.set(entry.aId, entry.aName);
+    }
+    const benefits = [...benefitsMap.entries()]
+        .sort((a, b) => a[0] - b[0])
+        .map(([id, name]) => ({ id, name }));
+
+    // ── DOM refs ───────────────────────────────────────────
+    const searchInput  = document.getElementById('benefitSearch');
+    const dropdown     = document.getElementById('dropdownList');
+    const possibleBtn  = document.getElementById('possibleBtn');
+    const possibleList = document.getElementById('possibleList');
+    const detailBody   = document.getElementById('detailBody');
+
+    // ── Helpers ────────────────────────────────────────────
+    function getBOptions(aId) {
+        return Object.values(rawData)
+            .filter(e => e.aId === aId)
+            .sort((a, b) => a.bId - b.bId)
+            .map(e => ({ id: e.bId, name: e.bName }));
+    }
+
+    function getResult(aId, bId) {
+        const entry = rawData[`${aId}+${bId}`];
+        return entry ? entry.result : null;
+    }
+
+    function formatResult(text) {
+        const escaped = text
+            .replace(/&/g, '&amp;')
+            .replace(/</g, '&lt;')
+            .replace(/>/g, '&gt;');
+        let html = escaped.replace(/\n/g, '<br>');
+        html = html.replace(/גיל 67/g,
+            'גיל <span data-nii="retirement_age_male">67</span>');
+        html = html.replace(/גיל 18/g,
+            'גיל <span data-nii="child_disability_cutoff_age">18</span>');
+        return html;
+    }
+
+    function injectNiiValues() {
+        if (!niiData) return;
+        detailBody.querySelectorAll('[data-nii]').forEach(span => {
+            const key = span.dataset.nii;
+            if (niiData[key] !== undefined) span.textContent = niiData[key].value;
+        });
+    }
+
+    function resetDetail(msg, isEmpty) {
+        detailBody.innerHTML = msg;
+        detailBody.className = isEmpty ? 'detail-body empty' : 'detail-body';
+    }
+
+    // ── Dropdown (field 1) ─────────────────────────────────
+    function renderDropdown(filter) {
+        dropdown.innerHTML = '';
+        const filtered = benefits.filter(b =>
+            b.name.includes(filter) || filter === ''
+        );
+        if (filtered.length === 0) {
+            const el = document.createElement('div');
+            el.className = 'dropdown-item no-results';
+            el.textContent = 'לא נמצאה קצבה';
+            dropdown.appendChild(el);
+            return;
+        }
+        filtered.forEach(b => {
+            const el = document.createElement('div');
+            el.className = 'dropdown-item';
+            el.textContent = b.name;
+            el.addEventListener('mousedown', e => {
+                e.preventDefault();
+                selectA(b);
+            });
+            dropdown.appendChild(el);
+        });
+    }
+
+    function openDropdown() {
+        searchInput.readOnly = false;
+        searchInput.value = '';
+        renderDropdown('');
+        dropdown.classList.add('open');
+    }
+
+    function closeDropdown() {
+        dropdown.classList.remove('open');
+        searchInput.readOnly = true;
+        searchInput.value = selectedA ? selectedA.name : '';
+    }
+
+    function selectA(b) {
+        selectedA = b;
+        selectedB = null;
+        searchInput.value = b.name;
+        dropdown.classList.remove('open');
+        searchInput.readOnly = true;
+        possibleBtn.disabled = false;
+        possibleList.classList.remove('open');
+        possibleList.innerHTML = '';
+        resetDetail('בחר קצבה מהרשימה ולאחר מכן לחץ על "הצג קצבאות אפשריות"', true);
+    }
+
+    searchInput.addEventListener('click', openDropdown);
+    searchInput.addEventListener('input', () => {
+        renderDropdown(searchInput.value);
+        dropdown.classList.add('open');
+        selectedA = null;
+        possibleBtn.disabled = true;
+        possibleList.classList.remove('open');
+    });
+    document.addEventListener('click', e => {
+        if (!e.target.closest('.select-wrapper')) closeDropdown();
+    });
+
+    // ── Possible button (field 2) ──────────────────────────
+    possibleBtn.addEventListener('click', () => {
+        if (!selectedA) return;
+        const options = getBOptions(selectedA.id);
+        possibleList.innerHTML = '';
+
+        if (options.length === 0) {
+            const el = document.createElement('div');
+            el.className = 'no-possible';
+            el.textContent = 'אין נתונים לקצבה זו';
+            possibleList.appendChild(el);
+        } else {
+            options.forEach(b => {
+                const el = document.createElement('div');
+                el.className = 'possible-item';
+                el.dataset.benefitId = b.id;
+                el.textContent = b.name;
+                el.addEventListener('click', () => selectB(b));
+                possibleList.appendChild(el);
+            });
+        }
+
+        possibleList.classList.add('open');
+        resetDetail('בחר קצבה מהרשימה מימין כדי לראות את הפירוט', true);
+        selectedB = null;
+    });
+
+    // ── Clear all ──────────────────────────────────────────
+    document.getElementById('clearBtn').addEventListener('click', () => {
+        selectedA = null;
+        selectedB = null;
+        searchInput.value = '';
+        searchInput.readOnly = true;
+        dropdown.classList.remove('open');
+        possibleBtn.disabled = true;
+        possibleList.classList.remove('open');
+        possibleList.innerHTML = '';
+        resetDetail('בחר קצבה ולאחר מכן לחץ על אחת מהקצבאות האפשריות', true);
+    });
+
+    // ── Select B item ──────────────────────────────────────
+    function selectB(b) {
+        selectedB = b;
+        possibleList.querySelectorAll('.possible-item').forEach(el => {
+            el.classList.toggle('selected', el.dataset.benefitId === String(b.id));
+        });
+        const result = getResult(selectedA.id, b.id);
+        if (result) {
+            detailBody.innerHTML = formatResult(result);
+            detailBody.className = 'detail-body';
+            injectNiiValues();
+        } else {
+            resetDetail('אין פירוט זמין לצירוף זה', true);
+        }
+    }
+})();
+</script>
+    <script src="../senior_rights/data/hamburger-nav.js"></script>
+</body>
+</html>

@@ -9,6 +9,7 @@
         if (path.match(/\/senior_rights\/data\//)) return '../../';
         if (path.match(/\/senior_rights\//))       return '../';
         if (path.match(/\/new_immigrants\//))       return '../';
+        if (path.match(/\/support_files\//))        return '../';
         return '';
     }
     const bp = getBasePath();

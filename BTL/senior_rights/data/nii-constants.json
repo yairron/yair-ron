@@ -1386,6 +1386,13 @@
     "label": "גיל הזכאות המוחלט לקצבה ללא מבחן הכנסות",
     "updated": "fixed"
   },
+  "child_disability_cutoff_age": {
+    "id": "NII-244",
+    "value": 18,
+    "type": "age",
+    "label": "גיל סיום קצבת ילד נכה / תחילת זכאות לדמי שיקום",
+    "updated": "fixed"
+  },
 
   "nursing_home_health_ministry_max": {
     "id": "NII-138",
