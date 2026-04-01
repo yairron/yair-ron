@@ -39,6 +39,7 @@
             icon: '🛠️', text: 'כלי עזר', children: [
                 { icon: '🪪', text: 'בדיקת תעודת זהות',              href: bp + 'senior_rights/id-check.html' },
                 { icon: '👩', text: 'מחשבון גיל פרישה לנשים',        href: bp + 'senior_rights/retirement-calculator.html' },
+                { icon: '🔢', text: 'מחשבון האפשרות לקבל יותר מקצבה אחת', href: bp + 'support_files/benefit-combinations.html' },
                 { icon: '📚', text: 'רשימת קצבאות ותשלומים',         href: bp + 'senior_rights/benefits-index.html' },
                 { icon: '📄', text: 'מסמכי מקורות מידע',             href: bp + 'Information_Sources.html' },
                 {
