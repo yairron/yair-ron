@@ -24,6 +24,7 @@
                 { icon: '👴', text: 'גמלת זיקנה מיוחדת',       href: bp + 'new_immigrants/gimlat_zikna_meyuchedet.html' },
             ]
         },
+        { icon: '📊', text: 'סיכום קצבאות ותקרות',       href: bp + 'senior_rights/financial-tables-and-definitions.html' },
         { icon: '🔗', text: 'קישורים חשובים',           href: bp + 'senior_rights/important-links.html' },
         { icon: '📋', text: 'טפסי ביטוח לאומי',         href: bp + 'senior_rights/forms.html' },
         {

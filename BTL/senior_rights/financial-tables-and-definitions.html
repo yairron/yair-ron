@@ -1,0 +1,988 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>טבלאות סכומים כספיים והגדרות 2026</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Assistant:wght@300;400;600;700;800&family=Varela+Round&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #2E5B8A;
+            --secondary: #4A90B5;
+            --accent: #E8A840;
+            --success: #2E7D32;
+            --danger: #C62828;
+            --light: #F5F9FC;
+            --dark: #1A3A52;
+            --text: #2C3E50;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Assistant', 'Segoe UI', Tahoma, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
+            min-height: 100vh;
+            padding: 20px;
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background:
+                radial-gradient(circle at 20% 50%, rgba(255,255,255,0.1) 0%, transparent 50%),
+                radial-gradient(circle at 80% 80%, rgba(255,255,255,0.1) 0%, transparent 50%);
+            animation: backgroundShift 20s ease-in-out infinite;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        @keyframes backgroundShift {
+            0%, 100% { transform: translate(0, 0) scale(1); }
+            50% { transform: translate(-5%, 5%) scale(0.95); }
+        }
+
+        .container { max-width: 1000px; margin: 0 auto; position: relative; z-index: 1; }
+
+        header { text-align: center; margin-bottom: 50px; animation: slideDown 0.8s ease-out; }
+
+        @keyframes slideDown {
+            from { opacity: 0; transform: translateY(-50px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        h1 {
+            font-family: 'Varela Round', sans-serif;
+            font-size: 3rem;
+            font-weight: 800;
+            color: white;
+            margin-bottom: 15px;
+            text-shadow: 3px 5px 15px rgba(0,0,0,0.3);
+            letter-spacing: -2px;
+        }
+
+        .support-info { font-size: 1.1rem; color: #FFD54F; font-weight: 700; text-shadow: 1px 2px 8px rgba(0,0,0,0.3); margin-bottom: 8px; }
+        .subtitle { font-size: 1rem; color: rgba(255,255,255,0.85); font-weight: 300; text-shadow: 1px 2px 8px rgba(0,0,0,0.2); }
+
+        .update-badge {
+            display: inline-block;
+            background: rgba(255,255,255,0.2);
+            backdrop-filter: blur(10px);
+            padding: 8px 20px;
+            border-radius: 20px;
+            color: white;
+            font-size: 0.9rem;
+            margin-top: 15px;
+            font-weight: 600;
+        }
+
+        .accordions-container { margin-bottom: 40px; animation: fadeIn 0.8s ease-out 0.3s both; }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .accordion {
+            background: white;
+            border-radius: 0;
+            margin-bottom: 0;
+            box-shadow: 0 12px 35px rgba(0,0,0,0.2);
+            overflow: hidden;
+            transition: all 0.3s;
+            border-bottom: 1px solid rgba(0,0,0,0.1);
+        }
+        .accordion:first-child { border-radius: 24px 24px 0 0; }
+        .accordion:last-child { border-radius: 0 0 24px 24px; border-bottom: none; }
+        .accordion:only-child { border-radius: 24px; }
+        .accordion:hover { box-shadow: 0 15px 45px rgba(0,0,0,0.25); }
+
+        .accordion-header {
+            padding: 20px 35px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 18px;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            transition: all 0.3s;
+        }
+        .accordion-header:hover { background: linear-gradient(135deg, var(--secondary), var(--primary)); }
+
+        .accordion-icon {
+            width: 60px; height: 60px;
+            border-radius: 16px;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 2rem;
+            background: rgba(255,255,255,0.2);
+            flex-shrink: 0;
+        }
+
+        .accordion-title { font-family: 'Varela Round', sans-serif; font-size: 1.8rem; font-weight: 800; flex: 1; margin: 0; }
+        .accordion-arrow { font-size: 1.5rem; transition: transform 0.3s; width: 40px; text-align: center; flex-shrink: 0; }
+        .accordion.active .accordion-arrow { transform: rotate(180deg); }
+
+        .accordion-content { max-height: 0; overflow: hidden; transition: max-height 0.4s ease; }
+        .accordion.active .accordion-content { max-height: 10000px; height: 80vh; overflow: auto; -webkit-overflow-scrolling: touch; }
+
+        .accordion-body { padding: 35px; font-size: 1.05rem; line-height: 1.9; color: #546E7A; }
+
+        /* תתי-אקורדיונים */
+        .sub-accordion { margin: 15px 0; border: 1px solid #E0E7EE; border-radius: 12px; overflow: hidden; background: #F8FAFB; }
+
+        .sub-accordion-header {
+            padding: 18px 25px;
+            cursor: pointer;
+            display: flex; align-items: center; justify-content: space-between;
+            background: linear-gradient(135deg, #F8FAFB 0%, #EEF2F5 100%);
+            transition: all 0.3s;
+        }
+        .sub-accordion-header:hover { background: linear-gradient(135deg, #EEF2F5 0%, #E3E9EE 100%); }
+        .sub-accordion-title { font-size: 1.15rem; font-weight: 700; color: var(--primary); margin: 0; flex: 1; }
+
+        .sub-accordion-content { max-height: 0; overflow: hidden; transition: max-height 0.4s ease; }
+        .sub-accordion.active > .sub-accordion-content { max-height: 80vh; overflow: auto; -webkit-overflow-scrolling: touch; }
+        .sub-accordion-body { padding: 20px 25px; background: white; }
+
+        .sub-accordion[data-level="3"] .sub-accordion-header { padding: 18px 25px; }
+        .sub-accordion[data-level="3"] .sub-accordion-title { font-size: 1.15rem; }
+
+        .sub-accordion[data-level="4"] { margin: 12px 0; background: #FAFBFC; }
+        .sub-accordion[data-level="4"] .sub-accordion-header { padding: 15px 20px; background: linear-gradient(135deg, #E3F2FD 0%, #BBDEFB 100%); }
+        .sub-accordion[data-level="4"] .sub-accordion-header:hover { background: linear-gradient(135deg, #BBDEFB 0%, #90CAF9 100%); }
+        .sub-accordion[data-level="4"] .sub-accordion-title { font-size: 1.05rem; padding-right: 15px; }
+
+        .sub-accordion[data-level="5"] { margin: 10px 0; background: #FCFCFD; }
+        .sub-accordion[data-level="5"] .sub-accordion-header { padding: 12px 18px; background: linear-gradient(135deg, #E8F5E9 0%, #C8E6C9 100%); }
+        .sub-accordion[data-level="5"] .sub-accordion-header:hover { background: linear-gradient(135deg, #C8E6C9 0%, #A5D6A7 100%); }
+        .sub-accordion[data-level="5"] .sub-accordion-title { font-size: 1rem; padding-right: 25px; }
+
+        .loading { text-align: center; padding: 60px 20px; background: white; border-radius: 24px; box-shadow: 0 12px 35px rgba(0,0,0,0.2); }
+        .loading-spinner { width: 60px; height: 60px; border: 6px solid #E0E7EE; border-top-color: var(--primary); border-radius: 50%; animation: spin 1s linear infinite; margin: 0 auto 20px; }
+        @keyframes spin { to { transform: rotate(360deg); } }
+
+        .info-box {
+            background: rgba(255,255,255,0.95);
+            border-radius: 20px;
+            padding: 30px;
+            margin-top: 40px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+            border-right: 4px solid var(--accent);
+            animation: fadeIn 0.8s ease-out 0.6s both;
+        }
+        .info-box-header { display: flex; align-items: center; gap: 15px; margin-bottom: 15px; }
+        .info-box-icon { font-size: 2rem; }
+        .info-box h3 { font-family: 'Varela Round', sans-serif; font-size: 1.4rem; font-weight: 700; color: var(--accent); margin: 0; }
+        .info-box p { font-size: 1.05rem; line-height: 1.8; color: #546E7A; margin: 0; }
+
+        footer { text-align: center; margin-top: 60px; padding: 30px; color: rgba(255,255,255,0.9); font-size: 1rem; }
+
+        .back-button {
+            display: inline-block;
+            background: rgba(255,255,255,0.25);
+            backdrop-filter: blur(10px);
+            padding: 12px 24px;
+            border-radius: 25px;
+            color: white;
+            text-decoration: none;
+            font-size: 1rem;
+            font-weight: 600;
+            transition: all 0.3s;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+        }
+        .back-button:hover { background: rgba(255,255,255,0.35); transform: translateY(-2px); box-shadow: 0 6px 20px rgba(0,0,0,0.25); }
+        .back-button::before { content: '← '; margin-left: 5px; }
+
+        /* ===== טבלאות נתונים ===== */
+        .data-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 10px 0 18px;
+            font-size: 0.95rem;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+        .data-table th {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            padding: 10px 14px;
+            text-align: right;
+            font-weight: 700;
+            font-size: 0.9rem;
+        }
+        .data-table td {
+            padding: 9px 14px;
+            border-bottom: 1px solid #E0E7EE;
+            color: var(--text);
+            vertical-align: middle;
+        }
+        .data-table tr:nth-child(even) td { background: #F5F9FC; }
+        .data-table tr:last-child td { border-bottom: none; }
+
+        .amount { font-weight: 700; color: var(--success); }
+        .pct    { font-weight: 700; color: var(--primary); }
+        .note   { font-size: 0.85rem; color: #78909C; margin: 4px 0 14px; line-height: 1.5; }
+
+        .def-box {
+            background: #F5F9FC;
+            border-right: 4px solid var(--primary);
+            border-radius: 10px;
+            padding: 14px 18px;
+            margin: 6px 0 14px;
+            line-height: 1.9;
+            font-size: 0.98rem;
+        }
+        .def-box p { margin: 3px 0; }
+        .def-box strong { color: var(--primary); }
+
+        @media (max-width: 768px) {
+            h1 { font-size: 2.2rem; }
+            .accordion-header { padding: 20px 25px; }
+            .accordion-title { font-size: 1.4rem; }
+            .accordion-body { padding: 20px; }
+            .data-table { font-size: 0.82rem; }
+            .data-table th, .data-table td { padding: 7px 9px; }
+        }
+    </style>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-XFYGMQ47QN"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-XFYGMQ47QN');
+    </script>
+</head>
+<body>
+<div class="container">
+
+    <header>
+        <a href="../index.html" class="back-button">חזרה לדף ראשי</a>
+        <h1>📊 טבלאות סכומים כספיים והגדרות</h1>
+        <p class="support-info">ביטוח לאומי — נתונים כספיים עדכניים</p>
+        <p class="subtitle">סכומים, תקרות והגדרות מסודרות לפי נושא</p>
+        <div class="update-badge">מעודכן לינואר 2026</div>
+    </header>
+
+    <div id="content">
+        <div class="loading">
+            <div class="loading-spinner"></div>
+            <p style="color:#546E7A;font-size:1.2rem;font-weight:600;">טוען נתונים...</p>
+        </div>
+    </div>
+
+    <div class="info-box">
+        <div class="info-box-header">
+            <span class="info-box-icon">ℹ️</span>
+            <h3>שימו לב</h3>
+        </div>
+        <p>הנתונים מתייחסים לינואר 2026 ומבוססים על חוזר תשלומים 33 של המוסד לביטוח לאומי. המידע מוצג לצורך עיון בלבד ואינו מהווה ייעוץ משפטי או אחר.</p>
+    </div>
+
+    <footer>
+        <p>פותח עם ❤️ לסיוע לאזרחים ותיקים בישראל</p>
+    </footer>
+
+</div>
+
+<script>
+let NII_CONSTANTS = {};
+const g   = k => NII_CONSTANTS[k]?.value ?? 0;
+const fmt = v => Number(v).toLocaleString('he-IL');
+
+/* ============================================================
+   ACCORDIONS CONFIG
+   ============================================================ */
+const ACCORDIONS_CONFIG = {
+    old_age:           { title: 'קצבת אזרח ותיק',           icon: '👴' },
+    income_supplement: { title: 'השלמת הכנסה',               icon: '💰' },
+    nursing:           { title: 'גמלת סיעוד',                icon: '❤️' },
+    disability:        { title: 'נכות וקצבת שר"מ',           icon: '♿' },
+    survivors:         { title: 'שאירים ומענקי מעבר לנשים',  icon: '🕊️' },
+    holocaust:         { title: 'ניצולי שואה',               icon: '🕯️' },
+    immigrants:        { title: 'עולים חדשים',               icon: '✈️' },
+};
+
+/* ============================================================
+   CONTENT FUNCTIONS
+   ============================================================ */
+
+function contentOldAge() {
+    return `
+<h2>הגדרות</h2>
+<div class="def-box">
+  <p><strong>אוכלוסיית יעד:</strong> תושבי ישראל שהגיעו לגיל הזכאות ושילמו דמי ביטוח לאומי כתושבי ישראל.</p>
+  <p><strong>גיל זכאות לגברים:</strong> 67.</p>
+  <p><strong>גיל זכאות לנשים:</strong> נקבע לפי שנת לידה — בין 62 ל-65 (נשים שנולדו ב-1970 ואילך — גיל 65).</p>
+  <p><strong>תקופת אכשרה:</strong> ${g('qualification_period_old_age_months')} חודשי ביטוח (${g('qualification_period_old_age_months') / 12} שנה) לפחות.</p>
+  <p><strong>מצב משפחתי:</strong> יחיד/ה, עם בן/ת זוג תלוי שאינו/ה מקבל/ת קצבה עצמאית, עם ילדים תלויים.</p>
+</div>
+<div class="def-box" style="border-right-color:var(--accent);background:#FFFDE7;">
+  <p><strong>הגדרת בן זוג</strong> — תושב ישראל נשוי/ידוע בציבור הגר עם המבוטחת שנה לפחות, בגיל 50–70 עם הכנסה עד ₪${fmt(g('income_test_spouse_ceiling'))}/חודש, <em>או</em> מגיל 70 ומעלה.</p>
+  <p><strong>הגדרת בת זוג</strong> — תושבת ישראל נשואה/ידועה בציבור הגרה עם המבוטח שנה לפחות (או ילדה לו ילד), בגיל 45 ומעלה עם הכנסה עד ₪${fmt(g('income_test_spouse_ceiling'))}/חודש, <em>או</em> מגיל 67 ומעלה.</p>
+  <p><strong>הגדרת רווקה / גרושה / אלמנה</strong> — אשה שאינה נשואה (רווקה, גרושה או אלמנה) ומשלמת דמי ביטוח לאומי — בין דרך המעסיק אם היא שכירה, בין כעצמאית, ובין ישירות בעצמה.</p>
+  <p><strong>הגדרת עקרת בית</strong> — אשה הפטורה מתשלום דמי ביטוח לאומי עקב אחת מהסיבות הבאות: (1) נשואה לבעל מבוטח ואינה עובדת שכירה או עצמאית; (2) מקבלת קצבת שאירים ואינה עובדת; (3) מקבלת קצבת תלויים בנפגעי עבודה ואינה עובדת.</p>
+  <p><strong>הגדרת ילד תלוי</strong> — ילד המבוטח (לרבות נכד שכל פרנסתו מהמבוטח): עד גיל 18; עד גיל 20 אם עיקר זמנו בלימודים על-יסודיים; עד גיל 22 אם בשירות סדיר/לאומי (עד 36 חודשים); עד גיל 21 בשירות התנדבותי (עד 12 חודשים).</p>
+</div>
+
+<h2>סכומי קצבה בסיסית</h2>
+<div class="def-box" style="background:#E8F5E9;border-right-color:var(--success);margin-bottom:10px;">
+  <p>⬆️ קצבאות אזרח ותיק עלו ב-${g('cpi_rate_2026')}% בינואר 2026 (הצמדה למדד המחירים)</p>
+</div>
+<table class="data-table">
+  <thead><tr><th>מצב</th><th>סכום חודשי (₪)</th></tr></thead>
+  <tbody>
+    <tr><td>יחיד/ה</td><td class="amount">${fmt(g('pension_single_basic'))}</td></tr>
+    <tr><td>יחיד/ה בגיל 80 ומעלה</td><td class="amount">${fmt(g('pension_single_over80'))}</td></tr>
+    <tr><td>יחיד עם בן/בת זוג שאינם מקבלים קצבה</td><td class="amount">${fmt(g('pension_couple_basic'))}</td></tr>
+    <tr><td>זוג שניהם מקבלים קצבה</td><td class="amount">${fmt(g('pension_single_basic'))} לכל אחד (${fmt(g('pension_single_basic') * 2)} סה"כ)</td></tr>
+    <tr><td>תוספת לבן/בת זוג</td><td class="amount">${fmt(g('pension_spouse_supplement'))}</td></tr>
+    <tr><td>תוספת לכל ילד (עד 2 ילדים)</td><td class="amount">${fmt(g('pension_child_supplement'))}</td></tr>
+    <tr><td>יחיד/ה עם ילד אחד תלוי</td><td class="amount">${fmt(g('pension_single_1child'))}</td></tr>
+    <tr><td>יחיד/ה עם 2 ילדים תלויים</td><td class="amount">${fmt(g('pension_single_2children'))}</td></tr>
+    <tr><td>זוג עם ילד אחד תלוי</td><td class="amount">${fmt(g('pension_couple_1child'))}</td></tr>
+    <tr><td>זוג עם 2 ילדים תלויים</td><td class="amount">${fmt(g('pension_couple_2children'))}</td></tr>
+  </tbody>
+</table>
+
+<h2>תוספות ובונוסים</h2>
+<table class="data-table">
+  <thead><tr><th>סוג תוספת</th><th>שיעור לשנה</th><th>מקסימום</th></tr></thead>
+  <tbody>
+    <tr><td>תוספת ותק (לכל שנת ביטוח מלאה)</td><td class="pct">${g('seniority_bonus_rate')}%</td><td class="pct">${g('seniority_bonus_max')}% (25 שנה)</td></tr>
+    <tr><td>תוספת דחיית קצבה — גבר</td><td class="pct">${g('deferral_bonus_rate')}%</td><td class="pct">${g('deferral_bonus_max_male')}% (3 שנים)</td></tr>
+    <tr><td>תוספת דחיית קצבה — אישה</td><td class="pct">${g('deferral_bonus_rate')}%</td><td class="pct">${g('deferral_bonus_max_female')}% (8 שנים)</td></tr>
+  </tbody>
+</table>
+
+<h2>ניכויי ביטוח בריאות</h2>
+<table class="data-table">
+  <thead><tr><th>מצב משפחתי</th><th>ניכוי חודשי (₪)</th></tr></thead>
+  <tbody>
+    <tr><td>יחיד/ה</td><td class="amount">${fmt(g('health_insurance_deduction_single'))}</td></tr>
+    <tr><td>זוג</td><td class="amount">${fmt(g('health_insurance_deduction_couple'))}</td></tr>
+  </tbody>
+</table>
+
+<h2>תקרות הכנסה לזכאות</h2>
+<h3>הכנסה מעבודה</h3>
+<table class="data-table">
+  <thead><tr><th>מצב משפחתי</th><th>זכאות מלאה (₪)</th><th>זכאות חלקית (₪)</th></tr></thead>
+  <tbody>
+    <tr><td>יחיד/ה</td><td class="amount">${fmt(g('income_test_single_full'))}</td><td class="amount">${fmt(g('income_test_single_partial'))}</td></tr>
+    <tr><td>נשוי/ה</td><td class="amount">${fmt(g('income_test_married_full'))}</td><td class="amount">${fmt(g('income_test_married_partial'))}</td></tr>
+  </tbody>
+</table>
+<p class="note">שיעור הפחתה על הכנסה עודפת: <strong>${g('income_test_deduction_rate')}%</strong> | תקרת הכנסת בן/ת זוג להכרה כ"תלוי/ה": <strong>₪${fmt(g('income_test_spouse_ceiling'))}</strong></p>
+
+<h3>הכנסה מנכסים</h3>
+<table class="data-table">
+  <thead><tr><th>מצב משפחתי / תרחיש</th><th>זכאות מלאה (₪)</th><th>זכאות חלקית (₪)</th></tr></thead>
+  <tbody>
+    <tr><td>יחיד/ה</td><td class="amount">${fmt(g('income_test_single_asset_full'))}</td><td class="amount">${fmt(g('income_test_single_asset_partial'))}</td></tr>
+    <tr><td>נשוי — בן/ת זוג אינו/ה מקבל/ת קצבה</td><td class="amount">${fmt(g('income_test_married_asset_full'))}</td><td class="amount">${fmt(g('income_test_married_asset_partial_no_pension'))}</td></tr>
+    <tr><td>נשוי — שני בני הזוג מקבלים קצבה</td><td class="amount">${fmt(g('income_test_married_asset_full'))}</td><td class="amount">${fmt(g('income_test_married_asset_partial_with_pension'))}</td></tr>
+  </tbody>
+</table>
+`;
+}
+
+function contentIncomeSupplement() {
+    return `
+<h2>הגדרות</h2>
+<div class="def-box">
+  <p><strong>אוכלוסיית יעד:</strong> מקבלי קצבת זיקנה או שאירים שהכנסתם נמוכה מהסכום הקובע לפי גיל ומצב משפחתי.</p>
+  <p><strong>גיל מינימלי:</strong> גיל הזכאות לקצבת זיקנה.</p>
+  <p><strong>תנאי מגורים:</strong> תושב/ת ישראל המתגורר/ת בפועל בישראל.</p>
+  <p><strong>מהות הגמלה:</strong> ההשלמה היא ההפרש בין הסכום הקובע לבין הכנסת המבוטח בפועל.</p>
+  <p><strong>מבחן נכסים:</strong> רכב מעל שווי מסוים ונכסים מעל תקרה עשויים להפחית את הזכאות.</p>
+</div>
+<div class="def-box" style="border-right-color:var(--accent);background:#FFFDE7;">
+  <p><strong>הגדרת בן/בת זוג</strong> — כמו בקצבת זיקנה: בן זוג בגיל 50–70 עם הכנסה עד ₪${fmt(g('income_test_spouse_ceiling'))}/חודש (או מגיל 70+); בת זוג בגיל 45+ עם הכנסה עד ₪${fmt(g('income_test_spouse_ceiling'))}/חודש (או מגיל 67+).</p>
+  <p><strong>הגדרת ילד תלוי</strong> — ילד המבוטח עד גיל 18; עד גיל 20 בלימודים על-יסודיים; עד גיל 22 בשירות סדיר/לאומי (עד 36 חודשים).</p>
+</div>
+
+<h2>תקרות גמלה לפי גיל ומצב משפחתי</h2>
+<h3>עד גיל 70</h3>
+<table class="data-table">
+  <thead><tr><th>מצב משפחתי</th><th>תקרת גמלה חודשית (₪)</th></tr></thead>
+  <tbody>
+    <tr><td>יחיד/ה</td><td class="amount">${fmt(g('income_supplement_single_under70'))}</td></tr>
+    <tr><td>זוג</td><td class="amount">${fmt(g('income_supplement_couple_under70'))}</td></tr>
+    <tr><td>יחיד/ה עם ילד אחד</td><td class="amount">${fmt(g('income_supplement_single_1child_under70'))}</td></tr>
+    <tr><td>יחיד/ה עם 2 ילדים</td><td class="amount">${fmt(g('income_supplement_single_2children_under70'))}</td></tr>
+    <tr><td>זוג עם ילד אחד</td><td class="amount">${fmt(g('income_supplement_couple_1child_under70'))}</td></tr>
+    <tr><td>זוג עם 2 ילדים</td><td class="amount">${fmt(g('income_supplement_couple_2children_under70'))}</td></tr>
+    <tr><td>אלמן/ה ללא ילדים (עד גיל פרישה)</td><td class="amount">${fmt(g('income_supplement_widow_no_children'))}</td></tr>
+  </tbody>
+</table>
+
+<h3>גיל 70 עד 80</h3>
+<table class="data-table">
+  <thead><tr><th>מצב משפחתי</th><th>תקרת גמלה חודשית (₪)</th></tr></thead>
+  <tbody>
+    <tr><td>יחיד/ה</td><td class="amount">${fmt(g('income_supplement_single_70_80'))}</td></tr>
+    <tr><td>זוג</td><td class="amount">${fmt(g('income_supplement_couple_70_80'))}</td></tr>
+    <tr><td>יחיד/ה עם ילד אחד</td><td class="amount">${fmt(g('income_supplement_single_1child_70_80'))}</td></tr>
+    <tr><td>יחיד/ה עם 2 ילדים</td><td class="amount">${fmt(g('income_supplement_single_2children_70_80'))}</td></tr>
+    <tr><td>זוג עם ילד אחד</td><td class="amount">${fmt(g('income_supplement_couple_1child_70_80'))}</td></tr>
+    <tr><td>זוג עם 2 ילדים</td><td class="amount">${fmt(g('income_supplement_couple_2children_70_80'))}</td></tr>
+  </tbody>
+</table>
+
+<h3>גיל 80 ומעלה</h3>
+<table class="data-table">
+  <thead><tr><th>מצב משפחתי</th><th>תקרת גמלה חודשית (₪)</th></tr></thead>
+  <tbody>
+    <tr><td>יחיד/ה</td><td class="amount">${fmt(g('income_supplement_single_over80'))}</td></tr>
+    <tr><td>זוג</td><td class="amount">${fmt(g('income_supplement_couple_over80'))}</td></tr>
+    <tr><td>יחיד/ה עם ילד אחד</td><td class="amount">${fmt(g('income_supplement_single_1child_over80'))}</td></tr>
+    <tr><td>יחיד/ה עם 2 ילדים</td><td class="amount">${fmt(g('income_supplement_single_2children_over80'))}</td></tr>
+    <tr><td>זוג עם ילד אחד</td><td class="amount">${fmt(g('income_supplement_couple_1child_over80'))}</td></tr>
+    <tr><td>זוג עם 2 ילדים</td><td class="amount">${fmt(g('income_supplement_couple_2children_over80'))}</td></tr>
+  </tbody>
+</table>
+
+<h2>פטורים במבחן ההכנסה</h2>
+<table class="data-table">
+  <thead><tr><th>סוג הכנסה</th><th>מצב משפחתי</th><th>סכום פטור (₪)</th></tr></thead>
+  <tbody>
+    <tr><td>הכנסה מפנסיה</td><td>יחיד/ה</td><td class="amount">${fmt(g('pension_income_exempt_single'))}</td></tr>
+    <tr><td>הכנסה מפנסיה</td><td>זוג</td><td class="amount">${fmt(g('pension_income_exempt_couple'))}</td></tr>
+    <tr><td>הכנסה מעבודה כשכיר</td><td>יחיד/ה</td><td class="amount">${fmt(g('work_income_exempt_single'))}</td></tr>
+    <tr><td>הכנסה מעבודה כשכיר</td><td>זוג</td><td class="amount">${fmt(g('work_income_exempt_couple'))}</td></tr>
+    <tr><td>הכנסה מעבודה כעצמאי</td><td>—</td><td class="amount">${fmt(g('work_income_exempt_self_employed'))}</td></tr>
+  </tbody>
+</table>
+
+<h2>מבחן נכסים ורכב</h2>
+<table class="data-table">
+  <thead><tr><th>פריט</th><th>ערך (₪)</th></tr></thead>
+  <tbody>
+    <tr><td>שווי רכב בסיסי לשלילת זכאות</td><td class="amount">${fmt(g('vehicle_threshold_base'))}</td></tr>
+    <tr><td>שווי רכב מורחב לשלילת זכאות</td><td class="amount">${fmt(g('vehicle_threshold_extended'))}</td></tr>
+    <tr><td>שווי רכב פטור — עובד</td><td class="amount">${fmt(g('vehicle_exempt_worker'))}</td></tr>
+    <tr><td>שווי רכב פטור — לא עובד</td><td class="amount">${fmt(g('vehicle_exempt_non_worker'))}</td></tr>
+    <tr><td>שיעור חישוב שווי הרכב להפחתה</td><td class="pct">${g('vehicle_deduction_rate') * 100}%</td></tr>
+    <tr><td>שווי מדור — עובד לפני גיל פרישה</td><td class="amount">${fmt(g('housing_allowance_worker_before_retirement'))}</td></tr>
+    <tr><td>שווי מדור — עובד אחרי גיל פרישה</td><td class="amount">${fmt(g('housing_allowance_worker_after_retirement'))}</td></tr>
+  </tbody>
+</table>
+
+<h2>תשלומים נלווים</h2>
+<table class="data-table">
+  <thead><tr><th>פריט</th><th>סכום (₪)</th></tr></thead>
+  <tbody>
+    <tr><td>דמי כיס למאושפזים — עם השלמת הכנסה</td><td class="amount">${fmt(g('pocket_money_with_supplement'))}</td></tr>
+    <tr><td>דמי כיס למאושפזים — ללא השלמת הכנסה</td><td class="amount">${fmt(g('pocket_money_without_supplement'))}</td></tr>
+    <tr><td>מענק חימום שנתי</td><td class="amount">${fmt(g('heating_grant'))}</td></tr>
+  </tbody>
+</table>
+
+<h2>כללי שהייה בחו"ל</h2>
+<table class="data-table">
+  <thead><tr><th>פריט</th><th>ערך</th></tr></thead>
+  <tbody>
+    <tr><td>שהייה מקסימלית ללא פגיעה בגמלה (בשנה)</td><td class="pct">${g('income_supplement_abroad_max_days')} ימים</td></tr>
+    <tr><td>מספר יציאות מקסימלי לחו"ל בשנה</td><td class="pct">${g('income_supplement_abroad_max_trips')} יציאות</td></tr>
+    <tr><td>שהייה הגוררת שלילה רטרואקטיבית על כל השנה</td><td class="pct">מ-${g('income_supplement_abroad_retroactive_days')} ימים</td></tr>
+    <tr><td>שהייה לצורך טיפול רפואי (מקסימום)</td><td class="pct">${g('income_supplement_abroad_medical_max_months')} חודשים</td></tr>
+    <tr><td>שהייה לצורך אבל על קרוב משפחה</td><td class="pct">${g('income_supplement_abroad_mourning_max_weeks')} שבועות</td></tr>
+    <tr><td>שהייה לחאג' ראשון</td><td class="pct">${g('income_supplement_abroad_hajj_max_days')} ימים</td></tr>
+    <tr><td>מועד דיווח על שינוי שמשפיע על זכאות</td><td class="pct">${g('income_supplement_reporting_deadline_days')} ימים</td></tr>
+  </tbody>
+</table>
+`;
+}
+
+function contentNursing() {
+    return `
+<h2>הגדרות</h2>
+<div class="def-box">
+  <p><strong>אוכלוסיית יעד:</strong> תושבי ישראל מגיל הזכאות (גברים 67, נשים לפי שנת לידה) הזקוקים לסיוע בפעולות יומיום.</p>
+  <p><strong>תנאי זכאות:</strong> קיים צורך בסיוע בפעולות יום-יום בשל מגבלה גופנית או קוגניטיבית.</p>
+  <p><strong>אופן מתן הגמלה:</strong> שירות (ימי עבודה של מטפל/ת). ניתן להמיר חלק מהגמלה לתשלום כספי.</p>
+  <p><strong>6 רמות גמלה</strong> — נקבעות לפי מספר נקודות תלות בהערכת תפקוד.</p>
+  <p><strong>מבחן הכנסה:</strong> גמלה מלאה עד תקרה; מעל תקרה שנייה — זכאות ל-50% בלבד.</p>
+</div>
+<div class="def-box" style="border-right-color:var(--accent);background:#FFFDE7;">
+  <p><strong>הגדרת בן/בת זוג לצורך מבחן ההכנסה</strong> — בן זוג בגיל 50–70 עם הכנסה עד ₪${fmt(g('income_test_spouse_ceiling'))}/חודש (או מגיל 70+); בת זוג בגיל 45+ עם הכנסה עד ₪${fmt(g('income_test_spouse_ceiling'))}/חודש (או מגיל 67+). הכנסות שני בני הזוג נבחנות יחדיו.</p>
+</div>
+
+<h2>רמות טיפול וסכומים</h2>
+<table class="data-table">
+  <thead><tr><th>רמת גמלה</th><th>שווי כספי מלא (₪)</th><th>המרה כספית מרבית (₪)</th></tr></thead>
+  <tbody>
+    <tr><td>רמה 1</td><td class="amount">${fmt(g('nursing_level_1_cash'))}</td><td>—</td></tr>
+    <tr><td>רמה 2</td><td class="amount">${fmt(g('nursing_level_2_cash'))}</td><td class="amount">${fmt(g('nursing_level_2_conversion'))}</td></tr>
+    <tr><td>רמה 3</td><td class="amount">${fmt(g('nursing_level_3_cash'))}</td><td class="amount">${fmt(g('nursing_level_3_conversion'))}</td></tr>
+    <tr><td>רמה 4</td><td class="amount">${fmt(g('nursing_level_4_cash'))}</td><td class="amount">${fmt(g('nursing_level_4_conversion'))}</td></tr>
+    <tr><td>רמה 5</td><td class="amount">${fmt(g('nursing_level_5_cash'))}</td><td class="amount">${fmt(g('nursing_level_5_conversion'))}</td></tr>
+    <tr><td>רמה 6</td><td class="amount">${fmt(g('nursing_level_6_cash'))}</td><td class="amount">${fmt(g('nursing_level_6_conversion'))}</td></tr>
+  </tbody>
+</table>
+<p class="note">המרה כספית מרבית — הסכום שניתן לקבל במזומן במקום שירות (חל מרמה 2 ומעלה).</p>
+
+<h2>תקרות הכנסה</h2>
+<table class="data-table">
+  <thead><tr><th>היקף גמלה</th><th>מצב משפחתי</th><th>תקרת הכנסה (₪)</th></tr></thead>
+  <tbody>
+    <tr><td>גמלה מלאה (100%)</td><td>יחיד/ה</td><td class="amount">${fmt(g('nursing_income_test_full_single'))}</td></tr>
+    <tr><td>גמלה מלאה (100%)</td><td>זוג</td><td class="amount">${fmt(g('nursing_income_test_full_couple'))}</td></tr>
+    <tr><td>גמלה חצי (50%)</td><td>יחיד/ה</td><td class="amount">${fmt(g('nursing_income_test_half_single'))}</td></tr>
+    <tr><td>גמלה חצי (50%)</td><td>זוג</td><td class="amount">${fmt(g('nursing_income_test_half_couple'))}</td></tr>
+  </tbody>
+</table>
+`;
+}
+
+function contentDisability() {
+    return `
+<h2>הגדרות</h2>
+<div class="def-box">
+  <p><strong>קצבת נכות כללית:</strong> לאנשים בגיל 18 עד גיל פרישה שכושר עבודתם פחת ב-50% לפחות בשל מצב רפואי, ואינם מסוגלים להשתכר מעל תקרה מסוימת.</p>
+  <p><strong>דרגות נכות:</strong> 60%, 65%, 74%, 100% — נקבעות לפי שיעור הגריעה בכושר ההשתכרות.</p>
+  <p><strong>קצבת שר"מ (שירותים מיוחדים):</strong> לנכים הזקוקים לסיוע בפעולות יומיום. ניתנת בנוסף לקצבת הנכות.</p>
+  <p><strong>תוספות אפשריות:</strong> בן/ת זוג, ילדים תלויים, תוספת נכות רפואית.</p>
+</div>
+<div class="def-box" style="border-right-color:var(--accent);background:#FFFDE7;">
+  <p><strong>הגדרת בן/בת זוג</strong> — בן זוג בגיל 50–70 עם הכנסה עד ₪${fmt(g('disability_spouse_income_ceiling'))}/חודש (או מגיל 70+); בת זוג בגיל 45+ עם הכנסה עד ₪${fmt(g('disability_spouse_income_ceiling'))}/חודש (או מגיל 67+).</p>
+  <p><strong>הגדרת ילד תלוי</strong> — ילד המבוטח עד גיל 18; עד גיל 20 בלימודים על-יסודיים; עד גיל 22 בשירות סדיר/לאומי (עד 36 חודשים); עד גיל 21 בשירות התנדבותי (עד 12 חודשים).</p>
+</div>
+
+<h2>קצבת נכות כללית</h2>
+<h3>סכומי קצבה בסיסית לפי דרגה</h3>
+<table class="data-table">
+  <thead><tr><th>דרגת נכות</th><th>קצבה בסיסית (₪)</th><th>תוספת בן/ת זוג (₪)</th><th>תוספת ילד (₪)</th></tr></thead>
+  <tbody>
+    <tr><td>100% (דרגה מלאה)</td><td class="amount">${fmt(g('disability_full'))}</td><td class="amount">${fmt(g('disability_spouse'))}</td><td class="amount">${fmt(g('disability_child'))}</td></tr>
+    <tr><td>74%</td><td class="amount">${fmt(g('disability_74'))}</td><td class="amount">${fmt(g('disability_spouse_74'))}</td><td class="amount">${fmt(g('disability_child_74'))}</td></tr>
+    <tr><td>65%</td><td class="amount">${fmt(g('disability_65'))}</td><td class="amount">${fmt(g('disability_spouse_65'))}</td><td class="amount">${fmt(g('disability_child_65'))}</td></tr>
+    <tr><td>60%</td><td class="amount">${fmt(g('disability_60'))}</td><td class="amount">${fmt(g('disability_spouse_60'))}</td><td class="amount">${fmt(g('disability_child_60'))}</td></tr>
+  </tbody>
+</table>
+<p class="note">תקרת הכנסת בן/ת זוג לזכאות לתוספת: <strong>₪${fmt(g('disability_spouse_income_ceiling'))}</strong></p>
+
+<h3>תוספות נכות רפואית</h3>
+<table class="data-table">
+  <thead><tr><th>שיעור נכות רפואית</th><th>תוספת חודשית (₪)</th></tr></thead>
+  <tbody>
+    <tr><td>80% ומעלה</td><td class="amount">${fmt(g('disability_addition_80'))}</td></tr>
+    <tr><td>50% – 79%</td><td class="amount">${fmt(g('disability_addition_79_50'))}</td></tr>
+    <tr><td>40% – 49%</td><td class="amount">${fmt(g('disability_addition_49_40'))}</td></tr>
+  </tbody>
+</table>
+
+<h2>קצבת שירותים מיוחדים (שר"מ)</h2>
+<table class="data-table">
+  <thead><tr><th>רמת שר"מ</th><th>סכום חודשי (₪)</th></tr></thead>
+  <tbody>
+    <tr><td>50%</td><td class="amount">${fmt(g('special_services_50'))}</td></tr>
+    <tr><td>65%</td><td class="amount">${fmt(g('special_services_65'))}</td></tr>
+    <tr><td>75%</td><td class="amount">${fmt(g('special_services_75'))}</td></tr>
+    <tr><td>100%</td><td class="amount">${fmt(g('special_services_100'))}</td></tr>
+    <tr><td>112%</td><td class="amount">${fmt(g('special_services_112'))}</td></tr>
+    <tr><td>188%</td><td class="amount">${fmt(g('special_services_188'))}</td></tr>
+    <tr><td>188% + 2 מטפלים</td><td class="amount">${fmt(g('special_services_188_2caregivers'))}</td></tr>
+    <tr><td>235% (חדש 2026)</td><td class="amount">${fmt(g('special_services_235'))}</td></tr>
+    <tr><td>תוספת מונשם (חדש 2026)</td><td class="amount">${fmt(g('special_services_ventilated'))}</td></tr>
+  </tbody>
+</table>
+
+<h2>גמלת ילד נכה</h2>
+<table class="data-table">
+  <thead><tr><th>פריט</th><th>סכום חודשי (₪)</th></tr></thead>
+  <tbody>
+    <tr><td>ילד נכה — 100% נכות</td><td class="amount">${fmt(g('disabled_child_100'))}</td></tr>
+    <tr><td>תוספת מונשם לילד נכה (חדש 2026)</td><td class="amount">${fmt(g('disabled_child_ventilated'))}</td></tr>
+  </tbody>
+</table>
+`;
+}
+
+function contentSurvivors() {
+    return `
+<h2>הגדרות</h2>
+<div class="def-box">
+  <p><strong>קצבת שאירים:</strong> לאלמן/ה, יתומים וילדים שאיר של מבוטח/ת שנפטר/ה, בכפוף לתנאי ביטוח ומבחן הכנסה.</p>
+  <p><strong>גיל מינימלי לאלמן/ה:</strong> 40 (קצבה מלאה מגיל 50). אלמן/ה מתחת לגיל 40 ללא ילדים — אינו/ה זכאי/ת לקצבה שוטפת.</p>
+  <p><strong>ילד שאיר:</strong> ילד של המנוח/ה שטרם מלאו לו/לה 18 (או עד 22 אם לומד/ת).</p>
+  <p><strong>מענק מעבר לנשים:</strong> תשלום חד-פעמי לנשים שנולדו בין 1963 ל-1965 שגיל פרישתן הועלה בתקופת המעבר.</p>
+</div>
+<div class="def-box" style="border-right-color:var(--accent);background:#FFFDE7;">
+  <p><strong>הגדרת אלמנה</strong> — אשת המבוטח בשעת פטירתו, שהייתה נשואה לו שנה לפחות (או חצי שנה אם בת 55+, או ילדה לו ילד). גם במקרה פרידה — נחשבת אלמנה אם הפרידה נמשכה פחות מ-3 שנים מתוך 5 השנים האחרונות, או שהייתה זכאית למזונות / הוא נשא בפועל במזונותיה ב-12 החודשים האחרונים.</p>
+  <p><strong>הגדרת אלמן</strong> — בן זוגה של המבוטחת בשעת פטירתה, שהיו נשואים שנה לפחות (או חצי שנה אם בן 55+), לא היו נפרדים 12 חודשים רצופים סמוך לפטירה, ויש עמו ילד <em>או</em> הכנסתו אינה עולה על ₪${fmt(g('survivors_income_test_no_dependents'))}/חודש.</p>
+  <p><strong>הגדרת "אלמנה בת קצבה"</strong> — אלמנה שאינה עובדת שכירה או עצמאית, וזכאית לקצבה לפי סעיפים 132 או 252 לחוק.</p>
+  <p><strong>הגדרת ילד שאיר</strong> — ילד המבוטח (לרבות נכד שכל פרנסתו מהמבוטח): עד גיל 18; עד גיל 20 בלימודים על-יסודיים; עד גיל 22 בשירות סדיר/לאומי (עד 36 חודשים).</p>
+  <p><strong>הגדרת יתום</strong> — ילד שנפטר אחד מהוריו (יתום רגיל), או שנפטרו שניהם (יתום משני הורים). הגמלה גבוהה יותר כשההורה השני אינו זכאי לקצבת שאירים.</p>
+  <p><strong>הגדרת רווקה / גרושה / אלמנה</strong> — אשה שאינה נשואה ומשלמת דמי ביטוח לאומי — דרך המעסיק (שכירה), כעצמאית, או ישירות בעצמה.</p>
+  <p><strong>הגדרת עקרת בית</strong> — אשה הפטורה מתשלום דמי ביטוח לאומי כי: (1) נשואה לבעל מבוטח ואינה עובדת; (2) מקבלת קצבת שאירים ואינה עובדת; (3) מקבלת קצבת תלויים בנפגעי עבודה ואינה עובדת.</p>
+</div>
+
+<h2>קצבת שאירים</h2>
+<table class="data-table">
+  <thead><tr><th>אוכלוסייה</th><th>גיל / הערה</th><th>סכום חודשי (₪)</th></tr></thead>
+  <tbody>
+    <tr><td>אלמן/ה ללא ילדים</td><td>50 ומעלה</td><td class="amount">${fmt(g('survivors_widow_over50'))}</td></tr>
+    <tr><td>אלמן/ה ללא ילדים</td><td>40 – 49</td><td class="amount">${fmt(g('survivors_widow_40_49'))}</td></tr>
+    <tr><td>אלמן/ה ללא ילדים</td><td>80 ומעלה</td><td class="amount">${fmt(g('survivors_widow_over80'))}</td></tr>
+    <tr><td>אלמן/ה עם ילד אחד</td><td>—</td><td class="amount">${fmt(g('survivors_spouse_1child'))}</td></tr>
+    <tr><td>אלמן/ה עם שני ילדים</td><td>—</td><td class="amount">${fmt(g('survivors_spouse_2children'))}</td></tr>
+    <tr><td>אלמן/ה המקבל/ת גם קצבת זיקנה</td><td>50% מכל קצבה</td><td class="amount">${fmt(g('survivors_spouse_half_with_pension'))}</td></tr>
+    <tr><td>ילד שאיר (אינו יתום מב' הוריו)</td><td>—</td><td class="amount">${fmt(g('survivors_orphan'))}</td></tr>
+    <tr><td>ילד שאיר בודד (ללא הורה מקבל קצבה)</td><td>—</td><td class="amount">${fmt(g('survivors_orphan_single'))}</td></tr>
+    <tr><td>יתום משני הורים (לכל ילד)</td><td>—</td><td class="amount">${fmt(g('orphan_both_parents_first'))}</td></tr>
+  </tbody>
+</table>
+
+<h2>תקרות הכנסה לשאירים</h2>
+<table class="data-table">
+  <thead><tr><th>תרחיש</th><th>תקרת הכנסה (₪)</th></tr></thead>
+  <tbody>
+    <tr><td>ללא תלויים (לוח י')</td><td class="amount">${fmt(g('survivors_income_test_no_dependents'))}</td></tr>
+    <tr><td>עם תלויים (לוח י')</td><td class="amount">${fmt(g('survivors_income_test_with_dependents'))}</td></tr>
+    <tr><td>הפחתה מהכנסה מעבודה/פנסיה/קופת גמל</td><td class="amount">${fmt(g('survivors_income_allowed_employed'))}</td></tr>
+    <tr><td>תקרת פנסיית שאירים — אלמן שכיר</td><td class="amount">${fmt(g('survivors_pension_employed_ceiling'))}</td></tr>
+  </tbody>
+</table>
+
+<h2>דמי מחיה</h2>
+<table class="data-table">
+  <thead><tr><th>פריט</th><th>סכום חודשי (₪)</th></tr></thead>
+  <tbody>
+    <tr><td>דמי מחיה בשיעור 6.5%</td><td class="amount">${fmt(g('livelihood_allowance_6_5'))}</td></tr>
+    <tr><td>דמי מחיה בשיעור 9% (תוספת החיה)</td><td class="amount">${fmt(g('livelihood_allowance_9'))}</td></tr>
+    <tr><td>הכנסה מותרת לצורך דמי מחיה — יתום ראשון</td><td class="amount">${fmt(g('livelihood_income_threshold_orphan'))}</td></tr>
+    <tr><td>תוספת לכל ילד נוסף</td><td class="amount">${fmt(g('livelihood_child_addition'))}</td></tr>
+  </tbody>
+</table>
+
+<h2>מענקים חד-פעמיים</h2>
+<table class="data-table">
+  <thead><tr><th>מענק</th><th>סכום (₪)</th></tr></thead>
+  <tbody>
+    <tr><td>מענק פטירה</td><td class="amount">${fmt(g('death_grant'))}</td></tr>
+    <tr><td>מענק בר/בת מצווה</td><td class="amount">${fmt(g('bar_mitzvah_grant'))}</td></tr>
+  </tbody>
+</table>
+
+<h2>מענק מעבר לנשים</h2>
+<div class="def-box">
+  <p><strong>זכאות:</strong> נשים שנולדו בין 1963 ל-1965, שגיל פרישתן הועלה בתקופת המעבר לגיל 65.</p>
+  <p><strong>מגבלת הכנסה שנתית שאינה מעבודה:</strong> ₪${fmt(g('transition_grant_annual_income_limit'))}</p>
+  <p><strong>הכנסה חודשית מותרת ממועד הגשת הבקשה:</strong> ₪${fmt(g('transition_grant_income_allowed'))}</p>
+</div>
+<table class="data-table">
+  <thead><tr><th>שנת לידה</th><th>סכום המענק (₪)</th></tr></thead>
+  <tbody>
+    <tr><td>1963</td><td class="amount">${fmt(g('transition_grant_1963'))}</td></tr>
+    <tr><td>1964</td><td class="amount">${fmt(g('transition_grant_1964'))}</td></tr>
+    <tr><td>1965</td><td class="amount">${fmt(g('transition_grant_1965'))}</td></tr>
+  </tbody>
+</table>
+<p class="note">טווח כללי: מינימום ₪${fmt(g('transition_grant_min'))} — מקסימום ₪${fmt(g('transition_grant_max'))}</p>
+`;
+}
+
+function contentHolocaust() {
+    return `
+<h2>הגדרות</h2>
+<div class="def-box">
+  <p><strong>אוכלוסיית יעד:</strong> מי שנרדף בידי המשטר הנאצי ושהה בתחומים שהיו תחת שלטון גרמני, ורכש תושבות ישראל.</p>
+  <p><strong>מקורות תשלום:</strong> המוסד לביטוח לאומי, ועידת התביעות (Claims Conference), ממשלת גרמניה (BEG, ZRBG), קרן סעיף 2.</p>
+  <p><strong>ניתן לצבור</strong> מספר מקורות תשלום במקביל, בכפוף לתנאי כל מקור.</p>
+</div>
+
+<h2>מענק שנתי</h2>
+<table class="data-table">
+  <thead><tr><th>פריט</th><th>סכום (₪)</th></tr></thead>
+  <tbody>
+    <tr><td>מענק שנתי לניצולי שואה ללא רנטה חודשית</td><td class="amount">${fmt(g('holocaust_annual_grant'))}</td></tr>
+  </tbody>
+</table>
+
+<h2>גמלת סיעוד לניצולי שואה</h2>
+<table class="data-table">
+  <thead><tr><th>פריט</th><th>ערך</th></tr></thead>
+  <tbody>
+    <tr><td>שעות סיעוד שבועיות</td><td class="pct">${g('holocaust_nursing_hours_count')} שעות</td></tr>
+    <tr><td>שווי 9 שעות סיעוד שבועיות (6+ נקודות תלות)</td><td class="amount">₪${fmt(g('holocaust_nursing_hours_9_value'))}</td></tr>
+    <tr><td>שווי שעת סיעוד שבועית אחת</td><td class="amount">₪${fmt(g('holocaust_nursing_hour_rate'))}</td></tr>
+    <tr><td>תוספת סיעוד — 5–5.5 נקודות תלות</td><td class="amount">₪${fmt(g('holocaust_nursing_partial_5_5'))}</td></tr>
+    <tr><td>תוספת סיעוד מופחתת — 6+ נקודות, הכנסה גבוהה</td><td class="amount">₪${fmt(g('holocaust_nursing_reduced_income'))}</td></tr>
+    <tr><td>תוספת סיעוד — 1.5–2 נקודות תלות</td><td class="amount">₪${fmt(g('holocaust_nursing_1_5_2'))}</td></tr>
+    <tr><td>הכנסה מרבית לזכאות לסול"ם</td><td class="amount">₪${fmt(g('holocaust_solem_income_ceiling'))}</td></tr>
+  </tbody>
+</table>
+
+<h2>תשלומי ועידת התביעות (Claims Conference)</h2>
+<table class="data-table">
+  <thead><tr><th>פריט</th><th>סכום</th></tr></thead>
+  <tbody>
+    <tr><td>תשלום חודשי מועידת התביעות</td><td class="amount">₪${fmt(g('holocaust_claims_conference_monthly'))}</td></tr>
+    <tr><td>תשלום שנתי ועידת התביעות</td><td class="amount">€${fmt(g('holocaust_claims_conference_euro'))}</td></tr>
+    <tr><td>קרן סעיף 2 — תשלום חודשי</td><td class="amount">€${fmt(g('holocaust_section2_monthly_euro'))}</td></tr>
+    <tr><td>קרן סעיף 2 — תשלום רבעוני</td><td class="amount">€${fmt(g('holocaust_section2_quarterly_euro'))}</td></tr>
+  </tbody>
+</table>
+
+<h2>תגמולי רדיפות הנאצים</h2>
+<table class="data-table">
+  <thead><tr><th>פריט</th><th>סכום</th></tr></thead>
+  <tbody>
+    <tr><td>שווי כל אחוז נכות (חודשי)</td><td class="amount">₪${fmt(g('holocaust_persecution_rate_per_pct'))}</td></tr>
+    <tr><td>תגמול מינימלי — 25% נכות</td><td class="amount">₪${fmt(g('holocaust_persecution_min_25pct'))}</td></tr>
+    <tr><td>תגמול מקסימלי — 100% נכות</td><td class="amount">₪${fmt(g('holocaust_persecution_max_100pct'))}</td></tr>
+    <tr><td>תגמול מוגדל למעוטי הכנסה — מינימום (25%)</td><td class="amount">₪${fmt(g('holocaust_persecution_enhanced_min_25pct'))}</td></tr>
+    <tr><td>תגמול מוגדל למעוטי הכנסה — מקסימום (100%)</td><td class="amount">₪${fmt(g('holocaust_persecution_enhanced_100'))}</td></tr>
+  </tbody>
+</table>
+
+<h2>מענקי הבראה ונסיעות</h2>
+<table class="data-table">
+  <thead><tr><th>פריט</th><th>סכום (₪)</th></tr></thead>
+  <tbody>
+    <tr><td>מענק הבראה כספי לנכי רדיפות הנאצים</td><td class="amount">${fmt(g('holocaust_recreation_grant'))}</td></tr>
+    <tr><td>דמי נסיעות להבראה כספית</td><td class="amount">${fmt(g('holocaust_recreation_travel'))}</td></tr>
+    <tr><td>דמי נסיעות להבראה עם טיפולים</td><td class="amount">${fmt(g('holocaust_recreation_travel_treatment'))}</td></tr>
+  </tbody>
+</table>
+
+<h2>סיוע נוסף</h2>
+<table class="data-table">
+  <thead><tr><th>פריט</th><th>סכום חודשי (₪)</th></tr></thead>
+  <tbody>
+    <tr><td>סיוע לעובד זר לניצולי שואה עם דמנציה</td><td class="amount">${fmt(g('holocaust_foreign_worker_aid'))}</td></tr>
+    <tr><td>סיוע בעזרה בבית לניצולי שואה</td><td class="amount">${fmt(g('holocaust_home_help_aid'))}</td></tr>
+  </tbody>
+</table>
+`;
+}
+
+function contentImmigrants() {
+    return `
+<h2>הגדרות</h2>
+<div class="def-box">
+  <p><strong>אוכלוסיית יעד:</strong> עולים חדשים ותושבים חוזרים שהגיעו לישראל לאחר גיל הביטוח ואינם זכאים לקצבת זיקנה רגילה.</p>
+  <p><strong>מימון:</strong> מתקציב האוצר, משולמת על ידי המוסד לביטוח לאומי.</p>
+  <p><strong>גיל זכאות:</strong> זהה לגיל הזכאות לקצבת זיקנה (לפי מגדר ושנת לידה).</p>
+  <p><strong>מצב משפחתי:</strong> יחיד/ה, עם בן/ת זוג תלוי, עם ילדים תלויים.</p>
+  <p><strong>מבחן הכנסה מעבודה:</strong> חל גם מגיל 70 (בשונה מקצבת הזיקנה הרגילה).</p>
+  <p><strong>אינה כוללת:</strong> תוספת ותק, תוספת דחיית קצבה.</p>
+  <p><strong>כוללת:</strong> תוספת בן/ת זוג, ילדים תלויים, השלמת הכנסה בתנאים הרגילים.</p>
+</div>
+<div class="def-box" style="border-right-color:var(--accent);background:#FFFDE7;">
+  <p><strong>הגדרת בן זוג</strong> — תושב ישראל נשוי/ידוע בציבור הגר עם המבוטחת שנה לפחות, בגיל 50–70 עם הכנסה עד ₪${fmt(g('income_test_spouse_ceiling'))}/חודש, <em>או</em> מגיל 70 ומעלה.</p>
+  <p><strong>הגדרת בת זוג</strong> — תושבת ישראל נשואה/ידועה בציבור הגרה עם המבוטח שנה לפחות (או ילדה לו ילד), בגיל 45 ומעלה עם הכנסה עד ₪${fmt(g('income_test_spouse_ceiling'))}/חודש, <em>או</em> מגיל 67 ומעלה.</p>
+  <p><strong>הערה:</strong> גמלת זיקנה מיוחדת לא כוללת תוספת ותק ולא תוספת דחיית קצבה.</p>
+</div>
+
+<h2>סכומי הגמלה</h2>
+<table class="data-table">
+  <thead><tr><th>מצב משפחתי</th><th>גיל / הערה</th><th>סכום חודשי (₪)</th></tr></thead>
+  <tbody>
+    <tr><td>יחיד/ה</td><td>עד 80</td><td class="amount">${fmt(g('pension_single_basic'))}</td></tr>
+    <tr><td>יחיד/ה</td><td>80 ומעלה</td><td class="amount">${fmt(g('pension_single_over80'))}</td></tr>
+    <tr><td>עם בן/ת זוג תלוי</td><td>—</td><td class="amount">${fmt(g('pension_couple_basic'))}</td></tr>
+    <tr><td>תוספת בן/ת זוג</td><td>—</td><td class="amount">${fmt(g('pension_spouse_supplement'))}</td></tr>
+  </tbody>
+</table>
+
+<h2>תקרות הכנסה מעבודה</h2>
+<table class="data-table">
+  <thead><tr><th>מצב משפחתי</th><th>גיל</th><th>תקרת הכנסה מעבודה (₪)</th></tr></thead>
+  <tbody>
+    <tr><td>יחיד/ה</td><td>עד 70</td><td class="amount">${fmt(g('income_test_single_full'))}</td></tr>
+    <tr><td>נשוי/ה</td><td>עד 70</td><td class="amount">${fmt(g('income_test_married_full'))}</td></tr>
+    <tr><td>יחיד/ה</td><td>70 ומעלה (×3)</td><td class="amount">${fmt(g('income_test_single_full') * 3)}</td></tr>
+    <tr><td>נשוי/ה</td><td>70 ומעלה (×3)</td><td class="amount">${fmt(g('income_test_married_full') * 3)}</td></tr>
+  </tbody>
+</table>
+<p class="note">מגיל 70 — תקרת ההכנסה מעבודה היא פי 3 מהתקרה הרגילה.</p>
+<p class="note">דמי ביטוח לאומי מינימליים לתושב ישראל השוהה בחו"ל: <strong>₪${fmt(g('min_insurance_premium_abroad'))}/חודש</strong></p>
+`;
+}
+
+/* ============================================================
+   CONTENT MAP
+   ============================================================ */
+const CONTENT_MAP = {
+    old_age:           contentOldAge,
+    income_supplement: contentIncomeSupplement,
+    nursing:           contentNursing,
+    disability:        contentDisability,
+    survivors:         contentSurvivors,
+    holocaust:         contentHolocaust,
+    immigrants:        contentImmigrants,
+};
+
+/* ============================================================
+   ACCORDION MECHANISM
+   ============================================================ */
+function processNestedHeadings(container, depth = 0) {
+    const allHeadings = Array.from(container.querySelectorAll('h2, h3, h4, h5, h6'));
+    const headings = allHeadings.filter(heading => {
+        let parent = heading.parentElement;
+        while (parent && parent !== container) {
+            if (parent.classList && parent.classList.contains('sub-accordion')) return false;
+            parent = parent.parentElement;
+        }
+        return true;
+    });
+
+    headings.forEach(heading => {
+        if (heading.classList.contains('no-accordion')) return;
+        let contentElements = [];
+        let nextElement = heading.nextElementSibling;
+        const currentLevel = parseInt(heading.tagName.substring(1));
+
+        while (nextElement) {
+            const nextTagName = nextElement.tagName;
+            if (nextTagName && nextTagName.match(/^H[2-6]$/)) {
+                const nextLevel = parseInt(nextTagName.substring(1));
+                if (nextLevel <= currentLevel) break;
+            }
+            contentElements.push(nextElement);
+            nextElement = nextElement.nextElementSibling;
+        }
+
+        if (contentElements.length > 0) {
+            const subAccordion = document.createElement('div');
+            subAccordion.className = 'sub-accordion';
+            subAccordion.setAttribute('data-level', currentLevel);
+
+            const subHeader = document.createElement('div');
+            subHeader.className = 'sub-accordion-header';
+
+            const subTitle = document.createElement('div');
+            subTitle.className = 'sub-accordion-title';
+            subTitle.innerHTML = heading.innerHTML;
+            subHeader.appendChild(subTitle);
+
+            const subContent = document.createElement('div');
+            subContent.className = 'sub-accordion-content';
+
+            const subBody = document.createElement('div');
+            subBody.className = 'sub-accordion-body';
+            contentElements.forEach(el => subBody.appendChild(el));
+
+            subContent.appendChild(subBody);
+            subAccordion.appendChild(subHeader);
+            subAccordion.appendChild(subContent);
+            heading.parentNode.replaceChild(subAccordion, heading);
+            processNestedHeadings(subBody, depth + 1);
+
+            subHeader.addEventListener('click', (event) => {
+                event.stopPropagation();
+                const wasActive = subAccordion.classList.contains('active');
+
+                let parentBody = subAccordion.parentElement;
+                while (parentBody && !parentBody.classList.contains('accordion-body') && !parentBody.classList.contains('sub-accordion-body')) {
+                    parentBody = parentBody.parentElement;
+                }
+                if (parentBody) {
+                    parentBody.querySelectorAll(':scope > .sub-accordion.active').forEach(sib => {
+                        if (sib !== subAccordion) sib.classList.remove('active');
+                    });
+                }
+
+                subAccordion.classList.toggle('active');
+                if (!wasActive) {
+                    subAccordion.querySelectorAll('.sub-accordion.active').forEach(n => n.classList.remove('active'));
+                    setTimeout(() => {
+                        subAccordion.scrollIntoView({ behavior: 'smooth', block: 'start', inline: 'nearest' });
+                    }, 450);
+                }
+            });
+        }
+    });
+}
+
+function convertHeadingsToSubAccordions() {
+    document.querySelectorAll('.accordion-body').forEach(body => {
+        processNestedHeadings(body, 0);
+    });
+}
+
+function initAccordions() {
+    const accordions = document.querySelectorAll('.accordion');
+    accordions.forEach(accordion => {
+        const header = accordion.querySelector('.accordion-header');
+        header.addEventListener('click', () => {
+            const wasActive = accordion.classList.contains('active');
+            accordions.forEach(other => {
+                if (other !== accordion) other.classList.remove('active');
+            });
+            accordion.classList.toggle('active');
+            if (!wasActive) {
+                accordion.querySelectorAll('.sub-accordion.active').forEach(s => s.classList.remove('active'));
+                setTimeout(() => {
+                    accordion.scrollIntoView({ behavior: 'smooth', block: 'start', inline: 'nearest' });
+                }, 450);
+            }
+        });
+    });
+}
+
+function displayData() {
+    try {
+        let html = '<div class="accordions-container">';
+        for (const [key, config] of Object.entries(ACCORDIONS_CONFIG)) {
+            const fn = CONTENT_MAP[key];
+            const content = fn ? fn() : '<p style="text-align:center;color:#999;padding:40px;">⏳ בקרוב...</p>';
+            html += `
+                <div class="accordion" data-category="${key}">
+                    <div class="accordion-header">
+                        <div class="accordion-icon">${config.icon}</div>
+                        <h2 class="accordion-title">${config.title}</h2>
+                        <span class="accordion-arrow">▼</span>
+                    </div>
+                    <div class="accordion-content">
+                        <div class="accordion-body">${content}</div>
+                    </div>
+                </div>
+            `;
+        }
+        html += '</div>';
+        document.getElementById('content').innerHTML = html;
+        convertHeadingsToSubAccordions();
+        initAccordions();
+    } catch (error) {
+        console.error('שגיאה:', error);
+        document.getElementById('content').innerHTML = `
+            <div class="loading">
+                <p style="color:var(--danger);font-size:1.2rem;font-weight:600;">⚠️ אירעה שגיאה בטעינת המידע</p>
+                <p style="color:#546E7A;margin-top:10px;">אנא רענן את הדף</p>
+            </div>
+        `;
+    }
+}
+
+/* ============================================================
+   INIT
+   ============================================================ */
+async function init() {
+    try {
+        const resp = await fetch('data/nii-constants.json');
+        NII_CONSTANTS = await resp.json();
+    } catch(e) {
+        console.warn('⚠️ לא ניתן לטעון nii-constants.json, משתמש בערכי ברירת מחדל');
+    }
+    displayData();
+}
+
+if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', init);
+} else {
+    init();
+}
+</script>
+<script src="data/hamburger-nav.js"></script>
+</body>
+</html>
