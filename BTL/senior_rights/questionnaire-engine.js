@@ -18,6 +18,7 @@ class QuestionnaireEngine {
 
         // DOM Elements
         this.headerEl = document.getElementById('questionnaire-header');
+        this.preambleEl = document.getElementById('questionnaire-preamble');
         this.contentEl = document.getElementById('questionnaire-content');
         this.resultEl = document.getElementById('questionnaire-result');
         this.navEl = document.getElementById('questionnaire-nav');
@@ -34,6 +35,7 @@ class QuestionnaireEngine {
             await this.loadData();
             this.setupEventListeners();
             this.renderHeader();
+            this.renderPreamble();
             this.startQuestionnaire(startQuestionId);
         } catch (error) {
             console.error('Error initializing questionnaire:', error);
@@ -103,6 +105,34 @@ class QuestionnaireEngine {
             <p class="subtitle">${this.data.description}</p>
             ${this.data.source ? `<span class="source-badge">מקור: ${this.data.source}</span>` : ''}
         `;
+    }
+
+    /**
+     * Render preamble accordion if defined in questionnaire data
+     */
+    renderPreamble() {
+        if (!this.preambleEl || !this.data.preamble) return;
+        const p = this.data.preamble;
+        this.preambleEl.innerHTML = `
+            <div class="preamble-accordion">
+                <button class="preamble-accordion-header" aria-expanded="false">
+                    <span class="preamble-accordion-title">${p.title}</span>
+                    <span class="preamble-accordion-arrow">▼</span>
+                </button>
+                <div class="preamble-accordion-body" hidden>
+                    ${p.html}
+                </div>
+            </div>
+        `;
+        const header = this.preambleEl.querySelector('.preamble-accordion-header');
+        const body   = this.preambleEl.querySelector('.preamble-accordion-body');
+        const arrow  = this.preambleEl.querySelector('.preamble-accordion-arrow');
+        header.addEventListener('click', () => {
+            const open = !body.hidden;
+            body.hidden = open;
+            header.setAttribute('aria-expanded', String(!open));
+            arrow.textContent = open ? '▼' : '▲';
+        });
     }
 
     /**
