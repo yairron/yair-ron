@@ -642,6 +642,7 @@
                 document.getElementById('content').innerHTML = html;
                 convertHeadingsToSubAccordions();
                 initAccordions();
+                openFromHash();
 
             } catch (error) {
                 console.error('שגיאה בטעינת הנתונים:', error);
@@ -745,6 +746,16 @@
             document.querySelectorAll('.accordion-body').forEach(body => {
                 processNestedHeadings(body, 0);
             });
+        }
+
+        function openFromHash() {
+            const hash = window.location.hash.replace('#', '');
+            if (!hash) return;
+            const target = document.querySelector(`.accordion[data-category="${hash}"]`);
+            if (!target) return;
+            document.querySelectorAll('.accordion.active').forEach(a => a.classList.remove('active'));
+            target.classList.add('active');
+            setTimeout(() => target.scrollIntoView({ behavior: 'smooth', block: 'start' }), 100);
         }
 
         function initAccordions() {

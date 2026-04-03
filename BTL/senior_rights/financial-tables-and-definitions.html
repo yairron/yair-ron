@@ -315,6 +315,7 @@ const ACCORDIONS_CONFIG = {
 
 function contentOldAge() {
     return `
+<p><a href="senior_rights_full.html#old_age_pension">פירוט על קצבת אזרח ותיק</a></p>
 <h2>הגדרות</h2>
 <div class="def-box">
   <p><strong>אוכלוסיית יעד:</strong> תושבי ישראל שהגיעו לגיל הזכאות ושילמו דמי ביטוח לאומי כתושבי ישראל.</p>
@@ -338,16 +339,10 @@ function contentOldAge() {
 <table class="data-table">
   <thead><tr><th>מצב</th><th>סכום חודשי (₪)</th></tr></thead>
   <tbody>
-    <tr><td>יחיד/ה</td><td class="amount">${fmt(g('pension_single_basic'))}</td></tr>
+    <tr><td>עד גיל 80 יחיד/ה</td><td class="amount">${fmt(g('pension_single_basic'))}</td></tr>
     <tr><td>יחיד/ה בגיל 80 ומעלה</td><td class="amount">${fmt(g('pension_single_over80'))}</td></tr>
-    <tr><td>יחיד עם בן/בת זוג שאינם מקבלים קצבה</td><td class="amount">${fmt(g('pension_couple_basic'))}</td></tr>
-    <tr><td>זוג שניהם מקבלים קצבה</td><td class="amount">${fmt(g('pension_single_basic'))} לכל אחד (${fmt(g('pension_single_basic') * 2)} סה"כ)</td></tr>
     <tr><td>תוספת לבן/בת זוג</td><td class="amount">${fmt(g('pension_spouse_supplement'))}</td></tr>
     <tr><td>תוספת לכל ילד (עד 2 ילדים)</td><td class="amount">${fmt(g('pension_child_supplement'))}</td></tr>
-    <tr><td>יחיד/ה עם ילד אחד תלוי</td><td class="amount">${fmt(g('pension_single_1child'))}</td></tr>
-    <tr><td>יחיד/ה עם 2 ילדים תלויים</td><td class="amount">${fmt(g('pension_single_2children'))}</td></tr>
-    <tr><td>זוג עם ילד אחד תלוי</td><td class="amount">${fmt(g('pension_couple_1child'))}</td></tr>
-    <tr><td>זוג עם 2 ילדים תלויים</td><td class="amount">${fmt(g('pension_couple_2children'))}</td></tr>
   </tbody>
 </table>
 
@@ -395,6 +390,7 @@ function contentOldAge() {
 
 function contentIncomeSupplement() {
     return `
+<p><a href="senior_rights_full.html#income_supplement">פירוט על השלמת הכנסה</a></p>
 <h2>הגדרות</h2>
 <div class="def-box">
   <p><strong>אוכלוסיית יעד:</strong> מקבלי קצבת זיקנה או שאירים שהכנסתם נמוכה מהסכום הקובע לפי גיל ומצב משפחתי.</p>
@@ -503,6 +499,7 @@ function contentIncomeSupplement() {
 
 function contentNursing() {
     return `
+<p><a href="senior_rights_full.html#nursing">פירוט על גמלת סיעוד</a></p>
 <h2>הגדרות</h2>
 <div class="def-box">
   <p><strong>אוכלוסיית יעד:</strong> תושבי ישראל מגיל הזכאות (גברים 67, נשים לפי שנת לידה) הזקוקים לסיוע בפעולות יומיום.</p>
@@ -544,6 +541,7 @@ function contentNursing() {
 
 function contentDisability() {
     return `
+<p><a href="senior_rights_full.html#disability">פירוט על נכות וקצבת שר"מ</a></p>
 <h2>הגדרות</h2>
 <div class="def-box">
   <p><strong>קצבת נכות כללית:</strong> לאנשים בגיל 18 עד גיל פרישה שכושר עבודתם פחת ב-50% לפחות בשל מצב רפואי, ואינם מסוגלים להשתכר מעל תקרה מסוימת.</p>
@@ -608,6 +606,7 @@ function contentDisability() {
 
 function contentSurvivors() {
     return `
+<p><a href="senior_rights_full.html#survivors">פירוט על קצבת שאירים</a> | <a href="senior_rights_full.html#transition_grant">פירוט על מענק מעבר לנשים</a></p>
 <h2>הגדרות</h2>
 <div class="def-box">
   <p><strong>קצבת שאירים:</strong> לאלמן/ה, יתומים וילדים שאיר של מבוטח/ת שנפטר/ה, בכפוף לתנאי ביטוח ומבחן הכנסה.</p>
@@ -692,6 +691,7 @@ function contentSurvivors() {
 
 function contentHolocaust() {
     return `
+<p><a href="senior_rights_full.html#holocaust_survivors">פירוט על זכויות ניצולי שואה</a></p>
 <h2>הגדרות</h2>
 <div class="def-box">
   <p><strong>אוכלוסיית יעד:</strong> מי שנרדף בידי המשטר הנאצי ושהה בתחומים שהיו תחת שלטון גרמני, ורכש תושבות ישראל.</p>
@@ -767,6 +767,7 @@ function contentHolocaust() {
 
 function contentImmigrants() {
     return `
+<p><a href="../new_immigrants/new_immigrants_full.html">פירוט על זכויות עולים חדשים</a></p>
 <h2>הגדרות</h2>
 <div class="def-box">
   <p><strong>אוכלוסיית יעד:</strong> עולים חדשים ותושבים חוזרים שהגיעו לישראל לאחר גיל הביטוח ואינם זכאים לקצבת זיקנה רגילה.</p>
