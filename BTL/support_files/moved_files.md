@@ -72,7 +72,6 @@
 | `BTL/senior_rights/data/dynamic-values-report.txt` | טקסט | דוח ערכים דינמיים |
 | `BTL/senior_rights/data/data_012026_comparison.csv` | CSV | השוואת נתונים 2025 מול 2026 |
 | `BTL/senior_rights/data/README-DYNAMIC-VALUES.md` | תיעוד | תיעוד ערכים דינמיים |
-| `BTL/senior_rights/data/data_012026.json` | JSON | נתוני ינואר 2026 (מקור) |
 | `BTL/senior_rights/data/pension-amounts-2025.json` | JSON | סכומי קצבאות 2025 (מקור) |
 | `BTL/senior_rights/data/dynamic-values.json` | JSON | ערכים דינמיים (מקור) |
 | `BTL/senior_rights/data/rights-data.json` | JSON | נתוני זכויות (מקור) |

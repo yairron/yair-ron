@@ -329,7 +329,7 @@ function contentOldAge() {
   <p><strong>הגדרת בת זוג</strong> — תושבת ישראל נשואה/ידועה בציבור הגרה עם המבוטח שנה לפחות (או ילדה לו ילד), בגיל 45 ומעלה עם הכנסה עד ₪${fmt(g('income_test_spouse_ceiling'))}/חודש, <em>או</em> מגיל 67 ומעלה.</p>
   <p><strong>הגדרת רווקה / גרושה / אלמנה</strong> — אשה שאינה נשואה (רווקה, גרושה או אלמנה) ומשלמת דמי ביטוח לאומי — בין דרך המעסיק אם היא שכירה, בין כעצמאית, ובין ישירות בעצמה.</p>
   <p><strong>הגדרת עקרת בית</strong> — אשה הפטורה מתשלום דמי ביטוח לאומי עקב אחת מהסיבות הבאות: (1) נשואה לבעל מבוטח ואינה עובדת שכירה או עצמאית; (2) מקבלת קצבת שאירים ואינה עובדת; (3) מקבלת קצבת תלויים בנפגעי עבודה ואינה עובדת.</p>
-  <p><strong>הגדרת ילד תלוי</strong> — בן/בת המבוטח, לרבות ילד חורג, ילד מאומץ ונכד שכל פרנסתו מהמבוטח (למעט נשואים), העונה על אחד מאלה: עד גיל 18; עד גיל 20 אם מסיים לימודים על-יסודיים, לומד לבגרות, לומד במכינה קדם צבאית (קד"ץ/טר"ץ), או בעל לקות למידה במסגרת מוכרת; עד גיל 21 בשירות התנדבותי למטרה ציבורית (עד 12 חודשים) ושירות נדחה; עד גיל 24 בשירות סדיר בצה"ל (עד 36 חודשים), בשירות לאומי, או בעתודה אקדמית.</p>
+  <p><strong>הגדרת ילד תלוי</strong> — ילד המבוטח, לרבות ילד חורג, ילד מאומץ או נכד שכל פרנסתו על המבוטח שטרם מלאו לו 18 שנים (למעט נשוי); <strong>או</strong> שטרם מלאו לו 20 שנים והוא לומד במוסד על-יסודי לבגרות, במכינה או במסגרת קדם-צבאית; <strong>או</strong> בעל לקות למידה במסגרת מוכרת; <strong>או</strong> שטרם מלאו לו 21 שנים והוא משרת בהתנדבות למטרה ציבורית עד 12 חודשים ושירותו הצבאי נדחה; <strong>או</strong> שטרם מלאו לו 24 שנים והוא משרת בשירות סדיר, בשירות לאומי <strong>או</strong> לומד בעתודה אקדמית ושירותו נדחה עקב לימודיו.</p>
 </div>
 
 <h2>סכומי קצבה בסיסית</h2>
@@ -339,7 +339,7 @@ function contentOldAge() {
 <table class="data-table">
   <thead><tr><th>מצב</th><th>סכום חודשי (₪)</th></tr></thead>
   <tbody>
-    <tr><td>עד גיל 80 יחיד/ה</td><td class="amount">${fmt(g('pension_single_basic'))}</td></tr>
+    <tr><td>יחיד/ה עד גיל 80</td><td class="amount">${fmt(g('pension_single_basic'))}</td></tr>
     <tr><td>יחיד/ה בגיל 80 ומעלה</td><td class="amount">${fmt(g('pension_single_over80'))}</td></tr>
     <tr><td>תוספת לבן/בת זוג</td><td class="amount">${fmt(g('pension_spouse_supplement'))}</td></tr>
     <tr><td>תוספת לכל ילד (עד 2 ילדים)</td><td class="amount">${fmt(g('pension_child_supplement'))}</td></tr>
@@ -355,6 +355,8 @@ function contentOldAge() {
     <tr><td>תוספת דחיית קצבה — אישה</td><td class="pct">${g('deferral_bonus_rate')}%</td><td class="pct">${g('deferral_bonus_max_female')}% (8 שנים)</td></tr>
   </tbody>
 </table>
+<p class="note">תוספת דחייה בתנאי שהדחייה נובעת מהכנסה מעבודה בלבד מעל התקרה לקצבה מלאה.</p>
+<p class="note">תשלום רטרואקטיבי אפשרי בתנאים מסויימים. ראה בפירוט המלא את התנאים.</p>
 
 <h2>ניכויי ביטוח בריאות</h2>
 <table class="data-table">
@@ -366,6 +368,10 @@ function contentOldAge() {
 </table>
 
 <h2>תקרות הכנסה לזכאות</h2>
+<div class="def-box" style="background:#FFF3E0;border-right-color:var(--accent);margin-bottom:12px;">
+  <p><strong>מגיל הפנסיה (${g('retirement_age_unconditional')}) אין מבחן הכנסות.</strong></p>
+  <p><strong>הכנסה משולבת:</strong> כאשר קיימת גם הכנסה מעבודה וגם הכנסה מנכסים, נבדקת השפעת ההכנסה המשולבת על הזכאות. לפירוט, ראה את המדריך המלא.</p>
+</div>
 <h3>הכנסה מעבודה</h3>
 <table class="data-table">
   <thead><tr><th>מצב משפחתי</th><th>זכאות מלאה (₪)</th><th>זכאות חלקית (₪)</th></tr></thead>
@@ -374,6 +380,7 @@ function contentOldAge() {
     <tr><td>נשוי/ה</td><td class="amount">${fmt(g('income_test_married_full'))}</td><td class="amount">${fmt(g('income_test_married_partial'))}</td></tr>
   </tbody>
 </table>
+<p class="note">קצבה חלקית הנמוכה מ-10% מהקצבה הבסיסית ליחיד/ה, כלומר פחות מ-₪${fmt(Math.round(g('pension_single_basic') * 0.1))}, אינה משולמת.</p>
 <p class="note">שיעור הפחתה על הכנסה עודפת: <strong>${g('income_test_deduction_rate')}%</strong> | תקרת הכנסת בן/ת זוג להכרה כ"תלוי/ה": <strong>₪${fmt(g('income_test_spouse_ceiling'))}</strong></p>
 
 <h3>הכנסה מנכסים</h3>
@@ -401,7 +408,7 @@ function contentIncomeSupplement() {
 </div>
 <div class="def-box" style="border-right-color:var(--accent);background:#FFFDE7;">
   <p><strong>הגדרת בן/בת זוג</strong> — כמו בקצבת זיקנה: בן זוג בגיל 50–70 עם הכנסה עד ₪${fmt(g('income_test_spouse_ceiling'))}/חודש (או מגיל 70+); בת זוג בגיל 45+ עם הכנסה עד ₪${fmt(g('income_test_spouse_ceiling'))}/חודש (או מגיל 67+).</p>
-  <p><strong>הגדרת ילד תלוי</strong> — ילד המבוטח עד גיל 18; עד גיל 20 בלימודים על-יסודיים; עד גיל 22 בשירות סדיר/לאומי (עד 36 חודשים).</p>
+  <p><strong>הגדרת ילד תלוי</strong> — ילד המבוטח, לרבות ילד חורג, ילד מאומץ או נכד שכל פרנסתו על המבוטח שטרם מלאו לו 18 שנים (למעט נשוי); <strong>או</strong> שטרם מלאו לו 20 שנים והוא לומד במוסד על-יסודי לבגרות, במכינה או במסגרת קדם-צבאית; <strong>או</strong> בעל לקות למידה במסגרת מוכרת; <strong>או</strong> שטרם מלאו לו 21 שנים והוא משרת בהתנדבות למטרה ציבורית עד 12 חודשים ושירותו הצבאי נדחה; <strong>או</strong> שטרם מלאו לו 24 שנים והוא משרת בשירות סדיר, בשירות לאומי <strong>או</strong> לומד בעתודה אקדמית ושירותו נדחה עקב לימודיו.</p>
 </div>
 
 <h2>תקרות גמלה לפי גיל ומצב משפחתי</h2>
@@ -461,15 +468,17 @@ function contentIncomeSupplement() {
 <table class="data-table">
   <thead><tr><th>פריט</th><th>ערך (₪)</th></tr></thead>
   <tbody>
-    <tr><td>שווי רכב בסיסי לשלילת זכאות</td><td class="amount">${fmt(g('vehicle_threshold_base'))}</td></tr>
-    <tr><td>שווי רכב מורחב לשלילת זכאות</td><td class="amount">${fmt(g('vehicle_threshold_extended'))}</td></tr>
+    <tr><td>תקרת שווי רכב לגימלה מלאה</td><td class="amount">${fmt(g('vehicle_threshold_base'))}</td></tr>
+    <tr><td>תקרת  שווי רכב לגימלה חלקית</td><td class="amount">${fmt(g('vehicle_threshold_extended'))}</td></tr>
     <tr><td>שווי רכב פטור — עובד</td><td class="amount">${fmt(g('vehicle_exempt_worker'))}</td></tr>
     <tr><td>שווי רכב פטור — לא עובד</td><td class="amount">${fmt(g('vehicle_exempt_non_worker'))}</td></tr>
     <tr><td>שיעור חישוב שווי הרכב להפחתה</td><td class="pct">${g('vehicle_deduction_rate') * 100}%</td></tr>
-    <tr><td>שווי מדור — עובד לפני גיל פרישה</td><td class="amount">${fmt(g('housing_allowance_worker_before_retirement'))}</td></tr>
-    <tr><td>שווי מדור — עובד אחרי גיל פרישה</td><td class="amount">${fmt(g('housing_allowance_worker_after_retirement'))}</td></tr>
+    <tr><td>שווי הכנסה מודד רכב — עובד לפני גיל פרישה</td><td class="amount">${fmt(g('housing_allowance_worker_before_retirement'))}</td></tr>
+    <tr><td>שווי הכנסה מודד רכב — עובד אחרי גיל פרישה</td><td class="amount">${fmt(g('housing_allowance_worker_after_retirement'))}</td></tr>
   </tbody>
 </table>
+<p class="note"><strong>אם אתה עובד ומשתכר בחודש יותר מ-3,442 ש"ח ועדיין לא הגעת לגיל הפרישה; או שאתה או בת זוגך הגעתם לגיל פרישה ואתה עובד ומשתכר יותר מ-2,341 ש"ח בחודש - יופחתו מערך הרכב סכום הזיכוי בסך 19,610 ש"ח.</strong></p>
+<p class="note"><strong>אם אינך עובד, או שאתה עובד ומשתכר בחודש פחות מ-3,442 ש"ח, ועדיין לא הגעת לגיל הפרישה; או שאתה או בת זוגך הגעתם לגיל פרישה ומשתכרים בחודש פחות מ-2,341 ש"ח - יופחתו מערך הרכב סכום הזיכוי בסך 11,227 ש"ח.</strong></p>
 
 <h2>תשלומים נלווים</h2>
 <table class="data-table">

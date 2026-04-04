@@ -242,8 +242,6 @@
 
 ### 3. `BTL/senior_rights/data/rights-data.json` — לא נבדק (לא קיים בענף main)
 
-### 4. `BTL/senior_rights/data/data_012026.json` — לא נבדק (לא קיים בענף main)
-
 ---
 
 ## פעולות מומלצות
