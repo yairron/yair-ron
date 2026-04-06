@@ -470,11 +470,11 @@ function contentIncomeSupplement() {
   <tbody>
     <tr><td>תקרת שווי רכב לגימלה מלאה</td><td class="amount">${fmt(g('vehicle_threshold_base'))}</td></tr>
     <tr><td>תקרת  שווי רכב לגימלה חלקית</td><td class="amount">${fmt(g('vehicle_threshold_extended'))}</td></tr>
-    <tr><td>שווי רכב פטור — עובד</td><td class="amount">${fmt(g('vehicle_exempt_worker'))}</td></tr>
-    <tr><td>שווי רכב פטור — לא עובד</td><td class="amount">${fmt(g('vehicle_exempt_non_worker'))}</td></tr>
+    <tr><td>שווי רכב פטור לעובד לפני גיל פרישה עם הכנסה חודשית מעל ${fmt(g('housing_allowance_worker_before_retirement'))} ₪</td><td class="amount">${fmt(g('vehicle_exempt_worker'))}</td></tr>
+    <tr><td>שווי רכב פטור לעובד מגיל פרישה (אתה או בן/בת זוגך בגיל פרישה) עם הכנסה חודשית מעל ${fmt(g('housing_allowance_worker_after_retirement'))} ₪</td><td class="amount">${fmt(g('vehicle_exempt_worker'))}</td></tr>
+    <tr><td>שווי רכב פטור לאינו עובד, או עובד לפני גיל פרישה עם הכנסה חודשית עד ${fmt(g('housing_allowance_worker_before_retirement'))} ₪</td><td class="amount">${fmt(g('vehicle_exempt_non_worker'))}</td></tr>
+    <tr><td>שווי רכב פטור לעובד מגיל פרישה (אתה או בן/בת זוגך בגיל פרישה) עם הכנסה חודשית עד ${fmt(g('housing_allowance_worker_after_retirement'))} ₪</td><td class="amount">${fmt(g('vehicle_exempt_non_worker'))}</td></tr>
     <tr><td>שיעור חישוב שווי הרכב להפחתה</td><td class="pct">${g('vehicle_deduction_rate') * 100}%</td></tr>
-    <tr><td>שווי הכנסה מודד רכב — עובד לפני גיל פרישה</td><td class="amount">${fmt(g('housing_allowance_worker_before_retirement'))}</td></tr>
-    <tr><td>שווי הכנסה מודד רכב — עובד אחרי גיל פרישה</td><td class="amount">${fmt(g('housing_allowance_worker_after_retirement'))}</td></tr>
   </tbody>
 </table>
 <p class="note"><strong>אם אתה עובד ומשתכר בחודש יותר מ-3,442 ש"ח ועדיין לא הגעת לגיל הפרישה; או שאתה או בת זוגך הגעתם לגיל פרישה ואתה עובד ומשתכר יותר מ-2,341 ש"ח בחודש - יופחתו מערך הרכב סכום הזיכוי בסך 19,610 ש"ח.</strong></p>

@@ -1394,6 +1394,8 @@ class QuestionnaireEngine {
         const retirementAge   = this.answers['retirement_age']?.value === 'yes';
         const workStatus      = this.answers['work_status']?.value || 'not_working';
         const workIncome      = parseFloat(this.answers['work_income']?.value) || 0;
+        const childWorkIncome = parseFloat(this.answers['child_work_income']?.value) || 0;
+        const childHasVehicle = this.answers['child_has_vehicle']?.value === 'yes';
         const specialStatus   = this.answers['special_status']?.value === 'special';
         const dismissedGrace  = this.answers['dismissed_grace']?.value === 'yes';
         const incomeDropGrace = this.answers['income_drop_grace']?.value === 'yes';
@@ -1416,18 +1418,24 @@ class QuestionnaireEngine {
             graceNote = 'חישוב זה מתבסס על תקופת מעבר של עד 3 חודשים לאחר ירידת ההכנסה — ההכנסה המיוחסת: 25% מהשכר הממוצע. לאחר מכן יש לפנות לביטוח הלאומי לעדכון.';
         }
 
+        // Child income is counted only if child has no vehicle.
+        const effectiveChildWorkIncome = childHasVehicle ? 0 : childWorkIncome;
+        const totalCountedWorkIncome = effectiveWorkIncome + effectiveChildWorkIncome;
+
         let deductionBase, categoryLabel;
-        if (effectiveWorkStatus === 'working' && effectiveWorkIncome > incomeThreshold) {
+        if (totalCountedWorkIncome > incomeThreshold) {
             deductionBase = rules.deductions?.high_income_worker || 19610;
-            categoryLabel = `עובד/ת המשתכר/ת מעל ${incomeThreshold.toLocaleString('he-IL')} ₪/חודש`;
+            if (retirementAge) {
+                categoryLabel = `עובד מגיל פרישה (אתה או בן/בת זוגך בגיל פרישה) עם הכנסה חודשית מעל ${incomeThreshold.toLocaleString('he-IL')} ₪`;
+            } else {
+                categoryLabel = `עובד לפני גיל פרישה עם הכנסה חודשית מעל ${incomeThreshold.toLocaleString('he-IL')} ₪`;
+            }
         } else {
             deductionBase = rules.deductions?.other || 11227;
-            if (effectiveWorkStatus === 'not_working') {
-                categoryLabel = specialStatus
-                    ? 'לא עובד/ת — מקבל/ת קצבת שאירים / תלויים בנפגע עבודה'
-                    : 'לא עובד/ת';
+            if (retirementAge) {
+                categoryLabel = `עובד מגיל פרישה (אתה או בן/בת זוגך בגיל פרישה) עם הכנסה חודשית עד ${incomeThreshold.toLocaleString('he-IL')} ₪`;
             } else {
-                categoryLabel = `עובד/ת המשתכר/ת עד ${incomeThreshold.toLocaleString('he-IL')} ₪/חודש`;
+                categoryLabel = `אינו עובד, או עובד לפני גיל פרישה עם הכנסה חודשית עד ${incomeThreshold.toLocaleString('he-IL')} ₪`;
             }
         }
         if (dismissedGrace)  categoryLabel += ' (תקופת מעבר — פוטר/ה או התפטר/ה)';
@@ -1463,6 +1471,18 @@ class QuestionnaireEngine {
                         <td class="calc-value">${categoryLabel}</td>
                     </tr>
                     <tr>
+                        <td class="calc-label">הכנסה מעבודה שלך ושל בן/בת זוגך:</td>
+                        <td class="calc-value">${effectiveWorkIncome.toLocaleString('he-IL')} ₪</td>
+                    </tr>
+                    <tr>
+                        <td class="calc-label">הכנסת ילד לחישוב:</td>
+                        <td class="calc-value">${effectiveChildWorkIncome.toLocaleString('he-IL')} ₪</td>
+                    </tr>
+                    <tr>
+                        <td class="calc-label">סך הכנסה מעבודה לחישוב:</td>
+                        <td class="calc-value">${totalCountedWorkIncome.toLocaleString('he-IL')} ₪</td>
+                    </tr>
+                    <tr>
                         <td class="calc-label">ניכוי בסיסי — שלב 1:</td>
                         <td class="calc-value">− ${deductionBase.toLocaleString('he-IL')} ₪</td>
                     </tr>
@@ -1480,6 +1500,7 @@ class QuestionnaireEngine {
                     <h3>${statusTitle}</h3>
                 </div>
 
+                ${childHasVehicle && childWorkIncome > 0 ? `<p class="calculation-note" style="margin-top:10px;background:#fff3cd;padding:10px;border-radius:6px;"><strong>הערת חישוב:</strong> לילד יש רכב בבעלותו, לכן הכנסת העבודה של הילד לא נכללה בחישוב הסף.</p>` : ''}
                 ${graceNote ? `<p class="calculation-note" style="margin-top:10px;background:#fff3cd;padding:10px;border-radius:6px;"><strong>תקופת מעבר:</strong> ${graceNote}</p>` : ''}
                 <p class="calculation-note" style="margin-top:15px;">
                     <strong>שימו לב:</strong> זהו חישוב משוער בלבד.

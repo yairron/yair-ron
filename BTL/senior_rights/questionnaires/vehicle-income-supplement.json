@@ -119,8 +119,8 @@
       "description": "במקרים מסוימים, גם מי שאינו עובד נחשב כ'עובד' לצורך חישוב שווי הרכב.",
       "options": [
         { "value": "dismissed",    "label": "פוטרת/התפטרת (ב-3 החודשים האחרונים), אתה זכאי לדמי אבטלה, וב-3 החודשים לפני כן קיבלת קצבת הבטחת הכנסה", "storeAs": { "dismissed_grace": "yes" }, "next": "q4c_dismissed_income" },
-        { "value": "income_drop",  "label": "הכנסתי ירדה (ב-3 החודשים האחרונים) וב-3 החודשים לפני הירידה קיבלתי קצבת הבטחת הכנסה",                 "storeAs": { "income_drop_grace": "yes" }, "next": "q6_special_status" },
-        { "value": "none",         "label": "אף אחד מאלה",                                                                                                "next": "q6_special_status" }
+        { "value": "income_drop",  "label": "הכנסתי ירדה (ב-3 החודשים האחרונים) וב-3 החודשים לפני הירידה קיבלתי קצבת הבטחת הכנסה",                 "storeAs": { "income_drop_grace": "yes" }, "next": "q5a_child_working" },
+        { "value": "none",         "label": "אף אחד מאלה",                                                                                                "next": "q5a_child_working" }
       ]
     },
     {
@@ -131,17 +131,46 @@
       "placeholder": "0",
       "suffix": "₪ לחודש",
       "storeAs": "work_income",
-      "next": "q6_special_status"
+      "next": "q5a_child_working"
     },
     {
       "id": "q5_work_income",
       "type": "number_input",
       "question": "מה הכנסתך החודשית מעבודה? (בש\"ח)",
-      "description": "הזן את ההכנסה הברוטו מעבודה בחודש. סף ההכנסה הגבוהה: {rules.vehicleRules.workIncomeThreshold.regular} ₪/חודש (לפני גיל פרישה) או {rules.vehicleRules.workIncomeThreshold.retirement} ₪/חודש (מגיל פרישה).",
+      "description": "הזן את ההכנסה ברוטו מעבודה בחודש שלך ושל בן/בת זוגך. סף ההכנסה הגבוהה: {rules.vehicleRules.workIncomeThreshold.regular} ₪/חודש (לפני גיל פרישה) או {rules.vehicleRules.workIncomeThreshold.retirement} ₪/חודש (מגיל פרישה).",
       "placeholder": "0",
       "suffix": "₪ לחודש",
       "storeAs": "work_income",
-      "next": "q6_special_status"
+      "next": "q5a_child_working"
+    },
+    {
+      "id": "q5a_child_working",
+      "type": "yesno",
+      "question": "האם יש איתך ילד עובד המתגורר איתך ותלוי בך?",
+      "options": [
+        { "value": "yes", "label": "כן", "next": "q5b_child_work_income" },
+        { "value": "no",  "label": "לא", "storeAs": { "child_work_income": 0, "child_has_vehicle": "no" }, "next": "q6_special_status" }
+      ]
+    },
+    {
+      "id": "q5b_child_work_income",
+      "type": "number_input",
+      "question": "מה הכנסת העבודה החודשית של הילד? (בש\"ח)",
+      "description": "הכנסה זו תיחשב לצורך בדיקת סף ההכנסה, אלא אם לילד יש רכב בבעלותו.",
+      "placeholder": "0",
+      "suffix": "₪ לחודש",
+      "storeAs": "child_work_income",
+      "next": "q5c_child_has_vehicle"
+    },
+    {
+      "id": "q5c_child_has_vehicle",
+      "type": "yesno",
+      "question": "האם לילד יש רכב בבעלותו?",
+      "description": "אם לילד יש רכב בבעלותו, שווי הרכב יילקח בחשבון אך הכנסות העבודה של הילד לא יילקחו בחשבון.",
+      "options": [
+        { "value": "yes", "label": "כן", "storeAs": { "child_has_vehicle": "yes" }, "next": "q6_special_status" },
+        { "value": "no",  "label": "לא", "storeAs": { "child_has_vehicle": "no" }, "next": "q6_special_status" }
+      ]
     },
     {
       "id": "q6_special_status",

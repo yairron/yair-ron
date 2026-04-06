@@ -1,0 +1,1274 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>מדריך מפורט - מבחן הכנסות לקצבת אזרח ותיק</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Assistant:wght@300;400;600;700;800&family=Varela+Round&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #2E5B8A;
+            --secondary: #4A90B5;
+            --accent: #E8A840;
+            --success: #2E7D32;
+            --danger: #C62828;
+            --light: #F5F9FC;
+            --dark: #1A3A52;
+            --text: #2C3E50;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Assistant', 'Segoe UI', Tahoma, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
+            min-height: 100vh;
+            padding: 20px;
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background:
+                radial-gradient(circle at 20% 50%, rgba(255,255,255,0.1) 0%, transparent 50%),
+                radial-gradient(circle at 80% 80%, rgba(255,255,255,0.1) 0%, transparent 50%);
+            animation: backgroundShift 20s ease-in-out infinite;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        @keyframes backgroundShift {
+            0%, 100% { transform: translate(0, 0) scale(1); }
+            50% { transform: translate(-5%, 5%) scale(0.95); }
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 50px;
+            animation: slideDown 0.8s ease-out;
+        }
+
+        @keyframes slideDown {
+            from { opacity: 0; transform: translateY(-50px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        h1 {
+            font-family: 'Varela Round', sans-serif;
+            font-size: 3.5rem;
+            font-weight: 800;
+            color: white;
+            margin-bottom: 15px;
+            text-shadow: 3px 5px 15px rgba(0,0,0,0.3);
+            letter-spacing: -2px;
+        }
+
+        .support-info {
+            font-size: 1.2rem;
+            color: #FFD54F;
+            font-weight: 700;
+            text-shadow: 1px 2px 8px rgba(0,0,0,0.3);
+            margin-bottom: 8px;
+        }
+
+        .subtitle {
+            font-size: 1.1rem;
+            color: rgba(255,255,255,0.85);
+            font-weight: 300;
+            text-shadow: 1px 2px 8px rgba(0,0,0,0.2);
+        }
+
+        .update-badge {
+            display: inline-block;
+            background: rgba(255,255,255,0.2);
+            backdrop-filter: blur(10px);
+            padding: 8px 20px;
+            border-radius: 20px;
+            color: white;
+            font-size: 0.9rem;
+            margin-top: 15px;
+            font-weight: 600;
+        }
+
+        .accordions-container {
+            margin-bottom: 40px;
+            animation: fadeIn 0.8s ease-out 0.3s both;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .accordion {
+            background: white;
+            border-radius: 0;
+            margin-bottom: 0;
+            box-shadow: 0 12px 35px rgba(0,0,0,0.2);
+            overflow: hidden;
+            transition: all 0.3s;
+            border-bottom: 1px solid rgba(0,0,0,0.1);
+        }
+
+        .accordion:first-child { border-radius: 24px 24px 0 0; }
+        .accordion:last-child { border-radius: 0 0 24px 24px; border-bottom: none; }
+        .accordion:only-child { border-radius: 24px; }
+        .accordion:hover { box-shadow: 0 15px 45px rgba(0,0,0,0.25); }
+
+        .accordion-header {
+            padding: 20px 35px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 18px;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            transition: all 0.3s;
+        }
+
+        .accordion-header:hover {
+            background: linear-gradient(135deg, var(--secondary), var(--primary));
+        }
+
+        .accordion-icon {
+            width: 60px;
+            height: 60px;
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            background: rgba(255,255,255,0.2);
+            flex-shrink: 0;
+        }
+
+        .accordion-title {
+            font-family: 'Varela Round', sans-serif;
+            font-size: 1.8rem;
+            font-weight: 800;
+            flex: 1;
+            margin: 0;
+        }
+
+        .accordion-arrow {
+            font-size: 1.5rem;
+            transition: transform 0.3s;
+            width: 40px;
+            text-align: center;
+            flex-shrink: 0;
+        }
+
+        .accordion.active .accordion-arrow { transform: rotate(180deg); }
+
+        .accordion-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s ease;
+        }
+
+        .accordion.active .accordion-content {
+            max-height: 10000px;
+            height: 80vh;
+            overflow: auto;
+            -webkit-overflow-scrolling: touch;
+        }
+
+        .accordion-body {
+            padding: 35px;
+            font-size: 1.15rem;
+            line-height: 1.9;
+            color: #546E7A;
+        }
+
+        .accordion-body h4 {
+            color: var(--primary);
+            font-size: 1.3rem;
+            margin: 25px 0 15px 0;
+            font-weight: 700;
+        }
+
+        .accordion-body ul {
+            list-style: none;
+            padding: 0;
+            margin: 15px 0;
+        }
+
+        .accordion-body ol {
+            padding-right: 25px;
+            margin: 15px 0;
+        }
+
+        .accordion-body ol li {
+            padding: 6px 0;
+            border-bottom: none;
+        }
+
+        .accordion-body ol li::before {
+            content: '';
+        }
+
+        .accordion-body li {
+            padding: 12px 0;
+            padding-right: 35px;
+            position: relative;
+            border-bottom: 1px solid #E0E7EE;
+        }
+
+        .accordion-body li:last-child { border-bottom: none; }
+
+        .accordion-body li::before {
+            content: '✓';
+            position: absolute;
+            right: 0;
+            color: var(--success);
+            font-weight: bold;
+            font-size: 1.4rem;
+        }
+
+        .sub-accordion {
+            margin: 15px 0;
+            border: 1px solid #E0E7EE;
+            border-radius: 12px;
+            overflow: hidden;
+            background: #F8FAFB;
+        }
+
+        .sub-accordion-header {
+            padding: 18px 25px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background: linear-gradient(135deg, #F8FAFB 0%, #EEF2F5 100%);
+            transition: all 0.3s;
+        }
+
+        .sub-accordion-header:hover {
+            background: linear-gradient(135deg, #EEF2F5 0%, #E3E9EE 100%);
+        }
+
+        .sub-accordion-title {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: var(--primary);
+            margin: 0;
+            flex: 1;
+        }
+
+        .sub-accordion-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s ease;
+        }
+
+        .sub-accordion.active > .sub-accordion-content {
+            max-height: 80vh;
+            overflow: auto;
+            -webkit-overflow-scrolling: touch;
+        }
+
+        .sub-accordion-body { padding: 20px 25px; background: white; }
+
+        .sub-accordion[data-level="3"] .sub-accordion-header { padding: 18px 25px; }
+        .sub-accordion[data-level="3"] .sub-accordion-title { font-size: 1.2rem; }
+
+        .sub-accordion[data-level="4"] {
+            margin: 12px 0;
+            background: #FAFBFC;
+        }
+        .sub-accordion[data-level="4"] .sub-accordion-header {
+            padding: 15px 20px;
+            background: linear-gradient(135deg, #E3F2FD 0%, #BBDEFB 100%);
+        }
+        .sub-accordion[data-level="4"] .sub-accordion-header:hover {
+            background: linear-gradient(135deg, #BBDEFB 0%, #90CAF9 100%);
+        }
+        .sub-accordion[data-level="4"] .sub-accordion-title {
+            font-size: 1.1rem;
+            padding-right: 15px;
+        }
+
+        .sub-accordion[data-level="5"] {
+            margin: 10px 0;
+            background: #FCFCFD;
+        }
+        .sub-accordion[data-level="5"] .sub-accordion-header {
+            padding: 12px 18px;
+            background: linear-gradient(135deg, #E8F5E9 0%, #C8E6C9 100%);
+        }
+        .sub-accordion[data-level="5"] .sub-accordion-header:hover {
+            background: linear-gradient(135deg, #C8E6C9 0%, #A5D6A7 100%);
+        }
+        .sub-accordion[data-level="5"] .sub-accordion-title {
+            font-size: 1.05rem;
+            padding-right: 25px;
+        }
+
+        .conditions-box {
+            background: #FFF8E1;
+            border-right: 4px solid var(--accent);
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 12px;
+        }
+
+        .conditions-box.warning {
+            background: #fff3e0;
+            border-right-color: #e65100;
+        }
+
+        .conditions-box.info {
+            background: #e3f2fd;
+            border-right-color: var(--secondary);
+        }
+
+        .conditions-box.success {
+            background: #e8f5e9;
+            border-right-color: var(--success);
+        }
+
+        .conditions-box h4 {
+            color: var(--accent);
+            font-size: 1.2rem;
+            margin: 0 0 10px 0;
+        }
+
+        .conditions-box p { margin-bottom: 6px; }
+        .conditions-box p:last-child { margin-bottom: 0; }
+
+        .algorithm-box {
+            padding: 15px 18px;
+            margin: 14px 0;
+            line-height: 1.5;
+            font-size: 0.95rem;
+        }
+
+        .algorithm-box ul {
+            list-style: disc;
+            margin: 8px 0 0 0;
+            padding: 0 22px 0 0;
+        }
+
+        .algorithm-box li {
+            padding: 4px 0;
+            border-bottom: none;
+        }
+
+        .algorithm-box li::before {
+            content: '';
+        }
+
+        table.nii-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 15px 0;
+            font-size: 1.05rem;
+        }
+
+        table.nii-table thead tr {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: #fff;
+        }
+
+        table.nii-table th,
+        table.nii-table td {
+            padding: 10px 12px;
+            border: 1px solid #ddd;
+            text-align: right;
+        }
+
+        table.nii-table tbody tr:nth-child(even) { background: #f8f9fa; }
+
+        .info-box {
+            background: rgba(255,255,255,0.95);
+            border-radius: 20px;
+            padding: 30px;
+            margin-top: 40px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+            border-right: 4px solid var(--accent);
+            animation: fadeIn 0.8s ease-out 0.6s both;
+        }
+
+        .info-box p {
+            font-size: 1.05rem;
+            line-height: 1.8;
+            color: #546E7A;
+            margin: 0;
+        }
+
+        .back-button {
+            display: inline-block;
+            background: rgba(255,255,255,0.25);
+            backdrop-filter: blur(10px);
+            padding: 12px 24px;
+            border-radius: 25px;
+            color: white;
+            text-decoration: none;
+            font-size: 1rem;
+            font-weight: 600;
+            transition: all 0.3s;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+        }
+
+        .back-button:hover {
+            background: rgba(255,255,255,0.35);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(0,0,0,0.25);
+        }
+
+        .back-button::before { content: '← '; margin-left: 5px; }
+
+        footer {
+            text-align: center;
+            margin-top: 60px;
+            padding: 30px;
+            color: rgba(255,255,255,0.9);
+            font-size: 1rem;
+        }
+
+        @media (max-width: 768px) {
+            h1 { font-size: 2.2rem; }
+            .accordion-header { padding: 18px 20px; }
+            .accordion-title { font-size: 1.3rem; }
+            .accordion-body { padding: 20px; }
+        }
+    </style>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-XFYGMQ47QN"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-XFYGMQ47QN');
+</script>
+</head>
+<body>
+<div class="container">
+
+    <header>
+        <a href="../index.html" class="back-button">חזרה לדף ראשי</a>
+        <h1>📊 מבחן הכנסות לקצבת אזרח ותיק</h1>
+        <p class="support-info">המוסד לביטוח לאומי</p>
+        <p class="subtitle">לפי הרכב משפחתי ומקור הכנסה | עדכון ינואר 2026</p>
+        <div class="update-badge">מעודכן לינואר 2026</div>
+    </header>
+
+    <div class="accordions-container">
+
+        <!-- ==================== מבוא ==================== -->
+        <div class="accordion active" data-category="intro">
+            <div class="accordion-header">
+                <div class="accordion-icon">📘</div>
+                <h2 class="accordion-title">מבוא</h2>
+                <span class="accordion-arrow">▼</span>
+            </div>
+            <div class="accordion-content">
+                <div class="accordion-body">
+                    <p>מסמך זה מרכז את מבחן ההכנסות המעניקות זכאות לקצבת אזרח ותיק (קצבת זיקנה) חלקית, בהתאם להרכב המשפחה ולמקור ההכנסה, מעבודה או מנכסים.</p>
+                    <p>הקצבה נבחנת בתקופה שבין גיל הפרישה לבין גיל 70, שבו הזכאות הופכת לאוטומטית ללא תלות בהכנסה.</p>
+
+                    <div class="conditions-box">
+                        <p>⭐ גיל הפרישה לגברים: 67 | לנשים: בהדרגה עד 65 (לפי שנת לידה)</p>
+                        <p>⭐ גיל 70 - קצבה מלאה ללא תלות בהכנסה</p>
+                        <p>⭐ כל הסכומים נכונים החל מ-01.01.2026</p>
+                        <p>⭐ הקצבה הבסיסית ליחיד: <span data-nii="pension_single_basic">1,838</span> ₪ | עם תוספת ותק <span data-nii="seniority_bonus_max" data-format="percent">50</span>%: <span data-nii-calc="pension_single_with_seniority_max">2,757</span> ₪</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ==================== חלק א - דרך חישוב הזכאות ==================== -->
+        <div class="accordion" data-category="algorithm">
+            <div class="accordion-header">
+                <div class="accordion-icon">📐</div>
+                <h2 class="accordion-title">חלק א - דרך חישוב הזכאות ליחיד</h2>
+                <span class="accordion-arrow">▼</span>
+            </div>
+            <div class="accordion-content">
+                <div class="accordion-body">
+                    <div class="conditions-box algorithm-box">
+                        <p><strong>תקרות ההכנסה ליחיד</strong></p>
+                        <ul>
+                            <li>תקרת עבודה חלקית: <span data-nii="income_test_single_full">10,113</span> ₪</li>
+                            <li>תקרת עבודה שוללת: <span data-nii="income_test_single_partial">14,402</span> ₪</li>
+                            <li>תקרת נכסים חלקית: <span data-nii="income_test_single_asset_full">30,339</span> ₪</li>
+                            <li>תקרת נכסים שוללת: <span data-nii="income_test_single_asset_partial">34,627</span> ₪</li>
+                        </ul>
+                    </div>
+
+                    <div class="conditions-box warning algorithm-box">
+                        <p><strong>אין זכאות</strong></p>
+                        <ul>
+                            <li>יחיד עם הכנסה מעבודה בלבד מעל תקרת עבודה שוללת (<span data-nii="income_test_single_partial">14,402</span> ₪)</li>
+                            <li>יחיד עם הכנסה מנכסים בלבד מעל תקרת נכסים שוללת (<span data-nii="income_test_single_asset_partial">34,627</span> ₪)</li>
+                            <li>יחיד עם הכנסה משולבת (עבודה + נכסים) מעל תקרת נכסים שוללת (<span data-nii="income_test_single_asset_partial">34,627</span> ₪)</li>
+                        </ul>
+                    </div>
+
+                    <div class="conditions-box success algorithm-box">
+                        <p><strong>זכאות מלאה</strong></p>
+                        <ul>
+                            <li>יחיד עם הכנסה מעבודה בלבד קטנה מתקרת עבודה חלקית (<span data-nii="income_test_single_full">10,113</span> ₪)</li>
+                            <li>יחיד עם הכנסה מנכסים בלבד קטנה מתקרת נכסים חלקית (<span data-nii="income_test_single_asset_full">30,339</span> ₪)</li>
+                            <li>יחיד עם הכנסה משולבת (עבודה + נכסים) קטנה מתקרת נכסים חלקית (<span data-nii="income_test_single_asset_full">30,339</span> ₪)</li>
+                        </ul>
+                    </div>
+
+                    <div class="conditions-box info algorithm-box">
+                        <p><strong>זכאות חלקית</strong></p>
+                        <ul>
+                            <li><strong>תנאי כללי:</strong> הקצבה המחושבת לא תרד מקצבת המינימום (<span data-nii-calc="min_partial_rounded">184</span> ₪ , זכאות לא פחות מ-10% מהקצבה הבסיסית). אם הקצבה המחושבת קטנה מהמינימום - אין זכאות  בחודש זה.</li>
+                            <li><strong>הכנסה מעבודה בלבד:</strong> מעל תקרת עבודה חלקית (<span data-nii="income_test_single_full">10,113</span> ₪) וקטן מתקרת עבודה שוללת (<span data-nii="income_test_single_partial">14,402</span> ₪) - מפחיתים <span data-nii="income_test_deduction_rate" data-format="percent">60</span>% מהפער.</li>
+                            <li><strong>הכנסה מנכסים בלבד:</strong> מעל תקרת נכסים חלקית (<span data-nii="income_test_single_asset_full">30,339</span> ₪) וקטן מתקרת נכסים שוללת (<span data-nii="income_test_single_asset_partial">34,627</span> ₪) - מפחיתים <span data-nii="income_test_deduction_rate" data-format="percent">60</span>% מהפער.</li>
+                            <li><strong>הכנסה משולבת (עבודה + נכסים):</strong> מעל תקרת נכסים חלקית (<span data-nii="income_test_single_asset_full">30,339</span> ₪) וקטן מתקרת נכסים שוללת (<span data-nii="income_test_single_asset_partial">34,627</span> ₪) - מפחיתים <span data-nii="income_test_deduction_rate" data-format="percent">60</span>% מהפער.</li>
+                        </ul>
+                    </div>
+
+                    <div class="conditions-box algorithm-box" style="margin-top:16px; background:#f5f5f5; border-right-color:#9e9e9e;">
+                        <p><strong>הערה</strong></p>
+                        <ul>
+                            <li>עבור תלויים (בן/בת זוג או ילדים) - אותו חישוב עם סכומי הקצבה המתאימים.</li>
+                            <li>עבור שני בני זוג זכאים - נערך חישוב נפרד לכל אחד לפי יחיד.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ==================== חלק ב - הכנסה מעבודה ==================== -->
+        <div class="accordion" data-category="work">
+            <div class="accordion-header">
+                <div class="accordion-icon">💼</div>
+                <h2 class="accordion-title">חלק ב - הכנסה מעבודה</h2>
+                <span class="accordion-arrow">▼</span>
+            </div>
+            <div class="accordion-content">
+                <div class="accordion-body">
+                    <p>כאשר ההכנסה היא ממשכורת או מעסק עצמאי, חל מבחן הכנסה מעבודה. הכנסה זו נחשבת ברוטו (לפני ניכויים).</p>
+                    <p>פנסיה מקרן פנסיה / ביטוח מנהלים אינה נחשבת הכנסה מעבודה ואינה נמנית במסגרת תקרות אלה.</p>
+
+                    <h4>1. יחיד (ללא בן/ת זוג כהגדרת הביטוח הלאומי)</h4>
+                    <p>כולל: רווק/ה, גרוש/ה, אלמן/ה, ונשוי/ה שבן/ת הזוג אינו עונה על הגדרת "בן זוג" בחוק (הכנסת בן/ת הזוג עולה על <span data-nii="income_test_spouse_ceiling">7,848</span> ₪/חודש או שאינו בגילאים המוגדרים).</p>
+
+                    <table class="nii-table">
+                        <thead>
+                            <tr>
+                                <th>הכנסה חודשית מעבודה (ברוטו)</th>
+                                <th>מצב קצבה</th>
+                                <th>הערה</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>עד <span data-nii="income_test_single_full">10,113</span> ₪</td>
+                                <td>קצבה מלאה</td>
+                                <td>ללא קיצוץ</td>
+                            </tr>
+                            <tr>
+                                <td><span data-nii="income_test_single_full">10,113</span> ₪ - <span data-nii="income_test_single_partial">14,402</span> ₪</td>
+                                <td>קצבה חלקית</td>
+                                <td>מינוס <span data-nii="income_test_deduction_rate" data-format="percent">60</span>% מהחריגה</td>
+                            </tr>
+                            <tr>
+                                <td>מעל <span data-nii="income_test_single_partial">14,402</span> ₪</td>
+                                <td>אין זכאות</td>
+                                <td>קצבה מושהית עד גיל 70</td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    <div class="conditions-box">
+                        <p>נוסחת חישוב: קצבה = קצבה מלאה − (<span data-nii="income_test_deduction_rate" data-format="percent">60</span>% × [הכנסה בפועל − <span data-nii="income_test_single_full">10,113</span> ₪])</p>
+                        <p>דוגמה: הכנסה 11,000 ₪ - חריגה 887 ₪ - קיצוץ 532 ₪</p>
+                        <p>הקצבה החלקית לא תרד מ-10% מהקצבה הבסיסית (<span data-nii-calc="min_partial_rounded">184</span> ₪)</p>
+                    </div>
+
+                    <h4>2. נשוי/ה - בן/ת הזוג עונה על הגדרת "בן זוג" (אינו מקבל קצבה בזכות עצמו)</h4>
+                    <p>תנאים: נשואים שנה לפחות, בין גיל 50 ל-70, והכנסת בן/ת הזוג מכל המקורות אינה עולה על <span data-nii="income_test_spouse_ceiling">7,848</span> ₪/חודש, או שגילו מעל 70 ואינו מקבל קצבה בזכות עצמו.</p>
+
+                    <table class="nii-table">
+                        <thead>
+                            <tr>
+                                <th>הכנסה חודשית מעבודה (ברוטו)</th>
+                                <th>מצב קצבה</th>
+                                <th>הערה</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>עד <span data-nii="income_test_married_full">13,484</span> ₪</td>
+                                <td>קצבה מלאה</td>
+                                <td>כולל תוספת עבור בן/ת הזוג</td>
+                            </tr>
+                            <tr>
+                                <td><span data-nii="income_test_married_full">13,484</span> ₪ - <span data-nii="income_test_married_partial">20,082</span> ₪</td>
+                                <td>קצבה חלקית</td>
+                                <td>מינוס <span data-nii="income_test_deduction_rate" data-format="percent">60</span>% מהחריגה</td>
+                            </tr>
+                            <tr>
+                                <td>מעל <span data-nii="income_test_married_partial">20,082</span> ₪</td>
+                                <td>אין זכאות</td>
+                                <td>קצבה מושהית עד גיל 70</td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    <div class="conditions-box">
+                        <p>הקצבה המשולמת כוללת תוספת בעבור בן/ת הזוג, כל עוד הכנסת בן/ת הזוג אינה עולה על <span data-nii="income_test_spouse_ceiling">7,848</span> ₪</p>
+                        <p>נוסחת חישוב: קצבה = קצבה מלאה − (<span data-nii="income_test_deduction_rate" data-format="percent">60</span>% × [הכנסה בפועל − <span data-nii="income_test_married_full">13,484</span> ₪])</p>
+                        <p>דוגמה: הכנסה 15,000 ₪ - חריגה 1,516 ₪ - קיצוץ 910 ₪</p>
+                    </div>
+
+                    <h4>3. שני בני הזוג זכאים לקצבה בזכות עצמם - כל אחד נבחן בנפרד</h4>
+                    <p>כאשר גם בן/ת הזוג הגיע/ה לגיל הפרישה ומגיש/ה תביעה בזכות עצמו/ה, כל אחד מהם עובר מבחן הכנסה עצמאי כ"יחיד" לצורכי חישוב קצבתו.</p>
+
+                    <table class="nii-table">
+                        <thead>
+                            <tr>
+                                <th>מבוטח/ת</th>
+                                <th>תקרה לקצבה מלאה</th>
+                                <th>תקרה מקסימלית (אין זכאות)</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>כל אחד מבני הזוג</td>
+                                <td><span data-nii="income_test_single_full">10,113</span> ₪</td>
+                                <td><span data-nii="income_test_single_partial">14,402</span> ₪</td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    <div class="conditions-box">
+                        <p>כל בן/ת זוג מגיש/ה תביעה נפרדת ומקבל/ת קצבה נפרדת בהתאם להכנסתו/ה האישית</p>
+                        <p>הכנסת בן/ת הזוג אינה מצטרפת לחישוב הכנסת המבוטח/ת</p>
+                        <p>כל אחד זכאי לתוספת ותק בהתאם לשנות ביטוחו/ה האישיות</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ==================== חלק ג - הכנסה מנכסים ==================== -->
+        <div class="accordion" data-category="assets">
+            <div class="accordion-header">
+                <div class="accordion-icon">🏠</div>
+                <h2 class="accordion-title">חלק ג - הכנסה משנכסים</h2>
+                <span class="accordion-arrow">▼</span>
+            </div>
+            <div class="accordion-content">
+                <div class="accordion-body">
+                    <p>הכנסה מנכסים כוללת: שכר דירה, ריבית ודיבידנד, רווחים עסקיים שאינם מעבודה אישית, הכנסה מהשכרת רכוש, ועוד.</p>
+                    <p>חשוב: פנסיה מקרן פנסיה / ביטוח מנהלים / קרן השתלמות אינה נכנסת לחישוב זה ואינה פוגעת בזכאות.</p>
+
+                    <div class="conditions-box warning">
+                        <p>⚠️ תקרות ההכנסה מנכסים גבוהות פי 3 מתקרות הכנסת עבודה</p>
+                        <p>⚠️ קיצוץ לקצבה חלקית: <span data-nii="income_test_deduction_rate" data-format="percent">60</span>% מהחריגה מעל תקרת הקצבה המלאה</p>
+                        <p>⚠️ אי-אפשר לקבל "תוספת דחייה" בשל חריגה מהכנסה שאינה מעבודה</p>
+                    </div>
+
+                    <h4>1. יחיד - הכנסה מנכסים</h4>
+                    <table class="nii-table">
+                        <thead>
+                            <tr>
+                                <th>הכנסה חודשית מנכסים (ברוטו)</th>
+                                <th>מצב קצבה</th>
+                                <th>הערה</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>עד <span data-nii="income_test_single_asset_full">30,339</span> ₪</td>
+                                <td>קצבה מלאה</td>
+                                <td>ללא קיצוץ</td>
+                            </tr>
+                            <tr>
+                                <td><span data-nii="income_test_single_asset_full">30,339</span> ₪ - <span data-nii="income_test_single_asset_partial">34,627</span> ₪</td>
+                                <td>קצבה חלקית</td>
+                                <td>מינוס <span data-nii="income_test_deduction_rate" data-format="percent">60</span>% מהחריגה</td>
+                            </tr>
+                            <tr>
+                                <td>מעל <span data-nii="income_test_single_asset_partial">34,627</span> ₪</td>
+                                <td>אין זכאות</td>
+                                <td>אין תוספת דחייה</td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    <h4>2א. נשוי/ה - בן/ת זוג עונה להגדרה ואינו/ה מקבל/ת קצבה - הכנסה מנכסים</h4>
+                    <table class="nii-table">
+                        <thead>
+                            <tr>
+                                <th>הכנסה חודשית מנכסים (ברוטו)</th>
+                                <th>מצב קצבה</th>
+                                <th>הערה</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>עד <span data-nii="income_test_married_asset_full">40,452</span> ₪</td>
+                                <td>קצבה מלאה</td>
+                                <td>ללא קיצוץ</td>
+                            </tr>
+                            <tr>
+                                <td><span data-nii="income_test_married_asset_full">40,452</span> ₪ - <span data-nii="income_test_married_asset_partial_no_pension">47,050</span> ₪</td>
+                                <td>קצבה חלקית</td>
+                                <td>מינוס <span data-nii="income_test_deduction_rate" data-format="percent">60</span>% מהחריגה</td>
+                            </tr>
+                            <tr>
+                                <td>מעל <span data-nii="income_test_married_asset_partial_no_pension">47,050</span> ₪</td>
+                                <td>אין זכאות</td>
+                                <td>אין תוספת דחייה</td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    <h4>2ב. נשוי/ה - בן/ת זוג מקבל/ת קצבה מהביטוח הלאומי - הכנסה מנכסים</h4>
+                    <table class="nii-table">
+                        <thead>
+                            <tr>
+                                <th>הכנסה חודשית מנכסים (ברוטו)</th>
+                                <th>מצב קצבה</th>
+                                <th>הערה</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>עד <span data-nii="income_test_married_asset_full">40,452</span> ₪</td>
+                                <td>קצבה מלאה</td>
+                                <td>ללא קיצוץ</td>
+                            </tr>
+                            <tr>
+                                <td><span data-nii="income_test_married_asset_full">40,452</span> ₪ - <span data-nii="income_test_married_asset_partial_with_pension">44,740</span> ₪</td>
+                                <td>קצבה חלקית</td>
+                                <td>מינוס <span data-nii="income_test_deduction_rate" data-format="percent">60</span>% מהחריגה</td>
+                            </tr>
+                            <tr>
+                                <td>מעל <span data-nii="income_test_married_asset_partial_with_pension">44,740</span> ₪</td>
+                                <td>אין זכאות</td>
+                                <td>אין תוספת דחייה</td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    <h4>3. שני בני הזוג זכאים - הכנסה מנכסים</h4>
+                    <table class="nii-table">
+                        <thead>
+                            <tr>
+                                <th>הכנסה חודשית מנכסים (ברוטו)</th>
+                                <th>תקרה לקצבה מלאה</th>
+                                <th>תקרה - אין זכאות</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>כל אחד מבני הזוג (בנפרד)</td>
+                                <td><span data-nii="income_test_married_asset_full">40,452</span> ₪</td>
+                                <td><span data-nii="income_test_married_asset_partial_with_pension">44,740</span> ₪</td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    <div class="conditions-box">
+                        <p>הכנסה מנכסים משותפים מתחלקת בין שני בני הזוג לפי חלקו של כל אחד בבעלות (בדרך כלל 50/50 לפי הרישום בטאבו)</p>
+                    </div>
+
+                    <h4>דוגמה מספרית - שכר דירה ושני בני זוג זכאים</h4>
+                    <div class="conditions-box success">
+                        <p>▪ לבני הזוג נכס מסחרי משותף (50/50 בטאבו) המניב שכר דירה של 84,000 ₪/חודש</p>
+                        <p>▪ קצבה מלאה של כל אחד (כולל תוספת ותק 50%): <span data-nii-calc="pension_single_with_seniority_max">2,757</span> ₪</p>
+                        <p>▪ חלקו של כל אחד בהכנסה: 84,000 ÷ 2 = 42,000 ₪/חודש</p>
+                        <p>▪ הכנסה מנכסים: 42,000 ₪ - עולה על תקרת קצבה מלאה (<span data-nii="income_test_married_asset_full">40,452</span> ₪)</p>
+                        <p>▪ הכנסה מתחת לתקרת "אין זכאות" (<span data-nii="income_test_married_asset_partial_with_pension">44,740</span> ₪) - זכאי לקצבה חלקית</p>
+                        <p>▪ חריגה: 42,000 − 40,452 = 1,548 ₪</p>
+                        <p>▪ קיצוץ: 60% × 1,548 = 929 ₪</p>
+                        <p>▶ קצבה לכל אחד: <span data-nii-calc="pension_single_with_seniority_max">2,757</span> − 929 = 1,828 ₪/חודש</p>
+                    </div>
+                    <div class="conditions-box warning">
+                        <p>⚠️ אם הנכס המסחרי רשום על שם אחד בלבד - כל 84,000 ₪ ייוחסו לו, ויאבד את הזכאות לקצבה (מעל <span data-nii="income_test_married_asset_partial_with_pension">44,740</span> ₪), בעוד בן/ת הזוג יקבל/תקבל קצבה מלאה</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ==================== חלק ד - הכנסה משולבת ==================== -->
+        <div class="accordion" data-category="combined">
+            <div class="accordion-header">
+                <div class="accordion-icon">📊</div>
+                <h2 class="accordion-title">חלק ד - הכנסה משולבת</h2>
+                <span class="accordion-arrow">▼</span>
+            </div>
+            <div class="accordion-content">
+                <div class="accordion-body">
+                    <p>כאשר למבוטח יש הכנסה הן מעבודה והן מנכסים, הביטוח הלאומי בוחן את הכנסתו הכוללת ממקורות אלה גם יחד.</p>
+                    <p>הטבלה שלהלן מציגה את תקרות ההכנסה לקבלת קצבה מלאה לפי כל מקור. מעל התקרה - קצבה חלקית.</p>
+
+                    <div class="conditions-box info">
+                        <p>✔ הכנסה מעבודה + הכנסה מנכסים נסכמות יחד לצורך בדיקת התקרה</p>
+                        <p>✔ פנסיה ממקורות פנסיוניים פרטיים (קרן פנסיה, ביטוח מנהלים) לא נכללת</p>
+                        <p>✔ קצבת זקנה עצמה לא נחשבת הכנסה לצורך מבחן זה</p>
+                    </div>
+
+                    <table class="nii-table">
+                        <thead>
+                            <tr>
+                                <th>הרכב משפחתי</th>
+                                <th>תקרת עבודה *</th>
+                                <th>תקרת נכסים *</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>יחיד</td>
+                                <td><span data-nii="income_test_single_full">10,113</span> ₪</td>
+                                <td><span data-nii-calc="income_test_single_full_x2">20,226</span> ₪</td>
+                            </tr>
+                            <tr>
+                                <td>זוג (ב"ז לא מקבל קצבה)</td>
+                                <td><span data-nii="income_test_married_full">13,484</span> ₪</td>
+                                <td><span data-nii-calc="income_test_married_full_x2">26,968</span> ₪</td>
+                            </tr>
+                            <tr>
+                                <td>נשואים זכאים - כל אחד בנפרד</td>
+                                <td><span data-nii="income_test_single_full">10,113</span> ₪</td>
+                                <td><span data-nii-calc="income_test_single_full_x2">20,226</span> ₪</td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    <div class="conditions-box">
+                        <p>* מעל התקרה - זכאות לקצבה חלקית. אין זכאות כאשר הקצבה המחושבת (לאחר ניכוי 60% מהחריגה) יורדת מתחת ל-<span data-nii-calc="min_partial_rounded">184</span> ₪/חודש</p>
+                        <p>* תקרת נכסים בלבד = תקרת עבודה × 3 | תקרת נכסים במשולב = תקרת עבודה × 2</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ==================== סיכום - טבלת תקרות ==================== -->
+        <div class="accordion" data-category="summary">
+            <div class="accordion-header">
+                <div class="accordion-icon">📋</div>
+                <h2 class="accordion-title">סיכום - טבלת תקרות לפי הרכב משפחתי 2026</h2>
+                <span class="accordion-arrow">▼</span>
+            </div>
+            <div class="accordion-content">
+                <div class="accordion-body">
+
+                    <h4>הכנסה מנכסים בלבד</h4>
+                    <table class="nii-table">
+                        <thead>
+                            <tr>
+                                <th>הרכב משפחתי</th>
+                                <th>קצבה מלאה עד</th>
+                                <th>קצבה חלקית עד</th>
+                                <th>אין זכאות מעל</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>יחיד</td>
+                                <td><span data-nii="income_test_single_asset_full">30,339</span> ₪</td>
+                                <td><span data-nii="income_test_single_asset_partial">34,627</span> ₪</td>
+                                <td><span data-nii="income_test_single_asset_partial">34,627</span> ₪</td>
+                            </tr>
+                            <tr>
+                                <td>זוג (ב"ז לא מקבל קצבה)</td>
+                                <td><span data-nii="income_test_married_asset_full">40,452</span> ₪</td>
+                                <td><span data-nii="income_test_married_asset_partial_no_pension">47,050</span> ₪</td>
+                                <td><span data-nii="income_test_married_asset_partial_no_pension">47,050</span> ₪</td>
+                            </tr>
+                            <tr>
+                                <td>נשואים זכאים - כל אחד בנפרד</td>
+                                <td><span data-nii="income_test_married_asset_full">40,452</span> ₪</td>
+                                <td><span data-nii="income_test_married_asset_partial_with_pension">44,740</span> ₪</td>
+                                <td><span data-nii="income_test_married_asset_partial_with_pension">44,740</span> ₪</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <p style="font-size:0.95rem;color:#777;margin-top:8px;">* נשואים זכאים - הכנסה מנכסים משותפים מתחלקת לפי בעלות (בד"כ 50/50)</p>
+
+                    <h4>הכנסה מעבודה בלבד</h4>
+                    <table class="nii-table">
+                        <thead>
+                            <tr>
+                                <th>הרכב משפחתי</th>
+                                <th>קצבה מלאה עד</th>
+                                <th>קצבה חלקית עד</th>
+                                <th>אין זכאות מעל</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>יחיד</td>
+                                <td><span data-nii="income_test_single_full">10,113</span> ₪</td>
+                                <td><span data-nii="income_test_single_partial">14,402</span> ₪</td>
+                                <td><span data-nii="income_test_single_partial">14,402</span> ₪</td>
+                            </tr>
+                            <tr>
+                                <td>זוג (ב"ז לא מקבל קצבה)</td>
+                                <td><span data-nii="income_test_married_full">13,484</span> ₪</td>
+                                <td><span data-nii="income_test_married_partial">20,082</span> ₪</td>
+                                <td><span data-nii="income_test_married_partial">20,082</span> ₪</td>
+                            </tr>
+                            <tr>
+                                <td>נשואים זכאים - כל אחד בנפרד</td>
+                                <td><span data-nii="income_test_single_full">10,113</span> ₪</td>
+                                <td><span data-nii="income_test_single_partial">14,402</span> ₪</td>
+                                <td><span data-nii="income_test_single_partial">14,402</span> ₪</td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    <h4>הכנסה מעבודה + נכסים (תקרות לקצבה מלאה)</h4>
+                    <table class="nii-table">
+                        <thead>
+                            <tr>
+                                <th>הרכב משפחתי</th>
+                                <th>תקרת עבודה *</th>
+                                <th>תקרת נכסים *</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>יחיד</td>
+                                <td><span data-nii="income_test_single_full">10,113</span> ₪</td>
+                                <td><span data-nii-calc="income_test_single_full_x2">20,226</span> ₪</td>
+                            </tr>
+                            <tr>
+                                <td>זוג (ב"ז לא מקבל קצבה)</td>
+                                <td><span data-nii="income_test_married_full">13,484</span> ₪</td>
+                                <td><span data-nii-calc="income_test_married_full_x2">26,968</span> ₪</td>
+                            </tr>
+                            <tr>
+                                <td>נשואים זכאים - כל אחד בנפרד</td>
+                                <td><span data-nii="income_test_single_full">10,113</span> ₪</td>
+                                <td><span data-nii-calc="income_test_single_full_x2">20,226</span> ₪</td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    <div class="conditions-box">
+                        <p>* תקרת נכסים בלבד = תקרת עבודה × 3 | תקרת נכסים במשולב = תקרת עבודה × 2</p>
+                        <p>* מעל התקרה - זכאות לקצבה חלקית. אין זכאות כאשר הקצבה המחושבת יורדת מתחת ל-<span data-nii-calc="min_partial_rounded">184</span> ₪/חודש</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ==================== הבהרות מעשיות ==================== -->
+        <div class="accordion" data-category="clarifications">
+            <div class="accordion-header">
+                <div class="accordion-icon">💡</div>
+                <h2 class="accordion-title">הבהרות מעשיות</h2>
+                <span class="accordion-arrow">▼</span>
+            </div>
+            <div class="accordion-content">
+                <div class="accordion-body">
+
+                    <h4>מה נחשב הכנסה לצורך מבחן הכנסה?</h4>
+                    <ul>
+                        <li>שכר עבודה (ברוטו), משכורת, הכנסה מעסק</li>
+                        <li>שכר דירה (לפני ניכוי הוצאות)</li>
+                        <li>ריבית מפיקדונות / אגרות חוב</li>
+                        <li>דיבידנד ממניות</li>
+                        <li>הכנסה מהשכרת נכס</li>
+                        <li>רווח הון מניירות ערך (מחושב כהכנסה חודשית: שנתי ÷ 12)</li>
+                    </ul>
+
+                    <h4>מה לא נחשב הכנסה?</h4>
+                    <ul>
+                        <li>קצבה מקרן פנסיה / ביטוח מנהלים / קרן השתלמות</li>
+                        <li>קצבת אזרח ותיק עצמה</li>
+                        <li>קצבת שאירים</li>
+                        <li>הכנסות פטורות ממס (לדוגמה: מכירת דירה יחידה)</li>
+                        <li>גמלאות ביטוח לאומי אחרות (נכות, סיעוד וכו')</li>
+                    </ul>
+
+                    <h4>תוספת דחייה - מתי מגיעה?</h4>
+                    <p>מי שלא קיבל קצבה בגין הכנסה מעבודה שחרגה מהתקרה - זכאי לתוספת דחייה של <span data-nii="deferral_bonus_rate" data-format="percent">5</span>% לכל שנה שבה נמנעה ממנו הקצבה.</p>
+                    <div class="conditions-box warning">
+                        <p>⚠️ תוספת דחייה ניתנת רק בשל חריגה מהכנסה מעבודה - לא בשל הכנסה מנכסים</p>
+                        <p>⚠️ מי שוויתר מרצון על הקצבה (גם אם הגיע להכנסה נמוכה) לא יקבל תוספת דחייה</p>
+                    </div>
+
+                    <h4>הגדרת "בן/ת זוג" לצורך התוספת</h4>
+                    <p>בן/ת זוג מוכר/ת לצורך תוספת הקצבה (וגם להגדלת תקרת ההכנסה) צריך/ה לעמוד בכל התנאים הבאים:</p>
+                    <ol>
+                        <li>נשואים (או ידועים בציבור) שנה לפחות</li>
+                        <li>בן/ת הזוג בגיל 50-70, ו/או מעל 70 ואינו/ה מקבל/ת קצבה בזכות עצמו/ה</li>
+                        <li>הכנסת בן/ת הזוג מכל המקורות (כולל פנסיה) אינה עולה על <span data-nii="income_test_spouse_ceiling">7,848</span> ₪/חודש</li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+
+        <!-- ==================== דוגמאות ==================== -->
+        <div class="accordion" data-category="examples">
+            <div class="accordion-header">
+                <div class="accordion-icon">🧮</div>
+                <h2 class="accordion-title">דוגמאות</h2>
+                <span class="accordion-arrow">▼</span>
+            </div>
+            <div class="accordion-content">
+                <div class="accordion-body">
+                    <p>בדוגמאות הבאות החישוב הוא להכנסה משולבת (מעבודה + מנכסים) לפי כללי הקיזוז של <span data-nii="income_test_deduction_rate" data-format="percent">60</span>% מהחריגה מעל התקרה הרלוונטית.</p>
+
+                    <h4>דוגמה 1 - רווקה בת 66 (יחידה), קצבה מלאה</h4>
+                    <div class="conditions-box success">
+                        <p>מצב משפחתי: רווקה</p>
+                        <p>גיל המבוטחת: 66</p>
+                        <p>וותק ביטוחי: 20 שנים (תוספת ותק 40%)</p>
+                        <p>הכנסה מעבודה: 8,000 ₪</p>
+                        <p>הכנסה מנכסים: 9,000 ₪</p>
+                        <p>סה"כ הכנסה משולבת: 17,000 ₪</p>
+                        <p>סכום הקצבה המלאה: <span data-nii="pension_single_basic">1,838</span> × 1.40 = 2,573 ₪</p>
+                        <p>סכום הקיזוז: 0 ₪</p>
+                        <p>הסכום שיתקבל בפועל: 2,573 ₪</p>
+                    </div>
+
+                    <h4>דוגמה 2 - נשוי/ה (בן/בת הזוג לא מקבל/ת קצבה), קצבה נשללת</h4>
+                    <div class="conditions-box warning">
+                        <p>מצב משפחתי: נשוי/ה (בן/בת הזוג תלוי/ה ואינו/ה מקבל/ת קצבה)</p>
+                        <p>גיל המבוטח/ת: 67</p>
+                        <p>קצבה בסיסית לזוג: <span data-nii="pension_couple_basic">2,762</span> ₪</p>
+                        <p>וותק ביטוחי: 15 שנים (תוספת ותק 30%)</p>
+                        <p>הכנסה מעבודה: 14,200 ₪</p>
+                        <p>הכנסה מנכסים: 41,300 ₪</p>
+                        <p>סה"כ הכנסה משולבת: 55,500 ₪</p>
+                        <p>נקודת בסיס לקיזוז לזוג: <span data-nii="income_test_married_asset_full">40,452</span> ₪</p>
+                        <p>חריגה: 55,500 − 40,452 = 15,048 ₪</p>
+                        <p>סכום הקצבה המלאה: <span data-nii="pension_couple_basic">2,762</span> × 1.30 = 3,591 ₪</p>
+                        <p>סכום הקיזוז: 60% × 15,048 = 9,029 ₪</p>
+                        <p>הסכום שיתקבל בפועל: 0 ₪ (אין זכאות בחודש זה)</p>
+                    </div>
+
+                    <h4>דוגמה 3 - נשואים ושני בני הזוג זכאים, חישוב נפרד לכל אחד</h4>
+                    <div class="conditions-box info">
+                        <p>מצב משפחתי: נשואים, שני בני הזוג זכאים לקצבה בזכות עצמם</p>
+                        <p>הכנסה מנכס משותף: 50,000 ₪ - מחולקת ל-25,000 ₪ לכל אחד</p>
+                        <p>בן זוג א׳: גיל 68 | ותק 25 שנים (50%) | הכנסה מעבודה 6,000 ₪</p>
+                        <p>בן זוג א׳: סה"כ הכנסה 31,000 ₪ | חריגה 661 ₪ | סכום קיזוז 397 ₪</p>
+                        <p>בן זוג א׳: סכום קצבה מלאה <span data-nii-calc="pension_single_with_seniority_max">2,757</span> ₪ | סכום בפועל 2,360 ₪</p>
+                        <p>בן זוג ב׳: גיל 65 | ותק 10 שנים (20%) | הכנסה מעבודה 9,500 ₪</p>
+                        <p>בן זוג ב׳: סה"כ הכנסה 34,500 ₪ | חריגה 4,161 ₪ | סכום קיזוז 2,497 ₪</p>
+                        <p>בן זוג ב׳: סכום קצבה מלאה 2,206 ₪ | סכום בפועל 0 ₪ (מתחת למינימום)</p>
+                    </div>
+
+                    <h4>דוגמה 4 - אלמן/ה (יחיד/ה), קצבה חלקית</h4>
+                    <div class="conditions-box">
+                        <p>מצב משפחתי: אלמן/ה</p>
+                        <p>גיל המבוטח/ת: 69</p>
+                        <p>וותק ביטוחי: 8 שנים (תוספת ותק 16%)</p>
+                        <p>הכנסה מעבודה: 9,900 ₪</p>
+                        <p>הכנסה מנכסים: 22,000 ₪</p>
+                        <p>סה"כ הכנסה משולבת: 31,900 ₪</p>
+                        <p>נקודת בסיס לקיזוז ליחיד: <span data-nii="income_test_single_asset_full">30,339</span> ₪</p>
+                        <p>חריגה: 31,900 − 30,339 = 1,561 ₪</p>
+                        <p>סכום הקצבה המלאה: <span data-nii="pension_single_basic">1,838</span> × 1.16 = 2,132 ₪</p>
+                        <p>סכום הקיזוז: 60% × 1,561 = 937 ₪</p>
+                        <p>הסכום שיתקבל בפועל: 2,132 − 937 = 1,195 ₪</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div><!-- end accordions-container -->
+
+    <div class="info-box">
+        <p>מסמך זה מיועד לייעוץ ולהכוונה בלבד. לבדיקת זכאות אישית יש לפנות לסניף הביטוח הלאומי הקרוב.</p>
+        <p style="margin-top:8px;font-size:0.95rem;color:#90A4AE;">מקורות: btl.gov.il | עדכון: ינואר 2026 | שכר ממוצע: <span data-nii="average_wage">13,769</span> ₪</p>
+    </div>
+
+    <footer>
+        <p>© המוסד לביטוח לאומי | עדכון ינואר 2026</p>
+    </footer>
+
+</div><!-- end container -->
+
+<script>
+    let NII_CONSTANTS = {};
+
+    function formatValue(value, format) {
+        if (format === 'percent') return value;
+        if (typeof value === 'number') return value.toLocaleString('he-IL');
+        return value;
+    }
+
+    function applyNiiValues() {
+        document.querySelectorAll('[data-nii]').forEach(el => {
+            const key = el.getAttribute('data-nii');
+            const formatType = el.getAttribute('data-format') || 'currency';
+            if (!NII_CONSTANTS[key]) return;
+            el.textContent = formatValue(NII_CONSTANTS[key].value, formatType);
+        });
+
+        // Calculated: קצבה מלאה + תוספת ותק מקסימלית
+        document.querySelectorAll('[data-nii-calc="pension_single_with_seniority_max"]').forEach(el => {
+            const basic = NII_CONSTANTS.pension_single_basic?.value;
+            const maxRate = NII_CONSTANTS.seniority_bonus_max?.value;
+            if (typeof basic === 'number' && typeof maxRate === 'number') {
+                el.textContent = Math.round(basic * (1 + maxRate / 100)).toLocaleString('he-IL');
+            }
+        });
+
+        // Calculated: מינימום קצבה חלקית (10% מהבסיסית)
+        document.querySelectorAll('[data-nii-calc="min_partial_rounded"]').forEach(el => {
+            const basic = NII_CONSTANTS.pension_single_basic?.value;
+            if (typeof basic === 'number') {
+                el.textContent = Math.round(basic * 0.1).toLocaleString('he-IL');
+            }
+        });
+
+        // Calculated: תקרת נכסים במשולב ליחיד (תקרת עבודה יחיד × 2)
+        document.querySelectorAll('[data-nii-calc="income_test_single_full_x2"]').forEach(el => {
+            const v = NII_CONSTANTS.income_test_single_full?.value;
+            if (typeof v === 'number') {
+                el.textContent = (v * 2).toLocaleString('he-IL');
+            }
+        });
+
+        // Calculated: תקרת נכסים במשולב לנשוי (תקרת עבודה נשוי × 2)
+        document.querySelectorAll('[data-nii-calc="income_test_married_full_x2"]').forEach(el => {
+            const v = NII_CONSTANTS.income_test_married_full?.value;
+            if (typeof v === 'number') {
+                el.textContent = (v * 2).toLocaleString('he-IL');
+            }
+        });
+    }
+
+    async function loadNiiConstants() {
+        try {
+            const resp = await fetch('data/nii-constants.json');
+            NII_CONSTANTS = await resp.json();
+            applyNiiValues();
+        } catch (e) {
+            console.warn('לא ניתן לטעון nii-constants.json, נשארים ערכי fallback');
+        }
+    }
+
+    function processNestedHeadings(container) {
+        const allHeadings = Array.from(container.querySelectorAll('h2, h3, h4, h5, h6'));
+        const headings = allHeadings.filter(heading => {
+            let parent = heading.parentElement;
+            while (parent && parent !== container) {
+                if (parent.classList && parent.classList.contains('sub-accordion')) return false;
+                parent = parent.parentElement;
+            }
+            return !heading.classList.contains('no-accordion');
+        });
+
+        headings.forEach(heading => {
+            let contentElements = [];
+            let nextElement = heading.nextElementSibling;
+            const currentLevel = parseInt(heading.tagName.substring(1), 10);
+
+            while (nextElement) {
+                const nextTagName = nextElement.tagName;
+                if (nextTagName && nextTagName.match(/^H[2-6]$/)) {
+                    const nextLevel = parseInt(nextTagName.substring(1), 10);
+                    if (nextLevel <= currentLevel) break;
+                }
+                contentElements.push(nextElement);
+                nextElement = nextElement.nextElementSibling;
+            }
+
+            if (contentElements.length > 0) {
+                const subAccordion = document.createElement('div');
+                subAccordion.className = 'sub-accordion';
+                subAccordion.setAttribute('data-level', String(currentLevel));
+
+                const subHeader = document.createElement('div');
+                subHeader.className = 'sub-accordion-header';
+
+                const subTitle = document.createElement('div');
+                subTitle.className = 'sub-accordion-title';
+                subTitle.innerHTML = heading.innerHTML;
+
+                const subArrow = document.createElement('span');
+                subArrow.className = 'accordion-arrow';
+                subArrow.textContent = '▼';
+
+                subHeader.appendChild(subTitle);
+                subHeader.appendChild(subArrow);
+
+                const subContent = document.createElement('div');
+                subContent.className = 'sub-accordion-content';
+
+                const subBody = document.createElement('div');
+                subBody.className = 'sub-accordion-body';
+                contentElements.forEach(el => subBody.appendChild(el));
+
+                subContent.appendChild(subBody);
+                subAccordion.appendChild(subHeader);
+                subAccordion.appendChild(subContent);
+
+                heading.parentNode.replaceChild(subAccordion, heading);
+                processNestedHeadings(subBody);
+
+                subHeader.addEventListener('click', event => {
+                    event.stopPropagation();
+                    const wasActive = subAccordion.classList.contains('active');
+                    let parentBody = subAccordion.parentElement;
+                    while (parentBody && !parentBody.classList.contains('accordion-body') && !parentBody.classList.contains('sub-accordion-body')) {
+                        parentBody = parentBody.parentElement;
+                    }
+                    if (parentBody) {
+                        parentBody.querySelectorAll(':scope > .sub-accordion.active').forEach(sib => {
+                            if (sib !== subAccordion) sib.classList.remove('active');
+                        });
+                    }
+                    subAccordion.classList.toggle('active');
+                    if (!wasActive) {
+                        subAccordion.querySelectorAll('.sub-accordion.active').forEach(n => n.classList.remove('active'));
+                    }
+                });
+            }
+        });
+    }
+
+    function convertHeadingsToSubAccordions() {
+        document.querySelectorAll('.accordion-body').forEach(body => {
+            processNestedHeadings(body);
+        });
+    }
+
+    function initAccordions() {
+        const accordions = document.querySelectorAll('.accordion');
+        accordions.forEach(accordion => {
+            const header = accordion.querySelector('.accordion-header');
+            header.addEventListener('click', () => {
+                const wasActive = accordion.classList.contains('active');
+                accordions.forEach(other => {
+                    if (other !== accordion) other.classList.remove('active');
+                });
+                accordion.classList.toggle('active');
+                if (!wasActive) {
+                    accordion.querySelectorAll('.sub-accordion.active').forEach(s => s.classList.remove('active'));
+                }
+            });
+        });
+    }
+
+    async function init() {
+        convertHeadingsToSubAccordions();
+        initAccordions();
+        await loadNiiConstants();
+    }
+
+    document.addEventListener('DOMContentLoaded', init);
+</script>
+<script src="data/hamburger-nav.js"></script>
+</body>
+</html>
