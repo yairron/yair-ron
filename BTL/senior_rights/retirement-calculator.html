@@ -391,15 +391,24 @@
                         <th>שנת לידה</th>
                         <th>גיל פרישה</th>
                     </tr>
-                    <tr><td>עד 31.12.1959</td><td>62</td></tr>
-                    <tr><td>1.1.1960 – 31.12.1960</td><td>62 שנים ו-4 חודשים</td></tr>
-                    <tr><td>1.1.1961 – 31.12.1961</td><td>62 שנים ו-8 חודשים</td></tr>
-                    <tr><td>1.1.1962 – 31.12.1962</td><td>63</td></tr>
-                    <tr><td>1.1.1963 – 31.12.1963</td><td>63 שנים ו-4 חודשים</td></tr>
-                    <tr><td>1.1.1964 – 31.12.1964</td><td>63 שנים ו-8 חודשים</td></tr>
-                    <tr><td>1.1.1965 – 31.12.1965</td><td>64</td></tr>
-                    <tr><td>1.1.1966 – 31.12.1966</td><td>64 שנים ו-4 חודשים</td></tr>
-                    <tr><td>1.1.1967 ואילך</td><td>65</td></tr>
+                    <tr><td>עד 06/1944</td><td>60</td></tr>
+                    <tr><td>07/1944 – 08/1944</td><td>60 שנים ו-4 חודשים</td></tr>
+                    <tr><td>09/1944 – 04/1945</td><td>60 שנים ו-8 חודשים</td></tr>
+                    <tr><td>05/1945 – 12/1945</td><td>61</td></tr>
+                    <tr><td>01/1946 – 08/1946</td><td>61 שנים ו-4 חודשים</td></tr>
+                    <tr><td>09/1946 – 04/1947</td><td>61 שנים ו-8 חודשים</td></tr>
+                    <tr><td>05/1947 – 12/1959</td><td>62</td></tr>
+                    <tr><td>01/1960 – 12/1960</td><td>62 שנים ו-4 חודשים</td></tr>
+                    <tr><td>01/1961 – 12/1961</td><td>62 שנים ו-8 חודשים</td></tr>
+                    <tr><td>01/1962 – 12/1962</td><td>63</td></tr>
+                    <tr><td>01/1963 – 12/1963</td><td>63 שנים ו-3 חודשים</td></tr>
+                    <tr><td>01/1964 – 12/1964</td><td>63 שנים ו-6 חודשים</td></tr>
+                    <tr><td>01/1965 – 12/1965</td><td>63 שנים ו-9 חודשים</td></tr>
+                    <tr><td>01/1966 – 12/1966</td><td>64</td></tr>
+                    <tr><td>01/1967 – 12/1967</td><td>64 שנים ו-3 חודשים</td></tr>
+                    <tr><td>01/1968 – 12/1968</td><td>64 שנים ו-6 חודשים</td></tr>
+                    <tr><td>01/1969 – 12/1969</td><td>64 שנים ו-9 חודשים</td></tr>
+                    <tr><td>01/1970 ואילך</td><td>65</td></tr>
                 </table>
             </div>
 
@@ -422,15 +431,24 @@
 
     <script>
         var retirementTable = [
-            { maxYear: 1959, years: 62, months: 0,  label: '62' },
-            { maxYear: 1960, years: 62, months: 4,  label: '62 שנים ו-4 חודשים' },
-            { maxYear: 1961, years: 62, months: 8,  label: '62 שנים ו-8 חודשים' },
-            { maxYear: 1962, years: 63, months: 0,  label: '63' },
-            { maxYear: 1963, years: 63, months: 4,  label: '63 שנים ו-4 חודשים' },
-            { maxYear: 1964, years: 63, months: 8,  label: '63 שנים ו-8 חודשים' },
-            { maxYear: 1965, years: 64, months: 0,  label: '64' },
-            { maxYear: 1966, years: 64, months: 4,  label: '64 שנים ו-4 חודשים' },
-            { maxYear: 9999, years: 65, months: 0,  label: '65' }
+            { match: function(y, m) { return y < 1944 || (y === 1944 && m <= 6); }, years: 60, months: 0, label: '60' },
+            { match: function(y, m) { return y === 1944 && m >= 7 && m <= 8; }, years: 60, months: 4, label: '60 שנים ו-4 חודשים' },
+            { match: function(y, m) { return (y === 1944 && m >= 9) || (y === 1945 && m <= 4); }, years: 60, months: 8, label: '60 שנים ו-8 חודשים' },
+            { match: function(y, m) { return y === 1945 && m >= 5 && m <= 12; }, years: 61, months: 0, label: '61' },
+            { match: function(y, m) { return y === 1946 && m <= 8; }, years: 61, months: 4, label: '61 שנים ו-4 חודשים' },
+            { match: function(y, m) { return (y === 1946 && m >= 9) || (y === 1947 && m <= 4); }, years: 61, months: 8, label: '61 שנים ו-8 חודשים' },
+            { match: function(y, m) { return (y === 1947 && m >= 5) || (y >= 1948 && y <= 1959); }, years: 62, months: 0, label: '62' },
+            { match: function(y) { return y === 1960; }, years: 62, months: 4, label: '62 שנים ו-4 חודשים' },
+            { match: function(y) { return y === 1961; }, years: 62, months: 8, label: '62 שנים ו-8 חודשים' },
+            { match: function(y) { return y === 1962; }, years: 63, months: 0, label: '63' },
+            { match: function(y) { return y === 1963; }, years: 63, months: 3, label: '63 שנים ו-3 חודשים' },
+            { match: function(y) { return y === 1964; }, years: 63, months: 6, label: '63 שנים ו-6 חודשים' },
+            { match: function(y) { return y === 1965; }, years: 63, months: 9, label: '63 שנים ו-9 חודשים' },
+            { match: function(y) { return y === 1966; }, years: 64, months: 0, label: '64' },
+            { match: function(y) { return y === 1967; }, years: 64, months: 3, label: '64 שנים ו-3 חודשים' },
+            { match: function(y) { return y === 1968; }, years: 64, months: 6, label: '64 שנים ו-6 חודשים' },
+            { match: function(y) { return y === 1969; }, years: 64, months: 9, label: '64 שנים ו-9 חודשים' },
+            { match: function(y) { return y >= 1970; }, years: 65, months: 0, label: '65' }
         ];
 
         function formatDateInput(input) {
@@ -447,9 +465,9 @@
             if (e.key === 'Enter') calculate();
         }
 
-        function getRetirementEntry(year) {
+        function getRetirementEntry(year, month) {
             for (var i = 0; i < retirementTable.length; i++) {
-                if (year <= retirementTable[i].maxYear) return retirementTable[i];
+                if (retirementTable[i].match(year, month)) return retirementTable[i];
             }
             return retirementTable[retirementTable.length - 1];
         }
@@ -499,7 +517,7 @@
                 return;
             }
 
-            var entry = getRetirementEntry(year);
+            var entry = getRetirementEntry(year, month);
             var retYear  = year + entry.years;
             var retMonth = month + entry.months;
             if (retMonth > 12) {
@@ -538,15 +556,24 @@
             if (!notice) return;
 
             var steps = [
-                { minYear: 0,    maxYear: 1959, years: 62, months: 0,  label: 'עד 1959' },
-                { minYear: 1960, maxYear: 1960, years: 62, months: 4,  label: '1960' },
-                { minYear: 1961, maxYear: 1961, years: 62, months: 8,  label: '1961' },
-                { minYear: 1962, maxYear: 1962, years: 63, months: 0,  label: '1962' },
-                { minYear: 1963, maxYear: 1963, years: 63, months: 4,  label: '1963' },
-                { minYear: 1964, maxYear: 1964, years: 63, months: 8,  label: '1964' },
-                { minYear: 1965, maxYear: 1965, years: 64, months: 0,  label: '1965' },
-                { minYear: 1966, maxYear: 1966, years: 64, months: 4,  label: '1966' },
-                { minYear: 1967, maxYear: 9999, years: 65, months: 0,  label: '1967 ואילך' }
+                { fromYear: 1900, fromMonth: 1,  toYear: 1944, toMonth: 6,  years: 60, months: 0, label: 'עד 06/1944' },
+                { fromYear: 1944, fromMonth: 7,  toYear: 1944, toMonth: 8,  years: 60, months: 4, label: '07/1944–08/1944' },
+                { fromYear: 1944, fromMonth: 9,  toYear: 1945, toMonth: 4,  years: 60, months: 8, label: '09/1944–04/1945' },
+                { fromYear: 1945, fromMonth: 5,  toYear: 1945, toMonth: 12, years: 61, months: 0, label: '05/1945–12/1945' },
+                { fromYear: 1946, fromMonth: 1,  toYear: 1946, toMonth: 8,  years: 61, months: 4, label: '01/1946–08/1946' },
+                { fromYear: 1946, fromMonth: 9,  toYear: 1947, toMonth: 4,  years: 61, months: 8, label: '09/1946–04/1947' },
+                { fromYear: 1947, fromMonth: 5,  toYear: 1959, toMonth: 12, years: 62, months: 0, label: '05/1947–12/1959' },
+                { fromYear: 1960, fromMonth: 1,  toYear: 1960, toMonth: 12, years: 62, months: 4, label: '01/1960–12/1960' },
+                { fromYear: 1961, fromMonth: 1,  toYear: 1961, toMonth: 12, years: 62, months: 8, label: '01/1961–12/1961' },
+                { fromYear: 1962, fromMonth: 1,  toYear: 1962, toMonth: 12, years: 63, months: 0, label: '01/1962–12/1962' },
+                { fromYear: 1963, fromMonth: 1,  toYear: 1963, toMonth: 12, years: 63, months: 3, label: '01/1963–12/1963' },
+                { fromYear: 1964, fromMonth: 1,  toYear: 1964, toMonth: 12, years: 63, months: 6, label: '01/1964–12/1964' },
+                { fromYear: 1965, fromMonth: 1,  toYear: 1965, toMonth: 12, years: 63, months: 9, label: '01/1965–12/1965' },
+                { fromYear: 1966, fromMonth: 1,  toYear: 1966, toMonth: 12, years: 64, months: 0, label: '01/1966–12/1966' },
+                { fromYear: 1967, fromMonth: 1,  toYear: 1967, toMonth: 12, years: 64, months: 3, label: '01/1967–12/1967' },
+                { fromYear: 1968, fromMonth: 1,  toYear: 1968, toMonth: 12, years: 64, months: 6, label: '01/1968–12/1968' },
+                { fromYear: 1969, fromMonth: 1,  toYear: 1969, toMonth: 12, years: 64, months: 9, label: '01/1969–12/1969' },
+                { fromYear: 1970, fromMonth: 1,  toYear: 9999, toMonth: 12, years: 65, months: 0, label: '01/1970 ואילך' }
             ];
 
             function calcDate(birthYear, birthMonth, birthDay, addYears, addMonths) {
@@ -568,10 +595,8 @@
 
             for (var i = 0; i < steps.length; i++) {
                 var s = steps[i];
-                var maxBirthYear = s.maxYear === 9999 ? 1967 : s.maxYear;
-                var minBirthYear = s.minYear === 0 ? 1900 : s.minYear;
-                var firstRet = calcDate(minBirthYear, 1,  1,  s.years, s.months);
-                var lastRet  = calcDate(maxBirthYear, 12, 31, s.years, s.months);
+                var firstRet = calcDate(s.fromYear, s.fromMonth, 1, s.years, s.months);
+                var lastRet  = calcDate(s.toYear, s.toMonth, 28, s.years, s.months);
 
                 if (lastRet < today) {
                     if (!lastCompleted || lastRet > lastCompleted.lastRet)

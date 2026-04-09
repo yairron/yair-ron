@@ -59,6 +59,7 @@
                         { icon: '🛡️', text: 'מחשבון נפגעי פעולות איבה',     href: 'https://www.btl.gov.il/Simulators/peulotEiva/Pages/default.aspx', external: true },
                     ]
                 },
+                { icon: '🧾', text: 'מחשבון הערכת זכאות לקצבת זיקנה', href: bp + 'senior_rights/age_pension_eligibility_calculator.html' },
                 { icon: '💰', text: 'בדיקת זכאות להשלמת הכנסה',     href: bp + 'senior_rights/questionnaire.html?id=income-supplement-eligibility' },
                 { icon: '👶', text: 'הגדרת ילד להשלמת הכנסה',        href: bp + 'senior_rights/questionnaire.html?id=child-definition&hideReturn=true' },
                 { icon: '🚗', text: 'זכאות להשלמת הכנסה עם רכב',     href: bp + 'senior_rights/questionnaire.html?id=vehicle-income-supplement' },

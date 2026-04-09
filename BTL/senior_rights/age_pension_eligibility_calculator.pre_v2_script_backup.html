@@ -1,0 +1,1919 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>מחשבון הערכת זכאות לקצבת זיקנה</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Assistant:wght@300;400;600;700;800&family=Varela+Round&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #2E5B8A;
+            --secondary: #4A90B5;
+            --accent: #E8A840;
+            --light: #F5F9FC;
+            --text: #2C3E50;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Assistant', 'Segoe UI', Tahoma, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
+            min-height: 100vh;
+            padding: 20px;
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background:
+                radial-gradient(circle at 20% 50%, rgba(255,255,255,0.1) 0%, transparent 50%),
+                radial-gradient(circle at 80% 80%, rgba(255,255,255,0.1) 0%, transparent 50%);
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 28px;
+        }
+
+        .back-button {
+            display: inline-block;
+            margin-bottom: 15px;
+            padding: 10px 20px;
+            background: rgba(255,255,255,0.2);
+            color: white;
+            text-decoration: none;
+            border-radius: 30px;
+            font-weight: 700;
+            border: 2px solid rgba(255,255,255,0.5);
+        }
+
+        .back-button::before {
+            content: '← ';
+            margin-left: 5px;
+        }
+
+        h1 {
+            font-family: 'Varela Round', sans-serif;
+            font-size: 2.5rem;
+            font-weight: 800;
+            color: white;
+            margin-bottom: 10px;
+            text-shadow: 3px 5px 15px rgba(0,0,0,0.3);
+            letter-spacing: -1px;
+        }
+
+        .subtitle-warning {
+            font-size: 0.96rem;
+            color: #fff7cf;
+            font-weight: 800;
+            text-shadow: 1px 2px 8px rgba(0,0,0,0.25);
+            margin-bottom: 8px;
+        }
+
+        .form-shell {
+            background: white;
+            border-radius: 22px;
+            box-shadow: 0 12px 35px rgba(0,0,0,0.2);
+            padding: 24px;
+        }
+
+        .section {
+            border: 1px solid #e6edf4;
+            border-radius: 14px;
+            padding: 16px;
+            margin-bottom: 14px;
+            background: #fbfdff;
+        }
+
+        .section h2 {
+            font-size: 1.2rem;
+            color: var(--primary);
+            margin-bottom: 10px;
+        }
+
+        .fields-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 12px;
+        }
+
+        .fixed-quarters-grid {
+            grid-template-columns: repeat(4, minmax(0, 1fr));
+        }
+
+        .field {
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+        }
+
+        .field label {
+            font-weight: 700;
+            color: var(--text);
+            font-size: 0.95rem;
+        }
+
+        .field input,
+        .field select {
+            padding: 9px 10px;
+            border: 1px solid #ccd8e4;
+            border-radius: 10px;
+            font-size: 1rem;
+            font-family: inherit;
+        }
+
+        .muted {
+            font-size: 0.86rem;
+            color: #5d7388;
+        }
+
+        .hidden {
+            display: none !important;
+        }
+
+        .actions-row {
+            display: flex;
+            justify-content: center;
+            margin-top: 14px;
+        }
+
+        .calc-button {
+            border: 0;
+            border-radius: 12px;
+            padding: 12px 28px;
+            font-size: 1rem;
+            font-weight: 800;
+            color: #ffffff;
+            background: #a8b3c2;
+            cursor: not-allowed;
+            transition: background 0.2s ease, transform 0.15s ease;
+        }
+
+        .calc-button.enabled {
+            background: #2c72d6;
+            cursor: pointer;
+        }
+
+        .calc-button.enabled:hover {
+            transform: translateY(-1px);
+            background: #1f62bf;
+        }
+
+        .clear-button {
+            background: #8f9bad;
+            cursor: pointer;
+        }
+
+        .clear-button:hover {
+            transform: translateY(-1px);
+            background: #7b8799;
+        }
+
+        .summary-shell {
+            margin-top: 16px;
+            border: 1px solid #d8e3ef;
+            border-radius: 14px;
+            padding: 14px;
+            background: #f7fbff;
+        }
+
+        .details-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 12px;
+            margin-top: 12px;
+        }
+
+        .details-card {
+            background: #ffffff;
+            border: 1px solid #dbe6f1;
+            border-radius: 10px;
+            padding: 10px;
+        }
+
+        .details-card h3 {
+            font-size: 1rem;
+            color: #274e75;
+            margin-bottom: 8px;
+        }
+
+        .details-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.95rem;
+        }
+
+        .details-table td {
+            padding: 6px 4px;
+            border-bottom: 1px solid #edf2f8;
+            vertical-align: top;
+        }
+
+        .details-table td:first-child {
+            font-weight: 700;
+            color: #36597a;
+            width: 55%;
+        }
+
+        .details-table td:last-child {
+            color: #1f3347;
+            text-align: left;
+            direction: ltr;
+        }
+
+        .result-box {
+            margin-top: 12px;
+            padding: 10px;
+            border-radius: 10px;
+            font-weight: 700;
+        }
+
+        .result-ok {
+            background: #e8f7ea;
+            border: 1px solid #c8eacb;
+            color: #245a2b;
+        }
+
+        .result-no {
+            background: #fdecea;
+            border: 1px solid #f8cfc9;
+            color: #7f1e16;
+        }
+
+        .note {
+            margin-top: 12px;
+            background: var(--light);
+            border-right: 4px solid var(--accent);
+            border-radius: 10px;
+            padding: 10px;
+            color: #3e566c;
+            font-weight: 600;
+            font-size: 0.9rem;
+        }
+
+        .flow-hint {
+            margin-top: 10px;
+            background: #eef6ff;
+            border-right: 4px solid var(--secondary);
+            border-radius: 10px;
+            padding: 10px;
+            color: #254766;
+            font-weight: 600;
+            font-size: 0.9rem;
+        }
+
+        @media (max-width: 900px) {
+            .fixed-quarters-grid {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+            }
+        }
+
+        @media (max-width: 700px) {
+            h1 {
+                font-size: 2rem;
+            }
+
+            .form-shell {
+                padding: 16px;
+            }
+
+            .fixed-quarters-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <a href="../index.html" class="back-button">חזרה לדף ראשי</a>
+            <h1>מחשבון הערכת זכאות לקצבת זיקנה</h1>
+            <p class="subtitle-warning">המחשבון הוא להערכה כללית בלבד. מבוסס על נתונים שלא נבדקו. את החלחטה הסופית נותן הגורם המוסמך בביטוח הלאומי</p>
+        </header>
+
+        <main class="form-shell" aria-label="טופס הערכת זכאות">
+            <section class="section">
+                <h2>שלב 1 — פרטי מבוטח</h2>
+                <div class="fields-grid">
+                    <div class="field">
+                        <label for="gender">מין</label>
+                        <select id="gender">
+                            <option value="">בחר/י</option>
+                            <option value="male">זכר</option>
+                            <option value="female">נקבה</option>
+                        </select>
+                    </div>
+                    <div class="field">
+                        <label for="birthDate">תאריך לידה</label>
+                        <input type="text" id="birthDate" placeholder="DD/MM/YYYY" inputmode="numeric" pattern="(0[1-9]|[12][0-9]|3[01])/(0[1-9]|1[0-2])/[0-9]{4}" maxlength="10" dir="ltr" title="DD/MM/YYYY">
+                    </div>
+                    <div class="field">
+                        <label for="checkType">סוג בדיקה</label>
+                        <select id="checkType">
+                            <option value="" selected>בחר/י</option>
+                            <option value="income">בדיקת הכנסות בלבד</option>
+                            <option value="full">בדיקת זכאות מלאה (הכנסות + תקופות ביטוח) - עדיין בפיתוח</option>
+                        </select>
+                        <div class="muted">הערה: מסלול בדיקת זכאות מלאה עדיין בפיתוח. אין לבחור במסלול זה.</div>
+                    </div>
+                </div>
+            </section>
+
+            <div class="actions-row" id="continueActionsWrap">
+                <button id="continueBtn" class="calc-button enabled" type="button">המשך</button>
+            </div>
+            <section class="section hidden" id="maleSection">
+                <h2>שלב 2א — מצב משפחתי (זכר)</h2>
+                <div class="fields-grid fixed-quarters-grid">
+                    <div class="field">
+                        <label for="maritalStatusMale">מצב משפחתי</label>
+                        <select id="maritalStatusMale">
+                            <option value="">בחר/י</option>
+                            <option value="0">רווק</option>
+                            <option value="1">נשוי/ידוע בציבור</option>
+                            <option value="2">גרוש</option>
+                            <option value="3">אלמן</option>
+                        </select>
+                    </div>
+                    <div class="field hidden" id="partnerResidentMaleWrap">
+                        <label for="partnerResidentMale">בן/בת זוג מתגורר/ת איתך</label>
+                        <select id="partnerResidentMale">
+                            <option value="">בחר/י</option>
+                            <option value="true">כן</option>
+                            <option value="false">לא</option>
+                        </select>
+                    </div>
+                    <div class="field hidden" id="marriedTimeWrap">
+                        <label for="marriedTime">משך נישואין</label>
+                        <select id="marriedTime">
+                            <option value="">בחר/י</option>
+                            <option value="0">יותר משנה</option>
+                            <option value="1">פחות משנה + ילד</option>
+                            <option value="2">פחות משנה ללא ילד</option>
+                        </select>
+                    </div>
+                    <div class="field hidden" id="partnerAgeWrap">
+                        <label for="partnerAge">גיל בן/בת הזוג</label>
+                        <select id="partnerAge">
+                            <option value="">בחר/י</option>
+                            <option value="2">עד 45</option>
+                            <option value="4">45-גיל פרישה לגבר</option>
+                            <option value="7">מעל גיל פרישה לגבר</option>
+                        </select>
+                    </div>
+                    <div class="field hidden" id="zugWorkTypeWrap">
+                        <label for="zugWorkType">סוג העבודה של בן/בת הזוג</label>
+                        <select id="zugWorkType">
+                            <option value="">בחר/י</option>
+                            <option value="0">שכיר</option>
+                            <option value="1">עצמאי</option>
+                            <option value="2">שכיר + עצמאי</option>
+                            <option value="3">לא עובדת</option>
+                        </select>
+                    </div>
+                    <div class="field hidden" id="zugKitsbaWrap">
+                        <label for="zugKitsba">בן/בת הזוג מקבל/ת קצבה</label>
+                        <select id="zugKitsba">
+                            <option value="">בחר/י</option>
+                            <option value="0">אינה מקבלת</option>
+                            <option value="1">נכות עבודה</option>
+                            <option value="2">נכות כללית</option>
+                            <option value="3">זקנה</option>
+                        </select>
+                    </div>
+                    <div class="field hidden" id="tossefetYeladimWrap">
+                        <label for="tossefetYeladim">תוספת ילדים לבן/בת הזוג</label>
+                        <select id="tossefetYeladim">
+                            <option value="">בחר/י</option>
+                            <option value="0">כן</option>
+                            <option value="1">לא</option>
+                        </select>
+                    </div>
+                    <div class="field hidden" id="zugKitsbaMealGuilWrap">
+                        <label for="zugKitsbaMealGuil">קצבת בן/בת הזוג מעל גיל זכאות</label>
+                        <select id="zugKitsbaMealGuil">
+                            <option value="">בחר/י</option>
+                            <option value="true">כן</option>
+                            <option value="false">לא</option>
+                        </select>
+                    </div>
+                </div>
+            </section>
+
+            <section class="section hidden" id="femaleSection">
+                <h2>שלב 2ב — מצב משפחתי (נקבה)</h2>
+                <div class="fields-grid fixed-quarters-grid">
+                    <div class="field">
+                        <label for="maritalStatusFemale">מצב משפחתי</label>
+                        <select id="maritalStatusFemale">
+                            <option value="">בחר/י</option>
+                            <option value="0">רווקה</option>
+                            <option value="1">נשואה/ידועה</option>
+                            <option value="2">גרושה</option>
+                            <option value="3">אלמנה</option>
+                            <option value="4">עגונה</option>
+                        </select>
+                    </div>
+                    <div class="field hidden" id="partnerResidentFemaleWrap">
+                        <label for="partnerResidentFemale">בן/בת זוג מתגורר/ת איתך</label>
+                        <select id="partnerResidentFemale">
+                            <option value="">בחר/י</option>
+                            <option value="true">כן</option>
+                            <option value="false">לא</option>
+                        </select>
+                    </div>
+                    <div class="field hidden" id="marriedTimeFemaleWrap">
+                        <label for="marriedTimeFemale">משך נישואין</label>
+                        <select id="marriedTimeFemale">
+                            <option value="">בחר/י</option>
+                            <option value="3">יותר משנה</option>
+                            <option value="2">פחות משנה</option>
+                        </select>
+                    </div>
+                    <div class="field hidden" id="partnerAgeFemaleWrap">
+                        <label for="partnerAgeFemale">גיל הבעל</label>
+                        <select id="partnerAgeFemale">
+                            <option value="">בחר/י</option>
+                            <option value="8">פחות מגיל הזכאות המוחלט</option>
+                            <option value="9">גיל הזכאות המוחלט ומעלה</option>
+                        </select>
+                    </div>
+                    <div class="field hidden" id="zugWorkTypeFemaleWrap">
+                        <label for="zugWorkTypeFemale">סוג העבודה של הבעל</label>
+                        <select id="zugWorkTypeFemale">
+                            <option value="">בחר/י</option>
+                            <option value="1">שכיר</option>
+                            <option value="2">עצמאי</option>
+                            <option value="3">שכיר + עצמאי</option>
+                            <option value="4">לא עובד</option>
+                        </select>
+                    </div>
+                    <div class="field hidden" id="zugKitsbaFemaleWrap">
+                        <label for="zugKitsbaFemale">הבעל מקבל קצבה</label>
+                        <select id="zugKitsbaFemale">
+                            <option value="">בחר/י</option>
+                            <option value="0">לא מקבל</option>
+                            <option value="8">זקנה</option>
+                            <option value="23">נכות כללית</option>
+                            <option value="24">נכות עבודה</option>
+                        </select>
+                    </div>
+                    <div class="field hidden" id="tossefetYeladimFemaleWrap">
+                        <label for="tossefetYeladimFemale">תוספת ילדים בקצבת הבעל</label>
+                        <select id="tossefetYeladimFemale">
+                            <option value="">בחר/י</option>
+                            <option value="True">כן</option>
+                            <option value="False">לא</option>
+                        </select>
+                    </div>
+                    <div class="field hidden" id="zugKitsbaMealGuilFemaleWrap">
+                        <label for="zugKitsbaMealGuilFemale">קצבת הבעל בגיל הזכאות המוחלט ומעלה</label>
+                        <select id="zugKitsbaMealGuilFemale">
+                            <option value="">בחר/י</option>
+                            <option value="8">זקנה</option>
+                            <option value="23">נכות כללית</option>
+                            <option value="24">נכות עבודה</option>
+                            <option value="0">לא מקבל</option>
+                        </select>
+                    </div>
+                </div>
+            </section>
+
+            <section class="section hidden" id="spouseIncomeSection">
+                <h2>הכנסות הבעל</h2>
+                <div class="fields-grid">
+                    <div class="field hidden" id="spouseAvodaSachirWrap">
+                        <label for="spouseAvodaSachir">הכנסת בן/זוג מעבודה כשכיר (החייבת בדמי ביטוח)</label>
+                        <input id="spouseAvodaSachir" type="number" min="0" step="1" value="0" placeholder="0 אם אין הכנסות">
+                    </div>
+                    <div class="field hidden" id="spouseAvtalaWrap">
+                        <label for="spouseAvtala">דמי אבטלה של בן/זוג</label>
+                        <input id="spouseAvtala" type="number" min="0" step="1" value="0" placeholder="0 אם אין הכנסות">
+                    </div>
+                    <div class="field hidden" id="spouseRentWrap">
+                        <label for="spouseRent">הכנסת בן/זוג מהשכרת נכס (דירה/מקרקעין)</label>
+                        <input id="spouseRent" type="number" min="0" step="1" value="0" placeholder="0 אם אין הכנסות">
+                    </div>
+                    <div class="field hidden" id="spousePensiaWrap">
+                        <label for="spousePensia">פנסיה חודשית של בן/זוג</label>
+                        <input id="spousePensia" type="number" min="0" step="1" value="0" placeholder="0 אם אין הכנסות">
+                    </div>
+                    <div class="field hidden" id="spouseRibitWrap">
+                        <label for="spouseRibit">ריבית חודשית על פיקדונות (בן/זוג)</label>
+                        <input id="spouseRibit" type="number" min="0" step="1" value="0" placeholder="0 אם אין הכנסות">
+                    </div>
+                    <div class="field hidden" id="spouseAnotherWrap">
+                        <label for="spouseAnother">הכנסה חודשית אחרת של בן/זוג (לא כולל קצבאות)</label>
+                        <input id="spouseAnother" type="number" min="0" step="1" value="0" placeholder="0 אם אין הכנסות">
+                    </div>
+                </div>
+            </section>
+
+            <section class="section hidden" id="childrenSection">
+                <h2>ילדים תלויים</h2>
+                <div class="fields-grid">
+                    <div class="field">
+                        <label for="txtWith1">ילדים עד גיל 18</label>
+                        <input id="txtWith1" type="number" min="0" step="1" value="0">
+                    </div>
+                    <div class="field">
+                        <label for="txtWith2">18-20 (נמצא בתיכון/קדם-צבאי)</label>
+                        <input id="txtWith2" type="number" min="0" step="1" value="0">
+                    </div>
+                    <div class="field">
+                        <label for="txtWith3">18-20 (נמצא בחינוך מיוחד)</label>
+                        <input id="txtWith3" type="number" min="0" step="1" value="0">
+                    </div>
+                    <div class="field">
+                        <label for="txtWith4">18-24 (נמצא בשירות סדיר/לאומי)</label>
+                        <input id="txtWith4" type="number" min="0" step="1" value="0">
+                    </div>
+                    <div class="field">
+                        <label for="txtWith5">18-21 (נמצא בהתנדבות)</label>
+                        <input id="txtWith5" type="number" min="0" step="1" value="0">
+                    </div>
+                </div>
+            </section>
+
+            <section class="section hidden" id="fullOnlySection">
+                <h2>מסלול בדיקה מלאה בלבד</h2>
+                <div class="fields-grid">
+                    <div class="field" id="toshavHozerWrap">
+                        <label for="toshavHozer">תושב חוזר / עולה חדש</label>
+                        <select id="toshavHozer">
+                            <option value="">בחר/י</option>
+                            <option value="true">כן</option>
+                            <option value="false">לא</option>
+                        </select>
+                    </div>
+                    <div class="field" id="qualificationPeriodWrap">
+                        <label for="qualificationPeriod">תקופת אכשרה</label>
+                        <select id="qualificationPeriod">
+                            <option value="">בחר/י</option>
+                            <option value="0">60 חודשים ב-10 שנים אחרונות</option>
+                            <option value="1">תקופת אכשרה מלאה</option>
+                            <option value="2">60 חודשים מיום תושבות</option>
+                            <option value="3">אחר</option>
+                        </select>
+                    </div>
+                </div>
+            </section>
+
+            <section class="section hidden" id="stage3bSection">
+                <h2>שלב 3ב — ותק, נכות ועבודה</h2>
+                <div class="fields-grid">
+                    <div class="field">
+                        <label for="vetek" id="vetekLabel">אחוז תוספת ותק</label>
+                        <input id="vetek" type="number" min="0" step="2" value="0">
+                    </div>
+                    <div class="field">
+                        <label for="disabilityPension">מקבל/ת קצבת נכות מעבודה</label>
+                        <select id="disabilityPension">
+                            <option value="">בחר/י</option>
+                            <option value="true">כן</option>
+                            <option value="false">לא</option>
+                        </select>
+                    </div>
+                    <div class="field hidden" id="incomeNotFromWorkWrap">
+                        <label for="incomeNotFromWork">הכנסה שלא מעבודה</label>
+                        <select id="incomeNotFromWork">
+                            <option value="">בחר/י</option>
+                            <option value="true">כן</option>
+                            <option value="false">לא</option>
+                        </select>
+                    </div>
+                    <div class="field hidden" id="doYouWorkWrap">
+                        <label for="doYouWork">עובד/ת כיום</label>
+                        <select id="doYouWork">
+                            <option value="">בחר/י</option>
+                            <option value="true">כן</option>
+                            <option value="false">לא</option>
+                        </select>
+                    </div>
+                    <div class="field hidden" id="workTypeWrap">
+                        <label for="workType">סוג עבודה</label>
+                        <select id="workType">
+                            <option value="">בחר/י</option>
+                            <option value="0">שכיר</option>
+                            <option value="1">עצמאי</option>
+                            <option value="2">שכיר + עצמאי</option>
+                        </select>
+                    </div>
+                </div>
+            </section>
+
+            <section class="section hidden" id="stage4Section">
+                <h2>שלב 4 — הכנסות כספיות</h2>
+                <div class="fields-grid">
+                    <div class="field hidden" id="sallaryIncomeWrap">
+                        <label for="sallaryIncome">הכנסה כשכיר/ה (ש"ח לחודש)</label>
+                        <input id="sallaryIncome" type="number" min="0" step="1" value="0">
+                    </div>
+                    <div class="field hidden" id="maanakWrap">
+                        <label for="maanak">מענק/הכנסה חודשית נוספת (ש"ח לחודש)</label>
+                        <input id="maanak" type="number" min="0" step="1" value="0">
+                    </div>
+                    <div class="field hidden" id="atsmaiIncomeWrap">
+                        <label for="atsmaiIncome">הכנסה כעצמאי/ת (ש"ח לשנה)</label>
+                        <input id="atsmaiIncome" type="number" min="0" step="1" value="0">
+                    </div>
+                    <div class="field hidden" id="notFromWork1Wrap">
+                        <label for="notFromWork1">הכנסה מהשכרת נכס (ש"ח)</label>
+                        <input id="notFromWork1" type="number" min="0" step="1" value="0">
+                    </div>
+                    <div class="field hidden" id="notFromWork3Wrap">
+                        <label for="notFromWork3">הכנסה מריבית (ש"ח)</label>
+                        <input id="notFromWork3" type="number" min="0" step="1" value="0">
+                    </div>
+                    <div class="field hidden" id="notFromWork4Wrap">
+                        <label for="notFromWork4">שכר דירקטורים (ש"ח)</label>
+                        <input id="notFromWork4" type="number" min="0" step="1" value="0">
+                    </div>
+                </div>
+            </section>
+
+            <div class="actions-row hidden" id="calculateActionsWrap">
+                <button id="calculateBtn" class="calc-button enabled" type="button">חשב</button>
+                <button id="clearAllBtn" class="calc-button clear-button" type="button" style="margin-right:10px;">נקה הכל</button>
+            </div>
+
+            <section class="summary-shell hidden" id="summarySection" aria-live="polite">
+                <h2>תוצאת חישוב</h2>
+                <div class="result-box" id="sumResultBox">-</div>
+                <div class="details-grid">
+                    <div class="details-card">
+                        <h3>פירוט חישוב</h3>
+                        <table class="details-table" id="calcDetailsTable"></table>
+                    </div>
+                    <div class="details-card">
+                        <h3>נתונים שהוזנו</h3>
+                        <table class="details-table" id="inputDetailsTable"></table>
+                    </div>
+                </div>
+                <div class="actions-row" id="resultActionsWrap" style="margin-top:12px;">
+                    <button id="backToFormBtn" class="calc-button enabled" type="button" style="margin-left:10px;">חזור לטופס</button>
+                    <button id="clearAllFromResultBtn" class="calc-button clear-button" type="button">נקה הכל</button>
+                </div>
+            </section>
+
+        </main>
+    </div>
+
+    <script>
+        (function initForm() {
+            let isFormUnlocked = false;
+            const REQUIRED_NII_KEYS = [
+                'pension_single_basic',
+                'pension_single_over80',
+                'pension_couple_basic',
+                'pension_single_1child',
+                'pension_single_2children',
+                'pension_couple_1child',
+                'pension_couple_2children',
+                'pension_spouse_supplement',
+                'seniority_bonus_rate',
+                'seniority_bonus_max',
+                'income_test_single_full',
+                'income_test_single_partial',
+                'income_test_married_full',
+                'income_test_married_partial',
+                'income_test_single_asset_full',
+                'income_test_single_asset_partial',
+                'income_test_married_asset_full',
+                'income_test_married_asset_partial_no_pension',
+                'income_test_married_asset_partial_with_pension',
+                'income_test_single_asset_combined',
+                'income_test_married_asset_combined',
+                'income_test_deduction_rate',
+                'income_test_spouse_ceiling',
+                'qualification_period_old_age_months',
+                'retirement_age_male',
+                'retirement_age_unconditional'
+            ];
+            let niiConstants = {};
+            let womenRetirementRules = [];
+            let niiDataLoaded = false;
+
+            function toBool(value) {
+                if (value === 'true') return true;
+                if (value === 'false') return false;
+                return null;
+            }
+
+            function toInt(value) {
+                if (value === '' || value === null || value === undefined) return null;
+                const n = parseInt(value, 10);
+                return Number.isNaN(n) ? null : n;
+            }
+
+            function parseMonthYear(value) {
+                const match = String(value || '').trim().match(/^(\d{2})\/(\d{4})$/);
+                if (!match) return null;
+
+                return {
+                    month: parseInt(match[1], 10),
+                    year: parseInt(match[2], 10)
+                };
+            }
+
+            function parseRetirementValue(value) {
+                const match = String(value || '').match(/(\d{2})/g);
+                if (!match || !match.length) return null;
+
+                return {
+                    years: parseInt(match[0], 10),
+                    months: match[1] ? parseInt(match[1], 10) : 0
+                };
+            }
+
+            function buildWomenRetirementRule(entry) {
+                const label = entry?.label || '';
+                const value = parseRetirementValue(entry?.value);
+                if (!value || !label.includes('נולדה')) return null;
+
+                const afterBorn = label.split('נולדה')[1].trim();
+
+                if (afterBorn.startsWith('עד ')) {
+                    const end = parseMonthYear(afterBorn.replace('עד ', ''));
+                    if (!end) return null;
+                    return { fromYear: 1900, fromMonth: 1, toYear: end.year, toMonth: end.month, years: value.years, months: value.months };
+                }
+
+                if (afterBorn.endsWith('ואילך')) {
+                    const start = parseMonthYear(afterBorn.replace('ואילך', '').trim());
+                    if (!start) return null;
+                    return { fromYear: start.year, fromMonth: start.month, toYear: 9999, toMonth: 12, years: value.years, months: value.months };
+                }
+
+                const parts = afterBorn.split('–');
+                if (parts.length === 2) {
+                    const start = parseMonthYear(parts[0].trim());
+                    const end = parseMonthYear(parts[1].trim());
+                    if (!start || !end) return null;
+                    return { fromYear: start.year, fromMonth: start.month, toYear: end.year, toMonth: end.month, years: value.years, months: value.months };
+                }
+
+                return null;
+            }
+
+            function getNumericNiiValue(key) {
+                const value = niiConstants[key];
+                return Number.isFinite(value) ? value : null;
+            }
+
+            function applyDynamicUiText() {
+                const maleRetirementAge = getNumericNiiValue('retirement_age_male');
+                const unconditionalAge = getNumericNiiValue('retirement_age_unconditional');
+                const seniorityRate = getNumericNiiValue('seniority_bonus_rate');
+                const seniorityMax = getNumericNiiValue('seniority_bonus_max');
+                const qualificationMonths = getNumericNiiValue('qualification_period_old_age_months');
+
+                const partnerAge = document.getElementById('partnerAge');
+                if (partnerAge && partnerAge.options.length >= 4 && maleRetirementAge !== null) {
+                    partnerAge.options[2].textContent = '45-' + maleRetirementAge;
+                    partnerAge.options[3].textContent = 'מעל ' + maleRetirementAge;
+                }
+
+                const partnerAgeFemale = document.getElementById('partnerAgeFemale');
+                if (partnerAgeFemale && partnerAgeFemale.options.length >= 3 && unconditionalAge !== null) {
+                    partnerAgeFemale.options[1].textContent = 'פחות מ-' + unconditionalAge;
+                    partnerAgeFemale.options[2].textContent = unconditionalAge + ' ומעלה';
+                }
+
+                const zugKitsbaMealGuilFemaleLabel = document.querySelector('label[for="zugKitsbaMealGuilFemale"]');
+                if (zugKitsbaMealGuilFemaleLabel && unconditionalAge !== null) {
+                    zugKitsbaMealGuilFemaleLabel.textContent = 'קצבת הבעל בגיל ' + unconditionalAge + '+ ';
+                }
+
+                const qualificationPeriod = document.getElementById('qualificationPeriod');
+                if (qualificationPeriod && qualificationPeriod.options.length >= 3 && qualificationMonths !== null) {
+                    qualificationPeriod.options[2].textContent = qualificationMonths + ' חודשים';
+                }
+
+                const vetekLabel = document.getElementById('vetekLabel');
+                const vetekInput = document.getElementById('vetek');
+                if (vetekLabel && seniorityRate !== null && seniorityMax !== null) {
+                    vetekLabel.textContent = 'אחוז תוספת ותק (' + seniorityRate + '% לשנה, עד ' + seniorityMax + '%, זוגי)';
+                }
+                if (vetekInput && seniorityMax !== null) {
+                    vetekInput.max = String(seniorityMax);
+                }
+            }
+
+            function setNiiLoadErrorState() {
+                niiDataLoaded = false;
+                updateContinueButtonState();
+                updateCalculateButtonState();
+            }
+
+            async function loadNiiData() {
+                try {
+                    const resp = await fetch('data/nii-constants.json');
+                    if (!resp.ok) throw new Error('HTTP ' + resp.status);
+
+                    const nii = await resp.json();
+                    REQUIRED_NII_KEYS.forEach((key) => {
+                        if (!nii[key] || nii[key].value === undefined) {
+                            throw new Error('Missing NII key: ' + key);
+                        }
+                        niiConstants[key] = Number(nii[key].value);
+                    });
+
+                    const loadedRules = [];
+                    for (let i = 1; i <= 18; i += 1) {
+                        const rule = buildWomenRetirementRule(nii['women_retirement_age_r' + i]);
+                        if (rule) loadedRules.push(rule);
+                    }
+                    if (loadedRules.length !== 18) {
+                        throw new Error('Missing women retirement rules');
+                    }
+                    womenRetirementRules = loadedRules;
+                    niiDataLoaded = true;
+                    applyDynamicUiText();
+                    updateContinueButtonState();
+
+                    updateFlow();
+                    if (!document.getElementById('summarySection').classList.contains('hidden')) {
+                        renderSummary();
+                    }
+                } catch (e) {
+                    console.warn('⚠️ לא ניתן לטעון nii-constants.json — החישוב הדינמי אינו זמין', e);
+                    setNiiLoadErrorState();
+                }
+            }
+
+            function show(id, visible) {
+                const node = document.getElementById(id);
+                if (!node) return;
+                node.classList.toggle('hidden', !visible);
+            }
+
+            function parseBirthDateToAge(value) {
+                const m = (value || '').match(/^(\d{2})\/(\d{2})\/(\d{4})$/);
+                if (!m) return null;
+
+                const day = parseInt(m[1], 10);
+                const month = parseInt(m[2], 10);
+                const year = parseInt(m[3], 10);
+                const now = new Date();
+                let age = now.getFullYear() - year;
+                const hadBirthday = (now.getMonth() + 1 > month) || ((now.getMonth() + 1 === month) && now.getDate() >= day);
+                if (!hadBirthday) age -= 1;
+                return age;
+            }
+
+            function parseBirthDateParts(value) {
+                const m = (value || '').match(/^(\d{2})\/(\d{2})\/(\d{4})$/);
+                if (!m) return null;
+
+                const day = parseInt(m[1], 10);
+                const month = parseInt(m[2], 10);
+                const year = parseInt(m[3], 10);
+                if (day < 1 || day > 31 || month < 1 || month > 12) return null;
+
+                return { day, month, year };
+            }
+
+            function addYearsMonths(baseDay, baseMonth, baseYear, addYears, addMonths) {
+                let y = baseYear + addYears;
+                let m = baseMonth + addMonths;
+                if (m > 12) {
+                    y += Math.floor((m - 1) / 12);
+                    m = ((m - 1) % 12) + 1;
+                }
+                return new Date(y, m - 1, baseDay);
+            }
+
+            function getFemaleRetirementYearsMonths(birthParts) {
+                if (!birthParts || !womenRetirementRules.length) return null;
+
+                const match = womenRetirementRules.find((rule) => {
+                    const afterStart = birthParts.year > rule.fromYear || (birthParts.year === rule.fromYear && birthParts.month >= rule.fromMonth);
+                    const beforeEnd = birthParts.year < rule.toYear || (birthParts.year === rule.toYear && birthParts.month <= rule.toMonth);
+                    return afterStart && beforeEnd;
+                });
+
+                return match
+                    ? { years: match.years, months: match.months }
+                    : null;
+            }
+
+            function formatRetirementLabel(ym) {
+                if (!ym) return '-';
+                if (ym.months === 0) return String(ym.years);
+                return ym.years + ' שנים ו-' + ym.months + ' חודשים';
+            }
+
+            function getRetirementInfo(gender, birthParts) {
+                if (!gender || !birthParts) return null;
+
+                const maleRetirementAge = getNumericNiiValue('retirement_age_male');
+                const unconditionalAge = getNumericNiiValue('retirement_age_unconditional');
+                if (maleRetirementAge === null || unconditionalAge === null) return null;
+
+                const retirementYm = gender === 'female'
+                    ? getFemaleRetirementYearsMonths(birthParts)
+                    : { years: maleRetirementAge, months: 0 };
+                if (!retirementYm) return null;
+
+                const retirementDate = addYearsMonths(
+                    birthParts.day,
+                    birthParts.month,
+                    birthParts.year,
+                    retirementYm.years,
+                    retirementYm.months
+                );
+
+                const pensionDate = addYearsMonths(
+                    birthParts.day,
+                    birthParts.month,
+                    birthParts.year,
+                    unconditionalAge,
+                    0
+                );
+
+                return {
+                    retirementDate,
+                    pensionDate,
+                    retirementLabel: formatRetirementLabel(retirementYm)
+                };
+            }
+
+            function getUnderRetirementMessage(gender, retirementLabel) {
+                if (gender === 'male') {
+                    return 'אין זכאות, מתחת גיל פרישה. מומלץ לפנות שוב כשתגיע לגיל ' + retirementLabel;
+                }
+
+                if (gender === 'female') {
+                    return 'אין זכאות, מתחת גיל פרישה. מומלץ לפנות שוב כשתגיעי לגיל ' + retirementLabel;
+                }
+
+                return 'אין זכאות, מתחת גיל פרישה.';
+            }
+
+            function getDisabilityWorkMessage(gender) {
+                if (gender === 'female') {
+                    return 'אם את מקבלת קצבת נכות מעבודה לצמיתות, עליך לבחור באחת משתי הקצבאות. אם קצבת הנכות גבוהה מקצבת הזקנה, תוכלי להמשיך לקבלה (בסכום שלא יפחת מקצבת הזקנה). אם בחרת בקצבת זקנה, ייתכן שתהיי זכאית ל-36 קצבאות נכות כמענק. מומלץ שתפני לביטוח הלאומי.';
+                }
+
+                return 'אם אתה מקבל קצבת נכות מעבודה לצמיתות, עליך לבחור באחת משתי הקצבאות. אם קצבת הנכות גבוהה מקצבת הזקנה, תוכל להמשיך לקבלה (בסכום שלא יפחת מקצבת הזקנה). אם בחרת בקצבת זקנה, ייתכן שתהיה זכאי ל-36 קצבאות נכות כמענק. מומלץ שתפנה לביטוח הלאומי.';
+            }
+
+            function formatCurrency(value) {
+                const n = Number.isFinite(value) ? value : 0;
+                return n.toLocaleString('he-IL', { style: 'currency', currency: 'ILS', maximumFractionDigits: 0 });
+            }
+
+            function isContainerVisible(id) {
+                const el = document.getElementById(id);
+                return !!el && !el.classList.contains('hidden');
+            }
+
+            function getState() {
+                return {
+                    gender: document.getElementById('gender').value,
+                    checkType: document.getElementById('checkType').value,
+                    maritalStatus: toInt(document.getElementById('maritalStatusMale').value),
+                    partnerResident: toBool(document.getElementById('partnerResidentMale').value),
+                    marriedTime: toInt(document.getElementById('marriedTime').value),
+                    partnerAge: toInt(document.getElementById('partnerAge').value),
+                    zugWorkType: toInt(document.getElementById('zugWorkType').value),
+                    zugKitsba: toInt(document.getElementById('zugKitsba').value),
+                    tossefetYeladim: toInt(document.getElementById('tossefetYeladim').value),
+                    zugKitsbaMealGuil: toBool(document.getElementById('zugKitsbaMealGuil').value),
+                    maritalStatusF: toInt(document.getElementById('maritalStatusFemale').value),
+                    partnerResidentF: toBool(document.getElementById('partnerResidentFemale').value),
+                    marriedTimeF: toInt(document.getElementById('marriedTimeFemale').value),
+                    partnerAgeF: toInt(document.getElementById('partnerAgeFemale').value),
+                    zugWorkTypeF: toInt(document.getElementById('zugWorkTypeFemale').value),
+                    zugKitsbaF: toInt(document.getElementById('zugKitsbaFemale').value),
+                    tossefetYeladimF: document.getElementById('tossefetYeladimFemale').value || null,
+                    zugKitsbaMealGuilF: toInt(document.getElementById('zugKitsbaMealGuilFemale').value),
+                    disabilityPension: toBool(document.getElementById('disabilityPension').value),
+                    doYouWork: toBool(document.getElementById('doYouWork').value),
+                    workType: toInt(document.getElementById('workType').value),
+                    incomeNotFromWork: toBool(document.getElementById('incomeNotFromWork').value)
+                };
+            }
+
+            function getDependentChildrenCount() {
+                return ['txtWith1', 'txtWith2', 'txtWith3', 'txtWith4', 'txtWith5']
+                    .reduce((sum, id) => sum + valueOf(id), 0);
+            }
+
+            function getFamilyPensionKey(category, age, childrenCount) {
+                const cappedChildren = Math.min(2, childrenCount);
+
+                if (category === 'dependent-spouse') {
+                    if (cappedChildren >= 2) return 'pension_couple_2children';
+                    if (cappedChildren === 1) return 'pension_couple_1child';
+                    return 'pension_couple_basic';
+                }
+
+                if (cappedChildren >= 2) return 'pension_single_2children';
+                if (cappedChildren === 1) return 'pension_single_1child';
+                if (age !== null && age >= 80) return 'pension_single_over80';
+                return 'pension_single_basic';
+            }
+
+            function getSpouseCorrection(message) {
+                return {
+                    category: 'correction-needed',
+                    reason: message
+                };
+            }
+
+            function classifyHousehold(state) {
+                if (state.gender === 'male') {
+                    if (state.maritalStatus !== 1) {
+                        return { category: 'single', label: 'יחיד/ה' };
+                    }
+
+                    if (state.partnerResident !== true) {
+                        return getSpouseCorrection('בן/בת הזוג אינו/ה עומד/ת בהגדרת בת זוג לצורך החישוב. יש לתקן את הנתונים.');
+                    }
+
+                    if (state.marriedTime !== 0 && state.marriedTime !== 1) {
+                        return getSpouseCorrection('משך הנישואין אינו עומד בהגדרת בת זוג לצורך החישוב. יש לתקן את הנתונים.');
+                    }
+
+                    if (state.partnerAge === 2) {
+                        return getSpouseCorrection('בת הזוג אינה עומדת בהגדרת בת זוג לצורך החישוב. יש לתקן את הנתונים.');
+                    }
+
+                    if (state.partnerAge === 7) {
+                        if (state.zugKitsbaMealGuil === false) {
+                            return { category: 'dependent-spouse', label: 'זוג עם בת זוג תלויה' };
+                        }
+
+                        if (state.zugKitsbaMealGuil === true) {
+                            return { category: 'independent-spouse', label: 'שני בני הזוג זכאים בנפרד' };
+                        }
+
+                        return getSpouseCorrection('יש להשלים את נתון הקצבה של בת הזוג.');
+                    }
+
+                    if (state.partnerAge === 4) {
+                        if (state.zugKitsba === 0 && state.zugWorkType === 3) {
+                            return { category: 'dependent-spouse', label: 'זוג עם בת זוג תלויה' };
+                        }
+
+                        if (state.zugKitsba === 3) {
+                            return { category: 'independent-spouse', label: 'שני בני הזוג זכאים בנפרד' };
+                        }
+
+                        if (state.zugKitsba === 1 || state.zugKitsba === 2) {
+                            return { category: 'independent-spouse', label: 'בן/בת זוג עם קצבה עצמאית' };
+                        }
+
+                        return getSpouseCorrection('לא ניתן להסיק את הכנסת בת הזוג מהשדות הקיימים. יש לתקן את הנתונים.');
+                    }
+
+                    return getSpouseCorrection('יש להשלים את נתוני בת הזוג.');
+                }
+
+                if (state.gender === 'female') {
+                    if (state.maritalStatusF !== 1) {
+                        return { category: 'single', label: 'יחיד/ה' };
+                    }
+
+                    if (state.partnerResidentF !== true) {
+                        return getSpouseCorrection('בן הזוג אינו עומד בהגדרת בן זוג לצורך החישוב. יש לתקן את הנתונים.');
+                    }
+
+                    if (state.marriedTimeF !== 3) {
+                        return getSpouseCorrection('משך הנישואין אינו עומד בהגדרת בן זוג לצורך החישוב. יש לתקן את הנתונים.');
+                    }
+
+                    if (state.partnerAgeF === 9) {
+                        if (state.zugKitsbaMealGuilF === 0) {
+                            return { category: 'dependent-spouse', label: 'זוג עם בן זוג תלוי' };
+                        }
+
+                        if (state.zugKitsbaMealGuilF === 8 || state.zugKitsbaMealGuilF === 23 || state.zugKitsbaMealGuilF === 24) {
+                            return { category: 'independent-spouse', label: 'שני בני הזוג זכאים בנפרד' };
+                        }
+
+                        return getSpouseCorrection('יש להשלים את נתון הקצבה של בן הזוג.');
+                    }
+
+                    if (state.partnerAgeF === 8) {
+                        if (state.zugKitsbaF === 0 && state.zugWorkTypeF === 4) {
+                            return { category: 'dependent-spouse', label: 'זוג עם בן זוג תלוי' };
+                        }
+
+                        if (state.zugKitsbaF === 0) {
+                            return getSpouseCorrection('לא ניתן להסיק את הכנסת בן הזוג מהשדות הקיימים. יש לתקן את הנתונים.');
+                        }
+
+                        if (state.zugKitsbaF === 8 || state.zugKitsbaF === 23 || state.zugKitsbaF === 24) {
+                            return { category: 'independent-spouse', label: 'בן זוג עם קצבה עצמאית' };
+                        }
+                    }
+
+                    return getSpouseCorrection('יש להשלים את נתוני בן הזוג.');
+                }
+
+                return getSpouseCorrection('יש להשלים מין ומצב משפחתי.');
+            }
+
+            function getVisibleFields(state) {
+                const fields = ['gender', 'birthDate', 'checkType'];
+                if (!state.gender) return fields;
+
+                if (state.checkType === 'full') fields.push('toshavHozer');
+
+                if (state.gender === 'male') {
+                    fields.push('maritalStatus');
+                    if (state.maritalStatus === 1) {
+                        fields.push('partnerResident');
+                        if (state.partnerResident === true) {
+                            fields.push('marriedTime', 'partnerAge');
+                            if (state.partnerAge === 4) {
+                                fields.push('zugWorkType', 'zugKitsba', 'tossefetYeladim');
+                            }
+                            if (state.partnerAge === 7) {
+                                fields.push('zugKitsbaMealGuil');
+                            }
+                        }
+                    }
+                } else {
+                    fields.push('maritalStatusF');
+                    if (state.maritalStatusF === 1) {
+                        fields.push('partnerResidentF');
+                        if (state.partnerResidentF === true) {
+                            fields.push('marriedTimeF');
+                            if (state.marriedTimeF === 3) {
+                                fields.push('partnerAgeF');
+                                if (state.partnerAgeF === 8) {
+                                    fields.push('zugWorkTypeF', 'zugKitsbaF', 'tossefetYeladimF');
+                                    if (state.zugKitsbaF === 8) {
+                                        fields.push('spouseAvodaSachir', 'spouseAvtala', 'spouseRent', 'spousePensia', 'spouseRibit', 'spouseAnother');
+                                    }
+                                }
+                                if (state.partnerAgeF === 9) {
+                                    fields.push('zugKitsbaMealGuilF');
+                                }
+                            }
+                        }
+                    }
+                }
+
+                fields.push('TxtWith1', 'TxtWith2', 'TxtWith3', 'TxtWith4', 'TxtWith5');
+                if (state.checkType === 'full') fields.push('qualPeriod');
+
+                fields.push('vetek', 'disabilityPension');
+                if (state.disabilityPension === false) {
+                    fields.push('incomeNotFromWork', 'doYouWork');
+                    if (state.doYouWork === true) fields.push('workType');
+                }
+
+                if (state.doYouWork === true && (state.workType === 0 || state.workType === 2)) {
+                    fields.push('sallaryIncome', 'maanak');
+                }
+                if (state.doYouWork === true && (state.workType === 1 || state.workType === 2)) {
+                    fields.push('atsmaiIncome');
+                }
+                if (state.incomeNotFromWork === true) {
+                    fields.push('notFromWork1', 'notFromWork3', 'notFromWork4');
+                }
+
+                return fields;
+            }
+
+            function updateFlow() {
+                if (!isFormUnlocked) {
+                    [
+                        'maleSection', 'femaleSection', 'spouseIncomeSection', 'childrenSection',
+                        'fullOnlySection', 'stage3bSection', 'stage4Section'
+                    ].forEach((id) => show(id, false));
+                    show('calculateActionsWrap', false);
+                    return;
+                }
+
+                const state = getState();
+                const visible = new Set(getVisibleFields(state));
+
+                show('maleSection', visible.has('maritalStatus'));
+                show('femaleSection', visible.has('maritalStatusF'));
+
+                show('partnerResidentMaleWrap', visible.has('partnerResident'));
+                show('marriedTimeWrap', visible.has('marriedTime'));
+                show('partnerAgeWrap', visible.has('partnerAge'));
+                show('zugWorkTypeWrap', visible.has('zugWorkType'));
+                show('zugKitsbaWrap', visible.has('zugKitsba'));
+                show('tossefetYeladimWrap', visible.has('tossefetYeladim'));
+                show('zugKitsbaMealGuilWrap', visible.has('zugKitsbaMealGuil'));
+
+                show('partnerResidentFemaleWrap', visible.has('partnerResidentF'));
+                show('marriedTimeFemaleWrap', visible.has('marriedTimeF'));
+                show('partnerAgeFemaleWrap', visible.has('partnerAgeF'));
+                show('zugWorkTypeFemaleWrap', visible.has('zugWorkTypeF'));
+                show('zugKitsbaFemaleWrap', visible.has('zugKitsbaF'));
+                show('tossefetYeladimFemaleWrap', visible.has('tossefetYeladimF'));
+                show('zugKitsbaMealGuilFemaleWrap', visible.has('zugKitsbaMealGuilF'));
+
+                const showSpouseIncome = visible.has('spouseAvodaSachir') || visible.has('spouseAvtala') || visible.has('spouseRent') || visible.has('spousePensia') || visible.has('spouseRibit') || visible.has('spouseAnother');
+                show('spouseIncomeSection', showSpouseIncome);
+                show('spouseAvodaSachirWrap', visible.has('spouseAvodaSachir'));
+                show('spouseAvtalaWrap', visible.has('spouseAvtala'));
+                show('spouseRentWrap', visible.has('spouseRent'));
+                show('spousePensiaWrap', visible.has('spousePensia'));
+                show('spouseRibitWrap', visible.has('spouseRibit'));
+                show('spouseAnotherWrap', visible.has('spouseAnother'));
+
+                show('childrenSection', visible.has('TxtWith1'));
+
+                const showFullOnly = visible.has('toshavHozer') || visible.has('qualPeriod');
+                show('fullOnlySection', showFullOnly);
+                show('toshavHozerWrap', visible.has('toshavHozer'));
+                show('qualificationPeriodWrap', visible.has('qualPeriod'));
+
+                const showStage3 = visible.has('vetek') || visible.has('disabilityPension');
+                show('stage3bSection', showStage3);
+                show('incomeNotFromWorkWrap', visible.has('incomeNotFromWork'));
+                show('doYouWorkWrap', visible.has('doYouWork'));
+                show('workTypeWrap', visible.has('workType'));
+
+                const showStage4 = visible.has('sallaryIncome') || visible.has('maanak') || visible.has('atsmaiIncome') || visible.has('notFromWork1') || visible.has('notFromWork3') || visible.has('notFromWork4');
+                show('stage4Section', showStage4);
+                show('sallaryIncomeWrap', visible.has('sallaryIncome'));
+                show('maanakWrap', visible.has('maanak'));
+                show('atsmaiIncomeWrap', visible.has('atsmaiIncome'));
+                show('notFromWork1Wrap', visible.has('notFromWork1'));
+                show('notFromWork3Wrap', visible.has('notFromWork3'));
+                show('notFromWork4Wrap', visible.has('notFromWork4'));
+
+                clearHiddenControlledFields();
+                updateCalculateButtonState();
+            }
+
+            function getRequiredFieldIdsForCurrentFlow() {
+                const required = ['gender', 'birthDate', 'checkType', 'vetek', 'disabilityPension'];
+
+                if (isContainerVisible('maleSection')) required.push('maritalStatusMale');
+                if (isContainerVisible('partnerResidentMaleWrap')) required.push('partnerResidentMale');
+                if (isContainerVisible('marriedTimeWrap')) required.push('marriedTime');
+                if (isContainerVisible('partnerAgeWrap')) required.push('partnerAge');
+                if (isContainerVisible('zugWorkTypeWrap')) required.push('zugWorkType');
+                if (isContainerVisible('zugKitsbaWrap')) required.push('zugKitsba');
+                if (isContainerVisible('tossefetYeladimWrap')) required.push('tossefetYeladim');
+                if (isContainerVisible('zugKitsbaMealGuilWrap')) required.push('zugKitsbaMealGuil');
+
+                if (isContainerVisible('femaleSection')) required.push('maritalStatusFemale');
+                if (isContainerVisible('partnerResidentFemaleWrap')) required.push('partnerResidentFemale');
+                if (isContainerVisible('marriedTimeFemaleWrap')) required.push('marriedTimeFemale');
+                if (isContainerVisible('partnerAgeFemaleWrap')) required.push('partnerAgeFemale');
+                if (isContainerVisible('zugWorkTypeFemaleWrap')) required.push('zugWorkTypeFemale');
+                if (isContainerVisible('zugKitsbaFemaleWrap')) required.push('zugKitsbaFemale');
+                if (isContainerVisible('tossefetYeladimFemaleWrap')) required.push('tossefetYeladimFemale');
+                if (isContainerVisible('zugKitsbaMealGuilFemaleWrap')) required.push('zugKitsbaMealGuilFemale');
+
+                if (isContainerVisible('incomeNotFromWorkWrap')) required.push('incomeNotFromWork');
+                if (isContainerVisible('doYouWorkWrap')) required.push('doYouWork');
+                if (isContainerVisible('workTypeWrap')) required.push('workType');
+
+                return required;
+            }
+
+            function areRequiredFieldsFilled() {
+                const required = getRequiredFieldIdsForCurrentFlow();
+                for (let i = 0; i < required.length; i += 1) {
+                    const el = document.getElementById(required[i]);
+                    if (!el) continue;
+                    if ((el.tagName === 'SELECT' || el.tagName === 'INPUT') && el.value === '') {
+                        return false;
+                    }
+                }
+                return true;
+            }
+
+            function updateCalculateButtonState() {
+                const btn = document.getElementById('calculateBtn');
+                if (!btn) return;
+
+                const enabled = niiDataLoaded && areRequiredFieldsFilled();
+                btn.disabled = !enabled;
+                btn.classList.toggle('enabled', enabled);
+            }
+
+            function updateContinueButtonState() {
+                const btn = document.getElementById('continueBtn');
+                if (!btn) return;
+                btn.disabled = !niiDataLoaded;
+                btn.classList.toggle('enabled', niiDataLoaded);
+            }
+
+            function getMaritalText() {
+                const gender = document.getElementById('gender').value;
+                if (gender === 'male') {
+                    const sel = document.getElementById('maritalStatusMale');
+                    return sel.options[sel.selectedIndex]?.text || '-';
+                }
+                if (gender === 'female') {
+                    const sel = document.getElementById('maritalStatusFemale');
+                    return sel.options[sel.selectedIndex]?.text || '-';
+                }
+                return '-';
+            }
+
+            function valueOf(id) {
+                const node = document.getElementById(id);
+                if (!node) return 0;
+                const n = Number(node.value);
+                return Number.isFinite(n) ? n : 0;
+            }
+
+            function setResultMode(enabled) {
+                const blocks = [
+                    'maleSection', 'femaleSection', 'spouseIncomeSection', 'childrenSection',
+                    'fullOnlySection', 'stage3bSection', 'stage4Section',
+                    'continueActionsWrap', 'calculateActionsWrap'
+                ];
+
+                blocks.forEach((id) => show(id, !enabled));
+                show('summarySection', enabled);
+            }
+
+            function formatValueByControl(control) {
+                if (!control) return '-';
+                if (control.tagName === 'SELECT') {
+                    const option = control.options[control.selectedIndex];
+                    return option ? option.textContent.trim() : '-';
+                }
+                return control.value === '' ? '-' : control.value;
+            }
+
+            function collectEnteredDataRows() {
+                const rows = [];
+                const controls = Array.from(document.querySelectorAll('main.form-shell input, main.form-shell select'));
+                controls.forEach((control) => {
+                    if (!control.id) return;
+
+                    const isVisible = control.offsetParent !== null;
+                    const isCore = control.id === 'gender' || control.id === 'birthDate' || control.id === 'checkType';
+                    if (!isVisible && !isCore) return;
+
+                    const labelNode = document.querySelector('label[for="' + control.id + '"]');
+                    if (!labelNode) return;
+
+                    rows.push({
+                        label: labelNode.textContent.trim(),
+                        value: formatValueByControl(control)
+                    });
+                });
+
+                const age = parseBirthDateToAge(document.getElementById('birthDate').value);
+                if (age !== null) {
+                    rows.unshift({ label: 'גיל', value: String(age) });
+                }
+
+                return rows;
+            }
+
+            function renderRowsToTable(tableId, rows) {
+                const table = document.getElementById(tableId);
+                if (!table) return;
+
+                table.innerHTML = rows.map((row) => {
+                    return '<tr><td>' + row.label + '</td><td>' + row.value + '</td></tr>';
+                }).join('');
+            }
+
+            function buildSummaryAndResult() {
+                const state = getState();
+                const vetek = valueOf('vetek');
+                const age = parseBirthDateToAge(document.getElementById('birthDate').value);
+                const gender = document.getElementById('gender').value;
+                const birthParts = parseBirthDateParts(document.getElementById('birthDate').value);
+                const retirementInfo = getRetirementInfo(gender, birthParts);
+                const household = classifyHousehold(state);
+                const pensionSingleBasic = getNumericNiiValue('pension_single_basic');
+                const seniorityMax = getNumericNiiValue('seniority_bonus_max');
+                const workFullThreshold = getNumericNiiValue('income_test_single_full');
+                const workPartialThreshold = getNumericNiiValue('income_test_single_partial');
+                const workMarriedFullThreshold = getNumericNiiValue('income_test_married_full');
+                const workMarriedPartialThreshold = getNumericNiiValue('income_test_married_partial');
+                const assetFullThreshold = getNumericNiiValue('income_test_single_asset_full');
+                const assetPartialThreshold = getNumericNiiValue('income_test_single_asset_partial');
+                const assetMarriedFullThreshold = getNumericNiiValue('income_test_married_asset_full');
+                const assetMarriedPartialNoPensionThreshold = getNumericNiiValue('income_test_married_asset_partial_no_pension');
+                const assetMarriedPartialWithPensionThreshold = getNumericNiiValue('income_test_married_asset_partial_with_pension');
+                const deductionRateValue = getNumericNiiValue('income_test_deduction_rate');
+
+                if (!retirementInfo || pensionSingleBasic === null || seniorityMax === null || workFullThreshold === null || workPartialThreshold === null || workMarriedFullThreshold === null || workMarriedPartialThreshold === null || assetFullThreshold === null || assetPartialThreshold === null || assetMarriedFullThreshold === null || assetMarriedPartialNoPensionThreshold === null || assetMarriedPartialWithPensionThreshold === null || deductionRateValue === null) {
+                    return {
+                        eligible: false,
+                        expectedPension: 0,
+                        reason: 'נתוני NII לא נטענו במלואם, ולכן לא ניתן לבצע חישוב.'
+                    };
+                }
+
+                if (household.category === 'correction-needed') {
+                    return {
+                        eligible: false,
+                        expectedPension: 0,
+                        reason: household.reason
+                    };
+                }
+
+                if (state.disabilityPension === true) {
+                    return {
+                        maritalText: getMaritalText(),
+                        householdCategory: household.category,
+                        vetek,
+                        familyPensionBase: 0,
+                        seniorityAddition: 0,
+                        basePension: 0,
+                        workIncome: 0,
+                        workThreshold: 0,
+                        assetIncome: 0,
+                        assetThreshold: 0,
+                        excessIncome: 0,
+                        deductionRate: 0,
+                        deductionAmount: 0,
+                        pensionAfterDeduction: 0,
+                        totalIncome: 0,
+                        eligible: true,
+                        expectedPension: 0,
+                        reason: getDisabilityWorkMessage(gender),
+                        forceReasonOnly: true
+                    };
+                }
+
+                let isBelowRetirementAge = false;
+                let isAbovePensionAge = false;
+
+                if (retirementInfo) {
+                    const today = new Date();
+                    today.setHours(0, 0, 0, 0);
+
+                    isBelowRetirementAge = today < retirementInfo.retirementDate;
+                    isAbovePensionAge = today >= retirementInfo.pensionDate;
+                }
+
+                const workIncome = valueOf('sallaryIncome') + valueOf('maanak') + (valueOf('atsmaiIncome') / 12);
+                const assetIncome = valueOf('notFromWork1') + valueOf('notFromWork3') + valueOf('notFromWork4');
+                const childrenCount = getDependentChildrenCount();
+                const pensionKey = getFamilyPensionKey(household.category, age, childrenCount);
+                const familyPensionBase = getNumericNiiValue(pensionKey);
+                if (familyPensionBase === null) {
+                    return {
+                        eligible: false,
+                        expectedPension: 0,
+                        reason: 'סכום הקצבה המתאים להרכב המשפחתי לא נטען מנתוני NII.'
+                    };
+                }
+
+                const cappedVetek = Math.min(seniorityMax, Math.max(0, vetek));
+                const basePension = familyPensionBase * (1 + (cappedVetek / 100));
+                const totalIncome = workIncome + assetIncome;
+                const deductionRate = deductionRateValue / 100;
+                const minPartialPension = pensionSingleBasic * 0.1;
+                const hasWorkIncome = workIncome > 0;
+                const hasAssetIncome = assetIncome > 0;
+                const seniorityAddition = Math.max(0, basePension - familyPensionBase);
+
+                const currentWorkFullThreshold = household.category === 'dependent-spouse'
+                    ? workMarriedFullThreshold
+                    : workFullThreshold;
+                const currentWorkPartialThreshold = household.category === 'dependent-spouse'
+                    ? workMarriedPartialThreshold
+                    : workPartialThreshold;
+                const currentAssetFullThreshold = household.category === 'dependent-spouse' || household.category === 'independent-spouse'
+                    ? assetMarriedFullThreshold
+                    : assetFullThreshold;
+                const currentAssetPartialThreshold = household.category === 'dependent-spouse'
+                    ? assetMarriedPartialNoPensionThreshold
+                    : household.category === 'independent-spouse'
+                        ? assetMarriedPartialWithPensionThreshold
+                        : assetPartialThreshold;
+
+                let excessIncome = 0;
+                if (hasWorkIncome && hasAssetIncome) {
+                    excessIncome = Math.max(0, totalIncome - currentAssetFullThreshold);
+                } else if (hasWorkIncome) {
+                    excessIncome = Math.max(0, workIncome - currentWorkFullThreshold);
+                } else if (hasAssetIncome) {
+                    excessIncome = Math.max(0, assetIncome - currentAssetFullThreshold);
+                }
+
+                const deductionAmount = excessIncome * deductionRate;
+                const pensionAfterDeduction = Math.max(0, basePension - deductionAmount);
+
+                let expectedPension = basePension;
+                let eligible = true;
+                let reason = '';
+
+                if (isBelowRetirementAge) {
+                    eligible = false;
+                    reason = getUnderRetirementMessage(gender, retirementInfo ? retirementInfo.retirementLabel : '-');
+                } else if (isAbovePensionAge) {
+                    eligible = true;
+                    reason = 'יש זכאות ללא תלות בהכנסה. מומלץ לפנות לביטוח הלאומי';
+                    expectedPension = basePension;
+                } else if (hasWorkIncome && hasAssetIncome && totalIncome > currentAssetPartialThreshold) {
+                    eligible = false;
+                    reason = 'סך ההכנסות גבוה מהתקרה המזכה לקצבה חלקית לפי ההרכב המשפחתי.';
+                } else if (hasWorkIncome && !hasAssetIncome && workIncome > currentWorkPartialThreshold) {
+                    eligible = false;
+                    reason = 'ההכנסה מעבודה גבוהה מהתקרה המזכה לקצבה חלקית לפי ההרכב המשפחתי.';
+                } else if (hasAssetIncome && !hasWorkIncome && assetIncome > currentAssetPartialThreshold) {
+                    eligible = false;
+                    reason = 'ההכנסה שלא מעבודה גבוהה מהתקרה המזכה לקצבה חלקית לפי ההרכב המשפחתי.';
+                } else {
+                    if (hasWorkIncome && hasAssetIncome) {
+                        expectedPension -= deductionAmount;
+                    } else if (hasWorkIncome) {
+                        expectedPension -= deductionAmount;
+                    } else if (hasAssetIncome) {
+                        expectedPension -= deductionAmount;
+                    }
+
+                    expectedPension = Math.max(0, expectedPension);
+                    if (expectedPension < minPartialPension) {
+                        eligible = false;
+                        expectedPension = 0;
+                        reason = 'הקצבה המחושבת נמוכה מקצבת המינימום החלקית לפי נתוני NII.';
+                    }
+                }
+
+                return {
+                    maritalText: getMaritalText(),
+                    householdCategory: household.category,
+                    vetek,
+                    familyPensionBase,
+                    seniorityAddition,
+                    basePension,
+                    workIncome,
+                    workThreshold: currentWorkFullThreshold,
+                    assetIncome,
+                    assetThreshold: currentAssetFullThreshold,
+                    excessIncome,
+                    deductionRate: deductionRateValue,
+                    deductionAmount,
+                    pensionAfterDeduction,
+                    totalIncome,
+                    eligible,
+                    expectedPension,
+                    reason
+                };
+            }
+
+            function renderSummary() {
+                const data = buildSummaryAndResult();
+                const enteredRows = collectEnteredDataRows();
+
+                renderRowsToTable('calcDetailsTable', [
+                    { label: 'סכום קצבה בסיסי', value: formatCurrency(data.familyPensionBase || 0) },
+                    { label: 'תוספת ותק', value: formatCurrency(data.seniorityAddition || 0) },
+                    { label: 'הכנסות מעבודה', value: formatCurrency(data.workIncome || 0) },
+                    { label: 'תקרת הכנסה מעבודה', value: formatCurrency(data.workThreshold || 0) },
+                    { label: 'הכנסות לא מעבודה', value: formatCurrency(data.assetIncome || 0) },
+                    { label: 'תקרת הכנסות לא מעבודה', value: formatCurrency(data.assetThreshold || 0) },
+                    { label: 'סה"כ עודף', value: formatCurrency(data.excessIncome || 0) },
+                    { label: (data.deductionRate || 0) + '% ניכוי', value: formatCurrency(data.deductionAmount || 0) },
+                    { label: 'סה"כ קצבה לאחר ניכוי', value: formatCurrency(data.pensionAfterDeduction || 0) }
+                ]);
+
+                renderRowsToTable('inputDetailsTable', enteredRows);
+
+                const resultBox = document.getElementById('sumResultBox');
+                if (data.forceReasonOnly) {
+                    resultBox.className = 'result-box result-ok';
+                    resultBox.textContent = data.reason;
+                } else if (data.eligible) {
+                    resultBox.className = 'result-box result-ok';
+                    if (data.reason === 'יש זכאות ללא תלות בהכנסה. מומלץ לפנות לביטוח הלאומי') {
+                        resultBox.textContent = data.reason;
+                    } else {
+                        resultBox.textContent = 'גובה הקצבה הצפויה: ' + formatCurrency(data.expectedPension);
+                    }
+                } else {
+                    resultBox.className = 'result-box result-no';
+                    if (data.reason.startsWith('אין זכאות, מתחת גיל פרישה')) {
+                        resultBox.textContent = data.reason;
+                    } else {
+                        resultBox.textContent = 'אין זכאות. נימוק: ' + data.reason;
+                    }
+                }
+
+                setResultMode(true);
+                document.getElementById('summarySection').scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }
+
+            function resetControlValue(control) {
+                if (control.tagName === 'SELECT') {
+                    control.value = '';
+                    return;
+                }
+
+                if (control.tagName === 'INPUT') {
+                    const t = (control.type || '').toLowerCase();
+                    if (t === 'number') {
+                        control.value = '0';
+                    } else if (t === 'checkbox' || t === 'radio') {
+                        control.checked = false;
+                    } else {
+                        control.value = '';
+                    }
+                }
+            }
+
+            function clearHiddenControlledFields() {
+                if (document.getElementById('summarySection') && !document.getElementById('summarySection').classList.contains('hidden')) {
+                    return;
+                }
+
+                const controlledContainers = [
+                    'maleSection', 'femaleSection',
+                    'partnerResidentMaleWrap', 'marriedTimeWrap', 'partnerAgeWrap', 'zugWorkTypeWrap', 'zugKitsbaWrap', 'tossefetYeladimWrap', 'zugKitsbaMealGuilWrap',
+                    'partnerResidentFemaleWrap', 'marriedTimeFemaleWrap', 'partnerAgeFemaleWrap', 'zugWorkTypeFemaleWrap', 'zugKitsbaFemaleWrap', 'tossefetYeladimFemaleWrap', 'zugKitsbaMealGuilFemaleWrap',
+                    'spouseIncomeSection', 'spouseAvodaSachirWrap', 'spouseAvtalaWrap', 'spouseRentWrap', 'spousePensiaWrap', 'spouseRibitWrap', 'spouseAnotherWrap',
+                    'childrenSection',
+                    'fullOnlySection', 'toshavHozerWrap', 'qualificationPeriodWrap',
+                    'stage3bSection', 'incomeNotFromWorkWrap', 'doYouWorkWrap', 'workTypeWrap',
+                    'stage4Section', 'sallaryIncomeWrap', 'maanakWrap', 'atsmaiIncomeWrap', 'notFromWork1Wrap', 'notFromWork3Wrap', 'notFromWork4Wrap'
+                ];
+
+                controlledContainers.forEach((id) => {
+                    const container = document.getElementById(id);
+                    if (!container || !container.classList.contains('hidden')) return;
+
+                    container.querySelectorAll('input, select, textarea').forEach((control) => {
+                        resetControlValue(control);
+                    });
+                });
+            }
+
+            const integerIds = [
+                'txtWith1', 'txtWith2', 'txtWith3', 'txtWith4', 'txtWith5',
+                'sallaryIncome', 'maanak', 'atsmaiIncome', 'notFromWork1', 'notFromWork3', 'notFromWork4',
+                'spouseAvodaSachir', 'spouseAvtala', 'spouseRent', 'spousePensia', 'spouseRibit', 'spouseAnother'
+            ];
+
+            document.querySelectorAll('input[type="number"]').forEach((input) => {
+                input.addEventListener('focus', () => {
+                    if (input.value === '0') {
+                        input.value = '';
+                    }
+                });
+
+                input.addEventListener('blur', () => {
+                    if (input.value === '') {
+                        input.value = '0';
+                    }
+                });
+            });
+
+            integerIds.forEach((id) => {
+                const input = document.getElementById(id);
+                if (!input) return;
+
+                input.addEventListener('input', () => {
+                    input.value = input.value.replace(/\D/g, '');
+                });
+
+                input.addEventListener('blur', () => {
+                    if (input.value === '') {
+                        input.value = '0';
+                        return;
+                    }
+                    input.value = String(Math.max(0, parseInt(input.value, 10) || 0));
+                });
+            });
+
+            const vetek = document.getElementById('vetek');
+            if (vetek) {
+                vetek.addEventListener('input', () => {
+                    const seniorityMax = getNumericNiiValue('seniority_bonus_max');
+                    const digits = vetek.value.replace(/\D/g, '');
+                    if (digits === '') {
+                        vetek.value = '';
+                        return;
+                    }
+
+                    let n = parseInt(digits, 10);
+                    if (seniorityMax !== null) {
+                        n = Math.max(0, Math.min(seniorityMax, n));
+                    }
+                    vetek.value = String(n);
+                });
+
+                vetek.addEventListener('blur', () => {
+                    const seniorityMax = getNumericNiiValue('seniority_bonus_max');
+                    if (vetek.value === '') {
+                        vetek.value = '0';
+                        return;
+                    }
+
+                    let n = parseInt(vetek.value, 10);
+                    n = Number.isNaN(n) ? 0 : n;
+                    if (seniorityMax !== null) {
+                        n = Math.max(0, Math.min(seniorityMax, n));
+                    }
+                    if (n % 2 !== 0) n -= 1;
+                    vetek.value = String(n);
+                });
+            }
+
+            const birthDate = document.getElementById('birthDate');
+            if (birthDate) {
+                birthDate.addEventListener('input', () => {
+                    const digits = birthDate.value.replace(/\D/g, '').slice(0, 8);
+                    const d = digits.slice(0, 2);
+                    const m = digits.slice(2, 4);
+                    const y = digits.slice(4, 8);
+                    let formatted = d;
+                    if (m) formatted += '/' + m;
+                    if (y) formatted += '/' + y;
+                    birthDate.value = formatted;
+                    birthDate.setCustomValidity('');
+                });
+
+                birthDate.addEventListener('blur', () => {
+                    if (!birthDate.value) {
+                        birthDate.setCustomValidity('');
+                        return;
+                    }
+
+                    const match = birthDate.value.match(/^(\d{2})\/(\d{2})\/(\d{4})$/);
+                    if (!match) {
+                        birthDate.setCustomValidity('יש להזין תאריך בפורמט DD/MM/YYYY');
+                        birthDate.reportValidity();
+                        return;
+                    }
+
+                    const day = parseInt(match[1], 10);
+                    const month = parseInt(match[2], 10);
+
+                    if (day < 1 || day > 31) {
+                        birthDate.setCustomValidity('יום חייב להיות בין 1 ל-31');
+                        birthDate.reportValidity();
+                        return;
+                    }
+
+                    if (month < 1 || month > 12) {
+                        birthDate.setCustomValidity('חודש חייב להיות בין 1 ל-12');
+                        birthDate.reportValidity();
+                        return;
+                    }
+
+                    birthDate.setCustomValidity('');
+                });
+            }
+
+            document.querySelectorAll('select, input').forEach((node) => {
+                node.addEventListener('change', updateFlow);
+                node.addEventListener('input', updateFlow);
+            });
+
+            const allControls = Array.from(document.querySelectorAll('main.form-shell input, main.form-shell select'));
+            const initialValues = new Map();
+            allControls.forEach((control) => {
+                initialValues.set(control.id, {
+                    value: control.value,
+                    checked: control.checked
+                });
+            });
+
+            function resetAllForm() {
+                allControls.forEach((control) => {
+                    const initial = initialValues.get(control.id);
+                    if (!initial) return;
+
+                    control.value = initial.value;
+                    if (typeof initial.checked === 'boolean') {
+                        control.checked = initial.checked;
+                    }
+
+                    if (typeof control.setCustomValidity === 'function') {
+                        control.setCustomValidity('');
+                    }
+                });
+
+                isFormUnlocked = false;
+                setResultMode(false);
+                show('continueActionsWrap', true);
+                show('calculateActionsWrap', false);
+
+                updateFlow();
+                updateContinueButtonState();
+                updateCalculateButtonState();
+            }
+
+            function backToForm() {
+                isFormUnlocked = true;
+                setResultMode(false);
+                show('continueActionsWrap', false);
+                show('calculateActionsWrap', true);
+                updateFlow();
+                document.getElementById('calculateActionsWrap').scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }
+
+            const calculateBtn = document.getElementById('calculateBtn');
+            if (calculateBtn) {
+                calculateBtn.addEventListener('click', renderSummary);
+            }
+
+            const clearAllBtn = document.getElementById('clearAllBtn');
+            if (clearAllBtn) {
+                clearAllBtn.addEventListener('click', resetAllForm);
+            }
+
+            const clearAllFromResultBtn = document.getElementById('clearAllFromResultBtn');
+            if (clearAllFromResultBtn) {
+                clearAllFromResultBtn.addEventListener('click', resetAllForm);
+            }
+
+            const backToFormBtn = document.getElementById('backToFormBtn');
+            if (backToFormBtn) {
+                backToFormBtn.addEventListener('click', backToForm);
+            }
+
+            const continueBtn = document.getElementById('continueBtn');
+            if (continueBtn) {
+                continueBtn.addEventListener('click', () => {
+                    if (!niiDataLoaded) {
+                        const resultBox = document.getElementById('sumResultBox');
+                        resultBox.className = 'result-box result-no';
+                        resultBox.textContent = 'נתוני NII טרם נטענו, ולכן לא ניתן להמשיך לחישוב.';
+                        show('summarySection', true);
+                        document.getElementById('summarySection').scrollIntoView({ behavior: 'smooth', block: 'start' });
+                        return;
+                    }
+
+                    const gender = document.getElementById('gender').value;
+                    const birthValue = document.getElementById('birthDate').value;
+                    const birthParts = parseBirthDateParts(birthValue);
+
+                    if (!gender || !birthParts) {
+                        const resultBox = document.getElementById('sumResultBox');
+                        resultBox.className = 'result-box result-no';
+                        resultBox.textContent = 'יש להשלים מין ותאריך לידה תקין לפני המשך.';
+                        show('summarySection', true);
+                        document.getElementById('summarySection').scrollIntoView({ behavior: 'smooth', block: 'start' });
+                        return;
+                    }
+
+                    const retirementInfo = getRetirementInfo(gender, birthParts);
+                    if (!retirementInfo) {
+                        const resultBox = document.getElementById('sumResultBox');
+                        resultBox.className = 'result-box result-no';
+                        resultBox.textContent = 'נתוני גיל הפרישה לא נטענו, ולכן לא ניתן להמשיך לחישוב.';
+                        show('summarySection', true);
+                        document.getElementById('summarySection').scrollIntoView({ behavior: 'smooth', block: 'start' });
+                        return;
+                    }
+                    const today = new Date();
+                    today.setHours(0, 0, 0, 0);
+
+                    if (today < retirementInfo.retirementDate) {
+                        const resultBox = document.getElementById('sumResultBox');
+                        resultBox.className = 'result-box result-no';
+                        resultBox.textContent = getUnderRetirementMessage(gender, retirementInfo.retirementLabel);
+                        show('summarySection', true);
+                        document.getElementById('summarySection').scrollIntoView({ behavior: 'smooth', block: 'start' });
+                        return;
+                    }
+
+                    isFormUnlocked = true;
+                    setResultMode(false);
+                    show('summarySection', false);
+                    show('continueActionsWrap', false);
+                    show('calculateActionsWrap', true);
+                    updateFlow();
+                });
+            }
+
+            updateContinueButtonState();
+            loadNiiData();
+            updateFlow();
+
+        })();
+    </script>
+    <script src="data/hamburger-nav.js"></script>
+</body>
+</html>
