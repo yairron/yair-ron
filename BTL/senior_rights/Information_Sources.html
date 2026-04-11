@@ -607,7 +607,7 @@
 <body>
     <div class="container">
         <header>
-            <a href="index.html" class="back-button">חזרה לדף ראשי</a>
+            <a href="../index.html" class="back-button">חזרה לדף ראשי</a>
             <h1>📄 מסמכי מקורות מידע</h1>
             <p class="subtitle">מסמכים ומקורות מידע רשמיים בנושא ביטוח לאומי וזכויות</p>
         </header>
@@ -825,7 +825,7 @@
             }
 
             try {
-                const response = await fetch(`support_files/files/${fileInfo.file}`);
+                const response = await fetch(`../support_files/files/${fileInfo.file}`);
                 if (!response.ok) {
                     throw new Error('Failed to load file');
                 }
@@ -882,6 +882,6 @@
         // אתחול
         document.addEventListener('DOMContentLoaded', createFilesList);
     </script>
-    <script src="senior_rights/data/hamburger-nav.js"></script>
+    <script src="data/hamburger-nav.js"></script>
 </body>
 </html>
