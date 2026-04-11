@@ -608,6 +608,7 @@
         };
 
         let NII_CONSTANTS = {};
+        const BENEFIT_COMBINATIONS_URL = 'benefit-combinations.html';
 
         // הצגת המידע
         function displayData() {
@@ -620,9 +621,13 @@
 
                 for (const [key, config] of Object.entries(ACCORDIONS_CONFIG)) {
                     const data = RIGHTS_DATA.categories[key];
-                    const content = data
+                    let content = data
                         ? (typeof data.contentFn === 'function' ? data.contentFn(NII_CONSTANTS) : data.content)
                         : '<p style="text-align:center;color:#999;padding:40px;">⏳ המידע יתעדכן בקרוב...</p>';
+
+                    if (key === 'interactions') {
+                        content = '<p><a href="' + BENEFIT_COMBINATIONS_URL + '">🔢 מעבר למחשבון האפשרות לקבל יותר מקצבה אחת</a></p>';
+                    }
 
                     html += `
                         <div class="accordion" data-category="${key}">
@@ -763,6 +768,11 @@
             accordions.forEach(accordion => {
                 const header = accordion.querySelector('.accordion-header');
                 header.addEventListener('click', () => {
+                    if (accordion.dataset.category === 'interactions') {
+                        window.location.href = BENEFIT_COMBINATIONS_URL;
+                        return;
+                    }
+
                     const wasActive = accordion.classList.contains('active');
                     accordions.forEach(other => {
                         if (other !== accordion) other.classList.remove('active');
