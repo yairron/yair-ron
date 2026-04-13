@@ -304,7 +304,8 @@ const ACCORDIONS_CONFIG = {
     income_supplement: { title: 'השלמת הכנסה',               icon: '💰' },
     nursing:           { title: 'גמלת סיעוד',                icon: '❤️' },
     disability:        { title: 'נכות וקצבת שר"מ',           icon: '♿' },
-    survivors:         { title: 'שאירים ומענקי מעבר לנשים',  icon: '🕊️' },
+  survivors:         { title: 'מענק שאירים',               icon: '🕊️' },
+  transition_grant:  { title: 'מענק מעבר לנשים בגיל 62',   icon: '🎁' },
     holocaust:         { title: 'ניצולי שואה',               icon: '🕯️' },
     immigrants:        { title: 'עולים חדשים',               icon: '✈️' },
 };
@@ -614,13 +615,12 @@ function contentDisability() {
 
 function contentSurvivors() {
     return `
-<p><a href="senior_rights_full.html#survivors">פירוט על קצבת שאירים</a> | <a href="senior_rights_full.html#transition_grant">פירוט על מענק מעבר לנשים</a></p>
+<p><a href="senior_rights_full.html#survivors">פירוט על מענק שאירים</a></p>
 <h2>הגדרות</h2>
 <div class="def-box">
   <p><strong>קצבת שאירים:</strong> לאלמן/ה, יתומים וילדים שאיר של מבוטח/ת שנפטר/ה, בכפוף לתנאי ביטוח ומבחן הכנסה.</p>
   <p><strong>גיל מינימלי לאלמן/ה:</strong> 40 (קצבה מלאה מגיל 50). אלמן/ה מתחת לגיל 40 ללא ילדים — אינו/ה זכאי/ת לקצבה שוטפת.</p>
   <p><strong>ילד שאיר:</strong> ילד של המנוח/ה שטרם מלאו לו/לה 18 (או עד 22 אם לומד/ת).</p>
-  <p><strong>מענק מעבר לנשים:</strong> תשלום חד-פעמי לנשים שנולדו בין 1963 ל-1965 שגיל פרישתן הועלה בתקופת המעבר.</p>
 </div>
 <div class="def-box" style="border-right-color:var(--accent);background:#FFFDE7;">
   <p><strong>הגדרת אלמנה</strong> — אשת המבוטח בשעת פטירתו, שהייתה נשואה לו שנה לפחות (או חצי שנה אם בת 55+, או ילדה לו ילד). גם במקרה פרידה — נחשבת אלמנה אם הפרידה נמשכה פחות מ-3 שנים מתוך 5 השנים האחרונות, או שהייתה זכאית למזונות / הוא נשא בפועל במזונותיה ב-12 החודשים האחרונים.</p>
@@ -671,6 +671,10 @@ function contentSurvivors() {
 </table>
 
 <h2>מענקים חד-פעמיים</h2>
+<ul>
+  <li>מענק פטירה הוא תשלום חד-פעמי ואחיד שמשלם המוסד לביטוח לאומי לשאירים של נפטר שקיבל קצבה מביטוח לאומי. מטרת המענק לסייע במימון הוצאות הלוויה והקבורה.</li>
+  <li>מענק בר/בת מצווה הוא מענק שמשולם לילדים יתומים שמקבלים קצבת שאירים מהביטוח הלאומי.</li>
+</ul>
 <table class="data-table">
   <thead><tr><th>מענק</th><th>סכום (₪)</th></tr></thead>
   <tbody>
@@ -678,6 +682,17 @@ function contentSurvivors() {
     <tr><td>מענק בר/בת מצווה</td><td class="amount">${fmt(g('bar_mitzvah_grant'))}</td></tr>
   </tbody>
 </table>
+
+`;
+}
+
+function contentTransitionGrant() {
+    return `
+<p><a href="senior_rights_full.html#transition_grant">פירוט על מענק מעבר לנשים</a></p>
+<h2>הגדרות</h2>
+<div class="def-box">
+  <p><strong>מענק מעבר לנשים:</strong> תשלום חד-פעמי לנשים שנולדו בין 1963 ל-1965 שגיל פרישתן הועלה בתקופת המעבר.</p>
+</div>
 
 <h2>מענק מעבר לנשים</h2>
 <div class="def-box">
@@ -827,6 +842,7 @@ const CONTENT_MAP = {
     nursing:           contentNursing,
     disability:        contentDisability,
     survivors:         contentSurvivors,
+  transition_grant:  contentTransitionGrant,
     holocaust:         contentHolocaust,
     immigrants:        contentImmigrants,
 };

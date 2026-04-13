@@ -1488,15 +1488,119 @@ const RIGHTS_DATA = {
           </tbody>
         </table>
 
-        <h3>פרק ט׳ — ערעור ונקודות לאנשי מקצוע</h3>
+        <h3>פרק ט׳ — מענק פטירה</h3>
 
-        <h4>ט.1 — ערעור על החלטת הביטוח הלאומי</h4>
+        <h4>1. מהו מענק פטירה?</h4>
+        <p>מענק פטירה הוא תשלום חד-פעמי ואחיד שמשלם המוסד לביטוח לאומי לשאירים של נפטר שקיבל קצבה מביטוח לאומי. מטרת המענק לסייע במימון הוצאות הלוויה והקבורה.</p>
+
+        <h4>2. סכום המענק</h4>
+        <h5>מענק רגיל</h5>
+        <p><strong>₪${NII.death_grant.value.toLocaleString('he-IL')}</strong> (החל מ-01.01.2026)</p>
+        <h5>מענק מוגדל – נפגעי עבודה</h5>
+        <p>במקרה שהנפטר היה מקבל קצבת נכות מעבודה ומתקיימים תנאים מסוימים, ישולם מענק מוגדל:</p>
+        <ul>
+          <li>סכום המענק המוגדל = <strong>60% מקצבת נכות מעבודה × 36</strong></li>
+          <li>תנאי זכאות: הנפטר הגיע לגיל פרישה, <strong>או</strong> שדרגת נכותו הייתה 50% ומעלה</li>
+          <li>תנאי נוסף: הכנסת בן/בת הזוג הממוצעת בשנה שלפני הפטירה אינה עולה על <strong>₪${(NII.average_wage.value * 2).toLocaleString('he-IL')}</strong> (שכר ממוצע × 2, נכון ל-2026)</li>
+          <li>המוגדל משולם בשני מועדים: מחצית עם פקיעת הזכאות לקצבה, מחצית בתום שנה מהפטירה</li>
+        </ul>
+        <div style="background:#fff3e0;border-right:4px solid #ff9800;padding:12px 16px;border-radius:8px;margin:10px 0;">⚠️ המענק המוגדל בא <strong>במקום</strong> המענק הרגיל, לא בנוסף אליו.</div>
+
+        <h4>3. מי זכאי?</h4>
+        <h5>א. קצבאות המזכות במענק</h5>
+        <table style="width:100%;border-collapse:collapse;margin:15px 0;">
+          <thead><tr style="background:linear-gradient(135deg,#667eea,#764ba2);color:white;">
+            <th style="padding:10px;border:1px solid #ddd;">קצבה</th>
+            <th style="padding:10px;border:1px solid #ddd;">הערות</th>
+          </tr></thead>
+          <tbody>
+            <tr><td style="padding:9px;border:1px solid #ddd;">קצבת אזרח ותיק (זיקנה)</td><td style="padding:9px;border:1px solid #ddd;"></td></tr>
+            <tr><td style="padding:9px;border:1px solid #ddd;">הבטחת הכנסה / השלמת הכנסה</td><td style="padding:9px;border:1px solid #ddd;"></td></tr>
+            <tr><td style="padding:9px;border:1px solid #ddd;">נכות כללית</td><td style="padding:9px;border:1px solid #ddd;">כולל קצבת עידוד</td></tr>
+            <tr><td style="padding:9px;border:1px solid #ddd;">שירותים מיוחדים (שר"מ)</td><td style="padding:9px;border:1px solid #ddd;"></td></tr>
+            <tr><td style="padding:9px;border:1px solid #ddd;">נפגעי עבודה</td><td style="padding:9px;border:1px solid #ddd;">ראה תנאי מענק מוגדל</td></tr>
+            <tr><td style="padding:9px;border:1px solid #ddd;">קצבת שאירים</td><td style="padding:9px;border:1px solid #ddd;"></td></tr>
+            <tr><td style="padding:9px;border:1px solid #ddd;">אסירי ציון ונרדפי הנאצים</td><td style="padding:9px;border:1px solid #ddd;"></td></tr>
+            <tr><td style="padding:9px;border:1px solid #ddd;">תגמולים למתנדבים</td><td style="padding:9px;border:1px solid #ddd;"></td></tr>
+            <tr><td style="padding:9px;border:1px solid #ddd;">קצבה לילד נכה</td><td style="padding:9px;border:1px solid #ddd;">המענק משולם להורים</td></tr>
+          </tbody>
+        </table>
+        <h5>ב. סדר עדיפויות בתשלום</h5>
+        <ol>
+          <li><strong>בן/בת זוג</strong> של הנפטר – בעדיפות ראשונה</li>
+          <li><strong>ילד</strong> הנפטר (אם אין בן/בת זוג) – בתנאי שעונה על הגדרת "ילד" לפי חוק הביטוח הלאומי בתוך שנה מהפטירה</li>
+          <li><strong>אפוטרופוס</strong> הילד, אם מונה לו אפוטרופוס</li>
+          <li><strong>בני זוג מאותו מין</strong> – זכאים באותו אופן</li>
+        </ol>
+        <h5>ג. הגדרת "ילד" לפי חוק הביטוח הלאומי</h5>
+        <p>ילד זכאי הוא בן/בת (לרבות חורג, מאומץ, נכד שכל פרנסתו על המבוטח – פרט לנשואים) העונה על אחד מהתנאים:</p>
+        <ul>
+          <li>טרם מלאו לו <strong>${NII.child_disability_cutoff_age.value} שנים</strong></li>
+          <li>טרם מלאו לו <strong>20 שנים</strong>, ומסיים לימודים על-יסודיים / לומד לבגרות / בעל לקות למידה</li>
+          <li>טרם מלאו לו <strong>20 שנים</strong>, ונמצא במסגרת קדם-צבאית של צה"ל</li>
+          <li>טרם מלאו לו <strong>21 שנים</strong>, ומשרת בהתנדבות לתועלת ציבורית ושירותו הצבאי נדחה</li>
+          <li>טרם מלאו לו <strong>24 שנים</strong>, ומשרת שירות סדיר בצה"ל</li>
+          <li>טרם מלאו לו <strong>24 שנים</strong>, ומשרת בשירות לאומי בהתנדבות</li>
+          <li>טרם מלאו לו <strong>24 שנים</strong>, ולומד בעתודה ושירותו הצבאי נדחה</li>
+        </ul>
+
+        <h4>4. מקרים מיוחדים</h4>
+        <h5>א. פטירת שני בני זוג בהפרש זמן קצר</h5>
+        <p>אם שני בני הזוג נפטרו ולא שולם מענק פטירה לאחד מהם, ישולם המענק לאדם שנשא בעיקר הוצאות המצבה, בתנאי שמתקיימים <strong>כל</strong> אלה:</p>
+        <ul>
+          <li>בן/בת הזוג השני/ה היה זכאי למענק פטירה עבור בן זוגו שנפטר ולא קיבל</li>
+          <li>בן/בת הזוג השני/ה נפטר/ה בתוך <strong>100 ימים</strong> ממועד פטירת בן/בת הזוג הראשון/ה</li>
+          <li>אין לבן/בת הזוג הראשון/ה ילד כהגדרתו בחוק</li>
+        </ul>
+        <div style="background:#fff3e0;border-right:4px solid #ff9800;padding:12px 16px;border-radius:8px;margin:10px 0;">⚠️ במקרה זה המענק <strong>אינו</strong> משולם אוטומטית – יש להגיש תביעה.</div>
+        <h5>ב. קצבת זיקנה עם השלמת הכנסה</h5>
+        <p>מקבל קצבת זיקנה עם השלמת הכנסה שבן/בת זוגו נפטר/ה, זכאי גם הוא/היא למענק פטירה.</p>
+
+        <h4>5. אופן קבלת המענק</h4>
+        <h5>א. תשלום אוטומטי</h5>
+        <p>בדרך כלל המענק משולם <strong>אוטומטית</strong> לחשבון הבנק של הזכאי (בהתאם לפרטים הרשומים בביטוח לאומי). אין צורך להגיש תביעה.</p>
+        <h5>ב. כאשר נדרשת הגשת תביעה</h5>
+        <p>בכל המקרים הבאים יש להגיש טופס <strong>בל/תביעה לתשלום מענק פטירה ו/או יתרת קצבה</strong>:</p>
+        <ul>
+          <li>המענק לא שולם אוטומטית</li>
+          <li>מקרה של שני בני זוג שנפטרו בהפרש זמן קצר</li>
+          <li>אדם שלישי שנשא בעיקר הוצאות המצבה</li>
+        </ul>
+        <p>את הטופס יש להגיש לסניף ביטוח לאומי הסמוך למקום המגורים.</p>
+
+        <h4>6. מגבלות והיעדר זכאות</h4>
+        <table style="width:100%;border-collapse:collapse;margin:15px 0;">
+          <thead><tr style="background:linear-gradient(135deg,#667eea,#764ba2);color:white;">
+            <th style="padding:10px;border:1px solid #ddd;">מצב</th>
+            <th style="padding:10px;border:1px solid #ddd;">מה קורה</th>
+          </tr></thead>
+          <tbody>
+            <tr><td style="padding:9px;border:1px solid #ddd;">הנפטר לא קיבל קצבה מביטוח לאומי</td><td style="padding:9px;border:1px solid #ddd;">אין זכאות למענק פטירה</td></tr>
+            <tr><td style="padding:9px;border:1px solid #ddd;">אין בן/בת זוג וגם אין ילד כהגדרתו בחוק</td><td style="padding:9px;border:1px solid #ddd;">אין זכאות למענק</td></tr>
+            <tr><td style="padding:9px;border:1px solid #ddd;">נכות עבודה מתחת ל-50% וטרם גיל פרישה</td><td style="padding:9px;border:1px solid #ddd;">אין זכאות למענק הרגיל</td></tr>
+            <tr><td style="padding:9px;border:1px solid #ddd;">מענק מוגדל ומענק רגיל</td><td style="padding:9px;border:1px solid #ddd;">לא ניתן לקבל שניהם – המוגדל במקום הרגיל</td></tr>
+            <tr><td style="padding:9px;border:1px solid #ddd;">הכנסת בן/בת הזוג עולה על ₪${(NII.average_wage.value * 2).toLocaleString('he-IL')}</td><td style="padding:9px;border:1px solid #ddd;">לא זכאי למענק המוגדל (נפגעי עבודה)</td></tr>
+          </tbody>
+        </table>
+
+        <h4>7. מה עוד כדאי לדעת?</h4>
+        <ul>
+          <li>המענק <strong>אינו חייב במס הכנסה</strong></li>
+          <li>אין קשר בין מענק הפטירה לקצבת שאירים – <strong>ניתן לקבל את שניהם</strong></li>
+          <li>המענק הוא תשלום חד-פעמי בלבד, לא קצבה שוטפת</li>
+          <li>ניתן לבדוק סטטוס תשלום באתר האישי של ביטוח לאומי</li>
+          <li>לשאלות: מוקד ביטוח לאומי *6969</li>
+        </ul>
+
+        <h3>פרק י׳ — ערעור ונקודות לאנשי מקצוע</h3>
+
+        <h4>י.1 — ערעור על החלטת הביטוח הלאומי</h4>
         <ul>
           <li>שלב א׳ — ועדת עררים פנימית של הביטוח הלאומי (ללא עלות)</li>
           <li>שלב ב׳ — בית הדין לעבודה (ניתן להגיש תוך 12 חודשים)</li>
         </ul>
 
-        <h4>ט.2 — נקודות בדיקה חיוניות לאנשי מקצוע</h4>
+        <h4>י.2 — נקודות בדיקה חיוניות לאנשי מקצוע</h4>
         <ul>
           <li>האם הנפטר עלה לישראל לפני הגיל הקובע? (ראה טבלה בפרק א׳.1)</li>
           <li>בדיקת 5 מסלולי האכשרה — מסלול 5 עשוי להכשיר עולים שאינם עומדים בשאר</li>
