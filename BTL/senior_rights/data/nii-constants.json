@@ -1111,6 +1111,517 @@
     "label": "הכנסה שלא מעבודה — תוספת תלוי בנכות",
     "updated": "2026-01"
   },
+  "disability_work_no_reduction_ceiling": {
+    "id": "NII-245",
+    "value": 6689,
+    "type": "currency",
+    "label": "תקרת הכנסה מעבודה ללא הפחתת קצבת נכות — בעלי 100% אי-כושר",
+    "updated": "2026-01"
+  },
+  "disability_work_start_ceiling": {
+    "id": "NII-246",
+    "value": 8261,
+    "type": "currency",
+    "label": "תקרת הכנסה מעבודה לתחילת זכאות לקצבת נכות",
+    "updated": "2026-01"
+  },
+  "disability_work_cancellation_ceiling": {
+    "id": "NII-247",
+    "value": 16500,
+    "type": "currency",
+    "label": "תקרת הכנסה מעבודה לביטול קצבת נכות — בעלי 100% אי-כושר",
+    "updated": "2026-01"
+  },
+  "disability_work_100_income_00": {
+    "id": "NII-248",
+    "value": 6916,
+    "type": "currency",
+    "label": "טבלת 100% נכות — שורת הכנסה 00 (עד)",
+    "updated": "2026-01"
+  },
+  "disability_work_100_reduction_00": {
+    "id": "NII-249",
+    "value": 0,
+    "type": "currency",
+    "label": "טבלת 100% נכות — הפחתה בשורה 00",
+    "updated": "2026-01"
+  },
+  "disability_work_100_income_01": {
+    "id": "NII-250",
+    "value": 7000,
+    "type": "currency",
+    "label": "טבלת 100% נכות — שורת הכנסה 01",
+    "updated": "2026-01"
+  },
+  "disability_work_100_reduction_01": {
+    "id": "NII-251",
+    "value": 25,
+    "type": "currency",
+    "label": "טבלת 100% נכות — הפחתה בשורה 01",
+    "updated": "2026-01"
+  },
+  "disability_work_100_income_02": {
+    "id": "NII-252",
+    "value": 7500,
+    "type": "currency",
+    "label": "טבלת 100% נכות — שורת הכנסה 02",
+    "updated": "2026-01"
+  },
+  "disability_work_100_reduction_02": {
+    "id": "NII-253",
+    "value": 175,
+    "type": "currency",
+    "label": "טבלת 100% נכות — הפחתה בשורה 02",
+    "updated": "2026-01"
+  },
+  "disability_work_100_income_03": {
+    "id": "NII-254",
+    "value": 8000,
+    "type": "currency",
+    "label": "טבלת 100% נכות — שורת הכנסה 03",
+    "updated": "2026-01"
+  },
+  "disability_work_100_reduction_03": {
+    "id": "NII-255",
+    "value": 325,
+    "type": "currency",
+    "label": "טבלת 100% נכות — הפחתה בשורה 03",
+    "updated": "2026-01"
+  },
+  "disability_work_100_income_04": {
+    "id": "NII-256",
+    "value": 8500,
+    "type": "currency",
+    "label": "טבלת 100% נכות — שורת הכנסה 04",
+    "updated": "2026-01"
+  },
+  "disability_work_100_reduction_04": {
+    "id": "NII-257",
+    "value": 475,
+    "type": "currency",
+    "label": "טבלת 100% נכות — הפחתה בשורה 04",
+    "updated": "2026-01"
+  },
+  "disability_work_100_income_05": {
+    "id": "NII-258",
+    "value": 9000,
+    "type": "currency",
+    "label": "טבלת 100% נכות — שורת הכנסה 05",
+    "updated": "2026-01"
+  },
+  "disability_work_100_reduction_05": {
+    "id": "NII-259",
+    "value": 625,
+    "type": "currency",
+    "label": "טבלת 100% נכות — הפחתה בשורה 05",
+    "updated": "2026-01"
+  },
+  "disability_work_100_income_06": {
+    "id": "NII-260",
+    "value": 9500,
+    "type": "currency",
+    "label": "טבלת 100% נכות — שורת הכנסה 06",
+    "updated": "2026-01"
+  },
+  "disability_work_100_reduction_06": {
+    "id": "NII-261",
+    "value": 789,
+    "type": "currency",
+    "label": "טבלת 100% נכות — הפחתה בשורה 06",
+    "updated": "2026-01"
+  },
+  "disability_work_100_income_07": {
+    "id": "NII-262",
+    "value": 10000,
+    "type": "currency",
+    "label": "טבלת 100% נכות — שורת הכנסה 07",
+    "updated": "2026-01"
+  },
+  "disability_work_100_reduction_07": {
+    "id": "NII-263",
+    "value": 989,
+    "type": "currency",
+    "label": "טבלת 100% נכות — הפחתה בשורה 07",
+    "updated": "2026-01"
+  },
+  "disability_work_100_income_08": {
+    "id": "NII-264",
+    "value": 10500,
+    "type": "currency",
+    "label": "טבלת 100% נכות — שורת הכנסה 08",
+    "updated": "2026-01"
+  },
+  "disability_work_100_reduction_08": {
+    "id": "NII-265",
+    "value": 1189,
+    "type": "currency",
+    "label": "טבלת 100% נכות — הפחתה בשורה 08",
+    "updated": "2026-01"
+  },
+  "disability_work_100_income_09": {
+    "id": "NII-266",
+    "value": 11000,
+    "type": "currency",
+    "label": "טבלת 100% נכות — שורת הכנסה 09",
+    "updated": "2026-01"
+  },
+  "disability_work_100_reduction_09": {
+    "id": "NII-267",
+    "value": 1389,
+    "type": "currency",
+    "label": "טבלת 100% נכות — הפחתה בשורה 09",
+    "updated": "2026-01"
+  },
+  "disability_work_100_income_10": {
+    "id": "NII-268",
+    "value": 11500,
+    "type": "currency",
+    "label": "טבלת 100% נכות — שורת הכנסה 10",
+    "updated": "2026-01"
+  },
+  "disability_work_100_reduction_10": {
+    "id": "NII-269",
+    "value": 1589,
+    "type": "currency",
+    "label": "טבלת 100% נכות — הפחתה בשורה 10",
+    "updated": "2026-01"
+  },
+  "disability_work_100_income_11": {
+    "id": "NII-270",
+    "value": 12000,
+    "type": "currency",
+    "label": "טבלת 100% נכות — שורת הכנסה 11",
+    "updated": "2026-01"
+  },
+  "disability_work_100_reduction_11": {
+    "id": "NII-271",
+    "value": 1789,
+    "type": "currency",
+    "label": "טבלת 100% נכות — הפחתה בשורה 11",
+    "updated": "2026-01"
+  },
+  "disability_work_100_income_12": {
+    "id": "NII-272",
+    "value": 12500,
+    "type": "currency",
+    "label": "טבלת 100% נכות — שורת הכנסה 12",
+    "updated": "2026-01"
+  },
+  "disability_work_100_reduction_12": {
+    "id": "NII-273",
+    "value": 1989,
+    "type": "currency",
+    "label": "טבלת 100% נכות — הפחתה בשורה 12",
+    "updated": "2026-01"
+  },
+  "disability_work_100_income_13": {
+    "id": "NII-274",
+    "value": 13000,
+    "type": "currency",
+    "label": "טבלת 100% נכות — שורת הכנסה 13",
+    "updated": "2026-01"
+  },
+  "disability_work_100_reduction_13": {
+    "id": "NII-275",
+    "value": 2228,
+    "type": "currency",
+    "label": "טבלת 100% נכות — הפחתה בשורה 13",
+    "updated": "2026-01"
+  },
+  "disability_work_100_income_14": {
+    "id": "NII-276",
+    "value": 13500,
+    "type": "currency",
+    "label": "טבלת 100% נכות — שורת הכנסה 14",
+    "updated": "2026-01"
+  },
+  "disability_work_100_reduction_14": {
+    "id": "NII-277",
+    "value": 2528,
+    "type": "currency",
+    "label": "טבלת 100% נכות — הפחתה בשורה 14",
+    "updated": "2026-01"
+  },
+  "disability_work_100_income_15": {
+    "id": "NII-278",
+    "value": 14000,
+    "type": "currency",
+    "label": "טבלת 100% נכות — שורת הכנסה 15",
+    "updated": "2026-01"
+  },
+  "disability_work_100_reduction_15": {
+    "id": "NII-279",
+    "value": 2828,
+    "type": "currency",
+    "label": "טבלת 100% נכות — הפחתה בשורה 15",
+    "updated": "2026-01"
+  },
+  "disability_work_100_income_16": {
+    "id": "NII-280",
+    "value": 14500,
+    "type": "currency",
+    "label": "טבלת 100% נכות — שורת הכנסה 16",
+    "updated": "2026-01"
+  },
+  "disability_work_100_reduction_16": {
+    "id": "NII-281",
+    "value": 3128,
+    "type": "currency",
+    "label": "טבלת 100% נכות — הפחתה בשורה 16",
+    "updated": "2026-01"
+  },
+  "disability_work_100_income_17": {
+    "id": "NII-282",
+    "value": 15000,
+    "type": "currency",
+    "label": "טבלת 100% נכות — שורת הכנסה 17",
+    "updated": "2026-01"
+  },
+  "disability_work_100_reduction_17": {
+    "id": "NII-283",
+    "value": 3428,
+    "type": "currency",
+    "label": "טבלת 100% נכות — הפחתה בשורה 17",
+    "updated": "2026-01"
+  },
+  "disability_work_100_income_18": {
+    "id": "NII-284",
+    "value": 15500,
+    "type": "currency",
+    "label": "טבלת 100% נכות — שורת הכנסה 18",
+    "updated": "2026-01"
+  },
+  "disability_work_100_reduction_18": {
+    "id": "NII-285",
+    "value": 3728,
+    "type": "currency",
+    "label": "טבלת 100% נכות — הפחתה בשורה 18",
+    "updated": "2026-01"
+  },
+  "disability_work_100_income_19": {
+    "id": "NII-286",
+    "value": 16000,
+    "type": "currency",
+    "label": "טבלת 100% נכות — שורת הכנסה 19",
+    "updated": "2026-01"
+  },
+  "disability_work_100_reduction_19": {
+    "id": "NII-287",
+    "value": 4028,
+    "type": "currency",
+    "label": "טבלת 100% נכות — הפחתה בשורה 19",
+    "updated": "2026-01"
+  },
+  "disability_work_100_income_20": {
+    "id": "NII-288",
+    "value": 16500,
+    "type": "currency",
+    "label": "טבלת 100% נכות — שורת הכנסה 20",
+    "updated": "2026-01"
+  },
+  "disability_work_100_reduction_20": {
+    "id": "NII-289",
+    "value": 4328,
+    "type": "currency",
+    "label": "טבלת 100% נכות — הפחתה בשורה 20",
+    "updated": "2026-01"
+  },
+  "disability_work_100_income_21": {
+    "id": "NII-290",
+    "value": 17000,
+    "type": "currency",
+    "label": "טבלת 100% נכות — שורת הכנסה 21",
+    "updated": "2026-01"
+  },
+  "disability_work_100_reduction_21": {
+    "id": "NII-291",
+    "value": 4628,
+    "type": "currency",
+    "label": "טבלת 100% נכות — הפחתה בשורה 21",
+    "updated": "2026-01"
+  },
+  "disability_work_100_income_22": {
+    "id": "NII-292",
+    "value": 17500,
+    "type": "currency",
+    "label": "טבלת 100% נכות — שורת הכנסה 22",
+    "updated": "2026-01"
+  },
+  "disability_work_100_reduction_22": {
+    "id": "NII-293",
+    "value": 4928,
+    "type": "currency",
+    "label": "טבלת 100% נכות — הפחתה בשורה 22",
+    "updated": "2026-01"
+  },
+  "disability_work_100_income_23": {
+    "id": "NII-294",
+    "value": 18000,
+    "type": "currency",
+    "label": "טבלת 100% נכות — שורת הכנסה 23",
+    "updated": "2026-01"
+  },
+  "disability_work_100_reduction_23": {
+    "id": "NII-295",
+    "value": 5228,
+    "type": "currency",
+    "label": "טבלת 100% נכות — הפחתה בשורה 23",
+    "updated": "2026-01"
+  },
+  "disability_work_100_income_24": {
+    "id": "NII-296",
+    "value": 18500,
+    "type": "currency",
+    "label": "טבלת 100% נכות — שורת הכנסה 24",
+    "updated": "2026-01"
+  },
+  "disability_work_100_reduction_24": {
+    "id": "NII-297",
+    "value": 5528,
+    "type": "currency",
+    "label": "טבלת 100% נכות — הפחתה בשורה 24",
+    "updated": "2026-01"
+  },
+  "disability_work_100_income_25": {
+    "id": "NII-298",
+    "value": 19000,
+    "type": "currency",
+    "label": "טבלת 100% נכות — שורת הכנסה 25",
+    "updated": "2026-01"
+  },
+  "disability_work_100_reduction_25": {
+    "id": "NII-299",
+    "value": 5828,
+    "type": "currency",
+    "label": "טבלת 100% נכות — הפחתה בשורה 25",
+    "updated": "2026-01"
+  },
+  "disability_work_100_income_26": {
+    "id": "NII-300",
+    "value": 19500,
+    "type": "currency",
+    "label": "טבלת 100% נכות — שורת הכנסה 26",
+    "updated": "2026-01"
+  },
+  "disability_work_100_reduction_26": {
+    "id": "NII-301",
+    "value": 6128,
+    "type": "currency",
+    "label": "טבלת 100% נכות — הפחתה בשורה 26",
+    "updated": "2026-01"
+  },
+  "disability_work_100_income_27": {
+    "id": "NII-302",
+    "value": 20000,
+    "type": "currency",
+    "label": "טבלת 100% נכות — שורת הכנסה 27",
+    "updated": "2026-01"
+  },
+  "disability_work_100_reduction_27": {
+    "id": "NII-303",
+    "value": 6428,
+    "type": "currency",
+    "label": "טבלת 100% נכות — הפחתה בשורה 27",
+    "updated": "2026-01"
+  },
+  "disability_work_100_income_28": {
+    "id": "NII-304",
+    "value": 20500,
+    "type": "currency",
+    "label": "טבלת 100% נכות — שורת הכנסה 28",
+    "updated": "2026-01"
+  },
+  "disability_work_100_reduction_28": {
+    "id": "NII-305",
+    "value": 6728,
+    "type": "currency",
+    "label": "טבלת 100% נכות — הפחתה בשורה 28",
+    "updated": "2026-01"
+  },
+  "disability_work_100_income_29": {
+    "id": "NII-306",
+    "value": 21000,
+    "type": "currency",
+    "label": "טבלת 100% נכות — שורת הכנסה 29",
+    "updated": "2026-01"
+  },
+  "disability_work_100_reduction_29": {
+    "id": "NII-307",
+    "value": 7028,
+    "type": "currency",
+    "label": "טבלת 100% נכות — הפחתה בשורה 29",
+    "updated": "2026-01"
+  },
+  "disability_work_100_income_30": {
+    "id": "NII-308",
+    "value": 21500,
+    "type": "currency",
+    "label": "טבלת 100% נכות — שורת הכנסה 30",
+    "updated": "2026-01"
+  },
+  "disability_work_100_reduction_30": {
+    "id": "NII-309",
+    "value": 7328,
+    "type": "currency",
+    "label": "טבלת 100% נכות — הפחתה בשורה 30",
+    "updated": "2026-01"
+  },
+  "disability_work_100_income_31": {
+    "id": "NII-310",
+    "value": 22000,
+    "type": "currency",
+    "label": "טבלת 100% נכות — שורת הכנסה 31",
+    "updated": "2026-01"
+  },
+  "disability_work_100_reduction_31": {
+    "id": "NII-311",
+    "value": 7628,
+    "type": "currency",
+    "label": "טבלת 100% נכות — הפחתה בשורה 31",
+    "updated": "2026-01"
+  },
+  "disability_work_100_income_32": {
+    "id": "NII-312",
+    "value": 22500,
+    "type": "currency",
+    "label": "טבלת 100% נכות — שורת הכנסה 32",
+    "updated": "2026-01"
+  },
+  "disability_work_100_reduction_32": {
+    "id": "NII-313",
+    "value": 7928,
+    "type": "currency",
+    "label": "טבלת 100% נכות — הפחתה בשורה 32",
+    "updated": "2026-01"
+  },
+  "disability_work_100_income_33": {
+    "id": "NII-314",
+    "value": 23000,
+    "type": "currency",
+    "label": "טבלת 100% נכות — שורת הכנסה 33",
+    "updated": "2026-01"
+  },
+  "disability_work_100_reduction_33": {
+    "id": "NII-315",
+    "value": 8228,
+    "type": "currency",
+    "label": "טבלת 100% נכות — הפחתה בשורה 33",
+    "updated": "2026-01"
+  },
+  "disability_work_100_income_34": {
+    "id": "NII-316",
+    "value": 23500,
+    "type": "currency",
+    "label": "טבלת 100% נכות — שורת הכנסה 34",
+    "updated": "2026-01"
+  },
+  "disability_work_100_reduction_34": {
+    "id": "NII-317",
+    "value": 8528,
+    "type": "currency",
+    "label": "טבלת 100% נכות — הפחתה בשורה 34",
+    "updated": "2026-01"
+  },
 
   "special_services_50": {
     "id": "NII-108",

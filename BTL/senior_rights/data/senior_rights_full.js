@@ -1054,7 +1054,46 @@ const RIGHTS_DATA = {
     // 4. גמלת נכות כללית וקצבת שירותים מיוחדים
     // ─────────────────────────────────────────────────────────────────────
     disability: {
-      contentFn: (NII) => `
+      contentFn: (NII) => {
+        const fmt = num => Math.round(num).toLocaleString('he-IL');
+        const v = key => (NII && NII[key]) ? Number(NII[key].value) : 0;
+        const c = key => `₪${fmt(v(key))}`;
+
+        const rowSuffixes = [
+          '00','01','02','03','04','05','06','07','08','09','10','11','12','13','14','15','16','17','18','19','20','21','22','23','24','25','26','27','28','29','30','31','32','33','34'
+        ];
+
+        const workRows = rowSuffixes.map((suffix, index) => ({
+          index,
+          income: v(`disability_work_100_income_${suffix}`),
+          reduction: v(`disability_work_100_reduction_${suffix}`)
+        }));
+
+        const baseSingle = v('disability_full');
+        const baseSingleChild = baseSingle + v('disability_child');
+        const baseSingleTwoChildren = baseSingle + (v('disability_child') * 2);
+        const baseSingleSpouse = baseSingle + v('disability_spouse');
+        const baseSingleSpouseChild = baseSingle + v('disability_spouse') + v('disability_child');
+        const baseSingleSpouseTwoChildren = baseSingle + v('disability_spouse') + (v('disability_child') * 2);
+        const calcNet = (baseAmount, reduction) => Math.max(baseAmount - reduction, 0);
+
+        const workRowsHtml = workRows.map(row => {
+          const incomeLabel = row.index === 0 ? `עד ${fmt(row.income)}` : fmt(row.income);
+          return `
+            <tr>
+              <td style="padding:9px;border:1px solid #ddd;">${incomeLabel}</td>
+              <td style="padding:9px;border:1px solid #ddd;">${fmt(row.reduction)}</td>
+              <td style="padding:9px;border:1px solid #ddd;">${fmt(calcNet(baseSingle, row.reduction))}</td>
+              <td style="padding:9px;border:1px solid #ddd;">${fmt(calcNet(baseSingleChild, row.reduction))}</td>
+              <td style="padding:9px;border:1px solid #ddd;">${fmt(calcNet(baseSingleTwoChildren, row.reduction))}</td>
+              <td style="padding:9px;border:1px solid #ddd;">${fmt(calcNet(baseSingleSpouse, row.reduction))}</td>
+              <td style="padding:9px;border:1px solid #ddd;">${fmt(calcNet(baseSingleSpouseChild, row.reduction))}</td>
+              <td style="padding:9px;border:1px solid #ddd;">${fmt(calcNet(baseSingleSpouseTwoChildren, row.reduction))}</td>
+            </tr>
+          `;
+        }).join('');
+
+        return `
         <h3>4.1 גמלת נכות כללית</h3>
         <p>גמלת נכות כללית ניתנת למי שכושר השתכרותו נפגע עקב נכות רפואית.</p>
         <table style="width:100%;border-collapse:collapse;margin:15px 0;">
@@ -1125,7 +1164,31 @@ const RIGHTS_DATA = {
           <li>תיערך הערכה סיעודית חדשה (מבחן ADL).</li>
           <li>לרוב מקבלי שר"מ בדרגה גבוהה מקבלים רמות סיעוד גבוהות.</li>
         </ul>
-      `
+
+        <h3>4.6 תקרות הכנסה לבעלי 100% נכות</h3>
+        <p><strong>כדי להתחיל ולקבל קצבת נכות הכנסתך כשכיר או כעצמאי צריכה להיות נמוכה מ-${NII.disability_work_start_ceiling.value.toLocaleString('he-IL')} ש"ח (החל ב- 01.01.2026) במשך 90 ימים רצופים במהלך 15 חודשים שקדמו למועד הגשת התביעה.</strong></p>
+        <h4>סכום הקצבה בחישוב סופי (2026)</h4>
+        <p>הטבלה מציגה את סכום הקצבה בחישוב סופי לפי הכנסה מעבודה למקבלי קצבה בשיעור 100% או 75%, החל מ-01.01.2026.</p>
+        <table style="width:100%;border-collapse:collapse;margin:15px 0;font-size:0.95em;">
+          <thead><tr style="background:linear-gradient(135deg,#667eea,#764ba2);color:white;">
+            <th style="padding:10px;border:1px solid #ddd;">סכום הכנסה מעבודה בש"ח</th>
+            <th style="padding:10px;border:1px solid #ddd;">הפחתה מהקצבה</th>
+            <th style="padding:10px;border:1px solid #ddd;">ליחיד</th>
+            <th style="padding:10px;border:1px solid #ddd;">ליחיד + ילד</th>
+            <th style="padding:10px;border:1px solid #ddd;">ליחיד + 2 ילדים ויותר</th>
+            <th style="padding:10px;border:1px solid #ddd;">ליחיד + בת זוג</th>
+            <th style="padding:10px;border:1px solid #ddd;">ליחיד + בת זוג וילד</th>
+            <th style="padding:10px;border:1px solid #ddd;">ליחיד + בת זוג ו-2 ילדים ויותר</th>
+          </tr></thead>
+          <tbody>
+            ${workRowsHtml}
+          </tbody>
+        </table>
+        <div class="conditions-box">
+          <p>תוספת עבור בן/בת זוג משולמת כאשר הכנסת בן/בת הזוג היא עד ${c('disability_spouse_income_ceiling')} ברוטו לחודש.</p>
+        </div>
+      `;
+      }
     },
 
     // ─────────────────────────────────────────────────────────────────────

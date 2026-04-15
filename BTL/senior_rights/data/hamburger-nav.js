@@ -30,6 +30,7 @@
         {
             icon: '📖', text: 'מדריכים מפורטים', children: [
                 { icon: '📘', text: 'זכויות אזרחים ותיקים 2026',    href: bp + 'senior_rights/senior_citizens_rights_2026.html' },
+                { icon: '⚖️', text: 'נכות כללית מול שאירים 2026',  href: bp + 'senior_rights/nechut_vs_shairim_2026.html' },
                 { icon: '📊', text: 'מדריך לחישוב זכאות וסכום קצבת זיקנה חלקית', href: bp + 'senior_rights/old_pension_income_test_full_guide.html' },
                 { icon: '👨‍👩‍👧', text: 'מדריך קצבת שאירים 2026',       href: bp + 'senior_rights/survivors_benefits_guide_2026.html' },
                 { icon: '👩', text: 'מדריך מענק מעבר לנשים',         href: bp + 'senior_rights/women_transition_benefit_guide.html' },

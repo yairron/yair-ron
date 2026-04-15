@@ -591,7 +591,7 @@
         <p>🤖 פותח עם ❤️ לסיוע לאזרחים ותיקים בישראל</p>
     </footer>
 
-    <script src="data/senior_rights_full.js"></script>
+    <script src="data/senior_rights_full.js?v=20260415-1"></script>
     <script>
         // הגדרות אקורדיון — 10 הפרקים מהמדריך המקיף
         const ACCORDIONS_CONFIG = {
@@ -931,7 +931,7 @@
         // טעינת nii-constants.json ואז הצגת הנתונים
         async function init() {
             try {
-                const resp = await fetch('data/nii-constants.json');
+                const resp = await fetch('data/nii-constants.json?v=20260415-1');
                 NII_CONSTANTS = await resp.json();
             } catch(e) {
                 console.warn('⚠️ לא ניתן לטעון nii-constants.json, משתמש בערכי ברירת מחדל');
