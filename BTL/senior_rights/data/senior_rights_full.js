@@ -1031,6 +1031,7 @@ const RIGHTS_DATA = {
         </table>
 
         <h3>3.4 אפשרויות מימוש הגמלה</h3>
+        <p><strong><a href="https://www.btl.gov.il/benefits/Long_Term_Care/Pages/money.aspx" target="_blank" rel="noopener noreferrer">אפשרות לקבל קצבה בכסף באתר הביטוח הלאומי</a></strong></p>
         <table style="width:100%;border-collapse:collapse;margin:15px 0;">
           <thead><tr style="background:linear-gradient(135deg,#667eea,#764ba2);color:white;">
             <th style="padding:10px;border:1px solid #ddd;">אפשרות</th>

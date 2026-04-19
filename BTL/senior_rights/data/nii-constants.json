@@ -2,7 +2,7 @@
   "_meta": {
     "description": "קובץ נתונים מרכזי — המוסד לביטוח לאומי",
     "source": "חוזר תשלומים 33, ינואר 2026",
-    "last_updated": "2026-01",
+    "last_updated": "01.04.2026",
     "note": "לעדכון נתון — שנה את value בלבד. אל תשנה id או את שם המפתח."
   },
 
@@ -1696,80 +1696,122 @@
 
   "nursing_level_1_cash": {
     "id": "NII-117",
-    "value": 1659,
+    "value": 1705,
     "type": "currency",
     "label": "גמלת סיעוד — רמה 1 (שווי כספי)",
-    "updated": "2026-01"
+    "updated": "01.04.2026"
   },
   "nursing_level_2_cash": {
     "id": "NII-118",
-    "value": 2413,
+    "value": 2480,
     "type": "currency",
     "label": "גמלת סיעוד — רמה 2 (שווי כספי)",
-    "updated": "2026-01"
+    "updated": "01.04.2026"
   },
   "nursing_level_3_cash": {
     "id": "NII-119",
-    "value": 4102,
+    "value": 4216,
     "type": "currency",
     "label": "גמלת סיעוד — רמה 3 (שווי כספי)",
-    "updated": "2026-01"
+    "updated": "01.04.2026"
   },
   "nursing_level_4_cash": {
     "id": "NII-120",
-    "value": 5066,
+    "value": 5208,
     "type": "currency",
     "label": "גמלת סיעוד — רמה 4 (שווי כספי)",
-    "updated": "2026-01"
+    "updated": "01.04.2026"
   },
   "nursing_level_5_cash": {
     "id": "NII-121",
-    "value": 6273,
+    "value": 6448,
     "type": "currency",
     "label": "גמלת סיעוד — רמה 5 (שווי כספי)",
-    "updated": "2026-01"
+    "updated": "01.04.2026"
   },
   "nursing_level_6_cash": {
     "id": "NII-122",
-    "value": 7238,
+    "value": 7440,
     "type": "currency",
     "label": "גמלת סיעוד — רמה 6 (שווי כספי)",
-    "updated": "2026-01"
+    "updated": "01.04.2026"
+  },
+  "nursing_level_3_cash_foreign_worker": {
+    "id": "NII-320",
+    "value": 3472,
+    "type": "currency",
+    "label": "גמלה מלאה בכסף — רמה 3, מטפל זר",
+    "updated": "01.04.2026"
+  },
+  "nursing_level_4_cash_foreign_worker": {
+    "id": "NII-321",
+    "value": 4464,
+    "type": "currency",
+    "label": "גמלה מלאה בכסף — רמה 4, מטפל זר",
+    "updated": "01.04.2026"
+  },
+  "nursing_level_5_cash_foreign_worker": {
+    "id": "NII-322",
+    "value": 5456,
+    "type": "currency",
+    "label": "גמלה מלאה בכסף — רמה 5, מטפל זר",
+    "updated": "01.04.2026"
+  },
+  "nursing_level_6_cash_foreign_worker": {
+    "id": "NII-323",
+    "value": 6448,
+    "type": "currency",
+    "label": "גמלה מלאה בכסף — רמה 6, מטפל זר",
+    "updated": "01.04.2026"
+  },
+  "nursing_level_1_hour_value": {
+    "id": "NII-178",
+    "value": 310,
+    "type": "currency",
+    "label": "שווי שעת טיפול — רמה 1",
+    "updated": "01.04.2026"
+  },
+  "nursing_levels_2_6_hour_value": {
+    "id": "NII-134",
+    "value": 248,
+    "type": "currency",
+    "label": "שווי שעת טיפול — רמות 2–6",
+    "updated": "01.04.2026"
   },
   "nursing_level_2_conversion": {
     "id": "NII-123",
-    "value": 965,
+    "value": 992,
     "type": "currency",
     "label": "גמלת סיעוד — רמה 2, המרה כספית מרבית",
-    "updated": "2026-01"
+    "updated": "01.04.2026"
   },
   "nursing_level_3_conversion": {
     "id": "NII-124",
-    "value": 1350,
+    "value": 992,
     "type": "currency",
     "label": "גמלת סיעוד — רמה 3, המרה כספית מרבית",
-    "updated": "2026-01"
+    "updated": "01.04.2026"
   },
   "nursing_level_4_conversion": {
     "id": "NII-125",
-    "value": 1434,
+    "value": 992,
     "type": "currency",
     "label": "גמלת סיעוד — רמה 4, המרה כספית מרבית (חדש 2026)",
-    "updated": "2026-01"
+    "updated": "01.04.2026"
   },
   "nursing_level_5_conversion": {
     "id": "NII-126",
-    "value": 1884,
+    "value": 992,
     "type": "currency",
     "label": "גמלת סיעוד — רמה 5, המרה כספית מרבית (חדש 2026)",
-    "updated": "2026-01"
+    "updated": "01.04.2026"
   },
   "nursing_level_6_conversion": {
     "id": "NII-127",
-    "value": 2249,
+    "value": 992,
     "type": "currency",
     "label": "גמלת סיעוד — רמה 6, המרה כספית מרבית (חדש 2026)",
-    "updated": "2026-01"
+    "updated": "01.04.2026"
   },
   "nursing_income_test_full_single": {
     "id": "NII-128",
