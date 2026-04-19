@@ -997,7 +997,7 @@ const RIGHTS_DATA = {
         </ul>
 
         <h3>3.2 רמות גמלת הסיעוד 2026</h3>
-        <div class="conditions-box"><p>⬆️ גמלאות סיעוד עלו ב-${NII.cpi_rate_2026.value}% בינואר 2026</p></div>
+        <div class="conditions-box"><p>⬆️ מעודכן ל  01.04.2026</p></div>
         <table style="width:100%;border-collapse:collapse;margin:15px 0;">
           <thead><tr style="background:linear-gradient(135deg,#667eea,#764ba2);color:white;">
             <th style="padding:10px;border:1px solid #ddd;">רמה</th>
