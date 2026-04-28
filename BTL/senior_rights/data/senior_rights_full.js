@@ -1792,8 +1792,7 @@ const RIGHTS_DATA = {
           <li><strong>קרן סעיף 2:</strong> כ-€2,000 לרבעון.</li>
           <li><strong>תשלום שנתי ועידת התביעות 2026:</strong> ₪${NII.holocaust_claims_conference_monthly.value.toLocaleString('he-IL')} (€${NII.holocaust_claims_conference_euro.value.toLocaleString('he-IL')}) — לזכאי קרן הסיוע.</li>
           <li><strong>יוצאי רומניה/בולגריה:</strong> זכאים לקצבה מיוחדת — לבירור פנה לרשות לזכויות ניצולי השואה: *5105.</li>
-          <li><strong>תוספת חודשית לקצבת זקנה לניצולי שואה:</strong> כ-₪4,200 — משולמת אוטומטית למוכרים כניצולי שואה.</li>
-          <li><strong>קצבת שארים מיוחדת:</strong> אלמן/ת של ניצול שואה זכאי/ת לקצבת שארים מוגדלת הכוללת את התוספת המיוחדת.</li>
+
         </ul>
 
         <h3>7.3 תוספת שעות סיעוד לניצולי שואה</h3>
