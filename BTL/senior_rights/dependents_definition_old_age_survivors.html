@@ -508,7 +508,7 @@
         <div class="accordions-container">
 
             <!-- 1. הגדרת אלמנה -->
-            <div class="accordion">
+            <div class="accordion" id="dep-widow">
                 <div class="accordion-header" onclick="toggleAccordion(this)">
                     <div class="accordion-icon">👩</div>
                     <h2 class="accordion-title">הגדרת "אלמנה"</h2>
@@ -520,7 +520,7 @@
                         <p><strong>כדי להיחשב כאלמנה, האישה חייבת לעמוד באחד מהתנאים הבאים:</strong></p>
 
                         <!-- תנאי א' -->
-                        <div class="sub-accordion">
+                        <div class="sub-accordion" id="dep-widow-a">
                             <div class="sub-accordion-header" onclick="toggleSubAccordion(this)">
                                 <div class="sub-accordion-title">תנאי א': נישואין ממושכים עם ילד</div>
                                 <span class="sub-accordion-arrow">▼</span>
@@ -537,7 +537,7 @@
                         </div>
 
                         <!-- תנאי ב' -->
-                        <div class="sub-accordion">
+                        <div class="sub-accordion" id="dep-widow-b">
                             <div class="sub-accordion-header" onclick="toggleSubAccordion(this)">
                                 <div class="sub-accordion-title">תנאי ב': נישואין עם קשר מתמשך</div>
                                 <span class="sub-accordion-arrow">▼</span>
@@ -546,7 +546,7 @@
                                 <div class="sub-accordion-body">
                                     <p>כדי להיחשב כאלמנה גם כשהייתה פרידה, <strong>כל אחד</strong> מהתנאים הבאים מספיק:</p>
 
-                                    <div class="sub-accordion level-3">
+                                    <div class="sub-accordion level-3" id="dep-widow-b1">
                                         <div class="sub-accordion-header" onclick="toggleSubAccordion(this)">
                                             <div class="sub-accordion-title">אפשרות 1: פרידה קצרה</div>
                                             <span class="sub-accordion-arrow">▼</span>
@@ -558,7 +558,7 @@
                                         </div>
                                     </div>
 
-                                    <div class="sub-accordion level-3">
+                                    <div class="sub-accordion level-3" id="dep-widow-b2">
                                         <div class="sub-accordion-header" onclick="toggleSubAccordion(this)">
                                             <div class="sub-accordion-title">אפשרות 2: פרידה ממושכת עם תנאים</div>
                                             <span class="sub-accordion-arrow">▼</span>
@@ -575,7 +575,7 @@
                                         </div>
                                     </div>
 
-                                    <div class="sub-accordion level-3">
+                                    <div class="sub-accordion level-3" id="dep-widow-b3">
                                         <div class="sub-accordion-header" onclick="toggleSubAccordion(this)">
                                             <div class="sub-accordion-title">אפשרות 3: תוספת תלויים</div>
                                             <span class="sub-accordion-arrow">▼</span>
@@ -602,7 +602,7 @@
             </div>
 
             <!-- 2. הגדרת אלמן -->
-            <div class="accordion">
+            <div class="accordion" id="dep-widower">
                 <div class="accordion-header" onclick="toggleAccordion(this)">
                     <div class="accordion-icon">👨</div>
                     <h2 class="accordion-title">הגדרת "אלמן"</h2>
@@ -613,7 +613,7 @@
                         <p><strong>תנאי בסיס:</strong> בן זוגה של המבוטחת בשעת פטירתה</p>
                         <p><strong>כדי להיחשב כאלמן, הגבר חייב לעמוד בכל התנאים הבאים:</strong></p>
 
-                        <div class="sub-accordion">
+                        <div class="sub-accordion" id="dep-widower-a">
                             <div class="sub-accordion-header" onclick="toggleSubAccordion(this)">
                                 <div class="sub-accordion-title">תנאי א': נישואין ממושכים</div>
                                 <span class="sub-accordion-arrow">▼</span>
@@ -628,7 +628,7 @@
                             </div>
                         </div>
 
-                        <div class="sub-accordion">
+                        <div class="sub-accordion" id="dep-widower-b">
                             <div class="sub-accordion-header" onclick="toggleSubAccordion(this)">
                                 <div class="sub-accordion-title">תנאי ב': קשר מתמשך (לא הייתה פרידה ממושכת)</div>
                                 <span class="sub-accordion-arrow">▼</span>
@@ -645,7 +645,7 @@
                             </div>
                         </div>
 
-                        <div class="sub-accordion">
+                        <div class="sub-accordion" id="dep-widower-c">
                             <div class="sub-accordion-header" onclick="toggleSubAccordion(this)">
                                 <div class="sub-accordion-title">תנאי ג': מצב משפחתי/כלכלי נוכחי</div>
                                 <span class="sub-accordion-arrow">▼</span>
@@ -668,7 +668,7 @@
             </div>
 
             <!-- 3. הגדרת ילד -->
-            <div class="accordion">
+            <div class="accordion" id="dep-child">
                 <div class="accordion-header" onclick="toggleAccordion(this)">
                     <div class="accordion-icon">👶</div>
                     <h2 class="accordion-title">הגדרת "ילד"</h2>
@@ -679,7 +679,7 @@
                         <p><strong>כלל:</strong> ילד של המבוטח + נכד שכל פרנסתו על המבוטח</p>
                         <p><strong>תנאי גיל ומצב (אחד מהבאים):</strong></p>
 
-                        <div class="sub-accordion">
+                        <div class="sub-accordion" id="dep-child-1">
                             <div class="sub-accordion-header" onclick="toggleSubAccordion(this)">
                                 <div class="sub-accordion-title">קטגוריה 1: גיל רך</div>
                                 <span class="sub-accordion-arrow">▼</span>
@@ -693,7 +693,7 @@
                             </div>
                         </div>
 
-                        <div class="sub-accordion">
+                        <div class="sub-accordion" id="dep-child-2">
                             <div class="sub-accordion-header" onclick="toggleSubAccordion(this)">
                                 <div class="sub-accordion-title">קטגוריה 2: לימודים (עד גיל 20)</div>
                                 <span class="sub-accordion-arrow">▼</span>
@@ -708,14 +708,14 @@
                             </div>
                         </div>
 
-                        <div class="sub-accordion">
+                        <div class="sub-accordion" id="dep-child-3">
                             <div class="sub-accordion-header" onclick="toggleSubAccordion(this)">
                                 <div class="sub-accordion-title">קטגוריה 3: שירות צבאי/לאומי (עד גיל 22)</div>
                                 <span class="sub-accordion-arrow">▼</span>
                             </div>
                             <div class="sub-accordion-content">
                                 <div class="sub-accordion-body">
-                                    <div class="sub-accordion level-3">
+                                    <div class="sub-accordion level-3" id="dep-child-3a">
                                         <div class="sub-accordion-header" onclick="toggleSubAccordion(this)">
                                             <div class="sub-accordion-title">א. שירות סדיר</div>
                                             <span class="sub-accordion-arrow">▼</span>
@@ -731,7 +731,7 @@
                                         </div>
                                     </div>
 
-                                    <div class="sub-accordion level-3">
+                                    <div class="sub-accordion level-3" id="dep-child-3b">
                                         <div class="sub-accordion-header" onclick="toggleSubAccordion(this)">
                                             <div class="sub-accordion-title">ב. שירות לאומי</div>
                                             <span class="sub-accordion-arrow">▼</span>
@@ -746,7 +746,7 @@
                                         </div>
                                     </div>
 
-                                    <div class="sub-accordion level-3">
+                                    <div class="sub-accordion level-3" id="dep-child-3c">
                                         <div class="sub-accordion-header" onclick="toggleSubAccordion(this)">
                                             <div class="sub-accordion-title">ג. מסלולי עתודה</div>
                                             <span class="sub-accordion-arrow">▼</span>
@@ -764,7 +764,7 @@
                             </div>
                         </div>
 
-                        <div class="sub-accordion">
+                        <div class="sub-accordion" id="dep-child-4">
                             <div class="sub-accordion-header" onclick="toggleSubAccordion(this)">
                                 <div class="sub-accordion-title">קטגוריה 4: שירות התנדבותי (עד גיל 21)</div>
                                 <span class="sub-accordion-arrow">▼</span>
@@ -780,7 +780,7 @@
                             </div>
                         </div>
 
-                        <div class="sub-accordion">
+                        <div class="sub-accordion" id="dep-child-5">
                             <div class="sub-accordion-header" onclick="toggleSubAccordion(this)">
                                 <div class="sub-accordion-title">קטגוריה 5: שירות סדיר לאחר שירות התנדבותי</div>
                                 <span class="sub-accordion-arrow">▼</span>
@@ -804,7 +804,7 @@
             </div>
 
             <!-- 4. הגדרות נוספות -->
-            <div class="accordion">
+            <div class="accordion" id="dep-definitions">
                 <div class="accordion-header" onclick="toggleAccordion(this)">
                     <div class="accordion-icon">📋</div>
                     <h2 class="accordion-title">הגדרות נוספות</h2>
@@ -813,7 +813,7 @@
                 <div class="accordion-content">
                     <div class="accordion-body">
 
-                        <div class="sub-accordion">
+                        <div class="sub-accordion" id="dep-def-income">
                             <div class="sub-accordion-header" onclick="toggleSubAccordion(this)">
                                 <div class="sub-accordion-title">"הכנסה"</div>
                                 <span class="sub-accordion-arrow">▼</span>
@@ -825,7 +825,7 @@
                             </div>
                         </div>
 
-                        <div class="sub-accordion">
+                        <div class="sub-accordion" id="dep-def-housewife">
                             <div class="sub-accordion-header" onclick="toggleSubAccordion(this)">
                                 <div class="sub-accordion-title">"עקרת בית"</div>
                                 <span class="sub-accordion-arrow">▼</span>
@@ -842,7 +842,7 @@
                             </div>
                         </div>
 
-                        <div class="sub-accordion">
+                        <div class="sub-accordion" id="dep-def-pension-widow">
                             <div class="sub-accordion-header" onclick="toggleSubAccordion(this)">
                                 <div class="sub-accordion-title">"אלמנה בת קצבה"</div>
                                 <span class="sub-accordion-arrow">▼</span>
@@ -859,7 +859,7 @@
                             </div>
                         </div>
 
-                        <div class="sub-accordion">
+                        <div class="sub-accordion" id="dep-def-employee">
                             <div class="sub-accordion-header" onclick="toggleSubAccordion(this)">
                                 <div class="sub-accordion-title">"עובד מבוטח" / "עובדת מבוטחת"</div>
                                 <span class="sub-accordion-arrow">▼</span>
@@ -909,6 +909,24 @@
             const subAccordion = header.parentElement;
             subAccordion.classList.toggle('active');
         }
+
+        function openFromHash() {
+            const hash = decodeURIComponent(window.location.hash.slice(1));
+            if (!hash) return;
+            const target = document.getElementById(hash);
+            if (!target) return;
+            document.querySelectorAll('.accordion.active').forEach(a => a.classList.remove('active'));
+            let el = target;
+            while (el) {
+                if (el.classList.contains('accordion') || el.classList.contains('sub-accordion')) {
+                    el.classList.add('active');
+                }
+                el = el.parentElement;
+            }
+            setTimeout(() => target.scrollIntoView({ behavior: 'smooth', block: 'start' }), 450);
+        }
+        openFromHash();
+        window.addEventListener('hashchange', openFromHash);
     </script>
     <script src="data/hamburger-nav.js"></script>
 </body>

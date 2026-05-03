@@ -546,7 +546,7 @@
         <div class="accordions-container">
 
             <!-- 1 - מהי קצבת שאירים -->
-            <div class="accordion">
+            <div class="accordion" id="sv-what">
                 <div class="accordion-header">
                     <div class="accordion-icon">ℹ️</div>
                     <h2 class="accordion-title">מהי קצבת שאירים?</h2>
@@ -565,7 +565,7 @@
             </div>
 
             <!-- 2 - מי הם שאירים -->
-            <div class="accordion">
+            <div class="accordion" id="sv-who">
                 <div class="accordion-header">
                     <div class="accordion-icon">👨‍👩‍👧</div>
                     <h2 class="accordion-title">מי הם "שאירים" לפי החוק?</h2>
@@ -588,7 +588,7 @@
             </div>
 
             <!-- 3 - תנאי הזכאות -->
-            <div class="accordion">
+            <div class="accordion" id="sv-conditions">
                 <div class="accordion-header">
                     <div class="accordion-icon">✅</div>
                     <h2 class="accordion-title">תנאי הזכאות – ארבעת התנאים המצטברים</h2>
@@ -599,7 +599,7 @@
                         <p>הקצבה משולמת רק למי שעומד על <strong>כל ארבעת</strong> התנאים הבאים:</p>
 
                         <!-- תנאי 1: הנפטר היה מבוטח -->
-                        <div class="sub-accordion">
+                        <div class="sub-accordion" id="sv-cond1">
                             <div class="sub-accordion-header">
                                 <div class="sub-accordion-title">🔐 תנאי 1: הנפטר היה מבוטח בביטוח שאירים בעת פטירתו</div>
                                 <span class="sub-accordion-arrow">▼</span>
@@ -607,7 +607,7 @@
                             <div class="sub-accordion-content">
                                 <div class="sub-accordion-body">
 
-                                    <div class="sub-sub-accordion">
+                                    <div class="sub-sub-accordion" id="sv-c1-insured">
                                         <div class="sub-sub-accordion-header">
                                             <div class="sub-sub-accordion-title">מיהו "מבוטח" בביטוח שאירים?</div>
                                             <span class="sub-sub-accordion-arrow">▼</span>
@@ -619,7 +619,7 @@
                                         </div>
                                     </div>
 
-                                    <div class="sub-sub-accordion">
+                                    <div class="sub-sub-accordion" id="sv-c1-exceptions">
                                         <div class="sub-sub-accordion-header">
                                             <div class="sub-sub-accordion-title">חריגים – מי אינו מבוטח?</div>
                                             <span class="sub-sub-accordion-arrow">▼</span>
@@ -635,7 +635,7 @@
                                         </div>
                                     </div>
 
-                                    <div class="sub-sub-accordion">
+                                    <div class="sub-sub-accordion" id="sv-c1-timing">
                                         <div class="sub-sub-accordion-header">
                                             <div class="sub-sub-accordion-title">ביטוח בפרק הזמן לפני הפטירה</div>
                                             <span class="sub-sub-accordion-arrow">▼</span>
@@ -652,7 +652,7 @@
                         </div>
 
                         <!-- תנאי 2: תקופת אכשרה -->
-                        <div class="sub-accordion">
+                        <div class="sub-accordion" id="sv-cond2">
                             <div class="sub-accordion-header">
                                 <div class="sub-accordion-title">📅 תנאי 2: הנפטר השלים תקופת אכשרה (תקופת ביטוח מינימלית)</div>
                                 <span class="sub-accordion-arrow">▼</span>
@@ -660,7 +660,7 @@
                             <div class="sub-accordion-content">
                                 <div class="sub-accordion-body">
 
-                                    <div class="sub-sub-accordion">
+                                    <div class="sub-sub-accordion" id="sv-c2-what">
                                         <div class="sub-sub-accordion-header">
                                             <div class="sub-sub-accordion-title">מהי תקופת אכשרה?</div>
                                             <span class="sub-sub-accordion-arrow">▼</span>
@@ -672,7 +672,7 @@
                                         </div>
                                     </div>
 
-                                    <div class="sub-sub-accordion">
+                                    <div class="sub-sub-accordion" id="sv-c2-tracks">
                                         <div class="sub-sub-accordion-header">
                                             <div class="sub-sub-accordion-title">שלושת מסלולי תקופת האכשרה</div>
                                             <span class="sub-sub-accordion-arrow">▼</span>
@@ -681,7 +681,7 @@
                                             <div class="sub-sub-accordion-body">
                                                 <p>ניתן לעמוד בתנאי האכשרה בדרך <strong>אחת</strong> מבין שלוש האפשרויות:</p>
 
-                                                <div class="sub-sub-accordion">
+                                                <div class="sub-sub-accordion" id="sv-c2-track-a">
                                                     <div class="sub-sub-accordion-header">
                                                         <div class="sub-sub-accordion-title">מסלול א' – 60 חודשים ב-10 השנים האחרונות (הנפוץ)</div>
                                                         <span class="sub-sub-accordion-arrow">▼</span>
@@ -697,7 +697,7 @@
                                                     </div>
                                                 </div>
 
-                                                <div class="sub-sub-accordion">
+                                                <div class="sub-sub-accordion" id="sv-c2-track-b">
                                                     <div class="sub-sub-accordion-header">
                                                         <div class="sub-sub-accordion-title">מסלול ב' – 144 חודשים כולל (12 שנים מצטברות)</div>
                                                         <span class="sub-sub-accordion-arrow">▼</span>
@@ -712,7 +712,7 @@
                                                     </div>
                                                 </div>
 
-                                                <div class="sub-sub-accordion">
+                                                <div class="sub-sub-accordion" id="sv-c2-track-c">
                                                     <div class="sub-sub-accordion-header">
                                                         <div class="sub-sub-accordion-title">מסלול ג' – 60 חודשים עם יחס ביטוח/אי-ביטוח (לעולים)</div>
                                                         <span class="sub-sub-accordion-arrow">▼</span>
@@ -731,7 +731,7 @@
                                         </div>
                                     </div>
 
-                                    <div class="sub-sub-accordion">
+                                    <div class="sub-sub-accordion" id="sv-c2-noperiod">
                                         <div class="sub-sub-accordion-header">
                                             <div class="sub-sub-accordion-title">מקרים שבהם לא נדרשת תקופת אכשרה כלל</div>
                                             <span class="sub-sub-accordion-arrow">▼</span>
@@ -759,7 +759,7 @@
                         </div>
 
                         <!-- תנאי 3: הגדרות שאיר -->
-                        <div class="sub-accordion">
+                        <div class="sub-accordion" id="sv-cond3">
                             <div class="sub-accordion-header">
                                 <div class="sub-accordion-title">📜 תנאי 3: התובע/ת נמנה עם שאיריו של הנפטר לפי הגדרות החוק</div>
                                 <span class="sub-accordion-arrow">▼</span>
@@ -768,7 +768,7 @@
                                 <div class="sub-accordion-body">
 
                                     <!-- אלמנה -->
-                                    <div class="sub-sub-accordion">
+                                    <div class="sub-sub-accordion" id="sv-c3-widow">
                                         <div class="sub-sub-accordion-header">
                                             <div class="sub-sub-accordion-title">👩 הגדרת אלמנה</div>
                                             <span class="sub-sub-accordion-arrow">▼</span>
@@ -777,7 +777,7 @@
                                             <div class="sub-sub-accordion-body">
                                                 <p><strong>אלמנה</strong> היא אישה שהייתה נשואה לנפטר או <strong>ידועה בציבור</strong> שלו, שחייתה עמו <strong>תחת קורת גג אחת עד לפטירתו</strong>.</p>
 
-                                                <div class="sub-sub-accordion">
+                                                <div class="sub-sub-accordion" id="sv-c3-widow-duration">
                                                     <div class="sub-sub-accordion-header">
                                                         <div class="sub-sub-accordion-title">תנאי א' – משך הקשר</div>
                                                         <span class="sub-sub-accordion-arrow">▼</span>
@@ -793,7 +793,7 @@
                                                     </div>
                                                 </div>
 
-                                                <div class="sub-sub-accordion">
+                                                <div class="sub-sub-accordion" id="sv-c3-widow-separate">
                                                     <div class="sub-sub-accordion-header">
                                                         <div class="sub-sub-accordion-title">מה קורה כשהאלמנה חיה בנפרד מהנפטר?</div>
                                                         <span class="sub-sub-accordion-arrow">▼</span>
@@ -809,7 +809,7 @@
                                                     </div>
                                                 </div>
 
-                                                <div class="sub-sub-accordion">
+                                                <div class="sub-sub-accordion" id="sv-c3-widow-remarry">
                                                     <div class="sub-sub-accordion-header">
                                                         <div class="sub-sub-accordion-title">מה קורה עם נישואים מחדש?</div>
                                                         <span class="sub-sub-accordion-arrow">▼</span>
@@ -828,7 +828,7 @@
                                     </div>
 
                                     <!-- אלמן -->
-                                    <div class="sub-sub-accordion">
+                                    <div class="sub-sub-accordion" id="sv-c3-widower">
                                         <div class="sub-sub-accordion-header">
                                             <div class="sub-sub-accordion-title">👨 הגדרת אלמן</div>
                                             <span class="sub-sub-accordion-arrow">▼</span>
@@ -837,7 +837,7 @@
                                             <div class="sub-sub-accordion-body">
                                                 <p><strong>אלמן</strong> הוא גבר שהיה נשוי לנפטרת או <strong>ידוע בציבור</strong> שלה, שחי עמה <strong>תחת קורת גג אחת עד לפטירתה</strong>.</p>
 
-                                                <div class="sub-sub-accordion">
+                                                <div class="sub-sub-accordion" id="sv-c3-widower-duration">
                                                     <div class="sub-sub-accordion-header">
                                                         <div class="sub-sub-accordion-title">תנאי א' – משך הקשר</div>
                                                         <span class="sub-sub-accordion-arrow">▼</span>
@@ -853,7 +853,7 @@
                                                     </div>
                                                 </div>
 
-                                                <div class="sub-sub-accordion">
+                                                <div class="sub-sub-accordion" id="sv-c3-widower-income">
                                                     <div class="sub-sub-accordion-header">
                                                         <div class="sub-sub-accordion-title">תנאי סף לאלמן – מבחן הכנסות</div>
                                                         <span class="sub-sub-accordion-arrow">▼</span>
@@ -873,7 +873,7 @@
                                                     </div>
                                                 </div>
 
-                                                <div class="sub-sub-accordion">
+                                                <div class="sub-sub-accordion" id="sv-c3-widower-separate">
                                                     <div class="sub-sub-accordion-header">
                                                         <div class="sub-sub-accordion-title">מה קורה כשהאלמן חי בנפרד מהנפטרת?</div>
                                                         <span class="sub-sub-accordion-arrow">▼</span>
@@ -894,7 +894,7 @@
                                     </div>
 
                                     <!-- יתום -->
-                                    <div class="sub-sub-accordion">
+                                    <div class="sub-sub-accordion" id="sv-c3-orphan">
                                         <div class="sub-sub-accordion-header">
                                             <div class="sub-sub-accordion-title">👶 הגדרת יתום</div>
                                             <span class="sub-sub-accordion-arrow">▼</span>
@@ -903,7 +903,7 @@
                                             <div class="sub-sub-accordion-body">
                                                 <p><strong>יתום/ה</strong> הוא/היא ילד/ה של הנפטר/ת העונה על <strong>כל</strong> התנאים הבאים:</p>
 
-                                                <div class="sub-sub-accordion">
+                                                <div class="sub-sub-accordion" id="sv-c3-orphan-age">
                                                     <div class="sub-sub-accordion-header">
                                                         <div class="sub-sub-accordion-title">גיל הילד – טבלת זכאות</div>
                                                         <span class="sub-sub-accordion-arrow">▼</span>
@@ -923,7 +923,7 @@
                                                     </div>
                                                 </div>
 
-                                                <div class="sub-sub-accordion">
+                                                <div class="sub-sub-accordion" id="sv-c3-orphan-both">
                                                     <div class="sub-sub-accordion-header">
                                                         <div class="sub-sub-accordion-title">יתום שהתייתם משני הוריו</div>
                                                         <span class="sub-sub-accordion-arrow">▼</span>
@@ -946,7 +946,7 @@
                         </div>
 
                         <!-- תנאי 4: דמי ביטוח -->
-                        <div class="sub-accordion">
+                        <div class="sub-accordion" id="sv-cond4">
                             <div class="sub-accordion-header">
                                 <div class="sub-accordion-title">💳 תנאי 4: אין פיגור בתשלום דמי ביטוח</div>
                                 <span class="sub-accordion-arrow">▼</span>
@@ -969,7 +969,7 @@
             </div>
 
             <!-- 8 - סכומי הקצבה -->
-            <div class="accordion">
+            <div class="accordion" id="sv-amounts">
                 <div class="accordion-header">
                     <div class="accordion-icon">💰</div>
                     <h2 class="accordion-title">סכומי הקצבה לשנת 2026</h2>
@@ -982,7 +982,7 @@
                         </div>
 
                         <!-- 8.1 -->
-                        <div class="sub-accordion">
+                        <div class="sub-accordion" id="sv-amt-widow">
                             <div class="sub-accordion-header">
                                 <div class="sub-accordion-title">קצבה לאלמן/ה</div>
                                 <span class="sub-accordion-arrow">▼</span>
@@ -1008,7 +1008,7 @@
                         </div>
 
                         <!-- 8.2 -->
-                        <div class="sub-accordion">
+                        <div class="sub-accordion" id="sv-amt-orphan">
                             <div class="sub-accordion-header">
                                 <div class="sub-accordion-title">קצבה ליתומים</div>
                                 <span class="sub-accordion-arrow">▼</span>
@@ -1031,7 +1031,7 @@
                         </div>
 
                         <!-- 8.3 -->
-                        <div class="sub-accordion">
+                        <div class="sub-accordion" id="sv-amt-seniority">
                             <div class="sub-accordion-header">
                                 <div class="sub-accordion-title">תוספת ותק</div>
                                 <span class="sub-accordion-arrow">▼</span>
@@ -1042,7 +1042,7 @@
                                     <p><strong>תקרה:</strong> תוספת הותק לא תעלה על <strong><span data-nii="seniority_bonus_max">50</span>% מהקצבה הבסיסית</strong>.</p>
                                     <p><strong>זכאים לתוספת ותק:</strong> אלמן/ה, יתום שהתייתם משני הוריו, יתום שהורהו אינו זכאי לקצבת שאירים.</p>
 
-                                    <div class="sub-sub-accordion">
+                                    <div class="sub-sub-accordion" id="sv-amt-sen-table">
                                         <div class="sub-sub-accordion-header">
                                             <div class="sub-sub-accordion-title">טבלת חישוב ותק</div>
                                             <span class="sub-sub-accordion-arrow">▼</span>
@@ -1062,7 +1062,7 @@
                                         </div>
                                     </div>
 
-                                    <div class="sub-sub-accordion">
+                                    <div class="sub-sub-accordion" id="sv-amt-sen-example">
                                         <div class="sub-sub-accordion-header">
                                             <div class="sub-sub-accordion-title">דוגמה מספרית</div>
                                             <span class="sub-sub-accordion-arrow">▼</span>
@@ -1076,7 +1076,7 @@
                                         </div>
                                     </div>
 
-                                    <div class="sub-sub-accordion">
+                                    <div class="sub-sub-accordion" id="sv-amt-sen-history">
                                         <div class="sub-sub-accordion-header">
                                             <div class="sub-sub-accordion-title">שינויים בחישוב תוספת הותק לאורך השנים</div>
                                             <span class="sub-sub-accordion-arrow">▼</span>
@@ -1098,7 +1098,7 @@
                         </div>
 
                         <!-- 8.4 -->
-                        <div class="sub-accordion">
+                        <div class="sub-accordion" id="sv-amt-supplement">
                             <div class="sub-accordion-header">
                                 <div class="sub-accordion-title">תוספת השלמת הכנסה ומענק חימום</div>
                                 <span class="sub-accordion-arrow">▼</span>
@@ -1110,7 +1110,7 @@
                                         אלמן/ה שיש עמם ילד עד גיל 20 הלומד במוסד חינוכי – <strong>אינם</strong> זכאים לתוספת השלמת הכנסה בעד אותו ילד.
                                     </div>
 
-                                    <div class="sub-sub-accordion">
+                                    <div class="sub-sub-accordion" id="sv-amt-heating">
                                         <div class="sub-sub-accordion-header">
                                             <div class="sub-sub-accordion-title">מענק חימום שנתי</div>
                                             <span class="sub-sub-accordion-arrow">▼</span>
@@ -1136,7 +1136,7 @@
             </div>
 
             <!-- 9 - מבחן הכנסות לאלמן -->
-            <div class="accordion">
+            <div class="accordion" id="sv-income-test">
                 <div class="accordion-header">
                     <div class="accordion-icon">🧮</div>
                     <h2 class="accordion-title">מבחן הכנסות לאלמן</h2>
@@ -1145,7 +1145,7 @@
                 <div class="accordion-content">
                     <div class="accordion-body content-section">
 
-                        <div class="sub-accordion">
+                        <div class="sub-accordion" id="sv-it-when">
                             <div class="sub-accordion-header">
                                 <div class="sub-accordion-title">מתי נדרש מבחן הכנסות?</div>
                                 <span class="sub-accordion-arrow">▼</span>
@@ -1160,7 +1160,7 @@
                             </div>
                         </div>
 
-                        <div class="sub-accordion">
+                        <div class="sub-accordion" id="sv-it-deduction">
                             <div class="sub-accordion-header">
                                 <div class="sub-accordion-title">ניכוי <span data-nii="survivors_income_allowed_employed">2,093</span> ₪ – פעם אחת מסך ההכנסות</div>
                                 <span class="sub-accordion-arrow">▼</span>
@@ -1183,7 +1183,7 @@
                             </div>
                         </div>
 
-                        <div class="sub-accordion">
+                        <div class="sub-accordion" id="sv-it-types">
                             <div class="sub-accordion-header">
                                 <div class="sub-accordion-title">כיצד נחשבות הכנסות מסוגים שונים?</div>
                                 <span class="sub-accordion-arrow">▼</span>
@@ -1191,7 +1191,7 @@
                             <div class="sub-accordion-content">
                                 <div class="sub-accordion-body">
 
-                                    <div class="sub-sub-accordion">
+                                    <div class="sub-sub-accordion" id="sv-it-employment">
                                         <div class="sub-sub-accordion-header">
                                             <div class="sub-sub-accordion-title">עבודה כשכיר / עצמאי, פנסיה וקופת גמל</div>
                                             <span class="sub-sub-accordion-arrow">▼</span>
@@ -1203,7 +1203,7 @@
                                         </div>
                                     </div>
 
-                                    <div class="sub-sub-accordion">
+                                    <div class="sub-sub-accordion" id="sv-it-old-age">
                                         <div class="sub-sub-accordion-header">
                                             <div class="sub-sub-accordion-title">קצבת אזרח ותיק שמקבל האלמן</div>
                                             <span class="sub-sub-accordion-arrow">▼</span>
@@ -1219,7 +1219,7 @@
                                         </div>
                                     </div>
 
-                                    <div class="sub-sub-accordion">
+                                    <div class="sub-sub-accordion" id="sv-it-pension">
                                         <div class="sub-sub-accordion-header">
                                             <div class="sub-sub-accordion-title">פנסיית שאירים של האישה המנוחה</div>
                                             <span class="sub-sub-accordion-arrow">▼</span>
@@ -1235,7 +1235,7 @@
                                         </div>
                                     </div>
 
-                                    <div class="sub-sub-accordion">
+                                    <div class="sub-sub-accordion" id="sv-it-terror">
                                         <div class="sub-sub-accordion-header">
                                             <div class="sub-sub-accordion-title">תגמול לנפגע איבה / נכה רדיפות הנאצים ממשרד האוצר</div>
                                             <span class="sub-sub-accordion-arrow">▼</span>
@@ -1255,7 +1255,7 @@
                             </div>
                         </div>
 
-                        <div class="sub-accordion">
+                        <div class="sub-accordion" id="sv-it-period">
                             <div class="sub-accordion-header">
                                 <div class="sub-accordion-title">התקופה שבה נבדקות ההכנסות</div>
                                 <span class="sub-accordion-arrow">▼</span>
@@ -1277,7 +1277,7 @@
             </div>
 
             <!-- 10 - תקופות ביטוח מיוחדות לאישה נשואה -->
-            <div class="accordion">
+            <div class="accordion" id="sv-special-periods">
                 <div class="accordion-header">
                     <div class="accordion-icon">🏠</div>
                     <h2 class="accordion-title">תקופות ביטוח מיוחדות לאישה נשואה שנפטרה</h2>
@@ -1286,7 +1286,7 @@
                 <div class="accordion-content">
                     <div class="accordion-body content-section">
 
-                        <div class="sub-accordion">
+                        <div class="sub-accordion" id="sv-sp-what">
                             <div class="sub-accordion-header">
                                 <div class="sub-accordion-title">מה מיוחד לגבי אישה?</div>
                                 <span class="sub-accordion-arrow">▼</span>
@@ -1302,7 +1302,7 @@
                             </div>
                         </div>
 
-                        <div class="sub-accordion">
+                        <div class="sub-accordion" id="sv-sp-conditions">
                             <div class="sub-accordion-header">
                                 <div class="sub-accordion-title">תנאי לביטוח כ"עקרת בית"</div>
                                 <span class="sub-accordion-arrow">▼</span>
@@ -1325,7 +1325,7 @@
             </div>
 
             <!-- 11 - גמלת שאירים מיוחדת לעולים -->
-            <div class="accordion">
+            <div class="accordion" id="sv-olim">
                 <div class="accordion-header">
                     <div class="accordion-icon">✈️</div>
                     <h2 class="accordion-title">גמלת שאירים מיוחדת לעולים</h2>
@@ -1334,7 +1334,7 @@
                 <div class="accordion-content">
                     <div class="accordion-body content-section">
 
-                        <div class="sub-accordion">
+                        <div class="sub-accordion" id="sv-ol-eligible">
                             <div class="sub-accordion-header">
                                 <div class="sub-accordion-title">למי מיועדת הגמלה המיוחדת?</div>
                                 <span class="sub-accordion-arrow">▼</span>
@@ -1352,7 +1352,7 @@
                             </div>
                         </div>
 
-                        <div class="sub-accordion">
+                        <div class="sub-accordion" id="sv-ol-rates">
                             <div class="sub-accordion-header">
                                 <div class="sub-accordion-title">שיעורי הגמלה המיוחדת ושהות בחוץ לארץ</div>
                                 <span class="sub-accordion-arrow">▼</span>
@@ -1374,7 +1374,7 @@
             </div>
 
             <!-- 12 - שילוב קצבאות -->
-            <div class="accordion">
+            <div class="accordion" id="sv-combination">
                 <div class="accordion-header">
                     <div class="accordion-icon">🔗</div>
                     <h2 class="accordion-title">שילוב קצבת שאירים עם קצבאות אחרות</h2>
@@ -1383,7 +1383,7 @@
                 <div class="accordion-content">
                     <div class="accordion-body content-section">
 
-                        <div class="sub-accordion">
+                        <div class="sub-accordion" id="sv-comb-old-age">
                             <div class="sub-accordion-header">
                                 <div class="sub-accordion-title">קצבת שאירים + קצבת אזרח ותיק (זקנה)</div>
                                 <span class="sub-accordion-arrow">▼</span>
@@ -1400,7 +1400,7 @@
                             </div>
                         </div>
 
-                        <div class="sub-accordion">
+                        <div class="sub-accordion" id="sv-comb-disability">
                             <div class="sub-accordion-header">
                                 <div class="sub-accordion-title">קצבת שאירים + קצבת נכות</div>
                                 <span class="sub-accordion-arrow">▼</span>
@@ -1415,7 +1415,7 @@
                             </div>
                         </div>
 
-                        <div class="sub-accordion">
+                        <div class="sub-accordion" id="sv-comb-pension">
                             <div class="sub-accordion-header">
                                 <div class="sub-accordion-title">קצבת שאירים מהביטוח הלאומי + קצבת שאירים מקרן פנסיה / ביטוח מנהלים</div>
                                 <span class="sub-accordion-arrow">▼</span>
@@ -1435,7 +1435,7 @@
             </div>
 
             <!-- 13 - מענק שאירים -->
-            <div class="accordion">
+            <div class="accordion" id="sv-grant">
                 <div class="accordion-header">
                     <div class="accordion-icon">🎁</div>
                     <h2 class="accordion-title">מענק שאירים חד-פעמי</h2>
@@ -1458,7 +1458,7 @@
             </div>
 
             <!-- 14 - הגשת תביעה -->
-            <div class="accordion">
+            <div class="accordion" id="sv-claim">
                 <div class="accordion-header">
                     <div class="accordion-icon">📋</div>
                     <h2 class="accordion-title">הגשת תביעה</h2>
@@ -1467,7 +1467,7 @@
                 <div class="accordion-content">
                     <div class="accordion-body content-section">
 
-                        <div class="sub-accordion">
+                        <div class="sub-accordion" id="sv-cl-date">
                             <div class="sub-accordion-header">
                                 <div class="sub-accordion-title">מועד הגשה</div>
                                 <span class="sub-accordion-arrow">▼</span>
@@ -1482,7 +1482,7 @@
                             </div>
                         </div>
 
-                        <div class="sub-accordion">
+                        <div class="sub-accordion" id="sv-cl-how">
                             <div class="sub-accordion-header">
                                 <div class="sub-accordion-title">איך מגישים?</div>
                                 <span class="sub-accordion-arrow">▼</span>
@@ -1498,7 +1498,7 @@
                             </div>
                         </div>
 
-                        <div class="sub-accordion">
+                        <div class="sub-accordion" id="sv-cl-docs">
                             <div class="sub-accordion-header">
                                 <div class="sub-accordion-title">מסמכים נדרשים</div>
                                 <span class="sub-accordion-arrow">▼</span>
@@ -1515,7 +1515,7 @@
                             </div>
                         </div>
 
-                        <div class="sub-accordion">
+                        <div class="sub-accordion" id="sv-cl-calc">
                             <div class="sub-accordion-header">
                                 <div class="sub-accordion-title">מחשבון לבדיקת זכאות</div>
                                 <span class="sub-accordion-arrow">▼</span>
@@ -1532,7 +1532,7 @@
             </div>
 
             <!-- 15 - ערעור -->
-            <div class="accordion">
+            <div class="accordion" id="sv-appeal">
                 <div class="accordion-header">
                     <div class="accordion-icon">⚖️</div>
                     <h2 class="accordion-title">ערעור על החלטת הביטוח הלאומי</h2>
@@ -1551,7 +1551,7 @@
             </div>
 
             <!-- 16 - שאלות נפוצות -->
-            <div class="accordion">
+            <div class="accordion" id="sv-faq">
                 <div class="accordion-header">
                     <div class="accordion-icon">❓</div>
                     <h2 class="accordion-title">שאלות נפוצות</h2>
@@ -1560,7 +1560,7 @@
                 <div class="accordion-content">
                     <div class="accordion-body content-section">
 
-                        <div class="sub-accordion">
+                        <div class="sub-accordion" id="sv-faq-remarry">
                             <div class="sub-accordion-header">
                                 <div class="sub-accordion-title">אלמנה שנישאה מחדש – מה קורה לקצבה?</div>
                                 <span class="sub-accordion-arrow">▼</span>
@@ -1572,7 +1572,7 @@
                             </div>
                         </div>
 
-                        <div class="sub-accordion">
+                        <div class="sub-accordion" id="sv-faq-3years">
                             <div class="sub-accordion-header">
                                 <div class="sub-accordion-title">בעלי עבד רק 3 שנים ונפטר – האם אני זכאית לקצבה?</div>
                                 <span class="sub-accordion-arrow">▼</span>
@@ -1586,7 +1586,7 @@
                             </div>
                         </div>
 
-                        <div class="sub-accordion">
+                        <div class="sub-accordion" id="sv-faq-arrears">
                             <div class="sub-accordion-header">
                                 <div class="sub-accordion-title">בעלי היה עצמאי ולא שילם כמה חודשים דמי ביטוח – מה קורה?</div>
                                 <span class="sub-accordion-arrow">▼</span>
@@ -1598,7 +1598,7 @@
                             </div>
                         </div>
 
-                        <div class="sub-accordion">
+                        <div class="sub-accordion" id="sv-faq-lgbtq">
                             <div class="sub-accordion-header">
                                 <div class="sub-accordion-title">האם ידועים בציבור מאותו מין זכאים לקצבת שאירים?</div>
                                 <span class="sub-accordion-arrow">▼</span>
@@ -1612,7 +1612,7 @@
                             </div>
                         </div>
 
-                        <div class="sub-accordion">
+                        <div class="sub-accordion" id="sv-faq-student">
                             <div class="sub-accordion-header">
                                 <div class="sub-accordion-title">הילד שלי בן 19 ולומד באוניברסיטה – האם הוא ממשיך להיות "יתום"?</div>
                                 <span class="sub-accordion-arrow">▼</span>
@@ -1624,7 +1624,7 @@
                             </div>
                         </div>
 
-                        <div class="sub-accordion">
+                        <div class="sub-accordion" id="sv-faq-both">
                             <div class="sub-accordion-header">
                                 <div class="sub-accordion-title">האם אני יכולה לקבל גם קצבת שאירים וגם קצבת אזרח ותיק?</div>
                                 <span class="sub-accordion-arrow">▼</span>
@@ -1636,7 +1636,7 @@
                             </div>
                         </div>
 
-                        <div class="sub-accordion">
+                        <div class="sub-accordion" id="sv-faq-when">
                             <div class="sub-accordion-header">
                                 <div class="sub-accordion-title">מתי הקצבה משולמת?</div>
                                 <span class="sub-accordion-arrow">▼</span>
@@ -1653,7 +1653,7 @@
             </div>
 
             <!-- נספח - טבלת סיכום -->
-            <div class="accordion">
+            <div class="accordion" id="sv-appendix">
                 <div class="accordion-header">
                     <div class="accordion-icon">📊</div>
                     <h2 class="accordion-title">נספח: טבלת סיכום סכומי קצבת שאירים 2026</h2>
@@ -1815,6 +1815,24 @@
                 }
             });
         });
+
+    function openFromHash() {
+        const hash = decodeURIComponent(window.location.hash.slice(1));
+        if (!hash) return;
+        const target = document.getElementById(hash);
+        if (!target) return;
+        document.querySelectorAll('.accordion.active').forEach(a => a.classList.remove('active'));
+        let el = target;
+        while (el) {
+            if (el.classList.contains('accordion') || el.classList.contains('sub-accordion') || el.classList.contains('sub-sub-accordion')) {
+                el.classList.add('active');
+            }
+            el = el.parentElement;
+        }
+        setTimeout(() => target.scrollIntoView({ behavior: 'smooth', block: 'start' }), 450);
+    }
+    openFromHash();
+    window.addEventListener('hashchange', openFromHash);
     </script>
     <script src="data/hamburger-nav.js"></script>
 </body>

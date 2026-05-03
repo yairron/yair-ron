@@ -12,7 +12,7 @@ const PAGE_DATA = {
       contentFn: (NII) => `
         <a href="https://www.kolzchut.org.il/he/%D7%96%D7%9B%D7%95%D7%AA%D7%95%D7%9F_%D7%A7%D7%A6%D7%91%D7%AA_%D7%96%D7%99%D7%A7%D7%A0%D7%94" target="_blank" class="link-item">🔗 זכותון קצבת זיקנה — כל זכות</a>
 
-        <h3>1.1 גילאי פרישה וזכאות</h3>
+        <h3 id="op-11">1.1 גילאי פרישה וזכאות</h3>
         <p style="color:#2E7D32;font-weight:700;font-size:1.05em;"><strong>גיל הזכאות המוחלט לגברים ולנשים: ${NII.retirement_age_unconditional.value}</strong> — החל מגיל ${NII.retirement_age_unconditional.value} הקצבה משולמת ללא כל מבחן הכנסות, גם למי שעובד ומרוויח.</p>
         <p><strong>גיל הפרישה לגברים:</strong> ${NII.retirement_age_male.value}</p>
         <p><strong>גיל הפרישה לנשים לפי שנת לידה:</strong></p>
@@ -64,7 +64,7 @@ const PAGE_DATA = {
           <a href="https://www.kolzchut.org.il/he/%D7%AA%D7%A7%D7%95%D7%A4%D7%AA_%D7%90%D7%9B%D7%A9%D7%A8%D7%94_%D7%9C%D7%A7%D7%A6%D7%91%D7%AA_%D7%90%D7%96%D7%A8%D7%97_%D7%95%D7%AA%D7%99%D7%A7" target="_blank" rel="noopener" style="color:#2E5B8A;font-weight:600;">🔗 כל זכות</a>
         </p>
 
-        <h4>הגדרת "מבוטח" ותשלום דמי ביטוח</h4>
+        <h4 id="op-12a">הגדרת "מבוטח" ותשלום דמי ביטוח</h4>
         <p>כדי לצבור תקופת אכשרה, על האדם להיות "מבוטח" בביטוח אזרח ותיק ולשלם דמי ביטוח כחוק.</p>
         <ul>
           <li><strong>כללי:</strong> מבוטח הוא תושב ישראל שמלאו לו 18 שנים, וטרם הגיע לגיל הפרישה.</li>
@@ -72,7 +72,7 @@ const PAGE_DATA = {
           <li><strong>עובד שכיר (דגש חשוב):</strong> לפי סעיף 365 לחוק, אם המעסיק לא שילם — <strong>התקופה עדיין תיחשב לעובד כתקופת אכשרה</strong>. זכויות העובד אינן נפגעות בשל מחדלי המעסיק, כל עוד ניתן להוכיח יחסי עובד-מעביד (תלושי שכר, טופס 106).</li>
         </ul>
 
-        <h4>תקופות הנמנות כתקופת אכשרה</h4>
+        <h4 id="op-12b">תקופות הנמנות כתקופת אכשרה</h4>
         <ul>
           <li>חודשי שירות חובה בצה"ל, שירות מילואים או שירות לאומי-אזרחי.</li>
           <li>חודשים שבעבורם שולמו דמי לידה, דמי אבטלה, דמי פגיעה בעבודה או דמי תאונה.</li>
@@ -81,14 +81,14 @@ const PAGE_DATA = {
           <li>תקופות שבהן המבוטח היה פטור מתשלום דמי ביטוח לפי החוק (למשל: תקופת מחלה ממושכת).</li>
         </ul>
 
-        <h4>שלוש חלופות לצבירת אכשרה</h4>
+        <h4 id="op-12c">שלוש חלופות לצבירת אכשרה</h4>
         <ul>
           <li><strong>חלופה א':</strong> 144 חודשי ביטוח (12 שנים) בסך הכל, מיום שהפך המבוטח לתושב ישראל.</li>
           <li><strong>חלופה ב':</strong> 60 חודשי ביטוח (5 שנים) בתוך 10 השנים האחרונות שקדמו לגיל הפרישה.</li>
           <li><strong>חלופה ג' (עולים חדשים):</strong> מספר חודשי הביטוח הוא לפחות כמספר החודשים שבהם <strong>לא</strong> היה מבוטח. רלוונטי למי שהפך לתושב לאחר גיל 40 (גבר), ובתנאי שצבר לפחות 60 חודשי ביטוח.</li>
         </ul>
 
-        <h4>פטור מתקופת אכשרה</h4>
+        <h4 id="op-12d">פטור מתקופת אכשרה</h4>
         <p>האוכלוסיות הבאות פטורות לחלוטין:</p>
         <ul>
           <li><strong>גרושה</strong> שהתגרשה לאחר גיל 55.</li>
@@ -98,26 +98,26 @@ const PAGE_DATA = {
           <li><strong>מי שקיבלה קצבת נכות</strong> בחודש שקדם להגיעה לגיל הפרישה.</li>
         </ul>
 
-        <h4>סטטוס "עקרת בית"</h4>
+        <h4 id="op-12e">סטטוס "עקרת בית"</h4>
         <ul>
           <li><strong>צבירת אכשרה:</strong> צוברת רק עבור תקופות עבודה כשכירה/עצמאית או תקופות לפני נישואיה.</li>
           <li><strong>הזכאות לקצבה:</strong> אם לא צברה אכשרה, תהיה זכאית לקצבה רק ב<strong>גיל ${NII.retirement_age_unconditional.value}</strong>.</li>
           <li><strong>המלצה:</strong> לבדוק "חלופת ה-144" לפני מעבר לסטטוס עקרת בית, כדי לשמור על זכאות בגיל הפרישה (62–65).</li>
         </ul>
 
-        <h4>סטטוס רווקה / גרושה / אלמנה</h4>
+        <h4 id="op-12f">סטטוס רווקה / גרושה / אלמנה</h4>
         <ul>
           <li><strong>חובת תשלום:</strong> חייבות בתשלום דמי ביטוח (דרך השכר או באופן עצמאי).</li>
           <li><strong>צבירת ותק:</strong> כל חודשי הביטוח נספרים כתקופת אכשרה מלאה.</li>
           <li><strong>זכאות:</strong> לרוב קל להן לעמוד ב"חלופת ה-144" ולקבל קצבה מגיל הפרישה (62–65).</li>
         </ul>
 
-        <h4>קצבה מיוחדת (למי שלא צבר אכשרה)</h4>
+        <h4 id="op-12g">קצבה מיוחדת (למי שלא צבר אכשרה)</h4>
         <div class="conditions-box">
           <p>מי שהגיע לגיל הפרישה ואינו עומד באף חלופת אכשרה, עשוי להיות זכאי ל<strong>קצבת אזרח ותיק מיוחדת</strong>. קצבה זו מותנית במבחן הכנסות מחמיר ובתושבות ישראל.</p>
         </div>
 
-        <h4>נקודות בדיקה חשובות לאכשרה</h4>
+        <h4 id="op-12h">נקודות בדיקה חשובות לאכשרה</h4>
         <ul>
           <li><strong>מצב משפחתי:</strong> גירושין/אלמנות עשויים לתת פטור מאכשרה.</li>
           <li><strong>הוכחת עבודה:</strong> לשכירים — התקופה נספרת גם אם המעסיק חב לביטוח לאומי.</li>
@@ -137,7 +137,7 @@ const PAGE_DATA = {
         <h4>א. הכנסה רק מעבודה</h4>
         <p>הכנסה ממשכורת או מעסק עצמאי — ברוטו, לפני ניכויים.</p>
 
-        <h5>1. יחיד (ללא בן/ת זוג, או ב"ז שאינו עונה על ההגדרה)</h5>
+        <h5 id="op-13a1">1. יחיד (ללא בן/ת זוג, או ב"ז שאינו עונה על ההגדרה)</h5>
         <p>כולל: רווק/ה, גרוש/ה, אלמן/ה, ונשוי/ה שהכנסת ב"ז עולה על ₪${NII.income_test_spouse_ceiling.value.toLocaleString('he-IL')}/חודש</p>
         <table style="width:100%;border-collapse:collapse;margin:12px 0;">
           <thead><tr style="background:linear-gradient(135deg,#667eea,#764ba2);color:white;">
@@ -157,7 +157,7 @@ const PAGE_DATA = {
           <p>⚠️ הקצבה החלקית לא תרד מ-10% מהקצבה הבסיסית (₪${Math.round(NII.pension_single_basic.value * 0.1).toLocaleString('he-IL')})</p>
         </div>
 
-        <h5>2. נשוי/ה — בן/ת הזוג עונה על הגדרת "בן זוג" ואינו/ה מקבל/ת קצבה</h5>
+        <h5 id="op-13a2">2. נשוי/ה — בן/ת הזוג עונה על הגדרת "בן זוג" ואינו/ה מקבל/ת קצבה</h5>
         <p>תנאים: נשואים שנה לפחות, ב"ז בגיל 50–${NII.retirement_age_unconditional.value} (או מעל ${NII.retirement_age_unconditional.value} ואינו מקבל קצבה), והכנסת ב"ז אינה עולה על ₪${NII.income_test_spouse_ceiling.value.toLocaleString('he-IL')}/חודש</p>
         <table style="width:100%;border-collapse:collapse;margin:12px 0;">
           <thead><tr style="background:linear-gradient(135deg,#667eea,#764ba2);color:white;">
@@ -177,7 +177,7 @@ const PAGE_DATA = {
           <p>📌 הקצבה המשולמת כוללת תוספת עבור בן/ת הזוג כל עוד הכנסת ב"ז אינה עולה על ₪${NII.income_test_spouse_ceiling.value.toLocaleString('he-IL')}</p>
         </div>
 
-        <h5>3. שני בני הזוג זכאים לקצבה בזכות עצמם</h5>
+        <h5 id="op-13a3">3. שני בני הזוג זכאים לקצבה בזכות עצמם</h5>
         <p>כל אחד מהם עובר מבחן הכנסה <strong>עצמאי</strong> כ"יחיד" לצורכי חישוב קצבתו.</p>
         <table style="width:100%;border-collapse:collapse;margin:12px 0;">
           <thead><tr style="background:linear-gradient(135deg,#667eea,#764ba2);color:white;">
@@ -203,7 +203,7 @@ const PAGE_DATA = {
           <p>⚠️ <strong>אין תוספת דחייה</strong> בשל חריגה מהכנסה מנכסים</p>
         </div>
 
-        <h5>1. יחיד — הכנסה מנכסים</h5>
+        <h5 id="op-13b1">1. יחיד — הכנסה מנכסים</h5>
         <table style="width:100%;border-collapse:collapse;margin:12px 0;">
           <thead><tr style="background:linear-gradient(135deg,#667eea,#764ba2);color:white;">
             <th style="padding:9px 10px;border:1px solid #ddd;">הכנסה חודשית מנכסים (ברוטו)</th>
@@ -217,7 +217,7 @@ const PAGE_DATA = {
           </tbody>
         </table>
 
-        <h5>2א. נשוי/ה — ב"ז עונה להגדרה ואינו/ה מקבל/ת קצבה</h5>
+        <h5 id="op-13b2a">2א. נשוי/ה — ב"ז עונה להגדרה ואינו/ה מקבל/ת קצבה</h5>
         <table style="width:100%;border-collapse:collapse;margin:12px 0;">
           <thead><tr style="background:linear-gradient(135deg,#667eea,#764ba2);color:white;">
             <th style="padding:9px 10px;border:1px solid #ddd;">הכנסה חודשית מנכסים (ברוטו)</th>
@@ -231,7 +231,7 @@ const PAGE_DATA = {
           </tbody>
         </table>
 
-        <h5>2ב. נשוי/ה — ב"ז עונה להגדרה ומקבל/ת קצבה מהביטוח הלאומי</h5>
+        <h5 id="op-13b2b">2ב. נשוי/ה — ב"ז עונה להגדרה ומקבל/ת קצבה מהביטוח הלאומי</h5>
         <table style="width:100%;border-collapse:collapse;margin:12px 0;">
           <thead><tr style="background:linear-gradient(135deg,#667eea,#764ba2);color:white;">
             <th style="padding:9px 10px;border:1px solid #ddd;">הכנסה חודשית מנכסים (ברוטו)</th>
@@ -245,7 +245,7 @@ const PAGE_DATA = {
           </tbody>
         </table>
 
-        <h5>3. שני בני הזוג זכאים — הכנסה מנכסים</h5>
+        <h5 id="op-13b3">3. שני בני הזוג זכאים — הכנסה מנכסים</h5>
         <p>כל אחד נבחן בנפרד. הכנסה מנכסים משותפים מתחלקת לפי חלק בבעלות (בד"כ 50/50 לפי טאבו).</p>
         <table style="width:100%;border-collapse:collapse;margin:12px 0;">
           <thead><tr style="background:linear-gradient(135deg,#667eea,#764ba2);color:white;">
@@ -270,7 +270,7 @@ const PAGE_DATA = {
           <p style="margin-top:8px;">⚠️ אם הדירה רשומה על שם אחד בלבד — כל ₪84,000 ייוחסו לו ויאבד זכאות (מעל ₪${NII.income_test_married_asset_partial_with_pension.value.toLocaleString('he-IL')})</p>
         </div>
 
-        <h4>ג. הכנסה משולבת (גם מעבודה וגם מנכסים)</h4>
+        <h4 id="op-13c">ג. הכנסה משולבת (גם מעבודה וגם מנכסים)</h4>
         <p>כאשר יש הכנסה הן מעבודה והן מנכסים — שתי ההכנסות <strong>נסכמות יחד</strong> לבדיקת התקרה.</p>
         <table style="width:100%;border-collapse:collapse;margin:12px 0;">
           <thead><tr style="background:linear-gradient(135deg,#667eea,#764ba2);color:white;">
@@ -291,7 +291,7 @@ const PAGE_DATA = {
 
         <h4>ד. מה נחשב / לא נחשב הכנסה</h4>
 
-        <h5>✅ נחשב הכנסה</h5>
+        <h5 id="op-13d1">✅ נחשב הכנסה</h5>
         <ul>
           <li>שכר עבודה (ברוטו), משכורת, הכנסה מעסק</li>
           <li>שכר דירה (לפני ניכוי הוצאות)</li>
@@ -301,7 +301,7 @@ const PAGE_DATA = {
           <li>רווח הון מניירות ערך (מחושב כהכנסה חודשית = שנתי ÷ 12)</li>
         </ul>
 
-        <h5>❌ לא נחשב הכנסה</h5>
+        <h5 id="op-13d2">❌ לא נחשב הכנסה</h5>
         <ul>
           <li>קצבה מקרן פנסיה / ביטוח מנהלים / קרן השתלמות</li>
           <li>קצבת אזרח ותיק עצמה</li>
@@ -310,14 +310,14 @@ const PAGE_DATA = {
           <li>גמלאות ביטוח לאומי אחרות (נכות, סיעוד וכו')</li>
         </ul>
 
-        <h4>ה. תוספת דחייה</h4>
+        <h4 id="op-13e">ה. תוספת דחייה</h4>
         <p>מי שלא קיבל קצבה בגין הכנסה מעבודה שחרגה מהתקרה — זכאי ל-<strong>5% לכל שנה</strong> שבה נמנעה ממנו הקצבה.</p>
         <div class="conditions-box" style="background:#fff3e0;">
           <p>⚠️ תוספת דחייה ניתנת <strong>רק</strong> בשל חריגה מהכנסת עבודה — <strong>לא</strong> בשל הכנסה מנכסים</p>
           <p>⚠️ מי שוויתר מרצון על הקצבה (גם אם הגיע להכנסה נמוכה) לא יקבל תוספת דחייה</p>
         </div>
 
-        <h4>ו. הגדרת בן/ת זוג לצורך התוספת</h4>
+        <h4 id="op-13f">ו. הגדרת בן/ת זוג לצורך התוספת</h4>
         <p>בן/ת זוג מוכר/ת לצורך תוספת הקצבה והגדלת תקרת ההכנסה — צריך/ה לעמוד בכל התנאים:</p>
         <ul>
           <li>נשואים (או ידועים בציבור) שנה לפחות</li>
@@ -325,7 +325,7 @@ const PAGE_DATA = {
           <li>הכנסת בן/ת הזוג מ<strong>כל המקורות</strong> (כולל פנסיה) אינה עולה על ₪${NII.income_test_spouse_ceiling.value.toLocaleString('he-IL')}/חודש</li>
         </ul>
 
-        <h3>1.4 סכומי הקצבה הבסיסית לשנת 2026</h3>
+        <h3 id="op-14">1.4 סכומי הקצבה הבסיסית לשנת 2026</h3>
         <div class="conditions-box"><p>⬆️ קצבאות אזרח ותיק עלו ב-${NII.cpi_rate_2026.value}% בינואר 2026 (הצמדה למדד המחירים)</p></div>
         <table style="width:100%;border-collapse:collapse;margin:15px 0;">
           <thead><tr style="background:linear-gradient(135deg,#667eea,#764ba2);color:white;">
@@ -342,7 +342,7 @@ const PAGE_DATA = {
           </tbody>
         </table>
 
-        <h3>1.5 תוספת ותק</h3>
+        <h3 id="op-15">1.5 תוספת ותק</h3>
         <ul>
           <li><strong>שיעור:</strong> ${NII.seniority_bonus_rate.value}% לכל שנת ביטוח מלאה (12 חודשים), החל מהשנה הראשונה.</li>
           <li><strong>תוספת מקסימלית:</strong> ${NII.seniority_bonus_max.value}% עבור 25 שנות ביטוח ומעלה.</li>
@@ -353,7 +353,7 @@ const PAGE_DATA = {
         </ul>
         <a href="https://www.kolzchut.org.il/he/%D7%AA%D7%95%D7%A1%D7%A4%D7%AA_%D7%95%D7%AA%D7%A7_%D7%9C%D7%A7%D7%A6%D7%91%D7%AA_%D7%96%D7%99%D7%A7%D7%A0%D7%94" target="_blank" class="link-item">🔗 תוספת ותק — כל זכות</a>
 
-        <h3>1.6 תוספת דחיית קצבה</h3>
+        <h3 id="op-16">1.6 תוספת דחיית קצבה</h3>
         <ul>
           <li><strong>שיעור:</strong> ${NII.deferral_bonus_rate.value}% לכל שנת דחייה.</li>
           <li><strong>תנאי:</strong> דחייה בגלל הכנסות מעבודה שעוברות את התקרה לקצבה מלאה.</li>
@@ -363,14 +363,14 @@ const PAGE_DATA = {
           <li><strong>חשוב:</strong> תוספת הדחייה אינה משולמת בדיעבד — יש להגיש תביעה בזמן אמת.</li>
         </ul>
 
-        <h3>1.7 תשלום רטרואקטיבי</h3>
+        <h3 id="op-17">1.7 תשלום רטרואקטיבי</h3>
         <p style="padding-right:1.6em;text-indent:-1.6em;">✅ אם מגישים את התביעה לאחר גיל הפרישה - אפשר לקבל קצבה רטרואקטיבית עבור 12 חודשים לכל היותר מיום הגשת התביעה.</p>
         <p style="padding-right:1.6em;text-indent:-1.6em;">✅ אם מגישים את התביעה לאחר גיל הזכאות לקצבת אזרח ותיק - אפשר לקבל קצבה רטרואקטיבית עבור 48 חודשים לכל היותר מיום הגשת התביעה. מתוך תקופה זו, שנה אחת יכולה להיות גם לפני גיל הזכאות, והקצבה עבורה תינתן בהתאם למבחן הכנסות.</p>
         <p style="padding-right:1.6em;text-indent:-1.6em;">✅ שימו לב, מקבלי קצבאות אחרות מהביטוח הלאומי צריכים להגיש תביעה לקצבת אזרח ותיק כאשר הם מגיעים לגיל הפרישה. ראו כאן מידע על מעבר מקצבאות אחרות לקצבת אזרח ותיק.</p>
 
         <h3>1.8 דוגמאות חישוב מפורטות</h3>
 
-        <h4>דוגמה 1: יחיד עם קצבה חלקית</h4>
+        <h4 id="op-18a">דוגמה 1: יחיד עם קצבה חלקית</h4>
         <div class="conditions-box">
           <p><strong>נתונים:</strong> דוד, בן ${NII.retirement_age_male.value}, יחיד, הכנסה מעבודה ₪11,500, ותק 25 שנים (${NII.seniority_bonus_max.value}%).</p>
           <ul>
@@ -381,7 +381,7 @@ const PAGE_DATA = {
           </ul>
         </div>
 
-        <h4>דוגמה 2: זוג שניהם זכאים</h4>
+        <h4 id="op-18b">דוגמה 2: זוג שניהם זכאים</h4>
         <div class="conditions-box">
           <p><strong>נתונים:</strong> משה (68) הכנסה ₪8,000 ותק 20 שנים (40%); רחל (65) הכנסה ₪7,500 ותק 18 שנים (36%).</p>
           <div style="background:#e8f5e9;border-right:3px solid #43a047;padding:10px;margin:10px 0;border-radius:6px;">
@@ -394,7 +394,7 @@ const PAGE_DATA = {
           </ul>
         </div>
 
-        <h4>דוגמה 3: יחיד עם בן/בת זוג שאינם זכאים</h4>
+        <h4 id="op-18c">דוגמה 3: יחיד עם בן/בת זוג שאינם זכאים</h4>
         <div class="conditions-box">
           <p><strong>נתונים:</strong> יוסף (68), הכנסה ₪15,000, ותק 22 שנים (44%). אשתו (55) — אינה עובדת, הכנסתה ₪0.</p>
           <div style="background:#e8f5e9;border-right:3px solid #43a047;padding:10px;margin:10px 0;border-radius:6px;">
@@ -416,7 +416,7 @@ const PAGE_DATA = {
           </ul>
         </div>
 
-        <h4>דוגמה 4: יחיד עם בן/בת זוג שעובד</h4>
+        <h4 id="op-18d">דוגמה 4: יחיד עם בן/בת זוג שעובד</h4>
         <div class="conditions-box">
           <p><strong>נתונים:</strong> אברהם (${NII.retirement_age_male.value}), הכנסה ₪10,000, ותק 25 שנים (${NII.seniority_bonus_max.value}%). אשתו (58) עובדת, מרוויחה ₪8,500.</p>
           <div style="background:#fff3e0;border-right:3px solid #ff9800;padding:10px;margin:10px 0;border-radius:6px;">
@@ -429,7 +429,7 @@ const PAGE_DATA = {
           </ul>
         </div>
 
-        <h4>דוגמה 5: גבר עם ותק מקסימלי ודחיית קצבה</h4>
+        <h4 id="op-18e">דוגמה 5: גבר עם ותק מקסימלי ודחיית קצבה</h4>
         <div class="conditions-box">
           <p><strong>נתונים:</strong> גבר בן ${NII.retirement_age_unconditional.value}, ותק 25 שנים, דחה קצבה 3 שנים בשל עבודה.</p>
           <ul>
@@ -457,7 +457,7 @@ const PAGE_DATA = {
 
            <h3>תנאי זכאות בסיסיים</h3>
 
-                <h4>א. קצבת זיקנה (אזרח ותיק)</h4>
+                <h4 id="is-cond-a">א. קצבת זיקנה (אזרח ותיק)</h4>
                 <ol>
                     <li><strong>קבלת קצבת אזרח ותיק:</strong> המבקש מקבל קצבה מהביטוח הלאומי.</li>
                     <li><strong>תושבות:</strong> תושב ישראל ב-24 החודשים האחרונים.</li>
@@ -466,7 +466,7 @@ const PAGE_DATA = {
                 </ol>
                 <p style="color:#666;font-size:0.93em;">⚠️ הכנסות או נכסים מעל התקרה עשויים לאפשר השלמת הכנסה חלקית.</p>
 
-                <h4>ב. גמלת שאירים</h4>
+                <h4 id="is-cond-b">ב. גמלת שאירים</h4>
                 <ol>
                     <li><strong>קבלת גמלת שאירים:</strong> המבקש/ת מקבל/ת גמלת שאירים מהביטוח הלאומי.</li>
                     <li><strong>תושבות:</strong> תושב ישראל ב-24 החודשים האחרונים.</li>
@@ -479,7 +479,7 @@ const PAGE_DATA = {
 
                 <h3>זכאות זוגית — קצבת זיקנה בלבד</h3>
 
-                <h4>א. שני בני הזוג זכאים לקצבת אזרח ותיק</h4>
+                <h4 id="is-couple-a">א. שני בני הזוג זכאים לקצבת אזרח ותיק</h4>
                 <p>כאשר שני בני הזוג מקבלים קצבה אישית, הם נחשבים כ"זוג" לעניין השלמת ההכנסה.</p>
                 <ul>
                     <li><strong>החישוב:</strong> בודקים את סך ההכנסות המשותפות של שניהם. אם הסכום נמוך מתקרת ה"זוג" (בתוספת הוותק של שניהם), הם יקבלו השלמה מלאה. אם הסכום מעל תקרת "זוג". תבדק הזכאות שלהם להשלמה חלקית..</li>
@@ -487,7 +487,7 @@ const PAGE_DATA = {
                     <li><strong>חלוקה:</strong> התוספת משולמת בדרך כלל לאחד מבני הזוג (לרוב זה שזכאי לקצבה הגבוהה יותר).</li>
                 </ul>
 
-                <h4>ב. רק אחד מבני הזוג זכאי לקצבת אזרח ותיק (והשני "בן זוג")</h4>
+                <h4 id="is-couple-b">ב. רק אחד מבני הזוג זכאי לקצבת אזרח ותיק (והשני "בן זוג")</h4>
                 <p>מצב זה קורה כשאחד מבני הזוג הגיע לגיל פרישה והשני טרם הגיע לגיל, אך עונה על הגדרת "בן זוג" (מתגורר עמו ואין לו הכנסות גבוהות).</p>
                 <ul>
                     <li><strong>תוספת בן זוג:</strong> המבוטח יקבל בקצבת הזקנה שלו "תוספת עבור בן זוג".</li>
@@ -500,7 +500,7 @@ const PAGE_DATA = {
                 </div>
 
 
-        <h3>סכומים מירביים קצבת זיקנה + השלמת הכנסה 2026</h3>
+        <h3 id="is-max-oldage">סכומים מירביים קצבת זיקנה + השלמת הכנסה 2026</h3>
                 <p>הסכומים להלן הם התקרות לקצבת זיקנה + השלמת ההכנסה (הקצבה הבסיסית + תוספת מקסימלית):</p>
 
                 <table style="width: 100%; border-collapse: collapse; margin: 20px 0;">
@@ -552,7 +552,7 @@ const PAGE_DATA = {
                   </tbody>
                 </table>
 
-        <h3>סכומים מירביים גמלת שאירים + השלמת הכנסה 2026</h3>
+        <h3 id="is-max-survivors">סכומים מירביים גמלת שאירים + השלמת הכנסה 2026</h3>
         <p>לגמלת שאירים אין קטגוריית "זוג" — התקרה נקבעת לפי מצב יחיד/ה ומספר ילדים בלבד:</p>
         <table style="width: 100%; border-collapse: collapse; margin: 20px 0;">
           <thead>
@@ -607,7 +607,7 @@ const PAGE_DATA = {
           </li>
         </ol>
 
-        <h4>🧮 מחשבון זכאות להשלמת הכנסה</h4>
+        <h4 id="is-calculator">🧮 מחשבון זכאות להשלמת הכנסה</h4>
         <div style="background:#f0f7ff;padding:20px;border-radius:12px;border:2px solid #3b82f6;margin:10px 0;">
           <div style="display:grid;gap:14px;margin-bottom:18px;">
             <div>
@@ -658,11 +658,11 @@ const PAGE_DATA = {
           </div>
         </div>
 
-        <h4>💰 חישוב הכנסה רעיונית מנכסים פיננסיים</h4>
+        <h4 id="is-imputed">💰 חישוב הכנסה רעיונית מנכסים פיננסיים</h4>
         <p>למי שיש פיקדונות, חסכונות או השקעות, עשוי להיות חישוב של "הכנסה רעיונית" מנכסים אלה. הכנסה זו מופחתת מסכום ההשלמה.</p>
         <p><a href="imputed_income_guide.html" style="color: #9c27b0; text-decoration: none; font-weight: 600;">📖 מדריך מפורט: חישוב הכנסה רעיונית מנכסים פיננסיים</a></p>
 
-        <h4>בעלות על רכב</h4>
+        <h4 id="is-vehicle">בעלות על רכב</h4>
                 <p>בעלות על רכב עלולה לשלול זכאות, אלא אם מתקיים אחד מהתנאים הבאים:</p>
                 <ul>
                     <li>שווי הרכב נמוך מ-${c('vehicle_threshold_base')} (והוא הרכב היחיד).</li>
@@ -674,7 +674,7 @@ const PAGE_DATA = {
         <h3>דוגמאות לחישוב השלמת הכנסה</h3>
 
         <div style="background: #fff8e1; padding: 15px; border-radius: 8px; margin: 15px 0;">
-          <h4>דוגמה 1 — קצבת זיקנה, יחיד:</h4>
+          <h4 id="is-ex1">דוגמה 1 — קצבת זיקנה, יחיד:</h4>
           <ul>
             <li>קצבת זקנה: ${c('pension_single_basic')}</li>
             <li>פנסיה: ₪2,500</li>
@@ -686,7 +686,7 @@ const PAGE_DATA = {
         </div>
 
         <div style="background: #e8f5e9; padding: 15px; border-radius: 8px; margin: 15px 0;">
-          <h4>דוגמה 2 — קצבת זיקנה, זוג:</h4>
+          <h4 id="is-ex2">דוגמה 2 — קצבת זיקנה, זוג:</h4>
           <ul>
             <li>קצבת זקנה לכל אחד: ${c('pension_single_basic')} + ${p('seniority_bonus_max')} ותק = ₪${fmt(v('pension_single_basic') * (1 + v('seniority_bonus_max') / 100))} (סה"כ ₪${fmt(v('pension_single_basic') * (1 + v('seniority_bonus_max') / 100) * 2)})</li>
             <li>הכנסה מעבודה: ₪4,200</li>
@@ -698,7 +698,7 @@ const PAGE_DATA = {
         </div>
 
         <div style="background: #e8f4fd; padding: 15px; border-radius: 8px; margin: 15px 0; border-right: 4px solid #1976d2;">
-          <h4>דוגמה 3 — גמלת שאירים (אלמנה, גיל 55, ילד אחד):</h4>
+          <h4 id="is-ex3">דוגמה 3 — גמלת שאירים (אלמנה, גיל 55, ילד אחד):</h4>
           <ul>
             <li>גמלת שאירים: ${c('survivors_widow_over50')} (אלמנה מגיל 50) + ${c('survivors_orphan')} (ילד שאיר) = ₪${fmt(v('survivors_widow_over50') + v('survivors_orphan'))}</li>
             <li>פנסיה נוספת: ₪0 (אין)</li>
@@ -717,7 +717,7 @@ const PAGE_DATA = {
           אי-דיווח עלול לגרום לתשלום ביתר שיידרש בחזרה.</p>
         </div>
 
-        <h4>📋 פירוט מגבלות יציאה לחו"ל (בכל שנה קלנדרית)</h4>
+        <h4 id="is-abroad-details">📋 פירוט מגבלות יציאה לחו"ל (בכל שנה קלנדרית)</h4>
 
         <div style="background:#e8f5e9;padding:15px;border-radius:8px;margin:10px 0;border-right:4px solid #4caf50;">
           <strong>✅ יציאה ראשונה — עד ${v('income_supplement_abroad_max_days')} יום</strong>
@@ -750,7 +750,7 @@ const PAGE_DATA = {
           <p style="margin:8px 0 0 0;">מי ששהה בחו"ל ${v('income_supplement_abroad_retroactive_days')} ימים ומעלה בשנה קלנדרית אחת — הביטוח הלאומי שולל את התוספת <strong>רטרואקטיבית על כל ימי השהייה באותה שנה</strong>. גם הכסף שהתקבל בנסיעות הראשונות ייתבע בחזרה.</p>
         </div>
 
-        <h4>📊 סיכום תקופות שהייה מותרת בחו"ל</h4>
+        <h4 id="is-abroad-summary">📊 סיכום תקופות שהייה מותרת בחו"ל</h4>
 
         <p>יחידת המדידה: שנה קלנדרית (1 בינואר – 31 בדצמבר). יום היציאה ויום החזרה אינם נספרים.</p>
         <table style="width:100%;border-collapse:collapse;margin:15px 0;">
@@ -800,7 +800,7 @@ const PAGE_DATA = {
           </tbody>
         </table>
 
-        <h4>🏥 מקרים מיוחדים שמאפשרים המשך קבלת השלמת הכנסה</h4>
+        <h4 id="is-abroad-special">🏥 מקרים מיוחדים שמאפשרים המשך קבלת השלמת הכנסה</h4>
 
         <div style="background:#e8f5e9;padding:15px;border-radius:8px;margin:10px 0;border-right:4px solid #43a047;">
           <strong>🏥 טיפול רפואי בחו"ל</strong>
@@ -818,18 +818,18 @@ const PAGE_DATA = {
           <p style="margin:8px 0 0 0;">מוסלמים שיצאו לחאג׳ לראשונה בחייהם, לתקופה של עד <strong>${v('income_supplement_abroad_hajj_max_days')} ימים</strong>, הגמלה אינה נפגעת.</p>
         </div>
 
-        <h4>👫 בני זוג</h4>
+        <h4 id="is-abroad-couple">👫 בני זוג</h4>
 
         <ul>
           <li>כאשר שני בני הזוג מקבלים גמלה ביחד — <strong>כל אחד נספר בנפרד</strong>, אם יצאו בנפרד וחזרו בנפרד (ללא ימים חופפים).</li>
           <li>אם אחד מבני הזוג שהה בחו"ל וגרר שלילת תוספת לזוג — נבדקת זכאות בן/בת הזוג שנשאר/ה בארץ <strong>כ"יחיד/ה"</strong> לאותה תקופה.</li>
         </ul>
 
-        <h4>🏠 הגדרת "תושב" לצורך השלמת הכנסה</h4>
+        <h4 id="is-abroad-resident">🏠 הגדרת "תושב" לצורך השלמת הכנסה</h4>
 
         <p>הביטוח הלאומי מכיר בתושבות ישראלית במשך <strong>${v('residency_recognition_abroad_max_years')} השנים הראשונות</strong> לאחר עזיבת הארץ. לאחר מכן — נשלל מעמד "התושב" וניתן לאבד זכאות לקצבאות.</p>
 
-        <h4>✅ רשימת פעולות לפני יציאה לחו"ל</h4>
+        <h4 id="is-abroad-checklist">✅ רשימת פעולות לפני יציאה לחו"ל</h4>
 
         <ol>
           <li>בדקו כמה נסיעות ביצעתם כבר השנה הנוכחית (מינואר).</li>
@@ -840,7 +840,7 @@ const PAGE_DATA = {
           <li>לטיפול רפואי: הכינו מראש אסמכתאות רפואיות לצרף לבקשת ארכה (עד ${v('income_supplement_abroad_medical_max_months')} חודשים).</li>
         </ol>
 
-        <h4>📩 קיבלתם דרישת החזר מהביטוח הלאומי?</h4>
+        <h4 id="is-abroad-repayment">📩 קיבלתם דרישת החזר מהביטוח הלאומי?</h4>
 
         <div class="conditions-box">
           <p><strong>אל תתעלמו!</strong> אפשרויות פעולה:</p>
@@ -853,7 +853,7 @@ const PAGE_DATA = {
         </div>
 
         <h3>📋 חובת דיווח על שינויים במצב הכספי או המשפחתי</h3>
-        <h4>⏱ חובת הדיווח — הכלל הבסיסי</h4>
+        <h4 id="is-report-rule">⏱ חובת הדיווח — הכלל הבסיסי</h4>
 
         <div style="background:#ffebee;padding:15px;border-radius:8px;margin:10px 0;border-right:4px solid #d32f2f;">
           <p style="font-size:1.1em;font-weight:bold;">⏱ ${v('income_supplement_reporting_deadline_days')} יום — לא יותר</p>
@@ -861,7 +861,7 @@ const PAGE_DATA = {
           <p style="margin:4px 0 0 0;">אי-דיווח עלול לגרום לתשלום ביתר שיצור חוב שהביטוח הלאומי יתבע בחזרה.</p>
         </div>
 
-        <h4>📋 מה חייבים לדווח</h4>
+        <h4 id="is-report-what">📋 מה חייבים לדווח</h4>
 
         <p>חובה לדווח על כל שינוי בנושאים הבאים (לכל אחד מבני הזוג):</p>
         <table style="width:100%;border-collapse:collapse;margin:15px 0;">
@@ -913,7 +913,7 @@ const PAGE_DATA = {
           </tbody>
         </table>
 
-        <h4>🚫 נושאים שאין צורך לדווח עליהם</h4>
+        <h4 id="is-report-exempt">🚫 נושאים שאין צורך לדווח עליהם</h4>
 
         <ul>
           <li>קצבת ילדים</li>
@@ -928,7 +928,7 @@ const PAGE_DATA = {
           <li>תמיכה כספית מרצון מבני משפחה / עמותות — שניתנת ללא תמורה</li>
         </ul>
 
-        <h4>💰 בעת שינוי כלכלי</h4>
+        <h4 id="is-report-financial">💰 בעת שינוי כלכלי</h4>
 
         <ul>
           <li>קיבלתם העלאה / ירידה בשכר → <strong>דיווח תוך ${v('income_supplement_reporting_deadline_days')} יום.</strong></li>
@@ -939,7 +939,7 @@ const PAGE_DATA = {
           <li>קניתם / מכרתם רכב → בדקו שווי. אם שווי חדש עוקף ${c('vehicle_threshold_extended')} — <strong>דיווח מיד.</strong></li>
         </ul>
 
-        <h4>👨‍👩‍👧 בעת שינוי אישי/משפחתי</h4>
+        <h4 id="is-report-personal">👨‍👩‍👧 בעת שינוי אישי/משפחתי</h4>
 
         <ul>
           <li>נישאתם / התגרשתם → <strong>דיווח תוך ${v('income_supplement_reporting_deadline_days')} יום</strong> — משנה את סכום הגמלה.</li>
@@ -948,7 +948,7 @@ const PAGE_DATA = {
           <li>עברתם דירה → עדכון כתובת בסניף.</li>
         </ul>
 
-        <h4>📩 קיבלתם דרישת החזר מהביטוח הלאומי?</h4>
+        <h4 id="is-report-repayment">📩 קיבלתם דרישת החזר מהביטוח הלאומי?</h4>
 
         <div class="conditions-box">
           <p>לביטוח הלאומי שמורה הזכות לחקור חשדות לקבלת כספים שלא כדין. הסכום עלול להיות גבוה — במיוחד אם מדובר בשנים.</p>
@@ -961,7 +961,7 @@ const PAGE_DATA = {
           </ul>
         </div>
 
-        <h3>🎁 הטבות נלוות להשלמת הכנסה</h3>
+        <h3 id="is-benefits">🎁 הטבות נלוות להשלמת הכנסה</h3>
         <p>מקבלי השלמת הכנסה זכאים להטבות נוספות:</p>
         <ul>
           <li>✅ הנחה בחשמל</li>
@@ -988,7 +988,7 @@ const PAGE_DATA = {
         <a href="https://www.kolzchut.org.il/he/%D7%92%D7%9E%D7%9C%D7%AA_%D7%A1%D7%99%D7%A2%D7%95%D7%93" target="_blank" class="link-item">🔗 פורטל גמלת סיעוד — כל זכות</a>
         <p>גמלת סיעוד מיועדת לאזרחים ותיקים הזקוקים לעזרה בפעולות יומיומיות.</p>
 
-        <h3>3.1 תנאי זכאות</h3>
+        <h3 id="nu-31">3.1 תנאי זכאות</h3>
         <ul>
           <li>אזרח ישראל ותושב ישראל.</li>
           <li>גיל: 65+ (נשים — לפי גיל פרישה; גברים — ${NII.retirement_age_male.value}), או 60+ במקרים מיוחדים של מחלות קשות.</li>
@@ -996,7 +996,7 @@ const PAGE_DATA = {
           <li>עמידה במבחן הכנסות (עבור גמלה מלאה לעומת חצי גמלה).</li>
         </ul>
 
-        <h3>3.2 רמות גמלת הסיעוד 2026</h3>
+        <h3 id="nu-32">3.2 רמות גמלת הסיעוד 2026</h3>
         <div class="conditions-box"><p>⬆️ מעודכן ל  01.04.2026</p></div>
         <table style="width:100%;border-collapse:collapse;margin:15px 0;">
           <thead><tr style="background:linear-gradient(135deg,#667eea,#764ba2);color:white;">
@@ -1016,7 +1016,7 @@ const PAGE_DATA = {
         </table>
         <p><strong>חצי גמלה (עקב מבחן הכנסות):</strong> דרגה 1: ₪${Math.round(NII.nursing_level_1_cash.value / 2).toLocaleString('he-IL')} | דרגה 6: ₪${Math.round(NII.nursing_level_6_cash.value / 2).toLocaleString('he-IL')}</p>
 
-        <h3>3.3 מבחן הכנסות לגמלת סיעוד</h3>
+        <h3 id="nu-33">3.3 מבחן הכנסות לגמלת סיעוד</h3>
         <table style="width:100%;border-collapse:collapse;margin:15px 0;">
           <thead><tr style="background:linear-gradient(135deg,#667eea,#764ba2);color:white;">
             <th style="padding:10px;border:1px solid #ddd;">מצב משפחתי</th>
@@ -1030,7 +1030,7 @@ const PAGE_DATA = {
           </tbody>
         </table>
 
-        <h3>3.4 אפשרויות מימוש הגמלה</h3>
+        <h3 id="nu-34">3.4 אפשרויות מימוש הגמלה</h3>
         <p><strong><a href="https://www.btl.gov.il/benefits/Long_Term_Care/Pages/money.aspx" target="_blank" rel="noopener noreferrer">אפשרות לקבל קצבה בכסף באתר הביטוח הלאומי</a></strong></p>
         <table style="width:100%;border-collapse:collapse;margin:15px 0;">
           <thead><tr style="background:linear-gradient(135deg,#667eea,#764ba2);color:white;">
@@ -1095,7 +1095,7 @@ const PAGE_DATA = {
         }).join('');
 
         return `
-        <h3>4.1 גמלת נכות כללית</h3>
+        <h3 id="di-41">4.1 גמלת נכות כללית</h3>
         <p>גמלת נכות כללית ניתנת למי שכושר השתכרותו נפגע עקב נכות רפואית.</p>
         <table style="width:100%;border-collapse:collapse;margin:15px 0;">
           <thead><tr style="background:linear-gradient(135deg,#667eea,#764ba2);color:white;">
@@ -1113,7 +1113,7 @@ const PAGE_DATA = {
         </table>
         <div class="conditions-box"><p>תוספת בן/בת זוג: בתנאי שהכנסותיו עד ₪${NII.disability_spouse_income_ceiling.value.toLocaleString('he-IL')} ברוטו בחודש ואינו מקבל קצבה אחרת.</p></div>
 
-        <h3>4.2 מעבר מנכות כללית לקצבת זקנה</h3>
+        <h3 id="di-42">4.2 מעבר מנכות כללית לקצבת זקנה</h3>
         <ul>
           <li>המעבר מתבצע <strong>באופן אוטומטי</strong> ללא צורך בהגשת תביעה.</li>
           <li>קצבת הזקנה לנכה לא תפחת מגמלת הנכות שקיבל לפני כן.</li>
@@ -1122,7 +1122,7 @@ const PAGE_DATA = {
           <li>תוספות בני משפחה ממשיכות על פי הזכאות.</li>
         </ul>
 
-        <h3>4.3 קצבת שירותים מיוחדים (שר"מ)</h3>
+        <h3 id="di-43">4.3 קצבת שירותים מיוחדים (שר"מ)</h3>
         <p>ניתנת למי שזקוק לעזרת הזולת באופן משמעותי עקב נכות.</p>
         <table style="width:100%;border-collapse:collapse;margin:15px 0;">
           <thead><tr style="background:linear-gradient(135deg,#667eea,#764ba2);color:white;">
@@ -1142,7 +1142,7 @@ const PAGE_DATA = {
           </tbody>
         </table>
 
-        <h3>4.4 גמלת ילד נכה</h3>
+        <h3 id="di-44">4.4 גמלת ילד נכה</h3>
         <table style="width:100%;border-collapse:collapse;margin:15px 0;">
           <thead><tr style="background:linear-gradient(135deg,#667eea,#764ba2);color:white;">
             <th style="padding:10px;border:1px solid #ddd;">סוג הגמלה</th>
@@ -1154,7 +1154,7 @@ const PAGE_DATA = {
           </tbody>
         </table>
 
-        <h3>4.5 מעבר משר"מ לגמלת סיעוד</h3>
+        <h3 id="di-45">4.5 מעבר משר"מ לגמלת סיעוד</h3>
         <div style="background:#fff3e0;border-right:4px solid #ff9800;padding:15px;margin:15px 0;border-radius:8px;">
           <p>⚠️ <strong>חשוב מאוד!</strong> מקבלי קצבת שירותים מיוחדים שמגיעים לגיל הזכאות לגמלת סיעוד עוברים לגמלת סיעוד:</p>
         </div>
@@ -1166,9 +1166,9 @@ const PAGE_DATA = {
           <li>לרוב מקבלי שר"מ בדרגה גבוהה מקבלים רמות סיעוד גבוהות.</li>
         </ul>
 
-        <h3>4.6 תקרות הכנסה לבעלי 100% נכות</h3>
+        <h3 id="di-46">4.6 תקרות הכנסה לבעלי 100% נכות</h3>
         <p><strong>כדי להתחיל ולקבל קצבת נכות הכנסתך כשכיר או כעצמאי צריכה להיות נמוכה מ-${NII.disability_work_start_ceiling.value.toLocaleString('he-IL')} ש"ח (החל ב- 01.01.2026) במשך 90 ימים רצופים במהלך 15 חודשים שקדמו למועד הגשת התביעה.</strong></p>
-        <h4>סכום הקצבה בחישוב סופי (2026)</h4>
+        <h4 id="di-46-amount">סכום הקצבה בחישוב סופי (2026)</h4>
         <p>הטבלה מציגה את סכום הקצבה בחישוב סופי לפי הכנסה מעבודה למקבלי קצבה בשיעור 100% או 75%, החל מ-01.01.2026.</p>
         <table style="width:100%;border-collapse:collapse;margin:15px 0;font-size:0.95em;">
           <thead><tr style="background:linear-gradient(135deg,#667eea,#764ba2);color:white;">
@@ -1209,7 +1209,7 @@ const PAGE_DATA = {
           <li>אין פיגור בתשלום דמי ביטוח לאומי של הנפטר</li>
         </ul>
 
-        <h4>א.1 — מי הוא 'מבוטח בביטוח שאירים'?</h4>
+        <h4 id="su-a1">א.1 — מי הוא 'מבוטח בביטוח שאירים'?</h4>
         <p>מבוטח בביטוח שאירים הוא תושב ישראל מגיל 18 ומעלה — מי שמרכז חייו בישראל. הדבר נבחן לפי מקום מגורים קבוע, מקום שהות המשפחה, מקום חינוך הילדים, מקום עבודה עיקרי ומקום לימודים.</p>
         <p><strong>גיל העלייה הקובע לביטוח שאירים — לנולדים מחוץ לישראל</strong></p>
         <p>מי שלא נולד בישראל יהיה מבוטח רק אם עלה לפני הגיל הקובע. לגבר — 62. לאישה — לפי טבלה:</p>
@@ -1243,7 +1243,7 @@ const PAGE_DATA = {
           <strong>⚠ הערה:</strong> מי שעלה לאחר הגיל הקובע — אינו מבוטח. אלמנה ויתומים עשויים להיות זכאים לגמלת שאירים מיוחדת (פרק ב׳.6).
         </div>
 
-        <h4>א.2 — תקופת אכשרה — חמישה מסלולים אפשריים</h4>
+        <h4 id="su-a2">א.2 — תקופת אכשרה — חמישה מסלולים אפשריים</h4>
         <p>הנפטר צריך לעמוד באחד בלבד מהמסלולים הבאים:</p>
         <table style="width:100%;border-collapse:collapse;margin:15px 0;">
           <thead><tr style="background:linear-gradient(135deg,#667eea,#764ba2);color:white;">
@@ -1269,7 +1269,7 @@ const PAGE_DATA = {
           <strong>❗ חשוב לדעת:</strong> אם האם נפטרה ולא השלימה תקופת אכשרה — רק הילדים יהיו זכאים, לא האב.
         </div>
 
-        <h4>א.3 — תקופות ביטוח לאישה נשואה שנפטרה</h4>
+        <h4 id="su-a3">א.3 — תקופות ביטוח לאישה נשואה שנפטרה</h4>
         <table style="width:100%;border-collapse:collapse;margin:15px 0;">
           <thead><tr style="background:linear-gradient(135deg,#667eea,#764ba2);color:white;">
             <th style="padding:10px;border:1px solid #ddd;">מצב האישה</th>
@@ -1287,7 +1287,7 @@ const PAGE_DATA = {
           </tbody>
         </table>
 
-        <h4>א.4 — מיהי אלמנה זכאית?</h4>
+        <h4 id="su-a4">א.4 — מיהי אלמנה זכאית?</h4>
         <ul>
           <li>הייתה נשואה לנפטר, או ידועה בציבור שלו וחיה עמו שנה לפחות (או חצי שנה אם הייתה בת 55+ ביום פטירתו)</li>
           <li>ילדה לנפטר ילד</li>
@@ -1304,7 +1304,7 @@ const PAGE_DATA = {
         </div>
         <p><strong>אלמן/ה ללא ילדים מתחת לגיל 40</strong> — זכאים למענק חד-פעמי בלבד, לא לקצבה חודשית.</p>
 
-        <h4>א.5 — מיהו אלמן זכאי? — תנאי הכנסה</h4>
+        <h4 id="su-a5">א.5 — מיהו אלמן זכאי? — תנאי הכנסה</h4>
         <ul>
           <li>היה נשוי לנפטרת, או ידוע בציבור שלה (שנה לפחות, או חצי שנה אם היה בן 55+)</li>
           <li>הכנסותיו אינן עולות על <strong>₪${NII.survivors_income_test_no_dependents.value.toLocaleString('he-IL')} לחודש</strong> (מ-01.01.2026)</li>
@@ -1313,7 +1313,7 @@ const PAGE_DATA = {
           <strong>⚠ הערה:</strong> אם לאלמן יש ילד העונה על הגדרת יתום — לא תיערך בדיקת הכנסות כלל.
         </div>
 
-        <h5>א.5.1 — אופן חישוב ההכנסות לאלמן</h5>
+        <h5 id="su-a5-1">א.5.1 — אופן חישוב ההכנסות לאלמן</h5>
         <p>מהכנסה מעבודה (שכיר/עצמאי), פנסיה, קופת גמל — מופחתים <strong>₪${NII.survivors_income_allowed_employed.value.toLocaleString('he-IL')}</strong> לפני בדיקת הסף:</p>
         <table style="width:100%;border-collapse:collapse;margin:15px 0;">
           <thead><tr style="background:linear-gradient(135deg,#667eea,#764ba2);color:white;">
@@ -1333,10 +1333,10 @@ const PAGE_DATA = {
           </tbody>
         </table>
 
-        <h5>א.5.2 — התקופה הנבדקת</h5>
+        <h5 id="su-a5-2">א.5.2 — התקופה הנבדקת</h5>
         <p>נלקחות בחשבון הכנסות 12 החודשים שקדמו לחודש פטירת האישה (כולל חודש הפטירה), או הכנסות שנת המס שבה נפטרה. לאחר הפטירה — הכנסות שנת המס השוטפת.</p>
 
-        <h4>א.6 — הגדרת 'יתום' — פירוט מלא</h4>
+        <h4 id="su-a6">א.6 — הגדרת 'יתום' — פירוט מלא</h4>
         <p>ילדו של הנפטר — כולל ילד חורג, מאומץ, ונכד שרק הנפטר פרנסו (לא כולל נישאים) — מוגדר יתום לפי הטבלה:</p>
         <table style="width:100%;border-collapse:collapse;margin:15px 0;">
           <thead><tr style="background:linear-gradient(135deg,#667eea,#764ba2);color:white;">
@@ -1361,7 +1361,7 @@ const PAGE_DATA = {
 
         <h3>פרק ב׳ — סכומי הקצבה (החל מ-01.01.2026)</h3>
 
-        <h4>ב.1 — קצבה לאלמן/ה</h4>
+        <h4 id="su-b1">ב.1 — קצבה לאלמן/ה</h4>
         <table style="width:100%;border-collapse:collapse;margin:15px 0;">
           <thead><tr style="background:linear-gradient(135deg,#667eea,#764ba2);color:white;">
             <th style="padding:10px;border:1px solid #ddd;">מקבל הקצבה</th>
@@ -1381,7 +1381,7 @@ const PAGE_DATA = {
           <strong>⚠ הערה:</strong> אין הגבלה במספר הילדים הזכאים — הסכום ממשיך לגדול עם כל ילד נוסף.
         </div>
 
-        <h4>ב.2 — קצבה ליתומים בנסיבות מיוחדות</h4>
+        <h4 id="su-b2">ב.2 — קצבה ליתומים בנסיבות מיוחדות</h4>
         <p>משולמת כאשר ההורה הנותר בחיים אינו זכאי לקצבה, או כשהילד התייתם משני הורים:</p>
         <table style="width:100%;border-collapse:collapse;margin:15px 0;">
           <thead><tr style="background:linear-gradient(135deg,#667eea,#764ba2);color:white;">
@@ -1395,7 +1395,7 @@ const PAGE_DATA = {
           </tbody>
         </table>
 
-        <h4>ב.3 — תוספת ותק</h4>
+        <h4 id="su-b3">ב.3 — תוספת ותק</h4>
         <p>מתווספת לקצבה הבסיסית לפי שנות הביטוח של הנפטר. חלה על אלמן/ה ויתומים. מקסימום — ${NII.seniority_bonus_max.value}%.</p>
         <table style="width:100%;border-collapse:collapse;margin:15px 0;">
           <thead><tr style="background:linear-gradient(135deg,#667eea,#764ba2);color:white;">
@@ -1413,18 +1413,18 @@ const PAGE_DATA = {
           <strong>⚠ הערה:</strong> יתומים זכאים לתוספת ותק רק אם הנפטר היה מבוטח שנה לפחות. שנת ביטוח מלאה = 12 חודשי ביטוח.
         </div>
 
-        <h4>ב.4 — תוספת דמי מחיה ליתומים</h4>
+        <h4 id="su-b4">ב.4 — תוספת דמי מחיה ליתומים</h4>
         <p>יתום שאינו מתגורר עם הורה המקבל קצבת שאירים — זכאי לתוספת דמי מחיה לכיסוי הוצאות מחיה שוטפות.</p>
 
-        <h4>ב.5 — תוספת השלמת הכנסה</h4>
+        <h4 id="su-b5">ב.5 — תוספת השלמת הכנסה</h4>
         <p>משולמת לפי חוק הבטחת הכנסה לאלמן/ה שהכנסתו/ה נמוכה. יש להגיש בקשה נפרדת.</p>
 
-        <h4>ב.6 — גמלת שאירים מיוחדת — לנפטר שלא היה מבוטח</h4>
+        <h4 id="su-b6">ב.6 — גמלת שאירים מיוחדת — לנפטר שלא היה מבוטח</h4>
         <p>משולמת לאלמן/ה וליתומים של תושב שעלה לאחר הגיל הקובע ולא היה מבוטח. הסכומים זהים לקצבה הרגילה — אך ללא תוספת ותק.</p>
 
         <h3>פרק ג׳ — מענקים חד-פעמיים</h3>
 
-        <h4>ג.1 — מענק שאירים</h4>
+        <h4 id="su-c1">ג.1 — מענק שאירים</h4>
         <p>תשלום חד-פעמי ששווה ל-36 קצבאות חודשיות. ישולם במקרים הבאים:</p>
         <ul>
           <li>אלמן/ה מתחת לגיל 40 ללא ילדים — מענק במקום קצבה</li>
@@ -1436,31 +1436,31 @@ const PAGE_DATA = {
         </div>
         <p><strong>מענק ששולם וקצבה שחודשה:</strong> אם הכנסות האלמן ירדו לאחר קבלת המענק — המענק ינוכה ב-100% מהקצבות החודשיות.</p>
 
-        <h4>ג.2 — מענק בר/בת מצווה</h4>
+        <h4 id="su-c2">ג.2 — מענק בר/בת מצווה</h4>
         <p>מענק חד-פעמי ליתום/ה בגיל 13 (בנים) / 12 (בנות). משולם על ידי משרד הרווחה.</p>
 
-        <h4>ג.3 — מענק לימודים</h4>
+        <h4 id="su-c3">ג.3 — מענק לימודים</h4>
         <p>מענק שנתי לכיסוי הוצאות שנת הלימודים — ציוד, ספרים, שכר לימוד. יש להגיש מדי שנה לפני תחילת הלימודים.</p>
 
-        <h4>ג.4 — מענק נישואים</h4>
+        <h4 id="su-c4">ג.4 — מענק נישואים</h4>
         <p>מענק חד-פעמי ליתום/ה שנישא/ת. הקצבה תפסק עם הנישואין. יש להגיש בסמוך לאחר הנישואים.</p>
 
         <h3>פרק ד׳ — תשלום הקצבה</h3>
 
-        <h4>ד.1 — מועד תחילת תשלום</h4>
+        <h4 id="su-d1">ד.1 — מועד תחילת תשלום</h4>
         <p>הקצבה משולמת מהחודש שלאחר הגשת התביעה. ניתן לקבל רטרואקטיבית עד 12 חודשים — בתנאי שהתביעה הוגשה תוך 12 חודשים מהפטירה.</p>
         <div style="background:#ffebee;border-right:4px solid #c62828;padding:12px 16px;border-radius:8px;margin:12px 0;">
           <strong>❗ חשוב לדעת:</strong> הגשה מאוחרת מ-12 חודשים — אובדן תשלומים רטרואקטיביים. הקצבה תחל רק ממועד הגשת התביעה.
         </div>
 
-        <h4>ד.2 — אופן התשלום</h4>
+        <h4 id="su-d2">ד.2 — אופן התשלום</h4>
         <ul>
           <li>העברה ישירה לחשבון הבנק של מקבל הקצבה</li>
           <li>מועד קבוע: ה-28 לכל חודש</li>
           <li>עדכון פרטי חשבון: btl.gov.il → שירות אישי</li>
         </ul>
 
-        <h4>ד.3 — ניכויים מהקצבה</h4>
+        <h4 id="su-d3">ד.3 — ניכויים מהקצבה</h4>
         <table style="width:100%;border-collapse:collapse;margin:15px 0;">
           <thead><tr style="background:linear-gradient(135deg,#667eea,#764ba2);color:white;">
             <th style="padding:10px;border:1px solid #ddd;">סוג הניכוי</th>
@@ -1476,23 +1476,23 @@ const PAGE_DATA = {
 
         <h3>פרק ה׳ — פקיעת הזכאות ומקרים מיוחדים</h3>
 
-        <h4>ה.1 — מתי פוקעת הקצבה?</h4>
+        <h4 id="su-e1">ה.1 — מתי פוקעת הקצבה?</h4>
         <ul>
           <li>האלמן/ה נישאו מחדש — הקצבה פוקעת, ניתן מענק נישואים חד-פעמי</li>
           <li>האלמן/ה שהה בחוץ לארץ מעל 3 חודשים — הקצבה מושהית עד לחזרה</li>
           <li>הילד הגיע לגיל הסף — הקצבה בגינו פוקעת</li>
         </ul>
 
-        <h4>ה.2 — קצבת שאירים וקצבת זקנה</h4>
+        <h4 id="su-e2">ה.2 — קצבת שאירים וקצבת זקנה</h4>
         <p>אלמן/ה שהגיע/ה לגיל פרישה — בדרך כלל יקבל/ת את הגבוהה מבין השתיים. קיים מסלול: קצבת זקנה מלאה + מחצית קצבת שאירים (<strong>₪${NII.survivors_spouse_half_with_pension.value.toLocaleString('he-IL')} לחודש</strong>).</p>
         <div style="background:#fff8e1;border-right:4px solid #f9a825;padding:12px 16px;border-radius:8px;margin:12px 0;">
           <strong>⚠ הערה:</strong> בדיקת כדאיות בין המסלולים חיונית — מומלץ להתייעץ עם יועץ ביטוח לאומי לפני הגשת תביעת זקנה.
         </div>
 
-        <h4>ה.3 — שוהה בחוץ לארץ</h4>
+        <h4 id="su-e3">ה.3 — שוהה בחוץ לארץ</h4>
         <p>שהייה מעל 3 חודשים מפסיקה את הקצבה לתקופת השהייה. עם החזרה — הקצבה מתחדשת. יש לדווח לביטוח לאומי על שהייה ממושכת.</p>
 
-        <h4>ה.4 — אפשרויות קצבה חלופיות</h4>
+        <h4 id="su-e4">ה.4 — אפשרויות קצבה חלופיות</h4>
         <ul>
           <li>קצבת הבטחת הכנסה — אם אין הכנסות</li>
           <li>קצבת נכות כללית — אם יש מוגבלות</li>
@@ -1500,7 +1500,7 @@ const PAGE_DATA = {
           <li>גמלת שאירים מיוחדת — לאלמן/ה שהנפטר לא היה מבוטח</li>
         </ul>
 
-        <h3>פרק ו׳ — הכשרה מקצועית ושיקום</h3>
+        <h3 id="su-f">פרק ו׳ — הכשרה מקצועית ושיקום</h3>
         <p>אלמן/ה זכאי/ת לשירותי שיקום מקצועי מהביטוח הלאומי:</p>
         <ul>
           <li>רכישת מקצוע חדש במסגרות הכשרה מוכרות</li>
@@ -1511,7 +1511,7 @@ const PAGE_DATA = {
 
         <h3>פרק ז׳ — הגשת התביעה</h3>
 
-        <h4>ז.1 — מסמכים נדרשים</h4>
+        <h4 id="su-g1">ז.1 — מסמכים נדרשים</h4>
         <table style="width:100%;border-collapse:collapse;margin:15px 0;">
           <thead><tr style="background:linear-gradient(135deg,#667eea,#764ba2);color:white;">
             <th style="padding:10px;border:1px solid #ddd;">מסמך</th>
@@ -1528,7 +1528,7 @@ const PAGE_DATA = {
           </tbody>
         </table>
 
-        <h4>ז.2 — דרכי הגשה</h4>
+        <h4 id="su-g2">ז.2 — דרכי הגשה</h4>
         <ul>
           <li>פנייה לסניף הביטוח הלאומי הקרוב</li>
           <li>הגשה אונליין: ps.btl.gov.il (שירות אישי)</li>
@@ -1536,7 +1536,7 @@ const PAGE_DATA = {
           <li>דרך עובד סוציאלי (שירות אישי לעו"ס)</li>
         </ul>
 
-        <h3>פרק ח׳ — זכויות נוספות בגופים אחרים</h3>
+        <h3 id="su-h">פרק ח׳ — זכויות נוספות בגופים אחרים</h3>
         <table style="width:100%;border-collapse:collapse;margin:15px 0;">
           <thead><tr style="background:linear-gradient(135deg,#667eea,#764ba2);color:white;">
             <th style="padding:10px;border:1px solid #ddd;">גוף</th>
@@ -1554,13 +1554,13 @@ const PAGE_DATA = {
 
         <h3>פרק ט׳ — מענק פטירה</h3>
 
-        <h4>1. מהו מענק פטירה?</h4>
+        <h4 id="su-i1">1. מהו מענק פטירה?</h4>
         <p>מענק פטירה הוא תשלום חד-פעמי ואחיד שמשלם המוסד לביטוח לאומי לשאירים של נפטר שקיבל קצבה מביטוח לאומי. מטרת המענק לסייע במימון הוצאות הלוויה והקבורה.</p>
 
         <h4>2. סכום המענק</h4>
-        <h5>מענק רגיל</h5>
+        <h5 id="su-i2a">מענק רגיל</h5>
         <p><strong>₪${NII.death_grant.value.toLocaleString('he-IL')}</strong> (החל מ-01.01.2026)</p>
-        <h5>מענק מוגדל – נפגעי עבודה</h5>
+        <h5 id="su-i2b">מענק מוגדל – נפגעי עבודה</h5>
         <p>במקרה שהנפטר היה מקבל קצבת נכות מעבודה ומתקיימים תנאים מסוימים, ישולם מענק מוגדל:</p>
         <ul>
           <li>סכום המענק המוגדל = <strong>60% מקצבת נכות מעבודה × 36</strong></li>
@@ -1571,7 +1571,7 @@ const PAGE_DATA = {
         <div style="background:#fff3e0;border-right:4px solid #ff9800;padding:12px 16px;border-radius:8px;margin:10px 0;">⚠️ המענק המוגדל בא <strong>במקום</strong> המענק הרגיל, לא בנוסף אליו.</div>
 
         <h4>3. מי זכאי?</h4>
-        <h5>א. קצבאות המזכות במענק</h5>
+        <h5 id="su-i3a">א. קצבאות המזכות במענק</h5>
         <table style="width:100%;border-collapse:collapse;margin:15px 0;">
           <thead><tr style="background:linear-gradient(135deg,#667eea,#764ba2);color:white;">
             <th style="padding:10px;border:1px solid #ddd;">קצבה</th>
@@ -1589,14 +1589,14 @@ const PAGE_DATA = {
             <tr><td style="padding:9px;border:1px solid #ddd;">קצבה לילד נכה</td><td style="padding:9px;border:1px solid #ddd;">המענק משולם להורים</td></tr>
           </tbody>
         </table>
-        <h5>ב. סדר עדיפויות בתשלום</h5>
+        <h5 id="su-i3b">ב. סדר עדיפויות בתשלום</h5>
         <ol>
           <li><strong>בן/בת זוג</strong> של הנפטר – בעדיפות ראשונה</li>
           <li><strong>ילד</strong> הנפטר (אם אין בן/בת זוג) – בתנאי שעונה על הגדרת "ילד" לפי חוק הביטוח הלאומי בתוך שנה מהפטירה</li>
           <li><strong>אפוטרופוס</strong> הילד, אם מונה לו אפוטרופוס</li>
           <li><strong>בני זוג מאותו מין</strong> – זכאים באותו אופן</li>
         </ol>
-        <h5>ג. הגדרת "ילד" לפי חוק הביטוח הלאומי</h5>
+        <h5 id="su-i3c">ג. הגדרת "ילד" לפי חוק הביטוח הלאומי</h5>
         <p>ילד זכאי הוא בן/בת (לרבות חורג, מאומץ, נכד שכל פרנסתו על המבוטח – פרט לנשואים) העונה על אחד מהתנאים:</p>
         <ul>
           <li>טרם מלאו לו <strong>${NII.child_disability_cutoff_age.value} שנים</strong></li>
@@ -1609,7 +1609,7 @@ const PAGE_DATA = {
         </ul>
 
         <h4>4. מקרים מיוחדים</h4>
-        <h5>א. פטירת שני בני זוג בהפרש זמן קצר</h5>
+        <h5 id="su-i4a">א. פטירת שני בני זוג בהפרש זמן קצר</h5>
         <p>אם שני בני הזוג נפטרו ולא שולם מענק פטירה לאחד מהם, ישולם המענק לאדם שנשא בעיקר הוצאות המצבה, בתנאי שמתקיימים <strong>כל</strong> אלה:</p>
         <ul>
           <li>בן/בת הזוג השני/ה היה זכאי למענק פטירה עבור בן זוגו שנפטר ולא קיבל</li>
@@ -1617,13 +1617,13 @@ const PAGE_DATA = {
           <li>אין לבן/בת הזוג הראשון/ה ילד כהגדרתו בחוק</li>
         </ul>
         <div style="background:#fff3e0;border-right:4px solid #ff9800;padding:12px 16px;border-radius:8px;margin:10px 0;">⚠️ במקרה זה המענק <strong>אינו</strong> משולם אוטומטית – יש להגיש תביעה.</div>
-        <h5>ב. קצבת זיקנה עם השלמת הכנסה</h5>
+        <h5 id="su-i4b">ב. קצבת זיקנה עם השלמת הכנסה</h5>
         <p>מקבל קצבת זיקנה עם השלמת הכנסה שבן/בת זוגו נפטר/ה, זכאי גם הוא/היא למענק פטירה.</p>
 
         <h4>5. אופן קבלת המענק</h4>
-        <h5>א. תשלום אוטומטי</h5>
+        <h5 id="su-i5a">א. תשלום אוטומטי</h5>
         <p>בדרך כלל המענק משולם <strong>אוטומטית</strong> לחשבון הבנק של הזכאי (בהתאם לפרטים הרשומים בביטוח לאומי). אין צורך להגיש תביעה.</p>
-        <h5>ב. כאשר נדרשת הגשת תביעה</h5>
+        <h5 id="su-i5b">ב. כאשר נדרשת הגשת תביעה</h5>
         <p>בכל המקרים הבאים יש להגיש טופס <strong>בל/תביעה לתשלום מענק פטירה ו/או יתרת קצבה</strong>:</p>
         <ul>
           <li>המענק לא שולם אוטומטית</li>
@@ -1632,7 +1632,7 @@ const PAGE_DATA = {
         </ul>
         <p>את הטופס יש להגיש לסניף ביטוח לאומי הסמוך למקום המגורים.</p>
 
-        <h4>6. מגבלות והיעדר זכאות</h4>
+        <h4 id="su-i6">6. מגבלות והיעדר זכאות</h4>
         <table style="width:100%;border-collapse:collapse;margin:15px 0;">
           <thead><tr style="background:linear-gradient(135deg,#667eea,#764ba2);color:white;">
             <th style="padding:10px;border:1px solid #ddd;">מצב</th>
@@ -1647,7 +1647,7 @@ const PAGE_DATA = {
           </tbody>
         </table>
 
-        <h4>7. מה עוד כדאי לדעת?</h4>
+        <h4 id="su-i7">7. מה עוד כדאי לדעת?</h4>
         <ul>
           <li>המענק <strong>אינו חייב במס הכנסה</strong></li>
           <li>אין קשר בין מענק הפטירה לקצבת שאירים – <strong>ניתן לקבל את שניהם</strong></li>
@@ -1658,13 +1658,13 @@ const PAGE_DATA = {
 
         <h3>פרק י׳ — ערעור ונקודות לאנשי מקצוע</h3>
 
-        <h4>י.1 — ערעור על החלטת הביטוח הלאומי</h4>
+        <h4 id="su-j1">י.1 — ערעור על החלטת הביטוח הלאומי</h4>
         <ul>
           <li>שלב א׳ — ועדת עררים פנימית של הביטוח הלאומי (ללא עלות)</li>
           <li>שלב ב׳ — בית הדין לעבודה (ניתן להגיש תוך 12 חודשים)</li>
         </ul>
 
-        <h4>י.2 — נקודות בדיקה חיוניות לאנשי מקצוע</h4>
+        <h4 id="su-j2">י.2 — נקודות בדיקה חיוניות לאנשי מקצוע</h4>
         <ul>
           <li>האם הנפטר עלה לישראל לפני הגיל הקובע? (ראה טבלה בפרק א׳.1)</li>
           <li>בדיקת 5 מסלולי האכשרה — מסלול 5 עשוי להכשיר עולים שאינם עומדים בשאר</li>
@@ -1721,14 +1721,14 @@ const PAGE_DATA = {
             + '</div>';
         })()}
 
-        <h3>6.1 משך התשלום</h3>
+        <h3 id="tg-61">6.1 משך התשלום</h3>
         <ul>
           <li>המענק משולם לתקופה של <strong>4 חודשים לכל היותר</strong>.</li>
           <li>התשלום מתחיל מהחודש שבו מלאו לאישה <strong>62 שנים</strong>.</li>
           <li>התנאים נבדקים בכל אחד מ-4 חודשי הזכאות.</li>
         </ul>
 
-        <h3>6.2 תנאי זכאות למענק</h3>
+        <h3 id="tg-62">6.2 תנאי זכאות למענק</h3>
         <ul>
           <li>אין לך הכנסות מעבודה (כשכירה או כעצמאית) מגיל ${NII.women_retirement_age_r7.value} ועד גיל ${NII.women_retirement_age_r8.value}.</li>
           <li>הכנסתך מפנסיה, מתגמולים או מקצבאות אינה עולה על <strong>₪${NII.transition_grant_income_allowed.value.toLocaleString('he-IL')} (החל ב-01.01.2026) לחודש</strong>.</li>
@@ -1736,14 +1736,14 @@ const PAGE_DATA = {
           <li>צברת תקופת ביטוח כנדרש לקבלת קצבת אזרח ותיק (60 חודשים מגיל 52 או 144 חודשים מגיל 18) או שאת פטורה מצבירת תקופת ביטוח.</li>
         </ul>
 
-        <h3>6.3 תנאים לשלילת זכאות</h3>
+        <h3 id="tg-63">6.3 תנאים לשלילת זכאות</h3>
         <ul>
           <li>מי שמקבלת קצבת הבטחת הכנסה, דמי מזונות, קצבת נכות כללית או דמי אבטלה. <strong>שימי לב — תנאי זה נבדק בכל חודש מ-4 חודשי הזכאות.</strong></li>
           <li>מי שמקבלת דמי אבטלה מוגדלים, לתקופה של 300 ימים.</li>
           <li>מי ששוהה בחופשה ללא תשלום (חל"ת) מרצון.</li>
         </ul>
 
-        <h3>6.4 סכום המענק</h3>
+        <h3 id="tg-64">6.4 סכום המענק</h3>
         <table style="width:100%;border-collapse:collapse;margin:15px 0;">
           <thead><tr style="background:linear-gradient(135deg,#667eea,#764ba2);color:white;">
             <th style="padding:10px;border:1px solid #ddd;">שנת לידה</th>
@@ -1759,7 +1759,7 @@ const PAGE_DATA = {
           </tbody>
         </table>
 
-        <h3>6.5 הגשת בקשה למענק</h3>
+        <h3 id="tg-65">6.5 הגשת בקשה למענק</h3>
         <ul>
           <li><strong>מועד הגשה:</strong> ניתן להגיש את הבקשה עד גיל 64.</li>
           <li>✅ מילוי טופס בסניף מחלקת אזרח ותיק.</li>
@@ -1777,7 +1777,7 @@ const PAGE_DATA = {
         <a href="https://www.btl.gov.il/benefits/Long_Term_Care/Pages/nitzoleShoaa.aspx" target="_blank" class="link-item">🔗 ניצולי שואה — תוספת שעות סיעוד — BTL</a>
         <a href="https://www.kolzchut.org.il/he/%D7%96%D7%9B%D7%95%D7%99%D7%95%D7%AA_%D7%A0%D7%99%D7%A6%D7%95%D7%9C%D7%99_%D7%A9%D7%95%D7%90%D7%94" target="_blank" class="link-item">🔗 פורטל זכויות ניצולי השואה — כל זכות</a>
 
-        <h3>7.1 מי נחשב ניצול שואה?</h3>
+        <h3 id="hs-71">7.1 מי נחשב ניצול שואה?</h3>
         <ul>
           <li>יהודי שהיה בגטו, במחנה ריכוז, במחבוא או בהסתתרות בתקופת השואה.</li>
           <li>יהודי שנמלט מאזור שהיה תחת שלטון נאצי.</li>
@@ -1785,7 +1785,7 @@ const PAGE_DATA = {
           <li>יהודי שהיה בארצות שסבלו מרדיפות נאציות (צפון אפריקה, עיראק וכו').</li>
         </ul>
 
-        <h3>7.2 קצבאות ומענקים</h3>
+        <h3 id="hs-72">7.2 קצבאות ומענקים</h3>
         <ul>
           <li><strong>מענק שנתי:</strong> ₪${NII.holocaust_annual_grant.value.toLocaleString('he-IL')} (למי שלא מקבלים רנטה חודשית).</li>
           <li><strong>רנטה גרמנית (BEG):</strong> תשלום חודשי משתנה + תוספת 100–400 יורו.</li>
@@ -1797,7 +1797,7 @@ const PAGE_DATA = {
 
         <h3>7.3 תוספת שעות סיעוד לניצולי שואה</h3>
 
-        <h4>תנאי הזכאות לתוספת ${NII.holocaust_nursing_hours_count.value} שעות סיעוד שבועיות</h4>
+        <h4 id="hs-73a">תנאי הזכאות לתוספת ${NII.holocaust_nursing_hours_count.value} שעות סיעוד שבועיות</h4>
         <ul>
           <li>הכרה כניצול שואה ע"י: הרשות לזכויות ניצולי השואה / ועידת התביעות / BEG.</li>
           <li>זכאות לגמלת סיעוד מלאה (לא מופחתת) מהביטוח הלאומי.</li>
@@ -1808,7 +1808,7 @@ const PAGE_DATA = {
           <li><strong>נקודות תלות:</strong> מינימום 2 נקודות במבחן ADL.</li>
         </ul>
 
-        <h4>אופן קבלת התוספת</h4>
+        <h4 id="hs-73b">אופן קבלת התוספת</h4>
         <div class="conditions-box">
           <p><strong>מימוש אוטומטי — אין צורך להגיש בקשה!</strong> הביטוח הלאומי מעביר פרטי הזכאים לקרן מדי חודש, והקרן פונה לזכאי לתיאום השירות.</p>
         </div>
@@ -1817,7 +1817,7 @@ const PAGE_DATA = {
           <li><strong>תשלום בכסף:</strong> ₪${NII.holocaust_nursing_hours_9_value.value.toLocaleString('he-IL')} לחודש (רק למי שמקבל גמלה בכסף מהביטוח הלאומי).</li>
         </ul>
 
-        <h4>תוספת חלקית לניצולים עם פחות נקודות</h4>
+        <h4 id="hs-73c">תוספת חלקית לניצולים עם פחות נקודות</h4>
         <table style="width:100%;border-collapse:collapse;margin:15px 0;">
           <thead><tr style="background:linear-gradient(135deg,#667eea,#764ba2);color:white;">
             <th style="padding:10px;border:1px solid #ddd;">נקודות תלות</th>
@@ -1834,21 +1834,21 @@ const PAGE_DATA = {
         <h3>7.4 סיוע סיעודי קצר מועד (סול"ם)</h3>
         <p>לניצולי שואה המתגוררים בקהילה, ללא חוק סיעוד, ונמצאים במצב חולי/משבר:</p>
 
-        <h4>לאחר אשפוז</h4>
+        <h4 id="hs-74a">לאחר אשפוז</h4>
         <ul>
           <li>עד 50 שעות סיעוד למשך חודשיים.</li>
           <li>הגשת בקשה דרך עו"ס בבית החולים בלבד.</li>
           <li>תנאי: הכנסה עד ₪${NII.holocaust_solem_income_ceiling.value.toLocaleString('he-IL')} (לא כולל רנטות).</li>
         </ul>
 
-        <h4>סול"ם בקהילה (ללא אשפוז)</h4>
+        <h4 id="hs-74b">סול"ם בקהילה (ללא אשפוז)</h4>
         <ul>
           <li>עד 50 שעות למשך חודשיים.</li>
           <li>הגשת בקשה דרך עו"ס בקופת חולים.</li>
           <li>פעם אחת בשנה לכל ניצול.</li>
         </ul>
 
-        <h3>7.5 הטבות נוספות לניצולי שואה</h3>
+        <h3 id="hs-75">7.5 הטבות נוספות לניצולי שואה</h3>
         <ul>
           <li>✅ תרופות ללא תשלום</li>
           <li>✅ טיפול פסיכולוגי ללא תשלום</li>
@@ -1863,7 +1863,7 @@ const PAGE_DATA = {
           <li>✅ סיוע בתשלום שכר דירה</li>
         </ul>
 
-        <h3>7.6 פרטי קשר — ניצולי שואה</h3>
+        <h3 id="hs-76">7.6 פרטי קשר — ניצולי שואה</h3>
         <ul>
           <li><strong>הקרן לרווחת נפגעי השואה:</strong> 03-6090866</li>
           <li><strong>ועידת התביעות (לגמלה בכסף):</strong> 03-5194401</li>
@@ -1878,7 +1878,7 @@ const PAGE_DATA = {
     // ─────────────────────────────────────────────────────────────────────
     additional_benefits: {
       content: `
-        <h3>8.1 הנחות בארנונה</h3>
+        <h3 id="ab-81">8.1 הנחות בארנונה</h3>
         <ul>
           <li><strong>גיל 70+:</strong> הנחה של 25% (משתנה לפי רשות מקומית).</li>
           <li><strong>ניצולי שואה:</strong> הנחות נוספות.</li>
@@ -1886,21 +1886,21 @@ const PAGE_DATA = {
           <li>יש לפנות למחלקת הגבייה ברשות המקומית.</li>
         </ul>
 
-        <h3>8.2 הנחות במס הכנסה</h3>
+        <h3 id="ab-82">8.2 הנחות במס הכנסה</h3>
         <ul>
           <li><strong>גיל 60+:</strong> 1 נקודת זיכוי נוספת.</li>
           <li><strong>ניצולי שואה:</strong> 3 נקודות זיכוי נוספות.</li>
           <li>פטור ממס על קצבת זקנה (עד תקרה מסוימת).</li>
         </ul>
 
-        <h3>8.3 הנחות בתחבורה ציבורית</h3>
+        <h3 id="ab-83">8.3 הנחות בתחבורה ציבורית</h3>
         <ul>
           <li><strong>גיל 75+:</strong> נסיעות חינם בתחבורה ציבורית.</li>
           <li><strong>גיל 62–74:</strong> הנחה של 50% ברכבת ישראל.</li>
           <li><strong>ניצולי שואה:</strong> נסיעות חינם בכל גיל.</li>
         </ul>
 
-        <h3>8.4 הנחות בתרבות ונופש</h3>
+        <h3 id="ab-84">8.4 הנחות בתרבות ונופש</h3>
         <ul>
           <li>כניסה חינם או במחיר מופחת למוזיאונים.</li>
           <li>הנחות בבריכות שחייה ומתקני ספורט.</li>
@@ -1908,7 +1908,7 @@ const PAGE_DATA = {
           <li>מלונות ובתי הבראה — מחירים מיוחד��ם לאזרחים ותיקים.</li>
         </ul>
 
-        <h3>8.5 שירותי בריאות</h3>
+        <h3 id="ab-85">8.5 שירותי בריאות</h3>
         <ul>
           <li>פטור מתשלום השתתפות עצמית (למקבלי השלמת הכנסה).</li>
           <li>סל תרופות מורחב לאזרחים ותיקים.</li>
@@ -1916,7 +1916,7 @@ const PAGE_DATA = {
           <li>שירותי פיזיותרפיה ושיקום.</li>
         </ul>
 
-        <h3>8.6 שירותים חברתיים</h3>
+        <h3 id="ab-86">8.6 שירותים חברתיים</h3>
         <ul>
           <li>מועדוני אזרחים ותיקים.</li>
           <li>מרכזי יום.</li>
@@ -1952,7 +1952,7 @@ const PAGE_DATA = {
           </tbody>
         </table>
 
-        <h3>כללי מפתח</h3>
+        <h3 id="in-key">כללי מפתח</h3>
         <ul>
           <li>✅ <strong>קצבת אזרח ותיק</strong> נספרת כהכנסה במבחן להשלמת הכנסה.</li>
           <li>✅ <strong>גמלת סיעוד</strong> אינה נספרת כהכנסה.</li>
@@ -1986,7 +1986,7 @@ const PAGE_DATA = {
           <li><strong>מוקד ניצולי שואה:</strong> *6050 שלוחה 9</li>
         </ul>
 
-        <h3>10.2 ארגונים נוספים</h3>
+        <h3 id="co-102">10.2 ארגונים נוספים</h3>
         <ul>
           <li><strong>קול זכות (מידע על זכויות):</strong> <a href="https://www.kolzchut.org.il" target="_blank" rel="noopener" style="color:#2E5B8A;">www.kolzchut.org.il</a></li>
           <li><strong>הרשות לזכויות ניצולי השואה:</strong> *5105 או 03-5682651</li>
@@ -1997,7 +1997,7 @@ const PAGE_DATA = {
           <li><strong>אשל — האיגוד הארצי לזקן:</strong> 03-6874714 | <a href="https://www.eshelnet.org.il" target="_blank" rel="noopener" style="color:#2E5B8A;">www.eshelnet.org.il</a></li>
         </ul>
 
-        <h3>10.3 הערות חשובות</h3>
+        <h3 id="co-103">10.3 הערות חשובות</h3>
         <ul>
           <li>כל הסכומים מעודכנים לינואר 2026 ועשויים להשתנות במהלך השנה.</li>
           <li>מומלץ לבדוק את הזכאות האישית במחשבונים באתר הביטוח הלאומי.</li>

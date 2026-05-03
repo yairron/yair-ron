@@ -17,23 +17,328 @@
     // ─── Menu data (all links relative to BTL/) ───────────────────────────────
     const MENU = [
         { icon: '🏠', text: 'דף ראשי',                   href: bp + 'index.html' },
-        { icon: '🌟', text: 'זכויות אזרחים ותיקים',    href: bp + 'senior_rights/senior_rights_full.html' },
         {
-            icon: '🌍', text: 'זכויות עולים חדשים', children: [
-                { icon: '🌍', text: 'זכויות עולים חדשים',      href: bp + 'new_immigrants/new_immigrants_full.html' },
-                { icon: '👴', text: 'גמלת זיקנה מיוחדת',       href: bp + 'new_immigrants/gimlat_zikna_meyuchedet.html' },
+            icon: '🌟', text: 'זכויות אזרחים ותיקים', children: [
+                { text: '👴 קצבת אזרח ותיק', children: [
+                    { text: '1.1 גילאי פרישה וזכאות',                              href: bp + 'senior_rights/senior_rights_full.html#op-11' },
+                    { text: '1.2 תקופת אכשרה', children: [
+                        { text: 'הגדרת "מבוטח" ותשלום דמי ביטוח',                href: bp + 'senior_rights/senior_rights_full.html#op-12a' },
+                        { text: 'תקופות הנמנות כתקופת אכשרה',                    href: bp + 'senior_rights/senior_rights_full.html#op-12b' },
+                        { text: 'שלוש חלופות לצבירת אכשרה',                      href: bp + 'senior_rights/senior_rights_full.html#op-12c' },
+                        { text: 'פטור מתקופת אכשרה',                             href: bp + 'senior_rights/senior_rights_full.html#op-12d' },
+                        { text: 'סטטוס עקרת בית',                                href: bp + 'senior_rights/senior_rights_full.html#op-12e' },
+                        { text: 'סטטוס רווקה / גרושה / אלמנה',                   href: bp + 'senior_rights/senior_rights_full.html#op-12f' },
+                        { text: 'קצבה מיוחדת (למי שלא צבר אכשרה)',               href: bp + 'senior_rights/senior_rights_full.html#op-12g' },
+                        { text: 'נקודות בדיקה חשובות לאכשרה',                    href: bp + 'senior_rights/senior_rights_full.html#op-12h' },
+                    ]},
+                    { text: '1.3 מבחן הכנסות', children: [
+                        { text: 'א. הכנסה רק מעבודה', children: [
+                            { text: '1. יחיד',                                    href: bp + 'senior_rights/senior_rights_full.html#op-13a1' },
+                            { text: '2. נשוי/ה — ב"ז עונה ואינו/ה מקבל/ת קצבה', href: bp + 'senior_rights/senior_rights_full.html#op-13a2' },
+                            { text: '3. שני בני הזוג זכאים לקצבה',              href: bp + 'senior_rights/senior_rights_full.html#op-13a3' },
+                        ]},
+                        { text: 'ב. הכנסה רק מנכסים', children: [
+                            { text: '1. יחיד — הכנסה מנכסים',                    href: bp + 'senior_rights/senior_rights_full.html#op-13b1' },
+                            { text: '2א. נשוי/ה — ב"ז ואינו/ה מקבל/ת קצבה',     href: bp + 'senior_rights/senior_rights_full.html#op-13b2a' },
+                            { text: '2ב. נשוי/ה — ב"ז ומקבל/ת קצבה',             href: bp + 'senior_rights/senior_rights_full.html#op-13b2b' },
+                            { text: '3. שני בני הזוג זכאים — מנכסים',            href: bp + 'senior_rights/senior_rights_full.html#op-13b3' },
+                        ]},
+                        { text: 'ג. הכנסה משולבת (עבודה + נכסים)',                href: bp + 'senior_rights/senior_rights_full.html#op-13c' },
+                        { text: 'ד. מה נחשב / לא נחשב הכנסה', children: [
+                            { text: '✅ נחשב הכנסה',                              href: bp + 'senior_rights/senior_rights_full.html#op-13d1' },
+                            { text: '❌ לא נחשב הכנסה',                           href: bp + 'senior_rights/senior_rights_full.html#op-13d2' },
+                        ]},
+                        { text: 'ה. תוספת דחייה',                                 href: bp + 'senior_rights/senior_rights_full.html#op-13e' },
+                        { text: 'ו. הגדרת בן/ת זוג לצורך התוספת',                href: bp + 'senior_rights/senior_rights_full.html#op-13f' },
+                    ]},
+                    { text: '1.4 סכומי הקצבה הבסיסית 2026',                       href: bp + 'senior_rights/senior_rights_full.html#op-14' },
+                    { text: '1.5 תוספת ותק',                                      href: bp + 'senior_rights/senior_rights_full.html#op-15' },
+                    { text: '1.6 תוספת דחיית קצבה',                               href: bp + 'senior_rights/senior_rights_full.html#op-16' },
+                    { text: '1.7 תשלום רטרואקטיבי',                               href: bp + 'senior_rights/senior_rights_full.html#op-17' },
+                    { text: '1.8 דוגמאות חישוב', children: [
+                        { text: 'דוגמה 1: יחיד עם קצבה חלקית',                   href: bp + 'senior_rights/senior_rights_full.html#op-18a' },
+                        { text: 'דוגמה 2: זוג שניהם זכאים',                      href: bp + 'senior_rights/senior_rights_full.html#op-18b' },
+                        { text: 'דוגמה 3: יחיד עם בן/בת זוג שאינם זכאים',       href: bp + 'senior_rights/senior_rights_full.html#op-18c' },
+                        { text: 'דוגמה 4: יחיד עם בן/בת זוג שעובד',             href: bp + 'senior_rights/senior_rights_full.html#op-18d' },
+                        { text: 'דוגמה 5: גבר עם ותק מקסימלי ודחיית קצבה',     href: bp + 'senior_rights/senior_rights_full.html#op-18e' },
+                    ]},
+                ]},
+                { text: '💰 גמלת השלמת הכנסה', children: [
+                    { text: 'תנאי זכאות בסיסיים', children: [
+                        { text: 'א. קצבת זיקנה (אזרח ותיק)',                     href: bp + 'senior_rights/senior_rights_full.html#is-cond-a' },
+                        { text: 'ב. גמלת שאירים',                                 href: bp + 'senior_rights/senior_rights_full.html#is-cond-b' },
+                    ]},
+                    { text: 'זכאות זוגית — קצבת זיקנה בלבד', children: [
+                        { text: 'א. שני בני הזוג זכאים',                          href: bp + 'senior_rights/senior_rights_full.html#is-couple-a' },
+                        { text: 'ב. רק אחד מבני הזוג זכאי',                      href: bp + 'senior_rights/senior_rights_full.html#is-couple-b' },
+                    ]},
+                    { text: 'סכומים מירביים קצבת זיקנה + השלמת הכנסה',           href: bp + 'senior_rights/senior_rights_full.html#is-max-oldage' },
+                    { text: 'סכומים מירביים גמלת שאירים + השלמת הכנסה',         href: bp + 'senior_rights/senior_rights_full.html#is-max-survivors' },
+                    { text: 'תקרות הכנסה וחישוב זכאות', children: [
+                        { text: '🧮 מחשבון זכאות להשלמת הכנסה',                 href: bp + 'senior_rights/senior_rights_full.html#is-calculator' },
+                        { text: '💰 חישוב הכנסה רעיונית מנכסים פיננסיים',       href: bp + 'senior_rights/senior_rights_full.html#is-imputed' },
+                        { text: 'בעלות על רכב',                                  href: bp + 'senior_rights/senior_rights_full.html#is-vehicle' },
+                    ]},
+                    { text: 'דוגמאות לחישוב השלמת הכנסה', children: [
+                        { text: 'דוגמה 1 — קצבת זיקנה, יחיד',                    href: bp + 'senior_rights/senior_rights_full.html#is-ex1' },
+                        { text: 'דוגמה 2 — קצבת זיקנה, זוג',                     href: bp + 'senior_rights/senior_rights_full.html#is-ex2' },
+                        { text: 'דוגמה 3 — גמלת שאירים',                         href: bp + 'senior_rights/senior_rights_full.html#is-ex3' },
+                    ]},
+                    { text: '✈️ השלמת הכנסה ויציאה לחו"ל', children: [
+                        { text: '📋 פירוט מגבלות יציאה לחו"ל',                  href: bp + 'senior_rights/senior_rights_full.html#is-abroad-details' },
+                        { text: '📊 סיכום תקופות שהייה בחו"ל',                  href: bp + 'senior_rights/senior_rights_full.html#is-abroad-summary' },
+                        { text: '🏥 מקרים מיוחדים בחו"ל',                       href: bp + 'senior_rights/senior_rights_full.html#is-abroad-special' },
+                        { text: '👫 בני זוג',                                     href: bp + 'senior_rights/senior_rights_full.html#is-abroad-couple' },
+                        { text: '🏠 הגדרת "תושב"',                               href: bp + 'senior_rights/senior_rights_full.html#is-abroad-resident' },
+                        { text: '✅ רשימת פעולות לפני יציאה לחו"ל',             href: bp + 'senior_rights/senior_rights_full.html#is-abroad-checklist' },
+                        { text: '📩 דרישת החזר — יציאה לחו"ל',                  href: bp + 'senior_rights/senior_rights_full.html#is-abroad-repayment' },
+                    ]},
+                    { text: '📋 חובת דיווח על שינויים', children: [
+                        { text: '⏱ חובת הדיווח — הכלל הבסיסי',                  href: bp + 'senior_rights/senior_rights_full.html#is-report-rule' },
+                        { text: '📋 מה חייבים לדווח',                            href: bp + 'senior_rights/senior_rights_full.html#is-report-what' },
+                        { text: '🚫 נושאים שאין צורך לדווח',                     href: bp + 'senior_rights/senior_rights_full.html#is-report-exempt' },
+                        { text: '💰 בעת שינוי כלכלי',                            href: bp + 'senior_rights/senior_rights_full.html#is-report-financial' },
+                        { text: '👨‍👩‍👧 בעת שינוי אישי/משפחתי',                      href: bp + 'senior_rights/senior_rights_full.html#is-report-personal' },
+                        { text: '📩 דרישת החזר — חובת דיווח',                    href: bp + 'senior_rights/senior_rights_full.html#is-report-repayment' },
+                    ]},
+                    { text: '🎁 הטבות נלוות להשלמת הכנסה',                        href: bp + 'senior_rights/senior_rights_full.html#is-benefits' },
+                ]},
+                { text: '❤️ גמלת סיעוד', children: [
+                    { text: '3.1 תנאי זכאות',                                     href: bp + 'senior_rights/senior_rights_full.html#nu-31' },
+                    { text: '3.2 רמות גמלת הסיעוד 2026',                          href: bp + 'senior_rights/senior_rights_full.html#nu-32' },
+                    { text: '3.3 מבחן הכנסות לגמלת סיעוד',                        href: bp + 'senior_rights/senior_rights_full.html#nu-33' },
+                    { text: '3.4 אפשרויות מימוש הגמלה',                           href: bp + 'senior_rights/senior_rights_full.html#nu-34' },
+                ]},
+                { text: '♿ גמלת נכות כללית ושר"מ', children: [
+                    { text: '4.1 גמלת נכות כללית',                                href: bp + 'senior_rights/senior_rights_full.html#di-41' },
+                    { text: '4.2 מעבר מנכות לקצבת זקנה',                          href: bp + 'senior_rights/senior_rights_full.html#di-42' },
+                    { text: '4.3 קצבת שירותים מיוחדים (שר"מ)',                     href: bp + 'senior_rights/senior_rights_full.html#di-43' },
+                    { text: '4.4 גמלת ילד נכה',                                   href: bp + 'senior_rights/senior_rights_full.html#di-44' },
+                    { text: '4.5 מעבר משר"מ לגמלת סיעוד',                         href: bp + 'senior_rights/senior_rights_full.html#di-45' },
+                    { text: '4.6 תקרות הכנסה לבעלי 100% נכות', children: [
+                        { text: 'סכום הקצבה בחישוב סופי',                          href: bp + 'senior_rights/senior_rights_full.html#di-46-amount' },
+                    ]},
+                ]},
+                { text: '🕊️ קצבת שאירים ומענק פטירה', children: [
+                    { text: 'פרק א׳ — תנאי הזכאות המלאים', children: [
+                        { text: 'א.1 — מי הוא מבוטח בביטוח שאירים?',              href: bp + 'senior_rights/senior_rights_full.html#su-a1' },
+                        { text: 'א.2 — תקופת אכשרה',                               href: bp + 'senior_rights/senior_rights_full.html#su-a2' },
+                        { text: 'א.3 — תקופות ביטוח לאישה נשואה שנפטרה',          href: bp + 'senior_rights/senior_rights_full.html#su-a3' },
+                        { text: 'א.4 — מיהי אלמנה זכאית?',                        href: bp + 'senior_rights/senior_rights_full.html#su-a4' },
+                        { text: 'א.5 — מיהו אלמן זכאי?', children: [
+                            { text: 'א.5.1 — חישוב ההכנסות לאלמן',                href: bp + 'senior_rights/senior_rights_full.html#su-a5-1' },
+                            { text: 'א.5.2 — התקופה הנבדקת',                      href: bp + 'senior_rights/senior_rights_full.html#su-a5-2' },
+                        ]},
+                        { text: 'א.6 — הגדרת יתום',                                href: bp + 'senior_rights/senior_rights_full.html#su-a6' },
+                    ]},
+                    { text: 'פרק ב׳ — סכומי הקצבה', children: [
+                        { text: 'ב.1 — קצבה לאלמן/ה',                              href: bp + 'senior_rights/senior_rights_full.html#su-b1' },
+                        { text: 'ב.2 — קצבה ליתומים בנסיבות מיוחדות',              href: bp + 'senior_rights/senior_rights_full.html#su-b2' },
+                        { text: 'ב.3 — תוספת ותק',                                 href: bp + 'senior_rights/senior_rights_full.html#su-b3' },
+                        { text: 'ב.4 — תוספת דמי מחיה ליתומים',                    href: bp + 'senior_rights/senior_rights_full.html#su-b4' },
+                        { text: 'ב.5 — תוספת השלמת הכנסה',                         href: bp + 'senior_rights/senior_rights_full.html#su-b5' },
+                        { text: 'ב.6 — גמלת שאירים מיוחדת',                        href: bp + 'senior_rights/senior_rights_full.html#su-b6' },
+                    ]},
+                    { text: 'פרק ג׳ — מענקים חד-פעמיים', children: [
+                        { text: 'ג.1 — מענק שאירים',                               href: bp + 'senior_rights/senior_rights_full.html#su-c1' },
+                        { text: 'ג.2 — מענק בר/בת מצווה',                          href: bp + 'senior_rights/senior_rights_full.html#su-c2' },
+                        { text: 'ג.3 — מענק לימודים',                              href: bp + 'senior_rights/senior_rights_full.html#su-c3' },
+                        { text: 'ג.4 — מענק נישואים',                              href: bp + 'senior_rights/senior_rights_full.html#su-c4' },
+                    ]},
+                    { text: 'פרק ד׳ — תשלום הקצבה', children: [
+                        { text: 'ד.1 — מועד תחילת תשלום',                           href: bp + 'senior_rights/senior_rights_full.html#su-d1' },
+                        { text: 'ד.2 — אופן התשלום',                                href: bp + 'senior_rights/senior_rights_full.html#su-d2' },
+                        { text: 'ד.3 — ניכויים מהקצבה',                             href: bp + 'senior_rights/senior_rights_full.html#su-d3' },
+                    ]},
+                    { text: 'פרק ה׳ — פקיעת הזכאות', children: [
+                        { text: 'ה.1 — מתי פוקעת הקצבה?',                           href: bp + 'senior_rights/senior_rights_full.html#su-e1' },
+                        { text: 'ה.2 — קצבת שאירים וקצבת זקנה',                    href: bp + 'senior_rights/senior_rights_full.html#su-e2' },
+                        { text: 'ה.3 — שוהה בחוץ לארץ',                             href: bp + 'senior_rights/senior_rights_full.html#su-e3' },
+                        { text: 'ה.4 — אפשרויות קצבה חלופיות',                     href: bp + 'senior_rights/senior_rights_full.html#su-e4' },
+                    ]},
+                    { text: 'פרק ו׳ — הכשרה מקצועית ושיקום',                       href: bp + 'senior_rights/senior_rights_full.html#su-f' },
+                    { text: 'פרק ז׳ — הגשת התביעה', children: [
+                        { text: 'ז.1 — מסמכים נדרשים',                              href: bp + 'senior_rights/senior_rights_full.html#su-g1' },
+                        { text: 'ז.2 — דרכי הגשה',                                 href: bp + 'senior_rights/senior_rights_full.html#su-g2' },
+                    ]},
+                    { text: 'פרק ח׳ — זכויות נוספות בגופים אחרים',                 href: bp + 'senior_rights/senior_rights_full.html#su-h' },
+                    { text: 'פרק ט׳ — מענק פטירה', children: [
+                        { text: '1. מהו מענק פטירה?',                               href: bp + 'senior_rights/senior_rights_full.html#su-i1' },
+                        { text: '2. סכום המענק', children: [
+                            { text: 'מענק רגיל',                                    href: bp + 'senior_rights/senior_rights_full.html#su-i2a' },
+                            { text: 'מענק מוגדל – נפגעי עבודה',                    href: bp + 'senior_rights/senior_rights_full.html#su-i2b' },
+                        ]},
+                        { text: '3. מי זכאי?', children: [
+                            { text: 'א. קצבאות המזכות במענק',                       href: bp + 'senior_rights/senior_rights_full.html#su-i3a' },
+                            { text: 'ב. סדר עדיפויות בתשלום',                      href: bp + 'senior_rights/senior_rights_full.html#su-i3b' },
+                            { text: 'ג. הגדרת ילד לפי חוק הביטוח הלאומי',         href: bp + 'senior_rights/senior_rights_full.html#su-i3c' },
+                        ]},
+                        { text: '4. מקרים מיוחדים', children: [
+                            { text: 'א. פטירת שני בני זוג בהפרש זמן קצר',           href: bp + 'senior_rights/senior_rights_full.html#su-i4a' },
+                            { text: 'ב. קצבת זיקנה עם השלמת הכנסה',                href: bp + 'senior_rights/senior_rights_full.html#su-i4b' },
+                        ]},
+                        { text: '5. אופן קבלת המענק', children: [
+                            { text: 'א. תשלום אוטומטי',                              href: bp + 'senior_rights/senior_rights_full.html#su-i5a' },
+                            { text: 'ב. כאשר נדרשת הגשת תביעה',                    href: bp + 'senior_rights/senior_rights_full.html#su-i5b' },
+                        ]},
+                        { text: '6. מגבלות והיעדר זכאות',                           href: bp + 'senior_rights/senior_rights_full.html#su-i6' },
+                        { text: '7. מה עוד כדאי לדעת?',                             href: bp + 'senior_rights/senior_rights_full.html#su-i7' },
+                    ]},
+                    { text: 'פרק י׳ — ערעור ואנשי מקצוע', children: [
+                        { text: 'י.1 — ערעור על החלטת הביטוח הלאומי',               href: bp + 'senior_rights/senior_rights_full.html#su-j1' },
+                        { text: 'י.2 — נקודות בדיקה לאנשי מקצוע',                  href: bp + 'senior_rights/senior_rights_full.html#su-j2' },
+                    ]},
+                ]},
+                { text: '🎁 מענק מעבר לנשים בגיל 62', children: [
+                    { text: '6.1 משך התשלום',                                      href: bp + 'senior_rights/senior_rights_full.html#tg-61' },
+                    { text: '6.2 תנאי זכאות למענק',                                href: bp + 'senior_rights/senior_rights_full.html#tg-62' },
+                    { text: '6.3 תנאים לשלילת זכאות',                              href: bp + 'senior_rights/senior_rights_full.html#tg-63' },
+                    { text: '6.4 סכום המענק',                                      href: bp + 'senior_rights/senior_rights_full.html#tg-64' },
+                    { text: '6.5 הגשת בקשה למענק',                                href: bp + 'senior_rights/senior_rights_full.html#tg-65' },
+                ]},
+                { text: '🕯️ זכויות ניצולי שואה', children: [
+                    { text: '7.1 מי נחשב ניצול שואה?',                             href: bp + 'senior_rights/senior_rights_full.html#hs-71' },
+                    { text: '7.2 קצבאות ומענקים',                                 href: bp + 'senior_rights/senior_rights_full.html#hs-72' },
+                    { text: '7.3 תוספת שעות סיעוד', children: [
+                        { text: 'תנאי הזכאות לתוספת שעות סיעוד',                 href: bp + 'senior_rights/senior_rights_full.html#hs-73a' },
+                        { text: 'אופן קבלת התוספת',                               href: bp + 'senior_rights/senior_rights_full.html#hs-73b' },
+                        { text: 'תוספת חלקית לניצולים עם פחות נקודות',           href: bp + 'senior_rights/senior_rights_full.html#hs-73c' },
+                    ]},
+                    { text: '7.4 סיוע סיעודי קצר מועד (סול"ם)', children: [
+                        { text: 'לאחר אשפוז',                                     href: bp + 'senior_rights/senior_rights_full.html#hs-74a' },
+                        { text: 'סול"ם בקהילה',                                   href: bp + 'senior_rights/senior_rights_full.html#hs-74b' },
+                    ]},
+                    { text: '7.5 הטבות נוספות לניצולי שואה',                      href: bp + 'senior_rights/senior_rights_full.html#hs-75' },
+                    { text: '7.6 פרטי קשר — ניצולי שואה',                         href: bp + 'senior_rights/senior_rights_full.html#hs-76' },
+                ]},
+                { text: '🌟 הטבות נוספות', children: [
+                    { text: '8.1 הנחות בארנונה',                                   href: bp + 'senior_rights/senior_rights_full.html#ab-81' },
+                    { text: '8.2 הנחות במס הכנסה',                                 href: bp + 'senior_rights/senior_rights_full.html#ab-82' },
+                    { text: '8.3 הנחות בתחבורה ציבורית',                            href: bp + 'senior_rights/senior_rights_full.html#ab-83' },
+                    { text: '8.4 הנחות בתרבות ונופש',                               href: bp + 'senior_rights/senior_rights_full.html#ab-84' },
+                    { text: '8.5 שירותי בריאות',                                   href: bp + 'senior_rights/senior_rights_full.html#ab-85' },
+                    { text: '8.6 שירותים חברתיים',                                 href: bp + 'senior_rights/senior_rights_full.html#ab-86' },
+                ]},
+                { text: '📊 השפעות הדדיות בין הקצבאות', children: [
+                    { text: 'כללי מפתח',                                            href: bp + 'senior_rights/senior_rights_full.html#in-key' },
+                ]},
+                { text: '📞 כתובות ויצירת קשר', children: [
+                    { text: '10.2 ארגונים נוספים',                                 href: bp + 'senior_rights/senior_rights_full.html#co-102' },
+                    { text: '10.3 הערות חשובות',                                   href: bp + 'senior_rights/senior_rights_full.html#co-103' },
+                ]},
             ]
         },
-        { icon: '📊', text: 'סיכום קצבאות ותקרות',       href: bp + 'senior_rights/financial-tables-and-definitions.html' },
-        { icon: '🔗', text: 'קישורים חשובים',           href: bp + 'senior_rights/important-links.html' },
-        { icon: '📋', text: 'טפסי ביטוח לאומי',         href: bp + 'senior_rights/forms.html' },
+        {
+            icon: '🌍', text: 'זכויות עולים חדשים', children: [
+                { icon: '🌍', text: 'זכויות עולים חדשים',      href: bp + 'new_immigrants/new_immigrants_full.html', teal: true },
+                { icon: '👴', text: 'גמלת זיקנה מיוחדת',       href: bp + 'new_immigrants/gimlat_zikna_meyuchedet.html' },
+                { icon: '🤝', text: 'אמנות בינלאומיות לביטחון סוציאלי', href: bp + 'new_immigrants/international_treaties.html' },
+            ]
+        },
+        { icon: '📊', text: 'סיכום קצבאות ותקרות',       href: bp + 'senior_rights/financial-tables-and-definitions.html', teal: true },
+        { icon: '🔗', text: 'קישורים חשובים',           href: bp + 'senior_rights/important-links.html', teal: true },
+        { icon: '📋', text: 'טפסי ביטוח לאומי',         href: bp + 'senior_rights/forms.html', teal: true },
         {
             icon: '📖', text: 'מדריכים מפורטים', children: [
                 { icon: '📘', text: 'זכויות אזרחים ותיקים 2026',    href: bp + 'senior_rights/senior_citizens_rights_2026.html' },
-                { icon: '⚖️', text: 'נכות כללית מול שאירים 2026',  href: bp + 'senior_rights/nechut_vs_shairim_2026.html' },
-                { icon: '📊', text: 'מדריך לחישוב זכאות וסכום קצבת זיקנה חלקית', href: bp + 'senior_rights/old_pension_income_test_full_guide.html' },
-                { icon: '👨‍👩‍👧', text: 'מדריך קצבת שאירים 2026',       href: bp + 'senior_rights/survivors_benefits_guide_2026.html' },
-                { icon: '👩', text: 'מדריך מענק מעבר לנשים',         href: bp + 'senior_rights/women_transition_benefit_guide.html' },
+                { icon: '⚖️', text: 'נכות כללית מול שאירים 2026',  href: bp + 'senior_rights/nechut_vs_shairim.html' },
+                { icon: '📊', text: 'מדריך לחישוב זכאות וסכום קצבת זיקנה חלקית', children: [
+                    { text: 'מבוא',                                   href: bp + 'senior_rights/old_pension_income_test_full_guide.html#intro' },
+                    { text: 'חלק א — דרך חישוב הזכאות',               href: bp + 'senior_rights/old_pension_income_test_full_guide.html#algorithm' },
+                    { text: 'חלק ב — הכנסה מעבודה', children: [
+                        { text: '1. יחיד',                             href: bp + 'senior_rights/old_pension_income_test_full_guide.html#op-w1' },
+                        { text: '2. נשוי/ה (ב"ז לא מקבל קצבה)',        href: bp + 'senior_rights/old_pension_income_test_full_guide.html#op-w2' },
+                        { text: '3. שני בני הזוג זכאים',               href: bp + 'senior_rights/old_pension_income_test_full_guide.html#op-w3' },
+                    ]},
+                    { text: 'חלק ג — הכנסה מנכסים', children: [
+                        { text: '1. יחיד',                             href: bp + 'senior_rights/old_pension_income_test_full_guide.html#op-a1' },
+                        { text: '2א. נשוי/ה (ב"ז לא מקבל)',           href: bp + 'senior_rights/old_pension_income_test_full_guide.html#op-a2a' },
+                        { text: '2ב. נשוי/ה (ב"ז מקבל)',              href: bp + 'senior_rights/old_pension_income_test_full_guide.html#op-a2b' },
+                        { text: '3. שני בני הזוג זכאים',               href: bp + 'senior_rights/old_pension_income_test_full_guide.html#op-a3' },
+                        { text: 'דוגמה מספרית',                        href: bp + 'senior_rights/old_pension_income_test_full_guide.html#op-a-ex' },
+                    ]},
+                    { text: 'חלק ד — הכנסה משולבת',                    href: bp + 'senior_rights/old_pension_income_test_full_guide.html#combined' },
+                    { text: 'סיכום — טבלת תקרות', children: [
+                        { text: 'הכנסה מנכסים בלבד',                   href: bp + 'senior_rights/old_pension_income_test_full_guide.html#op-s-assets' },
+                        { text: 'הכנסה מעבודה בלבד',                    href: bp + 'senior_rights/old_pension_income_test_full_guide.html#op-s-work' },
+                        { text: 'הכנסה משולבת',                         href: bp + 'senior_rights/old_pension_income_test_full_guide.html#op-s-combined' },
+                    ]},
+                    { text: 'הבהרות מעשיות', children: [
+                        { text: 'מה נחשב הכנסה',                       href: bp + 'senior_rights/old_pension_income_test_full_guide.html#op-c-what' },
+                        { text: 'מה לא נחשב הכנסה',                    href: bp + 'senior_rights/old_pension_income_test_full_guide.html#op-c-notwhat' },
+                        { text: 'תוספת דחייה',                          href: bp + 'senior_rights/old_pension_income_test_full_guide.html#op-c-deferral' },
+                        { text: 'הגדרת בן/ת זוג לתוספת',               href: bp + 'senior_rights/old_pension_income_test_full_guide.html#op-c-spouse' },
+                    ]},
+                    { text: 'דוגמאות', children: [
+                        { text: 'דוגמה 1 — רווקה, קצבה מלאה',          href: bp + 'senior_rights/old_pension_income_test_full_guide.html#op-ex1' },
+                        { text: 'דוגמה 2 — נשוי/ה, קצבה נשללת',        href: bp + 'senior_rights/old_pension_income_test_full_guide.html#op-ex2' },
+                        { text: 'דוגמה 3 — שני בני הזוג',               href: bp + 'senior_rights/old_pension_income_test_full_guide.html#op-ex3' },
+                        { text: 'דוגמה 4 — אלמן/ה, חלקית',             href: bp + 'senior_rights/old_pension_income_test_full_guide.html#op-ex4' },
+                    ]},
+                ]},
+                { icon: '👨‍👩‍👧', text: 'מדריך קצבת שאירים 2026', children: [
+                    { text: 'מהי קצבת שאירים',                         href: bp + 'senior_rights/survivors_benefits_guide_2026.html#sv-what' },
+                    { text: 'מי הם שאירים',                            href: bp + 'senior_rights/survivors_benefits_guide_2026.html#sv-who' },
+                    { text: 'תנאי הזכאות', children: [
+                        { text: 'תנאי 1: ביטוח שאירים',                href: bp + 'senior_rights/survivors_benefits_guide_2026.html#sv-cond1' },
+                        { text: 'תנאי 2: תקופת אכשרה',                 href: bp + 'senior_rights/survivors_benefits_guide_2026.html#sv-cond2' },
+                        { text: 'תנאי 3: הגדרות שאיר', children: [
+                            { text: 'הגדרת אלמנה',                     href: bp + 'senior_rights/survivors_benefits_guide_2026.html#sv-c3-widow' },
+                            { text: 'הגדרת אלמן',                      href: bp + 'senior_rights/survivors_benefits_guide_2026.html#sv-c3-widower' },
+                            { text: 'הגדרת יתום',                      href: bp + 'senior_rights/survivors_benefits_guide_2026.html#sv-c3-orphan' },
+                        ]},
+                        { text: 'תנאי 4: דמי ביטוח',                   href: bp + 'senior_rights/survivors_benefits_guide_2026.html#sv-cond4' },
+                    ]},
+                    { text: 'סכומי הקצבה 2026', children: [
+                        { text: 'קצבה לאלמן/ה',                        href: bp + 'senior_rights/survivors_benefits_guide_2026.html#sv-amt-widow' },
+                        { text: 'קצבה ליתומים',                        href: bp + 'senior_rights/survivors_benefits_guide_2026.html#sv-amt-orphan' },
+                        { text: 'תוספת ותק',                            href: bp + 'senior_rights/survivors_benefits_guide_2026.html#sv-amt-seniority' },
+                        { text: 'תוספת השלמת הכנסה',                    href: bp + 'senior_rights/survivors_benefits_guide_2026.html#sv-amt-supplement' },
+                    ]},
+                    { text: 'מבחן הכנסות לאלמן', children: [
+                        { text: 'מתי נדרש מבחן הכנסות',                href: bp + 'senior_rights/survivors_benefits_guide_2026.html#sv-it-when' },
+                        { text: 'ניכוי מסך ההכנסות',                    href: bp + 'senior_rights/survivors_benefits_guide_2026.html#sv-it-deduction' },
+                        { text: 'סוגי הכנסות שונים',                     href: bp + 'senior_rights/survivors_benefits_guide_2026.html#sv-it-types' },
+                        { text: 'תקופת בדיקת ההכנסות',                  href: bp + 'senior_rights/survivors_benefits_guide_2026.html#sv-it-period' },
+                    ]},
+                    { text: 'תקופות ביטוח לאישה נשואה',                href: bp + 'senior_rights/survivors_benefits_guide_2026.html#sv-special-periods' },
+                    { text: 'גמלה מיוחדת לעולים',                       href: bp + 'senior_rights/survivors_benefits_guide_2026.html#sv-olim' },
+                    { text: 'שילוב קצבאות',                            href: bp + 'senior_rights/survivors_benefits_guide_2026.html#sv-combination' },
+                    { text: 'מענק שאירים חד-פעמי',                      href: bp + 'senior_rights/survivors_benefits_guide_2026.html#sv-grant' },
+                    { text: 'הגשת תביעה', children: [
+                        { text: 'מועד הגשה',                            href: bp + 'senior_rights/survivors_benefits_guide_2026.html#sv-cl-date' },
+                        { text: 'איך מגישים',                           href: bp + 'senior_rights/survivors_benefits_guide_2026.html#sv-cl-how' },
+                        { text: 'מסמכים נדרשים',                        href: bp + 'senior_rights/survivors_benefits_guide_2026.html#sv-cl-docs' },
+                    ]},
+                    { text: 'ערעור',                                    href: bp + 'senior_rights/survivors_benefits_guide_2026.html#sv-appeal' },
+                    { text: 'שאלות נפוצות',                             href: bp + 'senior_rights/survivors_benefits_guide_2026.html#sv-faq' },
+                    { text: 'נספח: טבלת סיכום',                         href: bp + 'senior_rights/survivors_benefits_guide_2026.html#sv-appendix' },
+                ]},
+                { icon: '👩', text: 'מדריך מענק מעבר לנשים', children: [
+                    { text: 'רקע ומהות הזכות',                          href: bp + 'senior_rights/women_transition_benefit_guide.html#wt-background' },
+                    { text: 'מי זכאית',                                href: bp + 'senior_rights/women_transition_benefit_guide.html#wt-eligible' },
+                    { text: 'תנאי הזכאות', children: [
+                        { text: '1. היעדר הכנסות מעבודה',               href: bp + 'senior_rights/women_transition_benefit_guide.html#wt-cond1' },
+                        { text: '2. תקרת הכנסה מפנסיה',                 href: bp + 'senior_rights/women_transition_benefit_guide.html#wt-cond2' },
+                        { text: '3. תקרת הכנסה שנתית',                  href: bp + 'senior_rights/women_transition_benefit_guide.html#wt-cond3' },
+                        { text: '4. צבירת תקופת ביטוח',                 href: bp + 'senior_rights/women_transition_benefit_guide.html#wt-cond4' },
+                    ]},
+                    { text: 'מי אינה זכאית', children: [
+                        { text: 'מקבלות גמלאות מסוימות',                href: bp + 'senior_rights/women_transition_benefit_guide.html#wt-disq1' },
+                        { text: 'חל"ת מרצון',                           href: bp + 'senior_rights/women_transition_benefit_guide.html#wt-disq2' },
+                    ]},
+                    { text: 'תקופת התשלום',                             href: bp + 'senior_rights/women_transition_benefit_guide.html#wt-period' },
+                    { text: 'סכום המענק', children: [
+                        { text: 'סכום מרבי לפי שנת לידה',               href: bp + 'senior_rights/women_transition_benefit_guide.html#wt-amount-max' },
+                        { text: 'כיצד מחשבים את הסכום',                 href: bp + 'senior_rights/women_transition_benefit_guide.html#wt-amount-calc' },
+                    ]},
+                    { text: 'הגשת הבקשה', children: [
+                        { text: 'מועד הגשה',                            href: bp + 'senior_rights/women_transition_benefit_guide.html#wt-submit-date' },
+                        { text: 'הטופס הרשמי',                          href: bp + 'senior_rights/women_transition_benefit_guide.html#wt-submit-form' },
+                        { text: 'מסמכים נדרשים',                        href: bp + 'senior_rights/women_transition_benefit_guide.html#wt-submit-docs' },
+                    ]},
+                    { text: 'קישורים שימושיים',                          href: bp + 'senior_rights/women_transition_benefit_guide.html#wt-links' },
+                ]},
                 { icon: '🏥', text: 'מדריך מוסד אישפוז',             href: bp + 'senior_rights/nursing_home_guide.html' },
                 { icon: '🕯️', text: 'מדריך ניצולי שואה',             href: bp + 'senior_rights/holocaust_survivors_rights.html' },
             ]
@@ -43,8 +348,8 @@
                 { icon: '🪪', text: 'בדיקת תעודת זהות',              href: bp + 'senior_rights/id-check.html' },
                 { icon: '👩', text: 'מחשבון גיל פרישה לנשים',        href: bp + 'senior_rights/retirement-calculator.html' },
                 { icon: '🔢', text: 'מחשבון האפשרות לקבל יותר מקצבה אחת', href: bp + 'senior_rights/benefit-combinations.html' },
-                { icon: '📚', text: 'רשימת קצבאות ותשלומים',         href: bp + 'senior_rights/benefits-index.html' },
-                { icon: '📄', text: 'מסמכי מקורות מידע',             href: bp + 'senior_rights/Information_Sources.html' },
+                { icon: '📚', text: 'רשימת קצבאות ותשלומים',         href: bp + 'senior_rights/benefits-index.html', teal: true },
+                { icon: '📄', text: 'מסמכי מקורות מידע',             href: bp + 'senior_rights/Information_Sources.html', teal: true },
                 {
                     icon: '🧮', text: 'מחשבוני הביטוח הלאומי', children: [
                         { icon: '📋', text: 'רשימת מחשבונים',                href: 'https://www.btl.gov.il/Simulators/Pages/default.aspx', external: true },
@@ -65,13 +370,58 @@
                 { icon: '👶', text: 'הגדרת ילד להשלמת הכנסה',        href: bp + 'senior_rights/questionnaire.html?id=child-definition&hideReturn=true' },
                 { icon: '🚗', text: 'זכאות להשלמת הכנסה עם רכב',     href: bp + 'senior_rights/questionnaire.html?id=vehicle-income-supplement' },
                 { icon: '🏠', text: 'חישוב הכנסה רעיונית מנכסים',    href: bp + 'senior_rights/questionnaire.html?id=imputed-income-calculator' },
-                { icon: '📜', text: 'הגדרת תלויים בקצבת זיקנה',      href: bp + 'senior_rights/dependents_definition_old_age_survivors.html' },
+                { icon: '🏦', text: 'מדריך הכנסה רעיונית מנכסים פיננסיים', href: bp + 'senior_rights/imputed_income_guide.html' },
+                { icon: '📜', text: 'הגדרת תלויים בקצבת זיקנה', children: [
+                    { text: 'הגדרת "אלמנה"', children: [
+                        { text: 'תנאי א׳: נישואין ממושכים עם ילד',     href: bp + 'senior_rights/dependents_definition_old_age_survivors.html#dep-widow-a' },
+                        { text: 'תנאי ב׳: נישואין עם קשר מתמשך',       href: bp + 'senior_rights/dependents_definition_old_age_survivors.html#dep-widow-b' },
+                    ]},
+                    { text: 'הגדרת "אלמן"', children: [
+                        { text: 'תנאי א׳: נישואין ממושכים',             href: bp + 'senior_rights/dependents_definition_old_age_survivors.html#dep-widower-a' },
+                        { text: 'תנאי ב׳: קשר מתמשך',                  href: bp + 'senior_rights/dependents_definition_old_age_survivors.html#dep-widower-b' },
+                        { text: 'תנאי ג׳: מצב משפחתי/כלכלי',          href: bp + 'senior_rights/dependents_definition_old_age_survivors.html#dep-widower-c' },
+                    ]},
+                    { text: 'הגדרת "ילד"', children: [
+                        { text: 'קטגוריה 1: גיל רך',                   href: bp + 'senior_rights/dependents_definition_old_age_survivors.html#dep-child-1' },
+                        { text: 'קטגוריה 2: לימודים',                   href: bp + 'senior_rights/dependents_definition_old_age_survivors.html#dep-child-2' },
+                        { text: 'קטגוריה 3: שירות צבאי/לאומי',         href: bp + 'senior_rights/dependents_definition_old_age_survivors.html#dep-child-3' },
+                        { text: 'קטגוריה 4: שירות התנדבותי',           href: bp + 'senior_rights/dependents_definition_old_age_survivors.html#dep-child-4' },
+                        { text: 'קטגוריה 5: שירות סדיר אחרי התנדבות', href: bp + 'senior_rights/dependents_definition_old_age_survivors.html#dep-child-5' },
+                    ]},
+                    { text: 'הגדרות נוספות', children: [
+                        { text: '"הכנסה"',                              href: bp + 'senior_rights/dependents_definition_old_age_survivors.html#dep-def-income' },
+                        { text: '"עקרת בית"',                           href: bp + 'senior_rights/dependents_definition_old_age_survivors.html#dep-def-housewife' },
+                        { text: '"אלמנה בת קצבה"',                      href: bp + 'senior_rights/dependents_definition_old_age_survivors.html#dep-def-pension-widow' },
+                        { text: '"עובד מבוטח"',                         href: bp + 'senior_rights/dependents_definition_old_age_survivors.html#dep-def-employee' },
+                    ]},
+                ]},
                 { icon: '📝', text: 'טופס פניה לייעוץ בל/4300',       href: bp + 'senior_rights/counseling_referral_form.html' },
+                { icon: '📚', text: 'דוגמאות וסימולציות',              href: bp + 'senior_rights/sampels.html' },
             ]
         },
         {
             icon: '📊', text: 'עדכוני ביטוח לאומי 2026', children: [
-                { icon: '✅', text: 'עדכון 01.2026 קצבאות זקנה ושאירים', href: bp + 'senior_rights/data/data_202601.html' },
+                { icon: '✅', text: 'עדכון 01.2026 קצבאות זקנה ושאירים', children: [
+                    { text: 'א. קצבת אזרח ותיק בסיסית',               href: bp + 'senior_rights/data/data_202601.html#data-alef' },
+                    { text: 'ב. קצבת שאירים בסיסית',                   href: bp + 'senior_rights/data/data_202601.html#data-bet' },
+                    { text: 'ג. דמי מחיה ליתומים',                     href: bp + 'senior_rights/data/data_202601.html#data-gimel' },
+                    { text: 'ד. הכנסה מותרת לדמי מחיה',               href: bp + 'senior_rights/data/data_202601.html#data-dalet' },
+                    { text: 'ה. השלמת הכנסה ליתומים',                  href: bp + 'senior_rights/data/data_202601.html#data-he' },
+                    { text: 'ו. השלמת הכנסה — גילאי פרישה',            href: bp + 'senior_rights/data/data_202601.html#data-vav' },
+                    { text: 'ז. ניכויים לביטוח בריאות',                href: bp + 'senior_rights/data/data_202601.html#data-zayin' },
+                    { text: 'ח. מדדי זכאות להשלמת הכנסה',              href: bp + 'senior_rights/data/data_202601.html#data-het' },
+                    { text: 'ט. הסכום הקובע להשלמת הכנסה',             href: bp + 'senior_rights/data/data_202601.html#data-tet' },
+                    { text: 'י. הכנסה מרבית לקצבת אזרח ותיק',          href: bp + 'senior_rights/data/data_202601.html#data-yod' },
+                    { text: 'יא. מודד רכב בה"ה',                       href: bp + 'senior_rights/data/data_202601.html#data-ya' },
+                    { text: 'יב. הכנסה מרבית לתלויים ושארים',          href: bp + 'senior_rights/data/data_202601.html#data-yb' },
+                    { text: 'יג. תעריף רכיבי נכות',                    href: bp + 'senior_rights/data/data_202601.html#data-yg' },
+                    { text: 'יד. מענק בר מצווה',                       href: bp + 'senior_rights/data/data_202601.html#data-yd' },
+                    { text: 'טו. מענק פטירה',                          href: bp + 'senior_rights/data/data_202601.html#data-tv' },
+                    { text: 'טז. דמי כיס למאושפזים',                   href: bp + 'senior_rights/data/data_202601.html#data-tz' },
+                    { text: 'יז. מענק חימום',                          href: bp + 'senior_rights/data/data_202601.html#data-yz' },
+                    { text: 'יח. הכנסה מותרת למענק מעבר',              href: bp + 'senior_rights/data/data_202601.html#data-yh' },
+                    { text: 'יט. מענק מעבר לנשים',                     href: bp + 'senior_rights/data/data_202601.html#data-yt' },
+                ]},
             ]
         },
     ];
@@ -181,6 +531,22 @@
         }
         .hnav-close-btn:hover { background: rgba(255,255,255,0.35); }
 
+        .hnav-collapse-all-btn {
+            background: rgba(255,255,255,0.15);
+            border: 1px solid rgba(255,255,255,0.4);
+            color: white;
+            height: 34px;
+            padding: 0 10px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 0.8rem;
+            font-weight: 600;
+            font-family: inherit;
+            white-space: nowrap;
+            flex-shrink: 0;
+        }
+        .hnav-collapse-all-btn:hover { background: rgba(255,255,255,0.3); }
+
         .hnav-menu { padding: 8px 0; flex: 1; }
 
         /* Direct link items */
@@ -199,6 +565,14 @@
         .hnav-item a:hover {
             background: #e3f2fd;
             border-right-color: #4A90B5;
+        }
+        .hnav-item-teal a {
+            color: #0097a7;
+            border-right-color: #0097a7;
+        }
+        .hnav-item-teal a:hover {
+            background: #e0f7fa;
+            border-right-color: #0097a7;
         }
 
         /* Section headers (depth 0) */
@@ -289,10 +663,11 @@
                 const arrowState = 'hnav-label-collapsed';
                 const subItemsCls = isTop ? 'hnav-sub-items' : 'hnav-sub-sub-items';
 
+                const iconHtml = item.icon ? item.icon + ' ' : '';
                 html += `
                 <div>
                     <div class="${labelCls} ${arrowState}" onclick="hnavToggle(this)">
-                        <span class="${innerCls}">${item.icon} ${item.text}</span>
+                        <span class="${innerCls}">${iconHtml}${item.text}</span>
                         <span class="hnav-arrow">▾</span>
                     </div>
                     <div class="hnav-children ${childState} ${subItemsCls}">
@@ -301,9 +676,11 @@
                 </div>`;
             } else {
                 const target = item.external ? ' target="_blank" rel="noopener"' : '';
+                const tealCls = item.teal ? ' hnav-item-teal' : '';
+                const iconHtml = item.icon ? item.icon + ' ' : '';
                 html += `
-                <div class="hnav-item">
-                    <a href="${item.href}"${target}>${item.icon} ${item.text}</a>
+                <div class="hnav-item${tealCls}">
+                    <a href="${item.href}"${target} onclick="hnavCloseMenu()">${iconHtml}${item.text}</a>
                 </div>`;
             }
         }
@@ -330,7 +707,10 @@
         panel.innerHTML = `
             <div class="hnav-panel-header">
                 <span class="hnav-panel-title">🏛️ ניווט מהיר</span>
-                <button class="hnav-close-btn" onclick="hnavCloseMenu()" aria-label="סגור תפריט">✕</button>
+                <div style="display:flex;gap:6px;align-items:center;">
+                    <button class="hnav-collapse-all-btn" onclick="hnavCollapseAll()" aria-label="סגור הכל">סגור הכל</button>
+                    <button class="hnav-close-btn" onclick="hnavCloseMenu()" aria-label="סגור תפריט">✕</button>
+                </div>
             </div>
             <div class="hnav-menu">
                 ${buildMenuHTML(MENU, 0)}
@@ -372,6 +752,14 @@
     // Exposed globals (called from inline onclick attributes)
     window.hnavCloseMenu = closeMenu;
     window.hnavOpenMenu  = openMenu;
+
+    window.hnavCollapseAll = function () {
+        document.querySelectorAll('.hnav-children.expanded').forEach(function (el) {
+            el.classList.replace('expanded', 'collapsed');
+            var label = el.previousElementSibling;
+            if (label) label.classList.add('hnav-label-collapsed');
+        });
+    };
 
     window.hnavToggle = function (labelEl) {
         const children = labelEl.nextElementSibling;

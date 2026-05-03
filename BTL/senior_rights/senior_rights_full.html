@@ -648,6 +648,7 @@
                 convertHeadingsToSubAccordions();
                 initAccordions();
                 openFromHash();
+                window.addEventListener('hashchange', openFromHash);
 
             } catch (error) {
                 console.error('שגיאה בטעינת הנתונים:', error);
@@ -694,6 +695,7 @@
                     const subAccordion = document.createElement('div');
                     subAccordion.className = 'sub-accordion';
                     subAccordion.setAttribute('data-level', currentLevel);
+                    if (heading.id) subAccordion.id = heading.id;
 
                     const subHeader = document.createElement('div');
                     subHeader.className = 'sub-accordion-header';
@@ -756,11 +758,24 @@
         function openFromHash() {
             const hash = window.location.hash.replace('#', '');
             if (!hash) return;
-            const target = document.querySelector(`.accordion[data-category="${hash}"]`);
-            if (!target) return;
+            const topTarget = document.querySelector(`.accordion[data-category="${hash}"]`);
+            if (topTarget) {
+                document.querySelectorAll('.accordion.active').forEach(a => a.classList.remove('active'));
+                topTarget.classList.add('active');
+                setTimeout(() => topTarget.scrollIntoView({ behavior: 'smooth', block: 'start' }), 100);
+                return;
+            }
+            const subTarget = document.getElementById(hash);
+            if (!subTarget) return;
             document.querySelectorAll('.accordion.active').forEach(a => a.classList.remove('active'));
-            target.classList.add('active');
-            setTimeout(() => target.scrollIntoView({ behavior: 'smooth', block: 'start' }), 100);
+            let el = subTarget;
+            while (el) {
+                if (el.classList.contains('accordion') || el.classList.contains('sub-accordion')) {
+                    el.classList.add('active');
+                }
+                el = el.parentElement;
+            }
+            setTimeout(() => subTarget.scrollIntoView({ behavior: 'smooth', block: 'start' }), 200);
         }
 
         function initAccordions() {

@@ -571,7 +571,7 @@
         <div class="accordions-container">
 
             <!-- 1 - רקע -->
-            <div class="accordion">
+            <div class="accordion" id="wt-background">
                 <div class="accordion-header">
                     <div class="accordion-icon">ℹ️</div>
                     <h2 class="accordion-title">רקע — מה זה מענק מעבר ולמה הוא קיים?</h2>
@@ -590,7 +590,7 @@
             </div>
 
             <!-- 2 - מי זכאית -->
-            <div class="accordion">
+            <div class="accordion" id="wt-eligible">
                 <div class="accordion-header">
                     <div class="accordion-icon">👩</div>
                     <h2 class="accordion-title">מי זכאית — קהל היעד</h2>
@@ -607,7 +607,7 @@
             </div>
 
             <!-- 3 - תנאי הזכאות -->
-            <div class="accordion">
+            <div class="accordion" id="wt-conditions">
                 <div class="accordion-header">
                     <div class="accordion-icon">✅</div>
                     <h2 class="accordion-title">תנאי הזכאות — כל התנאים חייבים להתקיים יחד</h2>
@@ -617,7 +617,7 @@
                     <div class="accordion-body content-section">
 
                         <!-- תנאי 1 -->
-                        <div class="sub-accordion">
+                        <div class="sub-accordion" id="wt-cond1">
                             <div class="sub-accordion-header">
                                 <h3 class="sub-accordion-title">1. היעדר הכנסות מעבודה</h3>
                                 <span class="sub-accordion-arrow">▼</span>
@@ -636,7 +636,7 @@
                         </div>
 
                         <!-- תנאי 2 -->
-                        <div class="sub-accordion">
+                        <div class="sub-accordion" id="wt-cond2">
                             <div class="sub-accordion-header">
                                 <h3 class="sub-accordion-title">2. תקרת הכנסה מפנסיה ו/או קצבאות</h3>
                                 <span class="sub-accordion-arrow">▼</span>
@@ -653,7 +653,7 @@
                         </div>
 
                         <!-- תנאי 3 -->
-                        <div class="sub-accordion">
+                        <div class="sub-accordion" id="wt-cond3">
                             <div class="sub-accordion-header">
                                 <h3 class="sub-accordion-title">3. תקרת הכנסה שנתית שאינה מעבודה</h3>
                                 <span class="sub-accordion-arrow">▼</span>
@@ -669,7 +669,7 @@
                         </div>
 
                         <!-- תנאי 4 -->
-                        <div class="sub-accordion">
+                        <div class="sub-accordion" id="wt-cond4">
                             <div class="sub-accordion-header">
                                 <h3 class="sub-accordion-title">4. צבירת תקופת ביטוח</h3>
                                 <span class="sub-accordion-arrow">▼</span>
@@ -693,7 +693,7 @@
             </div>
 
             <!-- 4 - מי אינה זכאית -->
-            <div class="accordion">
+            <div class="accordion" id="wt-disqualified">
                 <div class="accordion-header">
                     <div class="accordion-icon">🚫</div>
                     <h2 class="accordion-title">מי אינה זכאית — שלילת הזכאות</h2>
@@ -703,7 +703,7 @@
                     <div class="accordion-body content-section">
 
                         <!-- מקבלות גמלאות -->
-                        <div class="sub-accordion">
+                        <div class="sub-accordion" id="wt-disq1">
                             <div class="sub-accordion-header">
                                 <h3 class="sub-accordion-title">מקבלות גמלאות מסוימות</h3>
                                 <span class="sub-accordion-arrow">▼</span>
@@ -725,7 +725,7 @@
                         </div>
 
                         <!-- חל"ת -->
-                        <div class="sub-accordion">
+                        <div class="sub-accordion" id="wt-disq2">
                             <div class="sub-accordion-header">
                                 <h3 class="sub-accordion-title">חל"ת מרצון</h3>
                                 <span class="sub-accordion-arrow">▼</span>
@@ -742,7 +742,7 @@
             </div>
 
             <!-- 5 - תקופת התשלום -->
-            <div class="accordion">
+            <div class="accordion" id="wt-period">
                 <div class="accordion-header">
                     <div class="accordion-icon">📅</div>
                     <h2 class="accordion-title">תקופת התשלום</h2>
@@ -760,7 +760,7 @@
             </div>
 
             <!-- 6 - סכום המענק -->
-            <div class="accordion">
+            <div class="accordion" id="wt-amount">
                 <div class="accordion-header">
                     <div class="accordion-icon">💰</div>
                     <h2 class="accordion-title">סכום המענק</h2>
@@ -771,7 +771,7 @@
                         <p>סכום המענק נקבע בהתאם לשני פרמטרים עיקריים:</p>
 
                         <!-- סכום לפי שנת לידה -->
-                        <div class="sub-accordion">
+                        <div class="sub-accordion" id="wt-amount-max">
                             <div class="sub-accordion-header">
                                 <h3 class="sub-accordion-title">סכום מרבי לפי שנת לידה</h3>
                                 <span class="sub-accordion-arrow">▼</span>
@@ -794,7 +794,7 @@
                         </div>
 
                         <!-- חישוב הסכום -->
-                        <div class="sub-accordion">
+                        <div class="sub-accordion" id="wt-amount-calc">
                             <div class="sub-accordion-header">
                                 <h3 class="sub-accordion-title">כיצד מחשבים את הסכום בפועל?</h3>
                                 <span class="sub-accordion-arrow">▼</span>
@@ -804,7 +804,7 @@
                                     <p>סכום המענק שיתקבל בפועל הוא <strong>ההפרש</strong> שבין התקרה הקבועה בחוק (<span data-nii="transition_grant_income_allowed">10,120</span> ש"ח נכון ל-2026) לבין הכנסת האישה מפנסיה או מקצבאות באותו חודש — <strong>ולא יעלה</strong> על הסכום המרבי לפי שנת לידתה.</p>
 
                                     <!-- דוגמה 1 -->
-                                    <div class="sub-sub-accordion">
+                                    <div class="sub-sub-accordion" id="wt-ex1">
                                         <div class="sub-sub-accordion-header">
                                             <h4 class="sub-sub-accordion-title">דוגמה 1: פנסיה נמוכה (2,000 ש"ח)</h4>
                                             <span class="sub-sub-accordion-arrow">▼</span>
@@ -825,7 +825,7 @@
                                     </div>
 
                                     <!-- דוגמה 2 -->
-                                    <div class="sub-sub-accordion">
+                                    <div class="sub-sub-accordion" id="wt-ex2">
                                         <div class="sub-sub-accordion-header">
                                             <h4 class="sub-sub-accordion-title">דוגמה 2: פנסיה גבוהה (7,500 ש"ח)</h4>
                                             <span class="sub-sub-accordion-arrow">▼</span>
@@ -857,7 +857,7 @@
             </div>
 
             <!-- 7 - הגשת הבקשה -->
-            <div class="accordion">
+            <div class="accordion" id="wt-submit">
                 <div class="accordion-header">
                     <div class="accordion-icon">📋</div>
                     <h2 class="accordion-title">הגשת הבקשה</h2>
@@ -867,7 +867,7 @@
                     <div class="accordion-body content-section">
 
                         <!-- מועד הגשה -->
-                        <div class="sub-accordion">
+                        <div class="sub-accordion" id="wt-submit-date">
                             <div class="sub-accordion-header">
                                 <h3 class="sub-accordion-title">מועד הגשה</h3>
                                 <span class="sub-accordion-arrow">▼</span>
@@ -883,7 +883,7 @@
                         </div>
 
                         <!-- הטופס הרשמי -->
-                        <div class="sub-accordion">
+                        <div class="sub-accordion" id="wt-submit-form">
                             <div class="sub-accordion-header">
                                 <h3 class="sub-accordion-title">הטופס הרשמי</h3>
                                 <span class="sub-accordion-arrow">▼</span>
@@ -896,7 +896,7 @@
                         </div>
 
                         <!-- מסמכים נדרשים -->
-                        <div class="sub-accordion">
+                        <div class="sub-accordion" id="wt-submit-docs">
                             <div class="sub-accordion-header">
                                 <h3 class="sub-accordion-title">מסמכים נדרשים</h3>
                                 <span class="sub-accordion-arrow">▼</span>
@@ -905,7 +905,7 @@
                                 <div class="sub-accordion-body">
 
                                     <!-- לשכירות -->
-                                    <div class="sub-sub-accordion">
+                                    <div class="sub-sub-accordion" id="wt-docs-employee">
                                         <div class="sub-sub-accordion-header">
                                             <h4 class="sub-sub-accordion-title">לשכירות לשעבר</h4>
                                             <span class="sub-sub-accordion-arrow">▼</span>
@@ -921,7 +921,7 @@
                                     </div>
 
                                     <!-- לעצמאיות -->
-                                    <div class="sub-sub-accordion">
+                                    <div class="sub-sub-accordion" id="wt-docs-self">
                                         <div class="sub-sub-accordion-header">
                                             <h4 class="sub-sub-accordion-title">לעצמאיות לשעבר</h4>
                                             <span class="sub-sub-accordion-arrow">▼</span>
@@ -937,7 +937,7 @@
                                     </div>
 
                                     <!-- לכלל המגישות -->
-                                    <div class="sub-sub-accordion">
+                                    <div class="sub-sub-accordion" id="wt-docs-all">
                                         <div class="sub-sub-accordion-header">
                                             <h4 class="sub-sub-accordion-title">לכלל המגישות</h4>
                                             <span class="sub-sub-accordion-arrow">▼</span>
@@ -964,7 +964,7 @@
             </div>
 
             <!-- 8 - קישורים שימושיים -->
-            <div class="accordion">
+            <div class="accordion" id="wt-links">
                 <div class="accordion-header">
                     <div class="accordion-icon">🔗</div>
                     <h2 class="accordion-title">קישורים שימושיים</h2>
@@ -1142,6 +1142,24 @@
                 }
             });
         });
+
+        function openFromHash() {
+            const hash = decodeURIComponent(window.location.hash.slice(1));
+            if (!hash) return;
+            const target = document.getElementById(hash);
+            if (!target) return;
+            document.querySelectorAll('.accordion.active').forEach(a => a.classList.remove('active'));
+            let el = target;
+            while (el) {
+                if (el.classList.contains('accordion') || el.classList.contains('sub-accordion') || el.classList.contains('sub-sub-accordion')) {
+                    el.classList.add('active');
+                }
+                el = el.parentElement;
+            }
+            setTimeout(() => target.scrollIntoView({ behavior: 'smooth', block: 'start' }), 450);
+        }
+        openFromHash();
+        window.addEventListener('hashchange', openFromHash);
     </script>
     <script src="data/hamburger-nav.js"></script>
 </body>
