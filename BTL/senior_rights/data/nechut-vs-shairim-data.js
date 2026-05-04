@@ -3,6 +3,7 @@ const SENIOR_RIGHTS_2026_DATA = {
     sections: [
         {
             icon: "⚖️",
+            id: "nvs-choose",
             title: "חובה לבחור בין קצבת נכות לבין קצבת שאירים",
             contentFn: function(nii) {
                 return `
@@ -19,6 +20,7 @@ const SENIOR_RIGHTS_2026_DATA = {
         },
         {
             icon: "💰",
+            id: "nvs-amounts",
             title: "השוואת סכומים ותקרות",
             contentFn: function(nii) {
                 const v = key => (nii && nii[key]) ? nii[key].value : 0;
@@ -114,6 +116,7 @@ const SENIOR_RIGHTS_2026_DATA = {
         },
         {
             icon: "✅",
+            id: "nvs-advantages",
             title: "השוואת יתרונות",
             contentFn: function(nii) {
                 const v = key => (nii && nii[key]) ? nii[key].value : 0;
@@ -171,6 +174,7 @@ const SENIOR_RIGHTS_2026_DATA = {
         },
         {
             icon: "⚠️",
+            id: "nvs-risks",
             title: "השוואת סיכונים בוויתור על קצבה",
             contentFn: function(nii) {
                 const v = key => (nii && nii[key]) ? nii[key].value : 0;
@@ -216,6 +220,7 @@ const SENIOR_RIGHTS_2026_DATA = {
         },
         {
             icon: "🔄",
+            id: "nvs-switch",
             title: "האם ניתן לעבור בין הקצבאות?",
             contentFn: function(nii) {
                 const age = key => (nii && nii[key]) ? nii[key].value : '—';
@@ -250,6 +255,7 @@ const SENIOR_RIGHTS_2026_DATA = {
         },
         {
             icon: "🧮",
+            id: "nvs-comparison",
             title: "נקודות מפתח להשוואה",
             contentFn: function(nii) {
                 const v = key => (nii && nii[key]) ? nii[key].value : 0;
@@ -278,6 +284,7 @@ const SENIOR_RIGHTS_2026_DATA = {
         },
         {
             icon: "📌",
+            id: "nvs-additional",
             title: "נקודות נוספות מהותיות",
             contentFn: function(nii) {
                 const c = key => (nii && nii[key]) ? nii[key].value.toLocaleString('he-IL') : '—';
@@ -314,6 +321,7 @@ const SENIOR_RIGHTS_2026_DATA = {
         },
         {
             icon: "🧭",
+            id: "nvs-guide",
             title: "מדריך קצר לקבלת ההחלטה",
             contentFn: function(nii) {
                 const c = key => (nii && nii[key]) ? nii[key].value.toLocaleString('he-IL') : '—';
@@ -336,6 +344,7 @@ const SENIOR_RIGHTS_2026_DATA = {
         },
         {
             icon: "👣",
+            id: "nvs-steps",
             title: "צעדים מעשיים",
             contentFn: function() {
                 return `

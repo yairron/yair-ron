@@ -419,6 +419,7 @@
             data.categories.forEach((cat, index) => {
                 const card = document.createElement('div');
                 card.className = 'accordion-card';
+                card.id = cat.id;
 
                 // Main accordion header
                 const header = document.createElement('div');
@@ -578,7 +579,18 @@
             });
         }
 
-        document.addEventListener('DOMContentLoaded', loadBenefits);
+        function openFromHash() {
+            const hash = decodeURIComponent(window.location.hash.slice(1));
+            if (!hash) return;
+            const target = document.getElementById(hash);
+            if (!target) return;
+            document.querySelectorAll('.accordion-card.active').forEach(a => a.classList.remove('active'));
+            target.classList.add('active');
+            setTimeout(() => target.scrollIntoView({ behavior: 'smooth', block: 'start' }), 450);
+        }
+
+        document.addEventListener('DOMContentLoaded', () => { loadBenefits().then(openFromHash); });
+        window.addEventListener('hashchange', openFromHash);
 
         function filterBenefits() {
             const input = document.getElementById('searchInput');

@@ -598,7 +598,7 @@
                 NURSING_HOME_DATA.sections.forEach((section, index) => {
                     const contentHtml = buildSectionContent(section, nii);
                     html += `
-                        <div class="accordion" data-section="${section.id}">
+                        <div class="accordion" id="${section.id}" data-section="${section.id}">
                             <div class="accordion-header">
                                 <div class="accordion-icon">${section.icon}</div>
                                 <h2 class="accordion-title">${section.title}</h2>
@@ -624,7 +624,9 @@
                 console.log('✅ מתחיל אתחול אקורדיונים');
                 // אתחול אקורדיונים
                 initAccordions();
-                
+                openFromHash();
+                window.addEventListener('hashchange', openFromHash);
+
                 console.log('✅ סיום בהצלחה');
 
             } catch (error) {
@@ -637,6 +639,22 @@
                     </div>
                 `;
             }
+        }
+
+        function openFromHash() {
+            const hash = decodeURIComponent(window.location.hash.slice(1));
+            if (!hash) return;
+            const target = document.getElementById(hash);
+            if (!target) return;
+            document.querySelectorAll('.accordion.active').forEach(a => a.classList.remove('active'));
+            let el = target;
+            while (el) {
+                if (el.classList.contains('accordion') || el.classList.contains('sub-accordion')) {
+                    el.classList.add('active');
+                }
+                el = el.parentElement;
+            }
+            setTimeout(() => target.scrollIntoView({ behavior: 'smooth', block: 'start' }), 450);
         }
 
         function buildSectionContent(section, nii) {
@@ -710,6 +728,7 @@
                     const subAccordion = document.createElement('div');
                     subAccordion.className = 'sub-accordion';
                     subAccordion.setAttribute('data-level', currentLevel);
+                    if (heading.id) subAccordion.id = heading.id;
 
                     const subHeader = document.createElement('div');
                     subHeader.className = 'sub-accordion-header';

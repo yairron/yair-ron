@@ -967,3 +967,628 @@ window.hnavCollapseAll = function () {
 ### מצב סיום — שלב 2 ✅
 
 כל 5 הקבצים מוכנים לניווט anchor מהתפריט. תפריט ה-hamburger עודכן עם ~224 קישורי anchor. נוסף כפתור "סגור הכל" לאיפוס מצב התפריט.
+
+---
+
+---
+
+## שלב 3 — תכנון: הוספת anchor links לקבצי Type-2
+
+### רקע
+
+לאחר השלמת כל קבצי Type-1, השלב הבא הוא הוספת anchor links ל-11 קבצי Type-2 — קבצים שבהם האקורדיונים **נבנים דינמית בזמן ריצה** ולא כתובים ישירות ב-HTML. כל הקבצים כבר קיימים בתפריט ה-hamburger (ללא anchor links).
+
+---
+
+### קבוצה א׳ — `displayContent()` + `convertHeadingsToSubAccordions()` (3 קבצים)
+
+**אותו דפוס כמו `senior_rights_full.html` שכבר טופל בשלב 1.**
+
+| קובץ HTML | קובץ נתונים |
+|-----------|-------------|
+| `senior_citizens_rights_2026.html` | `senior-citizens-rights-2026-data.js` |
+| `nechut_vs_shairim.html` | `nechut-vs-shairim-data.js` |
+| `nursing_home_guide.html` | `nursing-home-data.js` |
+
+**מנגנון:** `displayContent()` קורא מערך `sections`, בונה HTML string, מזריק לתוך `#content`. לאחר מכן `convertHeadingsToSubAccordions()` הופכת כותרות `h2`–`h6` לאקורדיונים מקוננים. לאלמנטי accordion יש `data-index` (או `data-section` ב-nursing_home).
+
+**פעולות לכל קובץ:**
+1. **בקובץ הנתונים** — להוסיף `id` לכל `<h3>` ראשי ולכותרות `<h4>`/`<h5>` ניווטות
+2. **ב-HTML** — לוודא ש-`convertHeadingsToSubAccordions()` מעתיקה `id` מהכותרת לדיב שנוצר (אם לא — לתקן, כפי שנעשה ב-`old_pension`)
+3. **ב-HTML** — להוסיף `openFromHash()` + `hashchange` listener
+4. **ב-`hamburger-nav.js`** — להרחיב ערך מ-`href` פשוט לאובייקט עם `children` + anchor links
+
+---
+
+### קבוצה ב׳ — Inline config + generator function (5 קבצים)
+
+| קובץ | מקור הנתונים |
+|------|-------------|
+| `financial-tables-and-definitions.html` | `ACCORDIONS_CONFIG` inline + פונקציות תוכן נפרדות |
+| `new_immigrants_full.html` | מערך inline בתוך `<script>` |
+| `gimlat_zikna_meyuchedet.html` | config object inline |
+| `international_treaties.html` | config object inline (אותו דפוס) |
+| `benefits-index.html` | config object inline |
+
+**מנגנון:** לכל קובץ פונקציית גנרטור פנימית שבונה HTML string מה-config ומזריקה ל-`#content`. אין קובץ נתונים חיצוני.
+
+**פעולות לכל קובץ:**
+1. **בפונקציית הגנרטור** — לשנות את בניית ה-HTML כך שכל `<div class="accordion">` יקבל `id` מהמפתח/אינדקס של ה-config
+2. **ב-HTML** — להוסיף `openFromHash()` + `hashchange` listener
+3. **ב-`hamburger-nav.js`** — להרחיב לאובייקט עם `children`
+
+---
+
+### קבוצה ג׳ — JSON + `createElement` (1 קובץ)
+
+**קובץ:** `sampels.html` (+ `sampels_app.js` + `sampels_questions.json`)
+
+**מנגנון:** `renderChapters()` קורא JSON, קוראת `createChapterAccordion(chapter)` לכל פרק שמבנה DOM עם `document.createElement()` ו-`appendChild()` (לא innerHTML). מבנה דו-שכבתי: `.accordion-chapter` → `.accordion-question`.
+
+**פעולות:**
+1. **ב-`createChapterAccordion()`** — להוסיף `chapterDiv.id = ...` בעת יצירת כל פרק (לפי שם הפרק או אינדקס)
+2. **ב-HTML** — להוסיף `openFromHash()`
+3. **ב-`hamburger-nav.js`** — להוסיף children ברמת פרק (לא ברמת שאלה)
+
+---
+
+### קבוצה ד׳ — Multi-tab + `infoAccordions` (1 קובץ)
+
+**קובץ:** `holocaust_survivors_rights.html`
+
+**מנגנון:** JS ממלא `id="infoAccordions"` עם אקורדיונים מ-`HOLOCAUSTS_DATA`. הדף כולל מספר טאבים (מידע / שאלון / המלצות) — הניווט לאקורדיון צריך גם לעבור לטאב הנכון.
+
+**פעולות:**
+1. **בפונקציית הרינדור** — לוודא שה-`id` מה-data section עובר לאלמנט ה-accordion שנוצר ב-DOM
+2. **ב-HTML** — להוסיף `openFromHash()` שמטפל גם במעבר לטאב "מידע" לפני גלילה לאקורדיון
+3. **ב-`hamburger-nav.js`** — להרחיב
+
+---
+
+### קבוצה ה׳ — Markdown renderer (1 קובץ)
+
+**קובץ:** `Information_Sources.html`
+
+**מנגנון:** Marked.js — כרטיסי קובץ (`.file-card`) שטוענים Markdown דינמית. לא מבנה accordion קלאסי.
+
+**החלטה:** אין צורך בטיפול — לא ניתן לנווט ישירות לתוכן ספציפי. הקישור לדף עצמו מספיק.
+
+---
+
+### סיכום היקף
+
+| קבוצה | קבצים | שינויים בקבצי HTML | שינויים בנתונים | שינוי nav |
+|-------|--------|---------------------|-----------------|-----------|
+| א׳ | 3 | HTML × 3 | data.js × 3 | ✓ |
+| ב׳ | 5 | HTML × 5 | — (inline) | ✓ |
+| ג׳ | 1 | HTML + app.js | — | ✓ |
+| ד׳ | 1 | HTML × 1 | — | ✓ |
+| ה׳ | 1 | — | — | — |
+| **סה"כ** | **11** | **10 קבצים** | **3 קבצי data.js** | **10 ערכים** |
+
+---
+
+## שלב 4 — המרת ענפי תפריט ל"עלים ישירים" (leaf node conversion)
+
+### רקע
+
+לאחר בניית ה-`senior_citizens_rights_2026.html` ותפריטו, התברר שחלק מהפריטים בתפריט ה-hamburger היו **parent nodes** עם תתי-תפריט (children). הבעיה: כשיש תת-אקורדיון עם 5–8 ילדים, הצגתם בתפריט יוצרת עומס. עדיף להפוך אותם לקישורים ישירים ("עלים") שפותחים את ה-accordion הראשי — והמשתמש רואה בתוכו את כל הסעיפים באופן טבעי.
+
+**עיקרון:** פריט שה-accordion שלו מכיל מספר תת-סעיפים שהמשתמש אמור לגלוש בהם בסדר — יהיה עלה ישיר. פריטים שצריך ניווט ישיר לסעיף ספציפי (עמוק יותר) — ישארו עם children.
+
+---
+
+### שינויים שבוצעו
+
+#### 1. `senior_citizens_rights_2026.html` — קטע "קצבת אזרח ותיק" בתפריט
+
+**קובץ HTML שנגע:** `data/hamburger-nav.js`
+
+שלושה פריטים הומרו מ-parent node לעלה ישיר:
+
+| פריט בתפריט | לפני | אחרי |
+|-------------|------|------|
+| גילאי פרישה וזכאות | `children: [ גיל נשים, גיל מוחלט ]` | `href: ...#sc-p-ages` |
+| תקופת אכשרה | `children: [ הגדרת מבוטח, תקופות, חלופות, פטור, עקרת בית, רווקה, קצבה מיוחדת, נקודות בדיקה ]` | `href: ...#sc-p-achshara` |
+| מבחן הכנסות | `children: [ תקרות הכנסה 2026 ]` | `href: ...#sc-p-income-test` |
+
+**IDs שהיו קיימים כבר** (הוגדרו בשלב 3 — `senior-citizens-rights-2026-data.js`): `sc-p-ages`, `sc-p-achshara`, `sc-p-income-test`
+
+לא נדרשו שינויים ב-HTML — ה-IDs כבר קיימים.
+
+---
+
+#### 2. `old_pension_income_test_full_guide.html` — 5 אקורדיונים ראשיים
+
+**קבצים שנגעו:** `old_pension_income_test_full_guide.html` + `data/hamburger-nav.js`
+
+ה-accordion divs הראשיים בקובץ זה **לא היו עם `id`** — רק עם `data-category`. הוסף `id` ל-5 אקורדיונים, ו-5 הפריטים המקבילים בתפריט הומרו לעלים.
+
+**IDs שנוספו ל-HTML:**
+
+| אקורדיון | `data-category` | `id` חדש |
+|----------|-----------------|----------|
+| חלק ב — הכנסה מעבודה | `work` | `op-work` |
+| חלק ג — הכנסה מנכסים | `assets` | `op-assets` |
+| סיכום — טבלת תקרות | `summary` | `op-summary` |
+| הבהרות מעשיות | `clarifications` | `op-clarifications` |
+| דוגמאות | `examples` | `op-examples` |
+
+**שינויים בתפריט:**
+
+| פריט בתפריט | לפני | אחרי |
+|-------------|------|------|
+| חלק ב — הכנסה מעבודה | `children: [ 1. יחיד, 2. נשוי/ה, 3. שני בני הזוג ]` | `href: ...#op-work` |
+| חלק ג — הכנסה מנכסים | `children: [ 1. יחיד, 2א. נשוי/ה, 2ב. נשוי/ה, 3. שניהם, דוגמה מספרית ]` | `href: ...#op-assets` |
+| סיכום — טבלת תקרות | `children: [ הכנסה מנכסים בלבד, הכנסה מעבודה בלבד, הכנסה משולבת ]` | `href: ...#op-summary` |
+| הבהרות מעשיות | `children: [ מה נחשב, מה לא נחשב, תוספת דחייה, הגדרת בן/ת זוג ]` | `href: ...#op-clarifications` |
+| דוגמאות | `children: [ דוגמה 1, דוגמה 2, דוגמה 3, דוגמה 4 ]` | `href: ...#op-examples` |
+
+**הערה:** ה-IDs ה-פנימיים של ה-`<h4>` (כגון `op-w1`, `op-a1`, `op-s-assets` וכו') **לא הוסרו** מה-HTML — הם עדיין קיימים לשימוש עתידי אם יידרש ניווט ישיר לתוך הסעיפים הפנימיים.
+
+---
+
+#### 3. `survivors_benefits_guide_2026.html` — 4 אקורדיונים ראשיים
+
+**קובץ שנגע:** `data/hamburger-nav.js` בלבד — ה-IDs כבר קיימים על האקורדיון divs מהשלב הקודם.
+
+| פריט בתפריט | לפני | אחרי |
+|-------------|------|------|
+| תנאי הזכאות | `children: [ תנאי 1, תנאי 2, תנאי 3 (עם children), תנאי 4 ]` | `href: ...#sv-conditions` |
+| סכומי הקצבה 2026 | `children: [ קצבה לאלמן/ה, קצבה ליתומים, תוספת ותק, תוספת השלמת הכנסה ]` | `href: ...#sv-amounts` |
+| מבחן הכנסות לאלמן | `children: [ מתי נדרש, ניכוי, סוגי הכנסות, תקופת בדיקה ]` | `href: ...#sv-income-test` |
+| הגשת תביעה | `children: [ מועד הגשה, איך מגישים, מסמכים נדרשים ]` | `href: ...#sv-claim` |
+
+---
+
+#### 4. `women_transition_benefit_guide.html` — 4 אקורדיונים ראשיים
+
+**קובץ שנגע:** `data/hamburger-nav.js` בלבד — ה-IDs כבר קיימים על האקורדיון divs מהשלב הקודם.
+
+| פריט בתפריט | לפני | אחרי |
+|-------------|------|------|
+| תנאי הזכאות | `children: [ 1. היעדר הכנסות, 2. תקרת פנסיה, 3. תקרה שנתית, 4. צבירת ביטוח ]` | `href: ...#wt-conditions` |
+| מי אינה זכאית | `children: [ מקבלות גמלאות, חל"ת מרצון ]` | `href: ...#wt-disqualified` |
+| סכום המענק | `children: [ סכום מרבי לפי שנת לידה, כיצד מחשבים ]` | `href: ...#wt-amount` |
+| הגשת הבקשה | `children: [ מועד הגשה, הטופס הרשמי, מסמכים נדרשים ]` | `href: ...#wt-submit` |
+
+---
+
+### מצב סיום — שלב 4 ✅
+
+| קובץ | שינוי ב-HTML | שינוי ב-nav |
+|------|-------------|-------------|
+| `senior_citizens_rights_2026.html` | לא נדרש | 3 פריטים הומרו לעלים |
+| `old_pension_income_test_full_guide.html` | 5 `id` נוספו לאקורדיונים ראשיים | 5 פריטים הומרו לעלים |
+| `survivors_benefits_guide_2026.html` | לא נדרש | 4 פריטים הומרו לעלים |
+| `women_transition_benefit_guide.html` | לא נדרש | 4 פריטים הומרו לעלים |
+
+---
+
+---
+
+## שלב 5 — יישום anchor links לקבצי קבוצה א׳ + ב׳ (Type-2)
+
+### קבוצה א׳ — קבצים שטופלו
+
+#### 1. `nechut_vs_shairim.html` + `nechut-vs-shairim-data.js`
+
+**מנגנון:** `displayContent()` בונה HTML string ממערך `sections` ומזריק ל-`#content`. לאחר מכן `convertHeadingsToSubAccordions()` ממירה כותרות ל-sub-accordions. כל section מוגדר ב-`nechut-vs-shairim-data.js`.
+
+**ממצא מיוחד:** כל כותרות ה-`<h3>` בקובץ הנתונים מסומנות `class="no-accordion"` — כלומר לא נוצרים sub-accordions בכלל. נדרשו IDs רק ברמת האקורדיון הראשי.
+
+**שינויים ב-`nechut-vs-shairim-data.js`:**
+
+הוסף שדה `id` לכל 9 הסעיפים:
+
+| קוד מזהה | כותרת |
+|---------|-------|
+| `nvs-choose` | חובה לבחור בין הקצבאות |
+| `nvs-amounts` | השוואת סכומים ותקרות |
+| `nvs-advantages` | השוואת יתרונות |
+| `nvs-risks` | השוואת סיכונים |
+| `nvs-switch` | האם ניתן לעבור בין הקצבאות? |
+| `nvs-comparison` | נקודות מפתח להשוואה |
+| `nvs-additional` | נקודות נוספות מהותיות |
+| `nvs-guide` | מדריך קצר לקבלת ההחלטה |
+| `nvs-steps` | צעדים מעשיים |
+
+**שינויים ב-`nechut_vs_shairim.html`:**
+
+1. **`displayContent()`** — הוסף `id` לאלמנט ה-accordion בזמן יצירת ה-HTML:
+```javascript
+`<div class="accordion" data-index="${index}"${section.id ? ` id="${section.id}"` : ''}>`
+```
+
+2. **`processNestedHeadings()`** — הוסף העברת `id` מהכותרת לדיב שנוצר:
+```javascript
+if (heading.id) subAccordion.id = heading.id;
+```
+
+3. **`openFromHash()`** — נוספה פונקציה סטנדרטית (זהה לדפוס שנקבע ב-`senior_rights_full.html`):
+```javascript
+function openFromHash() {
+    const hash = decodeURIComponent(window.location.hash.slice(1));
+    if (!hash) return;
+    const target = document.getElementById(hash);
+    if (!target) return;
+    document.querySelectorAll('.accordion.active').forEach(a => a.classList.remove('active'));
+    let el = target;
+    while (el) {
+        if (el.classList.contains('accordion') || el.classList.contains('sub-accordion')) {
+            el.classList.add('active');
+        }
+        el = el.parentElement;
+    }
+    setTimeout(() => target.scrollIntoView({ behavior: 'smooth', block: 'start' }), 450);
+}
+```
+
+4. **נוסף לאחר `initAccordions()`:**
+```javascript
+openFromHash();
+window.addEventListener('hashchange', openFromHash);
+```
+
+**שינויים ב-`hamburger-nav.js`:**
+
+לפני:
+```javascript
+{ icon: '⚖️', text: 'נכות כללית מול שאירים 2026', href: bp + 'senior_rights/nechut_vs_shairim.html' }
+```
+
+אחרי — הורחב ל-9 children:
+```javascript
+{ icon: '⚖️', text: 'נכות כללית מול שאירים 2026', children: [
+    { text: 'חובה לבחור בין הקצבאות',      href: bp + 'senior_rights/nechut_vs_shairim.html#nvs-choose' },
+    { text: 'השוואת סכומים ותקרות',         href: bp + 'senior_rights/nechut_vs_shairim.html#nvs-amounts' },
+    { text: 'השוואת יתרונות',               href: bp + 'senior_rights/nechut_vs_shairim.html#nvs-advantages' },
+    { text: 'השוואת סיכונים',               href: bp + 'senior_rights/nechut_vs_shairim.html#nvs-risks' },
+    { text: 'האם ניתן לעבור בין הקצבאות?',  href: bp + 'senior_rights/nechut_vs_shairim.html#nvs-switch' },
+    { text: 'נקודות מפתח להשוואה',          href: bp + 'senior_rights/nechut_vs_shairim.html#nvs-comparison' },
+    { text: 'נקודות נוספות מהותיות',         href: bp + 'senior_rights/nechut_vs_shairim.html#nvs-additional' },
+    { text: 'מדריך קצר לקבלת ההחלטה',       href: bp + 'senior_rights/nechut_vs_shairim.html#nvs-guide' },
+    { text: 'צעדים מעשיים',                 href: bp + 'senior_rights/nechut_vs_shairim.html#nvs-steps' },
+]}
+```
+
+---
+
+#### 2. `nursing_home_guide.html` + `nursing-home-data.js`
+
+**מנגנון:** זהה לדפוס קבוצה א׳ — `displayContent()` + `convertHeadingsToSubAccordions()`.
+
+**ממצא:** שדה `id` כבר קיים על כל section ב-`nursing-home-data.js` — לא נדרשו שינויים בקובץ הנתונים.
+
+**שינויים ב-`nursing_home_guide.html`:**
+
+1. **`displayContent()`** — הוסף `id` לאלמנט ה-accordion:
+```javascript
+`<div class="accordion" id="${section.id}" data-section="${section.id}">`
+```
+(לפני: `<div class="accordion" data-section="${section.id}">`)
+
+2. **`processNestedHeadings()`** — הוסף העברת `id`:
+```javascript
+if (heading.id) subAccordion.id = heading.id;
+```
+
+3. **`openFromHash()`** + listener — זהה לדפוס הסטנדרטי (כמו nechut_vs_shairim לעיל).
+
+**IDs שנמצאו ב-nursing-home-data.js (קיימים מראש):**
+
+| קוד מזהה | כותרת |
+|---------|-------|
+| `overview` | סקירה כללית |
+| `population_types` | חלוקה לפי סוגי אוכלוסייה |
+| `ministry_health` | מסלול משרד הבריאות |
+| `ministry_welfare` | מסלול משרד הרווחה |
+| `comparison` | טבלאות השוואה |
+| `tips` | עצות זהב |
+| `faq` | שאלות נפוצות |
+| `resources` | גורמי עזר ומידע |
+
+**שינויים ב-`hamburger-nav.js`:**
+
+לפני:
+```javascript
+{ icon: '🏥', text: 'מדריך מוסד אישפוז', href: bp + 'senior_rights/nursing_home_guide.html' }
+```
+
+אחרי — הורחב ל-8 children:
+```javascript
+{ icon: '🏥', text: 'מדריך מוסד אישפוז', children: [
+    { text: 'סקירה כללית',              href: bp + 'senior_rights/nursing_home_guide.html#overview' },
+    { text: 'חלוקה לפי סוגי אוכלוסייה', href: bp + 'senior_rights/nursing_home_guide.html#population_types' },
+    { text: 'מסלול משרד הבריאות',        href: bp + 'senior_rights/nursing_home_guide.html#ministry_health' },
+    { text: 'מסלול משרד הרווחה',         href: bp + 'senior_rights/nursing_home_guide.html#ministry_welfare' },
+    { text: 'טבלאות השוואה',             href: bp + 'senior_rights/nursing_home_guide.html#comparison' },
+    { text: 'עצות זהב',                  href: bp + 'senior_rights/nursing_home_guide.html#tips' },
+    { text: 'שאלות נפוצות',              href: bp + 'senior_rights/nursing_home_guide.html#faq' },
+    { text: 'גורמי עזר ומידע',            href: bp + 'senior_rights/nursing_home_guide.html#resources' },
+]}
+```
+
+---
+
+### קבוצה ב׳ — קבצים שטופלו
+
+#### 1. `financial-tables-and-definitions.html`
+
+**מנגנון:** `ACCORDIONS_CONFIG` inline עם 8 מפתחות; `displayData()` בונה HTML string; `processNestedHeadings()` ממירה כותרות ל-sub-accordions. אין קובץ נתונים חיצוני.
+
+**מבנה ה-config:**
+```javascript
+const ACCORDIONS_CONFIG = {
+    old_age:           { title: 'קצבת אזרח ותיק',           icon: '👴' },
+    income_supplement: { title: 'השלמת הכנסה',               icon: '💰' },
+    nursing:           { title: 'גמלת סיעוד',                icon: '❤️' },
+    disability:        { title: 'נכות וקצבת שר"מ',           icon: '♿' },
+    survivors:         { title: 'מענק שאירים',               icon: '🕊️' },
+    transition_grant:  { title: 'מענק מעבר לנשים בגיל 62',   icon: '🎁' },
+    holocaust:         { title: 'ניצולי שואה',               icon: '🕯️' },
+    immigrants:        { title: 'עולים חדשים',               icon: '✈️' },
+};
+```
+
+**שינויים בקובץ:**
+
+1. **`displayData()`** — הוסף `id="${key}"` לאלמנט ה-accordion:
+```javascript
+// לפני:
+`<div class="accordion" data-category="${key}">`
+// אחרי:
+`<div class="accordion" id="${key}" data-category="${key}">`
+```
+
+2. **`processNestedHeadings()`** — הוסף העברת `id`:
+```javascript
+if (heading.id) subAccordion.id = heading.id;
+```
+
+3. **`openFromHash()`** + listener — זהה לדפוס הסטנדרטי.
+
+4. **נוסף לאחר `initAccordions()`:**
+```javascript
+openFromHash();
+window.addEventListener('hashchange', openFromHash);
+```
+
+**שינויים ב-`hamburger-nav.js`:**
+
+לפני — קישור תכלת יחיד:
+```javascript
+{ icon: '📊', text: 'סיכום קצבאות ותקרות', href: bp + 'senior_rights/financial-tables-and-definitions.html', teal: true }
+```
+
+אחרי — הורחב ל-8 children (עם שמירת `teal: true`):
+```javascript
+{ icon: '📊', text: 'סיכום קצבאות ותקרות', teal: true, children: [
+    { text: 'קצבת אזרח ותיק',         href: bp + 'senior_rights/financial-tables-and-definitions.html#old_age' },
+    { text: 'השלמת הכנסה',             href: bp + 'senior_rights/financial-tables-and-definitions.html#income_supplement' },
+    { text: 'גמלת סיעוד',              href: bp + 'senior_rights/financial-tables-and-definitions.html#nursing' },
+    { text: 'נכות וקצבת שר"מ',         href: bp + 'senior_rights/financial-tables-and-definitions.html#disability' },
+    { text: 'מענק שאירים',             href: bp + 'senior_rights/financial-tables-and-definitions.html#survivors' },
+    { text: 'מענק מעבר לנשים בגיל 62', href: bp + 'senior_rights/financial-tables-and-definitions.html#transition_grant' },
+    { text: 'ניצולי שואה',             href: bp + 'senior_rights/financial-tables-and-definitions.html#holocaust' },
+    { text: 'עולים חדשים',             href: bp + 'senior_rights/financial-tables-and-definitions.html#immigrants' },
+]}
+```
+
+---
+
+---
+
+#### 3. `new_immigrants_full.html`
+
+**מנגנון:** סטטי — 2 accordion divs בלבד, כל אחד עם `data-href` שמנווט לדף מפורט בלחיצה. אין `processNestedHeadings`.
+
+**שינויים ב-HTML:**
+
+הוספת `id` לשני ה-accordion divs הסטטיים:
+```html
+<div class="accordion" id="ni-special-pension">   <!-- גמלת זיקנה מיוחדת -->
+<div class="accordion" id="ni-treaties">           <!-- אמנות בינלאומיות -->
+```
+
+הוספת `openFromHash()` ו-listener לפני event listeners הקיימים:
+```javascript
+function openFromHash() {
+    const hash = decodeURIComponent(window.location.hash.slice(1));
+    if (!hash) return;
+    const target = document.getElementById(hash);
+    if (!target) return;
+    document.querySelectorAll('.accordion.active').forEach(a => a.classList.remove('active'));
+    target.classList.add('active');
+    setTimeout(() => target.scrollIntoView({ behavior: 'smooth', block: 'start' }), 450);
+}
+openFromHash();
+window.addEventListener('hashchange', openFromHash);
+```
+
+**הערה:** פתיחת ה-accordion מציגה את הפסקה + קישור לדף המפורט. לחיצה על ה-header עצמו ממשיכה לנווט לדף הייעודי (`data-href`).
+
+**שינויים ב-`hamburger-nav.js`:**
+
+לפני: `{ teal: true, href: 'new_immigrants_full.html' }`
+
+אחרי — 2 children:
+```javascript
+{ icon: '🌍', text: 'זכויות עולים חדשים', teal: true, children: [
+    { text: 'גמלת זיקנה מיוחדת', href: bp + 'new_immigrants/new_immigrants_full.html#ni-special-pension' },
+    { text: 'אמנות בינלאומיות',   href: bp + 'new_immigrants/new_immigrants_full.html#ni-treaties' },
+]}
+```
+
+---
+
+#### 4. `gimlat_zikna_meyuchedet.html`
+
+**מנגנון:** זהה ל-`financial-tables-and-definitions.html` — `ACCORDIONS_CONFIG` inline + `displayData()` + `convertHeadingsToSubAccordions()`.
+
+**Config:**
+```javascript
+const ACCORDIONS_CONFIG = {
+    part_a: { title: 'חלק א׳ — גמלת זיקנה מיוחדת: מבוא, זכאות וגובה הגמלה', icon: '👴' },
+    part_b: { title: 'חלק ב׳ — אמנות בינלאומיות לביטחון סוציאלי',            icon: '🌍' },
+    part_c: { title: 'חלק ג׳ — השוואה: גמלה מיוחדת לעומת קצבה חלקית דרך אמנה', icon: '📊' }
+};
+```
+
+**שינויים ב-HTML (זהים לדפוס `financial-tables-and-definitions`):**
+1. `displayData()` — `id="${key}"` על ה-accordion div
+2. `processNestedHeadings()` — `if (heading.id) subAccordion.id = heading.id;`
+3. `openFromHash()` סטנדרטי נוסף לפני `convertHeadingsToSubAccordions`
+4. `openFromHash(); window.addEventListener(...)` אחרי `initAccordions()`
+
+**שינויים ב-`hamburger-nav.js`:**
+
+לפני: `{ icon: '👴', text: 'גמלת זיקנה מיוחדת', href: bp + 'new_immigrants/gimlat_zikna_meyuchedet.html' }`
+
+אחרי — 3 children:
+```javascript
+{ icon: '👴', text: 'גמלת זיקנה מיוחדת', children: [
+    { text: 'חלק א׳ — מבוא, זכאות וגובה הגמלה',           href: bp + 'new_immigrants/gimlat_zikna_meyuchedet.html#part_a' },
+    { text: 'חלק ב׳ — אמנות בינלאומיות לביטחון סוציאלי', href: bp + 'new_immigrants/gimlat_zikna_meyuchedet.html#part_b' },
+    { text: 'חלק ג׳ — השוואה: גמלה מיוחדת לעומת אמנה',   href: bp + 'new_immigrants/gimlat_zikna_meyuchedet.html#part_c' },
+]}
+```
+
+---
+
+#### 5. `international_treaties.html`
+
+**מנגנון:** זהה בדיוק ל-`gimlat_zikna_meyuchedet.html`.
+
+**Config:**
+```javascript
+const ACCORDIONS_CONFIG = {
+    part_a:  { title: 'מדינות האמנה — רשימה מלאה',       icon: '🌍' },
+    part_b:  { title: 'שלושת עקרונות האמנות',             icon: '⚖️' },
+    part_b2: { title: 'ענפי הביטוח הכלולים באמנות',       icon: '📑' },
+    part_c:  { title: 'צירוף תקופות ביטוח — פירוט',       icon: '🔗' },
+    part_d:  { title: 'שהייה בחו"ל וקצבאות',              icon: '✈️' },
+    part_e:  { title: 'הגשת תביעה לקצבה ממדינת אמנה',     icon: '📋' },
+    part_f:  { title: 'השוואה וטיפים',                    icon: '📊' }
+};
+```
+
+**שינויים ב-HTML:** זהים ל-`gimlat_zikna_meyuchedet.html` לעיל.
+
+**שינויים ב-`hamburger-nav.js`:**
+
+לפני: `{ icon: '🤝', text: 'אמנות בינלאומיות לביטחון סוציאלי', href: bp + 'new_immigrants/international_treaties.html' }`
+
+אחרי — 7 children:
+```javascript
+{ icon: '🤝', text: 'אמנות בינלאומיות לביטחון סוציאלי', children: [
+    { text: 'מדינות האמנה — רשימה מלאה',     href: bp + 'new_immigrants/international_treaties.html#part_a' },
+    { text: 'שלושת עקרונות האמנות',           href: bp + 'new_immigrants/international_treaties.html#part_b' },
+    { text: 'ענפי הביטוח הכלולים באמנות',     href: bp + 'new_immigrants/international_treaties.html#part_b2' },
+    { text: 'צירוף תקופות ביטוח — פירוט',     href: bp + 'new_immigrants/international_treaties.html#part_c' },
+    { text: 'שהייה בחו"ל וקצבאות',            href: bp + 'new_immigrants/international_treaties.html#part_d' },
+    { text: 'הגשת תביעה לקצבה ממדינת אמנה',   href: bp + 'new_immigrants/international_treaties.html#part_e' },
+    { text: 'השוואה וטיפים',                   href: bp + 'new_immigrants/international_treaties.html#part_f' },
+]}
+```
+
+---
+
+#### 6. `benefits-index.html`
+
+**מנגנון שונה:** אין `processNestedHeadings`. ה-`loadBenefits()` היא async ובונה DOM באמצעות `createElement`. המחלקה הראשית היא `.accordion-card` (לא `.accordion`). נתונים מ-`data/benefits-index.json`.
+
+**שינויים ב-HTML:**
+
+1. **`loadBenefits()`** — הוספת `card.id = cat.id;` לאחר `card.className = 'accordion-card';`
+
+2. **`openFromHash()`** — מותאם ל-`.accordion-card`:
+```javascript
+function openFromHash() {
+    const hash = decodeURIComponent(window.location.hash.slice(1));
+    if (!hash) return;
+    const target = document.getElementById(hash);
+    if (!target) return;
+    document.querySelectorAll('.accordion-card.active').forEach(a => a.classList.remove('active'));
+    target.classList.add('active');
+    setTimeout(() => target.scrollIntoView({ behavior: 'smooth', block: 'start' }), 450);
+}
+```
+
+3. **`DOMContentLoaded`** — שונה מ-`loadBenefits` ישיר לשרשרת Promise:
+```javascript
+// לפני:
+document.addEventListener('DOMContentLoaded', loadBenefits);
+// אחרי:
+document.addEventListener('DOMContentLoaded', () => { loadBenefits().then(openFromHash); });
+window.addEventListener('hashchange', openFromHash);
+```
+הסיבה: `loadBenefits` היא async — `openFromHash` חייבת להיקרא רק לאחר שה-DOM נבנה.
+
+**קטגוריות מה-JSON (IDs):**
+
+| id | כותרת |
+|----|-------|
+| `seniors` | א. אזרחים ותיקים ושאירים |
+| `disability` | ב. נכות, סיעוד ותפקוד |
+| `mobility` | ג. ניידות |
+| `income` | ד. הכנסה, עבודה ואבטלה |
+| `work-injury` | ה. נפגעי עבודה ותאונות |
+| `family` | ו. ילדים, הורות ומשפחה |
+| `disabled-children` | ז. ילדים עם מוגבלות |
+| `special` | ח. אוכלוסיות מיוחדות |
+| `grants` | ט. מענקים ותשלומים מיוחדים |
+
+**שינויים ב-`hamburger-nav.js`:**
+
+לפני: `{ icon: '📚', text: 'רשימת קצבאות ותשלומים', teal: true, href: ... }`
+
+אחרי — 9 children:
+```javascript
+{ icon: '📚', text: 'רשימת קצבאות ותשלומים', teal: true, children: [
+    { text: 'א. אזרחים ותיקים ושאירים',    href: bp + 'senior_rights/benefits-index.html#seniors' },
+    { text: 'ב. נכות, סיעוד ותפקוד',       href: bp + 'senior_rights/benefits-index.html#disability' },
+    { text: 'ג. ניידות',                   href: bp + 'senior_rights/benefits-index.html#mobility' },
+    { text: 'ד. הכנסה, עבודה ואבטלה',      href: bp + 'senior_rights/benefits-index.html#income' },
+    { text: 'ה. נפגעי עבודה ותאונות',      href: bp + 'senior_rights/benefits-index.html#work-injury' },
+    { text: 'ו. ילדים, הורות ומשפחה',      href: bp + 'senior_rights/benefits-index.html#family' },
+    { text: 'ז. ילדים עם מוגבלות',         href: bp + 'senior_rights/benefits-index.html#disabled-children' },
+    { text: 'ח. אוכלוסיות מיוחדות',        href: bp + 'senior_rights/benefits-index.html#special' },
+    { text: 'ט. מענקים ותשלומים מיוחדים',  href: bp + 'senior_rights/benefits-index.html#grants' },
+]}
+```
+
+---
+
+### מצב סיום — שלב 5 ✅
+
+| קובץ | שינויים ב-data.js | שינויים ב-HTML | שינויים ב-nav |
+|------|------------------|----------------|---------------|
+| `nechut_vs_shairim.html` | 9 שדות `id` נוספו | `displayContent` + `processNestedHeadings` + `openFromHash` | href → 9 children |
+| `nursing_home_guide.html` | לא נדרש (id כבר קיים) | `displayContent` + `processNestedHeadings` + `openFromHash` | href → 8 children |
+| `financial-tables-and-definitions.html` | לא רלוונטי (inline config) | `displayData` + `processNestedHeadings` + `openFromHash` | teal href → 8 children |
+| `new_immigrants_full.html` | לא רלוונטי (סטטי) | id × 2 + `openFromHash` | teal href → 2 children |
+| `gimlat_zikna_meyuchedet.html` | לא רלוונטי (inline config) | `displayData` + `processNestedHeadings` + `openFromHash` | href → 3 children |
+| `international_treaties.html` | לא רלוונטי (inline config) | `displayData` + `processNestedHeadings` + `openFromHash` | href → 7 children |
+| `benefits-index.html` | לא רלוונטי (JSON חיצוני) | `card.id` + `openFromHash` + async wiring | teal href → 9 children |
+
+**קבצים שנותרו בקבוצות ג׳–ד׳:** `sampels.html`, `holocaust_survivors_rights.html`
+
+---
+
+---
+
+## שלב 6 — המרת ענפי תפריט לעלים ישירים (המשך)
+
+### `dependents_definition_old_age_survivors.html` — 4 parent nodes הומרו לעלים
+
+**קובץ שנגע:** `data/hamburger-nav.js` בלבד — IDs כבר קיימים על האקורדיון divs מהשלב הקודם (`dep-widow`, `dep-widower`, `dep-child`, `dep-definitions`), ו-`openFromHash()` כבר קיים בקובץ ה-HTML.
+
+| פריט בתפריט | לפני | אחרי |
+|-------------|------|------|
+| הגדרת "אלמנה" | `children: [ תנאי א׳, תנאי ב׳ ]` | `href: ...#dep-widow` |
+| הגדרת "אלמן" | `children: [ תנאי א׳, תנאי ב׳, תנאי ג׳ ]` | `href: ...#dep-widower` |
+| הגדרת "ילד" | `children: [ קטגוריה 1–5 ]` | `href: ...#dep-child` |
+| הגדרות נוספות | `children: [ "הכנסה", "עקרת בית", "אלמנה בת קצבה", "עובד מבוטח" ]` | `href: ...#dep-definitions` |
+
+סה"כ הוסרו 12 sub-entries; 4 parent nodes הוחלפו ב-4 עלים.

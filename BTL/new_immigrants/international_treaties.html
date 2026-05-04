@@ -839,7 +839,7 @@
                         ? contentFn(NII_CONSTANTS)
                         : '<p style="text-align:center;color:#999;padding:40px;">⏳ המידע יתעדכן בקרוב...</p>';
                     html += `
-                        <div class="accordion" data-category="${key}">
+                        <div class="accordion" id="${key}" data-category="${key}">
                             <div class="accordion-header">
                                 <div class="accordion-icon">${config.icon}</div>
                                 <h2 class="accordion-title">${config.title}</h2>
@@ -855,6 +855,8 @@
                 document.getElementById('content').innerHTML = html;
                 convertHeadingsToSubAccordions();
                 initAccordions();
+                openFromHash();
+                window.addEventListener('hashchange', openFromHash);
             } catch (error) {
                 console.error('שגיאה בטעינת הנתונים:', error);
                 document.getElementById('content').innerHTML = `
@@ -895,6 +897,7 @@
                     const subAccordion = document.createElement('div');
                     subAccordion.className = 'sub-accordion';
                     subAccordion.setAttribute('data-level', currentLevel);
+                    if (heading.id) subAccordion.id = heading.id;
                     const subHeader = document.createElement('div');
                     subHeader.className = 'sub-accordion-header';
                     const subTitle = document.createElement('div');
@@ -933,6 +936,22 @@
                     });
                 }
             });
+        }
+
+        function openFromHash() {
+            const hash = decodeURIComponent(window.location.hash.slice(1));
+            if (!hash) return;
+            const target = document.getElementById(hash);
+            if (!target) return;
+            document.querySelectorAll('.accordion.active').forEach(a => a.classList.remove('active'));
+            let el = target;
+            while (el) {
+                if (el.classList.contains('accordion') || el.classList.contains('sub-accordion')) {
+                    el.classList.add('active');
+                }
+                el = el.parentElement;
+            }
+            setTimeout(() => target.scrollIntoView({ behavior: 'smooth', block: 'start' }), 450);
         }
 
         function convertHeadingsToSubAccordions() {
