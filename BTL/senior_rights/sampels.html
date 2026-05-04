@@ -8,16 +8,101 @@
     <meta name="author" content="מערכת מידע ביטוח לאומי">
     <title>דוגמאות - קצבת זיקנה והשלמת הכנסה</title>
 
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Assistant:wght@300;400;600;700;800&family=Varela+Round&display=swap" rel="stylesheet">
+
     <!-- Stylesheet -->
     <link rel="stylesheet" href="sampels_style.css">
     <style>
-        .back-button-container {
+        body {
+            font-family: 'Assistant', 'Segoe UI', Tahoma, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background:
+                radial-gradient(circle at 20% 50%, rgba(255,255,255,0.1) 0%, transparent 50%),
+                radial-gradient(circle at 80% 80%, rgba(255,255,255,0.1) 0%, transparent 50%);
+            animation: backgroundShift 20s ease-in-out infinite;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        @keyframes backgroundShift {
+            0%, 100% { transform: translate(0, 0) scale(1); }
+            50% { transform: translate(-5%, 5%) scale(0.95); }
+        }
+
+        .container {
+            background: transparent !important;
+            box-shadow: none !important;
+            border-radius: 0 !important;
+            overflow: visible !important;
+            position: relative;
+            z-index: 1;
+        }
+
+        .header {
+            background: transparent !important;
             text-align: center;
-            padding: 20px 0;
+            padding: 20px 0 50px !important;
+            animation: slideDown 0.8s ease-out;
+        }
+
+        @keyframes slideDown {
+            from { opacity: 0; transform: translateY(-50px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .header h1 {
+            font-family: 'Varela Round', sans-serif;
+            font-size: 3.5rem;
+            font-weight: 800;
+            color: white;
+            margin-bottom: 15px;
+            text-shadow: 3px 5px 15px rgba(0,0,0,0.3);
+            letter-spacing: -2px;
+        }
+
+        .support-info {
+            font-size: 1.2rem !important;
+            color: #FFD54F !important;
+            font-weight: 700;
+            text-shadow: 1px 2px 8px rgba(0,0,0,0.3);
+            margin-bottom: 8px;
+            opacity: 1 !important;
+        }
+
+        .subtitle {
+            font-size: 1.1rem;
+            color: rgba(255,255,255,0.85);
+            font-weight: 300;
+            text-shadow: 1px 2px 8px rgba(0,0,0,0.2);
+            opacity: 1 !important;
+        }
+
+        .update-badge {
+            display: inline-block;
+            background: rgba(255,255,255,0.2);
+            backdrop-filter: blur(10px);
+            padding: 8px 20px;
+            border-radius: 20px;
+            color: white;
+            font-size: 0.9rem;
+            margin-top: 15px;
+            font-weight: 600;
         }
 
         .back-button {
-            display: inline-block;
+            display: block;
+            width: fit-content;
+            margin: 0 auto 20px;
             background: rgba(255,255,255,0.25);
             backdrop-filter: blur(10px);
             padding: 12px 24px;
@@ -41,46 +126,41 @@
             margin-left: 5px;
         }
 
-        .support-info {
-            font-size: 1.1rem;
-            color: #FFD54F;
-            font-weight: 700;
-            text-shadow: 1px 2px 8px rgba(0,0,0,0.3);
-            margin-bottom: 5px;
+        .content {
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.2);
+            overflow: hidden;
+            animation: fadeIn 0.8s ease-out 0.3s both;
         }
 
-        .header p {
-            font-size: 0.95em !important;
-            opacity: 0.75 !important;
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
         }
     </style>
+
 <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-XFYGMQ47QN"></script>
 <script>
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
   gtag('js', new Date());
-
   gtag('config', 'G-XFYGMQ47QN');
 </script>
 </head>
 <body>
-    <!-- Back Button -->
-    <div class="back-button-container">
-        <a href="../index.html" class="back-button">חזרה לדף ראשי</a>
-    </div>
-
-    <!-- Header -->
     <div class="container">
         <div class="header">
-            <h1>דוגמאות</h1>
+            <a href="../index.html" class="back-button">חזרה לדף ראשי</a>
+            <h1>📚 דוגמאות חישוב</h1>
             <p class="support-info">מרכז תמיכה ומידע טלפוני ארצי בטלפון <span dir="ltr">*9696</span></p>
-            <p>קצבת אזרח ותיק והשלמת הכנסה</p>
+            <p class="subtitle">קצבת אזרח ותיק והשלמת הכנסה</p>
+            <div class="update-badge">מעודכן לינואר 2026</div>
         </div>
 
         <!-- Content Area -->
         <div class="content" id="content">
-            <!-- Content will be dynamically loaded here by JavaScript -->
             <div style="text-align: center; padding: 50px; color: #666;">
                 <p style="font-size: 1.2em;">טוען נתונים...</p>
             </div>
@@ -89,5 +169,6 @@
 
     <!-- JavaScript -->
     <script src="sampels_app.js"></script>
+    <script src="data/hamburger-nav.js"></script>
 </body>
 </html>

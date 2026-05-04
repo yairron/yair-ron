@@ -754,6 +754,7 @@
     <script>
         const infoData = {
             "מידע כללי": {
+                id: "hsr-info",
                 icon: "ℹ️",
                 content: `
                     <h3>אודות המדריך</h3>
@@ -802,6 +803,7 @@
             },
 
             "סוגי קצבאות": {
+                id: "hsr-pensions",
                 icon: "💰",
                 content: `
                     <h3>מסלולים עיקריים וסכומים 2025-2026</h3>
@@ -841,6 +843,7 @@
             },
 
             "סיעוד וטיפול": {
+                id: "hsr-nursing",
                 icon: "🏥",
                 content: `
                     <h3>זכויות סיעוד וטיפול בבית</h3>
@@ -882,6 +885,7 @@
             },
 
             "הטבות לניצולי שואה": {
+                id: "hsr-benefits",
                 icon: "🏠",
                 content: `
                     <h3>הנחות בארנונה, חשמל ודיור</h3>
@@ -925,6 +929,7 @@
             },
 
             "הגשת בקשות": {
+                id: "hsr-apply",
                 icon: "📝",
                 content: `
                     <h3>איך להגיש בקשה לזכויות</h3>
@@ -980,6 +985,7 @@
             },
 
             "ערעורים והחמרות": {
+                id: "hsr-appeals",
                 icon: "⚖️",
                 content: `
                     <h3>ערעור על החלטת דחייה והחמרה של קצבה</h3>
@@ -1029,6 +1035,7 @@
             },
 
             "ארגוני סיוע": {
+                id: "hsr-orgs",
                 icon: "🤝",
                 content: `
                     <h3>ארגונים וגופים לסיוע בחינם</h3>
@@ -1262,6 +1269,8 @@
         // Initialize page
         async function initializePage() {
             buildAccordions();
+            openFromHash();
+            window.addEventListener('hashchange', openFromHash);
             buildQuestionnaire();
             try {
                 const resp = await fetch('data/nii-constants.json');
@@ -1290,6 +1299,7 @@
             Object.entries(infoData).forEach(([title, data]) => {
                 const accordion = document.createElement('div');
                 accordion.className = 'accordion';
+                accordion.id = data.id;
                 accordion.innerHTML = `
                     <div class="accordion-header" onclick="toggleAccordion(this)">
                         <div class="accordion-icon">${data.icon}</div>
@@ -1468,6 +1478,21 @@
 
         function printRecommendations() {
             window.print();
+        }
+
+        function openFromHash() {
+            const hash = decodeURIComponent(window.location.hash.slice(1));
+            if (!hash) return;
+            const target = document.getElementById(hash);
+            if (!target) return;
+            document.querySelectorAll('.tab-content').forEach(t => t.classList.remove('active'));
+            document.getElementById('info').classList.add('active');
+            document.querySelectorAll('.tab-button').forEach(btn =>
+                btn.classList.toggle('active', btn.getAttribute('onclick') === "switchTab('info')")
+            );
+            document.querySelectorAll('.accordion.active').forEach(a => a.classList.remove('active'));
+            target.classList.add('active');
+            setTimeout(() => target.scrollIntoView({ behavior: 'smooth', block: 'start' }), 450);
         }
 
         function switchTab(tabName) {

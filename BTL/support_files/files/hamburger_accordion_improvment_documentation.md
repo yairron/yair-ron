@@ -1592,3 +1592,173 @@ window.addEventListener('hashchange', openFromHash);
 | הגדרות נוספות | `children: [ "הכנסה", "עקרת בית", "אלמנה בת קצבה", "עובד מבוטח" ]` | `href: ...#dep-definitions` |
 
 סה"כ הוסרו 12 sub-entries; 4 parent nodes הוחלפו ב-4 עלים.
+
+---
+
+## שלב 7 — `sampels.html` (קבוצה ג׳) — ניווט עוגנים + עיצוב כותרת
+
+### 7א — הוספת IDs וניווט (`sampels_app.js`)
+
+**מנגנון:** JS בונה 3 רמות אקורדיון מ-`sampels_questions.json` דרך `createElement`.
+
+**שינויים ב-`sampels_app.js`:**
+
+1. **`createChapterAccordion(chapter)`** — הוסף `chapterDiv.id = 'ch-' + chapter.id;`
+2. **`createQuestionAccordion(question, chapterId)`** — שינוי signature + הוסף `questionDiv.id = 'ch-' + chapterId + '-q' + question.questionNumber;`
+3. **`createExamplesContainer(examples, chapterId, questionNumber)`** — שינוי signature + העברת הקשר
+4. **`createExampleAccordion(example, chapterId, questionNumber, index)`** — שינוי signature + הוסף `exampleDiv.id = 'ch-' + chapterId + '-q' + questionNumber + '-ex-' + index;`
+5. **`openFromHash()`** — חדשה; מטפלת ברמת פרק בלבד (`.accordion-chapter-header/content`); אין while-loop כי אין nesting DOM
+6. **חיווט** — `openFromHash()` + `hashchange` listener אחרי `initializeAccordions()` בתוך בלוק ה-async
+
+**IDs שנוצרים:**
+| רמה | פורמט | דוגמה |
+|-----|--------|--------|
+| פרק (chapter) | `ch-{id}` | `ch-1`, `ch-2`, `ch-3` |
+| שאלה (question) | `ch-{id}-q{num}` | `ch-1-q1` |
+| דוגמה (example) | `ch-{id}-q{num}-ex-{idx}` | `ch-1-q1-ex-0` |
+
+**שינויים ב-`hamburger-nav.js`:**
+
+לפני: `{ icon: '📚', text: 'דוגמאות וסימולציות', href: ... }`
+
+אחרי — 3 children:
+```javascript
+{ icon: '📚', text: 'דוגמאות וסימולציות', children: [
+    { text: 'פרק 1 — גובה הקצבה, תוספת ותק ודחיית קצבה', href: bp + 'senior_rights/sampels.html#ch-1' },
+    { text: 'פרק 2 — הכנסות מעבודה ומבחן ההכנסה',         href: bp + 'senior_rights/sampels.html#ch-2' },
+    { text: 'פרק 3 — הכנסות שלא מעבודה',                  href: bp + 'senior_rights/sampels.html#ch-3' },
+]},
+```
+
+### 7ב — עיצוב כותרת `sampels.html`
+
+הכותרת עוצבה מחדש להתאים ל-`senior_rights_full.html`:
+
+- נוספו Google Fonts (Assistant + Varela Round)
+- `body::before` עם אנימציית `backgroundShift` 20 שניות
+- `.container` הפך שקוף (הסרת `background: white`, `box-shadow`, `border-radius`)
+- `.header` שקוף על רקע ה-gradient — כולל `slideDown` אנימציה
+- `h1` — Varela Round, 3.5rem, לבן, `text-shadow`
+- נוסף `.update-badge` ("מעודכן לינואר 2026")
+- `.content` קיבל את הרקע הלבן + `border-radius` + `box-shadow` (שהיה קודם על `.container`)
+- כפתור חזרה הועבר לתוך `.header` (היה בדיב נפרד לפני ה-container)
+- `<script src="data/hamburger-nav.js">` נוסף בתחתית
+
+---
+
+## שלב 8 — ארגון מחדש של "כלי עזר" בתפריט ההמבורגר
+
+### 8א — הוספת אקורדיון "מחשבונים וכלים"
+
+נוסף אקורדיון חדש `{ icon: '🔧', text: 'מחשבונים וכלים', children: [...] }` בראש "כלי עזר".
+
+8 פריטים הועברו אליו מרמת "כלי עזר" הישירה:
+
+| פריט | href |
+|------|------|
+| בדיקת תעודת זהות | `id-check.html` |
+| מחשבון גיל פרישה לנשים | `retirement-calculator.html` |
+| מחשבון האפשרות לקבל יותר מקצבה אחת | `benefit-combinations.html` |
+| מחשבון הערכת זכאות לקצבת זיקנה | `age_pension_eligibility_calculator.html` |
+| בדיקת זכאות להשלמת הכנסה | `questionnaire.html?id=income-supplement-eligibility` |
+| הגדרת ילד להשלמת הכנסה | `questionnaire.html?id=child-definition&hideReturn=true` |
+| זכאות להשלמת הכנסה עם רכב | `questionnaire.html?id=vehicle-income-supplement` |
+| חישוב הכנסה רעיונית מנכסים | `questionnaire.html?id=imputed-income-calculator` |
+
+### 8ב — סידור מחדש של "כלי עזר": אקורדיונים לפני עלים
+
+סדר חדש בתוך "כלי עזר":
+
+**אקורדיונים (ראשונים):**
+1. 🔧 מחשבונים וכלים ← חדש
+2. 📚 רשימת קצבאות ותשלומים
+3. 🧮 מחשבוני הביטוח הלאומי
+4. 📜 הגדרת תלויים בקצבת זיקנה
+5. 📚 דוגמאות וסימולציות
+
+**עלים ישירים (אחרונים):**
+6. 📄 מסמכי מקורות מידע
+7. 🏦 מדריך הכנסה רעיונית מנכסים פיננסיים
+8. 📝 טופס פניה לייעוץ בל/4300 ← אחרון
+
+### 8ג — העברת "קישורים חשובים" ו-"טפסי ביטוח לאומי"
+
+הועברו ממיקומם (לפני "מדריכים מפורטים") לסוף הרשימה הראשית — אחרי בלוק "עדכוני ביטוח לאומי 2026":
+
+```javascript
+{ icon: '🔗', text: 'קישורים חשובים',   href: bp + 'senior_rights/important-links.html', teal: true },
+{ icon: '📋', text: 'טפסי ביטוח לאומי', href: bp + 'senior_rights/forms.html', teal: true },
+```
+
+---
+
+## שלב 9 — `holocaust_survivors_rights.html` (קבוצה ד׳)
+
+**מנגנון:** דף רב-טאבי (מידע / שאלון / המלצות). האקורדיונים נמצאים בטאב `#info` בלבד, נבנים ב-`buildAccordions()` מ-`Object.entries(infoData)` — מפתחות עבריים, ללא `id` ב-DOM.
+
+**שינויים:**
+
+**1. הוספת שדה `id` לכל ערך ב-`infoData`:**
+
+| מפתח | id שנוסף |
+|------|----------|
+| "מידע כללי" | `hsr-info` |
+| "סוגי קצבאות" | `hsr-pensions` |
+| "סיעוד וטיפול" | `hsr-nursing` |
+| "הטבות לניצולי שואה" | `hsr-benefits` |
+| "הגשת בקשות" | `hsr-apply` |
+| "ערעורים והחמרות" | `hsr-appeals` |
+| "ארגוני סיוע" | `hsr-orgs` |
+
+**2. `buildAccordions()`** — הוסף `accordion.id = data.id;` אחרי `accordion.className = 'accordion';`
+
+**3. `openFromHash()`** — חדשה; מטפלת במעבר טאב ידני (עוקפת את `event.target` של `switchTab()`):
+```javascript
+function openFromHash() {
+    const hash = decodeURIComponent(window.location.hash.slice(1));
+    if (!hash) return;
+    const target = document.getElementById(hash);
+    if (!target) return;
+    document.querySelectorAll('.tab-content').forEach(t => t.classList.remove('active'));
+    document.getElementById('info').classList.add('active');
+    document.querySelectorAll('.tab-button').forEach(btn =>
+        btn.classList.toggle('active', btn.getAttribute('onclick') === "switchTab('info')")
+    );
+    document.querySelectorAll('.accordion.active').forEach(a => a.classList.remove('active'));
+    target.classList.add('active');
+    setTimeout(() => target.scrollIntoView({ behavior: 'smooth', block: 'start' }), 450);
+}
+```
+
+**4. חיווט ב-`initializePage()`** — מיד אחרי `buildAccordions()`, לפני ה-`await`:
+```javascript
+buildAccordions();
+openFromHash();
+window.addEventListener('hashchange', openFromHash);
+```
+
+**5. שינויים ב-`hamburger-nav.js`:**
+
+לפני: `{ icon: '🕯️', text: 'מדריך ניצולי שואה', href: ... }`
+
+אחרי — 7 children עם `teal: true`:
+```javascript
+{ icon: '🕯️', text: 'מדריך ניצולי שואה', teal: true, children: [
+    { text: 'מידע כללי',              href: bp + 'senior_rights/holocaust_survivors_rights.html#hsr-info' },
+    { text: 'סוגי קצבאות',            href: bp + 'senior_rights/holocaust_survivors_rights.html#hsr-pensions' },
+    { text: 'סיעוד וטיפול',           href: bp + 'senior_rights/holocaust_survivors_rights.html#hsr-nursing' },
+    { text: 'הטבות לניצולי שואה',     href: bp + 'senior_rights/holocaust_survivors_rights.html#hsr-benefits' },
+    { text: 'הגשת בקשות',             href: bp + 'senior_rights/holocaust_survivors_rights.html#hsr-apply' },
+    { text: 'ערעורים והחמרות',        href: bp + 'senior_rights/holocaust_survivors_rights.html#hsr-appeals' },
+    { text: 'ארגוני סיוע',            href: bp + 'senior_rights/holocaust_survivors_rights.html#hsr-orgs' },
+]},
+```
+
+### מצב סיום — שלבים 7–9 ✅
+
+| קובץ | שינויים ב-JS/HTML | שינויים ב-nav |
+|------|------------------|---------------|
+| `sampels_app.js` | IDs × 3 רמות + `openFromHash` + חיווט | teal href → 3 children |
+| `sampels.html` | עיצוב כותרת + hamburger script | — |
+| `holocaust_survivors_rights.html` | `id` × 7 ב-infoData + `buildAccordions` + `openFromHash` + חיווט | href → 7 children (teal) |
+| `hamburger-nav.js` | "מחשבונים וכלים" חדש, ארגון מחדש "כלי עזר", העברת קישורים ופטורים לסוף | — |

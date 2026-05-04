@@ -13,6 +13,8 @@ document.addEventListener('DOMContentLoaded', async () => {
 
         // Initialize accordion functionality
         initializeAccordions();
+        openFromHash();
+        window.addEventListener('hashchange', openFromHash);
 
     } catch (error) {
         console.error('Error loading data:', error);
@@ -35,6 +37,7 @@ function renderChapters() {
 function createChapterAccordion(chapter) {
     const chapterDiv = document.createElement('div');
     chapterDiv.className = 'accordion-chapter';
+    chapterDiv.id = 'ch-' + chapter.id;
 
     // Chapter Header
     const chapterHeader = document.createElement('div');
@@ -50,7 +53,7 @@ function createChapterAccordion(chapter) {
 
     // Add all questions
     chapter.questions.forEach(question => {
-        const questionDiv = createQuestionAccordion(question);
+        const questionDiv = createQuestionAccordion(question, chapter.id);
         chapterContent.appendChild(questionDiv);
     });
 
@@ -61,9 +64,10 @@ function createChapterAccordion(chapter) {
 }
 
 // ===== Create Question Accordion =====
-function createQuestionAccordion(question) {
+function createQuestionAccordion(question, chapterId) {
     const questionDiv = document.createElement('div');
     questionDiv.className = 'accordion-question';
+    questionDiv.id = 'ch-' + chapterId + '-q' + question.questionNumber;
 
     // Question Header
     const questionHeader = document.createElement('div');
@@ -152,7 +156,7 @@ function createQuestionAccordion(question) {
 
     // Add examples section
     if (question.examples && question.examples.length > 0) {
-        const examplesContainer = createExamplesContainer(question.examples);
+        const examplesContainer = createExamplesContainer(question.examples, chapterId, question.questionNumber);
         questionContent.appendChild(examplesContainer);
     }
 
@@ -226,7 +230,7 @@ function createSpecialCasesSection(specialCases) {
 }
 
 // ===== Create Examples Container =====
-function createExamplesContainer(examples) {
+function createExamplesContainer(examples, chapterId, questionNumber) {
     const container = document.createElement('div');
     container.className = 'examples-container';
 
@@ -234,8 +238,8 @@ function createExamplesContainer(examples) {
     title.textContent = 'דוגמאות חישוב:';
     container.appendChild(title);
 
-    examples.forEach(example => {
-        const exampleDiv = createExampleAccordion(example);
+    examples.forEach((example, index) => {
+        const exampleDiv = createExampleAccordion(example, chapterId, questionNumber, index);
         container.appendChild(exampleDiv);
     });
 
@@ -243,9 +247,10 @@ function createExamplesContainer(examples) {
 }
 
 // ===== Create Example Accordion =====
-function createExampleAccordion(example) {
+function createExampleAccordion(example, chapterId, questionNumber, index) {
     const exampleDiv = document.createElement('div');
     exampleDiv.className = 'accordion-example';
+    exampleDiv.id = 'ch-' + chapterId + '-q' + questionNumber + '-ex-' + index;
 
     // Example Header
     const exampleHeader = document.createElement('div');
@@ -284,6 +289,24 @@ function createExampleAccordion(example) {
     exampleDiv.appendChild(exampleContent);
 
     return exampleDiv;
+}
+
+// ===== Open Accordion from URL Hash =====
+function openFromHash() {
+    const hash = decodeURIComponent(window.location.hash.slice(1));
+    if (!hash) return;
+    const target = document.getElementById(hash);
+    if (!target) return;
+    const header = target.querySelector('.accordion-chapter-header');
+    const content = target.querySelector('.accordion-chapter-content');
+    const arrow = header ? header.querySelector('.arrow') : null;
+    if (!header || !content) return;
+    if (!header.classList.contains('active')) {
+        header.classList.add('active');
+        if (arrow) arrow.classList.add('active');
+        content.classList.add('active');
+    }
+    setTimeout(() => target.scrollIntoView({ behavior: 'smooth', block: 'start' }), 450);
 }
 
 // ===== Initialize Accordion Functionality =====

@@ -260,8 +260,6 @@
             { text: 'ניצולי שואה',             href: bp + 'senior_rights/financial-tables-and-definitions.html#holocaust' },
             { text: 'עולים חדשים',             href: bp + 'senior_rights/financial-tables-and-definitions.html#immigrants' },
         ]},
-        { icon: '🔗', text: 'קישורים חשובים',           href: bp + 'senior_rights/important-links.html', teal: true },
-        { icon: '📋', text: 'טפסי ביטוח לאומי',         href: bp + 'senior_rights/forms.html', teal: true },
         {
             icon: '📖', text: 'מדריכים מפורטים', children: [
                 { icon: '📘', text: 'זכויות אזרחים ותיקים 2026', children: [
@@ -386,14 +384,30 @@
                     { text: 'שאלות נפוצות',                        href: bp + 'senior_rights/nursing_home_guide.html#faq' },
                     { text: 'גורמי עזר ומידע',                     href: bp + 'senior_rights/nursing_home_guide.html#resources' },
                 ]},
-                { icon: '🕯️', text: 'מדריך ניצולי שואה',             href: bp + 'senior_rights/holocaust_survivors_rights.html' },
+                { icon: '🕯️', text: 'מדריך ניצולי שואה', teal: true, children: [
+                    { text: 'מידע כללי',              href: bp + 'senior_rights/holocaust_survivors_rights.html#hsr-info' },
+                    { text: 'סוגי קצבאות',            href: bp + 'senior_rights/holocaust_survivors_rights.html#hsr-pensions' },
+                    { text: 'סיעוד וטיפול',           href: bp + 'senior_rights/holocaust_survivors_rights.html#hsr-nursing' },
+                    { text: 'הטבות לניצולי שואה',     href: bp + 'senior_rights/holocaust_survivors_rights.html#hsr-benefits' },
+                    { text: 'הגשת בקשות',             href: bp + 'senior_rights/holocaust_survivors_rights.html#hsr-apply' },
+                    { text: 'ערעורים והחמרות',        href: bp + 'senior_rights/holocaust_survivors_rights.html#hsr-appeals' },
+                    { text: 'ארגוני סיוע',            href: bp + 'senior_rights/holocaust_survivors_rights.html#hsr-orgs' },
+                ]},
             ]
         },
         {
             icon: '🛠️', text: 'כלי עזר', children: [
-                { icon: '🪪', text: 'בדיקת תעודת זהות',              href: bp + 'senior_rights/id-check.html' },
-                { icon: '👩', text: 'מחשבון גיל פרישה לנשים',        href: bp + 'senior_rights/retirement-calculator.html' },
-                { icon: '🔢', text: 'מחשבון האפשרות לקבל יותר מקצבה אחת', href: bp + 'senior_rights/benefit-combinations.html' },
+                // --- אקורדיונים ---
+                { icon: '🔧', text: 'מחשבונים וכלים', children: [
+                    { icon: '🪪', text: 'בדיקת תעודת זהות',                          href: bp + 'senior_rights/id-check.html' },
+                    { icon: '👩', text: 'מחשבון גיל פרישה לנשים',                    href: bp + 'senior_rights/retirement-calculator.html' },
+                    { icon: '🔢', text: 'מחשבון האפשרות לקבל יותר מקצבה אחת',       href: bp + 'senior_rights/benefit-combinations.html' },
+                    { icon: '🧾', text: 'מחשבון הערכת זכאות לקצבת זיקנה',           href: bp + 'senior_rights/age_pension_eligibility_calculator.html' },
+                    { icon: '💰', text: 'בדיקת זכאות להשלמת הכנסה',                 href: bp + 'senior_rights/questionnaire.html?id=income-supplement-eligibility' },
+                    { icon: '👶', text: 'הגדרת ילד להשלמת הכנסה',                   href: bp + 'senior_rights/questionnaire.html?id=child-definition&hideReturn=true' },
+                    { icon: '🚗', text: 'זכאות להשלמת הכנסה עם רכב',                href: bp + 'senior_rights/questionnaire.html?id=vehicle-income-supplement' },
+                    { icon: '🏠', text: 'חישוב הכנסה רעיונית מנכסים',               href: bp + 'senior_rights/questionnaire.html?id=imputed-income-calculator' },
+                ]},
                 { icon: '📚', text: 'רשימת קצבאות ותשלומים', teal: true, children: [
                     { text: 'א. אזרחים ותיקים ושאירים',    href: bp + 'senior_rights/benefits-index.html#seniors' },
                     { text: 'ב. נכות, סיעוד ותפקוד',       href: bp + 'senior_rights/benefits-index.html#disability' },
@@ -405,7 +419,6 @@
                     { text: 'ח. אוכלוסיות מיוחדות',        href: bp + 'senior_rights/benefits-index.html#special' },
                     { text: 'ט. מענקים ותשלומים מיוחדים',  href: bp + 'senior_rights/benefits-index.html#grants' },
                 ]},
-                { icon: '📄', text: 'מסמכי מקורות מידע',             href: bp + 'senior_rights/Information_Sources.html', teal: true },
                 {
                     icon: '🧮', text: 'מחשבוני הביטוח הלאומי', children: [
                         { icon: '📋', text: 'רשימת מחשבונים',                href: 'https://www.btl.gov.il/Simulators/Pages/default.aspx', external: true },
@@ -421,20 +434,21 @@
                         { icon: '🛡️', text: 'מחשבון נפגעי פעולות איבה',     href: 'https://www.btl.gov.il/Simulators/peulotEiva/Pages/default.aspx', external: true },
                     ]
                 },
-                { icon: '🧾', text: 'מחשבון הערכת זכאות לקצבת זיקנה', href: bp + 'senior_rights/age_pension_eligibility_calculator.html' },
-                { icon: '💰', text: 'בדיקת זכאות להשלמת הכנסה',     href: bp + 'senior_rights/questionnaire.html?id=income-supplement-eligibility' },
-                { icon: '👶', text: 'הגדרת ילד להשלמת הכנסה',        href: bp + 'senior_rights/questionnaire.html?id=child-definition&hideReturn=true' },
-                { icon: '🚗', text: 'זכאות להשלמת הכנסה עם רכב',     href: bp + 'senior_rights/questionnaire.html?id=vehicle-income-supplement' },
-                { icon: '🏠', text: 'חישוב הכנסה רעיונית מנכסים',    href: bp + 'senior_rights/questionnaire.html?id=imputed-income-calculator' },
-                { icon: '🏦', text: 'מדריך הכנסה רעיונית מנכסים פיננסיים', href: bp + 'senior_rights/imputed_income_guide.html' },
                 { icon: '📜', text: 'הגדרת תלויים בקצבת זיקנה', children: [
                     { text: 'הגדרת "אלמנה"',   href: bp + 'senior_rights/dependents_definition_old_age_survivors.html#dep-widow' },
                     { text: 'הגדרת "אלמן"',    href: bp + 'senior_rights/dependents_definition_old_age_survivors.html#dep-widower' },
                     { text: 'הגדרת "ילד"',      href: bp + 'senior_rights/dependents_definition_old_age_survivors.html#dep-child' },
                     { text: 'הגדרות נוספות',    href: bp + 'senior_rights/dependents_definition_old_age_survivors.html#dep-definitions' },
                 ]},
-                { icon: '📝', text: 'טופס פניה לייעוץ בל/4300',       href: bp + 'senior_rights/counseling_referral_form.html' },
-                { icon: '📚', text: 'דוגמאות וסימולציות',              href: bp + 'senior_rights/sampels.html' },
+                { icon: '📚', text: 'דוגמאות וסימולציות', children: [
+                    { text: 'פרק 1 — גובה הקצבה, תוספת ותק ודחיית קצבה', href: bp + 'senior_rights/sampels.html#ch-1' },
+                    { text: 'פרק 2 — הכנסות מעבודה ומבחן ההכנסה',         href: bp + 'senior_rights/sampels.html#ch-2' },
+                    { text: 'פרק 3 — הכנסות שלא מעבודה',                  href: bp + 'senior_rights/sampels.html#ch-3' },
+                ]},
+                // --- עלים ישירים ---
+                { icon: '📄', text: 'מסמכי מקורות מידע',                        href: bp + 'senior_rights/Information_Sources.html', teal: true },
+                { icon: '🏦', text: 'מדריך הכנסה רעיונית מנכסים פיננסיים',     href: bp + 'senior_rights/imputed_income_guide.html' },
+                { icon: '📝', text: 'טופס פניה לייעוץ בל/4300',                 href: bp + 'senior_rights/counseling_referral_form.html' },
             ]
         },
         {
@@ -462,6 +476,8 @@
                 ]},
             ]
         },
+        { icon: '🔗', text: 'קישורים חשובים',   href: bp + 'senior_rights/important-links.html', teal: true },
+        { icon: '📋', text: 'טפסי ביטוח לאומי', href: bp + 'senior_rights/forms.html', teal: true },
     ];
 
     // ─── 1b: CSS ──────────────────────────────────────────────────────────────
