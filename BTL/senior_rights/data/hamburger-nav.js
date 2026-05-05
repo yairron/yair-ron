@@ -480,6 +480,8 @@
         { icon: '📋', text: 'טפסי ביטוח לאומי', href: bp + 'senior_rights/forms.html', teal: true },
     ];
 
+    window.HNAV_MENU = MENU;
+
     // ─── 1b: CSS ──────────────────────────────────────────────────────────────
     function buildCSS() {
         return `
