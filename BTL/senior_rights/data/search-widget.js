@@ -30,6 +30,10 @@ var SEARCH_CONCEPTS = (typeof window.HNAV_MENU !== 'undefined')
   ? buildSearchConcepts(window.HNAV_MENU, [])
   : [];
 
+if (typeof window.SEARCH_EXTRA !== 'undefined') {
+  SEARCH_CONCEPTS = SEARCH_CONCEPTS.concat(window.SEARCH_EXTRA);
+}
+
 // ── עיבוד שאילתה ─────────────────────────────────────────────────────────────
 
 function parseQuery(raw) {

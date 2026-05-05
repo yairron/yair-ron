@@ -7,10 +7,10 @@ const SENIOR_RIGHTS_2026_DATA = {
             title: "חובה לבחור בין קצבת נכות לבין קצבת שאירים",
             contentFn: function(nii) {
                 return `
-                <h3 class="no-accordion">העיקרון המשפטי</h3>
+                <h3 class="no-accordion" id="nvs-choose-principle">העיקרון המשפטי</h3>
                 <p>לפי סעיף 323(א) לחוק הביטוח הלאומי, מי שזכאי לקצבת שאירים וגם לקצבת נכות כללית אינו יכול לקבל את שתיהן בו-זמנית, ועליו לבחור אחת מהן.</p>
 
-                <h3 class="no-accordion">חשוב לדעת</h3>
+                <h3 class="no-accordion" id="nvs-choose-note">חשוב לדעת</h3>
                 <div style="background:#FFF3E0;border:1px solid #FFCC80;border-radius:12px;padding:14px 16px;margin:12px 0;">
                     <p style="margin:0;font-weight:700;color:#E65100;">⚠ הבחירה בין הקצבאות עשויה להשפיע משמעותית על ההכנסה לטווח ארוך.</p>
                     <p style="margin:8px 0 0 0;">מומלץ לבחון את כלל השיקולים לפני החלטה ולהתייעץ עם הביטוח הלאומי בטלפון <span dir="ltr">*9696</span>.</p>
@@ -33,7 +33,7 @@ const SENIOR_RIGHTS_2026_DATA = {
                 <div style="display:flex;flex-direction:column;gap:24px;margin:12px 0;">
                     <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:24px;align-items:stretch;">
                     <div style="border:1px solid #D7E3F0;background:#F8FBFE;border-radius:16px;padding:18px 20px;height:100%;display:flex;flex-direction:column;">
-                        <h3 class="no-accordion" style="margin:0 0 10px 0;">קצבת נכות כללית</h3>
+                        <h3 class="no-accordion" id="nvs-amounts-disability" style="margin:0 0 10px 0;">קצבת נכות כללית</h3>
                         <h4 class="no-accordion" style="margin:10px 0 6px 0;">סכומי הקצבה</h4>
                         <table style="width:100%;border-collapse:collapse;margin:12px 0;">
                             <thead><tr style="background:linear-gradient(135deg,#667eea,#764ba2);color:#fff;">
@@ -57,7 +57,7 @@ const SENIOR_RIGHTS_2026_DATA = {
                     </div>
 
                     <div style="border:1px solid #DDE8E0;background:#FAFCFA;border-radius:16px;padding:18px 20px;height:100%;display:flex;flex-direction:column;">
-                        <h3 class="no-accordion" style="margin:0 0 10px 0;">קצבת שאירים (אלמן/אלמנה)</h3>
+                        <h3 class="no-accordion" id="nvs-amounts-survivors" style="margin:0 0 10px 0;">קצבת שאירים (אלמן/אלמנה)</h3>
                         <h4 class="no-accordion" style="margin:10px 0 6px 0;">סכומי הקצבה</h4>
                         <table style="width:100%;border-collapse:collapse;margin:12px 0;">
                             <thead><tr style="background:linear-gradient(135deg,#26A69A,#00897B);color:#fff;">
@@ -124,7 +124,7 @@ const SENIOR_RIGHTS_2026_DATA = {
                 return `
                 <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:24px;align-items:start;">
                     <div style="border:1px solid #D7E3F0;background:#F8FBFE;border-radius:16px;padding:18px 20px;">
-                        <h3 class="no-accordion" style="margin:0 0 10px 0;">קצבת נכות כללית</h3>
+                        <h3 class="no-accordion" id="nvs-adv-disability" style="margin:0 0 10px 0;">קצבת נכות כללית</h3>
 
                         <h4 class="no-accordion" style="margin:10px 0 6px 0;">א. סכום גבוה יותר</h4>
                         <p style="margin:0 0 10px 0;">בדרגה מלאה, קצבת הנכות עומדת על <strong>${c('disability_full')} ₪</strong>, ולרוב גבוהה משמעותית מקצבת שאירים בסיסית ללא ילדים.</p>
@@ -151,7 +151,7 @@ const SENIOR_RIGHTS_2026_DATA = {
                     </div>
 
                     <div style="border:1px solid #DDE8E0;background:#FAFCFA;border-radius:16px;padding:18px 20px;">
-                        <h3 class="no-accordion" style="margin:0 0 10px 0;">קצבת השאירים</h3>
+                        <h3 class="no-accordion" id="nvs-adv-survivors" style="margin:0 0 10px 0;">קצבת השאירים</h3>
 
                         <h4 class="no-accordion" style="margin:10px 0 6px 0;">א. ללא מבחן הכנסה בסיסי לאלמנה</h4>
                         <p style="margin:0 0 10px 0;">קצבת שאירים לאלמנה משולמת ללא מבחן הכנסה לקצבה עצמה.</p>
@@ -184,7 +184,7 @@ const SENIOR_RIGHTS_2026_DATA = {
                 return `
                 <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:24px;align-items:start;">
                     <div style="border:1px solid #F0D8D8;background:#FFF8F8;border-radius:16px;padding:18px 20px;">
-                        <h3 class="no-accordion" style="margin:0 0 10px 0;">קצבת נכות</h3>
+                        <h3 class="no-accordion" id="nvs-risks-disability" style="margin:0 0 10px 0;">קצבת נכות</h3>
 
                         <h4 class="no-accordion" style="margin:10px 0 6px 0;">א. אובדן הכנסה גבוהה יותר</h4>
                         <p style="margin:0 0 10px 0;">ויתור על קצבת נכות בדרגה מלאה (<strong>${c('disability_full')} ₪</strong>) לטובת שאירים בסיסית עשוי לגרום לפער חודשי גבוה.</p>
@@ -203,7 +203,7 @@ const SENIOR_RIGHTS_2026_DATA = {
                     </div>
 
                     <div style="border:1px solid #E3E0F2;background:#FAF9FE;border-radius:16px;padding:18px 20px;">
-                        <h3 class="no-accordion" style="margin:0 0 10px 0;">קצבת שאירים</h3>
+                        <h3 class="no-accordion" id="nvs-risks-survivors" style="margin:0 0 10px 0;">קצבת שאירים</h3>
 
                         <h4 class="no-accordion" style="margin:10px 0 6px 0;">א. אובדן זכות במצבים מסוימים</h4>
                         <p style="margin:0 0 10px 0;">סיום קצבת נכות עשוי להשפיע אחרת על חידוש שאירים בהתאם לנסיבות (למשל נישואין).</p>
@@ -230,7 +230,7 @@ const SENIOR_RIGHTS_2026_DATA = {
                         <p style="margin:0;"><strong>הכלל:</strong> הבחירה הראשונית אינה בהכרח סופית לעולם. ישנם מצבים שבהם הזכות לקצבה הנוספת מתחדשת, אך לא תמיד.</p>
                     </div>
 
-                    <h3 class="no-accordion" style="margin:0 0 8px 0;">בחר בנכות – מה קורה לשאירים?</h3>
+                    <h3 class="no-accordion" id="nvs-switch-to-disability" style="margin:0 0 8px 0;">בחר בנכות – מה קורה לשאירים?</h3>
                     <ul style="margin:0 0 14px 0;">
                         <li>הזכות לשאירים מושהית אך לא נמחקת.</li>
                         <li>הזכות לשאירים מתחדשת בגיל הפרישה (${age('retirement_age_male')} לגבר, 62–65 לאישה).</li>
@@ -238,7 +238,7 @@ const SENIOR_RIGHTS_2026_DATA = {
                         <li>ילדים – ממשיכים לקבל שאירים (הגבוה מבין השתיים) גם כאשר ההורה בוחר בנכות.</li>
                     </ul>
 
-                    <h3 class="no-accordion" style="margin:10px 0 8px 0;">בחר בשאירים – מה קורה לנכות?</h3>
+                    <h3 class="no-accordion" id="nvs-switch-to-survivors" style="margin:10px 0 8px 0;">בחר בשאירים – מה קורה לנכות?</h3>
                     <ul style="margin:0;">
                         <li>קצבת הנכות מופסקת.</li>
                         <li>לצורך חידוש נכות – יש לפנות מחדש לביטוח הלאומי ולעבור ועדה רפואית מחדש (אם הנכות לא הוכרה לתמיד).</li>
@@ -289,32 +289,32 @@ const SENIOR_RIGHTS_2026_DATA = {
             contentFn: function(nii) {
                 const c = key => (nii && nii[key]) ? nii[key].value.toLocaleString('he-IL') : '—';
                 return `
-                <h3 class="no-accordion">א. מה קורה בגיל הפרישה?</h3>
+                <h3 class="no-accordion" id="nvs-add-a">א. מה קורה בגיל הפרישה?</h3>
                 <p>לאדם שקיבל קצבת נכות עד גיל הפרישה – עוברת הקצבה אוטומטית לקצבת זקנה לנכה, לא פחות מקצבת הנכות שקיבל קודם. בגיל הפרישה יכול גם לקבל קצבת שאירים במקביל לזקנה (מחצית שאירים + זקנה מלאה, או שאירים מלאה + מחצית זקנה).</p>
 
-                <h3 class="no-accordion">ב. נכות פחות מ-90 יום לפני גיל הפרישה</h3>
+                <h3 class="no-accordion" id="nvs-add-b">ב. נכות פחות מ-90 יום לפני גיל הפרישה</h3>
                 <p>מי שהוכר כנכה <strong>פחות מ-90 יום</strong> לפני גיל הפרישה – <strong>אינו זכאי לקצבת נכות כלל</strong>. לפיכך, לא תתעורר שאלת הבחירה, וקצבת השאירים תישאר הברירה היחידה.</p>
 
-                <h3 class="no-accordion">ג. שאירים + שירותים מיוחדים (שר"מ)</h3>
+                <h3 class="no-accordion" id="nvs-add-c">ג. שאירים + שירותים מיוחדים (שר"מ)</h3>
                 <p>מי שבוחר בשאירים ועונה על קריטריוני שר"מ (נכות 60% ומעלה) – עדיין יכול לבקש שר"מ בנפרד. שר"מ אינה תלויה בבחירת קצבת הנכות הכללית ואינה כפופה למבחן הכנסה.</p>
 
-                <h3 class="no-accordion">ד. ביטוח פנסיוני משלים</h3>
+                <h3 class="no-accordion" id="nvs-add-d">ד. ביטוח פנסיוני משלים</h3>
                 <p>אם לנפטר היה ביטוח מנהלים, קרן פנסיה או ביטוח חיים – שאיריו עשויים לקבל גם קצבת שאירים מהגוף המנהל, בנוסף לקצבת הביטוח הלאומי. זהו שיקול כלכלי נוסף שאינו קשור לבחירה בין הקצבאות.</p>
 
-                <h3 class="no-accordion">ה. אלמן (לא אלמנה) – הבדלים חשובים</h3>
+                <h3 class="no-accordion" id="nvs-add-e">ה. אלמן (לא אלמנה) – הבדלים חשובים</h3>
                 <ul>
                     <li>אלמן ללא ילדים כפוף למבחן הכנסה לקצבת שאירים.</li>
                     <li>אלמנה פטורה מרישום בלשכת התעסוקה לצורך קצבת שאירים; אלמן (בן-זוג של אישה שנפטרה) – עשוי להידרש להירשם.</li>
                     <li>הבחירה בין נכות לשאירים חלה באותו אופן גם על אלמן.</li>
                 </ul>
 
-                <h3 class="no-accordion">ו. יציבות הזכות בהיעדר ביטוח שאירים</h3>
+                <h3 class="no-accordion" id="nvs-add-f">ו. יציבות הזכות בהיעדר ביטוח שאירים</h3>
                 <p>אם הנפטר עלה לארץ מעל גיל 62 (גבר) ולא היה מבוטח בביטוח שאירים – אין זכאות לקצבת שאירים רגילה, אלא לגמלה מיוחדת בלבד (בסכומים זהים אך ללא תוספת ותק). במצב כזה, הבחירה בין נכות לשאירים עשויה להיות ברורה יותר.</p>
 
-                <h3 class="no-accordion">ז. השפעת נישואין חוזרים</h3>
+                <h3 class="no-accordion" id="nvs-add-g">ז. השפעת נישואין חוזרים</h3>
                 <p>נישואין חוזרים של האלמן/ה מבטלים את קצבת השאירים. לפיכך, מי שמתכנן נישואין חוזרים – שיקול השאירים מאבד מחשיבותו. מנגד, קצבת הנכות אינה נפגעת מנישואין.</p>
 
-                <h3 class="no-accordion">ח. הכנסות מנכסים ומשכר מול בחירת קצבה</h3>
+                <h3 class="no-accordion" id="nvs-add-h">ח. הכנסות מנכסים ומשכר מול בחירת קצבה</h3>
                 <p>קצבת נכות כפופה לתקרת הכנסה מעבודה אך לא להכנסות מנכסים. קצבת שאירים בסיסית לאלמנה אינה מבחן הכנסה, אך תוספת ההשלמה כן. לאדם שהכנסתו מעבודה גבוהה מ-${c('disability_work_start_ceiling')} ₪ – ממילא לא יקבל קצבת נכות, ואז שאירים הופך לרלוונטי יותר.</p>
                 `;
             }
