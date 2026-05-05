@@ -1762,3 +1762,108 @@ window.addEventListener('hashchange', openFromHash);
 | `sampels.html` | עיצוב כותרת + hamburger script | — |
 | `holocaust_survivors_rights.html` | `id` × 7 ב-infoData + `buildAccordions` + `openFromHash` + חיווט | href → 7 children (teal) |
 | `hamburger-nav.js` | "מחשבונים וכלים" חדש, ארגון מחדש "כלי עזר", העברת קישורים ופטורים לסוף | — |
+
+---
+
+## שלב 10 — ווידג'ט חיפוש (`search-widget.js`)
+
+### 10א — שדה חיפוש ב-`BTL/index.html`
+
+נוסף שדה חיפוש בין `</header>` ל-`<div class="links-container">`:
+
+```html
+<div class="search-wrapper">
+    <div class="search-box">
+        <span class="search-icon">🔍</span>
+        <input type="text" id="conceptSearch" placeholder="חיפוש מושג... למשל: זיקנה, שאירים, נכות" autocomplete="off" oninput="filterConcepts(this.value)">
+        <button class="search-clear" id="searchClear" onclick="clearSearch()" aria-label="נקה חיפוש">✕</button>
+    </div>
+    <div class="search-hint">מספר מילים - רווח או פסיק בין המילים &nbsp;·&nbsp; ביטוי מדויק: <strong>&quot;קצבת אזרח ותיק&quot;</strong> &nbsp;·&nbsp; <strong>*מילה</strong> לחיפוש חלקי</div>
+    <div id="searchResults" class="search-results" hidden></div>
+</div>
+```
+
+נוספו CSS classes: `.search-wrapper`, `.search-box`, `.search-icon`, `#conceptSearch`, `.search-clear`, `.search-results`, `.search-no-results`, `.search-hint`, `.search-result-item`, `.search-result-term`, `.search-result-links`, `.search-count`.
+
+נוספו בתחתית ה-body:
+```html
+<script>const SEARCH_BASE_PATH = '';</script>
+<script src="senior_rights/data/search-widget.js"></script>
+```
+
+### 10ב — `hamburger-nav.js` — חשיפת MENU גלובלית
+
+נוספה שורה אחת בסוף הגדרת ה-`MENU` (לפני `buildCSS`):
+```javascript
+window.HNAV_MENU = MENU;
+```
+מטרה: לאפשר ל-`search-widget.js` לגשת ל-MENU ולבנות ממנו את אינדקס החיפוש.
+
+### 10ג — `search-widget.js` — ווידג'ט חיפוש דינמי
+
+**קובץ:** `BTL/senior_rights/data/search-widget.js`
+
+**עיקרון:** במקום מערך `SEARCH_CONCEPTS` ידני — אינדקס נבנה אוטומטית מ-`window.HNAV_MENU`.
+
+**פונקציות:**
+
+| פונקציה | תפקיד |
+|---------|--------|
+| `buildSearchConcepts(items, ancestors)` | סורקת רקורסיבית את HNAV_MENU; כל עלה (פריט עם `href`) → `{ term, breadcrumb, url, external }` |
+| `parseQuery(raw)` | מנתח שאילתה לטוקנים: ביטויים בגרשיים, מילים רגילות, `*מילה` לחיפוש חלקי |
+| `tokenMatchesText(text, token)` | התאמת טוקן לטקסט — word-start match לרגיל, substring ל-`*` |
+| `textMatchesTokens(text, tokens)` | בודק שכל הטוקנים מתאימים |
+| `highlight(text, query)` | מוסיף `<mark>` על מילים תואמות |
+| `filterConcepts(query)` | מחפש ב-`term + breadcrumb` ומציג תוצאות עם breadcrumb path |
+| `clearSearch()` | מנקה שדה החיפוש |
+
+**מבנה תוצאה בכל פריט:**
+```html
+<div class="search-result-item">
+  <div class="search-result-links">
+    <a href="...">כותרת העלה <span class="link-ctx">› אב1 › אב2</span></a>
+  </div>
+</div>
+```
+
+**הערה:** ה-URLs בתוצאות מגיעים ישירות מ-HNAV_MENU (כבר כוללים `bp` נכון לפי מיקום הדף) — אין צורך ב-`SEARCH_BASE` בניהול URL.
+
+### 10ד — `search-widget_temp.js` — קובץ ייחוס
+
+**קובץ:** `BTL/senior_rights/data/search-widget_temp.js`
+
+העתק של ווידג'ט חיפוש ישן מ-`search_branch_temp`. משמש כייחוס בלבד — מכיל `SEARCH_CONCEPTS` ידני עם ~80 מושגים ו-URLs מפורשים. **אינו בשימוש באתר.**
+
+---
+
+## שלב 11 — תכנון: חיפוש מורחב לכותרות `no-accordion`
+
+### רקע
+
+8 קבצים מכילים כותרות `<h3 class="no-accordion">` הנוצרות דינמית מקבצי data. כותרות אלו **אינן** בתפריט ההמבורגר ולכן **אינן** ב-`SEARCH_CONCEPTS`.
+
+**קבצים מעורבים (מספר מופעי `no-accordion` בקובץ ה-HTML):**
+
+| קובץ | מופעים | הערה |
+|------|--------|------|
+| `nursing_home_guide.html` | 7 | כותרות ראשיות — כבר בתפריט ✓ |
+| `gimlat_zikna_meyuchedet.html` | 7 | כותרות ב-data |
+| `international_treaties.html` | 7 | כותרות ב-data |
+| `senior_citizens_rights_2026.html` | 6 | כותרות ב-data |
+| `nechut_vs_shairim.html` | 6 | h3 בתוך אקורדיונים — ב-`nechut-vs-shairim-data.js` |
+| `senior_rights_full.html` | 5 | CSS בלבד |
+| `financial-tables-and-definitions.html` | 1 | JS skip בלבד |
+| `old_pension_income_test_full_guide.html` | 1 | JS skip בלבד |
+
+### גישה שנבחרה
+
+**קובץ חדש:** `BTL/senior_rights/data/search-extra.js`
+- יגדיר `window.SEARCH_EXTRA = [...]` עם אותו מבנה כמו `SEARCH_CONCEPTS`: `{ term, breadcrumb, url }`
+- ייטען ב-`BTL/index.html` לפני `search-widget.js`
+- `search-widget.js` יצרף: `SEARCH_CONCEPTS = buildSearchConcepts(HNAV_MENU).concat(SEARCH_EXTRA || [])`
+
+**תנאי מקדים:** הוספת `id` לכל `<h3 class="no-accordion">` בקבצי ה-data הרלוונטיים (עד רמת H3 בלבד). ה-`openFromHash()` הקיים בכל קובץ כבר מטפל בכך — הוא עולה ב-DOM ופותח accordion-parents, ואז גולל לאלמנט.
+
+### מצב
+
+⏳ בביצוע — הוספת IDs לכותרות `no-accordion` ובניית `search-extra.js`.
