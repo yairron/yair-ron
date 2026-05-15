@@ -102,7 +102,7 @@ function filterConcepts(query) {
   var tokens = parseQuery(q);
 
   function itemFullText(c) {
-    return c.term + ' ' + c.breadcrumb.join(' ');
+    return c.term + ' ' + c.breadcrumb.join(' ') + (c.aliases ? ' ' + c.aliases : '');
   }
 
   var matches = SEARCH_CONCEPTS.filter(function(c) {
