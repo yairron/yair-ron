@@ -39,7 +39,8 @@ h1{font-family:'Varela Round',sans-serif;font-size:3rem;font-weight:800;color:wh
 .info-box{background:rgba(255,255,255,.95);border-radius:20px;padding:30px;margin-top:40px;box-shadow:0 10px 30px rgba(0,0,0,.15);border-right:4px solid var(--accent);animation:fadeIn .8s ease-out .6s both}
 .info-box p{font-size:1.05rem;line-height:1.8;color:#546E7A}
 footer{text-align:center;margin-top:50px;padding:30px;color:rgba(255,255,255,.9);font-size:1rem}
-@media(max-width:768px){h1{font-size:2rem}.accordion-header{padding:16px 20px}.accordion-title{font-size:1.2rem}.accordion-icon{width:42px;height:42px;font-size:1.4rem}}
+@media(max-width:768px){body{padding:12px}h1{font-size:2rem}.accordion-header{padding:14px 18px;gap:12px}.accordion-title{font-size:1.2rem}.accordion-icon{width:42px;height:42px;font-size:1.4rem}.info-box{padding:20px}.accordion-pdf .accordion-body iframe{height:75vh}.accordion-pdf .accordion-body.open{max-height:80vh}}
+@media(max-width:480px){body{padding:6px}h1{font-size:1.5rem}.subtitle{font-size:.95rem}header{margin-bottom:28px}.accordion-header{padding:12px 12px;gap:8px}.accordion-title{font-size:1rem}.accordion-icon{width:36px;height:36px;font-size:1.2rem}.accordion-arrow{font-size:1.1rem}.info-box{padding:14px}.accordion-pdf .accordion-body iframe{height:70vh}.accordion-pdf .accordion-body.open{max-height:75vh}}
 </style>
 </head>
 <body>
@@ -205,6 +206,9 @@ function togglePdf(header) {
   if (!isOpen) {
     body.classList.add('open');
     arrow.textContent = '↑';
+    setTimeout(function() {
+      header.closest('.accordion').scrollIntoView({ behavior: 'smooth', block: 'start', inline: 'nearest' });
+    }, 450);
   }
 }
 </script>
