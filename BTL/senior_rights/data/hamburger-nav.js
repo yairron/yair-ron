@@ -354,6 +354,7 @@
                     { text: 'מי הם שאירים',                            href: bp + 'senior_rights/survivors_benefits_guide_2026.html#sv-who' },
                     { text: 'תנאי הזכאות',                             href: bp + 'senior_rights/survivors_benefits_guide_2026.html#sv-conditions' },
                     { text: 'סכומי הקצבה 2026',                        href: bp + 'senior_rights/survivors_benefits_guide_2026.html#sv-amounts' },
+                    { text: 'תוספת דמי מחיה ליתומים',                  href: bp + 'senior_rights/survivors_benefits_guide_2026.html#sv-livelihood' },
                     { text: 'מבחן הכנסות לאלמן',                       href: bp + 'senior_rights/survivors_benefits_guide_2026.html#sv-income-test' },
                     { text: 'תקופות ביטוח לאישה נשואה',                href: bp + 'senior_rights/survivors_benefits_guide_2026.html#sv-special-periods' },
                     { text: 'גמלה מיוחדת לעולים',                       href: bp + 'senior_rights/survivors_benefits_guide_2026.html#sv-olim' },
