@@ -2,7 +2,7 @@
 <html lang="he" dir="rtl">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<meta name="viewport" content="width=device-width,initial-scale=1.0,user-scalable=no,maximum-scale=1.0">
 <title>סיכומים ומסמכי מידע מפורטים</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -206,6 +206,10 @@ footer{text-align:center;margin-top:50px;padding:30px;color:rgba(255,255,255,.9)
   <p>מוסד לביטוח לאומי | מדריך זכויות אזרחים ותיקים 2026</p>
 </footer>
 <script>
+document.addEventListener('touchmove', function(e) {
+  if (e.touches.length > 1) e.preventDefault();
+}, { passive: false });
+
 function togglePdf(header) {
   var body = header.nextElementSibling;
   var arrow = header.querySelector('.accordion-arrow');
