@@ -3,7 +3,8 @@
     "description": "קובץ נתונים מרכזי — המוסד לביטוח לאומי",
     "source": "חוזר תשלומים 33, ינואר 2026",
     "last_updated": "01.04.2026",
-    "note": "לעדכון נתון — שנה את value בלבד. אל תשנה id או את שם המפתח."
+    "note": "לעדכון נתון — שנה את value בלבד. אל תשנה id או את שם המפתח.",
+    "partial_update_01042026": "עדכון חלקי ב-01.04.2026: NII-128, NII-129, NII-169, NII-170 (תקרות הכנסה לגמלת סיעוד) עודכנו לפי אתר ביטוח לאומי. שאר הערכים עדיין מבוססים על חוזר תשלומים 33 (ינואר 2026)."
   },
 
   "pension_single_basic": {
@@ -1815,31 +1816,31 @@
   },
   "nursing_income_test_full_single": {
     "id": "NII-128",
-    "value": 13467,
+    "value": 13769,
     "type": "currency",
     "label": "מבחן הכנסות לסיעוד — תקרה לגמלה מלאה, יחיד",
-    "updated": "2026-02"
+    "updated": "2026-04"
   },
   "nursing_income_test_full_couple": {
     "id": "NII-129",
-    "value": 20201,
+    "value": 20654,
     "type": "currency",
     "label": "מבחן הכנסות לסיעוד — תקרה לגמלה מלאה, זוג",
-    "updated": "2026-02"
+    "updated": "2026-04"
   },
   "nursing_income_test_half_single": {
     "id": "NII-169",
-    "value": 20201,
+    "value": 20654,
     "type": "currency",
     "label": "מבחן הכנסות לסיעוד — תקרה לגמלה בהיקף חצי, יחיד",
-    "updated": "2026-02"
+    "updated": "2026-04"
   },
   "nursing_income_test_half_couple": {
     "id": "NII-170",
-    "value": 30301,
+    "value": 30980,
     "type": "currency",
     "label": "מבחן הכנסות לסיעוד — תקרה לגמלה בהיקף חצי, זוג",
-    "updated": "2026-02"
+    "updated": "2026-04"
   },
 
   "holocaust_annual_grant": {
