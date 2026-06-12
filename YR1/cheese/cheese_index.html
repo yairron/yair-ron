@@ -3,18 +3,19 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>יאיר - פרויקטים</title>
+    <title>הכנת גבינה בייתית</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Assistant:wght@300;400;600;700;800&family=Varela+Round&display=swap" rel="stylesheet">
     <style>
         :root {
-            --primary: #2E5B8A;
-            --secondary: #4A90B5;
-            --accent: #E8A840;
-            --light: #F5F9FC;
-            --dark: #1A3A52;
-            --text: #2C3E50;
+            --primary: #7B4F2E;
+            --secondary: #B07D4A;
+            --accent: #F4C842;
+            --success: #5A8C3A;
+            --light: #FDF8F0;
+            --dark: #4A2E15;
+            --text: #3E2C1A;
         }
 
         * {
@@ -25,7 +26,7 @@
 
         body {
             font-family: 'Assistant', 'Segoe UI', Tahoma, sans-serif;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
+            background: linear-gradient(135deg, #c8a45a 0%, #a0632a 50%, #f4c842 100%);
             min-height: 100vh;
             padding: 20px;
             position: relative;
@@ -77,6 +78,13 @@
             letter-spacing: -2px;
         }
 
+        .subtitle {
+            font-size: 1.1rem;
+            color: rgba(255,255,255,0.9);
+            font-weight: 300;
+            text-shadow: 1px 2px 8px rgba(0,0,0,0.2);
+        }
+
         .links-container {
             display: grid;
             grid-template-columns: 1fr;
@@ -90,6 +98,37 @@
             to { opacity: 1; transform: translateY(0); }
         }
 
+        /* Link card (non-accordion) */
+        .link-card {
+            background: white;
+            border-radius: 24px;
+            box-shadow: 0 12px 35px rgba(0,0,0,0.2);
+            overflow: hidden;
+            transition: all 0.3s;
+            text-decoration: none;
+            display: block;
+        }
+
+        .link-card:hover {
+            box-shadow: 0 15px 45px rgba(0,0,0,0.25);
+            transform: translateY(-5px);
+        }
+
+        .link-card-header {
+            padding: 20px 35px;
+            display: flex;
+            align-items: center;
+            gap: 18px;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            transition: all 0.3s;
+        }
+
+        .link-card:hover .link-card-header {
+            background: linear-gradient(135deg, var(--secondary), var(--primary));
+        }
+
+        /* Accordion card */
         .accordion-card {
             background: white;
             border-radius: 24px;
@@ -121,6 +160,41 @@
             transform: rotate(-90deg);
         }
 
+        .accordion-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease-out;
+            background: #fdf8f0;
+        }
+
+        .accordion-content.show {
+            max-height: 2000px;
+        }
+
+        .accordion-links {
+            padding: 20px 35px;
+        }
+
+        .accordion-links a {
+            display: block;
+            padding: 15px 20px;
+            margin: 10px 0;
+            background: white;
+            border-radius: 12px;
+            text-decoration: none;
+            color: var(--text);
+            font-size: 1.1rem;
+            font-weight: 600;
+            transition: all 0.2s;
+            border-right: 4px solid var(--accent);
+        }
+
+        .accordion-links a:hover {
+            background: #fef4cc;
+            transform: translateX(-5px);
+        }
+
+        /* Shared icon/title/arrow */
         .link-card-icon {
             width: 60px;
             height: 60px;
@@ -149,38 +223,42 @@
             flex-shrink: 0;
         }
 
-        .accordion-content {
-            max-height: 0;
-            overflow: hidden;
-            transition: max-height 0.3s ease-out;
-            background: #f8f9fa;
-        }
-
-        .accordion-content.show {
-            max-height: 500px;
-        }
-
-        .accordion-links {
-            padding: 20px 35px;
-        }
-
-        .accordion-links a {
-            display: block;
-            padding: 15px 20px;
-            margin: 10px 0;
-            background: white;
-            border-radius: 12px;
-            text-decoration: none;
-            color: var(--text);
-            font-size: 1.1rem;
-            font-weight: 600;
-            transition: all 0.2s;
-            border-right: 4px solid var(--accent);
-        }
-
-        .accordion-links a:hover {
-            background: #e3f2fd;
+        .link-card:hover .link-card-arrow {
             transform: translateX(-5px);
+        }
+
+        .info-box {
+            background: rgba(255,255,255,0.95);
+            border-radius: 20px;
+            padding: 30px;
+            margin-top: 40px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+            border-right: 4px solid var(--accent);
+            animation: fadeIn 0.8s ease-out 0.6s both;
+        }
+
+        .info-box-header {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 15px;
+        }
+
+        .info-box-icon { font-size: 2rem; }
+
+        .info-box h3 {
+            font-family: 'Varela Round', sans-serif;
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: var(--primary);
+            margin: 0;
+        }
+
+        .info-box p {
+            font-size: 1.05rem;
+            line-height: 1.8;
+            color: #6B5040;
+            margin: 0;
         }
 
         footer {
@@ -199,45 +277,66 @@
 
         @media (max-width: 768px) {
             h1 { font-size: 2.5rem; }
+            .link-card-header,
             .accordion-header { padding: 20px 25px; }
             .link-card-title { font-size: 1.4rem; }
+            .info-box { padding: 25px; }
         }
     </style>
 </head>
 <body>
     <div class="container">
         <header>
-            <h1>🗂️ יאיר - פרויקטים</h1>
+            <h1>🧀 הכנת גבינה בייתית</h1>
+            <p class="subtitle">מעקב, מתכונים וכלי עזר</p>
         </header>
 
         <div class="links-container">
 
+            <a href="cheese_html/טופס_מעקב_יצור_גבינה.html" class="link-card">
+                <div class="link-card-header">
+                    <div class="link-card-icon">📋</div>
+                    <h2 class="link-card-title">טופס מעקב יצור גבינה</h2>
+                    <span class="link-card-arrow">◀</span>
+                </div>
+            </a>
+
             <div class="accordion-card">
                 <div class="accordion-header" onclick="toggleAccordion(this)">
-                    <div class="link-card-icon">🏛️</div>
-                    <h2 class="link-card-title">ביטוח לאומי</h2>
+                    <div class="link-card-icon">📖</div>
+                    <h2 class="link-card-title">מתכונים</h2>
                     <span class="link-card-arrow">◀</span>
                 </div>
                 <div class="accordion-content">
                     <div class="accordion-links">
-                        <a href="BTL/html/index.html">🏛️ כניסה לפרויקט ביטוח לאומי</a>
+                        <a href="cheese_html/מתכוני_גבינה.html">📖 מתכוני גבינה</a>
                     </div>
                 </div>
             </div>
 
             <div class="accordion-card">
                 <div class="accordion-header" onclick="toggleAccordion(this)">
-                    <div class="link-card-icon">🧀</div>
-                    <h2 class="link-card-title">מעקב יצור גבינה</h2>
+                    <div class="link-card-icon">🛠️</div>
+                    <h2 class="link-card-title">כלי עזר</h2>
                     <span class="link-card-arrow">◀</span>
                 </div>
                 <div class="accordion-content">
                     <div class="accordion-links">
-                        <a href="cheese/cheese_index.html">🧀 כניסה לפרויקט גבינה</a>
+                        <!-- הוסף כאן קישורים לכלי עזר -->
                     </div>
                 </div>
             </div>
 
+        </div>
+
+        <div class="info-box">
+            <div class="info-box-header">
+                <span class="info-box-icon">🧀</span>
+                <h3>על הפרויקט</h3>
+            </div>
+            <p>
+                פרויקט הכנת גבינה בייתית — מעקב אחר תהליכי יצור, מתכונים וכלי עזר.
+            </p>
         </div>
     </div>
 
@@ -268,6 +367,18 @@
                 }, 50);
             }
         }
+        document.addEventListener('click', function(e) {
+            const h = e.target.closest('.sub-accordion-header');
+            if (!h) return;
+            e.stopPropagation();
+            const sa = h.closest('.sub-accordion');
+            const wasActive = sa.classList.contains('active');
+            const parent = sa.parentElement;
+            parent.querySelectorAll(':scope>.sub-accordion.active').forEach(function(a) {
+                if (a !== sa) a.classList.remove('active');
+            });
+            sa.classList.toggle('active', !wasActive);
+        });
     </script>
 </body>
 </html>

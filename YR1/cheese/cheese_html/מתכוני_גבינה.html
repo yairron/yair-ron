@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>מתכוני גבינה</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Assistant:wght@300;400;600;700;800&family=Varela+Round&display=swap" rel="stylesheet">
+<style>
+:root{--primary:#7B4F2E;--secondary:#B07D4A;--accent:#F4C842;--success:#5A8C3A;--light:#FDF8F0;--dark:#4A2E15;--text:#3E2C1A}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Assistant','Segoe UI',Tahoma,sans-serif;background:linear-gradient(135deg,#c8a45a 0%,#a0632a 50%,#f4c842 100%);min-height:100vh;padding:20px;direction:rtl}
+.container{max-width:1000px;margin:0 auto}
+header{text-align:center;margin-bottom:30px}
+.nav-bar{display:flex;justify-content:space-between;align-items:center;margin-bottom:20px;gap:10px;flex-wrap:wrap}
+.btn-nav{background:rgba(255,255,255,.25);backdrop-filter:blur(10px);padding:10px 20px;border-radius:20px;color:white;text-decoration:none;font-size:1rem;font-weight:700;border:none;cursor:pointer;transition:all .3s;font-family:'Assistant',sans-serif;box-shadow:0 4px 12px rgba(0,0,0,.2)}
+.btn-nav:hover{background:rgba(255,255,255,.4);transform:translateY(-2px)}
+h1{font-family:'Varela Round',sans-serif;font-size:2.4rem;font-weight:800;color:white;text-shadow:2px 3px 10px rgba(0,0,0,.3);margin-bottom:10px}
+.subtitle{font-size:1rem;color:rgba(255,255,255,.9);font-weight:300;text-shadow:1px 2px 8px rgba(0,0,0,.2);margin-bottom:8px}
+.accordions-container{margin-bottom:40px}
+.accordion{background:white;margin-bottom:0;box-shadow:0 8px 25px rgba(0,0,0,.2);overflow:hidden;border-bottom:1px solid rgba(0,0,0,.1)}
+.accordion:first-of-type{border-radius:24px 24px 0 0}
+.accordion:last-of-type{border-radius:0 0 24px 24px;border-bottom:none}
+.accordion:only-child{border-radius:24px}
+.accordion-header{padding:18px 30px;cursor:pointer;display:flex;align-items:center;gap:15px;background:linear-gradient(135deg,var(--primary),var(--secondary));color:white;transition:all .3s;user-select:none}
+.accordion-header:hover{background:linear-gradient(135deg,var(--secondary),var(--primary))}
+.accordion-icon{width:52px;height:52px;border-radius:14px;display:flex;align-items:center;justify-content:center;font-size:1.7rem;background:rgba(255,255,255,.2);flex-shrink:0}
+.accordion-title{font-family:'Varela Round',sans-serif;font-size:1.4rem;font-weight:800;flex:1;margin:0;color:white}
+.accordion-arrow{font-size:1.2rem;transition:transform .3s;flex-shrink:0;color:white}
+.accordion.active .accordion-arrow{transform:rotate(180deg)}
+.accordion-content{max-height:0;overflow:hidden;transition:max-height .4s ease}
+.accordion.active .accordion-content{max-height:10000px}
+.accordion-body{padding:25px 30px;font-size:1.05rem;line-height:1.9;color:#5C3D1E}
+.ingredients-box{background:var(--light);border-right:4px solid var(--accent);border-radius:10px;padding:15px 20px;margin-bottom:20px}
+.ingredients-box h3{font-size:1.1rem;font-weight:700;color:var(--primary);margin-bottom:10px}
+.ingredients-box ul{list-style:none;padding:0;margin:0}
+.ingredients-box li{padding:5px 22px 5px 0;position:relative;font-size:1rem;color:var(--text)}
+.ingredients-box li::before{content:'🧴';position:absolute;right:0;font-size:.85rem}
+.steps-label{font-size:1.1rem;font-weight:700;color:var(--primary);margin:0 0 10px 0}
+.sub-accordion{margin:10px 0;border:1px solid #E8D5BF;border-radius:10px;overflow:hidden;background:#FDF8F0}
+.sub-accordion-header{padding:13px 18px;cursor:pointer;display:flex;align-items:center;justify-content:space-between;background:linear-gradient(135deg,#FDF8F0,#F5E9D4);transition:all .3s;user-select:none}
+.sub-accordion-header:hover{background:linear-gradient(135deg,#F5E9D4,#EDD8BA)}
+.sub-accordion-title{font-size:1rem;font-weight:700;color:var(--primary);flex:1}
+.sub-accordion-num{display:inline-flex;align-items:center;justify-content:center;width:26px;height:26px;border-radius:50%;background:var(--primary);color:white;font-size:.85rem;font-weight:700;flex-shrink:0;margin-left:12px}
+.sub-accordion-arrow{font-size:.9rem;transition:transform .3s;color:var(--secondary)}
+.sub-accordion.active>.sub-accordion-header .sub-accordion-arrow{transform:rotate(180deg)}
+.sub-accordion-content{max-height:0;overflow:hidden;transition:max-height .35s ease}
+.sub-accordion.active>.sub-accordion-content{max-height:3000px}
+.sub-accordion-body{padding:14px 18px;background:white;font-size:.98rem;line-height:1.8;color:#5C3D1E}
+footer{text-align:center;margin-top:30px;padding:20px;color:rgba(255,255,255,.85);font-size:.9rem}
+footer a{color:white;text-decoration:underline;font-weight:600}
+@media(max-width:768px){h1{font-size:1.7rem}.accordion-header{padding:14px 18px}.accordion-title{font-size:1.1rem}.accordion-body{padding:15px 18px}}
+</style>
+</head>
+<body>
+<div class="container">
+<div class="nav-bar">
+  <a href="../cheese_index.html" class="btn-nav">🧀 חזרה לגבינה</a>
+  <button onclick="history.back()" class="btn-nav">← חזרה</button>
+</div>
+<header>
+  <h1>📖 מתכוני גבינה</h1>
+  <p class="subtitle">מתכוני גבינה בייתית | לחץ על גבינה לפתיחת שלבי ההכנה</p>
+</header>
+
+<div class="accordions-container">
+
+<!-- 1. גבינה לבנה -->
+<div class="accordion">
+<div class="accordion-header" onclick="toggleAcc(this)">
+  <div class="accordion-icon">🧀</div>
+  <h2 class="accordion-title">גבינה לבנה (למריחה או בחריץ)</h2>
+  <span class="accordion-arrow">▼</span>
+</div>
+<div class="accordion-content"><div class="accordion-body">
+  <div class="ingredients-box">
+    <h3>🛒 מרכיבים</h3>
+    <ul>
+      <li>חלב — 3 ליטר</li>
+      <li>מחמצת מזופילית — 4 כפיות גיל</li>
+      <li>אנזים — 1/3 טיפה</li>
+      <li>קלציום — 0.8 גר' (מומס במים)</li>
+      <li>מלח ותבלינים</li>
+    </ul>
+  </div>
+  <p class="steps-label">⚙️ שלבי הכנה:</p>
+  <div class="sub-accordion"><div class="sub-accordion-header"><span class="sub-accordion-num">1</span><div class="sub-accordion-title">הכנת החלב</div><span class="sub-accordion-arrow">▼</span></div><div class="sub-accordion-content"><div class="sub-accordion-body"><p>חלב גולמי מסונן ובחוש.</p></div></div></div>
+  <div class="sub-accordion"><div class="sub-accordion-header"><span class="sub-accordion-num">2</span><div class="sub-accordion-title">פסטור</div><span class="sub-accordion-arrow">▼</span></div><div class="sub-accordion-content"><div class="sub-accordion-body"><p>חימום ל-74–75°C ל-5 דק', <strong>או</strong> ל-88–93°C ל-1 דק' תוך בחישה. קירור מיד ל-25°C. להוסיף קלציום 0.8 גר' מומס במים.</p></div></div></div>
+  <div class="sub-accordion"><div class="sub-accordion-header"><span class="sub-accordion-num">3</span><div class="sub-accordion-title">הבשלה מקדימה</div><span class="sub-accordion-arrow">▼</span></div><div class="sub-accordion-content"><div class="sub-accordion-body"><p>מחמצת 4 כפיות גיל (למהול בחלב), להמתין עד 2 שע'.</p></div></div></div>
+  <div class="sub-accordion"><div class="sub-accordion-header"><span class="sub-accordion-num">4</span><div class="sub-accordion-title">הקרשה</div><span class="sub-accordion-arrow">▼</span></div><div class="sub-accordion-content"><div class="sub-accordion-body"><p>אנזים 1/3 טיפה (למהול במים), לערבב ולתת לנוח <strong>ללא תזוזה!</strong> 12–16 שע' בטמפ' חדר.</p></div></div></div>
+  <div class="sub-accordion"><div class="sub-accordion-header"><span class="sub-accordion-num">5</span><div class="sub-accordion-title">סינון, ניקוז ועיצוב</div><span class="sub-accordion-arrow">▼</span></div><div class="sub-accordion-content"><div class="sub-accordion-body"><p>העברת הגבן לטפטוף במסננת / תבנית / שק / בד סינון. ניקוז מי גבינה 2–4 שע' בטמפ' חדר. אם הטמפ' גבוהה מ-25°C — להעביר למקרר.</p></div></div></div>
+  <div class="sub-accordion"><div class="sub-accordion-header"><span class="sub-accordion-num">6</span><div class="sub-accordion-title">המלחה</div><span class="sub-accordion-arrow">▼</span></div><div class="sub-accordion-content"><div class="sub-accordion-body"><p>כשהגבן במרקם הרצוי — הוספת מלח 1 כפית ל-1 ק"ג גבינה. אפשר להוסיף תבלינים.</p></div></div></div>
+  <div class="sub-accordion"><div class="sub-accordion-header"><span class="sub-accordion-num">7</span><div class="sub-accordion-title">קירור וייבוש</div><span class="sub-accordion-arrow">▼</span></div><div class="sub-accordion-content"><div class="sub-accordion-body"><p>העברת הגבינה למקרר לקירור וייבוש.</p></div></div></div>
+  <div class="sub-accordion"><div class="sub-accordion-header"><span class="sub-accordion-num">8</span><div class="sub-accordion-title">אריזה ואחסון</div><span class="sub-accordion-arrow">▼</span></div><div class="sub-accordion-content"><div class="sub-accordion-body"><p>אריזה בכלי נקי ושמירה בקירור 4°C. <strong>אורך חיי מדף: כשבוע.</strong></p></div></div></div>
+</div></div>
+</div>
+
+<!-- 2. גבינה צ'רקסית / פאניר -->
+<div class="accordion">
+<div class="accordion-header" onclick="toggleAcc(this)">
+  <div class="accordion-icon">🫙</div>
+  <h2 class="accordion-title">גבינה צ'רקסית / פאניר</h2>
+  <span class="accordion-arrow">▼</span>
+</div>
+<div class="accordion-content"><div class="accordion-body">
+  <div class="ingredients-box">
+    <h3>🛒 מרכיבים</h3>
+    <ul>
+      <li>חלב — 3 ליטר</li>
+      <li>יוגורט — ½ כוס</li>
+      <li>חומץ 5% / מיץ לימון טרי / מלח-לימון מומס במים מינראליים — 80–120 סמ"ק</li>
+      <li>מלח / תבלינים (אפשר)</li>
+    </ul>
+  </div>
+  <p class="steps-label">⚙️ שלבי הכנה:</p>
+  <div class="sub-accordion"><div class="sub-accordion-header"><span class="sub-accordion-num">1</span><div class="sub-accordion-title">הכנת החלב</div><span class="sub-accordion-arrow">▼</span></div><div class="sub-accordion-content"><div class="sub-accordion-body"><p>חלב גולמי מסונן ובחוש.</p></div></div></div>
+  <div class="sub-accordion"><div class="sub-accordion-header"><span class="sub-accordion-num">2</span><div class="sub-accordion-title">פסטור</div><span class="sub-accordion-arrow">▼</span></div><div class="sub-accordion-content"><div class="sub-accordion-body"><p>חימום ל-90–93°C; כיבוי מקור החימום.</p></div></div></div>
+  <div class="sub-accordion"><div class="sub-accordion-header"><span class="sub-accordion-num">3</span><div class="sub-accordion-title">המלחה ראשונה</div><span class="sub-accordion-arrow">▼</span></div><div class="sub-accordion-content"><div class="sub-accordion-body"><p>הוספת מלח גס כ-1 כפית וערבוב.</p></div></div></div>
+  <div class="sub-accordion"><div class="sub-accordion-header"><span class="sub-accordion-num">4</span><div class="sub-accordion-title">החמצה</div><span class="sub-accordion-arrow">▼</span></div><div class="sub-accordion-content"><div class="sub-accordion-body"><p>יוגורט ½ כוס (למהול בחלב). נזל ההחמצה (חומץ 5% או מיץ לימון) באיטיות תוך ערבוב — עד שצבע החלב משתנה מלבן למים ירקרקים עם גרגירי גבן. להוסיף נוזל החמצה לפי הצורך.</p></div></div></div>
+  <div class="sub-accordion"><div class="sub-accordion-header"><span class="sub-accordion-num">5</span><div class="sub-accordion-title">איסוף הגבן</div><span class="sub-accordion-arrow">▼</span></div><div class="sub-accordion-content"><div class="sub-accordion-body"><p>כעבור 5–10 דק' — איסוף "עננני" הגבן למסננת מרופדת בד גבינה או לתבנית. לטעום ולתקן המלחה. ⚠️ <strong>חם מאד!</strong><br>פאניר — בד סינון; צ'רקסית — בתבנית. כאן ניתן להוסיף תבלינים לטעם מיוחד.</p></div></div></div>
+  <div class="sub-accordion"><div class="sub-accordion-header"><span class="sub-accordion-num">6</span><div class="sub-accordion-title">המלחה שנייה ותבלינים</div><span class="sub-accordion-arrow">▼</span></div><div class="sub-accordion-content"><div class="sub-accordion-body"><p>אפשר להשאיר בטעם טבעי, או להוסיף תבלינים יבשים בתוך הגבינה / לפזר/לציפות מסביב.</p></div></div></div>
+  <div class="sub-accordion"><div class="sub-accordion-header"><span class="sub-accordion-num">7</span><div class="sub-accordion-title">קירור / ניקוז / טפטוף</div><span class="sub-accordion-arrow">▼</span></div><div class="sub-accordion-content"><div class="sub-accordion-body"><p>צ'רקסית — קירור איטי בטמפ' חדר.<br>פאניר — קירור מהיר ב"אמבט קרח".</p></div></div></div>
+  <div class="sub-accordion"><div class="sub-accordion-header"><span class="sub-accordion-num">8</span><div class="sub-accordion-title">אריזה ואחסון</div><span class="sub-accordion-arrow">▼</span></div><div class="sub-accordion-content"><div class="sub-accordion-body"><p>אריזה בכלי נקי; אחסון בקירור 4°C. <strong>אורך חיי מדף: כשבוע.</strong></p></div></div></div>
+</div></div>
+</div>
+
+<!-- 3. יוגורט -->
+<div class="accordion">
+<div class="accordion-header" onclick="toggleAcc(this)">
+  <div class="accordion-icon">🥛</div>
+  <h2 class="accordion-title">יוגורט</h2>
+  <span class="accordion-arrow">▼</span>
+</div>
+<div class="accordion-content"><div class="accordion-body">
+  <div class="ingredients-box">
+    <h3>🛒 מרכיבים</h3>
+    <ul>
+      <li>חלב — 3 ליטר</li>
+      <li>מחמצת טרמופילית — 4 כפיות יוגורט</li>
+      <li>מחית פרי (אפשרי)</li>
+    </ul>
+  </div>
+  <p class="steps-label">⚙️ שלבי הכנה:</p>
+  <div class="sub-accordion"><div class="sub-accordion-header"><span class="sub-accordion-num">1</span><div class="sub-accordion-title">הכנת החלב</div><span class="sub-accordion-arrow">▼</span></div><div class="sub-accordion-content"><div class="sub-accordion-body"><p>חלב גולמי מסונן ובחוש.</p></div></div></div>
+  <div class="sub-accordion"><div class="sub-accordion-header"><span class="sub-accordion-num">2</span><div class="sub-accordion-title">פסטור</div><span class="sub-accordion-arrow">▼</span></div><div class="sub-accordion-content"><div class="sub-accordion-body"><p>חימום ל-88–93°C ל-2 שנ' תוך בחישה. קירור מיידי ל-40–45°C.</p></div></div></div>
+  <div class="sub-accordion"><div class="sub-accordion-header"><span class="sub-accordion-num">3</span><div class="sub-accordion-title">הבשלה</div><span class="sub-accordion-arrow">▼</span></div><div class="sub-accordion-content"><div class="sub-accordion-body"><p>מחמצת 4 כפיות יוגורט (למהול בחלב), לערבב היטב. לכסות ולהעמיד ללא תזוזה 6–8 שע' ב-40–45°C.</p></div></div></div>
+  <div class="sub-accordion"><div class="sub-accordion-header"><span class="sub-accordion-num">4</span><div class="sub-accordion-title">ניקוז מי גבינה (אפשרי)</div><span class="sub-accordion-arrow">▼</span></div><div class="sub-accordion-content"><div class="sub-accordion-body"><p>מוזגים לשק טפטוף למשך כשעה–שעתיים לצמצום עד המרקם המבוקש.</p></div></div></div>
+  <div class="sub-accordion"><div class="sub-accordion-header"><span class="sub-accordion-num">5</span><div class="sub-accordion-title">הוספת טעמים (אפשרי)</div><span class="sub-accordion-arrow">▼</span></div><div class="sub-accordion-content"><div class="sub-accordion-body"><p>מוסיפים מחית פרי או אחר לפי בחירה ומערבבים היטב.</p></div></div></div>
+  <div class="sub-accordion"><div class="sub-accordion-header"><span class="sub-accordion-num">6</span><div class="sub-accordion-title">אריזה</div><span class="sub-accordion-arrow">▼</span></div><div class="sub-accordion-content"><div class="sub-accordion-body"><p>אריזה בכלי נקי להגשה.</p></div></div></div>
+  <div class="sub-accordion"><div class="sub-accordion-header"><span class="sub-accordion-num">7</span><div class="sub-accordion-title">אחסון בקירור</div><span class="sub-accordion-arrow">▼</span></div><div class="sub-accordion-content"><div class="sub-accordion-body"><p>שמירה בקירור 4°C. <strong>אורך חיי מדף: 3 שבועות (טבעי).</strong></p></div></div></div>
+</div></div>
+</div>
+
+<!-- 4. גבינת לאבנה -->
+<div class="accordion">
+<div class="accordion-header" onclick="toggleAcc(this)">
+  <div class="accordion-icon">🫐</div>
+  <h2 class="accordion-title">גבינת לאבנה</h2>
+  <span class="accordion-arrow">▼</span>
+</div>
+<div class="accordion-content"><div class="accordion-body">
+  <div class="ingredients-box">
+    <h3>🛒 מרכיבים</h3>
+    <ul>
+      <li>חלב — 3 ליטר</li>
+      <li>קלציום — 0.8 גר' (מומס במים)</li>
+      <li>מחמצת טרמופילית — 4 כפיות יוגורט</li>
+      <li>אנזים — 1/3 טיפה</li>
+      <li>מלח</li>
+    </ul>
+  </div>
+  <p class="steps-label">⚙️ שלבי הכנה:</p>
+  <div class="sub-accordion"><div class="sub-accordion-header"><span class="sub-accordion-num">1</span><div class="sub-accordion-title">הכנת החלב</div><span class="sub-accordion-arrow">▼</span></div><div class="sub-accordion-content"><div class="sub-accordion-body"><p>חלב גולמי מסונן ובחוש.</p></div></div></div>
+  <div class="sub-accordion"><div class="sub-accordion-header"><span class="sub-accordion-num">2</span><div class="sub-accordion-title">פסטור</div><span class="sub-accordion-arrow">▼</span></div><div class="sub-accordion-content"><div class="sub-accordion-body"><p>חימום ל-88–93°C ל-2 שנ' תוך בחישה. קירור מיידי ל-40–45°C. להוסיף קלציום 0.8 גר' (להמיס במים).</p></div></div></div>
+  <div class="sub-accordion"><div class="sub-accordion-header"><span class="sub-accordion-num">3</span><div class="sub-accordion-title">הבשלה מקדימה</div><span class="sub-accordion-arrow">▼</span></div><div class="sub-accordion-content"><div class="sub-accordion-body"><p>מחמצת 4 כפיות יוגורט (למהול בחלב), להמתין 2 שע'.</p></div></div></div>
+  <div class="sub-accordion"><div class="sub-accordion-header"><span class="sub-accordion-num">4</span><div class="sub-accordion-title">הקרשה</div><span class="sub-accordion-arrow">▼</span></div><div class="sub-accordion-content"><div class="sub-accordion-body"><p>אנזים 1/3 טיפה (למהול במים), לערבב ולתת לנוח ללא תזוזה 6–8 שע' ב-40–45°C.</p></div></div></div>
+  <div class="sub-accordion"><div class="sub-accordion-header"><span class="sub-accordion-num">5</span><div class="sub-accordion-title">סינון וניקוז</div><span class="sub-accordion-arrow">▼</span></div><div class="sub-accordion-content"><div class="sub-accordion-body"><p>העברת הגבן לשק טפטוף; ניקוז מי גבינה 4–12 שע' בטמפ' חדר.</p></div></div></div>
+  <div class="sub-accordion"><div class="sub-accordion-header"><span class="sub-accordion-num">6</span><div class="sub-accordion-title">המלחה</div><span class="sub-accordion-arrow">▼</span></div><div class="sub-accordion-content"><div class="sub-accordion-body"><p>במרקם הרצוי — הוספת מלח 5 גר' ל-1 ק"ג גבינה.</p></div></div></div>
+  <div class="sub-accordion"><div class="sub-accordion-header"><span class="sub-accordion-num">7</span><div class="sub-accordion-title">אריזה</div><span class="sub-accordion-arrow">▼</span></div><div class="sub-accordion-content"><div class="sub-accordion-body"><p>אריזה בכלי נקי שמתאים למרקם הרצוי להגשה.</p></div></div></div>
+  <div class="sub-accordion"><div class="sub-accordion-header"><span class="sub-accordion-num">8</span><div class="sub-accordion-title">אחסון בקירור</div><span class="sub-accordion-arrow">▼</span></div><div class="sub-accordion-content"><div class="sub-accordion-body"><p>שמירה בקירור 4°C. <strong>אורך חיי מדף: 3 שבועות / כדורים מכוסים בשמן — עד חודשיים.</strong></p></div></div></div>
+</div></div>
+</div>
+
+<!-- 5. קפיר -->
+<div class="accordion">
+<div class="accordion-header" onclick="toggleAcc(this)">
+  <div class="accordion-icon">🌀</div>
+  <h2 class="accordion-title">קפיר</h2>
+  <span class="accordion-arrow">▼</span>
+</div>
+<div class="accordion-content"><div class="accordion-body">
+  <div class="ingredients-box">
+    <h3>🛒 מרכיבים</h3>
+    <ul>
+      <li>חלב מפוסטר — ½ ליטר</li>
+      <li>גרעין / מושבה של קפיר — 1 כף שטוחה</li>
+    </ul>
+  </div>
+  <p class="steps-label">⚙️ שלבי הכנה:</p>
+  <div class="sub-accordion"><div class="sub-accordion-header"><span class="sub-accordion-num">1</span><div class="sub-accordion-title">הכנת החלב</div><span class="sub-accordion-arrow">▼</span></div><div class="sub-accordion-content"><div class="sub-accordion-body"><p>חלב מפוסטר מקורר מהמקרר (4–9°C).</p></div></div></div>
+  <div class="sub-accordion"><div class="sub-accordion-header"><span class="sub-accordion-num">2</span><div class="sub-accordion-title">הכנסת גרעין הקפיר</div><span class="sub-accordion-arrow">▼</span></div><div class="sub-accordion-content"><div class="sub-accordion-body"><p>בצנצנת נקיה (רצוי זכוכית) למזוג חלב ולהכניס את גרעין/מושבה הקפיר. לפזר את ה"מושבה" בתוך החלב בעזרת כפית פלסטיק.</p></div></div></div>
+  <div class="sub-accordion"><div class="sub-accordion-header"><span class="sub-accordion-num">3</span><div class="sub-accordion-title">התסיסה</div><span class="sub-accordion-arrow">▼</span></div><div class="sub-accordion-content"><div class="sub-accordion-body"><p>לכסות בבד גזה (כך שיכנס אויר). להעמיד בטמפ' חדר (כ-25°C) למשך 12–24 שעות. ⚠️ שונות בזמנים תלויה במזג האויר.</p></div></div></div>
+  <div class="sub-accordion"><div class="sub-accordion-header"><span class="sub-accordion-num">4</span><div class="sub-accordion-title">בדיקת המרקם</div><span class="sub-accordion-arrow">▼</span></div><div class="sub-accordion-content"><div class="sub-accordion-body"><p>לעקוב אחר מרקם החלב. כשמתחיל להיות ג'לטיני — להוציא מעט ולטעום. בדרך כלל אין צורך בחמיצות רבה. הגרעין שהתפתח "צף" — עולה למעלה.</p></div></div></div>
+  <div class="sub-accordion"><div class="sub-accordion-header"><span class="sub-accordion-num">5</span><div class="sub-accordion-title">סינון וחזרתיות</div><span class="sub-accordion-arrow">▼</span></div><div class="sub-accordion-content"><div class="sub-accordion-body"><p>לסנן במסננת פלסטיק ולצרוך את הקפיר. את הגרעין/מושבה שמתנקז — לשטוף במים קרים בטוחים ולהכניס בחזרה לצנצנת נקיה עם חלב לתהליך הבא.</p></div></div></div>
+</div></div>
+</div>
+
+<!-- 6. גבינת ריקוטה -->
+<div class="accordion">
+<div class="accordion-header" onclick="toggleAcc(this)">
+  <div class="accordion-icon">☁️</div>
+  <h2 class="accordion-title">גבינת ריקוטה</h2>
+  <span class="accordion-arrow">▼</span>
+</div>
+<div class="accordion-content"><div class="accordion-body">
+  <div class="ingredients-box">
+    <h3>🛒 מרכיבים</h3>
+    <ul>
+      <li>מי גבינה מתוקים טריים — 3 ליטר</li>
+      <li>חלב — 300 סמ"ק = 10% (אפשרי)</li>
+      <li>מלח</li>
+      <li>חומץ 5% / מלח לימון / חומר החמצה אחר</li>
+    </ul>
+  </div>
+  <p class="steps-label">⚙️ שלבי הכנה:</p>
+  <div class="sub-accordion"><div class="sub-accordion-header"><span class="sub-accordion-num">1</span><div class="sub-accordion-title">חומר הגלם</div><span class="sub-accordion-arrow">▼</span></div><div class="sub-accordion-content"><div class="sub-accordion-body"><p>מי גבינה מתוקים טריים.</p></div></div></div>
+  <div class="sub-accordion"><div class="sub-accordion-header"><span class="sub-accordion-num">2</span><div class="sub-accordion-title">חימום</div><span class="sub-accordion-arrow">▼</span></div><div class="sub-accordion-content"><div class="sub-accordion-body"><p>חימום ל-88–90°C.</p></div></div></div>
+  <div class="sub-accordion"><div class="sub-accordion-header"><span class="sub-accordion-num">3</span><div class="sub-accordion-title">הוספת חלב והמשך חימום</div><span class="sub-accordion-arrow">▼</span></div><div class="sub-accordion-content"><div class="sub-accordion-body"><p>ב-75°C להוסיף חלב (10% מהכמות — אפשרי). להמשיך חימום עד 88–90°C. ⚠️ <strong>לזהירות מגלישת הקצף!</strong> להפסיק את החימום.</p></div></div></div>
+  <div class="sub-accordion"><div class="sub-accordion-header"><span class="sub-accordion-num">4</span><div class="sub-accordion-title">המלחה</div><span class="sub-accordion-arrow">▼</span></div><div class="sub-accordion-content"><div class="sub-accordion-body"><p>הוספת מלח דק כ-1 כפית וערבוב (עכשיו או לאחר סינון הגבן).</p></div></div></div>
+  <div class="sub-accordion"><div class="sub-accordion-header"><span class="sub-accordion-num">5</span><div class="sub-accordion-title">החמצה</div><span class="sub-accordion-arrow">▼</span></div><div class="sub-accordion-content"><div class="sub-accordion-body"><p>למזוג נזל ההחמצה (חומץ 5% / מלח לימון) באיטיות עם פיזור מועט. בהיווצרות גבן — מי הגבינה משנים צבע מלבן ל"ירקרק". להוסיף נזל החמצה לפי הצורך.</p></div></div></div>
+  <div class="sub-accordion"><div class="sub-accordion-header"><span class="sub-accordion-num">6</span><div class="sub-accordion-title">איסוף הגבן</div><span class="sub-accordion-arrow">▼</span></div><div class="sub-accordion-content"><div class="sub-accordion-body"><p>כעבור 5–10 דק' — איסוף "עננני" הגבן למסננת מרופדת בד גבינה או לתבנית. לטעום ולתקן המלחה. ⚠️ <strong>חם מאד!</strong></p></div></div></div>
+  <div class="sub-accordion"><div class="sub-accordion-header"><span class="sub-accordion-num">7</span><div class="sub-accordion-title">ניקוז / טפטוף</div><span class="sub-accordion-arrow">▼</span></div><div class="sub-accordion-content"><div class="sub-accordion-body"><p>מעמידים בטמפ' חדר לניקוז. מרקם רך = ניקוז קצר; מרקם מוצק = ניקוז ממושך.</p></div></div></div>
+  <div class="sub-accordion"><div class="sub-accordion-header"><span class="sub-accordion-num">8</span><div class="sub-accordion-title">אריזה ואחסון</div><span class="sub-accordion-arrow">▼</span></div><div class="sub-accordion-content"><div class="sub-accordion-body"><p>אריזה בכלי נקי; אחסון בקירור 4°C. <strong>אורך חיי מדף: כשבוע.</strong></p></div></div></div>
+</div></div>
+</div>
+
+<!-- 7. גבינה צפתית -->
+<div class="accordion">
+<div class="accordion-header" onclick="toggleAcc(this)">
+  <div class="accordion-icon">🧱</div>
+  <h2 class="accordion-title">גבינה צפתית</h2>
+  <span class="accordion-arrow">▼</span>
+</div>
+<div class="accordion-content"><div class="accordion-body">
+  <div class="ingredients-box">
+    <h3>🛒 מרכיבים</h3>
+    <ul>
+      <li>חלב — 3 ליטר</li>
+      <li>קלציום — 0.8 גר' (להמיס במים)</li>
+      <li>מחמצת מזופילית — 3 כפיות גיל/אשל</li>
+      <li>מחמצת טרמופילית — 1 כפית יוגורט</li>
+      <li>אנזים — 4 טיפות</li>
+      <li>עשבי תבלין (אפשר)</li>
+    </ul>
+  </div>
+  <p class="steps-label">⚙️ שלבי הכנה:</p>
+  <div class="sub-accordion"><div class="sub-accordion-header"><span class="sub-accordion-num">1</span><div class="sub-accordion-title">הכנת החלב</div><span class="sub-accordion-arrow">▼</span></div><div class="sub-accordion-content"><div class="sub-accordion-body"><p>חלב גולמי מסונן ובחוש.</p></div></div></div>
+  <div class="sub-accordion"><div class="sub-accordion-header"><span class="sub-accordion-num">2</span><div class="sub-accordion-title">פסטור</div><span class="sub-accordion-arrow">▼</span></div><div class="sub-accordion-content"><div class="sub-accordion-body"><p>חימום ל-73–75°C ל-2 דק'. קירור מיידי ל-36–38°C. להוסיף קלציום 0.8 גר'.</p></div></div></div>
+  <div class="sub-accordion"><div class="sub-accordion-header"><span class="sub-accordion-num">3</span><div class="sub-accordion-title">הבשלה מקדימה</div><span class="sub-accordion-arrow">▼</span></div><div class="sub-accordion-content"><div class="sub-accordion-body"><p>מחמצת: 3 כפיות גיל/אשל + 1 כפית יוגורט (לדלל בחלב). להמתין 30–60 דק' בטמפ' חדר.</p></div></div></div>
+  <div class="sub-accordion"><div class="sub-accordion-header"><span class="sub-accordion-num">4</span><div class="sub-accordion-title">הקרשה</div><span class="sub-accordion-arrow">▼</span></div><div class="sub-accordion-content"><div class="sub-accordion-body"><p>אנזים 4 טיפות (לדלל במים בטוחים), לערבב ולתת לעמוד ללא תזוזה 30–60 דק' בטמפ' חדר.</p></div></div></div>
+  <div class="sub-accordion"><div class="sub-accordion-header"><span class="sub-accordion-num">5</span><div class="sub-accordion-title">חיתוך</div><span class="sub-accordion-arrow">▼</span></div><div class="sub-accordion-content"><div class="sub-accordion-body"><p>חיתוך ראשון: 2×2 ס"מ, מנוחה 8 דק'. חיתוך שני: ערבוב עדין בכף להשלמת חיתוך, מנוחה 5 דק'.</p></div></div></div>
+  <div class="sub-accordion"><div class="sub-accordion-header"><span class="sub-accordion-num">6</span><div class="sub-accordion-title">ערבוב</div><span class="sub-accordion-arrow">▼</span></div><div class="sub-accordion-content"><div class="sub-accordion-body"><p>ערבוב גרגרי הגבן עד גודל גרגיר אפונה/תירס. מנוחה 5 דק' לשקיעת הגבן.</p></div></div></div>
+  <div class="sub-accordion"><div class="sub-accordion-header"><span class="sub-accordion-num">7</span><div class="sub-accordion-title">ניקוז מי גבינה</div><span class="sub-accordion-arrow">▼</span></div><div class="sub-accordion-content"><div class="sub-accordion-body"><p>ניקוז חלק ממי הגבינה עד ½ מנפח הסיר. שמירת מי הגבינה לריקוטה.</p></div></div></div>
+  <div class="sub-accordion"><div class="sub-accordion-header"><span class="sub-accordion-num">8</span><div class="sub-accordion-title">המלחה</div><span class="sub-accordion-arrow">▼</span></div><div class="sub-accordion-content"><div class="sub-accordion-body"><p>בסיר הגיבון או בסלסלה לאחר מזיגה. מלח דק בכמות עד 0.5% ממשקל הגבינה. אפשר להוסיף טעמים.</p></div></div></div>
+  <div class="sub-accordion"><div class="sub-accordion-header"><span class="sub-accordion-num">9</span><div class="sub-accordion-title">מזיגה לתבניות, הפיכות וניקוז</div><span class="sub-accordion-arrow">▼</span></div><div class="sub-accordion-content"><div class="sub-accordion-body"><p>מזיגת גבן לתבניות לטפטוף וניקוז. הפיכות לאחר ¼ שע' וכעבור ½ שע'. הפיכות נוספות מדי שעה במהלך 2–6 שע'.</p></div></div></div>
+  <div class="sub-accordion"><div class="sub-accordion-header"><span class="sub-accordion-num">10</span><div class="sub-accordion-title">ייבוש</div><span class="sub-accordion-arrow">▼</span></div><div class="sub-accordion-content"><div class="sub-accordion-body"><p>כשהגבינה התייצבה — הוצאה מהתבניות. הנחה על גבי רשת / בד סינון לייבוש במקרר 2–6 שע'.</p></div></div></div>
+  <div class="sub-accordion"><div class="sub-accordion-header"><span class="sub-accordion-num">11</span><div class="sub-accordion-title">אריזה ואחסון</div><span class="sub-accordion-arrow">▼</span></div><div class="sub-accordion-content"><div class="sub-accordion-body"><p>אריזה בכלי נקי; אחסון בקירור 4°C. <strong>אורך חיי מדף: עד 10 ימים.</strong></p></div></div></div>
+</div></div>
+</div>
+
+<!-- 8. גבינת חלומי -->
+<div class="accordion">
+<div class="accordion-header" onclick="toggleAcc(this)">
+  <div class="accordion-icon">🔥</div>
+  <h2 class="accordion-title">גבינת חלומי</h2>
+  <span class="accordion-arrow">▼</span>
+</div>
+<div class="accordion-content"><div class="accordion-body">
+  <div class="ingredients-box">
+    <h3>🛒 מרכיבים</h3>
+    <ul>
+      <li>חלב — 3 ליטר</li>
+      <li>אנזים — 4 טיפות</li>
+      <li>מלח</li>
+    </ul>
+  </div>
+  <p class="steps-label">⚙️ שלבי הכנה:</p>
+  <div class="sub-accordion"><div class="sub-accordion-header"><span class="sub-accordion-num">1</span><div class="sub-accordion-title">הכנת החלב</div><span class="sub-accordion-arrow">▼</span></div><div class="sub-accordion-content"><div class="sub-accordion-body"><p>חלב גולמי מסונן ובחוש.</p></div></div></div>
+  <div class="sub-accordion"><div class="sub-accordion-header"><span class="sub-accordion-num">2</span><div class="sub-accordion-title">פסטור</div><span class="sub-accordion-arrow">▼</span></div><div class="sub-accordion-content"><div class="sub-accordion-body"><p>חימום ל-72–74°C ל-16 שנ' תוך בחישה. קירור מיידי ל-38–40°C.</p></div></div></div>
+  <div class="sub-accordion"><div class="sub-accordion-header"><span class="sub-accordion-num">3</span><div class="sub-accordion-title">הקרשה</div><span class="sub-accordion-arrow">▼</span></div><div class="sub-accordion-content"><div class="sub-accordion-body"><p>אנזים 4 טיפות (למהול במים). מנוחה ללא תזוזה 30–60 דק' בטמפ' חדר.</p></div></div></div>
+  <div class="sub-accordion"><div class="sub-accordion-header"><span class="sub-accordion-num">4</span><div class="sub-accordion-title">חיתוך</div><span class="sub-accordion-arrow">▼</span></div><div class="sub-accordion-content"><div class="sub-accordion-body"><p>חיתוך ראשון: 2×2 ס"מ, מנוחה 8 דק'. חיתוך שני: ערבוב עדין בכף, מנוחה 5 דק'.</p></div></div></div>
+  <div class="sub-accordion"><div class="sub-accordion-header"><span class="sub-accordion-num">5</span><div class="sub-accordion-title">ערבוב</div><span class="sub-accordion-arrow">▼</span></div><div class="sub-accordion-content"><div class="sub-accordion-body"><p>ערבוב גרגרי הגבן לגודל גרגיר אפונה/תירס. מנוחה 5 דק' לשקיעה.</p></div></div></div>
+  <div class="sub-accordion"><div class="sub-accordion-header"><span class="sub-accordion-num">6</span><div class="sub-accordion-title">ניקוז מי גבינה</div><span class="sub-accordion-arrow">▼</span></div><div class="sub-accordion-content"><div class="sub-accordion-body"><p>ניקוז עד ½ מנפח הסיר. שמירת מי הגבינה ל"חליטה".</p></div></div></div>
+  <div class="sub-accordion"><div class="sub-accordion-header"><span class="sub-accordion-num">7</span><div class="sub-accordion-title">עיצוב, הפיכות וכבישה</div><span class="sub-accordion-arrow">▼</span></div><div class="sub-accordion-content"><div class="sub-accordion-body"><p>מזיגת הגבן לבד לטפטוף וניקוז. משקל לכבישה. הפיכה כעבור ½ שע'. כבישה 1–2 שע' בטמפ' חדר.</p></div></div></div>
+  <div class="sub-accordion"><div class="sub-accordion-header"><span class="sub-accordion-num">8</span><div class="sub-accordion-title">חיתוך לקוביות וחליטה</div><span class="sub-accordion-arrow">▼</span></div><div class="sub-accordion-content"><div class="sub-accordion-body"><p>קוביות 5×5 ס"מ. השקעה בסיר מים / מי גבינה שרתחו (90°C) — מכוסה, למשך 40–45 דק'.</p></div></div></div>
+  <div class="sub-accordion"><div class="sub-accordion-header"><span class="sub-accordion-num">9</span><div class="sub-accordion-title">קירור והמלחה</div><span class="sub-accordion-arrow">▼</span></div><div class="sub-accordion-content"><div class="sub-accordion-body"><p>הוצאת הקוביות לקירור. המלחה במלח דק.</p></div></div></div>
+  <div class="sub-accordion"><div class="sub-accordion-header"><span class="sub-accordion-num">10</span><div class="sub-accordion-title">ייבוש</div><span class="sub-accordion-arrow">▼</span></div><div class="sub-accordion-content"><div class="sub-accordion-body"><p>על גבי רשת / בד סינון במקרר — 4–6 שע'.</p></div></div></div>
+  <div class="sub-accordion"><div class="sub-accordion-header"><span class="sub-accordion-num">11</span><div class="sub-accordion-title">אריזה ואחסון</div><span class="sub-accordion-arrow">▼</span></div><div class="sub-accordion-content"><div class="sub-accordion-body"><p>אחסון בקירור 4°C. <strong>אורך חיי מדף: שבוע–10 ימים.</strong> מתאימה לטיגון או לצריבה "על האש".</p></div></div></div>
+</div></div>
+</div>
+
+<!-- 9. גבינה ערבית -->
+<div class="accordion">
+<div class="accordion-header" onclick="toggleAcc(this)">
+  <div class="accordion-icon">🌿</div>
+  <h2 class="accordion-title">גבינה ערבית (ג'יבנה ערבייה)</h2>
+  <span class="accordion-arrow">▼</span>
+</div>
+<div class="accordion-content"><div class="accordion-body">
+  <div class="ingredients-box">
+    <h3>🛒 מרכיבים</h3>
+    <ul>
+      <li>חלב — 3 ליטר</li>
+      <li>אנזים — 4 טיפות</li>
+      <li>מלח</li>
+    </ul>
+  </div>
+  <p class="steps-label">⚙️ שלבי הכנה:</p>
+  <div class="sub-accordion"><div class="sub-accordion-header"><span class="sub-accordion-num">1</span><div class="sub-accordion-title">הכנת החלב</div><span class="sub-accordion-arrow">▼</span></div><div class="sub-accordion-content"><div class="sub-accordion-body"><p>חלב גולמי מסונן ובחוש.</p></div></div></div>
+  <div class="sub-accordion"><div class="sub-accordion-header"><span class="sub-accordion-num">2</span><div class="sub-accordion-title">פסטור</div><span class="sub-accordion-arrow">▼</span></div><div class="sub-accordion-content"><div class="sub-accordion-body"><p>חימום ל-72–74°C ל-16 שנ' תוך בחישה. קירור מיידי ל-38–40°C.</p></div></div></div>
+  <div class="sub-accordion"><div class="sub-accordion-header"><span class="sub-accordion-num">3</span><div class="sub-accordion-title">הקרשה</div><span class="sub-accordion-arrow">▼</span></div><div class="sub-accordion-content"><div class="sub-accordion-body"><p>אנזים 4 טיפות (למהול במים). מנוחה ללא תזוזה 30–60 דק' בטמפ' חדר.</p></div></div></div>
+  <div class="sub-accordion"><div class="sub-accordion-header"><span class="sub-accordion-num">4</span><div class="sub-accordion-title">חיתוך</div><span class="sub-accordion-arrow">▼</span></div><div class="sub-accordion-content"><div class="sub-accordion-body"><p>חיתוך ראשון: 2×2 ס"מ, מנוחה 8 דק'. חיתוך שני: ערבוב עדין בכף, מנוחה 5 דק'.</p></div></div></div>
+  <div class="sub-accordion"><div class="sub-accordion-header"><span class="sub-accordion-num">5</span><div class="sub-accordion-title">ערבוב</div><span class="sub-accordion-arrow">▼</span></div><div class="sub-accordion-content"><div class="sub-accordion-body"><p>ערבוב גרגרי הגבן לגודל גרגיר אפונה/תירס. מנוחה 5 דק' לשקיעה.</p></div></div></div>
+  <div class="sub-accordion"><div class="sub-accordion-header"><span class="sub-accordion-num">6</span><div class="sub-accordion-title">ניקוז מי גבינה</div><span class="sub-accordion-arrow">▼</span></div><div class="sub-accordion-content"><div class="sub-accordion-body"><p>ניקוז עד ½ מנפח הסיר. שמירת מי הגבינה ל"חליטה".</p></div></div></div>
+  <div class="sub-accordion"><div class="sub-accordion-header"><span class="sub-accordion-num">7</span><div class="sub-accordion-title">עיצוב וכבישה</div><span class="sub-accordion-arrow">▼</span></div><div class="sub-accordion-content"><div class="sub-accordion-body"><p>מזיגת הגבן לבד בצורת מעטפה לטפטוף וניקוז. משקל לכבישה. הפיכה כעבור ½ שע'. כבישה 1–2 שע'.</p></div></div></div>
+  <div class="sub-accordion"><div class="sub-accordion-header"><span class="sub-accordion-num">8</span><div class="sub-accordion-title">חיתוך לקוביות והמלחה</div><span class="sub-accordion-arrow">▼</span></div><div class="sub-accordion-content"><div class="sub-accordion-body"><p>הוצאה מהמעטפה. קוביות שטוחות 5×5 ס"מ. המלחה משני הצדדים במלח דק.</p></div></div></div>
+  <div class="sub-accordion"><div class="sub-accordion-header"><span class="sub-accordion-num">9</span><div class="sub-accordion-title">אריזה ואחסון</div><span class="sub-accordion-arrow">▼</span></div><div class="sub-accordion-content"><div class="sub-accordion-body"><p>אחסון בקירור 4°C. <strong>אורך חיי מדף: שבוע–10 ימים.</strong></p></div></div></div>
+</div></div>
+</div>
+
+<!-- 10. מוצרלה ביולוגית -->
+<div class="accordion">
+<div class="accordion-header" onclick="toggleAcc(this)">
+  <div class="accordion-icon">🍕</div>
+  <h2 class="accordion-title">גבינת מוצרלה טרייה — ביולוגית</h2>
+  <span class="accordion-arrow">▼</span>
+</div>
+<div class="accordion-content"><div class="accordion-body">
+  <div class="ingredients-box">
+    <h3>🛒 מרכיבים</h3>
+    <ul>
+      <li>חלב — 3 ליטר</li>
+      <li>קלציום — 0.8 גר'</li>
+      <li>מחמצת טרמופילית — 3 כפיות יוגורט</li>
+      <li>אנזים — 3–4 טיפות</li>
+      <li>מלח דק — 125 גר' / 2.5 ליטר מים חמים (85°C)</li>
+    </ul>
+  </div>
+  <p class="steps-label">⚙️ שלבי הכנה:</p>
+  <div class="sub-accordion"><div class="sub-accordion-header"><span class="sub-accordion-num">1</span><div class="sub-accordion-title">הכנת החלב</div><span class="sub-accordion-arrow">▼</span></div><div class="sub-accordion-content"><div class="sub-accordion-body"><p>חלב גולמי מסונן ובחוש.</p></div></div></div>
+  <div class="sub-accordion"><div class="sub-accordion-header"><span class="sub-accordion-num">2</span><div class="sub-accordion-title">פסטור</div><span class="sub-accordion-arrow">▼</span></div><div class="sub-accordion-content"><div class="sub-accordion-body"><p>חימום ל-72–74°C ל-16 שנ' תוך בחישה. קירור מיידי ל-38–40°C + קלציום מומס במים.</p></div></div></div>
+  <div class="sub-accordion"><div class="sub-accordion-header"><span class="sub-accordion-num">3</span><div class="sub-accordion-title">הבשלה ביולוגית</div><span class="sub-accordion-arrow">▼</span></div><div class="sub-accordion-content"><div class="sub-accordion-body"><p>מחמצת טרמופילית (יוגורט) לחלב, בחישה לפיזור אחיד. כיסוי ובחישה ל-30 דק'.</p></div></div></div>
+  <div class="sub-accordion"><div class="sub-accordion-header"><span class="sub-accordion-num">4</span><div class="sub-accordion-title">הקרשה</div><span class="sub-accordion-arrow">▼</span></div><div class="sub-accordion-content"><div class="sub-accordion-body"><p>אנזים 5 טיפות מהול במים, לנוח ללא תזוזה כ-30–45 דק'.</p></div></div></div>
+  <div class="sub-accordion"><div class="sub-accordion-header"><span class="sub-accordion-num">5</span><div class="sub-accordion-title">חיתוך</div><span class="sub-accordion-arrow">▼</span></div><div class="sub-accordion-content"><div class="sub-accordion-body"><p>חיתוך ראשון: 6×6 ס"מ, מנוחה 6 דק'. חיתוך שני: ערבוב עדין, מנוחה 5 דק'.</p></div></div></div>
+  <div class="sub-accordion"><div class="sub-accordion-header"><span class="sub-accordion-num">6</span><div class="sub-accordion-title">ערבוב</div><span class="sub-accordion-arrow">▼</span></div><div class="sub-accordion-content"><div class="sub-accordion-body"><p>ערבוב הגבן עד גרגיר אגוז מלך. מנוחה 5 דק' לשקיעה.</p></div></div></div>
+  <div class="sub-accordion"><div class="sub-accordion-header"><span class="sub-accordion-num">7</span><div class="sub-accordion-title">ניקוז חלקי</div><span class="sub-accordion-arrow">▼</span></div><div class="sub-accordion-content"><div class="sub-accordion-body"><p>ניקוז מי גבינה עד ½ מנפח הסיר.</p></div></div></div>
+  <div class="sub-accordion"><div class="sub-accordion-header"><span class="sub-accordion-num">8</span><div class="sub-accordion-title">סינון וטפטוף</div><span class="sub-accordion-arrow">▼</span></div><div class="sub-accordion-content"><div class="sub-accordion-body"><p>העברת הגבן למסננת מרופדת בד לסינון.</p></div></div></div>
+  <div class="sub-accordion"><div class="sub-accordion-header"><span class="sub-accordion-num">9</span><div class="sub-accordion-title">החמצת הגבן</div><span class="sub-accordion-arrow">▼</span></div><div class="sub-accordion-content"><div class="sub-accordion-body"><p>העמדת הגבן בסביבה חמה (40°C) להחמצה 2–3 שעות. לבדוק pH 5.0–5.2 מעת לעת.</p></div></div></div>
+  <div class="sub-accordion"><div class="sub-accordion-header"><span class="sub-accordion-num">10</span><div class="sub-accordion-title">הכנות למתיחה</div><span class="sub-accordion-arrow">▼</span></div><div class="sub-accordion-content"><div class="sub-accordion-body"><p>לוודא שהגבינה ניקזה. להרתיח 2.5 ל' מים ל-80–85°C + המסת מלח. להכין 2 קערות: מי ברז קרים + מי קרח עם מעט מלח.</p></div></div></div>
+  <div class="sub-accordion"><div class="sub-accordion-header"><span class="sub-accordion-num">11</span><div class="sub-accordion-title">מתיחת הגבן ועיצובו</div><span class="sub-accordion-arrow">▼</span></div><div class="sub-accordion-content"><div class="sub-accordion-body"><p>הכנסת הגבינה למים החמים. לישה ומתיחה בכף עץ. במרקם "בצק" — מותחים ומעצבים (כדורים או צורות אחרות).</p></div></div></div>
+  <div class="sub-accordion"><div class="sub-accordion-header"><span class="sub-accordion-num">12</span><div class="sub-accordion-title">קירור והמלחה שנייה</div><span class="sub-accordion-arrow">▼</span></div><div class="sub-accordion-content"><div class="sub-accordion-body"><p>טבילה במי ברז 10 דק'. העברה למי קרח מומלחים ½ שעה.</p></div></div></div>
+  <div class="sub-accordion"><div class="sub-accordion-header"><span class="sub-accordion-num">13</span><div class="sub-accordion-title">אריזה ואחסון</div><span class="sub-accordion-arrow">▼</span></div><div class="sub-accordion-content"><div class="sub-accordion-body"><p>אריזה בכלי נקי עם מי מלח / על משטח טפטוף; אחסון 4°C. <strong>אורך חיי מדף: שבוע–10 ימים.</strong></p></div></div></div>
+</div></div>
+</div>
+
+<!-- 11. מוצרלה כימית -->
+<div class="accordion">
+<div class="accordion-header" onclick="toggleAcc(this)">
+  <div class="accordion-icon">⚗️</div>
+  <h2 class="accordion-title">גבינת מוצרלה טרייה — כימית</h2>
+  <span class="accordion-arrow">▼</span>
+</div>
+<div class="accordion-content"><div class="accordion-body">
+  <div class="ingredients-box">
+    <h3>🛒 מרכיבים</h3>
+    <ul>
+      <li>חלב — 3 ליטר</li>
+      <li>קלציום — 0.8 גר'</li>
+      <li>מלח לימון (חומצה ציטרית) — 5.0 גר' (מומס במים מינראליים/מורתחים)</li>
+      <li>מחמצת טרמופילית — 3 כפיות יוגורט</li>
+      <li>אנזים — 3 טיפות</li>
+      <li>מלח דק — 125 גר' / 2.5 ליטר מים חמים (85°C)</li>
+    </ul>
+  </div>
+  <p class="steps-label">⚙️ שלבי הכנה:</p>
+  <div class="sub-accordion"><div class="sub-accordion-header"><span class="sub-accordion-num">1</span><div class="sub-accordion-title">הכנת החלב</div><span class="sub-accordion-arrow">▼</span></div><div class="sub-accordion-content"><div class="sub-accordion-body"><p>חלב גולמי מסונן ובחוש.</p></div></div></div>
+  <div class="sub-accordion"><div class="sub-accordion-header"><span class="sub-accordion-num">2</span><div class="sub-accordion-title">פסטור</div><span class="sub-accordion-arrow">▼</span></div><div class="sub-accordion-content"><div class="sub-accordion-body"><p>חימום ל-72–74°C ל-16 שנ' תוך בחישה. קירור מיידי ל-9–10°C + קלציום מומס במים.</p></div></div></div>
+  <div class="sub-accordion"><div class="sub-accordion-header"><span class="sub-accordion-num">3</span><div class="sub-accordion-title">החמצה כימית</div><span class="sub-accordion-arrow">▼</span></div><div class="sub-accordion-content"><div class="sub-accordion-body"><p>הוספת 1 כפית מלח לימון (מומס במים מינראליים). רמת חומציות: pH כ-5.2–5.4.</p></div></div></div>
+  <div class="sub-accordion"><div class="sub-accordion-header"><span class="sub-accordion-num">4</span><div class="sub-accordion-title">חימום</div><span class="sub-accordion-arrow">▼</span></div><div class="sub-accordion-content"><div class="sub-accordion-body"><p>חימום איטי תוך בחישה קלה ל-36–37°C.</p></div></div></div>
+  <div class="sub-accordion"><div class="sub-accordion-header"><span class="sub-accordion-num">5</span><div class="sub-accordion-title">הוספת מחמצת לטעם</div><span class="sub-accordion-arrow">▼</span></div><div class="sub-accordion-content"><div class="sub-accordion-body"><p>הוספת 3 כפיות יוגורט (מדולל בחלב).</p></div></div></div>
+  <div class="sub-accordion"><div class="sub-accordion-header"><span class="sub-accordion-num">6</span><div class="sub-accordion-title">הקרשה</div><span class="sub-accordion-arrow">▼</span></div><div class="sub-accordion-content"><div class="sub-accordion-body"><p>אנזים 3 טיפות מדולל במים, לנוח ללא תזוזה 15–25 דק'.</p></div></div></div>
+  <div class="sub-accordion"><div class="sub-accordion-header"><span class="sub-accordion-num">7</span><div class="sub-accordion-title">חיתוך</div><span class="sub-accordion-arrow">▼</span></div><div class="sub-accordion-content"><div class="sub-accordion-body"><p>חיתוך ראשון: 6×6 ס"מ, מנוחה 5 דק'. חיתוך שני: ערבוב עדין, מנוחה 5 דק'.</p></div></div></div>
+  <div class="sub-accordion"><div class="sub-accordion-header"><span class="sub-accordion-num">8</span><div class="sub-accordion-title">ערבוב</div><span class="sub-accordion-arrow">▼</span></div><div class="sub-accordion-content"><div class="sub-accordion-body"><p>ערבוב הגבן עד גרגיר אגוז לוז. מנוחה 5 דק' לשקיעה.</p></div></div></div>
+  <div class="sub-accordion"><div class="sub-accordion-header"><span class="sub-accordion-num">9</span><div class="sub-accordion-title">ניקוז חלקי</div><span class="sub-accordion-arrow">▼</span></div><div class="sub-accordion-content"><div class="sub-accordion-body"><p>ניקוז מי גבינה עד ½ מנפח הסיר.</p></div></div></div>
+  <div class="sub-accordion"><div class="sub-accordion-header"><span class="sub-accordion-num">10</span><div class="sub-accordion-title">סינון וטפטוף</div><span class="sub-accordion-arrow">▼</span></div><div class="sub-accordion-content"><div class="sub-accordion-body"><p>סינון מי הגבינה — העברת הגבן למסננת מרופדת בד לסינון.</p></div></div></div>
+  <div class="sub-accordion"><div class="sub-accordion-header"><span class="sub-accordion-num">11</span><div class="sub-accordion-title">הכנות למתיחה</div><span class="sub-accordion-arrow">▼</span></div><div class="sub-accordion-content"><div class="sub-accordion-body"><p>לוודא שהגבן מסונן היטב. 2.5 ל' מים ל-80–85°C + המסת מלח. להכין 2 קערות: מי ברז קרים + מי קרח עם מעט מלח.</p></div></div></div>
+  <div class="sub-accordion"><div class="sub-accordion-header"><span class="sub-accordion-num">12</span><div class="sub-accordion-title">מתיחת הגבן ועיצובו</div><span class="sub-accordion-arrow">▼</span></div><div class="sub-accordion-content"><div class="sub-accordion-body"><p>הכנסת הגבן המסונן למים החמים. לישה ומתיחה בכף עץ. במרקם "בצק" — עיצוב כדורים / חוטים.</p></div></div></div>
+  <div class="sub-accordion"><div class="sub-accordion-header"><span class="sub-accordion-num">13</span><div class="sub-accordion-title">קירור והמלחה שנייה</div><span class="sub-accordion-arrow">▼</span></div><div class="sub-accordion-content"><div class="sub-accordion-body"><p>טבילה במי ברז 10 דק'. העברה למי קרח מומלחים ½ שעה.</p></div></div></div>
+  <div class="sub-accordion"><div class="sub-accordion-header"><span class="sub-accordion-num">14</span><div class="sub-accordion-title">אריזה ואחסון</div><span class="sub-accordion-arrow">▼</span></div><div class="sub-accordion-content"><div class="sub-accordion-body"><p>אריזה בכלי נקי עם מי מלח / על משטח טפטוף; אחסון 4°C. <strong>אורך חיי מדף: 3 ימים.</strong></p></div></div></div>
+</div></div>
+</div>
+
+</div><!-- end accordions-container -->
+</div><!-- end container -->
+
+<footer>
+  <p>🧀 מתכוני גבינה בייתית | פותח עם ❤️ על ידי <a href="mailto:yairron@gmail.com">יאיר רון</a></p>
+</footer>
+
+<script>
+function toggleAcc(header){
+  var acc=header.closest('.accordion');
+  var wasActive=acc.classList.contains('active');
+  var container=acc.parentElement;
+  container.querySelectorAll(':scope>.accordion.active').forEach(function(a){if(a!==acc)a.classList.remove('active');});
+  acc.classList.toggle('active',!wasActive);
+  if(!wasActive){setTimeout(function(){acc.scrollIntoView({behavior:'smooth',block:'start'});},50);}
+}
+document.addEventListener('click',function(e){
+  var h=e.target.closest('.sub-accordion-header');
+  if(!h)return;
+  e.stopPropagation();
+  var sa=h.closest('.sub-accordion');
+  var wasActive=sa.classList.contains('active');
+  var parent=sa.parentElement;
+  parent.querySelectorAll(':scope>.sub-accordion.active').forEach(function(a){if(a!==sa)a.classList.remove('active');});
+  sa.classList.toggle('active',!wasActive);
+});
+</script>
+</body>
+</html>
