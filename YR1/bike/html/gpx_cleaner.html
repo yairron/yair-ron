@@ -319,6 +319,39 @@
     white-space: nowrap;
   }
 
+  .map-statsbar {
+    display: flex;
+    background: var(--surface);
+    border-bottom: 1px solid var(--border);
+    flex-shrink: 0;
+    gap: 1px;
+    background-color: var(--border);
+  }
+
+  .map-stat {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 8px 12px;
+    background: var(--surface);
+  }
+
+  .map-stat-label {
+    font-size: 11px;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.8px;
+  }
+
+  .map-stat-val {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 18px;
+    font-weight: 600;
+    color: var(--accent);
+    margin-top: 2px;
+  }
+
   #map { flex: 1; }
 
   button.back {
@@ -340,6 +373,20 @@
     <button class="back" onclick="goBack()">← חזור</button>
     <span id="mapTitle"></span>
     <button onclick="downloadClean()">⬇ הורד GPX נקי</button>
+  </div>
+  <div class="map-statsbar">
+    <div class="map-stat">
+      <span class="map-stat-label">זמן</span>
+      <span class="map-stat-val" id="statTime">—</span>
+    </div>
+    <div class="map-stat">
+      <span class="map-stat-label">מרחק</span>
+      <span class="map-stat-val" id="statDist">—</span>
+    </div>
+    <div class="map-stat">
+      <span class="map-stat-label">טיפוס</span>
+      <span class="map-stat-val" id="statClimb">—</span>
+    </div>
   </div>
   <div id="map"></div>
 </div>
@@ -438,6 +485,7 @@ let cleanGpxContent = null;
 let originalFilename = 'track_clean.gpx';
 let rawGpxText = null;
 let keptPoints = [];
+let trackStats = { time: '—', distance: '—', climb: '—' };
 let mapInstance = null;
 let trackLayers = [];
 
@@ -614,6 +662,22 @@ function processGpx(gpxText) {
 
   keptPoints = kept.map(p => [p.lat, p.lon]);
 
+  // Calculate track stats
+  let totalDistM = 0, totalClimbM = 0;
+  for (let i = 1; i < kept.length; i++) {
+    totalDistM += haversine(kept[i-1].lat, kept[i-1].lon, kept[i].lat, kept[i].lon);
+    const eleDiff = kept[i].ele - kept[i-1].ele;
+    if (eleDiff > 0) totalClimbM += eleDiff;
+  }
+  const totalMs = kept[kept.length-1].time - kept[0].time;
+  const totalMin = Math.round(totalMs / 60000);
+  const h = Math.floor(totalMin / 60), m = totalMin % 60;
+  trackStats = {
+    time: totalMs > 0 ? `${h}:${String(m).padStart(2,'0')}` : '—',
+    distance: (totalDistM / 1000).toFixed(1) + ' ק"מ',
+    climb: Math.round(totalClimbM) + ' מ\''
+  };
+
   const serializer = new XMLSerializer();
   cleanGpxContent = '<?xml version="1.0" encoding="UTF-8"?>\n' +
     serializer.serializeToString(doc.documentElement);
@@ -695,6 +759,9 @@ function showMap() {
   const mapPage = document.getElementById('page-map');
   mapPage.style.display = 'flex';
   document.getElementById('mapTitle').textContent = originalFilename;
+  document.getElementById('statTime').textContent = trackStats.time;
+  document.getElementById('statDist').textContent = trackStats.distance;
+  document.getElementById('statClimb').textContent = trackStats.climb;
 
   if (!mapInstance) {
     mapInstance = L.map('map');
