@@ -1,0 +1,736 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ניקוי GPX</title>
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;500;700&family=JetBrains+Mono:wght@400;600&display=swap');
+
+  :root {
+    --bg: #0f1117;
+    --surface: #1a1d27;
+    --border: #2a2d3a;
+    --accent: #4ade80;
+    --accent-dim: #1a3d28;
+    --warn: #f59e0b;
+    --error: #ef4444;
+    --text: #e2e8f0;
+    --text-muted: #64748b;
+    --radius: 8px;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Heebo', sans-serif;
+    min-height: 100vh;
+    padding: 32px 16px;
+  }
+
+  .container { max-width: 720px; margin: 0 auto; }
+
+  header { margin-bottom: 40px; }
+  header h1 {
+    font-size: 28px;
+    font-weight: 700;
+    letter-spacing: -0.5px;
+    color: var(--accent);
+  }
+  header p {
+    color: var(--text-muted);
+    margin-top: 6px;
+    font-size: 15px;
+  }
+
+  .card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 24px;
+    margin-bottom: 20px;
+  }
+
+  .card-title {
+    font-size: 13px;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 1.2px;
+    color: var(--text-muted);
+    margin-bottom: 20px;
+  }
+
+  .params-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+  }
+
+  .param-group { display: flex; flex-direction: column; gap: 6px; }
+  .param-group.full { grid-column: 1 / -1; }
+
+  label {
+    font-size: 13px;
+    color: var(--text-muted);
+    font-weight: 500;
+  }
+
+  input[type="number"], input[type="text"] {
+    background: var(--bg);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    color: var(--text);
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 15px;
+    padding: 10px 14px;
+    width: 100%;
+    transition: border-color 0.15s;
+    direction: ltr;
+  }
+
+  input:focus {
+    outline: none;
+    border-color: var(--accent);
+  }
+
+  .unit {
+    font-size: 11px;
+    color: var(--text-muted);
+    margin-top: 2px;
+  }
+
+  .url-row {
+    display: flex;
+    gap: 10px;
+    align-items: flex-start;
+  }
+
+  .url-row input { flex: 1; }
+
+  button {
+    background: var(--accent);
+    color: #0a1a0f;
+    border: none;
+    border-radius: var(--radius);
+    font-family: 'Heebo', sans-serif;
+    font-size: 15px;
+    font-weight: 700;
+    padding: 10px 20px;
+    cursor: pointer;
+    transition: opacity 0.15s;
+    white-space: nowrap;
+  }
+
+  button:hover { opacity: 0.85; }
+  button:disabled { opacity: 0.4; cursor: not-allowed; }
+
+  button.secondary {
+    background: var(--accent-dim);
+    color: var(--accent);
+    border: 1px solid var(--accent);
+  }
+
+  .status {
+    display: none;
+    align-items: center;
+    gap: 10px;
+    padding: 12px 16px;
+    border-radius: var(--radius);
+    font-size: 14px;
+    margin-bottom: 20px;
+  }
+
+  .status.info { display: flex; background: #1e2a3a; border: 1px solid #2a4a6a; color: #60a5fa; }
+  .status.error { display: flex; background: #2a1a1a; border: 1px solid #6a2a2a; color: var(--error); }
+  .status.success { display: flex; background: var(--accent-dim); border: 1px solid #2a5a3a; color: var(--accent); }
+
+  .spinner {
+    width: 16px; height: 16px;
+    border: 2px solid currentColor;
+    border-top-color: transparent;
+    border-radius: 50%;
+    animation: spin 0.7s linear infinite;
+    flex-shrink: 0;
+  }
+
+  @keyframes spin { to { transform: rotate(360deg); } }
+
+  .results { display: none; }
+
+  .stat-row {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+    margin-bottom: 20px;
+  }
+
+  .stat {
+    background: var(--bg);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 14px;
+    text-align: center;
+  }
+
+  .stat-val {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 26px;
+    font-weight: 600;
+    color: var(--accent);
+  }
+
+  .stat-val.removed { color: var(--error); }
+
+  .stat-label {
+    font-size: 12px;
+    color: var(--text-muted);
+    margin-top: 4px;
+  }
+
+  .clusters-title {
+    font-size: 13px;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: var(--text-muted);
+    margin-bottom: 12px;
+  }
+
+  .cluster {
+    background: var(--bg);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    margin-bottom: 8px;
+    overflow: hidden;
+  }
+
+  .cluster-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 14px;
+    cursor: pointer;
+    user-select: none;
+  }
+
+  .cluster-header:hover { background: #ffffff08; }
+
+  .cluster-name { font-size: 14px; font-weight: 500; }
+  .cluster-badge {
+    background: #2a1a1a;
+    color: var(--error);
+    border-radius: 4px;
+    padding: 2px 8px;
+    font-size: 12px;
+    font-family: 'JetBrains Mono', monospace;
+  }
+
+  .cluster-body {
+    display: none;
+    padding: 0 14px 12px;
+  }
+
+  .cluster-body.open { display: block; }
+
+  .pt-row {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px;
+    color: var(--text-muted);
+    padding: 4px 0;
+    border-bottom: 1px solid var(--border);
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+  }
+
+  .pt-row:last-child { border-bottom: none; }
+  .pt-row .reason { color: var(--error); }
+
+  .dl-btn {
+    width: 100%;
+    text-align: center;
+    padding: 14px;
+    font-size: 16px;
+    margin-top: 8px;
+  }
+
+  .chevron { transition: transform 0.2s; display: inline-block; }
+  .chevron.open { transform: rotate(180deg); }
+
+  input[type="file"] { display: none; }
+
+  .file-row { display: flex; align-items: center; gap: 12px; }
+
+  .file-btn {
+    background: var(--accent);
+    color: #0a1a0f;
+    border-radius: var(--radius);
+    font-family: 'Heebo', sans-serif;
+    font-size: 15px;
+    font-weight: 700;
+    padding: 10px 20px;
+    cursor: pointer;
+    white-space: nowrap;
+    display: inline-block;
+    transition: opacity 0.15s;
+  }
+
+  .file-btn:hover { opacity: 0.85; }
+
+  .file-name {
+    font-size: 14px;
+    color: var(--text-muted);
+    font-family: 'JetBrains Mono', monospace;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  #page-map {
+    display: none;
+    flex-direction: column;
+    position: fixed;
+    inset: 0;
+    background: var(--bg);
+    z-index: 100;
+  }
+
+  .map-topbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 12px 16px;
+    background: var(--surface);
+    border-bottom: 1px solid var(--border);
+    flex-shrink: 0;
+    gap: 12px;
+  }
+
+  .map-topbar span {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 14px;
+    color: var(--text-muted);
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  #map { flex: 1; }
+
+  button.back {
+    background: var(--accent-dim);
+    color: var(--accent);
+    border: 1px solid var(--accent);
+  }
+
+  @media (max-width: 500px) {
+    .params-grid { grid-template-columns: 1fr; }
+    .stat-row { grid-template-columns: 1fr 1fr; }
+  }
+</style>
+</head>
+<body>
+<!-- MAP PAGE -->
+<div id="page-map">
+  <div class="map-topbar">
+    <button class="back" onclick="goBack()">← חזור</button>
+    <span id="mapTitle"></span>
+    <button onclick="downloadClean()">⬇ הורד GPX נקי</button>
+  </div>
+  <div id="map"></div>
+</div>
+
+<!-- MAIN PAGE -->
+<div id="page-main">
+<div class="container">
+
+  <header>
+    <h1>🧹 ניקוי קובץ GPX</h1>
+    <p>מסנן נקודות GPS שגויות לפי מהירות, הפרש גובה ומרחק</p>
+  </header>
+
+  <!-- PARAMS -->
+  <div class="card">
+    <div class="card-title">פרמטרי סינון</div>
+    <div class="params-grid">
+
+      <div class="param-group">
+        <label>הפרש גובה מקסימלי בין נקודה לנקודה הבאה</label>
+        <input type="number" id="maxEle" value="35" min="1" max="500" oninput="reprocess()">
+        <span class="unit">מטרים</span>
+      </div>
+
+      <div class="param-group">
+        <label>מהירות מקסימלית בין נקודה לנקודה הבאה</label>
+        <input type="number" id="maxSpeed" value="15" min="1" max="200" oninput="reprocess()">
+        <span class="unit">קמ"ש</span>
+      </div>
+
+      <div class="param-group">
+        <label>מרחק מקסימלי מנקודת התחלה</label>
+        <input type="number" id="maxDist" value="200" min="1" max="20000" oninput="reprocess()">
+        <span class="unit">ק"מ</span>
+      </div>
+
+      <div class="param-group">
+        <label>נקודת התחלה ידנית (אופציונלי)</label>
+        <input type="text" id="startPoint" placeholder="גוגל מפות: 33.3058,35.7846  |  ענן: 273487/801287" onchange="reprocess()">
+        <span class="unit">אם ריק – ישתמש ב-idx=0 מהקובץ</span>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- FILE INPUT -->
+  <div class="card">
+    <div class="card-title">קובץ GPX</div>
+    <div class="file-row">
+      <label class="file-btn" for="gpxFile">בחר קובץ</label>
+      <input type="file" id="gpxFile" accept=".gpx" onchange="handleFile(this)">
+      <span id="fileName" class="file-name">לא נבחר קובץ</span>
+    </div>
+  </div>
+
+  <!-- STATUS -->
+  <div class="status" id="status">
+    <div class="spinner" id="spinner"></div>
+    <span id="statusMsg"></span>
+  </div>
+
+  <!-- RESULTS -->
+  <div class="results" id="results">
+
+    <div class="card">
+      <div class="card-title">תוצאות</div>
+
+      <div class="stat-row">
+        <div class="stat">
+          <div class="stat-val" id="totalPts">—</div>
+          <div class="stat-label">נקודות מקוריות</div>
+        </div>
+        <div class="stat">
+          <div class="stat-val" id="keptPts">—</div>
+          <div class="stat-label">נקודות שנשמרו</div>
+        </div>
+        <div class="stat">
+          <div class="stat-val removed" id="removedPts">—</div>
+          <div class="stat-label">נקודות שנמחקו</div>
+        </div>
+      </div>
+
+      <div class="clusters-title">אשכולות שגיאה שנמחקו</div>
+      <div id="clusterList"></div>
+
+      <button class="dl-btn" onclick="showMap()">🗺 צפה במפה והורד</button>
+    </div>
+
+  </div>
+
+</div>
+</div><!-- /page-main -->
+
+<script>
+let cleanGpxContent = null;
+let originalFilename = 'track_clean.gpx';
+let rawGpxText = null;
+let keptPoints = [];
+let mapInstance = null;
+let trackLayers = [];
+
+function setStatus(type, msg, showSpinner=false) {
+  const el = document.getElementById('status');
+  const msgEl = document.getElementById('statusMsg');
+  const spinner = document.getElementById('spinner');
+  el.className = 'status ' + type;
+  msgEl.textContent = msg;
+  spinner.style.display = showSpinner ? 'block' : 'none';
+}
+
+function hideStatus() {
+  document.getElementById('status').className = 'status';
+}
+
+function haversine(lat1, lon1, lat2, lon2) {
+  const R = 6371000;
+  const phi1 = lat1 * Math.PI / 180, phi2 = lat2 * Math.PI / 180;
+  const dphi = (lat2 - lat1) * Math.PI / 180;
+  const dlambda = (lon2 - lon1) * Math.PI / 180;
+  const a = Math.sin(dphi/2)**2 + Math.cos(phi1)*Math.cos(phi2)*Math.sin(dlambda/2)**2;
+  return 2 * R * Math.asin(Math.sqrt(a));
+}
+
+function itmToWgs84(x, y) {
+  const a  = 6378137.0;
+  const f  = 1 / 298.257222101;
+  const k0 = 1.0000067;
+  const lat0 = 31.73439361111111 * Math.PI / 180;
+  const lon0 = 35.20451694444444 * Math.PI / 180;
+  const E0 = 219529.584;
+  const N0 = 626907.390;
+
+  const e2 = 2*f - f*f;
+  const e1 = (1 - Math.sqrt(1-e2)) / (1 + Math.sqrt(1-e2));
+
+  const calcM = (phi) => a * (
+    (1 - e2/4 - 3*e2**2/64 - 5*e2**3/256) * phi
+    - (3*e2/8 + 3*e2**2/32 + 45*e2**3/1024) * Math.sin(2*phi)
+    + (15*e2**2/256 + 45*e2**3/1024) * Math.sin(4*phi)
+    - (35*e2**3/3072) * Math.sin(6*phi)
+  );
+
+  const M  = calcM(lat0) + (y - N0) / k0;
+  const mu = M / (a * (1 - e2/4 - 3*e2**2/64 - 5*e2**3/256));
+
+  const phi1 = mu
+    + (3*e1/2 - 27*e1**3/32)      * Math.sin(2*mu)
+    + (21*e1**2/16 - 55*e1**4/32) * Math.sin(4*mu)
+    + (151*e1**3/96)               * Math.sin(6*mu)
+    + (1097*e1**4/512)             * Math.sin(8*mu);
+
+  const sinP = Math.sin(phi1), cosP = Math.cos(phi1), tanP = Math.tan(phi1);
+  const N1 = a / Math.sqrt(1 - e2*sinP**2);
+  const T1 = tanP**2;
+  const C1 = e2/(1-e2) * cosP**2;
+  const R1 = a*(1-e2) / (1 - e2*sinP**2)**1.5;
+  const D  = (x - E0) / (N1 * k0);
+
+  const lat = phi1 - (N1*tanP/R1) * (
+    D**2/2
+    - (5 + 3*T1 + 10*C1 - 4*C1**2 - 9*e2/(1-e2)) * D**4/24
+    + (61 + 90*T1 + 298*C1 + 45*T1**2 - 252*e2/(1-e2) - 3*C1**2) * D**6/720
+  );
+  const lon = lon0 + (
+    D
+    - (1 + 2*T1 + C1)                                              * D**3/6
+    + (5 - 2*C1 + 28*T1 - 3*C1**2 + 8*e2/(1-e2) + 24*T1**2)     * D**5/120
+  ) / cosP;
+
+  return { lat: lat * 180/Math.PI, lon: lon * 180/Math.PI };
+}
+
+function handleFile(input) {
+  const file = input.files[0];
+  if (!file) return;
+
+  document.getElementById('fileName').textContent = file.name;
+  originalFilename = file.name.replace(/\.gpx$/i, '_FIXED.gpx');
+
+  document.getElementById('results').style.display = 'none';
+  setStatus('info', 'קורא ומנקה...', true);
+
+  const reader = new FileReader();
+  reader.onload = (e) => {
+    rawGpxText = e.target.result;
+    setTimeout(() => {
+      try {
+        processGpx(rawGpxText);
+      } catch(err) {
+        setStatus('error', 'שגיאה בעיבוד הקובץ: ' + err.message);
+      }
+    }, 50);
+  };
+  reader.onerror = () => setStatus('error', 'שגיאה בקריאת הקובץ');
+  reader.readAsText(file);
+}
+
+function processGpx(gpxText) {
+  const maxEle   = parseFloat(document.getElementById('maxEle').value)   || 35;
+  const maxSpeed = parseFloat(document.getElementById('maxSpeed').value) || 15;
+  const maxDist  = parseFloat(document.getElementById('maxDist').value)  || 200;
+  const maxDistM = maxDist * 1000;
+
+  const startInput = document.getElementById('startPoint').value.trim();
+  let manualStart = null;
+  if (startInput) {
+    const itmMatch = startInput.match(/^(\d+(?:\.\d+)?)\s*\/\s*(\d+(?:\.\d+)?)$/);
+    if (itmMatch) {
+      const wgs = itmToWgs84(parseFloat(itmMatch[1]), parseFloat(itmMatch[2]));
+      manualStart = { lat: wgs.lat, lon: wgs.lon };
+    } else {
+      const parts = startInput.split(',').map(s => parseFloat(s.trim()));
+      if (parts.length === 2 && !isNaN(parts[0]) && !isNaN(parts[1])) {
+        manualStart = { lat: parts[0], lon: parts[1] };
+      }
+    }
+  }
+
+  // Parse GPX
+  const parser = new DOMParser();
+  const doc = parser.parseFromString(gpxText, 'application/xml');
+  const trkpts = Array.from(doc.querySelectorAll('trkpt'));
+
+  if (trkpts.length === 0) throw new Error('לא נמצאו נקודות trkpt בקובץ');
+
+  const points = trkpts.map((el, i) => {
+    const lat = parseFloat(el.getAttribute('lat'));
+    const lon = parseFloat(el.getAttribute('lon'));
+    const eleEl = el.querySelector('ele');
+    const timeEl = el.querySelector('time');
+    const ele = eleEl ? parseFloat(eleEl.textContent) : 0;
+    const time = timeEl ? new Date(timeEl.textContent) : new Date(0);
+    return { idx: i, lat, lon, ele, time, el };
+  });
+
+  // Determine origin
+  const origin = manualStart
+    ? { lat: manualStart.lat, lon: manualStart.lon, ele: points[0].ele, time: points[0].time }
+    : points[0];
+
+  keptPoints = [];
+  let ref = points[0];
+  const kept = [points[0]];
+  const removed = [];
+
+  for (let i = 1; i < points.length; i++) {
+    const c = points[i];
+    const dt = (c.time - ref.time) / 1000;
+    const dist = haversine(ref.lat, ref.lon, c.lat, c.lon);
+    const eleDiff = Math.abs(c.ele - ref.ele);
+    const speed = dt > 0 ? (dist / dt * 3.6) : 0;
+    const distFromOrigin = haversine(origin.lat, origin.lon, c.lat, c.lon);
+
+    const reasons = [];
+    if (speed > maxSpeed)          reasons.push(`מהירות ${speed.toFixed(1)} קמ"ש > ${maxSpeed}`);
+    if (eleDiff > maxEle)          reasons.push(`Δגובה ${eleDiff.toFixed(0)}מ > ${maxEle}מ`);
+    if (distFromOrigin > maxDistM) reasons.push(`מרחק ממקור ${(distFromOrigin/1000).toFixed(1)} ק"מ > ${maxDist} ק"מ`);
+
+    if (reasons.length === 0) {
+      kept.push(c);
+      ref = c;
+    } else {
+      removed.push({ ...c, reasons, dist: dist.toFixed(0), speed: speed.toFixed(1), eleDiff: (c.ele - ref.ele).toFixed(0), dt: dt.toFixed(0), refIdx: ref.idx });
+    }
+  }
+
+  // Build clean GPX - remove bad nodes
+  const removedSet = new Set(removed.map(r => r.idx));
+  trkpts.forEach((el, i) => {
+    if (removedSet.has(i)) el.parentNode.removeChild(el);
+  });
+
+  keptPoints = kept.map(p => [p.lat, p.lon]);
+
+  const serializer = new XMLSerializer();
+  cleanGpxContent = '<?xml version="1.0" encoding="UTF-8"?>\n' +
+    serializer.serializeToString(doc.documentElement);
+
+  // Cluster removed points (gap > 120s = new cluster)
+  const clusters = [];
+  let cluster = [];
+  for (const r of removed) {
+    if (!cluster.length || (r.time - cluster[cluster.length-1].time) < 120000) {
+      cluster.push(r);
+    } else {
+      clusters.push(cluster);
+      cluster = [r];
+    }
+  }
+  if (cluster.length) clusters.push(cluster);
+
+  // Render results
+  document.getElementById('totalPts').textContent = points.length;
+  document.getElementById('keptPts').textContent = kept.length;
+  document.getElementById('removedPts').textContent = removed.length;
+
+  const clList = document.getElementById('clusterList');
+  clList.innerHTML = '';
+
+  if (clusters.length === 0) {
+    clList.innerHTML = '<div style="color:var(--accent);padding:12px 0;font-size:14px">✓ לא נמצאו שגיאות – הקובץ נקי</div>';
+  } else {
+    clusters.forEach((cl, ci) => {
+      const t0 = cl[0].time.toISOString().slice(11,19);
+      const t1 = cl[cl.length-1].time.toISOString().slice(11,19);
+      const div = document.createElement('div');
+      div.className = 'cluster';
+      div.innerHTML = `
+        <div class="cluster-header" onclick="toggleCluster(this)">
+          <span class="cluster-name">אשכול ${ci+1} | ${t0}–${t1}</span>
+          <span style="display:flex;align-items:center;gap:8px">
+            <span class="cluster-badge">−${cl.length} נקודות</span>
+            <span class="chevron">▾</span>
+          </span>
+        </div>
+        <div class="cluster-body">
+          ${cl.map(r => `
+            <div class="pt-row">
+              <span>idx=${r.idx}</span>
+              <span>${r.time.toISOString().slice(11,19)}</span>
+              <span>גובה ${parseFloat(r.ele).toFixed(0)}מ (Δ${r.eleDiff}מ)</span>
+              <span>${r.speed} קמ"ש</span>
+              <span class="reason">✗ ${r.reasons.join(' | ')}</span>
+            </div>
+          `).join('')}
+        </div>`;
+      clList.appendChild(div);
+    });
+  }
+
+  hideStatus();
+  document.getElementById('results').style.display = 'block';
+}
+
+function toggleCluster(header) {
+  const body = header.nextElementSibling;
+  const chevron = header.querySelector('.chevron');
+  body.classList.toggle('open');
+  chevron.classList.toggle('open');
+}
+
+function reprocess() {
+  if (!rawGpxText) return;
+  try {
+    processGpx(rawGpxText);
+  } catch(err) {
+    setStatus('error', 'שגיאה בעיבוד הקובץ: ' + err.message);
+  }
+}
+
+function showMap() {
+  document.getElementById('page-main').style.display = 'none';
+  const mapPage = document.getElementById('page-map');
+  mapPage.style.display = 'flex';
+  document.getElementById('mapTitle').textContent = originalFilename;
+
+  if (!mapInstance) {
+    mapInstance = L.map('map');
+    L.tileLayer('https://israelhiking.osm.org.il/Tiles/{z}/{x}/{y}.png', {
+      attribution: '© <a href="https://israelhiking.osm.org.il">Israel Hiking Map</a>',
+      maxZoom: 16
+    }).addTo(mapInstance);
+  }
+
+  trackLayers.forEach(l => mapInstance.removeLayer(l));
+  trackLayers = [];
+
+  if (keptPoints.length > 0) {
+    const poly = L.polyline(keptPoints, { color: '#4ade80', weight: 3, opacity: 0.9 }).addTo(mapInstance);
+    const m1 = L.marker(keptPoints[0]).addTo(mapInstance).bindPopup('התחלה');
+    const m2 = L.marker(keptPoints[keptPoints.length - 1]).addTo(mapInstance).bindPopup('סיום');
+    trackLayers = [poly, m1, m2];
+    mapInstance.fitBounds(poly.getBounds(), { padding: [30, 30] });
+  }
+
+  setTimeout(() => mapInstance.invalidateSize(), 100);
+}
+
+function goBack() {
+  document.getElementById('page-map').style.display = 'none';
+  document.getElementById('page-main').style.display = 'block';
+}
+
+function downloadClean() {
+  if (!cleanGpxContent) return;
+  const blob = new Blob([cleanGpxContent], { type: 'application/gpx+xml' });
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(blob);
+  a.download = originalFilename;
+  a.click();
+}
+</script>
+</body>
+</html>
