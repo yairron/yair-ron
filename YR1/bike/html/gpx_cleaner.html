@@ -384,7 +384,7 @@
       <span class="map-stat-val" id="statDist">—</span>
     </div>
     <div class="map-stat">
-      <span class="map-stat-label">טיפוס</span>
+      <span class="map-stat-label">גובה מצטבר</span>
       <span class="map-stat-val" id="statClimb">—</span>
     </div>
   </div>
@@ -663,19 +663,19 @@ function processGpx(gpxText) {
   keptPoints = kept.map(p => [p.lat, p.lon]);
 
   // Calculate track stats
-  let totalDistM = 0, totalClimbM = 0;
+  let totalDistM = 0, netEleM = 0;
   for (let i = 1; i < kept.length; i++) {
     totalDistM += haversine(kept[i-1].lat, kept[i-1].lon, kept[i].lat, kept[i].lon);
-    const eleDiff = kept[i].ele - kept[i-1].ele;
-    if (eleDiff > 0) totalClimbM += eleDiff;
+    netEleM += kept[i].ele - kept[i-1].ele;
   }
   const totalMs = kept[kept.length-1].time - kept[0].time;
   const totalMin = Math.round(totalMs / 60000);
   const h = Math.floor(totalMin / 60), m = totalMin % 60;
+  const netEleRounded = Math.round(netEleM);
   trackStats = {
     time: totalMs > 0 ? `${h}:${String(m).padStart(2,'0')}` : '—',
     distance: (totalDistM / 1000).toFixed(1) + ' ק"מ',
-    climb: Math.round(totalClimbM) + ' מ\''
+    climb: netEleRounded >= 0 ? `${netEleRounded}+ מ'` : `${Math.abs(netEleRounded)}- מ'`
   };
 
   const serializer = new XMLSerializer();
