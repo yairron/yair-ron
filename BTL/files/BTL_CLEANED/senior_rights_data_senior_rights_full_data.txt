@@ -1,0 +1,1502 @@
+2026-01-01T00:00:00.000Z
+2026.1-full
+https://www.kolzchut.org.il/he/%D7%96%D7%9B%D7%95%D7%AA%D7%95%D7%9F_%D7%A7%D7%A6%D7%91%D7%AA_%D7%96%D7%99%D7%A7%D7%A0%D7%94
+_blank
+link-item
+op-11
+color:#2E7D32;font-weight:700;font-size:1.05em;
+rc-card
+conditions-box
+margin:0 0 16px 0;
+rc-input-group
+rc-input-row
+text
+rc-birth-input
+DD/MM/YYYY
+numeric
+rcFormatDate(this)
+rcHandleEnter(event)
+rc-btn rc-btn-primary
+rcCalculate()
+rc-input-group
+rc-input-row
+text
+rc-retirement-output
+DD/MM/YYYY
+rc-buttons-row
+rc-btn rc-btn-clear
+rcClearAll()
+rc-result
+rc-result-box
+width:100%;border-collapse:collapse;margin:15px 0;
+background:linear-gradient(135deg,#667eea,#764ba2);color:white;
+padding:10px;border:1px solid #ddd;
+padding:10px;border:1px solid #ddd;
+padding:9px;border:1px solid #ddd;text-align:center;
+padding:9px;border:1px solid #ddd;text-align:center;font-weight:bold;color:#667eea;
+padding:9px;border:1px solid #ddd;text-align:center;
+padding:9px;border:1px solid #ddd;text-align:center;font-weight:bold;color:#667eea;
+padding:9px;border:1px solid #ddd;text-align:center;
+padding:9px;border:1px solid #ddd;text-align:center;font-weight:bold;color:#667eea;
+padding:9px;border:1px solid #ddd;text-align:center;
+padding:9px;border:1px solid #ddd;text-align:center;font-weight:bold;color:#667eea;
+padding:9px;border:1px solid #ddd;text-align:center;
+padding:9px;border:1px solid #ddd;text-align:center;font-weight:bold;color:#667eea;
+padding:9px;border:1px solid #ddd;text-align:center;
+padding:9px;border:1px solid #ddd;text-align:center;font-weight:bold;color:#667eea;
+padding:9px;border:1px solid #ddd;text-align:center;
+padding:9px;border:1px solid #ddd;text-align:center;font-weight:bold;color:#667eea;
+padding:9px;border:1px solid #ddd;text-align:center;
+padding:9px;border:1px solid #ddd;text-align:center;font-weight:bold;color:#667eea;
+padding:9px;border:1px solid #ddd;text-align:center;
+padding:9px;border:1px solid #ddd;text-align:center;font-weight:bold;color:#667eea;
+https://www.btl.gov.il/benefits/old_age/Conditions_of_eligibility/achshara/Pages/%D7%AA%D7%A7%D7%95%D7%A4%D7%AA%D7%90%D7%9B%D7%A9%D7%A8%D7%94%D7%9C%D7%92%D7%91%D7%A8.aspx
+_blank
+noopener
+color:#2E5B8A;font-weight:600;
+https://www.btl.gov.il/benefits/old_age/Conditions_of_eligibility/achshara/Pages/achsharaIsha.aspx
+_blank
+noopener
+color:#2E5B8A;font-weight:600;
+https://www.kolzchut.org.il/he/%D7%AA%D7%A7%D7%95%D7%A4%D7%AA_%D7%90%D7%9B%D7%A9%D7%A8%D7%94_%D7%9C%D7%A7%D7%A6%D7%91%D7%AA_%D7%90%D7%96%D7%A8%D7%97_%D7%95%D7%AA%D7%99%D7%A7
+_blank
+noopener
+color:#2E5B8A;font-weight:600;
+op-12a
+מבוטח
+מבוטח
+op-12b
+op-12c
+op-12d
+op-12e
+עקרת בית
+חלופת ה-144
+op-12f
+חלופת ה-144
+op-12g
+conditions-box
+op-12h
+לא עובדת
+conditions-box
+he-IL
+he-IL
+op-13a1
+ז שאינו עונה על ההגדרה)</h5>
+he-IL
+width:100%;border-collapse:collapse;margin:12px 0;
+background:linear-gradient(135deg,#667eea,#764ba2);color:white;
+padding:9px 10px;border:1px solid #ddd;
+padding:9px 10px;border:1px solid #ddd;
+padding:9px 10px;border:1px solid #ddd;
+background:#f8fff8;
+padding:9px;border:1px solid #ddd;
+padding:9px;border:1px solid #ddd;color:#2E7D32;font-weight:bold;
+padding:9px;border:1px solid #ddd;
+he-IL
+background:#fffef8;
+padding:9px;border:1px solid #ddd;
+padding:9px;border:1px solid #ddd;color:#E65100;font-weight:bold;
+padding:9px;border:1px solid #ddd;
+he-IL
+he-IL
+background:#fff8f8;
+padding:9px;border:1px solid #ddd;
+padding:9px;border:1px solid #ddd;color:#C62828;font-weight:bold;
+padding:9px;border:1px solid #ddd;
+he-IL
+conditions-box
+he-IL
+he-IL
+he-IL
+he-IL
+op-13a2
+בן זוג
+ז בגיל 50–${NII.retirement_age_unconditional.value} (או מעל ${NII.retirement_age_unconditional.value} ואינו מקבל קצבה), והכנסת ב
+he-IL
+width:100%;border-collapse:collapse;margin:12px 0;
+background:linear-gradient(135deg,#667eea,#764ba2);color:white;
+padding:9px 10px;border:1px solid #ddd;
+padding:9px 10px;border:1px solid #ddd;
+padding:9px 10px;border:1px solid #ddd;
+background:#f8fff8;
+padding:9px;border:1px solid #ddd;
+padding:9px;border:1px solid #ddd;color:#2E7D32;font-weight:bold;
+padding:9px;border:1px solid #ddd;
+he-IL
+background:#fffef8;
+padding:9px;border:1px solid #ddd;
+padding:9px;border:1px solid #ddd;color:#E65100;font-weight:bold;
+padding:9px;border:1px solid #ddd;
+he-IL
+he-IL
+background:#fff8f8;
+padding:9px;border:1px solid #ddd;
+padding:9px;border:1px solid #ddd;color:#C62828;font-weight:bold;
+padding:9px;border:1px solid #ddd;
+he-IL
+conditions-box
+he-IL
+he-IL
+he-IL
+he-IL
+op-13a3
+יחיד
+width:100%;border-collapse:collapse;margin:12px 0;
+background:linear-gradient(135deg,#667eea,#764ba2);color:white;
+padding:9px 10px;border:1px solid #ddd;
+padding:9px 10px;border:1px solid #ddd;
+padding:9px 10px;border:1px solid #ddd;
+padding:9px;border:1px solid #ddd;
+padding:9px;border:1px solid #ddd;font-weight:bold;color:#2E7D32;
+padding:9px;border:1px solid #ddd;font-weight:bold;color:#C62828;
+he-IL
+he-IL
+conditions-box
+conditions-box
+background:#fff3e0;
+op-13b1
+width:100%;border-collapse:collapse;margin:12px 0;
+background:linear-gradient(135deg,#667eea,#764ba2);color:white;
+padding:9px 10px;border:1px solid #ddd;
+padding:9px 10px;border:1px solid #ddd;
+padding:9px 10px;border:1px solid #ddd;
+background:#f8fff8;
+padding:9px;border:1px solid #ddd;
+padding:9px;border:1px solid #ddd;color:#2E7D32;font-weight:bold;
+padding:9px;border:1px solid #ddd;
+he-IL
+background:#fffef8;
+padding:9px;border:1px solid #ddd;
+padding:9px;border:1px solid #ddd;color:#E65100;font-weight:bold;
+padding:9px;border:1px solid #ddd;
+he-IL
+he-IL
+background:#fff8f8;
+padding:9px;border:1px solid #ddd;
+padding:9px;border:1px solid #ddd;color:#C62828;font-weight:bold;
+padding:9px;border:1px solid #ddd;
+he-IL
+op-13b2a
+ז עונה להגדרה ואינו/ה מקבל/ת קצבה</h5>
+width:100%;border-collapse:collapse;margin:12px 0;
+background:linear-gradient(135deg,#667eea,#764ba2);color:white;
+padding:9px 10px;border:1px solid #ddd;
+padding:9px 10px;border:1px solid #ddd;
+padding:9px 10px;border:1px solid #ddd;
+background:#f8fff8;
+padding:9px;border:1px solid #ddd;
+padding:9px;border:1px solid #ddd;color:#2E7D32;font-weight:bold;
+padding:9px;border:1px solid #ddd;
+he-IL
+background:#fffef8;
+padding:9px;border:1px solid #ddd;
+padding:9px;border:1px solid #ddd;color:#E65100;font-weight:bold;
+padding:9px;border:1px solid #ddd;
+he-IL
+he-IL
+background:#fff8f8;
+padding:9px;border:1px solid #ddd;
+padding:9px;border:1px solid #ddd;color:#C62828;font-weight:bold;
+padding:9px;border:1px solid #ddd;
+he-IL
+op-13b2b
+ז עונה להגדרה ומקבל/ת קצבה מהביטוח הלאומי</h5>
+width:100%;border-collapse:collapse;margin:12px 0;
+background:linear-gradient(135deg,#667eea,#764ba2);color:white;
+padding:9px 10px;border:1px solid #ddd;
+padding:9px 10px;border:1px solid #ddd;
+padding:9px 10px;border:1px solid #ddd;
+background:#f8fff8;
+padding:9px;border:1px solid #ddd;
+padding:9px;border:1px solid #ddd;color:#2E7D32;font-weight:bold;
+padding:9px;border:1px solid #ddd;
+he-IL
+background:#fffef8;
+padding:9px;border:1px solid #ddd;
+padding:9px;border:1px solid #ddd;color:#E65100;font-weight:bold;
+padding:9px;border:1px solid #ddd;
+he-IL
+he-IL
+background:#fff8f8;
+padding:9px;border:1px solid #ddd;
+padding:9px;border:1px solid #ddd;color:#C62828;font-weight:bold;
+padding:9px;border:1px solid #ddd;
+he-IL
+op-13b3
+width:100%;border-collapse:collapse;margin:12px 0;
+background:linear-gradient(135deg,#667eea,#764ba2);color:white;
+padding:9px 10px;border:1px solid #ddd;
+padding:9px 10px;border:1px solid #ddd;
+padding:9px 10px;border:1px solid #ddd;
+padding:9px;border:1px solid #ddd;
+padding:9px;border:1px solid #ddd;font-weight:bold;color:#2E7D32;
+padding:9px;border:1px solid #ddd;font-weight:bold;color:#C62828;
+he-IL
+he-IL
+conditions-box
+background:#e8f5e9;
+margin:8px 0 0 20px;
+he-IL
+he-IL
+he-IL
+he-IL
+he-IL
+he-IL
+margin-top:8px;
+he-IL
+op-13c
+width:100%;border-collapse:collapse;margin:12px 0;
+background:linear-gradient(135deg,#667eea,#764ba2);color:white;
+padding:9px 10px;border:1px solid #ddd;
+padding:9px 10px;border:1px solid #ddd;
+padding:9px 10px;border:1px solid #ddd;
+padding:9px;border:1px solid #ddd;
+padding:9px;border:1px solid #ddd;font-weight:bold;
+padding:9px;border:1px solid #ddd;font-weight:bold;
+he-IL
+he-IL
+background:#f5f5f5;
+padding:9px;border:1px solid #ddd;
+ז לא מקבל קצבה)</td><td style=
+>₪${NII.income_test_married_full.value.toLocaleString('he-IL')}</td><td style=
+>₪${NII.income_test_married_asset_combined.value.toLocaleString('he-IL')}</td></tr>
+he-IL
+he-IL
+padding:9px;border:1px solid #ddd;
+padding:9px;border:1px solid #ddd;font-weight:bold;
+padding:9px;border:1px solid #ddd;font-weight:bold;
+he-IL
+he-IL
+conditions-box
+he-IL
+op-13d1
+op-13d2
+op-13e
+conditions-box
+background:#fff3e0;
+op-13f
+he-IL
+op-14
+conditions-box
+width:100%;border-collapse:collapse;margin:15px 0;
+background:linear-gradient(135deg,#667eea,#764ba2);color:white;
+padding:10px;border:1px solid #ddd;
+padding:10px;border:1px solid #ddd;
+padding:9px;border:1px solid #ddd;
+padding:9px;border:1px solid #ddd;font-weight:bold;
+he-IL
+padding:9px;border:1px solid #ddd;
+padding:9px;border:1px solid #ddd;font-weight:bold;
+he-IL
+padding:9px;border:1px solid #ddd;
+padding:9px;border:1px solid #ddd;font-weight:bold;
+he-IL
+padding:9px;border:1px solid #ddd;
+padding:9px;border:1px solid #ddd;font-weight:bold;
+כ)</td></tr>
+he-IL
+he-IL
+padding:9px;border:1px solid #ddd;
+padding:9px;border:1px solid #ddd;
+he-IL
+padding:9px;border:1px solid #ddd;
+padding:9px;border:1px solid #ddd;
+he-IL
+op-15
+he-IL
+he-IL
+he-IL
+https://www.kolzchut.org.il/he/%D7%AA%D7%95%D7%A1%D7%A4%D7%AA_%D7%95%D7%AA%D7%A7_%D7%9C%D7%A7%D7%A6%D7%91%D7%AA_%D7%96%D7%99%D7%A7%D7%A0%D7%94
+_blank
+link-item
+op-16
+op-17
+padding-right:1.6em;text-indent:-1.6em;
+padding-right:1.6em;text-indent:-1.6em;
+padding-right:1.6em;text-indent:-1.6em;
+op-18a
+conditions-box
+he-IL
+he-IL
+he-IL
+he-IL
+he-IL
+he-IL
+he-IL
+he-IL
+he-IL
+he-IL
+he-IL
+op-18b
+conditions-box
+background:#e8f5e9;border-right:3px solid #43a047;padding:10px;margin:10px 0;border-radius:6px;
+יחיד
+he-IL
+he-IL
+he-IL
+he-IL
+he-IL
+he-IL
+he-IL
+he-IL
+he-IL
+he-IL
+he-IL
+op-18c
+conditions-box
+background:#e8f5e9;border-right:3px solid #43a047;padding:10px;margin:10px 0;border-radius:6px;
+בן זוג
+he-IL
+background:#fff3e0;border-right:3px solid #ff9800;padding:10px;margin:10px 0;border-radius:6px;
+margin:6px 0 0 20px;
+לא עובדת
+he-IL
+he-IL
+he-IL
+he-IL
+he-IL
+he-IL
+he-IL
+he-IL
+he-IL
+he-IL
+he-IL
+op-18d
+conditions-box
+background:#fff3e0;border-right:3px solid #ff9800;padding:10px;margin:10px 0;border-radius:6px;
+בן זוג
+he-IL
+he-IL
+he-IL
+he-IL
+he-IL
+he-IL
+he-IL
+he-IL
+op-18e
+conditions-box
+he-IL
+he-IL
+he-IL
+he-IL
+he-IL
+he-IL
+he-IL
+https://www.kolzchut.org.il/he/%D7%AA%D7%95%D7%A1%D7%A4%D7%AA_%D7%94%D7%A9%D7%9C%D7%9E%D7%AA_%D7%94%D7%9B%D7%A0%D7%A1%D7%94_%D7%9C%D7%A7%D7%A6%D7%91%D7%AA_%D7%96%D7%99%D7%A7%D7%A0%D7%94#.D7.9E.D7.99_.D7.96.D7.9B.D7.90.D7.99.3F
+_blank
+link-item
+https://www.kolzchut.org.il/he/%D7%AA%D7%95%D7%A1%D7%A4%D7%AA_%D7%94%D7%A9%D7%9C%D7%9E%D7%AA_%D7%94%D7%9B%D7%A0%D7%A1%D7%94_%D7%9C%D7%A7%D7%A6%D7%91%D7%AA_%D7%A9%D7%90%D7%99%D7%A8%D7%99%D7%9D
+_blank
+link-item
+is-cond-a
+vehicle_threshold_base
+color:#666;font-size:0.93em;
+is-cond-b
+vehicle_threshold_base
+color:#666;font-size:0.93em;
+is-couple-a
+זוג
+זוג
+זוג
+is-couple-b
+בן זוג
+בן זוג
+תוספת עבור בן זוג
+background:#e3f2fd;padding:12px 16px;border-radius:8px;border-right:4px solid #1976d2;margin-top:12px;
+זוג
+margin:6px 0 0 0;font-size:0.93em;
+זוג
+is-max-oldage
+width: 100%; border-collapse: collapse; margin: 20px 0;
+background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white;
+padding: 12px; border: 1px solid #ddd;
+padding: 12px; border: 1px solid #ddd;
+padding: 12px; border: 1px solid #ddd;
+padding: 12px; border: 1px solid #ddd;
+padding: 10px; border: 1px solid #ddd;
+padding: 10px; border: 1px solid #ddd;
+income_supplement_single_under70
+padding: 10px; border: 1px solid #ddd;
+income_supplement_single_70_80
+padding: 10px; border: 1px solid #ddd;
+income_supplement_single_over80
+padding: 10px; border: 1px solid #ddd;
+padding: 10px; border: 1px solid #ddd;
+income_supplement_couple_under70
+padding: 10px; border: 1px solid #ddd;
+income_supplement_couple_70_80
+padding: 10px; border: 1px solid #ddd;
+income_supplement_couple_over80
+padding: 10px; border: 1px solid #ddd;
+padding: 10px; border: 1px solid #ddd;
+income_supplement_single_1child_under70
+padding: 10px; border: 1px solid #ddd;
+income_supplement_single_1child_70_80
+padding: 10px; border: 1px solid #ddd;
+income_supplement_single_1child_over80
+padding: 10px; border: 1px solid #ddd;
+padding: 10px; border: 1px solid #ddd;
+income_supplement_couple_1child_under70
+padding: 10px; border: 1px solid #ddd;
+income_supplement_couple_1child_70_80
+padding: 10px; border: 1px solid #ddd;
+income_supplement_couple_1child_over80
+padding: 10px; border: 1px solid #ddd;
+padding: 10px; border: 1px solid #ddd;
+income_supplement_single_2children_under70
+padding: 10px; border: 1px solid #ddd;
+income_supplement_single_2children_70_80
+padding: 10px; border: 1px solid #ddd;
+income_supplement_single_2children_over80
+padding: 10px; border: 1px solid #ddd;
+padding: 10px; border: 1px solid #ddd;
+income_supplement_couple_2children_under70
+padding: 10px; border: 1px solid #ddd;
+income_supplement_couple_2children_70_80
+padding: 10px; border: 1px solid #ddd;
+income_supplement_couple_2children_over80
+is-max-survivors
+זוג
+width: 100%; border-collapse: collapse; margin: 20px 0;
+background: linear-gradient(135deg, #43a047 0%, #1b5e20 100%); color: white;
+padding: 12px; border: 1px solid #ddd;
+padding: 12px; border: 1px solid #ddd;
+padding: 12px; border: 1px solid #ddd;
+padding: 12px; border: 1px solid #ddd;
+padding: 10px; border: 1px solid #ddd;
+padding: 10px; border: 1px solid #ddd;
+income_supplement_single_under70
+padding: 10px; border: 1px solid #ddd;
+income_supplement_single_70_80
+padding: 10px; border: 1px solid #ddd;
+income_supplement_single_over80
+padding: 10px; border: 1px solid #ddd;
+padding: 10px; border: 1px solid #ddd;
+income_supplement_single_1child_under70
+padding: 10px; border: 1px solid #ddd;
+income_supplement_single_1child_70_80
+padding: 10px; border: 1px solid #ddd;
+income_supplement_single_1child_over80
+padding: 10px; border: 1px solid #ddd;
+padding: 10px; border: 1px solid #ddd;
+income_supplement_single_2children_under70
+padding: 10px; border: 1px solid #ddd;
+income_supplement_single_2children_70_80
+padding: 10px; border: 1px solid #ddd;
+income_supplement_single_2children_over80
+income_supplement_single_under70
+income_supplement_couple_under70
+work_income_exempt_single
+work_income_exempt_couple
+income_test_deduction_rate
+pension_income_exempt_single
+pension_income_exempt_couple
+pension_income_exempt_single
+pension_income_exempt_couple
+work_income_exempt_single
+work_income_exempt_couple
+income_test_deduction_rate
+is-calculator
+background:#f0f7ff;padding:20px;border-radius:12px;border:2px solid #3b82f6;margin:10px 0;
+display:grid;gap:14px;margin-bottom:18px;
+is-calc-type
+display:block;font-weight:700;margin-bottom:5px;
+is-calc-type
+updateCalcType()
+width:100%;padding:9px 12px;border:1px solid #93c5fd;border-radius:8px;font-size:1rem;background:white;cursor:pointer;
+old_age
+survivors
+is-calc-status
+display:block;font-weight:700;margin-bottom:5px;
+is-calc-status
+calcIncomeSupplement()
+width:100%;padding:9px 12px;border:1px solid #93c5fd;border-radius:8px;font-size:1rem;background:white;cursor:pointer;
+single
+single_1child
+single_2children
+couple
+couple_1child
+couple_2children
+is-calc-age
+display:block;font-weight:700;margin-bottom:5px;
+is-calc-age
+calcIncomeSupplement()
+width:100%;padding:9px 12px;border:1px solid #93c5fd;border-radius:8px;font-size:1rem;background:white;cursor:pointer;
+under70
+over80
+is-calc-old-age
+display:block;font-weight:700;margin-bottom:5px;
+is-calc-old-age-label
+number
+is-calc-old-age
+calcIncomeSupplement()
+width:100%;padding:9px 12px;border:1px solid #93c5fd;border-radius:8px;font-size:1rem;
+is-calc-pension
+display:block;font-weight:700;margin-bottom:5px;
+number
+is-calc-pension
+calcIncomeSupplement()
+width:100%;padding:9px 12px;border:1px solid #93c5fd;border-radius:8px;font-size:1rem;
+is-calc-work
+display:block;font-weight:700;margin-bottom:5px;
+number
+is-calc-work
+calcIncomeSupplement()
+width:100%;padding:9px 12px;border:1px solid #93c5fd;border-radius:8px;font-size:1rem;
+is-calc-result
+display:none;
+background:#fff8e1;border:2px solid #f59e0b;border-radius:10px;padding:14px 16px;margin-top:16px;
+margin:0 0 6px 0;font-weight:700;color:#92400e;font-size:1em;
+margin:0 0 8px 0;color:#78350f;font-size:0.93em;
+questionnaire.html?id=income-supplement-eligibility
+display:inline-block;background:#f59e0b;color:white;font-weight:700;padding:8px 16px;border-radius:8px;text-decoration:none;font-size:0.95em;
+margin:8px 0 0 0;color:#92400e;font-size:0.88em;
+is-imputed
+הכנסה רעיונית
+imputed_income_guide.html
+color: #9c27b0; text-decoration: none; font-weight: 600;
+is-vehicle
+vehicle_threshold_base
+questionnaire.html?id=vehicle-income-supplement
+link-item
+display:inline-block; margin-top:10px; font-size:1.1rem; font-weight:700; background: linear-gradient(135deg, #667eea, #764ba2); color:white; border-radius:12px; padding:12px 20px; text-decoration:none;
+background: #fff8e1; padding: 15px; border-radius: 8px; margin: 15px 0;
+is-ex1
+pension_single_basic
+pension_income_exempt_single
+pension_income_exempt_single
+pension_income_exempt_single
+pension_income_exempt_single
+income_supplement_single_under70
+pension_single_basic
+pension_income_exempt_single
+income_supplement_single_under70
+pension_single_basic
+pension_income_exempt_single
+pension_single_basic
+income_supplement_single_under70
+pension_single_basic
+pension_income_exempt_single
+background: #e8f5e9; padding: 15px; border-radius: 8px; margin: 15px 0;
+is-ex2
+pension_single_basic
+seniority_bonus_max
+pension_single_basic
+seniority_bonus_max
+pension_single_basic
+seniority_bonus_max
+work_income_exempt_couple
+work_income_exempt_couple
+income_test_deduction_rate
+work_income_exempt_couple
+work_income_exempt_couple
+income_test_deduction_rate
+income_supplement_couple_under70
+pension_single_basic
+seniority_bonus_max
+work_income_exempt_couple
+income_test_deduction_rate
+income_supplement_couple_under70
+pension_single_basic
+seniority_bonus_max
+work_income_exempt_couple
+income_test_deduction_rate
+pension_single_basic
+seniority_bonus_max
+income_supplement_couple_under70
+pension_single_basic
+seniority_bonus_max
+work_income_exempt_couple
+income_test_deduction_rate
+pension_single_basic
+seniority_bonus_max
+income_supplement_couple_under70
+pension_single_basic
+seniority_bonus_max
+work_income_exempt_couple
+income_test_deduction_rate
+background: #e8f4fd; padding: 15px; border-radius: 8px; margin: 15px 0; border-right: 4px solid #1976d2;
+is-ex3
+survivors_widow_over50
+survivors_orphan
+survivors_widow_over50
+survivors_orphan
+income_supplement_single_1child_under70
+income_supplement_single_1child_under70
+survivors_widow_over50
+survivors_orphan
+income_supplement_single_1child_under70
+survivors_widow_over50
+survivors_orphan
+income_supplement_single_1child_under70
+survivors_widow_over50
+survivors_orphan
+survivors_widow_over50
+survivors_orphan
+income_supplement_single_1child_under70
+survivors_widow_over50
+survivors_orphan
+income_supplement_single_1child_under70
+background:#ffebee;padding:15px;border-radius:8px;margin:15px 0;border-right:4px solid #d32f2f;
+is-abroad-details
+ל (בכל שנה קלנדרית)</h4>
+background:#e8f5e9;padding:15px;border-radius:8px;margin:10px 0;border-right:4px solid #4caf50;
+income_supplement_abroad_max_days
+margin:8px 0 0 0;
+background:#fff8e1;padding:15px;border-radius:8px;margin:10px 0;border-right:4px solid #ff9800;
+income_supplement_abroad_max_days
+margin:8px 0 0 0;
+income_supplement_abroad_max_days
+margin:4px 0 0 0;color:#666;font-size:0.9em;
+income_supplement_abroad_max_days
+income_supplement_abroad_max_days
+background:#fff3e0;padding:15px;border-radius:8px;margin:10px 0;border-right:4px solid #ff5722;
+margin:8px 0 0 0;
+income_supplement_abroad_max_days
+background:#fce4ec;padding:15px;border-radius:8px;margin:10px 0;border-right:4px solid #e91e63;
+income_supplement_abroad_max_trips
+margin:8px 0 0 0;
+כ הימים עדיין נמוך מ-${v('income_supplement_abroad_max_days')}. <strong>אין שלילה רטרואקטיבית</strong> — רק אותה יציאה נפגעת.</p>
+income_supplement_abroad_max_trips
+income_supplement_abroad_max_days
+background:#ffebee;padding:15px;border-radius:8px;margin:10px 0;border-right:4px solid #b71c1c;
+income_supplement_abroad_max_trips
+margin:8px 0 0 0;
+income_supplement_abroad_max_trips
+background:#ffebee;padding:15px;border-radius:8px;margin:10px 0;border-right:4px solid #b71c1c;
+income_supplement_abroad_retroactive_days
+margin:8px 0 0 0;
+ל ${v('income_supplement_abroad_retroactive_days')} ימים ומעלה בשנה קלנדרית אחת — הביטוח הלאומי שולל את התוספת <strong>רטרואקטיבית על כל ימי השהייה באותה שנה</strong>. גם הכסף שהתקבל בנסיעות הראשונות ייתבע בחזרה.</p>
+income_supplement_abroad_retroactive_days
+is-abroad-summary
+ל</h4>
+width:100%;border-collapse:collapse;margin:15px 0;
+background:linear-gradient(135deg,#667eea,#764ba2);color:white;
+padding:10px;border:1px solid #ddd;
+padding:10px;border:1px solid #ddd;
+כ ימים בחו
+padding:10px;border:1px solid #ddd;
+padding:10px;border:1px solid #ddd;
+padding:9px;border:1px solid #ddd;
+padding:9px;border:1px solid #ddd;
+income_supplement_abroad_max_days
+padding:9px;border:1px solid #ddd;color:#388e3c;font-weight:bold;
+padding:9px;border:1px solid #ddd;
+background:#fffde7;
+padding:9px;border:1px solid #ddd;
+padding:9px;border:1px solid #ddd;
+income_supplement_abroad_max_days
+income_supplement_abroad_retroactive_days
+padding:9px;border:1px solid #ddd;color:#f57f17;
+income_supplement_abroad_max_days
+padding:9px;border:1px solid #ddd;
+income_supplement_abroad_max_days
+padding:9px;border:1px solid #ddd;
+income_supplement_abroad_max_trips
+padding:9px;border:1px solid #ddd;
+income_supplement_abroad_retroactive_days
+padding:9px;border:1px solid #ddd;color:#e65100;
+padding:9px;border:1px solid #ddd;
+background:#fce4ec;
+padding:9px;border:1px solid #ddd;
+income_supplement_abroad_max_trips
+padding:9px;border:1px solid #ddd;
+כ</td>
+padding:9px;border:1px solid #ddd;color:#c62828;font-weight:bold;
+padding:9px;border:1px solid #ddd;
+background:#ffebee;
+padding:9px;border:1px solid #ddd;
+income_supplement_abroad_max_trips
+padding:9px;border:1px solid #ddd;
+כ</td>
+padding:9px;border:1px solid #ddd;color:#b71c1c;font-weight:bold;
+padding:9px;border:1px solid #ddd;
+background:#ffebee;
+padding:9px;border:1px solid #ddd;
+padding:9px;border:1px solid #ddd;font-weight:bold;
+income_supplement_abroad_retroactive_days
+padding:9px;border:1px solid #ddd;color:#b71c1c;font-weight:bold;
+padding:9px;border:1px solid #ddd;
+is-abroad-special
+background:#e8f5e9;padding:15px;border-radius:8px;margin:10px 0;border-right:4px solid #43a047;
+margin:8px 0 0 0;
+ל לצורך קבלת טיפול רפואי ממשיך לקבל את התוספת עד <strong>${v('income_supplement_abroad_medical_max_months')} חודשי שהייה</strong> בחו
+income_supplement_abroad_medical_max_months
+margin:4px 0 0 0;
+background:#e8f5e9;padding:15px;border-radius:8px;margin:10px 0;border-right:4px solid #43a047;
+margin:8px 0 0 0;
+ל לתקופה של עד <strong>${v('income_supplement_abroad_mourning_max_weeks')} שבועות</strong> לצורך אבל (בן/בת זוג, הורה, ילד, אח/אחות) אינה נספרת במניין היציאות לאותה שנה — לפי שיקול דעתו של הביטוח הלאומי. יש להגיש אסמכתא.</p>
+income_supplement_abroad_mourning_max_weeks
+background:#e8f5e9;padding:15px;border-radius:8px;margin:10px 0;border-right:4px solid #43a047;
+margin:8px 0 0 0;
+income_supplement_abroad_hajj_max_days
+is-abroad-couple
+ל וגרר שלילת תוספת לזוג — נבדקת זכאות בן/בת הזוג שנשאר/ה בארץ <strong>כ
+</strong> לאותה תקופה.</li>
+is-abroad-resident
+תושב
+התושב
+residency_recognition_abroad_max_years
+is-abroad-checklist
+ל</h4>
+income_supplement_abroad_max_days
+income_supplement_abroad_medical_max_months
+is-abroad-repayment
+conditions-box
+is-report-rule
+background:#ffebee;padding:15px;border-radius:8px;margin:10px 0;border-right:4px solid #d32f2f;
+font-size:1.1em;font-weight:bold;
+income_supplement_reporting_deadline_days
+margin:8px 0 0 0;
+income_supplement_reporting_deadline_days
+margin:4px 0 0 0;
+is-report-what
+width:100%;border-collapse:collapse;margin:15px 0;
+background:linear-gradient(135deg,#667eea,#764ba2);color:white;
+padding:10px;border:1px solid #ddd;
+padding:10px;border:1px solid #ddd;
+padding:9px;border:1px solid #ddd;font-weight:bold;
+padding:9px;border:1px solid #ddd;
+background:#f9f9f9;
+padding:9px;border:1px solid #ddd;font-weight:bold;
+padding:9px;border:1px solid #ddd;
+padding:9px;border:1px solid #ddd;font-weight:bold;
+padding:9px;border:1px solid #ddd;
+imputed_income_exempt_single
+imputed_income_exempt_couple
+background:#f9f9f9;
+padding:9px;border:1px solid #ddd;font-weight:bold;
+ן</td>
+padding:9px;border:1px solid #ddd;
+padding:9px;border:1px solid #ddd;font-weight:bold;
+padding:9px;border:1px solid #ddd;
+vehicle_threshold_extended
+background:#f9f9f9;
+padding:9px;border:1px solid #ddd;font-weight:bold;
+padding:9px;border:1px solid #ddd;
+padding:9px;border:1px solid #ddd;font-weight:bold;
+padding:9px;border:1px solid #ddd;
+background:#f9f9f9;
+padding:9px;border:1px solid #ddd;font-weight:bold;
+padding:9px;border:1px solid #ddd;
+padding:9px;border:1px solid #ddd;font-weight:bold;
+padding:9px;border:1px solid #ddd;
+background:#f9f9f9;
+padding:9px;border:1px solid #ddd;font-weight:bold;
+ל</td>
+padding:9px;border:1px solid #ddd;
+השלמת הכנסה ויציאה לחו
+.</td>
+is-report-exempt
+is-report-financial
+income_supplement_reporting_deadline_days
+income_supplement_reporting_deadline_days
+imputed_income_exempt_single
+imputed_income_exempt_couple
+vehicle_threshold_extended
+is-report-personal
+income_supplement_reporting_deadline_days
+is-report-repayment
+conditions-box
+is-benefits
+https://www.kolzchut.org.il/he/%D7%92%D7%9E%D7%9C%D7%AA_%D7%A1%D7%99%D7%A2%D7%95%D7%93
+_blank
+link-item
+nu-31
+nu-32
+conditions-box
+width:100%;border-collapse:collapse;margin:15px 0;
+background:linear-gradient(135deg,#667eea,#764ba2);color:white;
+padding:10px;border:1px solid #ddd;
+padding:10px;border:1px solid #ddd;
+padding:10px;border:1px solid #ddd;
+padding:10px;border:1px solid #ddd;
+padding:9px;border:1px solid #ddd;
+padding:9px;border:1px solid #ddd;
+padding:9px;border:1px solid #ddd;
+padding:9px;border:1px solid #ddd;font-weight:bold;
+he-IL
+padding:9px;border:1px solid #ddd;
+padding:9px;border:1px solid #ddd;
+padding:9px;border:1px solid #ddd;
+padding:9px;border:1px solid #ddd;font-weight:bold;
+he-IL
+padding:9px;border:1px solid #ddd;
+padding:9px;border:1px solid #ddd;
+padding:9px;border:1px solid #ddd;
+padding:9px;border:1px solid #ddd;font-weight:bold;
+he-IL
+padding:9px;border:1px solid #ddd;
+padding:9px;border:1px solid #ddd;
+padding:9px;border:1px solid #ddd;
+padding:9px;border:1px solid #ddd;font-weight:bold;
+he-IL
+padding:9px;border:1px solid #ddd;
+padding:9px;border:1px solid #ddd;
+padding:9px;border:1px solid #ddd;
+padding:9px;border:1px solid #ddd;font-weight:bold;
+he-IL
+padding:9px;border:1px solid #ddd;
+padding:9px;border:1px solid #ddd;
+padding:9px;border:1px solid #ddd;
+padding:9px;border:1px solid #ddd;font-weight:bold;
+he-IL
+he-IL
+he-IL
+nu-33
+width:100%;border-collapse:collapse;margin:15px 0;
+background:linear-gradient(135deg,#667eea,#764ba2);color:white;
+padding:10px;border:1px solid #ddd;
+padding:10px;border:1px solid #ddd;
+padding:10px;border:1px solid #ddd;
+padding:10px;border:1px solid #ddd;
+padding:9px;border:1px solid #ddd;
+padding:9px;border:1px solid #ddd;
+padding:9px;border:1px solid #ddd;
+padding:9px;border:1px solid #ddd;
+he-IL
+he-IL
+he-IL
+he-IL
+padding:9px;border:1px solid #ddd;
+padding:9px;border:1px solid #ddd;
+padding:9px;border:1px solid #ddd;
+padding:9px;border:1px solid #ddd;
+he-IL
+he-IL
+he-IL
+he-IL
+nu-34
+https://www.btl.gov.il/benefits/Long_Term_Care/Pages/money.aspx
+_blank
+noopener noreferrer
+width:100%;border-collapse:collapse;margin:15px 0;
+background:linear-gradient(135deg,#667eea,#764ba2);color:white;
+padding:10px;border:1px solid #ddd;
+padding:10px;border:1px solid #ddd;
+padding:10px;border:1px solid #ddd;
+padding:9px;border:1px solid #ddd;
+padding:9px;border:1px solid #ddd;
+padding:9px;border:1px solid #ddd;
+padding:9px;border:1px solid #ddd;
+padding:9px;border:1px solid #ddd;
+padding:9px;border:1px solid #ddd;
+padding:9px;border:1px solid #ddd;
+padding:9px;border:1px solid #ddd;
+padding:9px;border:1px solid #ddd;
+padding:9px;border:1px solid #ddd;
+padding:9px;border:1px solid #ddd;
+padding:9px;border:1px solid #ddd;
+padding:9px;border:1px solid #ddd;
+padding:9px;border:1px solid #ddd;
+padding:9px;border:1px solid #ddd;
+padding:9px;border:1px solid #ddd;
+padding:9px;border:1px solid #ddd;
+padding:9px;border:1px solid #ddd;
+conditions-box
+he-IL
+₪${fmt(v(key))}
+disability_work_100_income_${suffix}
+disability_work_100_reduction_${suffix}
+disability_full
+disability_child
+disability_child
+disability_spouse
+disability_spouse
+disability_child
+disability_spouse
+disability_child
+עד ${fmt(row.income)}
+padding:9px;border:1px solid #ddd;
+padding:9px;border:1px solid #ddd;
+padding:9px;border:1px solid #ddd;
+padding:9px;border:1px solid #ddd;
+padding:9px;border:1px solid #ddd;
+padding:9px;border:1px solid #ddd;
+padding:9px;border:1px solid #ddd;
+padding:9px;border:1px solid #ddd;
+di-41
+width:100%;border-collapse:collapse;margin:15px 0;
+background:linear-gradient(135deg,#667eea,#764ba2);color:white;
+padding:10px;border:1px solid #ddd;
+padding:10px;border:1px solid #ddd;
+padding:10px;border:1px solid #ddd;
+padding:10px;border:1px solid #ddd;
+padding:9px;border:1px solid #ddd;
+padding:9px;border:1px solid #ddd;font-weight:bold;
+padding:9px;border:1px solid #ddd;
+padding:9px;border:1px solid #ddd;
+he-IL
+he-IL
+he-IL
+padding:9px;border:1px solid #ddd;
+padding:9px;border:1px solid #ddd;font-weight:bold;
+padding:9px;border:1px solid #ddd;
+padding:9px;border:1px solid #ddd;
+he-IL
+he-IL
+he-IL
+padding:9px;border:1px solid #ddd;
+padding:9px;border:1px solid #ddd;font-weight:bold;
+padding:9px;border:1px solid #ddd;
+padding:9px;border:1px solid #ddd;
+he-IL
+he-IL
+he-IL
+padding:9px;border:1px solid #ddd;
+padding:9px;border:1px solid #ddd;font-weight:bold;
+padding:9px;border:1px solid #ddd;
+padding:9px;border:1px solid #ddd;
+he-IL
+he-IL
+he-IL
+conditions-box
+he-IL
+di-42
+di-43
+מ)</h3>
+width:100%;border-collapse:collapse;margin:15px 0;
+background:linear-gradient(135deg,#667eea,#764ba2);color:white;
+padding:10px;border:1px solid #ddd;
+padding:10px;border:1px solid #ddd;
+padding:9px;border:1px solid #ddd;
+padding:9px;border:1px solid #ddd;
+he-IL
+padding:9px;border:1px solid #ddd;
+padding:9px;border:1px solid #ddd;
+he-IL
+padding:9px;border:1px solid #ddd;
+padding:9px;border:1px solid #ddd;
+he-IL
+padding:9px;border:1px solid #ddd;
+padding:9px;border:1px solid #ddd;font-weight:bold;
+he-IL
+padding:9px;border:1px solid #ddd;
+padding:9px;border:1px solid #ddd;
+he-IL
+padding:9px;border:1px solid #ddd;
+padding:9px;border:1px solid #ddd;
+he-IL
+padding:9px;border:1px solid #ddd;
+padding:9px;border:1px solid #ddd;
+he-IL
+padding:9px;border:1px solid #ddd;
+padding:9px;border:1px solid #ddd;font-weight:bold;
+he-IL
+padding:9px;border:1px solid #ddd;
+padding:9px;border:1px solid #ddd;
+he-IL
+di-44
+width:100%;border-collapse:collapse;margin:15px 0;
+background:linear-gradient(135deg,#667eea,#764ba2);color:white;
+padding:10px;border:1px solid #ddd;
+padding:10px;border:1px solid #ddd;
+padding:9px;border:1px solid #ddd;
+padding:9px;border:1px solid #ddd;font-weight:bold;
+he-IL
+padding:9px;border:1px solid #ddd;
+padding:9px;border:1px solid #ddd;font-weight:bold;
+he-IL
+di-45
+מ לגמלת סיעוד</h3>
+background:#fff3e0;border-right:4px solid #ff9800;padding:15px;margin:15px 0;border-radius:8px;
+di-46
+he-IL
+di-46-amount
+width:100%;border-collapse:collapse;margin:15px 0;font-size:0.95em;
+background:linear-gradient(135deg,#667eea,#764ba2);color:white;
+padding:10px;border:1px solid #ddd;
+ח</th>
+padding:10px;border:1px solid #ddd;
+padding:10px;border:1px solid #ddd;
+padding:10px;border:1px solid #ddd;
+padding:10px;border:1px solid #ddd;
+padding:10px;border:1px solid #ddd;
+padding:10px;border:1px solid #ddd;
+padding:10px;border:1px solid #ddd;
+conditions-box
+disability_spouse_income_ceiling
+su-a1
+מבוטח בביטוח שאירים
+width:100%;border-collapse:collapse;margin:15px 0;
+background:linear-gradient(135deg,#667eea,#764ba2);color:white;
+padding:10px;border:1px solid #ddd;
+padding:10px;border:1px solid #ddd;
+padding:9px;border:1px solid #ddd;
+padding:9px;border:1px solid #ddd;
+padding:9px;border:1px solid #ddd;
+padding:9px;border:1px solid #ddd;
+padding:9px;border:1px solid #ddd;
+padding:9px;border:1px solid #ddd;
+padding:9px;border:1px solid #ddd;
+padding:9px;border:1px solid #ddd;
+padding:9px;border:1px solid #ddd;
+padding:9px;border:1px solid #ddd;
+padding:9px;border:1px solid #ddd;
+padding:9px;border:1px solid #ddd;
+padding:9px;border:1px solid #ddd;
+padding:9px;border:1px solid #ddd;
+padding:9px;border:1px solid #ddd;
+padding:9px;border:1px solid #ddd;
+padding:9px;border:1px solid #ddd;
+padding:9px;border:1px solid #ddd;
+padding:9px;border:1px solid #ddd;
+padding:9px;border:1px solid #ddd;
+padding:9px;border:1px solid #ddd;
+padding:9px;border:1px solid #ddd;
+padding:9px;border:1px solid #ddd;
+padding:9px;border:1px solid #ddd;
+padding:9px;border:1px solid #ddd;
+padding:9px;border:1px solid #ddd;
+padding:9px;border:1px solid #ddd;
+padding:9px;border:1px solid #ddd;
+padding:9px;border:1px solid #ddd;
+padding:9px;border:1px solid #ddd;
+padding:9px;border:1px solid #ddd;
+padding:9px;border:1px solid #ddd;
+padding:9px;border:1px solid #ddd;
+padding:9px;border:1px solid #ddd;
+padding:9px;border:1px solid #ddd;
+padding:9px;border:1px solid #ddd;
+background:#fff8e1;border-right:4px solid #f9a825;padding:12px 16px;border-radius:8px;margin:12px 0;
+su-a2
+width:100%;border-collapse:collapse;margin:15px 0;
+background:linear-gradient(135deg,#667eea,#764ba2);color:white;
+padding:10px;border:1px solid #ddd;
+padding:10px;border:1px solid #ddd;
+padding:9px;border:1px solid #ddd;
+padding:9px;border:1px solid #ddd;
+padding:9px;border:1px solid #ddd;
+padding:9px;border:1px solid #ddd;
+padding:9px;border:1px solid #ddd;
+padding:9px;border:1px solid #ddd;
+padding:9px;border:1px solid #ddd;
+padding:9px;border:1px solid #ddd;
+padding:9px;border:1px solid #ddd;
+padding:9px;border:1px solid #ddd;
+background:#ffebee;border-right:4px solid #c62828;padding:12px 16px;border-radius:8px;margin:12px 0;
+su-a3
+width:100%;border-collapse:collapse;margin:15px 0;
+background:linear-gradient(135deg,#667eea,#764ba2);color:white;
+padding:10px;border:1px solid #ddd;
+padding:10px;border:1px solid #ddd;
+padding:9px;border:1px solid #ddd;
+padding:9px;border:1px solid #ddd;
+padding:9px;border:1px solid #ddd;
+padding:9px;border:1px solid #ddd;
+padding:9px;border:1px solid #ddd;
+padding:9px;border:1px solid #ddd;
+padding:9px;border:1px solid #ddd;
+padding:9px;border:1px solid #ddd;
+padding:9px;border:1px solid #ddd;
+padding:9px;border:1px solid #ddd;
+padding:9px;border:1px solid #ddd;
+padding:9px;border:1px solid #ddd;
+padding:9px;border:1px solid #ddd;
+padding:9px;border:1px solid #ddd;
+padding:9px;border:1px solid #ddd;
+padding:9px;border:1px solid #ddd;
+su-a4
+background:#ffebee;border-right:4px solid #c62828;padding:12px 16px;border-radius:8px;margin:12px 0;
+su-a5
+he-IL
+background:#fff8e1;border-right:4px solid #f9a825;padding:12px 16px;border-radius:8px;margin:12px 0;
+su-a5-1
+he-IL
+width:100%;border-collapse:collapse;margin:15px 0;
+background:linear-gradient(135deg,#667eea,#764ba2);color:white;
+padding:10px;border:1px solid #ddd;
+padding:10px;border:1px solid #ddd;
+padding:9px;border:1px solid #ddd;
+padding:9px;border:1px solid #ddd;
+he-IL
+padding:9px;border:1px solid #ddd;
+padding:9px;border:1px solid #ddd;
+he-IL
+padding:9px;border:1px solid #ddd;
+padding:9px;border:1px solid #ddd;
+he-IL
+padding:9px;border:1px solid #ddd;
+padding:9px;border:1px solid #ddd;
+padding:9px;border:1px solid #ddd;
+padding:9px;border:1px solid #ddd;
+padding:9px;border:1px solid #ddd;
+padding:9px;border:1px solid #ddd;
+padding:9px;border:1px solid #ddd;
+padding:9px;border:1px solid #ddd;
+padding:9px;border:1px solid #ddd;
+padding:9px;border:1px solid #ddd;
+padding:9px;border:1px solid #ddd;
+padding:9px;border:1px solid #ddd;
+su-a5-2
+su-a6
+יתום
+width:100%;border-collapse:collapse;margin:15px 0;
+background:linear-gradient(135deg,#667eea,#764ba2);color:white;
+padding:10px;border:1px solid #ddd;
+padding:10px;border:1px solid #ddd;
+padding:9px;border:1px solid #ddd;
+padding:9px;border:1px solid #ddd;
+padding:9px;border:1px solid #ddd;
+padding:9px;border:1px solid #ddd;
+padding:9px;border:1px solid #ddd;
+padding:9px;border:1px solid #ddd;
+padding:9px;border:1px solid #ddd;
+padding:9px;border:1px solid #ddd;
+padding:9px;border:1px solid #ddd;
+padding:9px;border:1px solid #ddd;
+padding:9px;border:1px solid #ddd;
+ל (עד 36 חודשי זכאות)</td><td style=
+>עד גיל 24</td></tr>
+padding:9px;border:1px solid #ddd;
+padding:9px;border:1px solid #ddd;
+padding:9px;border:1px solid #ddd;
+padding:9px;border:1px solid #ddd;
+padding:9px;border:1px solid #ddd;
+padding:9px;border:1px solid #ddd;
+background:#fff8e1;border-right:4px solid #f9a825;padding:12px 16px;border-radius:8px;margin:12px 0;
+su-b1
+width:100%;border-collapse:collapse;margin:15px 0;
+background:linear-gradient(135deg,#667eea,#764ba2);color:white;
+padding:10px;border:1px solid #ddd;
+padding:10px;border:1px solid #ddd;
+padding:9px;border:1px solid #ddd;
+padding:9px;border:1px solid #ddd;font-weight:bold;
+he-IL
+padding:9px;border:1px solid #ddd;
+padding:9px;border:1px solid #ddd;font-weight:bold;
+he-IL
+padding:9px;border:1px solid #ddd;
+padding:9px;border:1px solid #ddd;font-weight:bold;
+he-IL
+padding:9px;border:1px solid #ddd;
+padding:9px;border:1px solid #ddd;font-weight:bold;
+he-IL
+padding:9px;border:1px solid #ddd;
+padding:9px;border:1px solid #ddd;font-weight:bold;
+he-IL
+padding:9px;border:1px solid #ddd;
+padding:9px;border:1px solid #ddd;
+he-IL
+padding:9px;border:1px solid #ddd;
+padding:9px;border:1px solid #ddd;font-weight:bold;
+he-IL
+background:#fff8e1;border-right:4px solid #f9a825;padding:12px 16px;border-radius:8px;margin:12px 0;
+su-b2
+width:100%;border-collapse:collapse;margin:15px 0;
+background:linear-gradient(135deg,#667eea,#764ba2);color:white;
+padding:10px;border:1px solid #ddd;
+padding:10px;border:1px solid #ddd;
+padding:9px;border:1px solid #ddd;
+padding:9px;border:1px solid #ddd;font-weight:bold;
+he-IL
+padding:9px;border:1px solid #ddd;
+padding:9px;border:1px solid #ddd;
+he-IL
+padding:9px;border:1px solid #ddd;
+padding:9px;border:1px solid #ddd;font-weight:bold;
+he-IL
+su-b3
+width:100%;border-collapse:collapse;margin:15px 0;
+background:linear-gradient(135deg,#667eea,#764ba2);color:white;
+padding:10px;border:1px solid #ddd;
+padding:10px;border:1px solid #ddd;
+padding:9px;border:1px solid #ddd;
+padding:9px;border:1px solid #ddd;
+padding:9px;border:1px solid #ddd;
+padding:9px;border:1px solid #ddd;
+padding:9px;border:1px solid #ddd;
+padding:9px;border:1px solid #ddd;
+padding:9px;border:1px solid #ddd;
+padding:9px;border:1px solid #ddd;
+background:#fff8e1;border-right:4px solid #f9a825;padding:12px 16px;border-radius:8px;margin:12px 0;
+su-b4
+su-b5
+su-b6
+su-c1
+background:#ffebee;border-right:4px solid #c62828;padding:12px 16px;border-radius:8px;margin:12px 0;
+su-c2
+su-c3
+su-c4
+su-d1
+background:#ffebee;border-right:4px solid #c62828;padding:12px 16px;border-radius:8px;margin:12px 0;
+su-d2
+su-d3
+width:100%;border-collapse:collapse;margin:15px 0;
+background:linear-gradient(135deg,#667eea,#764ba2);color:white;
+padding:10px;border:1px solid #ddd;
+padding:10px;border:1px solid #ddd;
+padding:9px;border:1px solid #ddd;
+padding:9px;border:1px solid #ddd;
+padding:9px;border:1px solid #ddd;
+padding:9px;border:1px solid #ddd;
+padding:9px;border:1px solid #ddd;
+padding:9px;border:1px solid #ddd;
+padding:9px;border:1px solid #ddd;
+padding:9px;border:1px solid #ddd;
+su-e1
+su-e2
+he-IL
+background:#fff8e1;border-right:4px solid #f9a825;padding:12px 16px;border-radius:8px;margin:12px 0;
+su-e3
+su-e4
+su-f
+su-g1
+width:100%;border-collapse:collapse;margin:15px 0;
+background:linear-gradient(135deg,#667eea,#764ba2);color:white;
+padding:10px;border:1px solid #ddd;
+padding:10px;border:1px solid #ddd;
+padding:9px;border:1px solid #ddd;
+padding:9px;border:1px solid #ddd;
+padding:9px;border:1px solid #ddd;
+padding:9px;border:1px solid #ddd;
+padding:9px;border:1px solid #ddd;
+padding:9px;border:1px solid #ddd;
+padding:9px;border:1px solid #ddd;
+padding:9px;border:1px solid #ddd;
+padding:9px;border:1px solid #ddd;
+padding:9px;border:1px solid #ddd;
+padding:9px;border:1px solid #ddd;
+padding:9px;border:1px solid #ddd;
+padding:9px;border:1px solid #ddd;
+padding:9px;border:1px solid #ddd;
+su-g2
+su-h
+width:100%;border-collapse:collapse;margin:15px 0;
+background:linear-gradient(135deg,#667eea,#764ba2);color:white;
+padding:10px;border:1px solid #ddd;
+padding:10px;border:1px solid #ddd;
+padding:9px;border:1px solid #ddd;
+padding:9px;border:1px solid #ddd;
+padding:9px;border:1px solid #ddd;
+padding:9px;border:1px solid #ddd;
+padding:9px;border:1px solid #ddd;
+padding:9px;border:1px solid #ddd;
+padding:9px;border:1px solid #ddd;
+padding:9px;border:1px solid #ddd;
+padding:9px;border:1px solid #ddd;
+padding:9px;border:1px solid #ddd;
+padding:9px;border:1px solid #ddd;
+padding:9px;border:1px solid #ddd;
+su-i1
+su-i2a
+he-IL
+su-i2b
+he-IL
+background:#fff3e0;border-right:4px solid #ff9800;padding:12px 16px;border-radius:8px;margin:10px 0;
+su-i3a
+width:100%;border-collapse:collapse;margin:15px 0;
+background:linear-gradient(135deg,#667eea,#764ba2);color:white;
+padding:10px;border:1px solid #ddd;
+padding:10px;border:1px solid #ddd;
+padding:9px;border:1px solid #ddd;
+padding:9px;border:1px solid #ddd;
+padding:9px;border:1px solid #ddd;
+padding:9px;border:1px solid #ddd;
+padding:9px;border:1px solid #ddd;
+padding:9px;border:1px solid #ddd;
+padding:9px;border:1px solid #ddd;
+מ)</td><td style=
+></td></tr>
+padding:9px;border:1px solid #ddd;
+padding:9px;border:1px solid #ddd;
+padding:9px;border:1px solid #ddd;
+padding:9px;border:1px solid #ddd;
+padding:9px;border:1px solid #ddd;
+padding:9px;border:1px solid #ddd;
+padding:9px;border:1px solid #ddd;
+padding:9px;border:1px solid #ddd;
+padding:9px;border:1px solid #ddd;
+padding:9px;border:1px solid #ddd;
+su-i3b
+ילד
+su-i3c
+ילד
+su-i4a
+background:#fff3e0;border-right:4px solid #ff9800;padding:12px 16px;border-radius:8px;margin:10px 0;
+su-i4b
+su-i5a
+su-i5b
+su-i6
+width:100%;border-collapse:collapse;margin:15px 0;
+background:linear-gradient(135deg,#667eea,#764ba2);color:white;
+padding:10px;border:1px solid #ddd;
+padding:10px;border:1px solid #ddd;
+padding:9px;border:1px solid #ddd;
+padding:9px;border:1px solid #ddd;
+padding:9px;border:1px solid #ddd;
+padding:9px;border:1px solid #ddd;
+padding:9px;border:1px solid #ddd;
+padding:9px;border:1px solid #ddd;
+padding:9px;border:1px solid #ddd;
+padding:9px;border:1px solid #ddd;
+padding:9px;border:1px solid #ddd;
+padding:9px;border:1px solid #ddd;
+he-IL
+su-i7
+su-j1
+su-j2
+he-IL
+he-IL
+he-IL
+no-accordion
+display:none
+background:#fff3e0;border-right:4px solid #ff9800;padding:14px 18px;border-radius:8px;margin:20px 0;
+tg-daily-notice
+<div class="tg-daily-notice">
+<p>👩 נשים שנולדו ב-<strong>
+</strong> הגיעו היום לגיל 62 ועשויות להיות זכאיות למענק מעבר. בתנאי שלא תהיה להן הכנסה מעבודה במשך 4 חודשים עד <strong>
+</strong>.</p>
+<p>סכום המענק הצפוי לילידות <strong>
+</strong>: <strong>₪
+he-IL
+לחודש</strong>.</p>
+<p>📋 נשים שנולדו ב-<strong>
+</strong> יהיו מחר בנות 64 — המועד האחרון עבורן להגיש תביעה למענק מעבר.</p>
+</div>
+tg-61
+tg-62
+he-IL
+) אינה עולה על <strong>₪${NII.transition_grant_annual_income_limit.value.toLocaleString(
+)}</strong> בשנת המס שבה מלאו לך 61 שנים.</li>
+tg-63
+tg-64
+width:100%;border-collapse:collapse;margin:15px 0;
+background:linear-gradient(135deg,#667eea,#764ba2);color:white;
+padding:10px;border:1px solid #ddd;
+padding:10px;border:1px solid #ddd;
+padding:10px;border:1px solid #ddd;
+כ ל-4 חודשים</th>
+padding:9px;border:1px solid #ddd;
+padding:9px;border:1px solid #ddd;font-weight:bold;
+padding:9px;border:1px solid #ddd;font-weight:bold;
+he-IL
+he-IL
+padding:9px;border:1px solid #ddd;
+padding:9px;border:1px solid #ddd;
+padding:9px;border:1px solid #ddd;
+he-IL
+he-IL
+padding:9px;border:1px solid #ddd;
+padding:9px;border:1px solid #ddd;
+padding:9px;border:1px solid #ddd;
+he-IL
+he-IL
+padding:9px;border:1px solid #ddd;
+padding:9px;border:1px solid #ddd;
+padding:9px;border:1px solid #ddd;
+he-IL
+he-IL
+padding:9px;border:1px solid #ddd;
+padding:9px;border:1px solid #ddd;
+padding:9px;border:1px solid #ddd;
+he-IL
+he-IL
+tg-65
+https://www.btl.gov.il/benefits/old_age/MankMavrATR/Pages/BksaMankMavr.aspx
+_blank
+link-item
+https://www.btl.gov.il/benefits/Long_Term_Care/Pages/nitzoleShoaa.aspx
+_blank
+link-item
+https://www.kolzchut.org.il/he/%D7%96%D7%9B%D7%95%D7%99%D7%95%D7%AA_%D7%A0%D7%99%D7%A6%D7%95%D7%9C%D7%99_%D7%A9%D7%95%D7%90%D7%94
+_blank
+link-item
+hs-71
+hs-72
+he-IL
+he-IL
+he-IL
+hs-73a
+hs-73b
+conditions-box
+he-IL
+hs-73c
+width:100%;border-collapse:collapse;margin:15px 0;
+background:linear-gradient(135deg,#667eea,#764ba2);color:white;
+padding:10px;border:1px solid #ddd;
+padding:10px;border:1px solid #ddd;
+padding:9px;border:1px solid #ddd;
+padding:9px;border:1px solid #ddd;
+he-IL
+padding:9px;border:1px solid #ddd;
+padding:9px;border:1px solid #ddd;
+he-IL
+padding:9px;border:1px solid #ddd;
+padding:9px;border:1px solid #ddd;
+he-IL
+conditions-box
+he-IL
+hs-74a
+he-IL
+hs-74b
+ם בקהילה (ללא אשפוז)</h4>
+hs-75
+hs-76
+ab-81
+ab-82
+ab-83
+ab-84
+ab-85
+ab-86
+background:#fff3e0;border-right:4px solid #ff9800;padding:15px;margin-bottom:20px;border-radius:8px;
+width:100%;border-collapse:collapse;margin:15px 0;font-size:0.95em;
+background:linear-gradient(135deg,#667eea,#764ba2);color:white;
+padding:10px;border:1px solid #ddd;
+padding:10px;border:1px solid #ddd;
+padding:10px;border:1px solid #ddd;
+padding:10px;border:1px solid #ddd;
+padding:9px;border:1px solid #ddd;
+padding:9px;border:1px solid #ddd;
+padding:9px;border:1px solid #ddd;color:#C62828;font-weight:bold;
+padding:9px;border:1px solid #ddd;
+he-IL
+he-IL
+he-IL
+padding:9px;border:1px solid #ddd;
+padding:9px;border:1px solid #ddd;
+padding:9px;border:1px solid #ddd;color:#2E7D32;font-weight:bold;
+padding:9px;border:1px solid #ddd;
+he-IL
+he-IL
+padding:9px;border:1px solid #ddd;
+padding:9px;border:1px solid #ddd;
+padding:9px;border:1px solid #ddd;color:#2E7D32;font-weight:bold;
+padding:9px;border:1px solid #ddd;
+he-IL
+he-IL
+padding:9px;border:1px solid #ddd;
+padding:9px;border:1px solid #ddd;
+padding:9px;border:1px solid #ddd;color:#2E7D32;font-weight:bold;
+padding:9px;border:1px solid #ddd;
+he-IL
+padding:9px;border:1px solid #ddd;
+padding:9px;border:1px solid #ddd;
+padding:9px;border:1px solid #ddd;color:#C62828;font-weight:bold;
+padding:9px;border:1px solid #ddd;
+he-IL
+padding:9px;border:1px solid #ddd;
+padding:9px;border:1px solid #ddd;
+padding:9px;border:1px solid #ddd;
+padding:9px;border:1px solid #ddd;
+he-IL
+he-IL
+in-key
+https://www.btl.gov.il
+_blank
+noopener
+color:#2E5B8A;
+https://ps.btl.gov.il
+_blank
+noopener
+color:#2E5B8A;
+co-102
+https://www.kolzchut.org.il
+_blank
+noopener
+color:#2E5B8A;
+https://www.eshelnet.org.il
+_blank
+noopener
+color:#2E5B8A;
+co-103

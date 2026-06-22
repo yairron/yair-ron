@@ -1,0 +1,314 @@
+income-supplement-eligibility
+בדיקת זכאות להשלמת הכנסה
+בדיקת זכאות לקצבת השלמת הכנסה לאזרחים ותיקים עם חישוב משוער של סכום ההשלמה (01.2026)
+המוסד לביטוח לאומי
+בדיקת זכאות להשלמת הכנסה
+<p>שאלון זה בודק אם אתה זכאי/אי להשלמת הכנסה (קצבה משלימה לקצבת זיקנה).</p><p><strong>השלמת הכנסה</strong> היא קצבה שמשלם הביטוח הלאומי כאשר סך כל ההכנסות שלך נמוך מתקרה מסוימת, שתלויה בגיל וברכב המשפחה.</p><h4>כיצד מתבצע החישוב?</h4><ol><li>הביטוח הלאומי אוסף את כל ההכנסות שלך: קצבה, פנסיה, עבודה והכנסה רעיונית מנכסים</li><li>מחשב את סכום הקיזוז על פי כללים מיוחדים</li><li>משווה את סה״כ ההכנסה נטו לתקרת ההשלמה לפי גיל וקומפוזיציה משפחתית</li><li>משלם הפרש כהשלמה עד התקרה</li></ol><p><strong>שימו לב:</strong> זהו חישוב משוער בלבד. לבדיקה מדויקת, יש לפנות לביטוח הלאומי.</p>
+המשך לבדיקה
+q1_israel_resident
+yesno
+האם את/ה תושב/ת ישראל?
+yes
+כן
+q2_kibbutz_member
+no
+לא
+not_eligible_not_resident
+q2_kibbutz_member
+yesno
+האם את/ה חבר/ת בקיבוץ או חבר/ת במושב שיתופי?
+חברות בקיבוץ או במושב שיתופי מונעת זכאות לתוספת השלמת הכנסה.
+yes
+כן
+not_eligible_kibbutz_member
+no
+לא
+q4_family_composition
+q4_family_composition
+dropdown
+מהו הרכב המשפחה וקבוצת הגיל שלך?
+בחר את המצב שתואם לך ביותר
+single_under70
+יחיד/ה עד גיל 70
+q5_old_age_pension
+single_70_80
+יחיד/ה גיל 70-80
+q5_old_age_pension
+single_over80
+יחיד/ה מעל גיל 80
+q5_old_age_pension
+couple_under70
+זוג עד גיל 70
+q5_old_age_pension
+couple_70_80
+זוג גיל 70-80
+q5_old_age_pension
+couple_over80
+זוג מעל גיל 80
+q5_old_age_pension
+single_1child_under70
+יחיד/ה + ילד עד גיל 70
+child-definition
+q5_old_age_pension
+single_1child_70_80
+יחיד/ה + ילד גיל 70-80
+child-definition
+q5_old_age_pension
+single_1child_over80
+יחיד/ה + ילד מעל גיל 80
+child-definition
+q5_old_age_pension
+single_2children_under70
+יחיד/ה + 2 ילדים עד גיל 70
+child-definition
+q5_old_age_pension
+single_2children_70_80
+יחיד/ה + 2 ילדים גיל 70-80
+child-definition
+q5_old_age_pension
+single_2children_over80
+יחיד/ה + 2 ילדים מעל גיל 80
+child-definition
+q5_old_age_pension
+couple_1child_under70
+זוג + ילד עד גיל 70
+child-definition
+q5_old_age_pension
+couple_1child_70_80
+זוג + ילד גיל 70-80
+child-definition
+q5_old_age_pension
+couple_1child_over80
+זוג + ילד מעל גיל 80
+child-definition
+q5_old_age_pension
+couple_2children_under70
+זוג + 2 ילדים עד גיל 70
+child-definition
+q5_old_age_pension
+couple_2children_70_80
+זוג + 2 ילדים גיל 70-80
+child-definition
+q5_old_age_pension
+couple_2children_over80
+זוג + 2 ילדים מעל גיל 80
+child-definition
+q5_old_age_pension
+q5_old_age_pension
+number_input
+כמה קצבת זיקנה (אזרח ותיק כולל שאירים) את/ה מקבל/ת בחודש מהביטוח הלאומי? (בש"ח)
+הזן את הסכום החודשי. אם לא מקבל/ת קצבת זיקנה, הזן 0
+0
+₪ לחודש
+q6_pension_income
+q1_old_age_pension_amount
+q6_pension_income
+number_input
+כמה הכנסה מפנסיה (מעבידים קודמים, קרנות פנסיה וכו') את/ה מקבל/ת בחודש? (בש"ח)
+הזן את הסכום החודשי לפני ניכויים. אם לא מקבל/ת פנסיה, הזן 0. לידיעתך: סכום מותר ליחיד - {rules.incomeDeductions.pensionIncome.exemption_single}₪ | לזוג - {rules.incomeDeductions.pensionIncome.exemption_couple}₪. כל סכום עודף מעליהם יקוזז ב-60% מהתוספת
+0
+₪ לחודש
+q7_work_income
+q2_pension_income_amount
+q7_work_income
+radio
+מה מצב העבודה שלך? (אם יש הכנסה מעבודה, יש להזין את הסכום בשלב הבא)
+not_working
+לא עובד/ת
+q8_imputed_income
+0
+not_working
+employed
+עובד/ת שכיר - יש לי הכנסה מעבודה
+q7b_work_income_amount
+employed
+self_employed
+עצמאי/ת - יש לי הכנסה מעסק/עבודה עצמאית
+q7b_work_income_amount
+self_employed
+q7b_work_income_amount
+number_input
+כמה הכנסה מעבודה/עסק את/ה מקבל/ת בחודש? (בש"ח)
+הזן את סכום ההכנסה החודשית נטו (לאחר ניכוי מס אך לפני ניכויים אחרים). לידיעתך: סכום מותר לשכיר יחיד - {rules.incomeDeductions.workIncome.exemption_single}₪ | זוג - {rules.incomeDeductions.workIncome.exemption_couple}₪ | עצמאי - {rules.incomeDeductions.workIncome.exemption_self_employed}₪. כל סכום עודף יקוזז ב-60% מהתוספת
+0
+₪ לחודש
+q8_imputed_income
+q3_work_income_amount
+q8_imputed_income
+radio
+האם יש לך נכסים (חסכונות, נדל"ן מעבר לדירת מגורים, השקעות וכו') שעשויים להיחשב כהכנסה רעיונית?
+yes_unknown
+כן, אבל אני לא יודע/ת מה ההכנסה הרעיונית
+imputed-income-calculator
+q8b_imputed_income_amount
+q4_family_composition
+family_type
+yes_known
+כן, יודע/ת את סכום ההכנסה הרעיונית החודשית
+q8b_imputed_income_amount
+no
+לא, אין לי נכסים מעבר לדירת המגורים
+q8c_special_status
+skip
+דלג על שאלה זו
+q8c_special_status
+q8b_imputed_income_amount
+number_input
+מהי ההכנסה הרעיונית החודשית המחושבת מנכסים? (בש"ח)
+הזן את סכום ההכנסה הרעיונית החודשית. אם לא זכאי/ת להכנסה רעיונית, הזן 0
+0
+₪ לחודש
+q8c_special_status
+q4_imputed_income_amount
+q8c_special_status
+yesno
+האם את/ה מקבל/ת קצבת שאירים או קצבת תלויים בנפגע עבודה?
+מידע זה משפיע על חישוב הניכוי ממחירון הרכב (אם יש רכב)
+yes
+כן
+q9_vehicle
+special
+no
+לא
+q9_vehicle
+regular
+skip
+דלג על שאלה זו
+q9_vehicle
+q9_vehicle
+yesno
+האם יש לך רכב בבעלותך?
+אנחנו משתמשים בשווי לפי מחירון לוי יצחק.
+yes
+כן
+vehicle-income-supplement
+calculate_eligibility
+q7_vehicle_value
+q4_family_composition
+retirement_age
+q7_work_income
+vehicle_work_status
+q7_work_income
+none_when_not_working
+q3_work_income_amount
+copy
+q8_special_status
+special_status
+no
+לא
+calculate_eligibility
+skip
+דלג על שאלה זו
+calculate_eligibility
+info
+תוצאות בדיקת הזכאות
+על סמך הנתונים שהזנת, להלן החישוב המשוער שלך
+True
+family_composition
+total_income
+deductions
+net_income
+ceiling
+eligibility_status
+estimated_supplement
+important_note
+error
+לא זכאי/ת להשלמת הכנסה
+השלמת הכנסה משולמת רק לתושבי ישראל. אם חזרת להתגורר בישראל, יש לעדכן את הכתובת בביטוח הלאומי.
+warning
+יתכן ולחברים בקיבוץ/מושב שיתופי זכאות להשלמת הכנסה
+יתכן ולחבר קיבוץ/מושב שיתופי יש זכאות להשלמת הכנסה בתנאים מסוימים. לפרטים נוספים, אנא צרו קשר עם סניף הביטוח הלאומי או פנו למוקד הטלפוני *6050.
+יחיד/ה עד גיל 70
+4375
+יחיד/ה גיל 70-80
+4418
+יחיד/ה מעל גיל 80
+4460
+זוג עד גיל 70
+6912
+זוג גיל 70-80
+6981
+זוג מעל גיל 80
+7048
+יחיד/ה + ילד עד גיל 70
+7305
+יחיד/ה + ילד גיל 70-80
+7374
+יחיד/ה + ילד מעל גיל 80
+7442
+יחיד/ה + 2 ילדים עד גיל 70
+8426
+יחיד/ה + 2 ילדים גיל 70-80
+8496
+יחיד/ה + 2 ילדים מעל גיל 80
+8563
+זוג + ילד עד גיל 70
+8035
+זוג + ילד גיל 70-80
+8102
+זוג + ילד מעל גיל 80
+8171
+זוג + 2 ילדים עד גיל 70
+9156
+זוג + 2 ילדים גיל 70-80
+9226
+זוג + 2 ילדים מעל גיל 80
+9292
+1.0
+קצבת זיקנה - נלקחת במלואה
+1790
+1790
+2823
+0.6
+הכנסה מפנסיה - סכום מותר ליחיד 1,790₪ וזוג 2,823₪, הכנסה עודפת 60% קיזוז
+3236
+3236
+3786
+4655
+0.6
+הכנסה מעבודה - סכום מותר לשכיר יחיד 3,236₪, זוג 3,786₪, עצמאי 4,655₪ — הכנסה עודפת 60% קיזוז
+1.0
+הכנסה רעיונית מנכסים - נלקחת במלואה
+46138
+65343
+retirement_age
+survivors_benefit
+work_injury_dependents
+0.03
+19610
+10380
+10380
+11227
+3442
+2341
+עובד (שכיר/עצמאי) שהכנסתו מהעבודה עולה על 3,442 ₪/חודש (או 2,341 ₪ לעובד בגיל פרישה)
+עובד שהכנסתו מהעבודה אינה עולה על 3,442 ₪/חודש (או 2,341 ₪ לעובד בגיל פרישה)
+לא עובד — לא בגיל פרישה ואינו מקבל קצבת שאירים/תלויים בנפגע עבודה
+לא עובד — הגיע לגיל פרישה, מקבל קצבת שאירים, או מקבל קצבת תלויים בנפגע עבודה
+0.0417
+117173
+0.05
+41528
+62292
+False
+131995
+999999999
+0.03
+0.05
+True
+194287
+311460
+0.015
+0.03
+True
+48939
+166112
+0.015
+0.03
+True
+256579
+373752
+0.015
+0.03
+חישוב משוער בלבד. נוסחאות קיזוז אלו עשויות להשתנות. לבדיקה מדויקת, יש לפנות לביטוח הלאומי.
+imputed_income_rate_decimal

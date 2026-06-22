@@ -1,0 +1,538 @@
+questionnaire-header
+questionnaire-preamble
+questionnaire-content
+questionnaire-result
+questionnaire-nav
+btn-restart
+btn-go-back
+Error initializing questionnaire:
+שגיאה בטעינת השאלון
+HTTP error! status: ${response.status}
+data/nii-constants.json
+⚠️ לא ניתן לטעון nii-constants.json — משתמש בערכי ברירת מחדל
+click
+click
+subtitle
+source-badge
+<span class="source-badge">מקור: ${this.data.source}</span>
+preamble-accordion
+preamble-accordion-header
+false
+preamble-accordion-title
+preamble-accordion-arrow
+preamble-accordion-body
+.preamble-accordion-header
+.preamble-accordion-body
+.preamble-accordion-arrow
+click
+aria-expanded
+hidden
+hidden
+back-to-previous
+btn-back-to-parent
+back-arrow
+intro-container
+intro-title
+intro-content
+btn btn-primary intro-button
+btn-start
+המשך
+#btn-start
+click
+#btn-back-to-parent
+click
+not_eligible
+q6_imputed_income_single
+q6_imputed_income_couple
+q0c_imputed_income_amount
+q6_imputed_income_single
+q7_vehicle_single
+q7_vehicle_couple
+Question not found:
+#btn-back
+click
+#btn-back-to-parent
+click
+not_eligible
+dropdown
+yesno
+radio
+assets_form
+number_input
+back-to-previous
+btn-back
+back-arrow
+back-to-previous
+btn-back-to-parent
+back-arrow
+question-description
+<div class="question-description">${this.resolveDescriptionTemplates(question.description)}</div>
+question-container
+${question.id}
+question-header
+question-number
+question-text
+options-container ${question.type === 'yesno' ? 'options-yesno' : ''}
+yesno
+options-yesno
+number
+he-IL
+${opt.value}
+<option value="${opt.value}">${opt.label}</option>
+option-dropdown
+${question.id}
+option-button ${opt.value === 'yes' ? 'yes-btn' : 'no-btn'}
+yes
+yes-btn
+no-btn
+${opt.value}
+${question.id}
+option-button
+${opt.value}
+${question.id}
+number-input-container
+number-input-wrapper
+number
+number-input-${question.id}
+number-input
+${question.placeholder || '0'}
+${existingValue}
+this.select()
+number-input-suffix
+btn btn-primary number-input-submit
+btn-submit-number
+monthly_income
+monthly_income
+currency
+asset-field
+asset-${field.id}
+asset-field-description
+asset-input-wrapper
+number
+asset-${field.id}
+asset-input
+${field.id}
+${inputType}
+this.select()
+asset-currency
+assets-form-container
+${question.familyType}
+btn btn-primary assets-form-submit
+btn-calculate-assets
+dropdown
+.option-dropdown
+change
+assets_form
+number_input
+.option-button
+click
+selected
+selected
+.number-input
+#btn-submit-number
+click
+he-IL
+${value.toLocaleString('he-IL')}₪
+keypress
+Enter
+gt
+gte
+lt
+lte
+.assets-form-container
+#btn-calculate-assets
+q1_family_status
+single
+q1_5_age
+55plus
+${familyStatus}_${ageGroup}
+single
+click
+.asset-input
+assets_calculated
+he-IL
+סה"כ נכסים: ${result.totalAssets.toLocaleString('he-IL')}₪
+smooth
+start
+monthly_income
+he-IL
+he-IL
+${tier.rangeStart.toLocaleString('he-IL')}₪ - ${tier.rangeEnd.toLocaleString('he-IL')}₪
+he-IL
+${tier.rangeStart.toLocaleString('he-IL')}₪ ומעלה
+tier-row
+tier-label
+tier-range
+tier-income
+he-IL
+single
+יחיד/ה
+זוג
+under55
+מתחת לגיל 55
+גיל 55 ומעלה
+result-container info
+result-icon-custom
+result-title
+assets-result-summary
+result-row highlight
+result-label
+כ שווי נכסים:</span>
+result-value
+he-IL
+result-row
+result-label
+result-value
+he-IL
+result-row
+result-label
+result-value
+he-IL
+background: #e8f5e9; padding: 15px; border-radius: 8px; margin: 15px 0; border-right: 4px solid #4caf50;
+margin: 0 0 10px 0; color: #2e7d32;
+result-row
+result-label
+result-value
+he-IL
+result-row
+result-label
+result-value
+he-IL
+tier-breakdown
+result-row main-result
+result-label
+result-value
+he-IL
+result-row main-result
+result-label
+result-value
+he-IL
+result-row income-producing
+result-label
+result-value
+he-IL
+result-row total-income highlight
+result-label
+כ הכנסה חודשית מנכסים:</span>
+result-value
+he-IL
+result-note
+btn btn-primary return-to-parent
+btn-return-to-parent
+hidden
+#btn-return-to-parent
+click
+hidden
+number
+he-IL
+.json
+HTTP error! status: ${response.status}
+Error loading sub-questionnaire:
+שגיאה בטעינת שאלון המשנה
+couple
+couple
+זוג (נשוי/אה)
+single
+יחיד/ה (לא נשוי/אה)
+over80
+yes
+no
+כן
+לא
+גיל פרישה
+כן
+לא
+not_working
+not_working
+working
+not_working
+מצב עסקה
+עובד/ת
+אינני עובד/ת
+הכנסה מעבודה
+עובד/ת שכיר/ה או עצמאי/ת
+אינני עובד/ת
+not_working
+none
+אף אחד מאלה
+special
+yes
+no
+כן
+לא
+קצבת שאירים
+special
+regular
+כן
+לא
+don't apply
+object
+number_input
+string
+q4_imputed_income_amount
+q7_vehicle_value
+שווי רכב (מחושב מהשאלון)
+הכנסה רעיונית חודשית מנכסים (מחושב)
+he-IL
+${calculatedValue.toLocaleString('he-IL')}₪
+hidden
+hidden
+not_eligible
+Result not found:
+result-container ${result.status}
+result-icon
+result-title
+result-message
+result-link btn btn-primary
+btn-return-to-parent
+<button class="result-link btn btn-primary" id="btn-return-to-parent">${result.link.text}</button>
+${result.link.url}
+result-link btn btn-primary
+<a href="${result.link.url}" class="result-link btn btn-primary">${result.link.text}</a>
+skip-link
+margin-top: 10px; display: inline-block;
+javascript:void(0)
+skip-button
+<br><small class="skip-link" style="margin-top: 10px; display: inline-block;"><a href="javascript:void(0)" class="skip-button">דלק על השלב הזה →</a></small>
+btn btn-primary
+btn-return-to-parent
+margin-top:16px;
+<button class="btn btn-primary" id="btn-return-to-parent" style="margin-top:16px;">← חזרה לשאלון בדיקת הזכאות</button>
+hidden
+#btn-return-to-parent
+click
+hidden
+calculate_vehicle
+result-icon
+result-title
+eligibility-result success
+result-message
+eligibility-result not-eligible
+result-message
+calculation-details
+calculation-table
+calc-label
+calc-value
+calc-label
+calc-value
+he-IL
+calc-label
+calc-value
+he-IL
+calc-label
+calc-value
+he-IL
+calc-label
+he-IL
+calc-value
+פטורה במלואה
+he-IL
+${(calculation.incomes.pensionIncome - calculation.deductions.pensionDeduction).toLocaleString('he-IL')}₪ פטורים
+calc-label
+calc-value
+he-IL
+calc-label
+calc-value
+he-IL
+calc-label
+he-IL
+calc-value
+פטורה במלואה
+עודף × 60%
+calc-label
+calc-value
+he-IL
+calc-label
+calc-value
+he-IL
+calculation-row-total
+calc-label
+כ הכנסה נטו:</strong></td>
+calc-value
+he-IL
+calc-label
+calc-value
+he-IL
+calc-label
+calc-value
+he-IL
+calc-label
+סכום ההפחתה משווי רכב
+he-IL
+calc-value
+he-IL
+calc-label
+calc-value
+he-IL
+calc-label
+calc-value
+calculation-row-supplement
+calc-label
+calc-value
+he-IL
+calculation-note
+success
+error
+result-container ${calculation.eligible ? 'success' : 'error'}
+hidden
+hidden
+vehicle_value
+retirement_age
+yes
+work_status
+not_working
+work_income
+child_work_income
+child_has_vehicle
+yes
+special_status
+special
+dismissed_grace
+yes
+income_drop_grace
+yes
+working
+חישוב זה מתבסס על תקופת מעבר של עד 3 חודשים לאחר הפיטורין/ההתפטרות. לאחר מכן יש לפנות לביטוח הלאומי לעדכון.
+working
+חישוב זה מתבסס על תקופת מעבר של עד 3 חודשים לאחר ירידת ההכנסה — ההכנסה המיוחסת: 25% מהשכר הממוצע. לאחר מכן יש לפנות לביטוח הלאומי לעדכון.
+he-IL
+עובד מגיל פרישה (אתה או בן/בת זוגך בגיל פרישה) עם הכנסה חודשית מעל ${incomeThreshold.toLocaleString('he-IL')} ₪
+he-IL
+עובד לפני גיל פרישה עם הכנסה חודשית מעל ${incomeThreshold.toLocaleString('he-IL')} ₪
+he-IL
+עובד מגיל פרישה (אתה או בן/בת זוגך בגיל פרישה) עם הכנסה חודשית עד ${incomeThreshold.toLocaleString('he-IL')} ₪
+he-IL
+אינו עובד, או עובד לפני גיל פרישה עם הכנסה חודשית עד ${incomeThreshold.toLocaleString('he-IL')} ₪
+(תקופת מעבר — פוטר/ה או התפטר/ה)
+(תקופת מעבר — ירידת הכנסה)
+success
+שווי הרכב אינו מפחית את תוספת הבטחת ההכנסה
+info
+he-IL
+הרכב מפחית את התוספת ב־${monthlyDeduction.toLocaleString('he-IL')} ₪ לחודש
+result-container ${statusClass}
+result-icon
+result-title
+calculation-details
+calculation-table
+calc-label
+calc-value
+he-IL
+calc-label
+calc-value
+calc-label
+calc-value
+he-IL
+calc-label
+calc-value
+he-IL
+calc-label
+calc-value
+he-IL
+calc-label
+calc-value
+he-IL
+calc-label
+calc-value
+he-IL
+calculation-row-supplement
+calc-label
+calc-value
+he-IL
+eligibility-result ${statusClass}
+margin-top:15px;padding:15px;border-radius:8px;
+calculation-note
+margin-top:10px;background:#fff3cd;padding:10px;border-radius:6px;
+<p class="calculation-note" style="margin-top:10px;background:#fff3cd;padding:10px;border-radius:6px;"><strong>הערת חישוב:</strong> לילד יש רכב בבעלותו, לכן הכנסת העבודה של הילד לא נכללה בחישוב הסף.</p>
+calculation-note
+margin-top:10px;background:#fff3cd;padding:10px;border-radius:6px;
+<p class="calculation-note" style="margin-top:10px;background:#fff3cd;padding:10px;border-radius:6px;"><strong>תקופת מעבר:</strong> ${graceNote}</p>
+calculation-note
+margin-top:15px;
+btn btn-primary return-to-parent
+btn-return-to-parent
+hidden
+#btn-return-to-parent
+click
+hidden
+q4_family_composition
+q4_family_composition
+couple
+over80
+q1_old_age_pension_amount
+q2_pension_income_amount
+q3_work_income_amount
+q4_imputed_income_amount
+q7_vehicle_value
+q6_work_status
+q6_work_status
+not_working
+q8_special_status
+special
+self_employed
+he-IL
+he-IL
+סה"כ הכנסותיך (${netIncome.toLocaleString('he-IL')}₪) עולה על התקרה (${ceiling.toLocaleString('he-IL')}₪).
+self_employed
+he-IL
+שווי הרכב גבוה מ-${extendedThreshold.toLocaleString('he-IL')} ₪ - אין זכאות לקצבה (אלא במקרים מיוחדים בלבד). יש לפנות לביטוח הלאומי לבדיקה ידנית.
+employed
+self
+he-IL
+עובד/ת עם הכנסה מעל ${incomeThreshold.toLocaleString('he-IL')}₪
+he-IL
+עובד/ת עם הכנסה מתחת ${incomeThreshold.toLocaleString('he-IL')}₪
+לא עובד/ת - גיל פרישה
+לא עובד/ת - מקבל/ת קצבת שאירים/תלויים
+לא עובד/ת
+he-IL
+he-IL
+(עד ${maxFormatted}₪)
+(מעל ${minFormatted}₪)
+(${minFormatted}₪ - ${maxFormatted}₪)
+calculator-container
+calculator-field
+asset-input
+number
+asset-input
+calculator-input
+הזן סכום
+${calcConfig.min}
+${calcConfig.max < 10000000 ? calcConfig.max : ''}
+${calcConfig.min}
+${calcConfig.max}
+calc-range-error
+calculator-error hidden
+calculator-field
+calc-result
+calculator-output
+calculator-field
+calc-result-yearly
+calculator-output
+asset-input
+calc-result
+calc-result-yearly
+calc-range-error
+single
+input
+he-IL
+הסכום המינימלי למדרגה זו הוא ${minAmount.toLocaleString('he-IL')}₪
+hidden
+he-IL
+הסכום המקסימלי למדרגה זו הוא ${maxAmount.toLocaleString('he-IL')}₪
+hidden
+hidden
+he-IL
+currency
+ILS
+he-IL
+currency
+ILS
+answer-item
+answer-question
+answer-value
+answers-summary
+hidden
+hidden
+error-state
+undefined
