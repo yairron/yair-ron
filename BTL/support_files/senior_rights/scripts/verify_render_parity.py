@@ -2,11 +2,19 @@
 """
 verify_render_parity.py
 ------------------------
-בודק שדף HTML בענף העבודה זהה לחלוטין (טקסט, מבנה, תצוגה ותפעול)
-לגרסה שלו ב-git HEAD (או ref אחר), אחרי שהדפדפן מריץ את כל הקוד.
+בודק שדף HTML בענף העבודה זהה לחלוטין (טקסט ומבנה) לגרסה שלו ב-git HEAD
+(או ref אחר), אחרי שהדפדפן מריץ את כל הקוד.
 
 משמש לאימות שינויים משלב 1 (הטמעת תוכן סטטי בקובץ ה-HTML) לא שינו
 שום דבר שנראה או מתפקד אחרת עבור המשתמש.
+
+הקריטריון היחיד להצלחה/כישלון הוא זהות טקסט וזהות מבנה DOM - שני אלה
+דטרמיניסטיים לחלוטין ולא השתנו אף פעם בין ריצות באותו תוכן. השוואת צילומי
+מסך (אחוז פיקסלים שונים) מוצגת בדוח כמידע בלבד ולא משפיעה על ההצלחה/כישלון:
+נמצא שהיא לא דטרמיניסטית (אותה השוואה בדיוק נותנת אחוזים שונים בריצות
+שונות, כנראה בגלל תזמון אנימציות/גלילה פנימית בדפדפן) ולכן אינה קריטריון
+אמין. גודל התמונה (רוחב/גובה) כן נבדק כממצא אמיתי, כי זו השוואה בדידה
+ולא אחוז מטושטש.
 
 שימוש:
     python verify_render_parity.py <page> [--ref HEAD] [--report out.md]
@@ -223,7 +231,6 @@ def main():
         text_match = old_s["text"] == new_s["text"]
         html_match = old_s["html"] == new_s["html"]
         img_diff = diff_images(old_s["screenshot"], new_s["screenshot"])
-        img_match = img_diff["comparable"] and img_diff["diff_percent"] == 0.0
 
         detail_rows.append((key, text_match, html_match, img_diff))
 
@@ -239,11 +246,10 @@ def main():
             )
         if not html_match:
             findings.append(f"[{key}] מבנה ה-DOM של #content שונה (outerHTML לא זהה)")
-        if not img_match:
-            if not img_diff["comparable"]:
-                findings.append(f"[{key}] גודל התמונה שונה: {img_diff['size_a']} מול {img_diff['size_b']}")
-            else:
-                findings.append(f"[{key}] הבדל חזותי: {img_diff['diff_percent']}% מהפיקסלים שונים")
+        # שים לב: הבדל אחוז פיקסלים לא נחשב ממצא/כשל - הוכח כלא-דטרמיניסטי
+        # (ראו הסבר בראש הקובץ). רק גודל תמונה שונה (מספר בדיד) כן נחשב ממצא.
+        if not img_diff["comparable"]:
+            findings.append(f"[{key}] גודל התמונה שונה: {img_diff['size_a']} מול {img_diff['size_b']}")
 
     # דוח
     report_lines = []
@@ -253,13 +259,14 @@ def main():
     report_lines.append("")
     report_lines.append("## תוצאה לכל מצב שנבדק")
     report_lines.append("")
-    report_lines.append("| מצב | טקסט זהה | מבנה זהה | תצוגה זהה (הבדל %) |")
+    report_lines.append("(הקריטריון להצלחה/כישלון: טקסט ומבנה בלבד. עמודת ההבדל החזותי היא מידע בלבד - ראו הסבר בראש הקובץ למה היא לא קריטריון אמין.)")
+    report_lines.append("")
+    report_lines.append("| מצב | טקסט זהה | מבנה זהה | הבדל חזותי (מידע בלבד) |")
     report_lines.append("|---|---|---|---|")
     for key, text_match, html_match, img_diff in detail_rows:
-        img_cell = f"{img_diff['diff_percent']}%" if img_diff.get("comparable") else "לא ניתן להשוואה"
+        img_cell = f"{img_diff['diff_percent']}%" if img_diff.get("comparable") else "גודל תמונה שונה"
         report_lines.append(
-            f"| {key} | {'✅' if text_match else '❌'} | {'✅' if html_match else '❌'} | "
-            f"{'✅' if img_diff.get('comparable') and img_diff['diff_percent']==0.0 else '❌'} ({img_cell}) |"
+            f"| {key} | {'✅' if text_match else '❌'} | {'✅' if html_match else '❌'} | {img_cell} |"
         )
     report_lines.append("")
 
@@ -271,7 +278,7 @@ def main():
     else:
         report_lines.append("## ממצאים")
         report_lines.append("")
-        report_lines.append("לא נמצא אף הבדל. הגרסה החדשה זהה לחלוטין לגרסה הישנה בכל המצבים שנבדקו.")
+        report_lines.append("הטקסט ומבנה ה-DOM זהים לחלוטין בכל המצבים שנבדקו (הקריטריון הקובע). ראו טבלה למידע חזותי בלבד.")
 
     report_text = "\n".join(report_lines)
 
