@@ -37,11 +37,14 @@ ATTR_NAMES = ["data-nii", "data-nii-key", "data-nii-calc", "data-nii-derived"]
 # תבניות ה-span האפשריות בקובץ. data-nii-key תמיד מלווה ב-data-nii-format.
 # data-nii עצמו יכול להופיע עם או בלי data-format נלווה (לדוגמה בקובץ
 # old_pension_income_test_full_guide.html) - הקבוצה השנייה אופציונלית.
+# data-nii-derived: אופציונלי גם כן data-nii-format נלווה - נתמך לקראת
+# התבנית האחידה החדשה לעמודי קבוצה ד עתידיים (ראו CLAUDE.md), אף שאף
+# קובץ קיים לא משתמש בזה עדיין.
 SPAN_PATTERNS = {
     "data-nii": re.compile(r'<span data-nii="([^"]+)"(?: data-format="([^"]+)")?>([^<]*)</span>'),
     "data-nii-key": re.compile(r'<span data-nii-key="([^"]+)" data-nii-format="([^"]+)">([^<]*)</span>'),
     "data-nii-calc": re.compile(r'<span data-nii-calc="([^"]+)">([^<]*)</span>'),
-    "data-nii-derived": re.compile(r'<span data-nii-derived="([^"]+)">([^<]*)</span>'),
+    "data-nii-derived": re.compile(r'<span data-nii-derived="([^"]+)"(?: data-nii-format="([^"]+)")?>([^<]*)</span>'),
 }
 
 
@@ -107,10 +110,20 @@ def sync_file(relpath: str, live_values: dict) -> list:
             return f'<span {attr}="{key}">{new_val}</span>'
         return replace
 
+    def replace_data_nii_derived(m):
+        key, fmt, old_val = m.group(1), m.group(2), m.group(3)
+        new_val = live_values.get("data-nii-derived", {}).get(key)
+        if new_val is None or new_val == old_val:
+            return m.group(0)
+        changes.append(("data-nii-derived", key, old_val, new_val))
+        if fmt:
+            return f'<span data-nii-derived="{key}" data-nii-format="{fmt}">{new_val}</span>'
+        return f'<span data-nii-derived="{key}">{new_val}</span>'
+
     text = SPAN_PATTERNS["data-nii"].sub(replace_data_nii, text)
     text = SPAN_PATTERNS["data-nii-key"].sub(replace_data_nii_key, text)
     text = SPAN_PATTERNS["data-nii-calc"].sub(replace_simple("data-nii-calc"), text)
-    text = SPAN_PATTERNS["data-nii-derived"].sub(replace_simple("data-nii-derived"), text)
+    text = SPAN_PATTERNS["data-nii-derived"].sub(replace_data_nii_derived, text)
 
     if changes:
         page_path.write_text(text, encoding="utf-8")

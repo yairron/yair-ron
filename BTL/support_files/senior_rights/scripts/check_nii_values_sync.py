@@ -43,7 +43,10 @@ NII_PATH = vrp.SENIOR_RIGHTS_DIR / "data" / "nii-constants.json"
 SPAN_NII = re.compile(r'<span data-nii="([^"]+)"(?: data-format="([^"]+)")?>([^<]*)</span>')
 SPAN_NII_KEY = re.compile(r'<span data-nii-key="([^"]+)" data-nii-format="([^"]+)">([^<]*)</span>')
 SPAN_NII_CALC = re.compile(r'<span data-nii-calc="([^"]+)">([^<]*)</span>')
-SPAN_NII_DERIVED = re.compile(r'<span data-nii-derived="([^"]+)">([^<]*)</span>')
+# data-nii-format אופציונלי - נתמך לקראת התבנית האחידה החדשה (ראו CLAUDE.md);
+# אף קובץ קיים לא משתמש בזה עדיין, אבל בלי התמיכה הזו כלי זה היה מפספס
+# בשקט כל עמוד עתידי שיאמץ את התבנית (בדיוק הבאג שכבר קרה עם data-nii).
+SPAN_NII_DERIVED = re.compile(r'<span data-nii-derived="([^"]+)"(?: data-nii-format="([^"]+)")?>([^<]*)</span>')
 
 # כללי עיצוב עבור data-nii עם data-format נלווה - מתועדים בנפרד לכל קובץ,
 # כי אין מוסכמה כלל-אתרית (כל קובץ עשוי לממש עיצוב אחוזים/אחר שונה
@@ -226,7 +229,11 @@ def main():
             mismatches.append(f"[data-nii-calc] {key}: בקובץ='{actual}' צפוי='{expected}'")
 
     for m in SPAN_NII_DERIVED.finditer(text):
-        key, actual = m.group(1), m.group(2)
+        # הקבוצה השנייה (data-nii-format) לא משמשת כאן לחישוב - הנוסחה
+        # המלאה (כולל עיצוב) מגיעה תמיד מ-FILE_SPECIFIC_DERIVED_RULES.
+        # היא נלכדת רק כדי שהביטוי הרגולרי לא יפספס בשקט תגים עתידיים
+        # שיכללו אותה (התבנית האחידה החדשה).
+        key, _fmt, actual = m.group(1), m.group(2), m.group(3)
         expected, reason = expected_calc(FILE_SPECIFIC_DERIVED_RULES, constants, key, relpath, "FILE_SPECIFIC_DERIVED_RULES")
         checked += 1
         if expected is None:
