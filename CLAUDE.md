@@ -26,7 +26,7 @@ python BTL/support_files/senior_rights/scripts/build_ai_summary.py
 ```
 python BTL/support_files/senior_rights/scripts/build_sitemap.py
 ```
-בונה מחדש את `BTL/sitemap.xml` עם כתובת מלאה לכל עמוד HTML תחת `BTL/senior_rights` ו-`BTL/new_immigrants` (כולל עמודים שלא ב-`ai-summary.txt` — מפת האתר היא לגילוי כללי, לא רק לתוכן שאומת). **יש להריץ מחדש בכל פעם שנוסף/מוסר עמוד.** מניח שהדומיין `https://yairron.com` הוא שורש הפרסום של `BTL` (בלי תחילית `/BTL/` בכתובת) — הנחה שנמסרה על ידי המשתמש, לא מאומתת מול הגדרות Netlify בפועל; אם זה מתברר כלא נכון יש לתקן את `DOMAIN` בסקריפט ולהריץ מחדש.
+בונה מחדש את `BTL/sitemap.xml` עם כתובת מלאה לכל עמוד HTML תחת `BTL/senior_rights` ו-`BTL/new_immigrants` (כולל עמודים שלא ב-`ai-summary.txt` — מפת האתר היא לגילוי כללי, לא רק לתוכן שאומת). **יש להריץ מחדש בכל פעם שנוסף/מוסר עמוד.** הדומיין `https://yairron.com` הוא שורש הפרסום של `BTL` (בלי תחילית `/BTL/` בכתובת) — מאושר על ידי המשתמש: `BTL` היא התיקייה הראשית המתפרסמת לציבור (בנפרד מ-`YR1`, שהיא פרטית לשימוש אישי בלבד).
 
 `BTL/robots.txt` — קובץ קבוע (לא סקריפט; לא צפוי להשתנות לעיתים קרובות) שמתיר סריקה כללית, חוסם את `support_files/`, ומפנה למפת האתר ולקובץ הריכוז.
 
