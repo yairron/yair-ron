@@ -28,7 +28,7 @@ from playwright.sync_api import sync_playwright  # noqa: E402
 if hasattr(sys.stdout, "reconfigure"):
     sys.stdout.reconfigure(encoding="utf-8")
 
-CONTENT_DIRS = ["senior_rights", "new_immigrants"]
+CONTENT_DIRS = ["senior_rights", "new_immigrants", "additional_guides/html"]
 OUTPUT_PATH = vrp.BTL_DIR / "ai-summary.txt"
 
 # סיווג מלא של כל קובצי התוכן הידועים באתר (מהמיפוי המפורט שכבר בוצע
@@ -65,6 +65,20 @@ KNOWN_FILES = {
     "senior_rights/questionnaire.html": ("exclude", "מנוע שאלונים - תוכן תלוי קלט משתמש"),
     "senior_rights/sampels.html": ("exclude", "לא מקושר מהאתר החי (קישור מוסתר בהערה ב-index.html)"),
     "new_immigrants/new_immigrants_full.html": ("exclude", "עמוד ניווט/תפריט, לא תוכן מדריך"),
+
+    # additional_guides - סיכומי PDF שהועברו מ-YR1/BTL (תוכן סטטי קבוע)
+    "additional_guides/html/amnot_binleumiot.html": ("include", "סיכום PDF - תוכן סטטי"),
+    "additional_guides/html/chovaat_hitatzbut.html": ("include", "סיכום PDF - תוכן סטטי"),
+    "additional_guides/html/gamlay_zikna.html": ("include", "סיכום PDF - תוכן סטטי"),
+    "additional_guides/html/hagdarat_tluim.html": ("include", "סיכום PDF - תוכן סטטי"),
+    "additional_guides/html/mekarim_meyuchadim.html": ("include", "סיכום PDF - תוכן סטטי"),
+    "additional_guides/html/nechut_mul_shairim.html": ("include", "סיכום PDF - תוכן סטטי"),
+    "additional_guides/html/shaagat_haari.html": ("include", "סיכום PDF - תוכן סטטי"),
+    "additional_guides/html/takrut_hachnasa.html": ("include", "סיכום PDF - תוכן סטטי"),
+    "additional_guides/html/tkufat_achshara.html": ("include", "סיכום PDF - תוכן סטטי"),
+    "additional_guides/html/yetzia_lachul.html": ("include", "סיכום PDF - תוכן סטטי"),
+    "additional_guides/html/additional_guides_index.html": ("exclude", "עמוד ניווט ל-PDF-ים בלבד, אין תוכן ייחודי"),
+    "additional_guides/html/index.html": ("exclude", "הפניה (redirect) בלבד"),
 }
 
 

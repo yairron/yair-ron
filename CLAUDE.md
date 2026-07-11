@@ -20,15 +20,21 @@ python BTL/support_files/senior_rights/scripts/update_nii_values.py
 ```
 python BTL/support_files/senior_rights/scripts/build_ai_summary.py
 ```
-בונה מחדש את `BTL/ai-summary.txt` — טקסט נקי (בלי HTML) מרוכז מכל העמודים שמסומנים כ-`"include"` בתוך `KNOWN_FILES` בסקריפט. הסקריפט סורק בפועל את `BTL/senior_rights` ו-`BTL/new_immigrants`, ומדפיס אזהרה מפורשת אם נמצא קובץ חדש שלא מסווג ב-`KNOWN_FILES`, או קובץ ברשימה שנמחק מהדיסק — **יש להריץ אותו ולבדוק את הפלט בכל פעם שנוסף/מוסר עמוד**, לא רק אחרי עדכון `nii-constants.json`. הערה: `BTL/files/BTL_CLEANED` הישן הוא תוצר חד-פעמי וידני מלפני שהסקריפט הזה נבנה — לא מתעדכן אוטומטית ואין להסתמך עליו כמשקף את המצב הנוכחי.
+בונה מחדש את `BTL/ai-summary.txt` — טקסט נקי (בלי HTML) מרוכז מכל העמודים שמסומנים כ-`"include"` בתוך `KNOWN_FILES` בסקריפט. הסקריפט סורק בפועל את `BTL/senior_rights`, `BTL/new_immigrants`, ו-`BTL/additional_guides/html`, ומדפיס אזהרה מפורשת אם נמצא קובץ חדש שלא מסווג ב-`KNOWN_FILES`, או קובץ ברשימה שנמחק מהדיסק — **יש להריץ אותו ולבדוק את הפלט בכל פעם שנוסף/מוסר עמוד**, לא רק אחרי עדכון `nii-constants.json`. הערה: `BTL/files/BTL_CLEANED` הישן הוא תוצר חד-פעמי וידני מלפני שהסקריפט הזה נבנה — לא מתעדכן אוטומטית ואין להסתמך עליו כמשקף את המצב הנוכחי.
 
 **קובץ מפת אתר:**
 ```
 python BTL/support_files/senior_rights/scripts/build_sitemap.py
 ```
-בונה מחדש את `BTL/sitemap.xml` עם כתובת מלאה לכל עמוד HTML תחת `BTL/senior_rights` ו-`BTL/new_immigrants` (כולל עמודים שלא ב-`ai-summary.txt` — מפת האתר היא לגילוי כללי, לא רק לתוכן שאומת). **יש להריץ מחדש בכל פעם שנוסף/מוסר עמוד.** הדומיין `https://yairron.com` הוא שורש הפרסום של `BTL` (בלי תחילית `/BTL/` בכתובת) — מאושר על ידי המשתמש: `BTL` היא התיקייה הראשית המתפרסמת לציבור (בנפרד מ-`YR1`, שהיא פרטית לשימוש אישי בלבד).
+בונה מחדש את `BTL/sitemap.xml` עם כתובת מלאה לכל עמוד HTML תחת `BTL/senior_rights`, `BTL/new_immigrants`, ו-`BTL/additional_guides/html` (כולל עמודים שלא ב-`ai-summary.txt` — מפת האתר היא לגילוי כללי, לא רק לתוכן שאומת). **יש להריץ מחדש בכל פעם שנוסף/מוסר עמוד.** הדומיין `https://yairron.com` הוא שורש הפרסום של `BTL` (בלי תחילית `/BTL/` בכתובת) — מאושר על ידי המשתמש: `BTL` היא התיקייה הראשית המתפרסמת לציבור (בנפרד מ-`YR1`, שהיא פרטית לשימוש אישי בלבד).
 
 `BTL/robots.txt` — קובץ קבוע (לא סקריפט; לא צפוי להשתנות לעיתים קרובות) שמתיר סריקה כללית, חוסם את `support_files/`, ומפנה למפת האתר ולקובץ הריכוז.
+
+## תיקיית BTL/additional_guides — סיכומי PDF שהועברו מ-YR1
+
+תיקייה זו מכילה 10 עמודי סיכום (`amnot_binleumiot.html`, `chovaat_hitatzbut.html`, `gamlay_zikna.html`, `hagdarat_tluim.html`, `mekarim_meyuchadim.html`, `nechut_mul_shairim.html`, `shaagat_haari.html`, `takrut_hachnasa.html`, `tkufat_achshara.html`, `yetzia_lachul.html`) שהועברו מהתיקייה הפרטית `YR1/BTL` לפרסום הציבורי, בתוספת עמוד ניווט ל-PDF-ים (`additional_guides_index.html`, לשעבר `YR_MAIN.HTML`) וקובץ הפניה (`index.html`). כל 12 הקבצים כלולים כעת ב-`build_ai_summary.py` וב-`build_sitemap.py` (סעיף קודם), וקיבלו `meta description`.
+
+**חשוב — פער שטרם טופל:** בניגוד לכל שאר האתר, **לאף אחד מ-12 הקבצים האלה אין שום מנגנון JS שמחשב ערכים** — הם טקסט קבוע גרידא. שישה מהם מכילים נתונים כספיים שכן נגזרים מביטוח לאומי: `takrut_hachnasa.html`, `nechut_mul_shairim.html`, `gamlay_zikna.html`, `amnot_binleumiot.html`, `mekarim_meyuchadim.html`, `hagdarat_tluim.html`. **לכן: אחרי עדכון עתידי של `nii-constants.json`, שישה הקבצים האלה לא יתעדכנו על ידי אף אחד משלושת התהליכים בסעיף הראשון** — אין עדיין מנגנון תיוג/סנכרון בנוי בשבילם (עבודה עתידית מתוכננת, טרם בוצעה). `shaagat_haari.html` יוצא מהכלל במכוון — הסכומים בו החלטת ממשלה חד-פעמית, לא נגזרים מביטוח לאומי, ואין צורך במנגנון עדכון בשבילו.
 
 ## עדכון "מנוע הליבה" — עמודים שתוכנם הוטמע מריצת דפדפן אמיתי
 

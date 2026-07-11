@@ -27,7 +27,7 @@ if hasattr(sys.stdout, "reconfigure"):
     sys.stdout.reconfigure(encoding="utf-8")
 
 DOMAIN = "https://yairron.com"
-CONTENT_DIRS = ["senior_rights", "new_immigrants"]
+CONTENT_DIRS = ["senior_rights", "new_immigrants", "additional_guides/html"]
 OUTPUT_PATH = vrp.BTL_DIR / "sitemap.xml"
 
 
