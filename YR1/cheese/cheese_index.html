@@ -261,6 +261,87 @@
             margin: 0;
         }
 
+        /* Nested (sub) accordions, e.g. inside "כלי עזר" */
+        .sub-accordion {
+            margin: 10px 0;
+            border: 1px solid #E8D5BF;
+            border-radius: 10px;
+            overflow: hidden;
+            background: #FDF8F0;
+        }
+
+        .sub-accordion-header {
+            padding: 13px 18px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background: linear-gradient(135deg, #FDF8F0, #F5E9D4);
+            transition: all 0.3s;
+            user-select: none;
+        }
+
+        .sub-accordion-header:hover {
+            background: linear-gradient(135deg, #F5E9D4, #EDD8BA);
+        }
+
+        .sub-accordion-title {
+            font-size: 1rem;
+            font-weight: 700;
+            color: var(--primary);
+            flex: 1;
+        }
+
+        .sub-accordion-arrow {
+            font-size: 0.9rem;
+            transition: transform 0.3s;
+            color: var(--secondary);
+            flex-shrink: 0;
+        }
+
+        .sub-accordion.active > .sub-accordion-header .sub-accordion-arrow {
+            transform: rotate(180deg);
+        }
+
+        .sub-accordion-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.35s ease;
+        }
+
+        .sub-accordion.active > .sub-accordion-content {
+            max-height: 6000px;
+        }
+
+        .sub-accordion-body {
+            padding: 14px 18px;
+            background: white;
+            font-size: 0.98rem;
+            line-height: 1.8;
+            color: #5C3D1E;
+        }
+
+        .sub-accordion-body p {
+            margin-bottom: 12px;
+        }
+
+        .sub-accordion-body p:last-child {
+            margin-bottom: 0;
+        }
+
+        .sub-accordion-body ol {
+            padding-inline-start: 20px;
+            margin: 0;
+        }
+
+        .sub-accordion-body ol li {
+            margin-bottom: 14px;
+        }
+
+        .sub-accordion-body ol li:last-child {
+            margin-bottom: 0;
+        }
+
         footer {
             text-align: center;
             margin-top: 60px;
@@ -322,7 +403,81 @@
                 </div>
                 <div class="accordion-content">
                     <div class="accordion-links">
-                        <!-- הוסף כאן קישורים לכלי עזר -->
+                        <div class="sub-accordion">
+                            <div class="sub-accordion-header">
+                                <div class="sub-accordion-title">📘 מדריך חלב מפוסטר וחלב מפוסטר על</div>
+                                <span class="sub-accordion-arrow">▼</span>
+                            </div>
+                            <div class="sub-accordion-content">
+                                <div class="sub-accordion-body">
+
+                                    <div class="sub-accordion">
+                                        <div class="sub-accordion-header">
+                                            <div class="sub-accordion-title">📌 ההבדלים הטכנולוגיים בין חלב מפוסטר לחלב מפוסטר-על</div>
+                                            <span class="sub-accordion-arrow">▼</span>
+                                        </div>
+                                        <div class="sub-accordion-content">
+                                            <div class="sub-accordion-body">
+                                                <p><strong>חלב מפוסטר רגיל (HTST):</strong> מחומם לטמפרטורה של כ-72°C עד 75°C למשך 15–20 שניות. תהליך זה מחסל חיידקים פתוגנים (מחוללי מחלות) אך שומר על המבנה המקורי והטבעי של חלבוני החלב (במיוחד קזאין וחלבוני מי-גבינה).</p>
+                                                <p><strong>חלב מפוסטר-על (ESL):</strong> מחומם לטמפרטורה גבוהה של כ-125°C עד 130°C למשך שניות בודדות. החימום האינטנסיבי מחסל כמעט לחלוטין את כל המיקרואורגניזמים ומאריך את חיי המדף של האריזה הסגורה במקרר לעד חודשיים. עם זאת, החימום הגבוה גורם לשינוי מבני בלתי הפיך בחלבונים (דנטורציה).</p>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="sub-accordion">
+                                        <div class="sub-accordion-header">
+                                            <div class="sub-accordion-title">📌 חוק הזהב של הגיבון הביתי והתנהגות החלבונים</div>
+                                            <span class="sub-accordion-arrow">▼</span>
+                                        </div>
+                                        <div class="sub-accordion-content">
+                                            <div class="sub-accordion-body">
+                                                <p><strong>גיבון אנזימטי (רנט):</strong> כדי להכין גבינות יציבות, קשות או חצי-קשות, אנו זקוקים לחלבוני קזאין שלמים שיכולים להיקשר זה לזה וליצור רשת צפופה ("קריש") הלוכדת את השומן. בחלב מפוסטר-על, חלבוני מי-הגבינה שנפגעו מהחימום נצמדים לקזאין וחוסמים אותו פיזית מלהתגבש. לכן, חלב מפוסטר-על ייכשל לחלוטין בכל מתכון הדורש אנזים מקריש.</p>
+                                                <p><strong>גיבון חומצי בחימום גבוה:</strong> הדרך היחידה להפיק גבינה מחלב מפוסטר-על היא באמצעות הוספת חומצה ישירה (חומץ, לימון) בטמפרטורה גבוהה (סביב 90°C). במצב זה החלבונים שקעו ממילא, והחומצה גורמת להם לצוף כפתיתים עדינים (כמו ריקוטה או פאניר).</p>
+                                                <p><strong>הכנת יוגורט:</strong> כאן המצב הפוך! ביוגורט אנו רוצים דנטורציה של החלבונים, כיוון שהחלבונים הפתוחים קושרים מים בצורה טובה יותר ומעניקים מרקם סמיך וחלק. לכן חלב מפוסטר-על מושלם ליוגורט.</p>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="sub-accordion">
+                                        <div class="sub-accordion-header">
+                                            <div class="sub-accordion-title">📌 התנהגות המוצרים לאחר פתיחת האריזה</div>
+                                            <span class="sub-accordion-arrow">▼</span>
+                                        </div>
+                                        <div class="sub-accordion-content">
+                                            <div class="sub-accordion-body">
+                                                <p>למרות שחלב מפוסטר-על נשמר זמן רב כשהוא סגור, ברגע פתיחת האריזה ההבדל בינו לבין חלב רגיל נעלם. החלב נחשף לחיידקים בסביבה הביתית, ולכן שני סוגי החלב יישמרו במקרר לאחר הפתיחה למשך 3–5 ימים בלבד.</p>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="sub-accordion">
+                                        <div class="sub-accordion-header">
+                                            <div class="sub-accordion-title">🧀 ניתוח והתאמת רשימת גבינות לסוג החלב</div>
+                                            <span class="sub-accordion-arrow">▼</span>
+                                        </div>
+                                        <div class="sub-accordion-content">
+                                            <div class="sub-accordion-body">
+                                                <p>להלן הפירוט עבור כל גבינה, המציין האם היא מתאימה לחלב "מפוסטר-על" או מחייבת חלב "מפוסטר רגיל", כולל הסבר קצר.</p>
+                                                <ol>
+                                                    <li><strong>גבינה לבנה (למריחה או בחריץ)</strong> — סוג החלב הנדרש: רק מפוסטר רגיל.<br>הסבר: המתכון מבוסס על שלב הבשלה ארוך והקרשה בעזרת אנזים בטמפרטורת החדר (25°C). חלב מפוסטר-על לא יגיב לאנזים בטמפרטורה זו ולא ייווצר קריש שיאפשר סינון וניקוז.</li>
+                                                    <li><strong>גבינה צ'רקסית / פאניר</strong> — סוג החלב הנדרש: מתאים גם למפוסטר-על (וגם למפוסטר רגיל).<br>הסבר: מתכון זה אינו משתמש באנזים, אלא מבוסס על חימום לטמפרטורה גבוהה מאוד (90–93°C) והחמצה ישירה בעזרת חומץ/לימון ויוגורט. חלב מפוסטר-על יניב כאן פתיתי גבן מצוינים שיעברו דחיסה בקלות.</li>
+                                                    <li><strong>יוגורט</strong> — סוג החלב הנדרש: מתאים מאוד למפוסטר-על (ואף מומלץ!).<br>הסבר: תהליך הפיסטור-על פותח את החלבונים מראש, מה שחוסך את שלב החימום הביתי המקדים ל-88°C. השימוש במפוסטר-על יניב יוגורט סמיך, עשיר ופחות מימי.</li>
+                                                    <li><strong>גבינת לאבנה</strong> — סוג החלב הנדרש: מתאים גם למפוסטר-על.<br>הסבר: לאבנה זו מבוססת בעיקרה על תסיסה תרמופילית של יוגורט (הבשלה מקדימה). למרות שיש שימוש ב-1/3 טיפת אנזים, החמיצות הגבוהה והטמפרטורה (40–45°C) יחד עם סינון ממושך בשק טפטוף יאפשרו לחלב מפוסטר-על להגיע למרקם הלאבנה המבוקש.</li>
+                                                    <li><strong>קפיר</strong> — סוג החלב הנדרש: רק מפוסטר רגיל.<br>הסבר: קפיר מבוסס על תסיסה של מושבת חיידקים ושמרים (גרעיני קפיר) בטמפרטורת החדר ללא חימום. מושבת הקפיר זקוקה לחלבון טבעי ולא פגוע ולסביבה מזינה שאינה סטרילית בצורה קיצונית כדי להתפתח ולצוף כראוי.</li>
+                                                    <li><strong>גבינת ריקוטה</strong> — סוג החלב הנדרש: מתאים באופן מושלם למפוסטר-על (וגם למפוסטר רגיל).<br>הסבר: הריקוטה מופקת ממי גבינה וחלב שמחוממים ל-90°C עם חומר החמצה. החלבונים המצויים במפוסטר-על יעברו אגרגציה (הצטופפות) נהדרת ויצופו כ"ענני גבן" רכים ועדינים.</li>
+                                                    <li><strong>גבינה צפתית</strong> — סוג החלב הנדרש: רק מפוסטר רגיל.<br>הסבר: גבינה צפתית קלאסית דורשת קריש חזק, חלק וגמיש שאפשר לחתוך לקוביות מדויקות, לערבב בלי שיפתת ולהפוך בתבניות סלסלה. חלב מפוסטר-על יתפרק בערבוב ויהפוך לפירורים שיברחו מחורי התבנית.</li>
+                                                    <li><strong>גבינת חלומי</strong> — סוג החלב הנדרש: רק מפוסטר רגיל (האיסור המוחלט ביותר).<br>הסבר: חלומי דורשת את הרשת החלבונית החזקה ביותר כדי לשרוד את שלב החליטה במים רותחים ואת הטיגון במחבת לאחר מכן. חלב מפוסטר-על יימס וייעלם לחלוטין בתוך סיר המים הרותחים בשלב החליטה.</li>
+                                                    <li><strong>גבינה ערבית (ג'יבנה ערבייה)</strong> — סוג החלב הנדרש: רק מפוסטר רגיל.<br>הסבר: דומה מאוד לחלומי ולצפתית – מבוססת על גיבון אנזימטי מהיר, כבישה חזקה במעטפת בד וחיתוך לקוביות שטוחות. מחייבת מבנה חלבון שמור שקיים רק בפיסטור רגיל.</li>
+                                                    <li><strong>מוצרלה ביולוגית</strong> — סוג החלב הנדרש: רק מפוסטר רגיל.<br>הסבר: מתיחת הגבן למרקם של "בצק" אלסטי וחלק אפשרית אך ורק אם חלבוני הקזאין נקשרו בצורה מושלמת בשלב הגיבון האנזימטי והגיעו לרמת החומציות המדויקת. חלב מפוסטר-על לא יימתח לעולם ויהפוך לעיסה פירורית במים החמים.</li>
+                                                    <li><strong>מוצרלה כימית</strong> — סוג החלב הנדרש: רק מפוסטר רגיל.<br>הסבר: למרות שההחמצה כאן מהירה יותר ונעשית באמצעות מלח לימון, היא עדיין מסתמכת על אנזים ועל תהליך מתיחה קפדני במים חמים. הפיסטור-על מונע את אלסטיות החלבונים הנחוצה למתיחה.</li>
+                                                </ol>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
