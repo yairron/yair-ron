@@ -26,9 +26,11 @@ python BTL/support_files/senior_rights/scripts/build_ai_summary.py
 ```
 python BTL/support_files/senior_rights/scripts/build_sitemap.py
 ```
-בונה מחדש את `BTL/sitemap.xml` עם כתובת מלאה לכל עמוד HTML תחת `BTL/senior_rights`, `BTL/new_immigrants`, ו-`BTL/additional_guides/html` (כולל עמודים שלא ב-`ai-summary.txt` — מפת האתר היא לגילוי כללי, לא רק לתוכן שאומת). **יש להריץ מחדש בכל פעם שנוסף/מוסר עמוד.** הדומיין `https://yairron.com` הוא שורש הפרסום של `BTL` (בלי תחילית `/BTL/` בכתובת) — מאושר על ידי המשתמש: `BTL` היא התיקייה הראשית המתפרסמת לציבור (בנפרד מ-`YR1`, שהיא פרטית לשימוש אישי בלבד).
+בונה מחדש את `BTL/sitemap.xml` עם כתובת מלאה לכל עמוד HTML תחת `BTL/senior_rights`, `BTL/new_immigrants`, ו-`BTL/additional_guides/html` (כולל עמודים שלא ב-`ai-summary.txt` — מפת האתר היא לגילוי כללי, לא רק לתוכן שאומת). **יש להריץ מחדש בכל פעם שנוסף/מוסר עמוד.**
 
-`BTL/robots.txt` — קובץ קבוע (לא סקריפט; לא צפוי להשתנות לעיתים קרובות) שמתיר סריקה כללית, חוסם את `support_files/`, ומפנה למפת האתר ולקובץ הריכוז.
+**חשוב — תוקן ב-12.07.2026 אחרי אימות ישיר מול השרת החי (curl, לא הנחה):** בניגוד למה שהיה מתועד כאן קודם, `https://yairron.com` **אינו** שורש הפרסום של `BTL` ישירות. הכתובת האמיתית דורשת תחילית `/btl/` (אותיות קטנות דווקא — יש הפניית 301 מ-`/BTL/` עם אותיות גדולות), ו-Netlify Pretty URLs מוריד אוטומטית את סיומת `.html` מכל כתובת (הכתובת עם הסיומת עדיין עובדת דרך הפניה, אבל הכתובת הקנונית שאין לה הפניה כלל היא בלי הסיומת). `build_sitemap.py` כבר בנוי לפי זה: `https://yairron.com/btl/<נתיב>` בלי `.html`, ועמוד הבית עצמו הוא `https://yairron.com/btl/` (לא `btl/index`). כל כתובת בקובץ `sitemap.xml` הנוכחי אומתה בפועל (200) מול השרת.
+
+`/robots.txt` — קובץ קבוע בשורש הריפו (לא בתוך `BTL/`!) — לא סקריפט, לא צפוי להשתנות לעיתים קרובות. **חובה שישב בשורש הריפו דווקא**, כי זוחלים בודקים רק את `domain.com/robots.txt` בשורש האמיתי של הדומיין — קובץ בתוך `BTL/robots.txt` (שם היה יושב במקור) לעולם לא היה מתגלה, גם אם תוכנו נכון. מתיר סריקה כללית, חוסם את `/yr1/`, `/mda/`, ו-`/btl/support_files/`, ומפנה למפת האתר (`https://yairron.com/btl/sitemap.xml`) ולקובץ הריכוז (`https://yairron.com/btl/ai-summary.txt`).
 
 ## תיקיית BTL/additional_guides — סיכומי PDF שהועברו מ-YR1
 

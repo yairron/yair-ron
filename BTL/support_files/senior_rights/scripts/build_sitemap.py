@@ -6,9 +6,13 @@ build_sitemap.py
 באתר (עמוד הבית, senior_rights, new_immigrants). לא כולל: support_files,
 קבצי נתונים גולמיים (js/json), שאלוני JSON.
 
-מניח ש-BTL הוא שורש הפרסום של האתר (כפי ש-netlify.toml שבתוכו כבר
-קובע publish="." יחסית למיקומו) - כלומר BTL/index.html מתפרסם ב-
-DOMAIN/index.html, בלי תחילית "/BTL/" בכתובת.
+אומת ישירות מול השרת החי (12.07.2026, curl גולמי, לא הנחה): BTL כן
+מתפרסם תחת תחילית "/btl/" (אותיות קטנות - יש הפניית 301 מ-"/BTL/" עם
+אותיות גדולות), ו-Netlify Pretty URLs מוריד אוטומטית את סיומת ".html"
+(כתובת עם הסיומת עדיין עובדת דרך הפניית 301, אבל הכתובת הקנונית שאין
+לה הפניה כלל היא בלי הסיומת). לכן כל הכתובות בקובץ הזה נבנות עם "btl/"
+ובלי ".html". יוצא מן הכלל: עמוד הבית (index.html) מתפרסם ב-"btl/"
+עצמו (עם / בסוף) - לא ב-"btl/index" (זו כן עוברת הפניה).
 
 יש להריץ מחדש בכל פעם שמוסיפים או מסירים עמוד ציבורי מהאתר.
 
@@ -42,6 +46,15 @@ def discover_public_pages() -> list:
     return pages
 
 
+def to_canonical_url(relpath: str) -> str:
+    """בונה את הכתובת הקנונית (בלי הפניה) לפי מה שאומת מול השרת החי:
+    תחילית btl/ (אותיות קטנות), בלי סיומת .html - חוץ מעמוד הבית עצמו."""
+    if relpath == "index.html":
+        return f"{DOMAIN}/btl/"
+    without_ext = relpath[:-len(".html")] if relpath.endswith(".html") else relpath
+    return f"{DOMAIN}/btl/{without_ext}"
+
+
 def build_sitemap(pages: list) -> str:
     today = date.today().isoformat()
     lines = [
@@ -49,7 +62,7 @@ def build_sitemap(pages: list) -> str:
         '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">',
     ]
     for relpath in pages:
-        url = f"{DOMAIN}/{relpath}"
+        url = to_canonical_url(relpath)
         lines.append("  <url>")
         lines.append(f"    <loc>{url}</loc>")
         lines.append(f"    <lastmod>{today}</lastmod>")

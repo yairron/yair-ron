@@ -1,0 +1,10 @@
+User-agent: *
+Allow: /
+Disallow: /yr1/
+Disallow: /mda/
+Disallow: /btl/support_files/
+
+Sitemap: https://yairron.com/btl/sitemap.xml
+
+# ריכוז טקסט נקי של תוכן המדריכים באתר, לשימוש כלי בינה מלאכותית:
+# https://yairron.com/btl/ai-summary.txt
