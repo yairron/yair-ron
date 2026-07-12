@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+  <meta name="description" content="מדריך להגדרת תקופת אכשרה (תקופת הביטוח המינימלית) הנדרשת לזכאות לקצבת אזרח ותיק.">
+<title>תקופת אכשרה לקצבת אזרח ותיק</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Assistant:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{--primary:#2E5B8A;--secondary:#4A90B5;--accent:#E8A840;--success:#2E7D32;--danger:#C62828;--light:#F5F9FC;--dark:#1A3A52;--text:#2C3E50}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Assistant','Segoe UI',Tahoma,sans-serif;background:linear-gradient(135deg,#667eea 0%,#764ba2 50%,#f093fb 100%);min-height:100vh;padding:20px;direction:rtl}
+.container{max-width:1000px;margin:0 auto}
+header{text-align:center;margin-bottom:30px}
+.nav-bar{display:flex;justify-content:space-between;align-items:center;margin-bottom:20px;gap:10px;flex-wrap:wrap}
+.btn-nav{background:rgba(255,255,255,.25);backdrop-filter:blur(10px);padding:10px 20px;border-radius:20px;color:white;text-decoration:none;font-size:1rem;font-weight:700;border:none;cursor:pointer;transition:all .3s;font-family:'Assistant',sans-serif;box-shadow:0 4px 12px rgba(0,0,0,.2)}
+.btn-nav:hover{background:rgba(255,255,255,.4);transform:translateY(-2px)}
+.btn-hamburger{font-size:1.4rem;padding:8px 16px}
+h1{font-size:2.2rem;font-weight:800;color:white;text-shadow:2px 3px 10px rgba(0,0,0,.3);margin-bottom:10px}
+.accordions-container{margin-bottom:40px}
+.accordion{background:white;margin-bottom:0;box-shadow:0 8px 25px rgba(0,0,0,.2);overflow:hidden;border-bottom:1px solid rgba(0,0,0,.1)}
+.accordion:first-of-type{border-radius:24px 24px 0 0}
+.accordion:last-of-type{border-radius:0 0 24px 24px;border-bottom:none}
+.accordion:only-child{border-radius:24px}
+.accordion-header{padding:18px 30px;cursor:pointer;display:flex;align-items:center;gap:15px;background:linear-gradient(135deg,var(--primary),var(--secondary));color:white;transition:all .3s;user-select:none;text-decoration:none}
+.accordion-header:hover{background:linear-gradient(135deg,var(--secondary),var(--primary))}
+.accordion-title{font-size:1.5rem;font-weight:800;flex:1;margin:0;color:white}
+.accordion-arrow{font-size:1.2rem;transition:transform .3s;flex-shrink:0;color:white}
+.accordion.active .accordion-arrow{transform:rotate(180deg)}
+.accordion-content{max-height:0;overflow:hidden;transition:max-height .4s ease}
+.accordion.active .accordion-content{max-height:10000px}
+.accordion-body{padding:25px 30px;font-size:1.05rem;line-height:1.9;color:#546E7A}
+.accordion-body p{margin:10px 0}
+.accordion-body ul{list-style:none;padding:0;margin:10px 0}
+.accordion-body li{padding:8px 30px 8px 0;border-bottom:1px solid #E0E7EE;position:relative}
+.accordion-body li:last-child{border-bottom:none}
+.accordion-body li::before{content:'←';position:absolute;right:0;color:var(--secondary);font-weight:bold}
+.intro-section{padding:20px 30px;background:rgba(255,255,255,.9);border-radius:12px;margin-bottom:15px;color:#546E7A;line-height:1.8}
+.intro-section p{margin:8px 0}
+.sub-accordion{margin:12px 0;border:1px solid #E0E7EE;border-radius:10px;overflow:hidden;background:#F8FAFB}
+.sub-accordion-header{padding:14px 20px;cursor:pointer;display:flex;align-items:center;justify-content:space-between;background:linear-gradient(135deg,#F0F4F8,#E8EEF4);transition:all .3s;user-select:none}
+.sub-accordion-header:hover{background:linear-gradient(135deg,#E8EEF4,#DCE5ED)}
+.sub-accordion-title{font-size:1.05rem;font-weight:700;color:var(--primary);flex:1}
+.sub-accordion-arrow{font-size:.9rem;transition:transform .3s;color:var(--secondary)}
+.sub-accordion.active>.sub-accordion-header .sub-accordion-arrow{transform:rotate(180deg)}
+.sub-accordion-content{max-height:0;overflow:hidden;transition:max-height .4s ease}
+.sub-accordion.active>.sub-accordion-content{max-height:5000px}
+.sub-accordion-body{padding:15px 20px;background:white;font-size:1rem;line-height:1.8;color:#546E7A}
+.sub-accordion-body p{margin:8px 0}
+.sub-accordion-body ul{list-style:none;padding:0;margin:8px 0}
+.sub-accordion-body li{padding:6px 25px 6px 0;border-bottom:1px solid #EEF2F5;position:relative}
+.sub-accordion-body li:last-child{border-bottom:none}
+.sub-accordion-body li::before{content:'←';position:absolute;right:0;color:var(--secondary)}
+.sub-accordion[data-level="4"] .sub-accordion-header{background:linear-gradient(135deg,#E3F2FD,#BBDEFB)}
+.sub-accordion[data-level="5"] .sub-accordion-header{background:linear-gradient(135deg,#E8F5E9,#C8E6C9)}
+.side-menu-overlay{position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,.5);z-index:998;display:none}
+.side-menu-overlay.open{display:block}
+.side-menu{position:fixed;top:0;right:-320px;width:300px;max-width:90vw;height:100%;background:white;z-index:999;transition:right .3s ease;overflow-y:auto;box-shadow:-5px 0 20px rgba(0,0,0,.3)}
+.side-menu.open{right:0}
+.side-menu-header{padding:20px;background:linear-gradient(135deg,var(--primary),var(--secondary));color:white;display:flex;align-items:center;justify-content:space-between}
+.side-menu-header h3{margin:0;font-size:1.2rem}
+.side-menu-close{background:none;border:none;color:white;font-size:1.5rem;cursor:pointer}
+.side-menu ul{list-style:none;padding:10px 0}
+.side-menu ul li a{display:block;padding:12px 20px;color:var(--text);text-decoration:none;font-size:.95rem;font-weight:600;border-bottom:1px solid #E0E7EE;transition:background .2s}
+.side-menu ul li a:hover,.side-menu ul li a.current{background:var(--light);color:var(--primary)}
+footer{text-align:center;margin-top:30px;padding:20px;color:rgba(255,255,255,.85);font-size:.9rem}
+@media(max-width:768px){h1{font-size:1.6rem}.accordion-header{padding:15px 20px}.accordion-title{font-size:1.1rem}.accordion-body{padding:15px}}
+</style>
+</head>
+<body>
+<div class="side-menu-overlay" id="menuOverlay"></div>
+<nav class="side-menu" id="sideMenu">
+<div class="side-menu-header"><h3>📂 מסמכים</h3><button class="side-menu-close" onclick="closeMenu()">✕</button></div>
+<ul><li><a href="additional_guides_index.html">🏠 דף ראשי</a></li><li><a href="shaagat_haari.html">🦁 דו"ח זכויות — מבצע שאגת הארי</a></li>
+<li><a href="mekarim_meyuchadim.html">⚠️ מקרים מיוחדים בגמלאות ביטוח לאומי</a></li>
+<li><a href="amnot_binleumiot.html">🌍 אמנות בינלאומיות לביטחון סוציאלי</a></li>
+<li><a href="gamlay_zikna.html">🏠 גמלת זיקנה מיוחדת לעולים ותושבים חוזרים</a></li>
+<li><a href="hagdarat_tluim.html">👨‍👩‍👧 הגדרת תלויים בקצבת זקנה וקצבת שאירים</a></li>
+<li><a href="chovaat_hitatzbut.html">💼 השלמת הכנסה וחובת ההתייצבות בשירות התעסוקה</a></li>
+<li><a href="yetzia_lachul.html">✈️ יציאה לחו"ל והשפעתה על קצבת זיקנה והשלמת הכנסה</a></li>
+<li><a href="tkufat_achshara.html" class="current">📅 תקופת אכשרה לקצבת אזרח ותיק</a></li>
+<li><a href="nechut_mul_shairim.html">⚖️ בחירה בין קצבת נכות לקצבת שאירים</a></li>
+<li><a href="takrut_hachnasa.html">💰 תקרות הכנסה לקצבת אזרח ותיק חלקית</a></li></ul>
+</nav>
+<div class="container">
+<div class="nav-bar">
+<a href="additional_guides_index.html" class="btn-nav">🏠 דף ראשי</a>
+<button onclick="history.back()" class="btn-nav">← חזרה</button>
+<button onclick="openMenu()" class="btn-nav btn-hamburger">☰</button>
+</div>
+<header><h1>📅 תקופת אכשרה לקצבת אזרח ותיק</h1></header>
+<div class="accordions-container"><div class="intro-section"><p>מדריך מפורט ומעודכן <strong>)תקופת אכשרה לקצבת אזרח ותיק (זקנה</strong></p><p>מבוסס על נתוני אתר המוסד לביטוח לאומי | עודכן בהתאם לנתונים הרשמיים</p><p>.תקופת אכשרה היא תקופת הביטוח המינימלית שבה אדם חייב להיות מבוטח בביטוח לאומי כדי להיות זכאי לקצבה</p><p>חישוב התקופה שונה מהותית .בין גברים לנשים ובין מסלולי הביטוח השונים</p><p>:כדי להיות זכאי לקצבה מגיל הפרישה, על המבוטח לעמוד באחד מהתנאים הבאים</p><p><strong>מסלול60</strong> <strong>חודשים</strong> צבירת60 חודשי ביטוח בתוך10 .השנים האחרונות שקדמו לגיל הפרישה</p></div><div class="accordion" id="acc-0"><div class="accordion-header" onclick="toggleAcc(this)"><h2 class="accordion-title">מסלול 144 חודשים צבירת144 .חודשי ביטוח בסך הכל במהלך החיים</h2><span class="accordion-arrow">▼</span></div><div class="accordion-content"><div class="accordion-body"></div></div></div><div class="accordion" id="acc-1"><div class="accordion-header" onclick="toggleAcc(this)"><h2 class="accordion-title">מסלול הרוב</h2><span class="accordion-arrow">▼</span></div><div class="accordion-content"><div class="accordion-body"><p>לפחות60 חודשי ביטוח, ובתנאי שמספר החודשים שבהם המבוטח היה מבוטח בביטוח זקנה, מיום שנעשה תושב ישראל לראשונה, גדול ממספר</p><p>.החודשים שבהם לא היה מבוטח .מסלול זה רלוונטי בעיקר למי ששהה בחו&quot;ל תקופות ארוכות או עלה לארץ במהלך חייו</p><ul><li>⚠ <strong>הע ר ה חשובה :</strong> מסלול &quot;הרוב&quot; אינו פטור מ - 60 חודשי ביטוח— הוא דורש לפחות60 חודשים, אך מאפשר לצבור אותם</li></ul><p>.בצורה גמישה יותר ביחס לתקופת התושבות הכוללת</p></div></div></div><div class="accordion" id="acc-2"><div class="accordion-header" onclick="toggleAcc(this)"><h2 class="accordion-title">מסלול2 — אישה מבוטחת / עובדת מסלול1 — אישה המבוטחת כעקרת בית</h2><span class="accordion-arrow">▼</span></div><div class="accordion-content"><div class="accordion-body"><p><strong>:כוללת</strong> • נשים שעבדו כשכירות או עצמאיות— ללא קשר</p><p>למצב משפחתי • רווקה או גרושה— עובדת או לא עובדת</p><ul><li>• אלמנה שאינה מקבלת קצבת שאירים— עובדת או</li></ul><p>לא עובדת</p><ul><li>• עגונה— עובדת או לא עובדת • אישה נשואה לבן זוג שאינו מבוטח בביטוח זקנה</li></ul><p>— עובדת או לא עובדת</p><div class="sub-accordion" data-level="4"><div class="sub-accordion-header"><div class="sub-accordion-title">:זכאות</div><span class="sub-accordion-arrow">▼</span></div><div class="sub-accordion-content"><div class="sub-accordion-body"><p><strong>:כוללת</strong> • אישה נשואה (או ידועה בציבור) שבן זוגה מבוטח</p><p>בביטוח זקנה, והיא עצמה אינה עובדת כשכירה או</p><p>עצמאית</p><p><strong>:זכאות</strong> &quot;אם לא צברה תקופת אכשרה כ&quot;עובדת מבוטחת</p><p>(מסלול2 ) — תקבל קצבה רק מגיל הזכאות</p><p>( המוחלט70 :), לאחר שצברה אחת מאלה60</p><p>חודשי ביטוח ב- 10 השנים שקדמו לגיל70 ; 144</p><p>חודשי ביטוח; לפחות60 חודשים ומספרם עולה על</p><p>( קצבה מגיל הפרישה62 – 65 ) בכפוף למבחן</p><p>.הכנסות, בתנאי שהשלימה תקופת אכשרה חודשי אי- הביטוח מיום שנעשתה תושבת ישראל</p><p>.)(מסלול הרוב</p><p>�� <strong>:הבהרה חשובה</strong> אישה נשואה שצברה תקופת אכשרה כ&quot;עובדת מבוטחת&quot; (מסלול2 ) — תוכל לקבל קצבה מגיל הפרישה ולא</p><p>תצטרך להמתין לגיל70 &quot;. המסלול אינו &quot;נעול— כל אישה עשויה לעבור בין המסלולים בהתאם לשינויים</p><p>.במצבה המשפחתי ותעסוקתי לאורך חייה</p></div></div></div></div></div></div><div class="accordion" id="acc-3"><div class="accordion-header" onclick="toggleAcc(this)"><h2 class="accordion-title">אלמנה שאינה מקבלת קצבת</h2><span class="accordion-arrow">▼</span></div><div class="accordion-content"><div class="accordion-body"></div></div></div><div class="accordion" id="acc-4"><div class="accordion-header" onclick="toggleAcc(this)"><h2 class="accordion-title">שאירים</h2><span class="accordion-arrow">▼</span></div><div class="accordion-content"><div class="accordion-body"><p>אלמנה שאינה מקבלת קצבת שאירים ואינה מקבלת קצבת תלויים בנפגעי עבודה—</p><p>פטורה מאכשרה. לעומת זאת, אלמנה המקבלת קצבת שאירים חייבת בתקופת</p><p>אכשרה (ראו סעיף2 .)</p><p><strong>עגונה</strong> אישה שחלפו שנתיים מאז בעלה נעלם / נמצא בחו&quot;ל שלא בהסכמתה, מבלי שנשא</p><p>.במזונותיה</p></div></div></div><div class="accordion" id="acc-5"><div class="accordion-header" onclick="toggleAcc(this)"><h2 class="accordion-title">נשואה לבן זוג</h2><span class="accordion-arrow">▼</span></div><div class="accordion-content"><div class="accordion-body"><p><strong>שאינו מבוטח</strong> אישה שבן.)זוגה אינו מבוטח בביטוח זקנה (לדוגמה: בן זוג שאינו תושב ישראל</p><ul><li>⚠ <strong>רווקה עולה חדשה</strong> ( רווקה שעלתה לישראל לראשונה אחרי הגיל הקבוע בטבלאות הביטוח הלאומי55 – 59 בהתאם לשנת</li></ul><p>)הלידה— פטורה מתקופת אכשרה. לעומת זאת, רווקה שנולדה בארץ או שעלתה לפני הגיל האמור—</p><p>חייבת בתקופת אכשרה כמו גבר. אין קשר בין פטור זה לבין שינוי סטטוס משפחתי בגיל55 .</p></div></div></div><div class="accordion" id="acc-6"><div class="accordion-header" onclick="toggleAcc(this)"><h2 class="accordion-title">ב. מקבלי קצבת נכות כללית</h2><span class="accordion-arrow">▼</span></div><div class="accordion-content"><div class="accordion-body"></div></div></div><div class="accordion" id="acc-7"><div class="accordion-header" onclick="toggleAcc(this)"><h2 class="accordion-title">מצב תנאי הזכאות לקצבה מגיל הפרישה</h2><span class="accordion-arrow">▼</span></div><div class="accordion-content"><div class="accordion-body"></div></div></div><div class="accordion" id="acc-8"><div class="accordion-header" onclick="toggleAcc(this)"><h2 class="accordion-title">גבר— )או אישה (כל מסלול קיבל/ה קצבת נכות כללית בחודש שקדם לחודש שבו החל/ה לקבל</h2><span class="accordion-arrow">▼</span></div><div class="accordion-content"><div class="accordion-body"><p>קצבת אזרח ותיק— פטור/ה מאכשרה וזכאי/ת לקצבה מגיל הפרישה</p><p>.גם ללא מבחן הכנסות</p></div></div></div><div class="accordion" id="acc-9"><div class="accordion-header" onclick="toggleAcc(this)"><h2 class="accordion-title">אישה נשואה המבוטחת</h2><span class="accordion-arrow">▼</span></div><div class="accordion-content"><div class="accordion-body"><p><strong>כ&quot;עקרת בית&quot; (מסלול1</strong> <strong>)</strong> זכאית לקצבה מגיל הפרישה אם קיבלה קצבת נכות כללית12 חודשים</p><p>רצופים לפחות, בתכוף לפני שהגיעה לגיל הפרישה. זהו תנאי זכאות</p><p>מגיל פרישה— &quot;ולא &quot;פטור.מאכשרה במובן הכללי</p></div></div></div><div class="accordion" id="acc-10"><div class="accordion-header" onclick="toggleAcc(this)"><h2 class="accordion-title">תקופת רווקות (נשים</h2><span class="accordion-arrow">▼</span></div><div class="accordion-content"><div class="accordion-body"></div></div></div><div class="accordion" id="acc-11"><div class="accordion-header" onclick="toggleAcc(this)"><h2 class="accordion-title">)בלבד</h2><span class="accordion-arrow">▼</span></div><div class="accordion-content"><div class="accordion-body"><p>חל רק על אישה נשואה למבוטח (מסלול1 .) או אלמנה המקבלת קצבת שאירים</p><p>לנשים שנולדו בארץ או עלו לפני גיל 18 ונישאו לאחר גיל18 — כל התקופה מגיל</p><p>18 ועד הנישואין נחשבת לביטוח. לנשים שעלו לארץ לאחר גיל18 — תקופת</p><p>הרווקות מחושבת מיום העלייה ועד הנישואין (לא מגיל18 .)</p></div></div></div><div class="accordion" id="acc-12"><div class="accordion-header" onclick="toggleAcc(this)"><h2 class="accordion-title">קצבאות מחליפות</h2><span class="accordion-arrow">▼</span></div><div class="accordion-content"><div class="accordion-body"><p><strong>שכר</strong> חודשים שבהם שולמו: דמי אבטלה, דמי לידה, שמירת היריון, דמי פגיעה ,בעבודה</p><p>.או דמי מילואים</p><p><strong>אמנות בינלאומיות</strong> ניתן לצרף תקופות ביטוח ממדינות שיש לישראל אמנת ביטוח לאומי איתן (כגון רוב</p><p>מדינות אירופה וארה&quot;ב) לצורך השלמת האכשרה בישראל. חשוב לדעת: צירוף</p><p>.כזה עשוי לזכות בקצבה גם מאותה מדינה וגם מישראל בנפרד</p></div></div></div></div>
+</div>
+<footer><p>מוסד לביטוח לאומי | מדריך זכויות אזרחים ותיקים 2026</p></footer>
+<script>
+function toggleAcc(header){
+  var acc=header.closest('.accordion');
+  var wasActive=acc.classList.contains('active');
+  var container=acc.parentElement;
+  container.querySelectorAll(':scope>.accordion.active').forEach(function(a){if(a!==acc)a.classList.remove('active');});
+  acc.classList.toggle('active',!wasActive);
+  if(!wasActive){setTimeout(function(){acc.scrollIntoView({behavior:'smooth',block:'start'});},50);}
+}
+document.addEventListener('click',function(e){
+  var h=e.target.closest('.sub-accordion-header');
+  if(!h)return;
+  e.stopPropagation();
+  var sa=h.closest('.sub-accordion');
+  var wasActive=sa.classList.contains('active');
+  var parent=sa.parentElement;
+  parent.querySelectorAll(':scope>.sub-accordion.active').forEach(function(a){if(a!==sa)a.classList.remove('active');});
+  sa.classList.toggle('active',!wasActive);
+});
+function openMenu(){document.getElementById('sideMenu').classList.add('open');document.getElementById('menuOverlay').classList.add('open');}
+function closeMenu(){document.getElementById('sideMenu').classList.remove('open');document.getElementById('menuOverlay').classList.remove('open');}
+document.getElementById('menuOverlay').addEventListener('click',closeMenu);
+</script>
+</body>
+</html>
