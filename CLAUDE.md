@@ -34,7 +34,13 @@ python BTL/support_files/senior_rights/scripts/build_sitemap.py
 
 תיקייה זו מכילה 10 עמודי סיכום (`amnot_binleumiot.html`, `chovaat_hitatzbut.html`, `gamlay_zikna.html`, `hagdarat_tluim.html`, `mekarim_meyuchadim.html`, `nechut_mul_shairim.html`, `shaagat_haari.html`, `takrut_hachnasa.html`, `tkufat_achshara.html`, `yetzia_lachul.html`) שהועברו מהתיקייה הפרטית `YR1/BTL` לפרסום הציבורי, בתוספת עמוד ניווט ל-PDF-ים (`additional_guides_index.html`, לשעבר `YR_MAIN.HTML`) וקובץ הפניה (`index.html`). כל 12 הקבצים כלולים כעת ב-`build_ai_summary.py` וב-`build_sitemap.py` (סעיף קודם), וקיבלו `meta description`.
 
-**חשוב — פער שטרם טופל:** בניגוד לכל שאר האתר, **לאף אחד מ-12 הקבצים האלה אין שום מנגנון JS שמחשב ערכים** — הם טקסט קבוע גרידא. שישה מהם מכילים נתונים כספיים שכן נגזרים מביטוח לאומי: `takrut_hachnasa.html`, `nechut_mul_shairim.html`, `gamlay_zikna.html`, `amnot_binleumiot.html`, `mekarim_meyuchadim.html`, `hagdarat_tluim.html`. **לכן: אחרי עדכון עתידי של `nii-constants.json`, שישה הקבצים האלה לא יתעדכנו על ידי אף אחד משלושת התהליכים בסעיף הראשון** — אין עדיין מנגנון תיוג/סנכרון בנוי בשבילם (עבודה עתידית מתוכננת, טרם בוצעה). `shaagat_haari.html` יוצא מהכלל במכוון — הסכומים בו החלטת ממשלה חד-פעמית, לא נגזרים מביטוח לאומי, ואין צורך במנגנון עדכון בשבילו.
+**עודכן:** חמישה מהקבצים (`takrut_hachnasa.html`, `nechut_mul_shairim.html`, `gamlay_zikna.html`, `amnot_binleumiot.html`, `mekarim_meyuchadim.html`) קיבלו מנגנון JS לערכים חיים ותיוג מלא, לפי תבנית קבוצה ד׳ — ראו רשימתם בסעיף "עדכון קבוצה ד׳" למטה, שם יש להריץ עליהם את שני הכלים אחרי כל עדכון, בדיוק כמו 4 העמודים המקוריים.
+
+**שני קבצים יוצאים מהכלל במכוון, ולא יקבלו מנגנון:**
+- `shaagat_haari.html` — הסכומים בו החלטת ממשלה חד-פעמית, לא נגזרים מביטוח לאומי.
+- `hagdarat_tluim.html` — האחוזים בו (12.5%/8%/10%/5%, תוספת תלויים) קבועים בחוק ולא נגזרים מ-`nii-constants.json` כלל (נבדק ואומת: לא תואם לאף חישוב אפשרי מהקבועים הקיימים). נשאר טקסט קבוע לחלוטין.
+
+שאר 4 העמודים (`chovaat_hitatzbut.html`, `tkufat_achshara.html`, `yetzia_lachul.html`, וכן `additional_guides_index.html`/`index.html`) אינם מכילים נתונים כספיים הנגזרים מביטוח לאומי, ולכן אינם דורשים מנגנון.
 
 ## עדכון "מנוע הליבה" — עמודים שתוכנם הוטמע מריצת דפדפן אמיתי
 
@@ -78,6 +84,16 @@ old_pension_income_test_full_guide.html
 survivors_benefits_guide_2026.html
 women_transition_benefit_guide.html
 ```
+
+**5 עמודים נוספים תחת `BTL/additional_guides/html/` — אותה שיטה בדיוק, יש לציין את הנתיב המלא (לא רק שם הקובץ) בהרצה:**
+```
+additional_guides/html/amnot_binleumiot.html
+additional_guides/html/gamlay_zikna.html
+additional_guides/html/mekarim_meyuchadim.html
+additional_guides/html/nechut_mul_shairim.html
+additional_guides/html/takrut_hachnasa.html
+```
+המנוע ב-5 העמודים האלה בנוי לפי התבנית האחידה (`data-nii-key`/`data-nii-derived` + `data-nii-format="currency|percent|plain"`) מהיסוד - אין בהם שימוש בתבניות הישנות. נתיב `nii-constants.json` בהם הוא `../../senior_rights/data/nii-constants.json` (עומק תיקיות שונה מ-`senior_rights/*.html`).
 
 **חשוב — אין מוסכמה כלל-אתרית לעיצוב ערכים מחושבים או ל-`data-format`.** כל קובץ עשוי לממש את זה אחרת בקוד ה-JS שלו (למשל: אחוז עם או בלי סימן `%` בתוך התג עצמו). לכן הנוסחאות וכללי העיצוב מתועדים בנפרד לכל קובץ בתוך `check_nii_values_sync.py` (ב-`FILE_SPECIFIC_FORMAT_RULES` ו-`FILE_SPECIFIC_CALC_RULES`/`FILE_SPECIFIC_DERIVED_RULES`), ולא כלל גורף. **אם מוסיפים תג `data-nii-calc`/`data-nii-derived` חדש, או `data-format` חדש, בעמוד קיים או חדש — יש לקרוא את קוד ה-JS בפועל של אותו עמוד ולהוסיף כלל חדש שם, לא להניח שכלל מקובץ אחר תקף.** בלי כלל מתועד, הכלי מדווח "לא ניתן לאמת" — לא מאשר ולא נכשל בטעות.
 

@@ -77,7 +77,7 @@ KNOWN_FILES = {
     "additional_guides/html/takrut_hachnasa.html": ("include", "סיכום PDF - תוכן סטטי"),
     "additional_guides/html/tkufat_achshara.html": ("include", "סיכום PDF - תוכן סטטי"),
     "additional_guides/html/yetzia_lachul.html": ("include", "סיכום PDF - תוכן סטטי"),
-    "additional_guides/html/additional_guides_index.html": ("exclude", "עמוד ניווט ל-PDF-ים בלבד, אין תוכן ייחודי"),
+    "additional_guides/html/additional_guides_index.html": ("include", "עמוד ניווט ל-PDF-ים - כותרות האקורדיונים משקפות רשימת נושאים שימושית גם בלי טקסט ה-PDF עצמו"),
     "additional_guides/html/index.html": ("exclude", "הפניה (redirect) בלבד"),
 }
 

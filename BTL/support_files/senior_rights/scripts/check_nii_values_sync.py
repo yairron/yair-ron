@@ -127,6 +127,43 @@ FILE_SPECIFIC_DERIVED_RULES = {
             c["transition_grant_income_allowed"]["value"] - 7500
         )),
     },
+    # הנוסחה הועתקה ואומתה ידנית מקוד ה-JS בפועל (mekarim_meyuchadim.html,
+    # מנוע ה-JS בסוף הקובץ). data-nii-format="percent" - הפונקציה מחזירה
+    # ישירות את המחרוזת המעוצבת (כולל %), לא עובר format_currency.
+    "additional_guides/html/mekarim_meyuchadim.html": {
+        "spouse_ceiling_pct": lambda c: str(round(
+            c["income_test_spouse_ceiling"]["value"] / c["average_wage"]["value"] * 100
+        )) + "%",
+    },
+    # הנוסחאות הועתקו ואומתו ידנית מקוד ה-JS בפועל (nechut_mul_shairim.html,
+    # מנוע ה-JS בסוף הקובץ). כולן data-nii-format="plain" (בלי ₪/%).
+    "additional_guides/html/nechut_mul_shairim.html": {
+        "combo_spouse": lambda c: format_currency(
+            c["disability_full"]["value"] + c["disability_spouse"]["value"]
+        ),
+        "combo_child": lambda c: format_currency(
+            c["disability_full"]["value"] + c["disability_child"]["value"]
+        ),
+        "widow_max_seniority": lambda c: format_currency(
+            c["survivors_widow_over50"]["value"] * 1.5
+        ),
+    },
+    # הנוסחאות הועתקו ואומתו ידנית מקוד ה-JS בפועל (takrut_hachnasa.html,
+    # מנוע ה-JS בסוף הקובץ). כולן data-nii-format="plain". שים לב:
+    # partial_floor_precise ו-partial_floor_rounded הם אותה נוסחה בסיסית
+    # (10% מהקצבה הבסיסית ליחיד) בשתי רמות דיוק שונות - הקובץ מציג את הערך
+    # המדויק (183.8) פעם אחת, ואת המעוגל (184) פעמיים, בהקשרים שונים בטקסט.
+    "additional_guides/html/takrut_hachnasa.html": {
+        "single_with_seniority": lambda c: format_currency(
+            c["pension_single_basic"]["value"] * 1.5
+        ),
+        "partial_floor_precise": lambda c: format_currency(
+            c["pension_single_basic"]["value"] * 0.10
+        ),
+        "partial_floor_rounded": lambda c: format_currency(
+            round(c["pension_single_basic"]["value"] * 0.10)
+        ),
+    },
 }
 
 
@@ -156,7 +193,9 @@ def expected_data_nii(constants: dict, key: str, fmt, relpath: str):
 
 
 def expected_data_nii_key(constants: dict, key: str, fmt: str):
-    """תואם את renderPage() ב-imputed_income_guide.html: currency -> '#,###' + ' ₪', percent -> '#%'."""
+    """currency -> '#,###' + ' ₪' (תואם את renderPage() ב-imputed_income_guide.html),
+    percent -> '#%', plain -> '#,###' בלי סימן נלווה (תואם את מנוע ה-JS
+    ב-BTL/additional_guides - raw.toLocaleString('he-IL'), פסיקי אלפים בלי ₪/%)."""
     entry = constants.get(key)
     if not entry:
         return None
@@ -165,7 +204,7 @@ def expected_data_nii_key(constants: dict, key: str, fmt: str):
         return f"{format_currency(value)} ₪"
     if fmt == "percent":
         return f"{value}%"
-    return str(value)
+    return format_currency(value)
 
 
 def expected_calc(rules_table: dict, constants: dict, key: str, relpath: str, attr_label: str):

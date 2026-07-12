@@ -105,9 +105,43 @@ def diff_images(png_a: bytes, png_b: bytes, tolerance: int = 12):
     }
 
 
+CONTENT_SELECTOR_FALLBACKS = ["#content", ".container", "body"]
+
+# תבנית מותרת עבור עבודת תיוג Tier B (BTL/additional_guides): הוספת
+# <span data-nii-key="..."> / <span data-nii-derived="..."> (עם data-nii-format
+# אופציונלי) סביב טקסט קיים, בלי לשנות/למחוק אף תו. אם זה ההבדל היחיד ב-DOM,
+# זו הוספה מכוונת ולא באג - לא נחשב ממצא/כשל.
+#
+# הערה: לא משתמשים ב-difflib.SequenceMatcher ברמת התו כדי לזהות את זה - כשיש
+# הרבה הכנסות סמוכות בטקסט עם תגי HTML חוזרים (כמו "</div>" רבים), האלגוריתם
+# עלול ליישר את ה-opcodes בצורה לא צפויה (למשל לפצל "</span>" לשני חלקים לא
+# שלמים), מה שגורם לזיהוי שגוי. במקום זה, "מפרקים" ישירות רק את תגי ה-span
+# data-nii שאנחנו עצמנו הוספנו (open+content+close כיחידה אחת), ומשווים את
+# מה שנשאר לגרסה המקורית - זה לא תלוי כלל בבחירת ה-diff algorithm.
+NII_SPAN_UNWRAP_RE = re.compile(
+    r'<span data-nii-(?:key|derived)="[^"]*"(?: data-nii-format="[^"]*")?>([^<]*)</span>'
+)
+
+
+def classify_dom_diff(old_html, new_html):
+    """משווה שני outerHTML ומסווג את ההבדל: 'identical' (זהה לחלוטין),
+    'nii_tags_only' (ההבדל היחיד הוא הוספת span data-nii-key/derived סביב
+    טקסט קיים - הוספה מכוונת, לא כשל), או 'changed' (כל הבדל אחר - כשל אמיתי)."""
+    if old_html == new_html:
+        return "identical"
+    unwrapped_new = NII_SPAN_UNWRAP_RE.sub(r"\1", new_html)
+    if unwrapped_new == old_html:
+        return "nii_tags_only"
+    return "changed"
+
+
 def capture_state(page):
     text = normalize_text(page.inner_text("body"))
-    content_html = page.eval_on_selector("#content", "el => el.outerHTML")
+    content_html = None
+    for selector in CONTENT_SELECTOR_FALLBACKS:
+        if page.query_selector(selector):
+            content_html = page.eval_on_selector(selector, "el => el.outerHTML")
+            break
     screenshot = page.screenshot(full_page=True)
     return {"text": text, "html": content_html, "screenshot": screenshot}
 
@@ -229,10 +263,11 @@ def main():
 
         old_s, new_s = old_states[key], new_states[key]
         text_match = old_s["text"] == new_s["text"]
-        html_match = old_s["html"] == new_s["html"]
+        dom_status = classify_dom_diff(old_s["html"], new_s["html"])
+        html_match = dom_status in ("identical", "nii_tags_only")  # שני אלה עוברים - לא נחשבים כשל
         img_diff = diff_images(old_s["screenshot"], new_s["screenshot"])
 
-        detail_rows.append((key, text_match, html_match, img_diff))
+        detail_rows.append((key, text_match, dom_status, img_diff))
 
         if not text_match:
             # מאתר את ההבדל המדויק הראשון בין הטקסטים
@@ -244,8 +279,8 @@ def main():
                 f"[{key}] טקסט שונה בעמדה {i}: ישן=...{a[max(0,i-40):i+40]!r}... "
                 f"חדש=...{b[max(0,i-40):i+40]!r}..."
             )
-        if not html_match:
-            findings.append(f"[{key}] מבנה ה-DOM של #content שונה (outerHTML לא זהה)")
+        if dom_status == "changed":
+            findings.append(f"[{key}] מבנה ה-DOM (בתוך {CONTENT_SELECTOR_FALLBACKS}) שונה (outerHTML לא זהה, ולא רק הוספת span data-nii)")
         # שים לב: הבדל אחוז פיקסלים לא נחשב ממצא/כשל - הוכח כלא-דטרמיניסטי
         # (ראו הסבר בראש הקובץ). רק גודל תמונה שונה (מספר בדיד) כן נחשב ממצא.
         if not img_diff["comparable"]:
@@ -261,12 +296,17 @@ def main():
     report_lines.append("")
     report_lines.append("(הקריטריון להצלחה/כישלון: טקסט ומבנה בלבד. עמודת ההבדל החזותי היא מידע בלבד - ראו הסבר בראש הקובץ למה היא לא קריטריון אמין.)")
     report_lines.append("")
-    report_lines.append("| מצב | טקסט זהה | מבנה זהה | הבדל חזותי (מידע בלבד) |")
+    report_lines.append("| מצב | טקסט זהה | מבנה DOM | הבדל חזותי (מידע בלבד) |")
     report_lines.append("|---|---|---|---|")
-    for key, text_match, html_match, img_diff in detail_rows:
+    dom_cell_map = {
+        "identical": "✅",
+        "nii_tags_only": "🏷️ (רק span data-nii נוסף)",
+        "changed": "❌",
+    }
+    for key, text_match, dom_status, img_diff in detail_rows:
         img_cell = f"{img_diff['diff_percent']}%" if img_diff.get("comparable") else "גודל תמונה שונה"
         report_lines.append(
-            f"| {key} | {'✅' if text_match else '❌'} | {'✅' if html_match else '❌'} | {img_cell} |"
+            f"| {key} | {'✅' if text_match else '❌'} | {dom_cell_map[dom_status]} | {img_cell} |"
         )
     report_lines.append("")
 
@@ -278,7 +318,11 @@ def main():
     else:
         report_lines.append("## ממצאים")
         report_lines.append("")
-        report_lines.append("הטקסט ומבנה ה-DOM זהים לחלוטין בכל המצבים שנבדקו (הקריטריון הקובע). ראו טבלה למידע חזותי בלבד.")
+        any_tags_only = any(status == "nii_tags_only" for _key, _t, status, _i in detail_rows)
+        if any_tags_only:
+            report_lines.append("הטקסט זהה לחלוטין בכל המצבים שנבדקו. מבנה ה-DOM זהה במקומות שסומנו ✅, ובמקומות שסומנו 🏷️ ההבדל היחיד הוא הוספת span data-nii-key/data-nii-derived סביב טקסט קיים (תיוג מכוון) - לא נחשב כשל.")
+        else:
+            report_lines.append("הטקסט ומבנה ה-DOM זהים לחלוטין בכל המצבים שנבדקו (הקריטריון הקובע). ראו טבלה למידע חזותי בלבד.")
 
     report_text = "\n".join(report_lines)
 
