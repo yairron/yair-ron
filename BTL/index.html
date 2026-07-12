@@ -229,6 +229,32 @@
             margin: 0;
         }
 
+        .ai-bot-link {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            font-weight: 800;
+            font-size: 1.15rem;
+            text-decoration: none;
+            padding: 18px 20px;
+            border-radius: 16px;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.18);
+            margin-bottom: 20px;
+            transition: transform 0.2s, box-shadow 0.2s;
+            animation: fadeIn 0.6s ease-out both;
+        }
+        .ai-bot-link:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 12px 32px rgba(0,0,0,0.25);
+        }
+        .ai-bot-link .ai-bot-icon {
+            font-size: 1.6rem;
+            flex-shrink: 0;
+        }
+
         .search-wrapper {
             margin-bottom: 30px;
             animation: fadeIn 0.6s ease-out both;
@@ -528,6 +554,11 @@
             <p class="support-info">מרכז תמיכה ומידע טלפוני ארצי בטלפון <span dir="ltr">*9696</span></p>
             <p class="subtitle">מידע וזכויות לאזרחים ותיקים בישראל</p>
         </header>
+
+        <a href="https://notebooklm.google.com/notebook/bda4432d-4d46-4e30-b0ae-b373d38b2a39" target="_blank" rel="noopener" class="ai-bot-link">
+            <span class="ai-bot-icon">🤖</span>
+            <span>מערכת AI למידע הקושר לזכויות אזרחים וותיקים</span>
+        </a>
 
         <div class="search-wrapper">
             <div class="search-box">
