@@ -140,26 +140,32 @@ exports.handler = async (event) => {
     let data = await apiRes.json();
 
     if (data.stop_reason === 'tool_use') {
-      const toolUse = data.content.find((b) => b.type === 'tool_use');
-      const requestedPath = String(toolUse.input?.path || '').replace(/^\/+/, '');
-      let toolResultText;
+      // המודל עשוי לבקש כמה עמודים במקביל (כמה בלוקי tool_use בתגובה אחת) -
+      // Anthropic דורש tool_result תואם לכל אחד מהם, אחרת מתקבלת שגיאת 400.
+      const toolUses = data.content.filter((b) => b.type === 'tool_use');
 
-      if (!sitemapPaths.includes(requestedPath)) {
-        toolResultText = 'העמוד המבוקש אינו קיים ברשימת העמודים הידועה.';
-      } else {
-        try {
-          const pageRes = await fetch(SITE_BASE + requestedPath);
-          toolResultText = pageRes.ok ? stripHtml(await pageRes.text()).slice(0, 20000) : 'שגיאה בטעינת העמוד המבוקש.';
-        } catch {
-          toolResultText = 'שגיאה בטעינת העמוד המבוקש.';
-        }
-      }
+      const toolResults = await Promise.all(
+        toolUses.map(async (toolUse) => {
+          const requestedPath = String(toolUse.input?.path || '').replace(/^\/+/, '');
+          let toolResultText;
+
+          if (!sitemapPaths.includes(requestedPath)) {
+            toolResultText = 'העמוד המבוקש אינו קיים ברשימת העמודים הידועה.';
+          } else {
+            try {
+              const pageRes = await fetch(SITE_BASE + requestedPath);
+              toolResultText = pageRes.ok ? stripHtml(await pageRes.text()).slice(0, 20000) : 'שגיאה בטעינת העמוד המבוקש.';
+            } catch {
+              toolResultText = 'שגיאה בטעינת העמוד המבוקש.';
+            }
+          }
+
+          return { type: 'tool_result', tool_use_id: toolUse.id, content: toolResultText };
+        })
+      );
 
       messages.push({ role: 'assistant', content: data.content });
-      messages.push({
-        role: 'user',
-        content: [{ type: 'tool_result', tool_use_id: toolUse.id, content: toolResultText }],
-      });
+      messages.push({ role: 'user', content: toolResults });
 
       apiRes = await callClaudeWithRetry(messages, systemPrompt, null);
       if (!apiRes.ok) {
