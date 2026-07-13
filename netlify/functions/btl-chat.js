@@ -9,6 +9,11 @@ const SYSTEM_PREFIX = `אתה עוזר מידע בנושא ביטוח לאומי
 ענה בעברית, בקצרה ובבהירות, אך ורק על סמך המידע שסופק לך.
 אם התשובה לא נמצאת במידע הזמין לך (כולל אחרי שימוש בכלי get_page_content), אמור זאת בפירוש ואל תמציא ואל תנחש.
 
+חשוב מאוד: הסיכום מכיל כמה סוגי קצבאות שונים (זקנה, נכות כללית, שאירים, עולים חדשים ועוד),
+ולעיתים יש להם תקרות הכנסה או סכומים דומים במספרים אך שונים במהות ובסוג הקצבה.
+לפני שאתה עונה עם מספר, ודא בבירור שהמספר שייך בדיוק לסוג הקצבה שנשאלת עליו, ולא לקצבה
+דומה/סמוכה בטקסט. אם יש ספק לאיזו קצבה שייך מספר מסוים - ציין זאת במפורש בתשובה במקום לנחש.
+
 סיכום תוכן האתר:
 `;
 
@@ -124,12 +129,13 @@ exports.handler = async (event) => {
 
   const systemPrompt =
     SYSTEM_PREFIX +
-    summary.slice(0, 60000) +
+    summary +
     (sitemapPaths.length
       ? `\n\nאם הסיכום אינו מספיק מפורט לשאלה, אפשר להשתמש בכלי get_page_content כדי לשלוף עמוד מלא מתוך הרשימה הבאה:\n${sitemapPaths.join('\n')}`
       : '');
 
   const messages = [{ role: 'user', content: question }];
+  const MAX_TOOL_ROUNDS = 3;
 
   try {
     let apiRes = await callClaudeWithRetry(messages, systemPrompt, [GET_PAGE_TOOL]);
@@ -138,8 +144,13 @@ exports.handler = async (event) => {
       return { statusCode: 502, body: JSON.stringify({ error: 'שגיאה בפנייה למערכת ה-AI' }) };
     }
     let data = await apiRes.json();
+    let round = 0;
 
-    if (data.stop_reason === 'tool_use') {
+    // המודל עשוי לרצות לשלוף עוד עמוד גם אחרי סבב ראשון - חייבים להשאיר את הכלי
+    // זמין בכל סבב (לא רק בראשון), אחרת הוא רק "מספר" בטקסט שהוא הולך לחפש
+    // ולא באמת מבצע את זה, והשיחה נתקעת. מוגבל למספר סבבים כדי למנוע לולאה אינסופית.
+    while (data.stop_reason === 'tool_use' && round < MAX_TOOL_ROUNDS) {
+      round++;
       // המודל עשוי לבקש כמה עמודים במקביל (כמה בלוקי tool_use בתגובה אחת) -
       // Anthropic דורש tool_result תואם לכל אחד מהם, אחרת מתקבלת שגיאת 400.
       const toolUses = data.content.filter((b) => b.type === 'tool_use');
@@ -167,7 +178,8 @@ exports.handler = async (event) => {
       messages.push({ role: 'assistant', content: data.content });
       messages.push({ role: 'user', content: toolResults });
 
-      apiRes = await callClaudeWithRetry(messages, systemPrompt, null);
+      const allowTool = round < MAX_TOOL_ROUNDS;
+      apiRes = await callClaudeWithRetry(messages, systemPrompt, allowTool ? [GET_PAGE_TOOL] : null);
       if (!apiRes.ok) {
         console.error('Anthropic API error (follow-up):', apiRes.status, await apiRes.text());
         return { statusCode: 502, body: JSON.stringify({ error: 'שגיאה בפנייה למערכת ה-AI' }) };
