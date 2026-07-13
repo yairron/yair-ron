@@ -333,6 +333,15 @@
             }
             messages.appendChild(div);
             messages.scrollTop = messages.scrollHeight;
+            return div;
+        }
+
+        // מיישר את הודעת השאלה לראש חלון הצ'אט, כדי שהשאלה תישאר גלויה כשהתשובה
+        // ארוכה - במקום שהגלילה האוטומטית לתחתית תדחוף את השאלה מעל לראש החלון.
+        function scrollToMessageTop(el) {
+            var containerRect = messages.getBoundingClientRect();
+            var elRect = el.getBoundingClientRect();
+            messages.scrollTop += elRect.top - containerRect.top;
         }
 
         toggle.addEventListener('click', function() {
@@ -354,7 +363,8 @@
             var question = input.value.trim();
             if (!question) return;
 
-            addMessage(question, 'user');
+            var questionDiv = addMessage(question, 'user');
+            scrollToMessageTop(questionDiv);
             input.value = '';
             sendBtn.disabled = true;
 
@@ -374,6 +384,7 @@
                 addMessage('שגיאת תקשורת, נסו שוב.', 'error');
             } finally {
                 sendBtn.disabled = false;
+                scrollToMessageTop(questionDiv);
             }
         });
     }
