@@ -68,6 +68,23 @@ async function callClaude(messages, systemPrompt, tools) {
   });
 }
 
+const TRANSIENT_STATUSES = new Set([429, 500, 502, 503, 529]);
+
+function sleep(ms) {
+  return new Promise((resolve) => setTimeout(resolve, ms));
+}
+
+// עומס זמני/rate-limit בצד Anthropic קורה מדי פעם - ניסיון חוזר יחיד אחרי השהיה קצרה
+// פותר את רוב המקרים בלי להוסיף מורכבות של backoff מלא.
+async function callClaudeWithRetry(messages, systemPrompt, tools) {
+  let res = await callClaude(messages, systemPrompt, tools);
+  if (!res.ok && TRANSIENT_STATUSES.has(res.status)) {
+    await sleep(800);
+    res = await callClaude(messages, systemPrompt, tools);
+  }
+  return res;
+}
+
 exports.handler = async (event) => {
   if (event.httpMethod !== 'POST') {
     return { statusCode: 405, body: JSON.stringify({ error: 'Method Not Allowed' }) };
@@ -115,7 +132,7 @@ exports.handler = async (event) => {
   const messages = [{ role: 'user', content: question }];
 
   try {
-    let apiRes = await callClaude(messages, systemPrompt, [GET_PAGE_TOOL]);
+    let apiRes = await callClaudeWithRetry(messages, systemPrompt, [GET_PAGE_TOOL]);
     if (!apiRes.ok) {
       console.error('Anthropic API error:', apiRes.status, await apiRes.text());
       return { statusCode: 502, body: JSON.stringify({ error: 'שגיאה בפנייה למערכת ה-AI' }) };
@@ -144,7 +161,7 @@ exports.handler = async (event) => {
         content: [{ type: 'tool_result', tool_use_id: toolUse.id, content: toolResultText }],
       });
 
-      apiRes = await callClaude(messages, systemPrompt, null);
+      apiRes = await callClaudeWithRetry(messages, systemPrompt, null);
       if (!apiRes.ok) {
         console.error('Anthropic API error (follow-up):', apiRes.status, await apiRes.text());
         return { statusCode: 502, body: JSON.stringify({ error: 'שגיאה בפנייה למערכת ה-AI' }) };
