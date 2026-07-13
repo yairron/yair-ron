@@ -32,6 +32,26 @@ python BTL/support_files/senior_rights/scripts/build_sitemap.py
 
 `/robots.txt` — קובץ קבוע בשורש הריפו (לא בתוך `BTL/`!) — לא סקריפט, לא צפוי להשתנות לעיתים קרובות. **חובה שישב בשורש הריפו דווקא**, כי זוחלים בודקים רק את `domain.com/robots.txt` בשורש האמיתי של הדומיין — קובץ בתוך `BTL/robots.txt` (שם היה יושב במקור) לעולם לא היה מתגלה, גם אם תוכנו נכון. מתיר סריקה כללית, חוסם את `/yr1/`, `/mda/`, ו-`/btl/support_files/`, ומפנה למפת האתר (`https://yairron.com/btl/sitemap.xml`) ולקובץ הריכוז (`https://yairron.com/btl/ai-summary.txt`).
 
+## עוזר AI (צ'אט) באתר
+
+באתר קיים צ'אט AI חי — כפתור צף "🤖 AI" בפינה שמאלית תחתונה בכל עמודי BTL — שמאפשר למבקרים לשאול שאלות על זכויות אזרחים ותיקים וביטוח לאומי ולקבל תשובה מבוססת על תוכן האתר בפועל (לא מודל כללי בלי הקשר).
+
+**רכיבים:**
+- `netlify/functions/btl-chat.js` (בשורש הריפו, לא תחת `BTL/`) — Netlify Function שרצה בצד השרת. מקבלת שאלה מהדפדפן, שולפת בזמן אמת את `BTL/ai-summary.txt` ואת `BTL/sitemap.xml` מהאתר החי, ופונה למודל `claude-haiku-4-5-20251001` (נבחר לפי עלות — מתאים למשימת שאלות-תשובות מבוססת-טקסט כזו). מקבלת רק בקשות שמקורן בדומיין `yairron.com` (בדיקת Origin/Referer).
+- **כלי `get_page_content`:** המודל יכול לבקש בעצמו (tool use) לשלוף עמוד ספציפי מהאתר החי אם הסיכום ב-`ai-summary.txt` לא מספיק מפורט לשאלה — הפונקציה שולפת מ-`https://yairron.com/btl/<נתיב>` בזמן אמת, רק אחרי שוידאה שהנתיב קיים ברשימת `sitemap.xml` (הגנה מפני שליפה שרירותית של נתיבים לא-קיימים).
+- `netlify.toml` (חדש, בשורש הריפו) — מצהיר רק על `netlify/functions` כתיקיית הפונקציות. לא נוגע בהגדרות build/publish קיימות של Netlify.
+- `_redirects` (בשורש) — שורה נוספת שממפה `/api/btl-chat` ל-`/.netlify/functions/btl-chat`, מעל שורת ה-404 הקיימת.
+- `BTL/senior_rights/data/btl-chat-widget.js` — קובץ JS משותף **יחיד** שמכיל את כל ה-CSS/HTML/JS של הווידג'ט (כפתור + חלון צ'אט). כולל צבעים קבועים (לא `var(--primary)` וכו') כי לא לכל עמודי האתר יש אותם משתני CSS מוגדרים. **אסור להעתיק את קוד הווידג'ט בתוך עמוד — כל עמוד רק טוען את הקובץ המשותף בתג `<script>` אחד**, בדיוק כמו העיקרון הנהוג במנגנון האקורדיונים (סעיף "הוספת עמוד מדריך חדש" למטה).
+- מפתח `ANTHROPIC_API_KEY` מוגדר כמשתנה סביבה ב-Netlify (Site settings → Environment variables, מסומן Secret), לא בקוד. **אין rate-limiting מובנה בתוך הפונקציה עצמה** — הוחלט במפורש לא להוסיף מנגנון כזה (כמו Netlify Blobs) כדי לא להכניס תלות npm/build חדשה לאתר שהוא כרגע סטטי לגמרי בלי שום build step. ההגנה מפני עלות בלתי מבוקרת היא spend limit שהוגדר ידנית בקונסולת Anthropic (Settings → Spend limits).
+
+**נתיב הטעינה של `btl-chat-widget.js` בכל עמוד, לפי עומק התיקייה (זהה לעיקרון של נתיב `nii-constants.json`):**
+- `BTL/index.html`: `senior_rights/data/btl-chat-widget.js`
+- `BTL/senior_rights/*.html`: `data/btl-chat-widget.js`
+- `BTL/new_immigrants/*.html`: `../senior_rights/data/btl-chat-widget.js`
+- `BTL/additional_guides/html/*.html`: `../../senior_rights/data/btl-chat-widget.js`
+
+**חריג במכוון:** `BTL/additional_guides/html/index.html` לא קיבל את הווידג'ט — זהו עמוד הפניה מיידית (`meta http-equiv="refresh"`) בלי תוכן, אין למשתמש זמן לראות אותו.
+
 ## תיקיית BTL/additional_guides — סיכומי PDF שהועברו מ-YR1
 
 תיקייה זו מכילה 10 עמודי סיכום (`amnot_binleumiot.html`, `chovaat_hitatzbut.html`, `gamlay_zikna.html`, `hagdarat_tluim.html`, `mekarim_meyuchadim.html`, `nechut_mul_shairim.html`, `shaagat_haari.html`, `takrut_hachnasa.html`, `tkufat_achshara.html`, `yetzia_lachul.html`) שהועברו מהתיקייה הפרטית `YR1/BTL` לפרסום הציבורי, בתוספת עמוד ניווט ל-PDF-ים (`additional_guides_index.html`, לשעבר `YR_MAIN.HTML`) וקובץ הפניה (`index.html`). כל 12 הקבצים כלולים כעת ב-`build_ai_summary.py` וב-`build_sitemap.py` (סעיף קודם), וקיבלו `meta description`.
@@ -122,11 +142,12 @@ additional_guides/html/takrut_hachnasa.html
 
 **עבור ערך מחושב חדש** — יש להוסיף לו נוסחה מתועדת ב-`FILE_SPECIFIC_DERIVED_RULES` בתוך `check_nii_values_sync.py`, מפתח לפי נתיב הקובץ החדש, אחרי קריאה בפועל של קוד ה-JS של אותו עמוד (בדיוק כמו שנעשה עבור ארבעת העמודים הקיימים) — לא להניח שנוסחה מקובץ אחר תקפה.
 
-## כל עמוד חדש, מכל סוג — שלושה דברים שאסור לשכוח
+## כל עמוד חדש, מכל סוג — ארבעה דברים שאסור לשכוח
 
 1. **תיאור קצר (`meta description`)** — חובה מהרגע הראשון. שורה אחת ברורה שמסבירה על מה העמוד, מיד אחרי תג ה-`viewport` ב-`<head>` (ראו כל עמוד קיים לדוגמה לפורמט).
 2. **מפת האתר** — להריץ מחדש את `build_sitemap.py` (ראו הסעיף הקודם) כדי שהעמוד החדש ייכנס ל-`sitemap.xml`.
 3. **קובץ הריכוז לבינה מלאכותית** — אם לעמוד יש תוכן קבוע אמיתי (לא מחשבון/טופס/תוכן תלוי-קלט), להוסיף אותו ל-`KNOWN_FILES` בתוך `build_ai_summary.py` עם `"include"` וסיבה קצרה, ואם לא — עם `"exclude"` וסיבה. בלי זה, `build_ai_summary.py` ידפיס עליו אזהרת "קובץ לא מסווג" בכל הרצה עד שיטופל.
+4. **כפתור צ'אט ה-AI** — להוסיף תג `<script src="...btl-chat-widget.js"></script>` מיד לפני `</body>`, עם הנתיב היחסי המתאים לעומק התיקייה (ראו טבלת הנתיבים בסעיף "עוזר AI (צ'אט) באתר" למעלה). לא להעתיק את קוד הווידג'ט עצמו — רק לטעון את הקובץ המשותף. חריג: עמודי הפניה מיידית בלי תוכן (כמו `additional_guides/html/index.html`) לא צריכים אותו.
 
 ## הוספת עמוד מדריך חדש (מבוסס ערכי ביטוח לאומי, מוצג באקורדיונים)
 
