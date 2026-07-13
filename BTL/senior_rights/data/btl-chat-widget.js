@@ -30,12 +30,10 @@
         }
         #btl-chat-panel {
             position: fixed;
-            bottom: 96px;
-            left: 24px;
-            width: min(360px, calc(100vw - 48px));
-            max-height: min(500px, calc(100vh - 140px));
+            inset: 0;
+            width: 100%;
+            height: 100%;
             background: white;
-            border-radius: 16px;
             box-shadow: 0 12px 40px rgba(0,0,0,0.3);
             display: none;
             flex-direction: column;
@@ -47,6 +45,16 @@
         #btl-chat-panel.open {
             display: flex;
         }
+        @media (min-width: 768px) {
+            #btl-chat-panel {
+                inset: auto;
+                bottom: 96px;
+                left: 24px;
+                width: 50vw;
+                height: 70vh;
+                border-radius: 16px;
+            }
+        }
         #btl-chat-header {
             background: linear-gradient(135deg, #2E5B8A, #4A90B5);
             color: white;
@@ -55,7 +63,14 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
+            flex-shrink: 0;
         }
+        #btl-chat-header-actions {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+        #btl-chat-clear,
         #btl-chat-close {
             background: none;
             border: none;
@@ -63,6 +78,15 @@
             font-size: 1.3rem;
             cursor: pointer;
             line-height: 1;
+        }
+        #btl-chat-clear {
+            font-size: 0.8rem;
+            font-weight: 700;
+            opacity: 0.85;
+            text-decoration: underline;
+        }
+        #btl-chat-clear:hover {
+            opacity: 1;
         }
         #btl-chat-messages {
             flex: 1;
@@ -74,18 +98,18 @@
             background: #F5F9FC;
         }
         .btl-chat-msg {
-            max-width: 85%;
+            max-width: 92%;
             padding: 10px 14px;
             border-radius: 14px;
             font-size: 0.92rem;
             line-height: 1.5;
-            white-space: pre-wrap;
         }
         .btl-chat-msg.user {
             align-self: flex-start;
             background: #2E5B8A;
             color: white;
             border-bottom-left-radius: 4px;
+            white-space: pre-wrap;
         }
         .btl-chat-msg.bot {
             align-self: flex-end;
@@ -97,12 +121,62 @@
             align-self: flex-end;
             background: #FBE7E7;
             color: #C62828;
+            white-space: pre-wrap;
+        }
+        .btl-chat-msg.bot p {
+            margin: 0 0 8px 0;
+        }
+        .btl-chat-msg.bot p:last-child {
+            margin-bottom: 0;
+        }
+        .btl-chat-msg.bot h1,
+        .btl-chat-msg.bot h2,
+        .btl-chat-msg.bot h3,
+        .btl-chat-msg.bot h4,
+        .btl-chat-msg.bot h5,
+        .btl-chat-msg.bot h6 {
+            margin: 10px 0 6px 0;
+            color: #2E5B8A;
+            line-height: 1.3;
+        }
+        .btl-chat-msg.bot h1, .btl-chat-msg.bot h2 { font-size: 1.05rem; }
+        .btl-chat-msg.bot h3, .btl-chat-msg.bot h4 { font-size: 1rem; }
+        .btl-chat-msg.bot h5, .btl-chat-msg.bot h6 { font-size: 0.95rem; }
+        .btl-chat-msg.bot ul {
+            margin: 0 0 8px 0;
+            padding-inline-start: 20px;
+        }
+        .btl-chat-msg.bot li {
+            margin-bottom: 4px;
+        }
+        .btl-chat-msg.bot strong {
+            color: #1A3A52;
+        }
+        .btl-chat-table-wrap {
+            overflow-x: auto;
+            margin: 0 0 8px 0;
+        }
+        .btl-chat-msg.bot table {
+            border-collapse: collapse;
+            width: 100%;
+            font-size: 0.85rem;
+        }
+        .btl-chat-msg.bot th,
+        .btl-chat-msg.bot td {
+            border: 1px solid #c7d5e0;
+            padding: 4px 8px;
+            text-align: right;
+            white-space: nowrap;
+        }
+        .btl-chat-msg.bot th {
+            background: #DCE8F2;
         }
         #btl-chat-form {
             display: flex;
             border-top: 1px solid #ddd;
             padding: 10px;
             gap: 8px;
+            flex-shrink: 0;
         }
         #btl-chat-input {
             flex: 1;
@@ -135,7 +209,10 @@
         <div id="btl-chat-panel">
             <div id="btl-chat-header">
                 <span>שאלו על זכויות אזרחים ותיקים</span>
-                <button id="btl-chat-close" aria-label="סגור">✕</button>
+                <div id="btl-chat-header-actions">
+                    <button id="btl-chat-clear" aria-label="נקה היסטוריה" title="נקה היסטוריה">נקה</button>
+                    <button id="btl-chat-close" aria-label="סגור">✕</button>
+                </div>
             </div>
             <div id="btl-chat-messages"></div>
             <form id="btl-chat-form">
@@ -144,6 +221,88 @@
             </form>
         </div>
     `;
+
+    function escapeHtml(s) {
+        return s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+    }
+
+    function renderInline(text) {
+        return escapeHtml(text).replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>');
+    }
+
+    function isSeparatorRow(line) {
+        return /^[\s|:\-]+$/.test(line) && line.includes('-');
+    }
+
+    function splitTableRow(line) {
+        var cells = line.split('|').map(function(c) { return c.trim(); });
+        if (cells.length && cells[0] === '') cells.shift();
+        if (cells.length && cells[cells.length - 1] === '') cells.pop();
+        return cells;
+    }
+
+    // ממיר Markdown בסיסי (כותרות, מודגש, רשימות, טבלאות, פסקאות) ל-HTML בטוח,
+    // כי תשובות ה-AI כוללות לעיתים טבלאות/כותרות שצריך להציג מעוצב ולא כטקסט גולמי.
+    function renderMarkdown(raw) {
+        var lines = raw.replace(/\r\n/g, '\n').split('\n');
+        var html = '';
+        var i = 0;
+
+        while (i < lines.length) {
+            var line = lines[i];
+
+            if (/^\s*$/.test(line)) { i++; continue; }
+
+            var headerMatch = line.match(/^(#{1,6})\s+(.*)$/);
+            if (headerMatch) {
+                var level = Math.min(headerMatch[1].length + 2, 6);
+                html += '<h' + level + '>' + renderInline(headerMatch[2]) + '</h' + level + '>';
+                i++;
+                continue;
+            }
+
+            if (/^\s*[-*]\s+/.test(line)) {
+                var items = [];
+                while (i < lines.length && /^\s*[-*]\s+/.test(lines[i])) {
+                    items.push(lines[i].replace(/^\s*[-*]\s+/, ''));
+                    i++;
+                }
+                html += '<ul>' + items.map(function(it) {
+                    return '<li>' + renderInline(it) + '</li>';
+                }).join('') + '</ul>';
+                continue;
+            }
+
+            if (line.indexOf('|') !== -1) {
+                var tableLines = [];
+                while (i < lines.length && lines[i].indexOf('|') !== -1) {
+                    tableLines.push(lines[i]);
+                    i++;
+                }
+                var rows = tableLines.filter(function(l) { return !isSeparatorRow(l); }).map(splitTableRow);
+                if (rows.length) {
+                    html += '<div class="btl-chat-table-wrap"><table><tbody>' + rows.map(function(cells, idx) {
+                        var tag = idx === 0 ? 'th' : 'td';
+                        return '<tr>' + cells.map(function(c) {
+                            return '<' + tag + '>' + renderInline(c) + '</' + tag + '>';
+                        }).join('') + '</tr>';
+                    }).join('') + '</tbody></table></div>';
+                }
+                continue;
+            }
+
+            var paraLines = [line];
+            i++;
+            while (i < lines.length && !/^\s*$/.test(lines[i]) && !/^#{1,6}\s+/.test(lines[i]) &&
+                   !/^\s*[-*]\s+/.test(lines[i]) && lines[i].indexOf('|') === -1) {
+                paraLines.push(lines[i]);
+                i++;
+            }
+            html += '<p>' + paraLines.map(renderInline).join('<br>') + '</p>';
+        }
+
+        return html;
+    }
 
     function init() {
         var style = document.createElement('style');
@@ -157,15 +316,21 @@
         var toggle = document.getElementById('btl-chat-toggle');
         var panel = document.getElementById('btl-chat-panel');
         var closeBtn = document.getElementById('btl-chat-close');
+        var clearBtn = document.getElementById('btl-chat-clear');
         var form = document.getElementById('btl-chat-form');
         var input = document.getElementById('btl-chat-input');
         var sendBtn = document.getElementById('btl-chat-send');
         var messages = document.getElementById('btl-chat-messages');
+        var WELCOME_TEXT = 'שלום! אפשר לשאול אותי כל שאלה על זכויות אזרחים ותיקים, קצבאות וביטוח לאומי, ואני אענה לפי המידע שבאתר.';
 
         function addMessage(text, cls) {
             var div = document.createElement('div');
             div.className = 'btl-chat-msg ' + cls;
-            div.textContent = text;
+            if (cls === 'bot') {
+                div.innerHTML = renderMarkdown(text);
+            } else {
+                div.textContent = text;
+            }
             messages.appendChild(div);
             messages.scrollTop = messages.scrollHeight;
         }
@@ -173,11 +338,15 @@
         toggle.addEventListener('click', function() {
             panel.classList.toggle('open');
             if (panel.classList.contains('open') && !messages.hasChildNodes()) {
-                addMessage('שלום! אפשר לשאול אותי כל שאלה על זכויות אזרחים ותיקים, קצבאות וביטוח לאומי, ואני אענה לפי המידע שבאתר.', 'bot');
+                addMessage(WELCOME_TEXT, 'bot');
             }
         });
         closeBtn.addEventListener('click', function() {
             panel.classList.remove('open');
+        });
+        clearBtn.addEventListener('click', function() {
+            messages.innerHTML = '';
+            addMessage(WELCOME_TEXT, 'bot');
         });
 
         form.addEventListener('submit', async function(e) {
