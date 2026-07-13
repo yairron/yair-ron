@@ -1,36 +1,90 @@
 const ALLOWED_ORIGINS = ['https://yairron.com'];
 const SUMMARY_URL = 'https://yairron.com/btl/ai-summary.txt';
-const SITEMAP_URL = 'https://yairron.com/btl/sitemap.xml';
-const SITE_BASE = 'https://yairron.com/btl/';
 const MAX_QUESTION_LENGTH = 500;
 const MODEL = 'claude-haiku-4-5-20251001';
+const PREVIEW_LENGTH = 150;
+
+// תיאור קצר ואמין לכל עמוד (מבוסס על meta description האמיתי של כל דף) - משמש לאינדקס
+// שהמודל רואה כדי לבחור עמוד רלוונטי. תחזוקה ידנית: כשמוסיפים עמוד חדש ל-ai-summary.txt
+// יש להוסיף כאן שורה תואמת, אחרת ייפול ל-fallback האוטומטי (פחות מדויק).
+const PATH_DESCRIPTIONS = {
+  'additional_guides/html/additional_guides_index.html':
+    'עמוד ריכוז לצפייה במסמכי PDF מקור בנושאי זכויות מול הביטוח הלאומי: אמנות בינלאומיות, גמלת זקנה מיוחדת, מקרים מיוחדים ועוד.',
+  'additional_guides/html/amnot_binleumiot.html':
+    'סיכום מפורט על אמנות בינלאומיות לביטחון סוציאלי: רשימת מדינות החתומות עם ישראל, עקרונות מניעת כפל תשלום וצירוף תקופות ביטוח.',
+  'additional_guides/html/chovaat_hitatzbut.html':
+    'מדריך לחובת התייצבות בלשכת שירות התעסוקה כתנאי לקבלת תוספת השלמת הכנסה בגיל זקנה.',
+  'additional_guides/html/gamlay_zikna.html':
+    'מדריך לגמלת זקנה מיוחדת לעולים חדשים ותושבים חוזרים שאינם זכאים לקצבת זקנה רגילה, כולל השוואה מול קצבה חלקית דרך אמנה.',
+  'additional_guides/html/hagdarat_tluim.html':
+    'הגדרת תלויים (בן/בת זוג וילדים) לצורך תוספת תלויים בקצבת זקנה וקצבת נכות, כולל שיעורי התוספת.',
+  'additional_guides/html/mekarim_meyuchadim.html':
+    'סקירת מקרים מיוחדים וחריגים בגמלאות הביטוח הלאומי לאזרחים ותיקים.',
+  'additional_guides/html/nechut_mul_shairim.html':
+    'מדריך להשוואה בין קצבת נכות כללית לקצבת שאירים, כולל טבלת סכומים והבדלים מרכזיים.',
+  'additional_guides/html/shaagat_haari.html':
+    'דו"ח זכויות מבצע "שאגת הארי" - סיכום הזכויות והפיצויים למשרתים שהושפעו מהמבצע.',
+  'additional_guides/html/takrut_hachnasa.html':
+    'טבלת תקרות הכנסה לזכאות לקצבת אזרח ותיק חלקית לפי מבחן הכנסות.',
+  'additional_guides/html/tkufat_achshara.html':
+    'מדריך להגדרת תקופת אכשרה (תקופת הביטוח המינימלית) הנדרשת לזכאות לקצבת אזרח ותיק.',
+  'additional_guides/html/yetzia_lachul.html':
+    'מדריך להשפעת יציאה לחו"ל על המשך תשלום קצבת זקנה והשלמת הכנסה, כולל כללי ימי שהייה מותרים.',
+  'new_immigrants/gimlat_zikna_meyuchedet.html':
+    'מדריך לגמלת זיקנה מיוחדת לעולים חדשים ותושבים חוזרים שאינם זכאים לקצבת זקנה רגילה: תנאי זכאות וגובה הגמלה.',
+  'new_immigrants/international_treaties.html':
+    'מדריך לאמנות ביטחון סוציאלי בינלאומיות של ישראל: אילו מדינות חתומות, כיצד זה משפיע על צירוף תקופות ביטוח וזכאות לגמלה.',
+  'senior_rights/financial-tables-and-definitions.html':
+    'טבלאות מרוכזות של סכומים, תקרות הכנסה והגדרות מרכזיות בביטוח הלאומי לאזרחים ותיקים, מסודרות לפי נושא.',
+  'senior_rights/imputed_income_guide.html':
+    'מדריך לחישוב הכנסה רעיונית מנכסים פיננסיים לצורך בדיקת זכאות להשלמת הכנסה לגמלאי זקנה.',
+  'senior_rights/nechut_vs_shairim.html':
+    'מדריך השוואה בין קצבת נכות כללית לקצבת שאירים בביטוח הלאומי: הבדלי סכומים, יתרונות, סיכונים ואפשרות מעבר בין הקצבאות.',
+  'senior_rights/nursing_home_guide.html':
+    'מדריך מפורט לסיוע במימון בית אבות לאזרחים ותיקים: גופים מממנים, תנאי זכאות והליך הגשת בקשה.',
+  'senior_rights/old_pension_income_test_full_guide.html':
+    'מדריך מלא לחישוב זכאות וסכום קצבת זקנה חלקית לפי מבחן הכנסות (עבודה ונכסים), כולל דוגמאות חישוב ותקרות הכנסה מדויקות.',
+  'senior_rights/senior_citizens_rights_2026.html':
+    'מדריך מקיף לזכויות אזרחים ותיקים בישראל לשנת 2026: קצבת זקנה, השלמת הכנסה, סיעוד, נכות, מענקים וקישורים למקורות רשמיים.',
+  'senior_rights/senior_rights_full.html':
+    'מדריך מקיף לכל זכויות האזרח הוותיק בביטוח הלאומי: קצבת זקנה, השלמת הכנסה, שאירים, נכות, סיעוד וניצולי שואה במקום אחד.',
+  'senior_rights/survivors_benefits_guide_2026.html':
+    'מדריך מקיף לקצבת שאירים בביטוח הלאומי לשנת 2026: תנאי זכאות, סכומים, מבחן הכנסות ושאלות נפוצות.',
+  'senior_rights/women_transition_benefit_guide.html':
+    'מדריך למענק מעבר לנשים בגיל 62 שאינן זכאיות עדיין לקצבת זקנה: תנאי זכאות וסכום המענק.',
+};
 
 const SYSTEM_PREFIX = `אתה עוזר מידע בנושא ביטוח לאומי וזכויות אזרחים ותיקים בישראל, מבוסס על אתר yairron.com/btl.
-ענה בעברית, בקצרה ובבהירות, אך ורק על סמך המידע שסופק לך.
-אם התשובה לא נמצאת במידע הזמין לך (כולל אחרי שימוש בכלי get_page_content), אמור זאת בפירוש ואל תמציא ואל תנחש.
+ענה בעברית, בקצרה ובבהירות, אך ורק על סמך המידע שסופק לך (כולל אחרי שימוש בכלי get_page_content).
+אם התשובה לא נמצאת במידע הזמין לך, אמור זאת בפירוש ואל תמציא ואל תנחש.
 
-חשוב מאוד: הסיכום מכיל כמה סוגי קצבאות שונים (זקנה, נכות כללית, שאירים, עולים חדשים ועוד),
+חשוב מאוד: יש כמה סוגי קצבאות שונים (זקנה, נכות כללית, שאירים, עולים חדשים ועוד),
 ולעיתים יש להם תקרות הכנסה או סכומים דומים במספרים אך שונים במהות ובסוג הקצבה.
 לפני שאתה עונה עם מספר, ודא בבירור שהמספר שייך בדיוק לסוג הקצבה שנשאלת עליו, ולא לקצבה
-דומה/סמוכה בטקסט. אם יש ספק לאיזו קצבה שייך מספר מסוים - ציין זאת במפורש בתשובה במקום לנחש.
+דומה/סמוכה. אם יש ספק לאיזו קצבה שייך מספר מסוים - ציין זאת במפורש בתשובה במקום לנחש.
 
 חשוב לגבי עיצוב: אל תשתמש בסימני חץ (→ ← ⇒ וכדומה) בתשובה בעברית - בטקסט RTL הם
 נוטים להיראות הפוכים כשמעורבבים עם מספרים. במקום חץ, כתוב מילים כמו "כלומר", "לכן",
 "בהתאם לכך", או פסיק/מקף רגיל.
 
-סיכום תוכן האתר:
+המידע באתר מחולק לעמודים נפרדים. למטה יש רשימה של כל העמודים הזמינים עם תקציר קצר של כל אחד.
+כדי לענות על שאלה, **חובה** להשתמש בכלי get_page_content ולשלוף את התוכן המלא של עמוד רלוונטי אחד
+או יותר מהרשימה - אסור לענות רק על סמך שם העמוד והתקציר הקצר, כי הם לא מכילים את הפרטים/המספרים
+עצמם. אפשר לשלוף כמה עמודים אם השאלה נוגעת ליותר מנושא אחד.
+
+רשימת העמודים הזמינים:
 `;
 
 const GET_PAGE_TOOL = {
   name: 'get_page_content',
   description:
-    'שולף את התוכן המלא של עמוד ספציפי מתוך אתר yairron.com/btl, לשימוש כאשר הסיכום שסופק אינו מפורט מספיק כדי לענות על השאלה. יש להעביר נתיב מדויק מתוך רשימת העמודים הידועה שסופקה.',
+    'שולף את התוכן המלא של עמוד ספציפי מתוך רשימת העמודים הזמינה. יש להעביר את הנתיב המדויק כפי שהוא מופיע ברשימה.',
   input_schema: {
     type: 'object',
     properties: {
       path: {
         type: 'string',
-        description: 'הנתיב היחסי של העמוד תחת yairron.com/btl/, לדוגמה senior_rights/nechut_vs_shairim',
+        description: 'הנתיב המדויק של העמוד כפי שמופיע ברשימת העמודים הזמינה, לדוגמה senior_rights/nechut_vs_shairim.html',
       },
     },
     required: ['path'],
@@ -42,21 +96,27 @@ function isAllowedOrigin(event) {
   return ALLOWED_ORIGINS.some((allowed) => origin.startsWith(allowed));
 }
 
-function stripHtml(html) {
-  return html
-    .replace(/<script[\s\S]*?<\/script>/gi, '')
-    .replace(/<style[\s\S]*?<\/style>/gi, '')
-    .replace(/<[^>]+>/g, ' ')
-    .replace(/&nbsp;/g, ' ')
-    .replace(/\s+/g, ' ')
-    .trim();
+// ai-summary.txt בנוי מסעיפים בהפרדת "===== path =====" (ראו build_ai_summary.py) -
+// מפרקים לפי זה במקום לשלוח את כל הקובץ (328KB, ~253K טוקנים - מעל למגבלת ההקשר של המודל).
+function parseSections(text) {
+  const markerRe = /=====\s+(.+?)\s+=====/g;
+  const markers = [];
+  let match;
+  while ((match = markerRe.exec(text)) !== null) {
+    markers.push({ path: match[1].trim(), start: match.index, contentStart: match.index + match[0].length });
+  }
+  return markers.map((m, i) => {
+    const end = i + 1 < markers.length ? markers[i + 1].start : text.length;
+    return { path: m.path, content: text.slice(m.contentStart, end).trim() };
+  });
 }
 
-function extractSitemapPaths(xml) {
-  const matches = [...xml.matchAll(/<loc>(.*?)<\/loc>/g)];
-  return matches
-    .map((m) => m[1].replace(SITE_BASE, ''))
-    .filter((p) => p !== '');
+function previewOf(content) {
+  const line = content
+    .split('\n')
+    .map((l) => l.trim())
+    .find((l) => l.length >= 8 && /[א-ת]/.test(l));
+  return (line || '').slice(0, PREVIEW_LENGTH);
 }
 
 async function callClaude(messages, systemPrompt, tools) {
@@ -117,26 +177,23 @@ exports.handler = async (event) => {
     return { statusCode: 400, body: JSON.stringify({ error: 'השאלה ארוכה מדי' }) };
   }
 
-  let summary;
-  let sitemapPaths = [];
+  let sections;
   try {
-    const [summaryRes, sitemapRes] = await Promise.all([fetch(SUMMARY_URL), fetch(SITEMAP_URL)]);
+    const summaryRes = await fetch(SUMMARY_URL);
     if (!summaryRes.ok) throw new Error(`summary status ${summaryRes.status}`);
-    summary = await summaryRes.text();
-    if (sitemapRes.ok) {
-      sitemapPaths = extractSitemapPaths(await sitemapRes.text());
-    }
+    sections = parseSections(await summaryRes.text());
+    if (sections.length === 0) throw new Error('no sections parsed');
   } catch (err) {
     console.error('Failed to load site content:', err);
     return { statusCode: 500, body: JSON.stringify({ error: 'שגיאה בטעינת תוכן האתר' }) };
   }
 
-  const systemPrompt =
-    SYSTEM_PREFIX +
-    summary +
-    (sitemapPaths.length
-      ? `\n\nאם הסיכום אינו מספיק מפורט לשאלה, אפשר להשתמש בכלי get_page_content כדי לשלוף עמוד מלא מתוך הרשימה הבאה:\n${sitemapPaths.join('\n')}`
-      : '');
+  const sectionsByPath = new Map(sections.map((s) => [s.path, s.content]));
+  const indexText = sections
+    .map((s) => `- ${s.path}: ${PATH_DESCRIPTIONS[s.path] || previewOf(s.content)}`)
+    .join('\n');
+
+  const systemPrompt = SYSTEM_PREFIX + indexText;
 
   const messages = [{ role: 'user', content: question }];
   const MAX_TOOL_ROUNDS = 3;
@@ -159,25 +216,12 @@ exports.handler = async (event) => {
       // Anthropic דורש tool_result תואם לכל אחד מהם, אחרת מתקבלת שגיאת 400.
       const toolUses = data.content.filter((b) => b.type === 'tool_use');
 
-      const toolResults = await Promise.all(
-        toolUses.map(async (toolUse) => {
-          const requestedPath = String(toolUse.input?.path || '').replace(/^\/+/, '');
-          let toolResultText;
-
-          if (!sitemapPaths.includes(requestedPath)) {
-            toolResultText = 'העמוד המבוקש אינו קיים ברשימת העמודים הידועה.';
-          } else {
-            try {
-              const pageRes = await fetch(SITE_BASE + requestedPath);
-              toolResultText = pageRes.ok ? stripHtml(await pageRes.text()).slice(0, 20000) : 'שגיאה בטעינת העמוד המבוקש.';
-            } catch {
-              toolResultText = 'שגיאה בטעינת העמוד המבוקש.';
-            }
-          }
-
-          return { type: 'tool_result', tool_use_id: toolUse.id, content: toolResultText };
-        })
-      );
+      const toolResults = toolUses.map((toolUse) => {
+        const requestedPath = String(toolUse.input?.path || '').replace(/^\/+/, '');
+        const content = sectionsByPath.get(requestedPath);
+        const toolResultText = content !== undefined ? content : 'העמוד המבוקש אינו קיים ברשימת העמודים הידועה.';
+        return { type: 'tool_result', tool_use_id: toolUse.id, content: toolResultText };
+      });
 
       messages.push({ role: 'assistant', content: data.content });
       messages.push({ role: 'user', content: toolResults });
