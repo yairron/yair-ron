@@ -134,7 +134,7 @@ async function callClaude(messages, systemPrompt, tools) {
     },
     body: JSON.stringify({
       model: MODEL,
-      max_tokens: 600,
+      max_tokens: 2000,
       system: systemPrompt,
       messages,
       ...(tools ? { tools } : {}),
