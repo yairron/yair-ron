@@ -3,6 +3,8 @@ const SUMMARY_URL = 'https://yairron.com/btl/ai-summary.txt';
 const MAX_QUESTION_LENGTH = 500;
 const MODEL = 'claude-haiku-4-5-20251001';
 const PREVIEW_LENGTH = 150;
+const MAX_HISTORY_ITEMS = 3;
+const MAX_HISTORY_ANSWER_LENGTH = 4000;
 
 // תיאור קצר ואמין לכל עמוד (מבוסס על meta description האמיתי של כל דף) - משמש לאינדקס
 // שהמודל רואה כדי לבחור עמוד רלוונטי. תחזוקה ידנית: כשמוסיפים עמוד חדש ל-ai-summary.txt
@@ -135,11 +137,22 @@ async function callClaude(messages, systemPrompt, tools) {
     body: JSON.stringify({
       model: MODEL,
       max_tokens: 2000,
-      system: systemPrompt,
+      // system prompt זהה (אינדקס העמודים) נשלח שוב בכל סבב tool-use ובכל שאלת המשך
+      // עם ההיסטוריה - cache_control מוזיל קריאות חוזרות בכ-90%. חשוב: ל-Haiku 4.5 יש
+      // סף מינימום 4096 טוקנים להפעלת המטמון - ראו לוג cache usage למטה אם זה בפועל מופעל.
+      system: [{ type: 'text', text: systemPrompt, cache_control: { type: 'ephemeral' } }],
       messages,
       ...(tools ? { tools } : {}),
     }),
   });
+}
+
+function logCacheUsage(label, data) {
+  const u = data?.usage;
+  if (!u) return;
+  console.log(
+    `[cache] ${label}: creation=${u.cache_creation_input_tokens ?? 0} read=${u.cache_read_input_tokens ?? 0} input=${u.input_tokens ?? 0}`
+  );
 }
 
 const TRANSIENT_STATUSES = new Set([429, 500, 502, 503, 529]);
@@ -168,9 +181,9 @@ exports.handler = async (event) => {
     return { statusCode: 403, body: JSON.stringify({ error: 'מקור לא מורשה' }) };
   }
 
-  let question;
+  let question, history;
   try {
-    ({ question } = JSON.parse(event.body || '{}'));
+    ({ question, history } = JSON.parse(event.body || '{}'));
   } catch {
     return { statusCode: 400, body: JSON.stringify({ error: 'בקשה לא תקינה' }) };
   }
@@ -180,6 +193,24 @@ exports.handler = async (event) => {
   }
   if (question.length > MAX_QUESTION_LENGTH) {
     return { statusCode: 400, body: JSON.stringify({ error: 'השאלה ארוכה מדי' }) };
+  }
+
+  if (history === undefined) {
+    history = [];
+  } else if (!Array.isArray(history) || history.length > MAX_HISTORY_ITEMS) {
+    return { statusCode: 400, body: JSON.stringify({ error: 'היסטוריה לא תקינה' }) };
+  } else {
+    for (const item of history) {
+      if (
+        !item ||
+        typeof item.question !== 'string' ||
+        typeof item.answer !== 'string' ||
+        item.question.length > MAX_QUESTION_LENGTH ||
+        item.answer.length > MAX_HISTORY_ANSWER_LENGTH
+      ) {
+        return { statusCode: 400, body: JSON.stringify({ error: 'היסטוריה לא תקינה' }) };
+      }
+    }
   }
 
   let sections;
@@ -200,7 +231,12 @@ exports.handler = async (event) => {
 
   const systemPrompt = SYSTEM_PREFIX + indexText;
 
-  const messages = [{ role: 'user', content: question }];
+  const messages = [];
+  for (const item of history) {
+    messages.push({ role: 'user', content: item.question });
+    messages.push({ role: 'assistant', content: item.answer });
+  }
+  messages.push({ role: 'user', content: question });
   const MAX_TOOL_ROUNDS = 3;
 
   try {
@@ -210,6 +246,7 @@ exports.handler = async (event) => {
       return { statusCode: 502, body: JSON.stringify({ error: 'שגיאה בפנייה למערכת ה-AI' }) };
     }
     let data = await apiRes.json();
+    logCacheUsage('initial', data);
     let round = 0;
 
     // המודל עשוי לרצות לשלוף עוד עמוד גם אחרי סבב ראשון - חייבים להשאיר את הכלי
@@ -238,6 +275,7 @@ exports.handler = async (event) => {
         return { statusCode: 502, body: JSON.stringify({ error: 'שגיאה בפנייה למערכת ה-AI' }) };
       }
       data = await apiRes.json();
+      logCacheUsage(`round ${round}`, data);
     }
 
     const answer = data.content?.find((b) => b.type === 'text')?.text || 'לא הצלחתי לענות על השאלה.';

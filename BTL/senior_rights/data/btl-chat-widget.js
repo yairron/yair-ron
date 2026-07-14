@@ -321,7 +321,9 @@
         var input = document.getElementById('btl-chat-input');
         var sendBtn = document.getElementById('btl-chat-send');
         var messages = document.getElementById('btl-chat-messages');
-        var WELCOME_TEXT = 'שלום! אפשר לשאול אותי כל שאלה על זכויות אזרחים ותיקים, קצבאות וביטוח לאומי, ואני אענה לפי המידע שבאתר.';
+        var WELCOME_TEXT = 'שלום! אפשר לשאול אותי כל שאלה על זכויות אזרחים ותיקים, קצבאות וביטוח לאומי, ואני אענה לפי המידע שבאתר. (אני עדיין בהרצה, וזוכר רק 3 שיחות אחורה)';
+        var MAX_HISTORY_ITEMS = 3;
+        var conversationHistory = [];
 
         function addMessage(text, cls) {
             var div = document.createElement('div');
@@ -355,6 +357,7 @@
         });
         clearBtn.addEventListener('click', function() {
             messages.innerHTML = '';
+            conversationHistory = [];
             addMessage(WELCOME_TEXT, 'bot');
         });
 
@@ -372,13 +375,17 @@
                 var res = await fetch('/api/btl-chat', {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ question: question })
+                    body: JSON.stringify({ question: question, history: conversationHistory })
                 });
                 var data = await res.json();
                 if (!res.ok) {
                     addMessage(data.error || 'אירעה שגיאה, נסו שוב.', 'error');
                 } else {
                     addMessage(data.answer, 'bot');
+                    conversationHistory.push({ question: question, answer: data.answer });
+                    if (conversationHistory.length > MAX_HISTORY_ITEMS) {
+                        conversationHistory.shift();
+                    }
                 }
             } catch (err) {
                 addMessage('שגיאת תקשורת, נסו שוב.', 'error');
