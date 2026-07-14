@@ -136,7 +136,7 @@ function previewOf(content) {
   return (line || '').slice(0, PREVIEW_LENGTH);
 }
 
-async function callClaude(messages, systemPrompt, tools) {
+async function callClaude(messages, systemPrompt, tools, toolChoice) {
   return fetch('https://api.anthropic.com/v1/messages', {
     method: 'POST',
     headers: {
@@ -153,6 +153,7 @@ async function callClaude(messages, systemPrompt, tools) {
       system: [{ type: 'text', text: systemPrompt, cache_control: { type: 'ephemeral' } }],
       messages,
       ...(tools ? { tools } : {}),
+      ...(toolChoice ? { tool_choice: toolChoice } : {}),
     }),
   });
 }
@@ -173,11 +174,11 @@ function sleep(ms) {
 
 // עומס זמני/rate-limit בצד Anthropic קורה מדי פעם - ניסיון חוזר יחיד אחרי השהיה קצרה
 // פותר את רוב המקרים בלי להוסיף מורכבות של backoff מלא.
-async function callClaudeWithRetry(messages, systemPrompt, tools) {
-  let res = await callClaude(messages, systemPrompt, tools);
+async function callClaudeWithRetry(messages, systemPrompt, tools, toolChoice) {
+  let res = await callClaude(messages, systemPrompt, tools, toolChoice);
   if (!res.ok && TRANSIENT_STATUSES.has(res.status)) {
     await sleep(800);
-    res = await callClaude(messages, systemPrompt, tools);
+    res = await callClaude(messages, systemPrompt, tools, toolChoice);
   }
   return res;
 }
@@ -250,7 +251,11 @@ exports.handler = async (event) => {
   const MAX_TOOL_ROUNDS = 3;
 
   try {
-    let apiRes = await callClaudeWithRetry(messages, systemPrompt, [GET_PAGE_TOOL]);
+    // מאלצים קריאה לכלי בסבב הראשון (tool_choice: any) - לא סומכים על ההנחיה בטקסט
+    // בלבד, כי המודל עלול "לדלג" עליה ולענות ישר מהזיכרון (זה בדיוק מה שקרה בפועל).
+    // אחרי שהוא רואה תוכן אמיתי הוא עדיין חופשי לומר "אין לי מידע" אם זה לא רלוונטי -
+    // האילוץ הוא רק על עצם השליפה, לא על תוכן התשובה הסופית.
+    let apiRes = await callClaudeWithRetry(messages, systemPrompt, [GET_PAGE_TOOL], { type: 'any' });
     if (!apiRes.ok) {
       console.error('Anthropic API error:', apiRes.status, await apiRes.text());
       return { statusCode: 502, body: JSON.stringify({ error: 'שגיאה בפנייה למערכת ה-AI' }) };
