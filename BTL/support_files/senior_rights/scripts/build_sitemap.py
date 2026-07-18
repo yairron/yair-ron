@@ -43,6 +43,10 @@ def discover_public_pages() -> list:
             continue
         for p in sorted(base.glob("*.html")):
             pages.append(f"{d}/{p.name}")
+    # קובץ הריכוז לבינה מלאכותית - משאב ציבורי אמיתי (מקושר גם מ-robots.txt),
+    # לא HTML, אז לא נתפס ע"י הלולאה למעלה. נוסף כאן במפורש.
+    if (vrp.BTL_DIR / "ai-summary.txt").exists():
+        pages.append("ai-summary.txt")
     return pages
 
 

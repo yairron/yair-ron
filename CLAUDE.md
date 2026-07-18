@@ -26,7 +26,7 @@ python BTL/support_files/senior_rights/scripts/build_ai_summary.py
 ```
 python BTL/support_files/senior_rights/scripts/build_sitemap.py
 ```
-בונה מחדש את `BTL/sitemap.xml` עם כתובת מלאה לכל עמוד HTML תחת `BTL/senior_rights`, `BTL/new_immigrants`, ו-`BTL/additional_guides/html` (כולל עמודים שלא ב-`ai-summary.txt` — מפת האתר היא לגילוי כללי, לא רק לתוכן שאומת). **יש להריץ מחדש בכל פעם שנוסף/מוסר עמוד.**
+בונה מחדש את `BTL/sitemap.xml` עם כתובת מלאה לכל עמוד HTML תחת `BTL/senior_rights`, `BTL/new_immigrants`, ו-`BTL/additional_guides/html` (כולל עמודים שלא ב-`ai-summary.txt` — מפת האתר היא לגילוי כללי, לא רק לתוכן שאומת), וכן `BTL/ai-summary.txt` עצמו (נוסף במפורש ב-`discover_public_pages()`, כי הוא לא HTML ולא נתפס ע"י הלולאה הרגילה — הוא משאב ציבורי אמיתי שמקושר גם מ-`robots.txt`). **יש להריץ מחדש בכל פעם שנוסף/מוסר עמוד.**
 
 **חשוב — תוקן ב-12.07.2026 אחרי אימות ישיר מול השרת החי (curl, לא הנחה):** בניגוד למה שהיה מתועד כאן קודם, `https://yairron.com` **אינו** שורש הפרסום של `BTL` ישירות. הכתובת האמיתית דורשת תחילית `/btl/` (אותיות קטנות דווקא — יש הפניית 301 מ-`/BTL/` עם אותיות גדולות), ו-Netlify Pretty URLs מוריד אוטומטית את סיומת `.html` מכל כתובת (הכתובת עם הסיומת עדיין עובדת דרך הפניה, אבל הכתובת הקנונית שאין לה הפניה כלל היא בלי הסיומת). `build_sitemap.py` כבר בנוי לפי זה: `https://yairron.com/btl/<נתיב>` בלי `.html`, ועמוד הבית עצמו הוא `https://yairron.com/btl/` (לא `btl/index`). כל כתובת בקובץ `sitemap.xml` הנוכחי אומתה בפועל (200) מול השרת.
 

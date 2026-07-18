@@ -44,7 +44,11 @@
       "Bash(curl -s -L -A \"Mozilla/5.0 \\(Windows NT 10.0; Win64; x64\\) AppleWebKit/537.36\" \"https://www.btl.gov.il/benefits/old_age/shehutBechul/Pages/lloHashlamatHachnasa.aspx\" -o sub_notreaty.html)",
       "Bash(curl -s -L -A \"Mozilla/5.0 \\(Windows NT 10.0; Win64; x64\\) AppleWebKit/537.36\" \"https://www.btl.gov.il/benefits/old_age/shehutBechul/Pages/kitsbaUSA.aspx\" -o sub_usa.html)",
       "Bash(curl -s -L -A \"Mozilla/5.0 \\(Windows NT 10.0; Win64; x64\\) AppleWebKit/537.36\" \"https://www.btl.gov.il/benefits/old_age/shehutBechul/Pages/emHashlamatHachnasa.aspx\" -o sub_supplement.html)",
-      "Bash(curl -s -L -A \"Mozilla/5.0 \\(Windows NT 10.0; Win64; x64\\) AppleWebKit/537.36\" \"https://www.btl.gov.il/benefits/old_age/shehutBechul/Pages/ziknaMeyuchedet.aspx\" -o sub_special.html)"
+      "Bash(curl -s -L -A \"Mozilla/5.0 \\(Windows NT 10.0; Win64; x64\\) AppleWebKit/537.36\" \"https://www.btl.gov.il/benefits/old_age/shehutBechul/Pages/ziknaMeyuchedet.aspx\" -o sub_special.html)",
+      "Bash(python -c ' *)",
+      "Bash(python BTL/support_files/senior_rights/scripts/add_nested_accordion_ids.py)",
+      "Bash(python BTL/support_files/senior_rights/scripts/extract_search_stage_b_2_5_anchors.py)",
+      "Bash(python BTL/support_files/senior_rights/scripts/generate_search_concepts.py)"
     ]
   }
 }
