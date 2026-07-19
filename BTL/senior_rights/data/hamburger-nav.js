@@ -477,6 +477,7 @@
                 ]},
             ]
         },
+        { icon: '❓', text: 'שאלות נפוצות',      href: bp + 'senior_rights/faq.html', teal: true },
         { icon: '🔗', text: 'קישורים חשובים',   href: bp + 'senior_rights/important-links.html', teal: true },
         { icon: '📋', text: 'טפסי ביטוח לאומי', href: bp + 'senior_rights/forms.html', teal: true },
     ];

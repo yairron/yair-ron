@@ -43,6 +43,7 @@ KNOWN_FILES = {
     "senior_rights/financial-tables-and-definitions.html": ("include", "מנוע ליבה - הוטמע ואומת"),
     "new_immigrants/gimlat_zikna_meyuchedet.html": ("include", "מנוע ליבה - הוטמע ואומת"),
     "new_immigrants/international_treaties.html": ("include", "מנוע ליבה - הוטמע ואומת"),
+    "senior_rights/faq.html": ("include", "מנוע ליבה - הוטמע ואומת - שאלות נפוצות שנבנו מבדיקת 150 שאלות מול btl-chat.js"),
 
     # קבוצה ד' - כבר סטטיים, אומתו מול nii-constants.json (check_nii_values_sync.py)
     "senior_rights/imputed_income_guide.html": ("include", "קבוצה ד' - אומת"),
