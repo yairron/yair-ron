@@ -1,5 +1,19 @@
 const ALLOWED_ORIGINS = ['https://yairron.com'];
-const SUMMARY_URL = 'https://yairron.com/btl/ai-summary.txt';
+// ai-summary.txt הפך ב-20.07.2026 לאינדקס קצר בלבד (התוכן המלא פוצל לקבצי
+// נושא תחת ai-content/, אחרי שכלי fetch/grounding חיצוניים כמו ג'מיני דיווחו
+// על חסימה בשליפת הקובץ המאוחד הקודם - כ-800KB). הפונקציה כאן לא צריכה
+// לפרש את האינדקס - היא מכירה ישירות את רשימת קבצי הנושא (חייבת להישאר
+// מסונכרנת ידנית עם TOPICS ב-build_ai_summary.py) ומאחדת את כולם בזמן ריצה
+// בחזרה לטקסט אחד, בדיוק כמו שהקובץ הישן היה - parseSections לא השתנה.
+const CONTENT_URLS = [
+  'https://yairron.com/btl/ai-content/btl-faq.txt',
+  'https://yairron.com/btl/ai-content/btl-pension-overview.txt',
+  'https://yairron.com/btl/ai-content/btl-income-test.txt',
+  'https://yairron.com/btl/ai-content/btl-survivors-disability.txt',
+  'https://yairron.com/btl/ai-content/btl-immigrants-treaties.txt',
+  'https://yairron.com/btl/ai-content/btl-care-transitions.txt',
+  'https://yairron.com/btl/ai-content/btl-special-cases.txt',
+];
 const MAX_QUESTION_LENGTH = 500;
 const MODEL = 'claude-haiku-4-5-20251001';
 const PREVIEW_LENGTH = 150;
@@ -115,8 +129,8 @@ function isAllowedOrigin(event) {
   return ALLOWED_ORIGINS.some((allowed) => origin.startsWith(allowed));
 }
 
-// ai-summary.txt בנוי מסעיפים בהפרדת "===== path =====" (ראו build_ai_summary.py) -
-// מפרקים לפי זה במקום לשלוח את כל הקובץ (328KB, ~253K טוקנים - מעל למגבלת ההקשר של המודל).
+// כל קובץ תוכן בנוי מסעיפים בהפרדת "===== path =====" (ראו build_ai_summary.py) -
+// מפרקים לפי זה במקום לשלוח את כל התוכן המאוחד (מעל למגבלת ההקשר של המודל).
 function parseSections(text) {
   const markerRe = /=====\s+(.+?)\s+=====/g;
   const markers = [];
@@ -228,9 +242,11 @@ exports.handler = async (event) => {
 
   let sections;
   try {
-    const summaryRes = await fetch(SUMMARY_URL);
-    if (!summaryRes.ok) throw new Error(`summary status ${summaryRes.status}`);
-    sections = parseSections(await summaryRes.text());
+    const contentResponses = await Promise.all(CONTENT_URLS.map((url) => fetch(url)));
+    const badRes = contentResponses.find((res) => !res.ok);
+    if (badRes) throw new Error(`content fetch status ${badRes.status} for ${badRes.url}`);
+    const texts = await Promise.all(contentResponses.map((res) => res.text()));
+    sections = parseSections(texts.join('\n'));
     if (sections.length === 0) throw new Error('no sections parsed');
   } catch (err) {
     console.error('Failed to load site content:', err);

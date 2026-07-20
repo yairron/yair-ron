@@ -2,15 +2,26 @@
 """
 build_ai_summary.py
 ----------------------
-בונה קובץ ריכוז אחד, בטקסט נקי (בלי HTML/עיצוב), לשימוש כלי בינה
-מלאכותית - מרכז את התוכן המלא מכל עמודי המדריך שכבר אומתו כמכילים
+בונה אינדקס קצר (BTL/ai-summary.txt) + קובצי תוכן לפי נושא
+(BTL/ai-content/<topic>.txt), בטקסט נקי (בלי HTML/עיצוב), לשימוש כלי
+בינה מלאכותית - מרכז את התוכן המלא מכל עמודי המדריך שכבר אומתו כמכילים
 תוכן סטטי אמיתי (עמודי "מנוע הליבה" שהוטמעו, וקבוצה ד' שאומתה).
+
+פוצל מקובץ ריכוז יחיד (עד 20.07.2026) לאינדקס+קבצי-נושא ב-20.07.2026,
+אחרי שג'מיני דיווח בפועל על חסימה בשליפת הקובץ המאוחד (~800KB) - כלי
+fetch/grounding חיצוניים מגבילים גודל תוכן שהם שולפים מכתובת בודדת.
+כל קובץ נושא כולל כמה עמודים קרובים בנושא, כדי לצמצם את הגודל שנשלף
+בבת אחת (רוב הקבצים 40-165KB; faq.html לבדו ~250KB כי הוא עמוד אחד ענק
+שלא פוצל בתוך עצמו). ai-summary.txt הפך לאינדקס קצר בלבד שמצביע על
+קובצי הנושא - לא מכיל יותר את התוכן המלא.
 
 לא מנחש אילו קבצים לכלול: כל קובץ HTML שנמצא בפועל תחת
 BTL/senior_rights ו-BTL/new_immigrants נבדק מול טבלת סיווג מלאה
 (KNOWN_FILES). קובץ שלא מופיע שם בכלל - לא נכלל ולא נדחה בשקט, אלא
 מודפס כאזהרה מפורשת ("קובץ לא מסווג"). קובץ שכן מופיע ברשימה אך נמחק
-מהדיסק - גם הוא מודפס כאזהרה, לא נעלם בלי התראה.
+מהדיסק - גם הוא מודפס כאזהרה, לא נעלם בלי התראה. באותו אופן, קובץ
+"include" שלא שובץ לאף נושא ב-TOPICS מודפס כאזהרה נפרדת - כל עמוד
+"include" חייב להיות משובץ לנושא אחד בדיוק.
 
 שימוש:
     python build_ai_summary.py
@@ -29,7 +40,78 @@ if hasattr(sys.stdout, "reconfigure"):
     sys.stdout.reconfigure(encoding="utf-8")
 
 CONTENT_DIRS = ["senior_rights", "new_immigrants", "additional_guides/html"]
-OUTPUT_PATH = vrp.BTL_DIR / "ai-summary.txt"
+INDEX_PATH = vrp.BTL_DIR / "ai-summary.txt"
+CONTENT_DIR = vrp.BTL_DIR / "ai-content"
+# כתובת מלאה (לא יחסית) בקובץ האינדקס בכוונה - זה טקסט גולמי, לא HTML,
+# אז אין רזולוציית קישור יחסי אוטומטית עבור כלי שקורא את הטקסט כפרוזה.
+CONTENT_URL_PREFIX = "https://yairron.com/btl/ai-content"
+
+# כל עמוד "include" ב-KNOWN_FILES חייב להיות משובץ לנושא אחד בדיוק כאן.
+# קיבוץ לפי קרבה נושאית, עם איזון גודל בערך (ראו הערה למעלה) - לא לפי
+# תיקיית המקור של הקובץ (עמודים מ-senior_rights/new_immigrants/
+# additional_guides מעורבבים בין הנושאים לפי תוכן, לא לפי מיקום).
+TOPICS = {
+    "btl-faq": (
+        "שאלות ותשובות נפוצות",
+        "מאגר שאלות-תשובות קצרות שמכסה את רוב נושאי האתר - קצבת זקנה, שאירים, סיעוד, הכנסה ועוד.",
+        ["senior_rights/faq.html"],
+    ),
+    "btl-pension-overview": (
+        "קצבת זקנה - סקירה כללית",
+        "מדריכים מקיפים לכלל זכויות האזרח הוותיק וקצבת הזקנה: תנאי זכאות, סכומים, תהליכים.",
+        ["senior_rights/senior_rights_full.html", "senior_rights/senior_citizens_rights_2026.html"],
+    ),
+    "btl-income-test": (
+        "מבחני הכנסה וטבלאות סכומים",
+        "חישוב זכאות לפי מבחן הכנסות (עבודה/נכסים/הכנסה רעיונית), טבלאות תקרות וסכומים מרכזיים.",
+        [
+            "senior_rights/old_pension_income_test_full_guide.html",
+            "senior_rights/imputed_income_guide.html",
+            "senior_rights/financial-tables-and-definitions.html",
+            "additional_guides/html/takrut_hachnasa.html",
+        ],
+    ),
+    "btl-survivors-disability": (
+        "קצבת שאירים ונכות",
+        "קצבת שאירים, השוואה מול קצבת נכות כללית, והגדרת תלויים לצורך זכאות.",
+        [
+            "senior_rights/survivors_benefits_guide_2026.html",
+            "senior_rights/nechut_vs_shairim.html",
+            "additional_guides/html/nechut_mul_shairim.html",
+            "additional_guides/html/hagdarat_tluim.html",
+        ],
+    ),
+    "btl-immigrants-treaties": (
+        "עולים חדשים ואמנות בינלאומיות",
+        "גמלת זקנה מיוחדת לעולים ותושבים חוזרים, ואמנות ביטחון סוציאלי בינלאומיות של ישראל.",
+        [
+            "new_immigrants/gimlat_zikna_meyuchedet.html",
+            "new_immigrants/international_treaties.html",
+            "additional_guides/html/amnot_binleumiot.html",
+            "additional_guides/html/gamlay_zikna.html",
+        ],
+    ),
+    "btl-care-transitions": (
+        "סיעוד, נשים ומעברים",
+        "סיוע במימון בית אבות, מענק מעבר לנשים, יציאה לחו\"ל, חובת התייצבות, ותקופת אכשרה.",
+        [
+            "senior_rights/nursing_home_guide.html",
+            "senior_rights/women_transition_benefit_guide.html",
+            "additional_guides/html/yetzia_lachul.html",
+            "additional_guides/html/chovaat_hitatzbut.html",
+            "additional_guides/html/tkufat_achshara.html",
+        ],
+    ),
+    "btl-special-cases": (
+        "מקרים מיוחדים",
+        "מקרים חריגים בגמלאות, דו\"ח זכויות מבצע שאגת הארי, ועמוד ניווט לסיכומי ה-PDF.",
+        [
+            "additional_guides/html/mekarim_meyuchadim.html",
+            "additional_guides/html/shaagat_haari.html",
+            "additional_guides/html/additional_guides_index.html",
+        ],
+    ),
+}
 
 # סיווג מלא של כל קובצי התוכן הידועים באתר (מהמיפוי המפורט שכבר בוצע
 # בעבודה על שלב 1). status: "include" - יש בו תוכן סטטי מאומת, נכלל
@@ -144,24 +226,54 @@ def main():
         if status == "include" and relpath in discovered
     )
 
+    topic_of = {}
+    for slug, (_title, _desc, paths) in TOPICS.items():
+        for p in paths:
+            topic_of[p] = slug
+    unassigned = sorted(set(include_files) - set(topic_of.keys()))
+    if unassigned:
+        print(f"⚠️  {len(unassigned)} קבצי 'include' לא משובצים לאף נושא ב-TOPICS - יש לשבץ:")
+        for f in unassigned:
+            print(f"    - {f}")
+        print()
+
     print(f"מרכז תוכן מ-{len(include_files)} קבצים...")
     sections = build_summary(include_files)
+    text_of = dict(sections)
 
-    output_lines = [
-        "ריכוז מידע - זכויות אזרחים ותיקים בישראל",
+    CONTENT_DIR.mkdir(exist_ok=True)
+    index_lines = [
+        "ריכוז מידע - זכויות אזרחים ותיקים בישראל (אינדקס)",
         "",
-        "מסמך זה נוצר אוטומטית ומרכז את התוכן המלא של עמודי המדריך באתר, לשימוש כלי בינה מלאכותית.",
-        "המידע מבוסס על אתר הביטוח הלאומי ומקורות רשמיים נוספים, ומעודכן בכל פעם שהתוכן החי משתנה.",
+        "מסמך זה הוא אינדקס קצר לתוכן המדריכים באתר, לשימוש כלי בינה מלאכותית.",
+        "התוכן המלא מפוצל לקבצי נושא נפרדים (במקום קובץ אחד גדול), כדי שכל קובץ יהיה קטן וניתן לשליפה בבודדת.",
+        "לכל שאלה - יש לשלוף את קובץ הנושא הרלוונטי ביותר מהרשימה למטה, ולחפש בתוכו את העמוד המדויק (מסומן בקובץ בהפרדת \"===== נתיב =====\").",
         "",
     ]
-    for relpath, text in sections:
-        output_lines.append(f"===== {relpath} =====")
-        output_lines.append("")
-        output_lines.append(text)
-        output_lines.append("")
 
-    OUTPUT_PATH.write_text("\n".join(output_lines), encoding="utf-8")
-    print(f"\nנכתב ל-{OUTPUT_PATH} ({len(sections)} פרקים)")
+    for slug, (title, desc, paths) in TOPICS.items():
+        topic_paths = [p for p in paths if p in text_of]
+        if not topic_paths:
+            continue
+        topic_lines = []
+        for relpath in topic_paths:
+            topic_lines.append(f"===== {relpath} =====")
+            topic_lines.append("")
+            topic_lines.append(text_of[relpath])
+            topic_lines.append("")
+        content_path = CONTENT_DIR / f"{slug}.txt"
+        content_path.write_text("\n".join(topic_lines), encoding="utf-8")
+        size_kb = content_path.stat().st_size // 1024
+        print(f"  נכתב ל-{content_path} ({len(topic_paths)} עמודים, {size_kb}KB)")
+
+        index_lines.append(f"📁 {CONTENT_URL_PREFIX}/{slug}.txt — {title}")
+        index_lines.append(f"   {desc}")
+        for relpath in topic_paths:
+            index_lines.append(f"   - {relpath}")
+        index_lines.append("")
+
+    INDEX_PATH.write_text("\n".join(index_lines), encoding="utf-8")
+    print(f"\nנכתב אינדקס ל-{INDEX_PATH} ({len(TOPICS)} נושאים, {len(sections)} עמודים)")
 
 
 if __name__ == "__main__":

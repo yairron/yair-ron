@@ -43,10 +43,16 @@ def discover_public_pages() -> list:
             continue
         for p in sorted(base.glob("*.html")):
             pages.append(f"{d}/{p.name}")
-    # קובץ הריכוז לבינה מלאכותית - משאב ציבורי אמיתי (מקושר גם מ-robots.txt),
+    # קובץ האינדקס לבינה מלאכותית - משאב ציבורי אמיתי (מקושר גם מ-robots.txt),
     # לא HTML, אז לא נתפס ע"י הלולאה למעלה. נוסף כאן במפורש.
     if (vrp.BTL_DIR / "ai-summary.txt").exists():
         pages.append("ai-summary.txt")
+    # קובצי התוכן לפי נושא שהאינדקס מצביע עליהם (build_ai_summary.py) -
+    # גם הם לא HTML, ומשאבים ציבוריים אמיתיים שכדאי שיהיו ניתנים לגילוי.
+    content_dir = vrp.BTL_DIR / "ai-content"
+    if content_dir.exists():
+        for p in sorted(content_dir.glob("*.txt")):
+            pages.append(f"ai-content/{p.name}")
     return pages
 
 
