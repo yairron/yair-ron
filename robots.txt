@@ -3,6 +3,16 @@ Allow: /
 Disallow: /yr1/
 Disallow: /mda/
 Disallow: /btl/support_files/
+Allow: /btl/support_files/files/
+Allow: /btl/support_files/json/
+
+User-agent: Google-Extended
+Allow: /
+Disallow: /yr1/
+Disallow: /mda/
+Disallow: /btl/support_files/
+Allow: /btl/support_files/files/
+Allow: /btl/support_files/json/
 
 Sitemap: https://yairron.com/btl/sitemap.xml
 
