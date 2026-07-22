@@ -85,6 +85,40 @@ const PATH_DESCRIPTIONS = {
     'מדריך למענק מעבר לנשים בגיל 62 שאינן זכאיות עדיין לקצבת זקנה: תנאי זכאות וסכום המענק.',
 };
 
+// כותרת קצרה וקריאה לכל עמוד, בדיוק כפי שהיא מופיעה בקישור האמיתי אליו במקום כלשהו
+// באתר (בעיקר index.html ו-additional_guides_index.html) - משמשת כטקסט הקישור
+// שמוצג למשתמש מתחת לתשובה בצ'אט (שדה sources). תחזוקה ידנית: כשמוסיפים עמוד חדש
+// יש להוסיף שורה תואמת כאן, אחרת הקישור בתשובה יוצג עם נתיב הקובץ הגולמי (fallback).
+const PATH_TITLES = {
+  'additional_guides/html/additional_guides_index.html': '📚 סיכומים ומסמכי מידע מפורט',
+  'additional_guides/html/amnot_binleumiot.html': '🌍 אמנות בינלאומיות לביטחון סוציאלי',
+  'additional_guides/html/chovaat_hitatzbut.html': '💼 השלמת הכנסה וחובת ההתייצבות בשירות התעסוקה',
+  'additional_guides/html/gamlay_zikna.html': '🏠 גמלת זיקנה מיוחדת לעולים ותושבים חוזרים',
+  'additional_guides/html/hagdarat_tluim.html': '👨‍👩‍👧 הגדרת תלויים בקצבת זקנה וקצבת שאירים',
+  'additional_guides/html/mekarim_meyuchadim.html': '⚠️ מקרים מיוחדים בגמלאות ביטוח לאומי',
+  'additional_guides/html/nechut_mul_shairim.html': '⚖️ בחירה בין קצבת נכות לקצבת שאירים',
+  'additional_guides/html/nechut_klalit_mul_avoda.html': '🩼 נכות כללית מול נכות מעבודה',
+  'additional_guides/html/shaagat_haari.html': '🦁 דו"ח זכויות — מבצע שאגת הארי',
+  'additional_guides/html/takrut_hachnasa.html': '💰 תקרות הכנסה לקצבת אזרח ותיק חלקית',
+  'additional_guides/html/tkufat_achshara.html': '📅 תקופת אכשרה לקצבת אזרח ותיק',
+  'additional_guides/html/yetzia_lachul.html': '✈️ יציאה לחו"ל והשפעתה על קצבת זיקנה והשלמת הכנסה',
+  'additional_guides/html/zchuyot_achrei_ishpuz.html': '🏥 זכויות אזרחים ותיקים לאחר אישפוז',
+  'additional_guides/html/yipuy_koach_mitmashech.html': '📜 ייפוי כוח מתמשך - מדריך מקיף',
+  'additional_guides/html/oved_zar_bituach_leumi.html': '📋 מידע כללי על העסקת עובד זר',
+  'new_immigrants/gimlat_zikna_meyuchedet.html': '📖 גמלת זיקנה מיוחדת לעולים ותושבים חוזרים',
+  'new_immigrants/international_treaties.html': '📖 אמנות בינלאומיות לביטחון סוציאלי',
+  'senior_rights/faq.html': '❓ שאלות נפוצות בזכויות אזרחים ותיקים',
+  'senior_rights/financial-tables-and-definitions.html': '📊 סיכום קצבאות ותקרות',
+  'senior_rights/imputed_income_guide.html': '📖 מדריך מפורט: חישוב הכנסה רעיונית מנכסים פיננסיים',
+  'senior_rights/nechut_vs_shairim.html': '⚖️ מדריך מפורט לקצבת נכות כללית מול קצבת שאירים',
+  'senior_rights/nursing_home_guide.html': '🏥 מדריך מפורט בנושא מוסד אישפוז',
+  'senior_rights/old_pension_income_test_full_guide.html': '📊 מדריך לחישוב זכאות וסכום קצבת זיקנה חלקית',
+  'senior_rights/senior_citizens_rights_2026.html': '📘 זכויות אזרחים ותיקים 2026 - מדריך מקיף',
+  'senior_rights/senior_rights_full.html': '🌟 זכויות אזרחים ותיקים',
+  'senior_rights/survivors_benefits_guide_2026.html': '👨‍👩‍👧 מדריך מקיף לקצבת שאירים 2026',
+  'senior_rights/women_transition_benefit_guide.html': '👩 מדריך מפורט למענק מעבר לנשים',
+};
+
 const SYSTEM_PREFIX = `אתה עוזר מידע בנושא ביטוח לאומי וזכויות אזרחים ותיקים בישראל, מבוסס על אתר yairron.com/btl.
 ענה בעברית, בקצרה ובבהירות, אך ורק על סמך המידע שסופק לך (כולל אחרי שימוש בכלי get_page_content).
 אם התשובה לא נמצאת במידע הזמין לך, אמור זאת בפירוש ואל תמציא ואל תנחש.
@@ -312,6 +346,9 @@ exports.handler = async (event) => {
     let data = await apiRes.json();
     logCacheUsage('initial', data);
     let round = 0;
+    // עמודים שבאמת נשלפו בהצלחה דרך get_page_content באיזשהו סבב - משמשים בסוף
+    // לבניית קישורי "מקורות" בתשובה. Set ולא Array כי אותו עמוד עשוי להישלף כמה פעמים.
+    const usedPaths = new Set();
 
     // המודל עשוי לרצות לשלוף עוד עמוד גם אחרי סבב ראשון - חייבים להשאיר את הכלי
     // זמין בכל סבב (לא רק בראשון), אחרת הוא רק "מספר" בטקסט שהוא הולך לחפש
@@ -326,6 +363,7 @@ exports.handler = async (event) => {
         const requestedPath = String(toolUse.input?.path || '').replace(/^\/+/, '');
         const content = sectionsByPath.get(requestedPath);
         const toolResultText = content !== undefined ? content : 'העמוד המבוקש אינו קיים ברשימת העמודים הידועה.';
+        if (content !== undefined) usedPaths.add(requestedPath);
         return { type: 'tool_result', tool_use_id: toolUse.id, content: toolResultText };
       });
 
@@ -344,10 +382,18 @@ exports.handler = async (event) => {
 
     const answer = data.content?.find((b) => b.type === 'text')?.text || 'לא הצלחתי לענות על השאלה.';
 
+    // קישורי "מקורות" לעמודים שבפועל נשלפו - נבנים מהנתיבים עצמם (לא ממה שהמודל
+    // "מצטט" בטקסט), כדי שלא יהיה תלוי בזיכרון/דיוק המודל. הכתובת הקנונית זהה
+    // לזו שב-sitemap.xml (build_sitemap.py: to_canonical_url) - בלי סיומת .html.
+    const sources = Array.from(usedPaths).map((path) => ({
+      title: PATH_TITLES[path] || path,
+      url: `https://yairron.com/btl/${path.replace(/\.html$/, '')}`,
+    }));
+
     return {
       statusCode: 200,
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ answer }),
+      body: JSON.stringify({ answer, sources }),
     };
   } catch (err) {
     console.error('btl-chat function error:', err);

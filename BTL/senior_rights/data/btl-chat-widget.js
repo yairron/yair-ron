@@ -171,6 +171,24 @@
         .btl-chat-msg.bot th {
             background: #DCE8F2;
         }
+        .btl-chat-sources {
+            margin-top: 8px;
+            padding-top: 8px;
+            border-top: 1px solid #c7d5e0;
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+        }
+        .btl-chat-sources-label {
+            font-size: 0.78rem;
+            font-weight: 700;
+            color: #5a7a94;
+        }
+        .btl-chat-sources a {
+            font-size: 0.85rem;
+            color: #2E5B8A;
+            text-decoration: underline;
+        }
         #btl-chat-form {
             display: flex;
             border-top: 1px solid #ddd;
@@ -325,11 +343,28 @@
         var MAX_HISTORY_ITEMS = 3;
         var conversationHistory = [];
 
-        function addMessage(text, cls) {
+        function addMessage(text, cls, sources) {
             var div = document.createElement('div');
             div.className = 'btl-chat-msg ' + cls;
             if (cls === 'bot') {
                 div.innerHTML = renderMarkdown(text);
+                if (sources && sources.length) {
+                    var sourcesDiv = document.createElement('div');
+                    sourcesDiv.className = 'btl-chat-sources';
+                    var label = document.createElement('div');
+                    label.className = 'btl-chat-sources-label';
+                    label.textContent = 'מקורות:';
+                    sourcesDiv.appendChild(label);
+                    sources.forEach(function(source) {
+                        var link = document.createElement('a');
+                        link.href = source.url;
+                        link.target = '_blank';
+                        link.rel = 'noopener';
+                        link.textContent = source.title;
+                        sourcesDiv.appendChild(link);
+                    });
+                    div.appendChild(sourcesDiv);
+                }
             } else {
                 div.textContent = text;
             }
@@ -381,7 +416,7 @@
                 if (!res.ok) {
                     addMessage(data.error || 'אירעה שגיאה, נסו שוב.', 'error');
                 } else {
-                    addMessage(data.answer, 'bot');
+                    addMessage(data.answer, 'bot', data.sources);
                     conversationHistory.push({ question: question, answer: data.answer });
                     if (conversationHistory.length > MAX_HISTORY_ITEMS) {
                         conversationHistory.shift();
