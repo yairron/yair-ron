@@ -48,6 +48,8 @@ h1{font-family:'Varela Round',sans-serif;font-size:3rem;font-weight:800;color:wh
 .accordion-pdf .accordion-body{max-height:0;overflow:hidden;transition:max-height .4s ease}
 .accordion-pdf .accordion-body.open{max-height:85vh}
 .accordion-pdf .accordion-body iframe{width:100%;height:80vh;border:none;display:block}
+.html-version-link{display:block;padding:12px 20px;background:var(--light);color:var(--primary);text-decoration:none;font-weight:700;font-size:.95rem;text-align:center;border-bottom:1px solid #E0E7EE;transition:background .2s}
+.html-version-link:hover{background:#E8EEF4}
 .pdf-section-label{text-align:center;color:rgba(255,255,255,.7);font-size:.9rem;letter-spacing:2px;text-transform:uppercase;margin:30px 0 10px}
 .accordion-icon{width:55px;height:55px;border-radius:14px;display:flex;align-items:center;justify-content:center;font-size:1.8rem;background:rgba(255,255,255,.2);flex-shrink:0}
 .accordion-title{font-family:'Varela Round',sans-serif;font-size:1.5rem;font-weight:800;flex:1;margin:0;color:white}
@@ -63,16 +65,7 @@ footer{text-align:center;margin-top:50px;padding:30px;color:rgba(255,255,255,.9)
 <div class="side-menu-overlay" id="menuOverlay"></div>
 <nav class="side-menu" id="sideMenu">
 <div class="side-menu-header"><h3>📂 מסמכים</h3><button class="side-menu-close" onclick="closeMenu()">✕</button></div>
-<ul><li><a href="additional_guides_index.html" class="current">🏠 דף ראשי</a></li><li><a href="shaagat_haari.html">🦁 דו"ח זכויות — מבצע שאגת הארי</a></li>
-<li><a href="mekarim_meyuchadim.html">⚠️ מקרים מיוחדים בגמלאות ביטוח לאומי</a></li>
-<li><a href="amnot_binleumiot.html">🌍 אמנות בינלאומיות לביטחון סוציאלי</a></li>
-<li><a href="gamlay_zikna.html">🏠 גמלת זיקנה מיוחדת לעולים ותושבים חוזרים</a></li>
-<li><a href="hagdarat_tluim.html">👨‍👩‍👧 הגדרת תלויים בקצבת זקנה וקצבת שאירים</a></li>
-<li><a href="chovaat_hitatzbut.html">💼 השלמת הכנסה וחובת ההתייצבות בשירות התעסוקה</a></li>
-<li><a href="yetzia_lachul.html">✈️ יציאה לחו"ל והשפעתה על קצבת זיקנה והשלמת הכנסה</a></li>
-<li><a href="tkufat_achshara.html">📅 תקופת אכשרה לקצבת אזרח ותיק</a></li>
-<li><a href="nechut_mul_shairim.html">⚖️ בחירה בין קצבת נכות לקצבת שאירים</a></li>
-<li><a href="takrut_hachnasa.html">💰 תקרות הכנסה לקצבת אזרח ותיק חלקית</a></li></ul>
+<ul><li><a href="additional_guides_index.html" class="current">🏠 דף ראשי</a></li><li><a href="shaagat_haari.html">🦁 דו"ח זכויות — מבצע שאגת הארי</a></li><li><a href="mekarim_meyuchadim.html">⚠️ מקרים מיוחדים בגמלאות ביטוח לאומי</a></li><li><a href="amnot_binleumiot.html">🌍 אמנות בינלאומיות לביטחון סוציאלי</a></li><li><a href="gamlay_zikna.html">🏠 גמלת זיקנה מיוחדת לעולים ותושבים חוזרים</a></li><li><a href="hagdarat_tluim.html">👨‍👩‍👧 הגדרת תלויים בקצבת זקנה וקצבת שאירים</a></li><li><a href="chovaat_hitatzbut.html">💼 השלמת הכנסה וחובת ההתייצבות בשירות התעסוקה</a></li><li><a href="yetzia_lachul.html">✈️ יציאה לחו"ל והשפעתה על קצבת זיקנה והשלמת הכנסה</a></li><li><a href="tkufat_achshara.html">📅 תקופת אכשרה לקצבת אזרח ותיק</a></li><li><a href="nechut_mul_shairim.html">⚖️ בחירה בין קצבת נכות לקצבת שאירים</a></li><li><a href="takrut_hachnasa.html">💰 תקרות הכנסה לקצבת אזרח ותיק חלקית</a></li><li><a href="zchuyot_achrei_ishpuz.html">🏥 זכויות אזרחים ותיקים לאחר אישפוז</a></li><li><a href="yipuy_koach_mitmashech.html">📜 ייפוי כוח מתמשך - מדריך מקיף</a></li><li><a href="nechut_klalit_mul_avoda.html">🩼 נכות כללית מול נכות מעבודה</a></li><li><a href="oved_zar_bituach_leumi.html">📋 מידע כללי על העסקת עובד זר</a></li></ul>
 </nav>
 <div class="container">
   <div class="nav-bar">
@@ -193,6 +186,7 @@ footer{text-align:center;margin-top:50px;padding:30px;color:rgba(255,255,255,.9)
         <span class="accordion-arrow">↓</span>
       </div>
       <div class="accordion-body">
+        <a class="html-version-link" href="zchuyot_achrei_ishpuz.html">📄 לצפייה בגרסת הטקסט המלאה (נגישה יותר, ניתנת לחיפוש)</a>
         <iframe src="../../../lib/pdf.js/web/viewer.html?file=../../../BTL/additional_guides/data/%D7%96%D7%9B%D7%95%D7%99%D7%95%D7%AA_%D7%90%D7%96%D7%A8%D7%97%D7%99%D7%9D_%D7%95%D7%AA%D7%99%D7%A7%D7%99%D7%9D_%D7%9C%D7%90%D7%97%D7%A8%20%D7%90%D7%A9%D7%A4%D7%95%D7%96_2026.pdf" title="זכויות אזרחים ותיקים לאחר אישפוז PDF"></iframe>
       </div>
     </div>
@@ -215,18 +209,20 @@ footer{text-align:center;margin-top:50px;padding:30px;color:rgba(255,255,255,.9)
         <span class="accordion-arrow">↓</span>
       </div>
       <div class="accordion-body">
+        <a class="html-version-link" href="nechut_klalit_mul_avoda.html">📄 לצפייה בגרסת הטקסט המלאה (נגישה יותר, ניתנת לחיפוש)</a>
         <iframe src="../../../lib/pdf.js/web/viewer.html?file=../../../BTL/additional_guides/data/%D7%A0%D7%9B%D7%95%D7%AA_%D7%9B%D7%9C%D7%9C%D7%99%D7%AA_%D7%9C%D7%A2%D7%95%D7%9E%D7%AA_%D7%A0%D7%9B%D7%95%D7%AA_%D7%9E%D7%A2%D7%91%D7%95%D7%93%D7%94.pdf" title="נכות כללית מול נכות מעבודה PDF"></iframe>
       </div>
     </div>
 
     <div class="accordion accordion-pdf">
       <div class="accordion-header" onclick="togglePdf(this)">
-        <div class="accordion-icon">🧾</div>
-        <h2 class="accordion-title">תשלום ביטוח לאומי עובד זר מטפל בקשיש</h2>
+        <div class="accordion-icon">📋</div>
+        <h2 class="accordion-title">מידע כללי על העסקת עובד זר</h2>
         <span class="accordion-arrow">↓</span>
       </div>
       <div class="accordion-body">
-        <iframe src="../../../lib/pdf.js/web/viewer.html?file=../../../BTL/additional_guides/data/%D7%AA%D7%A9%D7%9C%D7%95%D7%9D%20%D7%91%D7%99%D7%98%D7%95%D7%97%20%D7%9C%D7%90%D7%95%D7%9E%D7%99%20%D7%A2%D7%95%D7%91%D7%93%20%D7%96%D7%A8%20%D7%9E%D7%98%D7%A4%D7%9C%20%D7%91%D7%A7%D7%A9%D7%99%D7%A9.pdf" title="תשלום ביטוח לאומי עובד זר מטפל בקשיש PDF"></iframe>
+        <a class="html-version-link" href="oved_zar_bituach_leumi.html">📄 לצפייה בגרסת הטקסט המלאה (נגישה יותר, ניתנת לחיפוש)</a>
+        <iframe src="../../../lib/pdf.js/web/viewer.html?file=../../../BTL/additional_guides/data/%D7%94%D7%A2%D7%A1%D7%A7%D7%AA%20%D7%A2%D7%95%D7%91%D7%93%20%D7%96%D7%A8.pdf" title="מידע כללי על העסקת עובד זר PDF"></iframe>
       </div>
     </div>
 
@@ -237,6 +233,7 @@ footer{text-align:center;margin-top:50px;padding:30px;color:rgba(255,255,255,.9)
         <span class="accordion-arrow">↓</span>
       </div>
       <div class="accordion-body">
+        <a class="html-version-link" href="yipuy_koach_mitmashech.html">📄 לצפייה בגרסת הטקסט המלאה (נגישה יותר, ניתנת לחיפוש)</a>
         <iframe src="../../../lib/pdf.js/web/viewer.html?file=../../../BTL/additional_guides/data/%D7%99%D7%99%D7%A4%D7%95%D7%99_%D7%9B%D7%95%D7%97_%D7%9E%D7%AA%D7%9E%D7%A9%D7%9A_%D7%9E%D7%93%D7%A8%D7%99%D7%9A_%D7%9E%D7%A7%D7%99%D7%A3.pdf" title="ייפוי כוח מתמשך PDF"></iframe>
       </div>
     </div>

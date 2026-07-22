@@ -73,12 +73,13 @@ TOPICS = {
     ),
     "btl-survivors-disability": (
         "קצבת שאירים ונכות",
-        "קצבת שאירים, השוואה מול קצבת נכות כללית, והגדרת תלויים לצורך זכאות.",
+        "קצבת שאירים, השוואה מול קצבת נכות כללית, נכות מעבודה, והגדרת תלויים לצורך זכאות.",
         [
             "senior_rights/survivors_benefits_guide_2026.html",
             "senior_rights/nechut_vs_shairim.html",
             "additional_guides/html/nechut_mul_shairim.html",
             "additional_guides/html/hagdarat_tluim.html",
+            "additional_guides/html/nechut_klalit_mul_avoda.html",
         ],
     ),
     "btl-immigrants-treaties": (
@@ -93,22 +94,25 @@ TOPICS = {
     ),
     "btl-care-transitions": (
         "סיעוד, נשים ומעברים",
-        "סיוע במימון בית אבות, מענק מעבר לנשים, יציאה לחו\"ל, חובת התייצבות, ותקופת אכשרה.",
+        "סיוע במימון בית אבות, מענק מעבר לנשים, יציאה לחו\"ל, חובת התייצבות, תקופת אכשרה, זכויות באשפוז, והעסקת עובד זר בסיעוד.",
         [
             "senior_rights/nursing_home_guide.html",
             "senior_rights/women_transition_benefit_guide.html",
             "additional_guides/html/yetzia_lachul.html",
             "additional_guides/html/chovaat_hitatzbut.html",
             "additional_guides/html/tkufat_achshara.html",
+            "additional_guides/html/zchuyot_achrei_ishpuz.html",
+            "additional_guides/html/oved_zar_bituach_leumi.html",
         ],
     ),
     "btl-special-cases": (
         "מקרים מיוחדים",
-        "מקרים חריגים בגמלאות, דו\"ח זכויות מבצע שאגת הארי, ועמוד ניווט לסיכומי ה-PDF.",
+        "מקרים חריגים בגמלאות, דו\"ח זכויות מבצע שאגת הארי, ייפוי כוח מתמשך, ועמוד ניווט לסיכומי ה-PDF.",
         [
             "additional_guides/html/mekarim_meyuchadim.html",
             "additional_guides/html/shaagat_haari.html",
             "additional_guides/html/additional_guides_index.html",
+            "additional_guides/html/yipuy_koach_mitmashech.html",
         ],
     ),
 }
@@ -162,6 +166,10 @@ KNOWN_FILES = {
     "additional_guides/html/yetzia_lachul.html": ("include", "סיכום PDF - תוכן סטטי"),
     "additional_guides/html/additional_guides_index.html": ("include", "עמוד ניווט ל-PDF-ים - כותרות האקורדיונים משקפות רשימת נושאים שימושית גם בלי טקסט ה-PDF עצמו"),
     "additional_guides/html/index.html": ("exclude", "הפניה (redirect) בלבד"),
+    "additional_guides/html/zchuyot_achrei_ishpuz.html": ("include", "סיכום PDF - תוכן סטטי, הועתק ל-HTML 22.07.2026"),
+    "additional_guides/html/yipuy_koach_mitmashech.html": ("include", "סיכום PDF - תוכן סטטי, הועתק ל-HTML 22.07.2026"),
+    "additional_guides/html/nechut_klalit_mul_avoda.html": ("include", "סיכום PDF - תוכן סטטי, הועתק ל-HTML 22.07.2026"),
+    "additional_guides/html/oved_zar_bituach_leumi.html": ("include", "סיכום PDF - תוכן סטטי, הועתק ל-HTML 22.07.2026"),
 }
 
 

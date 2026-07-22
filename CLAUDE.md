@@ -81,6 +81,8 @@ python BTL/support_files/senior_rights/scripts/build_sitemap.py
 
 שאר 4 העמודים (`chovaat_hitatzbut.html`, `tkufat_achshara.html`, `yetzia_lachul.html`, וכן `additional_guides_index.html`/`index.html`) אינם מכילים נתונים כספיים הנגזרים מביטוח לאומי, ולכן אינם דורשים מנגנון.
 
+**עודכן 22.07.2026:** נוספו 4 עמודים חדשים, תמלול מלא (לא רק PDF גולמי) של 4 הקבצים שהיו עד אז ללא HTML מקביל תחת `BTL/additional_guides/data/` — `zchuyot_achrei_ishpuz.html`, `yipuy_koach_mitmashech.html`, `nechut_klalit_mul_avoda.html`, `oved_zar_bituach_leumi.html`. נבנו בדיוק לפי תבנית `mekarim_meyuchadim.html` (עיצוב/CSS/מנגנון אקורדיונים/תפריט צד/כפתורי ניווט מועתקים במדויק, ראו הכלל בסעיף "הוספת עמוד מדריך חדש" למטה), **ללא** תיוג `data-nii-key`/`data-nii-derived` (טקסט קבוע לחלוטין, כמו רוב העמודים הקיימים בתיקייה זו) — לא אומת אם מספרים בתוכן (למשל תקרות/סכומים) נגזרים מ-`nii-constants.json`; אם רוצים תיוג חי לערך ספציפי יש לאמת קודם כנגד `nii-constants.json` ולתעד את הנוסחה, בדיוק כמו בכל עמוד קבוצה ד׳ אחר. `additional_guides_index.html` עודכן: כל אחד מ-4 האקורדיונים המתאימים (עם ה-PDF הגולמי ב-iframe) קיבל קישור טקסט נוסף (`.html-version-link`) לגרסת ה-HTML המתומללת, מעל ה-iframe. **חשוב — תפריט הצד (`side-menu`) מועתק בזהות ל-15 העמודים** (11 קיימים + 4 חדשים) — קובץ נפרד `ALL_PAGES` בכל סקריפט/תבנית שמייצר את הרשימה הזו; אם מתווסף/מוסר עמוד נוסף מהמשפחה הזו, יש לעדכן את הרשימה בכל 15 (או 16+) הקבצים, לא רק בקובץ החדש.
+
 ## עדכון "מנוע הליבה" — עמודים שתוכנם הוטמע מריצת דפדפן אמיתי
 
 ```
