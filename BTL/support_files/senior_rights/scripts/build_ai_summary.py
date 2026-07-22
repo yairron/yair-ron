@@ -2,18 +2,28 @@
 """
 build_ai_summary.py
 ----------------------
-בונה אינדקס קצר (BTL/ai-summary.txt) + קובצי תוכן לפי נושא
-(BTL/ai-content/<topic>.txt), בטקסט נקי (בלי HTML/עיצוב), לשימוש כלי
-בינה מלאכותית - מרכז את התוכן המלא מכל עמודי המדריך שכבר אומתו כמכילים
-תוכן סטטי אמיתי (עמודי "מנוע הליבה" שהוטמעו, וקבוצה ד' שאומתה).
+בונה אינדקס קצר (BTL/ai-summary.html) + קובצי תוכן לפי נושא
+(BTL/ai-content/<topic>.html), לשימוש כלי בינה מלאכותית - מרכז את התוכן
+המלא מכל עמודי המדריך שכבר אומתו כמכילים תוכן סטטי אמיתי (עמודי "מנוע
+הליבה" שהוטמעו, וקבוצה ד' שאומתה).
 
 פוצל מקובץ ריכוז יחיד (עד 20.07.2026) לאינדקס+קבצי-נושא ב-20.07.2026,
 אחרי שג'מיני דיווח בפועל על חסימה בשליפת הקובץ המאוחד (~800KB) - כלי
 fetch/grounding חיצוניים מגבילים גודל תוכן שהם שולפים מכתובת בודדת.
 כל קובץ נושא כולל כמה עמודים קרובים בנושא, כדי לצמצם את הגודל שנשלף
 בבת אחת (רוב הקבצים 40-165KB; faq.html לבדו ~250KB כי הוא עמוד אחד ענק
-שלא פוצל בתוך עצמו). ai-summary.txt הפך לאינדקס קצר בלבד שמצביע על
+שלא פוצל בתוך עצמו). ai-summary.html הפך לאינדקס קצר בלבד שמצביע על
 קובצי הנושא - לא מכיל יותר את התוכן המלא.
+
+**עודכן 22.07.2026 - הפלט הוא HTML מינימלי, לא עוד .txt גולמי:** ג'מיני
+דיווח בפועל שכלי הגלישה שלו לא יודע לגשת לקבצי `.txt` ישירים בכלל (רק
+לעמודי HTML) - ככל הנראה כלי "גלישה" מבוססי-רינדור לא יודעים לטפל
+בתגובת `text/plain`. הפתרון: אותו טקסט בדיוק, עטוף במעטפת HTML מינימלית
+(`<pre>` בלי CSS/JS/תפריטים) כדי שה-Content-Type יהיה `text/html` -
+עדיין קל בהרבה מעמודי המדריך המלאים. ראו `wrap_html()` למטה. **אין יותר
+קובצי `.txt` באתר בהקשר הזה בכלל** - נמחקו לגמרי, כל ההפניות (רשימת
+`ALL_PAGES`-כמו קישורי footer, `robots.txt`, `add_ai_alternate_links.py`,
+`btl-chat.js`, `build_sitemap.py`) עודכנו ל-`.html`.
 
 לא מנחש אילו קבצים לכלול: כל קובץ HTML שנמצא בפועל תחת
 BTL/senior_rights ו-BTL/new_immigrants נבדק מול טבלת סיווג מלאה
@@ -27,6 +37,7 @@ BTL/senior_rights ו-BTL/new_immigrants נבדק מול טבלת סיווג מל
     python build_ai_summary.py
 """
 
+import html as html_module
 import re
 import sys
 from pathlib import Path
@@ -40,7 +51,7 @@ if hasattr(sys.stdout, "reconfigure"):
     sys.stdout.reconfigure(encoding="utf-8")
 
 CONTENT_DIRS = ["senior_rights", "new_immigrants", "additional_guides/html"]
-INDEX_PATH = vrp.BTL_DIR / "ai-summary.txt"
+INDEX_PATH = vrp.BTL_DIR / "ai-summary.html"
 CONTENT_DIR = vrp.BTL_DIR / "ai-content"
 # כתובת מלאה (לא יחסית) בקובץ האינדקס בכוונה - זה טקסט גולמי, לא HTML,
 # אז אין רזולוציית קישור יחסי אוטומטית עבור כלי שקורא את הטקסט כפרוזה.
@@ -191,6 +202,29 @@ def clean_text(raw: str) -> str:
     return "\n".join(line for line in lines if line)
 
 
+def wrap_html(title: str, plain_text: str) -> str:
+    """עוטף טקסט רגיל במעטפת HTML מינימלית - בלי CSS/JS/תפריטים - רק כדי
+    שה-Content-Type שהשרת מגיש יהיה text/html במקום text/plain (ראו הערה
+    בראש הקובץ). התוכן עצמו בתוך <pre> נשאר בדיוק אותו טקסט, רק עם escape
+    ל-& < > (לא ל-quote, מיותר בתוך text node). btl-chat.js עושה את
+    ה-unescape הסימטרי אחרי שליפת ה-<pre> בזמן ריצה."""
+    escaped = html_module.escape(plain_text, quote=False)
+    return (
+        "<!DOCTYPE html>\n"
+        '<html lang="he" dir="rtl">\n'
+        "<head>\n"
+        '<meta charset="UTF-8">\n'
+        f"<title>{html_module.escape(title, quote=False)}</title>\n"
+        "</head>\n"
+        "<body>\n"
+        '<pre style="white-space:pre-wrap;word-wrap:break-word;font-family:inherit">\n'
+        f"{escaped}\n"
+        "</pre>\n"
+        "</body>\n"
+        "</html>\n"
+    )
+
+
 def build_summary(include_files: list) -> list:
     server, port = vrp.start_server(vrp.BTL_DIR)
     sections = []
@@ -269,18 +303,18 @@ def main():
             topic_lines.append("")
             topic_lines.append(text_of[relpath])
             topic_lines.append("")
-        content_path = CONTENT_DIR / f"{slug}.txt"
-        content_path.write_text("\n".join(topic_lines), encoding="utf-8")
+        content_path = CONTENT_DIR / f"{slug}.html"
+        content_path.write_text(wrap_html(title, "\n".join(topic_lines)), encoding="utf-8")
         size_kb = content_path.stat().st_size // 1024
         print(f"  נכתב ל-{content_path} ({len(topic_paths)} עמודים, {size_kb}KB)")
 
-        index_lines.append(f"📁 {CONTENT_URL_PREFIX}/{slug}.txt — {title}")
+        index_lines.append(f"📁 {CONTENT_URL_PREFIX}/{slug}.html — {title}")
         index_lines.append(f"   {desc}")
         for relpath in topic_paths:
             index_lines.append(f"   - {relpath}")
         index_lines.append("")
 
-    INDEX_PATH.write_text("\n".join(index_lines), encoding="utf-8")
+    INDEX_PATH.write_text(wrap_html("ריכוז מידע - זכויות אזרחים ותיקים בישראל (אינדקס)", "\n".join(index_lines)), encoding="utf-8")
     print(f"\nנכתב אינדקס ל-{INDEX_PATH} ({len(TOPICS)} נושאים, {len(sections)} עמודים)")
 
 

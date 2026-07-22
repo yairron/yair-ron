@@ -1,18 +1,23 @@
 const ALLOWED_ORIGINS = ['https://yairron.com'];
-// ai-summary.txt הפך ב-20.07.2026 לאינדקס קצר בלבד (התוכן המלא פוצל לקבצי
+// ai-summary.html הפך ב-20.07.2026 לאינדקס קצר בלבד (התוכן המלא פוצל לקבצי
 // נושא תחת ai-content/, אחרי שכלי fetch/grounding חיצוניים כמו ג'מיני דיווחו
 // על חסימה בשליפת הקובץ המאוחד הקודם - כ-800KB). הפונקציה כאן לא צריכה
 // לפרש את האינדקס - היא מכירה ישירות את רשימת קבצי הנושא (חייבת להישאר
 // מסונכרנת ידנית עם TOPICS ב-build_ai_summary.py) ומאחדת את כולם בזמן ריצה
 // בחזרה לטקסט אחד, בדיוק כמו שהקובץ הישן היה - parseSections לא השתנה.
+//
+// עודכן 22.07.2026: קובצי .txt גולמיים הוחלפו ב-.html מינימלי (תוכן זהה
+// עטוף ב-<pre>, בלי CSS/JS) - ג'מיני דיווח שכלי הגלישה שלו לא ניגש בכלל
+// לקבצי .txt (רק ל-HTML). ראו extractPreText() למטה שמחלץ את הטקסט מתוך
+// ה-<pre> ומבטל את ה-escaping (& < >) לפני שממשיכים ל-parseSections.
 const CONTENT_URLS = [
-  'https://yairron.com/btl/ai-content/btl-faq.txt',
-  'https://yairron.com/btl/ai-content/btl-pension-overview.txt',
-  'https://yairron.com/btl/ai-content/btl-income-test.txt',
-  'https://yairron.com/btl/ai-content/btl-survivors-disability.txt',
-  'https://yairron.com/btl/ai-content/btl-immigrants-treaties.txt',
-  'https://yairron.com/btl/ai-content/btl-care-transitions.txt',
-  'https://yairron.com/btl/ai-content/btl-special-cases.txt',
+  'https://yairron.com/btl/ai-content/btl-faq.html',
+  'https://yairron.com/btl/ai-content/btl-pension-overview.html',
+  'https://yairron.com/btl/ai-content/btl-income-test.html',
+  'https://yairron.com/btl/ai-content/btl-survivors-disability.html',
+  'https://yairron.com/btl/ai-content/btl-immigrants-treaties.html',
+  'https://yairron.com/btl/ai-content/btl-care-transitions.html',
+  'https://yairron.com/btl/ai-content/btl-special-cases.html',
 ];
 const MAX_QUESTION_LENGTH = 500;
 const MODEL = 'claude-haiku-4-5-20251001';
@@ -21,7 +26,7 @@ const MAX_HISTORY_ITEMS = 3;
 const MAX_HISTORY_ANSWER_LENGTH = 4000;
 
 // תיאור קצר ואמין לכל עמוד (מבוסס על meta description האמיתי של כל דף) - משמש לאינדקס
-// שהמודל רואה כדי לבחור עמוד רלוונטי. תחזוקה ידנית: כשמוסיפים עמוד חדש ל-ai-summary.txt
+// שהמודל רואה כדי לבחור עמוד רלוונטי. תחזוקה ידנית: כשמוסיפים עמוד חדש ל-ai-content
 // יש להוסיף כאן שורה תואמת, אחרת ייפול ל-fallback האוטומטי (פחות מדויק).
 const PATH_DESCRIPTIONS = {
   'additional_guides/html/additional_guides_index.html':
@@ -135,6 +140,15 @@ const GET_PAGE_TOOL = {
 function isAllowedOrigin(event) {
   const origin = event.headers.origin || event.headers.referer || '';
   return ALLOWED_ORIGINS.some((allowed) => origin.startsWith(allowed));
+}
+
+// כל קובץ ai-content/*.html עטוף במעטפת HTML מינימלית סביב <pre> (ראו
+// wrap_html() ב-build_ai_summary.py) - מחלצים את הטקסט הגולמי מתוכו ומבטלים
+// את ה-escaping (& < >) שבוצע בזמן הכתיבה, לפני שממשיכים ל-parseSections.
+function extractPreText(html) {
+  const match = html.match(/<pre[^>]*>([\s\S]*?)<\/pre>/);
+  const raw = match ? match[1] : html;
+  return raw.replace(/&lt;/g, '<').replace(/&gt;/g, '>').replace(/&amp;/g, '&');
 }
 
 // כל קובץ תוכן בנוי מסעיפים בהפרדת "===== path =====" (ראו build_ai_summary.py) -
@@ -253,7 +267,7 @@ exports.handler = async (event) => {
     const contentResponses = await Promise.all(CONTENT_URLS.map((url) => fetch(url)));
     const badRes = contentResponses.find((res) => !res.ok);
     if (badRes) throw new Error(`content fetch status ${badRes.status} for ${badRes.url}`);
-    const texts = await Promise.all(contentResponses.map((res) => res.text()));
+    const texts = await Promise.all(contentResponses.map(async (res) => extractPreText(await res.text())));
     sections = parseSections(texts.join('\n'));
     if (sections.length === 0) throw new Error('no sections parsed');
   } catch (err) {
