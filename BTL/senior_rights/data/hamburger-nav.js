@@ -773,6 +773,9 @@
             <div class="hnav-menu">
                 ${buildMenuHTML(MENU, 0)}
             </div>
+            <div style="text-align:center;padding:12px 0;">
+                <a href="${bp}ai-summary.txt" style="font-size:0.75rem;opacity:0.55;color:inherit;text-decoration:underline;font-weight:400">מידע לכלי בינה מלאכותית</a>
+            </div>
         `;
         document.body.appendChild(panel);
 
