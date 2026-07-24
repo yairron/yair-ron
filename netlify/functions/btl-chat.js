@@ -290,33 +290,39 @@ async function callClaudeWithRetry(messages, systemPrompt, tools, toolChoice) {
   return res;
 }
 
+// כותרות קבועות לכל תשובה (הצלחה ושגיאה כאחד) - מונעות במפורש שכבת ה-cache של
+// Netlify (edge/durable) מלשמור תגובה. בלעדי זה נצפה בפועל Age/Netlify-Vary: query
+// על תגובות POST - כלומר תשובות נשמרות במטמון לפי ה-URL בלבד, בלי קשר לגוף הבקשה
+// (השאלה עצמה), מה שעלול להחזיר למשתמש תשובה על שאלה של מישהו אחר לגמרי.
+const NO_STORE_HEADERS = { 'Content-Type': 'application/json', 'Cache-Control': 'no-store' };
+
 exports.handler = async (event) => {
   if (event.httpMethod !== 'POST') {
-    return { statusCode: 405, body: JSON.stringify({ error: 'Method Not Allowed' }) };
+    return { statusCode: 405, headers: NO_STORE_HEADERS, body: JSON.stringify({ error: 'Method Not Allowed' }) };
   }
 
   if (!isAllowedOrigin(event)) {
-    return { statusCode: 403, body: JSON.stringify({ error: 'מקור לא מורשה' }) };
+    return { statusCode: 403, headers: NO_STORE_HEADERS, body: JSON.stringify({ error: 'מקור לא מורשה' }) };
   }
 
   let question, history;
   try {
     ({ question, history } = JSON.parse(event.body || '{}'));
   } catch {
-    return { statusCode: 400, body: JSON.stringify({ error: 'בקשה לא תקינה' }) };
+    return { statusCode: 400, headers: NO_STORE_HEADERS, body: JSON.stringify({ error: 'בקשה לא תקינה' }) };
   }
 
   if (typeof question !== 'string' || question.trim().length === 0) {
-    return { statusCode: 400, body: JSON.stringify({ error: 'לא התקבלה שאלה' }) };
+    return { statusCode: 400, headers: NO_STORE_HEADERS, body: JSON.stringify({ error: 'לא התקבלה שאלה' }) };
   }
   if (question.length > MAX_QUESTION_LENGTH) {
-    return { statusCode: 400, body: JSON.stringify({ error: 'השאלה ארוכה מדי' }) };
+    return { statusCode: 400, headers: NO_STORE_HEADERS, body: JSON.stringify({ error: 'השאלה ארוכה מדי' }) };
   }
 
   if (history === undefined) {
     history = [];
   } else if (!Array.isArray(history) || history.length > MAX_HISTORY_ITEMS) {
-    return { statusCode: 400, body: JSON.stringify({ error: 'היסטוריה לא תקינה' }) };
+    return { statusCode: 400, headers: NO_STORE_HEADERS, body: JSON.stringify({ error: 'היסטוריה לא תקינה' }) };
   } else {
     for (const item of history) {
       if (
@@ -326,7 +332,7 @@ exports.handler = async (event) => {
         item.question.length > MAX_QUESTION_LENGTH ||
         item.answer.length > MAX_HISTORY_ANSWER_LENGTH
       ) {
-        return { statusCode: 400, body: JSON.stringify({ error: 'היסטוריה לא תקינה' }) };
+        return { statusCode: 400, headers: NO_STORE_HEADERS, body: JSON.stringify({ error: 'היסטוריה לא תקינה' }) };
       }
     }
   }
@@ -341,7 +347,7 @@ exports.handler = async (event) => {
     if (sections.length === 0) throw new Error('no sections parsed');
   } catch (err) {
     console.error('Failed to load site content:', err);
-    return { statusCode: 500, body: JSON.stringify({ error: 'שגיאה בטעינת תוכן האתר' }) };
+    return { statusCode: 500, headers: NO_STORE_HEADERS, body: JSON.stringify({ error: 'שגיאה בטעינת תוכן האתר' }) };
   }
 
   const sectionsByPath = new Map(sections.map((s) => [s.path, s.content]));
@@ -367,7 +373,7 @@ exports.handler = async (event) => {
     let apiRes = await callClaudeWithRetry(messages, systemPrompt, [GET_PAGE_TOOL], { type: 'any' });
     if (!apiRes.ok) {
       console.error('Anthropic API error:', apiRes.status, await apiRes.text());
-      return { statusCode: 502, body: JSON.stringify({ error: 'שגיאה בפנייה למערכת ה-AI' }) };
+      return { statusCode: 502, headers: NO_STORE_HEADERS, body: JSON.stringify({ error: 'שגיאה בפנייה למערכת ה-AI' }) };
     }
     let data = await apiRes.json();
     logCacheUsage('initial', data);
@@ -400,7 +406,7 @@ exports.handler = async (event) => {
       apiRes = await callClaudeWithRetry(messages, systemPrompt, allowTool ? [GET_PAGE_TOOL] : null);
       if (!apiRes.ok) {
         console.error('Anthropic API error (follow-up):', apiRes.status, await apiRes.text());
-        return { statusCode: 502, body: JSON.stringify({ error: 'שגיאה בפנייה למערכת ה-AI' }) };
+        return { statusCode: 502, headers: NO_STORE_HEADERS, body: JSON.stringify({ error: 'שגיאה בפנייה למערכת ה-AI' }) };
       }
       data = await apiRes.json();
       logCacheUsage(`round ${round}`, data);
@@ -418,11 +424,11 @@ exports.handler = async (event) => {
 
     return {
       statusCode: 200,
-      headers: { 'Content-Type': 'application/json' },
+      headers: NO_STORE_HEADERS,
       body: JSON.stringify({ answer, sources }),
     };
   } catch (err) {
     console.error('btl-chat function error:', err);
-    return { statusCode: 500, body: JSON.stringify({ error: 'שגיאה כללית' }) };
+    return { statusCode: 500, headers: NO_STORE_HEADERS, body: JSON.stringify({ error: 'שגיאה כללית' }) };
   }
 };
