@@ -249,6 +249,11 @@ async function callClaude(messages, systemPrompt, tools, toolChoice) {
     body: JSON.stringify({
       model: MODEL,
       max_tokens: 2000,
+      // Sonnet 5 מפעיל adaptive thinking כברירת מחדל כשהשדה הזה לא מצוין בכלל (בשונה
+      // מ-Haiku/Sonnet 4.6, שם היעדר השדה = בלי חשיבה) - זה הוסיף זמן תגובה ניכר לכל
+      // סבב (עד 3 סבבים ברצף) וגרם ל-timeout בפועל ב-Netlify Function. המשימה כאן היא
+      // שליפה+ניסוח על סמך תוכן שכבר סופק, לא הסקה מורכבת - לא צריך thinking בשבילה.
+      thinking: { type: 'disabled' },
       // system prompt זהה (אינדקס העמודים) נשלח שוב בכל סבב tool-use ובכל שאלת המשך
       // עם ההיסטוריה - cache_control מוזיל קריאות חוזרות בכ-90%. לכל מודל יש סף מינימום
       // טוקנים להפעלת המטמון (תלוי במודל) - ראו לוג cache usage למטה אם זה בפועל מופעל.
