@@ -1,6 +1,6 @@
 # דוח בדיקת זהות רינדור — senior_rights/faq.html
 
-גרסת ייחוס: `HEAD` | מספר אקורדיונים: 7 | מספר תתי-אקורדיונים (בבדיקה): 150
+גרסת ייחוס: `HEAD` | מספר אקורדיונים: 7 | מספר תתי-אקורדיונים (בבדיקה): 151
 
 ## תוצאה לכל מצב שנבדק
 
@@ -11,12 +11,12 @@
 | accordion_0_open | ✅ | ✅ | 0.0015% |
 | accordion_1_open | ✅ | ✅ | 0.0% |
 | accordion_2_open | ✅ | ✅ | 0.0% |
-| accordion_3_open | ✅ | ✅ | 0.0004% |
-| accordion_4_open | ✅ | ✅ | 0.0001% |
+| accordion_3_open | ✅ | ✅ | 0.0002% |
+| accordion_4_open | ✅ | ✅ | 0.0% |
 | accordion_5_open | ✅ | ✅ | 0.0% |
 | accordion_6_open | ✅ | ✅ | 0.0% |
-| closed | ✅ | ✅ | 1.0811% |
-| sub_accordion_0_open | ✅ | ✅ | 0.0386% |
+| closed | ✅ | ✅ | 1.2682% |
+| sub_accordion_0_open | ✅ | ✅ | 0.0377% |
 
 ## ממצאים
 
