@@ -308,9 +308,13 @@ function logQuestion(question) {
   if (!url || !secret) return Promise.resolve();
 
   const timeout = new Promise((resolve) => setTimeout(resolve, CHAT_LOG_TIMEOUT_MS));
+  // Content-Type: text/plain ולא application/json בכוונה - ל-Apps Script יש באג מתועד
+  // בפענוח UTF-8 רב-בייטי (עברית וכו') כשה-Content-Type הנכנס הוא application/json,
+  // גם עם getDataAsString('UTF-8') בצד השני. הגוף עצמו עדיין JSON תקני - רק ה-header
+  // משתנה, כדי לעקוף את הבאג. אומת בפועל: עברית חזרה כ-????? עד לשינוי הזה.
   const send = fetch(url, {
     method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
+    headers: { 'Content-Type': 'text/plain;charset=utf-8' },
     body: JSON.stringify({ secret, question, timestamp: new Date().toISOString() }),
   }).catch(() => {});
 
