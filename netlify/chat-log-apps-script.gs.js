@@ -21,7 +21,9 @@ const SHARED_SECRET = 'REPLACE_WITH_RANDOM_SECRET';
 
 function doPost(e) {
   try {
-    const body = JSON.parse(e.postData.contents);
+    // e.postData.contents לפעמים מפענח לא נכון תווים שאינם לטיניים (עברית וכו') -
+    // תקלה מתועדת של Apps Script. getDataAsString('UTF-8') הוא הפתרון הנכון.
+    const body = JSON.parse(e.postData.getDataAsString('UTF-8'));
 
     if (body.secret !== SHARED_SECRET) {
       return jsonResponse({ ok: false, error: 'unauthorized' });
