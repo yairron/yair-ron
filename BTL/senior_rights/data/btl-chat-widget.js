@@ -226,6 +226,15 @@
             opacity: 0.6;
             cursor: default;
         }
+        @media (max-width: 480px) {
+            #btl-chat-form {
+                flex-direction: column;
+            }
+            #btl-chat-send {
+                width: 100%;
+                padding: 10px 16px;
+            }
+        }
     `;
 
     var HTML = `
