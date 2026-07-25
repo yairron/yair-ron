@@ -1,23 +1,32 @@
+const fs = require('fs');
+const path = require('path');
+
 const ALLOWED_ORIGINS = ['https://yairron.com'];
 // ai-summary.html הפך ב-20.07.2026 לאינדקס קצר בלבד (התוכן המלא פוצל לקבצי
 // נושא תחת ai-content/, אחרי שכלי fetch/grounding חיצוניים כמו ג'מיני דיווחו
 // על חסימה בשליפת הקובץ המאוחד הקודם - כ-800KB). הפונקציה כאן לא צריכה
 // לפרש את האינדקס - היא מכירה ישירות את רשימת קבצי הנושא (חייבת להישאר
-// מסונכרנת ידנית עם TOPICS ב-build_ai_summary.py) ומאחדת את כולם בזמן ריצה
+// מסונכרנת ידנית עם TOPICS ב-build_ai_summary.py) ומאחדת אותם בזמן ריצה
 // בחזרה לטקסט אחד, בדיוק כמו שהקובץ הישן היה - parseSections לא השתנה.
 //
 // עודכן 22.07.2026: קובצי .txt גולמיים הוחלפו ב-.html מינימלי (תוכן זהה
 // עטוף ב-<pre>, בלי CSS/JS) - ג'מיני דיווח שכלי הגלישה שלו לא ניגש בכלל
 // לקבצי .txt (רק ל-HTML). ראו extractPreText() למטה שמחלץ את הטקסט מתוך
 // ה-<pre> ומבטל את ה-escaping (& < >) לפני שממשיכים ל-parseSections.
-const CONTENT_URLS = [
-  'https://yairron.com/btl/ai-content/btl-faq.html',
-  'https://yairron.com/btl/ai-content/btl-pension-overview.html',
-  'https://yairron.com/btl/ai-content/btl-income-test.html',
-  'https://yairron.com/btl/ai-content/btl-survivors-disability.html',
-  'https://yairron.com/btl/ai-content/btl-immigrants-treaties.html',
-  'https://yairron.com/btl/ai-content/btl-care-transitions.html',
-  'https://yairron.com/btl/ai-content/btl-special-cases.html',
+//
+// עודכן 25.07.2026: נקרא מהדיסק המקומי (fs.readFileSync) במקום fetch() חי
+// חזרה לאתר - הקבצים כבר יושבים באותו deploy, אז שליפה ברשת הייתה latency
+// מיותר (7 round-trips בכל שאלה) שתרם לחריגות timeout. הקבצים חייבים
+// להיכלל בפועל בחבילת הפונקציה - ראו included_files ב-netlify.toml.
+const CONTENT_DIR = path.join(__dirname, '..', '..', 'BTL', 'ai-content');
+const CONTENT_FILES = [
+  'btl-faq.html',
+  'btl-pension-overview.html',
+  'btl-income-test.html',
+  'btl-survivors-disability.html',
+  'btl-immigrants-treaties.html',
+  'btl-care-transitions.html',
+  'btl-special-cases.html',
 ];
 const MAX_QUESTION_LENGTH = 500;
 const MODEL = 'claude-haiku-4-5-20251001';
@@ -366,10 +375,9 @@ exports.handler = async (event) => {
 
   let sections;
   try {
-    const contentResponses = await Promise.all(CONTENT_URLS.map((url) => fetch(url)));
-    const badRes = contentResponses.find((res) => !res.ok);
-    if (badRes) throw new Error(`content fetch status ${badRes.status} for ${badRes.url}`);
-    const texts = await Promise.all(contentResponses.map(async (res) => extractPreText(await res.text())));
+    const texts = CONTENT_FILES.map((file) =>
+      extractPreText(fs.readFileSync(path.join(CONTENT_DIR, file), 'utf8'))
+    );
     sections = parseSections(texts.join('\n'));
     if (sections.length === 0) throw new Error('no sections parsed');
   } catch (err) {

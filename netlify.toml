@@ -1,2 +1,6 @@
 [functions]
   directory = "netlify/functions"
+  # btl-chat.js קורא את קבצי ai-content מהדיסק המקומי (fs.readFileSync) במקום
+  # fetch() חי לאתר - נדרש לכלול אותם בפועל בחבילת הפונקציה, אחרת הם לא
+  # קיימים ב-runtime של Netlify (ראו netlify/functions/btl-chat.js).
+  included_files = ["BTL/ai-content/*.html"]
