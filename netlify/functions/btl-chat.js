@@ -293,6 +293,30 @@ async function callClaudeWithRetry(messages, systemPrompt, tools, toolChoice) {
 // (השאלה עצמה), מה שעלול להחזיר למשתמש תשובה על שאלה של מישהו אחר לגמרי.
 const NO_STORE_HEADERS = { 'Content-Type': 'application/json', 'Cache-Control': 'no-store' };
 
+const CHAT_LOG_TIMEOUT_MS = 3000;
+
+// שולח את השאלה ל-Google Apps Script לרישום בגיליון (ראו netlify/chat-log-apps-script.gs.js
+// לקוד הצד השני ולהסבר המלא). מוגדר דרך משתני סביבה CHAT_LOG_WEBHOOK_URL/CHAT_LOG_SECRET
+// ב-Netlify, לא בקוד - אם הם לא מוגדרים הפונקציה פשוט לא רושמת (התכונה אופציונלית).
+// לעולם לא זורקת/חוסמת: אם הבקשה נכשלת או לוקחת יותר מ-CHAT_LOG_TIMEOUT_MS, מתעלמים
+// בשקט - לוג שנכשל/נתקע אסור שישפיע על זמן התגובה או יגרום לכישלון של הצ'אט עצמו.
+// נקראת מוקדם (בלי await מיידי) כדי לרוץ במקביל לקריאות ל-Claude שממילא לוקחות הרבה
+// יותר זמן; ה-await בפועל קורה רק ממש לפני ההחזרה הסופית.
+function logQuestion(question) {
+  const url = process.env.CHAT_LOG_WEBHOOK_URL;
+  const secret = process.env.CHAT_LOG_SECRET;
+  if (!url || !secret) return Promise.resolve();
+
+  const timeout = new Promise((resolve) => setTimeout(resolve, CHAT_LOG_TIMEOUT_MS));
+  const send = fetch(url, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ secret, question, timestamp: new Date().toISOString() }),
+  }).catch(() => {});
+
+  return Promise.race([send, timeout]);
+}
+
 exports.handler = async (event) => {
   if (event.httpMethod !== 'POST') {
     return { statusCode: 405, headers: NO_STORE_HEADERS, body: JSON.stringify({ error: 'Method Not Allowed' }) };
@@ -315,6 +339,8 @@ exports.handler = async (event) => {
   if (question.length > MAX_QUESTION_LENGTH) {
     return { statusCode: 400, headers: NO_STORE_HEADERS, body: JSON.stringify({ error: 'השאלה ארוכה מדי' }) };
   }
+
+  const logPromise = logQuestion(question);
 
   if (history === undefined) {
     history = [];
@@ -418,6 +444,8 @@ exports.handler = async (event) => {
       title: PATH_TITLES[path] || path,
       url: `https://yairron.com/btl/${path.replace(/\.html$/, '')}`,
     }));
+
+    await logPromise;
 
     return {
       statusCode: 200,
