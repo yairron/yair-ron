@@ -307,10 +307,6 @@ function logQuestion(question) {
   const secret = process.env.CHAT_LOG_SECRET;
   if (!url || !secret) return Promise.resolve();
 
-  // אבחון זמני - לאיתור באג קידוד עברית. להסיר אחרי שהבעיה נפתרת.
-  console.log('[chat-log debug] question:', question);
-  console.log('[chat-log debug] first 3 char codes:', [...question].slice(0, 3).map((c) => c.codePointAt(0).toString(16)));
-
   const timeout = new Promise((resolve) => setTimeout(resolve, CHAT_LOG_TIMEOUT_MS));
   // Content-Type: text/plain ולא application/json בכוונה - ל-Apps Script יש באג מתועד
   // בפענוח UTF-8 רב-בייטי (עברית וכו') כשה-Content-Type הנכנס הוא application/json,
@@ -455,10 +451,13 @@ exports.handler = async (event) => {
 
     await logPromise;
 
+    // אבחון זמני - לאיתור באג קידוד עברית ב-logQuestion. להסיר אחרי שהבעיה נפתרת.
+    const _debugCharCodes = [...question].slice(0, 5).map((c) => c.codePointAt(0).toString(16));
+
     return {
       statusCode: 200,
       headers: NO_STORE_HEADERS,
-      body: JSON.stringify({ answer, sources }),
+      body: JSON.stringify({ answer, sources, _debugCharCodes, _debugQuestion: question }),
     };
   } catch (err) {
     console.error('btl-chat function error:', err);
