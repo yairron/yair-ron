@@ -451,13 +451,10 @@ exports.handler = async (event) => {
 
     await logPromise;
 
-    // אבחון זמני - לאיתור באג קידוד עברית ב-logQuestion. להסיר אחרי שהבעיה נפתרת.
-    const _debugCharCodes = [...question].slice(0, 5).map((c) => c.codePointAt(0).toString(16));
-
     return {
       statusCode: 200,
       headers: NO_STORE_HEADERS,
-      body: JSON.stringify({ answer, sources, _debugCharCodes, _debugQuestion: question }),
+      body: JSON.stringify({ answer, sources }),
     };
   } catch (err) {
     console.error('btl-chat function error:', err);
