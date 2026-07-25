@@ -189,6 +189,12 @@
             color: #2E5B8A;
             text-decoration: underline;
         }
+        .btl-chat-disclaimer {
+            font-size: 0.72rem;
+            color: #8a97a3;
+            font-style: italic;
+            margin-top: 6px;
+        }
         #btl-chat-form {
             display: flex;
             border-top: 1px solid #ddd;
@@ -198,6 +204,7 @@
         }
         #btl-chat-input {
             flex: 1;
+            min-width: 0;
             border: 1px solid #ccc;
             border-radius: 10px;
             padding: 8px 12px;
@@ -206,6 +213,7 @@
             resize: none;
         }
         #btl-chat-send {
+            flex-shrink: 0;
             background: #E8A840;
             color: white;
             border: none;
@@ -363,6 +371,10 @@
                         link.textContent = source.title;
                         sourcesDiv.appendChild(link);
                     });
+                    var disclaimer = document.createElement('div');
+                    disclaimer.className = 'btl-chat-disclaimer';
+                    disclaimer.textContent = 'אני רק AI ועלול לטעות. מומלץ לבדוק את המידע בקישורים המצורפים.';
+                    sourcesDiv.appendChild(disclaimer);
                     div.appendChild(sourcesDiv);
                 }
             } else {
