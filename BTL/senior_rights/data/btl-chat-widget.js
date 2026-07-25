@@ -197,6 +197,7 @@
         }
         #btl-chat-form {
             display: flex;
+            box-sizing: border-box;
             border-top: 1px solid #ddd;
             padding: 10px;
             gap: 8px;
@@ -205,6 +206,7 @@
         #btl-chat-input {
             flex: 1;
             min-width: 0;
+            box-sizing: border-box;
             border: 1px solid #ccc;
             border-radius: 10px;
             padding: 8px 12px;
@@ -214,6 +216,7 @@
         }
         #btl-chat-send {
             flex-shrink: 0;
+            box-sizing: border-box;
             background: #E8A840;
             color: white;
             border: none;
