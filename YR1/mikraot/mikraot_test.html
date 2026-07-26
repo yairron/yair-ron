@@ -35,6 +35,18 @@
   button.secondary:hover{background:#4b5563;}
   button:disabled{background:#9ca3af; cursor:not-allowed;}
   .hint{color:var(--muted); font-size:0.9em;}
+  .chapters-row{display:flex; flex-direction:column; align-items:stretch; gap:8px;}
+  .chapters-list{
+    max-height:200px; overflow-y:auto; border:1px solid var(--border); border-radius:8px;
+    padding:6px 12px; background:#fafafa;
+  }
+  .chapter-item{display:flex; align-items:center; gap:8px; padding:7px 0; font-size:0.95em; border-bottom:1px solid #eee;}
+  .chapter-item:last-child{border-bottom:none;}
+  .chapter-item input{accent-color:var(--primary); width:17px; height:17px; flex-shrink:0; cursor:pointer;}
+  .chapter-item label{font-weight:400; cursor:pointer;}
+  .chapters-actions{display:flex; gap:14px;}
+  .chapters-actions a{color:var(--primary); font-size:0.85em; cursor:pointer; text-decoration:none;}
+  .chapters-actions a:hover{text-decoration:underline;}
   .q-num{color:var(--muted); font-size:0.9em; margin-bottom:6px;}
   .q-text{font-size:1.15em; font-weight:600; margin-bottom:16px; line-height:1.5;}
   .options{display:flex; flex-direction:column; gap:10px;}
@@ -89,10 +101,18 @@
   <div class="subtitle"><a href="files/אוגדן הכנה לקצונה.pdf" target="_blank" rel="noopener">📄 לצפייה באוגדן הכנה לקצונה (PDF)</a></div>
 
   <div id="setupScreen" class="card">
+    <div class="setup-row chapters-row">
+      <label>באילו פרקים לתרגל?</label>
+      <div class="chapters-actions">
+        <a id="selectAllChapters">בחר הכל</a>
+        <a id="clearAllChapters">נקה הכל</a>
+      </div>
+      <div class="chapters-list" id="chaptersList"></div>
+    </div>
     <div class="setup-row">
       <label for="numQ">כמה שאלות תרצה בניסיון?</label>
-      <input type="number" id="numQ" min="1" value="20">
-      <span class="hint">(סה"כ בבנק: <span id="totalCount"></span> שאלות)</span>
+      <input type="number" id="numQ" min="10" value="20">
+      <span class="hint">(סה"כ שאלות זמינות בפרקים שנבחרו: <span id="totalCount"></span>)</span>
     </div>
     <div class="btn-row">
       <button id="startBtn">התחל מבחן</button>
@@ -1194,6 +1214,16 @@ const EXPLANATIONS = [
 
 QUESTIONS.forEach((q,i)=>{ q[3] = EXPLANATIONS[i] || ''; });
 
+const CHAPTERS = [
+  {name:'שער 1 – ישראל: תעודת זהות (אזרחות ומשטר)', from:1, to:33},
+  {name:'שער 2 – תרבות ואמונה בישראל (יהדות ודתות)', from:34, to:128},
+  {name:'שער 3 – תולדות עם ישראל (מהתנ"ך ועד העת החדשה)', from:129, to:198},
+  {name:'שער 4 – בימי שואה', from:199, to:267},
+  {name:'שער 5 – בדרך למדינה (התיישבות ותנועה ציונית)', from:268, to:344},
+  {name:'שער 6 – סיפורה של מדינה', from:345, to:472},
+  {name:'שער 7 – ביטחון ישראל', from:473, to:529},
+];
+
 let selectedQuestions = [];
 let currentIndex = 0;
 let score = 0;
@@ -1201,18 +1231,65 @@ let userSelections = [];
 let answered = false;
 
 const totalCountEl = document.getElementById('totalCount');
-totalCountEl.textContent = QUESTIONS.length;
 
 const setupScreen = document.getElementById('setupScreen');
 const quizScreen = document.getElementById('quizScreen');
 const resultScreen = document.getElementById('resultScreen');
 const numQInput = document.getElementById('numQ');
-numQInput.max = QUESTIONS.length;
+const chaptersListEl = document.getElementById('chaptersList');
+
+CHAPTERS.forEach((ch, i) => {
+  const item = document.createElement('div');
+  item.className = 'chapter-item';
+  const cbId = `chapter_${i}`;
+  item.innerHTML = `<input type="checkbox" id="${cbId}"><label for="${cbId}">${ch.name}</label>`;
+  chaptersListEl.appendChild(item);
+  item.querySelector('input').addEventListener('change', updateAvailablePool);
+});
+
+document.getElementById('selectAllChapters').addEventListener('click', () => {
+  chaptersListEl.querySelectorAll('input[type=checkbox]').forEach(cb => cb.checked = true);
+  updateAvailablePool();
+});
+document.getElementById('clearAllChapters').addEventListener('click', () => {
+  chaptersListEl.querySelectorAll('input[type=checkbox]').forEach(cb => cb.checked = false);
+  updateAvailablePool();
+});
+
+function resetChapterSelection(){
+  chaptersListEl.querySelectorAll('input[type=checkbox]').forEach(cb => cb.checked = false);
+  updateAvailablePool();
+}
+
+function getSelectedPool(){
+  const checkboxes = chaptersListEl.querySelectorAll('input[type=checkbox]');
+  let pool = [];
+  CHAPTERS.forEach((ch, i) => {
+    if(checkboxes[i].checked){
+      pool = pool.concat(QUESTIONS.slice(ch.from - 1, ch.to));
+    }
+  });
+  return pool;
+}
+
+function updateAvailablePool(){
+  const poolSize = getSelectedPool().length;
+  totalCountEl.textContent = poolSize;
+  const minQ = Math.min(10, poolSize || 10);
+  numQInput.min = minQ;
+  numQInput.max = poolSize;
+  if(parseInt(numQInput.value, 10) > poolSize) numQInput.value = poolSize;
+  if(parseInt(numQInput.value, 10) < minQ) numQInput.value = minQ;
+  document.getElementById('startBtn').disabled = poolSize === 0;
+}
+
+resetChapterSelection();
 
 document.getElementById('startBtn').addEventListener('click', startQuiz);
 document.getElementById('restartBtn').addEventListener('click', () => {
   resultScreen.classList.add('hidden');
   setupScreen.classList.remove('hidden');
+  resetChapterSelection();
 });
 document.getElementById('revealBtn').addEventListener('click', revealAnswer);
 document.getElementById('nextBtn').addEventListener('click', nextQuestion);
@@ -1221,6 +1298,7 @@ document.getElementById('backToStartBtn').addEventListener('click', () => {
   quizScreen.classList.add('hidden');
   resultScreen.classList.add('hidden');
   setupScreen.classList.remove('hidden');
+  resetChapterSelection();
 });
 
 function shuffle(arr){
@@ -1233,10 +1311,12 @@ function shuffle(arr){
 }
 
 function startQuiz(){
+  const pool = getSelectedPool();
+  if(pool.length === 0) return;
   let n = parseInt(numQInput.value, 10);
-  if(!n || n < 1) n = 1;
-  if(n > QUESTIONS.length) n = QUESTIONS.length;
-  selectedQuestions = shuffle(QUESTIONS).slice(0, n);
+  if(!n || n < 10) n = Math.min(10, pool.length);
+  if(n > pool.length) n = pool.length;
+  selectedQuestions = shuffle(pool).slice(0, n);
   currentIndex = 0;
   score = 0;
   userSelections = new Array(n).fill(null);
