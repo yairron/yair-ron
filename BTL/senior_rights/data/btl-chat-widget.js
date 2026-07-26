@@ -39,11 +39,23 @@
             flex-direction: column;
             overflow: hidden;
             z-index: 1000;
-            direction: rtl;
             font-family: 'Assistant', 'Segoe UI', Tahoma, sans-serif;
         }
         #btl-chat-panel.open {
             display: flex;
+        }
+        /* direction:rtl יושב על העטיפה הפנימית ולא על #btl-chat-panel עצמו בכוונה -
+           ידית ה-resize של הדפדפן ממוקמת לפי direction, ובעברית (rtl) היא הייתה
+           נוחתת בפינה השמאלית-תחתונה (קרוב לעוגן/לכפתור הפתיחה, מוסתרת/לא נוחה).
+           השארת הפאנל עצמו ב-ltr (ברירת מחדל) מבטיחה שהידית תמיד בפינה
+           הימנית-תחתונה, בעוד התוכן בפנים עדיין מוצג rtl כרגיל. */
+        #btl-chat-inner {
+            direction: rtl;
+            display: flex;
+            flex-direction: column;
+            flex: 1;
+            min-height: 0;
+            overflow: hidden;
         }
         @media (min-width: 768px) {
             #btl-chat-panel {
@@ -251,18 +263,20 @@
             <span>🤖</span><span class="btl-chat-toggle-label">AI</span>
         </button>
         <div id="btl-chat-panel">
-            <div id="btl-chat-header">
-                <span>שאלו על זכויות אזרחים ותיקים</span>
-                <div id="btl-chat-header-actions">
-                    <button id="btl-chat-clear" aria-label="נקה היסטוריה" title="נקה היסטוריה">נקה</button>
-                    <button id="btl-chat-close" aria-label="סגור">✕</button>
+            <div id="btl-chat-inner">
+                <div id="btl-chat-header">
+                    <span>שאלו על זכויות אזרחים ותיקים</span>
+                    <div id="btl-chat-header-actions">
+                        <button id="btl-chat-clear" aria-label="נקה היסטוריה" title="נקה היסטוריה">נקה</button>
+                        <button id="btl-chat-close" aria-label="סגור">✕</button>
+                    </div>
                 </div>
+                <div id="btl-chat-messages"></div>
+                <form id="btl-chat-form">
+                    <textarea id="btl-chat-input" rows="1" maxlength="500" placeholder="הקלידו שאלה..."></textarea>
+                    <button id="btl-chat-send" type="submit">שלח</button>
+                </form>
             </div>
-            <div id="btl-chat-messages"></div>
-            <form id="btl-chat-form">
-                <textarea id="btl-chat-input" rows="1" maxlength="500" placeholder="הקלידו שאלה..."></textarea>
-                <button id="btl-chat-send" type="submit">שלח</button>
-            </form>
         </div>
     `;
 
