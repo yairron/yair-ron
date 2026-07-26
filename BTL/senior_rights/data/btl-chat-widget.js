@@ -52,7 +52,13 @@
                 left: 24px;
                 width: 50vw;
                 height: 70vh;
+                min-width: 320px;
+                min-height: 400px;
+                max-width: 95vw;
+                max-height: 90vh;
                 border-radius: 16px;
+                resize: both;
+                overflow: auto;
             }
         }
         #btl-chat-header {
