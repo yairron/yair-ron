@@ -1310,13 +1310,21 @@ function shuffle(arr){
   return a;
 }
 
+function shuffleQuestionOptions(q){
+  const [qText, opts, correctIdx, explanation] = q;
+  const order = shuffle(opts.map((_, i) => i));
+  const newOpts = order.map(i => opts[i]);
+  const newCorrectIdx = order.indexOf(correctIdx);
+  return [qText, newOpts, newCorrectIdx, explanation];
+}
+
 function startQuiz(){
   const pool = getSelectedPool();
   if(pool.length === 0) return;
   let n = parseInt(numQInput.value, 10);
   if(!n || n < 10) n = Math.min(10, pool.length);
   if(n > pool.length) n = pool.length;
-  selectedQuestions = shuffle(pool).slice(0, n);
+  selectedQuestions = shuffle(pool).slice(0, n).map(shuffleQuestionOptions);
   currentIndex = 0;
   score = 0;
   userSelections = new Array(n).fill(null);
