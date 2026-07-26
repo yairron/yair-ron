@@ -6,14 +6,18 @@
 
 (הקריטריון להצלחה/כישלון: טקסט ומבנה בלבד. עמודת ההבדל החזותי היא מידע בלבד - ראו הסבר בראש הקובץ למה היא לא קריטריון אמין.)
 
-| מצב | טקסט זהה | מבנה זהה | הבדל חזותי (מידע בלבד) |
+| מצב | טקסט זהה | מבנה DOM | הבדל חזותי (מידע בלבד) |
 |---|---|---|---|
-| accordion_0_open | ✅ | ✅ | 0.0147% |
-| accordion_1_open | ✅ | ✅ | 0.0% |
-| accordion_2_open | ✅ | ✅ | 0.0% |
-| closed | ✅ | ✅ | 0.0% |
-| sub_accordion_0_open | ✅ | ✅ | 6.3121% |
+| accordion_0_open | ✅ | ❌ | 0.0178% |
+| accordion_1_open | ✅ | ❌ | 0.0138% |
+| accordion_2_open | ✅ | ❌ | 0.0% |
+| closed | ✅ | ❌ | 0.0176% |
+| sub_accordion_0_open | ✅ | ❌ | 1.629% |
 
-## ממצאים
+## ממצאים / כשלים
 
-הטקסט ומבנה ה-DOM זהים לחלוטין בכל המצבים שנבדקו (הקריטריון הקובע). ראו טבלה למידע חזותי בלבד.
+- [accordion_0_open] מבנה ה-DOM (בתוך ['#content', '.container', 'body']) שונה (outerHTML לא זהה, ולא רק הוספת span data-nii)
+- [accordion_1_open] מבנה ה-DOM (בתוך ['#content', '.container', 'body']) שונה (outerHTML לא זהה, ולא רק הוספת span data-nii)
+- [accordion_2_open] מבנה ה-DOM (בתוך ['#content', '.container', 'body']) שונה (outerHTML לא זהה, ולא רק הוספת span data-nii)
+- [closed] מבנה ה-DOM (בתוך ['#content', '.container', 'body']) שונה (outerHTML לא זהה, ולא רק הוספת span data-nii)
+- [sub_accordion_0_open] מבנה ה-DOM (בתוך ['#content', '.container', 'body']) שונה (outerHTML לא זהה, ולא רק הוספת span data-nii)
