@@ -8,11 +8,18 @@ build_sitemap.py
 
 אומת ישירות מול השרת החי (12.07.2026, curl גולמי, לא הנחה): BTL כן
 מתפרסם תחת תחילית "/btl/" (אותיות קטנות - יש הפניית 301 מ-"/BTL/" עם
-אותיות גדולות), ו-Netlify Pretty URLs מוריד אוטומטית את סיומת ".html"
-(כתובת עם הסיומת עדיין עובדת דרך הפניית 301, אבל הכתובת הקנונית שאין
-לה הפניה כלל היא בלי הסיומת). לכן כל הכתובות בקובץ הזה נבנות עם "btl/"
-ובלי ".html". יוצא מן הכלל: עמוד הבית (index.html) מתפרסם ב-"btl/"
-עצמו (עם / בסוף) - לא ב-"btl/index" (זו כן עוברת הפניה).
+אותיות גדולות, וזו כן כוללת גם הורדת סיומת ".html" באותה קפיצה). לכן
+כל הכתובות בקובץ הזה נבנות עם "btl/" ובלי ".html". יוצא מן הכלל: עמוד
+הבית (index.html) מתפרסם ב-"btl/" עצמו (עם / בסוף) - לא ב-"btl/index"
+(זו כן עוברת הפניה).
+
+**תוקן 27.07.2026 - תיקון להנחה שגויה שהייתה כאן:** אומת מחדש בפועל
+(curl ישיר) שכתובת עם סיומת ".html" בתחילית התקנית "btl/" (אותיות
+קטנות מההתחלה, לא דרך הפניית BTL/) *לא* עוברת הפניה כלל - היא נשארת
+חיה במקביל לכתובת הקנונית בלי הסיומת, שתיהן 200. זו הייתה הסיבה
+לדיווח בפועל של Google Search Console על "Duplicate without
+user-selected canonical" בשני עמודים. הפתרון: תג <link rel="canonical">
+בכל עמוד (ראו add_canonical_links.py) - לא תלוי בהנחה על הפניה כלשהי.
 
 יש להריץ מחדש בכל פעם שמוסיפים או מסירים עמוד ציבורי מהאתר.
 
@@ -35,6 +42,11 @@ CONTENT_DIRS = ["senior_rights", "new_immigrants", "additional_guides/html"]
 OUTPUT_PATH = vrp.BTL_DIR / "sitemap.xml"
 
 
+# עמוד הפניה בלבד (redirect stub, ראו _redirects) - לא תוכן אמיתי, ולא
+# אמור להופיע במפת האתר (הנחיית גוגל: לא לכלול כתובות שמפנות במפת אתר).
+REDIRECT_STUB_PAGES = {"additional_guides/html/index.html"}
+
+
 def discover_public_pages() -> list:
     pages = ["index.html"]
     for d in CONTENT_DIRS:
@@ -42,7 +54,10 @@ def discover_public_pages() -> list:
         if not base.exists():
             continue
         for p in sorted(base.glob("*.html")):
-            pages.append(f"{d}/{p.name}")
+            relpath = f"{d}/{p.name}"
+            if relpath in REDIRECT_STUB_PAGES:
+                continue
+            pages.append(relpath)
     # קובץ האינדקס לבינה מלאכותית - משאב ציבורי אמיתי (מקושר גם מ-robots.txt),
     # לא נמצא תחת אחת מ-CONTENT_DIRS, אז לא נתפס ע"י הלולאה למעלה. נוסף כאן במפורש.
     if (vrp.BTL_DIR / "ai-summary.html").exists():

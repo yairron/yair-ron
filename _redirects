@@ -1,2 +1,11 @@
 /api/btl-chat   /.netlify/functions/btl-chat   200
+
+# additional_guides/html/index.html הוא רק עמוד הפניה (בלי תוכן) ל-additional_guides_index.html.
+# היה מטופל עד כה ע"י meta refresh בצד הלקוח בלבד - גוגל דיווח על כך כ-"Redirect error" ב-Search
+# Console, כנראה כי צירוף של הפניית 301 של Netlify (מ-/index ל-/, ראו בדיקת curl) יחד עם הפניית
+# meta refresh נוספת בתוך התוכן בלבל את הזחילה. הפניית 301 אמיתית ויחידה כאן מחליפה את זה לחלוטין.
+/btl/additional_guides/html/index        /btl/additional_guides/html/additional_guides_index   301
+/btl/additional_guides/html/index.html   /btl/additional_guides/html/additional_guides_index   301
+/btl/additional_guides/html/             /btl/additional_guides/html/additional_guides_index   301
+
 /   /404.html   404
