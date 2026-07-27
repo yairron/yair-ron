@@ -95,6 +95,7 @@
             gap: 6px;
         }
         #btl-chat-clear,
+        #btl-chat-copy,
         #btl-chat-close {
             background: none;
             border: none;
@@ -103,14 +104,21 @@
             cursor: pointer;
             line-height: 1;
         }
-        #btl-chat-clear {
+        #btl-chat-clear,
+        #btl-chat-copy {
             font-size: 0.8rem;
             font-weight: 700;
             opacity: 0.85;
             text-decoration: underline;
         }
-        #btl-chat-clear:hover {
+        #btl-chat-clear:hover,
+        #btl-chat-copy:hover {
             opacity: 1;
+        }
+        #btl-chat-copy:disabled {
+            opacity: 0.45;
+            cursor: default;
+            text-decoration: none;
         }
         #btl-chat-messages {
             flex: 1;
@@ -274,6 +282,7 @@
                     <span>שאלו על זכויות אזרחים ותיקים</span>
                     <div id="btl-chat-header-actions">
                         <button id="btl-chat-clear" aria-label="נקה היסטוריה" title="נקה היסטוריה">נקה</button>
+                        <button id="btl-chat-copy" aria-label="העתק שאלה ותשובה אחרונות" title="העתק שאלה ותשובה אחרונות" disabled>העתק</button>
                         <button id="btl-chat-close" aria-label="סגור">✕</button>
                     </div>
                 </div>
@@ -381,6 +390,7 @@
         var panel = document.getElementById('btl-chat-panel');
         var closeBtn = document.getElementById('btl-chat-close');
         var clearBtn = document.getElementById('btl-chat-clear');
+        var copyBtn = document.getElementById('btl-chat-copy');
         var form = document.getElementById('btl-chat-form');
         var input = document.getElementById('btl-chat-input');
         var sendBtn = document.getElementById('btl-chat-send');
@@ -443,8 +453,38 @@
         clearBtn.addEventListener('click', function() {
             messages.innerHTML = '';
             conversationHistory = [];
+            copyBtn.disabled = true;
             addMessage(WELCOME_TEXT, 'bot');
         });
+        copyBtn.addEventListener('click', function() {
+            var last = conversationHistory[conversationHistory.length - 1];
+            if (!last) return;
+            var text = 'שאלה: ' + last.question + '\n\nתשובה: ' + last.answer;
+            var showCopied = function() {
+                var original = copyBtn.textContent;
+                copyBtn.textContent = 'הועתק!';
+                setTimeout(function() { copyBtn.textContent = original; }, 1500);
+            };
+            if (navigator.clipboard && navigator.clipboard.writeText) {
+                navigator.clipboard.writeText(text).then(showCopied, function() {
+                    fallbackCopy(text, showCopied);
+                });
+            } else {
+                fallbackCopy(text, showCopied);
+            }
+        });
+
+        function fallbackCopy(text, onDone) {
+            var ta = document.createElement('textarea');
+            ta.value = text;
+            ta.style.position = 'fixed';
+            ta.style.opacity = '0';
+            document.body.appendChild(ta);
+            ta.select();
+            try { document.execCommand('copy'); } catch (e) {}
+            document.body.removeChild(ta);
+            onDone();
+        }
 
         form.addEventListener('submit', async function(e) {
             e.preventDefault();
@@ -471,6 +511,7 @@
                     if (conversationHistory.length > MAX_HISTORY_ITEMS) {
                         conversationHistory.shift();
                     }
+                    copyBtn.disabled = false;
                 }
             } catch (err) {
                 addMessage('שגיאת תקשורת, נסו שוב.', 'error');

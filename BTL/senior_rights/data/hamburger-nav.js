@@ -453,6 +453,25 @@
             ]
         },
         {
+            icon: '📚', text: 'סיכומים ומסמכי מידע מפורט', children: [
+                { text: '🦁 דו"ח זכויות — מבצע שאגת הארי',                    href: bp + 'additional_guides/html/shaagat_haari.html' },
+                { text: '⚠️ מקרים מיוחדים בגמלאות ביטוח לאומי',              href: bp + 'additional_guides/html/mekarim_meyuchadim.html' },
+                { text: '🌍 אמנות בינלאומיות לביטחון סוציאלי',                href: bp + 'additional_guides/html/amnot_binleumiot.html' },
+                { text: '🏠 גמלת זיקנה מיוחדת לעולים ותושבים חוזרים',        href: bp + 'additional_guides/html/gamlay_zikna.html' },
+                { text: '👨‍👩‍👧 הגדרת תלויים בקצבת זקנה וקצבת שאירים',           href: bp + 'additional_guides/html/hagdarat_tluim.html' },
+                { text: '💼 השלמת הכנסה וחובת ההתייצבות בשירות התעסוקה',     href: bp + 'additional_guides/html/chovaat_hitatzbut.html' },
+                { text: '✈️ יציאה לחו"ל והשפעתה על קצבת זיקנה והשלמת הכנסה', href: bp + 'additional_guides/html/yetzia_lachul.html' },
+                { text: '📅 תקופת אכשרה לקצבת אזרח ותיק',                     href: bp + 'additional_guides/html/tkufat_achshara.html' },
+                { text: '⚖️ בחירה בין קצבת נכות לקצבת שאירים',                href: bp + 'additional_guides/html/nechut_mul_shairim.html' },
+                { text: '💰 תקרות הכנסה לקצבת אזרח ותיק חלקית',               href: bp + 'additional_guides/html/takrut_hachnasa.html' },
+                { text: '🏥 זכויות אזרחים ותיקים לאחר אישפוז',                href: bp + 'additional_guides/html/zchuyot_achrei_ishpuz.html' },
+                { text: '📜 ייפוי כוח מתמשך - מדריך מקיף',                    href: bp + 'additional_guides/html/yipuy_koach_mitmashech.html' },
+                { text: '🩼 נכות כללית מול נכות מעבודה',                      href: bp + 'additional_guides/html/nechut_klalit_mul_avoda.html' },
+                { text: '🅿️ חניה שמורה לאזרח ותיק ללא תעודת נכה',             href: bp + 'additional_guides/html/chanaya_shmura_ezrach_vatik.html' },
+                { text: '📋 מידע כללי על העסקת עובד זר',                      href: bp + 'additional_guides/html/oved_zar_bituach_leumi.html' },
+            ]
+        },
+        {
             icon: '📊', text: 'עדכוני ביטוח לאומי 2026', children: [
                 { icon: '✅', text: 'עדכון 01.2026 קצבאות זקנה ושאירים', children: [
                     { text: 'א. קצבת אזרח ותיק בסיסית',               href: bp + 'senior_rights/data/data_202601.html#data-alef' },

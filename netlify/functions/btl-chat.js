@@ -68,6 +68,8 @@ const PATH_DESCRIPTIONS = {
     'מדריך מקיף לעריכת ייפוי כוח מתמשך לאנשים מבוגרים: הגדרה, בחירת מיופה כוח, סמכויות רפואיות/אישיות/רכושיות, תהליך העריכה, עלויות, טעויות נפוצות, והשוואה לאפוטרופסות.',
   'additional_guides/html/oved_zar_bituach_leumi.html':
     'דוח מידע מקיף להעסקת מטפל זר לקשיש: תנאי זכאות, שני מסלולי היתר, השוואה בין העסקה ישירה למשולבת עם חברת סיעוד, תשלום ביטוח לאומי, יתרונות וחסרונות, ושלבים מעשיים למימוש.',
+  'additional_guides/html/chanaya_shmura_ezrach_vatik.html':
+    'מדריך לחניה שמורה ליד הבית לאזרח ותיק כאשר הרשות המקומית דורשת "תעודת נכה" - למה הדרישה שגויה עבור מי שכבר בגיל פרישה, ומה ניתן להציג במקומה (חוות דעת רפואית, תנאי חוק חניה לנכים, שלבי פעולה וערר).',
   'new_immigrants/gimlat_zikna_meyuchedet.html':
     'מדריך לגמלת זיקנה מיוחדת לעולים חדשים ותושבים חוזרים שאינם זכאים לקצבת זקנה רגילה: תנאי זכאות וגובה הגמלה.',
   'new_immigrants/international_treaties.html':
@@ -114,6 +116,7 @@ const PATH_TITLES = {
   'additional_guides/html/zchuyot_achrei_ishpuz.html': '🏥 זכויות אזרחים ותיקים לאחר אישפוז',
   'additional_guides/html/yipuy_koach_mitmashech.html': '📜 ייפוי כוח מתמשך - מדריך מקיף',
   'additional_guides/html/oved_zar_bituach_leumi.html': '📋 מידע כללי על העסקת עובד זר',
+  'additional_guides/html/chanaya_shmura_ezrach_vatik.html': '🅿️ חניה שמורה לאזרח ותיק ללא תעודת נכה',
   'new_immigrants/gimlat_zikna_meyuchedet.html': '📖 גמלת זיקנה מיוחדת לעולים ותושבים חוזרים',
   'new_immigrants/international_treaties.html': '📖 אמנות בינלאומיות לביטחון סוציאלי',
   'senior_rights/faq.html': '❓ שאלות נפוצות בזכויות אזרחים ותיקים',

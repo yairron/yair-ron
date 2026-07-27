@@ -124,6 +124,7 @@ TOPICS = {
             "additional_guides/html/shaagat_haari.html",
             "additional_guides/html/additional_guides_index.html",
             "additional_guides/html/yipuy_koach_mitmashech.html",
+            "additional_guides/html/chanaya_shmura_ezrach_vatik.html",
         ],
     ),
 }
@@ -181,6 +182,7 @@ KNOWN_FILES = {
     "additional_guides/html/yipuy_koach_mitmashech.html": ("include", "סיכום PDF - תוכן סטטי, הועתק ל-HTML 22.07.2026"),
     "additional_guides/html/nechut_klalit_mul_avoda.html": ("include", "סיכום PDF - תוכן סטטי, הועתק ל-HTML 22.07.2026"),
     "additional_guides/html/oved_zar_bituach_leumi.html": ("include", "סיכום PDF - תוכן סטטי, הועתק ל-HTML 22.07.2026"),
+    "additional_guides/html/chanaya_shmura_ezrach_vatik.html": ("include", "מדריך חדש (מ-PDF) - חניה שמורה לאזרח ותיק ללא תעודת נכה, נוסף 27.07.2026"),
 }
 
 
