@@ -91,6 +91,7 @@ TOPICS = {
             "additional_guides/html/nechut_mul_shairim.html",
             "additional_guides/html/hagdarat_tluim.html",
             "additional_guides/html/nechut_klalit_mul_avoda.html",
+            "additional_guides/html/dmei_michya_leshairim.html",
         ],
     ),
     "btl-immigrants-treaties": (
@@ -183,6 +184,7 @@ KNOWN_FILES = {
     "additional_guides/html/nechut_klalit_mul_avoda.html": ("include", "סיכום PDF - תוכן סטטי, הועתק ל-HTML 22.07.2026"),
     "additional_guides/html/oved_zar_bituach_leumi.html": ("include", "סיכום PDF - תוכן סטטי, הועתק ל-HTML 22.07.2026"),
     "additional_guides/html/chanaya_shmura_ezrach_vatik.html": ("include", "מדריך חדש (מ-PDF) - חניה שמורה לאזרח ותיק ללא תעודת נכה, נוסף 27.07.2026"),
+    "additional_guides/html/dmei_michya_leshairim.html": ("include", "מדריך חדש (מ-PDF) - דמי מחיה לשאירים בביטוח לאומי, נוסף 27.07.2026"),
 }
 
 

@@ -459,6 +459,7 @@
                 { text: '🌍 אמנות בינלאומיות לביטחון סוציאלי',                href: bp + 'additional_guides/html/amnot_binleumiot.html' },
                 { text: '🏠 גמלת זיקנה מיוחדת לעולים ותושבים חוזרים',        href: bp + 'additional_guides/html/gamlay_zikna.html' },
                 { text: '👨‍👩‍👧 הגדרת תלויים בקצבת זקנה וקצבת שאירים',           href: bp + 'additional_guides/html/hagdarat_tluim.html' },
+                { text: '🎓 דמי מחיה לשאירים בביטוח לאומי',                    href: bp + 'additional_guides/html/dmei_michya_leshairim.html' },
                 { text: '💼 השלמת הכנסה וחובת ההתייצבות בשירות התעסוקה',     href: bp + 'additional_guides/html/chovaat_hitatzbut.html' },
                 { text: '✈️ יציאה לחו"ל והשפעתה על קצבת זיקנה והשלמת הכנסה', href: bp + 'additional_guides/html/yetzia_lachul.html' },
                 { text: '📅 תקופת אכשרה לקצבת אזרח ותיק',                     href: bp + 'additional_guides/html/tkufat_achshara.html' },
