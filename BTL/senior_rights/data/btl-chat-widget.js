@@ -227,6 +227,12 @@
             font-style: italic;
             margin-top: 6px;
         }
+        .btl-chat-timestamp {
+            font-size: 0.62rem;
+            color: #b0bac2;
+            margin-top: 4px;
+            text-align: left;
+        }
         #btl-chat-form {
             display: flex;
             box-sizing: border-box;
@@ -297,6 +303,14 @@
 
     function escapeHtml(s) {
         return s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+    }
+
+    // תאריך+שעה מקומיים (שעון הדפדפן של המשתמש) - DD.MM.YYYY HH:MM, תואם למוסכמת
+    // התאריכים בשאר האתר (למשל "27.07.2026").
+    function formatTimestamp(date) {
+        var pad = function(n) { return String(n).padStart(2, '0'); };
+        return pad(date.getDate()) + '.' + pad(date.getMonth() + 1) + '.' + date.getFullYear()
+            + ' ' + pad(date.getHours()) + ':' + pad(date.getMinutes());
     }
 
     function renderInline(text) {
@@ -425,6 +439,10 @@
                     sourcesDiv.appendChild(disclaimer);
                     div.appendChild(sourcesDiv);
                 }
+                var timestamp = document.createElement('div');
+                timestamp.className = 'btl-chat-timestamp';
+                timestamp.textContent = formatTimestamp(new Date());
+                div.appendChild(timestamp);
             } else {
                 div.textContent = text;
             }
