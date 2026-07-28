@@ -866,6 +866,7 @@
 
 </div>
 
+<script src="data/accordion-search-nav.js"></script>
 <script>
 let NII_CONSTANTS = {};
 const g   = k => NII_CONSTANTS[k]?.value ?? 0;
@@ -1574,6 +1575,7 @@ function displayData() {
         initAccordions();
         openFromHash();
         window.addEventListener('hashchange', openFromHash);
+        openFromPath(); // תוצאות חיפוש מבוסס-תוכן (accordion-search-nav.js)
     } catch (error) {
         console.error('שגיאה:', error);
         document.getElementById('content').innerHTML = `

@@ -1042,6 +1042,7 @@
         </p>
     </footer>
 
+    <script src="data/accordion-search-nav.js"></script>
     <script>
         // טעינת ערכי NII דינמיים
         (async function() {
@@ -1163,6 +1164,7 @@
         }
         openFromHash();
         window.addEventListener('hashchange', openFromHash);
+        openFromPath(); // תוצאות חיפוש מבוסס-תוכן (accordion-search-nav.js)
     </script>
     <script src="data/hamburger-nav.js"></script>
     <script src="data/btl-chat-widget.js"></script>

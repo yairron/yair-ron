@@ -661,6 +661,7 @@
     </footer>
 
     <script src="data/nursing-home-data.js"></script>
+    <script src="data/accordion-search-nav.js"></script>
     <script>
         // הגדרות אנימציה
         const style = document.createElement('style');
@@ -728,6 +729,7 @@
                 initAccordions();
                 openFromHash();
                 window.addEventListener('hashchange', openFromHash);
+                openFromPath(); // תוצאות חיפוש מבוסס-תוכן (accordion-search-nav.js)
 
                 console.log('✅ סיום בהצלחה');
 

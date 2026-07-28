@@ -2111,6 +2111,7 @@
     </div>
 
     <script src="data/faq-data.js"></script>
+    <script src="data/accordion-search-nav.js"></script>
     <script>
         function openFromHash() {
             const hash = decodeURIComponent(window.location.hash.slice(1));
@@ -2311,6 +2312,7 @@
                 initAccordions();
                 openFromHash();
                 window.addEventListener('hashchange', openFromHash);
+                openFromPath(); // תוצאות חיפוש מבוסס-תוכן (accordion-search-nav.js)
 
             } catch (error) {
                 console.error('❌ שגיאה:', error);

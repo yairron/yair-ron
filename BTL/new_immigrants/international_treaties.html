@@ -841,6 +841,7 @@
         </p>
     </footer>
 
+    <script src="../senior_rights/data/accordion-search-nav.js"></script>
     <script>
         const ACCORDIONS_CONFIG = {
             part_a: { title: 'מדינות האמנה — רשימה מלאה', icon: '🌍' },
@@ -1165,6 +1166,7 @@
                 initAccordions();
                 openFromHash();
                 window.addEventListener('hashchange', openFromHash);
+                openFromPath(); // תוצאות חיפוש מבוסס-תוכן (accordion-search-nav.js)
             } catch (error) {
                 console.error('שגיאה בטעינת הנתונים:', error);
                 document.getElementById('content').innerHTML = `
