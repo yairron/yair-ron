@@ -935,6 +935,7 @@
     </footer>
 
     <script src="data/nechut-vs-shairim-data.js?v=20260415-1"></script>
+    <script src="data/accordion-search-nav.js"></script>
     <script>
         // הגדרות אנימציה
         const style = document.createElement('style');
@@ -1052,6 +1053,7 @@
                 initAccordions();
                 openFromHash();
                 window.addEventListener('hashchange', openFromHash);
+                openFromPath(); // תוצאות חיפוש מבוסס-תוכן (accordion-search-nav.js) - ראו BTL/claude_last_chat.md
 
                 console.log('✅ סיום בהצלחה');
 

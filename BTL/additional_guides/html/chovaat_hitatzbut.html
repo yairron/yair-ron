@@ -85,29 +85,8 @@ footer{text-align:center;margin-top:30px;padding:20px;color:rgba(255,255,255,.85
 <div class="accordions-container"><div class="intro-section"><p>עמוד 1 | מידע עדכני ל- 2026 | המוסד לביטוח לאומי</p></div><div class="accordion" id="acc-0"><div class="accordion-header" onclick="toggleAcc(this)"><h2 class="accordion-title">חובת התייצבות בשירות התעסוקה— הכלל המרכזי</h2><span class="accordion-arrow">▼</span></div><div class="accordion-content"><div class="accordion-body"><ul><li>⚠️ מי שעדיין לא הגיע לגיל פרישה— חייב להתייצב בלשכת שירות התעסוקה על פי הכללים הנהוגים</li></ul><p>.בה</p><p>הנימוק המשפטי: תוספת השלמת הכנסה בגיל זיקנה מבוססת על חוק הביטוח הלאומי, ומפנה לתנאי הזכאות</p><p>של <strong>חוק הבטחת הכנסה</strong> . לפיכך, בן/בת הזוג שטרם הגיע/ה לגיל פרישה כפוף/ה לחובת ההתייצבות החלה</p><p>.בחוק הבטחת הכנסה</p><div class="sub-accordion" data-level="5"><div class="sub-accordion-header"><div class="sub-accordion-title">פטורים מהתייצבות— לפי מגדר ומצב</div><span class="sub-accordion-arrow">▼</span></div><div class="sub-accordion-content"><div class="sub-accordion-body"><div class="sub-accordion" data-level="6"><div class="sub-accordion-header"><div class="sub-accordion-title">מי מקבל הקצבה בן/בת הזוג הצעיר/ה ?חובת התייצבות</div><span class="sub-accordion-arrow">▼</span></div><div class="sub-accordion-content"><div class="sub-accordion-body"></div></div></div><div class="sub-accordion" data-level="6"><div class="sub-accordion-header"><div class="sub-accordion-title">גבר הגיע לגיל פרישה אשתו הצעירה שטרם הגיעה לגיל פרישה ✓ פטורה— בחוק</div><span class="sub-accordion-arrow">▼</span></div><div class="sub-accordion-content"><div class="sub-accordion-body"><p><strong>אישה הגיעה לגיל פרישה</strong> בעלה הצעיר שטרם הגיע לגיל פרישה ✗ <strong>חייב להתייצב</strong></p><p>כל אחד מהמינים הורה עם ילד עד גיל שנתיים ✓ <strong>פטור</strong></p><p>אישה הגיעה לגיל פרישה לבדוק באתר ביטוח לאומי מקרים מיוחדים של פטור לגבר (עציר, נכה, חולה או מטפל</p><p>)..בחולה ועוד</p><ul><li>✓ <strong>פטור</strong></li></ul></div></div></div></div></div></div></div></div></div><div class="accordion" id="acc-1"><div class="accordion-header" onclick="toggleAcc(this)"><h2 class="accordion-title">השלכות על בן/בת הזוג החייב/ת בהתייצבות</h2><span class="accordion-arrow">▼</span></div><div class="accordion-content"><div class="accordion-body"><p>▪ .חייב/ת להירשם ולהתייצב בשירות התעסוקה כדורש/ת עבודה</p><p>▪ .עליו/ה לקיים את כללי ההתייצבות כפי שנקבעו על ידי שירות התעסוקה</p><p>▪ אם הוצעה לו/ה עבודה מתאימה וסירב/ה — .הזכאות לגמלה נשללת למשך חודשיים</p><p>▪ &#x27;&#x27;עבודה מתאימה — .עבודה התואמת את מצב הבריאות והכושר הגופני</p><p>.הגיון חוקי: החוק מטיל על בן/בת הזוג שטרם הגיע/ה לגיל פרישה את החובה להשתלב בשוק העבודה</p><p>.הסיבה: המדינה אינה מחויבת לממן השלמת הכנסה כאשר אחד מבני הזוג כשיר/ה לעבוד</p><p>.מסמך זה נועד לייעוץ מקצועי בלבד. לבדיקת זכאות אישית יש לפנות למוסד לביטוח לאומי</p></div></div></div></div>
 </div>
 <footer><p>מוסד לביטוח לאומי | מדריך זכויות אזרחים ותיקים 2026</p></footer>
-<script>
-function toggleAcc(header){
-  var acc=header.closest('.accordion');
-  var wasActive=acc.classList.contains('active');
-  var container=acc.parentElement;
-  container.querySelectorAll(':scope>.accordion.active').forEach(function(a){if(a!==acc)a.classList.remove('active');});
-  acc.classList.toggle('active',!wasActive);
-  if(!wasActive){setTimeout(function(){acc.scrollIntoView({behavior:'smooth',block:'start'});},50);}
-}
-document.addEventListener('click',function(e){
-  var h=e.target.closest('.sub-accordion-header');
-  if(!h)return;
-  e.stopPropagation();
-  var sa=h.closest('.sub-accordion');
-  var wasActive=sa.classList.contains('active');
-  var parent=sa.parentElement;
-  parent.querySelectorAll(':scope>.sub-accordion.active').forEach(function(a){if(a!==sa)a.classList.remove('active');});
-  sa.classList.toggle('active',!wasActive);
-});
-function openMenu(){document.getElementById('sideMenu').classList.add('open');document.getElementById('menuOverlay').classList.add('open');}
-function closeMenu(){document.getElementById('sideMenu').classList.remove('open');document.getElementById('menuOverlay').classList.remove('open');}
-document.getElementById('menuOverlay').addEventListener('click',closeMenu);
-</script>
+<script src="../../senior_rights/data/accordion-widget.js"></script>
+    <script src="../../senior_rights/data/accordion-search-nav.js"></script>
     <script src="../../senior_rights/data/btl-chat-widget.js"></script>
 </body>
 </html>

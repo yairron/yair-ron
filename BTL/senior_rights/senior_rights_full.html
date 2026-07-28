@@ -2915,6 +2915,7 @@
     </footer>
 
     <script src="data/senior_rights_full_data.js?v=20260415-1"></script>
+    <script src="data/accordion-search-nav.js"></script>
     <script>
         // הגדרות אקורדיון — 10 הפרקים מהמדריך המקיף
         const ACCORDIONS_CONFIG = {
@@ -2972,6 +2973,7 @@
                 initAccordions();
                 openFromHash();
                 window.addEventListener('hashchange', openFromHash);
+                openFromPath(); // תוצאות חיפוש מבוסס-תוכן (accordion-search-nav.js) - ראו BTL/claude_last_chat.md
 
             } catch (error) {
                 console.error('שגיאה בטעינת הנתונים:', error);
