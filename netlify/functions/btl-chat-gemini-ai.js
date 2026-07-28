@@ -21,12 +21,12 @@ const CONTENT_FILES = [
   'btl-special-cases.html',
 ];
 const MAX_QUESTION_LENGTH = 500;
-// gemini-2.5-flash-lite נבחר לפי עלות (הזול/המהיר במשפחת Gemini הנתמכת), מקביל
-// לשיקול שהוביל לבחירת Haiku בגרסת הקלוד. **לוודא מול
-// https://ai.google.dev/gemini-api/docs/models לפני/אחרי פריסה** - יש דגמים
-// חדשים יותר (למשל בסדרת 3.x) שהמידע עליהם לא היה עקבי מספיק בין מקורות בזמן
-// הכתיבה כדי לבחור בהם בביטחון; זה הדגם המתועד והיציב ביותר שנמצא.
-const MODEL = 'gemini-2.5-flash-lite';
+// עודכן 28.07.2026: gemini-2.5-flash-lite (הבחירה המקורית) התברר בפועל כלא-זמין
+// יותר לפרויקטים/משתמשים חדשים (שגיאת 404 אמיתית מ-Gemini API: "no longer
+// available to new users"). gemini-3.5-flash-lite אומת מול AI Studio בפועל
+// (מוצג שם כ-"fastest, most cost-effective 3.5 model") - אותו שיקול עלות
+// שהוביל לבחירת Haiku בגרסת הקלוד.
+const MODEL = 'gemini-3.5-flash-lite';
 const PREVIEW_LENGTH = 150;
 const MAX_HISTORY_ITEMS = 3;
 const MAX_HISTORY_ANSWER_LENGTH = 4000;
