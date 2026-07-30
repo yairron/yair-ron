@@ -1,0 +1,970 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="מדריך מקצועי מקיף לקצבת שירותים מיוחדים (שר&quot;מ): תנאי הזכאות, רמות הקצבה והסכומים, האינטראקציה עם קצבת נכות כללית והבטחת הכנסה, תהליך התביעה והערעור, ומה קורה בהגיע גיל הפרישה.">
+  <link rel="canonical" href="https://yairron.com/btl/senior_rights/sherutim_meiuchadim">
+<link rel="alternate" type="text/html" href="https://yairron.com/btl/ai-content/btl-survivors-disability.html">
+<title>קצבת שירותים מיוחדים - שר"מ</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Assistant:wght@300;400;600;700;800&family=Varela+Round&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #2E5B8A;
+            --secondary: #4A90B5;
+            --accent: #E8A840;
+            --success: #2E7D32;
+            --danger: #C62828;
+            --light: #F5F9FC;
+            --dark: #1A3A52;
+            --text: #2C3E50;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Assistant', 'Segoe UI', Tahoma, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
+            min-height: 100vh;
+            padding: 20px;
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background:
+                radial-gradient(circle at 20% 50%, rgba(255,255,255,0.1) 0%, transparent 50%),
+                radial-gradient(circle at 80% 80%, rgba(255,255,255,0.1) 0%, transparent 50%);
+            animation: backgroundShift 20s ease-in-out infinite;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        @keyframes backgroundShift {
+            0%, 100% { transform: translate(0, 0) scale(1); }
+            50% { transform: translate(-5%, 5%) scale(0.95); }
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 50px;
+            animation: slideDown 0.8s ease-out;
+        }
+
+        @keyframes slideDown {
+            from { opacity: 0; transform: translateY(-50px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        h1 {
+            font-family: 'Varela Round', sans-serif;
+            font-size: 3.5rem;
+            font-weight: 800;
+            color: white;
+            margin-bottom: 15px;
+            text-shadow: 3px 5px 15px rgba(0,0,0,0.3);
+            letter-spacing: -2px;
+        }
+
+        .support-info {
+            font-size: 1.2rem;
+            color: #FFD54F;
+            font-weight: 700;
+            text-shadow: 1px 2px 8px rgba(0,0,0,0.3);
+            margin-bottom: 8px;
+        }
+
+        .subtitle {
+            font-size: 1.1rem;
+            color: rgba(255,255,255,0.85);
+            font-weight: 300;
+            text-shadow: 1px 2px 8px rgba(0,0,0,0.2);
+        }
+
+        .update-badge {
+            display: inline-block;
+            background: rgba(255,255,255,0.2);
+            backdrop-filter: blur(10px);
+            padding: 8px 20px;
+            border-radius: 20px;
+            color: white;
+            font-size: 0.9rem;
+            margin-top: 15px;
+            font-weight: 600;
+        }
+
+        .accordions-container {
+            margin-bottom: 40px;
+            animation: fadeIn 0.8s ease-out 0.3s both;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .accordion {
+            background: white;
+            border-radius: 0;
+            margin-bottom: 0;
+            box-shadow: 0 12px 35px rgba(0,0,0,0.2);
+            overflow: hidden;
+            transition: all 0.3s;
+            border-bottom: 1px solid rgba(0,0,0,0.1);
+        }
+
+        .accordion:first-child { border-radius: 24px 24px 0 0; }
+        .accordion:last-child { border-radius: 0 0 24px 24px; border-bottom: none; }
+        .accordion:only-child { border-radius: 24px; }
+        .accordion:hover { box-shadow: 0 15px 45px rgba(0,0,0,0.25); }
+
+        .accordion-header {
+            padding: 20px 35px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 18px;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            transition: all 0.3s;
+        }
+
+        .accordion-header:hover {
+            background: linear-gradient(135deg, var(--secondary), var(--primary));
+        }
+
+        .accordion-icon {
+            width: 60px;
+            height: 60px;
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            background: rgba(255,255,255,0.2);
+            flex-shrink: 0;
+        }
+
+        .accordion-title {
+            font-family: 'Varela Round', sans-serif;
+            font-size: 1.8rem;
+            font-weight: 800;
+            flex: 1;
+            margin: 0;
+        }
+
+        .accordion-arrow {
+            font-size: 1.5rem;
+            transition: transform 0.3s;
+            width: 40px;
+            text-align: center;
+            flex-shrink: 0;
+        }
+
+        .accordion.active .accordion-arrow { transform: rotate(180deg); }
+
+        .accordion-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s ease;
+        }
+
+        .accordion.active .accordion-content {
+            max-height: 10000px;
+            height: 80vh;
+            overflow: auto;
+            -webkit-overflow-scrolling: touch;
+        }
+
+        .accordion-body {
+            padding: 35px;
+            font-size: 1.15rem;
+            line-height: 1.9;
+            color: #546E7A;
+        }
+
+        .accordion-body h4 {
+            color: var(--primary);
+            font-size: 1.3rem;
+            margin: 25px 0 15px 0;
+            font-weight: 700;
+        }
+
+        .accordion-body ul {
+            list-style: none;
+            padding: 0;
+            margin: 15px 0;
+        }
+
+        .accordion-body ol {
+            padding-right: 25px;
+            margin: 15px 0;
+        }
+
+        .accordion-body ol li {
+            padding: 6px 0;
+            border-bottom: none;
+        }
+
+        .accordion-body ol li::before {
+            content: '';
+        }
+
+        .accordion-body li {
+            padding: 12px 0;
+            padding-right: 35px;
+            position: relative;
+            border-bottom: 1px solid #E0E7EE;
+        }
+
+        .accordion-body li:last-child { border-bottom: none; }
+
+        .accordion-body li::before {
+            content: '✓';
+            position: absolute;
+            right: 0;
+            color: var(--success);
+            font-weight: bold;
+            font-size: 1.4rem;
+        }
+
+        .sub-accordion {
+            margin: 15px 0;
+            border: 1px solid #E0E7EE;
+            border-radius: 12px;
+            overflow: hidden;
+            background: #F8FAFB;
+        }
+
+        .sub-accordion-header {
+            padding: 18px 25px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background: linear-gradient(135deg, #F8FAFB 0%, #EEF2F5 100%);
+            transition: all 0.3s;
+        }
+
+        .sub-accordion-header:hover {
+            background: linear-gradient(135deg, #EEF2F5 0%, #E3E9EE 100%);
+        }
+
+        .sub-accordion-title {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: var(--primary);
+            margin: 0;
+            flex: 1;
+        }
+
+        .sub-accordion-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s ease;
+        }
+
+        .sub-accordion.active > .sub-accordion-content {
+            max-height: 80vh;
+            overflow: auto;
+            -webkit-overflow-scrolling: touch;
+        }
+
+        .sub-accordion-body { padding: 20px 25px; background: white; }
+
+        .sub-accordion[data-level="3"] .sub-accordion-header { padding: 18px 25px; }
+        .sub-accordion[data-level="3"] .sub-accordion-title { font-size: 1.2rem; }
+
+        .sub-accordion[data-level="4"] {
+            margin: 12px 0;
+            background: #FAFBFC;
+        }
+        .sub-accordion[data-level="4"] .sub-accordion-header {
+            padding: 15px 20px;
+            background: linear-gradient(135deg, #E3F2FD 0%, #BBDEFB 100%);
+        }
+        .sub-accordion[data-level="4"] .sub-accordion-header:hover {
+            background: linear-gradient(135deg, #BBDEFB 0%, #90CAF9 100%);
+        }
+        .sub-accordion[data-level="4"] .sub-accordion-title {
+            font-size: 1.1rem;
+            padding-right: 15px;
+        }
+
+        .sub-accordion[data-level="5"] {
+            margin: 10px 0;
+            background: #FCFCFD;
+        }
+        .sub-accordion[data-level="5"] .sub-accordion-header {
+            padding: 12px 18px;
+            background: linear-gradient(135deg, #E8F5E9 0%, #C8E6C9 100%);
+        }
+        .sub-accordion[data-level="5"] .sub-accordion-header:hover {
+            background: linear-gradient(135deg, #C8E6C9 0%, #A5D6A7 100%);
+        }
+        .sub-accordion[data-level="5"] .sub-accordion-title {
+            font-size: 1.05rem;
+            padding-right: 25px;
+        }
+
+        .conditions-box {
+            background: #FFF8E1;
+            border-right: 4px solid var(--accent);
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 12px;
+        }
+
+        .conditions-box.warning {
+            background: #fff3e0;
+            border-right-color: #e65100;
+        }
+
+        .conditions-box.info {
+            background: #e3f2fd;
+            border-right-color: var(--secondary);
+        }
+
+        .conditions-box.success {
+            background: #e8f5e9;
+            border-right-color: var(--success);
+        }
+
+        .conditions-box h4 {
+            color: var(--accent);
+            font-size: 1.2rem;
+            margin: 0 0 10px 0;
+        }
+
+        .conditions-box p { margin-bottom: 6px; }
+        .conditions-box p:last-child { margin-bottom: 0; }
+
+        .algorithm-box {
+            padding: 15px 18px;
+            margin: 14px 0;
+            line-height: 1.5;
+            font-size: 0.95rem;
+        }
+
+        .algorithm-box ul {
+            list-style: disc;
+            margin: 8px 0 0 0;
+            padding: 0 22px 0 0;
+        }
+
+        .algorithm-box li {
+            padding: 4px 0;
+            border-bottom: none;
+        }
+
+        .algorithm-box li::before {
+            content: '';
+        }
+
+        table.nii-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 15px 0;
+            font-size: 1.05rem;
+        }
+
+        table.nii-table thead tr {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: #fff;
+        }
+
+        table.nii-table th,
+        table.nii-table td {
+            padding: 10px 12px;
+            border: 1px solid #ddd;
+            text-align: right;
+        }
+
+        table.nii-table tbody tr:nth-child(even) { background: #f8f9fa; }
+
+        .info-box {
+            background: rgba(255,255,255,0.95);
+            border-radius: 20px;
+            padding: 30px;
+            margin-top: 40px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+            border-right: 4px solid var(--accent);
+            animation: fadeIn 0.8s ease-out 0.6s both;
+        }
+
+        .info-box p {
+            font-size: 1.05rem;
+            line-height: 1.8;
+            color: #546E7A;
+            margin: 0;
+        }
+
+        .back-button {
+            display: inline-block;
+            background: rgba(255,255,255,0.25);
+            backdrop-filter: blur(10px);
+            padding: 12px 24px;
+            border-radius: 25px;
+            color: white;
+            text-decoration: none;
+            font-size: 1rem;
+            font-weight: 600;
+            transition: all 0.3s;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+        }
+
+        .back-button:hover {
+            background: rgba(255,255,255,0.35);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(0,0,0,0.25);
+        }
+
+        .back-button::before { content: '← '; margin-left: 5px; }
+
+        footer {
+            text-align: center;
+            margin-top: 60px;
+            padding: 30px;
+            color: rgba(255,255,255,0.9);
+            font-size: 1rem;
+        }
+
+        @media (max-width: 768px) {
+            h1 { font-size: 2.2rem; }
+            .accordion-header { padding: 18px 20px; }
+            .accordion-title { font-size: 1.3rem; }
+            .accordion-body { padding: 20px; }
+        }
+    </style>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-XFYGMQ47QN"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-XFYGMQ47QN');
+</script>
+</head>
+<body>
+<div class="container">
+
+    <header>
+        <a href="../index.html" class="back-button">חזרה לדף ראשי</a>
+        <h1>🧾 קצבת שירותים מיוחדים - שר"מ</h1>
+        <p class="support-info">המוסד לביטוח לאומי</p>
+        <p class="subtitle">תנאי זכאות, רמות הקצבה, ואינטראקציה עם קצבאות אחרות | עדכון 2025-2026</p>
+        <div class="update-badge">מעודכן ל-2025-2026</div>
+    </header>
+
+    <div class="accordions-container">
+
+        <!-- ==================== 1. מבוא ==================== -->
+        <div class="accordion active" data-category="intro">
+            <div class="accordion-header">
+                <div class="accordion-icon">📘</div>
+                <h2 class="accordion-title">1. מבוא ומטרת המסמך</h2>
+                <span class="accordion-arrow">▼</span>
+            </div>
+            <div class="accordion-content">
+                <div class="accordion-body">
+                    <p>מסמך זה נועד לספק ליועץ המלווה בן משפחה של אדם עם מוגבלות תמונה מלאה על קצבת שירותים מיוחדים (שר"ם) — תנאי הזכאות, האינטראקציה שלה עם קצבאות וגמלאות אחרות, תהליך התביעה והערעור, וההשלכות של שינויים במצב הבריאותי ובגיל.</p>
+                    <p>המידע מבוסס על אתר המוסד לביטוח לאומי ואתר כל-זכות, ומיועד כרקע כללי בלבד — אינו תחליף לבדיקה פרטנית של המקרה הספציפי מול המוסד לביטוח לאומי או עם עורך דין המתמחה בתחום.</p>
+
+                    <div class="conditions-box warning">
+                        <p>⚠️ הסכומים במסמך זה מעודכנים למועד הכנתו (2025-2026). מומלץ לאמת סכומים עדכניים מול אתר הביטוח הלאומי בעת הגשת תביעה, מאחר שהם מתעדכנים מדי שנה (בדרך כלל בינואר) בהתאם לשינויים בשכר הממוצע במשק.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ==================== 2. מהי קצבת שירותים מיוחדים ==================== -->
+        <div class="accordion" data-category="what-is">
+            <div class="accordion-header">
+                <div class="accordion-icon">❓</div>
+                <h2 class="accordion-title">2. מהי קצבת שירותים מיוחדים</h2>
+                <span class="accordion-arrow">▼</span>
+            </div>
+            <div class="accordion-content">
+                <div class="accordion-body">
+                    <p>קצבת שירותים מיוחדים ניתנת לאזרחי ישראל המבוטחים בביטוח לאומי, ממועד הגיעם לגיל 18 ושלושה חודשים ועד 6 חודשים לאחר גיל הפרישה, במקרים בהם המבוטח תלוי באדם אחר לביצוע פעולות יום-יום בסיסיות (לבישה, אכילה, רחצה, שליטה על הסוגרים, ניידות בבית), או שהוא זקוק להשגחה מתמדת כדי למנוע סכנת חיים לעצמו או לאחרים.</p>
+                    <p>הקצבה משולמת בכסף (בשונה מגמלת סיעוד, הניתנת בעיקר כשירותי טיפול/שעות טיפול).</p>
+                    <p>הזכאות ורמת התשלום נקבעות על-ידי ועדה רפואית מטעם המוסד לביטוח לאומי, המבצעת "מבחן תלות" (ADL — פעולות יום-יום בסיסיות, ו-IADL — ניהול משק בית, החל משנת 2014), ובוחנת גם צורך בהשגחה מתמדת.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- ==================== 3. תנאי הזכאות ==================== -->
+        <div class="accordion" data-category="eligibility">
+            <div class="accordion-header">
+                <div class="accordion-icon">✅</div>
+                <h2 class="accordion-title">3. תנאי הזכאות</h2>
+                <span class="accordion-arrow">▼</span>
+            </div>
+            <div class="accordion-content">
+                <div class="accordion-body">
+
+                    <h4 id="sm-3-1">3.1 תנאי גיל ותושבות</h4>
+                    <ul>
+                        <li>תושב/ת ישראל, מגיל 18 ושלושה חודשים ועד 6 חודשים לאחר גיל הפרישה (גיל הפרישה עולה בהדרגה לנשים; נכון להיום כ-62 לנשים ו-67 לגברים).</li>
+                        <li>מי שהיה זכאי לקצבה לפני גיל הפרישה — ימשיך לקבלה גם לאחריו, כל עוד הוא עומד בתנאי הזכאות (ראו פירוט בפרק 10).</li>
+                        <li>שהייה בישראל: יציאה לחו"ל שוללת בדרך-כלל את הזכאות, למעט חריגים (שליחות מטעם המדינה, טיפול רפואי, עבודה מטעם מעסיק ישראלי — עד 24 חודשים; שהייה אחרת בחו"ל — עד 3 חודשים).</li>
+                    </ul>
+
+                    <h4 id="sm-3-2">3.2 תנאי נכות רפואית</h4>
+                    <ul>
+                        <li>מקבלי קצבת נכות כללית שנקבעה להם נכות רפואית בשיעור 60% לפחות (או 40% עם ליקוי אחד בשיעור 25% לפחות) — לעניין שירותים מיוחדים; או</li>
+                        <li>מי שאינו מקבל קצבת נכות כללית, אך נקבעה לו נכות רפואית בשיעור 75% לפחות.</li>
+                    </ul>
+
+                    <h4 id="sm-3-3">3.3 קבוצות זכאות נוספות (ללא תלות במבחן הרגיל)</h4>
+                    <ul>
+                        <li>עיוור בעל נכות רפואית 90% ומעלה, החי לבדו או עם בן/בת זוג עיוור/ת, או עם נכות נוספת 50% ומעלה עקב חירשות.</li>
+                        <li>מי שעבר השתלת מח עצם, כליה, לב, ריאה, כבד או לבלב — זכאות לתקופה מוגבלת (בדרך-כלל 3-6 חודשים ממועד ההשתלה).</li>
+                        <li>מי שמטופל בדיאליזה לפחות פעמיים בשבוע.</li>
+                        <li>חולי סרטן המקבלים טיפולים מוכרים מסוימים, חולים במחלה ממארת/סופנית.</li>
+                        <li>מתמודדי נפש (למשל סכיזופרניה קשה), חולים במחלות נוירולוגיות קשות (פרקינסון, ALS), אנשים עם מוגבלות שכלית התפתחותית בינונית-קשה — נכנסים במסגרת מבחן ה-IADL המורחב.</li>
+                    </ul>
+                    <div class="conditions-box info">
+                        <p>ℹ️ למקרים אלה קיים "מסלול מהיר" בו המוסד לביטוח לאומי משתדל לסיים את הטיפול בתביעה תוך 30 יום, ולעיתים ללא צורך בהתייצבות פיזית לוועדה.</p>
+                    </div>
+
+                    <h4 id="sm-3-4">3.4 תנאי הכנסה, מגורים ותשלומים מקבילים</h4>
+                    <ul>
+                        <li>הכנסה חודשית ברוטו שאינה עולה על כ-5 פעמים השכר הממוצע במשק (רף גבוה יחסית — רלוונטי בעיקר לבעלי הכנסות גבוהות).</li>
+                        <li>אי-שהייה במוסד המעניק שירותי רפואה, סיעוד או שיקום.</li>
+                        <li>אינו מקבל קצבה מיוחדת לנפגעי עבודה במקביל.</li>
+                        <li>אינו מקבל תשלום עבור טיפול אישי/עזרה בבית מכוח חוק אחר.</li>
+                        <li>ככלל אינו מקבל גמלת ניידות — אלא אם: נקבעה לו מוגבלות בניידות 100%, או שהוא זכאי לשר"ם ברמה 112% ומעלה, או שהוא מרותק למיטה/לכיסא גלגלים.</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- ==================== 4. רמות הקצבה והסכומים ==================== -->
+        <div class="accordion" id="sm-amounts" data-category="amounts">
+            <div class="accordion-header">
+                <div class="accordion-icon">💰</div>
+                <h2 class="accordion-title">4. רמות הקצבה והסכומים</h2>
+                <span class="accordion-arrow">▼</span>
+            </div>
+            <div class="accordion-content">
+                <div class="accordion-body">
+                    <p>הסכום נקבע לפי ארבע דרגות תפקוד, בהתאם לתוצאות מבחן התלות:</p>
+
+                    <table class="nii-table">
+                        <thead>
+                            <tr>
+                                <th>דרגת זכאות</th>
+                                <th>סכום חודשי (01.2026, קרוב)</th>
+                                <th>הגדרה</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>50%</td>
+                                <td><span data-nii-key="special_services_50" data-nii-format="currency">1,943 ₪</span></td>
+                                <td>זקוק לעזרה רבה בעשיית רוב פעולות היום-יום, ברוב שעות היממה</td>
+                            </tr>
+                            <tr>
+                                <td>112%</td>
+                                <td><span data-nii-key="special_services_112" data-nii-format="currency">4,501 ₪</span></td>
+                                <td>זקוק לעזרה רבה בעשיית כל פעולות היום-יום, או זקוק להשגחה מתמדת</td>
+                            </tr>
+                            <tr>
+                                <td>188%</td>
+                                <td><span data-nii-key="special_services_188" data-nii-format="currency">7,181 ₪</span></td>
+                                <td>תלוי לחלוטין באדם אחר בעשיית כל פעולות היום-יום, בכל שעות היממה</td>
+                            </tr>
+                            <tr>
+                                <td>235%</td>
+                                <td><span data-nii-key="special_services_235" data-nii-format="currency">9,126 ₪</span></td>
+                                <td>תלות מוחלטת כאמור, בצירוף זקוקות להשגחה מתמדת למניעת סכנת חיים</td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    <div class="conditions-box">
+                        <p>קיימת גם תוספת בגין העסקת שני מטפלים (במקרים המצריכים זאת ומאושרים על-ידי רופא המוסד), וכן זכאות למענק פטירה לשאירים של מקבל הקצבה. הסכומים המדויקים משתנים מעת לעת ומומלץ לאמת אותם באתר הביטוח הלאומי.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ==================== 5. השפעה הדדית מול נכות כללית ==================== -->
+        <div class="accordion" data-category="disability-interaction">
+            <div class="accordion-header">
+                <div class="accordion-icon">🔄</div>
+                <h2 class="accordion-title">5. השפעה הדדית בין קצבת נכות כללית לקצבת שירותים מיוחדים</h2>
+                <span class="accordion-arrow">▼</span>
+            </div>
+            <div class="accordion-content">
+                <div class="accordion-body">
+                    <p>שתי הקצבאות משולמות זו לצד זו ואינן שוללות זו את זו, מאחר שהן נועדו למטרות שונות: קצבת הנכות הכללית נועדה לפצות על אובדן/פגיעה בכושר ההשתכרות, ואילו קצבת שירותים מיוחדים נועדה למימון עזרה תפקודית יומיומית.</p>
+                    <p>כלומר, מבוטח שמקבל קצבת נכות כללית ומוכיח גם תלות תפקודית מתאימה, זכאי לקבל את שתי הקצבאות במקביל, כאשר סכומיהן מצטברים.</p>
+
+                    <div class="conditions-box warning">
+                        <p>⚠️ עם זאת, יש לשים לב לנקודות הבאות:</p>
+                    </div>
+
+                    <ul>
+                        <li>אחוז הנכות הרפואית שנקבע לצורך קצבת הנכות הכללית משמש גם כתנאי סף לזכאות לשירותים מיוחדים (60% ומעלה למקבלי קצבת נכות, או 75% למי שאינו מקבל אותה) — כלומר קביעת הוועדה לנכות כללית משפיעה ישירות על עצם הזכאות לשר"ם.</li>
+                        <li>מי שאינו מקבל קצבת נכות כללית כלל (למשל בשל הכנסות גבוהות מדי, או מכל סיבה אחרת) עדיין יכול להיות זכאי לשר"ם באופן עצמאי, ובלבד שנקבעה לו נכות רפואית 75% לפחות ומתקיימת תלות תפקודית מתאימה.</li>
+                        <li>הזכאות לשר"ם אינה תלויה במצב התעסוקתי של הנתבע, אלא במידת התלות בעזרת הזולת — כך שגם מי שעובד יכול להיות זכאי, בכפוף לתקרת ההכנסה שצוינה בפרק 3.4.</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- ==================== 6. השפעה על הבטחת הכנסה ==================== -->
+        <div class="accordion" data-category="income-support-interaction">
+            <div class="accordion-header">
+                <div class="accordion-icon">🛡️</div>
+                <h2 class="accordion-title">6. השפעת קצבת שירותים מיוחדים על הבטחת הכנסה</h2>
+                <span class="accordion-arrow">▼</span>
+            </div>
+            <div class="accordion-content">
+                <div class="accordion-body">
+                    <p>קצבת שירותים מיוחדים אינה נספרת כהכנסה לצורך בחינת הזכאות לגמלת הבטחת הכנסה. בין רשימת ההכנסות שאינן נלקחות בחשבון במבחן ההכנסות של הבטחת הכנסה נכללות במפורש: קצבת שירותים מיוחדים, גמלת ניידות, קצבת ילד נכה, קצבת ילדים, גמלת סיעוד, וקצבאות/הטבות דומות נוספות.</p>
+
+                    <div class="conditions-box success">
+                        <p>✔ המשמעות המעשית: אדם שמקבל קצבת שירותים מיוחדים ואין לו הכנסות אחרות (או שהכנסותיו האחרות נמוכות), יכול להגיש תביעה גם להבטחת הכנסה — וקצבת השר"ם לא תקטין ולא תשלול את הזכאות להבטחת הכנסה, ולא תנוכה מסכום הגמלה. ניתן, אפוא, לשלב בין השתיים באופן מלא.</p>
+                    </div>
+
+                    <div class="conditions-box warning">
+                        <p>⚠️ חשוב להבחין: כלל זה נכון לגבי הבטחת הכנסה (חוק הבטחת הכנסה). לעומת זאת, יש להיזהר מבלבול מול תוכניות אחרות (כגון קצבת אזרח ותיק והשלמת הכנסה לגיל השלישי) — שם כללי ההכנסה עשויים להיות שונים, ומומלץ לבדוק לגופו של כל מקרה.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ==================== 7. מגבלות וחסמים ==================== -->
+        <div class="accordion" data-category="limitations">
+            <div class="accordion-header">
+                <div class="accordion-icon">🚫</div>
+                <h2 class="accordion-title">7. מגבלות וחסמים לקבלת הקצבה</h2>
+                <span class="accordion-arrow">▼</span>
+            </div>
+            <div class="accordion-content">
+                <div class="accordion-body">
+                    <ul>
+                        <li><strong>אשפוז/שהייה במוסד:</strong> שהייה במוסד המעניק שירותי רפואה, סיעוד או שיקום שוללת את הזכאות.</li>
+                        <li><strong>קבלת גמלת ניידות:</strong> ככלל חוסמת זכאות לשר"ם, פרט לחריגים שצוינו (מוגבלות ניידות 100%, שר"ם ברמה +112%, ריתוק למיטה/לכיסא גלגלים).</li>
+                        <li><strong>קבלת גמלת סיעוד:</strong> לא ניתן לקבל את שתי הגמלאות (שירותים מיוחדים וסיעוד) במקביל — יש לבחור באחת מהן. ההשוואה ביניהן חשובה במיוחד סביב גיל הפרישה (ראו פרק 10).</li>
+                        <li><strong>קבלת קצבה מיוחדת לנפגעי עבודה,</strong> או תשלום עבור טיפול אישי/עזרה בבית מכוח חוק אחר — שוללים זכאות לשר"ם.</li>
+                        <li><strong>הכנסה חודשית גבוהה</strong> (מעל כ-5 פעמים השכר הממוצע במשק) — חוסמת זכאות, גם אם מתקיימת תלות תפקודית מלאה.</li>
+                        <li><strong>שהייה ממושכת בחו"ל</strong> — למעט חריגים מוגדרים, ובכפוף למגבלות זמן (3-24 חודשים בהתאם לנסיבות).</li>
+                        <li><strong>רף נכות רפואית שלא נענה:</strong> מי שלא הוכר בנכות רפואית 60%+ (עם קצבת נכות) או 75%+ (בלעדיה) — לא יעמוד בתנאי הסף, גם אם קיים קושי תפקודי משמעותי בפועל.</li>
+                    </ul>
+                    <div class="conditions-box warning">
+                        <p>⚠️ קושי מעשי נפוץ: תיעוד רפואי לא מספק בעת הגשת התביעה עלול להוביל לקביעת דרגת תלות נמוכה מהמגיעה בפועל, או לדחיית התביעה כליל — הכנה מסודרת של התיק הרפואי לפני הוועדה חשובה ביותר.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ==================== 8. תהליך התביעה והערעור ==================== -->
+        <div class="accordion" data-category="claim-appeal">
+            <div class="accordion-header">
+                <div class="accordion-icon">📝</div>
+                <h2 class="accordion-title">8. תהליך התביעה, וערעור על דחייה</h2>
+                <span class="accordion-arrow">▼</span>
+            </div>
+            <div class="accordion-content">
+                <div class="accordion-body">
+
+                    <h4 id="sm-8-1">8.1 הגשת תביעה</h4>
+                    <ul>
+                        <li>יש למלא טופס תביעה לקצבת שירותים מיוחדים ולצרף מסמכים רפואיים מלאים: חוות דעת רופאים, דוחות אשפוז, ממצאי בדיקות, ומסמכים המעידים על הקושי התפקודי בחיי היום-יום.</li>
+                        <li>ניתן להגיש בדואר, בפקס, פיזית בסניף המוסד לביטוח לאומי, או במרכז הטלפוני (הגשה יזומה) — לפי הנתיבים המוצעים באתר "שירות אישי".</li>
+                        <li>לאחר ההגשה מוזמן התובע לוועדה רפואית הבוחנת גם את אחוזי הנכות הרפואית וגם את מבחן התלות (ניקוד בגין הקושי בביצוע פעולות היום-יום).</li>
+                        <li>ניתן להגיע לוועדה עם מלווה, מתורגמן, או עורך דין המורשה לייצג בוועדה ולדבר בשם התובע.</li>
+                        <li>במקרים המתאימים ("מסלול מהיר") — טיפול מזורז תוך כ-30 יום, לעיתים ללא צורך בהתייצבות פיזית.</li>
+                        <li>הזכאות עשויה להיקבע רטרואקטיבית — בדרך-כלל עד 6 חודשים לפני הגשת התביעה, בכפוף לעמידה בכל תנאי הזכאות באותה תקופה.</li>
+                    </ul>
+
+                    <h4 id="sm-8-2">8.2 ערעור על דחיית תביעה</h4>
+                    <ul>
+                        <li><strong>דחייה בשל אחוזי נכות רפואית שאינם מזכים:</strong> ניתן להגיש בתוך 30 יום ערר לוועדה הרפואית לעררים בנכות כללית.</li>
+                        <li><strong>דחייה בשל קביעת הוועדה כי אין תלות מספקת בעזרת הזולת (מבחן התלות):</strong> ניתן להגיש ערר לוועדה הרפואית לעררים לשירותים מיוחדים, בדרך-כלל בתוך 30-90 יום ממועד קבלת מכתב ההחלטה (יש לבדוק את המועד המדויק הרשום במכתב עצמו, ולפעול במהירות כדי לא להחמיץ אותו).</li>
+                        <li><strong>דחייה מטעמים של הוראות חוק/תקנות בלבד</strong> (למשל שהייה במוסד, מגורים בחו"ל, גמלת ניידות, הכנסה גבוהה מדי, קבלת קצבה מיוחדת לפי חוק אחר, או בקשה לתשלום רטרואקטיבי מעבר לתקופה המותרת) — ניתן לערער ישירות לבית הדין האזורי לעבודה, בתוך 12 חודשים ממכתב ההחלטה.</li>
+                        <li>על החלטת ועדת הערר עצמה ניתן להגיש ערעור נוסף לבית הדין האזורי לעבודה — בשאלה משפטית בלבד (לא ניתן לערער שוב על הממצאים הרפואיים/התפקודיים עצמם, אלא רק על טעות שבחוק).</li>
+                        <li>בערעור לבית הדין לעבודה ניתן לקבל סיוע משפטי חינם ממשרד המשפטים, ללא תלות בקריטריונים כלכליים.</li>
+                    </ul>
+
+                    <div class="conditions-box">
+                        <p>💡 המלצה מעשית: יש לשים לב היטב לפרקי הזמן להגשת ערר/ערעור (30/90/12 חודשים בהתאם לסוג ההחלטה) — פספוס המועד עלול לשלול את זכות הערעור. רצוי להיעזר בגורם מקצועי (עו"ד המתמחה בביטוח לאומי, או ארגון סיוע) בהכנת נימוקי הערר ובאיסוף מסמכים רפואיים תומכים.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ==================== 9. החמרה במצב הבריאותי/התפקודי ==================== -->
+        <div class="accordion" data-category="worsening">
+            <div class="accordion-header">
+                <div class="accordion-icon">📈</div>
+                <h2 class="accordion-title">9. מה קורה כאשר חלה החמרה במצב הבריאותי/התפקודי</h2>
+                <span class="accordion-arrow">▼</span>
+            </div>
+            <div class="accordion-content">
+                <div class="accordion-body">
+                    <ul>
+                        <li>ניתן להגיש תביעה חוזרת לשירותים מיוחדים בעקבות החמרה במצב, על-מנת לבקש העלאת דרגת הזכאות (למשל מ-50% ל-112%, וכן הלאה).</li>
+                        <li>ככלל, לאחר קביעת זכאות ניתן להגיש תביעה חוזרת בעקבות החמרה כעבור 6 חודשים ממועד הקביעה הקודמת (אלא אם נקבע אחרת בהחלטה עצמה).</li>
+                        <li>במקרים מסוימים, המוסד לביטוח לאומי עצמו יוזם בדיקה חוזרת (למשל כאשר נקבעה מלכתחילה זכאות זמנית/לתקופה מוגבלת — כגון לאחר השתלת איברים).</li>
+                        <li>יש להגיש את התביעה החוזרת בצירוף תיעוד רפואי מעודכן המשקף את ההחמרה בפועל, שכן הוועדה בוחנת את מצב התפקוד הנוכחי ולא רק את האבחנה הרפואית הבסיסית.</li>
+                        <li>אם התביעה החוזרת נדחית או שהדרגה שנקבעה אינה משקפת את ההחמרה, עומדים אותם מסלולי ערר/ערעור המתוארים בפרק 8.</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- ==================== 10. גיל פרישה / גיל פנסיה ==================== -->
+        <div class="accordion" data-category="retirement-age">
+            <div class="accordion-header">
+                <div class="accordion-icon">👴</div>
+                <h2 class="accordion-title">10. מה קורה בהגיע התובע לגיל פרישה / גיל פנסיה</h2>
+                <span class="accordion-arrow">▼</span>
+            </div>
+            <div class="accordion-content">
+                <div class="accordion-body">
+
+                    <h4 id="sm-10-1">10.1 המשך זכאות למי שכבר מקבל את הקצבה</h4>
+                    <ul>
+                        <li>מי שהיה זכאי לקצבת שירותים מיוחדים לפני גיל הפרישה — ימשיך לקבל אותה גם לאחר גיל הפרישה, ללא הגבלת זמן, כל עוד הוא ממשיך לעמוד בתנאי הזכאות (כולל מבחן התלות התפקודית).</li>
+                        <li>ניתן לקבל קצבת שירותים מיוחדים יחד עם קצבת אזרח ותיק (זקנה), בתנאי שהזכאות לשר"ם נקבעה לפני גיל הפרישה, או נקבעה רטרואקטיבית לתקופה שלפני גיל הפרישה.</li>
+                    </ul>
+
+                    <h4 id="sm-10-2">10.2 הגשת תביעה ראשונה סמוך לגיל הפרישה</h4>
+                    <ul>
+                        <li>ניתן להגיש תביעה חדשה לשירותים מיוחדים עד 6 חודשים לאחר הגיעו של התובע לגיל הפרישה.</li>
+                        <li>במקרה כזה, הזכאות תוכר רק אם רופא מטעם המוסד לביטוח לאומי קובע כי התובע היה זכאי לקצבה כבר בתקופה שלפני הגיעו לגיל הפרישה (כלומר, לא ניתן ליצור זכאות חדשה "מהיסוד" לאחר תום חצי השנה שלאחר גיל הפרישה — במקרים כאלה הערוץ הרלוונטי הוא בדרך-כלל גמלת סיעוד).</li>
+                    </ul>
+
+                    <h4 id="sm-10-3">10.3 היחס מול גמלת סיעוד</h4>
+                    <ul>
+                        <li>לא ניתן לקבל במקביל גם קצבת שירותים מיוחדים וגם גמלת סיעוד — יש לבחור באחת מהן.</li>
+                        <li>בהגיע לגיל הפרישה, אדם עשוי להיות זכאי גם לגמלת סיעוד (שמיועדת בעיקרה לגיל השלישי, וניתנת ברובה כשירותי טיפול/שעות סיעוד ולא כתשלום כספי מלא).</li>
+                        <li>יש להשוות בין שתי האפשרויות לפי מספר פרמטרים: גובה התשלום/שווי הכספי הכולל, סוג השירות הניתן בפועל (כסף לעומת שעות טיפול), והצרכים הפרטניים של המבוטח — במקרים רבים שווי גמלת הסיעוד נמוך משמעותית משווי קצבת השירותים המיוחדים, ולכן חשוב לבצע את ההשוואה לפני קבלת החלטה על מעבר.</li>
+                    </ul>
+
+                    <div class="conditions-box">
+                        <p>💡 ההמלצה המעשית: לפני כל בחירה בין הגמלאות, יש לבדוק סכומים ותנאים עדכניים מול המוסד לביטוח לאומי, ורצוי להיעזר בייעוץ פרטני (עו"ד/יועץ המתמחה בתחום) כדי לבחון אילו זכויות/הטבות נלוות קיימות בכל מסלול (למשל הנחות והטבות הצמודות ספציפית לקצבת שר"ם ברמות מסוימות, כגון הנחת חשמל למקבלי 112% ומעלה).</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ==================== 11. סיכום ==================== -->
+        <div class="accordion" id="sm-summary" data-category="summary">
+            <div class="accordion-header">
+                <div class="accordion-icon">📋</div>
+                <h2 class="accordion-title">11. סיכום ונקודות מפתח ליועץ</h2>
+                <span class="accordion-arrow">▼</span>
+            </div>
+            <div class="accordion-content">
+                <div class="accordion-body">
+                    <ul>
+                        <li>קצבת שירותים מיוחדים ניתנת בכסף לפי דרגת תלות (50%/112%/188%/235%), ומשולמת בנוסף לקצבת נכות כללית — הן משלימות זו את זו ואינן שוללות זו את זו.</li>
+                        <li>היא אינה נחשבת הכנסה לצורך הבטחת הכנסה, ולכן ניתן לשלב בין השתיים במלואן.</li>
+                        <li>החסמים המרכזיים: שהייה במוסד, קבלת גמלת ניידות (למעט חריגים), קבלת גמלת סיעוד (בחירה בלעדית), הכנסה גבוהה מדי, ואי-עמידה ברף הנכות הרפואית.</li>
+                        <li>יש מסלולי ערר/ערעור נפרדים בהתאם לסיבת הדחייה (אחוזי נכות מול מבחן תלות מול טעמים חוקיים) — ולוחות זמנים שונים לכל מסלול.</li>
+                        <li>החמרה במצב מאפשרת תביעה חוזרת (בדרך-כלל לאחר 6 חודשים) להעלאת דרגת הזכאות.</li>
+                        <li>בהגיע לגיל הפרישה, זכאות קיימת נמשכת ללא הגבלה; זכאות חדשה ניתנת לבקש רק עד 6 חודשים אחריו ובכפוף להוכחת זכאות רטרואקטיבית לתקופה שלפני גיל הפרישה; יש לשים לב לבחירה מול גמלת סיעוד.</li>
+                    </ul>
+
+                    <div class="conditions-box">
+                        <p style="font-size:0.95rem;color:#777;">מקורות: אתר המוסד לביטוח לאומי (btl.gov.il, gov.il) ואתר כל-זכות (kolzchut.org.il).</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div><!-- end accordions-container -->
+
+    <div class="info-box">
+        <p>מסמך זה מיועד לייעוץ ולהכוונה בלבד. לבדיקת זכאות אישית יש לפנות לסניף הביטוח הלאומי הקרוב.</p>
+        <p style="margin-top:8px;font-size:0.95rem;color:#90A4AE;">מקורות: btl.gov.il | kolzchut.org.il | עדכון: 2025-2026</p>
+    </div>
+
+    <footer>
+        <p>© המוסד לביטוח לאומי | עדכון 2025-2026</p>
+    </footer>
+
+</div><!-- end container -->
+
+<script src="data/accordion-search-nav.js"></script>
+<script>
+(async function() {
+    try {
+        const resp = await fetch('data/nii-constants.json');
+        const nii = await resp.json();
+        function formatValue(raw, format) {
+            if (format === 'currency') return Math.round(raw).toLocaleString('he-IL') + ' ₪';
+            if (format === 'percent') return raw + '%';
+            return raw.toLocaleString('he-IL');
+        }
+        document.querySelectorAll('[data-nii-key]').forEach(el => {
+            const key = el.dataset.niiKey;
+            const format = el.dataset.niiFormat || 'plain';
+            if (nii[key]) el.textContent = formatValue(nii[key].value, format);
+        });
+    } catch (e) {
+        console.warn('NII constants load failed:', e);
+    }
+})();
+</script>
+<script>
+    function processNestedHeadings(container) {
+        const allHeadings = Array.from(container.querySelectorAll('h2, h3, h4, h5, h6'));
+        const headings = allHeadings.filter(heading => {
+            let parent = heading.parentElement;
+            while (parent && parent !== container) {
+                if (parent.classList && parent.classList.contains('sub-accordion')) return false;
+                parent = parent.parentElement;
+            }
+            return !heading.classList.contains('no-accordion');
+        });
+
+        headings.forEach(heading => {
+            let contentElements = [];
+            let nextElement = heading.nextElementSibling;
+            const currentLevel = parseInt(heading.tagName.substring(1), 10);
+
+            while (nextElement) {
+                const nextTagName = nextElement.tagName;
+                if (nextTagName && nextTagName.match(/^H[2-6]$/)) {
+                    const nextLevel = parseInt(nextTagName.substring(1), 10);
+                    if (nextLevel <= currentLevel) break;
+                }
+                contentElements.push(nextElement);
+                nextElement = nextElement.nextElementSibling;
+            }
+
+            if (contentElements.length > 0) {
+                const subAccordion = document.createElement('div');
+                subAccordion.className = 'sub-accordion';
+                subAccordion.setAttribute('data-level', String(currentLevel));
+                if (heading.id) subAccordion.id = heading.id;
+
+                const subHeader = document.createElement('div');
+                subHeader.className = 'sub-accordion-header';
+
+                const subTitle = document.createElement('div');
+                subTitle.className = 'sub-accordion-title';
+                subTitle.innerHTML = heading.innerHTML;
+
+                const subArrow = document.createElement('span');
+                subArrow.className = 'accordion-arrow';
+                subArrow.textContent = '▼';
+
+                subHeader.appendChild(subTitle);
+                subHeader.appendChild(subArrow);
+
+                const subContent = document.createElement('div');
+                subContent.className = 'sub-accordion-content';
+
+                const subBody = document.createElement('div');
+                subBody.className = 'sub-accordion-body';
+                contentElements.forEach(el => subBody.appendChild(el));
+
+                subContent.appendChild(subBody);
+                subAccordion.appendChild(subHeader);
+                subAccordion.appendChild(subContent);
+
+                heading.parentNode.replaceChild(subAccordion, heading);
+                processNestedHeadings(subBody);
+
+                subHeader.addEventListener('click', event => {
+                    event.stopPropagation();
+                    const wasActive = subAccordion.classList.contains('active');
+                    let parentBody = subAccordion.parentElement;
+                    while (parentBody && !parentBody.classList.contains('accordion-body') && !parentBody.classList.contains('sub-accordion-body')) {
+                        parentBody = parentBody.parentElement;
+                    }
+                    if (parentBody) {
+                        parentBody.querySelectorAll(':scope > .sub-accordion.active').forEach(sib => {
+                            if (sib !== subAccordion) sib.classList.remove('active');
+                        });
+                    }
+                    subAccordion.classList.toggle('active');
+                    if (!wasActive) {
+                        subAccordion.querySelectorAll('.sub-accordion.active').forEach(n => n.classList.remove('active'));
+                    }
+                });
+            }
+        });
+    }
+
+    function convertHeadingsToSubAccordions() {
+        document.querySelectorAll('.accordion-body').forEach(body => {
+            processNestedHeadings(body);
+        });
+    }
+
+    function initAccordions() {
+        const accordions = document.querySelectorAll('.accordion');
+        accordions.forEach(accordion => {
+            const header = accordion.querySelector('.accordion-header');
+            header.addEventListener('click', () => {
+                const wasActive = accordion.classList.contains('active');
+                accordions.forEach(other => {
+                    if (other !== accordion) other.classList.remove('active');
+                });
+                accordion.classList.toggle('active');
+                if (!wasActive) {
+                    accordion.querySelectorAll('.sub-accordion.active').forEach(s => s.classList.remove('active'));
+                }
+            });
+        });
+    }
+
+    function init() {
+        convertHeadingsToSubAccordions();
+        initAccordions();
+    }
+
+    document.addEventListener('DOMContentLoaded', init);
+
+    function openFromHash() {
+        const hash = decodeURIComponent(window.location.hash.slice(1));
+        if (!hash) return;
+        const byCat = document.querySelector(`.accordion[data-category="${hash}"]`);
+        if (byCat) {
+            document.querySelectorAll('.accordion.active').forEach(a => a.classList.remove('active'));
+            byCat.classList.add('active');
+            setTimeout(() => byCat.scrollIntoView({ behavior: 'smooth', block: 'start' }), 450);
+            return;
+        }
+        const target = document.getElementById(hash);
+        if (!target) return;
+        document.querySelectorAll('.accordion.active').forEach(a => a.classList.remove('active'));
+        let el = target;
+        while (el) {
+            if (el.classList.contains('accordion') || el.classList.contains('sub-accordion')) {
+                el.classList.add('active');
+            }
+            el = el.parentElement;
+        }
+        setTimeout(() => target.scrollIntoView({ behavior: 'smooth', block: 'start' }), 450);
+    }
+    openFromHash();
+    window.addEventListener('hashchange', openFromHash);
+    openFromPath(); // תוצאות חיפוש מבוסס-תוכן (accordion-search-nav.js)
+</script>
+<script src="data/hamburger-nav.js"></script>
+    <script src="data/btl-chat-widget.js"></script>
+</body>
+</html>

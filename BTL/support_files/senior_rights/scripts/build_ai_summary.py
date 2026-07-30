@@ -88,6 +88,7 @@ TOPICS = {
         [
             "senior_rights/survivors_benefits_guide_2026.html",
             "senior_rights/nechut_vs_shairim.html",
+            "senior_rights/sherutim_meiuchadim.html",
             "additional_guides/html/nechut_mul_shairim.html",
             "additional_guides/html/hagdarat_tluim.html",
             "additional_guides/html/nechut_klalit_mul_avoda.html",
@@ -147,6 +148,7 @@ KNOWN_FILES = {
     # קבוצה ד' - כבר סטטיים, אומתו מול nii-constants.json (check_nii_values_sync.py)
     "senior_rights/imputed_income_guide.html": ("include", "קבוצה ד' - אומת"),
     "senior_rights/old_pension_income_test_full_guide.html": ("include", "קבוצה ד' - אומת"),
+    "senior_rights/sherutim_meiuchadim.html": ("include", "קבוצה ד' - תמלול PDF, תוייג נגד nii-constants.json (28.07.2026)"),
     "senior_rights/survivors_benefits_guide_2026.html": ("include", "קבוצה ד' - אומת"),
     "senior_rights/women_transition_benefit_guide.html": ("include", "קבוצה ד' - אומת"),
 

@@ -92,6 +92,8 @@ const PATH_DESCRIPTIONS = {
     'מדריך מקיף לזכויות אזרחים ותיקים בישראל לשנת 2026: קצבת זקנה, השלמת הכנסה, סיעוד, נכות, מענקים וקישורים למקורות רשמיים.',
   'senior_rights/senior_rights_full.html':
     'מדריך מקיף לכל זכויות האזרח הוותיק בביטוח הלאומי: קצבת זקנה, השלמת הכנסה, שאירים, נכות, סיעוד וניצולי שואה במקום אחד.',
+  'senior_rights/sherutim_meiuchadim.html':
+    'מדריך מקצועי מקיף לקצבת שירותים מיוחדים (שר"מ): תנאי הזכאות, רמות הקצבה והסכומים, האינטראקציה עם קצבת נכות כללית והבטחת הכנסה, תהליך התביעה והערעור, ומה קורה בהגיע גיל הפרישה.',
   'senior_rights/survivors_benefits_guide_2026.html':
     'מדריך מקיף לקצבת שאירים בביטוח הלאומי לשנת 2026: תנאי זכאות, סכומים, מבחן הכנסות ושאלות נפוצות.',
   'senior_rights/women_transition_benefit_guide.html':
@@ -130,6 +132,7 @@ const PATH_TITLES = {
   'senior_rights/old_pension_income_test_full_guide.html': '📊 מדריך לחישוב זכאות וסכום קצבת זיקנה חלקית',
   'senior_rights/senior_citizens_rights_2026.html': '📘 זכויות אזרחים ותיקים 2026 - מדריך מקיף',
   'senior_rights/senior_rights_full.html': '🌟 זכויות אזרחים ותיקים',
+  'senior_rights/sherutim_meiuchadim.html': '🧾 קצבת שירותים מיוחדים - שר"מ',
   'senior_rights/survivors_benefits_guide_2026.html': '👨‍👩‍👧 מדריך מקיף לקצבת שאירים 2026',
   'senior_rights/women_transition_benefit_guide.html': '👩 מדריך מפורט למענק מעבר לנשים',
 };
