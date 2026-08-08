@@ -132,6 +132,30 @@ const PATH_TITLES = {
   'senior_rights/women_transition_benefit_guide.html': '👩 מדריך מפורט למענק מעבר לנשים',
 };
 
+// זהה לחלוטין לגרסת הקלוד - עמודי additional_guides/html/*.html הם תמלול טקסט
+// מקבצי PDF לטובת ה-AI, לא מיועדים לגלישה ישירה ע"י משתמש קצה (תפריט הצד
+// הפנימי שלהם לא מקושר משום מקום אחר באתר - מטרתו רק אינדוקס ע"י גוגל). קישור
+// ה"מקורות" עבורם מצביע על ה-PDF המקורי. תחזוקה ידנית: כשמוסיפים עמוד חדש
+// למשפחה הזו, יש להוסיף שורה תואמת גם כאן.
+const ADDITIONAL_GUIDES_PDF_URLS = {
+  'additional_guides/html/shaagat_haari.html': 'https://yairron.com/btl/additional_guides/data/shaagat_haari_rights_report.pdf',
+  'additional_guides/html/mekarim_meyuchadim.html': 'https://yairron.com/btl/additional_guides/data/%D7%90%D7%96%D7%A8%D7%97%D7%99%D7%9D%20%D7%95%D7%AA%D7%99%D7%A7%D7%99%D7%9D%20%D7%9E%D7%99%D7%A7%D7%A8%D7%99%D7%9D%20%D7%9E%D7%99%D7%95%D7%97%D7%93%D7%99%D7%9D.pdf',
+  'additional_guides/html/amnot_binleumiot.html': 'https://yairron.com/btl/additional_guides/data/%D7%90%D7%9E%D7%A0%D7%95%D7%AA%20%D7%91%D7%99%D7%A0%D7%9C%D7%90%D7%95%D7%9E%D7%99%D7%95%D7%AA.pdf',
+  'additional_guides/html/gamlay_zikna.html': 'https://yairron.com/btl/additional_guides/data/%D7%92%D7%9E%D7%9C%D7%AA%20%D7%96%D7%99%D7%A7%D7%A0%D7%94%20%D7%9E%D7%99%D7%95%D7%97%D7%93%D7%AA.pdf',
+  'additional_guides/html/hagdarat_tluim.html': 'https://yairron.com/btl/additional_guides/data/%D7%94%D7%92%D7%93%D7%A8%D7%AA_%D7%AA%D7%9C%D7%95%D7%99%D7%99%D7%9D_%D7%91%D7%A7%D7%A6%D7%91%D7%AA_%D7%96%D7%99%D7%A7%D7%A0%D7%94_%D7%95%D7%A7%D7%A6%D7%91%D7%AA_%D7%A9%D7%90%D7%99%D7%A8%D7%99%D7%9D.pdf',
+  'additional_guides/html/dmei_michya_leshairim.html': 'https://yairron.com/btl/data/%D7%93%D7%9E%D7%99_%D7%9E%D7%97%D7%99%D7%94_%D7%9C%D7%A9%D7%90%D7%99%D7%A8%D7%99%D7%9D_%D7%91%D7%91%D7%99%D7%98%D7%95%D7%97_%D7%9C%D7%90%D7%95%D7%9E%D7%99.pdf',
+  'additional_guides/html/chovaat_hitatzbut.html': 'https://yairron.com/btl/additional_guides/data/%D7%97%D7%95%D7%91%D7%AA%20%D7%94%D7%AA%D7%99%D7%99%D7%A6%D7%91%D7%95%D7%AA%20%D7%91%D7%9C%D7%A9%D7%9B%D7%AA%20%D7%94%D7%AA%D7%A2%D7%A1%D7%95%D7%A7%D7%94%20%D7%9C%D7%94%D7%A9%D7%9C%D7%9E%D7%AA%20%D7%94%D7%9B%D7%A0%D7%A1%D7%94.pdf',
+  'additional_guides/html/yetzia_lachul.html': 'https://yairron.com/btl/additional_guides/data/%D7%99%D7%A6%D7%99%D7%90%D7%94%20%D7%9C%D7%97%D7%95%D7%9C%20%D7%95%D7%A7%D7%A6%D7%91%D7%AA%20%D7%96%D7%99%D7%A7%D7%A0%D7%94%20%D7%95%D7%94%D7%A9%D7%9C%D7%9E%20%D7%94%D7%9B%D7%A0%D7%A1%D7%94.pdf',
+  'additional_guides/html/tkufat_achshara.html': 'https://yairron.com/btl/additional_guides/data/%D7%9E%D7%93%D7%A8%D7%99%D7%9A%20%D7%94%D7%92%D7%93%D7%A8%D7%AA%20%D7%AA%D7%A7%D7%95%D7%A4%D7%AA%20%D7%90%D7%9B%D7%A9%D7%A8%D7%94%20%D7%9C%D7%90%D7%96%D7%A8%D7%97%20%D7%95%D7%AA%D7%99%D7%A7.pdf',
+  'additional_guides/html/nechut_mul_shairim.html': 'https://yairron.com/btl/additional_guides/data/%D7%A0%D7%9B%D7%95%D7%AA%20%D7%9E%D7%95%D7%9C%20%D7%A9%D7%90%D7%99%D7%A8%D7%99%D7%9D_2026.pdf',
+  'additional_guides/html/takrut_hachnasa.html': 'https://yairron.com/btl/additional_guides/data/%D7%A7%D7%A6%D7%91%D7%AA%20%D7%96%D7%99%D7%A7%D7%A0%D7%94%20-%20%D7%AA%D7%A7%D7%A8%D7%95%D7%AA%20%D7%94%D7%9B%D7%A0%D7%A1%D7%94.pdf',
+  'additional_guides/html/zchuyot_achrei_ishpuz.html': 'https://yairron.com/btl/additional_guides/data/%D7%96%D7%9B%D7%95%D7%99%D7%95%D7%AA_%D7%90%D7%96%D7%A8%D7%97%D7%99%D7%9D_%D7%95%D7%AA%D7%99%D7%A7%D7%99%D7%9D_%D7%9C%D7%90%D7%97%D7%A8%20%D7%90%D7%A9%D7%A4%D7%95%D7%96_2026.pdf',
+  'additional_guides/html/nechut_klalit_mul_avoda.html': 'https://yairron.com/btl/additional_guides/data/%D7%A0%D7%9B%D7%95%D7%AA_%D7%9B%D7%9C%D7%9C%D7%99%D7%AA_%D7%9C%D7%A2%D7%95%D7%9E%D7%AA_%D7%A0%D7%9B%D7%95%D7%AA_%D7%9E%D7%A2%D7%91%D7%95%D7%93%D7%94.pdf',
+  'additional_guides/html/chanaya_shmura_ezrach_vatik.html': 'https://yairron.com/btl/data/%D7%97%D7%A0%D7%99%D7%94_%D7%A9%D7%9E%D7%95%D7%A8%D7%94_%D7%9C%D7%90%D7%96%D7%A8%D7%97_%D7%95%D7%AA%D7%99%D7%A7_%D7%9C%D7%9C%D7%90_%D7%AA%D7%A2%D7%95%D7%93%D7%AA_%D7%A0%D7%9B%D7%94.pdf',
+  'additional_guides/html/oved_zar_bituach_leumi.html': 'https://yairron.com/btl/additional_guides/data/%D7%94%D7%A2%D7%A1%D7%A7%D7%AA%20%D7%A2%D7%95%D7%91%D7%93%20%D7%96%D7%A8.pdf',
+  'additional_guides/html/yipuy_koach_mitmashech.html': 'https://yairron.com/btl/additional_guides/data/%D7%99%D7%99%D7%A4%D7%95%D7%99_%D7%9B%D7%95%D7%97_%D7%9E%D7%AA%D7%9E%D7%A9%D7%9A_%D7%9E%D7%93%D7%A8%D7%99%D7%9A_%D7%9E%D7%A7%D7%99%D7%A3.pdf',
+};
+
 // זהה מילה-במילה ל-SYSTEM_PREFIX בקובץ הקלוד - ההנחיות עצמן לא תלויות-ספק,
 // רק אופן שליחתן ל-API (systemInstruction נפרד, לא מחרוזת system).
 const SYSTEM_PREFIX = `[תפקיד וזהות]
@@ -424,7 +448,7 @@ exports.handler = async (event) => {
     // זהה לחלוטין לגרסת הקלוד - בניית קישורי המקורות לא תלויה בספק.
     const sources = Array.from(usedPaths).map((p) => ({
       title: PATH_TITLES[p] || p,
-      url: `https://yairron.com/btl/${p.replace(/\.html$/, '')}`,
+      url: ADDITIONAL_GUIDES_PDF_URLS[p] || `https://yairron.com/btl/${p.replace(/\.html$/, '')}`,
     }));
 
     await logPromise;
