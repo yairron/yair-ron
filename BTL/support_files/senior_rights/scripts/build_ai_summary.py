@@ -213,13 +213,22 @@ def wrap_html(title: str, plain_text: str) -> str:
     שה-Content-Type שהשרת מגיש יהיה text/html במקום text/plain (ראו הערה
     בראש הקובץ). התוכן עצמו בתוך <pre> נשאר בדיוק אותו טקסט, רק עם escape
     ל-& < > (לא ל-quote, מיותר בתוך text node). btl-chat.js עושה את
-    ה-unescape הסימטרי אחרי שליפת ה-<pre> בזמן ריצה."""
+    ה-unescape הסימטרי אחרי שליפת ה-<pre> בזמן ריצה.
+
+    noindex (נוסף 08.08.2026): קבצים אלה הם עותקים כפולים-בתוכן של עמודי
+    המדריך האמיתיים, מיועדים לשליפה ע"י כלי AI (rel=alternate/קישור בפוטר)
+    ולא לדירוג בחיפוש גוגל - Search Console דיווח עליהם בפועל כ"נסרק - לא
+    מאונדקס כרגע", שהוא תוצאה צפויה/לא-מזיקה לתוכן כפול כזה. נוסף noindex
+    מפורש כדי שגוגל יפסיק "לשקול" אינדוקס במקום להסתמך על החלטת אלגוריתם
+    לפי-סריקה - הם עדיין נשארים ב-sitemap.xml כי הם משאבים אמיתיים
+    שכן רוצים שיהיו נגישים/נסרקים ע"י כלי AI, רק לא מיועדים לאינדוק חיפוש."""
     escaped = html_module.escape(plain_text, quote=False)
     return (
         "<!DOCTYPE html>\n"
         '<html lang="he" dir="rtl">\n'
         "<head>\n"
         '<meta charset="UTF-8">\n'
+        '<meta name="robots" content="noindex">\n'
         f"<title>{html_module.escape(title, quote=False)}</title>\n"
         "</head>\n"
         "<body>\n"
