@@ -1,0 +1,1145 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="מדריך מפורט להגשת תביעה לגמלת סיעוד: תנאי זכאות, מסמכים נדרשים, מבחן התלות וניקוד הזכאות, ביקור ההערכה בבית, וטבלת רמות הגמלה המעודכנת.">
+  <link rel="canonical" href="https://yairron.com/btl/senior_rights/nursing_care_benefit_guide">
+<link rel="alternate" type="text/html" href="https://yairron.com/btl/ai-content/btl-care-transitions.html">
+<title>מדריך מפורט להגשת תביעה לגמלת סיעוד - אזרחים ותיקים</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Assistant:wght@300;400;600;700;800&family=Varela+Round&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #2E5B8A;
+            --secondary: #4A90B5;
+            --accent: #E8A840;
+            --success: #2E7D32;
+            --danger: #C62828;
+            --light: #F5F9FC;
+            --dark: #1A3A52;
+            --text: #2C3E50;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Assistant', 'Segoe UI', Tahoma, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
+            min-height: 100vh;
+            padding: 20px;
+            padding-top: 70px;
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background:
+                radial-gradient(circle at 20% 50%, rgba(255,255,255,0.1) 0%, transparent 50%),
+                radial-gradient(circle at 80% 80%, rgba(255,255,255,0.1) 0%, transparent 50%);
+            animation: backgroundShift 20s ease-in-out infinite;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        @keyframes backgroundShift {
+            0%, 100% { transform: translate(0, 0) scale(1); }
+            50% { transform: translate(-5%, 5%) scale(0.95); }
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 50px;
+            animation: slideDown 0.8s ease-out;
+        }
+
+        @keyframes slideDown {
+            from {
+                opacity: 0;
+                transform: translateY(-50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        h1 {
+            font-family: 'Varela Round', sans-serif;
+            font-size: 3.5rem;
+            font-weight: 800;
+            color: white;
+            margin-bottom: 15px;
+            text-shadow: 3px 5px 15px rgba(0,0,0,0.3);
+            letter-spacing: -2px;
+        }
+
+        .subtitle {
+            font-size: 1.4rem;
+            color: rgba(255,255,255,0.95);
+            font-weight: 300;
+            text-shadow: 1px 2px 8px rgba(0,0,0,0.2);
+        }
+
+        .support-info {
+            font-size: 1.2rem;
+            color: #FFD54F;
+            font-weight: 700;
+            text-shadow: 1px 2px 8px rgba(0,0,0,0.3);
+            margin-bottom: 8px;
+        }
+
+        .update-badge {
+            display: inline-block;
+            background: rgba(255,255,255,0.2);
+            backdrop-filter: blur(10px);
+            padding: 8px 20px;
+            border-radius: 20px;
+            color: white;
+            font-size: 0.9rem;
+            margin-top: 15px;
+            font-weight: 600;
+        }
+
+        .accordions-container {
+            margin-bottom: 40px;
+            animation: fadeIn 0.8s ease-out 0.3s both;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .accordion {
+            background: white;
+            border-radius: 0;
+            margin-bottom: 0;
+            box-shadow: 0 12px 35px rgba(0,0,0,0.2);
+            overflow: hidden;
+            transition: all 0.3s;
+            border-bottom: 1px solid rgba(0,0,0,0.1);
+        }
+
+        .accordion:first-child {
+            border-radius: 24px 24px 0 0;
+        }
+
+        .accordion:last-child {
+            border-radius: 0 0 24px 24px;
+            border-bottom: none;
+        }
+
+        .accordion:only-child {
+            border-radius: 24px;
+        }
+
+        .accordion:hover {
+            box-shadow: 0 15px 45px rgba(0,0,0,0.25);
+        }
+
+        .accordion-header {
+            padding: 20px 35px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 18px;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            transition: all 0.3s;
+            position: relative;
+        }
+
+        .accordion-header:hover {
+            background: linear-gradient(135deg, var(--secondary), var(--primary));
+        }
+
+        .accordion-icon {
+            width: 60px;
+            height: 60px;
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            background: rgba(255,255,255,0.2);
+            flex-shrink: 0;
+        }
+
+        .accordion-title {
+            font-family: 'Varela Round', sans-serif;
+            font-size: 1.8rem;
+            font-weight: 800;
+            flex: 1;
+            margin: 0;
+        }
+
+        .accordion-arrow {
+            font-size: 1.5rem;
+            transition: transform 0.3s;
+            width: 40px;
+            text-align: center;
+            flex-shrink: 0;
+        }
+
+        .accordion.active .accordion-arrow {
+            transform: rotate(180deg);
+        }
+
+        .accordion-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s ease;
+        }
+
+        .accordion.active .accordion-content {
+            max-height: 10000px;
+            height: 80vh;
+            overflow: auto;
+            -webkit-overflow-scrolling: touch;
+        }
+
+        .accordion-body {
+            padding: 35px;
+            font-size: 1.15rem;
+            line-height: 1.9;
+            color: #546E7A;
+        }
+
+        .accordion-body h4 {
+            color: var(--primary);
+            font-size: 1.3rem;
+            margin: 25px 0 15px 0;
+            font-weight: 700;
+        }
+
+        .accordion-body ul, .accordion-body ol {
+            list-style: none;
+            padding: 0;
+            margin: 15px 0;
+        }
+
+        .accordion-body li {
+            padding: 12px 0;
+            padding-right: 35px;
+            position: relative;
+            border-bottom: 1px solid #E0E7EE;
+        }
+
+        .accordion-body li:last-child {
+            border-bottom: none;
+        }
+
+        .accordion-body li::before {
+            content: '✓';
+            position: absolute;
+            right: 0;
+            color: var(--success);
+            font-weight: bold;
+            font-size: 1.4rem;
+        }
+
+        .accordion-body p {
+            margin: 10px 0;
+        }
+
+        /* תתי-אקורדיונים */
+        .sub-accordion {
+            margin: 15px 0;
+            border: 1px solid #E0E7EE;
+            border-radius: 12px;
+            overflow: hidden;
+            background: #F8FAFB;
+        }
+
+        .sub-accordion-header {
+            padding: 18px 25px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background: linear-gradient(135deg, #F8FAFB 0%, #EEF2F5 100%);
+            transition: all 0.3s;
+        }
+
+        .sub-accordion-header:hover {
+            background: linear-gradient(135deg, #EEF2F5 0%, #E3E9EE 100%);
+        }
+
+        .sub-accordion-title {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: var(--primary);
+            margin: 0;
+            flex: 1;
+        }
+
+        .sub-accordion-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s ease;
+        }
+
+        .sub-accordion.active > .sub-accordion-content {
+            max-height: 80vh;
+            overflow: auto;
+            -webkit-overflow-scrolling: touch;
+        }
+
+        .sub-accordion-body {
+            padding: 20px 25px;
+            background: white;
+        }
+
+        /* רמות קינון */
+        .sub-accordion[data-level="2"] {
+            margin: 15px 0;
+        }
+
+        .sub-accordion[data-level="2"] .sub-accordion-header {
+            padding: 18px 25px;
+        }
+
+        .sub-accordion[data-level="2"] .sub-accordion-title {
+            font-size: 1.2rem;
+        }
+
+        .sub-accordion[data-level="3"] {
+            margin: 12px 0;
+            background: #FAFBFC;
+        }
+
+        .sub-accordion[data-level="3"] .sub-accordion-header {
+            padding: 15px 20px;
+            background: linear-gradient(135deg, #E3F2FD 0%, #BBDEFB 100%);
+        }
+
+        .sub-accordion[data-level="3"] .sub-accordion-header:hover {
+            background: linear-gradient(135deg, #BBDEFB 0%, #90CAF9 100%);
+        }
+
+        .sub-accordion[data-level="3"] .sub-accordion-title {
+            font-size: 1.1rem;
+            padding-right: 15px;
+        }
+
+        .sub-accordion[data-level="4"] {
+            margin: 10px 0;
+            background: #FCFCFD;
+            border-color: #E8ECF0;
+        }
+
+        .sub-accordion[data-level="4"] .sub-accordion-header {
+            padding: 12px 18px;
+            background: linear-gradient(135deg, #E8F5E9 0%, #C8E6C9 100%);
+        }
+
+        .sub-accordion[data-level="4"] .sub-accordion-header:hover {
+            background: linear-gradient(135deg, #C8E6C9 0%, #A5D6A7 100%);
+        }
+
+        .sub-accordion[data-level="4"] .sub-accordion-title {
+            font-size: 1.05rem;
+            padding-right: 25px;
+        }
+
+        h2.no-accordion,
+        h3.no-accordion,
+        h4.no-accordion,
+        h5.no-accordion,
+        h6.no-accordion {
+            color: var(--primary);
+            font-weight: 700;
+            margin: 25px 0 15px 0;
+        }
+
+        .info-box {
+            background: rgba(255,255,255,0.95);
+            border-radius: 20px;
+            padding: 30px;
+            margin-top: 40px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+            border-right: 4px solid var(--accent);
+            animation: fadeIn 0.8s ease-out 0.6s both;
+        }
+
+        .info-box-header {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 15px;
+        }
+
+        .info-box-icon {
+            font-size: 2rem;
+        }
+
+        .info-box h3 {
+            font-family: 'Varela Round', sans-serif;
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: var(--accent);
+            margin: 0;
+        }
+
+        .info-box p {
+            font-size: 1.05rem;
+            line-height: 1.8;
+            color: #546E7A;
+            margin: 0;
+        }
+
+        .links-section {
+            margin-top: 25px;
+            padding-top: 20px;
+            border-top: 2px solid #E0E7EE;
+        }
+
+        .links-title {
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 15px;
+            font-size: 1.1rem;
+        }
+
+        .link-item {
+            display: block;
+            padding: 12px 18px;
+            margin-bottom: 10px;
+            background: #F5F9FC;
+            border-radius: 12px;
+            color: var(--secondary);
+            text-decoration: none;
+            transition: all 0.3s;
+            font-weight: 600;
+        }
+
+        .link-item:hover {
+            background: var(--secondary);
+            color: white;
+            transform: translateX(-5px);
+            box-shadow: 0 4px 12px rgba(74, 144, 181, 0.3);
+        }
+
+        footer {
+            text-align: center;
+            margin-top: 60px;
+            padding: 30px;
+            color: rgba(255,255,255,0.9);
+            font-size: 1rem;
+        }
+
+        .back-button {
+            display: inline-block;
+            background: rgba(255,255,255,0.25);
+            backdrop-filter: blur(10px);
+            padding: 12px 24px;
+            border-radius: 25px;
+            color: white;
+            text-decoration: none;
+            font-size: 1rem;
+            font-weight: 600;
+            transition: all 0.3s;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+        }
+
+        .back-button:hover {
+            background: rgba(255,255,255,0.35);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(0,0,0,0.25);
+        }
+
+        .back-button::before {
+            content: '← ';
+            margin-left: 5px;
+        }
+
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2.5rem;
+            }
+
+            .subtitle {
+                font-size: 1.1rem;
+            }
+
+            .accordion-header {
+                padding: 20px 25px;
+            }
+
+            .accordion-title {
+                font-size: 1.4rem;
+            }
+
+            .accordion-body {
+                padding: 25px;
+            }
+        }
+        .nii-error-banner {
+            display: none;
+            background: #fff3cd;
+            border: 2px solid #f0a500;
+            color: #7a5000;
+            text-align: center;
+            padding: 12px 20px;
+            border-radius: 10px;
+            font-size: 1rem;
+            font-weight: 600;
+            margin-bottom: 20px;
+        }
+    </style>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-XFYGMQ47QN"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-XFYGMQ47QN');
+</script>
+</head>
+<body>
+    <div class="container">
+        <div id="nii-error-banner" class="nii-error-banner">⚠️ הערכים אינם מעודכנים עקב תקלה באתר</div>
+        <header>
+            <a href="../index.html" class="back-button">חזרה לדף ראשי</a>
+            <h1>🏠 מדריך מפורט להגשת תביעה לגמלת סיעוד</h1>
+            <p class="support-info">מרכז תמיכה ומידע טלפוני ארצי בטלפון <span dir="ltr">*9696</span></p>
+            <p class="subtitle">מדריך מעשי למשפחה - מה מגישים, מה לבקש מהרופאים, ומה לומר למעריך בביקור הבית</p>
+            <div class="update-badge">עדכון: אוגוסט 2026</div>
+        </header>
+
+        <div id="content"><div class="accordions-container">
+                        <div class="accordion" id="conditions" data-section="conditions">
+                            <div class="accordion-header">
+                                <div class="accordion-icon">📋</div>
+                                <h2 class="accordion-title">תנאי סף לזכאות ומסמכים נדרשים</h2>
+                                <span class="accordion-arrow">▼</span>
+                            </div>
+                            <div class="accordion-content">
+                                <div class="accordion-body">
+                                    <h2 class="no-accordion">תנאי סף לזכאות</h2><div class="sub-accordion" data-level="3"><div class="sub-accordion-header"><div class="sub-accordion-title">גיל, תושבות ומגורים</div></div><div class="sub-accordion-content"><div class="sub-accordion-body"><div><ul>
+                <li><strong>גיל ותושבות:</strong> תושב/ת ישראל שהגיע/ה לגיל פרישה.</li>
+                <li><strong>מגורים:</strong> מתגורר/ת בבית, בדיור מוגן, או במחלקה לעצמאיים/תשושים בלבד (אדם במחלקה סיעודית או לתשושי נפש בבית אבות מורשה אינו זכאי לגמלה זו).</li>
+              </ul></div></div></div></div><div class="sub-accordion" data-level="3"><div class="sub-accordion-header"><div class="sub-accordion-title">מבחן הכנסות (מעודכן ל-2026)</div></div><div class="sub-accordion-content"><div class="sub-accordion-body"><div><ul>
+                  <li><strong>יחיד/ה:</strong> הכנסה עד 13,769 ₪ — גמלה מלאה; מ-13,769 עד 20,654 ₪ — גמלה מופחתת (50%); מעל 20,654 ₪ — אין זכאות.</li>
+                  <li><strong>זוג:</strong> הכנסה עד 20,654 ₪ — גמלה מלאה; מ-20,654 עד 30,980 ₪ — גמלה מופחתת (50%); מעל 30,980 ₪ — אין זכאות.</li>
+                  <li>(אם שני בני הזוג סיעודיים — סכום הכנסותיהם המשותף מחולק ב-2 ונבחן לפי תקרת יחיד).</li>
+                </ul></div></div></div></div><div class="sub-accordion" data-level="3"><div class="sub-accordion-header"><div class="sub-accordion-title">אי-קבלת קצבאות חופפות</div></div><div class="sub-accordion-content"><div class="sub-accordion-body"><div><p>אינו מקבל קצבת שירותים מיוחדים (שר"ם), קצבת עזרת הזולת ממשרד הביטחון או תשלום מקביל.</p></div></div></div></div><div class="sub-accordion" data-level="2"><div class="sub-accordion-header"><div class="sub-accordion-title">אילו מסמכים לצרף לתביעה?</div></div><div class="sub-accordion-content"><div class="sub-accordion-body"><div><ul>
+            <li><strong>טופס תביעה לגמלת סיעוד (טופס 2600):</strong> למילוי מקוון או ידני.</li>
+            <li><strong>תמצית תיק רפואי (סיכום מידע רפואי ממוחשב):</strong> חתום על ידי רופא המשפחה.</li>
+            <li><strong>אבחונים ייעודיים (לפי הצורך):</strong>
+              <ul>
+                <li>ירידה קוגניטיבית / דמנציה: הערכה גריאטרית או פסיכוגריאטרית כולל מבחן MMSE (מיני-מנטל).</li>
+                <li>ליקוי ראייה: חוות דעת מרופא עיניים.</li>
+              </ul>
+            </li>
+            <li><strong>אישורי הכנסה:</strong> תלושי פנסיה ואישורי הכנסה של המבוטח/ת ובן/בת הזוג מ-3 החודשים האחרונים.</li>
+          </ul></div></div></div></div>
+                                </div>
+                            </div>
+                        </div>
+                    
+                        <div class="accordion" id="medical-docs" data-section="medical-docs">
+                            <div class="accordion-header">
+                                <div class="accordion-icon">🩺</div>
+                                <h2 class="accordion-title">מה לבקש מהרופאים לכתוב במסמכים הרפואיים</h2>
+                                <span class="accordion-arrow">▼</span>
+                            </div>
+                            <div class="accordion-content">
+                                <div class="accordion-body">
+                                    <div class="sub-accordion" data-level="2"><div class="sub-accordion-header"><div class="sub-accordion-title">עיקרון מנחה</div></div><div class="sub-accordion-content"><div class="sub-accordion-body"><div><p>הביטוח הלאומי קובע את רמת הזכאות על סמך "מבחן תלות" הבודק תפקוד יומיומי בפועל — ולכן חשוב שהמסמכים הרפואיים לא יסתפקו באבחנה הרפואית עצמה, אלא יתארו כיצד האבחנה באה לידי ביטוי בתפקוד היום-יומי בבית.</p></div></div></div></div><div class="sub-accordion" data-level="2"><div class="sub-accordion-header"><div class="sub-accordion-title">מה חשוב לבקש שיודגש במסמכים</div></div><div class="sub-accordion-content"><div class="sub-accordion-body"><div><ul>
+            <li><strong>תפקוד יום-יום (ADL):</strong> לבקש מהרופא לפרט במדויק את הקשיים ברחצה, הלבשה, אכילה, ניידות בבית, ושליטה על סוגרים — ולא להסתפק בניסוח כללי כמו "מוגבלות בתפקוד".</li>
+            <li><strong>צרכי השגחה ובטיחות:</strong> אם קיים אובדן זיכרון, שיפוט לקוי, סכנה בשימוש בגז/חשמל או סכנת נפילה — יש לבקש מהרופא להדגיש זאת במפורש, שכן זהו נתון מרכזי לקביעת ניקוד ההשגחה.</li>
+            <li><strong>תיעוד נפילות:</strong> לבקש מהרופא לציין מספר, נסיבות ותדירות נפילות ב-3 החודשים האחרונים, ואופן הקימה מנפילה — נתון זה משפיע הן על ניקוד הניידות והן על ניקוד ההשגחה.</li>
+            <li><strong>הפניה לאבחונים ייעודיים:</strong> במקרה של ירידה קוגניטיבית — לבקש הפניה להערכה גריאטרית/פסיכוגריאטרית הכוללת מבחן MMSE; במקרה של ליקוי ראייה משמעותי — לבקש חוות דעת מרופא עיניים.</li>
+          </ul></div></div></div></div><div class="sub-accordion" data-level="2"><div class="sub-accordion-header"><div class="sub-accordion-title">טיפ מעשי למשפחה</div></div><div class="sub-accordion-content"><div class="sub-accordion-body"><div><ul>
+            <li>להגיע לרופא עם רשימה כתובה מראש של הקשיים בפועל בכל תחומי היום-יום.</li>
+            <li>לבקש מהרופא לשלב בדוח דוגמאות קונקרטיות מהיומיום, ולא רק ניסוח רפואי כללי.</li>
+          </ul></div></div></div></div>
+                                </div>
+                            </div>
+                        </div>
+                    
+                        <div class="accordion" id="dependency-test" data-section="dependency-test">
+                            <div class="accordion-header">
+                                <div class="accordion-icon">📊</div>
+                                <h2 class="accordion-title">מבחן התלות — כך נקבע ניקוד הזכאות</h2>
+                                <span class="accordion-arrow">▼</span>
+                            </div>
+                            <div class="accordion-content">
+                                <div class="accordion-body">
+                                    <div class="sub-accordion" data-level="2"><div class="sub-accordion-header"><div class="sub-accordion-title">רקע כללי</div></div><div class="sub-accordion-content"><div class="sub-accordion-body"><div><p>קביעת רמת הזכאות לגמלת סיעוד מתבססת על "מבחן תלות" (הערכה תפקודית), שמטרתו לאמוד את מידת תלותו של הנבדק בזולת בביצוע פעולות היום-יום, ואת מידת הזדקקותו להשגחה. ההערכה מתבצעת בביקור בית על ידי מעריך מטעם המוסד לביטוח לאומי (אחות, פיזיותרפיסט/ית או מרפא/ה בעיסוק), בהתאם לנהלים המפורטים ב"תדריך לביצוע הערכה תפקודית — ביטוח סיעוד" של אגף הסיעוד.</p>
+          <p>במסגרת המבחן נבדקות חמש פעולות יום-יום (ADL): ניידות, הלבשה, רחצה, אכילה ושתייה, והפרשות — וכן נבחנת בנפרד מידת הצורך בהשגחה. לכל תחום ניתן ניקוד בין תפקוד עצמאי (0 נקודות) לבין אי-יכולת ביצוע (1–2 נקודות, בהתאם לתחום הנבדק ולחומרת המגבלה). סכום הנקודות שנצבר קובע את רמת הזכאות (1 עד 6).</p></div></div></div></div><div class="sub-accordion" data-level="2"><div class="sub-accordion-header"><div class="sub-accordion-title">תחומי הבדיקה (ADL) וטווחי הניקוד</div></div><div class="sub-accordion-content"><div class="sub-accordion-body"><div><table style="width:100%;border-collapse:collapse;">
+            <thead><tr style="background:#f0f0f0;">
+              <th style="border:1px solid #ddd;padding:10px;text-align:right;">תחום נבדק</th>
+              <th style="border:1px solid #ddd;padding:10px;text-align:right;">מה נבדק בפועל</th>
+              <th style="border:1px solid #ddd;padding:10px;text-align:right;">טווח ניקוד אפשרי</th>
+            </tr></thead>
+            <tbody>
+              <tr><td style="border:1px solid #ddd;padding:10px;"><strong>ניידות בבית</strong></td><td style="border:1px solid #ddd;padding:10px;">קימה מהמיטה/מכיסא, הליכה, ישיבה, שימוש במכשירי עזר, התמצאות בחדרי הבית, מעבר לכיסא גלגלים</td><td style="border:1px solid #ddd;padding:10px;">0 (עצמאי) עד 1–2 נק' (בהתאם לרמת התלות)</td></tr>
+              <tr><td style="border:1px solid #ddd;padding:10px;"><strong>נפילות</strong></td><td style="border:1px solid #ddd;padding:10px;">מספר, נסיבות ותדירות נפילות ב-3 החודשים האחרונים ואופן הקימה מנפילה</td><td style="border:1px solid #ddd;padding:10px;">משפיע על מסקנת הניידות וההשגחה</td></tr>
+              <tr><td style="border:1px solid #ddd;padding:10px;"><strong>הלבשה</strong></td><td style="border:1px solid #ddd;padding:10px;">לבישה ופשיטה של בגד עליון ותחתון, גריבת גרביים, נעילת נעליים, הרכבת מכשיר אורתופדי</td><td style="border:1px solid #ddd;padding:10px;">0 (עצמאי) עד 1–2 נק'</td></tr>
+              <tr><td style="border:1px solid #ddd;padding:10px;"><strong>רחצה</strong></td><td style="border:1px solid #ddd;padding:10px;">כניסה למקלחת/אמבטיה, רחיצת פנים וידיים כולל סבון וניגוב, חפיפת ראש</td><td style="border:1px solid #ddd;padding:10px;">0 (עצמאי) עד 1–2 נק'</td></tr>
+              <tr><td style="border:1px solid #ddd;padding:10px;"><strong>אכילה ושתייה</strong></td><td style="border:1px solid #ddd;padding:10px;">חימום מנת מזון והגשתה לשולחן, אכילה בכף, מזיגה ושתייה מכוס, נטילת תרופות בעזרה פעילה</td><td style="border:1px solid #ddd;padding:10px;">0 (עצמאי) עד 1–2 נק'</td></tr>
+              <tr><td style="border:1px solid #ddd;padding:10px;"><strong>הפרשות</strong></td><td style="border:1px solid #ddd;padding:10px;">הגעה לשירותים, ישיבה וקימה מהאסלה, הפשלת/הרמת בגד תחתון, היגיינה אישית ושליטה בסוגרים</td><td style="border:1px solid #ddd;padding:10px;">0 (עצמאי) עד 1–2 נק'</td></tr>
+            </tbody>
+          </table>
+          <p style="margin-top:10px;font-size:0.95rem;color:#546E7A;">הערה: הניקוד המדויק לכל סעיף-משנה (למשל ניידות בבית לעומת הליכה בליווי, או הלבשת חצי גוף עליון לעומת תחתון) נקבע על פי טבלת ניקוד פנימית בטופס "הערכת התלות" של המוסד, שאינה מפורסמת במלואה כטבלה ציבורית באתר המוסד לביטוח לאומי. התדריך הציבורי מפרט את אופן ביצוע התצפית וההדגמה בכל תחום, אך לא את מפתח הניקוד המספרי המלא לכל תת-סעיף.</p></div></div></div></div><div class="sub-accordion" data-level="2"><div class="sub-accordion-header"><div class="sub-accordion-title">השגחה</div></div><div class="sub-accordion-content"><div class="sub-accordion-body"><div><p>בנוסף לסעיפי ה-ADL, נבדקת בנפרד מידת הצורך בהשגחה. הניקוד בגין השגחה אינו מצטבר עם ניקוד ה-ADL — הזכאות נקבעת לפי הניקוד הגבוה מבין השניים:</p>
+          <table style="width:100%;border-collapse:collapse;">
+            <thead><tr style="background:#f0f0f0;">
+              <th style="border:1px solid #ddd;padding:10px;text-align:right;">סוג השגחה</th>
+              <th style="border:1px solid #ddd;padding:10px;text-align:right;">הגדרה</th>
+              <th style="border:1px solid #ddd;padding:10px;text-align:right;">ניקוד</th>
+            </tr></thead>
+            <tbody>
+              <tr><td style="border:1px solid #ddd;padding:10px;"><strong>השגחה חלקית</strong></td><td style="border:1px solid #ddd;padding:10px;">ניתן להשאיר את הנבדק לבד לפרקי זמן מסוימים, אך בהעדר השגחה עלול להגיע להזנחה קיצונית או חרדה משמעותית</td><td style="border:1px solid #ddd;padding:10px;font-weight:700;">2.5 נק'</td></tr>
+              <tr><td style="border:1px solid #ddd;padding:10px;"><strong>השגחה מתמדת</strong></td><td style="border:1px solid #ddd;padding:10px;">לא ניתן להשאיר את הנבדק לבד אף לפרקי זמן קצרים, בשל סכנה בלתי צפויה לעצמו או לאחרים</td><td style="border:1px solid #ddd;padding:10px;font-weight:700;">9 נק'</td></tr>
+            </tbody>
+          </table></div></div></div></div><div class="sub-accordion" data-level="2"><div class="sub-accordion-header"><div class="sub-accordion-title">טבלת רמות הזכאות לגמלת סיעוד</div></div><div class="sub-accordion-content"><div class="sub-accordion-body"><div><p>להלן טווחי הניקוד הרשמיים לכל רמת זכאות, כפי שמפורסמים בטופס בל/2655 של המוסד לביטוח לאומי ("בקשה לקבלת גמלה בכסף לזכאי גמלת סיעוד המעסיק מטפל צמוד"), לרבות היקף שעות הטיפול השבועיות.</p>
+            <table style="width:100%;border-collapse:collapse;">
+              <thead><tr style="background:#f0f0f0;">
+                <th style="border:1px solid #ddd;padding:10px;text-align:right;">רמת זכאות</th>
+                <th style="border:1px solid #ddd;padding:10px;text-align:right;">טווח נקודות בהערכת התלות</th>
+                <th style="border:1px solid #ddd;padding:10px;text-align:right;">שעות טיפול שבועיות (עובד ישראלי)</th>
+                <th style="border:1px solid #ddd;padding:10px;text-align:right;">שעות טיפול שבועיות (עובד זר)</th>
+                <th style="border:1px solid #ddd;padding:10px;text-align:right;">שווי הגמלה בכסף (חודשי)</th>
+              </tr></thead>
+              <tbody><tr><td style="border:1px solid #ddd;padding:10px;">1</td><td style="border:1px solid #ddd;padding:10px;">3 – 2.5</td><td style="border:1px solid #ddd;padding:10px;">9 – 5.5</td><td style="border:1px solid #ddd;padding:10px;">לא משפיע</td><td style="border:1px solid #ddd;padding:10px;font-weight:700;">1,705 ₪</td></tr><tr><td style="border:1px solid #ddd;padding:10px;">2</td><td style="border:1px solid #ddd;padding:10px;">4.5 – 3.5</td><td style="border:1px solid #ddd;padding:10px;">10</td><td style="border:1px solid #ddd;padding:10px;">לא משפיע</td><td style="border:1px solid #ddd;padding:10px;font-weight:700;">2,480 ₪</td></tr><tr><td style="border:1px solid #ddd;padding:10px;">3</td><td style="border:1px solid #ddd;padding:10px;">6 – 5</td><td style="border:1px solid #ddd;padding:10px;">15</td><td style="border:1px solid #ddd;padding:10px;">12</td><td style="border:1px solid #ddd;padding:10px;font-weight:700;">4,216 ₪</td></tr><tr><td style="border:1px solid #ddd;padding:10px;">4</td><td style="border:1px solid #ddd;padding:10px;">7.5 – 6.5</td><td style="border:1px solid #ddd;padding:10px;">19</td><td style="border:1px solid #ddd;padding:10px;">16</td><td style="border:1px solid #ddd;padding:10px;font-weight:700;">5,208 ₪</td></tr><tr><td style="border:1px solid #ddd;padding:10px;">5</td><td style="border:1px solid #ddd;padding:10px;">9 – 8</td><td style="border:1px solid #ddd;padding:10px;">23</td><td style="border:1px solid #ddd;padding:10px;">19</td><td style="border:1px solid #ddd;padding:10px;font-weight:700;">6,448 ₪</td></tr><tr><td style="border:1px solid #ddd;padding:10px;">6</td><td style="border:1px solid #ddd;padding:10px;">10.5 – 9.5</td><td style="border:1px solid #ddd;padding:10px;">28</td><td style="border:1px solid #ddd;padding:10px;">24</td><td style="border:1px solid #ddd;padding:10px;font-weight:700;">7,440 ₪</td></tr></tbody>
+            </table>
+            <p style="margin-top:10px;font-size:0.95rem;color:#546E7A;">שווי הגמלה בכסף בטבלה מוצג לפי הערכים העדכניים שמפרסם המוסד לביטוח לאומי (מתעדכן אוטומטית באתר זה). מדובר בשווי הבסיסי לגמלה מלאה ברמה הנתונה; הסכום בפועל עשוי להשתנות בהתאם למצב האישי ולאופן מימוש הזכאות (שירותים בעין מול המרה לקצבה בכסף).</p></div></div></div></div><div class="sub-accordion" data-level="2"><div class="sub-accordion-header"><div class="sub-accordion-title">תוספות ניקוד נפוצות</div></div><div class="sub-accordion-content"><div class="sub-accordion-body"><div><ul>
+            <li><strong>תוספת "בודד"</strong> — זכאי המוגדר כ"בודד" (בהתאם לסידורי המגורים ולנוכחות בני משפחה) זכאי לתוספת ניקוד: 0.5 נק' למי שצבר 2 נק', 1.5 נק' למי שצבר 2.5–5 נק', 0.5 נק' למי שצבר 6 נק', ו-1.5 נק' למי שצבר 6.5 נק' ומעלה.</li>
+            <li>מי שנקבעו לו 6.5 נקודות ומעלה זכאי לתוספת ניקוד נוספת של 1.5 נקודות (בכפוף לתנאים).</li>
+            <li>ניתן לעדכן ניקוד "בודד" גם לאחר ביצוע בדיקת התלות, על סמך הצהרה שיגיש הזכאי במקרה של שינוי במצב המשפחתי.</li>
+          </ul></div></div></div></div>
+                                </div>
+                            </div>
+                        </div>
+                    
+                        <div class="accordion" id="home-visit" data-section="home-visit">
+                            <div class="accordion-header">
+                                <div class="accordion-icon">🏠</div>
+                                <h2 class="accordion-title">ביקור הערכת התפקוד בבית — מה לומר למעריך</h2>
+                                <span class="accordion-arrow">▼</span>
+                            </div>
+                            <div class="accordion-content">
+                                <div class="accordion-body">
+                                    <div class="sub-accordion" data-level="2"><div class="sub-accordion-header"><div class="sub-accordion-title">מי מבצע את הבדיקה ומתי</div></div><div class="sub-accordion-content"><div class="sub-accordion-body"><div><ul>
+            <li><strong>מי מקיים את הבדיקה?</strong> מעריך/ה מטעם הביטוח הלאומי (אח/ות או פיזיותרפיסט/ית) המגיעים לבית.</li>
+            <li><strong>חלופה לבני 90 ומעלה:</strong> זכאים לבחור להיבדק על ידי רופא גריאטר בקופת החולים במקום ביקור בית.</li>
+          </ul></div></div></div></div><div class="sub-accordion" data-level="2"><div class="sub-accordion-header"><div class="sub-accordion-title">כללי ברזל ליום הבדיקה</div></div><div class="sub-accordion-content"><div class="sub-accordion-body"><div><ul>
+            <li><strong>חובת נוכחות מלווה:</strong> מומלץ מאוד שבן משפחה או אדם קרוב יהיה נוכח לכל אורך הבדיקה.</li>
+            <li><strong>שיקוף המציאות:</strong> קשישים רבים מנסים להפגין עצמאות מול הבודק. על המלווה להסביר בנעימות ובכבוד את הקשיים האמיתיים בשגרה (כגון נפילות, צורך בעזרה ברחצה, שכחת תרופות).</li>
+            <li><strong>בטיחות:</strong> אין לבצע מטלה שגורמת לכאב או מסכנת את המבוטח בנפילה.</li>
+          </ul></div></div></div></div><div class="sub-accordion" data-level="2"><div class="sub-accordion-header"><div class="sub-accordion-title">מה חשוב להדגיש בכל תחום בדיקה</div></div><div class="sub-accordion-content"><div class="sub-accordion-body"><div><ul>
+            <li><strong>ניידות בבית:</strong> לתאר קשיים בקימה מהמיטה/מכיסא, הליכה בבית, שימוש במכשירי עזר, ולציין נפילות ב-3 החודשים האחרונים — נסיבות, תדירות ואופן הקימה.</li>
+            <li><strong>הלבשה:</strong> לתאר קושי בלבישה ופשיטה של בגדים, גריבת גרביים, נעילת נעליים או הרכבת מכשיר אורתופדי.</li>
+            <li><strong>רחצה:</strong> לתאר קושי בכניסה למקלחת/אמבטיה, ברחיצת פנים וידיים, ובחפיפת ראש.</li>
+            <li><strong>אכילה ושתייה:</strong> לתאר קושי בחימום מזון והגשתו, באכילה ובשתייה עצמאית, ובנטילת תרופות.</li>
+            <li><strong>הפרשות:</strong> לתאר קושי בהגעה לשירותים, בישיבה וקימה מהאסלה, ובשליטה בסוגרים.</li>
+            <li><strong>השגחה:</strong> לתאר במפורש האם ניתן להשאיר את הנבדק לבד, ולציין סיכונים כמו שכחת גז/חשמל דלוק, שיטוט, או סכנת נפילה בהיעדר השגחה.</li>
+          </ul></div></div></div></div>
+                                </div>
+                            </div>
+                        </div>
+                    
+                        <div class="accordion" id="pre-decision" data-section="pre-decision">
+                            <div class="accordion-header">
+                                <div class="accordion-icon">⏳</div>
+                                <h2 class="accordion-title">שירותי "טרום סיעוד" (טרום החלטה)</h2>
+                                <span class="accordion-arrow">▼</span>
+                            </div>
+                            <div class="accordion-content">
+                                <div class="accordion-body">
+                                    <div class="sub-accordion" data-level="2"><div class="sub-accordion-header"><div class="sub-accordion-title">מה זה?</div></div><div class="sub-accordion-content"><div class="sub-accordion-body"><div><p>אספקת שעות טיפול אישי בבית באופן מיידי (לרוב כ-6 שעות שבועיות), עוד לפני שהביטוח הלאומי סיים לעבד את התביעה ולקבל החלטה.</p></div></div></div></div><div class="sub-accordion" data-level="2"><div class="sub-accordion-header"><div class="sub-accordion-title">למי פונים ובאילו מצבים</div></div><div class="sub-accordion-content"><div class="sub-accordion-body"><div><ul>
+            <li><strong>למי פונים?</strong> ישירות לחברות סיעוד פרטיות הפועלות בהסדר עם הביטוח הלאומי.</li>
+            <li><strong>באילו מצבים?</strong> כאשר יש צורך דחוף בסיוע מיידי בבית (למשל, מיד לאחר אירוע רפואי, שחרור מבית חולים, או הידרדרות תפקודית פתאומית).</li>
+          </ul></div></div></div></div><div class="sub-accordion" data-level="2"><div class="sub-accordion-header"><div class="sub-accordion-title">קריטריונים לקבלה, עלות וקיזוז</div></div><div class="sub-accordion-content"><div class="sub-accordion-body"><div><ul>
+            <li>הוגשה תביעה לביטוח הלאומי (או בקשה להחמרה).</li>
+            <li>חברת הסיעוד בוחנת את המסמכים הרפואיים ומעריכה כי קיים סיכוי סביר שהתביעה תאושר בביטוח הלאומי.</li>
+            <li><strong>עלות וקיזוז:</strong> השירות ניתן ללא תשלום. אם התביעה תאושר, השעות שניתנו יקוזזו רטרואקטיבית מגמלת הסיעוד שתאושר; אם התביעה תידחה, חברת הסיעוד היא זו שנושאת בעלות השירות ולא המבוטח.</li>
+          </ul></div></div></div></div>
+                                </div>
+                            </div>
+                        </div>
+                    
+                        <div class="accordion" id="worsening" data-section="worsening">
+                            <div class="accordion-header">
+                                <div class="accordion-icon">🔄</div>
+                                <h2 class="accordion-title">הגשת בקשה לבדיקה מחדש עקב החמרת מצב</h2>
+                                <span class="accordion-arrow">▼</span>
+                            </div>
+                            <div class="accordion-content">
+                                <div class="accordion-body">
+                                    <div class="sub-accordion" data-level="2"><div class="sub-accordion-header"><div class="sub-accordion-title">מי זכאי ואיך מגישים</div></div><div class="sub-accordion-content"><div class="sub-accordion-body"><div><ul>
+            <li><strong>מי זכאי?</strong> מבוטח שכבר מקבל גמלת סיעוד (ברמות 1 עד 5) וחלה הידרדרות נוספת בתפקודו.</li>
+            <li><strong>איך מגישים?</strong> באמצעות טופס 2620 (או בשליחת מסמכים מעודכנים בפורטל האישי).</li>
+            <li><strong>אשפוז בבית חולים:</strong> במידה וההחמרה התרחשה במהלך אשפוז, ניתן להגיש טופס 2668 מואץ דרך העובדת הסוציאלית של בית החולים.</li>
+          </ul></div></div></div></div><div class="sub-accordion" data-level="2"><div class="sub-accordion-header"><div class="sub-accordion-title">עיתוי התשלום</div></div><div class="sub-accordion-content"><div class="sub-accordion-body"><div><p>עדכון הדרגה והגמלה יחול בדרך כלל מהיום השמיני שלאחר מועד הגשת הבקשה להחמרה.</p></div></div></div></div>
+                                </div>
+                            </div>
+                        </div>
+                    
+                        <div class="accordion" id="hospitalization" data-section="hospitalization">
+                            <div class="accordion-header">
+                                <div class="accordion-icon">🏥</div>
+                                <h2 class="accordion-title">מצב אדם מאושפז שבקשתו אושרה בזמן השהות בבית החולים</h2>
+                                <span class="accordion-arrow">▼</span>
+                            </div>
+                            <div class="accordion-content">
+                                <div class="accordion-body">
+                                    <div class="sub-accordion" data-level="2"><div class="sub-accordion-header"><div class="sub-accordion-title">30 הימים הראשונים וסיוע מהעובדת הסוציאלית</div></div><div class="sub-accordion-content"><div class="sub-accordion-body"><div><ul>
+            <li><strong>30 הימים הראשונים:</strong> מקבל גמלת סיעוד שמאושפז בבית חולים כללי זכאי להמשיך לקבל את שירותי הטיפול האישי (מטפל/ת) בבית החולים במהלך 30 הימים הראשונים לאשפוז.</li>
+            <li><strong>סיוע מהעובדת הסוציאלית בבית החולים:</strong> מומלץ להיעזר בעובדת הסוציאלית של המחלקה/בית החולים עוד במהלך האשפוז. היא יכולה לסייע בריכוז המסמכים, בהגשת פניות מואצות לביטוח הלאומי (כגון טופס 2668) ובתיאום רצף הטיפול והזכאויות לקראת השחרור הביתה.</li>
+          </ul></div></div></div></div><div class="sub-accordion" data-level="2"><div class="sub-accordion-header"><div class="sub-accordion-title">מעל 30 ימים ועם השחרור הביתה</div></div><div class="sub-accordion-content"><div class="sub-accordion-body"><div><ul>
+            <li><strong>מעל 30 ימים / אשפוז סיעודי:</strong> מהיום ה-31 לאשפוז כללי (או מיום המעבר למחלקה סיעודית/סיעודית מורכבת/שיקומית), מתן השירותים מוקפא.</li>
+            <li><strong>עם השחרור הביתה:</strong> הזכאות מתחדשת מיד עם השחרור לבית, ללא צורך בהגשת תביעה חדשה. יש לעדכן את הביטוח הלאומי וחברת הסיעוד על מועד השחרור כדי להפעיל את השירות באופן מיידי.</li>
+          </ul></div></div></div></div>
+                                </div>
+                            </div>
+                        </div>
+                    
+                        <div class="accordion" id="after-approval" data-section="after-approval">
+                            <div class="accordion-header">
+                                <div class="accordion-icon">✅</div>
+                                <h2 class="accordion-title">לאחר שהבקשה אושרה — מימוש הזכויות</h2>
+                                <span class="accordion-arrow">▼</span>
+                            </div>
+                            <div class="accordion-content">
+                                <div class="accordion-body">
+                                    <div class="sub-accordion" data-level="2"><div class="sub-accordion-header"><div class="sub-accordion-title">בניית תכנית טיפול ושעות טיפול אישי</div></div><div class="sub-accordion-content"><div class="sub-accordion-body"><div><ul>
+            <li><strong>בניית תכנית טיפול:</strong> עו"ס מטעם הביטוח הלאומי או חברת הסיעוד יצרו קשר לבניית "סל שירותים" מותאם.</li>
+            <li><strong>שעות טיפול אישי בבית:</strong> מתן עזרה ברחצה, הלבשה, השגחה וניהול משק הבית.</li>
+          </ul></div></div></div></div><div class="sub-accordion" data-level="2"><div class="sub-accordion-header"><div class="sub-accordion-title">המרה לקצבה בכסף (לחשבון הבנק)</div></div><div class="sub-accordion-content"><div class="sub-accordion-body"><div><ul>
+              <li><strong>ברמה 1:</strong> ניתן להמיר את כל הזכאות לקצבה כספית מלאה.</li>
+              <li><strong>ברמות 2–6:</strong> ניתן להמיר חלק מהשעות (עד 4 שעות שבועיות, או עד שליש מהשעות באישור עו"ס) לקצבה כספית — עד <strong>992 ₪</strong> לחודש.</li>
+              <li><strong>מעסיקי מטפל צמוד (כולל עובד זר):</strong> מי שמעסיק מטפל צמוד כחוק רשאי לקבל את כל גמלת הסיעוד כקצבה בכסף ישירות לחשבון הבנק.</li>
+            </ul></div></div></div></div><div class="sub-accordion" data-level="2"><div class="sub-accordion-header"><div class="sub-accordion-title">שילוב שירותים נוספים</div></div><div class="sub-accordion-content"><div class="sub-accordion-body"><div><p>ביקור במרכז יום לקשיש (כולל הסעות וארוחות), אספקת מוצרי ספיגה עד הבית, לחצן מצוקה ושירותי כביסה.</p></div></div></div></div>
+                                </div>
+                            </div>
+                        </div>
+                    
+                        <div class="accordion" id="appeal" data-section="appeal">
+                            <div class="accordion-header">
+                                <div class="accordion-icon">⚖️</div>
+                                <h2 class="accordion-title">תהליך הערעור על ההחלטה</h2>
+                                <span class="accordion-arrow">▼</span>
+                            </div>
+                            <div class="accordion-content">
+                                <div class="accordion-body">
+                                    <div class="sub-accordion" data-level="2"><div class="sub-accordion-header"><div class="sub-accordion-title">שני מסלולי הערעור</div></div><div class="sub-accordion-content"><div class="sub-accordion-body"><div><p>קיימים שני מסלולים נפרדים לערעור על החלטת פקיד התביעות, בהתאם לסוג ההשגה:</p>
+          <table style="width:100%;border-collapse:collapse;">
+            <thead><tr style="background:#f0f0f0;">
+              <th style="border:1px solid #ddd;padding:10px;text-align:right;"></th>
+              <th style="border:1px solid #ddd;padding:10px;text-align:right;">השגה על מידת התלות / תפקוד</th>
+              <th style="border:1px solid #ddd;padding:10px;text-align:right;">ערעור בשאלה משפטית / הכנסות</th>
+            </tr></thead>
+            <tbody>
+              <tr><td style="border:1px solid #ddd;padding:10px;"><strong>זמן הגשה</strong></td><td style="border:1px solid #ddd;padding:10px;">תוך 60 יום מיום קבלת ההודעה</td><td style="border:1px solid #ddd;padding:10px;">תוך 12 חודשים</td></tr>
+              <tr><td style="border:1px solid #ddd;padding:10px;"><strong>הגורם הדן</strong></td><td style="border:1px solid #ddd;padding:10px;">ועדה מייעצת (רופא ואחות שאינם עובדי הביטוח הלאומי)</td><td style="border:1px solid #ddd;padding:10px;">בית הדין האזורי לעבודה</td></tr>
+              <tr><td style="border:1px solid #ddd;padding:10px;"><strong>הערה</strong></td><td style="border:1px solid #ddd;padding:10px;">הזכאות אינה יכולה להיפחת בעקבות ערר זה</td><td style="border:1px solid #ddd;padding:10px;">זכאות לייצוג משפטי חינם מטעם משרד המשפטים, ללא בדיקת הכנסות</td></tr>
+            </tbody>
+          </table></div></div></div></div><div class="sub-accordion" data-level="2"><div class="sub-accordion-header"><div class="sub-accordion-title">דגש חשוב לערר על מידת התלות</div></div><div class="sub-accordion-content"><div class="sub-accordion-body"><div><p>מומלץ לציין במפורש בכתב הערר שברצונכם להופיע בנוכחות המבוטח ומלווה בפני הוועדה, ולא להסתפק בדיון על גבי מסמכים בלבד.</p></div></div></div></div>
+                                </div>
+                            </div>
+                        </div>
+                    
+                        <div class="accordion" id="additional-topics" data-section="additional-topics">
+                            <div class="accordion-header">
+                                <div class="accordion-icon">💡</div>
+                                <h2 class="accordion-title">נושאים נוספים שחשוב להכיר</h2>
+                                <span class="accordion-arrow">▼</span>
+                            </div>
+                            <div class="accordion-content">
+                                <div class="accordion-body">
+                                    <div class="sub-accordion" data-level="2"><div class="sub-accordion-header"><div class="sub-accordion-title">מסלול ירוק / בדיקה מהירה</div></div><div class="sub-accordion-content"><div class="sub-accordion-body"><div><p>חולים במחלות קשות (כגון אונקולוגיה פעילה, ALS, אי ספיקת כליות בדיאליזה וכד') זכאים לטיפול מהיר ולקביעת זכאות על בסיס מסמכים רפואיים בלבד, ללא צורך בביקור בית.</p></div></div></div></div><div class="sub-accordion" data-level="2"><div class="sub-accordion-header"><div class="sub-accordion-title">זכאות מורחבת לניצולי שואה</div></div><div class="sub-accordion-content"><div class="sub-accordion-body"><div><p>ניצולי שואה המקבלים גמלת סיעוד מביטוח לאומי ברמות 2–6 עשויים להיות זכאים לשעות סיעוד נוספות — עד <strong>9 שעות שבועיות נוספות</strong> (שווי כספי של עד <strong>2,169 ₪</strong> לחודש) — הממומנות על ידי הקרן לרווחת נפגעי השואה.</p></div></div></div></div><div class="sub-accordion" data-level="2"><div class="sub-accordion-header"><div class="sub-accordion-title">כפילות זכויות — ביטוח סיעודי בקופות החולים</div></div><div class="sub-accordion-content"><div class="sub-accordion-body"><div><p>קבלת גמלת סיעוד מהביטוח הלאומי אינה פוגעת בזכות להגיש תביעה מקבילה לביטוח הסיעודי הפרטי/קבוצתי דרך קופת החולים (כמו "כללית מושלם", "מכבי סיעודי" וכד') לקבלת פיצוי כספי חודשי נוסף.</p></div></div></div></div><h2 class="no-accordion">נספח: נכה צה"ל שחווה החמרה בתפקוד עקב גיל</h2><div class="sub-accordion" data-level="3"><div class="sub-accordion-header"><div class="sub-accordion-title">רקע: פיצול בין אגף השיקום לביטוח הלאומי</div></div><div class="sub-accordion-content"><div class="sub-accordion-body"><div><p>כאשר נכה צה"ל החווה החמרה בתפקוד עקב גיל (או בשל בעיות רפואיות אחרות שאינן מוכרות כקשורות לנכות הצה"לית), מתקיים פיצול בסמכויות ובטיפול בין אגף השיקום במשרד הביטחון לבין המוסד לביטוח לאומי (ומערכת הבריאות/הרווחה האזרחית).</p></div></div></div></div><div class="sub-accordion" data-level="3"><div class="sub-accordion-header"><div class="sub-accordion-title">1. מיצוי זכויות במערכת האזרחית (המוסד לביטוח לאומי)</div></div><div class="sub-accordion-content"><div class="sub-accordion-body"><div><p>אגף השיקום במשרד הביטחון מעניק תגמולים ועזרת זולת רק עבור הנכויות שהוכרו במשרד הביטחון. כאשר התפקוד הידרדר בשל פגיעות או תהליכי הזיקנה הטבעיים שאינם מוכרים:</p>
+              <ul>
+                <li><strong>גמלת סיעוד מביטוח לאומי:</strong> אם הגיע לגיל פרישה, הנכה זכאי להגיש תביעה לגמלת סיעוד מהמוסד לביטוח לאומי.</li>
+                <li><strong>אין כפל קצבאות ישיר, אך יש הפרדה במענה:</strong> ביטוח לאומי ומשרד הביטחון מוודאים שאין כפל תשלום על אותה הנכות, אך נכה צה"ל המקבל עזרת זולת ממשרד הביטחון עבור הנכות המוכרת, זכאי לקבל השלמה או גמלת סיעוד מביטוח לאומי עבור הירידה התפקודית הכללית שאינה קשורה לנכות המוכרת (בהתאם למבחן תפקוד/הערכת תלות — ADL).</li>
+              </ul></div></div></div></div><div class="sub-accordion" data-level="3"><div class="sub-accordion-header"><div class="sub-accordion-title">2. בדיקת קשר סיבתי ("החמרה עקב הנכות המוכרת")</div></div><div class="sub-accordion-content"><div class="sub-accordion-body"><div><p>לפני שפונים למערכת האזרחית בלבד, מומלץ לבדוק מול רופא מומחה האם יש קשר עקיף בין ההידרדרות לבין הנכות המוכרת:</p>
+              <ul>
+                <li><strong>החמרה מוכרת:</strong> לעיתים קרובות, נכות פיזית או נפשית מוכרת מאיצה או מחמירה בעיות תפקוד עקב הגיל (למשל: עקב עומס יתר על מפרקים בריאים, שימוש ממושך בתרופות, או עקב הירידה החסונית/תנועתית הכללית).</li>
+                <li><strong>בקשה להחמרת מצב / הכרה בתקנה 9:</strong> אם יש יסוד רפואי לכך שההידרדרות נובעת או מושפעת מהנכות המוכרת, ניתן להגיש בקשה לבדיקה חוזרת (החמרת מצב) לרופא המוסמך באגף השיקום, כדי להגדיל את היקף עזרת הזולת או את אחוזי הנכות.</li>
+              </ul></div></div></div></div><div class="sub-accordion" data-level="3"><div class="sub-accordion-header"><div class="sub-accordion-title">3. סיוע משלים מאגף השיקום</div></div><div class="sub-accordion-content"><div class="sub-accordion-body"><div><p>אגף השיקום מכיר בכך שנכי צה"ל מתבגרים ומגיעים לגיל שלישי:</p>
+              <ul>
+                <li><strong>הערכה תפקודית כוללת:</strong> מומלץ לפנות לעובד/ת הרווחה באגף השיקום (במחוז המטפל). העובד הסוציאלי יכול לבצע הערכה תפקודית כוללת ולבחון אילו מענים או התאמות ניתן לתת במסגרת מעטפת הטיפול של אגף השיקום (כגון ציוד עזר, שינויי דיור, או שילוב בין עזרת הזולת של משרד הביטחון לזכאויות אזרחיות).</li>
+                <li><strong>טיפולים פרא-רפואיים ושיקום:</strong> בדיקת זכאות להרחבת טיפולי פיזיותרפיה, ריפוי בעיסוק או הידרותרפיה דרך אגף השיקום לשימור התפקוד הקיים.</li>
+              </ul></div></div></div></div><div class="sub-accordion" data-level="3"><div class="sub-accordion-header"><div class="sub-accordion-title">תכנית עבודה מומלצת</div></div><div class="sub-accordion-content"><div class="sub-accordion-body"><div><ol>
+                <li><strong>פנייה לרופא מטפל (משפחה/גריאטר):</strong> לקבלת הערכה תפקודית מקיפה וחוות דעת האם יש קשר לנכות המוכרת.</li>
+                <li><strong>פנייה לעובד/ת הרווחה באגף השיקום:</strong> לבירור שילוב הזכויות והעברת התיק להערכה מעודכנת.</li>
+                <li><strong>הגשת תביעה לגמלת סיעוד בביטוח לאומי:</strong> במידה והירידה התפקודית היא כללית ולא קשורה לנכות המוכרת.</li>
+                <li><strong>התייעצות עם ארגון נכי צה"ל:</strong> לקבלת ליווי וסיוע במיצוי הזכויות מול שני הגופים (אגף השיקום וביטוח לאומי).</li>
+              </ol></div></div></div></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div></div>
+
+        <div class="info-box">
+            <div class="info-box-header">
+                <span class="info-box-icon">ℹ️</span>
+                <h3>הערה חשובה</h3>
+            </div>
+            <p>
+                המידע במדריך זה מתעדכן ממקורות רשמיים, אך הוא לידיעה כללית בלבד
+                ואינו מהווה בסיס לפעולה או לאי פעולה מכל סוג. יש לפנות לגורמים המוסמכים
+                לקבלת מידע מדויק ומעודכן על הזכויות המגיעות לכם באופן אישי.
+            </p>
+            <div class="links-section">
+                <div class="links-title">🔗 קישורים למקורות מידע רשמיים:</div>
+                <a href="https://www.btl.gov.il" target="_blank" class="link-item">🏛️ אתר הביטוח הלאומי</a>
+                <a href="https://www.kolzchut.org.il" target="_blank" class="link-item">📚 כל-זכות - זכויות אזרחים ותיקים</a>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <p>
+            🤖 פותח עם ❤️ לסיוע לאזרחים ותיקים בישראל<br>
+        </p>
+    </footer>
+
+    <script src="data/nursing-care-benefit-data.js"></script>
+    <script src="data/accordion-search-nav.js"></script>
+    <script>
+        // הגדרות אנימציה
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes spin {
+                to { transform: rotate(360deg); }
+            }
+        `;
+        document.head.appendChild(style);
+        async function displayContent() {
+            try {
+                // טעינת ערכי NII
+                let nii = {};
+                try {
+                    const niiResp = await fetch('data/nii-constants.json');
+                    nii = await niiResp.json();
+                } catch(e) {
+                    console.warn('NII constants load failed:', e);
+                    document.getElementById('nii-error-banner').style.display = 'block';
+                }
+
+                console.log('🔍 בדיקה נתונים:', typeof NURSING_CARE_DATA);
+                if (typeof NURSING_CARE_DATA === 'undefined') {
+                    console.error('❌ NURSING_CARE_DATA לא קיים');
+                    throw new Error('הקובץ data/nursing-care-benefit-data.js לא נטען בהצלחה');
+                }
+                if (!NURSING_CARE_DATA.sections) {
+                    console.error('❌ אין מערך sections בנתונים');
+                    throw new Error('אין נתונים זמינים');
+                }
+
+                console.log('✅ נתונים קיימים, מספר סעיפים:', NURSING_CARE_DATA.sections.length);
+
+                let html = '<div class="accordions-container">';
+
+                // יצירת אקורדיונים ראשיים
+                NURSING_CARE_DATA.sections.forEach((section, index) => {
+                    const contentHtml = buildSectionContent(section, nii);
+                    html += `
+                        <div class="accordion" id="${section.id}" data-section="${section.id}">
+                            <div class="accordion-header">
+                                <div class="accordion-icon">${section.icon}</div>
+                                <h2 class="accordion-title">${section.title}</h2>
+                                <span class="accordion-arrow">▼</span>
+                            </div>
+                            <div class="accordion-content">
+                                <div class="accordion-body">
+                                    ${contentHtml}
+                                </div>
+                            </div>
+                        </div>
+                    `;
+                });
+
+                html += '</div>';
+                console.log('✅ HTML בנוי, מעדכן את ה-DOM');
+                document.getElementById('content').innerHTML = html;
+
+                console.log('✅ מתחיל המרת כותרות');
+                // המרת כותרות לתתי-אקורדיונים
+                convertHeadingsToSubAccordions();
+
+                console.log('✅ מתחיל אתחול אקורדיונים');
+                // אתחול אקורדיונים
+                initAccordions();
+                openFromHash();
+                window.addEventListener('hashchange', openFromHash);
+                openFromPath(); // תוצאות חיפוש מבוסס-תוכן (accordion-search-nav.js)
+
+                console.log('✅ סיום בהצלחה');
+
+            } catch (error) {
+                console.error('❌ שגיאה:', error);
+                console.error('Stack:', error.stack);
+                document.getElementById('content').innerHTML = `
+                    <div style="text-align: center; padding: 60px 20px; background: white; border-radius: 24px; box-shadow: 0 12px 35px rgba(0,0,0,0.2);">
+                        <p style="color: #C62828; font-size: 1.2rem; font-weight: 600;">⚠️ אירעה שגיאה בטעינת המידע</p>
+                        <p style="color: #666; margin-top: 10px; font-size: 0.95rem;">פתח את ה-Console (F12) כדי לראות את הפרטים</p>
+                    </div>
+                `;
+            }
+        }
+
+        function openFromHash() {
+            const hash = decodeURIComponent(window.location.hash.slice(1));
+            if (!hash) return;
+            const target = document.getElementById(hash);
+            if (!target) return;
+            document.querySelectorAll('.accordion.active').forEach(a => a.classList.remove('active'));
+            let el = target;
+            while (el) {
+                if (el.classList.contains('accordion') || el.classList.contains('sub-accordion')) {
+                    el.classList.add('active');
+                }
+                el = el.parentElement;
+            }
+            setTimeout(() => target.scrollIntoView({ behavior: 'smooth', block: 'start' }), 450);
+        }
+
+        function buildSectionContent(section, nii) {
+            let html = '';
+
+            if (section.subsections) {
+                section.subsections.forEach(sub => {
+                    html += buildSubsectionContent(sub, 2, nii);
+                });
+            }
+
+            return html;
+        }
+
+        function buildSubsectionContent(item, level, nii) {
+            let html = '';
+
+            if (item.subsections && item.subsections.length > 0) {
+                // אם יש תת-סעיפים, צור כותרת שתהפוך לאקורדיון
+                html += `<h${level} class="no-accordion">${item.title}</h${level}>`;
+                item.subsections.forEach(sub => {
+                    html += buildSubsectionContent(sub, level + 1, nii);
+                });
+            } else {
+                // אם אין תת-סעיפים, צור כותרת רגילה עם תוכן
+                const content = item.contentFn ? item.contentFn(nii) : (item.content || '');
+                html += `<h${level}>${item.title}</h${level}>`;
+                html += `<div>${content}</div>`;
+            }
+
+            return html;
+        }
+
+        function processNestedHeadings(container, depth = 0) {
+            const allHeadings = Array.from(container.querySelectorAll('h2, h3, h4, h5, h6'));
+            const headings = allHeadings.filter(heading => {
+                let parent = heading.parentElement;
+                while (parent && parent !== container) {
+                    if (parent.classList && parent.classList.contains('sub-accordion')) {
+                        return false;
+                    }
+                    parent = parent.parentElement;
+                }
+                return true;
+            });
+
+            headings.forEach((heading) => {
+                if (heading.classList.contains('no-accordion')) {
+                    return;
+                }
+
+                let contentElements = [];
+                let nextElement = heading.nextElementSibling;
+                const currentLevel = parseInt(heading.tagName.substring(1));
+
+                while (nextElement) {
+                    const nextTagName = nextElement.tagName;
+
+                    if (nextTagName && nextTagName.match(/^H[2-6]$/)) {
+                        const nextLevel = parseInt(nextTagName.substring(1));
+                        if (nextLevel <= currentLevel) {
+                            break;
+                        }
+                    }
+
+                    contentElements.push(nextElement);
+                    nextElement = nextElement.nextElementSibling;
+                }
+
+                if (contentElements.length > 0) {
+                    const subAccordion = document.createElement('div');
+                    subAccordion.className = 'sub-accordion';
+                    subAccordion.setAttribute('data-level', currentLevel);
+                    if (heading.id) subAccordion.id = heading.id;
+
+                    const subHeader = document.createElement('div');
+                    subHeader.className = 'sub-accordion-header';
+
+                    const subTitle = document.createElement('div');
+                    subTitle.className = 'sub-accordion-title';
+                    subTitle.innerHTML = heading.innerHTML;
+
+                    subHeader.appendChild(subTitle);
+
+                    const subContent = document.createElement('div');
+                    subContent.className = 'sub-accordion-content';
+
+                    const subBody = document.createElement('div');
+                    subBody.className = 'sub-accordion-body';
+
+                    contentElements.forEach(el => {
+                        subBody.appendChild(el);
+                    });
+
+                    subContent.appendChild(subBody);
+                    subAccordion.appendChild(subHeader);
+                    subAccordion.appendChild(subContent);
+
+                    heading.parentNode.replaceChild(subAccordion, heading);
+
+                    processNestedHeadings(subBody, depth + 1);
+
+                    subHeader.addEventListener('click', (event) => {
+                        event.stopPropagation();
+
+                        const wasActive = subAccordion.classList.contains('active');
+
+                        let parentAccordionBody = subAccordion.parentElement;
+                        while (parentAccordionBody && !parentAccordionBody.classList.contains('accordion-body') && !parentAccordionBody.classList.contains('sub-accordion-body')) {
+                            parentAccordionBody = parentAccordionBody.parentElement;
+                        }
+
+                        if (parentAccordionBody) {
+                            const siblingAccordions = parentAccordionBody.querySelectorAll(':scope > .sub-accordion.active');
+                            siblingAccordions.forEach(activeSubAccordion => {
+                                if (activeSubAccordion !== subAccordion) {
+                                    activeSubAccordion.classList.remove('active');
+                                }
+                            });
+                        }
+
+                        subAccordion.classList.toggle('active');
+
+                        if (!wasActive) {
+                            const nestedSubAccordions = subAccordion.querySelectorAll('.sub-accordion.active');
+                            nestedSubAccordions.forEach(nestedSubAcc => {
+                                nestedSubAcc.classList.remove('active');
+                            });
+
+                            setTimeout(() => {
+                                subAccordion.scrollIntoView({
+                                    behavior: 'smooth',
+                                    block: 'start',
+                                    inline: 'nearest'
+                                });
+                            }, 450);
+                        }
+                    });
+                }
+            });
+        }
+
+        function convertHeadingsToSubAccordions() {
+            const accordionBodies = document.querySelectorAll('.accordion-body');
+            accordionBodies.forEach((body) => {
+                processNestedHeadings(body, 0);
+            });
+        }
+
+        function initAccordions() {
+            const accordions = document.querySelectorAll('.accordion');
+
+            accordions.forEach((accordion) => {
+                const header = accordion.querySelector('.accordion-header');
+
+                header.addEventListener('click', () => {
+                    const wasActive = accordion.classList.contains('active');
+
+                    accordions.forEach((other) => {
+                        if (other !== accordion && other.classList.contains('active')) {
+                            other.classList.remove('active');
+                        }
+                    });
+
+                    accordion.classList.toggle('active');
+
+                    if (!wasActive) {
+                        const subAccordions = accordion.querySelectorAll('.sub-accordion.active');
+                        subAccordions.forEach(subAcc => {
+                            subAcc.classList.remove('active');
+                        });
+
+                        setTimeout(() => {
+                            accordion.scrollIntoView({
+                                behavior: 'smooth',
+                                block: 'start',
+                                inline: 'nearest'
+                            });
+                        }, 450);
+                    }
+                });
+            });
+        }
+
+        // טעינה
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', () => {
+                console.log('🔍 DOMContentLoaded event');
+                // חכה טיפה כדי שהסקריפטים יטענו
+                setTimeout(() => {
+                    console.log('🔍 בדיקה קיום NURSING_CARE_DATA בהשהייה');
+                    if (typeof NURSING_CARE_DATA !== 'undefined') {
+                        displayContent();
+                    } else {
+                        console.error('❌ NURSING_CARE_DATA עדיין לא זמין');
+                        document.getElementById('content').innerHTML = `
+                            <div style="text-align: center; padding: 60px 20px; background: white; border-radius: 24px; box-shadow: 0 12px 35px rgba(0,0,0,0.2);">
+                                <p style="color: #C62828; font-size: 1.2rem; font-weight: 600;">⚠️ לא ניתן לטעון את קובץ הנתונים</p>
+                                <p style="color: #666; margin-top: 10px; font-size: 0.95rem;">אנא בדוק שקובץ data/nursing-care-benefit-data.js קיים</p>
+                            </div>
+                        `;
+                    }
+                }, 500);
+            });
+        } else {
+            console.log('🔍 document already loaded');
+            setTimeout(() => {
+                console.log('🔍 בדיקה קיום NURSING_CARE_DATA בעומס');
+                if (typeof NURSING_CARE_DATA !== 'undefined') {
+                    displayContent();
+                } else {
+                    console.error('❌ NURSING_CARE_DATA עדיין לא זמין');
+                    document.getElementById('content').innerHTML = `
+                        <div style="text-align: center; padding: 60px 20px; background: white; border-radius: 24px; box-shadow: 0 12px 35px rgba(0,0,0,0.2);">
+                            <p style="color: #C62828; font-size: 1.2rem; font-weight: 600;">⚠️ לא ניתן לטעון את קובץ הנתונים</p>
+                            <p style="color: #666; margin-top: 10px; font-size: 0.95rem;">אנא בדוק שקובץ data/nursing-care-benefit-data.js קיים</p>
+                        </div>
+                    `;
+                }
+            }, 500);
+        }
+    </script>
+    <script src="data/hamburger-nav.js"></script>
+    <script src="data/btl-chat-widget.js"></script>
+</body>
+</html>

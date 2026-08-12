@@ -1,4 +1,5 @@
 /api/btl-chat   /.netlify/functions/btl-chat-gemini-ai   200
+/api/whoin-admin   /.netlify/functions/whoin-admin   200
 
 # additional_guides/html/index.html הוא רק עמוד הפניה (בלי תוכן) ל-additional_guides_index.html.
 # היה מטופל עד כה ע"י meta refresh בצד הלקוח בלבד - גוגל דיווח על כך כ-"Redirect error" ב-Search

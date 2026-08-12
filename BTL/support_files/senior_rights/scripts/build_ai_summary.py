@@ -110,6 +110,7 @@ TOPICS = {
         "סיוע במימון בית אבות, מענק מעבר לנשים, יציאה לחו\"ל, חובת התייצבות, תקופת אכשרה, זכויות באשפוז, והעסקת עובד זר בסיעוד.",
         [
             "senior_rights/nursing_home_guide.html",
+            "senior_rights/nursing_care_benefit_guide.html",
             "senior_rights/women_transition_benefit_guide.html",
             "additional_guides/html/yetzia_lachul.html",
             "additional_guides/html/chovaat_hitatzbut.html",
@@ -139,6 +140,7 @@ KNOWN_FILES = {
     "senior_rights/nechut_vs_shairim.html": ("include", "מנוע ליבה - הוטמע ואומת"),
     "senior_rights/senior_citizens_rights_2026.html": ("include", "מנוע ליבה - הוטמע ואומת"),
     "senior_rights/nursing_home_guide.html": ("include", "מנוע ליבה - הוטמע ואומת"),
+    "senior_rights/nursing_care_benefit_guide.html": ("include", "מנוע ליבה - תמלול PDF, הוטמע ואומת (12.08.2026)"),
     "senior_rights/senior_rights_full.html": ("include", "מנוע ליבה - הוטמע ואומת"),
     "senior_rights/financial-tables-and-definitions.html": ("include", "מנוע ליבה - הוטמע ואומת"),
     "new_immigrants/gimlat_zikna_meyuchedet.html": ("include", "מנוע ליבה - הוטמע ואומת"),

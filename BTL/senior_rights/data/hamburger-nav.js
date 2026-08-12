@@ -398,6 +398,18 @@
                     { text: 'שאלות נפוצות',                        href: bp + 'senior_rights/nursing_home_guide.html#faq' },
                     { text: 'גורמי עזר ומידע',                     href: bp + 'senior_rights/nursing_home_guide.html#resources' },
                 ]},
+                { icon: '🏠', text: 'מדריך גמלת סיעוד', children: [
+                    { text: 'תנאי סף לזכאות ומסמכים נדרשים',        href: bp + 'senior_rights/nursing_care_benefit_guide.html#conditions' },
+                    { text: 'מה לבקש מהרופאים לכתוב במסמכים',      href: bp + 'senior_rights/nursing_care_benefit_guide.html#medical-docs' },
+                    { text: 'מבחן התלות וניקוד הזכאות',            href: bp + 'senior_rights/nursing_care_benefit_guide.html#dependency-test' },
+                    { text: 'ביקור הערכת התפקוד בבית',             href: bp + 'senior_rights/nursing_care_benefit_guide.html#home-visit' },
+                    { text: 'שירותי "טרום סיעוד"',                 href: bp + 'senior_rights/nursing_care_benefit_guide.html#pre-decision' },
+                    { text: 'בקשה לבדיקה מחדש עקב החמרת מצב',      href: bp + 'senior_rights/nursing_care_benefit_guide.html#worsening' },
+                    { text: 'מאושפז בזמן אישור הבקשה',             href: bp + 'senior_rights/nursing_care_benefit_guide.html#hospitalization' },
+                    { text: 'לאחר האישור - מימוש הזכויות',         href: bp + 'senior_rights/nursing_care_benefit_guide.html#after-approval' },
+                    { text: 'תהליך הערעור על ההחלטה',              href: bp + 'senior_rights/nursing_care_benefit_guide.html#appeal' },
+                    { text: 'נושאים נוספים (כולל נכי צה"ל)',       href: bp + 'senior_rights/nursing_care_benefit_guide.html#additional-topics' },
+                ]},
                 { icon: '🕯️', text: 'מדריך ניצולי שואה', teal: true, children: [
                     { text: 'מידע כללי',              href: bp + 'senior_rights/holocaust_survivors_rights.html#hsr-info' },
                     { text: 'סוגי קצבאות',            href: bp + 'senior_rights/holocaust_survivors_rights.html#hsr-pensions' },
