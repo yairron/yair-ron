@@ -320,32 +320,59 @@ function initShareButtons() {
   document.querySelectorAll('.accordion-pdf').forEach(function(acc) {
     var header = acc.querySelector('.accordion-header');
     var arrow = header.querySelector('.accordion-arrow');
-    var btn = document.createElement('button');
-    btn.type = 'button';
-    btn.className = 'share-btn';
-    btn.title = 'העתקת קישור למסמך זה';
-    btn.textContent = '🔗';
-    btn.onclick = function(e) {
+    var titleEl = acc.querySelector('.accordion-title');
+    var title = titleEl ? titleEl.textContent.trim() : document.title;
+
+    var shareBtn = document.createElement('button');
+    shareBtn.type = 'button';
+    shareBtn.className = 'share-btn';
+    shareBtn.title = 'שיתוף קישור למסמך זה';
+    shareBtn.textContent = '🔗';
+    shareBtn.onclick = function(e) {
       e.stopPropagation();
-      shareLink(acc, btn);
+      var url = location.origin + location.pathname + '#' + acc.id;
+      shareContent(title, url, shareBtn);
     };
-    header.insertBefore(btn, arrow);
+    header.insertBefore(shareBtn, arrow);
+
+    var pdfBtn = document.createElement('button');
+    pdfBtn.type = 'button';
+    pdfBtn.className = 'share-btn';
+    pdfBtn.title = 'קישור להורדת המסמך';
+    pdfBtn.textContent = '📥';
+    pdfBtn.onclick = function(e) {
+      e.stopPropagation();
+      var pdfUrl = getPdfUrl(acc);
+      if (!pdfUrl) return;
+      shareContent(title + ' (PDF)', pdfUrl, pdfBtn);
+    };
+    header.insertBefore(pdfBtn, arrow);
   });
 }
-function shareLink(acc, btn) {
-  var titleEl = acc.querySelector('.accordion-title');
-  var title = titleEl ? titleEl.textContent.trim() : document.title;
-  var url = location.origin + location.pathname + '#' + acc.id;
+function getPdfUrl(acc) {
+  var iframe = acc.querySelector('iframe');
+  if (!iframe || !iframe.src) return null;
+  try {
+    var viewerUrl = new URL(iframe.src);
+    var fileParam = viewerUrl.searchParams.get('file');
+    if (!fileParam) return null;
+    return new URL(fileParam, iframe.src).href;
+  } catch (e) {
+    return null;
+  }
+}
+function shareContent(title, url, btn) {
   if (navigator.share) {
     navigator.share({ title: title, text: title, url: url }).catch(function() {});
     return;
   }
   var shareText = title + '\n' + url;
+  var original = btn.textContent;
   var showCopied = function() {
     btn.textContent = '✔';
     btn.classList.add('copied');
     setTimeout(function() {
-      btn.textContent = '🔗';
+      btn.textContent = original;
       btn.classList.remove('copied');
     }, 1500);
   };
