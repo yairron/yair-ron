@@ -1,0 +1,22 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(python:*)",
+      "Bash(python3:*)",
+      "Bash(node --check:*)",
+      "Bash(node -e:*)",
+      "Bash(git status:*)",
+      "Bash(git diff:*)",
+      "Bash(git add:*)",
+      "Bash(git log:*)",
+      "Bash(git show:*)",
+      "Bash(curl:*)",
+      "Edit",
+      "Write(BTL/**)",
+      "Write(netlify/**)",
+      "Grep",
+      "Glob",
+      "Read"
+    ]
+  }
+}
