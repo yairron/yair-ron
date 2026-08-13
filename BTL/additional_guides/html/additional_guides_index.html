@@ -342,24 +342,11 @@ function initShareButtons() {
     pdfBtn.textContent = '📥';
     pdfBtn.onclick = function(e) {
       e.stopPropagation();
-      var pdfUrl = getPdfUrl(acc);
-      if (!pdfUrl) return;
+      var pdfUrl = location.origin + '/btl/pdf/' + acc.id + '.pdf';
       shareContent(title + ' (PDF)', pdfUrl, pdfBtn);
     };
     header.insertBefore(pdfBtn, arrow);
   });
-}
-function getPdfUrl(acc) {
-  var iframe = acc.querySelector('iframe');
-  if (!iframe || !iframe.src) return null;
-  try {
-    var viewerUrl = new URL(iframe.src);
-    var fileParam = viewerUrl.searchParams.get('file');
-    if (!fileParam) return null;
-    return new URL(fileParam, iframe.src).href;
-  } catch (e) {
-    return null;
-  }
 }
 function shareContent(title, url, btn) {
   if (navigator.share) {
