@@ -493,6 +493,7 @@
                 { text: '🏥 זכויות אזרחים ותיקים לאחר אישפוז',                href: bp + 'additional_guides/html/additional_guides_index.html#zchuyot_achrei_ishpuz' },
                 { text: '📜 ייפוי כוח מתמשך - מדריך מקיף',                    href: bp + 'additional_guides/html/additional_guides_index.html#yipuy_koach_mitmashech' },
                 { text: '🩼 נכות כללית מול נכות מעבודה',                      href: bp + 'additional_guides/html/additional_guides_index.html#nechut_klalit_mul_avoda' },
+                { text: '🏠 הגשת תביעה לגמלת סיעוד',                          href: bp + 'additional_guides/html/additional_guides_index.html#nursing_care_benefit' },
                 { text: '🅿️ חניה שמורה לאזרח ותיק ללא תעודת נכה',             href: bp + 'additional_guides/html/additional_guides_index.html#chanaya_shmura_ezrach_vatik' },
                 { text: '📋 מידע כללי על העסקת עובד זר',                      href: bp + 'additional_guides/html/additional_guides_index.html#oved_zar_bituach_leumi' },
             ]
