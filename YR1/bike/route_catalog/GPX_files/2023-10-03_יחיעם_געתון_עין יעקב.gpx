@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<gpx xmlns="http://www.topografix.com/GPX/1/1" creator="OruxMaps v.10.1.9 GP" version="1.1" xmlns:gpxtpx="http://www.garmin.com/xmlschemas/TrackPointExtension/v2" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:om="http://www.oruxmaps.com/oruxmapsextensions/1/0" xsi:schemaLocation="http://www.topografix.com/GPX/1/1 http://www.topografix.com/GPX/1/1/gpx.xsd">
+<!-- owner: 4cd85a9e434039 -->
+<metadata>
+<name><![CDATA[2023-10-03 21:23:34]]></name>
+<link href="https://www.oruxmaps.com">
+<text>OruxMaps GP</text>
+</link>
+<time>2023-10-03T18:23:34.174Z</time><bounds maxlat="33.0051347" maxlon="35.2155743" minlat="33.0051347" minlon="35.2155743"/>
+</metadata>
+<trk>
+<name><![CDATA[2023-10-03 21:23:34]]></name>
+<desc><![CDATA[<p>Type: Mountain biking<br/>Start time: 21:23 Oct 3, 2023<br/>Finish time: 21:23 Oct 3, 2023<br/>Distance: 0.0 km (00:00)<br/></p><hr align="center" width="480" style="height: 2px; width: 517px"/>]]></desc>
+<type>Mountain biking</type>
+<extensions>
+<om:oruxmapsextensions>
+<om:ext type="TYPE" subtype="0">6</om:ext>
+<om:ext type="DIFFICULTY">0</om:ext>
+</om:oruxmapsextensions>
+</extensions>
+<trkseg>
+<trkpt lat="33.0051347" lon="35.2155743">
+<ele>351.99</ele>
+<time>2023-10-03T18:23:36.460Z</time>
+<extensions>
+</extensions>
+</trkpt>
+</trkseg>
+</trk>
+</gpx>

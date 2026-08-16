@@ -1,0 +1,447 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>קטלוג מסלולים</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Assistant:wght@300;400;600;700;800&family=Varela+Round&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<style>
+:root{--primary:#1F6B4C;--secondary:#4E9B6B;--accent:#E0923F;--success:#3F7D4E;--light:#F2F8F3;--dark:#123A29;--text:#243A2E}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Assistant','Segoe UI',Tahoma,sans-serif;background:linear-gradient(135deg,#123A29 0%,#3F7D52 50%,#E0A24E 100%);min-height:100vh;padding:20px;direction:rtl}
+.container{max-width:1100px;margin:0 auto}
+header{text-align:center;margin-bottom:25px}
+h1{font-family:'Varela Round',sans-serif;font-size:2.6rem;font-weight:800;color:white;text-shadow:2px 3px 10px rgba(0,0,0,.3);margin-bottom:8px}
+.subtitle{font-size:1rem;color:rgba(255,255,255,.9);text-shadow:1px 2px 8px rgba(0,0,0,.2)}
+.nav-bar{display:flex;justify-content:space-between;align-items:center;margin-bottom:20px;gap:10px;flex-wrap:wrap}
+.btn-nav{background:rgba(255,255,255,.25);backdrop-filter:blur(10px);padding:10px 20px;border-radius:20px;color:white;text-decoration:none;font-size:1rem;font-weight:700;border:none;cursor:pointer;transition:all .3s;font-family:'Assistant',sans-serif;box-shadow:0 4px 12px rgba(0,0,0,.2)}
+.btn-nav:hover{background:rgba(255,255,255,.4);transform:translateY(-2px)}
+
+.control-panel{background:rgba(255,255,255,.95);border-radius:20px;padding:22px 26px;margin-bottom:25px;box-shadow:0 10px 30px rgba(0,0,0,.15);border-right:4px solid var(--accent)}
+.control-row{display:flex;gap:12px;flex-wrap:wrap;margin-bottom:12px}
+.control-row:last-child{margin-bottom:0}
+.control-field{display:flex;flex-direction:column;gap:4px;flex:1;min-width:150px}
+.control-field label{font-size:.8rem;color:var(--primary);font-weight:700}
+.control-field input,.control-field select{font-size:.95rem;padding:9px 12px;border:1px solid #CFE0D3;border-radius:10px;background:var(--light);color:var(--text);font-family:'Assistant',sans-serif}
+.control-field input:focus,.control-field select:focus{outline:2px solid var(--secondary)}
+.result-count{font-size:.9rem;color:var(--dark);font-weight:600;margin-top:4px}
+
+.accordions-container{margin-bottom:25px}
+.accordion{background:white;margin-bottom:14px;border-radius:18px;box-shadow:0 8px 22px rgba(0,0,0,.18);overflow:hidden}
+.accordion-header{padding:14px 22px;cursor:pointer;display:flex;align-items:center;gap:16px;background:linear-gradient(135deg,var(--primary),var(--secondary));color:white;transition:all .3s;user-select:none}
+.accordion-header:hover{background:linear-gradient(135deg,var(--secondary),var(--primary))}
+.route-check{width:20px;height:20px;flex-shrink:0;cursor:pointer;accent-color:var(--accent)}
+.route-thumb{width:90px;height:66px;object-fit:cover;border-radius:10px;flex-shrink:0;background:#dde3e0;box-shadow:0 2px 8px rgba(0,0,0,.25)}
+.route-info{flex:0 1 auto;min-width:0;max-width:420px}
+.accordion-title{font-size:1.1rem;font-weight:800;color:white;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.route-meta{font-size:.82rem;color:rgba(255,255,255,.88);margin-top:4px;display:flex;gap:10px;flex-wrap:wrap}
+.row-spacer{flex:1;min-width:8px}
+.route-stats{display:flex;flex-direction:column;gap:3px;font-size:.85rem;font-weight:700;color:white;text-align:left;flex-shrink:0}
+.badge{display:inline-block;padding:2px 9px;border-radius:10px;font-size:.75rem;font-weight:700;background:rgba(255,255,255,.22)}
+.badge-planning{background:var(--accent)}
+.accordion-arrow{font-size:1.1rem;transition:transform .3s;color:white;flex-shrink:0}
+.accordion.active .accordion-arrow{transform:rotate(180deg)}
+.accordion-content{max-height:0;overflow:hidden;transition:max-height .35s ease}
+.accordion.active .accordion-content{max-height:600px}
+.accordion-body{padding:18px 24px;font-size:.95rem;line-height:1.8;color:#3A4F42;display:flex;gap:20px;flex-wrap:wrap;align-items:center}
+.accordion-body .body-details{flex:1;min-width:200px}
+.accordion-body .body-details p{margin:4px 0}
+.route-actions{display:flex;gap:10px;flex-wrap:wrap}
+.btn-action{display:inline-block;padding:9px 18px;border-radius:12px;text-decoration:none;font-size:.9rem;font-weight:700;color:white;background:var(--primary);border:none;cursor:pointer;transition:all .2s}
+.btn-action:hover{background:var(--dark)}
+
+.pagination{display:flex;justify-content:center;align-items:center;gap:14px;margin-bottom:30px}
+.pagination span{color:white;font-weight:700;text-shadow:1px 1px 4px rgba(0,0,0,.3)}
+
+.selection-bar{position:fixed;bottom:0;left:0;right:0;background:linear-gradient(135deg,var(--dark),var(--primary));color:white;padding:14px 20px;display:none;align-items:center;justify-content:center;gap:16px;flex-wrap:wrap;box-shadow:0 -6px 20px rgba(0,0,0,.3);z-index:50}
+.selection-bar.show{display:flex}
+.selection-bar .sel-count{font-weight:800;font-size:1rem}
+.selection-bar button{padding:9px 16px;border-radius:12px;border:none;font-weight:700;cursor:pointer;font-family:'Assistant',sans-serif;font-size:.9rem}
+.selection-bar .btn-primary{background:var(--accent);color:white}
+.selection-bar .btn-primary:hover{background:#c97a2c}
+.selection-bar .btn-disabled{background:rgba(255,255,255,.15);color:rgba(255,255,255,.5);cursor:not-allowed}
+.selection-bar .btn-clear{background:rgba(255,255,255,.2);color:white}
+
+footer{text-align:center;margin-top:20px;padding:20px 20px 90px;color:rgba(255,255,255,.85);font-size:.9rem}
+footer a{color:white;text-decoration:underline;font-weight:600}
+
+.route-thumb{cursor:zoom-in}
+.lightbox-overlay{position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,.85);display:none;align-items:center;justify-content:center;z-index:200;cursor:zoom-out;padding:30px}
+.lightbox-overlay.show{display:flex}
+.lightbox-overlay img{max-width:100%;max-height:100%;border-radius:12px;box-shadow:0 10px 40px rgba(0,0,0,.5)}
+
+.map-overlay{position:fixed;top:0;left:0;width:100%;height:100%;background:var(--dark);display:none;flex-direction:column;z-index:250}
+.map-overlay.show{display:flex}
+.map-overlay-header{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:12px 20px;background:linear-gradient(135deg,var(--dark),var(--primary));color:white;flex-shrink:0}
+.map-overlay-header h3{font-size:1.1rem;font-weight:800}
+.map-close-btn{background:rgba(255,255,255,.2);color:white;border:none;border-radius:10px;padding:8px 16px;font-size:.95rem;font-weight:700;cursor:pointer;font-family:'Assistant',sans-serif}
+.map-close-btn:hover{background:rgba(255,255,255,.35)}
+.map-body{position:relative;flex:1;min-height:0}
+#routeMap{width:100%;height:100%}
+.map-loading{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;background:rgba(18,58,41,.9);color:white;font-size:1.1rem;font-weight:700;z-index:1001}
+.map-legend{position:absolute;bottom:16px;left:16px;background:rgba(255,255,255,.95);border-radius:12px;padding:12px 16px;max-height:35vh;overflow-y:auto;box-shadow:0 6px 20px rgba(0,0,0,.3);z-index:1001;font-size:.85rem;min-width:180px}
+.map-legend-item{display:flex;align-items:center;gap:8px;padding:4px 0;color:var(--text)}
+.map-legend-swatch{width:16px;height:4px;border-radius:2px;flex-shrink:0}
+.map-legend-item span{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+
+@media(max-width:768px){
+  h1{font-size:1.9rem}
+  .accordion-header{flex-wrap:wrap;padding:12px 16px}
+  .route-info{order:1;flex-basis:60%}
+  .route-thumb{width:70px;height:52px}
+  .route-stats{order:2;flex-direction:row;gap:10px;flex-basis:100%;text-align:right;margin-top:4px}
+  .row-spacer{display:none}
+  .accordion-body{flex-direction:column;align-items:flex-start}
+}
+</style>
+</head>
+<body>
+<div class="container">
+  <div class="nav-bar">
+    <a href="../../idx1.html" class="btn-nav">🏠 דף ראשי</a>
+    <button onclick="history.back()" class="btn-nav">← חזרה</button>
+  </div>
+  <header>
+    <h1>🗺️ קטלוג מסלולים</h1>
+    <p class="subtitle" id="subtitleLine">טוען...</p>
+  </header>
+
+  <div class="control-panel">
+    <div class="control-row">
+      <div class="control-field" style="flex:2">
+        <label>חיפוש לפי שם או ישוב</label>
+        <input type="text" id="searchInput" placeholder="למשל: געתון, שביל ישראל...">
+      </div>
+      <div class="control-field">
+        <label>סוג פעילות</label>
+        <select id="activityFilter">
+          <option value="">הכול</option>
+          <option value="הליכה">🚶 הליכה רגלית</option>
+          <option value="רכיבה">🚵 רכיבת אופניים</option>
+        </select>
+      </div>
+      <div class="control-field">
+        <label>סוג מקור</label>
+        <select id="sourceFilter">
+          <option value="">הכול</option>
+          <option value="הקלטה">📹 הקלטה</option>
+          <option value="תכנון מסלול">🗺️ תכנון מסלול</option>
+        </select>
+      </div>
+      <div class="control-field">
+        <label>מיון</label>
+        <select id="sortSelect">
+          <option value="date_desc">תאריך: חדש → ישן</option>
+          <option value="date_asc">תאריך: ישן → חדש</option>
+          <option value="dist_desc">מרחק: גדול → קטן</option>
+          <option value="dist_asc">מרחק: קטן → גדול</option>
+          <option value="name_asc">שם (א-ת)</option>
+        </select>
+      </div>
+    </div>
+    <div class="result-count" id="resultCount"></div>
+  </div>
+
+  <div class="accordions-container" id="routesContainer"></div>
+
+  <div class="pagination" id="pagination"></div>
+</div>
+
+<footer>
+  <p>🤖 פותח עם ❤️ על ידי <a href="mailto:yairron@gmail.com">יאיר רון</a></p>
+</footer>
+
+<div class="selection-bar" id="selectionBar">
+  <span class="sel-count" id="selCount">נבחרו 0 מסלולים</span>
+  <button class="btn-primary" id="btnDownload" onclick="downloadSelected()">📥 הורדה</button>
+  <button class="btn-primary" onclick="showOnMap()">🗺️ הצג על מפה</button>
+  <button class="btn-disabled" title="בקרוב">🔗 איחוד מסלולים</button>
+  <button class="btn-clear" onclick="clearSelection()">נקה בחירה</button>
+</div>
+
+<div class="lightbox-overlay" id="lightboxOverlay">
+  <img id="lightboxImg" src="" alt="">
+</div>
+
+<div class="map-overlay" id="mapOverlay">
+  <div class="map-overlay-header">
+    <h3 id="mapOverlayTitle">מסלולים על המפה</h3>
+    <button class="map-close-btn" onclick="closeMapOverlay()">✕ סגירה</button>
+  </div>
+  <div class="map-body">
+    <div id="routeMap"></div>
+    <div class="map-legend" id="mapLegend"></div>
+    <div class="map-loading" id="mapLoading" style="display:none">טוען מסלולים...</div>
+  </div>
+</div>
+
+<script>
+var ALL_ROUTES = [];
+var selectedFiles = new Set();
+var currentPage = 1;
+var PAGE_SIZE = 30;
+
+fetch('data/routes-catalog.json')
+  .then(function (r) { return r.json(); })
+  .then(function (data) {
+    ALL_ROUTES = data.routes;
+    document.getElementById('subtitleLine').textContent = data.route_count + ' מסלולים | עודכן: ' + formatGeneratedAt(data.generated_at);
+    render();
+  })
+  .catch(function (err) {
+    document.getElementById('subtitleLine').textContent = 'שגיאה בטעינת הקטלוג';
+    console.error(err);
+  });
+
+function formatGeneratedAt(iso) {
+  var d = new Date(iso);
+  if (isNaN(d)) return iso;
+  return d.toLocaleDateString('he-IL') + ' ' + d.toLocaleTimeString('he-IL', { hour: '2-digit', minute: '2-digit' });
+}
+
+function activityBadge(activity) {
+  if (activity.indexOf('הליכה') === 0) return '🚶 הליכה';
+  if (activity.indexOf('רכיבת') === 0) return '🚵 רכיבה';
+  return '❓ לא ברור';
+}
+
+function getFiltered() {
+  var q = document.getElementById('searchInput').value.trim().toLowerCase();
+  var actFilter = document.getElementById('activityFilter').value;
+  var srcFilter = document.getElementById('sourceFilter').value;
+
+  var list = ALL_ROUTES.filter(function (r) {
+    if (actFilter && activityBadge(r.activity).indexOf(actFilter) === -1) return false;
+    if (srcFilter && r.source !== srcFilter) return false;
+    if (q) {
+      var haystack = r.file_name.toLowerCase() + ' ' + r.settlements.join(' ').toLowerCase();
+      if (haystack.indexOf(q) === -1) return false;
+    }
+    return true;
+  });
+
+  var sortMode = document.getElementById('sortSelect').value;
+  list.sort(function (a, b) {
+    switch (sortMode) {
+      case 'date_asc': return a.date.localeCompare(b.date);
+      case 'dist_desc': return b.distance_km - a.distance_km;
+      case 'dist_asc': return a.distance_km - b.distance_km;
+      case 'name_asc': return a.file_name.localeCompare(b.file_name, 'he');
+      default: return b.date.localeCompare(a.date);
+    }
+  });
+  return list;
+}
+
+function routeNameOnly(fileName) {
+  return fileName.replace(/\.(gpx|GPX)$/, '');
+}
+
+function buildRouteCard(r, idx) {
+  var elevText = r.elevation_gain_m === null
+    ? (r.source === 'תכנון מסלול' ? 'אין נתון (תכנון)' : 'אין נתון')
+    : ('⛰️ ' + r.elevation_gain_m + ' מ׳');
+  var settlementsText = r.settlements_found ? r.settlements.join(', ') : '📍 מיקום לא זוהה';
+  var sourceBadge = r.source === 'תכנון מסלול' ? '<span class="badge badge-planning">🗺️ תכנון</span>' : '<span class="badge">📹 הקלטה</span>';
+  var thumbSrc = r.thumbnail ? ('data/' + r.thumbnail) : '';
+  var checked = selectedFiles.has(r.file_name) ? 'checked' : '';
+
+  var el = document.createElement('div');
+  el.className = 'accordion';
+  el.innerHTML =
+    '<div class="accordion-header" onclick="toggleAcc(this)">' +
+      '<input type="checkbox" class="route-check" ' + checked + ' onclick="event.stopPropagation(); onCheckToggle(\'' + escapeAttr(r.file_name) + '\', this.checked)">' +
+      (thumbSrc ? '<img class="route-thumb" src="' + thumbSrc + '" loading="lazy" alt="" onclick="event.stopPropagation(); openLightbox(\'' + escapeAttr(thumbSrc) + '\')">' : '<div class="route-thumb"></div>') +
+      '<div class="route-info">' +
+        '<h2 class="accordion-title">' + escapeHtml(routeNameOnly(r.file_name)) + '</h2>' +
+        '<div class="route-meta">📅 ' + r.date + ' &nbsp;' + activityBadge(r.activity) + ' &nbsp;' + sourceBadge + '</div>' +
+      '</div>' +
+      '<div class="route-stats"><span>📏 ' + r.distance_km + ' ק"מ</span><span>' + elevText + '</span></div>' +
+      '<div class="row-spacer"></div>' +
+      '<span class="accordion-arrow">▼</span>' +
+    '</div>' +
+    '<div class="accordion-content"><div class="accordion-body">' +
+      '<div class="body-details">' +
+        '<p><strong>ישובים סמוכים:</strong> ' + escapeHtml(settlementsText) + '</p>' +
+        '<p><strong>מספר נקודות במסלול:</strong> ' + r.point_count + '</p>' +
+      '</div>' +
+      '<div class="route-actions">' +
+        '<a class="btn-action" href="' + encodeURI(r.gpx_path) + '" download>📥 הורדת קובץ GPX</a>' +
+      '</div>' +
+    '</div></div>';
+  return el;
+}
+
+function escapeHtml(s) {
+  var d = document.createElement('div');
+  d.textContent = s;
+  return d.innerHTML;
+}
+function escapeAttr(s) {
+  return s.replace(/\\/g, '\\\\').replace(/'/g, "\\'");
+}
+
+function render() {
+  var filtered = getFiltered();
+  var totalPages = Math.max(1, Math.ceil(filtered.length / PAGE_SIZE));
+  if (currentPage > totalPages) currentPage = totalPages;
+
+  document.getElementById('resultCount').textContent = 'נמצאו ' + filtered.length + ' מסלולים מתוך ' + ALL_ROUTES.length;
+
+  var start = (currentPage - 1) * PAGE_SIZE;
+  var pageItems = filtered.slice(start, start + PAGE_SIZE);
+
+  var container = document.getElementById('routesContainer');
+  container.innerHTML = '';
+  pageItems.forEach(function (r, i) { container.appendChild(buildRouteCard(r, i)); });
+
+  renderPagination(totalPages);
+  renderSelectionBar();
+}
+
+function renderPagination(totalPages) {
+  var el = document.getElementById('pagination');
+  if (totalPages <= 1) { el.innerHTML = ''; return; }
+  el.innerHTML =
+    '<button class="btn-nav" ' + (currentPage <= 1 ? 'disabled style="opacity:.4"' : 'onclick="goPage(' + (currentPage - 1) + ')"') + '>← הקודם</button>' +
+    '<span>עמוד ' + currentPage + ' מתוך ' + totalPages + '</span>' +
+    '<button class="btn-nav" ' + (currentPage >= totalPages ? 'disabled style="opacity:.4"' : 'onclick="goPage(' + (currentPage + 1) + ')"') + '>הבא →</button>';
+}
+
+function goPage(p) {
+  currentPage = p;
+  render();
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+function onCheckToggle(fileName, checked) {
+  if (checked) selectedFiles.add(fileName);
+  else selectedFiles.delete(fileName);
+  renderSelectionBar();
+}
+
+function renderSelectionBar() {
+  var bar = document.getElementById('selectionBar');
+  var count = selectedFiles.size;
+  if (count === 0) { bar.classList.remove('show'); return; }
+  bar.classList.add('show');
+  document.getElementById('selCount').textContent = 'נבחרו ' + count + ' מסלולים';
+}
+
+function clearSelection() {
+  selectedFiles.clear();
+  render();
+}
+
+function downloadSelected() {
+  var files = ALL_ROUTES.filter(function (r) { return selectedFiles.has(r.file_name); });
+  files.forEach(function (r, i) {
+    setTimeout(function () {
+      var a = document.createElement('a');
+      a.href = encodeURI(r.gpx_path);
+      a.download = r.file_name;
+      document.body.appendChild(a);
+      a.click();
+      a.remove();
+    }, i * 300);
+  });
+}
+
+// נבחרו במכוון בלי אדום/כחול/ירוק/שחור - אלה כבר צבעי הכבישים ותגי הסימון הרשמיים
+// של שבילי ישראל על גבי מפת הרקע (Israel Hiking Map) עצמה, ולכן מסלול בצבע כזה נבלע בתוכה.
+var ROUTE_MAP_COLORS = ['#E91E8C', '#7C4DFF', '#FF6F00', '#00BCD4', '#AA00FF', '#FFAB00', '#F50057', '#6200EA', '#FF80AB', '#00E5FF'];
+var routeMapInstance = null;
+var routeMapLayers = [];
+
+function parseGpxPoints(gpxText) {
+  var doc = new DOMParser().parseFromString(gpxText, 'application/xml');
+  var pts = Array.from(doc.querySelectorAll('trkpt'));
+  if (!pts.length) pts = Array.from(doc.querySelectorAll('rtept'));
+  if (!pts.length) pts = Array.from(doc.querySelectorAll('wpt'));
+  return pts.map(function (el) {
+    return [parseFloat(el.getAttribute('lat')), parseFloat(el.getAttribute('lon'))];
+  }).filter(function (p) { return !isNaN(p[0]) && !isNaN(p[1]); });
+}
+
+function showOnMap() {
+  var files = ALL_ROUTES.filter(function (r) { return selectedFiles.has(r.file_name); });
+  if (!files.length) return;
+
+  document.getElementById('mapOverlay').classList.add('show');
+  document.getElementById('mapOverlayTitle').textContent = files.length === 1 ? routeNameOnly(files[0].file_name) : files.length + ' מסלולים נבחרים';
+  document.getElementById('mapLoading').style.display = 'flex';
+  document.getElementById('mapLegend').innerHTML = '';
+
+  if (!routeMapInstance) {
+    routeMapInstance = L.map('routeMap');
+    L.tileLayer('https://israelhiking.osm.org.il/Tiles/{z}/{x}/{y}.png', {
+      attribution: '© Israel Hiking Map', maxZoom: 16
+    }).addTo(routeMapInstance);
+  }
+  setTimeout(function () { routeMapInstance.invalidateSize(); }, 50);
+
+  routeMapLayers.forEach(function (l) { routeMapInstance.removeLayer(l); });
+  routeMapLayers = [];
+
+  Promise.all(files.map(function (r, i) {
+    return fetch(encodeURI(r.gpx_path))
+      .then(function (resp) { return resp.text(); })
+      .then(function (text) { return { route: r, points: parseGpxPoints(text), color: ROUTE_MAP_COLORS[i % ROUTE_MAP_COLORS.length] }; })
+      .catch(function () { return { route: r, points: [], color: ROUTE_MAP_COLORS[i % ROUTE_MAP_COLORS.length] }; });
+  })).then(function (results) {
+    document.getElementById('mapLoading').style.display = 'none';
+    var allBounds = [];
+    var legend = document.getElementById('mapLegend');
+
+    results.forEach(function (res) {
+      var legendItem = document.createElement('div');
+      legendItem.className = 'map-legend-item';
+      var noteText = res.points.length ? '' : ' (שגיאה בטעינה)';
+      legendItem.innerHTML = '<span class="map-legend-swatch" style="background:' + res.color + '"></span><span>' + escapeHtml(routeNameOnly(res.route.file_name)) + noteText + '</span>';
+      legend.appendChild(legendItem);
+
+      if (res.points.length) {
+        var line = L.polyline(res.points, { color: res.color, weight: 4 }).addTo(routeMapInstance);
+        routeMapLayers.push(line);
+        allBounds = allBounds.concat(res.points);
+      }
+    });
+
+    if (allBounds.length) {
+      routeMapInstance.fitBounds(allBounds, { padding: [30, 30] });
+    }
+  });
+}
+
+function closeMapOverlay() {
+  document.getElementById('mapOverlay').classList.remove('show');
+}
+
+function openLightbox(src) {
+  document.getElementById('lightboxImg').src = src;
+  document.getElementById('lightboxOverlay').classList.add('show');
+}
+function closeLightbox() {
+  document.getElementById('lightboxOverlay').classList.remove('show');
+}
+document.getElementById('lightboxOverlay').addEventListener('click', closeLightbox);
+
+function toggleAcc(header) {
+  var acc = header.closest('.accordion');
+  var wasActive = acc.classList.contains('active');
+  var container = acc.parentElement;
+  container.querySelectorAll(':scope>.accordion.active').forEach(function (a) { if (a !== acc) a.classList.remove('active'); });
+  acc.classList.toggle('active', !wasActive);
+}
+
+['searchInput'].forEach(function (id) {
+  document.getElementById(id).addEventListener('input', function () { currentPage = 1; render(); });
+});
+['activityFilter', 'sourceFilter', 'sortSelect'].forEach(function (id) {
+  document.getElementById(id).addEventListener('change', function () { currentPage = 1; render(); });
+});
+</script>
+</body>
+</html>

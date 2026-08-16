@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<gpx version="1.1" creator="Claude AI" xmlns="http://www.topografix.com/GPX/1/1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.topografix.com/GPX/1/1 http://www.topografix.com/GPX/1/1/gpx.xsd">
+  <metadata>
+    <name>מסלול רכיבה: ליידן - קוקנהוף - האג</name>
+    <desc>מסלול רכיבה יפהפה של 45 ק"מ דרך שדות הפרחים, החוף ההולנדי ומרכז האג ההיסטורי</desc>
+    <author>
+      <name>Claude AI</name>
+    </author>
+    <time>2025-07-23T00:00:00Z</time>
+  </metadata>
+  
+  <wpt lat="52.1601" lon="4.4970">
+    <name>התחלה - ליידן מרכז</name>
+    <desc>נקודת התחלה ליד התחנה המרכזית של ליידן - 9:00</desc>
+    <sym>Flag, Blue</sym>
+    <type>start</type>
+  </wpt>
+  
+  <wpt lat="52.1720" lon="4.4850">
+    <name>פארק לידסה האוט</name>
+    <desc>Leidse Hout - פארק הטבע של ליידן, נקודת מעבר יפה</desc>
+    <sym>Park</sym>
+    <type>waypoint</type>
+  </wpt>
+  
+  <wpt lat="52.2580" lon="4.5470">
+    <name>קוקנהוף ושדות הפרחים</name>
+    <desc>אזור שדות הטוליפים המפורסמים - עצירה ב-10:30</desc>
+    <sym>Scenic Area</sym>
+    <type>poi</type>
+  </wpt>
+  
+  <wpt lat="52.2590" lon="4.5570">
+    <name>ליסה - הכפר</name>
+    <desc>כפר ליסה הציורי - הפסקת קפה</desc>
+    <sym>Lodge</sym>
+    <type>waypoint</type>
+  </wpt>
+  
+  <wpt lat="52.2070" lon="4.4030">
+    <name>קטויק - החוף</name>
+    <desc>עיירת החוף קטויק - אפשרות לארוחת צהריים על החוף ב-12:00</desc>
+    <sym>Marina</sym>
+    <type>poi</type>
+  </wpt>
+  
+  <wpt lat="52.2200" lon="4.3900">
+    <name>נורדויק</name>
+    <desc>אלטרנטיבה לקטויק - עיירת חוף יפה</desc>
+    <sym>Marina</sym>
+    <type>waypoint</type>
+  </wpt>
+  
+  <wpt lat="52.1800" lon="4.3200">
+    <name>ואסנאר</name>
+    <desc>האזור הירוק של ואסנאר עם אחוזות וחורש - 14:00</desc>
+    <sym>Forest</sym>
+    <type>waypoint</type>
+  </wpt>
+  
+  <wpt lat="52.0800" lon="4.3140">
+    <name>האג - ביצניהוף</name>
+    <desc>מרכז האג ההיסטורי - הפרלמנט ההולנדי - 15:30</desc>
+    <sym>City (Capitol)</sym>
+    <type>poi</type>
+  </wpt>
+  
+  <wpt lat="52.1420" lon="4.4150">
+    <name>פורשוטן</name>
+    <desc>כפר פורשוטן - נקודת מעבר בדרך חזרה לליידן</desc>
+    <sym>City (Small)</sym>
+    <type>waypoint</type>
+  </wpt>
+  
+  <wpt lat="52.1450" lon="4.3850">
+    <name>ווסינגן</name>
+    <desc>אלטרנטיבה לפורשוטן - מסלול ירוק ויפה</desc>
+    <sym>Forest</sym>
+    <type>waypoint</type>
+  </wpt>
+  
+  <wpt lat="52.1601" lon="4.4970">
+    <name>סיום - ליידן מרכז</name>
+    <desc>חזרה לנקודת ההתחלה - 17:00 בערך</desc>
+    <sym>Flag, Red</sym>
+    <type>finish</type>
+  </wpt>
+  
+  <trk>
+    <name>מסלול ליידן-קוקנהוף-האג</name>
+    <desc>מסלול מעגלי של 45 ק"מ</desc>
+    <trkseg>
+      <!-- יציאה מליידן צפונה -->
+      <trkpt lat="52.1601" lon="4.4970"><ele>0</ele></trkpt>
+      <trkpt lat="52.1650" lon="4.4950"><ele>1</ele></trkpt>
+      <trkpt lat="52.1720" lon="4.4850"><ele>2</ele></trkpt>
+      <trkpt lat="52.1800" lon="4.4800"><ele>2</ele></trkpt>
+      <trkpt lat="52.1900" lon="4.4900"><ele>3</ele></trkpt>
+      <trkpt lat="52.2000" lon="4.5000"><ele>3</ele></trkpt>
+      <trkpt lat="52.2100" lon="4.5100"><ele>4</ele></trkpt>
+      <trkpt lat="52.2200" lon="4.5200"><ele>4</ele></trkpt>
+      <trkpt lat="52.2300" lon="4.5300"><ele>5</ele></trkpt>
+      <trkpt lat="52.2400" lon="4.5400"><ele>5</ele></trkpt>
+      
+      <!-- אזור קוקנהוף ושדות הפרחים -->
+      <trkpt lat="52.2580" lon="4.5470"><ele>6</ele></trkpt>
+      <trkpt lat="52.2590" lon="4.5570"><ele>6</ele></trkpt>
+      
+      <!-- מעבר לכיוון החוף -->
+      <trkpt lat="52.2550" lon="4.5400"><ele>5</ele></trkpt>
+      <trkpt lat="52.2450" lon="4.5200"><ele>4</ele></trkpt>
+      <trkpt lat="52.2350" lon="4.4900"><ele>3</ele></trkpt>
+      <trkpt lat="52.2200" lon="4.4600"><ele>2</ele></trkpt>
+      <trkpt lat="52.2150" lon="4.4300"><ele>1</ele></trkpt>
+      
+      <!-- קטויק או נורדויק -->
+      <trkpt lat="52.2070" lon="4.4030"><ele>0</ele></trkpt>
+      <trkpt lat="52.2200" lon="4.3900"><ele>0</ele></trkpt>
+      
+      <!-- דרך ואסנאר -->
+      <trkpt lat="52.2150" lon="4.3700"><ele>1</ele></trkpt>
+      <trkpt lat="52.2000" lon="4.3500"><ele>2</ele></trkpt>
+      <trkpt lat="52.1900" lon="4.3400"><ele>3</ele></trkpt>
+      <trkpt lat="52.1800" lon="4.3200"><ele>4</ele></trkpt>
+      
+      <!-- לכיוון האג -->
+      <trkpt lat="52.1600" lon="4.3100"><ele>3</ele></trkpt>
+      <trkpt lat="52.1400" lon="4.3050"><ele>2</ele></trkpt>
+      <trkpt lat="52.1200" lon="4.3100"><ele>1</ele></trkpt>
+      <trkpt lat="52.1000" lon="4.3120"><ele>0</ele></trkpt>
+      <trkpt lat="52.0800" lon="4.3140"><ele>0</ele></trkpt>
+      
+      <!-- חזרה דרך וסינגן/פורשוטן -->
+      <trkpt lat="52.0900" lon="4.3300"><ele>1</ele></trkpt>
+      <trkpt lat="52.1000" lon="4.3500"><ele>2</ele></trkpt>
+      <trkpt lat="52.1100" lon="4.3700"><ele>3</ele></trkpt>
+      <trkpt lat="52.1200" lon="4.3900"><ele>4</ele></trkpt>
+      <trkpt lat="52.1300" lon="4.4000"><ele>4</ele></trkpt>
+      <trkpt lat="52.1420" lon="4.4150"><ele>3</ele></trkpt>
+      <trkpt lat="52.1450" lon="4.3850"><ele>2</ele></trkpt>
+      
+      <!-- חזרה לליידן -->
+      <trkpt lat="52.1500" lon="4.4200"><ele>2</ele></trkpt>
+      <trkpt lat="52.1520" lon="4.4400"><ele>1</ele></trkpt>
+      <trkpt lat="52.1550" lon="4.4600"><ele>1</ele></trkpt>
+      <trkpt lat="52.1580" lon="4.4800"><ele>0</ele></trkpt>
+      <trkpt lat="52.1601" lon="4.4970"><ele>0</ele></trkpt>
+    </trkseg>
+  </trk>
+</gpx>
