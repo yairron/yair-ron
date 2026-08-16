@@ -15,9 +15,12 @@ build_routes_catalog.py
      מתוך gpx_meaningful_rename.py, כדי שלכל קובץ (גם אם כבר יש לו שם משמעותי ולכן לא
      "נגעו" בו בשלב 1) תהיה רשימת ישובים סמוכים לצורך חיפוש בדף הקטלוג - לא רק לקבצים
      שהשם שלהם נבנה מהם.
-  4. גובה מצטבר - לא קיים באף אחד משני הכלים הקיימים, מחושב כאן לפי אותה נוסחה בדיוק
-     שכבר נמצאת בשימוש בכלי "ניקוי קובץ GPX" של האתר עצמו (YR1/bike/gpx_cleaner/gpx_cleaner.html):
-     סכימת כל הפרשי הגובה החיוביים בין נקודות עוקבות. קובץ בלי תגי גובה בכלל מקבל "אין נתון".
+  4. טיפוס וירידה מצטברים - לא קיימים באף אחד משני הכלים הקיימים. מחושבים לפי אלגוריתם
+     סף-רעש (hysteresis) - ראו תיעוד מלא ליד calc_elevation_gain_loss() - לא סכימת כל
+     הפרש חיובי/שלילי בין נקודות עוקבות (זו הייתה הנוסחה המקורית כאן עד 16.08.2026,
+     ועדיין הנוסחה בכלי "ניקוי קובץ GPX", YR1/bike/gpx_cleaner/gpx_cleaner.html - תוקן
+     כאן בלבד אחרי שהתגלה בפועל שהיא מנפחת משמעותית "טיפוס" ממסלולים שכמעט ואינם
+     מטפסים, בגלל רעש GPS טבעי). קובץ בלי תגי גובה בכלל מקבל "אין נתון" בשניהם.
   5. תמונה ממוזערת - נוצרת בדפדפן אמיתי (Playwright, אותו כלי כבר בשימוש בסקריפטים אחרים
      באתר תחת BTL/support_files/senior_rights/scripts/) שמריץ עמוד מפה מקומי
      (thumbnail_template.html, לצדו של הסקריפט הזה) עם אותה בדיוק שכבת מפה טופוגרפית
@@ -121,21 +124,43 @@ def extract_track_points(path: Path):
     return points
 
 
-def calc_elevation_gain(elevations):
-    """סכימת כל הפרשי הגובה החיוביים בין נקודות עוקבות - אותה נוסחה בדיוק שכבר בשימוש
-    בכלי ניקוי קובץ GPX (gpx_cleaner.html, חישוב trackStats.climb). מחזיר None אם אין
-    בכלל נתוני גובה בקובץ."""
+ELEVATION_NOISE_THRESHOLD_M = 4.0
+
+
+def calc_elevation_gain_loss(elevations):
+    """טיפוס וירידה מצטברים, לפי אלגוריתם סף-רעש (hysteresis/deadband) - לא סכימת כל
+    הפרש בין נקודות עוקבות (כך היה קודם, וגם כך זה עדיין בכלי "ניקוי קובץ GPX",
+    gpx_cleaner.html - ראו הערה בסוף). מתעלמים משינוי גובה עד שהוא חוצה סף מינימלי
+    (ELEVATION_NOISE_THRESHOLD_M) ביחס לנקודת הייחוס האחרונה; רק אז נספר אותו ונוזזת
+    נקודת הייחוס. זה מונע מרעש GPS טבעי (תזוזה של מטר-שניים סביב הגובה האמיתי, בין
+    נקודה לנקודה) להצטבר לכדי מאות מטרים של "טיפוס" מדומה על מסלול שבפועל שטוח/יורד.
+
+    אומת בפועל (16.08.2026) מול gpx.studio על קובץ אמיתי (ערד שפך זוהר.gpx, מסלול
+    שכולו ירידה בפועל אבל הנוסחה הישנה הראתה לו 659 מ' טיפוס): סף 4 מ' נתן כאן
+    448 מ' טיפוס / 1377 מ' ירידה, מול 453/1384 בפועל ב-gpx.studio - פער <2%.
+
+    מחזיר (gain, loss) מעוגלים, או (None, None) אם אין בכלל נתוני גובה בקובץ.
+    **לא** תוקן ב-gpx_cleaner.html - זה כלי נפרד, עצמאי, שמשמש להעלאה/ניקוי חד-פעמיים
+    של קובץ בודד ע"י המשתמש בעצמו; התיקון כאן נוגע רק לחישוב המוצג בקטלוג."""
     if not any(e is not None for e in elevations):
-        return None
+        return None, None
     gain = 0.0
-    prev = None
+    loss = 0.0
+    ref = None
     for e in elevations:
         if e is None:
             continue
-        if prev is not None and e > prev:
-            gain += e - prev
-        prev = e
-    return round(gain)
+        if ref is None:
+            ref = e
+            continue
+        diff = e - ref
+        if diff >= ELEVATION_NOISE_THRESHOLD_M:
+            gain += diff
+            ref = e
+        elif diff <= -ELEVATION_NOISE_THRESHOLD_M:
+            loss += -diff
+            ref = e
+    return round(gain), round(loss)
 
 
 def find_nearby_settlement_names(coords, settlements_db):
@@ -181,6 +206,7 @@ def build_catalog_record(path: Path, info: dict, points: list, settlements_db):
 
     date_obj, date_source = determine_display_date(path, times)
     settlements = find_nearby_settlement_names(coords, settlements_db)
+    elevation_gain, elevation_loss = calc_elevation_gain_loss(elevations)
 
     return {
         "file_name": path.name,
@@ -190,7 +216,8 @@ def build_catalog_record(path: Path, info: dict, points: list, settlements_db):
         "activity": info["activity_guess"],
         "source": normalize_source_guess(info["source_guess"]),  # "הקלטה" / "תכנון מסלול" / "לא ברור"
         "distance_km": info["distance_km"],
-        "elevation_gain_m": calc_elevation_gain(elevations),
+        "elevation_gain_m": elevation_gain,
+        "elevation_loss_m": elevation_loss,
         "point_count": info["point_count"],
         "settlements": settlements,
         # True/False מפורש (לא רק הסתמכות על רשימה ריקה) - כדי שדף הקטלוג יוכל

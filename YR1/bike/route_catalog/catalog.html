@@ -243,9 +243,10 @@ function routeNameOnly(fileName) {
 }
 
 function elevationText(r) {
-  return r.elevation_gain_m === null
-    ? (r.source === 'תכנון מסלול' ? 'אין נתון (תכנון)' : 'אין נתון')
-    : ('⛰️ ' + r.elevation_gain_m + ' מ׳');
+  if (r.elevation_gain_m === null) {
+    return r.source === 'תכנון מסלול' ? 'אין נתון (תכנון)' : 'אין נתון';
+  }
+  return '↗' + r.elevation_gain_m + ' ↘' + r.elevation_loss_m + ' מ׳';
 }
 
 function buildRouteCard(r, idx) {

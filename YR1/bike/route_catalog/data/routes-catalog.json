@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-16T20:09:12",
+  "generated_at": "2026-08-16T20:33:31",
   "route_count": 194,
   "routes": [
     {
@@ -10,7 +10,8 @@
       "activity": "רכיבת אופניים",
       "source": "הקלטה",
       "distance_km": 14.04,
-      "elevation_gain_m": 307,
+      "elevation_gain_m": 269,
+      "elevation_loss_m": 270,
       "point_count": 493,
       "settlements": [
         "געתון",
@@ -28,7 +29,8 @@
       "activity": "רכיבת אופניים",
       "source": "הקלטה",
       "distance_km": 27.87,
-      "elevation_gain_m": 639,
+      "elevation_gain_m": 574,
+      "elevation_loss_m": 463,
       "point_count": 2669,
       "settlements": [
         "מנות",
@@ -46,7 +48,8 @@
       "activity": "רכיבת אופניים",
       "source": "הקלטה",
       "distance_km": 75.03,
-      "elevation_gain_m": 720,
+      "elevation_gain_m": 405,
+      "elevation_loss_m": 399,
       "point_count": 8000,
       "settlements": [
         "כפר ביאליק",
@@ -64,7 +67,8 @@
       "activity": "הליכה רגלית",
       "source": "הקלטה",
       "distance_km": 31.24,
-      "elevation_gain_m": 618,
+      "elevation_gain_m": 459,
+      "elevation_loss_m": 450,
       "point_count": 2580,
       "settlements": [
         "אלוני אבא",
@@ -82,7 +86,8 @@
       "activity": "רכיבת אופניים",
       "source": "הקלטה",
       "distance_km": 16.49,
-      "elevation_gain_m": 196,
+      "elevation_gain_m": 56,
+      "elevation_loss_m": 31,
       "point_count": 1365,
       "settlements": [
         "תל אביב -יפו",
@@ -99,7 +104,8 @@
       "activity": "הליכה רגלית",
       "source": "הקלטה",
       "distance_km": 34.21,
-      "elevation_gain_m": 733,
+      "elevation_gain_m": 509,
+      "elevation_loss_m": 496,
       "point_count": 2911,
       "settlements": [
         "אליפז",
@@ -116,7 +122,8 @@
       "activity": "הליכה רגלית",
       "source": "הקלטה",
       "distance_km": 8.36,
-      "elevation_gain_m": 197,
+      "elevation_gain_m": 146,
+      "elevation_loss_m": 149,
       "point_count": 406,
       "settlements": [
         "מצובה",
@@ -135,6 +142,7 @@
       "source": "הקלטה",
       "distance_km": 0.0,
       "elevation_gain_m": 0,
+      "elevation_loss_m": 0,
       "point_count": 1,
       "settlements": [
         "יחיעם",
@@ -152,7 +160,8 @@
       "activity": "רכיבת אופניים",
       "source": "הקלטה",
       "distance_km": 218.36,
-      "elevation_gain_m": 3537,
+      "elevation_gain_m": 2911,
+      "elevation_loss_m": 2762,
       "point_count": 3059,
       "settlements": [],
       "settlements_found": false,
@@ -166,7 +175,8 @@
       "activity": "רכיבת אופניים",
       "source": "הקלטה",
       "distance_km": 5.28,
-      "elevation_gain_m": 144,
+      "elevation_gain_m": 132,
+      "elevation_loss_m": 88,
       "point_count": 186,
       "settlements": [
         "געתון",
@@ -184,7 +194,8 @@
       "activity": "רכיבת אופניים",
       "source": "הקלטה",
       "distance_km": 9.81,
-      "elevation_gain_m": 240,
+      "elevation_gain_m": 229,
+      "elevation_loss_m": 226,
       "point_count": 399,
       "settlements": [
         "געתון",
@@ -201,7 +212,8 @@
       "activity": "לא ברור (מהירות חריגה: 77.3 קמ״ש)",
       "source": "הקלטה",
       "distance_km": 105.88,
-      "elevation_gain_m": 313,
+      "elevation_gain_m": 291,
+      "elevation_loss_m": 530,
       "point_count": 481,
       "settlements": [
         "געתון",
@@ -219,7 +231,8 @@
       "activity": "רכיבת אופניים",
       "source": "הקלטה",
       "distance_km": 11.01,
-      "elevation_gain_m": 262,
+      "elevation_gain_m": 247,
+      "elevation_loss_m": 233,
       "point_count": 313,
       "settlements": [
         "געתון",
@@ -237,7 +250,8 @@
       "activity": "לא ברור (מהירות חריגה: 94.3 קמ״ש)",
       "source": "הקלטה",
       "distance_km": 98.74,
-      "elevation_gain_m": 378,
+      "elevation_gain_m": 369,
+      "elevation_loss_m": 18,
       "point_count": 214,
       "settlements": [
         "געתון",
@@ -254,7 +268,8 @@
       "activity": "רכיבת אופניים",
       "source": "הקלטה",
       "distance_km": 12.33,
-      "elevation_gain_m": 292,
+      "elevation_gain_m": 265,
+      "elevation_loss_m": 267,
       "point_count": 400,
       "settlements": [
         "געתון",
@@ -272,7 +287,8 @@
       "activity": "לא ברור (מהירות חריגה: 100.2 קמ״ש)",
       "source": "הקלטה",
       "distance_km": 104.7,
-      "elevation_gain_m": 282,
+      "elevation_gain_m": 264,
+      "elevation_loss_m": 612,
       "point_count": 343,
       "settlements": [
         "געתון",
@@ -289,7 +305,8 @@
       "activity": "רכיבת אופניים",
       "source": "הקלטה",
       "distance_km": 12.52,
-      "elevation_gain_m": 326,
+      "elevation_gain_m": 300,
+      "elevation_loss_m": 300,
       "point_count": 458,
       "settlements": [
         "געתון",
@@ -308,6 +325,7 @@
       "source": "הקלטה",
       "distance_km": 0.0,
       "elevation_gain_m": 0,
+      "elevation_loss_m": 0,
       "point_count": 1,
       "settlements": [
         "יחיעם",
@@ -325,7 +343,8 @@
       "activity": "הליכה רגלית",
       "source": "הקלטה",
       "distance_km": 130.66,
-      "elevation_gain_m": 4,
+      "elevation_gain_m": 0,
+      "elevation_loss_m": 27,
       "point_count": 14,
       "settlements": [
         "בית זיד",
@@ -342,7 +361,8 @@
       "activity": "רכיבת אופניים",
       "source": "תכנון מסלול",
       "distance_km": 17.17,
-      "elevation_gain_m": 422,
+      "elevation_gain_m": 417,
+      "elevation_loss_m": 416,
       "point_count": 458,
       "settlements": [],
       "settlements_found": false,
@@ -356,7 +376,8 @@
       "activity": "הליכה רגלית",
       "source": "הקלטה",
       "distance_km": 8.52,
-      "elevation_gain_m": 324,
+      "elevation_gain_m": 185,
+      "elevation_loss_m": 192,
       "point_count": 22379,
       "settlements": [
         "עין הוד",
@@ -373,7 +394,8 @@
       "activity": "הליכה רגלית",
       "source": "הקלטה",
       "distance_km": 10.08,
-      "elevation_gain_m": 465,
+      "elevation_gain_m": 366,
+      "elevation_loss_m": 274,
       "point_count": 16027,
       "settlements": [
         "בית אורן",
@@ -391,7 +413,8 @@
       "activity": "הליכה רגלית",
       "source": "הקלטה",
       "distance_km": 12.41,
-      "elevation_gain_m": 450,
+      "elevation_gain_m": 355,
+      "elevation_loss_m": 588,
       "point_count": 14687,
       "settlements": [
         "מירון",
@@ -408,7 +431,8 @@
       "activity": "הליכה רגלית",
       "source": "הקלטה",
       "distance_km": 5.51,
-      "elevation_gain_m": 133,
+      "elevation_gain_m": 40,
+      "elevation_loss_m": 478,
       "point_count": 15996,
       "settlements": [
         "עין קנייא",
@@ -426,7 +450,8 @@
       "activity": "הליכה רגלית",
       "source": "הקלטה",
       "distance_km": 5.51,
-      "elevation_gain_m": 133,
+      "elevation_gain_m": 40,
+      "elevation_loss_m": 478,
       "point_count": 15996,
       "settlements": [
         "עין קנייא",
@@ -444,7 +469,8 @@
       "activity": "הליכה רגלית",
       "source": "הקלטה",
       "distance_km": 7.8,
-      "elevation_gain_m": 385,
+      "elevation_gain_m": 222,
+      "elevation_loss_m": 266,
       "point_count": 17698,
       "settlements": [
         "מירון",
@@ -462,7 +488,8 @@
       "activity": "הליכה רגלית",
       "source": "הקלטה",
       "distance_km": 8.36,
-      "elevation_gain_m": 245,
+      "elevation_gain_m": 170,
+      "elevation_loss_m": 199,
       "point_count": 390,
       "settlements": [
         "עין הוד",
@@ -480,7 +507,8 @@
       "activity": "הליכה רגלית",
       "source": "הקלטה",
       "distance_km": 11.29,
-      "elevation_gain_m": 372,
+      "elevation_gain_m": 274,
+      "elevation_loss_m": 274,
       "point_count": 13335,
       "settlements": [
         "עין זיוון",
@@ -497,7 +525,8 @@
       "activity": "רכיבת אופניים",
       "source": "הקלטה",
       "distance_km": 6.21,
-      "elevation_gain_m": 134,
+      "elevation_gain_m": 109,
+      "elevation_loss_m": 141,
       "point_count": 274,
       "settlements": [
         "געתון",
@@ -514,7 +543,8 @@
       "activity": "רכיבת אופניים",
       "source": "הקלטה",
       "distance_km": 21.54,
-      "elevation_gain_m": 470,
+      "elevation_gain_m": 397,
+      "elevation_loss_m": 394,
       "point_count": 965,
       "settlements": [
         "געתון",
@@ -532,7 +562,8 @@
       "activity": "לא ברור (מהירות חריגה: 112.0 קמ״ש)",
       "source": "הקלטה",
       "distance_km": 374.65,
-      "elevation_gain_m": 9194,
+      "elevation_gain_m": 8548,
+      "elevation_loss_m": 8562,
       "point_count": 1922,
       "settlements": [
         "עין המפרץ",
@@ -550,7 +581,8 @@
       "activity": "רכיבת אופניים",
       "source": "הקלטה",
       "distance_km": 25.79,
-      "elevation_gain_m": 548,
+      "elevation_gain_m": 458,
+      "elevation_loss_m": 116,
       "point_count": 1137,
       "settlements": [
         "געתון",
@@ -568,7 +600,8 @@
       "activity": "הליכה רגלית",
       "source": "הקלטה",
       "distance_km": 25.51,
-      "elevation_gain_m": 4523,
+      "elevation_gain_m": 4469,
+      "elevation_loss_m": 4616,
       "point_count": 239,
       "settlements": [
         "מג'דל שמס",
@@ -586,7 +619,8 @@
       "activity": "רכיבת אופניים",
       "source": "הקלטה",
       "distance_km": 35.78,
-      "elevation_gain_m": 1691,
+      "elevation_gain_m": 1107,
+      "elevation_loss_m": 1118,
       "point_count": 4591,
       "settlements": [
         "עבדון",
@@ -604,7 +638,8 @@
       "activity": "רכיבת אופניים",
       "source": "הקלטה",
       "distance_km": 61.76,
-      "elevation_gain_m": 2346,
+      "elevation_gain_m": 1429,
+      "elevation_loss_m": 1432,
       "point_count": 8335,
       "settlements": [
         "שתולה",
@@ -622,7 +657,8 @@
       "activity": "רכיבת אופניים",
       "source": "הקלטה",
       "distance_km": 45.67,
-      "elevation_gain_m": 2392,
+      "elevation_gain_m": 1159,
+      "elevation_loss_m": 1166,
       "point_count": 6402,
       "settlements": [
         "געתון",
@@ -640,7 +676,8 @@
       "activity": "רכיבת אופניים",
       "source": "הקלטה",
       "distance_km": 37.23,
-      "elevation_gain_m": 1328,
+      "elevation_gain_m": 638,
+      "elevation_loss_m": 645,
       "point_count": 5237,
       "settlements": [
         "עבדון",
@@ -658,7 +695,8 @@
       "activity": "רכיבת אופניים",
       "source": "הקלטה",
       "distance_km": 16.06,
-      "elevation_gain_m": 822,
+      "elevation_gain_m": 339,
+      "elevation_loss_m": 355,
       "point_count": 2338,
       "settlements": [
         "יחיעם",
@@ -676,7 +714,8 @@
       "activity": "רכיבת אופניים",
       "source": "הקלטה",
       "distance_km": 23.47,
-      "elevation_gain_m": 2186,
+      "elevation_gain_m": 1574,
+      "elevation_loss_m": 1568,
       "point_count": 3401,
       "settlements": [
         "שלומי",
@@ -693,7 +732,8 @@
       "activity": "רכיבת אופניים",
       "source": "הקלטה",
       "distance_km": 49.99,
-      "elevation_gain_m": 1844,
+      "elevation_gain_m": 1309,
+      "elevation_loss_m": 1303,
       "point_count": 2193,
       "settlements": [
         "געתון",
@@ -711,7 +751,8 @@
       "activity": "רכיבת אופניים",
       "source": "הקלטה",
       "distance_km": 32.89,
-      "elevation_gain_m": 333,
+      "elevation_gain_m": 239,
+      "elevation_loss_m": 249,
       "point_count": 7422,
       "settlements": [
         "שבי ציון",
@@ -729,7 +770,8 @@
       "activity": "רכיבת אופניים",
       "source": "הקלטה",
       "distance_km": 44.14,
-      "elevation_gain_m": 1100,
+      "elevation_gain_m": 643,
+      "elevation_loss_m": 538,
       "point_count": 1956,
       "settlements": [
         "געתון",
@@ -747,7 +789,8 @@
       "activity": "רכיבת אופניים",
       "source": "הקלטה",
       "distance_km": 52.06,
-      "elevation_gain_m": 662,
+      "elevation_gain_m": 519,
+      "elevation_loss_m": 537,
       "point_count": 14801,
       "settlements": [
         "מנות",
@@ -765,7 +808,8 @@
       "activity": "רכיבת אופניים",
       "source": "הקלטה",
       "distance_km": 14.29,
-      "elevation_gain_m": 428,
+      "elevation_gain_m": 266,
+      "elevation_loss_m": 272,
       "point_count": 653,
       "settlements": [
         "יחיעם",
@@ -783,7 +827,8 @@
       "activity": "רכיבת אופניים",
       "source": "הקלטה",
       "distance_km": 33.62,
-      "elevation_gain_m": 858,
+      "elevation_gain_m": 617,
+      "elevation_loss_m": 631,
       "point_count": 1455,
       "settlements": [
         "עבדון",
@@ -801,7 +846,8 @@
       "activity": "רכיבת אופניים",
       "source": "הקלטה",
       "distance_km": 43.61,
-      "elevation_gain_m": 1181,
+      "elevation_gain_m": 681,
+      "elevation_loss_m": 687,
       "point_count": 1917,
       "settlements": [
         "געתון",
@@ -819,7 +865,8 @@
       "activity": "רכיבת אופניים",
       "source": "הקלטה",
       "distance_km": 29.27,
-      "elevation_gain_m": 612,
+      "elevation_gain_m": 537,
+      "elevation_loss_m": 550,
       "point_count": 9028,
       "settlements": [
         "עין יעקב",
@@ -837,7 +884,8 @@
       "activity": "לא ברור",
       "source": "תכנון מסלול",
       "distance_km": 27.74,
-      "elevation_gain_m": 736,
+      "elevation_gain_m": 528,
+      "elevation_loss_m": 528,
       "point_count": 1212,
       "settlements": [
         "עבדון",
@@ -855,7 +903,8 @@
       "activity": "לא ברור (מהירות חריגה: 250.0 קמ״ש)",
       "source": "הקלטה",
       "distance_km": 44.38,
-      "elevation_gain_m": 415,
+      "elevation_gain_m": 140,
+      "elevation_loss_m": 143,
       "point_count": 1034,
       "settlements": [],
       "settlements_found": false,
@@ -869,7 +918,8 @@
       "activity": "הליכה רגלית",
       "source": "הקלטה",
       "distance_km": 30.51,
-      "elevation_gain_m": 477,
+      "elevation_gain_m": 270,
+      "elevation_loss_m": 1216,
       "point_count": 3307,
       "settlements": [
         "נווה זוהר",
@@ -886,7 +936,8 @@
       "activity": "רכיבת אופניים (לפי שם קובץ בלבד)",
       "source": "תכנון מסלול",
       "distance_km": 3070.82,
-      "elevation_gain_m": 22993,
+      "elevation_gain_m": 14911,
+      "elevation_loss_m": 15587,
       "point_count": 31295,
       "settlements": [],
       "settlements_found": false,
@@ -900,7 +951,8 @@
       "activity": "רכיבת אופניים",
       "source": "הקלטה",
       "distance_km": 21.43,
-      "elevation_gain_m": 109,
+      "elevation_gain_m": 57,
+      "elevation_loss_m": 379,
       "point_count": 4440,
       "settlements": [
         "שמרת",
@@ -919,6 +971,7 @@
       "source": "תכנון מסלול",
       "distance_km": 9.78,
       "elevation_gain_m": null,
+      "elevation_loss_m": null,
       "point_count": 113,
       "settlements": [
         "הילה",
@@ -937,6 +990,7 @@
       "source": "תכנון מסלול",
       "distance_km": 1188.45,
       "elevation_gain_m": null,
+      "elevation_loss_m": null,
       "point_count": 41453,
       "settlements": [
         "קריית שמונה",
@@ -954,7 +1008,8 @@
       "activity": "הליכה רגלית",
       "source": "הקלטה",
       "distance_km": 16.13,
-      "elevation_gain_m": 754,
+      "elevation_gain_m": 317,
+      "elevation_loss_m": 319,
       "point_count": 1675,
       "settlements": [
         "נווה זיו",
@@ -971,7 +1026,8 @@
       "activity": "רכיבת אופניים (לפי שם קובץ בלבד)",
       "source": "תכנון מסלול",
       "distance_km": 64.64,
-      "elevation_gain_m": 14,
+      "elevation_gain_m": 12,
+      "elevation_loss_m": 12,
       "point_count": 40,
       "settlements": [],
       "settlements_found": false,
@@ -986,6 +1042,7 @@
       "source": "תכנון מסלול",
       "distance_km": 6.97,
       "elevation_gain_m": null,
+      "elevation_loss_m": null,
       "point_count": 20,
       "settlements": [
         "מרום גולן",
@@ -1002,7 +1059,8 @@
       "activity": "רכיבת אופניים",
       "source": "הקלטה",
       "distance_km": 27.03,
-      "elevation_gain_m": 426,
+      "elevation_gain_m": 343,
+      "elevation_loss_m": 345,
       "point_count": 2488,
       "settlements": [
         "קציר-חריש",
@@ -1020,7 +1078,8 @@
       "activity": "רכיבת אופניים",
       "source": "הקלטה",
       "distance_km": 26.96,
-      "elevation_gain_m": 369,
+      "elevation_gain_m": 254,
+      "elevation_loss_m": 234,
       "point_count": 2207,
       "settlements": [
         "נווה זוהר",
@@ -1037,7 +1096,8 @@
       "activity": "רכיבת אופניים",
       "source": "הקלטה",
       "distance_km": 13.62,
-      "elevation_gain_m": 1346,
+      "elevation_gain_m": 1238,
+      "elevation_loss_m": 1236,
       "point_count": 353,
       "settlements": [
         "חניתה",
@@ -1055,7 +1115,8 @@
       "activity": "לא ברור",
       "source": "תכנון מסלול",
       "distance_km": 15.45,
-      "elevation_gain_m": 328,
+      "elevation_gain_m": 261,
+      "elevation_loss_m": 258,
       "point_count": 985,
       "settlements": [
         "נווה זיו",
@@ -1072,7 +1133,8 @@
       "activity": "רכיבת אופניים",
       "source": "תכנון מסלול",
       "distance_km": 16.18,
-      "elevation_gain_m": 2091,
+      "elevation_gain_m": 2051,
+      "elevation_loss_m": 2049,
       "point_count": 402,
       "settlements": [],
       "settlements_found": false,
@@ -1086,7 +1148,8 @@
       "activity": "הליכה רגלית",
       "source": "הקלטה",
       "distance_km": 42.34,
-      "elevation_gain_m": 5294,
+      "elevation_gain_m": 4544,
+      "elevation_loss_m": 4444,
       "point_count": 5074,
       "settlements": [],
       "settlements_found": false,
@@ -1100,7 +1163,8 @@
       "activity": "רכיבת אופניים",
       "source": "תכנון מסלול",
       "distance_km": 38.78,
-      "elevation_gain_m": 640,
+      "elevation_gain_m": 459,
+      "elevation_loss_m": 475,
       "point_count": 592,
       "settlements": [
         "תל אביב -יפו",
@@ -1117,7 +1181,8 @@
       "activity": "לא ברור",
       "source": "תכנון מסלול",
       "distance_km": 302.68,
-      "elevation_gain_m": 1523,
+      "elevation_gain_m": 810,
+      "elevation_loss_m": 876,
       "point_count": 1882,
       "settlements": [],
       "settlements_found": false,
@@ -1131,7 +1196,8 @@
       "activity": "רכיבת אופניים",
       "source": "הקלטה",
       "distance_km": 75.24,
-      "elevation_gain_m": 869,
+      "elevation_gain_m": 371,
+      "elevation_loss_m": 370,
       "point_count": 6224,
       "settlements": [
         "גבעת כ\"ח",
@@ -1150,6 +1216,7 @@
       "source": "תכנון מסלול",
       "distance_km": 31.0,
       "elevation_gain_m": null,
+      "elevation_loss_m": null,
       "point_count": 275,
       "settlements": [
         "ריחאנייה",
@@ -1167,7 +1234,8 @@
       "activity": "לא ברור",
       "source": "תכנון מסלול",
       "distance_km": 13.49,
-      "elevation_gain_m": 187,
+      "elevation_gain_m": 110,
+      "elevation_loss_m": 104,
       "point_count": 350,
       "settlements": [
         "חספין",
@@ -1185,7 +1253,8 @@
       "activity": "לא ברור",
       "source": "תכנון מסלול",
       "distance_km": 8.36,
-      "elevation_gain_m": 311,
+      "elevation_gain_m": 290,
+      "elevation_loss_m": 257,
       "point_count": 177,
       "settlements": [
         "מבוא חמה",
@@ -1203,7 +1272,8 @@
       "activity": "לא ברור",
       "source": "תכנון מסלול",
       "distance_km": 39.39,
-      "elevation_gain_m": 913,
+      "elevation_gain_m": 855,
+      "elevation_loss_m": 753,
       "point_count": 378,
       "settlements": [
         "אילת",
@@ -1220,7 +1290,8 @@
       "activity": "הליכה רגלית",
       "source": "הקלטה",
       "distance_km": 9.51,
-      "elevation_gain_m": 85,
+      "elevation_gain_m": 61,
+      "elevation_loss_m": 61,
       "point_count": 776,
       "settlements": [
         "בארי",
@@ -1238,7 +1309,8 @@
       "activity": "הליכה רגלית",
       "source": "הקלטה",
       "distance_km": 9.13,
-      "elevation_gain_m": 80,
+      "elevation_gain_m": 63,
+      "elevation_loss_m": 53,
       "point_count": 719,
       "settlements": [
         "בארי",
@@ -1256,7 +1328,8 @@
       "activity": "לא ברור",
       "source": "תכנון מסלול",
       "distance_km": 23.49,
-      "elevation_gain_m": 326,
+      "elevation_gain_m": 166,
+      "elevation_loss_m": 162,
       "point_count": 1094,
       "settlements": [
         "בארי",
@@ -1273,7 +1346,8 @@
       "activity": "רכיבת אופניים",
       "source": "הקלטה",
       "distance_km": 64.06,
-      "elevation_gain_m": 538,
+      "elevation_gain_m": 292,
+      "elevation_loss_m": 358,
       "point_count": 4888,
       "settlements": [
         "כיסופים",
@@ -1291,7 +1365,8 @@
       "activity": "רכיבת אופניים",
       "source": "הקלטה",
       "distance_km": 49.78,
-      "elevation_gain_m": 429,
+      "elevation_gain_m": 255,
+      "elevation_loss_m": 251,
       "point_count": 4388,
       "settlements": [
         "כיסופים",
@@ -1309,7 +1384,8 @@
       "activity": "רכיבת אופניים",
       "source": "הקלטה",
       "distance_km": 35.92,
-      "elevation_gain_m": 813,
+      "elevation_gain_m": 567,
+      "elevation_loss_m": 627,
       "point_count": 3502,
       "settlements": [
         "קטורה",
@@ -1326,7 +1402,8 @@
       "activity": "הליכה רגלית",
       "source": "הקלטה",
       "distance_km": 35.05,
-      "elevation_gain_m": 611,
+      "elevation_gain_m": 446,
+      "elevation_loss_m": 446,
       "point_count": 3402,
       "settlements": [
         "שדה בוקר",
@@ -1344,7 +1421,8 @@
       "activity": "רכיבת אופניים",
       "source": "הקלטה",
       "distance_km": 82.69,
-      "elevation_gain_m": 1839,
+      "elevation_gain_m": 1599,
+      "elevation_loss_m": 1321,
       "point_count": 888,
       "settlements": [
         "בית גוברין",
@@ -1362,7 +1440,8 @@
       "activity": "לא ברור (מהירות חריגה: 96.2 קמ״ש)",
       "source": "הקלטה",
       "distance_km": 16.23,
-      "elevation_gain_m": 466,
+      "elevation_gain_m": 390,
+      "elevation_loss_m": 405,
       "point_count": 608,
       "settlements": [
         "ג'סר א-זרקא",
@@ -1380,7 +1459,8 @@
       "activity": "לא ברור",
       "source": "תכנון מסלול",
       "distance_km": 7.75,
-      "elevation_gain_m": 262,
+      "elevation_gain_m": 204,
+      "elevation_loss_m": 159,
       "point_count": 257,
       "settlements": [
         "עין יעקב",
@@ -1397,7 +1477,8 @@
       "activity": "הליכה רגלית",
       "source": "הקלטה",
       "distance_km": 7.49,
-      "elevation_gain_m": 290,
+      "elevation_gain_m": 201,
+      "elevation_loss_m": 201,
       "point_count": 11196,
       "settlements": [
         "עין יעקב",
@@ -1415,6 +1496,7 @@
       "source": "תכנון מסלול",
       "distance_km": 6.84,
       "elevation_gain_m": null,
+      "elevation_loss_m": null,
       "point_count": 120,
       "settlements": [
         "עין יעקב",
@@ -1432,6 +1514,7 @@
       "source": "תכנון מסלול",
       "distance_km": 10.54,
       "elevation_gain_m": null,
+      "elevation_loss_m": null,
       "point_count": 97,
       "settlements": [
         "עין יעקב",
@@ -1449,6 +1532,7 @@
       "source": "תכנון מסלול",
       "distance_km": 10.24,
       "elevation_gain_m": null,
+      "elevation_loss_m": null,
       "point_count": 98,
       "settlements": [
         "עין יעקב",
@@ -1467,6 +1551,7 @@
       "source": "תכנון מסלול",
       "distance_km": 27.23,
       "elevation_gain_m": null,
+      "elevation_loss_m": null,
       "point_count": 208,
       "settlements": [
         "עין יעקב",
@@ -1484,7 +1569,8 @@
       "activity": "רכיבת אופניים",
       "source": "הקלטה",
       "distance_km": 43.61,
-      "elevation_gain_m": 1181,
+      "elevation_gain_m": 681,
+      "elevation_loss_m": 687,
       "point_count": 1917,
       "settlements": [
         "געתון",
@@ -1502,7 +1588,8 @@
       "activity": "הליכה רגלית (לפי שם קובץ בלבד)",
       "source": "תכנון מסלול",
       "distance_km": 2.39,
-      "elevation_gain_m": 29,
+      "elevation_gain_m": 10,
+      "elevation_loss_m": 111,
       "point_count": 110,
       "settlements": [
         "געתון",
@@ -1520,7 +1607,8 @@
       "activity": "רכיבת אופניים",
       "source": "הקלטה",
       "distance_km": 79.34,
-      "elevation_gain_m": 1306,
+      "elevation_gain_m": 1137,
+      "elevation_loss_m": 833,
       "point_count": 561,
       "settlements": [
         "דברת",
@@ -1538,7 +1626,8 @@
       "activity": "רכיבת אופניים",
       "source": "הקלטה",
       "distance_km": 95.42,
-      "elevation_gain_m": 809,
+      "elevation_gain_m": 601,
+      "elevation_loss_m": 1016,
       "point_count": 612,
       "settlements": [
         "עין גב",
@@ -1556,7 +1645,8 @@
       "activity": "לא ברור",
       "source": "תכנון מסלול",
       "distance_km": 48.51,
-      "elevation_gain_m": 916,
+      "elevation_gain_m": 779,
+      "elevation_loss_m": 778,
       "point_count": 1042,
       "settlements": [
         "יטבתה",
@@ -1574,7 +1664,8 @@
       "activity": "הליכה רגלית",
       "source": "הקלטה",
       "distance_km": 7.38,
-      "elevation_gain_m": 454,
+      "elevation_gain_m": 432,
+      "elevation_loss_m": 421,
       "point_count": 95,
       "settlements": [
         "הילה",
@@ -1592,6 +1683,7 @@
       "source": "תכנון מסלול",
       "distance_km": 64.36,
       "elevation_gain_m": null,
+      "elevation_loss_m": null,
       "point_count": 118,
       "settlements": [
         "כפר יאסיף",
@@ -1609,7 +1701,8 @@
       "activity": "לא ברור",
       "source": "תכנון מסלול",
       "distance_km": 2.87,
-      "elevation_gain_m": 152,
+      "elevation_gain_m": 143,
+      "elevation_loss_m": 174,
       "point_count": 137,
       "settlements": [
         "הילה",
@@ -1626,7 +1719,8 @@
       "activity": "הליכה רגלית",
       "source": "הקלטה",
       "distance_km": 9.15,
-      "elevation_gain_m": 162,
+      "elevation_gain_m": 24,
+      "elevation_loss_m": 367,
       "point_count": 10345,
       "settlements": [
         "הילה",
@@ -1645,6 +1739,7 @@
       "source": "תכנון מסלול",
       "distance_km": 5.88,
       "elevation_gain_m": null,
+      "elevation_loss_m": null,
       "point_count": 109,
       "settlements": [
         "הילה",
@@ -1661,7 +1756,8 @@
       "activity": "הליכה רגלית (לפי שם קובץ בלבד)",
       "source": "תכנון מסלול",
       "distance_km": 9.76,
-      "elevation_gain_m": 134,
+      "elevation_gain_m": 39,
+      "elevation_loss_m": 399,
       "point_count": 356,
       "settlements": [
         "הילה",
@@ -1679,7 +1775,8 @@
       "activity": "הליכה רגלית",
       "source": "הקלטה",
       "distance_km": 12.41,
-      "elevation_gain_m": 450,
+      "elevation_gain_m": 355,
+      "elevation_loss_m": 588,
       "point_count": 14687,
       "settlements": [
         "מירון",
@@ -1696,7 +1793,8 @@
       "activity": "הליכה רגלית",
       "source": "הקלטה",
       "distance_km": 7.9,
-      "elevation_gain_m": 314,
+      "elevation_gain_m": 230,
+      "elevation_loss_m": 297,
       "point_count": 11773,
       "settlements": [
         "ברעם",
@@ -1713,7 +1811,8 @@
       "activity": "הליכה רגלית",
       "source": "הקלטה",
       "distance_km": 6.95,
-      "elevation_gain_m": 577,
+      "elevation_gain_m": 553,
+      "elevation_loss_m": 555,
       "point_count": 115,
       "settlements": [
         "מתת",
@@ -1731,7 +1830,8 @@
       "activity": "רכיבת אופניים",
       "source": "הקלטה",
       "distance_km": 21.98,
-      "elevation_gain_m": 244,
+      "elevation_gain_m": 151,
+      "elevation_loss_m": 952,
       "point_count": 5404,
       "settlements": [
         "אילות",
@@ -1749,6 +1849,7 @@
       "source": "תכנון מסלול",
       "distance_km": 4.02,
       "elevation_gain_m": null,
+      "elevation_loss_m": null,
       "point_count": 69,
       "settlements": [
         "עין קנייא",
@@ -1766,7 +1867,8 @@
       "activity": "הליכה רגלית",
       "source": "הקלטה",
       "distance_km": 9.41,
-      "elevation_gain_m": 398,
+      "elevation_gain_m": 366,
+      "elevation_loss_m": 279,
       "point_count": 415,
       "settlements": [
         "בית אורן",
@@ -1784,7 +1886,8 @@
       "activity": "לא ברור",
       "source": "תכנון מסלול",
       "distance_km": 11.0,
-      "elevation_gain_m": 449,
+      "elevation_gain_m": 343,
+      "elevation_loss_m": 586,
       "point_count": 638,
       "settlements": [
         "מירון",
@@ -1802,6 +1905,7 @@
       "source": "תכנון מסלול",
       "distance_km": 10.02,
       "elevation_gain_m": null,
+      "elevation_loss_m": null,
       "point_count": 110,
       "settlements": [
         "מירון",
@@ -1818,7 +1922,8 @@
       "activity": "לא ברור",
       "source": "תכנון מסלול",
       "distance_km": 21.66,
-      "elevation_gain_m": 830,
+      "elevation_gain_m": 717,
+      "elevation_loss_m": 716,
       "point_count": 1315,
       "settlements": [],
       "settlements_found": false,
@@ -1832,7 +1937,8 @@
       "activity": "הליכה רגלית",
       "source": "הקלטה",
       "distance_km": 3.13,
-      "elevation_gain_m": 295,
+      "elevation_gain_m": 266,
+      "elevation_loss_m": 12,
       "point_count": 4655,
       "settlements": [
         "חיפה",
@@ -1850,7 +1956,8 @@
       "activity": "לא ברור",
       "source": "תכנון מסלול",
       "distance_km": 2.65,
-      "elevation_gain_m": 288,
+      "elevation_gain_m": 271,
+      "elevation_loss_m": 23,
       "point_count": 115,
       "settlements": [
         "חיפה",
@@ -1868,7 +1975,8 @@
       "activity": "לא ברור",
       "source": "תכנון מסלול",
       "distance_km": 2.44,
-      "elevation_gain_m": 32,
+      "elevation_gain_m": 24,
+      "elevation_loss_m": 269,
       "point_count": 82,
       "settlements": [
         "חיפה",
@@ -1886,7 +1994,8 @@
       "activity": "לא ברור",
       "source": "תכנון מסלול",
       "distance_km": 2.57,
-      "elevation_gain_m": 272,
+      "elevation_gain_m": 254,
+      "elevation_loss_m": 6,
       "point_count": 110,
       "settlements": [
         "חיפה",
@@ -1904,7 +2013,8 @@
       "activity": "רכיבת אופניים (לפי שם קובץ בלבד)",
       "source": "תכנון מסלול",
       "distance_km": 14.81,
-      "elevation_gain_m": 354,
+      "elevation_gain_m": 248,
+      "elevation_loss_m": 300,
       "point_count": 540,
       "settlements": [
         "מבוא חמה",
@@ -1922,7 +2032,8 @@
       "activity": "לא ברור",
       "source": "תכנון מסלול",
       "distance_km": 73.14,
-      "elevation_gain_m": 6748,
+      "elevation_gain_m": 6023,
+      "elevation_loss_m": 5543,
       "point_count": 4995,
       "settlements": [],
       "settlements_found": false,
@@ -1936,7 +2047,8 @@
       "activity": "לא ברור",
       "source": "תכנון מסלול",
       "distance_km": 5.54,
-      "elevation_gain_m": 528,
+      "elevation_gain_m": 517,
+      "elevation_loss_m": 517,
       "point_count": 205,
       "settlements": [
         "יגור",
@@ -1953,7 +2065,8 @@
       "activity": "לא ברור",
       "source": "תכנון מסלול",
       "distance_km": 6.65,
-      "elevation_gain_m": 551,
+      "elevation_gain_m": 511,
+      "elevation_loss_m": 433,
       "point_count": 482,
       "settlements": [
         "יגור",
@@ -1970,7 +2083,8 @@
       "activity": "הליכה רגלית",
       "source": "הקלטה",
       "distance_km": 16.52,
-      "elevation_gain_m": 355,
+      "elevation_gain_m": 258,
+      "elevation_loss_m": 257,
       "point_count": 1671,
       "settlements": [
         "יהל",
@@ -1988,7 +2102,8 @@
       "activity": "רכיבת אופניים",
       "source": "הקלטה",
       "distance_km": 38.06,
-      "elevation_gain_m": 740,
+      "elevation_gain_m": 550,
+      "elevation_loss_m": 646,
       "point_count": 3203,
       "settlements": [
         "יהל",
@@ -2005,7 +2120,8 @@
       "activity": "רכיבת אופניים",
       "source": "הקלטה",
       "distance_km": 20.65,
-      "elevation_gain_m": 421,
+      "elevation_gain_m": 314,
+      "elevation_loss_m": 311,
       "point_count": 6174,
       "settlements": [
         "יהל",
@@ -2023,7 +2139,8 @@
       "activity": "הליכה רגלית",
       "source": "הקלטה",
       "distance_km": 7.11,
-      "elevation_gain_m": 514,
+      "elevation_gain_m": 501,
+      "elevation_loss_m": 506,
       "point_count": 385,
       "settlements": [
         "צפת",
@@ -2041,7 +2158,8 @@
       "activity": "לא ברור",
       "source": "תכנון מסלול",
       "distance_km": 5.34,
-      "elevation_gain_m": 91,
+      "elevation_gain_m": 64,
+      "elevation_loss_m": 63,
       "point_count": 200,
       "settlements": [
         "יחיעם",
@@ -2059,7 +2177,8 @@
       "activity": "רכיבת אופניים",
       "source": "הקלטה",
       "distance_km": 22.91,
-      "elevation_gain_m": 635,
+      "elevation_gain_m": 534,
+      "elevation_loss_m": 420,
       "point_count": 7300,
       "settlements": [
         "עין יעקב",
@@ -2078,6 +2197,7 @@
       "source": "תכנון מסלול",
       "distance_km": 44.3,
       "elevation_gain_m": null,
+      "elevation_loss_m": null,
       "point_count": 3878,
       "settlements": [
         "מצפה נטופה",
@@ -2095,7 +2215,8 @@
       "activity": "לא ברור",
       "source": "תכנון מסלול",
       "distance_km": 50.28,
-      "elevation_gain_m": 1178,
+      "elevation_gain_m": 1030,
+      "elevation_loss_m": 1032,
       "point_count": 1123,
       "settlements": [
         "יערה",
@@ -2113,7 +2234,8 @@
       "activity": "לא ברור",
       "source": "תכנון מסלול",
       "distance_km": 8.22,
-      "elevation_gain_m": 352,
+      "elevation_gain_m": 324,
+      "elevation_loss_m": 70,
       "point_count": 233,
       "settlements": [
         "ערד",
@@ -2131,7 +2253,8 @@
       "activity": "לא ברור",
       "source": "תכנון מסלול",
       "distance_km": 31.65,
-      "elevation_gain_m": 69,
+      "elevation_gain_m": 53,
+      "elevation_loss_m": 51,
       "point_count": 441,
       "settlements": [
         "גונן",
@@ -2148,7 +2271,8 @@
       "activity": "לא ברור",
       "source": "תכנון מסלול",
       "distance_km": 46.49,
-      "elevation_gain_m": 808,
+      "elevation_gain_m": 524,
+      "elevation_loss_m": 492,
       "point_count": 1463,
       "settlements": [
         "לוטן",
@@ -2165,7 +2289,8 @@
       "activity": "לא ברור",
       "source": "תכנון מסלול",
       "distance_km": 26.78,
-      "elevation_gain_m": 201,
+      "elevation_gain_m": 168,
+      "elevation_loss_m": 121,
       "point_count": 246,
       "settlements": [
         "לוטן",
@@ -2183,7 +2308,8 @@
       "activity": "לא ברור",
       "source": "תכנון מסלול",
       "distance_km": 38.0,
-      "elevation_gain_m": 298,
+      "elevation_gain_m": 177,
+      "elevation_loss_m": 183,
       "point_count": 954,
       "settlements": [
         "שבי ציון",
@@ -2201,7 +2327,8 @@
       "activity": "רכיבת אופניים",
       "source": "הקלטה",
       "distance_km": 29.1,
-      "elevation_gain_m": 1306,
+      "elevation_gain_m": 1187,
+      "elevation_loss_m": 1190,
       "point_count": 427,
       "settlements": [
         "ברעם",
@@ -2220,6 +2347,7 @@
       "source": "תכנון מסלול",
       "distance_km": 55.82,
       "elevation_gain_m": null,
+      "elevation_loss_m": null,
       "point_count": 122,
       "settlements": [
         "חצבה",
@@ -2236,7 +2364,8 @@
       "activity": "לא ברור",
       "source": "תכנון מסלול",
       "distance_km": 10.39,
-      "elevation_gain_m": 325,
+      "elevation_gain_m": 287,
+      "elevation_loss_m": 289,
       "point_count": 224,
       "settlements": [
         "מרום גולן",
@@ -2253,7 +2382,8 @@
       "activity": "רכיבת אופניים",
       "source": "תכנון מסלול",
       "distance_km": 75.68,
-      "elevation_gain_m": 1375,
+      "elevation_gain_m": 1307,
+      "elevation_loss_m": 949,
       "point_count": 291,
       "settlements": [
         "מצפה רמון",
@@ -2270,7 +2400,8 @@
       "activity": "לא ברור",
       "source": "תכנון מסלול",
       "distance_km": 16.21,
-      "elevation_gain_m": 631,
+      "elevation_gain_m": 475,
+      "elevation_loss_m": 475,
       "point_count": 670,
       "settlements": [
         "שדה בוקר",
@@ -2288,7 +2419,8 @@
       "activity": "הליכה רגלית",
       "source": "הקלטה",
       "distance_km": 9.37,
-      "elevation_gain_m": 338,
+      "elevation_gain_m": 309,
+      "elevation_loss_m": 304,
       "point_count": 121,
       "settlements": [
         "בית ג'ן",
@@ -2306,7 +2438,8 @@
       "activity": "הליכה רגלית",
       "source": "הקלטה",
       "distance_km": 6.54,
-      "elevation_gain_m": 446,
+      "elevation_gain_m": 425,
+      "elevation_loss_m": 418,
       "point_count": 85,
       "settlements": [
         "הררית",
@@ -2325,6 +2458,7 @@
       "source": "תכנון מסלול",
       "distance_km": 6.28,
       "elevation_gain_m": null,
+      "elevation_loss_m": null,
       "point_count": 76,
       "settlements": [
         "נווה זוהר",
@@ -2342,7 +2476,8 @@
       "activity": "רכיבת אופניים",
       "source": "הקלטה",
       "distance_km": 26.72,
-      "elevation_gain_m": 273,
+      "elevation_gain_m": 139,
+      "elevation_loss_m": 140,
       "point_count": 2267,
       "settlements": [
         "דפנה",
@@ -2360,7 +2495,8 @@
       "activity": "לא ברור",
       "source": "תכנון מסלול",
       "distance_km": 5.25,
-      "elevation_gain_m": 326,
+      "elevation_gain_m": 313,
+      "elevation_loss_m": 315,
       "point_count": 157,
       "settlements": [
         "נווה זוהר",
@@ -2378,6 +2514,7 @@
       "source": "תכנון מסלול",
       "distance_km": 4.5,
       "elevation_gain_m": null,
+      "elevation_loss_m": null,
       "point_count": 26,
       "settlements": [
         "מעלות-תרשיחא",
@@ -2394,7 +2531,8 @@
       "activity": "רכיבת אופניים",
       "source": "תכנון מסלול",
       "distance_km": 83.42,
-      "elevation_gain_m": 974,
+      "elevation_gain_m": 789,
+      "elevation_loss_m": 1520,
       "point_count": 703,
       "settlements": [
         "מצפה רמון",
@@ -2412,7 +2550,8 @@
       "activity": "הליכה רגלית",
       "source": "הקלטה",
       "distance_km": 8.79,
-      "elevation_gain_m": 756,
+      "elevation_gain_m": 705,
+      "elevation_loss_m": 715,
       "point_count": 179,
       "settlements": [
         "שדה אליעזר",
@@ -2430,7 +2569,8 @@
       "activity": "לא ברור",
       "source": "תכנון מסלול",
       "distance_km": 24.15,
-      "elevation_gain_m": 1231,
+      "elevation_gain_m": 724,
+      "elevation_loss_m": 729,
       "point_count": 12312,
       "settlements": [
         "מנות",
@@ -2448,7 +2588,8 @@
       "activity": "לא ברור",
       "source": "תכנון מסלול",
       "distance_km": 8.89,
-      "elevation_gain_m": 454,
+      "elevation_gain_m": 421,
+      "elevation_loss_m": 418,
       "point_count": 452,
       "settlements": [
         "יערה",
@@ -2467,6 +2608,7 @@
       "source": "תכנון מסלול",
       "distance_km": 5.05,
       "elevation_gain_m": null,
+      "elevation_loss_m": null,
       "point_count": 96,
       "settlements": [
         "כפר שמאי",
@@ -2485,6 +2627,7 @@
       "source": "תכנון מסלול",
       "distance_km": 6.59,
       "elevation_gain_m": null,
+      "elevation_loss_m": null,
       "point_count": 94,
       "settlements": [
         "מירון",
@@ -2501,7 +2644,8 @@
       "activity": "לא ברור",
       "source": "תכנון מסלול",
       "distance_km": 1.63,
-      "elevation_gain_m": 254,
+      "elevation_gain_m": 243,
+      "elevation_loss_m": 68,
       "point_count": 48,
       "settlements": [
         "ערד",
@@ -2518,7 +2662,8 @@
       "activity": "לא ברור",
       "source": "תכנון מסלול",
       "distance_km": 3.54,
-      "elevation_gain_m": 210,
+      "elevation_gain_m": 196,
+      "elevation_loss_m": 193,
       "point_count": 103,
       "settlements": [
         "חיפה",
@@ -2536,6 +2681,7 @@
       "source": "תכנון מסלול",
       "distance_km": 5.22,
       "elevation_gain_m": null,
+      "elevation_loss_m": null,
       "point_count": 44,
       "settlements": [
         "גורנות הגליל",
@@ -2552,7 +2698,8 @@
       "activity": "לא ברור",
       "source": "תכנון מסלול",
       "distance_km": 11.31,
-      "elevation_gain_m": 498,
+      "elevation_gain_m": 358,
+      "elevation_loss_m": 350,
       "point_count": 613,
       "settlements": [
         "רמות נפתלי",
@@ -2569,7 +2716,8 @@
       "activity": "לא ברור",
       "source": "תכנון מסלול",
       "distance_km": 34.68,
-      "elevation_gain_m": 848,
+      "elevation_gain_m": 698,
+      "elevation_loss_m": 699,
       "point_count": 1051,
       "settlements": [
         "לבון",
@@ -2587,7 +2735,8 @@
       "activity": "רכיבת אופניים",
       "source": "הקלטה",
       "distance_km": 30.49,
-      "elevation_gain_m": 703,
+      "elevation_gain_m": 616,
+      "elevation_loss_m": 607,
       "point_count": 3035,
       "settlements": [
         "שער העמקים",
@@ -2605,7 +2754,8 @@
       "activity": "לא ברור",
       "source": "תכנון מסלול",
       "distance_km": 29.11,
-      "elevation_gain_m": 507,
+      "elevation_gain_m": 481,
+      "elevation_loss_m": 484,
       "point_count": 115,
       "settlements": [
         "טובא-זנגרייה",
@@ -2623,7 +2773,8 @@
       "activity": "הליכה רגלית",
       "source": "לא ברור",
       "distance_km": 10.87,
-      "elevation_gain_m": 565,
+      "elevation_gain_m": 531,
+      "elevation_loss_m": 526,
       "point_count": 192,
       "settlements": [
         "ברעם",
@@ -2641,7 +2792,8 @@
       "activity": "רכיבת אופניים",
       "source": "הקלטה",
       "distance_km": 20.86,
-      "elevation_gain_m": 478,
+      "elevation_gain_m": 394,
+      "elevation_loss_m": 392,
       "point_count": 1819,
       "settlements": [
         "טל-אל",
@@ -2659,7 +2811,8 @@
       "activity": "רכיבת אופניים",
       "source": "הקלטה",
       "distance_km": 44.88,
-      "elevation_gain_m": 1312,
+      "elevation_gain_m": 1036,
+      "elevation_loss_m": 1036,
       "point_count": 3757,
       "settlements": [
         "איילת השחר",
@@ -2677,7 +2830,8 @@
       "activity": "לא ברור",
       "source": "תכנון מסלול",
       "distance_km": 28.77,
-      "elevation_gain_m": 752,
+      "elevation_gain_m": 589,
+      "elevation_loss_m": 591,
       "point_count": 1159,
       "settlements": [
         "דחי",
@@ -2695,7 +2849,8 @@
       "activity": "לא ברור",
       "source": "תכנון מסלול",
       "distance_km": 39.05,
-      "elevation_gain_m": 110951,
+      "elevation_gain_m": 110939,
+      "elevation_loss_m": 110939,
       "point_count": 289,
       "settlements": [
         "נווה זוהר",
@@ -2712,7 +2867,8 @@
       "activity": "לא ברור",
       "source": "תכנון מסלול",
       "distance_km": 15.7,
-      "elevation_gain_m": 528,
+      "elevation_gain_m": 320,
+      "elevation_loss_m": 323,
       "point_count": 1217,
       "settlements": [
         "שלומי",
@@ -2729,7 +2885,8 @@
       "activity": "רכיבת אופניים",
       "source": "הקלטה",
       "distance_km": 13.2,
-      "elevation_gain_m": 507,
+      "elevation_gain_m": 321,
+      "elevation_loss_m": 321,
       "point_count": 607,
       "settlements": [
         "כפר חנניה",
@@ -2747,7 +2904,8 @@
       "activity": "הליכה רגלית",
       "source": "הקלטה",
       "distance_km": 27.05,
-      "elevation_gain_m": 1050,
+      "elevation_gain_m": 824,
+      "elevation_loss_m": 826,
       "point_count": 3153,
       "settlements": [
         "עין יעקב",
@@ -2765,7 +2923,8 @@
       "activity": "לא ברור",
       "source": "תכנון מסלול",
       "distance_km": 27.34,
-      "elevation_gain_m": 834,
+      "elevation_gain_m": 607,
+      "elevation_loss_m": 606,
       "point_count": 1427,
       "settlements": [
         "געתון",
@@ -2783,7 +2942,8 @@
       "activity": "רכיבת אופניים",
       "source": "הקלטה",
       "distance_km": 40.93,
-      "elevation_gain_m": 983,
+      "elevation_gain_m": 915,
+      "elevation_loss_m": 915,
       "point_count": 366,
       "settlements": [
         "יחיעם",
@@ -2801,7 +2961,8 @@
       "activity": "הליכה רגלית",
       "source": "הקלטה",
       "distance_km": 23.4,
-      "elevation_gain_m": 636,
+      "elevation_gain_m": 517,
+      "elevation_loss_m": 500,
       "point_count": 1980,
       "settlements": [
         "מרגליות",
@@ -2819,7 +2980,8 @@
       "activity": "לא ברור",
       "source": "תכנון מסלול",
       "distance_km": 8.46,
-      "elevation_gain_m": 392,
+      "elevation_gain_m": 294,
+      "elevation_loss_m": 302,
       "point_count": 552,
       "settlements": [
         "עין הוד",
@@ -2838,6 +3000,7 @@
       "source": "תכנון מסלול",
       "distance_km": 64.71,
       "elevation_gain_m": null,
+      "elevation_loss_m": null,
       "point_count": 2869,
       "settlements": [
         "עין המפרץ",
@@ -2855,7 +3018,8 @@
       "activity": "רכיבת אופניים",
       "source": "תכנון מסלול",
       "distance_km": 104.64,
-      "elevation_gain_m": 755,
+      "elevation_gain_m": 479,
+      "elevation_loss_m": 499,
       "point_count": 817,
       "settlements": [
         "בית יהושע",
@@ -2873,7 +3037,8 @@
       "activity": "רכיבת אופניים",
       "source": "הקלטה",
       "distance_km": 37.42,
-      "elevation_gain_m": 480,
+      "elevation_gain_m": 357,
+      "elevation_loss_m": 935,
       "point_count": 3931,
       "settlements": [
         "ערד",
@@ -2891,7 +3056,8 @@
       "activity": "רכיבת אופניים",
       "source": "הקלטה",
       "distance_km": 39.58,
-      "elevation_gain_m": 659,
+      "elevation_gain_m": 448,
+      "elevation_loss_m": 1377,
       "point_count": 3286,
       "settlements": [
         "ערד",
@@ -2908,7 +3074,8 @@
       "activity": "לא ברור",
       "source": "תכנון מסלול",
       "distance_km": 17.03,
-      "elevation_gain_m": 164,
+      "elevation_gain_m": 28,
+      "elevation_loss_m": 20,
       "point_count": 779,
       "settlements": [
         "עדנים",
@@ -2925,7 +3092,8 @@
       "activity": "רכיבת אופניים",
       "source": "תכנון מסלול",
       "distance_km": 92.12,
-      "elevation_gain_m": 1241,
+      "elevation_gain_m": 1013,
+      "elevation_loss_m": 593,
       "point_count": 601,
       "settlements": [
         "נאות סמדר",
@@ -2944,6 +3112,7 @@
       "source": "תכנון מסלול",
       "distance_km": 1.03,
       "elevation_gain_m": null,
+      "elevation_loss_m": null,
       "point_count": 10,
       "settlements": [
         "מעיליא",
@@ -2961,7 +3130,8 @@
       "activity": "רכיבת אופניים",
       "source": "הקלטה",
       "distance_km": 17.22,
-      "elevation_gain_m": 502,
+      "elevation_gain_m": 368,
+      "elevation_loss_m": 363,
       "point_count": 1318,
       "settlements": [
         "קטורה",
@@ -2979,6 +3149,7 @@
       "source": "תכנון מסלול",
       "distance_km": 6.31,
       "elevation_gain_m": null,
+      "elevation_loss_m": null,
       "point_count": 140,
       "settlements": [
         "שניר",
@@ -2996,7 +3167,8 @@
       "activity": "רכיבת אופניים",
       "source": "תכנון מסלול",
       "distance_km": 84.6,
-      "elevation_gain_m": 1629,
+      "elevation_gain_m": 1377,
+      "elevation_loss_m": 1168,
       "point_count": 878,
       "settlements": [
         "כפר בן נון",
@@ -3014,7 +3186,8 @@
       "activity": "הליכה רגלית",
       "source": "תכנון מסלול",
       "distance_km": 3.63,
-      "elevation_gain_m": 263,
+      "elevation_gain_m": 261,
+      "elevation_loss_m": 260,
       "point_count": 154,
       "settlements": [],
       "settlements_found": false,
@@ -3028,7 +3201,8 @@
       "activity": "רכיבת אופניים",
       "source": "הקלטה",
       "distance_km": 42.27,
-      "elevation_gain_m": 1131,
+      "elevation_gain_m": 793,
+      "elevation_loss_m": 795,
       "point_count": 3592,
       "settlements": [
         "מצובה",
@@ -3046,7 +3220,8 @@
       "activity": "לא ברור",
       "source": "תכנון מסלול",
       "distance_km": 3.85,
-      "elevation_gain_m": 782,
+      "elevation_gain_m": 776,
+      "elevation_loss_m": 16,
       "point_count": 163,
       "settlements": [
         "מנרה",
@@ -3064,7 +3239,8 @@
       "activity": "לא ברור",
       "source": "תכנון מסלול",
       "distance_km": 123.52,
-      "elevation_gain_m": 3084,
+      "elevation_gain_m": 2622,
+      "elevation_loss_m": 3885,
       "point_count": 3294,
       "settlements": [
         "מרום גולן",
@@ -3083,6 +3259,7 @@
       "source": "תכנון מסלול",
       "distance_km": 429.24,
       "elevation_gain_m": null,
+      "elevation_loss_m": null,
       "point_count": 15427,
       "settlements": [
         "מצפה רמון",
@@ -3101,6 +3278,7 @@
       "source": "תכנון מסלול",
       "distance_km": 7.42,
       "elevation_gain_m": null,
+      "elevation_loss_m": null,
       "point_count": 109,
       "settlements": [
         "ברעם",
@@ -3117,7 +3295,8 @@
       "activity": "לא ברור (מהירות חריגה: 217.8 קמ״ש)",
       "source": "הקלטה",
       "distance_km": 16.16,
-      "elevation_gain_m": 154,
+      "elevation_gain_m": 113,
+      "elevation_loss_m": 97,
       "point_count": 268,
       "settlements": [
         "שדות ים",
@@ -3134,7 +3313,8 @@
       "activity": "לא ברור (מהירות חריגה: 97.7 קמ״ש)",
       "source": "הקלטה",
       "distance_km": 31.41,
-      "elevation_gain_m": 1981,
+      "elevation_gain_m": 1923,
+      "elevation_loss_m": 2096,
       "point_count": 1159,
       "settlements": [
         "צובה",
@@ -3152,7 +3332,8 @@
       "activity": "לא ברור (מהירות חריגה: 109.2 קמ״ש)",
       "source": "הקלטה",
       "distance_km": 17.83,
-      "elevation_gain_m": 36298,
+      "elevation_gain_m": 36257,
+      "elevation_loss_m": 35955,
       "point_count": 589,
       "settlements": [
         "ערד",
@@ -3171,6 +3352,7 @@
       "source": "תכנון מסלול",
       "distance_km": 4.86,
       "elevation_gain_m": null,
+      "elevation_loss_m": null,
       "point_count": 43,
       "settlements": [
         "בית אורן",
@@ -3187,7 +3369,8 @@
       "activity": "רכיבת אופניים",
       "source": "הקלטה",
       "distance_km": 79.9,
-      "elevation_gain_m": 1336,
+      "elevation_gain_m": 1186,
+      "elevation_loss_m": 1701,
       "point_count": 626,
       "settlements": [
         "אילת",
@@ -3204,7 +3387,8 @@
       "activity": "לא ברור",
       "source": "תכנון מסלול",
       "distance_km": 5.05,
-      "elevation_gain_m": 497,
+      "elevation_gain_m": 488,
+      "elevation_loss_m": 487,
       "point_count": 156,
       "settlements": [
         "שבלי - אום אל-גנם",
@@ -3222,6 +3406,7 @@
       "source": "תכנון מסלול",
       "distance_km": 4.67,
       "elevation_gain_m": null,
+      "elevation_loss_m": null,
       "point_count": 51,
       "settlements": [
         "ניר עציון",
@@ -3239,7 +3424,8 @@
       "activity": "לא ברור",
       "source": "תכנון מסלול",
       "distance_km": 12.07,
-      "elevation_gain_m": 385,
+      "elevation_gain_m": 187,
+      "elevation_loss_m": 788,
       "point_count": 678,
       "settlements": [
         "מירון",
@@ -3257,7 +3443,8 @@
       "activity": "לא ברור",
       "source": "תכנון מסלול",
       "distance_km": 7.76,
-      "elevation_gain_m": 212,
+      "elevation_gain_m": 133,
+      "elevation_loss_m": 594,
       "point_count": 436,
       "settlements": [
         "ברעם",
@@ -3276,6 +3463,7 @@
       "source": "תכנון מסלול",
       "distance_km": 7.63,
       "elevation_gain_m": null,
+      "elevation_loss_m": null,
       "point_count": 66,
       "settlements": [
         "ג'סר א-זרקא",
@@ -3292,7 +3480,8 @@
       "activity": "רכיבת אופניים",
       "source": "הקלטה",
       "distance_km": 40.53,
-      "elevation_gain_m": 582,
+      "elevation_gain_m": 287,
+      "elevation_loss_m": 288,
       "point_count": 3372,
       "settlements": [
         "אודים",
@@ -3310,7 +3499,8 @@
       "activity": "רכיבת אופניים",
       "source": "תכנון מסלול",
       "distance_km": 49.87,
-      "elevation_gain_m": 744,
+      "elevation_gain_m": 657,
+      "elevation_loss_m": 702,
       "point_count": 299,
       "settlements": [
         "דימונה",
@@ -3327,7 +3517,8 @@
       "activity": "לא ברור",
       "source": "הקלטה",
       "distance_km": 35.72,
-      "elevation_gain_m": 680,
+      "elevation_gain_m": 631,
+      "elevation_loss_m": 813,
       "point_count": 218,
       "settlements": [
         "אילת",
@@ -3344,7 +3535,8 @@
       "activity": "לא ברור",
       "source": "תכנון מסלול",
       "distance_km": 4.79,
-      "elevation_gain_m": 213,
+      "elevation_gain_m": 174,
+      "elevation_loss_m": 174,
       "point_count": 178,
       "settlements": [
         "אבירים",
@@ -3361,7 +3553,8 @@
       "activity": "לא ברור (מהירות חריגה: 216.8 קמ״ש)",
       "source": "הקלטה",
       "distance_km": 333.42,
-      "elevation_gain_m": 11338,
+      "elevation_gain_m": 10740,
+      "elevation_loss_m": 10738,
       "point_count": 3019,
       "settlements": [
         "כנרת (מושבה)",
@@ -3379,7 +3572,8 @@
       "activity": "לא ברור (מהירות חריגה: 129.6 קמ״ש)",
       "source": "הקלטה",
       "distance_km": 13.72,
-      "elevation_gain_m": 11380,
+      "elevation_gain_m": 11342,
+      "elevation_loss_m": 11024,
       "point_count": 382,
       "settlements": [
         "כפר גלעדי",
