@@ -1,0 +1,3 @@
+# קובץ hook הוא סקריפט שרץ דרך #!/bin/sh - חייב שורות LF (לא CRLF), אחרת
+# שורת ה-shebang נשברת בצ'קאאוט על Windows ו-git לא מצליח להריץ אותו.
+.githooks/pre-commit text eol=lf

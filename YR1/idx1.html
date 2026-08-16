@@ -183,6 +183,25 @@
             transform: translateX(-5px);
         }
 
+        .accordion-content .links-container {
+            margin-bottom: 0;
+            gap: 12px;
+        }
+
+        .accordion-content .accordion-header {
+            padding: 20px 25px;
+        }
+
+        .accordion-content .link-card-icon {
+            width: 48px;
+            height: 48px;
+            font-size: 1.5rem;
+        }
+
+        .accordion-content .link-card-title {
+            font-size: 1.4rem;
+        }
+
         footer {
             text-align: center;
             margin-top: 60px;
@@ -228,12 +247,38 @@
             <div class="accordion-card">
                 <div class="accordion-header" onclick="toggleAccordion(this)">
                     <div class="link-card-icon">🚵</div>
-                    <h2 class="link-card-title">ניקוי קובץ GPX</h2>
+                    <h2 class="link-card-title">אופניים</h2>
                     <span class="link-card-arrow">◀</span>
                 </div>
                 <div class="accordion-content">
-                    <div class="accordion-links">
-                        <a href="bike/html/gpx_cleaner.html">🧹 כלי לניקוי קבצי GPX</a>
+                    <div class="links-container">
+
+                        <div class="accordion-card">
+                            <div class="accordion-header" onclick="toggleAccordion(this)">
+                                <div class="link-card-icon">🗺️</div>
+                                <h2 class="link-card-title">חיפוש מסלול</h2>
+                                <span class="link-card-arrow">◀</span>
+                            </div>
+                            <div class="accordion-content">
+                                <div class="accordion-links">
+                                    <a href="bike/route_catalog/catalog.html">🗺️ קטלוג מסלולים</a>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="accordion-card">
+                            <div class="accordion-header" onclick="toggleAccordion(this)">
+                                <div class="link-card-icon">🧹</div>
+                                <h2 class="link-card-title">ניקוי קובץ GPX</h2>
+                                <span class="link-card-arrow">◀</span>
+                            </div>
+                            <div class="accordion-content">
+                                <div class="accordion-links">
+                                    <a href="bike/gpx_cleaner/gpx_cleaner.html">🧹 כלי לניקוי קבצי GPX</a>
+                                </div>
+                            </div>
+                        </div>
+
                     </div>
                 </div>
             </div>
