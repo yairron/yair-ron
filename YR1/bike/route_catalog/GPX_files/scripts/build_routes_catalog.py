@@ -163,6 +163,212 @@ def calc_elevation_gain_loss(elevations):
     return round(gain), round(loss)
 
 
+# ---------- חלוקה ל-5 אזורים גיאוגרפיים (17.08.2026) ----------
+#
+# לפי הגדרה מפורשת של המשתמש, לא לפי המפה המקורית בת 34 האזורים (שהייתה מדויקת
+# מדי ודרשה נתוני GIS רשמיים שלא היו זמינים בפועל). כל הגבולות פה קווים ישרים בין
+# ערים אמיתיות (קואורדינטות אמיתיות, לא מומצאות) - ראו הסבר ליד כל אחד.
+#
+# רמת הגולן והחרמון: "כל מה שמזרחית לירדן" - קו אורך גיאוגרפי אחד (מזרחית לירדן/כנרת).
+# צפון: "כל הצפון בקו חיפה-בית שאן" - קו בין שתי הערים (לא קו רוחב פשוט, כי לחיפה
+#   ולבית שאן יש גם קו אורך שונה - זה קו אלכסוני אמיתי).
+# מרכז: "מחיפה עד אשקלון, ובמזרח עד בית שמש" - מדרום לקו חיפה-בית שאן, עד קו
+#   אשקלון-בית שמש, ומערבית לבית שמש (בית שמש עצמה היא הגבול המזרחי).
+# ירושלים ומדבר יהודה: מזרחית לבית שמש (מדרום לקו חיפה-בית שאן), עד קו רוחב
+#   שמפריד ממדבר הנגב (בסביבות ערד/צפון ים המלח).
+# נגב וערבה: כל השאר - דרומית לקו אשקלון-בית שמש (במערב) ודרומית לגבול מדבר
+#   יהודה/נגב (במזרח), עד אילת.
+#
+# בקעת הירדן (נוסף 17.08.2026, לבקשת המשתמש): רצועה תחומה סביב הירדן עצמו -
+# מדרום הכנרת (~32.75) ועד צפון ים המלח/יריחו (~31.75), ברוחב אורך גיאוגרפי
+# 35.30-35.65. נבדקת **לפני** "צפון" (כדי לתפוס בעצמה נקודות שאחרת היו נופלות
+# ל"צפון" הכללי) אבל **אחרי** גולן (כדי שגולן עדיין "מנצח" לשטח שברור שהוא שלו).
+# תוקן בעקבות באג אמיתי שהתגלה: אזור בקעת בית שאן היה נופל בטעות ל"ירושלים ומדבר
+# יהודה" (כי הוא מזרחית לגבול מרכז/יהודה ומדרום לקו חיפה-בית שאן) - האזור החדש
+# פותר את זה ישירות. אימות שטח: בית הערבה/קליה/אלמוג (בתוך הרצועה) הם בפועל
+# יישובי "מועצה אזורית בקעת הירדן" האמיתית - התאמה מלאה.
+
+HAIFA = (32.794, 34.989)
+BEIT_SHEAN = (32.497, 35.499)
+ASHKELON = (31.669, 34.571)
+BEIT_SHEMESH = (31.744, 34.988)
+
+GOLAN_LON_CUTOFF = 35.50   # מזרחית לזה = מזרחית לירדן/לכנרת
+CENTER_JUDEA_LON_CUTOFF = 35.05   # מעט מזרחית לבית שמש עצמה - בית שמש נשארת "מרכז"
+JUDEA_NEGEV_LAT_CUTOFF = 31.3   # בערך גובה ערד/צפון ים המלח
+JORDAN_VALLEY_LON_MIN = 35.42   # תוקן 17.08.2026: 35.30 היה תפס בטעות את עמק יזרעאל/הר תבור (~35.35-35.41)
+JORDAN_VALLEY_LON_MAX = 35.65
+JORDAN_VALLEY_LAT_MIN = 31.75   # ~יריחו/צפון ים המלח
+JORDAN_VALLEY_LAT_MAX = 32.75   # ~דרום הכנרת
+
+REGION_ORDER = ["רמת הגולן והחרמון", "בקעת הירדן", "צפון", "מרכז", "ירושלים ומדבר יהודה", "נגב וערבה"]
+
+
+def _side_of_line(lat, lon, p1, p2):
+    """סימן של מכפלה וקטורית - צד של הנקודה ביחס לקו p1->p2 (מישור lat/lon מקורב
+    כקרטזי, מספיק מדויק בסדר הגודל של ישראל). חיובי = צפונית/מזרחית לקו."""
+    return (p2[1] - p1[1]) * (lat - p1[0]) - (p2[0] - p1[0]) * (lon - p1[1])
+
+
+def classify_point_region(lat, lon):
+    if lon >= GOLAN_LON_CUTOFF and _side_of_line(lat, lon, ASHKELON, BEIT_SHEMESH) > 0:
+        return "רמת הגולן והחרמון"
+    if JORDAN_VALLEY_LON_MIN <= lon <= JORDAN_VALLEY_LON_MAX and JORDAN_VALLEY_LAT_MIN <= lat <= JORDAN_VALLEY_LAT_MAX:
+        return "בקעת הירדן"
+    if _side_of_line(lat, lon, HAIFA, BEIT_SHEAN) > 0:
+        return "צפון"
+    if lon < CENTER_JUDEA_LON_CUTOFF:
+        if _side_of_line(lat, lon, ASHKELON, BEIT_SHEMESH) > 0:
+            return "מרכז"
+        return "נגב וערבה"
+    if lat >= JUDEA_NEGEV_LAT_CUTOFF:
+        return "ירושלים ומדבר יהודה"
+    return "נגב וערבה"
+
+
+def classify_route_regions(coords):
+    """מסווג כל נקודה נדגמת למחוז אחד, ומחזיר את **איחוד** האזורים שנמצאו - כך
+    שמסלול שחוצה בין שני אזורים סמוכים (למשל מתחיל במרכז ומסתיים בירושלים) מסומן
+    בשניהם באופן טבעי, בלי צורך במנגנון "רצועת חפיפה" נפרד - בדיוק כמו שהמשתמש
+    ביקש ("ניתן יהיה לשמור לכל מסלול יותר מאזור אחד בתנאי שנושקים")."""
+    if not coords:
+        return []
+    samples = renamer.sample_points(coords)
+    found = {classify_point_region(lat, lon) for lat, lon in samples}
+    return [r for r in REGION_ORDER if r in found]
+
+
+# ---------- ניקוי קפיצות GPS (שיבוש/ריגול), 17.08.2026 ----------
+#
+# פורט ישיר של האלגוריתם הקיים והמוכח בכלי "ניקוי קובץ GPX" של האתר עצמו
+# (YR1/bike/gpx_cleaner/gpx_cleaner.html, reprocess()) - לא המצאה מחדש. משתמש
+# בסף ברירת המחדל "רכיבה" של הכלי המקורי (המקל מבין השניים, בטוח כסף אחיד
+# לכל המסלולים) - לא לפי activity שכבר מסווג לכל מסלול, כי הסיווג עצמו עלול
+# להיות מוטה ע"י אותה קפיצה (מהירות ממוצעת מנופחת -> activity שגוי) לפני
+# שהניקוי קרה - תלות מעגלית שצריך להימנע ממנה.
+CLEAN_MAX_SPEED_KMH = 80.0
+CLEAN_MAX_ELE_DIFF_M = 35.0
+INVALID_REMOVED_RATIO = 0.2   # מעל 20% נקודות שהוסרו -> "מסלול לא תקין"
+INVALID_MIN_POINTS = 10       # פחות מזה נקודות נשארות -> "מסלול לא תקין" גם אם היחס נמוך
+
+# "עוגן מורעל" ומנגנון resync, נוסף 17.08.2026 - ראו הסבר מלא בתוך clean_track_points.
+RESYNC_MIN_RUN = 3
+# תקרת מרחק ל-resync, נוספה אחרי בדיקה בפועל על 5 קבצים: הגרסה הראשונה (בלי
+# תקרה) תיקנה נכון קבצים עם עוגן מורעל אמיתי (קפיצות resync של 0.03-2.5 ק"מ),
+# אבל גם "אימצה" בטעות אשכולות GPS מרוגלים/משובשים לגמרי כעוגן חדש - נמצא
+# בפועל בקובץ עם קפיצות resync חוזרות של 94-178 ק"מ (בדיוק דפוס הריגול לעמאן
+# שהאלגוריתם המקורי נבנה כדי לתפוס!), שגרם למרחק מדווח מנופח לגמרי (380-741
+# ק"מ למסלול רכיבה/הליכה מקומי). 10 ק"מ נבחר כי הוא הרבה מעל הקפיצות הלגיטימיות
+# שנמצאו בפועל (עד 2.5 ק"מ) והרבה מתחת לקפיצות המרוגלות שנמצאו בפועל (94+ ק"מ).
+MAX_RESYNC_JUMP_KM = 10.0
+
+
+def _points_consistent(a, b):
+    """בדיוק אותה בדיקת סף כמו בלולאה הראשית של clean_track_points - אבל בין שתי
+    נקודות גולמיות עוקבות (סדר קובץ), לא מול נקודת-הייחוס. משמש רק לבדיקת
+    resync (ראו למטה): האם קטע קטן של נקודות עוקבות עקבי-פנימית בפני עצמו."""
+    if a["time"] is None or b["time"] is None:
+        return True
+    dt = (b["time"] - a["time"]).total_seconds()
+    if dt <= 0:
+        return True
+    dist = renamer.haversine_km(a["lat"], a["lon"], b["lat"], b["lon"])
+    speed = dist / dt * 3600
+    ele_diff = abs(b["ele"] - a["ele"]) if (a["ele"] is not None and b["ele"] is not None) else 0
+    return speed <= CLEAN_MAX_SPEED_KMH and ele_diff <= CLEAN_MAX_ELE_DIFF_M
+
+
+def clean_track_points(points):
+    """מנקה קפיצות GPS בלתי-אפשריות (למשל הקפיצה החוזרת שנמצאה בפועל לשדה
+    התעופה המלכה עליא בעמאן, 31.717/35.999 - ראו תיעוד מלא ב-README). ההיגיון:
+    נקודה נבדקת מול נקודת-הייחוס האחרונה **שהתקבלה** (לא הנקודה הקודמת בקובץ) -
+    אם המהירות המרומזת או הפרש הגובה חורגים מהסף, הנקודה נדחית **ונקודת הייחוס
+    לא זזה**. כך קפיצה שנמשכת נקודה בודדת או אלפי נקודות ברצף (נמצא בפועל: קובץ
+    עם 99.8% מהנקודות "תקועות" בשיבוש לאורך שעה שלמה) מטופלת באותו אופן בדיוק,
+    בלי צורך להעריך מראש כמה נקודות הקפיצה תפסה - כל הנקודות הרחוקות/מהירות
+    מדי מהנקודה התקינה האחרונה נדחות ברצף, עד שמגיעה נקודה שבאמת הגיונית שוב.
+
+    תוקן 17.08.2026 - "עוגן מורעל": נמצא בפועל בקובץ אמיתי (2013-09-26,
+    געתון_כפר ורדים_מנות) שקפיצת GPS יחידה מיד אחרי נקודת ההתחלה השאירה את
+    נקודת הייחוס קפואה שם, וכ-799 נקודות אמיתיות (כ-45 דקות רכיבה של ממש) שבאו
+    אחריה נדחו בשרשרת - לא כי הן עצמן שגויות, אלא כי נמדדו מול עוגן ישן/רחוק.
+    הפתרון: כשנקודה נדחית מול העוגן, בודקים אם היא פותחת קטע עקבי-פנימית (לפי
+    _points_consistent, בין נקודות עוקבות בקטע - לא מול העוגן הישן) באורך
+    RESYNC_MIN_RUN לפחות. אם כן - כנראה שמצאנו קטע אמיתי שהתנתק מהעוגן, ומאמצים
+    אותו כעוגן חדש (ה"קפיצה" עצמה, אם הייתה, נשארת כמעבר בודד וממוקם בין שתי
+    נקודות אמיתיות - שגיאת מרחק חד-פעמית ומוגבלת, לא אובדן מאות נקודות אמיתיות).
+    מקרה קצה נוסף: אם הקטע העקבי נמצא **לפני** שאושרה אף נקודה אמיתית מלבד זרע
+    ההתחלה (kept עדיין רק points[0]) - סימן שנקודת ההתחלה עצמה היא הבעיה (למשל
+    "fix" GPS ראשוני מיושן שנקלט לפני שהמכשיר נעל מיקום אמיתי), לא הקטע החדש;
+    במקרה כזה מוותרים על נקודת ההתחלה ופותחים מחדש מהקטע העקבי.
+
+    מחזיר (kept_points, removed_count)."""
+    if not points:
+        return points, 0
+    n = len(points)
+    kept = [points[0]]
+    ref = points[0]
+    removed_count = 0
+    i = 1
+    while i < n:
+        p = points[i]
+        if p["time"] is None or ref["time"] is None:
+            kept.append(p)  # אין timestamp להשוואה - אי אפשר לחשב מהירות, שומרים
+            ref = p
+            i += 1
+            continue
+        dt = (p["time"] - ref["time"]).total_seconds()
+        dist = renamer.haversine_km(ref["lat"], ref["lon"], p["lat"], p["lon"])
+        speed = (dist / dt * 3600) if dt > 0 else 0
+        ele_diff = abs(p["ele"] - ref["ele"]) if (p["ele"] is not None and ref["ele"] is not None) else 0
+        if speed <= CLEAN_MAX_SPEED_KMH and ele_diff <= CLEAN_MAX_ELE_DIFF_M:
+            kept.append(p)
+            ref = p
+            i += 1
+            continue
+
+        # p נדחתה מול העוגן הנוכחי - בדיקת resync: האם מתחיל כאן קטע עקבי-פנימית
+        # (לפי המעבר הישיר בין נקודות עוקבות בקטע, לא מול העוגן) באורך מספיק,
+        # **וגם** לא רחוק מדי מהעוגן הישן (ראו MAX_RESYNC_JUMP_KM למעלה - בלי
+        # התקרה הזו, אשכול מרוגל ועקבי-פנימית-בפני-עצמו במיקום מזויף רחוק היה
+        # מתקבל בטעות כעוגן "לגיטימי")?
+        run = [p]
+        j = i + 1
+        while j < n and len(run) < RESYNC_MIN_RUN:
+            if _points_consistent(run[-1], points[j]):
+                run.append(points[j])
+                j += 1
+            else:
+                break
+        jump_dist = renamer.haversine_km(ref["lat"], ref["lon"], run[0]["lat"], run[0]["lon"])
+
+        if len(run) >= RESYNC_MIN_RUN and jump_dist <= MAX_RESYNC_JUMP_KM:
+            if len(kept) == 1 and kept[0] is points[0]:
+                # אף נקודה אמיתית לא אושרה עדיין מלבד זרע ההתחלה - נקודת ההתחלה
+                # עצמה כנראה הבעיה, לא הקטע החדש. מוותרים עליה ופותחים מחדש.
+                removed_count += 1
+                kept = list(run)
+            else:
+                kept.extend(run)
+            ref = run[-1]
+            i = j
+        else:
+            removed_count += 1
+            i += 1
+    return kept, removed_count
+
+
+def calc_distance_km(coords):
+    """מרחק מצטבר מהנקודות שנשמרו אחרי ניקוי - **לא** משתמשים ב-distance_km
+    שמחזיר analyze_file() הקיים, כי הוא מחושב מהנקודות הגולמיות (כולל קפיצות),
+    ולכן היה מנופח לכל קובץ עם שיבוש GPS (נצפה בפועל: 169 ק"מ למסלול מקומי
+    שאמור להיות 20-40 ק"מ)."""
+    total = 0.0
+    for i in range(1, len(coords)):
+        total += renamer.haversine_km(coords[i - 1][0], coords[i - 1][1], coords[i][0], coords[i][1])
+    return round(total, 2)
+
+
 def find_nearby_settlement_names(coords, settlements_db):
     """עוטף את find_nearby_settlements הקיים בהרחבת רדיוס הדרגתית, בדיוק כמו הלולאה
     שכבר קיימת בתוך renamer.main() - אבל מופעל כאן על כל קובץ (גם קבצים שכבר יש להם
@@ -200,6 +406,23 @@ def normalize_source_guess(source_guess: str) -> str:
 
 
 def build_catalog_record(path: Path, info: dict, points: list, settlements_db):
+    source = normalize_source_guess(info["source_guess"])  # "הקלטה" / "תכנון מסלול" / "לא ברור"
+    is_planned = source == "תכנון מסלול"
+
+    # ניקוי קפיצות GPS מבוסס על מהירות/הפרש-גובה **מרומזים מחותמות הזמן** בין
+    # נקודות. במסלול מתוכנן (source == "תכנון מסלול") אין הקלטת GPS אמיתית
+    # שיכולה להישבש/להיות מזויפת בכלל - וגם אם יש timestamps בקובץ (ראו
+    # UNIFORM_TIMESTAMP_* ב-gpx_analyzer.py) הם מלאכותיים ולא משקפים זמן אמיתי
+    # בין נקודות, כך שחישוב "מהירות" מהם חסר משמעות וגורם ל"לא תקין" שגוי (נצפה
+    # בפועל: מהירות מרומזת של 1,343 קמ"ש בקובץ תכנון תקין לגמרי). לכן מדלגים
+    # לגמרי על הניקוי ועל הדגל "לא תקין" למסלולים מתוכננים - נשמרות כל הנקודות
+    # כמו שהן, נסמכים על הקואורדינטות הגולמיות בלבד.
+    original_count = len(points)
+    if is_planned:
+        removed_count = 0
+    else:
+        points, removed_count = clean_track_points(points)
+
     coords = [(p["lat"], p["lon"]) for p in points]
     elevations = [p["ele"] for p in points]
     times = [p["time"] for p in points]
@@ -208,21 +431,37 @@ def build_catalog_record(path: Path, info: dict, points: list, settlements_db):
     settlements = find_nearby_settlement_names(coords, settlements_db)
     elevation_gain, elevation_loss = calc_elevation_gain_loss(elevations)
 
+    # "לא תקין" - נצפה בפועל שקפיצת GPS יחידה (כמו לשדה תעופה בעמאן) יכולה
+    # להימשך בין נקודה בודדת ל-99.8% מהקובץ. אם הוסר חלק גדול מדי, או נשארו
+    # מעט מדי נקודות, כנראה שאין כאן בכלל מסלול אמיתי-ברובו לסמוך עליו.
+    # לא רלוונטי למסלול מתוכנן (ראו למעלה) - שם הדגל תמיד False.
+    if is_planned:
+        invalid = False
+    else:
+        removed_ratio = (removed_count / original_count) if original_count else 0
+        invalid = removed_ratio > INVALID_REMOVED_RATIO or len(points) < INVALID_MIN_POINTS
+
     return {
         "file_name": path.name,
         "gpx_path": f"GPX_files/{path.name}",
         "date": date_obj.isoformat(),
         "date_source": date_source,
         "activity": info["activity_guess"],
-        "source": normalize_source_guess(info["source_guess"]),  # "הקלטה" / "תכנון מסלול" / "לא ברור"
-        "distance_km": info["distance_km"],
+        "source": source,
+        "distance_km": calc_distance_km(coords),
         "elevation_gain_m": elevation_gain,
         "elevation_loss_m": elevation_loss,
-        "point_count": info["point_count"],
+        "point_count": len(points),
+        "regions": classify_route_regions(coords),
         "settlements": settlements,
         # True/False מפורש (לא רק הסתמכות על רשימה ריקה) - כדי שדף הקטלוג יוכל
         # להציג תגית ברורה ("מיקום לא זוהה") במקום עמודת ישובים ריקה לא-מוסברת.
         "settlements_found": bool(settlements),
+        # מסלול "לא תקין" - ראו הסבר למעלה. גם אם לא תקין, עדיין מוצג בקטלוג
+        # (עם הנתונים הנקיים שכן נשארו) - לא נמחק ולא מוסתר, רק מסומן ונדחק
+        # לתחתית הרשימה בדף עצמו.
+        "invalid": invalid,
+        "removed_points": removed_count,
         "thumbnail": None,  # ימולא ב-generate_thumbnails, או יישאר None אם אין נקודות
         "_coords": [[lat, lon] for lat, lon in coords],  # שדה עבודה זמני - מוסר לפני הכתיבה לקובץ
     }
@@ -280,6 +519,27 @@ def path_stem_from_filename(filename: str) -> str:
     return filename.rsplit(".", 1)[0]
 
 
+def invalidate_thumbnails_for_cleaned_routes(records, thumbnails_dir: Path) -> int:
+    """מוחק את התמונה הממוזערת הקיימת (אם יש) לכל מסלול שניקוי הקפיצות (17.08.2026)
+    בפועל הסיר ממנו נקודות - כי generate_thumbnails מדלג על יצירת תמונה חדשה
+    כשכבר קיים קובץ באותו שם (אופטימיזציה לריצות רגילות), ותמונה שנוצרה **לפני**
+    הניקוי מציגה את קו הקפיצה הבלתי-אפשרי (למשל קו ישר עד עמאן) - צריך לצייר
+    מחדש, לא לדלג. **חייב לרוץ לפני** generate_thumbnails - בשלב הזה עדיין
+    r["thumbnail"] הוא None לכולם (generate_thumbnails הוא זה שממלא אותו), אז
+    בונים את שם הקובץ הצפוי ישירות מ-file_name, לא מהשדה thumbnail."""
+    if not thumbnails_dir.exists():
+        return 0
+    removed = 0
+    for r in records:
+        if r["removed_points"] <= 0:
+            continue
+        thumb_path = thumbnails_dir / (path_stem_from_filename(r["file_name"]) + ".jpg")
+        if thumb_path.exists():
+            thumb_path.unlink()
+            removed += 1
+    return removed
+
+
 def cleanup_orphan_thumbnails(records, thumbnails_dir: Path) -> int:
     """מוחק קבצי תמונה ממוזערת בתיקייה שאין להם יותר רשומה תואמת בקטלוג - קורה
     בעיקר אחרי ששינו שם לקובץ GPX ידנית: התמונה הישנה (תחת השם הקודם) לא
@@ -327,6 +587,13 @@ def main():
         points = extract_track_points(path)
         records.append(build_catalog_record(path, info, points, settlements_db))
 
+    cleaned_count = sum(1 for r in records if r["removed_points"] > 0)
+    if cleaned_count:
+        print(f"\nניקוי קפיצות GPS: {cleaned_count} קבצים הכילו נקודות שהוסרו")
+        stale = invalidate_thumbnails_for_cleaned_routes(records, thumbnails_dir)
+        if stale:
+            print(f"  נמחקו {stale} תמונות ממוזערות ישנות (נוצרו לפני הניקוי, מציגות את הקפיצה)")
+
     if args.skip_thumbnails:
         print("\nשלב 4: דולג (--skip-thumbnails)")
     else:
@@ -339,6 +606,7 @@ def main():
     no_elevation = sum(1 for r in records if r["elevation_gain_m"] is None)
     no_settlements = sum(1 for r in records if not r["settlements"])
     no_thumbnail = sum(1 for r in records if r["thumbnail"] is None)
+    invalid_count = sum(1 for r in records if r["invalid"])
 
     for r in records:
         r.pop("_coords", None)
@@ -354,11 +622,23 @@ def main():
     with open(out_path, "w", encoding="utf-8") as f:
         json.dump(catalog, f, ensure_ascii=False, indent=2)
 
+    from collections import Counter
+    region_counts = Counter()
+    for r in records:
+        for reg in r["regions"]:
+            region_counts[reg] += 1
+    no_region = sum(1 for r in records if not r["regions"])
+
     print(f"\nהושלם. קובץ הקטלוג נשמר ב: {out_path}")
     print(f"  סה\"כ מסלולים: {len(records)}")
     print(f"  בלי נתוני גובה: {no_elevation}")
     print(f"  בלי ישוב קרוב שנמצא: {no_settlements}")
     print(f"  בלי תמונה ממוזערת: {no_thumbnail}")
+    print(f"  מסומנים 'לא תקין' (קפיצת GPS משמעותית): {invalid_count}")
+    print(f"  בלי אזור מזוהה (בלי נקודות בכלל): {no_region}")
+    print("  פילוח לפי אזור (מסלול שחוצה כמה אזורים נספר בכל אחד מהם):")
+    for reg in REGION_ORDER:
+        print(f"    {reg}: {region_counts[reg]}")
 
 
 if __name__ == "__main__":

@@ -30,6 +30,7 @@ gpx_analyzer.py
 import math
 import csv
 import re
+from collections import Counter
 from pathlib import Path
 from datetime import datetime
 import xml.etree.ElementTree as ET
@@ -48,7 +49,15 @@ RECORD_KEYWORDS = ["הקלטה", "track", "recorded", "log"]
 
 # רמזי כלים ידועים מתוך attribute ה-creator ב-gpx
 KNOWN_RECORDING_TOOLS = ["oruxmaps", "strava", "garmin", "suunto", "polar", "wahoo", "endomondo", "runkeeper"]
-KNOWN_PLANNING_TOOLS = ["caltopo", "gpsvisualizer", "komoot", "outdooractive", "mymaps", "google earth", "basecamp"]
+# "patrick hooper" נוסף 17.08.2026 - creator שנמצא בפועל בשני קבצי "שביל ישראל"
+# (מקטע 1 - אתר השטח, מקטע 24 - צובה סטף עין כרם) שהתבררו כתכנון מסלול עם
+# timestamps מלאכותיים, לא הקלטת GPS אמיתית. נבדקה גם בדיקת "הפרשי זמן אחידים"
+# כרמז כללי לתכנון (בלי תלות בשם creator ספציפי) - נזנחה: ריצה יבשה על 698
+# הקבצים גילתה שהיא תופסת גם המון הקלטות אמיתיות (444/698!) כי הרבה מכשירים/
+# אפליקציות הקלטה אמיתיים כאן דוגמים בקצב קבוע של בדיוק שנייה אחת - ההפרש
+# הקבוע לא ייחודי לקבצי תכנון בדאטהסט הזה.
+KNOWN_PLANNING_TOOLS = ["caltopo", "gpsvisualizer", "komoot", "outdooractive", "mymaps", "google earth", "basecamp",
+                         "patrick hooper"]
 
 
 def get_script_dir() -> Path:
@@ -257,7 +266,6 @@ def main():
         print()
 
     # סיכום
-    from collections import Counter
     activity_counts = Counter(r["activity_guess"] for r in results)
     source_counts = Counter(r["source_guess"] for r in results)
 

@@ -41,6 +41,11 @@ h1{font-family:'Varela Round',sans-serif;font-size:2.6rem;font-weight:800;color:
 .route-stats{display:flex;flex-direction:column;gap:3px;font-size:.85rem;font-weight:700;color:white;text-align:left;flex-shrink:0}
 .badge{display:inline-block;padding:2px 9px;border-radius:10px;font-size:.75rem;font-weight:700;background:rgba(255,255,255,.22)}
 .badge-planning{background:var(--accent)}
+.badge-invalid{background:#B03A2E}
+.accordion-invalid{opacity:.72}
+.accordion-invalid .accordion-header{background:linear-gradient(135deg,#5a5a5a,#7a7a7a)}
+.accordion-invalid .accordion-header:hover{background:linear-gradient(135deg,#7a7a7a,#5a5a5a)}
+.invalid-note{background:#FDECEA;color:#7A2E22;border-right:4px solid #B03A2E;border-radius:8px;padding:10px 14px;margin-bottom:10px;font-size:.9rem}
 .accordion-arrow{font-size:1.1rem;transition:transform .3s;color:white;flex-shrink:0}
 .accordion.active .accordion-arrow{transform:rotate(180deg)}
 .accordion-content{max-height:0;overflow:hidden;transition:max-height .35s ease}
@@ -52,8 +57,13 @@ h1{font-family:'Varela Round',sans-serif;font-size:2.6rem;font-weight:800;color:
 .btn-action{display:inline-block;padding:9px 18px;border-radius:12px;text-decoration:none;font-size:.9rem;font-weight:700;color:white;background:var(--primary);border:none;cursor:pointer;transition:all .2s}
 .btn-action:hover{background:var(--dark)}
 
-.pagination{display:flex;justify-content:center;align-items:center;gap:14px;margin-bottom:30px}
+.pagination{display:flex;justify-content:center;align-items:center;gap:10px;margin-bottom:30px;flex-wrap:wrap}
 .pagination span{color:white;font-weight:700;text-shadow:1px 1px 4px rgba(0,0,0,.3)}
+.btn-page-edge{padding:10px 14px;font-size:.95rem}
+.page-jump{display:flex;align-items:center;gap:6px;background:rgba(255,255,255,.15);border-radius:20px;padding:6px 8px 6px 14px}
+.page-jump label{color:white;font-size:.85rem;font-weight:700}
+.page-jump input{width:55px;padding:6px 8px;border-radius:10px;border:none;font-size:.9rem;text-align:center;font-family:'Assistant',sans-serif}
+.page-jump button{padding:7px 14px;font-size:.85rem}
 
 .selection-bar{position:fixed;bottom:0;left:0;right:0;background:linear-gradient(135deg,var(--dark),var(--primary));color:white;padding:14px 20px;display:none;align-items:center;justify-content:center;gap:16px;flex-wrap:wrap;box-shadow:0 -6px 20px rgba(0,0,0,.3);z-index:50}
 .selection-bar.show{display:flex}
@@ -134,13 +144,26 @@ footer a{color:white;text-decoration:underline;font-weight:600}
         </select>
       </div>
       <div class="control-field">
+        <label>אזור גיאוגרפי</label>
+        <select id="regionFilter">
+          <option value="">הכול</option>
+          <option value="רמת הגולן והחרמון">רמת הגולן והחרמון</option>
+          <option value="בקעת הירדן">בקעת הירדן</option>
+          <option value="צפון">צפון</option>
+          <option value="מרכז">מרכז</option>
+          <option value="ירושלים ומדבר יהודה">ירושלים ומדבר יהודה</option>
+          <option value="נגב וערבה">נגב וערבה</option>
+        </select>
+      </div>
+      <div class="control-field">
         <label>מיון</label>
         <select id="sortSelect">
-          <option value="date_desc">תאריך: חדש → ישן</option>
-          <option value="date_asc">תאריך: ישן → חדש</option>
-          <option value="dist_desc">מרחק: גדול → קטן</option>
-          <option value="dist_asc">מרחק: קטן → גדול</option>
-          <option value="name_asc">שם (א-ת)</option>
+          <option value="date_desc">תאריך: מחדש לישן</option>
+          <option value="date_asc">תאריך: מישן לחדש</option>
+          <option value="dist_desc">מרחק: מארוך לקצר</option>
+          <option value="dist_asc">מרחק: מקצר לארוך</option>
+          <option value="name_asc">שם: מא' לת'</option>
+          <option value="name_desc">שם: מת' לא'</option>
         </select>
       </div>
     </div>
@@ -214,10 +237,12 @@ function getFiltered() {
   var q = document.getElementById('searchInput').value.trim().toLowerCase();
   var actFilter = document.getElementById('activityFilter').value;
   var srcFilter = document.getElementById('sourceFilter').value;
+  var regionFilter = document.getElementById('regionFilter').value;
 
   var list = ALL_ROUTES.filter(function (r) {
     if (actFilter && activityBadge(r.activity).indexOf(actFilter) === -1) return false;
     if (srcFilter && r.source !== srcFilter) return false;
+    if (regionFilter && r.regions.indexOf(regionFilter) === -1) return false;
     if (q) {
       var haystack = r.file_name.toLowerCase() + ' ' + r.settlements.join(' ').toLowerCase();
       if (haystack.indexOf(q) === -1) return false;
@@ -227,11 +252,14 @@ function getFiltered() {
 
   var sortMode = document.getElementById('sortSelect').value;
   list.sort(function (a, b) {
+    // מסלולים "לא תקינים" (קפיצת GPS) תמיד בתחתית, לא משנה איזה מיון נבחר
+    if (a.invalid !== b.invalid) return a.invalid ? 1 : -1;
     switch (sortMode) {
       case 'date_asc': return a.date.localeCompare(b.date);
       case 'dist_desc': return b.distance_km - a.distance_km;
       case 'dist_asc': return a.distance_km - b.distance_km;
       case 'name_asc': return a.file_name.localeCompare(b.file_name, 'he');
+      case 'name_desc': return b.file_name.localeCompare(a.file_name, 'he');
       default: return b.date.localeCompare(a.date);
     }
   });
@@ -253,18 +281,19 @@ function buildRouteCard(r, idx) {
   var elevText = elevationText(r);
   var settlementsText = r.settlements_found ? r.settlements.join(', ') : '📍 מיקום לא זוהה';
   var sourceBadge = r.source === 'תכנון מסלול' ? '<span class="badge badge-planning">🗺️ תכנון</span>' : '<span class="badge">📹 הקלטה</span>';
+  var invalidBadge = r.invalid ? ' <span class="badge badge-invalid">⚠️ מסלול לא תקין</span>' : '';
   var thumbSrc = r.thumbnail ? ('data/' + r.thumbnail) : '';
   var checked = selectedFiles.has(r.file_name) ? 'checked' : '';
 
   var el = document.createElement('div');
-  el.className = 'accordion';
+  el.className = 'accordion' + (r.invalid ? ' accordion-invalid' : '');
   el.innerHTML =
     '<div class="accordion-header" onclick="toggleAcc(this)">' +
       '<input type="checkbox" class="route-check" ' + checked + ' onclick="event.stopPropagation(); onCheckToggle(\'' + escapeAttr(r.file_name) + '\', this.checked)">' +
       (thumbSrc ? '<img class="route-thumb" src="' + thumbSrc + '" loading="lazy" alt="" onclick="event.stopPropagation(); openLightbox(\'' + escapeAttr(thumbSrc) + '\')">' : '<div class="route-thumb"></div>') +
       '<div class="route-info">' +
         '<h2 class="accordion-title">' + escapeHtml(routeNameOnly(r.file_name)) + '</h2>' +
-        '<div class="route-meta">📅 ' + r.date + ' &nbsp;' + activityBadge(r.activity) + ' &nbsp;' + sourceBadge + '</div>' +
+        '<div class="route-meta">📅 ' + r.date + ' &nbsp;' + activityBadge(r.activity) + ' &nbsp;' + sourceBadge + invalidBadge + '</div>' +
       '</div>' +
       '<div class="route-stats"><span>📏 ' + r.distance_km + ' ק"מ</span><span>' + elevText + '</span></div>' +
       '<div class="row-spacer"></div>' +
@@ -272,6 +301,8 @@ function buildRouteCard(r, idx) {
     '</div>' +
     '<div class="accordion-content"><div class="accordion-body">' +
       '<div class="body-details">' +
+        (r.invalid ? '<p class="invalid-note">⚠️ נמצאה קפיצת GPS בלתי-אפשרית בקובץ המקורי (כנראה שיבוש/ריגול אות) - ' + r.removed_points + ' נקודות הוסרו לפני החישוב. המרחק/הגובה/המפה כאן מבוססים רק על הנקודות התקינות שנשארו.</p>' : '') +
+        '<p><strong>אזור גיאוגרפי:</strong> ' + escapeHtml(r.regions.length ? r.regions.join(', ') : 'לא זוהה') + '</p>' +
         '<p><strong>ישובים סמוכים:</strong> ' + escapeHtml(settlementsText) + '</p>' +
         '<p><strong>מספר נקודות במסלול:</strong> ' + r.point_count + '</p>' +
       '</div>' +
@@ -312,10 +343,27 @@ function render() {
 function renderPagination(totalPages) {
   var el = document.getElementById('pagination');
   if (totalPages <= 1) { el.innerHTML = ''; return; }
+  var atStart = currentPage <= 1;
+  var atEnd = currentPage >= totalPages;
   el.innerHTML =
-    '<button class="btn-nav" ' + (currentPage <= 1 ? 'disabled style="opacity:.4"' : 'onclick="goPage(' + (currentPage - 1) + ')"') + '>← הקודם</button>' +
+    '<button class="btn-nav btn-page-edge" ' + (atStart ? 'disabled style="opacity:.4"' : 'onclick="goPage(1)"') + ' title="עבור להתחלה">⏭</button>' +
+    '<button class="btn-nav" ' + (atStart ? 'disabled style="opacity:.4"' : 'onclick="goPage(' + (currentPage - 1) + ')"') + '>הקודם</button>' +
     '<span>עמוד ' + currentPage + ' מתוך ' + totalPages + '</span>' +
-    '<button class="btn-nav" ' + (currentPage >= totalPages ? 'disabled style="opacity:.4"' : 'onclick="goPage(' + (currentPage + 1) + ')"') + '>הבא →</button>';
+    '<button class="btn-nav" ' + (atEnd ? 'disabled style="opacity:.4"' : 'onclick="goPage(' + (currentPage + 1) + ')"') + '>הבא</button>' +
+    '<button class="btn-nav btn-page-edge" ' + (atEnd ? 'disabled style="opacity:.4"' : 'onclick="goPage(' + totalPages + ')"') + ' title="עבור לסוף">⏮</button>' +
+    '<span class="page-jump">' +
+      '<label for="pageJumpInput">עבור לדף</label>' +
+      '<input type="number" id="pageJumpInput" min="1" max="' + totalPages + '" value="' + currentPage + '" onkeydown="if(event.key===\'Enter\')jumpToPage(' + totalPages + ')">' +
+      '<button class="btn-nav" onclick="jumpToPage(' + totalPages + ')">עבור</button>' +
+    '</span>';
+}
+
+function jumpToPage(totalPages) {
+  var input = document.getElementById('pageJumpInput');
+  var p = parseInt(input.value, 10);
+  if (isNaN(p)) return;
+  p = Math.max(1, Math.min(totalPages, p));
+  goPage(p);
 }
 
 function goPage(p) {
@@ -454,7 +502,7 @@ function toggleAcc(header) {
 ['searchInput'].forEach(function (id) {
   document.getElementById(id).addEventListener('input', function () { currentPage = 1; render(); });
 });
-['activityFilter', 'sourceFilter', 'sortSelect'].forEach(function (id) {
+['activityFilter', 'sourceFilter', 'regionFilter', 'sortSelect'].forEach(function (id) {
   document.getElementById(id).addEventListener('change', function () { currentPage = 1; render(); });
 });
 </script>
