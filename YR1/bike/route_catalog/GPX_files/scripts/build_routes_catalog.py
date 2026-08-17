@@ -250,7 +250,7 @@ def generate_thumbnails(records, thumbnails_dir: Path, scripts_dir: Path, force=
                     print(f"  [{i}/{total}] {record['file_name']} - אין נקודות, מדלג על תמונה")
                     continue
 
-                thumb_name = path_stem_from_filename(record["file_name"]) + ".png"
+                thumb_name = path_stem_from_filename(record["file_name"]) + ".jpg"
                 out_path = thumbnails_dir / thumb_name
                 if out_path.exists() and not force:
                     print(f"  [{i}/{total}] {record['file_name']} - תמונה כבר קיימת, מדלג")
@@ -265,7 +265,10 @@ def generate_thumbnails(records, thumbnails_dir: Path, scripts_dir: Path, force=
                     pass
                 page.wait_for_timeout(150)
 
-                page.locator("#map").screenshot(path=str(out_path))
+                # JPEG באיכות 80 במקום PNG - נבדק בפועל (16.08.2026): כ-80% קטן יותר על
+                # תמונת מפה טיפוסית, בלי פגיעה נראית לעין (מפת טיילים אינה קווי-אמנות/טקסט
+                # חד שדורש PNG חסר-אובדן - היא יותר "צילומית" בגלל הגוונים והמרקם).
+                page.locator("#map").screenshot(path=str(out_path), type="jpeg", quality=80)
                 record["thumbnail"] = f"thumbnails/{thumb_name}"
 
             browser.close()
@@ -287,9 +290,11 @@ def cleanup_orphan_thumbnails(records, thumbnails_dir: Path) -> int:
         return 0
     expected = {r["thumbnail"].split("/", 1)[1] for r in records if r["thumbnail"]}
     removed = 0
-    for png in thumbnails_dir.glob("*.png"):
-        if png.name not in expected:
-            png.unlink()
+    # גם *.png: עד 16.08.2026 התמונות נוצרו כ-PNG - כל הקבצים הישנים בפורמט הזה
+    # יתומים במובהק אחרי המעבר ל-JPEG (אף רשומה בקטלוג לא מצביעה יותר על .png).
+    for img in list(thumbnails_dir.glob("*.jpg")) + list(thumbnails_dir.glob("*.png")):
+        if img.name not in expected:
+            img.unlink()
             removed += 1
     return removed
 
