@@ -405,7 +405,37 @@ def normalize_source_guess(source_guess: str) -> str:
     return source_guess
 
 
-def build_catalog_record(path: Path, info: dict, points: list, settlements_db):
+def load_route_ids(support_data_dir: Path) -> dict:
+    """מזהה קבוע ("id") לכל קובץ GPX, נוסף 18.08.2026 - נשמר לפי שם קובץ בקובץ
+    route_ids.json נפרד (לא בתוך routes-catalog.json עצמו, כדי שהמיפוי ישרוד
+    גם אם routes-catalog.json נבנה מחדש מאפס). מזהה חדש מוקצה רק לקובץ ששמו
+    לא מופיע עדיין במיפוי - קובץ קיים שומר תמיד על אותו מספר בין הרצות, גם אם
+    נמחקו/נוספו קבצים אחרים ביניים. שינוי שם בפועל לקובץ נחשב "קובץ חדש" לצורך
+    הזה (המפתח היחיד הוא שם הקובץ) ומקבל מזהה חדש - לא נתקן/נעקוב אחרי שינויי
+    שם, בהתאמה לאיך שהקטלוג כולו כבר מזהה מסלול (לפי file_name בלבד)."""
+    path = support_data_dir / "route_ids.json"
+    if path.exists():
+        with open(path, encoding="utf-8") as f:
+            return json.load(f)
+    return {}
+
+
+def assign_route_ids(file_names, id_map: dict) -> dict:
+    next_id = (max(id_map.values()) + 1) if id_map else 1
+    for name in sorted(file_names):
+        if name not in id_map:
+            id_map[name] = next_id
+            next_id += 1
+    return id_map
+
+
+def save_route_ids(id_map: dict, support_data_dir: Path):
+    path = support_data_dir / "route_ids.json"
+    with open(path, "w", encoding="utf-8") as f:
+        json.dump(id_map, f, ensure_ascii=False, indent=2, sort_keys=True)
+
+
+def build_catalog_record(path: Path, info: dict, points: list, settlements_db, route_id: int):
     source = normalize_source_guess(info["source_guess"])  # "הקלטה" / "תכנון מסלול" / "לא ברור"
     is_planned = source == "תכנון מסלול"
 
@@ -442,6 +472,7 @@ def build_catalog_record(path: Path, info: dict, points: list, settlements_db):
         invalid = removed_ratio > INVALID_REMOVED_RATIO or len(points) < INVALID_MIN_POINTS
 
     return {
+        "id": route_id,
         "file_name": path.name,
         "gpx_path": f"GPX_files/{path.name}",
         "date": date_obj.isoformat(),
@@ -578,6 +609,11 @@ def main():
     settlements_db = renamer.load_settlements(support_data_dir)
 
     files = analyzer.list_gpx_files_top_level(gpx_dir)
+
+    route_ids = load_route_ids(support_data_dir)
+    route_ids = assign_route_ids([p.name for p in files], route_ids)
+    save_route_ids(route_ids, support_data_dir)
+
     print(f"\nשלב 3: ניתוח {len(files)} קבצי GPX")
 
     records = []
@@ -585,7 +621,7 @@ def main():
         print(f"  [{i}/{len(files)}] {path.name}")
         info = analyzer.analyze_file(path)
         points = extract_track_points(path)
-        records.append(build_catalog_record(path, info, points, settlements_db))
+        records.append(build_catalog_record(path, info, points, settlements_db, route_ids[path.name]))
 
     cleaned_count = sum(1 for r in records if r["removed_points"] > 0)
     if cleaned_count:

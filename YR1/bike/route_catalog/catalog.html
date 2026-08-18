@@ -36,6 +36,7 @@ h1{font-family:'Varela Round',sans-serif;font-size:2.6rem;font-weight:800;color:
 .route-thumb{width:90px;height:66px;object-fit:cover;border-radius:10px;flex-shrink:0;background:#dde3e0;box-shadow:0 2px 8px rgba(0,0,0,.25)}
 .route-info{flex:0 1 auto;min-width:0;max-width:420px}
 .accordion-title{font-size:1.1rem;font-weight:800;color:white;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.route-id{font-weight:700;color:rgba(255,255,255,.6);margin-inline-end:6px}
 .route-meta{font-size:.82rem;color:rgba(255,255,255,.88);margin-top:4px;display:flex;gap:10px;flex-wrap:wrap}
 .row-spacer{flex:1;min-width:8px}
 .route-stats{display:flex;flex-direction:column;gap:3px;font-size:.85rem;font-weight:700;color:white;text-align:left;flex-shrink:0}
@@ -292,7 +293,7 @@ function buildRouteCard(r, idx) {
       '<input type="checkbox" class="route-check" ' + checked + ' onclick="event.stopPropagation(); onCheckToggle(\'' + escapeAttr(r.file_name) + '\', this.checked)">' +
       (thumbSrc ? '<img class="route-thumb" src="' + thumbSrc + '" loading="lazy" alt="" onclick="event.stopPropagation(); openLightbox(\'' + escapeAttr(thumbSrc) + '\')">' : '<div class="route-thumb"></div>') +
       '<div class="route-info">' +
-        '<h2 class="accordion-title">' + escapeHtml(routeNameOnly(r.file_name)) + '</h2>' +
+        '<h2 class="accordion-title"><span class="route-id">#' + r.id + '</span>' + escapeHtml(routeNameOnly(r.file_name)) + '</h2>' +
         '<div class="route-meta">📅 ' + r.date + ' &nbsp;' + activityBadge(r.activity) + ' &nbsp;' + sourceBadge + invalidBadge + '</div>' +
       '</div>' +
       '<div class="route-stats"><span>📏 ' + r.distance_km + ' ק"מ</span><span>' + elevText + '</span></div>' +
