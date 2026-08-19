@@ -125,8 +125,8 @@ footer a{color:white;text-decoration:underline;font-weight:600}
   <div class="control-panel">
     <div class="control-row">
       <div class="control-field" style="flex:2">
-        <label>חיפוש לפי שם או ישוב</label>
-        <input type="text" id="searchInput" placeholder="למשל: געתון, שביל ישראל...">
+        <label>חיפוש לפי שם או ישוב או מספר מסלול</label>
+        <input type="text" id="searchInput" placeholder="למשל: געתון, שביל ישראל, 558...">
       </div>
       <div class="control-field">
         <label>סוג פעילות</label>
@@ -245,7 +245,7 @@ function getFiltered() {
     if (srcFilter && r.source !== srcFilter) return false;
     if (regionFilter && r.regions.indexOf(regionFilter) === -1) return false;
     if (q) {
-      var haystack = r.file_name.toLowerCase() + ' ' + r.settlements.join(' ').toLowerCase();
+      var haystack = r.file_name.toLowerCase() + ' ' + r.settlements.join(' ').toLowerCase() + ' ' + r.id;
       if (haystack.indexOf(q) === -1) return false;
     }
     return true;

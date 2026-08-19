@@ -28,7 +28,7 @@ if [ ! -x "$PYTHON_BIN" ] && [ ! -f "$PYTHON_BIN" ]; then
   exit 1
 fi
 
-"$PYTHON_BIN" "$SCRIPT_PATH"
+PYTHONIOENCODING=utf-8 "$PYTHON_BIN" "$SCRIPT_PATH"
 STATUS=$?
 
 if [ $STATUS -ne 0 ]; then
