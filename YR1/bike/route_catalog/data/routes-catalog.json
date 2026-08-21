@@ -1,6 +1,6 @@
 {
-  "generated_at": "2026-08-21T11:03:04",
-  "route_count": 562,
+  "generated_at": "2026-08-21T14:04:10",
+  "route_count": 563,
   "routes": [
     {
       "id": 698,
@@ -13747,6 +13747,31 @@
       "invalid": false,
       "removed_points": 0,
       "thumbnail": "thumbnails/2026-08-19_געתון_כברי_געתון.jpg"
+    },
+    {
+      "id": 700,
+      "file_name": "2026-08-20_שבי ציון_געתון_כברי.gpx",
+      "gpx_path": "GPX_files/2026-08-20_שבי ציון_געתון_כברי.gpx",
+      "date": "2026-08-20",
+      "date_source": "שם קובץ",
+      "activity": "רכיבת אופניים",
+      "source": "הקלטה",
+      "distance_km": 43.21,
+      "elevation_gain_m": 384,
+      "elevation_loss_m": 392,
+      "point_count": 10727,
+      "regions": [
+        "צפון"
+      ],
+      "settlements": [
+        "שבי ציון",
+        "געתון",
+        "כברי"
+      ],
+      "settlements_found": true,
+      "invalid": false,
+      "removed_points": 0,
+      "thumbnail": "thumbnails/2026-08-20_שבי ציון_געתון_כברי.jpg"
     }
   ]
 }

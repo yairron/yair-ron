@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>בדיקת מסלול חדש</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Assistant:wght@300;400;600;700;800&family=Varela+Round&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<style>
+:root{--primary:#1F6B4C;--secondary:#4E9B6B;--accent:#E0923F;--success:#3F7D4E;--light:#F2F8F3;--dark:#123A29;--text:#243A2E}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Assistant','Segoe UI',Tahoma,sans-serif;background:linear-gradient(135deg,#123A29 0%,#3F7D52 50%,#E0A24E 100%);min-height:100vh;padding:20px;direction:rtl}
+.container{max-width:1100px;margin:0 auto}
+header{text-align:center;margin-bottom:25px}
+h1{font-family:'Varela Round',sans-serif;font-size:2.4rem;font-weight:800;color:white;text-shadow:2px 3px 10px rgba(0,0,0,.3);margin-bottom:8px}
+.subtitle{font-size:1rem;color:rgba(255,255,255,.9);text-shadow:1px 2px 8px rgba(0,0,0,.2)}
+.nav-bar{display:flex;justify-content:space-between;align-items:center;margin-bottom:20px;gap:10px;flex-wrap:wrap}
+.btn-nav{background:rgba(255,255,255,.25);backdrop-filter:blur(10px);padding:10px 20px;border-radius:20px;color:white;text-decoration:none;font-size:1rem;font-weight:700;border:none;cursor:pointer;transition:all .3s;font-family:'Assistant',sans-serif;box-shadow:0 4px 12px rgba(0,0,0,.2)}
+.btn-nav:hover{background:rgba(255,255,255,.4);transform:translateY(-2px)}
+
+.card{background:rgba(255,255,255,.95);border-radius:20px;padding:22px 26px;margin-bottom:20px;box-shadow:0 10px 30px rgba(0,0,0,.15);border-right:4px solid var(--accent)}
+.card-title{font-size:.85rem;font-weight:700;text-transform:uppercase;letter-spacing:1px;color:var(--primary);margin-bottom:16px}
+
+input[type="file"]{display:none}
+.upload-row{display:flex;align-items:center;gap:14px;flex-wrap:wrap}
+.file-btn{background:linear-gradient(135deg,var(--primary),var(--secondary));color:white;border-radius:14px;font-size:1rem;font-weight:700;padding:12px 24px;cursor:pointer;white-space:nowrap;transition:all .2s;box-shadow:0 4px 12px rgba(0,0,0,.15)}
+.file-btn:hover{transform:translateY(-2px);box-shadow:0 6px 16px rgba(0,0,0,.2)}
+.upload-hint{font-size:.85rem;color:#5C7A6B}
+.empty-state{text-align:center;padding:30px 10px;color:#5C7A6B}
+
+.map-wrap{background:white;border-radius:20px;overflow:hidden;box-shadow:0 10px 30px rgba(0,0,0,.15);margin-bottom:20px;display:none}
+#uploadMap{width:100%;height:480px}
+
+.routes-list{display:flex;flex-direction:column;gap:14px;margin-bottom:20px}
+.route-card{background:white;border-radius:16px;box-shadow:0 6px 18px rgba(0,0,0,.12);padding:16px 20px;display:flex;align-items:center;gap:16px;flex-wrap:wrap}
+.route-swatch{width:16px;height:16px;border-radius:50%;flex-shrink:0;border:2px solid white;box-shadow:0 0 0 2px rgba(0,0,0,.15)}
+.route-name{font-weight:700;color:var(--dark);flex:1;min-width:160px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.route-stats{display:flex;gap:14px;font-size:.9rem;color:var(--text);flex-wrap:wrap}
+.route-actions{display:flex;gap:8px;flex-wrap:wrap}
+.btn-sm{padding:8px 14px;border-radius:10px;border:none;font-size:.85rem;font-weight:700;cursor:pointer;font-family:'Assistant',sans-serif;transition:all .2s;color:white}
+.btn-edit{background:var(--secondary)}
+.btn-edit:hover{background:var(--primary)}
+.btn-email{background:var(--accent)}
+.btn-email:hover{background:#c97a2c}
+.btn-close{background:#B03A2E}
+.btn-close:hover{background:#8E2E24}
+
+.actions-row{display:flex;justify-content:center;gap:14px;flex-wrap:wrap;margin-bottom:10px}
+.actions-row button{background:rgba(255,255,255,.9);color:var(--primary);border:none;border-radius:16px;padding:12px 22px;font-size:1rem;font-weight:700;cursor:pointer;font-family:'Assistant',sans-serif;box-shadow:0 4px 12px rgba(0,0,0,.15);transition:all .2s}
+.actions-row button:hover{transform:translateY(-2px);box-shadow:0 6px 16px rgba(0,0,0,.2)}
+
+footer{text-align:center;margin-top:20px;padding:20px;color:rgba(255,255,255,.85);font-size:.9rem}
+footer a{color:white;text-decoration:underline;font-weight:600}
+
+@media(max-width:768px){
+  h1{font-size:1.8rem}
+  #uploadMap{height:340px}
+  .route-card{flex-direction:column;align-items:flex-start}
+  .route-stats{width:100%}
+}
+</style>
+</head>
+<body>
+<div class="container">
+  <div class="nav-bar">
+    <a href="../../idx1.html" class="btn-nav">🏠 דף ראשי</a>
+    <button onclick="history.back()" class="btn-nav">← חזרה</button>
+  </div>
+  <header>
+    <h1>🔎 בדיקת מסלול חדש</h1>
+    <p class="subtitle">העלאת קובץ GPX, הצגה על מפה, ובדיקת אורך וטיפוס/ירידה</p>
+  </header>
+
+  <div class="card">
+    <div class="card-title">קובץ GPX</div>
+    <div class="upload-row">
+      <label class="file-btn" for="gpxInput">📂 בחר קובץ GPX</label>
+      <input type="file" id="gpxInput" accept=".gpx" onchange="handleFile(this)">
+      <span class="upload-hint">ניתן לבחור קובץ נוסף כדי להציג כמה מסלולים יחד על אותה מפה</span>
+    </div>
+  </div>
+
+  <div class="map-wrap" id="mapWrap">
+    <div id="uploadMap"></div>
+  </div>
+
+  <div class="empty-state" id="emptyState">עדיין לא הועלה קובץ GPX</div>
+
+  <div class="routes-list" id="routesList"></div>
+
+  <div class="actions-row" id="actionsRow" style="display:none">
+    <button onclick="document.getElementById('gpxInput').click()">➕ צירוף מסלול נוסף</button>
+    <a href="../../idx1.html" class="btn-nav" style="background:rgba(255,255,255,.9);color:var(--primary)">🏠 חזרה לראשי</a>
+  </div>
+</div>
+
+<footer>
+  <p>🤖 פותח עם ❤️ על ידי <a href="mailto:yairron@gmail.com">יאיר רון</a></p>
+</footer>
+
+<script>
+// כתובת יעד לשליחת מסלולים לגוגל דרייב - plus-addressing כדי שתוסקריפט Apps Script
+// (עדיין לא נבנה בשלב זה) יוכל לזהות ולתייג הודעות אלה בנפרד ולהעביר את הקובץ
+// המצורף לתיקייה קבועה בדרייב. יש לוודא/להגדיר את הכתובת הזו וכלל הסינון בגוגל
+// לפני שימוש בפועל בכפתור "שלח באימייל".
+var EMAIL_TARGET = 'yairron+gpsupload@gmail.com';
+
+var ROUTE_COLORS = ['#E91E8C', '#7C4DFF', '#FF6F00', '#00BCD4', '#AA00FF', '#FFAB00', '#F50057', '#6200EA', '#FF80AB', '#00E5FF'];
+var routes = [];       // [{id, fileName, rawText, points:[{lat,lon,ele}], color, distanceKm, climbM, descentM, polyline, startMarker, endMarker}]
+var nextRouteId = 1;
+var mapInstance = null;
+
+function haversineM(lat1, lon1, lat2, lon2) {
+  var R = 6371000, toRad = function (d) { return d * Math.PI / 180; };
+  var dLat = toRad(lat2 - lat1), dLon = toRad(lon2 - lon1);
+  var la1 = toRad(lat1), la2 = toRad(lat2);
+  var a = Math.sin(dLat / 2) ** 2 + Math.cos(la1) * Math.cos(la2) * Math.sin(dLon / 2) ** 2;
+  return 2 * R * Math.asin(Math.sqrt(a));
+}
+
+function parseGpx(text) {
+  var doc = new DOMParser().parseFromString(text, 'application/xml');
+  if (doc.querySelector('parsererror')) return null;
+  var els = Array.from(doc.querySelectorAll('trkpt'));
+  if (!els.length) els = Array.from(doc.querySelectorAll('rtept'));
+  if (!els.length) els = Array.from(doc.querySelectorAll('wpt'));
+  var points = els.map(function (el) {
+    var eleEl = el.querySelector('ele');
+    return {
+      lat: parseFloat(el.getAttribute('lat')),
+      lon: parseFloat(el.getAttribute('lon')),
+      ele: eleEl ? parseFloat(eleEl.textContent) : NaN
+    };
+  }).filter(function (p) { return !isNaN(p.lat) && !isNaN(p.lon); });
+  return points;
+}
+
+function computeStats(points) {
+  var distanceM = 0, climbM = 0, descentM = 0;
+  for (var i = 1; i < points.length; i++) {
+    distanceM += haversineM(points[i-1].lat, points[i-1].lon, points[i].lat, points[i].lon);
+    if (!isNaN(points[i].ele) && !isNaN(points[i-1].ele)) {
+      var diff = points[i].ele - points[i-1].ele;
+      if (diff > 0) climbM += diff; else descentM += -diff;
+    }
+  }
+  return { distanceKm: distanceM / 1000, climbM: climbM, descentM: descentM };
+}
+
+function ensureMap() {
+  if (mapInstance) return;
+  document.getElementById('mapWrap').style.display = 'block';
+  mapInstance = L.map('uploadMap');
+  L.tileLayer('https://israelhiking.osm.org.il/Tiles/{z}/{x}/{y}.png', {
+    attribution: '© Israel Hiking Map', maxZoom: 16
+  }).addTo(mapInstance);
+  mapInstance.setView([31.5, 35], 8);
+  setTimeout(function () { mapInstance.invalidateSize(); }, 50);
+}
+
+function routeStartIcon(color, shift) {
+  return L.divIcon({
+    className: '', iconSize: [14, 14], iconAnchor: [7, 7],
+    html: '<div style="width:14px;height:14px;border-radius:50%;background:' + color + ';border:2px solid white;box-shadow:0 1px 3px rgba(0,0,0,.5);transform:' + (shift || '') + '"></div>'
+  });
+}
+function routeEndIcon(color, shift) {
+  return L.divIcon({
+    className: '', iconSize: [12, 12], iconAnchor: [6, 6],
+    html: '<div style="width:12px;height:12px;background:' + color + ';border:2px solid white;box-shadow:0 1px 3px rgba(0,0,0,.5);transform:' + (shift || '') + ' rotate(45deg)"></div>'
+  });
+}
+
+function handleFile(input) {
+  var file = input.files[0];
+  if (!file) return;
+  var reader = new FileReader();
+  reader.onload = function (e) {
+    var text = e.target.result;
+    var points = parseGpx(text);
+    if (!points || points.length < 2) {
+      alert('לא נמצאו נקודות מסלול תקינות בקובץ "' + file.name + '"');
+      input.value = '';
+      return;
+    }
+    var stats = computeStats(points);
+    var route = {
+      id: nextRouteId++,
+      fileName: file.name,
+      rawText: text,
+      points: points,
+      color: ROUTE_COLORS[(routes.length) % ROUTE_COLORS.length],
+      distanceKm: stats.distanceKm,
+      climbM: Math.round(stats.climbM),
+      descentM: Math.round(stats.descentM)
+    };
+    routes.push(route);
+    addRouteToMap(route);
+    renderRoutesList();
+    fitAllBounds();
+  };
+  reader.onerror = function () { alert('שגיאה בקריאת הקובץ'); };
+  reader.readAsText(file);
+  input.value = '';
+}
+
+function addRouteToMap(route) {
+  ensureMap();
+  var latlngs = route.points.map(function (p) { return [p.lat, p.lon]; });
+  route.polyline = L.polyline(latlngs, { color: route.color, weight: 4, opacity: 0.85 }).addTo(mapInstance);
+
+  var start = route.points[0], end = route.points[route.points.length - 1];
+  var coincide = haversineM(start.lat, start.lon, end.lat, end.lon) < 30;
+  route.startMarker = L.marker([start.lat, start.lon], { icon: routeStartIcon(route.color, coincide ? 'translate(-5px,-5px)' : '') }).addTo(mapInstance);
+  route.endMarker = L.marker([end.lat, end.lon], { icon: routeEndIcon(route.color, coincide ? 'translate(5px,5px)' : '') }).addTo(mapInstance);
+}
+
+function fitAllBounds() {
+  if (!mapInstance || routes.length === 0) return;
+  var allCoords = [];
+  routes.forEach(function (r) { r.points.forEach(function (p) { allCoords.push([p.lat, p.lon]); }); });
+  mapInstance.fitBounds(L.latLngBounds(allCoords), { padding: [30, 30] });
+}
+
+function renderRoutesList() {
+  var emptyState = document.getElementById('emptyState');
+  var list = document.getElementById('routesList');
+  var actionsRow = document.getElementById('actionsRow');
+  emptyState.style.display = routes.length ? 'none' : 'block';
+  actionsRow.style.display = routes.length ? 'flex' : 'none';
+
+  list.innerHTML = '';
+  routes.forEach(function (r) {
+    var elevText = (isNaN(r.climbM) || (r.climbM === 0 && r.descentM === 0))
+      ? 'אין נתוני גובה'
+      : ('↗' + r.climbM + ' ↘' + r.descentM + ' מ׳');
+    var card = document.createElement('div');
+    card.className = 'route-card';
+    card.innerHTML =
+      '<div class="route-swatch" style="background:' + r.color + '"></div>' +
+      '<div class="route-name">' + escapeHtml(r.fileName) + '</div>' +
+      '<div class="route-stats"><span>📏 ' + r.distanceKm.toFixed(1) + ' ק"מ</span><span>' + elevText + '</span></div>' +
+      '<div class="route-actions">' +
+        '<button class="btn-sm btn-edit" onclick="openInIHM(' + r.id + ')">✏️ עריכת קובץ</button>' +
+        '<button class="btn-sm btn-email" onclick="sendByEmail(' + r.id + ')">📧 שלח באימייל</button>' +
+        '<button class="btn-sm btn-close" onclick="closeRoute(' + r.id + ')">✕ סגירת חלון מסלול</button>' +
+      '</div>';
+    list.appendChild(card);
+  });
+}
+
+function escapeHtml(s) {
+  var d = document.createElement('div');
+  d.textContent = s;
+  return d.innerHTML;
+}
+
+function closeRoute(id) {
+  var idx = routes.findIndex(function (r) { return r.id === id; });
+  if (idx === -1) return;
+  var r = routes[idx];
+  if (r.polyline) mapInstance.removeLayer(r.polyline);
+  if (r.startMarker) mapInstance.removeLayer(r.startMarker);
+  if (r.endMarker) mapInstance.removeLayer(r.endMarker);
+  routes.splice(idx, 1);
+  renderRoutesList();
+  fitAllBounds();
+}
+
+// gpx.studio (עורך GPX חינמי, קוד פתוח, בלי הרשמה/התחברות בכלל) יודע לטעון קובץ
+// מרוחק דרך ?state={"urls":["..."]}, אבל זה דורש שהקובץ יהיה נגיש בכתובת HTTPS
+// ציבורית - קובץ שרק נבחר עכשיו מהמחשב אין לו כתובת כזו, לכן פותחים את gpx.studio
+// עצמו ומשאירים למשתמש לפתוח שם את הקובץ שוב (בחירת קובץ/גרירה) ולערוך.
+// נבחר על פני israelhiking.osm.org.il - שם נתקלנו בפועל בחלון הרשמה/תנאי שימוש
+// ומיקום התחלתי אקראי בלי הקובץ; ל-gpx.studio אין הרשמה בכלל, וגם יש לו עורך
+// נקודות אמיתי + מיזוג מסלולים, בניגוד לצפייה בלבד.
+function openInIHM(id) {
+  window.open('https://gpx.studio/', '_blank');
+}
+
+function sendByEmail(id) {
+  var r = routes.find(function (r) { return r.id === id; });
+  if (!r) return;
+  var blob = new Blob([r.rawText], { type: 'application/gpx+xml' });
+  var a = document.createElement('a');
+  a.href = URL.createObjectURL(blob);
+  a.download = r.fileName;
+  a.click();
+
+  var subject = encodeURIComponent('מסלול GPS חדש: ' + r.fileName);
+  var body = encodeURIComponent('יש לצרף כאן את הקובץ שירד כעת (' + r.fileName + ') ולשלוח.');
+  setTimeout(function () {
+    window.location.href = 'mailto:' + EMAIL_TARGET + '?subject=' + subject + '&body=' + body;
+  }, 300);
+}
+</script>
+</body>
+</html>

@@ -184,7 +184,7 @@ footer a{color:white;text-decoration:underline;font-weight:600}
   <span class="sel-count" id="selCount">נבחרו 0 מסלולים</span>
   <button class="btn-primary" id="btnDownload" onclick="downloadSelected()">📥 הורדה</button>
   <button class="btn-primary" onclick="showOnMap()">🗺️ הצג על מפה</button>
-  <button class="btn-disabled" title="בקרוב">🔗 איחוד מסלולים</button>
+  <button class="btn-primary" onclick="mergeSelectedRoutes()">🔗 איחוד מסלולים</button>
   <button class="btn-clear" onclick="clearSelection()">נקה בחירה</button>
 </div>
 
@@ -513,6 +513,20 @@ function showOnMap() {
 
 function closeMapOverlay() {
   document.getElementById('mapOverlay').classList.remove('show');
+}
+
+// פותח את gpx.studio (עורך GPX חינמי, קוד פתוח, בלי הרשמה) עם כל המסלולים
+// שנבחרו טעונים יחד דרך ?state={"urls":[...]} - כולל את פיצ'ר המיזוג האמיתי
+// שלו (Merge). דורש שהקבצים יהיו נגישים ב-URL ציבורי (יש להם, הם כבר מתארחים
+// כאן) וגם CORS פתוח על תיקיית ה-GPX (ראו netlify.toml). נבנה URL מוחלט יחסית
+// לכתובת העמוד הנוכחי עצמו (new URL(...).href) ולא לדומיין קשיח - כך זה עובד
+// נכון גם אם הנתיב/הדומיין שהאתר מתארח בו ישתנה בעתיד.
+function mergeSelectedRoutes() {
+  var files = ALL_ROUTES.filter(function (r) { return selectedFiles.has(r.file_name); });
+  if (!files.length) return;
+  var urls = files.map(function (r) { return new URL(r.gpx_path, window.location.href).href; });
+  var state = JSON.stringify({ urls: urls });
+  window.open('https://gpx.studio/?state=' + encodeURIComponent(state), '_blank');
 }
 
 function openLightbox(src) {

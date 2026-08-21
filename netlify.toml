@@ -4,3 +4,12 @@
   # fetch() חי לאתר - נדרש לכלול אותם בפועל בחבילת הפונקציה, אחרת הם לא
   # קיימים ב-runtime של Netlify (ראו netlify/functions/btl-chat-claude-ai.js).
   included_files = ["BTL/ai-content/*.html"]
+
+[[headers]]
+  # מאפשר ל-gpx.studio (עורך GPX חיצוני, ?state={"urls":[...]}) לשלוף את קבצי
+  # ה-GPX בפועל בזמן פתיחת "איחוד מסלולים" ב-catalog.html - בלי ה-header הזה
+  # הדפדפן חוסם קריאת גוף התגובה מ-origin אחר (CORS), גם שהקבצים כבר ציבוריים
+  # וניתנים להורדה ישירה בלי שום header. ממוקד רק לתיקיית קבצי ה-GPX עצמם.
+  for = "/YR1/bike/route_catalog/GPX_files/*"
+  [headers.values]
+    Access-Control-Allow-Origin = "*"
