@@ -271,16 +271,35 @@ function closeRoute(id) {
 // gpx.studio (עורך GPX חינמי, קוד פתוח, בלי הרשמה/התחברות בכלל) יודע לטעון קובץ
 // מרוחק דרך gpx.studio/app?files=["..."] (מערך JSON פשוט של כתובות - מאומת מול
 // קוד המקור של /app עצמו, ראו catalog.html), אבל זה דורש שהקובץ יהיה נגיש
-// בכתובת HTTPS ציבורית - קובץ שרק נבחר עכשיו מהמחשב אין לו כתובת כזו, לכן
-// פותחים את gpx.studio עצמו ומשאירים למשתמש לפתוח שם את הקובץ שוב (בחירת
-// קובץ/גרירה) ולערוך.
+// בכתובת HTTPS ציבורית - קובץ שרק נבחר עכשיו מהמחשב אין לו כתובת כזו מטבעו.
+// נוסף 21.08.2026: נפתר ע"י /api/gps-temp (netlify/functions/gps-upload-temp-store.js) -
+// מעלים את התוכן לאחסון זמני וחד-פעמי, מקבלים חזרה כתובת אמיתית, ורק אז פותחים
+// את gpx.studio עם הכתובת הזו. עובד רק באתר החי (yairron.com) - לא ב-Live
+// Server מקומי, כי אין שם Netlify Functions בכלל.
 // נבחר על פני israelhiking.osm.org.il - שם נתקלנו בפועל בחלון הרשמה/תנאי שימוש
 // ומיקום התחלתי אקראי בלי הקובץ; ל-gpx.studio אין הרשמה בכלל, וגם יש לו עורך
 // נקודות אמיתי + מיזוג מסלולים, בניגוד לצפייה בלבד.
-function openInIHM(id) {
-  // https://gpx.studio/ (בלי /app) הוא רק עמוד שיווקי סטטי - צריך לנחות ישירות
-  // על /app כדי להיכנס לעורך עצמו (התגלה בפועל, 20.08.2026, ראו catalog.html).
-  window.open('https://gpx.studio/app', '_blank');
+async function openInIHM(id) {
+  // נפתח טאב ריק באופן סינכרוני מיד עם הקליק (לפני ה-await) - אחרת דפדפנים
+  // חוסמים את window.open כ"פופאפ לא-יזום" ברגע שהוא קורה אחרי await.
+  var newTab = window.open('', '_blank');
+  var r = routes.find(function (x) { return x.id === id; });
+  if (!r) { if (newTab) newTab.close(); return; }
+
+  try {
+    var resp = await fetch('/api/gps-temp', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ content: r.rawText })
+    });
+    if (!resp.ok) throw new Error('upload failed');
+    var data = await resp.json();
+    var fileUrl = window.location.origin + '/api/gps-temp/' + data.id;
+    var target = 'https://gpx.studio/app?files=' + encodeURIComponent(JSON.stringify([fileUrl]));
+    if (newTab) newTab.location.href = target;
+  } catch (e) {
+    if (newTab) newTab.location.href = 'https://gpx.studio/app';
+  }
 }
 
 function sendByEmail(id) {
