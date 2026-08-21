@@ -84,7 +84,8 @@ export default async (req) => {
     const url = new URL(req.url);
     const id = url.searchParams.get('id') || '';
     if (!ID_PATTERN.test(id)) {
-      return new Response('Bad Request', { status: 400, headers: { 'Access-Control-Allow-Origin': '*' } });
+      // DEBUG זמני - להסיר אחרי אבחון בעיית ה-redirect
+      return new Response('Bad Request. DEBUG raw url=' + req.url + ' | parsed id=' + JSON.stringify(id), { status: 400, headers: { 'Access-Control-Allow-Origin': '*' } });
     }
     const content = await store.get(id);
     if (content === null) {
