@@ -82,10 +82,18 @@ export default async (req) => {
 
   if (req.method === 'GET') {
     const url = new URL(req.url);
-    const id = url.searchParams.get('id') || '';
+    // redirect מסוג rewrite (200, ראו _redirects) מנתב את הבקשה לפונקציה הזו בלי
+    // לשנות בפועל את ה-URL שהפונקציה רואה (אומת בפועל, 21.08.2026) - לכן כשמגיעים
+    // דרך /api/gps-temp/<id> אין ?id= בכלל ב-req.url, ושולפים את ה-id מהרכיב האחרון
+    // בנתיב עצמו. גישה ישירה ל-/.netlify/functions/...?id=<id> (למשל לבדיקה) עדיין
+    // נתמכת דרך ה-query param.
+    let id = url.searchParams.get('id') || '';
+    if (!id) {
+      const segments = url.pathname.split('/').filter(Boolean);
+      id = segments[segments.length - 1] || '';
+    }
     if (!ID_PATTERN.test(id)) {
-      // DEBUG זמני - להסיר אחרי אבחון בעיית ה-redirect
-      return new Response('Bad Request. DEBUG raw url=' + req.url + ' | parsed id=' + JSON.stringify(id), { status: 400, headers: { 'Access-Control-Allow-Origin': '*' } });
+      return new Response('Bad Request', { status: 400, headers: { 'Access-Control-Allow-Origin': '*' } });
     }
     const content = await store.get(id);
     if (content === null) {

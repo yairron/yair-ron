@@ -2,10 +2,11 @@
 /api/whoin-admin   /.netlify/functions/whoin-admin   200
 
 # gps-upload-temp-store.js: אחסון זמני חד-פעמי לקובץ GPX שהועלה מהמחשב, כדי ש-gpx.studio
-# יוכל לשלוף אותו ב-URL אמיתי. תחביר splat (*/:splat) ולא placeholder בשם (:id) - נבדק
-# בפועל (21.08.2026) ש-placeholder בשם לא הועבר נכון כפרמטר query, בעוד splat כן.
+# יוכל לשלוף אותו ב-URL אמיתי. חשוב - redirect מסוג rewrite (200) רק מנתב לפונקציה,
+# בלי לשנות בפועל את ה-URL/query string שהיא רואה (אומת בפועל, 21.08.2026) - לכן אין
+# טעם ב-?id=:splat כאן; הפונקציה עצמה שולפת את ה-id מהרכיב האחרון בנתיב.
 /api/gps-temp   /.netlify/functions/gps-upload-temp-store   200
-/api/gps-temp/*   /.netlify/functions/gps-upload-temp-store?id=:splat   200
+/api/gps-temp/*   /.netlify/functions/gps-upload-temp-store   200
 
 # additional_guides/html/index.html הוא רק עמוד הפניה (בלי תוכן) ל-additional_guides_index.html.
 # היה מטופל עד כה ע"י meta refresh בצד הלקוח בלבד - גוגל דיווח על כך כ-"Redirect error" ב-Search
