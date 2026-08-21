@@ -1,6 +1,6 @@
 {
-  "generated_at": "2026-08-21T14:28:15",
-  "route_count": 563,
+  "generated_at": "2026-08-21T16:33:46",
+  "route_count": 564,
   "routes": [
     {
       "id": 698,
@@ -13772,6 +13772,31 @@
       "invalid": false,
       "removed_points": 0,
       "thumbnail": "thumbnails/2026-08-20_געתון_גשר הזיו_שבי ציון_נתיב השיירה_נווה זיו.jpg"
+    },
+    {
+      "id": 701,
+      "file_name": "געתון יחיעם עליון שיירה דרדרת וילה הילה.gpx",
+      "gpx_path": "GPX_files/געתון יחיעם עליון שיירה דרדרת וילה הילה.gpx",
+      "date": "2026-08-15",
+      "date_source": "timestamps בקובץ",
+      "activity": "הליכה רגלית",
+      "source": "הקלטה",
+      "distance_km": 41.23,
+      "elevation_gain_m": 787,
+      "elevation_loss_m": 784,
+      "point_count": 12778,
+      "regions": [
+        "צפון"
+      ],
+      "settlements": [
+        "יחיעם",
+        "מעונה",
+        "הילה"
+      ],
+      "settlements_found": true,
+      "invalid": false,
+      "removed_points": 0,
+      "thumbnail": "thumbnails/געתון יחיעם עליון שיירה דרדרת וילה הילה.jpg"
     }
   ]
 }
