@@ -28,15 +28,49 @@
   tileLayer.on('load', function () { window.__tilesLoaded = true; });
 
   var currentLine = null;
+  var currentStartMarker = null;
+  var currentEndMarker = null;
 
+  function haversineM(a, b) {
+    var R = 6371000, toRad = function (d) { return d * Math.PI / 180; };
+    var dLat = toRad(b[0] - a[0]), dLon = toRad(b[1] - a[1]);
+    var la1 = toRad(a[0]), la2 = toRad(b[0]);
+    var h = Math.sin(dLat / 2) ** 2 + Math.cos(la1) * Math.cos(la2) * Math.sin(dLon / 2) ** 2;
+    return 2 * R * Math.asin(Math.sqrt(h));
+  }
+
+  // מסלול מעגלי (יוצא וחוזר לאותה נקודה בערך, נפוץ מאוד בדאטהסט הזה - כמעט כל
+  // רכיבה יוצאת וחוזרת לאותו בית) - הנקודה האחרונה שנוספת (סיום, אדום) הייתה
+  // מכסה לגמרי את נקודת ההתחלה (ירוק) מתחתיה כשהן חופפות. תוקן 20.08.2026:
+  // כשהמרחק ביניהן קטן מ-30 מ' ("אותה נקודה" בפועל), מזיזים כל אחת פיקסלים
+  // בודדים לכיוון מנוגד - היסט פיקסלים קבוע (לא גאוגרפי), כדי שההיסט הוויזואלי
+  // יישאר עקבי בכל רמת זום, לא כמו היסט בקואורדינטות שהיה משתנה בגודלו על המסך.
   window.renderTrack = function (coords) {
     window.__tilesLoaded = false;
-    if (currentLine) {
-      map.removeLayer(currentLine);
-      currentLine = null;
-    }
+    if (currentLine) { map.removeLayer(currentLine); currentLine = null; }
+    if (currentStartMarker) { map.removeLayer(currentStartMarker); currentStartMarker = null; }
+    if (currentEndMarker) { map.removeLayer(currentEndMarker); currentEndMarker = null; }
     var latlngs = coords.map(function (c) { return [c[0], c[1]]; });
     currentLine = L.polyline(latlngs, { color: '#E91E8C', weight: 4 }).addTo(map);
+
+    var start = latlngs[0], end = latlngs[latlngs.length - 1];
+    var coincide = haversineM(start, end) < 30;
+    var startShift = coincide ? 'translate(-5px,-5px)' : '';
+    var endShift = coincide ? 'translate(5px,5px)' : '';
+
+    currentStartMarker = L.marker(start, {
+      icon: L.divIcon({
+        className: '', iconSize: [14, 14], iconAnchor: [7, 7],
+        html: '<div style="width:14px;height:14px;border-radius:50%;background:#2ecc71;border:2px solid white;box-shadow:0 1px 3px rgba(0,0,0,.5);transform:' + startShift + '"></div>'
+      })
+    }).addTo(map);
+    currentEndMarker = L.marker(end, {
+      icon: L.divIcon({
+        className: '', iconSize: [12, 12], iconAnchor: [6, 6],
+        html: '<div style="width:12px;height:12px;background:#e74c3c;border:2px solid white;box-shadow:0 1px 3px rgba(0,0,0,.5);transform:' + endShift + ' rotate(45deg)"></div>'
+      })
+    }).addTo(map);
+
     map.fitBounds(currentLine.getBounds(), { padding: [14, 14], animate: false });
   };
 </script>

@@ -405,14 +405,45 @@ def normalize_source_guess(source_guess: str) -> str:
     return source_guess
 
 
+def content_signature(path: Path):
+    """חתימת תוכן יציבה למסלול - **זהה בכוונה** ל-signature() ב-import_gpx_batch.py
+    (לא שכפול-בטעות, אלא אותה הגדרה בדיוק בשני מקומות - ראו הערה שם על עיגול
+    חותמת הזמן לשנייה השלמה). משמשת כאן כמפתח ל-route_ids.json במקום שם קובץ
+    (ראו תיקון 20.08.2026 למטה) - מבוססת על points גולמיים (extract_track_points,
+    לא points אחרי clean_track_points), כדי שהחתימה תישאר יציבה גם אם אלגוריתם
+    הניקוי משתנה בעתיד, לא רק אם שם הקובץ משתנה."""
+    return content_signature_from_points(extract_track_points(path))
+
+
+def content_signature_from_points(points):
+    """כמו content_signature, אבל מקבלת points שכבר חולצו - נמנעת מפענוח כפול
+    של אותו קובץ XML (unified caller ב-main() כבר שולף points בכל מקרה)."""
+    if not points:
+        return None
+    times = [p["time"] for p in points if p["time"] is not None]
+    first_t = min(times).replace(microsecond=0).isoformat() if times else None
+    sig = (
+        len(points),
+        first_t,
+        round(points[0]["lat"], 5),
+        round(points[0]["lon"], 5),
+        round(points[-1]["lat"], 5),
+        round(points[-1]["lon"], 5),
+    )
+    return "|".join(str(x) for x in sig)
+
+
 def load_route_ids(support_data_dir: Path) -> dict:
-    """מזהה קבוע ("id") לכל קובץ GPX, נוסף 18.08.2026 - נשמר לפי שם קובץ בקובץ
-    route_ids.json נפרד (לא בתוך routes-catalog.json עצמו, כדי שהמיפוי ישרוד
-    גם אם routes-catalog.json נבנה מחדש מאפס). מזהה חדש מוקצה רק לקובץ ששמו
-    לא מופיע עדיין במיפוי - קובץ קיים שומר תמיד על אותו מספר בין הרצות, גם אם
-    נמחקו/נוספו קבצים אחרים ביניים. שינוי שם בפועל לקובץ נחשב "קובץ חדש" לצורך
-    הזה (המפתח היחיד הוא שם הקובץ) ומקבל מזהה חדש - לא נתקן/נעקוב אחרי שינויי
-    שם, בהתאמה לאיך שהקטלוג כולו כבר מזהה מסלול (לפי file_name בלבד)."""
+    """מזהה קבוע ("id") לכל מסלול, נוסף 18.08.2026 - נשמר בקובץ route_ids.json
+    נפרד (לא בתוך routes-catalog.json עצמו, כדי שהמיפוי ישרוד גם אם
+    routes-catalog.json נבנה מחדש מאפס).
+
+    תוקן 20.08.2026 - **המפתח הוא content_signature, לא שם קובץ**: במקור המפתח
+    היה שם הקובץ, ושינוי שם בפועל נחשב "קובץ חדש" וקיבל מזהה חדש. זה התנגש
+    ישירות עם rename_by_chronological_order.py (שינה שם ל-584/601 קבצים בבת
+    אחת, ראו שם) - היה מבטל את היציבות של כמעט כל מזהה קיים. עם מפתח לפי תוכן,
+    שינוי שם (בלי שינוי בנקודות עצמן) לא נוגע במזהה בכלל - יציב באמת, לא רק
+    "יציב כל עוד לא משנים שם"."""
     path = support_data_dir / "route_ids.json"
     if path.exists():
         with open(path, encoding="utf-8") as f:
@@ -420,11 +451,11 @@ def load_route_ids(support_data_dir: Path) -> dict:
     return {}
 
 
-def assign_route_ids(file_names, id_map: dict) -> dict:
+def assign_route_ids(signatures, id_map: dict) -> dict:
     next_id = (max(id_map.values()) + 1) if id_map else 1
-    for name in sorted(file_names):
-        if name not in id_map:
-            id_map[name] = next_id
+    for sig in sorted(s for s in signatures if s is not None):
+        if sig not in id_map:
+            id_map[sig] = next_id
             next_id += 1
     return id_map
 
@@ -610,18 +641,20 @@ def main():
 
     files = analyzer.list_gpx_files_top_level(gpx_dir)
 
-    route_ids = load_route_ids(support_data_dir)
-    route_ids = assign_route_ids([p.name for p in files], route_ids)
-    save_route_ids(route_ids, support_data_dir)
-
     print(f"\nשלב 3: ניתוח {len(files)} קבצי GPX")
 
+    route_ids = load_route_ids(support_data_dir)
     records = []
     for i, path in enumerate(files, 1):
         print(f"  [{i}/{len(files)}] {path.name}")
         info = analyzer.analyze_file(path)
         points = extract_track_points(path)
-        records.append(build_catalog_record(path, info, points, settlements_db, route_ids[path.name]))
+        sig = content_signature_from_points(points)
+        if sig is not None and sig not in route_ids:
+            route_ids = assign_route_ids([sig], route_ids)
+        route_id = route_ids.get(sig, 0)  # 0 = קובץ בלי נקודות בכלל, לא אמור לקרות בפועל
+        records.append(build_catalog_record(path, info, points, settlements_db, route_id))
+    save_route_ids(route_ids, support_data_dir)
 
     cleaned_count = sum(1 for r in records if r["removed_points"] > 0)
     if cleaned_count:
