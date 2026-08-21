@@ -526,7 +526,10 @@ function mergeSelectedRoutes() {
   if (!files.length) return;
   var urls = files.map(function (r) { return new URL(r.gpx_path, window.location.href).href; });
   var state = JSON.stringify({ urls: urls });
-  window.open('https://gpx.studio/?state=' + encodeURIComponent(state), '_blank');
+  // https://gpx.studio/ (בלי /app) הוא רק עמוד שיווקי סטטי שמתעלם לגמרי מ-
+  // query string - התגלה בפועל (צילום מסך מהמשתמש, 20.08.2026) שניווט ישיר
+  // לשם נחת על דף הבית הרגיל בלי שום טעינה. צריך לנחות ישירות על /app.
+  window.open('https://gpx.studio/app?state=' + encodeURIComponent(state), '_blank');
 }
 
 function openLightbox(src) {

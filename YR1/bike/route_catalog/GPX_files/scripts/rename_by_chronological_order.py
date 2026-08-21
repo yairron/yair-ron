@@ -30,7 +30,9 @@ rename_by_chronological_order.py
 """
 import argparse
 import csv
+import json
 import sys
+from datetime import datetime
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
@@ -41,6 +43,69 @@ import gpx_meaningful_rename as renamer  # noqa: E402
 
 REPORT_PATH = Path(__file__).resolve().parent / "support_data" / "chronological_rename_report.csv"
 LONG_ROUTE_KM = 40.0
+
+# מרחק סף לזיהוי "אותה נקודה ממש" מול נקודות מאומתות - נבחר קטן במכוון (300 מ')
+# כי המטרה היא לתפוס רק חזרה על אותה נקודת התחלה/סיום ממש (כמו חניית האופניים
+# הקבועה ליד הבית), לא כל נקודה באזור כללי. ראו load_known_points() למטה.
+KNOWN_POINT_THRESHOLD_KM = 0.3
+
+
+def load_known_points(gpx_dir: Path, support_data_dir: Path, catalog_data_dir: Path):
+    """נקודות התחלה/סיום שכבר אומתו בפועל מול Google Maps ע"י המשתמש (נוסף
+    20.08.2026, ראו verified_start_settlements.csv) - לצד הקואורדינטות **הנוכחיות
+    בפועל** של אותם מסלולים (לא הקואורדינטות שנשמרו ב-CSV, שנוצר לצורך תיקון שם
+    בלבד). המטרה: לפני שקוראים לחיפוש-יישוב-קרוב הגנרי (מרחק גיאומטרי גולמי
+    מול city.csv), לבדוק אם הנקודה כבר מוכרת-בוודאות מנקודת מבט אנושית - כי
+    התגלה בפועל (מסלול חדש 2026-08-20) שהמרחק הגיאומטרי הגולמי הכי קרוב לא
+    תמיד תואם את השם שמשתמשים אמיתיים מתכוונים אליו לאותה נקודה ממש (למשל
+    געתון מול שבי ציון/כברי/יחיעם - כל הדוגמאות שתועדו כבר בפרויקט הזה)."""
+    verified_path = support_data_dir / "verified_start_settlements.csv"
+    catalog_path = catalog_data_dir / "routes-catalog.json"
+    if not verified_path.exists() or not catalog_path.exists():
+        return []
+
+    with open(verified_path, encoding="utf-8-sig", newline="") as f:
+        verified = {int(row["route"]): (row["start"], row["end"]) for row in csv.DictReader(f)}
+
+    with open(catalog_path, encoding="utf-8") as f:
+        catalog = json.load(f)
+    routes = catalog["routes"] if isinstance(catalog, dict) else catalog
+    id_to_file = {r["id"]: r["file_name"] for r in routes}
+
+    points = []
+    for route_id, (start_name, end_name) in verified.items():
+        file_name = id_to_file.get(route_id)
+        if not file_name:
+            continue
+        path = gpx_dir / file_name
+        if not path.exists():
+            continue
+        try:
+            raw_points = builder.extract_track_points(path)
+            cleaned, _ = builder.clean_track_points(raw_points)
+        except Exception:  # noqa: BLE001
+            continue
+        if len(cleaned) < 2:
+            continue
+        points.append((cleaned[0]["lat"], cleaned[0]["lon"], start_name))
+        points.append((cleaned[-1]["lat"], cleaned[-1]["lon"], end_name))
+    return points
+
+
+def resolve_name(lat, lon, settlements_db, known_points):
+    """כמו nearest_settlement(), אבל בודק קודם נגד known_points (ראו
+    load_known_points) - אם יש התאמה בטווח KNOWN_POINT_THRESHOLD_KM, מחזיר את
+    השם המאומת גם אם הוא לא היישוב הגיאומטרי הכי קרוב לפי city.csv."""
+    if known_points:
+        best_name, best_d = None, None
+        for k_lat, k_lon, k_name in known_points:
+            d = renamer.haversine_km(lat, lon, k_lat, k_lon)
+            if best_d is None or d < best_d:
+                best_name, best_d = k_name, d
+        if best_d is not None and best_d <= KNOWN_POINT_THRESHOLD_KM:
+            return best_name
+    name, _ = nearest_settlement(lat, lon, settlements_db)
+    return name
 
 
 def haversine_m(lat1, lon1, lat2, lon2):
@@ -76,7 +141,8 @@ def index_at_fraction(cum, start_idx, end_idx):
     return best_i
 
 
-def build_new_name(path: Path, settlements_db, date_str: str):
+def build_new_name(path: Path, settlements_db, date_str: str, known_points=None):
+    known_points = known_points or []
     points = builder.extract_track_points(path)
     cleaned, _ = builder.clean_track_points(points)
     if len(cleaned) < 2:
@@ -95,9 +161,9 @@ def build_new_name(path: Path, settlements_db, date_str: str):
         if d > far_dist:
             far_idx, far_dist = i, d
 
-    start_name, _ = nearest_settlement(start_lat, start_lon, settlements_db)
-    far_name, _ = nearest_settlement(*coords[far_idx], settlements_db)
-    end_name, _ = nearest_settlement(end_lat, end_lon, settlements_db)
+    start_name = resolve_name(start_lat, start_lon, settlements_db, known_points)
+    far_name = resolve_name(*coords[far_idx], settlements_db, known_points)
+    end_name = resolve_name(end_lat, end_lon, settlements_db, known_points)
 
     is_loop = start_name == end_name
 
@@ -109,7 +175,7 @@ def build_new_name(path: Path, settlements_db, date_str: str):
         back_step = max(1, len(coords) // 2000)
         last_diff_name = None
         for i in range(len(coords) - 1, -1, -back_step):
-            name, _ = nearest_settlement(*coords[i], settlements_db)
+            name = resolve_name(*coords[i], settlements_db, known_points)
             if name != start_name:
                 last_diff_name = name
                 break
@@ -121,7 +187,7 @@ def build_new_name(path: Path, settlements_db, date_str: str):
 
     if total_km > LONG_ROUTE_KM:
         mid1_idx = index_at_fraction(cum, 0, far_idx)
-        mid1_name, _ = nearest_settlement(*coords[mid1_idx], settlements_db)
+        mid1_name = resolve_name(*coords[mid1_idx], settlements_db, known_points)
         if mid1_name not in (start_name, far_name):
             names.append(mid1_name)
 
@@ -129,7 +195,7 @@ def build_new_name(path: Path, settlements_db, date_str: str):
 
     if total_km > LONG_ROUTE_KM:
         mid2_idx = index_at_fraction(cum, far_idx, len(coords) - 1)
-        mid2_name, _ = nearest_settlement(*coords[mid2_idx], settlements_db)
+        mid2_name = resolve_name(*coords[mid2_idx], settlements_db, known_points)
         if mid2_name not in (far_name, final_end_name):
             names.append(mid2_name)
 
@@ -147,6 +213,41 @@ def build_new_name(path: Path, settlements_db, date_str: str):
     return new_stem + path.suffix, deduped, round(total_km, 1), is_loop
 
 
+def auto_rename_unnamed_files(gpx_dir: Path, settlements_db, known_points):
+    """מפעיל את אותו אלגוריתם כרונולוגי (start/furthest/end + זיהוי מעגלי) על כל
+    קובץ שעדיין אין לו שם משמעותי - מחליף את ההסתמכות הישנה על
+    gpx_meaningful_rename.py.main() (שהניב בפועל שם שגוי, 'שבי ציון' לנקודת
+    התחלה שהיא בפועל געתון, כי הוא רק אוסף 'ישובים קרובים' גנרי לאורך המסלול
+    בלי שום מושג של סדר-הגעה/מסלול-מעגלי, ובלי הישענות על היישובים המאומתים
+    ב-verified_start_settlements.csv). מחזיר רשימת (שם ישן, שם חדש) שבאמת שונו."""
+    renamed = []
+    for path in analyzer.list_gpx_files_top_level(gpx_dir):
+        if renamer.has_meaningful_word(path.stem):
+            continue
+        _, times = renamer.extract_points_and_times(path)
+        date_obj = renamer.extract_date_from_filename(path.stem)
+        if not date_obj:
+            valid_times = [t for t in times if t is not None]
+            if valid_times:
+                date_obj = min(valid_times).date()
+        if not date_obj:
+            date_obj = datetime.fromtimestamp(path.stat().st_mtime).date()
+        date_str = date_obj.isoformat()
+        try:
+            result = build_new_name(path, settlements_db, date_str, known_points)
+        except Exception:  # noqa: BLE001
+            continue
+        if result is None:
+            continue
+        new_name = result[0]
+        if new_name == path.name:
+            continue
+        new_path = renamer.unique_path(gpx_dir, new_name)
+        path.rename(new_path)
+        renamed.append((path.name, new_path.name))
+    return renamed
+
+
 def main():
     parser = argparse.ArgumentParser(description="שינוי שם קבצי GPX לפי סדר הגעה כרונולוגי ליישובים")
     parser.add_argument("--apply", action="store_true", help="לבצע בפועל את שינויי השם (ברירת מחדל: דריי-ראן בלבד)")
@@ -155,9 +256,10 @@ def main():
     gpx_dir = analyzer.get_gpx_dir()
     support_data_dir = builder.get_support_data_dir()
     settlements_db = renamer.load_settlements(support_data_dir)
+    known_points = load_known_points(gpx_dir, support_data_dir, builder.get_catalog_data_dir())
 
     files = analyzer.list_gpx_files_top_level(gpx_dir)
-    print(f"נמצאו {len(files)} קבצי GPX. מנתח סדר כרונולוגי...\n")
+    print(f"נמצאו {len(files)} קבצי GPX. מנתח סדר כרונולוגי... ({len(known_points)} נקודות מאומתות ידועות)\n")
 
     rows = []
     changed = 0
@@ -168,7 +270,7 @@ def main():
         date_obj = renamer.extract_date_from_filename(path.stem)
         date_str = date_obj.isoformat() if date_obj else "0000-00-00"
         try:
-            result = build_new_name(path, settlements_db, date_str)
+            result = build_new_name(path, settlements_db, date_str, known_points)
         except Exception as e:  # noqa: BLE001
             errors += 1
             rows.append([path.name, "", "", "", f"שגיאה: {e}"])

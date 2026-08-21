@@ -77,14 +77,24 @@ def get_catalog_data_dir() -> Path:
 
 
 def rename_new_files():
-    """מפעיל את gpx_meaningful_rename.py הקיים כמו שהוא, עם פרמטרי ברירת המחדל שלו -
-    בלי קשר לאיך שהסקריפט הנוכחי הופעל (מאלץ את sys.argv לזמן הקריאה בלבד)."""
-    saved_argv = sys.argv
-    try:
-        sys.argv = [saved_argv[0]]
-        renamer.main()
-    finally:
-        sys.argv = saved_argv
+    """שינוי שם לקבצים חדשים (בלי שם משמעותי עדיין) - מריץ את אלגוריתם הסדר
+    הכרונולוגי (start/furthest/end + זיהוי מעגלי, עם עדיפות לנקודות מאומתות
+    ב-verified_start_settlements.csv) מתוך rename_by_chronological_order.py,
+    ולא את gpx_meaningful_rename.py.main() הישן (רשימת 'ישובים קרובים' גנרית
+    לאורך המסלול, בלי סדר/זיהוי-מעגלי, ובלי הישענות על נתונים מאומתים) - הוחלף
+    20.08.2026 אחרי שהתגלה בפועל שם שגוי ('שבי ציון' לנקודת התחלה שהיא בפועל
+    געתון) בקובץ חדש שעבר דרך המסלול הישן. ייבוא בתוך הפונקציה (לא בראש הקובץ)
+    כדי להימנע מייבוא-מעגלי - rename_by_chronological_order.py עצמו מייבא את
+    המודול הזה (build_routes_catalog) כ-builder."""
+    import rename_by_chronological_order as chrono  # noqa: PLC0415
+
+    gpx_dir = get_gpx_dir()
+    support_data_dir = get_support_data_dir()
+    settlements_db = renamer.load_settlements(support_data_dir)
+    known_points = chrono.load_known_points(gpx_dir, support_data_dir, get_catalog_data_dir())
+    renamed = chrono.auto_rename_unnamed_files(gpx_dir, settlements_db, known_points)
+    for old_name, new_name in renamed:
+        print(f"  [OK] {old_name}  ->  {new_name}")
 
 
 def extract_track_points(path: Path):

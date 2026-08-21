@@ -276,7 +276,9 @@ function closeRoute(id) {
 // ומיקום התחלתי אקראי בלי הקובץ; ל-gpx.studio אין הרשמה בכלל, וגם יש לו עורך
 // נקודות אמיתי + מיזוג מסלולים, בניגוד לצפייה בלבד.
 function openInIHM(id) {
-  window.open('https://gpx.studio/', '_blank');
+  // https://gpx.studio/ (בלי /app) הוא רק עמוד שיווקי סטטי - צריך לנחות ישירות
+  // על /app כדי להיכנס לעורך עצמו (התגלה בפועל, 20.08.2026, ראו catalog.html).
+  window.open('https://gpx.studio/app', '_blank');
 }
 
 function sendByEmail(id) {
