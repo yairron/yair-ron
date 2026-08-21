@@ -1,0 +1,8 @@
+{
+  "name": "yair-main",
+  "private": true,
+  "description": "תלות npm יחידה זו נחוצה כדי ש-Netlify יבנה את netlify/functions/gps-upload-temp-store.js (משתמש ב-@netlify/blobs) - שאר האתר נשאר סטטי לגמרי בלי שום build step.",
+  "dependencies": {
+    "@netlify/blobs": "^8.0.0"
+  }
+}

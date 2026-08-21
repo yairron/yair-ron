@@ -5,3 +5,7 @@ BTL/senior_rights/check-css-rules.js
 # Python bytecode cache (regenerated automatically, not source)
 __pycache__/
 *.pyc
+
+# תלויות npm של netlify/functions (למשל @netlify/blobs) - Netlify מריץ npm install
+# בעצמו בזמן ה-deploy לפי package.json/package-lock.json; אין צורך לשמור node_modules בגיט.
+node_modules/
