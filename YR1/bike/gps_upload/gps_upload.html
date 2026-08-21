@@ -41,8 +41,8 @@ input[type="file"]{display:none}
 .btn-sm{padding:8px 14px;border-radius:10px;border:none;font-size:.85rem;font-weight:700;cursor:pointer;font-family:'Assistant',sans-serif;transition:all .2s;color:white}
 .btn-edit{background:var(--secondary)}
 .btn-edit:hover{background:var(--primary)}
-.btn-email{background:var(--accent)}
-.btn-email:hover{background:#c97a2c}
+.btn-download{background:var(--accent)}
+.btn-download:hover{background:#c97a2c}
 .btn-close{background:#B03A2E}
 .btn-close:hover{background:#8E2E24}
 
@@ -100,12 +100,6 @@ footer a{color:white;text-decoration:underline;font-weight:600}
 </footer>
 
 <script>
-// כתובת יעד לשליחת מסלולים לגוגל דרייב - plus-addressing כדי שתוסקריפט Apps Script
-// (עדיין לא נבנה בשלב זה) יוכל לזהות ולתייג הודעות אלה בנפרד ולהעביר את הקובץ
-// המצורף לתיקייה קבועה בדרייב. יש לוודא/להגדיר את הכתובת הזו וכלל הסינון בגוגל
-// לפני שימוש בפועל בכפתור "שלח באימייל".
-var EMAIL_TARGET = 'yairron+gpsupload@gmail.com';
-
 var ROUTE_COLORS = ['#E91E8C', '#7C4DFF', '#FF6F00', '#00BCD4', '#AA00FF', '#FFAB00', '#F50057', '#6200EA', '#FF80AB', '#00E5FF'];
 var routes = [];       // [{id, fileName, rawText, points:[{lat,lon,ele}], color, distanceKm, climbM, descentM, polyline, startMarker, endMarker}]
 var nextRouteId = 1;
@@ -243,7 +237,7 @@ function renderRoutesList() {
       '<div class="route-stats"><span>📏 ' + r.distanceKm.toFixed(1) + ' ק"מ</span><span>' + elevText + '</span></div>' +
       '<div class="route-actions">' +
         '<button class="btn-sm btn-edit" onclick="openInIHM(' + r.id + ')">✏️ עריכת קובץ</button>' +
-        '<button class="btn-sm btn-email" onclick="sendByEmail(' + r.id + ')">📧 שלח באימייל</button>' +
+        '<button class="btn-sm btn-download" onclick="downloadRouteFile(' + r.id + ')">⬇️ הורד קובץ</button>' +
         '<button class="btn-sm btn-close" onclick="closeRoute(' + r.id + ')">✕ סגירת חלון מסלול</button>' +
       '</div>';
     list.appendChild(card);
@@ -302,20 +296,33 @@ async function openInIHM(id) {
   }
 }
 
-function sendByEmail(id) {
-  var r = routes.find(function (r) { return r.id === id; });
+async function downloadRouteFile(id) {
+  var r = routes.find(function (x) { return x.id === id; });
   if (!r) return;
   var blob = new Blob([r.rawText], { type: 'application/gpx+xml' });
+
+  // showSaveFilePicker (כרום/edge, קונטקסט מאובטח) פותח דיאלוג "שמירה בשם" אמיתי
+  // עם שם קובץ רגיל מוצע מראש - נופל בחזרה להורדה רגילה (בלי דיאלוג) בדפדפנים
+  // שלא תומכים (פיירפוקס/ספארי).
+  if (window.showSaveFilePicker) {
+    try {
+      var handle = await window.showSaveFilePicker({
+        suggestedName: r.fileName,
+        types: [{ description: 'GPX file', accept: { 'application/gpx+xml': ['.gpx'] } }]
+      });
+      var writable = await handle.createWritable();
+      await writable.write(blob);
+      await writable.close();
+      return;
+    } catch (e) {
+      if (e && e.name === 'AbortError') return;
+    }
+  }
+
   var a = document.createElement('a');
   a.href = URL.createObjectURL(blob);
   a.download = r.fileName;
   a.click();
-
-  var subject = encodeURIComponent('מסלול GPS חדש: ' + r.fileName);
-  var body = encodeURIComponent('יש לצרף כאן את הקובץ שירד כעת (' + r.fileName + ') ולשלוח.');
-  setTimeout(function () {
-    window.location.href = 'mailto:' + EMAIL_TARGET + '?subject=' + subject + '&body=' + body;
-  }, 300);
 }
 </script>
 </body>
