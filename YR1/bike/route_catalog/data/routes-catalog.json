@@ -1,6 +1,6 @@
 {
-  "generated_at": "2026-08-22T14:09:47",
-  "route_count": 564,
+  "generated_at": "2026-08-22T20:58:04",
+  "route_count": 565,
   "routes": [
     {
       "id": 698,
@@ -14,6 +14,10 @@
       "elevation_gain_m": 174,
       "elevation_loss_m": 174,
       "point_count": 178,
+      "start_lat": 33.04475,
+      "start_lon": 35.28658,
+      "end_lat": 33.04446,
+      "end_lon": 35.28582,
       "regions": [
         "צפון"
       ],
@@ -38,6 +42,10 @@
       "elevation_gain_m": 1036,
       "elevation_loss_m": 1036,
       "point_count": 3757,
+      "start_lat": 33.02162,
+      "start_lon": 35.57321,
+      "end_lat": 33.02157,
+      "end_lon": 35.57326,
       "regions": [
         "רמת הגולן והחרמון",
         "צפון"
@@ -64,6 +72,10 @@
       "elevation_gain_m": null,
       "elevation_loss_m": null,
       "point_count": 275,
+      "start_lat": 33.02205,
+      "start_lon": 35.573,
+      "end_lat": 33.02205,
+      "end_lon": 35.57313,
       "regions": [
         "רמת הגולן והחרמון",
         "צפון"
@@ -90,6 +102,10 @@
       "elevation_gain_m": 151,
       "elevation_loss_m": 952,
       "point_count": 5404,
+      "start_lat": 29.64494,
+      "start_lon": 34.87981,
+      "end_lat": 29.55011,
+      "end_lon": 34.96466,
       "regions": [
         "נגב וערבה"
       ],
@@ -114,6 +130,10 @@
       "elevation_gain_m": null,
       "elevation_loss_m": null,
       "point_count": 3878,
+      "start_lat": 32.77586,
+      "start_lon": 35.40919,
+      "end_lat": 32.7758,
+      "end_lon": 35.40901,
       "regions": [
         "צפון"
       ],
@@ -139,6 +159,10 @@
       "elevation_gain_m": null,
       "elevation_loss_m": null,
       "point_count": 41453,
+      "start_lat": 29.51024,
+      "start_lon": 34.92245,
+      "end_lat": 32.55108,
+      "end_lon": 34.94657,
       "regions": [
         "רמת הגולן והחרמון",
         "צפון",
@@ -168,6 +192,10 @@
       "elevation_gain_m": 855,
       "elevation_loss_m": 753,
       "point_count": 378,
+      "start_lat": 29.55441,
+      "start_lon": 34.96237,
+      "end_lat": 29.70944,
+      "end_lon": 34.98648,
       "regions": [
         "נגב וערבה"
       ],
@@ -192,6 +220,10 @@
       "elevation_gain_m": null,
       "elevation_loss_m": null,
       "point_count": 15427,
+      "start_lat": 29.51024,
+      "start_lon": 34.92245,
+      "end_lat": 31.3496,
+      "end_lon": 35.32662,
       "regions": [
         "נגב וערבה"
       ],
@@ -217,6 +249,10 @@
       "elevation_gain_m": 616,
       "elevation_loss_m": 607,
       "point_count": 3035,
+      "start_lat": 32.71033,
+      "start_lon": 35.14465,
+      "end_lat": 32.71043,
+      "end_lon": 35.14471,
       "regions": [
         "צפון",
         "ירושלים ומדבר יהודה"
@@ -243,6 +279,10 @@
       "elevation_gain_m": 110,
       "elevation_loss_m": 104,
       "point_count": 350,
+      "start_lat": 32.80827,
+      "start_lon": 35.74104,
+      "end_lat": 32.84893,
+      "end_lon": 35.73987,
       "regions": [
         "רמת הגולן והחרמון"
       ],
@@ -268,6 +308,10 @@
       "elevation_gain_m": 631,
       "elevation_loss_m": 813,
       "point_count": 218,
+      "start_lat": 29.76074,
+      "start_lon": 34.96924,
+      "end_lat": 29.53996,
+      "end_lon": 34.94661,
       "regions": [
         "נגב וערבה"
       ],
@@ -292,6 +336,10 @@
       "elevation_gain_m": 290,
       "elevation_loss_m": 257,
       "point_count": 177,
+      "start_lat": 32.76881,
+      "start_lon": 35.69247,
+      "end_lat": 32.73384,
+      "end_lon": 35.65525,
       "regions": [
         "רמת הגולן והחרמון"
       ],
@@ -317,6 +365,10 @@
       "elevation_gain_m": 61,
       "elevation_loss_m": 61,
       "point_count": 776,
+      "start_lat": 31.42935,
+      "start_lon": 34.49617,
+      "end_lat": 31.42935,
+      "end_lon": 34.49617,
       "regions": [
         "נגב וערבה"
       ],
@@ -342,6 +394,10 @@
       "elevation_gain_m": 63,
       "elevation_loss_m": 53,
       "point_count": 719,
+      "start_lat": 31.42935,
+      "start_lon": 34.4962,
+      "end_lat": 31.42935,
+      "end_lon": 34.49618,
       "regions": [
         "נגב וערבה"
       ],
@@ -367,6 +423,10 @@
       "elevation_gain_m": 166,
       "elevation_loss_m": 162,
       "point_count": 1094,
+      "start_lat": 31.42847,
+      "start_lon": 34.49474,
+      "end_lat": 31.42842,
+      "end_lon": 34.49413,
       "regions": [
         "נגב וערבה"
       ],
@@ -391,6 +451,10 @@
       "elevation_gain_m": 292,
       "elevation_loss_m": 358,
       "point_count": 4888,
+      "start_lat": 31.42808,
+      "start_lon": 34.49379,
+      "end_lat": 31.39999,
+      "end_lon": 34.44586,
       "regions": [
         "נגב וערבה"
       ],
@@ -416,6 +480,10 @@
       "elevation_gain_m": 255,
       "elevation_loss_m": 251,
       "point_count": 4388,
+      "start_lat": 31.42808,
+      "start_lon": 34.49379,
+      "end_lat": 31.42816,
+      "end_lon": 34.49386,
       "regions": [
         "נגב וערבה"
       ],
@@ -441,6 +509,10 @@
       "elevation_gain_m": 717,
       "elevation_loss_m": 716,
       "point_count": 1315,
+      "start_lat": 47.58614,
+      "start_lon": 19.04488,
+      "end_lat": 47.58612,
+      "end_lon": 19.04499,
       "regions": [
         "צפון"
       ],
@@ -462,6 +534,10 @@
       "elevation_gain_m": 261,
       "elevation_loss_m": 260,
       "point_count": 154,
+      "start_lat": 47.51653,
+      "start_lon": 18.97631,
+      "end_lat": 47.51653,
+      "end_lon": 18.97631,
       "regions": [
         "צפון"
       ],
@@ -483,6 +559,10 @@
       "elevation_gain_m": 366,
       "elevation_loss_m": 279,
       "point_count": 415,
+      "start_lat": 32.71446,
+      "start_lon": 35.01302,
+      "end_lat": 32.73542,
+      "end_lon": 35.0223,
       "regions": [
         "מרכז",
         "ירושלים ומדבר יהודה"
@@ -509,6 +589,10 @@
       "elevation_gain_m": null,
       "elevation_loss_m": null,
       "point_count": 51,
+      "start_lat": 32.7146,
+      "start_lon": 35.01319,
+      "end_lat": 32.71413,
+      "end_lon": 34.97697,
       "regions": [
         "מרכז"
       ],
@@ -534,6 +618,10 @@
       "elevation_gain_m": 309,
       "elevation_loss_m": 304,
       "point_count": 121,
+      "start_lat": 32.9642,
+      "start_lon": 35.39737,
+      "end_lat": 32.96417,
+      "end_lon": 35.39768,
       "regions": [
         "צפון"
       ],
@@ -559,6 +647,10 @@
       "elevation_gain_m": 1599,
       "elevation_loss_m": 1321,
       "point_count": 888,
+      "start_lat": 31.61067,
+      "start_lon": 34.89635,
+      "end_lat": 31.27775,
+      "end_lon": 35.12618,
       "regions": [
         "ירושלים ומדבר יהודה",
         "נגב וערבה"
@@ -585,6 +677,10 @@
       "elevation_gain_m": null,
       "elevation_loss_m": null,
       "point_count": 66,
+      "start_lat": 32.53234,
+      "start_lon": 34.92658,
+      "end_lat": 32.50201,
+      "end_lon": 34.89346,
       "regions": [
         "מרכז"
       ],
@@ -609,6 +705,10 @@
       "elevation_gain_m": 248,
       "elevation_loss_m": 300,
       "point_count": 540,
+      "start_lat": 32.79931,
+      "start_lon": 35.69009,
+      "end_lat": 32.70822,
+      "end_lon": 35.64972,
       "regions": [
         "רמת הגולן והחרמון"
       ],
@@ -634,6 +734,10 @@
       "elevation_gain_m": 133,
       "elevation_loss_m": 594,
       "point_count": 436,
+      "start_lat": 32.99365,
+      "start_lon": 35.41461,
+      "end_lat": 33.00571,
+      "end_lon": 35.36162,
       "regions": [
         "צפון"
       ],
@@ -659,6 +763,10 @@
       "elevation_gain_m": 479,
       "elevation_loss_m": 499,
       "point_count": 817,
+      "start_lat": 32.48237,
+      "start_lon": 35.02461,
+      "end_lat": 32.09357,
+      "end_lon": 34.94144,
       "regions": [
         "מרכז"
       ],
@@ -684,6 +792,10 @@
       "elevation_gain_m": null,
       "elevation_loss_m": null,
       "point_count": 44,
+      "start_lat": 33.06334,
+      "start_lon": 35.25058,
+      "end_lat": 33.06733,
+      "end_lon": 35.22084,
       "regions": [
         "צפון"
       ],
@@ -708,6 +820,10 @@
       "elevation_gain_m": 698,
       "elevation_loss_m": 699,
       "point_count": 1051,
+      "start_lat": 32.91601,
+      "start_lon": 35.22641,
+      "end_lat": 32.91539,
+      "end_lon": 35.22603,
       "regions": [
         "צפון"
       ],
@@ -733,6 +849,10 @@
       "elevation_gain_m": 10,
       "elevation_loss_m": 111,
       "point_count": 110,
+      "start_lat": 33.00827,
+      "start_lon": 35.21263,
+      "end_lat": 33.01565,
+      "end_lon": 35.20324,
       "regions": [
         "צפון"
       ],
@@ -758,6 +878,10 @@
       "elevation_gain_m": 196,
       "elevation_loss_m": 193,
       "point_count": 103,
+      "start_lat": 32.79898,
+      "start_lon": 34.98206,
+      "end_lat": 32.79917,
+      "end_lon": 34.98215,
       "regions": [
         "צפון",
         "מרכז"
@@ -783,6 +907,10 @@
       "elevation_gain_m": null,
       "elevation_loss_m": null,
       "point_count": 20,
+      "start_lat": 33.1417,
+      "start_lon": 35.7717,
+      "end_lat": 33.1417,
+      "end_lon": 35.7717,
       "regions": [
         "רמת הגולן והחרמון"
       ],
@@ -807,6 +935,10 @@
       "elevation_gain_m": 294,
       "elevation_loss_m": 302,
       "point_count": 552,
+      "start_lat": 32.70238,
+      "start_lon": 34.98174,
+      "end_lat": 32.65053,
+      "end_lon": 34.96606,
       "regions": [
         "מרכז"
       ],
@@ -832,6 +964,10 @@
       "elevation_gain_m": null,
       "elevation_loss_m": null,
       "point_count": 208,
+      "start_lat": 33.00795,
+      "start_lon": 35.21586,
+      "end_lat": 33.05041,
+      "end_lon": 35.10416,
       "regions": [
         "צפון"
       ],
@@ -857,6 +993,10 @@
       "elevation_gain_m": 534,
       "elevation_loss_m": 420,
       "point_count": 7300,
+      "start_lat": 33.0051,
+      "start_lon": 35.21549,
+      "end_lat": 33.00491,
+      "end_lon": 35.21604,
       "regions": [
         "צפון"
       ],
@@ -882,6 +1022,10 @@
       "elevation_gain_m": 1377,
       "elevation_loss_m": 1168,
       "point_count": 878,
+      "start_lat": 32.08906,
+      "start_lon": 34.94282,
+      "end_lat": 31.61006,
+      "end_lon": 34.89621,
       "regions": [
         "מרכז",
         "נגב וערבה"
@@ -908,6 +1052,10 @@
       "elevation_gain_m": 553,
       "elevation_loss_m": 555,
       "point_count": 115,
+      "start_lat": 33.0291,
+      "start_lon": 35.37789,
+      "end_lat": 33.02932,
+      "end_lon": 35.37791,
       "regions": [
         "צפון"
       ],
@@ -933,6 +1081,10 @@
       "elevation_gain_m": 28,
       "elevation_loss_m": 20,
       "point_count": 779,
+      "start_lat": 32.1106,
+      "start_lon": 34.84669,
+      "end_lat": 32.11244,
+      "end_lon": 34.91419,
       "regions": [
         "מרכז"
       ],
@@ -957,6 +1109,10 @@
       "elevation_gain_m": null,
       "elevation_loss_m": null,
       "point_count": 43,
+      "start_lat": 32.7458,
+      "start_lon": 35.02561,
+      "end_lat": 32.74588,
+      "end_lon": 35.02585,
       "regions": [
         "מרכז"
       ],
@@ -981,6 +1137,10 @@
       "elevation_gain_m": 204,
       "elevation_loss_m": 159,
       "point_count": 257,
+      "start_lat": 33.00825,
+      "start_lon": 35.21263,
+      "end_lat": 33.00879,
+      "end_lon": 35.22099,
       "regions": [
         "צפון"
       ],
@@ -1005,6 +1165,10 @@
       "elevation_gain_m": 201,
       "elevation_loss_m": 201,
       "point_count": 11196,
+      "start_lat": 33.00424,
+      "start_lon": 35.21613,
+      "end_lat": 33.00505,
+      "end_lon": 35.21547,
       "regions": [
         "צפון"
       ],
@@ -1029,6 +1193,10 @@
       "elevation_gain_m": 2622,
       "elevation_loss_m": 3885,
       "point_count": 3294,
+      "start_lat": 33.28947,
+      "start_lon": 35.7609,
+      "end_lat": 32.69903,
+      "end_lon": 35.64788,
       "regions": [
         "רמת הגולן והחרמון"
       ],
@@ -1054,6 +1222,10 @@
       "elevation_gain_m": 57,
       "elevation_loss_m": 379,
       "point_count": 4440,
+      "start_lat": 33.00625,
+      "start_lon": 35.21245,
+      "end_lat": 32.95158,
+      "end_lon": 35.09631,
       "regions": [
         "צפון"
       ],
@@ -1079,6 +1251,10 @@
       "elevation_gain_m": 1137,
       "elevation_loss_m": 833,
       "point_count": 560,
+      "start_lat": 32.62111,
+      "start_lon": 35.56163,
+      "end_lat": 32.48237,
+      "end_lon": 35.02461,
       "regions": [
         "רמת הגולן והחרמון",
         "בקעת הירדן",
@@ -1108,6 +1284,10 @@
       "elevation_gain_m": 1307,
       "elevation_loss_m": 949,
       "point_count": 291,
+      "start_lat": 31.03008,
+      "start_lon": 35.07704,
+      "end_lat": 30.61452,
+      "end_lon": 34.80687,
       "regions": [
         "נגב וערבה"
       ],
@@ -1132,6 +1312,10 @@
       "elevation_gain_m": null,
       "elevation_loss_m": null,
       "point_count": 96,
+      "start_lat": 32.99385,
+      "start_lon": 35.47591,
+      "end_lat": 32.97369,
+      "end_lon": 35.46188,
       "regions": [
         "צפון"
       ],
@@ -1157,6 +1341,10 @@
       "elevation_gain_m": null,
       "elevation_loss_m": null,
       "point_count": 94,
+      "start_lat": 32.99412,
+      "start_lon": 35.47592,
+      "end_lat": 32.97941,
+      "end_lon": 35.44322,
       "regions": [
         "צפון"
       ],
@@ -1181,6 +1369,10 @@
       "elevation_gain_m": 601,
       "elevation_loss_m": 1016,
       "point_count": 612,
+      "start_lat": 33.23667,
+      "start_lon": 35.65274,
+      "end_lat": 32.62097,
+      "end_lon": 35.5618,
       "regions": [
         "רמת הגולן והחרמון"
       ],
@@ -1206,6 +1398,10 @@
       "elevation_gain_m": 139,
       "elevation_loss_m": 140,
       "point_count": 2267,
+      "start_lat": 33.22347,
+      "start_lon": 35.61537,
+      "end_lat": 33.22341,
+      "end_lon": 35.61565,
       "regions": [
         "רמת הגולן והחרמון"
       ],
@@ -1231,6 +1427,10 @@
       "elevation_gain_m": 425,
       "elevation_loss_m": 418,
       "point_count": 85,
+      "start_lat": 32.84131,
+      "start_lon": 35.3645,
+      "end_lat": 32.84126,
+      "end_lon": 35.36447,
       "regions": [
         "צפון"
       ],
@@ -1256,6 +1456,10 @@
       "elevation_gain_m": 810,
       "elevation_loss_m": 876,
       "point_count": 1882,
+      "start_lat": 48.21415,
+      "start_lon": 16.44559,
+      "end_lat": 47.48719,
+      "end_lon": 19.05059,
       "regions": [
         "צפון"
       ],
@@ -1277,6 +1481,10 @@
       "elevation_gain_m": 988,
       "elevation_loss_m": 1156,
       "point_count": 405,
+      "start_lat": 33.0147,
+      "start_lon": 35.39305,
+      "end_lat": 33.01005,
+      "end_lon": 35.36067,
       "regions": [
         "צפון"
       ],
@@ -1301,6 +1509,10 @@
       "elevation_gain_m": 343,
       "elevation_loss_m": 586,
       "point_count": 638,
+      "start_lat": 33.00886,
+      "start_lon": 35.39366,
+      "end_lat": 32.97926,
+      "end_lon": 35.44318,
       "regions": [
         "צפון"
       ],
@@ -1325,6 +1537,10 @@
       "elevation_gain_m": null,
       "elevation_loss_m": null,
       "point_count": 110,
+      "start_lat": 33.00888,
+      "start_lon": 35.39365,
+      "end_lat": 32.97936,
+      "end_lon": 35.4432,
       "regions": [
         "צפון"
       ],
@@ -1349,6 +1565,10 @@
       "elevation_gain_m": 531,
       "elevation_loss_m": 526,
       "point_count": 192,
+      "start_lat": 33.00898,
+      "start_lon": 35.3937,
+      "end_lat": 33.00895,
+      "end_lon": 35.39371,
       "regions": [
         "צפון"
       ],
@@ -1374,6 +1594,10 @@
       "elevation_gain_m": 271,
       "elevation_loss_m": 23,
       "point_count": 115,
+      "start_lat": 32.8189,
+      "start_lon": 34.99379,
+      "end_lat": 32.80538,
+      "end_lon": 34.98907,
       "regions": [
         "צפון"
       ],
@@ -1399,6 +1623,10 @@
       "elevation_gain_m": 24,
       "elevation_loss_m": 269,
       "point_count": 82,
+      "start_lat": 32.80542,
+      "start_lon": 34.98917,
+      "end_lat": 32.81892,
+      "end_lon": 34.99371,
       "regions": [
         "צפון"
       ],
@@ -1424,6 +1652,10 @@
       "elevation_gain_m": 254,
       "elevation_loss_m": 6,
       "point_count": 110,
+      "start_lat": 32.8189,
+      "start_lon": 34.99379,
+      "end_lat": 32.80538,
+      "end_lon": 34.98907,
       "regions": [
         "צפון"
       ],
@@ -1449,6 +1681,10 @@
       "elevation_gain_m": null,
       "elevation_loss_m": null,
       "point_count": 122,
+      "start_lat": 30.76692,
+      "start_lon": 35.28154,
+      "end_lat": 31.14772,
+      "end_lon": 35.36946,
       "regions": [
         "נגב וערבה"
       ],
@@ -1473,6 +1709,10 @@
       "elevation_gain_m": 394,
       "elevation_loss_m": 392,
       "point_count": 1819,
+      "start_lat": 32.92775,
+      "start_lon": 35.16976,
+      "end_lat": 32.92767,
+      "end_lon": 35.1697,
       "regions": [
         "צפון"
       ],
@@ -1498,6 +1738,10 @@
       "elevation_gain_m": 517,
       "elevation_loss_m": 517,
       "point_count": 205,
+      "start_lat": 32.7435,
+      "start_lon": 35.07197,
+      "end_lat": 32.7437,
+      "end_lon": 35.07237,
       "regions": [
         "ירושלים ומדבר יהודה"
       ],
@@ -1522,6 +1766,10 @@
       "elevation_gain_m": 511,
       "elevation_loss_m": 433,
       "point_count": 482,
+      "start_lat": 32.74346,
+      "start_lon": 35.07193,
+      "end_lat": 32.73831,
+      "end_lon": 35.07544,
       "regions": [
         "ירושלים ומדבר יהודה"
       ],
@@ -1546,6 +1794,10 @@
       "elevation_gain_m": 258,
       "elevation_loss_m": 257,
       "point_count": 1671,
+      "start_lat": 30.08222,
+      "start_lon": 35.13109,
+      "end_lat": 30.08219,
+      "end_lon": 35.13112,
       "regions": [
         "נגב וערבה"
       ],
@@ -1571,6 +1823,10 @@
       "elevation_gain_m": 314,
       "elevation_loss_m": 311,
       "point_count": 6174,
+      "start_lat": 30.08626,
+      "start_lon": 35.12643,
+      "end_lat": 30.08616,
+      "end_lon": 35.12651,
       "regions": [
         "נגב וערבה"
       ],
@@ -1596,6 +1852,10 @@
       "elevation_gain_m": 550,
       "elevation_loss_m": 646,
       "point_count": 3203,
+      "start_lat": 30.08196,
+      "start_lon": 35.1316,
+      "end_lat": 29.89471,
+      "end_lon": 35.06426,
       "regions": [
         "נגב וערבה"
       ],
@@ -1620,6 +1880,10 @@
       "elevation_gain_m": 566,
       "elevation_loss_m": 626,
       "point_count": 3500,
+      "start_lat": 30.08222,
+      "start_lon": 35.13125,
+      "end_lat": 29.96839,
+      "end_lon": 35.05958,
       "regions": [
         "נגב וערבה"
       ],
@@ -1644,6 +1908,10 @@
       "elevation_gain_m": 779,
       "elevation_loss_m": 778,
       "point_count": 1042,
+      "start_lat": 29.89483,
+      "start_lon": 35.06409,
+      "end_lat": 29.89483,
+      "end_lon": 35.06409,
       "regions": [
         "נגב וערבה"
       ],
@@ -1669,6 +1937,10 @@
       "elevation_gain_m": 421,
       "elevation_loss_m": 418,
       "point_count": 452,
+      "start_lat": 33.07366,
+      "start_lon": 35.17848,
+      "end_lat": 33.07354,
+      "end_lon": 35.1786,
       "regions": [
         "צפון"
       ],
@@ -1694,6 +1966,10 @@
       "elevation_gain_m": 53,
       "elevation_loss_m": 51,
       "point_count": 441,
+      "start_lat": 33.12518,
+      "start_lon": 35.56995,
+      "end_lat": 33.1251,
+      "end_lon": 35.56998,
       "regions": [
         "רמת הגולן והחרמון"
       ],
@@ -1718,6 +1994,10 @@
       "elevation_gain_m": 1030,
       "elevation_loss_m": 1032,
       "point_count": 1123,
+      "start_lat": 33.01817,
+      "start_lon": 35.14278,
+      "end_lat": 33.01816,
+      "end_lon": 35.1427,
       "regions": [
         "צפון"
       ],
@@ -1743,6 +2023,10 @@
       "elevation_gain_m": 317,
       "elevation_loss_m": 319,
       "point_count": 1675,
+      "start_lat": 33.0095,
+      "start_lon": 35.14636,
+      "end_lat": 33.00946,
+      "end_lon": 35.14624,
       "regions": [
         "צפון"
       ],
@@ -1767,6 +2051,10 @@
       "elevation_gain_m": 261,
       "elevation_loss_m": 258,
       "point_count": 985,
+      "start_lat": 33.00944,
+      "start_lon": 35.14573,
+      "end_lat": 33.00944,
+      "end_lon": 35.14573,
       "regions": [
         "צפון"
       ],
@@ -1791,6 +2079,10 @@
       "elevation_gain_m": 177,
       "elevation_loss_m": 183,
       "point_count": 954,
+      "start_lat": 33.01832,
+      "start_lon": 35.14316,
+      "end_lat": 33.01815,
+      "end_lon": 35.14326,
       "regions": [
         "צפון"
       ],
@@ -1816,6 +2108,10 @@
       "elevation_gain_m": 64,
       "elevation_loss_m": 63,
       "point_count": 200,
+      "start_lat": 32.99774,
+      "start_lon": 35.21603,
+      "end_lat": 32.99755,
+      "end_lon": 35.21606,
       "regions": [
         "צפון"
       ],
@@ -1841,6 +2137,10 @@
       "elevation_gain_m": 657,
       "elevation_loss_m": 702,
       "point_count": 299,
+      "start_lat": 31.27539,
+      "start_lon": 35.12689,
+      "end_lat": 31.03008,
+      "end_lon": 35.07704,
       "regions": [
         "נגב וערבה"
       ],
@@ -1865,6 +2165,10 @@
       "elevation_gain_m": 517,
       "elevation_loss_m": 500,
       "point_count": 1980,
+      "start_lat": 33.23898,
+      "start_lon": 35.57154,
+      "end_lat": 33.23902,
+      "end_lon": 35.57155,
       "regions": [
         "רמת הגולן והחרמון"
       ],
@@ -1890,6 +2194,10 @@
       "elevation_gain_m": 287,
       "elevation_loss_m": 288,
       "point_count": 3372,
+      "start_lat": 32.27298,
+      "start_lon": 34.85912,
+      "end_lat": 32.27295,
+      "end_lon": 34.85908,
       "regions": [
         "מרכז"
       ],
@@ -1915,6 +2223,10 @@
       "elevation_gain_m": 793,
       "elevation_loss_m": 795,
       "point_count": 3592,
+      "start_lat": 33.09287,
+      "start_lon": 35.10671,
+      "end_lat": 33.09287,
+      "end_lon": 35.10645,
       "regions": [
         "צפון"
       ],
@@ -1940,6 +2252,10 @@
       "elevation_gain_m": 481,
       "elevation_loss_m": 484,
       "point_count": 115,
+      "start_lat": 32.92506,
+      "start_lon": 35.60785,
+      "end_lat": 32.92506,
+      "end_lon": 35.6081,
       "regions": [
         "רמת הגולן והחרמון"
       ],
@@ -1965,6 +2281,10 @@
       "elevation_gain_m": 168,
       "elevation_loss_m": 121,
       "point_count": 246,
+      "start_lat": 29.98546,
+      "start_lon": 35.08502,
+      "end_lat": 29.80642,
+      "end_lon": 34.99223,
       "regions": [
         "נגב וערבה"
       ],
@@ -1990,6 +2310,10 @@
       "elevation_gain_m": 524,
       "elevation_loss_m": 492,
       "point_count": 1463,
+      "start_lat": 29.98697,
+      "start_lon": 35.08634,
+      "end_lat": 29.98669,
+      "end_lon": 35.07419,
       "regions": [
         "נגב וערבה"
       ],
@@ -2014,6 +2338,10 @@
       "elevation_gain_m": 368,
       "elevation_loss_m": 363,
       "point_count": 1318,
+      "start_lat": 29.98614,
+      "start_lon": 35.07421,
+      "end_lat": 29.98609,
+      "end_lon": 35.07417,
       "regions": [
         "נגב וערבה"
       ],
@@ -2038,6 +2366,10 @@
       "elevation_gain_m": 12,
       "elevation_loss_m": 12,
       "point_count": 40,
+      "start_lat": 52.1601,
+      "start_lon": 4.497,
+      "end_lat": 52.1601,
+      "end_lon": 4.497,
       "regions": [
         "צפון"
       ],
@@ -2059,6 +2391,10 @@
       "elevation_gain_m": 390,
       "elevation_loss_m": 405,
       "point_count": 608,
+      "start_lat": 32.58283,
+      "start_lon": 34.96705,
+      "end_lat": 32.53826,
+      "end_lon": 34.90168,
       "regions": [
         "מרכז"
       ],
@@ -2084,6 +2420,10 @@
       "elevation_gain_m": 187,
       "elevation_loss_m": 788,
       "point_count": 678,
+      "start_lat": 32.97906,
+      "start_lon": 35.44247,
+      "end_lat": 32.91272,
+      "end_lon": 35.48507,
       "regions": [
         "צפון"
       ],
@@ -2109,6 +2449,10 @@
       "elevation_gain_m": 776,
       "elevation_loss_m": 16,
       "point_count": 163,
+      "start_lat": 33.19192,
+      "start_lon": 35.56603,
+      "end_lat": 33.19538,
+      "end_lon": 35.54725,
       "regions": [
         "רמת הגולן והחרמון"
       ],
@@ -2134,6 +2478,10 @@
       "elevation_gain_m": null,
       "elevation_loss_m": null,
       "point_count": 10,
+      "start_lat": 33.03056,
+      "start_lon": 35.25863,
+      "end_lat": 33.03761,
+      "end_lon": 35.25889,
       "regions": [
         "צפון"
       ],
@@ -2159,6 +2507,10 @@
       "elevation_gain_m": null,
       "elevation_loss_m": null,
       "point_count": 26,
+      "start_lat": 33.01231,
+      "start_lon": 35.28055,
+      "end_lat": 33.038,
+      "end_lon": 35.27111,
       "regions": [
         "צפון"
       ],
@@ -2183,6 +2535,10 @@
       "elevation_gain_m": 143,
       "elevation_loss_m": 174,
       "point_count": 137,
+      "start_lat": 33.03583,
+      "start_lon": 35.23556,
+      "end_lat": 33.03966,
+      "end_lon": 35.23487,
       "regions": [
         "צפון"
       ],
@@ -2207,6 +2563,10 @@
       "elevation_gain_m": null,
       "elevation_loss_m": null,
       "point_count": 109,
+      "start_lat": 33.0363,
+      "start_lon": 35.23522,
+      "end_lat": 33.04804,
+      "end_lon": 35.22138,
       "regions": [
         "צפון"
       ],
@@ -2231,6 +2591,10 @@
       "elevation_gain_m": null,
       "elevation_loss_m": null,
       "point_count": 118,
+      "start_lat": 33.03349,
+      "start_lon": 35.23908,
+      "end_lat": 33.03436,
+      "end_lon": 35.23916,
       "regions": [
         "צפון"
       ],
@@ -2256,6 +2620,10 @@
       "elevation_gain_m": null,
       "elevation_loss_m": null,
       "point_count": 113,
+      "start_lat": 33.03629,
+      "start_lon": 35.23513,
+      "end_lat": 33.04265,
+      "end_lon": 35.18348,
       "regions": [
         "צפון"
       ],
@@ -2281,6 +2649,10 @@
       "elevation_gain_m": 24,
       "elevation_loss_m": 367,
       "point_count": 10345,
+      "start_lat": 33.0378,
+      "start_lon": 35.24145,
+      "end_lat": 33.04312,
+      "end_lon": 35.18598,
       "regions": [
         "צפון"
       ],
@@ -2306,6 +2678,10 @@
       "elevation_gain_m": 39,
       "elevation_loss_m": 399,
       "point_count": 356,
+      "start_lat": 33.03732,
+      "start_lon": 35.24109,
+      "end_lat": 33.04256,
+      "end_lon": 35.17651,
       "regions": [
         "צפון"
       ],
@@ -2331,6 +2707,10 @@
       "elevation_gain_m": 789,
       "elevation_loss_m": 1520,
       "point_count": 703,
+      "start_lat": 30.61256,
+      "start_lon": 34.80416,
+      "end_lat": 30.36168,
+      "end_lon": 35.16074,
       "regions": [
         "נגב וערבה"
       ],
@@ -2356,6 +2736,10 @@
       "elevation_gain_m": 287,
       "elevation_loss_m": 289,
       "point_count": 224,
+      "start_lat": 33.14061,
+      "start_lon": 35.77796,
+      "end_lat": 33.09373,
+      "end_lon": 35.79745,
       "regions": [
         "רמת הגולן והחרמון"
       ],
@@ -2380,6 +2764,10 @@
       "elevation_gain_m": 110939,
       "elevation_loss_m": 110939,
       "point_count": 289,
+      "start_lat": 31.03963,
+      "start_lon": 35.36708,
+      "end_lat": 31.07952,
+      "end_lon": 35.37038,
       "regions": [
         "נגב וערבה"
       ],
@@ -2404,6 +2792,10 @@
       "elevation_gain_m": 589,
       "elevation_loss_m": 591,
       "point_count": 1159,
+      "start_lat": 32.60142,
+      "start_lon": 35.39402,
+      "end_lat": 32.6015,
+      "end_lon": 35.39431,
       "regions": [
         "צפון"
       ],
@@ -2429,6 +2821,10 @@
       "elevation_gain_m": null,
       "elevation_loss_m": null,
       "point_count": 76,
+      "start_lat": 31.17794,
+      "start_lon": 35.36825,
+      "end_lat": 31.15009,
+      "end_lon": 35.36503,
       "regions": [
         "נגב וערבה"
       ],
@@ -2454,6 +2850,10 @@
       "elevation_gain_m": 313,
       "elevation_loss_m": 315,
       "point_count": 157,
+      "start_lat": 31.26139,
+      "start_lon": 35.36754,
+      "end_lat": 31.26136,
+      "end_lon": 35.36782,
       "regions": [
         "נגב וערבה"
       ],
@@ -2478,6 +2878,10 @@
       "elevation_gain_m": 254,
       "elevation_loss_m": 234,
       "point_count": 2207,
+      "start_lat": 31.14341,
+      "start_lon": 35.36421,
+      "end_lat": 30.99477,
+      "end_lon": 35.34065,
       "regions": [
         "נגב וערבה"
       ],
@@ -2502,6 +2906,10 @@
       "elevation_gain_m": 243,
       "elevation_loss_m": 68,
       "point_count": 48,
+      "start_lat": 31.28283,
+      "start_lon": 35.37056,
+      "end_lat": 31.28449,
+      "end_lon": 35.35743,
       "regions": [
         "נגב וערבה"
       ],
@@ -2526,6 +2934,10 @@
       "elevation_gain_m": 724,
       "elevation_loss_m": 729,
       "point_count": 12312,
+      "start_lat": 33.04257,
+      "start_lon": 35.17646,
+      "end_lat": 33.04262,
+      "end_lon": 35.17633,
       "regions": [
         "צפון"
       ],
@@ -2551,6 +2963,10 @@
       "elevation_gain_m": null,
       "elevation_loss_m": null,
       "point_count": 2869,
+      "start_lat": 32.9016,
+      "start_lon": 35.09189,
+      "end_lat": 32.84562,
+      "end_lon": 35.51691,
       "regions": [
         "רמת הגולן והחרמון",
         "צפון"
@@ -2577,6 +2993,10 @@
       "elevation_gain_m": null,
       "elevation_loss_m": null,
       "point_count": 120,
+      "start_lat": 33.00858,
+      "start_lon": 35.22097,
+      "end_lat": 33.00828,
+      "end_lon": 35.22103,
       "regions": [
         "צפון"
       ],
@@ -2601,6 +3021,10 @@
       "elevation_gain_m": 824,
       "elevation_loss_m": 826,
       "point_count": 3151,
+      "start_lat": 33.01006,
+      "start_lon": 35.22678,
+      "end_lat": 33.01006,
+      "end_lon": 35.22678,
       "regions": [
         "צפון"
       ],
@@ -2626,6 +3050,10 @@
       "elevation_gain_m": 607,
       "elevation_loss_m": 606,
       "point_count": 1427,
+      "start_lat": 33.00867,
+      "start_lon": 35.22274,
+      "end_lat": 33.00867,
+      "end_lon": 35.22274,
       "regions": [
         "צפון"
       ],
@@ -2651,6 +3079,10 @@
       "elevation_gain_m": null,
       "elevation_loss_m": null,
       "point_count": 97,
+      "start_lat": 33.00869,
+      "start_lon": 35.22275,
+      "end_lat": 33.00825,
+      "end_lon": 35.22136,
       "regions": [
         "צפון"
       ],
@@ -2675,6 +3107,10 @@
       "elevation_gain_m": null,
       "elevation_loss_m": null,
       "point_count": 98,
+      "start_lat": 33.00869,
+      "start_lon": 35.22275,
+      "end_lat": 33.00825,
+      "end_lon": 35.22136,
       "regions": [
         "צפון"
       ],
@@ -2700,6 +3136,10 @@
       "elevation_gain_m": null,
       "elevation_loss_m": null,
       "point_count": 69,
+      "start_lat": 33.25016,
+      "start_lon": 35.72976,
+      "end_lat": 33.24813,
+      "end_lon": 35.69435,
       "regions": [
         "רמת הגולן והחרמון"
       ],
@@ -2725,6 +3165,10 @@
       "elevation_gain_m": 324,
       "elevation_loss_m": 70,
       "point_count": 233,
+      "start_lat": 31.30687,
+      "start_lon": 35.26914,
+      "end_lat": 31.2635,
+      "end_lon": 35.22884,
       "regions": [
         "ירושלים ומדבר יהודה",
         "נגב וערבה"
@@ -2751,6 +3195,10 @@
       "elevation_gain_m": 357,
       "elevation_loss_m": 935,
       "point_count": 3931,
+      "start_lat": 31.26181,
+      "start_lon": 35.23916,
+      "end_lat": 31.31784,
+      "end_lon": 35.34794,
       "regions": [
         "ירושלים ומדבר יהודה",
         "נגב וערבה"
@@ -2777,6 +3225,10 @@
       "elevation_gain_m": 36257,
       "elevation_loss_m": 35955,
       "point_count": 589,
+      "start_lat": 31.25208,
+      "start_lon": 35.19632,
+      "end_lat": 31.33135,
+      "end_lon": 35.27796,
       "regions": [
         "ירושלים ומדבר יהודה",
         "נגב וערבה"
@@ -2803,6 +3255,10 @@
       "elevation_gain_m": 270,
       "elevation_loss_m": 1216,
       "point_count": 3307,
+      "start_lat": 31.26049,
+      "start_lon": 35.23433,
+      "end_lat": 31.14993,
+      "end_lon": 35.36168,
       "regions": [
         "נגב וערבה"
       ],
@@ -2827,6 +3283,10 @@
       "elevation_gain_m": 448,
       "elevation_loss_m": 1377,
       "point_count": 3286,
+      "start_lat": 31.25428,
+      "start_lon": 35.20733,
+      "end_lat": 31.15002,
+      "end_lon": 35.36174,
       "regions": [
         "נגב וערבה"
       ],
@@ -2851,6 +3311,10 @@
       "elevation_gain_m": 1013,
       "elevation_loss_m": 593,
       "point_count": 601,
+      "start_lat": 30.36168,
+      "start_lon": 35.16074,
+      "end_lat": 29.91617,
+      "end_lon": 35.00618,
       "regions": [
         "נגב וערבה"
       ],
@@ -2876,6 +3340,10 @@
       "elevation_gain_m": 4479,
       "elevation_loss_m": 4379,
       "point_count": 5072,
+      "start_lat": 28.34894,
+      "start_lon": 83.74203,
+      "end_lat": 28.37151,
+      "end_lon": 83.82553,
       "regions": [
         "צפון"
       ],
@@ -2897,6 +3365,10 @@
       "elevation_gain_m": 6023,
       "elevation_loss_m": 5543,
       "point_count": 4995,
+      "start_lat": 28.34894,
+      "start_lon": 83.74203,
+      "end_lat": 28.37706,
+      "end_lon": 83.80724,
       "regions": [
         "צפון"
       ],
@@ -2918,6 +3390,10 @@
       "elevation_gain_m": null,
       "elevation_loss_m": null,
       "point_count": 109,
+      "start_lat": 33.02335,
+      "start_lon": 35.40905,
+      "end_lat": 33.01335,
+      "end_lon": 35.35587,
       "regions": [
         "צפון"
       ],
@@ -2942,6 +3418,10 @@
       "elevation_gain_m": 1923,
       "elevation_loss_m": 2096,
       "point_count": 1159,
+      "start_lat": 31.78403,
+      "start_lon": 35.11468,
+      "end_lat": 31.71457,
+      "end_lon": 35.05014,
       "regions": [
         "ירושלים ומדבר יהודה"
       ],
@@ -2967,6 +3447,10 @@
       "elevation_gain_m": 501,
       "elevation_loss_m": 506,
       "point_count": 385,
+      "start_lat": 32.96384,
+      "start_lon": 35.48706,
+      "end_lat": 32.96348,
+      "end_lon": 35.48712,
       "regions": [
         "צפון"
       ],
@@ -2992,6 +3476,10 @@
       "elevation_gain_m": 358,
       "elevation_loss_m": 350,
       "point_count": 613,
+      "start_lat": 33.09021,
+      "start_lon": 35.5619,
+      "end_lat": 33.14307,
+      "end_lon": 35.55158,
       "regions": [
         "רמת הגולן והחרמון"
       ],
@@ -3016,6 +3504,10 @@
       "elevation_gain_m": 488,
       "elevation_loss_m": 487,
       "point_count": 156,
+      "start_lat": 32.67862,
+      "start_lon": 35.4109,
+      "end_lat": 32.6784,
+      "end_lon": 35.41095,
       "regions": [
         "צפון"
       ],
@@ -3040,6 +3532,10 @@
       "elevation_gain_m": 668,
       "elevation_loss_m": 679,
       "point_count": 177,
+      "start_lat": 33.03909,
+      "start_lon": 35.54813,
+      "end_lat": 33.0391,
+      "end_lon": 35.54841,
       "regions": [
         "רמת הגולן והחרמון"
       ],
@@ -3065,6 +3561,10 @@
       "elevation_gain_m": 446,
       "elevation_loss_m": 446,
       "point_count": 3402,
+      "start_lat": 30.84996,
+      "start_lon": 34.77927,
+      "end_lat": 30.84988,
+      "end_lon": 34.77916,
       "regions": [
         "נגב וערבה"
       ],
@@ -3090,6 +3590,10 @@
       "elevation_gain_m": 475,
       "elevation_loss_m": 475,
       "point_count": 670,
+      "start_lat": 30.90641,
+      "start_lon": 34.7725,
+      "end_lat": 30.90648,
+      "end_lon": 34.7736,
       "regions": [
         "נגב וערבה"
       ],
@@ -3115,6 +3619,10 @@
       "elevation_gain_m": 1186,
       "elevation_loss_m": 1701,
       "point_count": 626,
+      "start_lat": 29.91619,
+      "start_lon": 35.00612,
+      "end_lat": 29.53996,
+      "end_lon": 34.94661,
       "regions": [
         "נגב וערבה"
       ],
@@ -3139,6 +3647,10 @@
       "elevation_gain_m": 915,
       "elevation_loss_m": 915,
       "point_count": 366,
+      "start_lat": 33.00082,
+      "start_lon": 35.1437,
+      "end_lat": 33.0016,
+      "end_lon": 35.14373,
       "regions": [
         "צפון"
       ],
@@ -3164,6 +3676,10 @@
       "elevation_gain_m": 1238,
       "elevation_loss_m": 1236,
       "point_count": 353,
+      "start_lat": 33.07365,
+      "start_lon": 35.15315,
+      "end_lat": 33.07339,
+      "end_lon": 35.15126,
       "regions": [
         "צפון"
       ],
@@ -3189,6 +3705,10 @@
       "elevation_gain_m": 320,
       "elevation_loss_m": 323,
       "point_count": 1217,
+      "start_lat": 33.07356,
+      "start_lon": 35.15206,
+      "end_lat": 33.07356,
+      "end_lon": 35.15206,
       "regions": [
         "צפון"
       ],
@@ -3213,6 +3733,10 @@
       "elevation_gain_m": 371,
       "elevation_loss_m": 370,
       "point_count": 6224,
+      "start_lat": 32.09976,
+      "start_lon": 34.77977,
+      "end_lat": 32.09991,
+      "end_lon": 34.78097,
       "regions": [
         "מרכז"
       ],
@@ -3238,6 +3762,10 @@
       "elevation_gain_m": 459,
       "elevation_loss_m": 475,
       "point_count": 592,
+      "start_lat": 32.10123,
+      "start_lon": 34.78053,
+      "end_lat": 32.09997,
+      "end_lon": 34.78118,
       "regions": [
         "מרכז"
       ],
@@ -3262,6 +3790,10 @@
       "elevation_gain_m": 111,
       "elevation_loss_m": 108,
       "point_count": 480,
+      "start_lat": 33.01582,
+      "start_lon": 35.203,
+      "end_lat": 33.01585,
+      "end_lon": 35.20332,
       "regions": [
         "צפון"
       ],
@@ -3286,6 +3818,10 @@
       "elevation_gain_m": 270,
       "elevation_loss_m": 269,
       "point_count": 1242,
+      "start_lat": 32.78802,
+      "start_lon": 35.54158,
+      "end_lat": 32.78745,
+      "end_lon": 35.5424,
       "regions": [
         "רמת הגולן והחרמון"
       ],
@@ -3311,6 +3847,10 @@
       "elevation_gain_m": 123,
       "elevation_loss_m": 111,
       "point_count": 303,
+      "start_lat": 32.99358,
+      "start_lon": 35.41465,
+      "end_lat": 32.99564,
+      "end_lon": 35.41271,
       "regions": [
         "צפון"
       ],
@@ -3336,6 +3876,10 @@
       "elevation_gain_m": 176,
       "elevation_loss_m": 178,
       "point_count": 1279,
+      "start_lat": 32.78797,
+      "start_lon": 35.54151,
+      "end_lat": 32.78803,
+      "end_lon": 35.54237,
       "regions": [
         "רמת הגולן והחרמון"
       ],
@@ -3360,6 +3904,10 @@
       "elevation_gain_m": 161,
       "elevation_loss_m": 160,
       "point_count": 620,
+      "start_lat": 33.00597,
+      "start_lon": 35.21475,
+      "end_lat": 33.00508,
+      "end_lon": 35.21549,
       "regions": [
         "צפון"
       ],
@@ -3385,6 +3933,10 @@
       "elevation_gain_m": 52,
       "elevation_loss_m": 80,
       "point_count": 1850,
+      "start_lat": 33.01653,
+      "start_lon": 35.14205,
+      "end_lat": 32.94891,
+      "end_lon": 35.09463,
       "regions": [
         "צפון"
       ],
@@ -3410,6 +3962,10 @@
       "elevation_gain_m": 44,
       "elevation_loss_m": 44,
       "point_count": 1502,
+      "start_lat": 33.01351,
+      "start_lon": 35.09005,
+      "end_lat": 33.01353,
+      "end_lon": 35.09005,
       "regions": [
         "צפון"
       ],
@@ -3435,6 +3991,10 @@
       "elevation_gain_m": 285,
       "elevation_loss_m": 283,
       "point_count": 1009,
+      "start_lat": 33.005,
+      "start_lon": 35.21547,
+      "end_lat": 33.00502,
+      "end_lon": 35.21547,
       "regions": [
         "צפון"
       ],
@@ -3459,6 +4019,10 @@
       "elevation_gain_m": 242,
       "elevation_loss_m": 244,
       "point_count": 1301,
+      "start_lat": 33.00506,
+      "start_lon": 35.21543,
+      "end_lat": 33.00506,
+      "end_lon": 35.21551,
       "regions": [
         "צפון"
       ],
@@ -3484,6 +4048,10 @@
       "elevation_gain_m": 70,
       "elevation_loss_m": 411,
       "point_count": 1666,
+      "start_lat": 33.00514,
+      "start_lon": 35.21557,
+      "end_lat": 33.00705,
+      "end_lon": 35.09228,
       "regions": [
         "צפון"
       ],
@@ -3509,6 +4077,10 @@
       "elevation_gain_m": 222,
       "elevation_loss_m": 208,
       "point_count": 796,
+      "start_lat": 33.00533,
+      "start_lon": 35.2144,
+      "end_lat": 33.00507,
+      "end_lon": 35.21554,
       "regions": [
         "צפון"
       ],
@@ -3533,6 +4105,10 @@
       "elevation_gain_m": 176,
       "elevation_loss_m": 503,
       "point_count": 3063,
+      "start_lat": 33.00494,
+      "start_lon": 35.21545,
+      "end_lat": 32.94873,
+      "end_lon": 35.09449,
       "regions": [
         "צפון"
       ],
@@ -3558,6 +4134,10 @@
       "elevation_gain_m": 0,
       "elevation_loss_m": 0,
       "point_count": 1880,
+      "start_lat": 33.00148,
+      "start_lon": 35.08941,
+      "end_lat": 32.99927,
+      "end_lon": 35.08618,
       "regions": [
         "צפון"
       ],
@@ -3583,6 +4163,10 @@
       "elevation_gain_m": 100,
       "elevation_loss_m": 439,
       "point_count": 1867,
+      "start_lat": 33.00505,
+      "start_lon": 35.21542,
+      "end_lat": 33.00724,
+      "end_lon": 35.09069,
       "regions": [
         "צפון"
       ],
@@ -3608,6 +4192,10 @@
       "elevation_gain_m": 133,
       "elevation_loss_m": 133,
       "point_count": 2548,
+      "start_lat": 32.99064,
+      "start_lon": 35.08382,
+      "end_lat": 32.99057,
+      "end_lon": 35.08376,
       "regions": [
         "צפון"
       ],
@@ -3633,6 +4221,10 @@
       "elevation_gain_m": 250,
       "elevation_loss_m": 250,
       "point_count": 1539,
+      "start_lat": 33.01844,
+      "start_lon": 35.14268,
+      "end_lat": 33.01845,
+      "end_lon": 35.14272,
       "regions": [
         "צפון"
       ],
@@ -3658,6 +4250,10 @@
       "elevation_gain_m": 124,
       "elevation_loss_m": 464,
       "point_count": 2762,
+      "start_lat": 33.00456,
+      "start_lon": 35.21656,
+      "end_lat": 33.07494,
+      "end_lon": 35.11649,
       "regions": [
         "צפון"
       ],
@@ -3683,6 +4279,10 @@
       "elevation_gain_m": 256,
       "elevation_loss_m": 257,
       "point_count": 1095,
+      "start_lat": 33.00506,
+      "start_lon": 35.21548,
+      "end_lat": 33.00514,
+      "end_lon": 35.21542,
       "regions": [
         "צפון"
       ],
@@ -3707,6 +4307,10 @@
       "elevation_gain_m": 230,
       "elevation_loss_m": 229,
       "point_count": 786,
+      "start_lat": 33.00496,
+      "start_lon": 35.21569,
+      "end_lat": 33.00503,
+      "end_lon": 35.21549,
       "regions": [
         "צפון"
       ],
@@ -3731,6 +4335,10 @@
       "elevation_gain_m": 273,
       "elevation_loss_m": 619,
       "point_count": 2378,
+      "start_lat": 33.00509,
+      "start_lon": 35.21537,
+      "end_lat": 33.04732,
+      "end_lon": 35.10319,
       "regions": [
         "צפון"
       ],
@@ -3756,6 +4364,10 @@
       "elevation_gain_m": 432,
       "elevation_loss_m": 407,
       "point_count": 1632,
+      "start_lat": 33.0049,
+      "start_lon": 35.2152,
+      "end_lat": 33.00505,
+      "end_lon": 35.21555,
       "regions": [
         "צפון"
       ],
@@ -3781,6 +4393,10 @@
       "elevation_gain_m": 461,
       "elevation_loss_m": 459,
       "point_count": 1702,
+      "start_lat": 33.00509,
+      "start_lon": 35.21537,
+      "end_lat": 33.00504,
+      "end_lon": 35.21548,
       "regions": [
         "צפון"
       ],
@@ -3806,6 +4422,10 @@
       "elevation_gain_m": 371,
       "elevation_loss_m": 717,
       "point_count": 3069,
+      "start_lat": 33.00507,
+      "start_lon": 35.21544,
+      "end_lat": 33.01351,
+      "end_lon": 35.09008,
       "regions": [
         "צפון"
       ],
@@ -3831,6 +4451,10 @@
       "elevation_gain_m": 380,
       "elevation_loss_m": 238,
       "point_count": 1036,
+      "start_lat": 33.00497,
+      "start_lon": 35.21527,
+      "end_lat": 33.02495,
+      "end_lon": 35.25419,
       "regions": [
         "צפון"
       ],
@@ -3856,6 +4480,10 @@
       "elevation_gain_m": 337,
       "elevation_loss_m": 683,
       "point_count": 3802,
+      "start_lat": 33.00506,
+      "start_lon": 35.21546,
+      "end_lat": 32.98172,
+      "end_lon": 35.08516,
       "regions": [
         "צפון"
       ],
@@ -3881,6 +4509,10 @@
       "elevation_gain_m": 573,
       "elevation_loss_m": 575,
       "point_count": 2460,
+      "start_lat": 33.00504,
+      "start_lon": 35.2155,
+      "end_lat": 33.005,
+      "end_lon": 35.21543,
       "regions": [
         "צפון"
       ],
@@ -3906,6 +4538,10 @@
       "elevation_gain_m": 417,
       "elevation_loss_m": 715,
       "point_count": 2189,
+      "start_lat": 33.00503,
+      "start_lon": 35.21536,
+      "end_lat": 33.04175,
+      "end_lon": 35.14777,
       "regions": [
         "צפון"
       ],
@@ -3931,6 +4567,10 @@
       "elevation_gain_m": 200,
       "elevation_loss_m": 200,
       "point_count": 757,
+      "start_lat": 33.00511,
+      "start_lon": 35.21549,
+      "end_lat": 33.00505,
+      "end_lon": 35.21554,
       "regions": [
         "צפון"
       ],
@@ -3956,6 +4596,10 @@
       "elevation_gain_m": 470,
       "elevation_loss_m": 680,
       "point_count": 2534,
+      "start_lat": 33.00511,
+      "start_lon": 35.21547,
+      "end_lat": 33.01518,
+      "end_lon": 35.17118,
       "regions": [
         "צפון"
       ],
@@ -3981,6 +4625,10 @@
       "elevation_gain_m": 484,
       "elevation_loss_m": 780,
       "point_count": 3067,
+      "start_lat": 33.00491,
+      "start_lon": 35.21568,
+      "end_lat": 33.01642,
+      "end_lon": 35.14405,
       "regions": [
         "צפון"
       ],
@@ -4006,6 +4654,10 @@
       "elevation_gain_m": 433,
       "elevation_loss_m": 434,
       "point_count": 1761,
+      "start_lat": 33.00494,
+      "start_lon": 35.21547,
+      "end_lat": 33.00503,
+      "end_lon": 35.21551,
       "regions": [
         "צפון"
       ],
@@ -4031,6 +4683,10 @@
       "elevation_gain_m": 477,
       "elevation_loss_m": 473,
       "point_count": 2219,
+      "start_lat": 33.00503,
+      "start_lon": 35.21551,
+      "end_lat": 33.00504,
+      "end_lon": 35.21547,
       "regions": [
         "צפון"
       ],
@@ -4056,6 +4712,10 @@
       "elevation_gain_m": 691,
       "elevation_loss_m": 692,
       "point_count": 2762,
+      "start_lat": 33.0062,
+      "start_lon": 35.21487,
+      "end_lat": 33.00502,
+      "end_lon": 35.21548,
       "regions": [
         "צפון"
       ],
@@ -4081,6 +4741,10 @@
       "elevation_gain_m": 289,
       "elevation_loss_m": 290,
       "point_count": 1102,
+      "start_lat": 33.005,
+      "start_lon": 35.21546,
+      "end_lat": 33.00501,
+      "end_lon": 35.21544,
       "regions": [
         "צפון"
       ],
@@ -4105,6 +4769,10 @@
       "elevation_gain_m": 277,
       "elevation_loss_m": 277,
       "point_count": 919,
+      "start_lat": 33.00506,
+      "start_lon": 35.21547,
+      "end_lat": 33.00507,
+      "end_lon": 35.21546,
       "regions": [
         "צפון"
       ],
@@ -4129,6 +4797,10 @@
       "elevation_gain_m": 310,
       "elevation_loss_m": 339,
       "point_count": 1433,
+      "start_lat": 33.00517,
+      "start_lon": 35.21558,
+      "end_lat": 33.00571,
+      "end_lon": 35.2103,
       "regions": [
         "צפון"
       ],
@@ -4153,6 +4825,10 @@
       "elevation_gain_m": 153,
       "elevation_loss_m": 148,
       "point_count": 2006,
+      "start_lat": 31.42805,
+      "start_lon": 34.49412,
+      "end_lat": 31.42844,
+      "end_lon": 34.49387,
       "regions": [
         "נגב וערבה"
       ],
@@ -4177,6 +4853,10 @@
       "elevation_gain_m": 392,
       "elevation_loss_m": 104,
       "point_count": 2377,
+      "start_lat": 33.01848,
+      "start_lon": 35.14249,
+      "end_lat": 33.00512,
+      "end_lon": 35.21503,
       "regions": [
         "צפון"
       ],
@@ -4202,6 +4882,10 @@
       "elevation_gain_m": 468,
       "elevation_loss_m": 462,
       "point_count": 1972,
+      "start_lat": 33.00556,
+      "start_lon": 35.21364,
+      "end_lat": 33.005,
+      "end_lon": 35.21551,
       "regions": [
         "צפון"
       ],
@@ -4227,6 +4911,10 @@
       "elevation_gain_m": 464,
       "elevation_loss_m": 680,
       "point_count": 3900,
+      "start_lat": 33.005,
+      "start_lon": 35.21554,
+      "end_lat": 33.01336,
+      "end_lon": 35.17441,
       "regions": [
         "צפון"
       ],
@@ -4252,6 +4940,10 @@
       "elevation_gain_m": 477,
       "elevation_loss_m": 304,
       "point_count": 3388,
+      "start_lat": 33.01203,
+      "start_lon": 35.18055,
+      "end_lat": 33.00504,
+      "end_lon": 35.21545,
       "regions": [
         "צפון"
       ],
@@ -4277,6 +4969,10 @@
       "elevation_gain_m": 375,
       "elevation_loss_m": 268,
       "point_count": 1531,
+      "start_lat": 33.0086,
+      "start_lon": 35.19079,
+      "end_lat": 33.00657,
+      "end_lon": 35.21206,
       "regions": [
         "צפון"
       ],
@@ -4302,6 +4998,10 @@
       "elevation_gain_m": 403,
       "elevation_loss_m": 378,
       "point_count": 1915,
+      "start_lat": 33.00653,
+      "start_lon": 35.20934,
+      "end_lat": 33.00505,
+      "end_lon": 35.21545,
       "regions": [
         "צפון"
       ],
@@ -4326,6 +5026,10 @@
       "elevation_gain_m": 459,
       "elevation_loss_m": 395,
       "point_count": 3535,
+      "start_lat": 33.00227,
+      "start_lon": 35.20894,
+      "end_lat": 33.00503,
+      "end_lon": 35.21547,
       "regions": [
         "צפון"
       ],
@@ -4351,6 +5055,10 @@
       "elevation_gain_m": 284,
       "elevation_loss_m": 226,
       "point_count": 1493,
+      "start_lat": 33.03519,
+      "start_lon": 35.24052,
+      "end_lat": 33.03453,
+      "end_lon": 35.24674,
       "regions": [
         "צפון"
       ],
@@ -4376,6 +5084,10 @@
       "elevation_gain_m": 253,
       "elevation_loss_m": 251,
       "point_count": 953,
+      "start_lat": 33.00488,
+      "start_lon": 35.21572,
+      "end_lat": 33.00503,
+      "end_lon": 35.21549,
       "regions": [
         "צפון"
       ],
@@ -4400,6 +5112,10 @@
       "elevation_gain_m": 712,
       "elevation_loss_m": 712,
       "point_count": 2885,
+      "start_lat": 33.00498,
+      "start_lon": 35.21546,
+      "end_lat": 33.00505,
+      "end_lon": 35.21551,
       "regions": [
         "צפון"
       ],
@@ -4425,6 +5141,10 @@
       "elevation_gain_m": 326,
       "elevation_loss_m": 322,
       "point_count": 734,
+      "start_lat": 33.01801,
+      "start_lon": 35.261,
+      "end_lat": 33.01791,
+      "end_lon": 35.26136,
       "regions": [
         "צפון"
       ],
@@ -4450,6 +5170,10 @@
       "elevation_gain_m": 448,
       "elevation_loss_m": 446,
       "point_count": 1981,
+      "start_lat": 33.00497,
+      "start_lon": 35.21566,
+      "end_lat": 33.00504,
+      "end_lon": 35.2155,
       "regions": [
         "צפון"
       ],
@@ -4475,6 +5199,10 @@
       "elevation_gain_m": 62,
       "elevation_loss_m": 192,
       "point_count": 431,
+      "start_lat": 33.00505,
+      "start_lon": 35.21539,
+      "end_lat": 33.01551,
+      "end_lon": 35.19917,
       "regions": [
         "צפון"
       ],
@@ -4500,6 +5228,10 @@
       "elevation_gain_m": 544,
       "elevation_loss_m": 885,
       "point_count": 3994,
+      "start_lat": 33.00496,
+      "start_lon": 35.21551,
+      "end_lat": 32.98634,
+      "end_lon": 35.09611,
       "regions": [
         "צפון"
       ],
@@ -4525,6 +5257,10 @@
       "elevation_gain_m": 84,
       "elevation_loss_m": 84,
       "point_count": 2558,
+      "start_lat": 33.00721,
+      "start_lon": 35.08832,
+      "end_lat": 33.00721,
+      "end_lon": 35.08834,
       "regions": [
         "צפון"
       ],
@@ -4550,6 +5286,10 @@
       "elevation_gain_m": 349,
       "elevation_loss_m": 355,
       "point_count": 1423,
+      "start_lat": 33.00512,
+      "start_lon": 35.21554,
+      "end_lat": 33.00499,
+      "end_lon": 35.2155,
       "regions": [
         "צפון"
       ],
@@ -4575,6 +5315,10 @@
       "elevation_gain_m": 613,
       "elevation_loss_m": 576,
       "point_count": 2360,
+      "start_lat": 33.00634,
+      "start_lon": 35.20768,
+      "end_lat": 33.00501,
+      "end_lon": 35.21551,
       "regions": [
         "צפון"
       ],
@@ -4600,6 +5344,10 @@
       "elevation_gain_m": 224,
       "elevation_loss_m": 430,
       "point_count": 5349,
+      "start_lat": 33.00489,
+      "start_lon": 35.21565,
+      "end_lat": 33.0152,
+      "end_lon": 35.17115,
       "regions": [
         "צפון"
       ],
@@ -4625,6 +5373,10 @@
       "elevation_gain_m": 759,
       "elevation_loss_m": 1096,
       "point_count": 4146,
+      "start_lat": 33.00505,
+      "start_lon": 35.2155,
+      "end_lat": 33.00649,
+      "end_lon": 35.09268,
       "regions": [
         "צפון"
       ],
@@ -4650,6 +5402,10 @@
       "elevation_gain_m": 360,
       "elevation_loss_m": 363,
       "point_count": 1329,
+      "start_lat": 33.00469,
+      "start_lon": 35.21547,
+      "end_lat": 33.00505,
+      "end_lon": 35.21552,
       "regions": [
         "צפון"
       ],
@@ -4675,6 +5431,10 @@
       "elevation_gain_m": 528,
       "elevation_loss_m": 530,
       "point_count": 2454,
+      "start_lat": 33.01817,
+      "start_lon": 35.14265,
+      "end_lat": 33.01839,
+      "end_lon": 35.14273,
       "regions": [
         "צפון"
       ],
@@ -4700,6 +5460,10 @@
       "elevation_gain_m": 559,
       "elevation_loss_m": 569,
       "point_count": 4705,
+      "start_lat": 33.00647,
+      "start_lon": 35.20931,
+      "end_lat": 33.00451,
+      "end_lon": 35.20746,
       "regions": [
         "צפון"
       ],
@@ -4725,6 +5489,10 @@
       "elevation_gain_m": 593,
       "elevation_loss_m": 578,
       "point_count": 2479,
+      "start_lat": 33.00653,
+      "start_lon": 35.21199,
+      "end_lat": 33.00506,
+      "end_lon": 35.21554,
       "regions": [
         "צפון"
       ],
@@ -4750,6 +5518,10 @@
       "elevation_gain_m": 581,
       "elevation_loss_m": 582,
       "point_count": 2273,
+      "start_lat": 33.00519,
+      "start_lon": 35.21537,
+      "end_lat": 33.00502,
+      "end_lon": 35.21549,
       "regions": [
         "צפון"
       ],
@@ -4775,6 +5547,10 @@
       "elevation_gain_m": 635,
       "elevation_loss_m": 739,
       "point_count": 2875,
+      "start_lat": 33.00766,
+      "start_lon": 35.23566,
+      "end_lat": 33.00502,
+      "end_lon": 35.21548,
       "regions": [
         "צפון"
       ],
@@ -4800,6 +5576,10 @@
       "elevation_gain_m": 360,
       "elevation_loss_m": 356,
       "point_count": 1528,
+      "start_lat": 32.91566,
+      "start_lon": 35.22695,
+      "end_lat": 32.91583,
+      "end_lon": 35.2267,
       "regions": [
         "צפון"
       ],
@@ -4825,6 +5605,10 @@
       "elevation_gain_m": 634,
       "elevation_loss_m": 588,
       "point_count": 4187,
+      "start_lat": 33.00623,
+      "start_lon": 35.20544,
+      "end_lat": 33.00506,
+      "end_lon": 35.21536,
       "regions": [
         "צפון"
       ],
@@ -4850,6 +5634,10 @@
       "elevation_gain_m": 455,
       "elevation_loss_m": 458,
       "point_count": 1701,
+      "start_lat": 33.00501,
+      "start_lon": 35.21555,
+      "end_lat": 33.00503,
+      "end_lon": 35.21551,
       "regions": [
         "צפון"
       ],
@@ -4874,6 +5662,10 @@
       "elevation_gain_m": 524,
       "elevation_loss_m": 497,
       "point_count": 1925,
+      "start_lat": 33.00643,
+      "start_lon": 35.21061,
+      "end_lat": 33.00501,
+      "end_lon": 35.21549,
       "regions": [
         "צפון"
       ],
@@ -4899,6 +5691,10 @@
       "elevation_gain_m": 907,
       "elevation_loss_m": 423,
       "point_count": 3565,
+      "start_lat": 32.91645,
+      "start_lon": 35.63238,
+      "end_lat": 33.2392,
+      "end_lon": 35.57593,
       "regions": [
         "רמת הגולן והחרמון"
       ],
@@ -4924,6 +5720,10 @@
       "elevation_gain_m": 500,
       "elevation_loss_m": 484,
       "point_count": 1919,
+      "start_lat": 33.00647,
+      "start_lon": 35.21198,
+      "end_lat": 33.00503,
+      "end_lon": 35.21547,
       "regions": [
         "צפון"
       ],
@@ -4949,6 +5749,10 @@
       "elevation_gain_m": 228,
       "elevation_loss_m": 229,
       "point_count": 817,
+      "start_lat": 33.00501,
+      "start_lon": 35.21547,
+      "end_lat": 33.00504,
+      "end_lon": 35.21553,
       "regions": [
         "צפון"
       ],
@@ -4973,6 +5777,10 @@
       "elevation_gain_m": 397,
       "elevation_loss_m": 396,
       "point_count": 1356,
+      "start_lat": 33.00525,
+      "start_lon": 35.2154,
+      "end_lat": 33.00503,
+      "end_lon": 35.21553,
       "regions": [
         "צפון"
       ],
@@ -4997,6 +5805,10 @@
       "elevation_gain_m": 202,
       "elevation_loss_m": 546,
       "point_count": 2604,
+      "start_lat": 33.00503,
+      "start_lon": 35.21544,
+      "end_lat": 33.00739,
+      "end_lon": 35.0908,
       "regions": [
         "צפון"
       ],
@@ -5022,6 +5834,10 @@
       "elevation_gain_m": 500,
       "elevation_loss_m": 802,
       "point_count": 12093,
+      "start_lat": 33.00652,
+      "start_lon": 35.20924,
+      "end_lat": 32.94904,
+      "end_lon": 35.09458,
       "regions": [
         "צפון"
       ],
@@ -5047,6 +5863,10 @@
       "elevation_gain_m": 269,
       "elevation_loss_m": 270,
       "point_count": 493,
+      "start_lat": 33.00589,
+      "start_lon": 35.21505,
+      "end_lat": 33.00503,
+      "end_lon": 35.21549,
       "regions": [
         "צפון"
       ],
@@ -5072,6 +5892,10 @@
       "elevation_gain_m": 574,
       "elevation_loss_m": 463,
       "point_count": 2669,
+      "start_lat": 33.0085,
+      "start_lon": 35.19128,
+      "end_lat": 33.00503,
+      "end_lon": 35.21548,
       "regions": [
         "צפון"
       ],
@@ -5097,6 +5921,10 @@
       "elevation_gain_m": 405,
       "elevation_loss_m": 399,
       "point_count": 8000,
+      "start_lat": 32.89681,
+      "start_lon": 35.09382,
+      "end_lat": 32.90125,
+      "end_lon": 35.09191,
       "regions": [
         "צפון",
         "ירושלים ומדבר יהודה"
@@ -5123,6 +5951,10 @@
       "elevation_gain_m": 459,
       "elevation_loss_m": 450,
       "point_count": 2579,
+      "start_lat": 32.70943,
+      "start_lon": 35.14401,
+      "end_lat": 32.70943,
+      "end_lon": 35.14406,
       "regions": [
         "צפון",
         "ירושלים ומדבר יהודה"
@@ -5149,6 +5981,10 @@
       "elevation_gain_m": 56,
       "elevation_loss_m": 31,
       "point_count": 1365,
+      "start_lat": 32.09509,
+      "start_lon": 34.78846,
+      "end_lat": 32.09507,
+      "end_lon": 34.78848,
       "regions": [
         "מרכז"
       ],
@@ -5173,6 +6009,10 @@
       "elevation_gain_m": 509,
       "elevation_loss_m": 496,
       "point_count": 2911,
+      "start_lat": 29.78744,
+      "start_lon": 34.98902,
+      "end_lat": 29.78744,
+      "end_lon": 34.98911,
       "regions": [
         "נגב וערבה"
       ],
@@ -5197,6 +6037,10 @@
       "elevation_gain_m": 138,
       "elevation_loss_m": 140,
       "point_count": 491,
+      "start_lat": 33.00506,
+      "start_lon": 35.21529,
+      "end_lat": 33.00496,
+      "end_lon": 35.2153,
       "regions": [
         "צפון"
       ],
@@ -5221,6 +6065,10 @@
       "elevation_gain_m": 143,
       "elevation_loss_m": 136,
       "point_count": 497,
+      "start_lat": 33.00506,
+      "start_lon": 35.21551,
+      "end_lat": 33.00501,
+      "end_lon": 35.21546,
       "regions": [
         "צפון"
       ],
@@ -5245,6 +6093,10 @@
       "elevation_gain_m": 145,
       "elevation_loss_m": 133,
       "point_count": 497,
+      "start_lat": 33.00506,
+      "start_lon": 35.21555,
+      "end_lat": 33.00506,
+      "end_lon": 35.21545,
       "regions": [
         "צפון"
       ],
@@ -5269,6 +6121,10 @@
       "elevation_gain_m": 140,
       "elevation_loss_m": 140,
       "point_count": 489,
+      "start_lat": 33.00507,
+      "start_lon": 35.21549,
+      "end_lat": 33.00506,
+      "end_lon": 35.21555,
       "regions": [
         "צפון"
       ],
@@ -5293,6 +6149,10 @@
       "elevation_gain_m": 144,
       "elevation_loss_m": 141,
       "point_count": 530,
+      "start_lat": 33.00505,
+      "start_lon": 35.21548,
+      "end_lat": 33.00503,
+      "end_lon": 35.21548,
       "regions": [
         "צפון"
       ],
@@ -5317,6 +6177,10 @@
       "elevation_gain_m": 158,
       "elevation_loss_m": 145,
       "point_count": 614,
+      "start_lat": 33.00503,
+      "start_lon": 35.21546,
+      "end_lat": 33.00501,
+      "end_lon": 35.21546,
       "regions": [
         "צפון"
       ],
@@ -5341,6 +6205,10 @@
       "elevation_gain_m": 219,
       "elevation_loss_m": 219,
       "point_count": 4050,
+      "start_lat": 33.00505,
+      "start_lon": 35.21551,
+      "end_lat": 33.00502,
+      "end_lon": 35.21546,
       "regions": [
         "צפון"
       ],
@@ -5365,6 +6233,10 @@
       "elevation_gain_m": 202,
       "elevation_loss_m": 204,
       "point_count": 2435,
+      "start_lat": 33.00507,
+      "start_lon": 35.21548,
+      "end_lat": 33.00502,
+      "end_lon": 35.2155,
       "regions": [
         "צפון"
       ],
@@ -5389,6 +6261,10 @@
       "elevation_gain_m": 226,
       "elevation_loss_m": 226,
       "point_count": 2514,
+      "start_lat": 33.00499,
+      "start_lon": 35.21555,
+      "end_lat": 33.00501,
+      "end_lon": 35.21549,
       "regions": [
         "צפון"
       ],
@@ -5413,6 +6289,10 @@
       "elevation_gain_m": 183,
       "elevation_loss_m": 182,
       "point_count": 2128,
+      "start_lat": 33.00509,
+      "start_lon": 35.21549,
+      "end_lat": 33.00501,
+      "end_lon": 35.21549,
       "regions": [
         "צפון"
       ],
@@ -5437,6 +6317,10 @@
       "elevation_gain_m": 199,
       "elevation_loss_m": 198,
       "point_count": 3372,
+      "start_lat": 33.00518,
+      "start_lon": 35.21552,
+      "end_lat": 33.00504,
+      "end_lon": 35.21547,
       "regions": [
         "צפון"
       ],
@@ -5461,6 +6345,10 @@
       "elevation_gain_m": 219,
       "elevation_loss_m": 221,
       "point_count": 2466,
+      "start_lat": 33.00506,
+      "start_lon": 35.21545,
+      "end_lat": 33.00502,
+      "end_lon": 35.21547,
       "regions": [
         "צפון"
       ],
@@ -5485,6 +6373,10 @@
       "elevation_gain_m": 228,
       "elevation_loss_m": 228,
       "point_count": 2389,
+      "start_lat": 33.00505,
+      "start_lon": 35.21544,
+      "end_lat": 33.00503,
+      "end_lon": 35.21545,
       "regions": [
         "צפון"
       ],
@@ -5509,6 +6401,10 @@
       "elevation_gain_m": 280,
       "elevation_loss_m": 276,
       "point_count": 3805,
+      "start_lat": 33.00502,
+      "start_lon": 35.21548,
+      "end_lat": 33.00505,
+      "end_lon": 35.21554,
       "regions": [
         "צפון"
       ],
@@ -5533,6 +6429,10 @@
       "elevation_gain_m": 213,
       "elevation_loss_m": 211,
       "point_count": 3049,
+      "start_lat": 33.00507,
+      "start_lon": 35.21546,
+      "end_lat": 33.00506,
+      "end_lon": 35.21547,
       "regions": [
         "צפון"
       ],
@@ -5557,6 +6457,10 @@
       "elevation_gain_m": 210,
       "elevation_loss_m": 217,
       "point_count": 3766,
+      "start_lat": 33.00504,
+      "start_lon": 35.21545,
+      "end_lat": 33.00505,
+      "end_lon": 35.21546,
       "regions": [
         "צפון"
       ],
@@ -5581,6 +6485,10 @@
       "elevation_gain_m": 252,
       "elevation_loss_m": 249,
       "point_count": 3695,
+      "start_lat": 33.00499,
+      "start_lon": 35.2155,
+      "end_lat": 33.00504,
+      "end_lon": 35.21548,
       "regions": [
         "צפון"
       ],
@@ -5605,6 +6513,10 @@
       "elevation_gain_m": 213,
       "elevation_loss_m": 211,
       "point_count": 2803,
+      "start_lat": 33.00502,
+      "start_lon": 35.21547,
+      "end_lat": 33.00502,
+      "end_lon": 35.21548,
       "regions": [
         "צפון"
       ],
@@ -5629,6 +6541,10 @@
       "elevation_gain_m": 322,
       "elevation_loss_m": 320,
       "point_count": 2577,
+      "start_lat": 33.00504,
+      "start_lon": 35.21543,
+      "end_lat": 33.00505,
+      "end_lon": 35.21548,
       "regions": [
         "צפון"
       ],
@@ -5653,6 +6569,10 @@
       "elevation_gain_m": 218,
       "elevation_loss_m": 219,
       "point_count": 4043,
+      "start_lat": 33.00507,
+      "start_lon": 35.21547,
+      "end_lat": 33.00505,
+      "end_lon": 35.2155,
       "regions": [
         "צפון"
       ],
@@ -5677,6 +6597,10 @@
       "elevation_gain_m": 197,
       "elevation_loss_m": 194,
       "point_count": 3787,
+      "start_lat": 33.00505,
+      "start_lon": 35.21549,
+      "end_lat": 33.005,
+      "end_lon": 35.21553,
       "regions": [
         "צפון"
       ],
@@ -5701,6 +6625,10 @@
       "elevation_gain_m": 226,
       "elevation_loss_m": 223,
       "point_count": 3832,
+      "start_lat": 33.00504,
+      "start_lon": 35.21543,
+      "end_lat": 33.00504,
+      "end_lon": 35.21546,
       "regions": [
         "צפון"
       ],
@@ -5725,6 +6653,10 @@
       "elevation_gain_m": 214,
       "elevation_loss_m": 213,
       "point_count": 3626,
+      "start_lat": 33.00507,
+      "start_lon": 35.2155,
+      "end_lat": 33.00501,
+      "end_lon": 35.21552,
       "regions": [
         "צפון"
       ],
@@ -5749,6 +6681,10 @@
       "elevation_gain_m": 142,
       "elevation_loss_m": 144,
       "point_count": 3953,
+      "start_lat": 31.19708,
+      "start_lon": 35.36078,
+      "end_lat": 31.19713,
+      "end_lon": 35.36076,
       "regions": [
         "נגב וערבה"
       ],
@@ -5773,6 +6709,10 @@
       "elevation_gain_m": 158,
       "elevation_loss_m": 157,
       "point_count": 3308,
+      "start_lat": 31.1971,
+      "start_lon": 35.36084,
+      "end_lat": 31.19714,
+      "end_lon": 35.36076,
       "regions": [
         "נגב וערבה"
       ],
@@ -5797,6 +6737,10 @@
       "elevation_gain_m": 157,
       "elevation_loss_m": 156,
       "point_count": 3211,
+      "start_lat": 31.19711,
+      "start_lon": 35.36089,
+      "end_lat": 31.1971,
+      "end_lon": 35.36076,
       "regions": [
         "נגב וערבה"
       ],
@@ -5821,6 +6765,10 @@
       "elevation_gain_m": 162,
       "elevation_loss_m": 166,
       "point_count": 3201,
+      "start_lat": 31.1971,
+      "start_lon": 35.36075,
+      "end_lat": 31.19703,
+      "end_lon": 35.36077,
       "regions": [
         "נגב וערבה"
       ],
@@ -5845,6 +6793,10 @@
       "elevation_gain_m": 303,
       "elevation_loss_m": 298,
       "point_count": 3500,
+      "start_lat": 33.00507,
+      "start_lon": 35.21549,
+      "end_lat": 33.00508,
+      "end_lon": 35.2155,
       "regions": [
         "צפון"
       ],
@@ -5869,6 +6821,10 @@
       "elevation_gain_m": 298,
       "elevation_loss_m": 297,
       "point_count": 3043,
+      "start_lat": 33.00505,
+      "start_lon": 35.21548,
+      "end_lat": 33.00501,
+      "end_lon": 35.21555,
       "regions": [
         "צפון"
       ],
@@ -5893,6 +6849,10 @@
       "elevation_gain_m": 291,
       "elevation_loss_m": 289,
       "point_count": 3289,
+      "start_lat": 33.00502,
+      "start_lon": 35.21543,
+      "end_lat": 33.00508,
+      "end_lon": 35.2155,
       "regions": [
         "צפון"
       ],
@@ -5917,6 +6877,10 @@
       "elevation_gain_m": 362,
       "elevation_loss_m": 255,
       "point_count": 3979,
+      "start_lat": 33.00505,
+      "start_lon": 35.21552,
+      "end_lat": 33.0216,
+      "end_lon": 35.26197,
       "regions": [
         "צפון"
       ],
@@ -5942,6 +6906,10 @@
       "elevation_gain_m": 250,
       "elevation_loss_m": 246,
       "point_count": 4310,
+      "start_lat": 33.00514,
+      "start_lon": 35.21551,
+      "end_lat": 33.00504,
+      "end_lon": 35.2155,
       "regions": [
         "צפון"
       ],
@@ -5966,6 +6934,10 @@
       "elevation_gain_m": 254,
       "elevation_loss_m": 251,
       "point_count": 4969,
+      "start_lat": 33.00505,
+      "start_lon": 35.21548,
+      "end_lat": 33.00505,
+      "end_lon": 35.2155,
       "regions": [
         "צפון"
       ],
@@ -5990,6 +6962,10 @@
       "elevation_gain_m": 8,
       "elevation_loss_m": 4,
       "point_count": 2169,
+      "start_lat": 32.89568,
+      "start_lon": 35.09591,
+      "end_lat": 32.89569,
+      "end_lon": 35.09595,
       "regions": [
         "צפון"
       ],
@@ -6014,6 +6990,10 @@
       "elevation_gain_m": 251,
       "elevation_loss_m": 251,
       "point_count": 3934,
+      "start_lat": 33.00504,
+      "start_lon": 35.21549,
+      "end_lat": 33.00504,
+      "end_lon": 35.21546,
       "regions": [
         "צפון"
       ],
@@ -6038,6 +7018,10 @@
       "elevation_gain_m": 303,
       "elevation_loss_m": 300,
       "point_count": 3153,
+      "start_lat": 33.00504,
+      "start_lon": 35.21548,
+      "end_lat": 33.00497,
+      "end_lon": 35.21553,
       "regions": [
         "צפון"
       ],
@@ -6062,6 +7046,10 @@
       "elevation_gain_m": 202,
       "elevation_loss_m": 200,
       "point_count": 4252,
+      "start_lat": 33.00511,
+      "start_lon": 35.21546,
+      "end_lat": 33.00504,
+      "end_lon": 35.21549,
       "regions": [
         "צפון"
       ],
@@ -6086,6 +7074,10 @@
       "elevation_gain_m": 44,
       "elevation_loss_m": 49,
       "point_count": 3383,
+      "start_lat": 31.19726,
+      "start_lon": 35.36138,
+      "end_lat": 31.19698,
+      "end_lon": 35.36125,
       "regions": [
         "נגב וערבה"
       ],
@@ -6110,6 +7102,10 @@
       "elevation_gain_m": 137,
       "elevation_loss_m": 140,
       "point_count": 4898,
+      "start_lat": 31.19714,
+      "start_lon": 35.36122,
+      "end_lat": 31.19715,
+      "end_lon": 35.3613,
       "regions": [
         "נגב וערבה"
       ],
@@ -6134,6 +7130,10 @@
       "elevation_gain_m": 12,
       "elevation_loss_m": 12,
       "point_count": 2417,
+      "start_lat": 31.1971,
+      "start_lon": 35.36137,
+      "end_lat": 31.19701,
+      "end_lon": 35.36129,
       "regions": [
         "נגב וערבה"
       ],
@@ -6158,6 +7158,10 @@
       "elevation_gain_m": 101,
       "elevation_loss_m": 102,
       "point_count": 3150,
+      "start_lat": 31.19696,
+      "start_lon": 35.36125,
+      "end_lat": 31.19699,
+      "end_lon": 35.36146,
       "regions": [
         "נגב וערבה"
       ],
@@ -6182,6 +7186,10 @@
       "elevation_gain_m": 300,
       "elevation_loss_m": 300,
       "point_count": 3471,
+      "start_lat": 33.00511,
+      "start_lon": 35.21542,
+      "end_lat": 33.00501,
+      "end_lon": 35.21551,
       "regions": [
         "צפון"
       ],
@@ -6206,6 +7214,10 @@
       "elevation_gain_m": 311,
       "elevation_loss_m": 310,
       "point_count": 4254,
+      "start_lat": 33.00506,
+      "start_lon": 35.21548,
+      "end_lat": 33.00503,
+      "end_lon": 35.21551,
       "regions": [
         "צפון"
       ],
@@ -6230,6 +7242,10 @@
       "elevation_gain_m": 223,
       "elevation_loss_m": 220,
       "point_count": 3052,
+      "start_lat": 33.00507,
+      "start_lon": 35.21548,
+      "end_lat": 33.00505,
+      "end_lon": 35.21552,
       "regions": [
         "צפון"
       ],
@@ -6254,6 +7270,10 @@
       "elevation_gain_m": 300,
       "elevation_loss_m": 297,
       "point_count": 520,
+      "start_lat": 33.00507,
+      "start_lon": 35.21547,
+      "end_lat": 33.00516,
+      "end_lon": 35.21557,
       "regions": [
         "צפון"
       ],
@@ -6278,6 +7298,10 @@
       "elevation_gain_m": 303,
       "elevation_loss_m": 300,
       "point_count": 3198,
+      "start_lat": 33.00504,
+      "start_lon": 35.2155,
+      "end_lat": 33.00506,
+      "end_lon": 35.2155,
       "regions": [
         "צפון"
       ],
@@ -6302,6 +7326,10 @@
       "elevation_gain_m": 299,
       "elevation_loss_m": 297,
       "point_count": 3458,
+      "start_lat": 33.00504,
+      "start_lon": 35.21555,
+      "end_lat": 33.00505,
+      "end_lon": 35.21549,
       "regions": [
         "צפון"
       ],
@@ -6326,6 +7354,10 @@
       "elevation_gain_m": 40,
       "elevation_loss_m": 40,
       "point_count": 5075,
+      "start_lat": 31.19695,
+      "start_lon": 35.36128,
+      "end_lat": 31.19708,
+      "end_lon": 35.36125,
       "regions": [
         "נגב וערבה"
       ],
@@ -6350,6 +7382,10 @@
       "elevation_gain_m": 141,
       "elevation_loss_m": 143,
       "point_count": 5031,
+      "start_lat": 31.19708,
+      "start_lon": 35.36126,
+      "end_lat": 31.19698,
+      "end_lon": 35.36122,
       "regions": [
         "נגב וערבה"
       ],
@@ -6374,6 +7410,10 @@
       "elevation_gain_m": 236,
       "elevation_loss_m": 236,
       "point_count": 3886,
+      "start_lat": 31.19706,
+      "start_lon": 35.36126,
+      "end_lat": 31.19694,
+      "end_lon": 35.36146,
       "regions": [
         "נגב וערבה"
       ],
@@ -6398,6 +7438,10 @@
       "elevation_gain_m": 304,
       "elevation_loss_m": 302,
       "point_count": 3108,
+      "start_lat": 33.00504,
+      "start_lon": 35.2155,
+      "end_lat": 33.00501,
+      "end_lon": 35.21556,
       "regions": [
         "צפון"
       ],
@@ -6422,6 +7466,10 @@
       "elevation_gain_m": 300,
       "elevation_loss_m": 300,
       "point_count": 3165,
+      "start_lat": 33.00508,
+      "start_lon": 35.2155,
+      "end_lat": 33.00506,
+      "end_lon": 35.21549,
       "regions": [
         "צפון"
       ],
@@ -6446,6 +7494,10 @@
       "elevation_gain_m": 301,
       "elevation_loss_m": 302,
       "point_count": 3078,
+      "start_lat": 33.00505,
+      "start_lon": 35.2155,
+      "end_lat": 33.00503,
+      "end_lon": 35.21548,
       "regions": [
         "צפון"
       ],
@@ -6470,6 +7522,10 @@
       "elevation_gain_m": 224,
       "elevation_loss_m": 221,
       "point_count": 2296,
+      "start_lat": 33.00504,
+      "start_lon": 35.21548,
+      "end_lat": 33.00503,
+      "end_lon": 35.21546,
       "regions": [
         "צפון"
       ],
@@ -6494,6 +7550,10 @@
       "elevation_gain_m": 308,
       "elevation_loss_m": 306,
       "point_count": 3196,
+      "start_lat": 33.00507,
+      "start_lon": 35.21548,
+      "end_lat": 33.0051,
+      "end_lon": 35.21551,
       "regions": [
         "צפון"
       ],
@@ -6518,6 +7578,10 @@
       "elevation_gain_m": 392,
       "elevation_loss_m": 369,
       "point_count": 8451,
+      "start_lat": 33.00658,
+      "start_lon": 35.20931,
+      "end_lat": 33.00508,
+      "end_lon": 35.21546,
       "regions": [
         "צפון"
       ],
@@ -6543,6 +7607,10 @@
       "elevation_gain_m": 296,
       "elevation_loss_m": 295,
       "point_count": 3026,
+      "start_lat": 33.00506,
+      "start_lon": 35.21553,
+      "end_lat": 33.00503,
+      "end_lon": 35.2155,
       "regions": [
         "צפון"
       ],
@@ -6567,6 +7635,10 @@
       "elevation_gain_m": 16,
       "elevation_loss_m": 16,
       "point_count": 3118,
+      "start_lat": 32.89566,
+      "start_lon": 35.09605,
+      "end_lat": 32.89561,
+      "end_lon": 35.09609,
       "regions": [
         "צפון"
       ],
@@ -6591,6 +7663,10 @@
       "elevation_gain_m": 384,
       "elevation_loss_m": 380,
       "point_count": 6642,
+      "start_lat": 33.00503,
+      "start_lon": 35.21549,
+      "end_lat": 33.00506,
+      "end_lon": 35.21551,
       "regions": [
         "צפון"
       ],
@@ -6616,6 +7692,10 @@
       "elevation_gain_m": 412,
       "elevation_loss_m": 414,
       "point_count": 6306,
+      "start_lat": 33.00501,
+      "start_lon": 35.21554,
+      "end_lat": 33.00505,
+      "end_lon": 35.2155,
       "regions": [
         "צפון"
       ],
@@ -6640,6 +7720,10 @@
       "elevation_gain_m": 408,
       "elevation_loss_m": 407,
       "point_count": 5368,
+      "start_lat": 33.00504,
+      "start_lon": 35.21549,
+      "end_lat": 33.00505,
+      "end_lon": 35.21552,
       "regions": [
         "צפון"
       ],
@@ -6664,6 +7748,10 @@
       "elevation_gain_m": 328,
       "elevation_loss_m": 326,
       "point_count": 3466,
+      "start_lat": 33.00508,
+      "start_lon": 35.21549,
+      "end_lat": 33.00511,
+      "end_lon": 35.21553,
       "regions": [
         "צפון"
       ],
@@ -6688,6 +7776,10 @@
       "elevation_gain_m": 16,
       "elevation_loss_m": 16,
       "point_count": 3343,
+      "start_lat": 32.89569,
+      "start_lon": 35.096,
+      "end_lat": 32.89573,
+      "end_lon": 35.09589,
       "regions": [
         "צפון"
       ],
@@ -6712,6 +7804,10 @@
       "elevation_gain_m": 316,
       "elevation_loss_m": 314,
       "point_count": 2999,
+      "start_lat": 33.00507,
+      "start_lon": 35.21552,
+      "end_lat": 33.00508,
+      "end_lon": 35.21548,
       "regions": [
         "צפון"
       ],
@@ -6736,6 +7832,10 @@
       "elevation_gain_m": 488,
       "elevation_loss_m": 499,
       "point_count": 9514,
+      "start_lat": 33.00507,
+      "start_lon": 35.21552,
+      "end_lat": 33.00506,
+      "end_lon": 35.2155,
       "regions": [
         "צפון"
       ],
@@ -6761,6 +7861,10 @@
       "elevation_gain_m": 220,
       "elevation_loss_m": 220,
       "point_count": 2107,
+      "start_lat": 33.00507,
+      "start_lon": 35.21546,
+      "end_lat": 33.00505,
+      "end_lon": 35.21552,
       "regions": [
         "צפון"
       ],
@@ -6785,6 +7889,10 @@
       "elevation_gain_m": 408,
       "elevation_loss_m": 404,
       "point_count": 6317,
+      "start_lat": 33.00502,
+      "start_lon": 35.21549,
+      "end_lat": 33.00507,
+      "end_lon": 35.21548,
       "regions": [
         "צפון"
       ],
@@ -6810,6 +7918,10 @@
       "elevation_gain_m": 200,
       "elevation_loss_m": 197,
       "point_count": 1728,
+      "start_lat": 33.02223,
+      "start_lon": 35.26983,
+      "end_lat": 33.02223,
+      "end_lon": 35.2699,
       "regions": [
         "צפון"
       ],
@@ -6835,6 +7947,10 @@
       "elevation_gain_m": 116,
       "elevation_loss_m": 117,
       "point_count": 3361,
+      "start_lat": 31.1996,
+      "start_lon": 35.36453,
+      "end_lat": 31.19961,
+      "end_lon": 35.36453,
       "regions": [
         "נגב וערבה"
       ],
@@ -6859,6 +7975,10 @@
       "elevation_gain_m": 148,
       "elevation_loss_m": 148,
       "point_count": 4098,
+      "start_lat": 31.19951,
+      "start_lon": 35.36437,
+      "end_lat": 31.19959,
+      "end_lon": 35.36486,
       "regions": [
         "נגב וערבה"
       ],
@@ -6883,6 +8003,10 @@
       "elevation_gain_m": 192,
       "elevation_loss_m": 192,
       "point_count": 5248,
+      "start_lat": 31.1999,
+      "start_lon": 35.36467,
+      "end_lat": 31.19988,
+      "end_lon": 35.36473,
       "regions": [
         "נגב וערבה"
       ],
@@ -6907,6 +8031,10 @@
       "elevation_gain_m": 220,
       "elevation_loss_m": 220,
       "point_count": 2198,
+      "start_lat": 33.00512,
+      "start_lon": 35.21554,
+      "end_lat": 33.00507,
+      "end_lon": 35.21552,
       "regions": [
         "צפון"
       ],
@@ -6931,6 +8059,10 @@
       "elevation_gain_m": 304,
       "elevation_loss_m": 303,
       "point_count": 3047,
+      "start_lat": 33.00508,
+      "start_lon": 35.21547,
+      "end_lat": 33.00507,
+      "end_lon": 35.21549,
       "regions": [
         "צפון"
       ],
@@ -6955,6 +8087,10 @@
       "elevation_gain_m": 360,
       "elevation_loss_m": 248,
       "point_count": 3730,
+      "start_lat": 33.00507,
+      "start_lon": 35.21546,
+      "end_lat": 33.02167,
+      "end_lon": 35.26191,
       "regions": [
         "צפון"
       ],
@@ -6980,6 +8116,10 @@
       "elevation_gain_m": 305,
       "elevation_loss_m": 308,
       "point_count": 3123,
+      "start_lat": 33.00506,
+      "start_lon": 35.21551,
+      "end_lat": 33.0051,
+      "end_lon": 35.2155,
       "regions": [
         "צפון"
       ],
@@ -7004,6 +8144,10 @@
       "elevation_gain_m": 8,
       "elevation_loss_m": 8,
       "point_count": 3274,
+      "start_lat": 32.10269,
+      "start_lon": 34.78132,
+      "end_lat": 32.10262,
+      "end_lon": 34.78136,
       "regions": [
         "מרכז"
       ],
@@ -7028,6 +8172,10 @@
       "elevation_gain_m": 296,
       "elevation_loss_m": 287,
       "point_count": 2993,
+      "start_lat": 33.00495,
+      "start_lon": 35.21529,
+      "end_lat": 33.00507,
+      "end_lon": 35.21551,
       "regions": [
         "צפון"
       ],
@@ -7052,6 +8200,10 @@
       "elevation_gain_m": 308,
       "elevation_loss_m": 305,
       "point_count": 3059,
+      "start_lat": 33.00508,
+      "start_lon": 35.21547,
+      "end_lat": 33.00506,
+      "end_lon": 35.21556,
       "regions": [
         "צפון"
       ],
@@ -7076,6 +8228,10 @@
       "elevation_gain_m": 301,
       "elevation_loss_m": 308,
       "point_count": 2752,
+      "start_lat": 33.00564,
+      "start_lon": 35.21532,
+      "end_lat": 33.00509,
+      "end_lon": 35.2155,
       "regions": [
         "צפון"
       ],
@@ -7100,6 +8256,10 @@
       "elevation_gain_m": 136,
       "elevation_loss_m": 136,
       "point_count": 2259,
+      "start_lat": 33.07361,
+      "start_lon": 35.15197,
+      "end_lat": 33.0736,
+      "end_lon": 35.15188,
       "regions": [
         "צפון"
       ],
@@ -7124,6 +8284,10 @@
       "elevation_gain_m": 240,
       "elevation_loss_m": 244,
       "point_count": 3661,
+      "start_lat": 33.07371,
+      "start_lon": 35.15184,
+      "end_lat": 33.07349,
+      "end_lon": 35.15175,
       "regions": [
         "צפון"
       ],
@@ -7148,6 +8312,10 @@
       "elevation_gain_m": 292,
       "elevation_loss_m": 25,
       "point_count": 2507,
+      "start_lat": 33.01091,
+      "start_lon": 35.15413,
+      "end_lat": 33.00504,
+      "end_lon": 35.21551,
       "regions": [
         "צפון"
       ],
@@ -7173,6 +8341,10 @@
       "elevation_gain_m": 352,
       "elevation_loss_m": 353,
       "point_count": 4555,
+      "start_lat": 33.00511,
+      "start_lon": 35.21559,
+      "end_lat": 33.00502,
+      "end_lon": 35.21555,
       "regions": [
         "צפון"
       ],
@@ -7197,6 +8369,10 @@
       "elevation_gain_m": 542,
       "elevation_loss_m": 540,
       "point_count": 1356,
+      "start_lat": 33.00506,
+      "start_lon": 35.21544,
+      "end_lat": 33.00521,
+      "end_lon": 35.21554,
       "regions": [
         "צפון"
       ],
@@ -7222,6 +8398,10 @@
       "elevation_gain_m": 224,
       "elevation_loss_m": 220,
       "point_count": 2171,
+      "start_lat": 33.00502,
+      "start_lon": 35.2155,
+      "end_lat": 33.00509,
+      "end_lon": 35.21549,
       "regions": [
         "צפון"
       ],
@@ -7246,6 +8426,10 @@
       "elevation_gain_m": 304,
       "elevation_loss_m": 301,
       "point_count": 3138,
+      "start_lat": 33.00508,
+      "start_lon": 35.21548,
+      "end_lat": 33.00509,
+      "end_lon": 35.21548,
       "regions": [
         "צפון"
       ],
@@ -7270,6 +8454,10 @@
       "elevation_gain_m": 300,
       "elevation_loss_m": 298,
       "point_count": 3027,
+      "start_lat": 33.00505,
+      "start_lon": 35.21554,
+      "end_lat": 33.00505,
+      "end_lon": 35.21548,
       "regions": [
         "צפון"
       ],
@@ -7294,6 +8482,10 @@
       "elevation_gain_m": 240,
       "elevation_loss_m": 237,
       "point_count": 3577,
+      "start_lat": 33.0051,
+      "start_lon": 35.21549,
+      "end_lat": 33.00506,
+      "end_lon": 35.21549,
       "regions": [
         "צפון"
       ],
@@ -7318,6 +8510,10 @@
       "elevation_gain_m": 260,
       "elevation_loss_m": 259,
       "point_count": 3975,
+      "start_lat": 33.00501,
+      "start_lon": 35.21552,
+      "end_lat": 33.00501,
+      "end_lon": 35.21549,
       "regions": [
         "צפון"
       ],
@@ -7342,6 +8538,10 @@
       "elevation_gain_m": 300,
       "elevation_loss_m": 298,
       "point_count": 3168,
+      "start_lat": 33.00503,
+      "start_lon": 35.21542,
+      "end_lat": 33.00502,
+      "end_lon": 35.21552,
       "regions": [
         "צפון"
       ],
@@ -7366,6 +8566,10 @@
       "elevation_gain_m": 252,
       "elevation_loss_m": 248,
       "point_count": 3806,
+      "start_lat": 33.00502,
+      "start_lon": 35.21547,
+      "end_lat": 33.00505,
+      "end_lon": 35.2155,
       "regions": [
         "צפון"
       ],
@@ -7390,6 +8594,10 @@
       "elevation_gain_m": 472,
       "elevation_loss_m": 468,
       "point_count": 9064,
+      "start_lat": 33.00503,
+      "start_lon": 35.21549,
+      "end_lat": 33.00504,
+      "end_lon": 35.21548,
       "regions": [
         "צפון"
       ],
@@ -7415,6 +8623,10 @@
       "elevation_gain_m": 224,
       "elevation_loss_m": 222,
       "point_count": 2195,
+      "start_lat": 33.00512,
+      "start_lon": 35.21547,
+      "end_lat": 33.00507,
+      "end_lon": 35.21547,
       "regions": [
         "צפון"
       ],
@@ -7439,6 +8651,10 @@
       "elevation_gain_m": 244,
       "elevation_loss_m": 244,
       "point_count": 3522,
+      "start_lat": 33.00503,
+      "start_lon": 35.21541,
+      "end_lat": 33.00503,
+      "end_lon": 35.21548,
       "regions": [
         "צפון"
       ],
@@ -7463,6 +8679,10 @@
       "elevation_gain_m": 228,
       "elevation_loss_m": 220,
       "point_count": 2255,
+      "start_lat": 33.00509,
+      "start_lon": 35.21545,
+      "end_lat": 33.00505,
+      "end_lon": 35.21554,
       "regions": [
         "צפון"
       ],
@@ -7487,6 +8707,10 @@
       "elevation_gain_m": 84,
       "elevation_loss_m": 84,
       "point_count": 3830,
+      "start_lat": 29.98821,
+      "start_lon": 35.08678,
+      "end_lat": 29.98818,
+      "end_lon": 35.08682,
       "regions": [
         "נגב וערבה"
       ],
@@ -7512,6 +8736,10 @@
       "elevation_gain_m": 264,
       "elevation_loss_m": 264,
       "point_count": 10869,
+      "start_lat": 29.98828,
+      "start_lon": 35.0868,
+      "end_lat": 29.98824,
+      "end_lon": 35.08683,
       "regions": [
         "נגב וערבה"
       ],
@@ -7537,6 +8765,10 @@
       "elevation_gain_m": 196,
       "elevation_loss_m": 196,
       "point_count": 6181,
+      "start_lat": 29.7953,
+      "start_lon": 35.01406,
+      "end_lat": 29.79532,
+      "end_lon": 35.01406,
       "regions": [
         "נגב וערבה"
       ],
@@ -7561,6 +8793,10 @@
       "elevation_gain_m": 440,
       "elevation_loss_m": 438,
       "point_count": 10053,
+      "start_lat": 33.00504,
+      "start_lon": 35.21547,
+      "end_lat": 33.00503,
+      "end_lon": 35.21547,
       "regions": [
         "צפון"
       ],
@@ -7586,6 +8822,10 @@
       "elevation_gain_m": 396,
       "elevation_loss_m": 396,
       "point_count": 7256,
+      "start_lat": 32.97688,
+      "start_lon": 35.80717,
+      "end_lat": 32.97689,
+      "end_lon": 35.80713,
       "regions": [
         "רמת הגולן והחרמון"
       ],
@@ -7611,6 +8851,10 @@
       "elevation_gain_m": 524,
       "elevation_loss_m": 414,
       "point_count": 9522,
+      "start_lat": 33.00505,
+      "start_lon": 35.21545,
+      "end_lat": 33.02168,
+      "end_lon": 35.26197,
       "regions": [
         "צפון"
       ],
@@ -7636,6 +8880,10 @@
       "elevation_gain_m": 345,
       "elevation_loss_m": 344,
       "point_count": 3957,
+      "start_lat": 33.0051,
+      "start_lon": 35.21547,
+      "end_lat": 33.00507,
+      "end_lon": 35.21549,
       "regions": [
         "צפון"
       ],
@@ -7660,6 +8908,10 @@
       "elevation_gain_m": 420,
       "elevation_loss_m": 425,
       "point_count": 8601,
+      "start_lat": 33.00504,
+      "start_lon": 35.21545,
+      "end_lat": 33.00505,
+      "end_lon": 35.21548,
       "regions": [
         "צפון"
       ],
@@ -7685,6 +8937,10 @@
       "elevation_gain_m": 28,
       "elevation_loss_m": 136,
       "point_count": 5826,
+      "start_lat": 33.0066,
+      "start_lon": 35.21039,
+      "end_lat": 33.01553,
+      "end_lon": 35.20338,
       "regions": [
         "צפון"
       ],
@@ -7710,6 +8966,10 @@
       "elevation_gain_m": 450,
       "elevation_loss_m": 449,
       "point_count": 10595,
+      "start_lat": 33.00505,
+      "start_lon": 35.21555,
+      "end_lat": 33.00503,
+      "end_lon": 35.21551,
       "regions": [
         "צפון"
       ],
@@ -7735,6 +8995,10 @@
       "elevation_gain_m": 547,
       "elevation_loss_m": 421,
       "point_count": 10609,
+      "start_lat": 33.00511,
+      "start_lon": 35.21548,
+      "end_lat": 33.02202,
+      "end_lon": 35.26113,
       "regions": [
         "צפון"
       ],
@@ -7760,6 +9024,10 @@
       "elevation_gain_m": 92,
       "elevation_loss_m": 92,
       "point_count": 3026,
+      "start_lat": 31.19982,
+      "start_lon": 35.36496,
+      "end_lat": 31.19983,
+      "end_lon": 35.36494,
       "regions": [
         "נגב וערבה"
       ],
@@ -7784,6 +9052,10 @@
       "elevation_gain_m": 124,
       "elevation_loss_m": 120,
       "point_count": 3252,
+      "start_lat": 31.19976,
+      "start_lon": 35.36489,
+      "end_lat": 31.19985,
+      "end_lon": 35.36495,
       "regions": [
         "נגב וערבה"
       ],
@@ -7808,6 +9080,10 @@
       "elevation_gain_m": 108,
       "elevation_loss_m": 108,
       "point_count": 3315,
+      "start_lat": 31.19985,
+      "start_lon": 35.36494,
+      "end_lat": 31.1999,
+      "end_lon": 35.36501,
       "regions": [
         "נגב וערבה"
       ],
@@ -7832,6 +9108,10 @@
       "elevation_gain_m": 160,
       "elevation_loss_m": 445,
       "point_count": 4245,
+      "start_lat": 31.26697,
+      "start_lon": 35.21092,
+      "end_lat": 31.30652,
+      "end_lon": 35.26928,
       "regions": [
         "ירושלים ומדבר יהודה",
         "נגב וערבה"
@@ -7858,6 +9138,10 @@
       "elevation_gain_m": 432,
       "elevation_loss_m": 432,
       "point_count": 7151,
+      "start_lat": 33.00503,
+      "start_lon": 35.21553,
+      "end_lat": 33.00503,
+      "end_lon": 35.21547,
       "regions": [
         "צפון"
       ],
@@ -7883,6 +9167,10 @@
       "elevation_gain_m": 16,
       "elevation_loss_m": 16,
       "point_count": 3348,
+      "start_lat": 32.89568,
+      "start_lon": 35.09594,
+      "end_lat": 32.89571,
+      "end_lon": 35.09598,
       "regions": [
         "צפון"
       ],
@@ -7907,6 +9195,10 @@
       "elevation_gain_m": 220,
       "elevation_loss_m": 219,
       "point_count": 3008,
+      "start_lat": 33.00513,
+      "start_lon": 35.21551,
+      "end_lat": 33.00499,
+      "end_lon": 35.21555,
       "regions": [
         "צפון"
       ],
@@ -7931,6 +9223,10 @@
       "elevation_gain_m": 511,
       "elevation_loss_m": 401,
       "point_count": 7743,
+      "start_lat": 33.00506,
+      "start_lon": 35.2155,
+      "end_lat": 33.02162,
+      "end_lon": 35.26197,
       "regions": [
         "צפון"
       ],
@@ -7956,6 +9252,10 @@
       "elevation_gain_m": 451,
       "elevation_loss_m": 448,
       "point_count": 12690,
+      "start_lat": 33.00504,
+      "start_lon": 35.21547,
+      "end_lat": 33.00505,
+      "end_lon": 35.2155,
       "regions": [
         "צפון"
       ],
@@ -7981,6 +9281,10 @@
       "elevation_gain_m": 439,
       "elevation_loss_m": 437,
       "point_count": 15303,
+      "start_lat": 33.00505,
+      "start_lon": 35.21554,
+      "end_lat": 33.00506,
+      "end_lon": 35.21547,
       "regions": [
         "צפון"
       ],
@@ -8006,6 +9310,10 @@
       "elevation_gain_m": 97,
       "elevation_loss_m": 97,
       "point_count": 6257,
+      "start_lat": 33.0184,
+      "start_lon": 35.1427,
+      "end_lat": 33.01837,
+      "end_lon": 35.14268,
       "regions": [
         "צפון"
       ],
@@ -8031,6 +9339,10 @@
       "elevation_gain_m": 219,
       "elevation_loss_m": 387,
       "point_count": 9919,
+      "start_lat": 33.00501,
+      "start_lon": 35.21561,
+      "end_lat": 33.01259,
+      "end_lon": 35.18397,
       "regions": [
         "צפון"
       ],
@@ -8056,6 +9368,10 @@
       "elevation_gain_m": 157,
       "elevation_loss_m": 223,
       "point_count": 12389,
+      "start_lat": 33.06692,
+      "start_lon": 35.2443,
+      "end_lat": 33.06718,
+      "end_lon": 35.22105,
       "regions": [
         "צפון"
       ],
@@ -8080,6 +9396,10 @@
       "elevation_gain_m": 467,
       "elevation_loss_m": 465,
       "point_count": 10434,
+      "start_lat": 33.00508,
+      "start_lon": 35.21545,
+      "end_lat": 33.005,
+      "end_lon": 35.21554,
       "regions": [
         "צפון"
       ],
@@ -8104,6 +9424,10 @@
       "elevation_gain_m": 259,
       "elevation_loss_m": 261,
       "point_count": 3523,
+      "start_lat": 33.00509,
+      "start_lon": 35.21552,
+      "end_lat": 33.00506,
+      "end_lon": 35.21546,
       "regions": [
         "צפון"
       ],
@@ -8128,6 +9452,10 @@
       "elevation_gain_m": 254,
       "elevation_loss_m": 249,
       "point_count": 3660,
+      "start_lat": 33.00512,
+      "start_lon": 35.21545,
+      "end_lat": 33.00504,
+      "end_lon": 35.2155,
       "regions": [
         "צפון"
       ],
@@ -8152,6 +9480,10 @@
       "elevation_gain_m": 222,
       "elevation_loss_m": 220,
       "point_count": 4006,
+      "start_lat": 33.00504,
+      "start_lon": 35.2155,
+      "end_lat": 33.00506,
+      "end_lon": 35.2155,
       "regions": [
         "צפון"
       ],
@@ -8176,6 +9508,10 @@
       "elevation_gain_m": 446,
       "elevation_loss_m": 443,
       "point_count": 13825,
+      "start_lat": 33.00505,
+      "start_lon": 35.21544,
+      "end_lat": 33.00503,
+      "end_lon": 35.21549,
       "regions": [
         "צפון"
       ],
@@ -8201,6 +9537,10 @@
       "elevation_gain_m": 293,
       "elevation_loss_m": 304,
       "point_count": 7519,
+      "start_lat": 33.00505,
+      "start_lon": 35.21544,
+      "end_lat": 32.99777,
+      "end_lon": 35.21527,
       "regions": [
         "צפון"
       ],
@@ -8225,6 +9565,10 @@
       "elevation_gain_m": 69,
       "elevation_loss_m": 66,
       "point_count": 1031,
+      "start_lat": 33.005,
+      "start_lon": 35.21549,
+      "end_lat": 33.00502,
+      "end_lon": 35.21545,
       "regions": [
         "צפון"
       ],
@@ -8250,6 +9594,10 @@
       "elevation_gain_m": 142,
       "elevation_loss_m": 136,
       "point_count": 1767,
+      "start_lat": 33.00504,
+      "start_lon": 35.21549,
+      "end_lat": 33.00502,
+      "end_lon": 35.21551,
       "regions": [
         "צפון"
       ],
@@ -8275,6 +9623,10 @@
       "elevation_gain_m": 302,
       "elevation_loss_m": 299,
       "point_count": 3334,
+      "start_lat": 33.00505,
+      "start_lon": 35.21545,
+      "end_lat": 33.00507,
+      "end_lon": 35.21551,
       "regions": [
         "צפון"
       ],
@@ -8299,6 +9651,10 @@
       "elevation_gain_m": 370,
       "elevation_loss_m": 368,
       "point_count": 5944,
+      "start_lat": 33.00505,
+      "start_lon": 35.21549,
+      "end_lat": 33.00505,
+      "end_lon": 35.21549,
       "regions": [
         "צפון"
       ],
@@ -8323,6 +9679,10 @@
       "elevation_gain_m": 456,
       "elevation_loss_m": 456,
       "point_count": 6220,
+      "start_lat": 33.00512,
+      "start_lon": 35.21549,
+      "end_lat": 33.00508,
+      "end_lon": 35.21552,
       "regions": [
         "צפון"
       ],
@@ -8347,6 +9707,10 @@
       "elevation_gain_m": 443,
       "elevation_loss_m": 442,
       "point_count": 6192,
+      "start_lat": 33.00513,
+      "start_lon": 35.2155,
+      "end_lat": 33.00506,
+      "end_lon": 35.21553,
       "regions": [
         "צפון"
       ],
@@ -8371,6 +9735,10 @@
       "elevation_gain_m": 12,
       "elevation_loss_m": 12,
       "point_count": 3736,
+      "start_lat": 32.89534,
+      "start_lon": 35.096,
+      "end_lat": 32.89571,
+      "end_lon": 35.09587,
       "regions": [
         "צפון"
       ],
@@ -8396,6 +9764,10 @@
       "elevation_gain_m": 363,
       "elevation_loss_m": 363,
       "point_count": 5045,
+      "start_lat": 33.00508,
+      "start_lon": 35.21547,
+      "end_lat": 33.00504,
+      "end_lon": 35.21554,
       "regions": [
         "צפון"
       ],
@@ -8420,6 +9792,10 @@
       "elevation_gain_m": 290,
       "elevation_loss_m": 286,
       "point_count": 4796,
+      "start_lat": 33.00507,
+      "start_lon": 35.21545,
+      "end_lat": 33.00512,
+      "end_lon": 35.21555,
       "regions": [
         "צפון"
       ],
@@ -8444,6 +9820,10 @@
       "elevation_gain_m": 253,
       "elevation_loss_m": 251,
       "point_count": 4582,
+      "start_lat": 33.00506,
+      "start_lon": 35.21551,
+      "end_lat": 33.00504,
+      "end_lon": 35.21552,
       "regions": [
         "צפון"
       ],
@@ -8468,6 +9848,10 @@
       "elevation_gain_m": 415,
       "elevation_loss_m": 411,
       "point_count": 7379,
+      "start_lat": 33.0051,
+      "start_lon": 35.21541,
+      "end_lat": 33.00506,
+      "end_lon": 35.21554,
       "regions": [
         "צפון"
       ],
@@ -8493,6 +9877,10 @@
       "elevation_gain_m": 363,
       "elevation_loss_m": 259,
       "point_count": 4872,
+      "start_lat": 33.00513,
+      "start_lon": 35.21537,
+      "end_lat": 33.0215,
+      "end_lon": 35.26204,
       "regions": [
         "צפון"
       ],
@@ -8518,6 +9906,10 @@
       "elevation_gain_m": 231,
       "elevation_loss_m": 232,
       "point_count": 653,
+      "start_lat": 33.06512,
+      "start_lon": 35.1607,
+      "end_lat": 33.06497,
+      "end_lon": 35.16072,
       "regions": [
         "צפון"
       ],
@@ -8542,6 +9934,10 @@
       "elevation_gain_m": 76,
       "elevation_loss_m": 76,
       "point_count": 6684,
+      "start_lat": 33.01838,
+      "start_lon": 35.14267,
+      "end_lat": 33.01844,
+      "end_lon": 35.14268,
       "regions": [
         "צפון"
       ],
@@ -8567,6 +9963,10 @@
       "elevation_gain_m": 69,
       "elevation_loss_m": 66,
       "point_count": 4928,
+      "start_lat": 31.19947,
+      "start_lon": 35.3647,
+      "end_lat": 31.19952,
+      "end_lon": 35.36464,
       "regions": [
         "נגב וערבה"
       ],
@@ -8591,6 +9991,10 @@
       "elevation_gain_m": 68,
       "elevation_loss_m": 66,
       "point_count": 4659,
+      "start_lat": 31.19954,
+      "start_lon": 35.36453,
+      "end_lat": 31.19953,
+      "end_lon": 35.36465,
       "regions": [
         "נגב וערבה"
       ],
@@ -8615,6 +10019,10 @@
       "elevation_gain_m": 72,
       "elevation_loss_m": 73,
       "point_count": 4644,
+      "start_lat": 31.1996,
+      "start_lon": 35.36458,
+      "end_lat": 31.19952,
+      "end_lon": 35.36464,
       "regions": [
         "נגב וערבה"
       ],
@@ -8639,6 +10047,10 @@
       "elevation_gain_m": 146,
       "elevation_loss_m": 143,
       "point_count": 4391,
+      "start_lat": 31.19952,
+      "start_lon": 35.36458,
+      "end_lat": 31.19951,
+      "end_lon": 35.36461,
       "regions": [
         "נגב וערבה"
       ],
@@ -8663,6 +10075,10 @@
       "elevation_gain_m": 266,
       "elevation_loss_m": 271,
       "point_count": 4638,
+      "start_lat": 33.00559,
+      "start_lon": 35.21541,
+      "end_lat": 33.00508,
+      "end_lon": 35.2155,
       "regions": [
         "צפון"
       ],
@@ -8688,6 +10104,10 @@
       "elevation_gain_m": 392,
       "elevation_loss_m": 391,
       "point_count": 6270,
+      "start_lat": 33.0051,
+      "start_lon": 35.21552,
+      "end_lat": 33.00505,
+      "end_lon": 35.21552,
       "regions": [
         "צפון"
       ],
@@ -8713,6 +10133,10 @@
       "elevation_gain_m": 471,
       "elevation_loss_m": 362,
       "point_count": 7356,
+      "start_lat": 33.00505,
+      "start_lon": 35.21547,
+      "end_lat": 33.02172,
+      "end_lon": 35.26194,
       "regions": [
         "צפון"
       ],
@@ -8738,6 +10162,10 @@
       "elevation_gain_m": 291,
       "elevation_loss_m": 297,
       "point_count": 5260,
+      "start_lat": 33.00507,
+      "start_lon": 35.21547,
+      "end_lat": 33.0051,
+      "end_lon": 35.21547,
       "regions": [
         "צפון"
       ],
@@ -8762,6 +10190,10 @@
       "elevation_gain_m": 411,
       "elevation_loss_m": 406,
       "point_count": 10668,
+      "start_lat": 33.00512,
+      "start_lon": 35.21544,
+      "end_lat": 33.00511,
+      "end_lon": 35.2155,
       "regions": [
         "צפון"
       ],
@@ -8787,6 +10219,10 @@
       "elevation_gain_m": 221,
       "elevation_loss_m": 217,
       "point_count": 2564,
+      "start_lat": 33.00502,
+      "start_lon": 35.21543,
+      "end_lat": 33.00504,
+      "end_lon": 35.2155,
       "regions": [
         "צפון"
       ],
@@ -8811,6 +10247,10 @@
       "elevation_gain_m": 202,
       "elevation_loss_m": 204,
       "point_count": 4643,
+      "start_lat": 33.06494,
+      "start_lon": 35.16083,
+      "end_lat": 33.06494,
+      "end_lon": 35.16079,
       "regions": [
         "צפון"
       ],
@@ -8835,6 +10275,10 @@
       "elevation_gain_m": 378,
       "elevation_loss_m": 376,
       "point_count": 6509,
+      "start_lat": 33.00506,
+      "start_lon": 35.21545,
+      "end_lat": 33.00506,
+      "end_lon": 35.21548,
       "regions": [
         "צפון"
       ],
@@ -8860,6 +10304,10 @@
       "elevation_gain_m": 68,
       "elevation_loss_m": 73,
       "point_count": 5243,
+      "start_lat": 31.19978,
+      "start_lon": 35.36481,
+      "end_lat": 31.19896,
+      "end_lon": 35.36563,
       "regions": [
         "נגב וערבה"
       ],
@@ -8884,6 +10332,10 @@
       "elevation_gain_m": 73,
       "elevation_loss_m": 73,
       "point_count": 5612,
+      "start_lat": 31.19906,
+      "start_lon": 35.36559,
+      "end_lat": 31.19898,
+      "end_lon": 35.36564,
       "regions": [
         "נגב וערבה"
       ],
@@ -8908,6 +10360,10 @@
       "elevation_gain_m": 64,
       "elevation_loss_m": 65,
       "point_count": 4396,
+      "start_lat": 31.19911,
+      "start_lon": 35.36547,
+      "end_lat": 31.19903,
+      "end_lon": 35.36561,
       "regions": [
         "נגב וערבה"
       ],
@@ -8932,6 +10388,10 @@
       "elevation_gain_m": 113,
       "elevation_loss_m": 108,
       "point_count": 3178,
+      "start_lat": 31.19907,
+      "start_lon": 35.36546,
+      "end_lat": 31.19953,
+      "end_lon": 35.36441,
       "regions": [
         "נגב וערבה"
       ],
@@ -8956,6 +10416,10 @@
       "elevation_gain_m": 258,
       "elevation_loss_m": 255,
       "point_count": 5182,
+      "start_lat": 33.00508,
+      "start_lon": 35.21559,
+      "end_lat": 33.00508,
+      "end_lon": 35.21558,
       "regions": [
         "צפון"
       ],
@@ -8981,6 +10445,10 @@
       "elevation_gain_m": 109,
       "elevation_loss_m": 122,
       "point_count": 3835,
+      "start_lat": 31.19555,
+      "start_lon": 35.36163,
+      "end_lat": 31.2021,
+      "end_lon": 35.36619,
       "regions": [
         "נגב וערבה"
       ],
@@ -9005,6 +10473,10 @@
       "elevation_gain_m": 125,
       "elevation_loss_m": 127,
       "point_count": 4907,
+      "start_lat": 31.19547,
+      "start_lon": 35.36164,
+      "end_lat": 31.19555,
+      "end_lon": 35.36161,
       "regions": [
         "נגב וערבה"
       ],
@@ -9029,6 +10501,10 @@
       "elevation_gain_m": 157,
       "elevation_loss_m": 159,
       "point_count": 5312,
+      "start_lat": 31.1954,
+      "start_lon": 35.36144,
+      "end_lat": 31.19537,
+      "end_lon": 35.36141,
       "regions": [
         "נגב וערבה"
       ],
@@ -9053,6 +10529,10 @@
       "elevation_gain_m": 198,
       "elevation_loss_m": 195,
       "point_count": 6371,
+      "start_lat": 31.19559,
+      "start_lon": 35.36159,
+      "end_lat": 31.19537,
+      "end_lon": 35.36143,
       "regions": [
         "נגב וערבה"
       ],
@@ -9077,6 +10557,10 @@
       "elevation_gain_m": 57,
       "elevation_loss_m": 57,
       "point_count": 3969,
+      "start_lat": 32.32976,
+      "start_lon": 34.85144,
+      "end_lat": 32.32967,
+      "end_lon": 34.85116,
       "regions": [
         "מרכז"
       ],
@@ -9102,6 +10586,10 @@
       "elevation_gain_m": 125,
       "elevation_loss_m": 113,
       "point_count": 5205,
+      "start_lat": 33.00514,
+      "start_lon": 35.21543,
+      "end_lat": 33.00501,
+      "end_lon": 35.21547,
       "regions": [
         "צפון"
       ],
@@ -9127,6 +10615,10 @@
       "elevation_gain_m": 261,
       "elevation_loss_m": 261,
       "point_count": 16292,
+      "start_lat": 33.00904,
+      "start_lon": 35.39315,
+      "end_lat": 33.0089,
+      "end_lon": 35.3935,
       "regions": [
         "צפון"
       ],
@@ -9152,6 +10644,10 @@
       "elevation_gain_m": 117,
       "elevation_loss_m": 116,
       "point_count": 4995,
+      "start_lat": 33.0066,
+      "start_lon": 35.20924,
+      "end_lat": 33.00692,
+      "end_lon": 35.20989,
       "regions": [
         "צפון"
       ],
@@ -9177,6 +10673,10 @@
       "elevation_gain_m": 148,
       "elevation_loss_m": 164,
       "point_count": 10478,
+      "start_lat": 33.06452,
+      "start_lon": 35.16321,
+      "end_lat": 33.06486,
+      "end_lon": 35.16082,
       "regions": [
         "צפון"
       ],
@@ -9202,6 +10702,10 @@
       "elevation_gain_m": 218,
       "elevation_loss_m": 217,
       "point_count": 13006,
+      "start_lat": 32.7447,
+      "start_lon": 35.07356,
+      "end_lat": 32.74487,
+      "end_lon": 35.0738,
       "regions": [
         "ירושלים ומדבר יהודה"
       ],
@@ -9226,6 +10730,10 @@
       "elevation_gain_m": 181,
       "elevation_loss_m": 178,
       "point_count": 12410,
+      "start_lat": 33.07345,
+      "start_lon": 35.18387,
+      "end_lat": 33.07392,
+      "end_lon": 35.18482,
       "regions": [
         "צפון"
       ],
@@ -9250,6 +10758,10 @@
       "elevation_gain_m": 371,
       "elevation_loss_m": 370,
       "point_count": 20846,
+      "start_lat": 33.03626,
+      "start_lon": 35.2352,
+      "end_lat": 33.03542,
+      "end_lon": 35.23607,
       "regions": [
         "צפון"
       ],
@@ -9274,6 +10786,10 @@
       "elevation_gain_m": 324,
       "elevation_loss_m": 198,
       "point_count": 13117,
+      "start_lat": 32.91344,
+      "start_lon": 35.22631,
+      "end_lat": 32.90254,
+      "end_lon": 35.24624,
       "regions": [
         "צפון"
       ],
@@ -9299,6 +10815,10 @@
       "elevation_gain_m": 442,
       "elevation_loss_m": 439,
       "point_count": 20656,
+      "start_lat": 33.01009,
+      "start_lon": 35.39665,
+      "end_lat": 33.0091,
+      "end_lon": 35.39367,
       "regions": [
         "צפון"
       ],
@@ -9324,6 +10844,10 @@
       "elevation_gain_m": 216,
       "elevation_loss_m": 168,
       "point_count": 15456,
+      "start_lat": 33.00666,
+      "start_lon": 35.20925,
+      "end_lat": 33.00784,
+      "end_lon": 35.21847,
       "regions": [
         "צפון"
       ],
@@ -9348,6 +10872,10 @@
       "elevation_gain_m": 165,
       "elevation_loss_m": 164,
       "point_count": 13018,
+      "start_lat": 33.06494,
+      "start_lon": 35.16069,
+      "end_lat": 33.06498,
+      "end_lon": 35.16082,
       "regions": [
         "צפון"
       ],
@@ -9373,6 +10901,10 @@
       "elevation_gain_m": 146,
       "elevation_loss_m": 149,
       "point_count": 406,
+      "start_lat": 33.06504,
+      "start_lon": 35.16072,
+      "end_lat": 33.06497,
+      "end_lon": 35.16085,
       "regions": [
         "צפון"
       ],
@@ -9398,6 +10930,10 @@
       "elevation_gain_m": 266,
       "elevation_loss_m": 12,
       "point_count": 4655,
+      "start_lat": 32.8196,
+      "start_lon": 34.99458,
+      "end_lat": 32.80546,
+      "end_lon": 34.98921,
       "regions": [
         "צפון"
       ],
@@ -9423,6 +10959,10 @@
       "elevation_gain_m": 306,
       "elevation_loss_m": 322,
       "point_count": 21370,
+      "start_lat": 33.00545,
+      "start_lon": 35.21735,
+      "end_lat": 33.00502,
+      "end_lon": 35.21546,
       "regions": [
         "צפון"
       ],
@@ -9448,6 +10988,10 @@
       "elevation_gain_m": 275,
       "elevation_loss_m": 12,
       "point_count": 4556,
+      "start_lat": 32.82145,
+      "start_lon": 34.99557,
+      "end_lat": 32.80554,
+      "end_lon": 34.98914,
       "regions": [
         "צפון"
       ],
@@ -9473,6 +11017,10 @@
       "elevation_gain_m": 112,
       "elevation_loss_m": 109,
       "point_count": 4008,
+      "start_lat": 33.00503,
+      "start_lon": 35.21539,
+      "end_lat": 33.00507,
+      "end_lon": 35.21547,
       "regions": [
         "צפון"
       ],
@@ -9498,6 +11046,10 @@
       "elevation_gain_m": 256,
       "elevation_loss_m": 252,
       "point_count": 15323,
+      "start_lat": 33.00499,
+      "start_lon": 35.21545,
+      "end_lat": 33.00508,
+      "end_lon": 35.21544,
       "regions": [
         "צפון"
       ],
@@ -9522,6 +11074,10 @@
       "elevation_gain_m": 267,
       "elevation_loss_m": 4,
       "point_count": 5281,
+      "start_lat": 32.82193,
+      "start_lon": 34.99595,
+      "end_lat": 32.80552,
+      "end_lon": 34.98917,
       "regions": [
         "צפון"
       ],
@@ -9547,6 +11103,10 @@
       "elevation_gain_m": 345,
       "elevation_loss_m": 48,
       "point_count": 11456,
+      "start_lat": 28.20952,
+      "start_lon": 83.95989,
+      "end_lat": 28.20104,
+      "end_lon": 83.94518,
       "regions": [
         "צפון"
       ],
@@ -9568,6 +11128,10 @@
       "elevation_gain_m": 391,
       "elevation_loss_m": 37,
       "point_count": 8191,
+      "start_lat": 28.36037,
+      "start_lon": 83.74174,
+      "end_lat": 28.35584,
+      "end_lon": 83.7363,
       "regions": [
         "צפון"
       ],
@@ -9589,6 +11153,10 @@
       "elevation_gain_m": 181,
       "elevation_loss_m": 183,
       "point_count": 2421,
+      "start_lat": 33.00504,
+      "start_lon": 35.21569,
+      "end_lat": 33.00503,
+      "end_lon": 35.21547,
       "regions": [
         "צפון"
       ],
@@ -9614,6 +11182,10 @@
       "elevation_gain_m": 132,
       "elevation_loss_m": 88,
       "point_count": 186,
+      "start_lat": 33.00726,
+      "start_lon": 35.21075,
+      "end_lat": 33.00441,
+      "end_lon": 35.21609,
       "regions": [
         "צפון"
       ],
@@ -9639,6 +11211,10 @@
       "elevation_gain_m": 229,
       "elevation_loss_m": 226,
       "point_count": 399,
+      "start_lat": 33.00502,
+      "start_lon": 35.21561,
+      "end_lat": 33.00502,
+      "end_lon": 35.21557,
       "regions": [
         "צפון"
       ],
@@ -9663,6 +11239,10 @@
       "elevation_gain_m": 229,
       "elevation_loss_m": 228,
       "point_count": 3068,
+      "start_lat": 33.00505,
+      "start_lon": 35.21555,
+      "end_lat": 33.00509,
+      "end_lon": 35.21542,
       "regions": [
         "צפון"
       ],
@@ -9687,6 +11267,10 @@
       "elevation_gain_m": 286,
       "elevation_loss_m": 273,
       "point_count": 4549,
+      "start_lat": 33.00649,
+      "start_lon": 35.21205,
+      "end_lat": 33.00505,
+      "end_lon": 35.21553,
       "regions": [
         "צפון"
       ],
@@ -9711,6 +11295,10 @@
       "elevation_gain_m": 291,
       "elevation_loss_m": 278,
       "point_count": 480,
+      "start_lat": 33.00502,
+      "start_lon": 35.2155,
+      "end_lat": 33.00773,
+      "end_lon": 35.21901,
       "regions": [
         "צפון"
       ],
@@ -9736,6 +11324,10 @@
       "elevation_gain_m": 265,
       "elevation_loss_m": 267,
       "point_count": 3779,
+      "start_lat": 33.00547,
+      "start_lon": 35.2154,
+      "end_lat": 33.00505,
+      "end_lon": 35.2155,
       "regions": [
         "צפון"
       ],
@@ -9761,6 +11353,10 @@
       "elevation_gain_m": 36,
       "elevation_loss_m": 36,
       "point_count": 13321,
+      "start_lat": 32.49699,
+      "start_lon": 34.89032,
+      "end_lat": 32.46342,
+      "end_lon": 34.88854,
       "regions": [
         "מרכז"
       ],
@@ -9785,6 +11381,10 @@
       "elevation_gain_m": 4,
       "elevation_loss_m": 0,
       "point_count": 9599,
+      "start_lat": 32.7158,
+      "start_lon": 35.10174,
+      "end_lat": 32.70928,
+      "end_lon": 35.10328,
       "regions": [
         "ירושלים ומדבר יהודה"
       ],
@@ -9809,6 +11409,10 @@
       "elevation_gain_m": 4,
       "elevation_loss_m": 0,
       "point_count": 5287,
+      "start_lat": 32.71443,
+      "start_lon": 35.10199,
+      "end_lat": 32.6919,
+      "end_lon": 35.10781,
       "regions": [
         "ירושלים ומדבר יהודה"
       ],
@@ -9833,6 +11437,10 @@
       "elevation_gain_m": 92,
       "elevation_loss_m": 106,
       "point_count": 12083,
+      "start_lat": 32.43639,
+      "start_lon": 34.89873,
+      "end_lat": 32.39757,
+      "end_lon": 34.89032,
       "regions": [
         "מרכז"
       ],
@@ -9858,6 +11466,10 @@
       "elevation_gain_m": 38,
       "elevation_loss_m": 20,
       "point_count": 4752,
+      "start_lat": 32.39015,
+      "start_lon": 34.877,
+      "end_lat": 32.43785,
+      "end_lon": 34.89141,
       "regions": [
         "מרכז"
       ],
@@ -9882,6 +11494,10 @@
       "elevation_gain_m": 262,
       "elevation_loss_m": 258,
       "point_count": 4657,
+      "start_lat": 33.00502,
+      "start_lon": 35.21553,
+      "end_lat": 33.00502,
+      "end_lon": 35.21551,
       "regions": [
         "צפון"
       ],
@@ -9906,6 +11522,10 @@
       "elevation_gain_m": 320,
       "elevation_loss_m": 317,
       "point_count": 5175,
+      "start_lat": 33.00525,
+      "start_lon": 35.21553,
+      "end_lat": 33.00519,
+      "end_lon": 35.21544,
       "regions": [
         "צפון"
       ],
@@ -9930,6 +11550,10 @@
       "elevation_gain_m": 329,
       "elevation_loss_m": 316,
       "point_count": 4424,
+      "start_lat": 33.00522,
+      "start_lon": 35.21555,
+      "end_lat": 33.00547,
+      "end_lon": 35.21699,
       "regions": [
         "צפון"
       ],
@@ -9954,6 +11578,10 @@
       "elevation_gain_m": 282,
       "elevation_loss_m": 286,
       "point_count": 4453,
+      "start_lat": 33.00534,
+      "start_lon": 35.21543,
+      "end_lat": 33.00503,
+      "end_lon": 35.21541,
       "regions": [
         "צפון"
       ],
@@ -9978,6 +11606,10 @@
       "elevation_gain_m": 40,
       "elevation_loss_m": 56,
       "point_count": 12681,
+      "start_lat": 32.28844,
+      "start_lon": 34.84257,
+      "end_lat": 32.24881,
+      "end_lon": 34.83706,
       "regions": [
         "מרכז"
       ],
@@ -10002,6 +11634,10 @@
       "elevation_gain_m": 334,
       "elevation_loss_m": 335,
       "point_count": 4407,
+      "start_lat": 33.00548,
+      "start_lon": 35.21534,
+      "end_lat": 33.00508,
+      "end_lon": 35.21546,
       "regions": [
         "צפון"
       ],
@@ -10026,6 +11662,10 @@
       "elevation_gain_m": 16,
       "elevation_loss_m": 12,
       "point_count": 3100,
+      "start_lat": 31.19369,
+      "start_lon": 35.36176,
+      "end_lat": 31.19363,
+      "end_lon": 35.36177,
       "regions": [
         "נגב וערבה"
       ],
@@ -10050,6 +11690,10 @@
       "elevation_gain_m": 109,
       "elevation_loss_m": 115,
       "point_count": 3858,
+      "start_lat": 31.1937,
+      "start_lon": 35.3617,
+      "end_lat": 31.19366,
+      "end_lon": 35.36175,
       "regions": [
         "נגב וערבה"
       ],
@@ -10074,6 +11718,10 @@
       "elevation_gain_m": 29,
       "elevation_loss_m": 50,
       "point_count": 14280,
+      "start_lat": 32.10567,
+      "start_lon": 34.83689,
+      "end_lat": 32.09925,
+      "end_lon": 34.77706,
       "regions": [
         "מרכז"
       ],
@@ -10098,6 +11746,10 @@
       "elevation_gain_m": 20,
       "elevation_loss_m": 24,
       "point_count": 16443,
+      "start_lat": 32.11118,
+      "start_lon": 34.91516,
+      "end_lat": 32.11976,
+      "end_lon": 34.90298,
       "regions": [
         "מרכז"
       ],
@@ -10123,6 +11775,10 @@
       "elevation_gain_m": 81,
       "elevation_loss_m": 79,
       "point_count": 3538,
+      "start_lat": 31.19555,
+      "start_lon": 35.36155,
+      "end_lat": 31.19558,
+      "end_lon": 35.36159,
       "regions": [
         "נגב וערבה"
       ],
@@ -10147,6 +11803,10 @@
       "elevation_gain_m": 96,
       "elevation_loss_m": 97,
       "point_count": 6361,
+      "start_lat": 31.19554,
+      "start_lon": 35.36154,
+      "end_lat": 31.19558,
+      "end_lon": 35.3616,
       "regions": [
         "נגב וערבה"
       ],
@@ -10171,6 +11831,10 @@
       "elevation_gain_m": 101,
       "elevation_loss_m": 102,
       "point_count": 5713,
+      "start_lat": 31.19555,
+      "start_lon": 35.36155,
+      "end_lat": 31.19556,
+      "end_lon": 35.36154,
       "regions": [
         "נגב וערבה"
       ],
@@ -10195,6 +11859,10 @@
       "elevation_gain_m": 282,
       "elevation_loss_m": 375,
       "point_count": 7758,
+      "start_lat": 33.00495,
+      "start_lon": 35.21543,
+      "end_lat": 33.00911,
+      "end_lon": 35.19542,
       "regions": [
         "צפון"
       ],
@@ -10220,6 +11888,10 @@
       "elevation_gain_m": 0,
       "elevation_loss_m": 0,
       "point_count": 7164,
+      "start_lat": 52.12198,
+      "start_lon": 4.4583,
+      "end_lat": 52.12204,
+      "end_lon": 4.45861,
       "regions": [
         "צפון"
       ],
@@ -10241,6 +11913,10 @@
       "elevation_gain_m": 417,
       "elevation_loss_m": 416,
       "point_count": 458,
+      "start_lat": 45.92696,
+      "start_lon": 6.8752,
+      "end_lat": 45.92696,
+      "end_lon": 6.8752,
       "regions": [
         "מרכז"
       ],
@@ -10262,6 +11938,10 @@
       "elevation_gain_m": 73,
       "elevation_loss_m": 74,
       "point_count": 5915,
+      "start_lat": 32.83187,
+      "start_lon": 34.9824,
+      "end_lat": 32.83078,
+      "end_lon": 34.98209,
       "regions": [
         "צפון",
         "מרכז"
@@ -10288,6 +11968,10 @@
       "elevation_gain_m": 20,
       "elevation_loss_m": 0,
       "point_count": 13040,
+      "start_lat": 32.53749,
+      "start_lon": 34.90263,
+      "end_lat": 32.51552,
+      "end_lon": 34.90707,
       "regions": [
         "מרכז"
       ],
@@ -10312,6 +11996,10 @@
       "elevation_gain_m": 340,
       "elevation_loss_m": 353,
       "point_count": 4978,
+      "start_lat": 33.00502,
+      "start_lon": 35.2182,
+      "end_lat": 33.0047,
+      "end_lon": 35.21603,
       "regions": [
         "צפון"
       ],
@@ -10337,6 +12025,10 @@
       "elevation_gain_m": 335,
       "elevation_loss_m": 338,
       "point_count": 4960,
+      "start_lat": 33.00431,
+      "start_lon": 35.21606,
+      "end_lat": 33.00505,
+      "end_lon": 35.21548,
       "regions": [
         "צפון"
       ],
@@ -10362,6 +12054,10 @@
       "elevation_gain_m": 226,
       "elevation_loss_m": 279,
       "point_count": 11944,
+      "start_lat": 31.78339,
+      "start_lon": 35.13011,
+      "end_lat": 31.76712,
+      "end_lon": 35.16244,
       "regions": [
         "ירושלים ומדבר יהודה"
       ],
@@ -10386,6 +12082,10 @@
       "elevation_gain_m": 554,
       "elevation_loss_m": 447,
       "point_count": 14884,
+      "start_lat": 47.58514,
+      "start_lon": 19.0445,
+      "end_lat": 47.60736,
+      "end_lon": 18.99121,
       "regions": [
         "צפון"
       ],
@@ -10407,6 +12107,10 @@
       "elevation_gain_m": 117,
       "elevation_loss_m": 115,
       "point_count": 6425,
+      "start_lat": 33.01843,
+      "start_lon": 35.14258,
+      "end_lat": 33.01839,
+      "end_lon": 35.14259,
       "regions": [
         "צפון"
       ],
@@ -10432,6 +12136,10 @@
       "elevation_gain_m": 106,
       "elevation_loss_m": 106,
       "point_count": 4359,
+      "start_lat": 33.01849,
+      "start_lon": 35.14271,
+      "end_lat": 33.01847,
+      "end_lon": 35.14267,
       "regions": [
         "צפון"
       ],
@@ -10457,6 +12165,10 @@
       "elevation_gain_m": 109,
       "elevation_loss_m": 110,
       "point_count": 5717,
+      "start_lat": 33.01846,
+      "start_lon": 35.14271,
+      "end_lat": 33.01845,
+      "end_lon": 35.14269,
       "regions": [
         "צפון"
       ],
@@ -10482,6 +12194,10 @@
       "elevation_gain_m": 113,
       "elevation_loss_m": 109,
       "point_count": 4338,
+      "start_lat": 33.00498,
+      "start_lon": 35.21542,
+      "end_lat": 33.00506,
+      "end_lon": 35.2155,
       "regions": [
         "צפון"
       ],
@@ -10507,6 +12223,10 @@
       "elevation_gain_m": 413,
       "elevation_loss_m": 73,
       "point_count": 15393,
+      "start_lat": 33.00688,
+      "start_lon": 35.09271,
+      "end_lat": 33.00507,
+      "end_lon": 35.21549,
       "regions": [
         "צפון"
       ],
@@ -10532,6 +12252,10 @@
       "elevation_gain_m": 92,
       "elevation_loss_m": 317,
       "point_count": 15545,
+      "start_lat": 33.24874,
+      "start_lon": 35.69327,
+      "end_lat": 33.21875,
+      "end_lon": 35.65906,
       "regions": [
         "רמת הגולן והחרמון"
       ],
@@ -10556,6 +12280,10 @@
       "elevation_gain_m": 343,
       "elevation_loss_m": 345,
       "point_count": 2488,
+      "start_lat": 32.46773,
+      "start_lon": 35.01376,
+      "end_lat": 32.46784,
+      "end_lon": 35.01377,
       "regions": [
         "מרכז",
         "ירושלים ומדבר יהודה"
@@ -10582,6 +12310,10 @@
       "elevation_gain_m": 40,
       "elevation_loss_m": 60,
       "point_count": 12464,
+      "start_lat": 17.98923,
+      "start_lon": 102.42927,
+      "end_lat": 17.9826,
+      "end_lon": 102.44263,
       "regions": [
         "צפון"
       ],
@@ -10603,6 +12335,10 @@
       "elevation_gain_m": 438,
       "elevation_loss_m": 463,
       "point_count": 13456,
+      "start_lat": 18.92219,
+      "start_lon": 102.38836,
+      "end_lat": 18.90973,
+      "end_lon": 102.4071,
       "regions": [
         "צפון"
       ],
@@ -10624,6 +12360,10 @@
       "elevation_gain_m": 47,
       "elevation_loss_m": 105,
       "point_count": 1905,
+      "start_lat": 18.90937,
+      "start_lon": 102.44222,
+      "end_lat": 18.91455,
+      "end_lon": 102.44496,
       "regions": [
         "צפון"
       ],
@@ -10645,6 +12385,10 @@
       "elevation_gain_m": 8,
       "elevation_loss_m": 4,
       "point_count": 1037,
+      "start_lat": 18.92803,
+      "start_lon": 102.44564,
+      "end_lat": 18.92172,
+      "end_lon": 102.44516,
       "regions": [
         "צפון"
       ],
@@ -10666,6 +12410,10 @@
       "elevation_gain_m": 177,
       "elevation_loss_m": 192,
       "point_count": 19128,
+      "start_lat": 20.78303,
+      "start_lon": 101.23616,
+      "end_lat": 20.80263,
+      "end_lon": 101.25026,
       "regions": [
         "צפון"
       ],
@@ -10687,6 +12435,10 @@
       "elevation_gain_m": 246,
       "elevation_loss_m": 473,
       "point_count": 22605,
+      "start_lat": 20.86153,
+      "start_lon": 101.30815,
+      "end_lat": 20.83961,
+      "end_lon": 101.34708,
       "regions": [
         "צפון"
       ],
@@ -10708,6 +12460,10 @@
       "elevation_gain_m": 487,
       "elevation_loss_m": 380,
       "point_count": 17006,
+      "start_lat": 20.83926,
+      "start_lon": 101.34876,
+      "end_lat": 20.87966,
+      "end_lon": 101.33594,
       "regions": [
         "צפון"
       ],
@@ -10729,6 +12485,10 @@
       "elevation_gain_m": 329,
       "elevation_loss_m": 562,
       "point_count": 25889,
+      "start_lat": 19.75877,
+      "start_lon": 102.0304,
+      "end_lat": 19.75101,
+      "end_lon": 101.99674,
       "regions": [
         "צפון"
       ],
@@ -10750,6 +12510,10 @@
       "elevation_gain_m": 52,
       "elevation_loss_m": 53,
       "point_count": 4788,
+      "start_lat": 31.19908,
+      "start_lon": 35.36551,
+      "end_lat": 31.19922,
+      "end_lon": 35.36542,
       "regions": [
         "נגב וערבה"
       ],
@@ -10774,6 +12538,10 @@
       "elevation_gain_m": 52,
       "elevation_loss_m": 54,
       "point_count": 3282,
+      "start_lat": 31.19908,
+      "start_lon": 35.3655,
+      "end_lat": 31.19907,
+      "end_lon": 35.36551,
       "regions": [
         "נגב וערבה"
       ],
@@ -10798,6 +12566,10 @@
       "elevation_gain_m": 118,
       "elevation_loss_m": 117,
       "point_count": 4710,
+      "start_lat": 31.19911,
+      "start_lon": 35.36551,
+      "end_lat": 31.19909,
+      "end_lon": 35.3655,
       "regions": [
         "נגב וערבה"
       ],
@@ -10822,6 +12594,10 @@
       "elevation_gain_m": 157,
       "elevation_loss_m": 158,
       "point_count": 7147,
+      "start_lat": 31.19908,
+      "start_lon": 35.36552,
+      "end_lat": 31.19918,
+      "end_lon": 35.36514,
       "regions": [
         "נגב וערבה"
       ],
@@ -10846,6 +12622,10 @@
       "elevation_gain_m": 356,
       "elevation_loss_m": 317,
       "point_count": 10489,
+      "start_lat": 32.76865,
+      "start_lon": 35.69237,
+      "end_lat": 32.73385,
+      "end_lon": 35.65571,
       "regions": [
         "רמת הגולן והחרמון"
       ],
@@ -10871,6 +12651,10 @@
       "elevation_gain_m": 331,
       "elevation_loss_m": 331,
       "point_count": 4671,
+      "start_lat": 33.00504,
+      "start_lon": 35.21551,
+      "end_lat": 33.00505,
+      "end_lon": 35.2155,
       "regions": [
         "צפון"
       ],
@@ -10896,6 +12680,10 @@
       "elevation_gain_m": 230,
       "elevation_loss_m": 297,
       "point_count": 11773,
+      "start_lat": 33.02327,
+      "start_lon": 35.40925,
+      "end_lat": 33.01378,
+      "end_lon": 35.35517,
       "regions": [
         "צפון"
       ],
@@ -10920,6 +12708,10 @@
       "elevation_gain_m": 185,
       "elevation_loss_m": 192,
       "point_count": 22379,
+      "start_lat": 32.71388,
+      "start_lon": 34.97756,
+      "end_lat": 32.71406,
+      "end_lon": 34.97657,
       "regions": [
         "מרכז"
       ],
@@ -10944,6 +12736,10 @@
       "elevation_gain_m": 366,
       "elevation_loss_m": 274,
       "point_count": 16027,
+      "start_lat": 32.71443,
+      "start_lon": 35.01304,
+      "end_lat": 32.7336,
+      "end_lon": 35.02343,
       "regions": [
         "מרכז",
         "ירושלים ומדבר יהודה"
@@ -10970,6 +12766,10 @@
       "elevation_gain_m": 355,
       "elevation_loss_m": 588,
       "point_count": 14687,
+      "start_lat": 33.00896,
+      "start_lon": 35.39364,
+      "end_lat": 32.97887,
+      "end_lon": 35.44238,
       "regions": [
         "צפון"
       ],
@@ -10994,6 +12794,10 @@
       "elevation_gain_m": 40,
       "elevation_loss_m": 478,
       "point_count": 15996,
+      "start_lat": 33.25099,
+      "start_lon": 35.72881,
+      "end_lat": 33.24498,
+      "end_lon": 35.69479,
       "regions": [
         "רמת הגולן והחרמון"
       ],
@@ -11019,6 +12823,10 @@
       "elevation_gain_m": 60,
       "elevation_loss_m": 357,
       "point_count": 15514,
+      "start_lat": 32.71428,
+      "start_lon": 35.01297,
+      "end_lat": 32.71321,
+      "end_lon": 34.97914,
       "regions": [
         "מרכז"
       ],
@@ -11044,6 +12852,10 @@
       "elevation_gain_m": 44,
       "elevation_loss_m": 65,
       "point_count": 16603,
+      "start_lat": 33.2163,
+      "start_lon": 35.64245,
+      "end_lat": 33.18777,
+      "end_lon": 35.61795,
       "regions": [
         "רמת הגולן והחרמון"
       ],
@@ -11068,6 +12880,10 @@
       "elevation_gain_m": null,
       "elevation_loss_m": null,
       "point_count": 140,
+      "start_lat": 33.25048,
+      "start_lon": 35.72932,
+      "end_lat": 33.24082,
+      "end_lon": 35.68103,
       "regions": [
         "רמת הגולן והחרמון"
       ],
@@ -11093,6 +12909,10 @@
       "elevation_gain_m": 225,
       "elevation_loss_m": 358,
       "point_count": 11834,
+      "start_lat": 33.0361,
+      "start_lon": 35.2351,
+      "end_lat": 33.04781,
+      "end_lon": 35.2216,
       "regions": [
         "צפון"
       ],
@@ -11117,6 +12937,10 @@
       "elevation_gain_m": 32,
       "elevation_loss_m": 371,
       "point_count": 3991,
+      "start_lat": 33.00503,
+      "start_lon": 35.21546,
+      "end_lat": 33.08703,
+      "end_lon": 35.10619,
       "regions": [
         "צפון"
       ],
@@ -11142,6 +12966,10 @@
       "elevation_gain_m": 36,
       "elevation_loss_m": 36,
       "point_count": 9193,
+      "start_lat": 52.34562,
+      "start_lon": 4.58423,
+      "end_lat": 52.34555,
+      "end_lon": 4.58221,
       "regions": [
         "צפון"
       ],
@@ -11163,6 +12991,10 @@
       "elevation_gain_m": 0,
       "elevation_loss_m": 0,
       "point_count": 10237,
+      "start_lat": 52.17808,
+      "start_lon": 4.48774,
+      "end_lat": 52.15626,
+      "end_lon": 4.51896,
       "regions": [
         "צפון"
       ],
@@ -11184,6 +13016,10 @@
       "elevation_gain_m": 322,
       "elevation_loss_m": 320,
       "point_count": 4610,
+      "start_lat": 33.00504,
+      "start_lon": 35.21547,
+      "end_lat": 33.00502,
+      "end_lon": 35.21549,
       "regions": [
         "צפון"
       ],
@@ -11209,6 +13045,10 @@
       "elevation_gain_m": 310,
       "elevation_loss_m": 306,
       "point_count": 4026,
+      "start_lat": 33.00505,
+      "start_lon": 35.21551,
+      "end_lat": 33.00504,
+      "end_lon": 35.21548,
       "regions": [
         "צפון"
       ],
@@ -11234,6 +13074,10 @@
       "elevation_gain_m": 214,
       "elevation_loss_m": 213,
       "point_count": 9541,
+      "start_lat": 33.00509,
+      "start_lon": 35.21545,
+      "end_lat": 33.00504,
+      "end_lon": 35.21548,
       "regions": [
         "צפון"
       ],
@@ -11258,6 +13102,10 @@
       "elevation_gain_m": 314,
       "elevation_loss_m": 310,
       "point_count": 4345,
+      "start_lat": 33.00508,
+      "start_lon": 35.21545,
+      "end_lat": 33.00503,
+      "end_lon": 35.21548,
       "regions": [
         "צפון"
       ],
@@ -11283,6 +13131,10 @@
       "elevation_gain_m": 60,
       "elevation_loss_m": 389,
       "point_count": 5361,
+      "start_lat": 33.00507,
+      "start_lon": 35.21544,
+      "end_lat": 32.97701,
+      "end_lon": 35.09405,
       "regions": [
         "צפון"
       ],
@@ -11308,6 +13160,10 @@
       "elevation_gain_m": 112,
       "elevation_loss_m": 376,
       "point_count": 7226,
+      "start_lat": 33.00506,
+      "start_lon": 35.21549,
+      "end_lat": 33.01515,
+      "end_lon": 35.15545,
       "regions": [
         "צפון"
       ],
@@ -11333,6 +13189,10 @@
       "elevation_gain_m": 52,
       "elevation_loss_m": 52,
       "point_count": 10296,
+      "start_lat": 33.12412,
+      "start_lon": 35.56943,
+      "end_lat": 33.12407,
+      "end_lon": 35.56946,
       "regions": [
         "רמת הגולן והחרמון"
       ],
@@ -11357,6 +13217,10 @@
       "elevation_gain_m": 60,
       "elevation_loss_m": 383,
       "point_count": 5977,
+      "start_lat": 33.00504,
+      "start_lon": 35.21547,
+      "end_lat": 32.97679,
+      "end_lon": 35.09416,
       "regions": [
         "צפון"
       ],
@@ -11382,6 +13246,10 @@
       "elevation_gain_m": 370,
       "elevation_loss_m": 318,
       "point_count": 8010,
+      "start_lat": 33.00636,
+      "start_lon": 35.20454,
+      "end_lat": 33.00509,
+      "end_lon": 35.21548,
       "regions": [
         "צפון"
       ],
@@ -11407,6 +13275,10 @@
       "elevation_gain_m": 225,
       "elevation_loss_m": 225,
       "point_count": 9167,
+      "start_lat": 33.04464,
+      "start_lon": 35.28543,
+      "end_lat": 33.04461,
+      "end_lon": 35.28693,
       "regions": [
         "צפון"
       ],
@@ -11431,6 +13303,10 @@
       "elevation_gain_m": 310,
       "elevation_loss_m": 306,
       "point_count": 4125,
+      "start_lat": 33.00509,
+      "start_lon": 35.21549,
+      "end_lat": 33.00503,
+      "end_lon": 35.2155,
       "regions": [
         "צפון"
       ],
@@ -11456,6 +13332,10 @@
       "elevation_gain_m": 178,
       "elevation_loss_m": 176,
       "point_count": 3586,
+      "start_lat": 33.00502,
+      "start_lon": 35.21549,
+      "end_lat": 33.00505,
+      "end_lon": 35.21548,
       "regions": [
         "צפון"
       ],
@@ -11480,6 +13360,10 @@
       "elevation_gain_m": 222,
       "elevation_loss_m": 266,
       "point_count": 17698,
+      "start_lat": 32.97921,
+      "start_lon": 35.44286,
+      "end_lat": 32.97387,
+      "end_lon": 35.46648,
       "regions": [
         "צפון"
       ],
@@ -11505,6 +13389,10 @@
       "elevation_gain_m": 105,
       "elevation_loss_m": 102,
       "point_count": 3809,
+      "start_lat": 31.2019,
+      "start_lon": 35.36385,
+      "end_lat": 31.20194,
+      "end_lon": 35.36382,
       "regions": [
         "נגב וערבה"
       ],
@@ -11529,6 +13417,10 @@
       "elevation_gain_m": 170,
       "elevation_loss_m": 199,
       "point_count": 390,
+      "start_lat": 32.70228,
+      "start_lon": 34.98268,
+      "end_lat": 32.64993,
+      "end_lon": 34.96745,
       "regions": [
         "מרכז"
       ],
@@ -11554,6 +13446,10 @@
       "elevation_gain_m": 28,
       "elevation_loss_m": 81,
       "point_count": 10998,
+      "start_lat": 33.09294,
+      "start_lon": 35.10695,
+      "end_lat": 33.05016,
+      "end_lon": 35.10243,
       "regions": [
         "צפון"
       ],
@@ -11578,6 +13474,10 @@
       "elevation_gain_m": 72,
       "elevation_loss_m": 553,
       "point_count": 22980,
+      "start_lat": 32.99343,
+      "start_lon": 35.41451,
+      "end_lat": 33.00365,
+      "end_lon": 35.36037,
       "regions": [
         "צפון"
       ],
@@ -11603,6 +13503,10 @@
       "elevation_gain_m": 141,
       "elevation_loss_m": 137,
       "point_count": 4968,
+      "start_lat": 33.00505,
+      "start_lon": 35.21547,
+      "end_lat": 33.00508,
+      "end_lon": 35.21552,
       "regions": [
         "צפון"
       ],
@@ -11627,6 +13531,10 @@
       "elevation_gain_m": 134,
       "elevation_loss_m": 516,
       "point_count": 19043,
+      "start_lat": 32.99354,
+      "start_lon": 35.41435,
+      "end_lat": 32.98241,
+      "end_lon": 35.43984,
       "regions": [
         "צפון"
       ],
@@ -11651,6 +13559,10 @@
       "elevation_gain_m": 28,
       "elevation_loss_m": 28,
       "point_count": 13128,
+      "start_lat": 32.5324,
+      "start_lon": 34.92677,
+      "end_lat": 32.50142,
+      "end_lon": 34.89358,
       "regions": [
         "מרכז"
       ],
@@ -11675,6 +13587,10 @@
       "elevation_gain_m": 60,
       "elevation_loss_m": 72,
       "point_count": 6806,
+      "start_lat": 33.01841,
+      "start_lon": 35.14273,
+      "end_lat": 33.01838,
+      "end_lon": 35.14272,
       "regions": [
         "צפון"
       ],
@@ -11700,6 +13616,10 @@
       "elevation_gain_m": 4,
       "elevation_loss_m": 16,
       "point_count": 4283,
+      "start_lat": 32.98166,
+      "start_lon": 35.08471,
+      "end_lat": 32.98012,
+      "end_lon": 35.09204,
       "regions": [
         "צפון"
       ],
@@ -11725,6 +13645,10 @@
       "elevation_gain_m": 53,
       "elevation_loss_m": 49,
       "point_count": 3783,
+      "start_lat": 32.98126,
+      "start_lon": 35.08458,
+      "end_lat": 32.98652,
+      "end_lon": 35.09622,
       "regions": [
         "צפון"
       ],
@@ -11749,6 +13673,10 @@
       "elevation_gain_m": 6,
       "elevation_loss_m": 12,
       "point_count": 3207,
+      "start_lat": 32.98168,
+      "start_lon": 35.08439,
+      "end_lat": 32.98127,
+      "end_lon": 35.08446,
       "regions": [
         "צפון"
       ],
@@ -11773,6 +13701,10 @@
       "elevation_gain_m": 181,
       "elevation_loss_m": 192,
       "point_count": 4773,
+      "start_lat": 33.00509,
+      "start_lon": 35.21549,
+      "end_lat": 33.00504,
+      "end_lon": 35.2155,
       "regions": [
         "צפון"
       ],
@@ -11797,6 +13729,10 @@
       "elevation_gain_m": 274,
       "elevation_loss_m": 274,
       "point_count": 13335,
+      "start_lat": 33.14062,
+      "start_lon": 35.77746,
+      "end_lat": 33.09589,
+      "end_lon": 35.79574,
       "regions": [
         "רמת הגולן והחרמון"
       ],
@@ -11821,6 +13757,10 @@
       "elevation_gain_m": 72,
       "elevation_loss_m": 81,
       "point_count": 6637,
+      "start_lat": 33.0185,
+      "start_lon": 35.14274,
+      "end_lat": 33.01848,
+      "end_lon": 35.14272,
       "regions": [
         "צפון"
       ],
@@ -11846,6 +13786,10 @@
       "elevation_gain_m": 321,
       "elevation_loss_m": 562,
       "point_count": 24785,
+      "start_lat": 33.00908,
+      "start_lon": 35.3939,
+      "end_lat": 32.97892,
+      "end_lon": 35.44235,
       "regions": [
         "צפון"
       ],
@@ -11870,6 +13814,10 @@
       "elevation_gain_m": 150,
       "elevation_loss_m": 164,
       "point_count": 4090,
+      "start_lat": 33.06523,
+      "start_lon": 35.16063,
+      "end_lat": 33.06525,
+      "end_lon": 35.1606,
       "regions": [
         "צפון"
       ],
@@ -11895,6 +13843,10 @@
       "elevation_gain_m": 600,
       "elevation_loss_m": 604,
       "point_count": 11894,
+      "start_lat": 33.00505,
+      "start_lon": 35.21539,
+      "end_lat": 33.00503,
+      "end_lon": 35.21549,
       "regions": [
         "צפון"
       ],
@@ -11920,6 +13872,10 @@
       "elevation_gain_m": 174,
       "elevation_loss_m": 185,
       "point_count": 3820,
+      "start_lat": 33.00512,
+      "start_lon": 35.21551,
+      "end_lat": 33.00505,
+      "end_lon": 35.2155,
       "regions": [
         "צפון"
       ],
@@ -11944,6 +13900,10 @@
       "elevation_gain_m": 880,
       "elevation_loss_m": 444,
       "point_count": 10130,
+      "start_lat": 33.00507,
+      "start_lon": 35.21541,
+      "end_lat": 33.00612,
+      "end_lon": 35.2097,
       "regions": [
         "צפון"
       ],
@@ -11969,6 +13929,10 @@
       "elevation_gain_m": 322,
       "elevation_loss_m": 327,
       "point_count": 4320,
+      "start_lat": 33.00508,
+      "start_lon": 35.21552,
+      "end_lat": 33.00503,
+      "end_lon": 35.21547,
       "regions": [
         "צפון"
       ],
@@ -11994,6 +13958,10 @@
       "elevation_gain_m": 360,
       "elevation_loss_m": 371,
       "point_count": 11469,
+      "start_lat": 33.00507,
+      "start_lon": 35.21538,
+      "end_lat": 33.00506,
+      "end_lon": 35.21547,
       "regions": [
         "צפון"
       ],
@@ -12019,6 +13987,10 @@
       "elevation_gain_m": 56,
       "elevation_loss_m": 60,
       "point_count": 3577,
+      "start_lat": 31.42811,
+      "start_lon": 34.49362,
+      "end_lat": 31.42843,
+      "end_lon": 34.49396,
       "regions": [
         "נגב וערבה"
       ],
@@ -12044,6 +14016,10 @@
       "elevation_gain_m": 73,
       "elevation_loss_m": 85,
       "point_count": 5911,
+      "start_lat": 33.01799,
+      "start_lon": 35.14379,
+      "end_lat": 33.01796,
+      "end_lon": 35.14378,
       "regions": [
         "צפון"
       ],
@@ -12069,6 +14045,10 @@
       "elevation_gain_m": 341,
       "elevation_loss_m": 347,
       "point_count": 5538,
+      "start_lat": 33.00498,
+      "start_lon": 35.21556,
+      "end_lat": 33.00501,
+      "end_lon": 35.21545,
       "regions": [
         "צפון"
       ],
@@ -12093,6 +14073,10 @@
       "elevation_gain_m": 320,
       "elevation_loss_m": 288,
       "point_count": 5757,
+      "start_lat": 33.0064,
+      "start_lon": 35.20713,
+      "end_lat": 33.00495,
+      "end_lon": 35.2155,
       "regions": [
         "צפון"
       ],
@@ -12117,6 +14101,10 @@
       "elevation_gain_m": 502,
       "elevation_loss_m": 517,
       "point_count": 5877,
+      "start_lat": 33.00515,
+      "start_lon": 35.21527,
+      "end_lat": 33.005,
+      "end_lon": 35.21548,
       "regions": [
         "צפון"
       ],
@@ -12142,6 +14130,10 @@
       "elevation_gain_m": 264,
       "elevation_loss_m": 523,
       "point_count": 3117,
+      "start_lat": 33.00551,
+      "start_lon": 35.21547,
+      "end_lat": 33.00601,
+      "end_lon": 35.21488,
       "regions": [
         "צפון"
       ],
@@ -12166,6 +14158,10 @@
       "elevation_gain_m": 1183,
       "elevation_loss_m": 1189,
       "point_count": 10287,
+      "start_lat": 33.00513,
+      "start_lon": 35.21544,
+      "end_lat": 33.00501,
+      "end_lon": 35.21545,
       "regions": [
         "צפון"
       ],
@@ -12191,6 +14187,10 @@
       "elevation_gain_m": 398,
       "elevation_loss_m": 405,
       "point_count": 7797,
+      "start_lat": 33.00507,
+      "start_lon": 35.21541,
+      "end_lat": 33.00505,
+      "end_lon": 35.21548,
       "regions": [
         "צפון"
       ],
@@ -12216,6 +14216,10 @@
       "elevation_gain_m": 609,
       "elevation_loss_m": 624,
       "point_count": 8650,
+      "start_lat": 33.00507,
+      "start_lon": 35.2154,
+      "end_lat": 33.0051,
+      "end_lon": 35.21548,
       "regions": [
         "צפון"
       ],
@@ -12241,6 +14245,10 @@
       "elevation_gain_m": 374,
       "elevation_loss_m": 378,
       "point_count": 6737,
+      "start_lat": 33.00501,
+      "start_lon": 35.21552,
+      "end_lat": 33.0051,
+      "end_lon": 35.21547,
       "regions": [
         "צפון"
       ],
@@ -12266,6 +14274,10 @@
       "elevation_gain_m": 753,
       "elevation_loss_m": 774,
       "point_count": 5545,
+      "start_lat": 33.00505,
+      "start_lon": 35.21548,
+      "end_lat": 33.00371,
+      "end_lon": 35.21486,
       "regions": [
         "צפון"
       ],
@@ -12291,6 +14303,10 @@
       "elevation_gain_m": 342,
       "elevation_loss_m": 370,
       "point_count": 6239,
+      "start_lat": 33.00505,
+      "start_lon": 35.21536,
+      "end_lat": 33.00509,
+      "end_lon": 35.21549,
       "regions": [
         "צפון"
       ],
@@ -12316,6 +14332,10 @@
       "elevation_gain_m": 448,
       "elevation_loss_m": 455,
       "point_count": 5247,
+      "start_lat": 33.00513,
+      "start_lon": 35.21519,
+      "end_lat": 33.00509,
+      "end_lon": 35.21543,
       "regions": [
         "צפון"
       ],
@@ -12341,6 +14361,10 @@
       "elevation_gain_m": 363,
       "elevation_loss_m": 107,
       "point_count": 4419,
+      "start_lat": 33.01592,
+      "start_lon": 35.15487,
+      "end_lat": 33.00507,
+      "end_lon": 35.21554,
       "regions": [
         "צפון"
       ],
@@ -12366,6 +14390,10 @@
       "elevation_gain_m": 447,
       "elevation_loss_m": 459,
       "point_count": 10442,
+      "start_lat": 33.0053,
+      "start_lon": 35.21539,
+      "end_lat": 33.00504,
+      "end_lon": 35.21549,
       "regions": [
         "צפון"
       ],
@@ -12391,6 +14419,10 @@
       "elevation_gain_m": 375,
       "elevation_loss_m": 385,
       "point_count": 8515,
+      "start_lat": 33.0051,
+      "start_lon": 35.21544,
+      "end_lat": 33.0051,
+      "end_lon": 35.2155,
       "regions": [
         "צפון"
       ],
@@ -12416,6 +14448,10 @@
       "elevation_gain_m": 528,
       "elevation_loss_m": 528,
       "point_count": 1212,
+      "start_lat": 33.04231,
+      "start_lon": 35.17841,
+      "end_lat": 33.04223,
+      "end_lon": 35.17777,
       "regions": [
         "צפון"
       ],
@@ -12441,6 +14477,10 @@
       "elevation_gain_m": 683,
       "elevation_loss_m": 703,
       "point_count": 10568,
+      "start_lat": 32.85329,
+      "start_lon": 35.75406,
+      "end_lat": 32.85309,
+      "end_lon": 35.75461,
       "regions": [
         "רמת הגולן והחרמון"
       ],
@@ -12466,6 +14506,10 @@
       "elevation_gain_m": 824,
       "elevation_loss_m": 828,
       "point_count": 8724,
+      "start_lat": 33.00505,
+      "start_lon": 35.21547,
+      "end_lat": 33.00503,
+      "end_lon": 35.21551,
       "regions": [
         "צפון"
       ],
@@ -12491,6 +14535,10 @@
       "elevation_gain_m": 1200,
       "elevation_loss_m": 1211,
       "point_count": 10285,
+      "start_lat": 33.01839,
+      "start_lon": 35.14268,
+      "end_lat": 33.0184,
+      "end_lon": 35.14276,
       "regions": [
         "צפון"
       ],
@@ -12516,6 +14564,10 @@
       "elevation_gain_m": 378,
       "elevation_loss_m": 385,
       "point_count": 8190,
+      "start_lat": 33.00503,
+      "start_lon": 35.21548,
+      "end_lat": 33.00503,
+      "end_lon": 35.21548,
       "regions": [
         "צפון"
       ],
@@ -12541,6 +14593,10 @@
       "elevation_gain_m": 1458,
       "elevation_loss_m": 1340,
       "point_count": 15383,
+      "start_lat": 33.00503,
+      "start_lon": 35.21549,
+      "end_lat": 33.02548,
+      "end_lon": 35.23945,
       "regions": [
         "צפון"
       ],
@@ -12566,6 +14622,10 @@
       "elevation_gain_m": 164,
       "elevation_loss_m": 172,
       "point_count": 6363,
+      "start_lat": 33.01842,
+      "start_lon": 35.1427,
+      "end_lat": 33.01842,
+      "end_lon": 35.14268,
       "regions": [
         "צפון"
       ],
@@ -12590,6 +14650,10 @@
       "elevation_gain_m": 401,
       "elevation_loss_m": 580,
       "point_count": 6526,
+      "start_lat": 33.00508,
+      "start_lon": 35.21548,
+      "end_lat": 33.04897,
+      "end_lon": 35.18051,
       "regions": [
         "צפון"
       ],
@@ -12615,6 +14679,10 @@
       "elevation_gain_m": 250,
       "elevation_loss_m": 253,
       "point_count": 9345,
+      "start_lat": 33.01836,
+      "start_lon": 35.14273,
+      "end_lat": 33.01838,
+      "end_lon": 35.14271,
       "regions": [
         "צפון"
       ],
@@ -12640,6 +14708,10 @@
       "elevation_gain_m": 1873,
       "elevation_loss_m": 1840,
       "point_count": 10775,
+      "start_lat": 33.0051,
+      "start_lon": 35.21544,
+      "end_lat": 33.00506,
+      "end_lon": 35.21543,
       "regions": [
         "צפון"
       ],
@@ -12665,6 +14737,10 @@
       "elevation_gain_m": 169,
       "elevation_loss_m": 183,
       "point_count": 3959,
+      "start_lat": 33.00507,
+      "start_lon": 35.21545,
+      "end_lat": 33.00505,
+      "end_lon": 35.21548,
       "regions": [
         "צפון"
       ],
@@ -12689,6 +14765,10 @@
       "elevation_gain_m": 109,
       "elevation_loss_m": 141,
       "point_count": 274,
+      "start_lat": 33.00572,
+      "start_lon": 35.21505,
+      "end_lat": 33.01278,
+      "end_lon": 35.21787,
       "regions": [
         "צפון"
       ],
@@ -12713,6 +14793,10 @@
       "elevation_gain_m": 397,
       "elevation_loss_m": 394,
       "point_count": 965,
+      "start_lat": 33.00499,
+      "start_lon": 35.21549,
+      "end_lat": 33.00518,
+      "end_lon": 35.21555,
       "regions": [
         "צפון"
       ],
@@ -12738,6 +14822,10 @@
       "elevation_gain_m": 0,
       "elevation_loss_m": 111,
       "point_count": 1399,
+      "start_lat": 33.02128,
+      "start_lon": 35.26259,
+      "end_lat": 33.00506,
+      "end_lon": 35.21547,
       "regions": [
         "צפון"
       ],
@@ -12763,6 +14851,10 @@
       "elevation_gain_m": 1475,
       "elevation_loss_m": 1455,
       "point_count": 8731,
+      "start_lat": 33.00505,
+      "start_lon": 35.21549,
+      "end_lat": 33.00518,
+      "end_lon": 35.2148,
       "regions": [
         "צפון"
       ],
@@ -12788,6 +14880,10 @@
       "elevation_gain_m": 3192,
       "elevation_loss_m": 3206,
       "point_count": 1854,
+      "start_lat": 32.9822,
+      "start_lon": 35.08216,
+      "end_lat": 32.98206,
+      "end_lon": 35.08291,
       "regions": [
         "צפון"
       ],
@@ -12813,6 +14909,10 @@
       "elevation_gain_m": 458,
       "elevation_loss_m": 116,
       "point_count": 1135,
+      "start_lat": 32.91987,
+      "start_lon": 35.06654,
+      "end_lat": 33.00501,
+      "end_lon": 35.2155,
       "regions": [
         "צפון"
       ],
@@ -12838,6 +14938,10 @@
       "elevation_gain_m": 376,
       "elevation_loss_m": 46,
       "point_count": 7383,
+      "start_lat": 32.91988,
+      "start_lon": 35.0666,
+      "end_lat": 33.00506,
+      "end_lon": 35.21547,
       "regions": [
         "צפון"
       ],
@@ -12852,28 +14956,32 @@
       "thumbnail": "thumbnails/2026-06-06_עכו_יחיעם_1.jpg"
     },
     {
-      "id": 521,
+      "id": 704,
       "file_name": "2026-06-09_כברי_עבדון_גורנות הגליל_אילון_מצובה.gpx",
       "gpx_path": "GPX_files/2026-06-09_כברי_עבדון_גורנות הגליל_אילון_מצובה.gpx",
       "date": "2026-06-09",
       "date_source": "שם קובץ",
-      "activity": "לא ברור (מהירות חריגה: 168.8 קמ״ש)",
+      "activity": "רכיבת אופניים",
       "source": "הקלטה",
-      "distance_km": 44.44,
-      "elevation_gain_m": 492,
-      "elevation_loss_m": 499,
-      "point_count": 8403,
+      "distance_km": 35.72,
+      "elevation_gain_m": 911,
+      "elevation_loss_m": 916,
+      "point_count": 7544,
+      "start_lat": 33.01842,
+      "start_lon": 35.14271,
+      "end_lat": 33.01839,
+      "end_lon": 35.14275,
       "regions": [
         "צפון"
       ],
       "settlements": [
         "עבדון",
         "גורנות הגליל",
-        "כברי"
+        "גורן"
       ],
       "settlements_found": true,
       "invalid": false,
-      "removed_points": 121,
+      "removed_points": 0,
       "thumbnail": "thumbnails/2026-06-09_כברי_עבדון_גורנות הגליל_אילון_מצובה.jpg"
     },
     {
@@ -12888,6 +14996,10 @@
       "elevation_gain_m": 854,
       "elevation_loss_m": 1056,
       "point_count": 205,
+      "start_lat": 33.30595,
+      "start_lon": 35.78479,
+      "end_lat": 33.30331,
+      "end_lon": 35.77335,
       "regions": [
         "רמת הגולן והחרמון"
       ],
@@ -12913,6 +15025,10 @@
       "elevation_gain_m": 2167,
       "elevation_loss_m": 3197,
       "point_count": 19089,
+      "start_lat": 33.30619,
+      "start_lon": 35.78472,
+      "end_lat": 33.21476,
+      "end_lon": 35.74332,
       "regions": [
         "רמת הגולן והחרמון"
       ],
@@ -12938,6 +15054,10 @@
       "elevation_gain_m": 1107,
       "elevation_loss_m": 1118,
       "point_count": 4591,
+      "start_lat": 33.01833,
+      "start_lon": 35.14262,
+      "end_lat": 33.01842,
+      "end_lon": 35.14258,
       "regions": [
         "צפון"
       ],
@@ -12963,6 +15083,10 @@
       "elevation_gain_m": 1429,
       "elevation_loss_m": 1432,
       "point_count": 8335,
+      "start_lat": 33.01837,
+      "start_lon": 35.14275,
+      "end_lat": 33.01834,
+      "end_lon": 35.14272,
       "regions": [
         "צפון"
       ],
@@ -12988,6 +15112,10 @@
       "elevation_gain_m": 1073,
       "elevation_loss_m": 1082,
       "point_count": 17387,
+      "start_lat": 33.0184,
+      "start_lon": 35.14273,
+      "end_lat": 33.01838,
+      "end_lon": 35.14273,
       "regions": [
         "צפון"
       ],
@@ -13013,6 +15141,10 @@
       "elevation_gain_m": 1159,
       "elevation_loss_m": 1166,
       "point_count": 6402,
+      "start_lat": 33.00519,
+      "start_lon": 35.21542,
+      "end_lat": 33.00504,
+      "end_lon": 35.2155,
       "regions": [
         "צפון"
       ],
@@ -13038,6 +15170,10 @@
       "elevation_gain_m": 1046,
       "elevation_loss_m": 675,
       "point_count": 4992,
+      "start_lat": 33.09234,
+      "start_lon": 35.1055,
+      "end_lat": 33.00504,
+      "end_lon": 35.2155,
       "regions": [
         "צפון"
       ],
@@ -13063,6 +15199,10 @@
       "elevation_gain_m": 638,
       "elevation_loss_m": 645,
       "point_count": 5237,
+      "start_lat": 33.01839,
+      "start_lon": 35.1427,
+      "end_lat": 33.01841,
+      "end_lon": 35.14268,
       "regions": [
         "צפון"
       ],
@@ -13088,6 +15228,10 @@
       "elevation_gain_m": 339,
       "elevation_loss_m": 355,
       "point_count": 2338,
+      "start_lat": 33.00498,
+      "start_lon": 35.21556,
+      "end_lat": 33.00503,
+      "end_lon": 35.21546,
       "regions": [
         "צפון"
       ],
@@ -13113,6 +15257,10 @@
       "elevation_gain_m": 16,
       "elevation_loss_m": 8,
       "point_count": 440,
+      "start_lat": 33.07352,
+      "start_lon": 35.15198,
+      "end_lat": 33.07541,
+      "end_lon": 35.15716,
       "regions": [
         "צפון"
       ],
@@ -13138,6 +15286,10 @@
       "elevation_gain_m": 932,
       "elevation_loss_m": 926,
       "point_count": 3390,
+      "start_lat": 33.07353,
+      "start_lon": 35.15196,
+      "end_lat": 33.07357,
+      "end_lon": 35.15203,
       "regions": [
         "צפון"
       ],
@@ -13162,6 +15314,10 @@
       "elevation_gain_m": 798,
       "elevation_loss_m": 806,
       "point_count": 21089,
+      "start_lat": 33.00507,
+      "start_lon": 35.21545,
+      "end_lat": 33.00504,
+      "end_lon": 35.21548,
       "regions": [
         "צפון"
       ],
@@ -13187,6 +15343,10 @@
       "elevation_gain_m": 1227,
       "elevation_loss_m": 1221,
       "point_count": 2191,
+      "start_lat": 33.00508,
+      "start_lon": 35.21549,
+      "end_lat": 33.00507,
+      "end_lon": 35.21552,
       "regions": [
         "צפון"
       ],
@@ -13212,6 +15372,10 @@
       "elevation_gain_m": 714,
       "elevation_loss_m": 726,
       "point_count": 13220,
+      "start_lat": 33.00507,
+      "start_lon": 35.2155,
+      "end_lat": 33.005,
+      "end_lon": 35.21535,
       "regions": [
         "צפון"
       ],
@@ -13237,6 +15401,10 @@
       "elevation_gain_m": 239,
       "elevation_loss_m": 249,
       "point_count": 7422,
+      "start_lat": 33.01844,
+      "start_lon": 35.14241,
+      "end_lat": 33.01843,
+      "end_lon": 35.14258,
       "regions": [
         "צפון"
       ],
@@ -13262,6 +15430,10 @@
       "elevation_gain_m": 0,
       "elevation_loss_m": 20,
       "point_count": 790,
+      "start_lat": 33.05427,
+      "start_lon": 35.11528,
+      "end_lat": 33.08059,
+      "end_lon": 35.10698,
       "regions": [
         "צפון"
       ],
@@ -13286,6 +15458,10 @@
       "elevation_gain_m": 511,
       "elevation_loss_m": 453,
       "point_count": 10894,
+      "start_lat": 33.08027,
+      "start_lon": 35.1075,
+      "end_lat": 33.05686,
+      "end_lon": 35.15717,
       "regions": [
         "צפון"
       ],
@@ -13311,6 +15487,10 @@
       "elevation_gain_m": 4,
       "elevation_loss_m": 352,
       "point_count": 4969,
+      "start_lat": 33.00506,
+      "start_lon": 35.21547,
+      "end_lat": 32.98626,
+      "end_lon": 35.08199,
       "regions": [
         "צפון"
       ],
@@ -13336,6 +15516,10 @@
       "elevation_gain_m": 389,
       "elevation_loss_m": 57,
       "point_count": 6648,
+      "start_lat": 33.00658,
+      "start_lon": 35.09266,
+      "end_lat": 33.00506,
+      "end_lon": 35.21551,
       "regions": [
         "צפון"
       ],
@@ -13361,6 +15545,10 @@
       "elevation_gain_m": 671,
       "elevation_loss_m": 683,
       "point_count": 1915,
+      "start_lat": 33.00498,
+      "start_lon": 35.21547,
+      "end_lat": 33.00507,
+      "end_lon": 35.21548,
       "regions": [
         "צפון"
       ],
@@ -13386,6 +15574,10 @@
       "elevation_gain_m": 790,
       "elevation_loss_m": 801,
       "point_count": 12114,
+      "start_lat": 33.00507,
+      "start_lon": 35.21553,
+      "end_lat": 33.00499,
+      "end_lon": 35.21541,
       "regions": [
         "צפון"
       ],
@@ -13411,6 +15603,10 @@
       "elevation_gain_m": 89,
       "elevation_loss_m": 98,
       "point_count": 8824,
+      "start_lat": 33.01845,
+      "start_lon": 35.1426,
+      "end_lat": 33.01843,
+      "end_lon": 35.14269,
       "regions": [
         "צפון"
       ],
@@ -13436,6 +15632,10 @@
       "elevation_gain_m": 789,
       "elevation_loss_m": 1007,
       "point_count": 1149,
+      "start_lat": 33.00556,
+      "start_lon": 35.21733,
+      "end_lat": 33.01521,
+      "end_lon": 35.17111,
       "regions": [
         "צפון"
       ],
@@ -13461,6 +15661,10 @@
       "elevation_gain_m": 279,
       "elevation_loss_m": 287,
       "point_count": 2069,
+      "start_lat": 32.98224,
+      "start_lon": 35.08214,
+      "end_lat": 32.9828,
+      "end_lon": 35.08177,
       "regions": [
         "צפון"
       ],
@@ -13486,6 +15690,10 @@
       "elevation_gain_m": 736,
       "elevation_loss_m": 748,
       "point_count": 1281,
+      "start_lat": 33.00498,
+      "start_lon": 35.21549,
+      "end_lat": 33.00515,
+      "end_lon": 35.21558,
       "regions": [
         "צפון"
       ],
@@ -13511,6 +15719,10 @@
       "elevation_gain_m": 36,
       "elevation_loss_m": 66,
       "point_count": 1196,
+      "start_lat": 33.00527,
+      "start_lon": 35.21545,
+      "end_lat": 33.01411,
+      "end_lon": 35.2206,
       "regions": [
         "צפון"
       ],
@@ -13536,6 +15748,10 @@
       "elevation_gain_m": 321,
       "elevation_loss_m": 321,
       "point_count": 607,
+      "start_lat": 32.90926,
+      "start_lon": 35.42265,
+      "end_lat": 32.90921,
+      "end_lon": 35.42283,
       "regions": [
         "צפון"
       ],
@@ -13561,6 +15777,10 @@
       "elevation_gain_m": 500,
       "elevation_loss_m": 485,
       "point_count": 8829,
+      "start_lat": 33.03599,
+      "start_lon": 35.24406,
+      "end_lat": 33.0347,
+      "end_lon": 35.2468,
       "regions": [
         "צפון"
       ],
@@ -13586,6 +15806,10 @@
       "elevation_gain_m": 519,
       "elevation_loss_m": 537,
       "point_count": 14801,
+      "start_lat": 33.00504,
+      "start_lon": 35.21542,
+      "end_lat": 33.00503,
+      "end_lon": 35.21547,
       "regions": [
         "צפון"
       ],
@@ -13611,6 +15835,10 @@
       "elevation_gain_m": 88,
       "elevation_loss_m": 136,
       "point_count": 2887,
+      "start_lat": 33.00504,
+      "start_lon": 35.21543,
+      "end_lat": 32.99281,
+      "end_lon": 35.20383,
       "regions": [
         "צפון"
       ],
@@ -13635,6 +15863,10 @@
       "elevation_gain_m": 597,
       "elevation_loss_m": 611,
       "point_count": 1454,
+      "start_lat": 33.01838,
+      "start_lon": 35.14249,
+      "end_lat": 33.01853,
+      "end_lon": 35.14244,
       "regions": [
         "צפון"
       ],
@@ -13660,6 +15892,10 @@
       "elevation_gain_m": 275,
       "elevation_loss_m": 290,
       "point_count": 6089,
+      "start_lat": 33.00504,
+      "start_lon": 35.21549,
+      "end_lat": 33.005,
+      "end_lon": 35.2153,
       "regions": [
         "צפון"
       ],
@@ -13685,6 +15921,10 @@
       "elevation_gain_m": 32,
       "elevation_loss_m": 8,
       "point_count": 1800,
+      "start_lat": 33.06147,
+      "start_lon": 35.12911,
+      "end_lat": 33.04186,
+      "end_lon": 35.14706,
       "regions": [
         "צפון"
       ],
@@ -13710,6 +15950,10 @@
       "elevation_gain_m": 537,
       "elevation_loss_m": 550,
       "point_count": 9028,
+      "start_lat": 33.00552,
+      "start_lon": 35.21535,
+      "end_lat": 33.00505,
+      "end_lon": 35.21549,
       "regions": [
         "צפון"
       ],
@@ -13735,6 +15979,10 @@
       "elevation_gain_m": 420,
       "elevation_loss_m": 427,
       "point_count": 8491,
+      "start_lat": 33.00504,
+      "start_lon": 35.21537,
+      "end_lat": 33.00505,
+      "end_lon": 35.21549,
       "regions": [
         "צפון"
       ],
@@ -13760,6 +16008,10 @@
       "elevation_gain_m": 384,
       "elevation_loss_m": 392,
       "point_count": 10727,
+      "start_lat": 33.00501,
+      "start_lon": 35.21543,
+      "end_lat": 33.00505,
+      "end_lon": 35.21543,
       "regions": [
         "צפון"
       ],
@@ -13774,6 +16026,35 @@
       "thumbnail": "thumbnails/2026-08-20_געתון_גשר הזיו_שבי ציון_נתיב השיירה_נווה זיו.jpg"
     },
     {
+      "id": 703,
+      "file_name": "2026-08-22_06-26-28 כברי כזיב נהריה סובב כברי צרעות.gpx",
+      "gpx_path": "GPX_files/2026-08-22_06-26-28 כברי כזיב נהריה סובב כברי צרעות.gpx",
+      "date": "2026-08-22",
+      "date_source": "שם קובץ",
+      "activity": "רכיבת אופניים",
+      "source": "הקלטה",
+      "distance_km": 26.01,
+      "elevation_gain_m": 165,
+      "elevation_loss_m": 170,
+      "point_count": 8583,
+      "start_lat": 33.01839,
+      "start_lon": 35.14252,
+      "end_lat": 33.01842,
+      "end_lon": 35.14257,
+      "regions": [
+        "צפון"
+      ],
+      "settlements": [
+        "כברי",
+        "גשר הזיו",
+        "נהרייה"
+      ],
+      "settlements_found": true,
+      "invalid": false,
+      "removed_points": 0,
+      "thumbnail": "thumbnails/2026-08-22_06-26-28 כברי כזיב נהריה סובב כברי צרעות.jpg"
+    },
+    {
       "id": 702,
       "file_name": "געתון יחיעם עליון שיירה דרדרת וילה הילה.gpx",
       "gpx_path": "GPX_files/געתון יחיעם עליון שיירה דרדרת וילה הילה.gpx",
@@ -13785,6 +16066,10 @@
       "elevation_gain_m": 782,
       "elevation_loss_m": 780,
       "point_count": 12759,
+      "start_lat": 33.00507,
+      "start_lon": 35.21545,
+      "end_lat": 33.00505,
+      "end_lon": 35.21552,
       "regions": [
         "צפון"
       ],

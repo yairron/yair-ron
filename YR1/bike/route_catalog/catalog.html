@@ -28,6 +28,10 @@ h1{font-family:'Varela Round',sans-serif;font-size:2.6rem;font-weight:800;color:
 .control-field input:focus,.control-field select:focus{outline:2px solid var(--secondary)}
 .result-count{font-size:.9rem;color:var(--dark);font-weight:600;margin-top:4px}
 
+.select-all-bar{background:white;border-radius:14px;padding:12px 20px;margin-bottom:14px;box-shadow:0 6px 18px rgba(0,0,0,.15);display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
+.select-all-bar button{padding:9px 18px;border-radius:12px;border:none;font-weight:700;cursor:pointer;font-family:'Assistant',sans-serif;font-size:.9rem;background:var(--primary);color:white;transition:background .2s}
+.select-all-bar button:hover{background:var(--dark)}
+
 .accordions-container{margin-bottom:25px}
 .accordion{background:white;margin-bottom:14px;border-radius:18px;box-shadow:0 8px 22px rgba(0,0,0,.18);overflow:hidden}
 .accordion-header{padding:14px 22px;cursor:pointer;display:flex;align-items:center;gap:16px;background:linear-gradient(135deg,var(--primary),var(--secondary));color:white;transition:all .3s;user-select:none}
@@ -125,8 +129,9 @@ footer a{color:white;text-decoration:underline;font-weight:600}
   <div class="control-panel">
     <div class="control-row">
       <div class="control-field" style="flex:2">
-        <label>חיפוש לפי שם או ישוב או מספר מסלול</label>
-        <input type="text" id="searchInput" placeholder="למשל: געתון, שביל ישראל, 558...">
+        <label>חיפוש לפי שם, ישוב, מספר מסלול או קורדינטות</label>
+        <input type="text" id="searchInput" placeholder="למשל: געתון, 558, 33.005,35.215, או 220581/767992...">
+        <span style="font-size:.75rem;color:#5C7A6B">קורדינטות נתמכות: מעלות עשרוניות (33.005, 35.215) &middot; מעלות/דקות/שניות (33°0'18&quot;N 35°12'54&quot;E) &middot; רשת ישראל החדשה/ITM (220581/767992)</span>
       </div>
       <div class="control-field">
         <label>סוג פעילות</label>
@@ -171,6 +176,11 @@ footer a{color:white;text-decoration:underline;font-weight:600}
     <div class="result-count" id="resultCount"></div>
   </div>
 
+  <div class="select-all-bar" id="selectAllBar" style="display:none">
+    <button onclick="selectAllFiltered()">✓ בחר את כולם</button>
+    <button onclick="clearAllFiltered()">✗ נקה את כולם</button>
+  </div>
+
   <div class="accordions-container" id="routesContainer"></div>
 
   <div class="pagination" id="pagination"></div>
@@ -185,6 +195,7 @@ footer a{color:white;text-decoration:underline;font-weight:600}
   <button class="btn-primary" id="btnDownload" onclick="downloadSelected()">📥 הורדה</button>
   <button class="btn-primary" onclick="showOnMap()">🗺️ הצג על מפה</button>
   <button class="btn-primary" onclick="mergeSelectedRoutes()">🔗 עריכת מסלולים</button>
+  <button class="btn-primary" onclick="cleanSelectedRoute()">🧹 ניקוי קובץ</button>
   <button class="btn-clear" onclick="clearSelection()">נקה בחירה</button>
 </div>
 
@@ -234,17 +245,26 @@ function activityBadge(activity) {
   return '❓ לא ברור';
 }
 
+var lastCoordSearch = null; // נגיש ל-buildRouteCard כדי להציג מרחק מנקודת החיפוש
+
 function getFiltered() {
-  var q = document.getElementById('searchInput').value.trim().toLowerCase();
+  var qRaw = document.getElementById('searchInput').value.trim();
+  var q = qRaw.toLowerCase();
   var actFilter = document.getElementById('activityFilter').value;
   var srcFilter = document.getElementById('sourceFilter').value;
   var regionFilter = document.getElementById('regionFilter').value;
+
+  var coord = parseCoordinateQuery(qRaw);
+  lastCoordSearch = coord;
 
   var list = ALL_ROUTES.filter(function (r) {
     if (actFilter && activityBadge(r.activity).indexOf(actFilter) === -1) return false;
     if (srcFilter && r.source !== srcFilter) return false;
     if (regionFilter && r.regions.indexOf(regionFilter) === -1) return false;
-    if (q) {
+    if (coord) {
+      var d = routeDistanceKm(r, coord);
+      if (d === null || d > COORD_SEARCH_RADIUS_KM) return false;
+    } else if (q) {
       var haystack = r.file_name.toLowerCase() + ' ' + r.settlements.join(' ').toLowerCase() + ' ' + r.id;
       if (haystack.indexOf(q) === -1) return false;
     }
@@ -255,6 +275,8 @@ function getFiltered() {
   list.sort(function (a, b) {
     // מסלולים "לא תקינים" (קפיצת GPS) תמיד בתחתית, לא משנה איזה מיון נבחר
     if (a.invalid !== b.invalid) return a.invalid ? 1 : -1;
+    // בחיפוש לפי קורדינטות - תמיד ממויין לפי קרבה, בלי קשר לבחירת "מיון"
+    if (coord) return routeDistanceKm(a, coord) - routeDistanceKm(b, coord);
     switch (sortMode) {
       case 'date_asc': return a.date.localeCompare(b.date);
       case 'dist_desc': return b.distance_km - a.distance_km;
@@ -285,6 +307,11 @@ function buildRouteCard(r, idx) {
   var invalidBadge = r.invalid ? ' <span class="badge badge-invalid">⚠️ מסלול לא תקין</span>' : '';
   var thumbSrc = r.thumbnail ? ('data/' + r.thumbnail) : '';
   var checked = selectedFiles.has(r.file_name) ? 'checked' : '';
+  var coordDistanceBadge = '';
+  if (lastCoordSearch) {
+    var d = routeDistanceKm(r, lastCoordSearch);
+    if (d !== null) coordDistanceBadge = ' &nbsp;<span class="badge">📍 ' + d.toFixed(2) + ' ק"מ מנקודת החיפוש</span>';
+  }
 
   var el = document.createElement('div');
   el.className = 'accordion' + (r.invalid ? ' accordion-invalid' : '');
@@ -294,7 +321,7 @@ function buildRouteCard(r, idx) {
       (thumbSrc ? '<img class="route-thumb" src="' + thumbSrc + '" loading="lazy" alt="" onclick="event.stopPropagation(); openLightbox(\'' + escapeAttr(thumbSrc) + '\')">' : '<div class="route-thumb"></div>') +
       '<div class="route-info">' +
         '<h2 class="accordion-title"><span class="route-id">#' + r.id + '</span>' + escapeHtml(routeNameOnly(r.file_name)) + '</h2>' +
-        '<div class="route-meta">📅 ' + r.date + ' &nbsp;' + activityBadge(r.activity) + ' &nbsp;' + sourceBadge + invalidBadge + '</div>' +
+        '<div class="route-meta">📅 ' + r.date + ' &nbsp;' + activityBadge(r.activity) + ' &nbsp;' + sourceBadge + invalidBadge + coordDistanceBadge + '</div>' +
       '</div>' +
       '<div class="route-stats"><span>📏 ' + r.distance_km + ' ק"מ</span><span>' + elevText + '</span></div>' +
       '<div class="row-spacer"></div>' +
@@ -329,6 +356,11 @@ function render() {
   if (currentPage > totalPages) currentPage = totalPages;
 
   document.getElementById('resultCount').textContent = 'נמצאו ' + filtered.length + ' מסלולים מתוך ' + ALL_ROUTES.length;
+
+  // "בחר/נקה את כולם" מוצג רק כשהמשתמש הקליד משהו בשדה החיפוש עצמו - לא רק
+  // בחר מסנן מרשימה (סוג פעילות/מקור/אזור) בלי חיפוש טקסט/קורדינטות בפועל.
+  var searchActive = document.getElementById('searchInput').value.trim().length > 0;
+  document.getElementById('selectAllBar').style.display = searchActive ? 'flex' : 'none';
 
   var start = (currentPage - 1) * PAGE_SIZE;
   var pageItems = filtered.slice(start, start + PAGE_SIZE);
@@ -392,6 +424,18 @@ function clearSelection() {
   render();
 }
 
+// שני אלה פועלים רק על תוצאות החיפוש הנוכחיות (getFiltered()) - לא על כל
+// המסלולים בקטלוג, גם אם רק חלק מהם מוצג בעמוד הנוכחי (עימוד).
+function selectAllFiltered() {
+  getFiltered().forEach(function (r) { selectedFiles.add(r.file_name); });
+  render();
+}
+
+function clearAllFiltered() {
+  getFiltered().forEach(function (r) { selectedFiles.delete(r.file_name); });
+  render();
+}
+
 function downloadSelected() {
   var files = ALL_ROUTES.filter(function (r) { return selectedFiles.has(r.file_name); });
   files.forEach(function (r, i) {
@@ -440,6 +484,77 @@ function haversineM(a, b) {
   return 2 * R * Math.asin(Math.sqrt(h));
 }
 
+// --- חיפוש לפי קורדינטות (נוסף 22.08.2026) ---
+// המרה מרשת ישראל החדשה (ITM) ל-WGS84 - זהה במדויק ל-itmToWgs84 ב-
+// YR1/bike/gpx_cleaner/gpx_cleaner.html, לא נכתב מחדש.
+function itmToWgs84(x, y) {
+  var a = 6378137.0, f = 1 / 298.257222101, k0 = 1.0000067;
+  var lat0 = 31.73439361111111 * Math.PI / 180, lon0 = 35.20451694444444 * Math.PI / 180;
+  var E0 = 219529.584, N0 = 626907.390;
+  var e2 = 2 * f - f * f, e1 = (1 - Math.sqrt(1 - e2)) / (1 + Math.sqrt(1 - e2));
+  var calcM = function (phi) {
+    return a * ((1 - e2 / 4 - 3 * e2 ** 2 / 64 - 5 * e2 ** 3 / 256) * phi - (3 * e2 / 8 + 3 * e2 ** 2 / 32 + 45 * e2 ** 3 / 1024) * Math.sin(2 * phi) + (15 * e2 ** 2 / 256 + 45 * e2 ** 3 / 1024) * Math.sin(4 * phi) - (35 * e2 ** 3 / 3072) * Math.sin(6 * phi));
+  };
+  var M = calcM(lat0) + (y - N0) / k0, mu = M / (a * (1 - e2 / 4 - 3 * e2 ** 2 / 64 - 5 * e2 ** 3 / 256));
+  var phi1 = mu + (3 * e1 / 2 - 27 * e1 ** 3 / 32) * Math.sin(2 * mu) + (21 * e1 ** 2 / 16 - 55 * e1 ** 4 / 32) * Math.sin(4 * mu) + (151 * e1 ** 3 / 96) * Math.sin(6 * mu) + (1097 * e1 ** 4 / 512) * Math.sin(8 * mu);
+  var sinP = Math.sin(phi1), cosP = Math.cos(phi1), tanP = Math.tan(phi1);
+  var N1 = a / Math.sqrt(1 - e2 * sinP ** 2), T1 = tanP ** 2, C1 = e2 / (1 - e2) * cosP ** 2, R1 = a * (1 - e2) / (1 - e2 * sinP ** 2) ** 1.5, D = (x - E0) / (N1 * k0);
+  var lat = phi1 - (N1 * tanP / R1) * (D ** 2 / 2 - (5 + 3 * T1 + 10 * C1 - 4 * C1 ** 2 - 9 * e2 / (1 - e2)) * D ** 4 / 24 + (61 + 90 * T1 + 298 * C1 + 45 * T1 ** 2 - 252 * e2 / (1 - e2) - 3 * C1 ** 2) * D ** 6 / 720);
+  var lon = lon0 + (D - (1 + 2 * T1 + C1) * D ** 3 / 6 + (5 - 2 * C1 + 28 * T1 - 3 * C1 ** 2 + 8 * e2 / (1 - e2) + 24 * T1 ** 2) * D ** 5 / 120) / cosP;
+  return { lat: lat * 180 / Math.PI, lon: lon * 180 / Math.PI };
+}
+
+// מפענח טקסט חיפוש כקורדינטה בשלוש שיטות אפשריות - מחזיר {lat, lon} או null
+// אם הטקסט לא נראה כמו קורדינטה בכלל (יש בו אותיות שאינן N/S/E/W, כמו שם
+// מסלול או ישוב) - כדי לא להפריע לחיפוש טקסט רגיל.
+function parseCoordinateQuery(text) {
+  var s = (text || '').trim();
+  if (!s) return null;
+  // בדיקה זולה מראש: אם יש בטקסט אות עברית/לועזית שאינה N/S/E/W - זה כנראה
+  // חיפוש טקסט רגיל (שם מסלול/ישוב), לא קורדינטה - לא ממשיכים לנסות לפענח.
+  // (a-z פרט ל-e/n/s/w עצמן, פלוס כל הטווח היוניקודי של עברית)
+  if (/[a-dA-Df-mF-Mo-rO-Rt-vT-Vx-zX-Z֐-׿]/.test(s)) return null;
+
+  // מעלות/דקות/שניות: 33°0'18.0"N 35°12'54.0"E (או בלי N/E, אחרי מקף/פסיק)
+  var dms = /(-?\d+(?:\.\d+)?)\s*°\s*(\d+(?:\.\d+)?)\s*['′]\s*(\d+(?:\.\d+)?)\s*["″]?\s*([NSns])?[,\s]+(-?\d+(?:\.\d+)?)\s*°\s*(\d+(?:\.\d+)?)\s*['′]\s*(\d+(?:\.\d+)?)\s*["″]?\s*([EWew])?/.exec(s);
+  if (dms) {
+    var lat = parseFloat(dms[1]) + parseFloat(dms[2]) / 60 + parseFloat(dms[3]) / 3600;
+    if (dms[4] && dms[4].toUpperCase() === 'S') lat = -lat;
+    var lon = parseFloat(dms[5]) + parseFloat(dms[6]) / 60 + parseFloat(dms[7]) / 3600;
+    if (dms[8] && dms[8].toUpperCase() === 'W') lon = -lon;
+    return { lat: lat, lon: lon };
+  }
+
+  // שני מספרים מופרדים בפסיק/רווח/לוכסן, עם N/S/E/W אופציונלי - מעלות עשרוניות
+  // אם הערכים קטנים (טווח קווי רוחב/אורך תקין), או רשת ישראל החדשה/ITM
+  // (x/y גדולים בהרבה, עשרות-מאות אלפים) אם הערכים גדולים.
+  var pair = /^\(?\s*([NSns])?\s*(-?\d+(?:\.\d+)?)\s*°?\s*([NSns])?\s*[,\s/]+\s*([EWew])?\s*(-?\d+(?:\.\d+)?)\s*°?\s*([EWew])?\s*\)?$/.exec(s);
+  if (pair) {
+    var n1 = parseFloat(pair[2]), n2 = parseFloat(pair[5]);
+    if (Math.abs(n1) > 1000 || Math.abs(n2) > 1000) {
+      return itmToWgs84(n1, n2);
+    }
+    var isSouth = (pair[1] && pair[1].toUpperCase() === 'S') || (pair[3] && pair[3].toUpperCase() === 'S');
+    var isWest = (pair[4] && pair[4].toUpperCase() === 'W') || (pair[6] && pair[6].toUpperCase() === 'W');
+    if (isSouth) n1 = -Math.abs(n1);
+    if (isWest) n2 = -Math.abs(n2);
+    return { lat: n1, lon: n2 };
+  }
+
+  return null;
+}
+
+// המרחק (ק"מ) הקצר ביותר בין נקודת החיפוש לבין נקודת ההתחלה או הסיום של
+// המסלול - null אם אין למסלול קורדינטות בכלל (למשל קובץ בלי נקודות).
+var COORD_SEARCH_RADIUS_KM = 3;
+function routeDistanceKm(r, coord) {
+  var dists = [];
+  if (r.start_lat != null && r.start_lon != null) dists.push(haversineM([coord.lat, coord.lon], [r.start_lat, r.start_lon]) / 1000);
+  if (r.end_lat != null && r.end_lon != null) dists.push(haversineM([coord.lat, coord.lon], [r.end_lat, r.end_lon]) / 1000);
+  if (!dists.length) return null;
+  return Math.min.apply(null, dists);
+}
+
 function parseGpxPoints(gpxText) {
   var doc = new DOMParser().parseFromString(gpxText, 'application/xml');
   var pts = Array.from(doc.querySelectorAll('trkpt'));
@@ -464,6 +579,19 @@ function showOnMap() {
     L.tileLayer('https://israelhiking.osm.org.il/Tiles/{z}/{x}/{y}.png', {
       attribution: '© Israel Hiking Map', maxZoom: 16
     }).addTo(routeMapInstance);
+
+    // לחיצה על נקודה כלשהי במפה - חלונית עם הקורדינטות של הנקודה הזו + כפתור
+    // העתקה (לא לחיצה על מסלול/סמן ספציפי - כל נקודה על המפה). מחובר פעם אחת
+    // בלבד ליצירת המפה (לא בכל showOnMap), כי המאזין הזה לא תלוי בנתוני מסלול.
+    routeMapInstance.on('click', function (e) {
+      var text = e.latlng.lat.toFixed(6) + ', ' + e.latlng.lng.toFixed(6);
+      var popupHtml =
+        '<div style="text-align:center;font-family:\'Assistant\',sans-serif">' +
+          '<div style="font-family:monospace;margin-bottom:8px;direction:ltr">' + text + '</div>' +
+          '<button onclick="copyCoordToClipboard(\'' + text + '\', this)" style="padding:5px 12px;border-radius:8px;border:none;background:var(--primary);color:white;cursor:pointer;font-family:\'Assistant\',sans-serif;font-size:.85rem">📋 העתקת קורדינטות</button>' +
+        '</div>';
+      L.popup().setLatLng(e.latlng).setContent(popupHtml).openOn(routeMapInstance);
+    });
   }
   setTimeout(function () { routeMapInstance.invalidateSize(); }, 50);
 
@@ -515,6 +643,32 @@ function closeMapOverlay() {
   document.getElementById('mapOverlay').classList.remove('show');
 }
 
+function copyCoordToClipboard(text, btn) {
+  var original = btn.textContent;
+  function showCopied() {
+    btn.textContent = '✓ הועתק';
+    setTimeout(function () { btn.textContent = original; }, 1500);
+  }
+  if (navigator.clipboard && navigator.clipboard.writeText) {
+    navigator.clipboard.writeText(text).then(showCopied).catch(function () { copyCoordFallback(text, showCopied); });
+  } else {
+    copyCoordFallback(text, showCopied);
+  }
+}
+
+// גיבוי ל-navigator.clipboard - נחוץ בהקשרים שבהם ה-API החדש לא זמין (למשל
+// טעינה לא-מאובטחת/http, נדיר כאן אבל עדיף להישאר עקבי מול שאר האתר).
+function copyCoordFallback(text, onSuccess) {
+  var ta = document.createElement('textarea');
+  ta.value = text;
+  ta.style.position = 'fixed';
+  ta.style.opacity = '0';
+  document.body.appendChild(ta);
+  ta.select();
+  try { document.execCommand('copy'); onSuccess(); } catch (e) {}
+  document.body.removeChild(ta);
+}
+
 // פותח את gpx.studio (עורך GPX חינמי, קוד פתוח, בלי הרשמה) עם כל המסלולים
 // שנבחרו טעונים יחד - כולל את פיצ'ר המיזוג האמיתי שלו (Merge). דורש שהקבצים
 // יהיו נגישים ב-URL ציבורי (יש להם, הם כבר מתארחים כאן) וגם CORS פתוח על
@@ -534,6 +688,18 @@ function mergeSelectedRoutes() {
   if (!files.length) return;
   var urls = files.map(function (r) { return new URL(r.gpx_path, window.location.href).href; });
   window.open('https://gpx.studio/app?files=' + encodeURIComponent(JSON.stringify(urls)), '_blank');
+}
+
+// מעביר את הקובץ הראשון שנבחר ל-YR1/bike/gpx_cleaner/gpx_cleaner.html (נוסף
+// 22.08.2026) - אם נבחרו כמה קבצים, gpx_cleaner מנקה קובץ בודד בכל פעם, אז
+// לוקחים רק את הראשון (לפי סדר התצוגה הנוכחי, לא סדר הבחירה). ניווט רגיל
+// (לא טאב חדש) - gpx_cleaner.html עצמו טוען את הקובץ לפי פרמטרי ה-URL.
+function cleanSelectedRoute() {
+  var files = ALL_ROUTES.filter(function (r) { return selectedFiles.has(r.file_name); });
+  if (!files.length) return;
+  var r = files[0];
+  var gpxUrl = new URL(r.gpx_path, window.location.href).href;
+  window.location.href = '../gpx_cleaner/gpx_cleaner.html?gpx=' + encodeURIComponent(gpxUrl) + '&name=' + encodeURIComponent(r.file_name);
 }
 
 function openLightbox(src) {

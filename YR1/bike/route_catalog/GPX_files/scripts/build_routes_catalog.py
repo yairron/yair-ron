@@ -555,6 +555,12 @@ def build_catalog_record(path: Path, info: dict, points: list, settlements_db, r
         "elevation_gain_m": elevation_gain,
         "elevation_loss_m": elevation_loss,
         "point_count": len(points),
+        # נקודות התחלה/סיום - נוספו 22.08.2026 כדי לאפשר בקטלוג.html חיפוש לפי
+        # קורדינטות (לא היה קיים שום שדה קואורדינטה ברשומה עד כה).
+        "start_lat": round(coords[0][0], 5) if coords else None,
+        "start_lon": round(coords[0][1], 5) if coords else None,
+        "end_lat": round(coords[-1][0], 5) if coords else None,
+        "end_lon": round(coords[-1][1], 5) if coords else None,
         "regions": classify_route_regions(coords),
         "settlements": settlements,
         # True/False מפורש (לא רק הסתמכות על רשימה ריקה) - כדי שדף הקטלוג יוכל

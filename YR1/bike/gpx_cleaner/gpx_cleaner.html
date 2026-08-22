@@ -4,87 +4,97 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>ניקוי GPX</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Assistant:wght@300;400;600;700;800&family=Varela+Round&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 <style>
-  @import url('https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;500;700&family=JetBrains+Mono:wght@400;600&display=swap');
-
+  /* פלטת הצבעים והמראה זהים במכוון ל-YR1/bike/route_catalog/catalog.html - ראו
+     ההנחיה "תשנה את המסכים...שיראו באותו מבנה של route_catalog" (22.08.2026).
+     שמות המשתנים (--bg, --surface וכו') נשארו כפי שהיו כדי לא לגעת בכל כלל CSS
+     בקובץ - רק *הערכים* שהם מצביעים אליהם השתנו לטובת המראה הבהיר/ירוק. */
   :root {
-    --bg: #0f1117;
-    --surface: #1a1d27;
-    --border: #2a2d3a;
-    --accent: #4ade80;
-    --accent-dim: #1a3d28;
-    --warn: #f59e0b;
-    --error: #ef4444;
-    --text: #e2e8f0;
-    --text-muted: #64748b;
-    --radius: 8px;
+    --primary: #1F6B4C;
+    --secondary: #4E9B6B;
+    --bg: #F2F8F3;
+    --surface: #ffffff;
+    --border: #CFE0D3;
+    --accent: #E0923F;
+    --accent-dim: #FCEEDD;
+    --warn: #c97a2c;
+    --error: #B03A2E;
+    --text: #243A2E;
+    --text-muted: #5C7A6B;
+    --radius: 14px;
   }
 
   * { box-sizing: border-box; margin: 0; padding: 0; }
 
   body {
-    background: var(--bg);
+    background: linear-gradient(135deg,#123A29 0%,#3F7D52 50%,#E0A24E 100%);
     color: var(--text);
-    font-family: 'Heebo', sans-serif;
+    font-family: 'Assistant', 'Segoe UI', Tahoma, sans-serif;
     min-height: 100vh;
     padding: 32px 16px;
   }
 
   .container { max-width: 720px; margin: 0 auto; }
 
-  header { margin-bottom: 40px; }
-  header h1 { font-size: 28px; font-weight: 700; letter-spacing: -0.5px; color: var(--accent); }
-  header p { color: var(--text-muted); margin-top: 6px; font-size: 15px; }
+  .nav-bar{display:flex;justify-content:space-between;align-items:center;margin-bottom:20px;gap:10px;flex-wrap:wrap}
+  .btn-nav{background:rgba(255,255,255,.25);backdrop-filter:blur(10px);padding:10px 20px;border-radius:20px;color:white;text-decoration:none;font-size:1rem;font-weight:700;border:none;cursor:pointer;transition:all .3s;font-family:'Assistant',sans-serif;box-shadow:0 4px 12px rgba(0,0,0,.2)}
+  .btn-nav:hover{background:rgba(255,255,255,.4);transform:translateY(-2px)}
+
+  header { margin-bottom: 32px; text-align: center; }
+  header h1 { font-family:'Varela Round',sans-serif; font-size: 2.2rem; font-weight: 800; color: white; text-shadow: 2px 3px 10px rgba(0,0,0,.3); margin-bottom: 8px; }
+  header p { color: rgba(255,255,255,.9); text-shadow: 1px 2px 8px rgba(0,0,0,.2); margin-top: 6px; font-size: 15px; }
 
   .card {
     background: var(--surface);
-    border: 1px solid var(--border);
-    border-radius: var(--radius);
+    border-radius: 20px;
+    box-shadow: 0 10px 30px rgba(0,0,0,.15);
     padding: 24px;
     margin-bottom: 20px;
+    border-right: 4px solid var(--accent);
   }
 
   .card-title {
-    font-size: 13px; font-weight: 500; text-transform: uppercase;
-    letter-spacing: 1.2px; color: var(--text-muted); margin-bottom: 20px;
+    font-size: 13px; font-weight: 700; text-transform: uppercase;
+    letter-spacing: 1.2px; color: var(--primary); margin-bottom: 20px;
   }
 
   .params-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
   .param-group { display: flex; flex-direction: column; gap: 6px; }
   .param-group.full { grid-column: 1 / -1; }
 
-  label { font-size: 13px; color: var(--text-muted); font-weight: 500; }
+  label { font-size: 13px; color: var(--text-muted); font-weight: 700; }
 
   input[type="number"], input[type="text"] {
     background: var(--bg); border: 1px solid var(--border);
-    border-radius: var(--radius); color: var(--text);
+    border-radius: 10px; color: var(--text);
     font-family: 'JetBrains Mono', monospace; font-size: 15px;
     padding: 10px 14px; width: 100%; transition: border-color 0.15s; direction: ltr;
   }
-  input:focus { outline: none; border-color: var(--accent); }
+  input:focus { outline: 2px solid var(--secondary); border-color: var(--secondary); }
 
   .unit { font-size: 11px; color: var(--text-muted); margin-top: 2px; }
 
   button {
-    background: var(--accent); color: #0a1a0f; border: none;
-    border-radius: var(--radius); font-family: 'Heebo', sans-serif;
+    background: var(--accent); color: white; border: none;
+    border-radius: var(--radius); font-family: 'Assistant', sans-serif;
     font-size: 15px; font-weight: 700; padding: 10px 20px;
-    cursor: pointer; transition: opacity 0.15s; white-space: nowrap;
+    cursor: pointer; transition: all 0.2s; white-space: nowrap;
   }
-  button:hover { opacity: 0.85; }
-  button:disabled { opacity: 0.4; cursor: not-allowed; }
+  button:hover { filter: brightness(0.92); }
+  button:disabled { opacity: 0.5; cursor: not-allowed; }
   button.secondary { background: var(--accent-dim); color: var(--accent); border: 1px solid var(--accent); }
-  button.danger { background: #3a1a1a; color: var(--error); border: 1px solid var(--error); }
+  button.danger { background: #FDECEA; color: var(--error); border: 1px solid var(--error); }
 
   .status {
     display: none; align-items: center; gap: 10px;
     padding: 12px 16px; border-radius: var(--radius); font-size: 14px; margin-bottom: 20px;
   }
-  .status.info  { display: flex; background: #1e2a3a; border: 1px solid #2a4a6a; color: #60a5fa; }
-  .status.error { display: flex; background: #2a1a1a; border: 1px solid #6a2a2a; color: var(--error); }
-  .status.success { display: flex; background: var(--accent-dim); border: 1px solid #2a5a3a; color: var(--accent); }
+  .status.info  { display: flex; background: #EAF3FB; border: 1px solid #BBD9F0; color: #2563a8; }
+  .status.error { display: flex; background: #FDECEA; border: 1px solid #f0bcb4; color: var(--error); }
+  .status.success { display: flex; background: var(--accent-dim); border: 1px solid #f0d3ac; color: var(--accent); }
 
   .spinner {
     width: 16px; height: 16px; border: 2px solid currentColor;
@@ -97,16 +107,16 @@
 
   .stat-row { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin-bottom: 20px; }
   .stat { background: var(--bg); border: 1px solid var(--border); border-radius: var(--radius); padding: 14px; text-align: center; }
-  .stat-val { font-family: 'JetBrains Mono', monospace; font-size: 26px; font-weight: 600; color: var(--accent); }
+  .stat-val { font-family: 'JetBrains Mono', monospace; font-size: 26px; font-weight: 600; color: var(--primary); }
   .stat-val.removed { color: var(--error); }
   .stat-label { font-size: 12px; color: var(--text-muted); margin-top: 4px; }
 
-  .clusters-title { font-size: 13px; font-weight: 500; text-transform: uppercase; letter-spacing: 1px; color: var(--text-muted); margin-bottom: 12px; }
+  .clusters-title { font-size: 13px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; color: var(--text-muted); margin-bottom: 12px; }
   .cluster { background: var(--bg); border: 1px solid var(--border); border-radius: var(--radius); margin-bottom: 8px; overflow: hidden; }
   .cluster-header { display: flex; justify-content: space-between; align-items: center; padding: 10px 14px; cursor: pointer; user-select: none; }
-  .cluster-header:hover { background: #ffffff08; }
-  .cluster-name { font-size: 14px; font-weight: 500; }
-  .cluster-badge { background: #2a1a1a; color: var(--error); border-radius: 4px; padding: 2px 8px; font-size: 12px; font-family: 'JetBrains Mono', monospace; }
+  .cluster-header:hover { background: #ffffff90; }
+  .cluster-name { font-size: 14px; font-weight: 600; }
+  .cluster-badge { background: #FDECEA; color: var(--error); border-radius: 4px; padding: 2px 8px; font-size: 12px; font-family: 'JetBrains Mono', monospace; }
   .cluster-body { display: none; padding: 0 14px 12px; }
   .cluster-body.open { display: block; }
   .pt-row { font-family: 'JetBrains Mono', monospace; font-size: 12px; color: var(--text-muted); padding: 4px 0; border-bottom: 1px solid var(--border); display: flex; gap: 12px; flex-wrap: wrap; }
@@ -117,10 +127,9 @@
   .chevron { transition: transform 0.2s; display: inline-block; }
   .chevron.open { transform: rotate(180deg); }
 
-  input[type="file"] { display: none; }
-  .file-row { display: flex; align-items: center; gap: 12px; }
-  .file-btn { background: var(--accent); color: #0a1a0f; border-radius: var(--radius); font-family: 'Heebo', sans-serif; font-size: 15px; font-weight: 700; padding: 10px 20px; cursor: pointer; white-space: nowrap; display: inline-block; transition: opacity 0.15s; }
-  .file-btn:hover { opacity: 0.85; }
+  .file-row { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; }
+  .file-btn { background: var(--accent); color: white; border-radius: var(--radius); font-family: 'Assistant', sans-serif; font-size: 15px; font-weight: 700; padding: 10px 20px; cursor: pointer; white-space: nowrap; display: inline-block; border: none; transition: all 0.2s; }
+  .file-btn:hover { filter: brightness(0.92); }
   .file-name { font-size: 14px; color: var(--text-muted); font-family: 'JetBrains Mono', monospace; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
 
   /* ── PAGE: CLEAN MAP ── */
@@ -130,16 +139,18 @@
   }
   .map-topbar {
     display: flex; align-items: center; justify-content: space-between;
-    padding: 12px 16px; background: var(--surface); border-bottom: 1px solid var(--border);
+    padding: 12px 16px; background: linear-gradient(135deg,var(--primary),var(--secondary)); border-bottom: 1px solid var(--border);
     flex-shrink: 0; gap: 12px;
   }
-  .map-topbar span { font-family: 'JetBrains Mono', monospace; font-size: 14px; color: var(--text-muted); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  .map-topbar .topbar-actions, .manual-topbar .topbar-actions { display: flex; gap: 8px; }
+  .map-topbar span { font-family: 'JetBrains Mono', monospace; font-size: 14px; color: white; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
   .map-statsbar { display: flex; background: var(--surface); border-bottom: 1px solid var(--border); flex-shrink: 0; gap: 1px; background-color: var(--border); }
   .map-stat { flex: 1; display: flex; flex-direction: column; align-items: center; padding: 8px 12px; background: var(--surface); }
   .map-stat-label { font-size: 11px; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.8px; }
-  .map-stat-val { font-family: 'JetBrains Mono', monospace; font-size: 18px; font-weight: 600; color: var(--accent); margin-top: 2px; }
+  .map-stat-val { font-family: 'JetBrains Mono', monospace; font-size: 18px; font-weight: 600; color: var(--primary); margin-top: 2px; }
   #map { flex: 1; }
-  button.back { background: var(--accent-dim); color: var(--accent); border: 1px solid var(--accent); }
+  button.back { background: rgba(255,255,255,.25); color: white; border: 1px solid rgba(255,255,255,.5); }
+  button.back:hover { background: rgba(255,255,255,.4); }
 
   /* ── PAGE: MANUAL REVIEW ── */
   #page-manual {
@@ -148,10 +159,10 @@
   }
   .manual-topbar {
     display: flex; align-items: center; justify-content: space-between;
-    padding: 10px 16px; background: var(--surface); border-bottom: 1px solid var(--border);
+    padding: 10px 16px; background: linear-gradient(135deg,var(--primary),var(--secondary)); border-bottom: 1px solid var(--border);
     flex-shrink: 0; gap: 12px;
   }
-  .manual-round-info { font-family: 'JetBrains Mono', monospace; font-size: 13px; color: var(--text-muted); flex: 1; text-align: center; }
+  .manual-round-info { font-family: 'JetBrains Mono', monospace; font-size: 13px; color: white; flex: 1; text-align: center; }
   .manual-layout { display: flex; flex: 1; overflow: hidden; }
   #manual-map { flex: 1; }
   .manual-sidebar {
@@ -170,7 +181,7 @@
     padding: 5px 10px; border-bottom: 1px solid var(--border);
     cursor: pointer; transition: background 0.1s;
   }
-  .cp-row:hover { background: #ffffff08; }
+  .cp-row:hover { background: #F2F8F3; }
   .cp-num { font-family: 'JetBrains Mono', monospace; font-size: 11px; color: var(--text-muted); width: 26px; text-align: center; flex-shrink: 0; }
   .cp-time { font-family: 'JetBrains Mono', monospace; font-size: 11px; color: var(--text-muted); flex: 1; }
   .cp-btn { padding: 3px 7px; font-size: 13px; font-weight: 700; border-radius: 4px; border: none; cursor: pointer; flex-shrink: 0; min-width: 30px; }
@@ -178,21 +189,21 @@
   /* ── DECISION MODAL ── */
   #decision-modal {
     display: none; position: fixed; inset: 0;
-    background: rgba(0,0,0,0.75); z-index: 200;
+    background: rgba(18,58,41,0.6); z-index: 200;
     align-items: center; justify-content: center;
   }
   .decision-box {
-    background: var(--surface); border: 1px solid var(--border);
-    border-radius: var(--radius); padding: 32px 28px;
+    background: var(--surface); border-radius: 20px; padding: 32px 28px;
     text-align: center; max-width: 380px; width: 90%;
+    box-shadow: 0 15px 45px rgba(0,0,0,.3);
   }
-  .decision-box h2 { color: var(--text); font-size: 20px; margin-bottom: 10px; }
+  .decision-box h2 { color: var(--primary); font-family:'Varela Round',sans-serif; font-size: 22px; margin-bottom: 10px; }
   .decision-box p { color: var(--text-muted); font-size: 14px; margin-bottom: 24px; }
   .decision-btns { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
 
   .act-btn {
     flex: 1;
-    background: var(--surface);
+    background: var(--bg);
     color: var(--text-muted);
     border: 1px solid var(--border);
     font-size: 14px;
@@ -229,11 +240,14 @@
 <!-- ── PAGE: MANUAL REVIEW ── -->
 <div id="page-manual">
   <div class="manual-topbar">
-    <button class="back" onclick="goBackToMain()">← חזור</button>
+    <div class="topbar-actions">
+      <a href="../../idx1.html" class="btn-nav back">🏠 ראשי</a>
+      <button class="back" onclick="goBackToMain()">← חזור</button>
+    </div>
     <span class="manual-round-info" id="manualRoundInfo">—</span>
     <button onclick="doneMarking()">✔ סיימתי לסמן</button>
   </div>
-  <div id="elev-banner" style="display:none;background:#2a1e00;border-bottom:1px solid var(--warn);color:var(--warn);padding:6px 16px;font-size:13px;flex-shrink:0;text-align:center"></div>
+  <div id="elev-banner" style="display:none;background:var(--accent-dim);border-bottom:1px solid var(--warn);color:var(--warn);padding:6px 16px;font-size:13px;flex-shrink:0;text-align:center"></div>
   <div class="manual-layout">
     <div id="manual-map"></div>
     <div class="manual-sidebar">
@@ -249,7 +263,10 @@
 <!-- ── PAGE: CLEAN MAP ── -->
 <div id="page-map">
   <div class="map-topbar">
-    <button class="back" onclick="goBack()">← חזור</button>
+    <div class="topbar-actions">
+      <a href="../../idx1.html" class="btn-nav back">🏠 ראשי</a>
+      <button class="back" onclick="goBack()">← חזור</button>
+    </div>
     <span id="mapTitle"></span>
     <button onclick="downloadClean()">⬇ הורד GPX נקי</button>
   </div>
@@ -274,11 +291,22 @@
 <div id="page-main">
 <div class="container">
 
+  <div class="nav-bar">
+    <a href="../../idx1.html" class="btn-nav">🏠 דף ראשי</a>
+    <button onclick="history.back()" class="btn-nav">← חזרה</button>
+  </div>
+
   <header>
     <h1>🧹 ניקוי קובץ GPX</h1>
     <p>בדיקה ידנית ופילטר אוטומטי לניקוי שגיאות GPS</p>
-    <p style="margin-top:6px;font-size:13px">ליצירת קשר <a href="mailto:yairron@gmail.com" style="color:var(--accent)">יאיר רון</a> דוא"ל yairron@gmail.com</p>
+    <p style="margin-top:6px;font-size:13px">ליצירת קשר <a href="mailto:yairron@gmail.com" style="color:white;text-decoration:underline">יאיר רון</a> דוא"ל yairron@gmail.com</p>
   </header>
+
+  <!-- FILE -->
+  <div class="card">
+    <div class="card-title">קובץ GPX</div>
+    <div class="file-row" id="fileRow"></div>
+  </div>
 
   <!-- PARAMS -->
   <div class="card">
@@ -325,17 +353,6 @@
     </div>
   </div>
 
-  <!-- FILE INPUT -->
-  <div class="card">
-    <div class="card-title">קובץ GPX</div>
-    <div class="file-row">
-      <label class="file-btn" for="gpxFile">בחר קובץ</label>
-      <input type="file" id="gpxFile" accept=".gpx" onchange="handleFile(this)">
-      <span id="fileName" class="file-name">לא נבחר קובץ</span>
-      <button id="backToManualBtn" class="secondary" style="display:none;white-space:nowrap" onclick="showManualPage()">↩ חזור לעריכת נקודות</button>
-    </div>
-  </div>
-
   <!-- STATUS -->
   <div class="status" id="status">
     <div class="spinner" id="spinner"></div>
@@ -376,7 +393,7 @@ let glitchRemovedCount  = 0;
 let glitchZones         = [];
 let cleanGpxContent  = null;
 let originalFilename = 'track_clean.gpx';
-let rawGpxText       = null;   // original file text
+let rawGpxText       = null;   // טקסט הקובץ הגולמי (נשלף מהקטלוג, לא מהדיסק המקומי)
 let manualGpxText    = null;   // working copy after manual rounds
 let manualRound      = 1;
 let rawPoints        = [];     // parsed from manualGpxText (current round)
@@ -390,6 +407,8 @@ let manualMapInstance = null;
 let segmentPolylines = [];
 let gapPolylines     = [];
 let cpMarkers        = [];
+let incomingGpxUrl   = null;
+let incomingFileName = null;
 
 const ACTIVITY_DEFAULTS = {
   bike: { maxEle: 35, maxSpeed: 80, maxDist: 200 },
@@ -588,32 +607,65 @@ async function correctElevations(gpxText) {
   }
 }
 
-// ── File load ──
-function handleFile(input) {
-  const file = input.files[0];
-  if (!file) return;
-  document.getElementById('fileName').textContent = file.name;
-  originalFilename = file.name.replace(/\.gpx$/i, '_FIXED.gpx');
+// ── File load - נוסף 22.08.2026: הקובץ מגיע רק מ-route_catalog/catalog.html
+// (כפתור "ניקוי קובץ" שם), לא יותר מהדיסק המקומי. אם אין פרמטרי URL (מישהו
+// נכנס ישירות לדף) - מוצג כפתור "בחר קובץ" שמעביר לקטלוג לבחירה. ──
+function initFileState() {
+  const params = new URLSearchParams(window.location.search);
+  incomingGpxUrl = params.get('gpx');
+  incomingFileName = params.get('name') || '';
+  const row = document.getElementById('fileRow');
+
+  if (!incomingGpxUrl) {
+    row.innerHTML =
+      '<button class="file-btn" onclick="goToCatalog()">📂 בחר קובץ</button>' +
+      '<span class="file-name">לא נבחר קובץ - יש לבחור מסלול מהקטלוג</span>';
+    return;
+  }
+
+  originalFilename = (incomingFileName || 'track.gpx').replace(/\.gpx$/i, '_FIXED.gpx');
+  row.innerHTML =
+    '<button class="file-btn" id="cleanBtn" onclick="startCleaning()" disabled>⏳ טוען...</button>' +
+    '<span id="fileNameLabel" class="file-name"></span>' +
+    '<button id="backToManualBtn" class="secondary" style="display:none;white-space:nowrap" onclick="showManualPage()">↩ חזור לעריכת נקודות</button>';
+  document.getElementById('fileNameLabel').textContent = incomingFileName || incomingGpxUrl;
+  fetchIncomingFile();
+}
+
+function goToCatalog() {
+  window.location.href = '../route_catalog/catalog.html';
+}
+
+async function fetchIncomingFile() {
   document.getElementById('results').style.display = 'none';
-  setStatus('info', 'קורא קובץ...', true);
-  const reader = new FileReader();
-  reader.onload = async (e) => {
-    rawGpxText = e.target.result;
-    setStatus('info', 'מתקן נתוני גובה מול מודל שטח...', true);
-    const { correctedText, correctedCount } = await correctElevations(rawGpxText);
-    elevCorrectedCount = correctedCount;
-    setStatus('info', 'מסיר נקודות גליץ\' GPS...', true);
-    const { cleanedText, removedCount, zones } = removeGlitchPoints(correctedText);
-    glitchRemovedCount = removedCount;
-    glitchZones        = zones;
-    rawGpxText    = cleanedText;
-    manualGpxText = cleanedText;
-    manualRound   = 1;
+  setStatus('info', 'טוען קובץ מהקטלוג...', true);
+  try {
+    const resp = await fetch(incomingGpxUrl);
+    if (!resp.ok) throw new Error('http ' + resp.status);
+    rawGpxText = await resp.text();
     hideStatus();
-    showManualPage();
-  };
-  reader.onerror = () => setStatus('error', 'שגיאה בקריאת הקובץ');
-  reader.readAsText(file);
+    const btn = document.getElementById('cleanBtn');
+    if (btn) { btn.disabled = false; btn.textContent = 'נקה'; }
+  } catch (e) {
+    setStatus('error', 'שגיאה בטעינת הקובץ מהקטלוג');
+  }
+}
+
+async function startCleaning() {
+  if (!rawGpxText) return;
+  document.getElementById('results').style.display = 'none';
+  setStatus('info', 'מתקן נתוני גובה מול מודל שטח...', true);
+  const { correctedText, correctedCount } = await correctElevations(rawGpxText);
+  elevCorrectedCount = correctedCount;
+  setStatus('info', "מסיר נקודות גליץ' GPS...", true);
+  const { cleanedText, removedCount, zones } = removeGlitchPoints(correctedText);
+  glitchRemovedCount = removedCount;
+  glitchZones        = zones;
+  rawGpxText    = cleanedText;
+  manualGpxText = cleanedText;
+  manualRound   = 1;
+  hideStatus();
+  showManualPage();
 }
 
 // ── Manual review ──
@@ -680,10 +732,10 @@ function showManualPage() {
 }
 
 function makeMarkerIcon(num, mark) {
-  const bg = mark ? '#4ade80' : '#ef4444';
-  const fg = mark ? '#000'    : '#fff';
+  const bg = mark ? '#1F6B4C' : '#B03A2E';
+  const fg = '#fff';
   return L.divIcon({
-    html: `<div style="background:${bg};color:${fg};border-radius:50%;width:22px;height:22px;display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:700;border:2px solid #fff;box-shadow:0 1px 4px rgba(0,0,0,0.6)">${num}</div>`,
+    html: `<div style="background:${bg};color:${fg};border-radius:50%;width:22px;height:22px;display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:700;border:2px solid #fff;box-shadow:0 1px 4px rgba(0,0,0,0.4)">${num}</div>`,
     iconSize: [22,22], iconAnchor: [11,11], className: ''
   });
 }
@@ -711,7 +763,7 @@ function renderManualMap() {
   for (let i = 0; i < checkpoints.length; i++) {
     const fromIdx  = checkpoints[i].idx;
     const toIdx    = i + 1 < checkpoints.length ? checkpoints[i+1].idx : rawPoints.length - 1;
-    const color    = checkpoints[i].mark ? '#1d4ed8' : '#ef4444';
+    const color    = checkpoints[i].mark ? '#1F6B4C' : '#B03A2E';
     const subPolys = [];
 
     // Draw sub-segments, inserting orange dashed bridge at each gap
@@ -722,7 +774,7 @@ function renderManualMap() {
           subPolys.push(L.polyline(sub, { color, weight: 4, opacity: 0.85 }).addTo(manualMapInstance));
         gapPolylines.push(L.polyline(
           [[rawPoints[j-1].lat, rawPoints[j-1].lon], [rawPoints[j].lat, rawPoints[j].lon]],
-          { color: '#f97316', weight: 3, opacity: 0.9, dashArray: '10, 8' }
+          { color: '#E0923F', weight: 3, opacity: 0.9, dashArray: '10, 8' }
         ).addTo(manualMapInstance));
         sub = [[rawPoints[j].lat, rawPoints[j].lon]];
       } else {
@@ -744,7 +796,7 @@ function renderManualMap() {
 }
 
 function updateSegmentOnMap(i) {
-  const color = checkpoints[i].mark ? '#1d4ed8' : '#ef4444';
+  const color = checkpoints[i].mark ? '#1F6B4C' : '#B03A2E';
   const polys = segmentPolylines[i];
   (Array.isArray(polys) ? polys : [polys]).forEach(p => p && p.setStyle({ color }));
   if (cpMarkers[i]) cpMarkers[i].setIcon(makeMarkerIcon(i+1, checkpoints[i].mark));
@@ -763,13 +815,13 @@ function renderCheckpointTable() {
       <span class="cp-num">${i+1}</span>
       <span class="cp-time">${timeStr}</span>
       <button class="cp-btn" id="cp-ok-${i}" onclick="event.stopPropagation();setMark(${i},true)"
-        style="background:${cp.mark ? '#4ade80' : 'var(--accent-dim)'};color:${cp.mark ? '#000' : 'var(--accent)'};padding:3px 7px;font-size:13px;font-weight:700;border-radius:4px;border:none;cursor:pointer;min-width:30px">✓</button>
+        style="background:${cp.mark ? '#1F6B4C' : 'var(--accent-dim)'};color:${cp.mark ? '#fff' : 'var(--accent)'};padding:3px 7px;font-size:13px;font-weight:700;border-radius:4px;border:none;cursor:pointer;min-width:30px">✓</button>
       <button class="cp-btn" id="cp-x-${i}" onclick="event.stopPropagation();setMark(${i},false)"
-        style="background:${!cp.mark ? 'var(--error)' : '#3a1a1a'};color:${!cp.mark ? '#fff' : 'var(--error)'};padding:3px 7px;font-size:13px;font-weight:700;border-radius:4px;border:none;cursor:pointer;min-width:30px">✗</button>
+        style="background:${!cp.mark ? 'var(--error)' : '#FDECEA'};color:${!cp.mark ? '#fff' : 'var(--error)'};padding:3px 7px;font-size:13px;font-weight:700;border-radius:4px;border:none;cursor:pointer;min-width:30px">✗</button>
     `;
     row.addEventListener('click', () => {
       manualMapInstance.setView([cp.lat, cp.lon], 15);
-      row.style.background = '#ffffff18';
+      row.style.background = '#E8F5EC';
       setTimeout(() => row.style.background = '', 700);
     });
     table.appendChild(row);
@@ -789,8 +841,8 @@ function setMark(i, val) {
     updateSegmentOnMap(j);
     const okBtn = document.getElementById(`cp-ok-${j}`);
     const xBtn  = document.getElementById(`cp-x-${j}`);
-    if (okBtn) { okBtn.style.background = val ? '#4ade80' : 'var(--accent-dim)'; okBtn.style.color = val ? '#000' : 'var(--accent)'; }
-    if (xBtn)  { xBtn.style.background  = val ? '#3a1a1a' : 'var(--error)';      xBtn.style.color  = val ? 'var(--error)' : '#fff'; }
+    if (okBtn) { okBtn.style.background = val ? '#1F6B4C' : 'var(--accent-dim)'; okBtn.style.color = val ? '#fff' : 'var(--accent)'; }
+    if (xBtn)  { xBtn.style.background  = val ? '#FDECEA' : 'var(--error)';      xBtn.style.color  = val ? 'var(--error)' : '#fff'; }
   });
 }
 
@@ -800,15 +852,16 @@ function markAll(val) {
     updateSegmentOnMap(i);
     const okBtn = document.getElementById(`cp-ok-${i}`);
     const xBtn  = document.getElementById(`cp-x-${i}`);
-    if (okBtn) { okBtn.style.background = val ? '#4ade80' : 'var(--accent-dim)'; okBtn.style.color = val ? '#000' : 'var(--accent)'; }
-    if (xBtn)  { xBtn.style.background  = val ? '#3a1a1a' : 'var(--error)';      xBtn.style.color  = val ? 'var(--error)' : '#fff'; }
+    if (okBtn) { okBtn.style.background = val ? '#1F6B4C' : 'var(--accent-dim)'; okBtn.style.color = val ? '#fff' : 'var(--accent)'; }
+    if (xBtn)  { xBtn.style.background  = val ? '#FDECEA' : 'var(--error)';      xBtn.style.color  = val ? 'var(--error)' : '#fff'; }
   });
 }
 
 function goBackToMain() {
   document.getElementById('page-manual').style.display = 'none';
   document.getElementById('page-main').style.display = 'block';
-  document.getElementById('backToManualBtn').style.display = '';
+  const btn = document.getElementById('backToManualBtn');
+  if (btn) btn.style.display = '';
 }
 
 function doneMarking() {
@@ -856,7 +909,8 @@ async function applyAutoFilter() {
 
   document.getElementById('page-manual').style.display = 'none';
   document.getElementById('page-main').style.display = 'block';
-  document.getElementById('backToManualBtn').style.display = '';
+  const btn = document.getElementById('backToManualBtn');
+  if (btn) btn.style.display = '';
   document.getElementById('results').style.display = 'none';
 
   setStatus('info', 'בודק נתוני גובה מול מודל שטח...', true);
@@ -973,7 +1027,7 @@ function processGpx(gpxText) {
   const clList = document.getElementById('clusterList');
   clList.innerHTML = '';
   if (clusters.length === 0) {
-    clList.innerHTML = '<div style="color:var(--accent);padding:12px 0;font-size:14px">✓ לא נמצאו שגיאות – הקובץ נקי</div>';
+    clList.innerHTML = '<div style="color:var(--primary);padding:12px 0;font-size:14px">✓ לא נמצאו שגיאות – הקובץ נקי</div>';
   } else {
     clusters.forEach((cl, ci) => {
       const t0 = cl[0].time.toISOString().slice(11,19);
@@ -1045,7 +1099,7 @@ function showMap() {
   trackLayers = [];
 
   if (keptPoints.length > 0) {
-    const poly = L.polyline(keptPoints, { color: '#1d4ed8', weight: 4, opacity: 0.85 }).addTo(mapInstance);
+    const poly = L.polyline(keptPoints, { color: '#1F6B4C', weight: 4, opacity: 0.85 }).addTo(mapInstance);
     const m1 = L.marker(keptPoints[0]).addTo(mapInstance).bindPopup('התחלה');
     const m2 = L.marker(keptPoints[keptPoints.length-1]).addTo(mapInstance).bindPopup('סיום');
     trackLayers = [poly, m1, m2];
@@ -1067,6 +1121,8 @@ function downloadClean() {
   a.download = originalFilename;
   a.click();
 }
+
+initFileState();
 </script>
 </body>
 </html>
