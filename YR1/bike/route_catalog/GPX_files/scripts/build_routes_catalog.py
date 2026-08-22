@@ -45,6 +45,7 @@ import argparse
 import http.server
 import json
 import sys
+import time
 import xml.etree.ElementTree as ET
 from datetime import datetime
 from functools import partial
@@ -90,6 +91,16 @@ def rename_new_files():
 
     gpx_dir = get_gpx_dir()
     support_data_dir = get_support_data_dir()
+
+    # בדיקה זולה (רק שמות קבצים, בלי לפתוח אף קובץ) לפני load_known_points() -
+    # נמדד בפועל (22.08.2026) שהיא עצמה לוקחת כ-30 שניות (קוראת מחדש את כל
+    # קבצי ה-GPX כדי לבנות את טבלת הנקודות המאומתות) - מיותר לגמרי כשאין בכלל
+    # קובץ חדש-בלי-שם-משמעותי לשנות לו שם.
+    unnamed = [p for p in analyzer.list_gpx_files_top_level(gpx_dir) if not renamer.has_meaningful_word(p.stem)]
+    if not unnamed:
+        print("  אין קבצים חדשים ללא שם משמעותי - מדלג על בניית טבלת הנקודות המאומתות.")
+        return
+
     settlements_db = renamer.load_settlements(support_data_dir)
     known_points = chrono.load_known_points(gpx_dir, support_data_dir, get_catalog_data_dir())
     renamed = chrono.auto_rename_unnamed_files(gpx_dir, settlements_db, known_points)
@@ -476,6 +487,26 @@ def save_route_ids(id_map: dict, support_data_dir: Path):
         json.dump(id_map, f, ensure_ascii=False, indent=2, sort_keys=True)
 
 
+# מטמון בין-הרצות לשלב הניתוח (נוסף 22.08.2026) - לפני זה כל הרצה ניתחה מחדש
+# את כל קבצי ה-GPX, גם כשהשינוי היחיד היה הוספת קובץ אחד. המפתח לזיהוי "לא
+# השתנה" הוא שם קובץ + גודל + מועד שינוי (mtime) - זול לבדוק (stat() בלבד,
+# בלי לפתוח את הקובץ), ומספיק כדי לדעת בבטחון שהניתוח הקודם עדיין תקף. שומרים
+# את הרשומה **כולל** "_coords" (לא רק את הגרסה הציבורית) כי generate_thumbnails()
+# צריך אותו גם לרשומות שמגיעות מהמטמון (למשל אם התמונה הממוזערת נמחקה חיצונית).
+def load_build_cache(support_data_dir: Path) -> dict:
+    path = support_data_dir / "catalog_build_cache.json"
+    if not path.exists():
+        return {}
+    with open(path, encoding="utf-8") as f:
+        return json.load(f)
+
+
+def save_build_cache(cache: dict, support_data_dir: Path):
+    path = support_data_dir / "catalog_build_cache.json"
+    with open(path, "w", encoding="utf-8") as f:
+        json.dump(cache, f, ensure_ascii=False)
+
+
 def build_catalog_record(path: Path, info: dict, points: list, settlements_db, route_id: int):
     source = normalize_source_guess(info["source_guess"])  # "הקלטה" / "תכנון מסלול" / "לא ברור"
     is_planned = source == "תכנון מסלול"
@@ -548,6 +579,13 @@ def generate_thumbnails(records, thumbnails_dir: Path, scripts_dir: Path, force=
     thread = Thread(target=server.serve_forever, daemon=True)
     thread.start()
 
+    # רשימת קבצים קיימים בבת-אחת (listdir בודד) במקום Path.exists() לכל רשומה
+    # בנפרד (564 קריאות) - נמדד בפועל (22.08.2026) שזה היה השלב האיטי ביותר
+    # בכל הסקריפט (148 מתוך 158 שניות סה"כ באותה הרצה!) אף על פי שכל רשומה
+    # דילגה בלי לגעת ב-Playwright בכלל - כי כל קובץ נמצא בתיקייה שמסונכרנת עם
+    # Google Drive, ושם ל-stat/exists בודד יש חביון גבוה משמעותית מדיסק מקומי.
+    existing_thumbnails = {p.name for p in thumbnails_dir.glob("*.jpg")} if thumbnails_dir.exists() else set()
+
     try:
         with sync_playwright() as p:
             browser = p.chromium.launch()
@@ -563,7 +601,7 @@ def generate_thumbnails(records, thumbnails_dir: Path, scripts_dir: Path, force=
 
                 thumb_name = path_stem_from_filename(record["file_name"]) + ".jpg"
                 out_path = thumbnails_dir / thumb_name
-                if out_path.exists() and not force:
+                if thumb_name in existing_thumbnails and not force:
                     print(f"  [{i}/{total}] {record['file_name']} - תמונה כבר קיימת, מדלג")
                     record["thumbnail"] = f"thumbnails/{thumb_name}"
                     continue
@@ -643,19 +681,34 @@ def main():
     catalog_data_dir = get_catalog_data_dir()
     thumbnails_dir = catalog_data_dir / "thumbnails"
 
+    t_start = time.time()
     print("שלב 1: קליטת קבצים חדשים (שינוי שם באמצעות הכלי הקיים)")
     rename_new_files()
+    print(f"  (שלב 1 לקח {time.time() - t_start:.1f} שניות)")
 
+    t_stage = time.time()
     print("\nשלב 2: טעינת מאגר היישובים")
     settlements_db = renamer.load_settlements(support_data_dir)
+    print(f"  (שלב 2 לקח {time.time() - t_stage:.1f} שניות)")
 
     files = analyzer.list_gpx_files_top_level(gpx_dir)
 
-    print(f"\nשלב 3: ניתוח {len(files)} קבצי GPX")
+    t_stage = time.time()
+    print(f"\nשלב 3: ניתוח {len(files)} קבצי GPX (עם מטמון לקבצים שלא השתנו)")
 
     route_ids = load_route_ids(support_data_dir)
+    build_cache = load_build_cache(support_data_dir)
+    new_build_cache = {}
     records = []
+    reused_count = 0
     for i, path in enumerate(files, 1):
+        stat = path.stat()
+        cached = build_cache.get(path.name)
+        if cached and cached.get("size") == stat.st_size and cached.get("mtime") == stat.st_mtime:
+            records.append(cached["record"])
+            new_build_cache[path.name] = cached
+            reused_count += 1
+            continue
         print(f"  [{i}/{len(files)}] {path.name}")
         info = analyzer.analyze_file(path)
         points = extract_track_points(path)
@@ -663,8 +716,14 @@ def main():
         if sig is not None and sig not in route_ids:
             route_ids = assign_route_ids([sig], route_ids)
         route_id = route_ids.get(sig, 0)  # 0 = קובץ בלי נקודות בכלל, לא אמור לקרות בפועל
-        records.append(build_catalog_record(path, info, points, settlements_db, route_id))
+        record = build_catalog_record(path, info, points, settlements_db, route_id)
+        records.append(record)
+        new_build_cache[path.name] = {"size": stat.st_size, "mtime": stat.st_mtime, "record": record}
     save_route_ids(route_ids, support_data_dir)
+    save_build_cache(new_build_cache, support_data_dir)
+    print(f"  {reused_count}/{len(files)} קבצים ללא שינוי - נלקחו מהמטמון, לא נותחו מחדש")
+    print(f"  (שלב 3 לקח {time.time() - t_stage:.1f} שניות)")
+    t_stage = time.time()
 
     cleaned_count = sum(1 for r in records if r["removed_points"] > 0)
     if cleaned_count:
@@ -681,6 +740,9 @@ def main():
         removed_orphans = cleanup_orphan_thumbnails(records, thumbnails_dir)
         if removed_orphans:
             print(f"  נמחקו {removed_orphans} תמונות ממוזערות יתומות (שם קובץ שכבר לא קיים בקטלוג)")
+        print(f"  (שלב 4 לקח {time.time() - t_stage:.1f} שניות)")
+
+    print(f"\nזמן כולל: {time.time() - t_start:.1f} שניות")
 
     no_elevation = sum(1 for r in records if r["elevation_gain_m"] is None)
     no_settlements = sum(1 for r in records if not r["settlements"])

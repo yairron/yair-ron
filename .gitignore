@@ -9,3 +9,9 @@ __pycache__/
 # תלויות npm של netlify/functions (למשל @netlify/blobs) - Netlify מריץ npm install
 # בעצמו בזמן ה-deploy לפי package.json/package-lock.json; אין צורך לשמור node_modules בגיט.
 node_modules/
+
+# מטמון מקומי בין-הרצות של build_routes_catalog.py (נוסף 22.08.2026) - מכיל
+# עותק מלא של כל רשומה כולל _coords, לצורך דילוג על ניתוח מחדש של קבצים
+# שלא השתנו. אין טעם לגרסן אותו בגיט - הוא נבנה מחדש אוטומטית בכל מכונה,
+# ושמירתו הייתה יוצרת diff ענק בכל commit שנוגע בקבצי GPX.
+YR1/bike/route_catalog/GPX_files/scripts/support_data/catalog_build_cache.json
