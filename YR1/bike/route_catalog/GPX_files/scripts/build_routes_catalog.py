@@ -701,6 +701,7 @@ def main():
     new_build_cache = {}
     records = []
     reused_count = 0
+    freshly_analyzed_names = set()
     for i, path in enumerate(files, 1):
         stat = path.stat()
         cached = build_cache.get(path.name)
@@ -719,6 +720,7 @@ def main():
         record = build_catalog_record(path, info, points, settlements_db, route_id)
         records.append(record)
         new_build_cache[path.name] = {"size": stat.st_size, "mtime": stat.st_mtime, "record": record}
+        freshly_analyzed_names.add(path.name)
     save_route_ids(route_ids, support_data_dir)
     save_build_cache(new_build_cache, support_data_dir)
     print(f"  {reused_count}/{len(files)} קבצים ללא שינוי - נלקחו מהמטמון, לא נותחו מחדש")
@@ -728,9 +730,16 @@ def main():
     cleaned_count = sum(1 for r in records if r["removed_points"] > 0)
     if cleaned_count:
         print(f"\nניקוי קפיצות GPS: {cleaned_count} קבצים הכילו נקודות שהוסרו")
-        stale = invalidate_thumbnails_for_cleaned_routes(records, thumbnails_dir)
-        if stale:
-            print(f"  נמחקו {stale} תמונות ממוזערות ישנות (נוצרו לפני הניקוי, מציגות את הקפיצה)")
+        # רק בין הקבצים שנותחו מחדש ממש עכשיו (לא נלקחו מהמטמון) - אחרת הפונקציה
+        # הזו מוחקת ומייצרת מחדש את אותה תמונה בכל הרצה, לנצח, לכל קובץ עם ניקוי
+        # קבוע (תכונה קבועה של הקובץ הגולמי, לא "תוקן עכשיו") - נמדד בפועל
+        # (22.08.2026) שזה גרם ל-54 מסלולים "לתקוע" כ-8.5 שניות בכל הרצה, כי
+        # ה-thumbnail תמיד נמחק מחדש לפני שהספיק בכלל להיבדק אם כבר קיים.
+        freshly_cleaned = [r for r in records if r["removed_points"] > 0 and r["file_name"] in freshly_analyzed_names]
+        if freshly_cleaned:
+            stale = invalidate_thumbnails_for_cleaned_routes(freshly_cleaned, thumbnails_dir)
+            if stale:
+                print(f"  נמחקו {stale} תמונות ממוזערות ישנות (נוצרו לפני הניקוי, מציגות את הקפיצה)")
 
     if args.skip_thumbnails:
         print("\nשלב 4: דולג (--skip-thumbnails)")
