@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-22T20:58:04",
+  "generated_at": "2026-08-22T21:23:54",
   "route_count": 565,
   "routes": [
     {
@@ -14292,17 +14292,17 @@
       "thumbnail": "thumbnails/2026-03-26_געתון_כברי_געתון.jpg"
     },
     {
-      "id": 493,
+      "id": 705,
       "file_name": "2026-04-09_געתון_לימן_געתון.gpx",
       "gpx_path": "GPX_files/2026-04-09_געתון_לימן_געתון.gpx",
       "date": "2026-04-09",
       "date_source": "שם קובץ",
-      "activity": "לא ברור (מהירות חריגה: 186.0 קמ״ש)",
+      "activity": "רכיבת אופניים",
       "source": "הקלטה",
-      "distance_km": 37.1,
-      "elevation_gain_m": 342,
-      "elevation_loss_m": 370,
-      "point_count": 6239,
+      "distance_km": 35.91,
+      "elevation_gain_m": 395,
+      "elevation_loss_m": 395,
+      "point_count": 6232,
       "start_lat": 33.00505,
       "start_lon": 35.21536,
       "end_lat": 33.00509,
@@ -14317,7 +14317,7 @@
       ],
       "settlements_found": true,
       "invalid": false,
-      "removed_points": 48,
+      "removed_points": 0,
       "thumbnail": "thumbnails/2026-04-09_געתון_לימן_געתון.jpg"
     },
     {
@@ -14524,17 +14524,17 @@
       "thumbnail": "thumbnails/2026-05-01_געתון_כברי_געתון.jpg"
     },
     {
-      "id": 501,
+      "id": 706,
       "file_name": "2026-05-02_כברי_גשר הזיו_שבי ציון_נתיב השיירה_שייח' דנון.gpx",
       "gpx_path": "GPX_files/2026-05-02_כברי_גשר הזיו_שבי ציון_נתיב השיירה_שייח' דנון.gpx",
       "date": "2026-05-02",
       "date_source": "שם קובץ",
-      "activity": "לא ברור (מהירות חריגה: 382.4 קמ״ש)",
+      "activity": "רכיבת אופניים",
       "source": "הקלטה",
-      "distance_km": 51.57,
-      "elevation_gain_m": 1200,
-      "elevation_loss_m": 1211,
-      "point_count": 10285,
+      "distance_km": 42.68,
+      "elevation_gain_m": 590,
+      "elevation_loss_m": 583,
+      "point_count": 10097,
       "start_lat": 33.01839,
       "start_lon": 35.14268,
       "end_lat": 33.0184,
@@ -14545,11 +14545,11 @@
       "settlements": [
         "שבי ציון",
         "כברי",
-        "נהרייה"
+        "שייח' דנון"
       ],
       "settlements_found": true,
       "invalid": false,
-      "removed_points": 2290,
+      "removed_points": 0,
       "thumbnail": "thumbnails/2026-05-02_כברי_גשר הזיו_שבי ציון_נתיב השיירה_שייח' דנון.jpg"
     },
     {
@@ -15159,17 +15159,17 @@
       "thumbnail": "thumbnails/2026-06-24_געתון_סער_כפר ראש הנקרה_בן עמי_געתון.jpg"
     },
     {
-      "id": 529,
+      "id": 707,
       "file_name": "2026-06-24_כפר ראש הנקרה_יחיעם.gpx",
       "gpx_path": "GPX_files/2026-06-24_כפר ראש הנקרה_יחיעם.gpx",
       "date": "2026-06-24",
       "date_source": "שם קובץ",
-      "activity": "לא ברור (מהירות חריגה: 220.7 קמ״ש)",
+      "activity": "רכיבת אופניים",
       "source": "הקלטה",
       "distance_km": 22.9,
-      "elevation_gain_m": 1046,
-      "elevation_loss_m": 675,
-      "point_count": 4992,
+      "elevation_gain_m": 400,
+      "elevation_loss_m": 65,
+      "point_count": 4925,
       "start_lat": 33.09234,
       "start_lon": 35.1055,
       "end_lat": 33.00504,
@@ -15180,11 +15180,11 @@
       "settlements": [
         "געתון",
         "כברי",
-        "גשר הזיו"
+        "לימן"
       ],
       "settlements_found": true,
       "invalid": false,
-      "removed_points": 462,
+      "removed_points": 0,
       "thumbnail": "thumbnails/2026-06-24_כפר ראש הנקרה_יחיעם.jpg"
     },
     {
