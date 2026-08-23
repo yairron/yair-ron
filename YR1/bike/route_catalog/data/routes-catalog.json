@@ -1,6 +1,6 @@
 {
-  "generated_at": "2026-08-23T09:30:18",
-  "route_count": 569,
+  "generated_at": "2026-08-23T18:49:08",
+  "route_count": 571,
   "routes": [
     {
       "id": 698,
@@ -16194,6 +16194,63 @@
       "invalid": false,
       "removed_points": 0,
       "thumbnail": "thumbnails/סינגל דימונה ארוך תיכנון.jpg"
+    },
+    {
+      "id": 713,
+      "file_name": "סינגל חזון.gpx",
+      "gpx_path": "GPX_files/סינגל חזון.gpx",
+      "date": "2026-05-30",
+      "date_source": "תאריך שינוי הקובץ (גיבוי)",
+      "activity": "לא ברור",
+      "source": "תכנון מסלול",
+      "distance_km": 28.37,
+      "elevation_gain_m": 656,
+      "elevation_loss_m": 653,
+      "point_count": 1799,
+      "start_lat": 32.90976,
+      "start_lon": 35.37354,
+      "end_lat": 32.90973,
+      "end_lon": 35.37356,
+      "regions": [
+        "צפון"
+      ],
+      "settlements": [
+        "חזון",
+        "מורן",
+        "ראס אל-עין"
+      ],
+      "settlements_found": true,
+      "invalid": false,
+      "removed_points": 0,
+      "thumbnail": "thumbnails/סינגל חזון.jpg"
+    },
+    {
+      "id": 714,
+      "file_name": "סינגלים דימונה.gpx",
+      "gpx_path": "GPX_files/סינגלים דימונה.gpx",
+      "date": "2022-04-07",
+      "date_source": "timestamps בקובץ",
+      "activity": "רכיבת אופניים",
+      "source": "הקלטה",
+      "distance_km": 73.1,
+      "elevation_gain_m": 1312,
+      "elevation_loss_m": 1359,
+      "point_count": 11552,
+      "start_lat": 31.07867,
+      "start_lon": 35.03338,
+      "end_lat": 31.08091,
+      "end_lon": 35.02632,
+      "regions": [
+        "נגב וערבה"
+      ],
+      "settlements": [
+        "דימונה",
+        "ערערה-בנגב"
+      ],
+      "settlements_found": true,
+      "invalid": false,
+      "removed_points": 1,
+      "thumbnail": "thumbnails/סינגלים דימונה.jpg"
     }
   ]
 }

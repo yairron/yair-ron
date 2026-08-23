@@ -7,6 +7,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Assistant:wght@300;400;600;700;800&family=Varela+Round&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<script src="data/route_editor.js"></script>
 <style>
 :root{--primary:#1F6B4C;--secondary:#4E9B6B;--accent:#E0923F;--success:#3F7D4E;--light:#F2F8F3;--dark:#123A29;--text:#243A2E}
 *{margin:0;padding:0;box-sizing:border-box}
@@ -97,6 +98,22 @@ footer a{color:white;text-decoration:underline;font-weight:600}
 .map-overlay-header h3{font-size:1.1rem;font-weight:800}
 .map-close-btn{background:rgba(255,255,255,.2);color:white;border:none;border-radius:10px;padding:8px 16px;font-size:.95rem;font-weight:700;cursor:pointer;font-family:'Assistant',sans-serif}
 .map-close-btn:hover{background:rgba(255,255,255,.35)}
+.map-header-actions{display:flex;gap:8px;flex-wrap:wrap;position:relative}
+.edit-mode-curtain{display:none;position:absolute;top:calc(100% + 6px);left:0;background:white;border-radius:12px;box-shadow:0 8px 24px rgba(0,0,0,.35);padding:8px;min-width:260px;z-index:1002;flex-direction:column;gap:4px}
+.edit-mode-curtain.show{display:flex}
+.edit-mode-curtain button{display:flex;align-items:center;justify-content:space-between;gap:10px;text-align:right;background:var(--light);color:var(--dark);border:none;border-radius:8px;padding:10px 12px;font-family:'Assistant',sans-serif;font-size:.85rem;font-weight:600;cursor:pointer}
+.edit-mode-curtain button:hover{background:var(--secondary);color:white}
+.edit-mode-curtain button.finish-option{border-top:1px solid #E3ECE6;margin-top:4px;padding-top:12px}
+.edit-mode-curtain button.merge-option{border-bottom:1px solid #E3ECE6;margin-bottom:4px;padding-bottom:12px}
+.mode-check{color:#2E7D32;font-weight:800;visibility:hidden;flex-shrink:0}
+.mode-check.active{visibility:visible}
+.map-cutter-toolbar{display:none;align-items:center;gap:10px;padding:10px 20px;background:var(--light);border-bottom:1px solid #CFE0D3;flex-shrink:0;flex-wrap:wrap}
+.map-cutter-toolbar button{padding:7px 14px;border-radius:10px;border:none;font-weight:700;cursor:pointer;font-family:'Assistant',sans-serif;font-size:.85rem;background:var(--primary);color:white}
+.map-cutter-toolbar button:hover{background:var(--dark)}
+.map-cutter-toolbar #cutterStatus{font-size:.85rem;color:var(--dark);font-weight:600}
+.cutter-stats{display:flex;gap:14px;background:white;border-radius:10px;padding:6px 14px;box-shadow:0 2px 6px rgba(0,0,0,.1)}
+.cutter-stats span{font-size:.85rem;color:var(--dark);white-space:nowrap}
+.cutter-stats b{color:var(--primary)}
 .map-body{position:relative;flex:1;min-height:0}
 #routeMap{width:100%;height:100%}
 .map-loading{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;background:rgba(18,58,41,.9);color:white;font-size:1.1rem;font-weight:700;z-index:1001}
@@ -105,7 +122,10 @@ footer a{color:white;text-decoration:underline;font-weight:600}
 .map-legend-item:last-child{border-bottom:none}
 .map-legend-swatch{width:16px;height:4px;border-radius:2px;flex-shrink:0;margin-top:8px}
 .map-legend-text{min-width:0;flex:1}
-.map-legend-name{white-space:nowrap;overflow:hidden;text-overflow:ellipsis;font-weight:700}
+.map-legend-name{white-space:nowrap;overflow:hidden;text-overflow:ellipsis;font-weight:700;cursor:pointer;user-select:none}
+.map-legend-name:hover{text-decoration:underline}
+.map-legend-item.map-legend-hidden{opacity:.45}
+.map-legend-item.map-legend-hidden .map-legend-name{text-decoration:line-through}
 .map-legend-stats{font-size:.78rem;color:#5C7A6B;margin-top:2px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 
 @media(max-width:768px){
@@ -213,7 +233,28 @@ footer a{color:white;text-decoration:underline;font-weight:600}
 <div class="map-overlay" id="mapOverlay">
   <div class="map-overlay-header">
     <h3 id="mapOverlayTitle">מסלולים על המפה</h3>
-    <button class="map-close-btn" onclick="closeMapOverlay()">✕ סגירה</button>
+    <div class="map-header-actions">
+      <button class="map-close-btn" id="editRouteBtn" onclick="toggleEditCurtain()">🖊️ עריכת מסלול</button>
+      <div class="edit-mode-curtain" id="editModeCurtain">
+        <button class="merge-option" onclick="mergeAllRoutesDownload()">🔗 מזג את כל המסלולים</button>
+        <button onclick="selectEditMode('cut')">✂️ חיתוך מקטע (מתוך מסלול טעון)<span class="mode-check" id="checkCut">✓</span></button>
+        <button onclick="selectEditMode('osm')">📍 הוספת נקודות עם הצמדה לנתיב מפה<span class="mode-check" id="checkOsm">✓</span></button>
+        <button onclick="selectEditMode('freehand')">✏️ הוספת נקודות חופשי (בלי הצמדה)<span class="mode-check" id="checkFreehand">✓</span></button>
+        <button class="finish-option" onclick="stopEditMode()">⏹️ סיום עריכה</button>
+      </div>
+      <button class="map-close-btn" onclick="downloadNewRoute()">⬇️ הורדת מסלול חדש</button>
+      <button class="map-close-btn" onclick="deleteNewSegment()">🗑️ מחיקת מסלול חדש</button>
+      <button class="map-close-btn" onclick="closeMapOverlay()">✕ סגירה</button>
+    </div>
+  </div>
+  <div class="map-cutter-toolbar" id="mapCutterToolbar">
+    <button onclick="cutterUndo()">↩ UNDO</button>
+    <span id="cutterStatus"></span>
+    <div class="cutter-stats">
+      <span>📏 <b id="cutterDist">0.0</b> ק"מ</span>
+      <span>↗ <b id="cutterClimb">0</b> מ'</span>
+      <span>↘ <b id="cutterDescent">0</b> מ'</span>
+    </div>
   </div>
   <div class="map-body">
     <div id="routeMap"></div>
@@ -509,6 +550,19 @@ var ROUTE_MAP_COLORS = ['#E91E8C', '#7C4DFF', '#FF6F00', '#00BCD4', '#AA00FF', '
 var routeMapInstance = null;
 var routeMapLayers = [];
 
+// --- מיזוג/עריכת מסלול (route_editor.js), נוסף 22.08.2026, עודכן 23.08.2026
+// למצבי-עריכה מתחלפים (חיתוך/הצמדה-לנתיב-מפה/חופשי) ---
+var currentMapRoutesFullPoints = []; // מערך של מערכי נקודות {lat,lon,ele}, אחד לכל מסלול טעון כרגע
+var editMode = null; // null | 'cut' | 'osm' | 'freehand' - מצב העריכה הפעיל כרגע
+var routeBuilder = null; // RouteEditor.createRouteBuilder() - נוצר עם בחירת מצב ראשון, נשמר לאורך כל ההחלפות
+var cutPool = null; // בריכת GPX (RouteEditor.buildPool) למצב 'cut' - נבנית מחדש בכל בחירה במצב הזה
+var osmPool = null; // בריכת OSM/Overpass (RouteEditor.fetchOsmPathsPool) למצב 'osm' - נשלפת בכל בחירה במצב הזה
+var osmFetchInFlight = false;
+var cutterMarkers = [];
+var cutterPreviewLine = null;
+var cursorCheckScheduled = false;
+var latestCursorPoint = null;
+
 // עיגול = התחלה, מעוין (ריבוע מסובב) = סיום - באותו צבע של המסלול עצמו (לא צבע
 // אחיד קבוע לכל המסלולים), כדי שבהשוואת כמה מסלולים יחד עדיין אפשר לדעת איזו
 // נקודת התחלה/סיום שייכת לאיזה מסלול.
@@ -618,6 +672,25 @@ function parseGpxPoints(gpxText) {
   }).filter(function (p) { return !isNaN(p[0]) && !isNaN(p[1]); });
 }
 
+// כמו parseGpxPoints, אבל מחזיר {lat,lon,ele} (לא זוגות [lat,lon] בלבד) -
+// דרוש למיזוג/חיתוך (route_editor.js) כדי לשמר גובה בקובץ הפלט. נשאר נפרד
+// מ-parseGpxPoints הקיים כדי לא לגעת בקוד ציור המסלולים העובד (Leaflet מצפה
+// לזוגות [lat,lon] שם, לא לאובייקטים).
+function parseGpxPointsFull(gpxText) {
+  var doc = new DOMParser().parseFromString(gpxText, 'application/xml');
+  var pts = Array.from(doc.querySelectorAll('trkpt'));
+  if (!pts.length) pts = Array.from(doc.querySelectorAll('rtept'));
+  if (!pts.length) pts = Array.from(doc.querySelectorAll('wpt'));
+  return pts.map(function (el) {
+    var eleEl = el.querySelector('ele');
+    return {
+      lat: parseFloat(el.getAttribute('lat')),
+      lon: parseFloat(el.getAttribute('lon')),
+      ele: eleEl ? parseFloat(eleEl.textContent) : null
+    };
+  }).filter(function (p) { return !isNaN(p.lat) && !isNaN(p.lon); });
+}
+
 function showOnMap() {
   var files = ALL_ROUTES.filter(function (r) { return selectedFiles.has(r.file_name); });
   if (!files.length) return;
@@ -637,6 +710,9 @@ function showOnMap() {
     // העתקה (לא לחיצה על מסלול/סמן ספציפי - כל נקודה על המפה). מחובר פעם אחת
     // בלבד ליצירת המפה (לא בכל showOnMap), כי המאזין הזה לא תלוי בנתוני מסלול.
     routeMapInstance.on('click', function (e) {
+      if (editMode === 'cut') { handleModeClick(e.containerPoint, cutPool, cutPoolScreenPoints()); return; }
+      if (editMode === 'osm') { handleModeClick(e.containerPoint, osmPool, osmPoolScreenPoints()); return; }
+      if (editMode === 'freehand') { handleFreehandClick(e.latlng); return; }
       var text = e.latlng.lat.toFixed(6) + ', ' + e.latlng.lng.toFixed(6);
       var popupHtml =
         '<div style="text-align:center;font-family:\'Assistant\',sans-serif">' +
@@ -644,6 +720,29 @@ function showOnMap() {
           '<button onclick="copyCoordToClipboard(\'' + text + '\', this)" style="padding:5px 12px;border-radius:8px;border:none;background:var(--primary);color:white;cursor:pointer;font-family:\'Assistant\',sans-serif;font-size:.85rem">📋 העתקת קורדינטות</button>' +
         '</div>';
       L.popup().setLatLng(e.latlng).setContent(popupHtml).openOn(routeMapInstance);
+    });
+
+    // בזמן עריכה פעילה - הסמן הופך ל"אצבע" (pointer) כשהוא מספיק קרוב לבריכה
+    // הפעילה (מסלול טעון או נתיב OSM, לפי editMode) כדי לרמז איפה מותר ללחוץ,
+    // ול"צלב" (crosshair) קבוע במצב חופשי (כל קליק שם מצליח, בלי הצמדה). מתוזמן
+    // ל-requestAnimationFrame (לא throttle לפי זמן קבוע) - ראו הסבר בהיסטוריה:
+    // throttle קבוע השאיר את הסמן "תקוע" במצב "קרוב" אחרי שהעכבר כבר זז הלאה.
+    routeMapInstance.on('mousemove', function (e) {
+      if (!editMode) return;
+      if (editMode === 'freehand') { routeMapInstance.getContainer().style.cursor = 'crosshair'; return; }
+      latestCursorPoint = e.containerPoint;
+      if (cursorCheckScheduled) return;
+      cursorCheckScheduled = true;
+      requestAnimationFrame(function () {
+        cursorCheckScheduled = false;
+        if (!latestCursorPoint) return;
+        var pool = editMode === 'cut' ? cutPool : osmPool;
+        if (editMode !== 'cut' && editMode !== 'osm') return;
+        if (!pool) return;
+        var screenPts = editMode === 'cut' ? cutPoolScreenPoints() : osmPoolScreenPoints();
+        var near = RouteEditor.isNearPool(pool, screenPts, latestCursorPoint.x, latestCursorPoint.y);
+        routeMapInstance.getContainer().style.cursor = near ? 'pointer' : '';
+      });
     });
   }
   setTimeout(function () { routeMapInstance.invalidateSize(); }, 50);
@@ -654,12 +753,18 @@ function showOnMap() {
   Promise.all(files.map(function (r, i) {
     return fetch(encodeURI(r.gpx_path))
       .then(function (resp) { return resp.text(); })
-      .then(function (text) { return { route: r, points: parseGpxPoints(text), color: ROUTE_MAP_COLORS[i % ROUTE_MAP_COLORS.length] }; })
-      .catch(function () { return { route: r, points: [], color: ROUTE_MAP_COLORS[i % ROUTE_MAP_COLORS.length] }; });
+      .then(function (text) { return { route: r, points: parseGpxPoints(text), fullPoints: parseGpxPointsFull(text), color: ROUTE_MAP_COLORS[i % ROUTE_MAP_COLORS.length] }; })
+      .catch(function () { return { route: r, points: [], fullPoints: [], color: ROUTE_MAP_COLORS[i % ROUTE_MAP_COLORS.length] }; });
   })).then(function (results) {
     document.getElementById('mapLoading').style.display = 'none';
     var allBounds = [];
     var legend = document.getElementById('mapLegend');
+
+    // נשמר ברמת העמוד - בשימוש ע"י מיזוג/חיתוך (route_editor.js), לא רק
+    // בתוך ה-closure הזה. מתעדכן מחדש בכל showOnMap (כל פעם שנבחרים מסלולים
+    // אחרים) - ראו גם resetCutterUI() שמאפס מצב חיתוך פעיל קודם, אם היה.
+    currentMapRoutesFullPoints = results.map(function (res) { return res.fullPoints; }).filter(function (pts) { return pts.length; });
+    resetCutterUI();
 
     results.forEach(function (res) {
       var legendItem = document.createElement('div');
@@ -683,6 +788,17 @@ function showOnMap() {
         var endMarker = L.marker(rEnd, { icon: routeEndIcon(res.color, rCoincide ? 'translate(5px,5px)' : '') }).addTo(routeMapInstance);
         routeMapLayers.push(line, startMarker, endMarker);
         allBounds = allBounds.concat(res.points);
+
+        // לחיצה על שם המסלול ברשימת המקרא - מסתירה/מציגה אותו לחילופין (קו +
+        // סמני התחלה/סיום), בלי לגעת בשאר המסלולים המוצגים.
+        var nameEl = legendItem.querySelector('.map-legend-name');
+        nameEl.addEventListener('click', function () {
+          var hidden = legendItem.classList.toggle('map-legend-hidden');
+          [line, startMarker, endMarker].forEach(function (layer) {
+            if (hidden) routeMapInstance.removeLayer(layer);
+            else layer.addTo(routeMapInstance);
+          });
+        });
       }
     });
 
@@ -694,6 +810,227 @@ function showOnMap() {
 
 function closeMapOverlay() {
   document.getElementById('mapOverlay').classList.remove('show');
+}
+
+// --- מיזוג/עריכת מסלול (route_editor.js), נוסף 22.08.2026, עודכן 23.08.2026
+// למצבי-עריכה מתחלפים (חיתוך מקטע / הצמדה לנתיב מפה (OSM) / חופשי) שאפשר
+// להחליף ביניהם תוך כדי בניית אותו מסלול - ראו RouteEditor.createRouteBuilder. ---
+
+function mergeAllRoutesDownload() {
+  closeEditCurtain();
+  if (!currentMapRoutesFullPoints.length) { alert('אין מסלולים טעונים למיזוג'); return; }
+  var pool = RouteEditor.buildPool(currentMapRoutesFullPoints);
+  RouteEditor.downloadGpx(pool, 'מיזוג_מסלולים.gpx', 'מיזוג מסלולים');
+}
+
+function toggleEditCurtain() {
+  document.getElementById('editModeCurtain').classList.toggle('show');
+  updateCurtainChecks();
+}
+
+function closeEditCurtain() {
+  document.getElementById('editModeCurtain').classList.remove('show');
+}
+
+// מציג "✓" ירוק ליד האפשרות שתואמת את editMode הנוכחי, ומסתיר משאר האפשרויות
+// (אין אף אחת מסומנת אחרי stopEditMode/deactivateEditMode, כשאין מצב פעיל).
+function updateCurtainChecks() {
+  document.getElementById('checkCut').classList.toggle('active', editMode === 'cut');
+  document.getElementById('checkOsm').classList.toggle('active', editMode === 'osm');
+  document.getElementById('checkFreehand').classList.toggle('active', editMode === 'freehand');
+}
+
+// סוגר את הוילון בלחיצה מחוץ לו/לכפתור - התנהגות תפריט נגלל רגילה.
+document.addEventListener('click', function (e) {
+  var curtain = document.getElementById('editModeCurtain');
+  if (!curtain || !curtain.classList.contains('show')) return;
+  if (curtain.contains(e.target) || e.target.id === 'editRouteBtn') return;
+  curtain.classList.remove('show');
+});
+
+// בוחר מצב עריכה - יוצר routeBuilder בפעם הראשונה בלבד (נשמר לאורך כל
+// החלפות המצב הבאות, כדי שהמסלול שנבנה עד כה לא יאבד כשעוברים בין מצבים -
+// ראו createRouteBuilder). מצב 'osm' דורש שליפה חיה מ-Overpass (אסינכרוני) -
+// שאר המצבים מיידיים.
+function selectEditMode(mode) {
+  closeEditCurtain();
+
+  if (mode === 'cut') {
+    if (!currentMapRoutesFullPoints.length) { alert('אין מסלולים טעונים לחיתוך'); return; }
+    cutPool = RouteEditor.buildPool(currentMapRoutesFullPoints);
+    activateEditMode('cut');
+    return;
+  }
+
+  if (mode === 'freehand') {
+    activateEditMode('freehand');
+    return;
+  }
+
+  if (mode === 'osm') {
+    if (osmFetchInFlight || !routeMapInstance) return;
+    osmFetchInFlight = true;
+    document.getElementById('mapCutterToolbar').style.display = 'flex';
+    setCutterStatus('טוען נתיבים מהמפה...');
+    var b = routeMapInstance.getBounds();
+    RouteEditor.fetchOsmPathsPool({ south: b.getSouth(), west: b.getWest(), north: b.getNorth(), east: b.getEast() })
+      .then(function (pool) {
+        osmFetchInFlight = false;
+        osmPool = pool;
+        activateEditMode('osm');
+      })
+      .catch(function (err) {
+        osmFetchInFlight = false;
+        alert(err.message || 'שגיאה בשליפת נתיבים מהמפה');
+        if (!editMode) document.getElementById('mapCutterToolbar').style.display = 'none';
+        else setCutterStatus((routeBuilder ? routeBuilder.getPoints().length : 0) + ' נקודות במסלול');
+      });
+  }
+}
+
+function activateEditMode(mode) {
+  if (!routeBuilder) routeBuilder = RouteEditor.createRouteBuilder();
+  editMode = mode;
+  updateCurtainChecks();
+  document.getElementById('mapCutterToolbar').style.display = 'flex';
+  setCutterStatus(routeBuilder.hasStarted() ? (routeBuilder.getPoints().length + ' נקודות במסלול') : 'לחץ על המפה כדי להתחיל');
+}
+
+// עוצר את מצב העריכה האינטראקטיבי (בלי לשמור/להוריד קובץ, ראו downloadNewRoute
+// למטה שעכשיו נפרד לגמרי) - routeBuilder/cutPool/osmPool **נשארים** קיימים
+// (בניגוד ל-deactivateEditMode) כדי שאפשר יהיה עדיין ללחוץ UNDO/להוריד קובץ,
+// ואם המשתמש בוחר שוב מצב מהוילון - להמשיך לבנות את אותו מסלול בדיוק.
+function stopEditMode() {
+  closeEditCurtain();
+  editMode = null;
+  updateCurtainChecks();
+  if (routeMapInstance) routeMapInstance.getContainer().style.cursor = '';
+}
+
+// מוריד את הקובץ הנוכחי **ואז מוחק את המסלול החדש** (קורא ל-deleteNewSegment) -
+// לא נוגע ב-editMode, כדי שאם מצב עריכה עדיין פעיל אפשר להתחיל לבנות מסלול
+// נוסף מיד באותו מצב.
+function downloadNewRoute() {
+  if (!routeBuilder || !routeBuilder.hasStarted()) { alert('לא נבחרה אף נקודה'); return; }
+  var pts = routeBuilder.getPoints();
+  if (pts.length < 2) { alert('יש לבחור לפחות שתי נקודות'); return; }
+  RouteEditor.downloadGpx(pts, 'מסלול_חדש.gpx', 'מסלול חדש');
+  deleteNewSegment();
+}
+
+// איפוס קשיח מלא (routeBuilder/cutPool/osmPool כולם null) - בשימוש רק ע"י
+// resetCutterUI כשמסלולים נטענים/נסגרים מחדש על המפה (ראו שם) - בניגוד ל-
+// stopEditMode ה"רך" למעלה שנשאר עם כל המידע הקיים.
+function deactivateEditMode() {
+  editMode = null;
+  routeBuilder = null;
+  cutPool = null;
+  osmPool = null;
+  updateCurtainChecks();
+  clearCutterVisuals();
+  document.getElementById('mapCutterToolbar').style.display = 'none';
+  if (routeMapInstance) routeMapInstance.getContainer().style.cursor = '';
+}
+
+// מאפס מצב עריכה פעיל בכל פעם שנטענים מסלולים חדשים למפה (showOnMap) - כדי
+// שהמסלול הנבנה תמיד תואם את מה שבאמת מוצג, לא נשאר "יתום" ממסלולים שכבר
+// לא נטענים.
+function resetCutterUI() {
+  // איפוס קשיח תמיד - גם אם editMode כבר null (נעצר עם stopEditMode אבל
+  // routeBuilder עדיין חי) - אחרת routeBuilder ישן היה נשאר משויך לבריכות
+  // (cutPool/osmPool) שנבנו מחדש בפעם הבאה שנבחר מצב, ומתייחס לנקודות/מסלולים
+  // שכבר לא קיימים.
+  deactivateEditMode();
+}
+
+// מוחק את המסלול החדש המוצג כרגע על המפה (בין אם הסתיים ונשמר ובין אם באמצע
+// בנייה) - כפתור נפרד "מחיקת מקטע חדש", לא קשור לביטול מצב העריכה עצמו. אם
+// מצב עריכה עדיין פעיל, מאפס גם את היסטוריית הבחירה כדי שאפשר להתחיל מחדש
+// בלי לצאת ולהיכנס מחדש למצב עריכה.
+function deleteNewSegment() {
+  clearCutterVisuals();
+  if (routeBuilder) {
+    routeBuilder.reset();
+    setCutterStatus('נמחק. לחץ על המפה כדי להתחיל מחדש');
+  }
+  updateCutterStats();
+}
+
+function clearCutterVisuals() {
+  if (!routeMapInstance) return;
+  cutterMarkers.forEach(function (m) { routeMapInstance.removeLayer(m); });
+  cutterMarkers = [];
+  if (cutterPreviewLine) { routeMapInstance.removeLayer(cutterPreviewLine); cutterPreviewLine = null; }
+}
+
+function setCutterStatus(msg) {
+  var el = document.getElementById('cutterStatus');
+  if (el) el.textContent = msg;
+}
+
+function updateCutterStats() {
+  var stats = { distanceKm: 0, climbM: 0, descentM: 0 };
+  if (routeBuilder) stats = RouteEditor.computeStats(routeBuilder.getPoints());
+  var distEl = document.getElementById('cutterDist');
+  var climbEl = document.getElementById('cutterClimb');
+  var descentEl = document.getElementById('cutterDescent');
+  if (distEl) distEl.textContent = stats.distanceKm.toFixed(2);
+  if (climbEl) climbEl.textContent = Math.round(stats.climbM);
+  if (descentEl) descentEl.textContent = Math.round(stats.descentM);
+}
+
+// ממירות את הבריכה המתאימה למיקומי פיקסלים על המסך - מחושב מחדש בכל קריאה
+// (לא נשמר במטמון) כי pan/zoom של המפה משנים את זה בכל רגע.
+function cutPoolScreenPoints() {
+  return cutPool.map(function (p) { return routeMapInstance.latLngToContainerPoint([p.lat, p.lon]); });
+}
+function osmPoolScreenPoints() {
+  return osmPool.map(function (p) { return routeMapInstance.latLngToContainerPoint([p.lat, p.lon]); });
+}
+
+function handleModeClick(containerPoint, pool, poolScreenPoints) {
+  if (!routeBuilder || !pool) return;
+  var result = routeBuilder.addFromPool(containerPoint.x, containerPoint.y, poolScreenPoints, pool, RouteEditor.SNAP_THRESHOLD_PX);
+  if (!result.ok) {
+    setCutterStatus('⚠ ' + result.error);
+    return;
+  }
+  addPointMarkerAndRefresh(result.point);
+}
+
+function handleFreehandClick(latlng) {
+  if (!routeBuilder) return;
+  var result = routeBuilder.addFreehand(latlng.lat, latlng.lng);
+  addPointMarkerAndRefresh(result.point);
+}
+
+function addPointMarkerAndRefresh(point) {
+  var marker = L.circleMarker([point.lat, point.lon], {
+    radius: 6, color: '#fff', weight: 2, fillColor: '#E0923F', fillOpacity: 1
+  }).addTo(routeMapInstance);
+  cutterMarkers.push(marker);
+  redrawCutterPreview();
+  setCutterStatus(routeBuilder.getPoints().length + ' נקודות במסלול');
+  updateCutterStats();
+}
+
+function redrawCutterPreview() {
+  if (cutterPreviewLine) { routeMapInstance.removeLayer(cutterPreviewLine); cutterPreviewLine = null; }
+  var pts = routeBuilder.getPoints();
+  if (pts.length < 2) return;
+  cutterPreviewLine = L.polyline(pts.map(function (p) { return [p.lat, p.lon]; }), {
+    color: '#E0923F', weight: 5, dashArray: '8,6'
+  }).addTo(routeMapInstance);
+}
+
+function cutterUndo() {
+  if (!routeBuilder) return;
+  routeBuilder.undo();
+  var m = cutterMarkers.pop();
+  if (m) routeMapInstance.removeLayer(m);
+  redrawCutterPreview();
+  setCutterStatus(routeBuilder.getPoints().length + ' נקודות במסלול');
+  updateCutterStats();
 }
 
 function copyCoordToClipboard(text, btn) {
