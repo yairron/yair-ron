@@ -1,6 +1,6 @@
 {
-  "generated_at": "2026-08-22T21:23:54",
-  "route_count": 565,
+  "generated_at": "2026-08-23T09:30:18",
+  "route_count": 569,
   "routes": [
     {
       "id": 698,
@@ -11848,17 +11848,17 @@
       "thumbnail": "thumbnails/2024-05-22_נווה זוהר.jpg"
     },
     {
-      "id": 392,
+      "id": 708,
       "file_name": "2024-07-09_געתון_גשר הזיו_געתון.gpx",
       "gpx_path": "GPX_files/2024-07-09_געתון_גשר הזיו_געתון.gpx",
       "date": "2024-07-09",
       "date_source": "שם קובץ",
-      "activity": "לא ברור (מהירות חריגה: 119.3 קמ״ש)",
+      "activity": "רכיבת אופניים",
       "source": "הקלטה",
-      "distance_km": 30.47,
-      "elevation_gain_m": 282,
-      "elevation_loss_m": 375,
-      "point_count": 7758,
+      "distance_km": 30.45,
+      "elevation_gain_m": 430,
+      "elevation_loss_m": 535,
+      "point_count": 7654,
       "start_lat": 33.00495,
       "start_lon": 35.21543,
       "end_lat": 33.00911,
@@ -11873,7 +11873,7 @@
       ],
       "settlements_found": true,
       "invalid": false,
-      "removed_points": 1653,
+      "removed_points": 0,
       "thumbnail": "thumbnails/2024-07-09_געתון_גשר הזיו_געתון.jpg"
     },
     {
@@ -16082,6 +16082,118 @@
       "invalid": false,
       "removed_points": 0,
       "thumbnail": "thumbnails/געתון יחיעם עליון שיירה דרדרת וילה הילה.jpg"
+    },
+    {
+      "id": 709,
+      "file_name": "דימונה הרי דימונה הר שרף תיכנון .gpx",
+      "gpx_path": "GPX_files/דימונה הרי דימונה הר שרף תיכנון .gpx",
+      "date": "2022-04-07",
+      "date_source": "timestamps בקובץ",
+      "activity": "רכיבת אופניים",
+      "source": "הקלטה",
+      "distance_km": 31.79,
+      "elevation_gain_m": 562,
+      "elevation_loss_m": 563,
+      "point_count": 10302,
+      "start_lat": 31.07867,
+      "start_lon": 35.03338,
+      "end_lat": 31.07991,
+      "end_lon": 35.04147,
+      "regions": [
+        "נגב וערבה"
+      ],
+      "settlements": [
+        "דימונה",
+        "ערערה-בנגב"
+      ],
+      "settlements_found": true,
+      "invalid": false,
+      "removed_points": 1,
+      "thumbnail": "thumbnails/דימונה הרי דימונה הר שרף תיכנון .jpg"
+    },
+    {
+      "id": 710,
+      "file_name": "סינגל דימונה - תיכנון.gpx",
+      "gpx_path": "GPX_files/סינגל דימונה - תיכנון.gpx",
+      "date": "2026-08-23",
+      "date_source": "תאריך שינוי הקובץ (גיבוי)",
+      "activity": "לא ברור",
+      "source": "תכנון מסלול",
+      "distance_km": 13.1,
+      "elevation_gain_m": 235,
+      "elevation_loss_m": 339,
+      "point_count": 366,
+      "start_lat": 31.08075,
+      "start_lon": 35.02583,
+      "end_lat": 31.0847,
+      "end_lon": 35.06634,
+      "regions": [
+        "נגב וערבה"
+      ],
+      "settlements": [
+        "דימונה",
+        "ערערה-בנגב"
+      ],
+      "settlements_found": true,
+      "invalid": false,
+      "removed_points": 0,
+      "thumbnail": "thumbnails/סינגל דימונה - תיכנון.jpg"
+    },
+    {
+      "id": 711,
+      "file_name": "סינגל דימונה ארוך טכני תכנון.gpx",
+      "gpx_path": "GPX_files/סינגל דימונה ארוך טכני תכנון.gpx",
+      "date": "2026-08-23",
+      "date_source": "תאריך שינוי הקובץ (גיבוי)",
+      "activity": "לא ברור",
+      "source": "תכנון מסלול",
+      "distance_km": 19.24,
+      "elevation_gain_m": 372,
+      "elevation_loss_m": 372,
+      "point_count": 613,
+      "start_lat": 31.08075,
+      "start_lon": 35.02583,
+      "end_lat": 31.08126,
+      "end_lon": 35.02649,
+      "regions": [
+        "נגב וערבה"
+      ],
+      "settlements": [
+        "דימונה",
+        "ערערה-בנגב"
+      ],
+      "settlements_found": true,
+      "invalid": false,
+      "removed_points": 0,
+      "thumbnail": "thumbnails/סינגל דימונה ארוך טכני תכנון.jpg"
+    },
+    {
+      "id": 712,
+      "file_name": "סינגל דימונה ארוך תיכנון.gpx",
+      "gpx_path": "GPX_files/סינגל דימונה ארוך תיכנון.gpx",
+      "date": "2026-08-23",
+      "date_source": "תאריך שינוי הקובץ (גיבוי)",
+      "activity": "לא ברור",
+      "source": "תכנון מסלול",
+      "distance_km": 20.49,
+      "elevation_gain_m": 378,
+      "elevation_loss_m": 382,
+      "point_count": 637,
+      "start_lat": 31.08075,
+      "start_lon": 35.02583,
+      "end_lat": 31.08091,
+      "end_lon": 35.02632,
+      "regions": [
+        "נגב וערבה"
+      ],
+      "settlements": [
+        "דימונה",
+        "ערערה-בנגב"
+      ],
+      "settlements_found": true,
+      "invalid": false,
+      "removed_points": 0,
+      "thumbnail": "thumbnails/סינגל דימונה ארוך תיכנון.jpg"
     }
   ]
 }

@@ -28,9 +28,9 @@ h1{font-family:'Varela Round',sans-serif;font-size:2.6rem;font-weight:800;color:
 .control-field input:focus,.control-field select:focus{outline:2px solid var(--secondary)}
 .result-count{font-size:.9rem;color:var(--dark);font-weight:600;margin-top:4px}
 
-.select-all-bar{background:white;border-radius:14px;padding:12px 20px;margin-bottom:14px;box-shadow:0 6px 18px rgba(0,0,0,.15);display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
-.select-all-bar button{padding:9px 18px;border-radius:12px;border:none;font-weight:700;cursor:pointer;font-family:'Assistant',sans-serif;font-size:.9rem;background:var(--primary);color:white;transition:background .2s}
-.select-all-bar button:hover{background:var(--dark)}
+.select-all-toggle{display:flex;align-items:center;gap:8px;margin-bottom:10px;padding-inline-start:6px}
+.select-all-toggle input[type="checkbox"]{width:20px;height:20px;cursor:pointer;accent-color:var(--primary);background:white;border-radius:4px}
+.select-all-toggle label{color:white;font-weight:700;font-size:.95rem;text-shadow:1px 1px 4px rgba(0,0,0,.3);cursor:pointer;user-select:none}
 
 .recent-searches-dropdown{position:absolute;top:calc(100% + 4px);right:0;left:0;background:white;border:1px solid #CFE0D3;border-radius:10px;box-shadow:0 8px 20px rgba(0,0,0,.18);z-index:10;overflow:hidden}
 .recent-search-item{padding:9px 14px;font-size:.9rem;color:var(--text);cursor:pointer;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
@@ -183,9 +183,9 @@ footer a{color:white;text-decoration:underline;font-weight:600}
     <div class="result-count" id="resultCount"></div>
   </div>
 
-  <div class="select-all-bar" id="selectAllBar" style="display:none">
-    <button onclick="selectAllFiltered()">✓ בחר את כולם</button>
-    <button onclick="clearAllFiltered()">✗ נקה את כולם</button>
+  <div class="select-all-toggle" id="selectAllToggle" style="display:none">
+    <input type="checkbox" id="selectAllCheckbox" onchange="onSelectAllToggle(this.checked)">
+    <label for="selectAllCheckbox">בחר הכל</label>
   </div>
 
   <div class="accordions-container" id="routesContainer"></div>
@@ -272,8 +272,13 @@ function getFiltered() {
       var d = routeDistanceKm(r, coord);
       if (d === null || d > COORD_SEARCH_RADIUS_KM) return false;
     } else if (q) {
+      // תמיכה בכמה יישובים/מילות חיפוש בפסיקים - "געתון, כברי" מוצא מסלולים
+      // שמכילים את **כל** המונחים (לא רק אחד מהם), בכל אחד מהשדות בנפרד.
       var haystack = r.file_name.toLowerCase() + ' ' + r.settlements.join(' ').toLowerCase() + ' ' + r.id;
-      if (haystack.indexOf(q) === -1) return false;
+      var terms = q.split(',').map(function (t) { return t.trim(); }).filter(function (t) { return t.length > 0; });
+      if (!terms.length) return false;
+      var allTermsMatch = terms.every(function (term) { return haystack.indexOf(term) !== -1; });
+      if (!allTermsMatch) return false;
     }
     return true;
   });
@@ -409,7 +414,7 @@ function render() {
   // "בחר/נקה את כולם" מוצג רק כשהמשתמש הקליד משהו בשדה החיפוש עצמו - לא רק
   // בחר מסנן מרשימה (סוג פעילות/מקור/אזור) בלי חיפוש טקסט/קורדינטות בפועל.
   var searchActive = document.getElementById('searchInput').value.trim().length > 0;
-  document.getElementById('selectAllBar').style.display = searchActive ? 'flex' : 'none';
+  document.getElementById('selectAllToggle').style.display = searchActive ? 'flex' : 'none';
 
   var start = (currentPage - 1) * PAGE_SIZE;
   var pageItems = filtered.slice(start, start + PAGE_SIZE);
@@ -473,15 +478,14 @@ function clearSelection() {
   render();
 }
 
-// שני אלה פועלים רק על תוצאות החיפוש הנוכחיות (getFiltered()) - לא על כל
-// המסלולים בקטלוג, גם אם רק חלק מהם מוצג בעמוד הנוכחי (עימוד).
-function selectAllFiltered() {
-  getFiltered().forEach(function (r) { selectedFiles.add(r.file_name); });
-  render();
-}
-
-function clearAllFiltered() {
-  getFiltered().forEach(function (r) { selectedFiles.delete(r.file_name); });
+// טיק - מנקה בחירה קודמת ובוחר רק את תוצאות החיפוש הנוכחיות (getFiltered(),
+// לא כל המסלולים בקטלוג, גם אם רק חלק מהם מוצג בעמוד הנוכחי בגלל עימוד).
+// הסרת הטיק - מנקה את כל הבחירה לגמרי.
+function onSelectAllToggle(checked) {
+  selectedFiles.clear();
+  if (checked) {
+    getFiltered().forEach(function (r) { selectedFiles.add(r.file_name); });
+  }
   render();
 }
 
@@ -693,15 +697,14 @@ function closeMapOverlay() {
 }
 
 function copyCoordToClipboard(text, btn) {
-  var original = btn.textContent;
-  function showCopied() {
+  function showCopiedThenClose() {
     btn.textContent = '✓ הועתק';
-    setTimeout(function () { btn.textContent = original; }, 1500);
+    setTimeout(function () { routeMapInstance.closePopup(); }, 900);
   }
   if (navigator.clipboard && navigator.clipboard.writeText) {
-    navigator.clipboard.writeText(text).then(showCopied).catch(function () { copyCoordFallback(text, showCopied); });
+    navigator.clipboard.writeText(text).then(showCopiedThenClose).catch(function () { copyCoordFallback(text, showCopiedThenClose); });
   } else {
-    copyCoordFallback(text, showCopied);
+    copyCoordFallback(text, showCopiedThenClose);
   }
 }
 
