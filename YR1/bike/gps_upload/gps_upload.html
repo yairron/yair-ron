@@ -98,20 +98,6 @@ footer a{color:white;text-decoration:underline;font-weight:600}
     </div>
   </div>
 
-  <div class="map-wrap" id="mapWrap">
-    <div id="uploadMap"></div>
-  </div>
-
-  <div class="cutter-toolbar" id="cutterToolbar">
-    <button onclick="cutterUndo()">↩ UNDO</button>
-    <span id="cutterStatus"></span>
-    <div class="cutter-stats">
-      <span>📏 <b id="cutterDist">0.0</b> ק"מ</span>
-      <span>↗ <b id="cutterClimb">0</b> מ'</span>
-      <span>↘ <b id="cutterDescent">0</b> מ'</span>
-    </div>
-  </div>
-
   <div class="empty-state" id="emptyState">עדיין לא הועלה קובץ GPX</div>
 
   <div class="routes-list" id="routesList"></div>
@@ -129,6 +115,20 @@ footer a{color:white;text-decoration:underline;font-weight:600}
     <button onclick="downloadNewRoute()">⬇️ הורדת מסלול חדש</button>
     <button onclick="deleteNewSegment()">🗑️ מחיקת מסלול חדש</button>
     <a href="../../idx1.html" class="btn-nav" style="background:rgba(255,255,255,.9);color:var(--primary)">🏠 חזרה לראשי</a>
+  </div>
+
+  <div class="map-wrap" id="mapWrap">
+    <div id="uploadMap"></div>
+  </div>
+
+  <div class="cutter-toolbar" id="cutterToolbar">
+    <button onclick="cutterUndo()">↩ UNDO</button>
+    <span id="cutterStatus"></span>
+    <div class="cutter-stats">
+      <span>📏 <b id="cutterDist">0.0</b> ק"מ</span>
+      <span>↗ <b id="cutterClimb">0</b> מ'</span>
+      <span>↘ <b id="cutterDescent">0</b> מ'</span>
+    </div>
   </div>
 </div>
 

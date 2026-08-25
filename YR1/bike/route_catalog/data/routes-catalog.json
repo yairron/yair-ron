@@ -1,6 +1,6 @@
 {
-  "generated_at": "2026-08-23T18:49:08",
-  "route_count": 571,
+  "generated_at": "2026-08-25T13:34:10",
+  "route_count": 577,
   "routes": [
     {
       "id": 698,
@@ -16055,6 +16055,93 @@
       "thumbnail": "thumbnails/2026-08-22_06-26-28 כברי כזיב נהריה סובב כברי צרעות.jpg"
     },
     {
+      "id": 715,
+      "file_name": "ביריה סינגל ביריה מבת יער תכנון.GPX",
+      "gpx_path": "GPX_files/ביריה סינגל ביריה מבת יער תכנון.GPX",
+      "date": "2023-07-26",
+      "date_source": "timestamps בקובץ",
+      "activity": "רכיבת אופניים",
+      "source": "הקלטה",
+      "distance_km": 29.11,
+      "elevation_gain_m": 611,
+      "elevation_loss_m": 649,
+      "point_count": 2992,
+      "start_lat": 32.99504,
+      "start_lon": 35.51733,
+      "end_lat": 32.99505,
+      "end_lon": 35.51733,
+      "regions": [
+        "רמת הגולן והחרמון",
+        "צפון"
+      ],
+      "settlements": [
+        "עמוקה",
+        "בירייה",
+        "חצור הגלילית"
+      ],
+      "settlements_found": true,
+      "invalid": false,
+      "removed_points": 0,
+      "thumbnail": "thumbnails/ביריה סינגל ביריה מבת יער תכנון.jpg"
+    },
+    {
+      "id": 716,
+      "file_name": "בעשט סינגל לימונים מלא תכנון.gpx",
+      "gpx_path": "GPX_files/בעשט סינגל לימונים מלא תכנון.gpx",
+      "date": "2021-03-15",
+      "date_source": "timestamps בקובץ",
+      "activity": "הליכה רגלית",
+      "source": "הקלטה",
+      "distance_km": 27.46,
+      "elevation_gain_m": 720,
+      "elevation_loss_m": 722,
+      "point_count": 4819,
+      "start_lat": 32.98923,
+      "start_lon": 35.48067,
+      "end_lat": 32.9892,
+      "end_lon": 35.48065,
+      "regions": [
+        "צפון"
+      ],
+      "settlements": [
+        "בירייה",
+        "צפת"
+      ],
+      "settlements_found": true,
+      "invalid": false,
+      "removed_points": 0,
+      "thumbnail": "thumbnails/בעשט סינגל לימונים מלא תכנון.jpg"
+    },
+    {
+      "id": 717,
+      "file_name": "געתון בני וילה הר בטח.gpx",
+      "gpx_path": "GPX_files/געתון בני וילה הר בטח.gpx",
+      "date": "2026-08-25",
+      "date_source": "timestamps בקובץ",
+      "activity": "רכיבת אופניים",
+      "source": "הקלטה",
+      "distance_km": 28.25,
+      "elevation_gain_m": 554,
+      "elevation_loss_m": 559,
+      "point_count": 8283,
+      "start_lat": 33.00504,
+      "start_lon": 35.21548,
+      "end_lat": 33.00506,
+      "end_lon": 35.21549,
+      "regions": [
+        "צפון"
+      ],
+      "settlements": [
+        "עין יעקב",
+        "מעונה",
+        "מעיליא"
+      ],
+      "settlements_found": true,
+      "invalid": false,
+      "removed_points": 0,
+      "thumbnail": "thumbnails/געתון בני וילה הר בטח.jpg"
+    },
+    {
       "id": 702,
       "file_name": "געתון יחיעם עליון שיירה דרדרת וילה הילה.gpx",
       "gpx_path": "GPX_files/געתון יחיעם עליון שיירה דרדרת וילה הילה.gpx",
@@ -16110,6 +16197,92 @@
       "invalid": false,
       "removed_points": 1,
       "thumbnail": "thumbnails/דימונה הרי דימונה הר שרף תיכנון .jpg"
+    },
+    {
+      "id": 718,
+      "file_name": "חנניה חזון תיכנון.gpx",
+      "gpx_path": "GPX_files/חנניה חזון תיכנון.gpx",
+      "date": "2026-08-23",
+      "date_source": "תאריך שינוי הקובץ (גיבוי)",
+      "activity": "לא ברור",
+      "source": "תכנון מסלול",
+      "distance_km": 43.96,
+      "elevation_gain_m": 947,
+      "elevation_loss_m": 964,
+      "point_count": 2359,
+      "start_lat": 32.90926,
+      "start_lon": 35.42265,
+      "end_lat": 32.9088,
+      "end_lon": 35.42267,
+      "regions": [
+        "צפון"
+      ],
+      "settlements": [
+        "מורן",
+        "כפר חנניה",
+        "חזון"
+      ],
+      "settlements_found": true,
+      "invalid": false,
+      "removed_points": 0,
+      "thumbnail": "thumbnails/חנניה חזון תיכנון.jpg"
+    },
+    {
+      "id": 719,
+      "file_name": "סובב מירון תכנון 1.gpx",
+      "gpx_path": "GPX_files/סובב מירון תכנון 1.gpx",
+      "date": "2026-08-25",
+      "date_source": "תאריך שינוי הקובץ (גיבוי)",
+      "activity": "לא ברור",
+      "source": "תכנון מסלול",
+      "distance_km": 12.24,
+      "elevation_gain_m": 496,
+      "elevation_loss_m": 495,
+      "point_count": 1007,
+      "start_lat": 33.00895,
+      "start_lon": 35.39341,
+      "end_lat": 33.00871,
+      "end_lon": 35.39336,
+      "regions": [
+        "צפון"
+      ],
+      "settlements": [
+        "ברעם",
+        "בר יוחאי",
+        "מירון"
+      ],
+      "settlements_found": true,
+      "invalid": false,
+      "removed_points": 0,
+      "thumbnail": "thumbnails/סובב מירון תכנון 1.jpg"
+    },
+    {
+      "id": 634,
+      "file_name": "סובב מירון תכנון 2  מונה.gpx",
+      "gpx_path": "GPX_files/סובב מירון תכנון 2  מונה.gpx",
+      "date": "2026-04-24",
+      "date_source": "timestamps בקובץ",
+      "activity": "רכיבת אופניים",
+      "source": "הקלטה",
+      "distance_km": 25.52,
+      "elevation_gain_m": 988,
+      "elevation_loss_m": 1156,
+      "point_count": 405,
+      "start_lat": 33.0147,
+      "start_lon": 35.39305,
+      "end_lat": 33.01005,
+      "end_lon": 35.36067,
+      "regions": [
+        "צפון"
+      ],
+      "settlements": [
+        "ברעם",
+        "מירון"
+      ],
+      "settlements_found": true,
+      "invalid": false,
+      "removed_points": 22,
+      "thumbnail": "thumbnails/סובב מירון תכנון 2  מונה.jpg"
     },
     {
       "id": 710,
