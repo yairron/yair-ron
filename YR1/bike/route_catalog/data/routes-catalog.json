@@ -1,6 +1,6 @@
 {
-  "generated_at": "2026-08-25T13:34:10",
-  "route_count": 577,
+  "generated_at": "2026-08-26T13:18:22",
+  "route_count": 579,
   "routes": [
     {
       "id": 698,
@@ -16171,6 +16171,35 @@
       "thumbnail": "thumbnails/געתון יחיעם עליון שיירה דרדרת וילה הילה.jpg"
     },
     {
+      "id": 720,
+      "file_name": "געתון מעונה סמיע כיסרא געתון_תכנון_20250829.gpx",
+      "gpx_path": "GPX_files/געתון מעונה סמיע כיסרא געתון_תכנון_20250829.gpx",
+      "date": "2025-08-29",
+      "date_source": "שם קובץ",
+      "activity": "הליכה רגלית",
+      "source": "הקלטה",
+      "distance_km": 31.13,
+      "elevation_gain_m": 673,
+      "elevation_loss_m": 673,
+      "point_count": 2694,
+      "start_lat": 33.00557,
+      "start_lon": 35.21726,
+      "end_lat": 33.00553,
+      "end_lon": 35.2172,
+      "regions": [
+        "צפון"
+      ],
+      "settlements": [
+        "עין יעקב",
+        "מעונה",
+        "כסרא-סמיע"
+      ],
+      "settlements_found": true,
+      "invalid": false,
+      "removed_points": 0,
+      "thumbnail": "thumbnails/געתון מעונה סמיע כיסרא געתון_תכנון_20250829.jpg"
+    },
+    {
       "id": 709,
       "file_name": "דימונה הרי דימונה הר שרף תיכנון .gpx",
       "gpx_path": "GPX_files/דימונה הרי דימונה הר שרף תיכנון .gpx",
@@ -16424,6 +16453,36 @@
       "invalid": false,
       "removed_points": 1,
       "thumbnail": "thumbnails/סינגלים דימונה.jpg"
+    },
+    {
+      "id": 721,
+      "file_name": "תחנת אלונים - עין ריחניה .gpx",
+      "gpx_path": "GPX_files/תחנת אלונים - עין ריחניה .gpx",
+      "date": "2022-08-26",
+      "date_source": "timestamps בקובץ",
+      "activity": "רכיבת אופניים",
+      "source": "הקלטה",
+      "distance_km": 44.61,
+      "elevation_gain_m": 536,
+      "elevation_loss_m": 539,
+      "point_count": 6230,
+      "start_lat": 32.70963,
+      "start_lon": 35.14408,
+      "end_lat": 32.70997,
+      "end_lon": 35.14464,
+      "regions": [
+        "צפון",
+        "ירושלים ומדבר יהודה"
+      ],
+      "settlements": [
+        "יקנעם עילית",
+        "כפר יהושע",
+        "יקנעם (מושבה)"
+      ],
+      "settlements_found": true,
+      "invalid": false,
+      "removed_points": 0,
+      "thumbnail": "thumbnails/תחנת אלונים - עין ריחניה .jpg"
     }
   ]
 }
