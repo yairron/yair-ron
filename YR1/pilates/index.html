@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>קטלוג פילאטיס וגומיות</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Assistant:wght@300;400;600;700;800&family=Varela+Round&display=swap" rel="stylesheet">
+<style>
+    :root {
+        --primary: #3E7A6D;
+        --secondary: #6FAF9E;
+        --accent: #E8A840;
+        --light: #F3FAF8;
+        --dark: #1F433C;
+        --text: #2C3E50;
+        --card-bg: #FFFFFF;
+        --border: #E1EEEA;
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+        font-family: 'Assistant', 'Segoe UI', Tahoma, sans-serif;
+        background: linear-gradient(135deg, #dff3ec 0%, #f3fbf8 50%, #eef7f2 100%);
+        color: var(--text);
+        min-height: 100vh;
+        padding: 20px;
+    }
+    .container { max-width: 1200px; margin: 0 auto; }
+    header { text-align: center; margin-bottom: 24px; }
+    h1 {
+        font-family: 'Varela Round', sans-serif;
+        font-size: 2.4rem;
+        color: var(--dark);
+        margin-bottom: 8px;
+    }
+    header p { color: var(--primary); font-size: 1.05rem; }
+    .back-link { display: inline-block; margin-top: 10px; color: var(--primary); text-decoration: none; font-weight: 600; }
+    .back-link:hover { text-decoration: underline; }
+
+    .tabs { display: flex; justify-content: center; gap: 12px; margin: 24px 0; flex-wrap: wrap; }
+    .tab-btn {
+        background: white;
+        border: 2px solid var(--secondary);
+        color: var(--primary);
+        border-radius: 999px;
+        padding: 12px 28px;
+        font-size: 1.05rem;
+        font-weight: 700;
+        cursor: pointer;
+        transition: all 0.2s;
+        font-family: inherit;
+    }
+    .tab-btn.active { background: var(--primary); color: white; border-color: var(--primary); }
+    .tab-btn:hover { transform: translateY(-2px); box-shadow: 0 4px 10px rgba(0,0,0,0.08); }
+
+    .filters {
+        background: var(--card-bg);
+        border-radius: 18px;
+        padding: 20px;
+        box-shadow: 0 6px 20px rgba(0,0,0,0.06);
+        margin-bottom: 28px;
+    }
+    .filters-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+        gap: 18px;
+    }
+    .filter-group h3 { font-size: 0.95rem; color: var(--dark); margin-bottom: 8px; }
+    .chip-list { display: flex; flex-wrap: wrap; gap: 6px; }
+    .chip {
+        border: 1.5px solid var(--border);
+        background: var(--light);
+        border-radius: 999px;
+        padding: 5px 12px;
+        font-size: 0.85rem;
+        cursor: pointer;
+        user-select: none;
+        transition: all 0.15s;
+        color: var(--text);
+    }
+    .chip.selected { background: var(--secondary); border-color: var(--secondary); color: white; }
+    .chip:hover { border-color: var(--secondary); }
+
+    .search-row { margin-top: 16px; display: flex; gap: 10px; align-items: center; flex-wrap: wrap; }
+    .search-row input[type="text"] {
+        flex: 1;
+        min-width: 220px;
+        padding: 10px 14px;
+        border-radius: 12px;
+        border: 1.5px solid var(--border);
+        font-size: 1rem;
+        font-family: inherit;
+    }
+    .clear-btn {
+        background: none;
+        border: 1.5px solid var(--border);
+        border-radius: 12px;
+        padding: 10px 16px;
+        cursor: pointer;
+        color: var(--dark);
+        font-family: inherit;
+        font-weight: 600;
+    }
+    .clear-btn:hover { border-color: var(--accent); color: var(--accent); }
+
+    .results-count { margin: 4px 4px 16px; color: var(--primary); font-weight: 600; }
+
+    .grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+        gap: 20px;
+    }
+    .card {
+        background: var(--card-bg);
+        border-radius: 18px;
+        overflow: hidden;
+        box-shadow: 0 6px 18px rgba(0,0,0,0.07);
+        display: flex;
+        flex-direction: column;
+        transition: transform 0.2s, box-shadow 0.2s;
+    }
+    .card:hover { transform: translateY(-4px); box-shadow: 0 12px 28px rgba(0,0,0,0.12); }
+    .card .thumb-wrap { position: relative; aspect-ratio: 16/9; background: #dfe9e5; }
+    .card .thumb-wrap img { width: 100%; height: 100%; object-fit: cover; display: block; }
+    .card .duration-badge {
+        position: absolute; bottom: 8px; left: 8px;
+        background: rgba(0,0,0,0.7); color: white;
+        font-size: 0.75rem; padding: 2px 8px; border-radius: 8px;
+    }
+    .card .type-badge {
+        position: absolute; top: 8px; right: 8px;
+        background: var(--accent); color: white;
+        font-size: 0.7rem; font-weight: 700; padding: 3px 10px; border-radius: 999px;
+    }
+    .card-body { padding: 14px 16px 18px; display: flex; flex-direction: column; gap: 8px; flex: 1; }
+    .card-title { font-size: 1.05rem; font-weight: 700; color: var(--dark); }
+    .card-channel { font-size: 0.8rem; color: #6b8f85; }
+    .tag-row { display: flex; flex-wrap: wrap; gap: 5px; margin-top: 2px; }
+    .tag {
+        font-size: 0.75rem;
+        padding: 3px 9px;
+        border-radius: 999px;
+        background: var(--light);
+        border: 1px solid var(--border);
+        color: var(--primary);
+    }
+    .tag.difficulty { background: #fff4e2; border-color: #f3d9a8; color: #a9700f; }
+    .card-desc { font-size: 0.85rem; color: var(--text); line-height: 1.5; flex: 1; }
+    .watch-btn {
+        margin-top: auto;
+        display: inline-block;
+        text-align: center;
+        background: var(--primary);
+        color: white;
+        text-decoration: none;
+        padding: 10px;
+        border-radius: 12px;
+        font-weight: 700;
+        transition: background 0.2s;
+    }
+    .watch-btn:hover { background: var(--dark); }
+
+    .empty-state {
+        text-align: center;
+        padding: 60px 20px;
+        color: #6b8f85;
+        font-size: 1.1rem;
+    }
+
+    footer { text-align: center; margin-top: 40px; padding: 20px; color: #6b8f85; font-size: 0.9rem; }
+    footer a { color: var(--primary); }
+
+    @media (max-width: 480px) {
+        h1 { font-size: 1.8rem; }
+        .tab-btn { padding: 10px 20px; font-size: 0.95rem; }
+    }
+</style>
+</head>
+<body>
+<div class="container">
+    <header>
+        <h1>🧘 קטלוג פילאטיס וגומיות</h1>
+        <p>תרגילים ושיעורים לתרגול בבית עם גומיות וציוד עזר</p>
+        <a class="back-link" href="../idx1.html">← חזרה לדף הפרויקטים</a>
+    </header>
+
+    <div class="tabs">
+        <button class="tab-btn active" data-type="exercise">🏋️ פרק תרגילים</button>
+        <button class="tab-btn" data-type="lesson">🧘 פרק שיעורים</button>
+    </div>
+
+    <div class="filters">
+        <div class="filters-grid">
+            <div class="filter-group" data-filter="muscles">
+                <h3>אזור גוף / שרירים</h3>
+                <div class="chip-list"></div>
+            </div>
+            <div class="filter-group" data-filter="equipment">
+                <h3>ציוד</h3>
+                <div class="chip-list"></div>
+            </div>
+            <div class="filter-group" data-filter="difficulty">
+                <h3>רמת קושי</h3>
+                <div class="chip-list"></div>
+            </div>
+            <div class="filter-group" data-filter="duration">
+                <h3>משך זמן</h3>
+                <div class="chip-list">
+                    <div class="chip" data-value="short">קצר (עד 15 דק')</div>
+                    <div class="chip" data-value="medium">בינוני (15-30)</div>
+                    <div class="chip" data-value="long">ארוך (30+)</div>
+                </div>
+            </div>
+        </div>
+        <div class="search-row">
+            <input type="text" id="searchBox" placeholder="חיפוש לפי שם התרגיל/שיעור...">
+            <button class="clear-btn" id="clearFilters">נקה סינון</button>
+        </div>
+    </div>
+
+    <div class="results-count" id="resultsCount"></div>
+    <div class="grid" id="grid"></div>
+    <div class="empty-state" id="emptyState" style="display:none;">לא נמצאו תוצאות התואמות לסינון שנבחר</div>
+</div>
+
+<footer>
+    <p>🤖 פותח עם ❤️ על ידי <a href="mailto:yairron@gmail.com">יאיר רון</a></p>
+</footer>
+
+<script>
+    const DURATION_BUCKETS = {
+        short: m => m <= 15,
+        medium: m => m > 15 && m <= 30,
+        long: m => m > 30
+    };
+
+    const state = {
+        currentType: 'exercise',
+        selected: { muscles: new Set(), equipment: new Set(), difficulty: new Set(), duration: new Set() },
+        search: '',
+        items: []
+    };
+
+    fetch('data/videos.json')
+        .then(r => r.json())
+        .then(data => {
+            state.items = data.items || [];
+            buildFilterChips();
+            render();
+        })
+        .catch(err => {
+            document.getElementById('grid').innerHTML = '<div class="empty-state">שגיאה בטעינת הנתונים. ודא שהעמוד מוגש משרת (לא נפתח כקובץ מקומי).</div>';
+            console.error(err);
+        });
+
+    function uniqueValues(field) {
+        const set = new Set();
+        state.items.forEach(item => (item[field] || []).forEach(v => set.add(v)));
+        return Array.from(set).sort();
+    }
+
+    function buildFilterChips() {
+        ['muscles', 'equipment', 'difficulty'].forEach(field => {
+            const container = document.querySelector(`.filter-group[data-filter="${field}"] .chip-list`);
+            container.innerHTML = '';
+            uniqueValues(field).forEach(value => {
+                const chip = document.createElement('div');
+                chip.className = 'chip';
+                chip.dataset.value = value;
+                chip.textContent = value;
+                container.appendChild(chip);
+            });
+        });
+
+        document.querySelectorAll('.filter-group').forEach(group => {
+            const field = group.dataset.filter;
+            group.querySelectorAll('.chip').forEach(chip => {
+                chip.addEventListener('click', () => {
+                    const value = chip.dataset.value;
+                    if (state.selected[field].has(value)) {
+                        state.selected[field].delete(value);
+                        chip.classList.remove('selected');
+                    } else {
+                        state.selected[field].add(value);
+                        chip.classList.add('selected');
+                    }
+                    render();
+                });
+            });
+        });
+    }
+
+    document.querySelectorAll('.tab-btn').forEach(btn => {
+        btn.addEventListener('click', () => {
+            document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+            state.currentType = btn.dataset.type;
+            render();
+        });
+    });
+
+    document.getElementById('searchBox').addEventListener('input', e => {
+        state.search = e.target.value.trim().toLowerCase();
+        render();
+    });
+
+    document.getElementById('clearFilters').addEventListener('click', () => {
+        Object.values(state.selected).forEach(set => set.clear());
+        state.search = '';
+        document.getElementById('searchBox').value = '';
+        document.querySelectorAll('.chip').forEach(c => c.classList.remove('selected'));
+        render();
+    });
+
+    function matchesFilters(item) {
+        if (item.type !== state.currentType) return false;
+
+        if (state.selected.muscles.size && !(item.muscles || []).some(m => state.selected.muscles.has(m))) return false;
+        if (state.selected.equipment.size && !(item.equipment || []).some(e => state.selected.equipment.has(e))) return false;
+        if (state.selected.difficulty.size && !state.selected.difficulty.has(item.difficulty)) return false;
+        if (state.selected.duration.size) {
+            const matchesDuration = Array.from(state.selected.duration).some(bucket => DURATION_BUCKETS[bucket](item.durationMinutes));
+            if (!matchesDuration) return false;
+        }
+        if (state.search && !item.title.toLowerCase().includes(state.search)) return false;
+
+        return true;
+    }
+
+    function render() {
+        const filtered = state.items.filter(matchesFilters);
+        const grid = document.getElementById('grid');
+        const emptyState = document.getElementById('emptyState');
+        const resultsCount = document.getElementById('resultsCount');
+
+        resultsCount.textContent = `נמצאו ${filtered.length} פריטים`;
+        grid.innerHTML = '';
+
+        if (!filtered.length) {
+            emptyState.style.display = 'block';
+            return;
+        }
+        emptyState.style.display = 'none';
+
+        filtered.forEach(item => grid.appendChild(renderCard(item)));
+    }
+
+    function renderCard(item) {
+        const card = document.createElement('div');
+        card.className = 'card';
+
+        const allTags = [
+            ...(item.muscles || []),
+            ...(item.equipment || [])
+        ].map(t => `<span class="tag">${t}</span>`).join('');
+
+        card.innerHTML = `
+            <div class="thumb-wrap">
+                <img src="${item.thumbnail}" alt="${item.title}" loading="lazy">
+                <span class="type-badge">${item.type === 'exercise' ? 'תרגיל' : 'שיעור'}</span>
+                <span class="duration-badge">${item.durationMinutes} דק'</span>
+            </div>
+            <div class="card-body">
+                <div class="card-title">${item.title}</div>
+                <div class="card-channel">${item.channel}</div>
+                <div class="tag-row">
+                    <span class="tag difficulty">${item.difficulty}</span>
+                    ${allTags}
+                </div>
+                <div class="card-desc">${item.description}</div>
+                <a class="watch-btn" href="${item.videoUrl}" target="_blank" rel="noopener">▶️ צפה בסרטון</a>
+            </div>
+        `;
+        return card;
+    }
+</script>
+</body>
+</html>
