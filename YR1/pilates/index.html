@@ -264,7 +264,14 @@
 
     function uniqueValues(field) {
         const set = new Set();
-        state.items.forEach(item => (item[field] || []).forEach(v => set.add(v)));
+        state.items.forEach(item => {
+            const val = item[field];
+            if (Array.isArray(val)) {
+                val.forEach(v => set.add(v));
+            } else if (val) {
+                set.add(val);
+            }
+        });
         return Array.from(set).sort();
     }
 
