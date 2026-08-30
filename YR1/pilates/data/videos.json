@@ -1,5 +1,5 @@
 {
-  "lastUpdate": "2026-08-29",
+  "lastUpdate": "2026-08-30",
   "items": [
     {
       "id": "ex01",
@@ -495,6 +495,21 @@
       "goal": ["חיזוק"],
       "language": "אנגלית",
       "description": "שיעור פילאטיס לגוף מלא ברמת ביניים, ללא ציוד, מפיזיותרפיסטית ומדריכת פילאטיס מוסמכת."
+    },
+    {
+      "id": "ex22",
+      "type": "exercise",
+      "title": "10 resistance band exercises you can do at home",
+      "channel": "British Heart Foundation",
+      "videoUrl": "https://www.youtube.com/watch?v=fgKHFLe654U",
+      "thumbnail": "https://i.ytimg.com/vi/fgKHFLe654U/hqdefault.jpg",
+      "muscles": ["גוף מלא"],
+      "equipment": ["גומיית רצועה ארוכה"],
+      "difficulty": "מתחילים",
+      "durationMinutes": 7,
+      "goal": ["חיזוק"],
+      "language": "אנגלית",
+      "description": "10 תרגילי גומיית התנגדות לגוף מלא, מעמותת בריאות הלב הבריטית - תוכן בטיחותי ומותאם לקהל רחב."
     }
   ]
 }
