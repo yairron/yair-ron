@@ -1,6 +1,6 @@
 {
-  "generated_at": "2026-08-28T15:24:28",
-  "route_count": 580,
+  "generated_at": "2026-08-31T16:50:26",
+  "route_count": 581,
   "routes": [
     {
       "id": 698,
@@ -16169,6 +16169,35 @@
       "invalid": false,
       "removed_points": 0,
       "thumbnail": "thumbnails/געתון יחיעם עליון שיירה דרדרת וילה הילה.jpg"
+    },
+    {
+      "id": 723,
+      "file_name": "געתון כברי ראש הנקרה וחזרה.gpx",
+      "gpx_path": "GPX_files/געתון כברי ראש הנקרה וחזרה.gpx",
+      "date": "2026-08-30",
+      "date_source": "תאריך שינוי הקובץ (גיבוי)",
+      "activity": "לא ברור",
+      "source": "תכנון מסלול",
+      "distance_km": 41.01,
+      "elevation_gain_m": 418,
+      "elevation_loss_m": 425,
+      "point_count": 8515,
+      "start_lat": 33.00508,
+      "start_lon": 35.21548,
+      "end_lat": 33.00503,
+      "end_lon": 35.21548,
+      "regions": [
+        "צפון"
+      ],
+      "settlements": [
+        "געתון",
+        "כברי",
+        "לימן"
+      ],
+      "settlements_found": true,
+      "invalid": false,
+      "removed_points": 0,
+      "thumbnail": "thumbnails/געתון כברי ראש הנקרה וחזרה.jpg"
     },
     {
       "id": 720,

@@ -1,0 +1,1121 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="מדריך מפורט להשגחה אישית עבור קשיש המאושפז בבית חולים: זכויות מול הביטוח הלאומי וקופת החולים, ביטוחים פרטיים, עמותות ומתנדבים, וחברות סיעוד פרטיות בתשלום.">
+  <link rel="canonical" href="https://yairron.com/btl/senior_rights/hospital_supervision_guide">
+<link rel="alternate" type="text/html" href="https://yairron.com/btl/ai-content/btl-care-transitions.html">
+<title>מדריך מפורט להשגחה אישית למאושפז בבית החולים - אזרחים ותיקים</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Assistant:wght@300;400;600;700;800&family=Varela+Round&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #2E5B8A;
+            --secondary: #4A90B5;
+            --accent: #E8A840;
+            --success: #2E7D32;
+            --danger: #C62828;
+            --light: #F5F9FC;
+            --dark: #1A3A52;
+            --text: #2C3E50;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Assistant', 'Segoe UI', Tahoma, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
+            min-height: 100vh;
+            padding: 20px;
+            padding-top: 70px;
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background:
+                radial-gradient(circle at 20% 50%, rgba(255,255,255,0.1) 0%, transparent 50%),
+                radial-gradient(circle at 80% 80%, rgba(255,255,255,0.1) 0%, transparent 50%);
+            animation: backgroundShift 20s ease-in-out infinite;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        @keyframes backgroundShift {
+            0%, 100% { transform: translate(0, 0) scale(1); }
+            50% { transform: translate(-5%, 5%) scale(0.95); }
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 50px;
+            animation: slideDown 0.8s ease-out;
+        }
+
+        @keyframes slideDown {
+            from {
+                opacity: 0;
+                transform: translateY(-50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        h1 {
+            font-family: 'Varela Round', sans-serif;
+            font-size: 3.5rem;
+            font-weight: 800;
+            color: white;
+            margin-bottom: 15px;
+            text-shadow: 3px 5px 15px rgba(0,0,0,0.3);
+            letter-spacing: -2px;
+        }
+
+        .subtitle {
+            font-size: 1.4rem;
+            color: rgba(255,255,255,0.95);
+            font-weight: 300;
+            text-shadow: 1px 2px 8px rgba(0,0,0,0.2);
+        }
+
+        .support-info {
+            font-size: 1.2rem;
+            color: #FFD54F;
+            font-weight: 700;
+            text-shadow: 1px 2px 8px rgba(0,0,0,0.3);
+            margin-bottom: 8px;
+        }
+
+        .update-badge {
+            display: inline-block;
+            background: rgba(255,255,255,0.2);
+            backdrop-filter: blur(10px);
+            padding: 8px 20px;
+            border-radius: 20px;
+            color: white;
+            font-size: 0.9rem;
+            margin-top: 15px;
+            font-weight: 600;
+        }
+
+        .accordions-container {
+            margin-bottom: 40px;
+            animation: fadeIn 0.8s ease-out 0.3s both;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .accordion {
+            background: white;
+            border-radius: 0;
+            margin-bottom: 0;
+            box-shadow: 0 12px 35px rgba(0,0,0,0.2);
+            overflow: hidden;
+            transition: all 0.3s;
+            border-bottom: 1px solid rgba(0,0,0,0.1);
+        }
+
+        .accordion:first-child {
+            border-radius: 24px 24px 0 0;
+        }
+
+        .accordion:last-child {
+            border-radius: 0 0 24px 24px;
+            border-bottom: none;
+        }
+
+        .accordion:only-child {
+            border-radius: 24px;
+        }
+
+        .accordion:hover {
+            box-shadow: 0 15px 45px rgba(0,0,0,0.25);
+        }
+
+        .accordion-header {
+            padding: 20px 35px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 18px;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            transition: all 0.3s;
+            position: relative;
+        }
+
+        .accordion-header:hover {
+            background: linear-gradient(135deg, var(--secondary), var(--primary));
+        }
+
+        .accordion-icon {
+            width: 60px;
+            height: 60px;
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            background: rgba(255,255,255,0.2);
+            flex-shrink: 0;
+        }
+
+        .accordion-title {
+            font-family: 'Varela Round', sans-serif;
+            font-size: 1.8rem;
+            font-weight: 800;
+            flex: 1;
+            margin: 0;
+        }
+
+        .accordion-arrow {
+            font-size: 1.5rem;
+            transition: transform 0.3s;
+            width: 40px;
+            text-align: center;
+            flex-shrink: 0;
+        }
+
+        .accordion.active .accordion-arrow {
+            transform: rotate(180deg);
+        }
+
+        .accordion-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s ease;
+        }
+
+        .accordion.active .accordion-content {
+            max-height: 10000px;
+            height: 80vh;
+            overflow: auto;
+            -webkit-overflow-scrolling: touch;
+        }
+
+        .accordion-body {
+            padding: 35px;
+            font-size: 1.15rem;
+            line-height: 1.9;
+            color: #546E7A;
+        }
+
+        .accordion-body h4 {
+            color: var(--primary);
+            font-size: 1.3rem;
+            margin: 25px 0 15px 0;
+            font-weight: 700;
+        }
+
+        .accordion-body ul, .accordion-body ol {
+            list-style: none;
+            padding: 0;
+            margin: 15px 0;
+        }
+
+        .accordion-body li {
+            padding: 12px 0;
+            padding-right: 35px;
+            position: relative;
+            border-bottom: 1px solid #E0E7EE;
+        }
+
+        .accordion-body li:last-child {
+            border-bottom: none;
+        }
+
+        .accordion-body li::before {
+            content: '✓';
+            position: absolute;
+            right: 0;
+            color: var(--success);
+            font-weight: bold;
+            font-size: 1.4rem;
+        }
+
+        .accordion-body p {
+            margin: 10px 0;
+        }
+
+        /* תתי-אקורדיונים */
+        .sub-accordion {
+            margin: 15px 0;
+            border: 1px solid #E0E7EE;
+            border-radius: 12px;
+            overflow: hidden;
+            background: #F8FAFB;
+        }
+
+        .sub-accordion-header {
+            padding: 18px 25px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background: linear-gradient(135deg, #F8FAFB 0%, #EEF2F5 100%);
+            transition: all 0.3s;
+        }
+
+        .sub-accordion-header:hover {
+            background: linear-gradient(135deg, #EEF2F5 0%, #E3E9EE 100%);
+        }
+
+        .sub-accordion-title {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: var(--primary);
+            margin: 0;
+            flex: 1;
+        }
+
+        .sub-accordion-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s ease;
+        }
+
+        .sub-accordion.active > .sub-accordion-content {
+            max-height: 80vh;
+            overflow: auto;
+            -webkit-overflow-scrolling: touch;
+        }
+
+        .sub-accordion-body {
+            padding: 20px 25px;
+            background: white;
+        }
+
+        /* רמות קינון */
+        .sub-accordion[data-level="2"] {
+            margin: 15px 0;
+        }
+
+        .sub-accordion[data-level="2"] .sub-accordion-header {
+            padding: 18px 25px;
+        }
+
+        .sub-accordion[data-level="2"] .sub-accordion-title {
+            font-size: 1.2rem;
+        }
+
+        .sub-accordion[data-level="3"] {
+            margin: 12px 0;
+            background: #FAFBFC;
+        }
+
+        .sub-accordion[data-level="3"] .sub-accordion-header {
+            padding: 15px 20px;
+            background: linear-gradient(135deg, #E3F2FD 0%, #BBDEFB 100%);
+        }
+
+        .sub-accordion[data-level="3"] .sub-accordion-header:hover {
+            background: linear-gradient(135deg, #BBDEFB 0%, #90CAF9 100%);
+        }
+
+        .sub-accordion[data-level="3"] .sub-accordion-title {
+            font-size: 1.1rem;
+            padding-right: 15px;
+        }
+
+        .sub-accordion[data-level="4"] {
+            margin: 10px 0;
+            background: #FCFCFD;
+            border-color: #E8ECF0;
+        }
+
+        .sub-accordion[data-level="4"] .sub-accordion-header {
+            padding: 12px 18px;
+            background: linear-gradient(135deg, #E8F5E9 0%, #C8E6C9 100%);
+        }
+
+        .sub-accordion[data-level="4"] .sub-accordion-header:hover {
+            background: linear-gradient(135deg, #C8E6C9 0%, #A5D6A7 100%);
+        }
+
+        .sub-accordion[data-level="4"] .sub-accordion-title {
+            font-size: 1.05rem;
+            padding-right: 25px;
+        }
+
+        h2.no-accordion,
+        h3.no-accordion,
+        h4.no-accordion,
+        h5.no-accordion,
+        h6.no-accordion {
+            color: var(--primary);
+            font-weight: 700;
+            margin: 25px 0 15px 0;
+        }
+
+        .info-box {
+            background: rgba(255,255,255,0.95);
+            border-radius: 20px;
+            padding: 30px;
+            margin-top: 40px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+            border-right: 4px solid var(--accent);
+            animation: fadeIn 0.8s ease-out 0.6s both;
+        }
+
+        .info-box-header {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 15px;
+        }
+
+        .info-box-icon {
+            font-size: 2rem;
+        }
+
+        .info-box h3 {
+            font-family: 'Varela Round', sans-serif;
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: var(--accent);
+            margin: 0;
+        }
+
+        .info-box p {
+            font-size: 1.05rem;
+            line-height: 1.8;
+            color: #546E7A;
+            margin: 0;
+        }
+
+        .links-section {
+            margin-top: 25px;
+            padding-top: 20px;
+            border-top: 2px solid #E0E7EE;
+        }
+
+        .links-title {
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 15px;
+            font-size: 1.1rem;
+        }
+
+        .link-item {
+            display: block;
+            padding: 12px 18px;
+            margin-bottom: 10px;
+            background: #F5F9FC;
+            border-radius: 12px;
+            color: var(--secondary);
+            text-decoration: none;
+            transition: all 0.3s;
+            font-weight: 600;
+        }
+
+        .link-item:hover {
+            background: var(--secondary);
+            color: white;
+            transform: translateX(-5px);
+            box-shadow: 0 4px 12px rgba(74, 144, 181, 0.3);
+        }
+
+        footer {
+            text-align: center;
+            margin-top: 60px;
+            padding: 30px;
+            color: rgba(255,255,255,0.9);
+            font-size: 1rem;
+        }
+
+        .back-button {
+            display: inline-block;
+            background: rgba(255,255,255,0.25);
+            backdrop-filter: blur(10px);
+            padding: 12px 24px;
+            border-radius: 25px;
+            color: white;
+            text-decoration: none;
+            font-size: 1rem;
+            font-weight: 600;
+            transition: all 0.3s;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+        }
+
+        .back-button:hover {
+            background: rgba(255,255,255,0.35);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(0,0,0,0.25);
+        }
+
+        .back-button::before {
+            content: '← ';
+            margin-left: 5px;
+        }
+
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2.5rem;
+            }
+
+            .subtitle {
+                font-size: 1.1rem;
+            }
+
+            .accordion-header {
+                padding: 20px 25px;
+            }
+
+            .accordion-title {
+                font-size: 1.4rem;
+            }
+
+            .accordion-body {
+                padding: 25px;
+            }
+        }
+        .nii-error-banner {
+            display: none;
+            background: #fff3cd;
+            border: 2px solid #f0a500;
+            color: #7a5000;
+            text-align: center;
+            padding: 12px 20px;
+            border-radius: 10px;
+            font-size: 1rem;
+            font-weight: 600;
+            margin-bottom: 20px;
+        }
+    </style>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-XFYGMQ47QN"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-XFYGMQ47QN');
+</script>
+</head>
+<body>
+    <div class="container">
+        <div id="nii-error-banner" class="nii-error-banner">⚠️ הערכים אינם מעודכנים עקב תקלה באתר</div>
+        <header>
+            <a href="../index.html" class="back-button">חזרה לדף ראשי</a>
+            <h1>🛏️ מדריך מפורט להשגחה אישית למאושפז בבית החולים</h1>
+            <p class="support-info">מרכז תמיכה ומידע טלפוני ארצי בטלפון <span dir="ltr">*9696</span></p>
+            <p class="subtitle">כיצד לממש זכויות מול הביטוח הלאומי וקופת החולים, ואילו אפשרויות נוספות (עמותות, מתנדבים וחברות פרטיות) עומדות לרשות המשפחה</p>
+            <div class="update-badge">עדכון: אוגוסט 2026</div>
+        </header>
+
+        <div id="content"><div class="accordions-container">
+                        <div class="accordion" id="intro" data-section="intro">
+                            <div class="accordion-header">
+                                <div class="accordion-icon">💡</div>
+                                <h2 class="accordion-title">מבוא — למה חשוב לדעת על אפשרויות ההשגחה</h2>
+                                <span class="accordion-arrow">▼</span>
+                            </div>
+                            <div class="accordion-content">
+                                <div class="accordion-body">
+                                    <div class="sub-accordion" data-level="2"><div class="sub-accordion-header"><div class="sub-accordion-title">רקע כללי</div></div><div class="sub-accordion-content"><div class="sub-accordion-body"><div><p>כאשר קשיש מאושפז בבית חולים, הצוות הרפואי והסיעודי של המחלקה אחראי על הטיפול הרפואי, אך לא תמיד יכול להעניק השגחה צמודה ורציפה על פני כל שעות היממה — במיוחד כאשר מדובר בקשיש הזקוק לליווי בשל בלבול, נטייה לנפילות, חוסר שקט, קשיי תקשורת או צורך בסיוע בפעולות בסיסיות (אכילה, שתייה, ניידות).</p>
+          <p>בהרבה מקרים בתי החולים מצפים, ולעיתים אף דורשים במפורש, כי בן משפחה או מטפל/ת ילוו את החולה בחלק משעות היממה, ובפרט בלילה. מדריך זה נועד לרכז עבור המשפחה את מגוון האפשרויות העומדות לרשותה — הן מבחינת מימון והן מבחינת מתן השירות בפועל.</p>
+          <p class="tip-box" style="background:#FFF3CD;border-right:4px solid #FFC107;padding:15px;margin-top:15px;"><strong>💡 טיפ:</strong> מומלץ לפתוח בבירור מול האחות האחראית או העובד/ת הסוציאלי/ת של המחלקה: מהי מדיניות בית החולים לגבי מלווים, האם יש מיטת/כורסת לינה למלווה, ומה בדיוק מוגדר כ"השגחה נדרשת" במקרה הספציפי.</p></div></div></div></div>
+                                </div>
+                            </div>
+                        </div>
+                    
+                        <div class="accordion" id="nii-rights" data-section="nii-rights">
+                            <div class="accordion-header">
+                                <div class="accordion-icon">🏛️</div>
+                                <h2 class="accordion-title">זכויות מול המוסד לביטוח לאומי</h2>
+                                <span class="accordion-arrow">▼</span>
+                            </div>
+                            <div class="accordion-content">
+                                <div class="accordion-body">
+                                    <div class="sub-accordion" data-level="2"><div class="sub-accordion-header"><div class="sub-accordion-title">עיקרון כללי</div></div><div class="sub-accordion-content"><div class="sub-accordion-body"><div><p>קשיש שכבר מקבל קצבה מהביטוח הלאומי (גמלת סיעוד או קצבה לשירותים מיוחדים) אינו מאבד את זכאותו באופן מיידי עם האשפוז — אלא נהנה מהמשך תשלום/שירות לתקופה מוגבלת, כפי שיפורט להלן.</p></div></div></div></div><div class="sub-accordion" data-level="2"><div class="sub-accordion-header"><div class="sub-accordion-title">המשך שירותי סיעוד בזמן אשפוז (מקבלי גמלת סיעוד)</div></div><div class="sub-accordion-content"><div class="sub-accordion-body"><div><ul>
+            <li>קשיש המקבל גמלת סיעוד (בשירותים ולא בכסף) וזכאי לשעות טיפול אישי בבית — זכאי להמשיך ולקבל את שירותי הסיעוד גם במהלך 30 הימים הראשונים לאשפוזו בבית חולים.</li>
+            <li>תוכנית הטיפול בזמן האשפוז נקבעת בהתאם לצורכי הקשיש ובתיאום עם בני המשפחה — כלומר ניתן, במקרים רבים, לתאם עם חברת הסיעוד שהמטפל/ת הקבוע/ה של הקשיש (או מטפל/ת חלופי/ת מטעם החברה) ילווה אותו גם בבית החולים, במסגרת השעות שכבר מאושרות לו.</li>
+            <li>אם לא נוצלו כל שעות הטיפול המגיעות בזמן האשפוז — ניתן להשלים אותן לאחר השחרור מבית החולים.</li>
+          </ul>
+          <p class="tip-box" style="background:#FFF3CD;border-right:4px solid #FFC107;padding:15px;margin-top:15px;"><strong>💡 טיפ:</strong> כדאי ליצור קשר יזום עם חברת הסיעוד המפעילה (זו שמעסיקה את המטפל/ת מטעם הביטוח הלאומי) ולבקש במפורש הסבה של השעות המאושרות למתן השירות בבית החולים, ולא להניח שהדבר קורה מאליו.</p></div></div></div></div><div class="sub-accordion" data-level="2"><div class="sub-accordion-header"><div class="sub-accordion-title">המשך קצבה לשירותים מיוחדים (למקבלים בגילאי עבודה)</div></div><div class="sub-accordion-content"><div class="sub-accordion-body"><div><ul>
+            <li>מי שמקבל קצבה לשירותים מיוחדים (המיועדת למי שזקוק לעזרה רבה בפעולות היום-יום או להשגחה מתמדת, בגילאי 18 עד גיל פרישה) וממשיך להיות מאושפז — ימשיך לקבל את הקצבה במהלך 90 הימים הראשונים לאשפוז בלבד.</li>
+            <li>מי שאינו מקבל את הקצבה וצפוי להתאשפז או כבר מאושפז — יכול להגיש תביעה לקצבה שתחול מיום השחרור ואילך.</li>
+            <li>קצבה זו ניתנת בכסף ישירות למבוטח, ולכן ניתן להשתמש בה למימון עצמאי של מטפל/ת השגחה — לרבות בזמן האשפוז עצמו, כל עוד היא משולמת.</li>
+          </ul></div></div></div></div><div class="sub-accordion" data-level="2"><div class="sub-accordion-header"><div class="sub-accordion-title">נקודות חשובות נוספות ודרכי פנייה</div></div><div class="sub-accordion-content"><div class="sub-accordion-body"><div><ul>
+            <li>הזכאות נבדקת ומאושרת אישית לכל מקרה — מומלץ לפנות למוקד הטלפוני של הביטוח הלאומי (שלוחת סיעוד) או לעובד/ת הסוציאלי/ת של המחלקה על מנת לוודא את מצב הזכאות העדכני של הקשיש.</li>
+            <li>קשיש שטרם הוגשה עבורו תביעה לגמלת סיעוד — רשאי להגיש תביעה גם בזמן האשפוז או סמוך לשחרור ממנו, כדי שהזכאות תיכנס לתוקף בהקדם האפשרי לאחר החזרה הביתה.</li>
+          </ul>
+          <table style="width:100%;border-collapse:collapse;margin-top:10px;">
+            <tbody>
+              <tr><td style="border:1px solid #ddd;padding:10px;width:45%;"><strong>מוקד טלפוני ארצי (כללי)</strong></td><td style="border:1px solid #ddd;padding:10px;">*6050 או 04-8812345 (א׳–ה׳ 08:00–17:00)</td></tr>
+              <tr><td style="border:1px solid #ddd;padding:10px;"><strong>מוקד ייעודי לבירורים בנושא סיעוד</strong></td><td style="border:1px solid #ddd;padding:10px;">*2637</td></tr>
+              <tr><td style="border:1px solid #ddd;padding:10px;"><strong>מוקד ייעוץ לאזרח הוותיק ולבני משפחתו</strong></td><td style="border:1px solid #ddd;padding:10px;">*9696 או 02-6709857 (א׳–ה׳ 08:00–13:00)</td></tr>
+              <tr><td style="border:1px solid #ddd;padding:10px;"><strong>טופס מקוון ליצירת קשר בנושאי סיעוד</strong></td><td style="border:1px solid #ddd;padding:10px;">אתר btl.gov.il ← קצבאות והטבות ← סיעוד ← יצירת קשר בנושאי סיעוד</td></tr>
+            </tbody>
+          </table>
+          <p style="margin-top:10px;font-size:0.95rem;color:#546E7A;">לפירוט מלא של כל דרכי הפנייה — ראו <a href="#appendix-contacts" style="color:#4A90B5;font-weight:600;">"נספח — פרטי התקשרות מרוכזים לפי גורם"</a> להלן.</p></div></div></div></div>
+                                </div>
+                            </div>
+                        </div>
+                    
+                        <div class="accordion" id="hmo-services" data-section="hmo-services">
+                            <div class="accordion-header">
+                                <div class="accordion-icon">⚕️</div>
+                                <h2 class="accordion-title">שירותי קופת החולים</h2>
+                                <span class="accordion-arrow">▼</span>
+                            </div>
+                            <div class="accordion-content">
+                                <div class="accordion-body">
+                                    <div class="sub-accordion" data-level="2"><div class="sub-accordion-header"><div class="sub-accordion-title">יחידה להמשך טיפול ועובד/ת סוציאלי/ת של המחלקה</div></div><div class="sub-accordion-content"><div class="sub-accordion-body"><div><p>לכל בית חולים, ולעיתים גם לכל מחלקה, עובד/ת סוציאלי/ת המכיר/ה את מכלול האפשרויות המקומיות — כולל הפניה לעמותות, סיוע במיצוי זכויות, ותיאום שחרור. פנייה אליהם בשלב מוקדם ככל האפשר יכולה לחסוך זמן יקר.</p></div></div></div></div><div class="sub-accordion" data-level="2"><div class="sub-accordion-header"><div class="sub-accordion-title">ביטוח משלים (שב"ן)</div></div><div class="sub-accordion-content"><div class="sub-accordion-body"><div><p>כל קופות החולים (כללית, מכבי, מאוחדת, לאומית) מציעות ביטוח משלים בתשלום חודשי קבוע (הנקרא גם שב"ן — שירותי בריאות נוספים), שכל חבר קופה זכאי להצטרף אליו. הביטוח המשלים מתמקד בעיקר בהחזרים על רופאים פרטיים, חוות דעת נוספת, ניתוחים ובדיקות — ובדרך כלל אינו מיועד למימון ליווי או השגחה בזמן אשפוז.</p>
+          <ul>
+            <li>עם זאת, מומלץ לבדוק בתקנון הביטוח המשלים הספציפי של הקופה שבה מבוטח הקשיש (למשל: כללית מושלם זהב/פלטינום, מכבי זהב/שלי, לאומית כסף/זהב, מאוחדת עדיף/שיא) — האם קיים סעיף המזכה בהחזר על אחות פרטית או מטפל/ת השגחה, גם אם באופן חלקי.</li>
+            <li>שווה גם לבדוק אם לקשיש יש ביטוח בריאות פרטי נוסף (של חברת ביטוח, לא דרך הקופה) — לעיתים פוליסות כאלה כן כוללות כיסוי לאחות פרטית, בעיקר בתקופת החלמה לאחר ניתוח.</li>
+          </ul></div></div></div></div><div class="sub-accordion" data-level="2"><div class="sub-accordion-header"><div class="sub-accordion-title">ביטוח סיעודי קבוצתי דרך קופת החולים</div></div><div class="sub-accordion-content"><div class="sub-accordion-body"><div><p>מבוטחים רבים רכשו, דרך קופת החולים, ביטוח סיעודי קבוצתי (המכונה גם 'ביטוח סיעודי אחיד'). חשוב להכיר את אופן הפעולה שלו:</p>
+          <ul>
+            <li>ביטוח זה נועד בעיקרו למצב סיעודי מתמשך (בבית או במוסד סיעודי) ולא לאשפוז חד-פעמי בבית חולים כללי — כלומר בדרך כלל הוא אינו משלם עבור השגחה במהלך אשפוז רגיל, אלא רק לאחר קביעת 'מקרה ביטוח' (מצב סיעודי מוגדר בהתאם לתנאי הפוליסה).</li>
+            <li>אם הקשיש מוגדר כבר כסיעודי וזכאי לתגמולים מהביטוח הסיעודי הקבוצתי, ואושפז במחלקה סיעודית או בבית אבות/מוסד סיעודי (להבדיל מאשפוז כללי) — ייתכן שהתגמול החודשי ממשיך להיות משולם; יש לבדוק מול הקופה/המבטח לפי תנאי הפוליסה הספציפית.</li>
+            <li>מומלץ להתקשר למוקד הביטוח הסיעודי של הקופה ולברר במפורש: האם המצב הנוכחי (אשפוז + הצורך בהשגחה) מהווה 'מקרה ביטוח' המזכה בתגמול, ומה המסמכים הנדרשים (לרוב אישור רפואי / חוות דעת מטעם המבטח).</li>
+          </ul>
+          <p class="tip-box" style="background:#FFF3CD;border-right:4px solid #FFC107;padding:15px;margin-top:15px;"><strong>💡 טיפ:</strong> אל תניחו מראש שהביטוח הסיעודי 'לא רלוונטי' — גם אם אינו משלם על ההשגחה בבית החולים עצמו, ייתכן שהוא כן ישולם לאחר השחרור אם התפתח מצב סיעודי קבוע, ולכן כדאי לפתוח כבר עכשיו תיק ולתעד את מצבו התפקודי של הקשיש.</p>
+          <table style="width:100%;border-collapse:collapse;margin-top:15px;">
+            <thead><tr style="background:#f0f0f0;">
+              <th style="border:1px solid #ddd;padding:10px;text-align:right;">קופה</th>
+              <th style="border:1px solid #ddd;padding:10px;text-align:right;">מוקד שירות כללי</th>
+              <th style="border:1px solid #ddd;padding:10px;text-align:right;">מוקד ביטוח סיעודי ייעודי</th>
+            </tr></thead>
+            <tbody>
+              <tr><td style="border:1px solid #ddd;padding:10px;"><strong>כללית</strong></td><td style="border:1px solid #ddd;padding:10px;">*2700</td><td style="border:1px solid #ddd;padding:10px;">'סיעודי מושלם פלוס' (הראל) — *2735 (הגשת תביעה טלפונית לגיל 67+)</td></tr>
+              <tr><td style="border:1px solid #ddd;padding:10px;"><strong>מכבי</strong></td><td style="border:1px solid #ddd;padding:10px;">*3555 — 24/7</td><td style="border:1px solid #ddd;padding:10px;">'מכבי סיעודי' (מנורה מבטחים) — 03-7107030</td></tr>
+              <tr><td style="border:1px solid #ddd;padding:10px;"><strong>מאוחדת</strong></td><td style="border:1px solid #ddd;padding:10px;">*3833 — 24/7</td><td style="border:1px solid #ddd;padding:10px;">'מאוחדת סיעודי' (מנורה ביטוח) — 1-700-72-22-33</td></tr>
+              <tr><td style="border:1px solid #ddd;padding:10px;"><strong>לאומית</strong></td><td style="border:1px solid #ddd;padding:10px;">*507 או 1-700-507-507 — 24/7</td><td style="border:1px solid #ddd;padding:10px;">'לאומית סיעוד' (מנורה מבטחים) — *5565</td></tr>
+            </tbody>
+          </table></div></div></div></div>
+                                </div>
+                            </div>
+                        </div>
+                    
+                        <div class="accordion" id="private-insurance" data-section="private-insurance">
+                            <div class="accordion-header">
+                                <div class="accordion-icon">💼</div>
+                                <h2 class="accordion-title">ביטוחי בריאות וסיעוד פרטיים (חברות ביטוח)</h2>
+                                <span class="accordion-arrow">▼</span>
+                            </div>
+                            <div class="accordion-content">
+                                <div class="accordion-body">
+                                    <div class="sub-accordion" data-level="2"><div class="sub-accordion-header"><div class="sub-accordion-title">מה חשוב לבדוק</div></div><div class="sub-accordion-content"><div class="sub-accordion-body"><div><ul>
+            <li>אם לקשיש פוליסת ביטוח סיעודי פרטית (לא דרך הקופה) — יש לבדוק את תנאיה באופן פרטני. פוליסות רבות מגדירות 'שיפוי' (החזר הוצאות בפועל, עד תקרה מוגדרת) עבור מצב סיעודי, ולעיתים כוללות גם כיסוי לטיפול אישי בבית ברוב שעות היממה — בכפוף להצגת אישור מתאים.</li>
+            <li>אם לקשיש ביטוח בריאות פרטי (לא סיעודי) — כדאי לבדוק אם קיים כיסוי ל'אחות פרטית' לאחר ניתוח או במהלך אשפוז, שכן חלק מהפוליסות כן מכירות בהחזר כזה.</li>
+            <li>בכל מקרה של פוליסה פרטית — יש לפנות ישירות לסוכן הביטוח או למוקד חברת הביטוח, להציג את מכתב האשפוז ואת הצורך הרפואי בהשגחה, ולבקש בדיקת זכאות מפורשת לפני הזמנת שירות פרטי בתשלום מלא.</li>
+          </ul>
+          <p class="tip-box" style="background:#FFF3CD;border-right:4px solid #FFC107;padding:15px;margin-top:15px;"><strong>💡 טיפ:</strong> שמרו את כל הקבלות והחשבוניות עבור מטפל/ת או אחות פרטית שהוזמנו באופן פרטי — גם אם אינכם בטוחים כרגע בזכאות להחזר, ייתכן שיתאפשר להגיש אותן בדיעבד.</p></div></div></div></div>
+                                </div>
+                            </div>
+                        </div>
+                    
+                        <div class="accordion" id="nonprofits" data-section="nonprofits">
+                            <div class="accordion-header">
+                                <div class="accordion-icon">🤝</div>
+                                <h2 class="accordion-title">עמותות ומתנדבים — סיוע ללא עלות</h2>
+                                <span class="accordion-arrow">▼</span>
+                            </div>
+                            <div class="accordion-content">
+                                <div class="accordion-body">
+                                    <div class="sub-accordion" data-level="2"><div class="sub-accordion-header"><div class="sub-accordion-title">יד שרה</div></div><div class="sub-accordion-content"><div class="sub-accordion-body"><div><ul>
+            <li>השאלת ציוד רפואי ושיקומי ללא תשלום (מיטות סיעודיות, כיסאות גלגלים, הליכונים ועוד) — רלוונטי בעיקר לקראת השחרור ולתקופת ההחלמה בבית.</li>
+            <li>יחידות אירוח מאובזרות עבור בני משפחה של מאושפזים, הפועלות סמוך למספר בתי חולים (ירושלים, באר שבע, רעננה).</li>
+            <li>מלון החלמה של יד שרה — מענה תומך לתקופת החלמה, כולל ליווי אישי, לאחר סיום האשפוז עצמו.</li>
+            <li>ייעוץ וסיוע משפטי חינם לקשישים (למשל בנושא ייפוי כוח מתמשך).</li>
+            <li><strong>מוקד טלפוני:</strong> *6444</li>
+          </ul></div></div></div></div><div class="sub-accordion" data-level="2"><div class="sub-accordion-header"><div class="sub-accordion-title">עזר מציון — מחלקת 'מחוברים לחיים' ומתנדבי בתי החולים</div></div><div class="sub-accordion-content"><div class="sub-accordion-body"><div><ul>
+            <li>מתנדבים רבים פועלים בתוך בתי החולים עצמם: ליווי חולים ובני משפחה לבדיקות וטיפולים, סיוע לצוות הסיעודי, וחלוקת מזון וכיבוד למלווים.</li>
+            <li>שהייה של מתנדב/ת לצד מיטת החולה לפרק זמן מוגבל, כדי לאפשר לבן המשפחה המלווה 'הפוגה' קצרה — למשל לצאת לארוחה, למקלחת בבית או למנוחה.</li>
+            <li>בתים חמים ('בית חם') הפועלים סמוך למספר בתי חולים גדולים, המציעים חדרי מנוחה, כיבוד וארוחות למלווים השוהים עם החולה.</li>
+            <li><strong>מוקד טלפוני:</strong> *2236</li>
+          </ul>
+          <p class="tip-box" style="background:#FFF3CD;border-right:4px solid #FFC107;padding:15px;margin-top:15px;"><strong>💡 טיפ:</strong> שירותי המתנדבים אינם מיועדים להחליף השגחה רפואית-סיעודית צמודה וקבועה, אלא לתת מענה משלים ותמיכה למשפחה. יש לתאם מראש עם סניף העמותה הפועל בבית החולים הרלוונטי, מאחר שהיקף השירות משתנה ממקום למקום.</p></div></div></div></div>
+                                </div>
+                            </div>
+                        </div>
+                    
+                        <div class="accordion" id="paid-private-care" data-section="paid-private-care">
+                            <div class="accordion-header">
+                                <div class="accordion-icon">💰</div>
+                                <h2 class="accordion-title">חברות סיעוד ואחיות פרטיות בתשלום</h2>
+                                <span class="accordion-arrow">▼</span>
+                            </div>
+                            <div class="accordion-content">
+                                <div class="accordion-body">
+                                    <div class="sub-accordion" data-level="2"><div class="sub-accordion-header"><div class="sub-accordion-title">טווחי מחירים מקובלים בשוק</div></div><div class="sub-accordion-content"><div class="sub-accordion-body"><div><p>כאשר אין מענה מספק במסגרת הגמלאות והביטוחים, ניתן להזמין מטפל/ת השגחה או אחות/אח פרטי/ת באופן ישיר ובתשלום מלא. להלן טווחי מחירים מקובלים בשוק (נכון למועד כתיבת המדריך; המחירים משתנים בין ספקים ואזורים בארץ):</p>
+          <table style="width:100%;border-collapse:collapse;margin-top:10px;">
+            <thead><tr style="background:#f0f0f0;">
+              <th style="border:1px solid #ddd;padding:10px;text-align:right;">סוג נותן השירות</th>
+              <th style="border:1px solid #ddd;padding:10px;text-align:right;">טווח מחירים לשעה*</th>
+              <th style="border:1px solid #ddd;padding:10px;text-align:right;">הערות</th>
+            </tr></thead>
+            <tbody>
+              <tr><td style="border:1px solid #ddd;padding:10px;"><strong>מטפל/ת סיעודי/ת (ישראלי/ת)</strong></td><td style="border:1px solid #ddd;padding:10px;">כ-70–100 ₪ לשעה</td><td style="border:1px solid #ddd;padding:10px;">לא כולל נסיעות; ייתכן תוספת למשמרות לילה/סופ"ש</td></tr>
+              <tr><td style="border:1px solid #ddd;padding:10px;"><strong>השגחה בבית חולים ע"י מטפל/ת מטעם חברת סיעוד</strong></td><td style="border:1px solid #ddd;padding:10px;">כ-90–100 ₪ לשעה</td><td style="border:1px solid #ddd;padding:10px;">כולל מע"מ; מומלץ להזמין מראש</td></tr>
+              <tr><td style="border:1px solid #ddd;padding:10px;"><strong>אחות/אח פרטי/ת (השגחה, מתן תרופות, טיפול בפצעים)</strong></td><td style="border:1px solid #ddd;padding:10px;">כ-90–155 ₪ לשעה</td><td style="border:1px solid #ddd;padding:10px;">מחיר גבוה יותר בלילה; לעיתים מינימום משמרת של 8 שעות</td></tr>
+              <tr><td style="border:1px solid #ddd;padding:10px;"><strong>השגחה 24 שעות ביממה (מטפל/ת צמוד/ה)</strong></td><td style="border:1px solid #ddd;padding:10px;">כ-500–800 ₪ ליום</td><td style="border:1px solid #ddd;padding:10px;">תלוי מורכבות המקרה ואזור בארץ</td></tr>
+            </tbody>
+          </table>
+          <p style="margin-top:10px;font-size:0.9rem;color:#546E7A;">* המחירים משוערים ומבוססים על מידע פומבי שנאסף ממספר ספקים בשוק; מומלץ לקבל הצעת מחיר מפורשת מכל ספק לפני ההזמנה.</p></div></div></div></div><div class="sub-accordion" data-level="2"><div class="sub-accordion-header"><div class="sub-accordion-title">איך לבחור ספק שירות</div></div><div class="sub-accordion-content"><div class="sub-accordion-body"><div><ul>
+            <li>ודאו מול מחלקת האשפוז שאין מניעה להכניס מטפל/ת חיצוני/ת, ובררו את הנהלים (זמני כניסה, אישורים נדרשים).</li>
+            <li>העדיפו הזמנה דרך חברת סיעוד מורשית ולא דרך גורם פרטי בלתי מפוקח — כך מובטח ביטוח, פיקוח, ואפשרות להחלפת מטפל/ת בעת הצורך.</li>
+            <li>בקשו לוודא הכשרה ספציפית של המטפל/ת/האחות לעבודה עם קשישים ולזיהוי מצבי סכנה (נפילה, בלבול, קשיי בליעה).</li>
+            <li>בררו מראש את מדיניות ההזמנה הדחופה ('מעכשיו לעכשיו') אם יש צורך במטפל/ת באותו היום.</li>
+            <li>שמרו קבלות מסודרות — לצורך בדיקת זכאות להחזר בדיעבד מול קופת החולים, הביטוח המשלים או הביטוח הפרטי.</li>
+          </ul></div></div></div></div><div class="sub-accordion" data-level="2"><div class="sub-accordion-header"><div class="sub-accordion-title">חברות סיעוד גדולות — יצירת קשר</div></div><div class="sub-accordion-content"><div class="sub-accordion-body"><div><ul>
+            <li><strong>דנאל סיעוד</strong> — שירות ייעודי 'השגחה פרטית בבתי חולים': *95922</li>
+            <li><strong>נתן סיעוד</strong> (33 סניפים ארצית): 072-3926558 (א׳–ה׳ 08:00–16:00)</li>
+            <li><strong>מטב</strong> — שירות 'מטב השגחה אישית' למאושפזים: 072-3972607</li>
+            <li><strong>תיגבור</strong> — ייעוץ חינם: 077-7715466</li>
+            <li><strong>אלי מילר שירותי סיעוד</strong> — השגחה בבית ובבית חולים: לפרטים ולטלפון עדכני יש לפנות דרך אתר החברה</li>
+            <li><strong>Wonder.care</strong> — השגחה פרטית בבתי חולים, פריסה ארצית: לפרטים ולטלפון עדכני יש לפנות דרך אתר החברה</li>
+          </ul>
+          <p style="margin-top:10px;font-size:0.95rem;color:#546E7A;">לרשימה נוספת (כולל עמל סיעודית, מסר סיעוד ורווחה, מסד, מתן חן ועוד) — ראו <a href="#appendix-contacts" style="color:#4A90B5;font-weight:600;">"נספח — פרטי התקשרות מרוכזים לפי גורם"</a> להלן.</p></div></div></div></div>
+                                </div>
+                            </div>
+                        </div>
+                    
+                        <div class="accordion" id="summary" data-section="summary">
+                            <div class="accordion-header">
+                                <div class="accordion-icon">✅</div>
+                                <h2 class="accordion-title">סיכום — צעדים מומלצים למשפחה</h2>
+                                <span class="accordion-arrow">▼</span>
+                            </div>
+                            <div class="accordion-content">
+                                <div class="accordion-body">
+                                    <div class="sub-accordion" data-level="2"><div class="sub-accordion-header"><div class="sub-accordion-title">רשימת פעולות מומלצת</div></div><div class="sub-accordion-content"><div class="sub-accordion-body"><div><ol>
+            <li>לברר מול הצוות הסוציאלי במחלקה מהי מדיניות בית החולים לגבי מלווים והשגחה.</li>
+            <li>לבדוק את מצב הזכאות של הקשיש לגמלת סיעוד ולקצבה לשירותים מיוחדים, ולוודא המשך קבלת השירות/הקצבה בזמן האשפוז.</li>
+            <li>אם הקשיש כבר מקבל שעות טיפול מטעם חברת סיעוד — לתאם עמה הסבת השעות למתן שירות בבית החולים.</li>
+            <li>לבדוק מול קופת החולים את תנאי הביטוח המשלים והביטוח הסיעודי הקבוצתי, ואם רלוונטי — גם מול חברת ביטוח פרטית.</li>
+            <li>לפנות לעמותות יד שרה ועזר מציון לבירור אפשרויות תמיכה מקומיות — ציוד, מתנדבים, מקום לינה וכיבוד למלווים.</li>
+            <li>במקביל, ואם נדרש באופן מיידי — להזמין שירות השגחה פרטי בתשלום דרך חברת סיעוד מורשית, תוך שמירת כל הקבלות.</li>
+            <li>לקראת השחרור — לתאם עם העובד/ת הסוציאלי/ת המשך טיפול בבית, ציוד מסייע (יד שרה) והשלמת שעות סיעוד שלא נוצלו בזמן האשפוז.</li>
+          </ol></div></div></div></div>
+                                </div>
+                            </div>
+                        </div>
+                    
+                        <div class="accordion" id="appendix-contacts" data-section="appendix-contacts">
+                            <div class="accordion-header">
+                                <div class="accordion-icon">📞</div>
+                                <h2 class="accordion-title">נספח — פרטי התקשרות מרוכזים לפי גורם</h2>
+                                <span class="accordion-arrow">▼</span>
+                            </div>
+                            <div class="accordion-content">
+                                <div class="accordion-body">
+                                    <div class="sub-accordion" data-level="2"><div class="sub-accordion-header"><div class="sub-accordion-title">המוסד לביטוח לאומי</div></div><div class="sub-accordion-content"><div class="sub-accordion-body"><div><ul>
+            <li><strong>מוקד טלפוני ארצי (כללי):</strong> *6050 או 04-8812345 — א׳–ה׳ 08:00–17:00</li>
+            <li><strong>מוקד ייעודי לבירורים ומידע בנושא סיעוד:</strong> *2637</li>
+            <li><strong>מוקד ייעוץ לאזרח הוותיק ולבני משפחתו</strong> (ייעוץ, לא תביעות): *9696 או 02-6709857 — א׳–ה׳ 08:00–13:00</li>
+            <li><strong>בקשה לקצבת סיעוד מלאה בכסף במקרה מצוקה חריגה</strong> (אין אפשרות לקבל טיפול אישי בבית): פנייה באתר בצירוף מסמכים רפואיים, או בטלפון *2637 — עובד/ת סוציאלי/ת מטעם הביטוח הלאומי יחזור/תחזור אליכם</li>
+            <li><strong>טופס מקוון ליצירת קשר בנושאי סיעוד</strong> (הגשת תביעה, בדיקה מחדש עקב החמרת מצב, קצבה בכסף למעסיק מטפל צמוד): אתר btl.gov.il ← קצבאות והטבות ← סיעוד ← יצירת קשר בנושאי סיעוד</li>
+            <li><strong>אתר שירות אישי</strong> להגשת תביעות, מעקב סטטוס ושליחת מסמכים: btl.gov.il.ps</li>
+            <li><strong>צ'אט עם נציג:</strong> דרך אתר הביטוח הלאומי, א׳–ה׳ 08:00–17:00 (מחייב אימות זהות)</li>
+          </ul></div></div></div></div><div class="sub-accordion" data-level="2"><div class="sub-accordion-header"><div class="sub-accordion-title">קופות החולים — מוקד כללי ומוקד ביטוח סיעודי ייעודי</div></div><div class="sub-accordion-content"><div class="sub-accordion-body"><div><table style="width:100%;border-collapse:collapse;">
+            <thead><tr style="background:#f0f0f0;">
+              <th style="border:1px solid #ddd;padding:10px;text-align:right;">קופה</th>
+              <th style="border:1px solid #ddd;padding:10px;text-align:right;">מוקד שירות כללי</th>
+              <th style="border:1px solid #ddd;padding:10px;text-align:right;">מוקד ביטוח סיעודי ייעודי</th>
+            </tr></thead>
+            <tbody>
+              <tr><td style="border:1px solid #ddd;padding:10px;"><strong>כללית</strong></td><td style="border:1px solid #ddd;padding:10px;">*2700</td><td style="border:1px solid #ddd;padding:10px;">'סיעודי מושלם פלוס' (הראל) — *2735 (הגשת תביעה טלפונית לגיל 67+)</td></tr>
+              <tr><td style="border:1px solid #ddd;padding:10px;"><strong>מכבי</strong></td><td style="border:1px solid #ddd;padding:10px;">*3555 — 24/7</td><td style="border:1px solid #ddd;padding:10px;">'מכבי סיעודי' (מנורה מבטחים) — 03-7107030</td></tr>
+              <tr><td style="border:1px solid #ddd;padding:10px;"><strong>מאוחדת</strong></td><td style="border:1px solid #ddd;padding:10px;">*3833 — 24/7</td><td style="border:1px solid #ddd;padding:10px;">'מאוחדת סיעודי' (מנורה ביטוח) — 1-700-72-22-33</td></tr>
+              <tr><td style="border:1px solid #ddd;padding:10px;"><strong>לאומית</strong></td><td style="border:1px solid #ddd;padding:10px;">*507 או 1-700-507-507 — 24/7</td><td style="border:1px solid #ddd;padding:10px;">'לאומית סיעוד' (מנורה מבטחים) — *5565</td></tr>
+            </tbody>
+          </table>
+          <ul style="margin-top:15px;">
+            <li>היחידה להמשך טיפול / יחידה לטיפולי בית (רלוונטית בעיקר לקראת שחרור ולהמשך טיפול בבית) — קיימת בכל קופה, בדרך כלל בהפניה מרופא/ת המשפחה; לאיתור הסניף הקרוב יש לפנות למוקד השירות הכללי של הקופה.</li>
+            <li>עובד/ת סוציאלי/ת של המחלקה בבית החולים — ניתן לפנות ישירות דרך צוות המחלקה או מזכירות בית החולים; זהו לרוב הגורם הראשון והיעיל ביותר לבירור זכאויות ואפשרויות מקומיות.</li>
+          </ul></div></div></div></div><div class="sub-accordion" data-level="2"><div class="sub-accordion-header"><div class="sub-accordion-title">חברות סיעוד גדולות — שירותי השגחה אישית/פרטית</div></div><div class="sub-accordion-content"><div class="sub-accordion-body"><div><ul>
+            <li><strong>דנאל סיעוד</strong> — שירות ייעודי 'השגחה פרטית בבתי חולים', ניתן בהתראה קצרה: *95922</li>
+            <li><strong>נתן סיעוד</strong> — חברה ארצית עם 33 סניפים: 072-3926558, א׳–ה׳ 08:00–16:00</li>
+            <li><strong>מטב</strong> — שירות 'מטב השגחה אישית' למאושפזים בבית חולים: 072-3972607</li>
+            <li><strong>תיגבור שירותי סיעוד</strong> — ייעוץ ללא עלות: 077-7715466</li>
+            <li><strong>אלי מילר שירותי סיעוד</strong> — השגחה פרטית בבית ובבית חולים, מענה אנושי 24 שעות: פרטי התקשרות עדכניים באתר החברה</li>
+            <li><strong>Wonder.care</strong> — שירותי השגחה פרטית וצוות סיעודי צמוד בבתי חולים, פריסה ארצית: פרטי התקשרות עדכניים באתר החברה</li>
+            <li>עמל סיעודית, מסר סיעוד ורווחה, מסד, מתן חן ועוד — חברות סיעוד נוספות המורשות ע"י הביטוח הלאומי ומציעות גם שירותי השגחה פרטית; ניתן לאתר את הסניף הקרוב דרך מנוע 'איתור נותני שירותים בסיעוד לפי יישוב' באתר הביטוח הלאומי.</li>
+          </ul>
+          <p class="tip-box" style="background:#FFF3CD;border-right:4px solid #FFC107;padding:15px;margin-top:15px;"><strong>💡 טיפ:</strong> לפני הזמנה מכל חברה — יש לוודא רישיון עסק כדין ואישורי הכשרה למטפלים, ולברר את מדיניות ביטול/שינוי מועד.</p></div></div></div></div><div class="sub-accordion" data-level="2"><div class="sub-accordion-header"><div class="sub-accordion-title">עמותות ומתנדבים</div></div><div class="sub-accordion-content"><div class="sub-accordion-body"><div><ul>
+            <li><strong>יד שרה</strong> — מוקד ארצי: *6444</li>
+            <li><strong>עזר מציון</strong> — מוקד ארצי: *2236</li>
+          </ul>
+          <p style="margin-top:10px;font-size:0.9rem;color:#546E7A;">מסמך זה נועד למידע כללי בלבד ואינו מהווה ייעוץ משפטי או תחליף לבדיקת זכאות פרטנית מול הגורמים הרלוונטיים. פרטי ההתקשרות נכונים למועד עריכת המסמך (אוגוסט 2026) וכפופים לשינויים — מומלץ לוודא מספרים מול אתרי הגורמים הרשמיים.</p></div></div></div></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div></div>
+
+        <div class="info-box">
+            <div class="info-box-header">
+                <span class="info-box-icon">ℹ️</span>
+                <h3>הערה חשובה</h3>
+            </div>
+            <p>
+                המידע במדריך זה מתעדכן ממקורות רשמיים, אך הוא לידיעה כללית בלבד
+                ואינו מהווה בסיס לפעולה או לאי פעולה מכל סוג. יש לפנות לגורמים המוסמכים
+                לקבלת מידע מדויק ומעודכן על הזכויות המגיעות לכם באופן אישי.
+            </p>
+            <div class="links-section">
+                <div class="links-title">🔗 קישורים למקורות מידע רשמיים:</div>
+                <a href="https://www.btl.gov.il" target="_blank" class="link-item">🏛️ אתר הביטוח הלאומי</a>
+                <a href="https://www.kolzchut.org.il" target="_blank" class="link-item">📚 כל-זכות - זכויות אזרחים ותיקים</a>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <p>
+            🤖 פותח עם ❤️ לסיוע לאזרחים ותיקים בישראל<br>
+        </p>
+    </footer>
+
+    <script src="data/hospital-supervision-guide-data.js"></script>
+    <script src="data/accordion-search-nav.js"></script>
+    <script>
+        // הגדרות אנימציה
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes spin {
+                to { transform: rotate(360deg); }
+            }
+        `;
+        document.head.appendChild(style);
+        async function displayContent() {
+            try {
+                // טעינת ערכי NII
+                let nii = {};
+                try {
+                    const niiResp = await fetch('data/nii-constants.json');
+                    nii = await niiResp.json();
+                } catch(e) {
+                    console.warn('NII constants load failed:', e);
+                    document.getElementById('nii-error-banner').style.display = 'block';
+                }
+
+                console.log('🔍 בדיקה נתונים:', typeof HOSPITAL_SUPERVISION_DATA);
+                if (typeof HOSPITAL_SUPERVISION_DATA === 'undefined') {
+                    console.error('❌ HOSPITAL_SUPERVISION_DATA לא קיים');
+                    throw new Error('הקובץ data/hospital-supervision-guide-data.js לא נטען בהצלחה');
+                }
+                if (!HOSPITAL_SUPERVISION_DATA.sections) {
+                    console.error('❌ אין מערך sections בנתונים');
+                    throw new Error('אין נתונים זמינים');
+                }
+
+                console.log('✅ נתונים קיימים, מספר סעיפים:', HOSPITAL_SUPERVISION_DATA.sections.length);
+
+                let html = '<div class="accordions-container">';
+
+                // יצירת אקורדיונים ראשיים
+                HOSPITAL_SUPERVISION_DATA.sections.forEach((section, index) => {
+                    const contentHtml = buildSectionContent(section, nii);
+                    html += `
+                        <div class="accordion" id="${section.id}" data-section="${section.id}">
+                            <div class="accordion-header">
+                                <div class="accordion-icon">${section.icon}</div>
+                                <h2 class="accordion-title">${section.title}</h2>
+                                <span class="accordion-arrow">▼</span>
+                            </div>
+                            <div class="accordion-content">
+                                <div class="accordion-body">
+                                    ${contentHtml}
+                                </div>
+                            </div>
+                        </div>
+                    `;
+                });
+
+                html += '</div>';
+                console.log('✅ HTML בנוי, מעדכן את ה-DOM');
+                document.getElementById('content').innerHTML = html;
+
+                console.log('✅ מתחיל המרת כותרות');
+                // המרת כותרות לתתי-אקורדיונים
+                convertHeadingsToSubAccordions();
+
+                console.log('✅ מתחיל אתחול אקורדיונים');
+                // אתחול אקורדיונים
+                initAccordions();
+                openFromHash();
+                window.addEventListener('hashchange', openFromHash);
+                openFromPath(); // תוצאות חיפוש מבוסס-תוכן (accordion-search-nav.js)
+
+                console.log('✅ סיום בהצלחה');
+
+            } catch (error) {
+                console.error('❌ שגיאה:', error);
+                console.error('Stack:', error.stack);
+                document.getElementById('content').innerHTML = `
+                    <div style="text-align: center; padding: 60px 20px; background: white; border-radius: 24px; box-shadow: 0 12px 35px rgba(0,0,0,0.2);">
+                        <p style="color: #C62828; font-size: 1.2rem; font-weight: 600;">⚠️ אירעה שגיאה בטעינת המידע</p>
+                        <p style="color: #666; margin-top: 10px; font-size: 0.95rem;">פתח את ה-Console (F12) כדי לראות את הפרטים</p>
+                    </div>
+                `;
+            }
+        }
+
+        function openFromHash() {
+            const hash = decodeURIComponent(window.location.hash.slice(1));
+            if (!hash) return;
+            const target = document.getElementById(hash);
+            if (!target) return;
+            document.querySelectorAll('.accordion.active').forEach(a => a.classList.remove('active'));
+            let el = target;
+            while (el) {
+                if (el.classList.contains('accordion') || el.classList.contains('sub-accordion')) {
+                    el.classList.add('active');
+                }
+                el = el.parentElement;
+            }
+            setTimeout(() => target.scrollIntoView({ behavior: 'smooth', block: 'start' }), 450);
+        }
+
+        function buildSectionContent(section, nii) {
+            let html = '';
+
+            if (section.subsections) {
+                section.subsections.forEach(sub => {
+                    html += buildSubsectionContent(sub, 2, nii);
+                });
+            }
+
+            return html;
+        }
+
+        function buildSubsectionContent(item, level, nii) {
+            let html = '';
+
+            if (item.subsections && item.subsections.length > 0) {
+                // אם יש תת-סעיפים, צור כותרת שתהפוך לאקורדיון
+                html += `<h${level} class="no-accordion">${item.title}</h${level}>`;
+                item.subsections.forEach(sub => {
+                    html += buildSubsectionContent(sub, level + 1, nii);
+                });
+            } else {
+                // אם אין תת-סעיפים, צור כותרת רגילה עם תוכן
+                const content = item.contentFn ? item.contentFn(nii) : (item.content || '');
+                html += `<h${level}>${item.title}</h${level}>`;
+                html += `<div>${content}</div>`;
+            }
+
+            return html;
+        }
+
+        function processNestedHeadings(container, depth = 0) {
+            const allHeadings = Array.from(container.querySelectorAll('h2, h3, h4, h5, h6'));
+            const headings = allHeadings.filter(heading => {
+                let parent = heading.parentElement;
+                while (parent && parent !== container) {
+                    if (parent.classList && parent.classList.contains('sub-accordion')) {
+                        return false;
+                    }
+                    parent = parent.parentElement;
+                }
+                return true;
+            });
+
+            headings.forEach((heading) => {
+                if (heading.classList.contains('no-accordion')) {
+                    return;
+                }
+
+                let contentElements = [];
+                let nextElement = heading.nextElementSibling;
+                const currentLevel = parseInt(heading.tagName.substring(1));
+
+                while (nextElement) {
+                    const nextTagName = nextElement.tagName;
+
+                    if (nextTagName && nextTagName.match(/^H[2-6]$/)) {
+                        const nextLevel = parseInt(nextTagName.substring(1));
+                        if (nextLevel <= currentLevel) {
+                            break;
+                        }
+                    }
+
+                    contentElements.push(nextElement);
+                    nextElement = nextElement.nextElementSibling;
+                }
+
+                if (contentElements.length > 0) {
+                    const subAccordion = document.createElement('div');
+                    subAccordion.className = 'sub-accordion';
+                    subAccordion.setAttribute('data-level', currentLevel);
+                    if (heading.id) subAccordion.id = heading.id;
+
+                    const subHeader = document.createElement('div');
+                    subHeader.className = 'sub-accordion-header';
+
+                    const subTitle = document.createElement('div');
+                    subTitle.className = 'sub-accordion-title';
+                    subTitle.innerHTML = heading.innerHTML;
+
+                    subHeader.appendChild(subTitle);
+
+                    const subContent = document.createElement('div');
+                    subContent.className = 'sub-accordion-content';
+
+                    const subBody = document.createElement('div');
+                    subBody.className = 'sub-accordion-body';
+
+                    contentElements.forEach(el => {
+                        subBody.appendChild(el);
+                    });
+
+                    subContent.appendChild(subBody);
+                    subAccordion.appendChild(subHeader);
+                    subAccordion.appendChild(subContent);
+
+                    heading.parentNode.replaceChild(subAccordion, heading);
+
+                    processNestedHeadings(subBody, depth + 1);
+
+                    subHeader.addEventListener('click', (event) => {
+                        event.stopPropagation();
+
+                        const wasActive = subAccordion.classList.contains('active');
+
+                        let parentAccordionBody = subAccordion.parentElement;
+                        while (parentAccordionBody && !parentAccordionBody.classList.contains('accordion-body') && !parentAccordionBody.classList.contains('sub-accordion-body')) {
+                            parentAccordionBody = parentAccordionBody.parentElement;
+                        }
+
+                        if (parentAccordionBody) {
+                            const siblingAccordions = parentAccordionBody.querySelectorAll(':scope > .sub-accordion.active');
+                            siblingAccordions.forEach(activeSubAccordion => {
+                                if (activeSubAccordion !== subAccordion) {
+                                    activeSubAccordion.classList.remove('active');
+                                }
+                            });
+                        }
+
+                        subAccordion.classList.toggle('active');
+
+                        if (!wasActive) {
+                            const nestedSubAccordions = subAccordion.querySelectorAll('.sub-accordion.active');
+                            nestedSubAccordions.forEach(nestedSubAcc => {
+                                nestedSubAcc.classList.remove('active');
+                            });
+
+                            setTimeout(() => {
+                                subAccordion.scrollIntoView({
+                                    behavior: 'smooth',
+                                    block: 'start',
+                                    inline: 'nearest'
+                                });
+                            }, 450);
+                        }
+                    });
+                }
+            });
+        }
+
+        function convertHeadingsToSubAccordions() {
+            const accordionBodies = document.querySelectorAll('.accordion-body');
+            accordionBodies.forEach((body) => {
+                processNestedHeadings(body, 0);
+            });
+        }
+
+        function initAccordions() {
+            const accordions = document.querySelectorAll('.accordion');
+
+            accordions.forEach((accordion) => {
+                const header = accordion.querySelector('.accordion-header');
+
+                header.addEventListener('click', () => {
+                    const wasActive = accordion.classList.contains('active');
+
+                    accordions.forEach((other) => {
+                        if (other !== accordion && other.classList.contains('active')) {
+                            other.classList.remove('active');
+                        }
+                    });
+
+                    accordion.classList.toggle('active');
+
+                    if (!wasActive) {
+                        const subAccordions = accordion.querySelectorAll('.sub-accordion.active');
+                        subAccordions.forEach(subAcc => {
+                            subAcc.classList.remove('active');
+                        });
+
+                        setTimeout(() => {
+                            accordion.scrollIntoView({
+                                behavior: 'smooth',
+                                block: 'start',
+                                inline: 'nearest'
+                            });
+                        }, 450);
+                    }
+                });
+            });
+        }
+
+        // טעינה
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', () => {
+                console.log('🔍 DOMContentLoaded event');
+                // חכה טיפה כדי שהסקריפטים יטענו
+                setTimeout(() => {
+                    console.log('🔍 בדיקה קיום HOSPITAL_SUPERVISION_DATA בהשהייה');
+                    if (typeof HOSPITAL_SUPERVISION_DATA !== 'undefined') {
+                        displayContent();
+                    } else {
+                        console.error('❌ HOSPITAL_SUPERVISION_DATA עדיין לא זמין');
+                        document.getElementById('content').innerHTML = `
+                            <div style="text-align: center; padding: 60px 20px; background: white; border-radius: 24px; box-shadow: 0 12px 35px rgba(0,0,0,0.2);">
+                                <p style="color: #C62828; font-size: 1.2rem; font-weight: 600;">⚠️ לא ניתן לטעון את קובץ הנתונים</p>
+                                <p style="color: #666; margin-top: 10px; font-size: 0.95rem;">אנא בדוק שקובץ data/hospital-supervision-guide-data.js קיים</p>
+                            </div>
+                        `;
+                    }
+                }, 500);
+            });
+        } else {
+            console.log('🔍 document already loaded');
+            setTimeout(() => {
+                console.log('🔍 בדיקה קיום HOSPITAL_SUPERVISION_DATA בעומס');
+                if (typeof HOSPITAL_SUPERVISION_DATA !== 'undefined') {
+                    displayContent();
+                } else {
+                    console.error('❌ HOSPITAL_SUPERVISION_DATA עדיין לא זמין');
+                    document.getElementById('content').innerHTML = `
+                        <div style="text-align: center; padding: 60px 20px; background: white; border-radius: 24px; box-shadow: 0 12px 35px rgba(0,0,0,0.2);">
+                            <p style="color: #C62828; font-size: 1.2rem; font-weight: 600;">⚠️ לא ניתן לטעון את קובץ הנתונים</p>
+                            <p style="color: #666; margin-top: 10px; font-size: 0.95rem;">אנא בדוק שקובץ data/hospital-supervision-guide-data.js קיים</p>
+                        </div>
+                    `;
+                }
+            }, 500);
+        }
+    </script>
+    <script src="data/hamburger-nav.js"></script>
+    <script src="data/btl-chat-widget.js"></script>
+</body>
+</html>

@@ -491,6 +491,7 @@
                 { text: '⚖️ בחירה בין קצבת נכות לקצבת שאירים',                href: bp + 'additional_guides/html/additional_guides_index.html#nechut_mul_shairim' },
                 { text: '💰 תקרות הכנסה לקצבת אזרח ותיק חלקית',               href: bp + 'additional_guides/html/additional_guides_index.html#takrut_hachnasa' },
                 { text: '🏥 זכויות אזרחים ותיקים לאחר אישפוז',                href: bp + 'additional_guides/html/additional_guides_index.html#zchuyot_achrei_ishpuz' },
+                { text: '🛏️ מדריך מפורט להשגחה אישית למאושפז בבית החולים',    href: bp + 'additional_guides/html/additional_guides_index.html#hashgacha_ishit_meushpaz' },
                 { text: '📜 ייפוי כוח מתמשך - מדריך מקיף',                    href: bp + 'additional_guides/html/additional_guides_index.html#yipuy_koach_mitmashech' },
                 { text: '🩼 נכות כללית מול נכות מעבודה',                      href: bp + 'additional_guides/html/additional_guides_index.html#nechut_klalit_mul_avoda' },
                 { text: '🏠 הגשת תביעה לגמלת סיעוד',                          href: bp + 'additional_guides/html/additional_guides_index.html#nursing_care_benefit' },

@@ -86,6 +86,8 @@ const PATH_DESCRIPTIONS = {
     'מדריך השוואה בין קצבת נכות כללית לקצבת שאירים בביטוח הלאומי: הבדלי סכומים, יתרונות, סיכונים ואפשרות מעבר בין הקצבאות.',
   'senior_rights/nursing_care_benefit_guide.html':
     'מדריך מפורט להגשת תביעה לגמלת סיעוד: תנאי זכאות ומבחן הכנסות, מסמכים רפואיים נדרשים, מבחן התלות וניקוד הזכאות (כולל טבלת רמות 1-6 עם סכומי הגמלה העדכניים), ביקור ההערכה בבית, טרום סיעוד, ערעורים, וזכאות מורחבת לניצולי שואה ולנכי צה"ל.',
+  'senior_rights/hospital_supervision_guide.html':
+    'מדריך מפורט להשגחה אישית עבור קשיש המאושפז בבית חולים: המשך שירותי סיעוד וקצבה לשירותים מיוחדים בזמן אשפוז, ביטוח משלים וביטוח סיעודי קבוצתי דרך קופת החולים, ביטוחים פרטיים, עמותות ומתנדבים (יד שרה, עזר מציון), חברות סיעוד פרטיות בתשלום, ורשימת פרטי התקשרות מרוכזת.',
   'senior_rights/nursing_home_guide.html':
     'מדריך מפורט לסיוע במימון בית אבות לאזרחים ותיקים: גופים מממנים, תנאי זכאות והליך הגשת בקשה.',
   'senior_rights/old_pension_income_test_full_guide.html':
@@ -131,6 +133,7 @@ const PATH_TITLES = {
   'senior_rights/imputed_income_guide.html': '📖 מדריך מפורט: חישוב הכנסה רעיונית מנכסים פיננסיים',
   'senior_rights/nechut_vs_shairim.html': '⚖️ מדריך מפורט לקצבת נכות כללית מול קצבת שאירים',
   'senior_rights/nursing_care_benefit_guide.html': '🏠 מדריך מפורט להגשת תביעה לגמלת סיעוד',
+  'senior_rights/hospital_supervision_guide.html': '🛏️ מדריך מפורט להשגחה אישית למאושפז בבית החולים',
   'senior_rights/nursing_home_guide.html': '🏥 מדריך מפורט בנושא מוסד אישפוז',
   'senior_rights/old_pension_income_test_full_guide.html': '📊 מדריך לחישוב זכאות וסכום קצבת זיקנה חלקית',
   'senior_rights/senior_citizens_rights_2026.html': '📘 זכויות אזרחים ותיקים 2026 - מדריך מקיף',
