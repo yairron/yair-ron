@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
-<title>בדיקת מסלול חדש</title>
+<title>עריכת מסלול חדש</title>
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Assistant:wght@300;400;600;700;800&family=Varela+Round&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
@@ -85,8 +85,8 @@ footer a{color:white;text-decoration:underline;font-weight:600}
     <button onclick="history.back()" class="btn-nav">← חזרה</button>
   </div>
   <header>
-    <h1>🔎 בדיקת מסלול חדש</h1>
-    <p class="subtitle">העלאת קובץ GPX, הצגה על מפה, ובדיקת אורך וטיפוס/ירידה</p>
+    <h1>🔎 עריכת מסלול חדש</h1>
+    <p class="subtitle">העלאת קובץ GPX, הצגה על מפה ועריכה</p>
   </header>
 
   <div class="card">
@@ -95,6 +95,10 @@ footer a{color:white;text-decoration:underline;font-weight:600}
       <label class="file-btn" for="gpxInput">📂 בחר קובץ GPX</label>
       <input type="file" id="gpxInput" accept=".gpx" onchange="handleFile(this)">
       <span class="upload-hint">ניתן לבחור קובץ נוסף כדי להציג כמה מסלולים יחד על אותה מפה</span>
+    </div>
+    <div class="upload-row" style="margin-top:14px">
+      <button type="button" class="file-btn" onclick="startFromScratch()">🖊️ עריכת מסלול חדש</button>
+      <span class="upload-hint">בניית מסלול חדש מאפס על המפה, בלי להעלות קובץ</span>
     </div>
   </div>
 
@@ -106,8 +110,8 @@ footer a{color:white;text-decoration:underline;font-weight:600}
     <button onclick="document.getElementById('gpxInput').click()">➕ צירוף מסלול נוסף</button>
     <button id="editRouteBtn" onclick="toggleEditCurtain()">🖊️ עריכת מסלול</button>
     <div class="edit-mode-curtain" id="editModeCurtain">
-      <button class="merge-option" onclick="mergeAllRoutesDownload()">🔗 מזג את כל המסלולים</button>
-      <button onclick="selectEditMode('cut')">✂️ חיתוך מקטע (מתוך מסלול טעון)<span class="mode-check" id="checkCut">✓</span></button>
+      <button class="merge-option" id="mergeOption" onclick="mergeAllRoutesDownload()">🔗 מזג את כל המסלולים</button>
+      <button id="cutOption" onclick="selectEditMode('cut')">✂️ חיתוך מקטע (מתוך מסלול טעון)<span class="mode-check" id="checkCut">✓</span></button>
       <button onclick="selectEditMode('osm')">📍 הוספת נקודות עם הצמדה לנתיב מפה<span class="mode-check" id="checkOsm">✓</span></button>
       <button onclick="selectEditMode('freehand')">✏️ הוספת נקודות חופשי (בלי הצמדה)<span class="mode-check" id="checkFreehand">✓</span></button>
       <button class="finish-option" onclick="stopEditMode()">⏹️ סיום עריכה</button>
@@ -298,9 +302,8 @@ function fitAllBounds() {
 function renderRoutesList() {
   var emptyState = document.getElementById('emptyState');
   var list = document.getElementById('routesList');
-  var actionsRow = document.getElementById('actionsRow');
   emptyState.style.display = routes.length ? 'none' : 'block';
-  actionsRow.style.display = routes.length ? 'flex' : 'none';
+  updateActionsRowVisibility();
 
   list.innerHTML = '';
   routes.forEach(function (r) {
@@ -354,6 +357,7 @@ function mergeAllRoutesDownload() {
 function toggleEditCurtain() {
   document.getElementById('editModeCurtain').classList.toggle('show');
   updateCurtainChecks();
+  updateCurtainAvailability();
 }
 
 function closeEditCurtain() {
@@ -366,6 +370,40 @@ function updateCurtainChecks() {
   document.getElementById('checkCut').classList.toggle('active', editMode === 'cut');
   document.getElementById('checkOsm').classList.toggle('active', editMode === 'osm');
   document.getElementById('checkFreehand').classList.toggle('active', editMode === 'freehand');
+}
+
+// מסתיר את אפשרויות "חיתוך מקטע" ו"מיזוג" מהוילון כשאין מסלולים טעונים בכלל
+// (routes.length===0) - שתי הפעולות דורשות מסלול/ים קיימים, ובלעדיהם היו רק
+// מציגות שגיאה. נחוץ בפרט לזרימת "עריכת מסלול חדש" (startFromScratch) - שם
+// אין שום מסלול טעון מלכתחילה.
+function updateCurtainAvailability() {
+  var hasRoutes = routes.length > 0;
+  document.getElementById('mergeOption').style.display = hasRoutes ? 'flex' : 'none';
+  document.getElementById('cutOption').style.display = hasRoutes ? 'flex' : 'none';
+}
+
+// שורת הכפתורים גלויה אם יש מסלולים טעונים, או שכבר יש מסלול-בבנייה
+// (routeBuilder) - כדי שלא תיעלם באמצע עריכה. routeBuilder לא תלוי ב-routes
+// בכלל (startFromScratch בונה מסלול בלי להעלות GPX).
+function updateActionsRowVisibility() {
+  document.getElementById('actionsRow').style.display = (routes.length || routeBuilder) ? 'flex' : 'none';
+}
+
+// כפתור "עריכת מסלול חדש" מתחת לכפתור העלאת קובץ - מתחיל מסלול לגמרי מאפס,
+// בלי להעלות GPX. פותח את המפה (ממורכזת במיקום המשתמש אם אפשר, כי אין מסלול
+// טעון לצייד bounds ממנו) ומציג את וילון בחירת המצב - "חיתוך מקטע" ו"מיזוג"
+// מוסתרים שם (updateCurtainAvailability) כי אין שום מסלול טעון להצמיד/למזג אליו.
+function startFromScratch() {
+  ensureMap();
+  if (routes.length === 0 && navigator.geolocation) {
+    navigator.geolocation.getCurrentPosition(function (pos) {
+      mapInstance.setView([pos.coords.latitude, pos.coords.longitude], 15);
+    }, function () { /* מיקום נדחה/נכשל - נשארים בתצוגת ברירת המחדל */ }, { timeout: 8000 });
+  }
+  document.getElementById('actionsRow').style.display = 'flex';
+  document.getElementById('editModeCurtain').classList.add('show');
+  updateCurtainChecks();
+  updateCurtainAvailability();
 }
 
 // סוגר את הוילון בלחיצה מחוץ לו/לכפתור - התנהגות תפריט נגלל רגילה.
@@ -420,6 +458,7 @@ function activateEditMode(mode) {
   if (!routeBuilder) routeBuilder = RouteEditor.createRouteBuilder();
   editMode = mode;
   updateCurtainChecks();
+  updateActionsRowVisibility();
   document.getElementById('cutterToolbar').style.display = 'flex';
   setCutterStatus(routeBuilder.hasStarted() ? (routeBuilder.getPoints().length + ' נקודות במסלול') : 'לחץ על המפה כדי להתחיל');
 }
@@ -455,6 +494,7 @@ function deactivateEditMode() {
   cutPool = null;
   osmPool = null;
   updateCurtainChecks();
+  updateActionsRowVisibility();
   clearCutterVisuals();
   document.getElementById('cutterToolbar').style.display = 'none';
   if (mapInstance) mapInstance.getContainer().style.cursor = '';
