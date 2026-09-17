@@ -1,6 +1,6 @@
 {
-  "generated_at": "2026-08-31T16:50:26",
-  "route_count": 581,
+  "generated_at": "2026-09-17T12:37:03",
+  "route_count": 582,
   "routes": [
     {
       "id": 698,
@@ -16511,6 +16511,35 @@
       "invalid": false,
       "removed_points": 1,
       "thumbnail": "thumbnails/סינגלים דימונה.jpg"
+    },
+    {
+      "id": 724,
+      "file_name": "שבי ציון אפק 2026-09-17 תכנון.gpx",
+      "gpx_path": "GPX_files/שבי ציון אפק 2026-09-17 תכנון.gpx",
+      "date": "2026-09-17",
+      "date_source": "שם קובץ",
+      "activity": "רכיבת אופניים",
+      "source": "הקלטה",
+      "distance_km": 47.82,
+      "elevation_gain_m": 64,
+      "elevation_loss_m": 64,
+      "point_count": 9581,
+      "start_lat": 32.98216,
+      "start_lon": 35.08214,
+      "end_lat": 32.98231,
+      "end_lon": 35.08199,
+      "regions": [
+        "צפון"
+      ],
+      "settlements": [
+        "שבי ציון",
+        "עין המפרץ",
+        "כפר מסריק"
+      ],
+      "settlements_found": true,
+      "invalid": false,
+      "removed_points": 0,
+      "thumbnail": "thumbnails/שבי ציון אפק 2026-09-17 תכנון.jpg"
     },
     {
       "id": 721,
