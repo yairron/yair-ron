@@ -12,9 +12,14 @@
 # היה מטופל עד כה ע"י meta refresh בצד הלקוח בלבד - גוגל דיווח על כך כ-"Redirect error" ב-Search
 # Console, כנראה כי צירוף של הפניית 301 של Netlify (מ-/index ל-/, ראו בדיקת curl) יחד עם הפניית
 # meta refresh נוספת בתוך התוכן בלבל את הזחילה. הפניית 301 אמיתית ויחידה כאן מחליפה את זה לחלוטין.
-/btl/additional_guides/html/index        /btl/additional_guides/html/additional_guides_index   301
-/btl/additional_guides/html/index.html   /btl/additional_guides/html/additional_guides_index   301
-/btl/additional_guides/html/             /btl/additional_guides/html/additional_guides_index   301
+# תוקן שוב 22.09.2026 - אומת בפועל (curl, ולא הנחה) שה-301 למעלה מעולם לא היה אפקטיבי בשרת החי:
+# הנתיב מתנגש עם קובץ סטטי קיים (index.html) שכבר נגיש דרך מוסכמת הורדת-הסיומת (12.07.2026), ו-Netlify
+# מגיש את הקובץ הסטטי במקום להפעיל את כלל ה-redirect ("shadowing", התנהגות מתועדת של Netlify) -
+# ה-validation שנכשל ב-Search Console נבע מזה. הפתרון: דגל הכפייה `!` אחרי קוד הסטטוס, שגורם לכלל
+# ה-redirect לגבור במפורש גם כשיש קובץ סטטי תואם.
+/btl/additional_guides/html/index        /btl/additional_guides/html/additional_guides_index   301!
+/btl/additional_guides/html/index.html   /btl/additional_guides/html/additional_guides_index   301!
+/btl/additional_guides/html/             /btl/additional_guides/html/additional_guides_index   301!
 
 # קישורי-קיצור באנגלית לקבצי ה-PDF תחת additional_guides_index.html (כפתור 📥 "קישור להורדת המסמך") -
 # שמות הקבצים המקוריים בעברית עם רווחים נהפכים ל-percent-encoding ארוך ומכוער כשמשתפים אותם ישירות
