@@ -1,6 +1,6 @@
 {
-  "generated_at": "2026-09-17T12:37:03",
-  "route_count": 582,
+  "generated_at": "2026-09-30T15:28:37",
+  "route_count": 583,
   "routes": [
     {
       "id": 698,
@@ -16053,6 +16053,35 @@
       "invalid": false,
       "removed_points": 0,
       "thumbnail": "thumbnails/2026-08-22_06-26-28 כברי כזיב נהריה סובב כברי צרעות.jpg"
+    },
+    {
+      "id": 725,
+      "file_name": "2026-09-27 סינגל יחיעם מגעתון לשיירה וחזרה.gpx",
+      "gpx_path": "GPX_files/2026-09-27 סינגל יחיעם מגעתון לשיירה וחזרה.gpx",
+      "date": "2026-09-27",
+      "date_source": "שם קובץ",
+      "activity": "רכיבת אופניים",
+      "source": "הקלטה",
+      "distance_km": 20.1,
+      "elevation_gain_m": 552,
+      "elevation_loss_m": 547,
+      "point_count": 919,
+      "start_lat": 33.00504,
+      "start_lon": 35.2155,
+      "end_lat": 33.00503,
+      "end_lon": 35.21553,
+      "regions": [
+        "צפון"
+      ],
+      "settlements": [
+        "יחיעם",
+        "געתון",
+        "עין יעקב"
+      ],
+      "settlements_found": true,
+      "invalid": false,
+      "removed_points": 0,
+      "thumbnail": "thumbnails/2026-09-27 סינגל יחיעם מגעתון לשיירה וחזרה.jpg"
     },
     {
       "id": 715,
