@@ -1,6 +1,6 @@
 {
-  "generated_at": "2026-09-30T15:28:37",
-  "route_count": 583,
+  "generated_at": "2026-10-02T17:54:22",
+  "route_count": 584,
   "routes": [
     {
       "id": 698,
@@ -15108,10 +15108,10 @@
       "date_source": "שם קובץ",
       "activity": "רכיבת אופניים",
       "source": "הקלטה",
-      "distance_km": 66.75,
-      "elevation_gain_m": 1073,
-      "elevation_loss_m": 1082,
-      "point_count": 17387,
+      "distance_km": 62.15,
+      "elevation_gain_m": 1216,
+      "elevation_loss_m": 1223,
+      "point_count": 17373,
       "start_lat": 33.0184,
       "start_lon": 35.14273,
       "end_lat": 33.01838,
@@ -15126,7 +15126,7 @@
       ],
       "settlements_found": true,
       "invalid": false,
-      "removed_points": 42,
+      "removed_points": 0,
       "thumbnail": "thumbnails/2026-06-20_כברי_אדמית_שתולה_גורנות הגליל_מצובה.jpg"
     },
     {
@@ -16082,6 +16082,35 @@
       "invalid": false,
       "removed_points": 0,
       "thumbnail": "thumbnails/2026-09-27 סינגל יחיעם מגעתון לשיירה וחזרה.jpg"
+    },
+    {
+      "id": 726,
+      "file_name": "2026-10-02_געתון נהריה גשר הזיו געתון.gpx",
+      "gpx_path": "GPX_files/2026-10-02_געתון נהריה גשר הזיו געתון.gpx",
+      "date": "2026-10-02",
+      "date_source": "שם קובץ",
+      "activity": "רכיבת אופניים",
+      "source": "הקלטה",
+      "distance_km": 39.3,
+      "elevation_gain_m": 532,
+      "elevation_loss_m": 534,
+      "point_count": 9144,
+      "start_lat": 33.00503,
+      "start_lon": 35.21545,
+      "end_lat": 33.00522,
+      "end_lon": 35.21548,
+      "regions": [
+        "צפון"
+      ],
+      "settlements": [
+        "געתון",
+        "כברי",
+        "נהרייה"
+      ],
+      "settlements_found": true,
+      "invalid": false,
+      "removed_points": 0,
+      "thumbnail": "thumbnails/2026-10-02_געתון נהריה גשר הזיו געתון.jpg"
     },
     {
       "id": 715,
