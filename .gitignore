@@ -15,3 +15,10 @@ node_modules/
 # שלא השתנו. אין טעם לגרסן אותו בגיט - הוא נבנה מחדש אוטומטית בכל מכונה,
 # ושמירתו הייתה יוצרת diff ענק בכל commit שנוגע בקבצי GPX.
 YR1/bike/route_catalog/GPX_files/scripts/support_data/catalog_build_cache.json
+
+# קיצורי דרך של Google Drive (נוסף 03.10.2026) - קבצים זעירים שהסנכרון של
+# Drive יוצר לכל Google Sheet/Doc/Slides בתיקייה. מכילים רק מזהה ומצביע לקובץ
+# בענן, לא את התוכן עצמו - אין טעם לגרסן אותם.
+*.gsheet
+*.gdoc
+*.gslides

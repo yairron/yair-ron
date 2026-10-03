@@ -66,8 +66,6 @@ h1{font-family:'Varela Round',sans-serif;font-size:2.6rem;font-weight:800;color:
 .route-actions{display:flex;gap:10px;flex-wrap:wrap}
 .btn-action{display:inline-block;padding:9px 18px;border-radius:12px;text-decoration:none;font-size:.9rem;font-weight:700;color:white;background:var(--primary);border:none;cursor:pointer;transition:all .2s}
 .btn-action:hover{background:var(--dark)}
-.btn-action-secondary{background:#7A8A80}
-.btn-action-secondary:hover{background:#5C6B62}
 
 .route-notes{width:100%;border-top:1px solid #E3ECE6;padding-top:10px}
 .route-notes:empty{display:none}
@@ -75,12 +73,6 @@ h1{font-family:'Varela Round',sans-serif;font-size:2.6rem;font-weight:800;color:
 .place-tags{display:flex;flex-wrap:wrap;gap:6px;margin-top:4px}
 .place-tag{display:inline-block;background:var(--light);border:1px solid #CFE0D3;color:var(--primary);border-radius:10px;padding:1px 10px;font-size:.82rem;font-weight:700;cursor:pointer;transition:all .2s}
 .place-tag:hover{background:var(--secondary);border-color:var(--secondary);color:white}
-.notes-editor{display:flex;flex-direction:column;gap:8px}
-.notes-editor label{font-size:.8rem;color:var(--primary);font-weight:700}
-.notes-editor textarea,.notes-editor input{width:100%;font-size:.95rem;padding:8px 12px;border:1px solid #CFE0D3;border-radius:10px;background:var(--light);color:var(--text);font-family:'Assistant',sans-serif}
-.notes-editor textarea{min-height:90px;resize:vertical}
-.notes-editor .notes-hint{font-size:.75rem;color:#5C7A6B}
-.notes-editor .notes-buttons{display:flex;gap:8px;flex-wrap:wrap}
 
 .pagination{display:flex;justify-content:center;align-items:center;gap:10px;margin-bottom:30px;flex-wrap:wrap}
 .pagination span{color:white;font-weight:700;text-shadow:1px 1px 4px rgba(0,0,0,.3)}
@@ -416,7 +408,7 @@ function buildRouteCard(r, idx) {
       '</div>' +
       '<div class="route-actions">' +
         '<a class="btn-action" href="' + encodeURI(r.gpx_path) + '" download>📥 הורדת קובץ GPX</a>' +
-        (IS_LOCAL_EDIT ? '<button class="btn-action" onclick="openNotesEditor(' + r.id + ')">✏️ הערות</button>' : '') +
+        (IS_LOCAL_EDIT ? '<a class="btn-action" href="' + NOTES_SHEET_URL + '" target="_blank" rel="noopener">✏️ עריכת הערות</a>' : '') +
       '</div>' +
       '<div class="route-notes" id="notes-' + r.id + '">' + buildNotesHtml(r.id) + '</div>' +
     '</div></div>';
@@ -427,9 +419,16 @@ function buildRouteCard(r, idx) {
 // מבנה route-notes.json: { "<id>": { "text": "...", "places": "מקום א, מקום ב. מקום ג" } }
 // המפתח הוא מספר המסלול (r.id) - יציב גם אחרי שינוי שם קובץ (route_ids.json).
 // places נשמר כמחרוזת כפי שהוקלדה, ומפוצל לתצוגה/חיפוש לפי נקודה או פסיק.
+//
+// עודכן 03.10.2026: מקור האמת להערות הוא גיליון Google, לא הדף - route-notes.json
+// נבנה ממנו ע"י GPX_files/scripts/sync_route_notes.py. העורך שהיה כאן (שמירה
+// ישירה לקובץ / הורדת קובץ) הוסר, כי כל עריכה בדף הייתה נדרסת בסנכרון הבא.
+// כפתור "עריכת הערות" רק פותח את הגיליון.
 
-// עריכה זמינה רק בהרצה מקומית (Live Server) - לא באתר החי.
+// קישור העריכה מוצג רק בהרצה מקומית (Live Server) - לא באתר החי.
 var IS_LOCAL_EDIT = ['127.0.0.1', 'localhost'].indexOf(window.location.hostname) !== -1;
+// אותו מזהה גם ב-SHEET_ID בתוך sync_route_notes.py - לעדכן בשניהם
+var NOTES_SHEET_URL = 'https://docs.google.com/spreadsheets/d/1zbwalOSD41pD131tzPATiq2xUdXIe1IYPecbddzQNPg/edit';
 
 function getPlaces(id) {
   var n = ROUTE_NOTES[id];
@@ -462,155 +461,6 @@ document.addEventListener('click', function (e) {
   render();
   window.scrollTo({ top: 0, behavior: 'smooth' });
 });
-
-function openNotesEditor(id) {
-  var box = document.getElementById('notes-' + id);
-  var n = ROUTE_NOTES[id] || {};
-  box.innerHTML =
-    '<div class="notes-editor">' +
-      '<label for="notesText-' + id + '">הערות</label>' +
-      '<textarea id="notesText-' + id + '"></textarea>' +
-      '<label for="notesPlaces-' + id + '">מקומות עניין</label>' +
-      '<input type="text" id="notesPlaces-' + id + '">' +
-      '<span class="notes-hint">הפרדה בין מקומות בפסיק או בנקודה. מקומות העניין נכללים בחיפוש. ' +
-        (CAN_WRITE_DIRECT
-          ? 'בשמירה הראשונה יש לבחור את התיקייה YR1/bike/route_catalog/data.'
-          : 'השמירה מורידה קובץ route-notes.json מעודכן - יש לשמור אותו בתיקייה YR1/bike/route_catalog/data במקום הקובץ הקיים.') +
-      '</span>' +
-      '<div class="notes-buttons">' +
-        '<button class="btn-action" onclick="saveNotes(' + id + ')">💾 שמירה</button>' +
-        '<button class="btn-action btn-action-secondary" onclick="closeNotesEditor(' + id + ')">ביטול</button>' +
-      '</div>' +
-    '</div>';
-  // הערכים נכנסים דרך value ולא דרך innerHTML - בלי צורך ב-escaping
-  document.getElementById('notesText-' + id).value = n.text || '';
-  document.getElementById('notesPlaces-' + id).value = n.places || '';
-  document.getElementById('notesText-' + id).focus();
-}
-
-function closeNotesEditor(id) {
-  document.getElementById('notes-' + id).innerHTML = buildNotesHtml(id);
-}
-
-function saveNotes(id) {
-  var text = document.getElementById('notesText-' + id).value.trim();
-  var places = document.getElementById('notesPlaces-' + id).value.trim();
-  writeNotesFile(id, text || places ? { text: text, places: places } : null)
-    .then(function (ok) { if (ok) closeNotesEditor(id); })
-    .catch(function (err) {
-      console.error(err);
-      alert('השמירה נכשלה: ' + err.message);
-    });
-}
-
-// שמירה ישירה לקובץ data/route-notes.json בדיסק, דרך File System Access API
-// (Chrome/Edge). בפעם הראשונה המשתמש בוחר את **התיקייה** data (לא את הקובץ) -
-// showDirectoryPicker עם mode:'readwrite' נותן הרשאת כתיבה באישור אחד, בעוד
-// בחירת קובץ בודד דורשת בקשת הרשאה שנייה שנכשלת כי הבורר כבר "צרך" את הלחיצה.
-// ה-handle נשמר ב-IndexedDB כדי לא לבחור שוב אחרי רענון. לפני כל כתיבה הקובץ
-// נקרא מחדש מהדיסק ורק הרשומה הנוכחית מתעדכנת - כך לא נדרס שינוי שנעשה בקובץ בינתיים.
-// דורש ש-Live Server יתעלם מהקובץ (.vscode/settings.json), אחרת כל שמירה מרעננת את הדף.
-var NOTES_DB_NAME = 'routeCatalogNotes';
-var NOTES_FILE_NAME = 'route-notes.json';
-var notesFileHandle = null;
-
-function notesDb() {
-  return new Promise(function (resolve, reject) {
-    var req = indexedDB.open(NOTES_DB_NAME, 1);
-    req.onupgradeneeded = function () { req.result.createObjectStore('handles'); };
-    req.onsuccess = function () { resolve(req.result); };
-    req.onerror = function () { reject(req.error); };
-  });
-}
-
-function notesDbGet() {
-  return notesDb().then(function (db) {
-    return new Promise(function (resolve) {
-      var req = db.transaction('handles').objectStore('handles').get('dataDir');
-      req.onsuccess = function () { resolve(req.result || null); };
-      req.onerror = function () { resolve(null); };
-    });
-  }).catch(function () { return null; });
-}
-
-function notesDbSet(handle) {
-  return notesDb().then(function (db) {
-    db.transaction('handles', 'readwrite').objectStore('handles').put(handle, 'dataDir');
-  }).catch(function () {});
-}
-
-function getNotesFileHandle() {
-  if (notesFileHandle) return Promise.resolve(notesFileHandle);
-  return notesDbGet().then(function (dir) {
-    if (dir) {
-      // handle שמור מהפעלה קודמת - ההרשאה לא נשמרת בין רענונים, מבקשים שוב (בלי בורר)
-      return dir.queryPermission({ mode: 'readwrite' }).then(function (perm) {
-        return perm === 'granted' ? perm : dir.requestPermission({ mode: 'readwrite' });
-      }).then(function (perm) {
-        if (perm !== 'granted') throw new Error('לא ניתנה הרשאת כתיבה לתיקייה');
-        return dir;
-      });
-    }
-    return window.showDirectoryPicker({ mode: 'readwrite' });
-  }).then(function (dir) {
-    // getFileHandle בלי create - מוודא שנבחרה התיקייה הנכונה (שכבר מכילה את הקובץ)
-    return dir.getFileHandle(NOTES_FILE_NAME).then(function (h) {
-      return notesDbSet(dir).then(function () { notesFileHandle = h; return h; });
-    }, function () {
-      throw new Error('בתיקייה "' + dir.name + '" אין קובץ ' + NOTES_FILE_NAME + ' - יש לבחור את התיקייה YR1/bike/route_catalog/data');
-    });
-  });
-}
-
-// עדכון/מחיקה של רשומה אחת, והחזרת עותק ממוין לפי מספר מסלול (diff קריא בגיט)
-function applyNotesEntry(current, id, entry) {
-  var copy = {};
-  Object.keys(current).forEach(function (k) { copy[k] = current[k]; });
-  if (entry) copy[id] = entry;
-  else delete copy[id];
-  var sorted = {};
-  Object.keys(copy).sort(function (a, b) { return a - b; }).forEach(function (k) { sorted[k] = copy[k]; });
-  return sorted;
-}
-
-var CAN_WRITE_DIRECT = !!window.showDirectoryPicker;
-
-// דפדפן בלי File System Access API (Firefox): הורדת route-notes.json מלא
-// ומעודכן, שהמשתמש שומר במקום הקובץ הקיים בתיקייה data. הבסיס הוא ROUTE_NOTES
-// שבזיכרון (נטען מהדיסק בטעינת הדף ומתעדכן בכל שמירה), לא קריאה מחדש מהדיסק -
-// אין לדפדפן גישה לקובץ. עד שהקובץ מוחלף בפועל, רענון הדף יציג את הגרסה הישנה.
-function downloadNotesFile(id, entry) {
-  var sorted = applyNotesEntry(ROUTE_NOTES, id, entry);
-  var blob = new Blob([JSON.stringify(sorted, null, 2) + '\n'], { type: 'application/json' });
-  var a = document.createElement('a');
-  a.href = URL.createObjectURL(blob);
-  a.download = NOTES_FILE_NAME;
-  document.body.appendChild(a);
-  a.click();
-  a.remove();
-  setTimeout(function () { URL.revokeObjectURL(a.href); }, 1000);
-  ROUTE_NOTES = sorted;
-  return Promise.resolve(true);
-}
-
-function writeNotesFile(id, entry) {
-  if (!CAN_WRITE_DIRECT) return downloadNotesFile(id, entry);
-  return getNotesFileHandle().then(function (h) {
-    if (!h) return false;
-    return h.getFile().then(function (f) { return f.text(); }).then(function (raw) {
-      var sorted = applyNotesEntry(raw.trim() ? JSON.parse(raw) : {}, id, entry);
-      return h.createWritable().then(function (w) {
-        return w.write(JSON.stringify(sorted, null, 2) + '\n').then(function () { return w.close(); });
-      }).then(function () {
-        ROUTE_NOTES = sorted;
-        return true;
-      });
-    });
-  }).catch(function (err) {
-    if (err && err.name === 'AbortError') return false; // המשתמש ביטל את בחירת התיקייה
-    throw err;
-  });
-}
 
 function escapeHtml(s) {
   var d = document.createElement('div');

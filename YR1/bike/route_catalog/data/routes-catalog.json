@@ -1,6 +1,6 @@
 {
-  "generated_at": "2026-10-02T17:54:22",
-  "route_count": 584,
+  "generated_at": "2026-10-03T17:41:55",
+  "route_count": 585,
   "routes": [
     {
       "id": 698,
@@ -16111,6 +16111,35 @@
       "invalid": false,
       "removed_points": 0,
       "thumbnail": "thumbnails/2026-10-02_געתון נהריה גשר הזיו געתון.jpg"
+    },
+    {
+      "id": 727,
+      "file_name": "2026-10-03 כברי פרק גורן שומרה זרעית.gpx",
+      "gpx_path": "GPX_files/2026-10-03 כברי פרק גורן שומרה זרעית.gpx",
+      "date": "2026-10-03",
+      "date_source": "שם קובץ",
+      "activity": "רכיבת אופניים",
+      "source": "הקלטה",
+      "distance_km": 49.45,
+      "elevation_gain_m": 992,
+      "elevation_loss_m": 997,
+      "point_count": 2167,
+      "start_lat": 33.01841,
+      "start_lon": 35.14271,
+      "end_lat": 33.01838,
+      "end_lon": 35.14258,
+      "regions": [
+        "צפון"
+      ],
+      "settlements": [
+        "כפר רוזנואלד (זרעית)",
+        "גורנות הגליל",
+        "שומרה"
+      ],
+      "settlements_found": true,
+      "invalid": false,
+      "removed_points": 0,
+      "thumbnail": "thumbnails/2026-10-03 כברי פרק גורן שומרה זרעית.jpg"
     },
     {
       "id": 715,

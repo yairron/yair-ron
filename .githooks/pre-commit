@@ -37,6 +37,12 @@ if [ $STATUS -ne 0 ]; then
   exit 1
 fi
 
+# סנכרון הערות המסלולים מגיליון Google (נוסף 03.10.2026) - אחרי הבנייה, כדי
+# שמסלול חדש כבר יקבל מספר ושורה שלו בגיליון תזוהה לפי שם הקובץ. כישלון כאן
+# (למשל אין רשת) לא מבטל את ה-commit - route-notes.json פשוט נשאר כמו שהוא.
+PYTHONIOENCODING=utf-8 "$PYTHON_BIN" "$REPO_ROOT/$GPX_DIR/scripts/sync_route_notes.py" \
+  || echo "pre-commit: אזהרה - סנכרון ההערות מהגיליון נכשל, ההערות לא עודכנו ב-commit הזה."
+
 git add "$REPO_ROOT/YR1/bike/route_catalog/data"
 git add "$REPO_ROOT/$GPX_DIR"
 
