@@ -1,6 +1,6 @@
 {
-  "generated_at": "2026-10-05T14:31:45",
-  "route_count": 595,
+  "generated_at": "2026-10-05T15:07:28",
+  "route_count": 596,
   "routes": [
     {
       "id": 698,
@@ -16909,6 +16909,39 @@
       "invalid": false,
       "removed_points": 0,
       "thumbnail": "thumbnails/שבי ציון אפק 2026-09-17 תכנון.jpg"
+    },
+    {
+      "id": 740,
+      "file_name": "שביל ישראל_נהריה_רמת הגולן_אילת_ibt.gpx",
+      "gpx_path": "GPX_files/שביל ישראל_נהריה_רמת הגולן_אילת_ibt.gpx",
+      "date": "2015-02-18",
+      "date_source": "timestamps בקובץ",
+      "activity": "רכיבת אופניים",
+      "source": "תכנון מסלול",
+      "distance_km": 1156.2,
+      "elevation_gain_m": 12688,
+      "elevation_loss_m": 12667,
+      "point_count": 45293,
+      "start_lat": 33.00583,
+      "start_lon": 35.09949,
+      "end_lat": 29.54915,
+      "end_lon": 34.95333,
+      "regions": [
+        "רמת הגולן והחרמון",
+        "צפון",
+        "מרכז",
+        "ירושלים ומדבר יהודה",
+        "נגב וערבה"
+      ],
+      "settlements": [
+        "תלמי אלעזר",
+        "תל מונד",
+        "אפיק"
+      ],
+      "settlements_found": true,
+      "invalid": false,
+      "removed_points": 0,
+      "thumbnail": "thumbnails/שביל ישראל_נהריה_רמת הגולן_אילת_ibt.jpg"
     },
     {
       "id": 721,

@@ -853,7 +853,9 @@ function showOnMap() {
   if (!routeMapInstance) {
     routeMapInstance = L.map('routeMap');
     L.tileLayer('https://israelhiking.osm.org.il/Tiles/{z}/{x}/{y}.png', {
-      attribution: '© Israel Hiking Map', maxZoom: 16
+      // minNativeZoom: השרת מגיש אריחים רק מזום 7 ומעלה - בלי זה מסלול ארוך
+      // (כל הארץ) מוצג על רקע אפור, כי fitBounds מתרחק לזום 5-6
+      attribution: '© Israel Hiking Map', maxZoom: 16, minNativeZoom: 7
     }).addTo(routeMapInstance);
 
     // לחיצה על נקודה כלשהי במפה - חלונית עם הקורדינטות של הנקודה הזו + כפתור

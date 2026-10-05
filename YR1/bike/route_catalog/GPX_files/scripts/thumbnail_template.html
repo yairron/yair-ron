@@ -21,7 +21,11 @@
 
   var tileLayer = L.tileLayer('https://israelhiking.osm.org.il/Tiles/{z}/{x}/{y}.png', {
     attribution: '© Israel Hiking Map',
-    maxZoom: 16
+    maxZoom: 16,
+    // השרת מגיש אריחים רק מזום 7 ומעלה (5-6 מחזירים 404, נבדק 05.10.2026) - מסלול
+    // ארוך (כל הארץ) נכנס לתמונה רק בזום 5-6 והרקע יצא אפור. minNativeZoom טוען
+    // אריחי זום 7 ומקטין אותם בזומים נמוכים יותר.
+    minNativeZoom: 7
   }).addTo(map);
 
   window.__tilesLoaded = false;
