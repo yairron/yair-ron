@@ -1,0 +1,11 @@
+{
+  "_comment": "תיקונים ידניים לסיווג האוטומטי של build_routes_catalog.py - ראו load_route_overrides() ו-README.md. pattern: תבנית שם קובץ (fnmatch, לא תלוי אותיות גדולות/קטנות). activity: רכיבת אופניים / הליכה רגלית. source: הקלטה / תכנון מסלול.",
+  "rules": [
+    {
+      "pattern": "ibt*.gpx",
+      "activity": "רכיבת אופניים",
+      "source": "תכנון מסלול",
+      "reason": "קטעי שביל ישראל לאופניים (IBT) - קבצים שהורדו ממקור חיצוני, לא הקלטות שלי"
+    }
+  ]
+}

@@ -1,6 +1,6 @@
 {
-  "generated_at": "2026-10-03T17:41:55",
-  "route_count": 585,
+  "generated_at": "2026-10-05T08:15:09",
+  "route_count": 596,
   "routes": [
     {
       "id": 698,
@@ -295,34 +295,6 @@
       "invalid": false,
       "removed_points": 0,
       "thumbnail": "thumbnails/0000-00-00_אלי-עד_חספין_נטור.jpg"
-    },
-    {
-      "id": 697,
-      "file_name": "0000-00-00_אליפז_אילת.gpx",
-      "gpx_path": "GPX_files/0000-00-00_אליפז_אילת.gpx",
-      "date": "2010-07-06",
-      "date_source": "timestamps בקובץ",
-      "activity": "לא ברור",
-      "source": "הקלטה",
-      "distance_km": 35.72,
-      "elevation_gain_m": 631,
-      "elevation_loss_m": 813,
-      "point_count": 218,
-      "start_lat": 29.76074,
-      "start_lon": 34.96924,
-      "end_lat": 29.53996,
-      "end_lon": 34.94661,
-      "regions": [
-        "נגב וערבה"
-      ],
-      "settlements": [
-        "אילת",
-        "אילות"
-      ],
-      "settlements_found": true,
-      "invalid": false,
-      "removed_points": 0,
-      "thumbnail": "thumbnails/0000-00-00_אליפז_אילת.jpg"
     },
     {
       "id": 579,
@@ -1468,34 +1440,6 @@
       "invalid": false,
       "removed_points": 0,
       "thumbnail": "thumbnails/0000-00-00_וינה_1.jpg"
-    },
-    {
-      "id": 634,
-      "file_name": "0000-00-00_חורפיש_כפר שמאי_חורפיש.gpx",
-      "gpx_path": "GPX_files/0000-00-00_חורפיש_כפר שמאי_חורפיש.gpx",
-      "date": "2026-04-24",
-      "date_source": "timestamps בקובץ",
-      "activity": "רכיבת אופניים",
-      "source": "הקלטה",
-      "distance_km": 25.52,
-      "elevation_gain_m": 988,
-      "elevation_loss_m": 1156,
-      "point_count": 405,
-      "start_lat": 33.0147,
-      "start_lon": 35.39305,
-      "end_lat": 33.01005,
-      "end_lon": 35.36067,
-      "regions": [
-        "צפון"
-      ],
-      "settlements": [
-        "ברעם",
-        "מירון"
-      ],
-      "settlements_found": true,
-      "invalid": false,
-      "removed_points": 22,
-      "thumbnail": "thumbnails/0000-00-00_חורפיש_כפר שמאי_חורפיש.jpg"
     },
     {
       "id": 610,
@@ -16142,6 +16086,348 @@
       "thumbnail": "thumbnails/2026-10-03 כברי פרק גורן שומרה זרעית.jpg"
     },
     {
+      "id": 728,
+      "file_name": "ibt10_smadar shaharut_2022.gpx",
+      "gpx_path": "GPX_files/ibt10_smadar shaharut_2022.gpx",
+      "date": "2015-03-05",
+      "date_source": "timestamps בקובץ",
+      "activity": "רכיבת אופניים",
+      "source": "תכנון מסלול",
+      "distance_km": 25.83,
+      "elevation_gain_m": 380,
+      "elevation_loss_m": 302,
+      "point_count": 3385,
+      "start_lat": 30.0481,
+      "start_lon": 35.01411,
+      "end_lat": 29.9166,
+      "end_lon": 34.99879,
+      "regions": [
+        "נגב וערבה"
+      ],
+      "settlements": [
+        "נאות סמדר",
+        "שחרות"
+      ],
+      "settlements_found": true,
+      "invalid": false,
+      "removed_points": 0,
+      "thumbnail": "thumbnails/ibt10_smadar shaharut_2022.jpg"
+    },
+    {
+      "id": 729,
+      "file_name": "ibt11_shaharut_timna_2022.gpx",
+      "gpx_path": "GPX_files/ibt11_shaharut_timna_2022.gpx",
+      "date": "2022-12-05",
+      "date_source": "timestamps בקובץ",
+      "activity": "רכיבת אופניים",
+      "source": "תכנון מסלול",
+      "distance_km": 55.89,
+      "elevation_gain_m": 1000,
+      "elevation_loss_m": 1282,
+      "point_count": 731,
+      "start_lat": 29.91574,
+      "start_lon": 34.99905,
+      "end_lat": 29.76041,
+      "end_lon": 34.96845,
+      "regions": [
+        "נגב וערבה"
+      ],
+      "settlements": [
+        "שחרות",
+        "אליפז",
+        "יטבתה"
+      ],
+      "settlements_found": true,
+      "invalid": false,
+      "removed_points": 0,
+      "thumbnail": "thumbnails/ibt11_shaharut_timna_2022.jpg"
+    },
+    {
+      "id": 697,
+      "file_name": "ibt12_timna-eilat.gpx",
+      "gpx_path": "GPX_files/ibt12_timna-eilat.gpx",
+      "date": "2010-07-06",
+      "date_source": "timestamps בקובץ",
+      "activity": "רכיבת אופניים",
+      "source": "תכנון מסלול",
+      "distance_km": 35.72,
+      "elevation_gain_m": 631,
+      "elevation_loss_m": 813,
+      "point_count": 218,
+      "start_lat": 29.76074,
+      "start_lon": 34.96924,
+      "end_lat": 29.53996,
+      "end_lon": 34.94661,
+      "regions": [
+        "נגב וערבה"
+      ],
+      "settlements": [
+        "אילת",
+        "אילות"
+      ],
+      "settlements_found": true,
+      "invalid": false,
+      "removed_points": 0,
+      "thumbnail": "thumbnails/ibt12_timna-eilat.jpg"
+    },
+    {
+      "id": 730,
+      "file_name": "IBT1_Arad-Masada.gpx",
+      "gpx_path": "GPX_files/IBT1_Arad-Masada.gpx",
+      "date": "2026-10-04",
+      "date_source": "תאריך שינוי הקובץ (גיבוי)",
+      "activity": "רכיבת אופניים",
+      "source": "תכנון מסלול",
+      "distance_km": 37.18,
+      "elevation_gain_m": 558,
+      "elevation_loss_m": 1135,
+      "point_count": 1787,
+      "start_lat": 31.26179,
+      "start_lon": 35.23916,
+      "end_lat": 31.31767,
+      "end_lon": 35.34791,
+      "regions": [
+        "ירושלים ומדבר יהודה",
+        "נגב וערבה"
+      ],
+      "settlements": [
+        "ערד",
+        "מעון",
+        "כסיפה"
+      ],
+      "settlements_found": true,
+      "invalid": false,
+      "removed_points": 0,
+      "thumbnail": "thumbnails/IBT1_Arad-Masada.jpg"
+    },
+    {
+      "id": 731,
+      "file_name": "IBT2_Massada-Neve_Zohar.gpx",
+      "gpx_path": "GPX_files/IBT2_Massada-Neve_Zohar.gpx",
+      "date": "2026-10-04",
+      "date_source": "תאריך שינוי הקובץ (גיבוי)",
+      "activity": "רכיבת אופניים",
+      "source": "תכנון מסלול",
+      "distance_km": 39.54,
+      "elevation_gain_m": 633,
+      "elevation_loss_m": 1056,
+      "point_count": 1802,
+      "start_lat": 31.3195,
+      "start_lon": 35.34124,
+      "end_lat": 31.14369,
+      "end_lon": 35.36433,
+      "regions": [
+        "ירושלים ומדבר יהודה",
+        "נגב וערבה"
+      ],
+      "settlements": [
+        "נווה זוהר",
+        "ערד"
+      ],
+      "settlements_found": true,
+      "invalid": false,
+      "removed_points": 0,
+      "thumbnail": "thumbnails/IBT2_Massada-Neve_Zohar.jpg"
+    },
+    {
+      "id": 732,
+      "file_name": "ibt3_neve zohar tamar.gpx",
+      "gpx_path": "GPX_files/ibt3_neve zohar tamar.gpx",
+      "date": "2025-10-21",
+      "date_source": "timestamps בקובץ",
+      "activity": "רכיבת אופניים",
+      "source": "תכנון מסלול",
+      "distance_km": 34.56,
+      "elevation_gain_m": 236,
+      "elevation_loss_m": 200,
+      "point_count": 11799,
+      "start_lat": 31.14205,
+      "start_lon": 35.36402,
+      "end_lat": 30.94138,
+      "end_lon": 35.36801,
+      "regions": [
+        "נגב וערבה"
+      ],
+      "settlements": [
+        "נווה זוהר",
+        "נאות הכיכר"
+      ],
+      "settlements_found": true,
+      "invalid": false,
+      "removed_points": 0,
+      "thumbnail": "thumbnails/ibt3_neve zohar tamar.jpg"
+    },
+    {
+      "id": 733,
+      "file_name": "ibt4_sde-mitzpe.gpx",
+      "gpx_path": "GPX_files/ibt4_sde-mitzpe.gpx",
+      "date": "2020-05-06",
+      "date_source": "timestamps בקובץ",
+      "activity": "רכיבת אופניים",
+      "source": "תכנון מסלול",
+      "distance_km": 52.65,
+      "elevation_gain_m": 668,
+      "elevation_loss_m": 321,
+      "point_count": 5483,
+      "start_lat": 30.854,
+      "start_lon": 34.77065,
+      "end_lat": 30.61251,
+      "end_lon": 34.8039,
+      "regions": [
+        "נגב וערבה"
+      ],
+      "settlements": [
+        "מצפה רמון",
+        "שדה בוקר"
+      ],
+      "settlements_found": true,
+      "invalid": false,
+      "removed_points": 0,
+      "thumbnail": "thumbnails/ibt4_sde-mitzpe.jpg"
+    },
+    {
+      "id": 734,
+      "file_name": "ibt5_ramon-beerot.gpx",
+      "gpx_path": "GPX_files/ibt5_ramon-beerot.gpx",
+      "date": "2012-11-13",
+      "date_source": "timestamps בקובץ",
+      "activity": "רכיבת אופניים",
+      "source": "תכנון מסלול",
+      "distance_km": 38.45,
+      "elevation_gain_m": 328,
+      "elevation_loss_m": 700,
+      "point_count": 4240,
+      "start_lat": 30.6139,
+      "start_lon": 34.80496,
+      "end_lat": 30.61998,
+      "end_lon": 34.92043,
+      "regions": [
+        "נגב וערבה"
+      ],
+      "settlements": [
+        "מצפה רמון",
+        "שדה בוקר",
+        "ספיר"
+      ],
+      "settlements_found": true,
+      "invalid": false,
+      "removed_points": 0,
+      "thumbnail": "thumbnails/ibt5_ramon-beerot.jpg"
+    },
+    {
+      "id": 735,
+      "file_name": "ibt6_beerot-moa.gpx",
+      "gpx_path": "GPX_files/ibt6_beerot-moa.gpx",
+      "date": "2026-10-04",
+      "date_source": "תאריך שינוי הקובץ (גיבוי)",
+      "activity": "רכיבת אופניים",
+      "source": "תכנון מסלול",
+      "distance_km": 34.51,
+      "elevation_gain_m": 0,
+      "elevation_loss_m": 0,
+      "point_count": 1029,
+      "start_lat": 30.62468,
+      "start_lon": 34.92106,
+      "end_lat": 30.53911,
+      "end_lon": 35.16044,
+      "regions": [
+        "נגב וערבה"
+      ],
+      "settlements": [
+        "צופר",
+        "ספיר"
+      ],
+      "settlements_found": true,
+      "invalid": false,
+      "removed_points": 0,
+      "thumbnail": "thumbnails/ibt6_beerot-moa.jpg"
+    },
+    {
+      "id": 736,
+      "file_name": "IBT7_moa-faran.gpx",
+      "gpx_path": "GPX_files/IBT7_moa-faran.gpx",
+      "date": "2011-12-30",
+      "date_source": "timestamps בקובץ",
+      "activity": "רכיבת אופניים",
+      "source": "תכנון מסלול",
+      "distance_km": 32.29,
+      "elevation_gain_m": 331,
+      "elevation_loss_m": 251,
+      "point_count": 3722,
+      "start_lat": 30.53996,
+      "start_lon": 35.16298,
+      "end_lat": 30.36023,
+      "end_lon": 35.15974,
+      "regions": [
+        "נגב וערבה"
+      ],
+      "settlements": [
+        "פארן",
+        "צופר"
+      ],
+      "settlements_found": true,
+      "invalid": false,
+      "removed_points": 0,
+      "thumbnail": "thumbnails/IBT7_moa-faran.jpg"
+    },
+    {
+      "id": 737,
+      "file_name": "ibt8_faran-yahel.gpx",
+      "gpx_path": "GPX_files/ibt8_faran-yahel.gpx",
+      "date": "2012-04-17",
+      "date_source": "timestamps בקובץ",
+      "activity": "רכיבת אופניים",
+      "source": "תכנון מסלול",
+      "distance_km": 44.81,
+      "elevation_gain_m": 296,
+      "elevation_loss_m": 196,
+      "point_count": 5816,
+      "start_lat": 30.36128,
+      "start_lon": 35.15951,
+      "end_lat": 30.08189,
+      "end_lon": 35.13346,
+      "regions": [
+        "נגב וערבה"
+      ],
+      "settlements": [
+        "פארן",
+        "יהל"
+      ],
+      "settlements_found": true,
+      "invalid": false,
+      "removed_points": 0,
+      "thumbnail": "thumbnails/ibt8_faran-yahel.jpg"
+    },
+    {
+      "id": 738,
+      "file_name": "ibt9_yahel-smadar_2024.gpx",
+      "gpx_path": "GPX_files/ibt9_yahel-smadar_2024.gpx",
+      "date": "2022-01-17",
+      "date_source": "timestamps בקובץ",
+      "activity": "רכיבת אופניים",
+      "source": "תכנון מסלול",
+      "distance_km": 25.03,
+      "elevation_gain_m": 491,
+      "elevation_loss_m": 302,
+      "point_count": 7189,
+      "start_lat": 30.08273,
+      "start_lon": 35.13352,
+      "end_lat": 30.04882,
+      "end_lon": 35.01452,
+      "regions": [
+        "נגב וערבה"
+      ],
+      "settlements": [
+        "נאות סמדר",
+        "יהל",
+        "נווה חריף"
+      ],
+      "settlements_found": true,
+      "invalid": false,
+      "removed_points": 0,
+      "thumbnail": "thumbnails/ibt9_yahel-smadar_2024.jpg"
+    },
+    {
       "id": 715,
       "file_name": "ביריה סינגל ביריה מבת יער תכנון.GPX",
       "gpx_path": "GPX_files/ביריה סינגל ביריה מבת יער תכנון.GPX",
@@ -16285,6 +16571,35 @@
       "invalid": false,
       "removed_points": 0,
       "thumbnail": "thumbnails/געתון כברי ראש הנקרה וחזרה.jpg"
+    },
+    {
+      "id": 739,
+      "file_name": "געתון מחצבה סינגל כברי מנות 2026-10-01.gpx",
+      "gpx_path": "GPX_files/געתון מחצבה סינגל כברי מנות 2026-10-01.gpx",
+      "date": "2026-10-01",
+      "date_source": "שם קובץ",
+      "activity": "רכיבת אופניים",
+      "source": "הקלטה",
+      "distance_km": 26.69,
+      "elevation_gain_m": 431,
+      "elevation_loss_m": 447,
+      "point_count": 6575,
+      "start_lat": 33.00503,
+      "start_lon": 35.21544,
+      "end_lat": 33.00501,
+      "end_lon": 35.21546,
+      "regions": [
+        "צפון"
+      ],
+      "settlements": [
+        "מנות",
+        "עין יעקב",
+        "הילה"
+      ],
+      "settlements_found": true,
+      "invalid": false,
+      "removed_points": 0,
+      "thumbnail": "thumbnails/געתון מחצבה סינגל כברי מנות 2026-10-01.jpg"
     },
     {
       "id": 720,

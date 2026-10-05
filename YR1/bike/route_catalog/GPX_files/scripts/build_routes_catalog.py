@@ -42,6 +42,7 @@ route_catalog/data/thumbnails/. זו כרגע התיקייה היחידה באת
 """
 
 import argparse
+import fnmatch
 import http.server
 import json
 import sys
@@ -507,8 +508,47 @@ def save_build_cache(cache: dict, support_data_dir: Path):
         json.dump(cache, f, ensure_ascii=False)
 
 
-def build_catalog_record(path: Path, info: dict, points: list, settlements_db, route_id: int):
+# תיקונים ידניים לסיווג האוטומטי (נוסף 05.10.2026) - support_data/route_overrides.json.
+# הסיווג של gpx_analyzer.py (הליכה/רכיבה לפי מהירות, הקלטה/תכנון לפי timestamps)
+# שגוי לקבצים שהורדו ממקור חיצוני: למשל קטעי שביל ישראל לאופניים (ibt*) - חלקם
+# עם timestamps של מי שהקליט אותם במקור, וקצב שנראה כמו הליכה. כלל = תבנית שם
+# קובץ (fnmatch, לא תלוי אותיות גדולות/קטנות) + השדות לכפות. כמה כללים תואמים -
+# מתמזגים לפי הסדר (המאוחר גובר).
+ALLOWED_OVERRIDE_VALUES = {
+    "activity": {"רכיבת אופניים", "הליכה רגלית"},
+    "source": {"הקלטה", "תכנון מסלול"},
+}
+
+
+def load_route_overrides(support_data_dir: Path) -> list:
+    path = support_data_dir / "route_overrides.json"
+    if not path.exists():
+        return []
+    with open(path, encoding="utf-8") as f:
+        rules = json.load(f).get("rules", [])
+    for rule in rules:
+        if "pattern" not in rule:
+            raise ValueError(f"route_overrides.json: כלל בלי pattern: {rule}")
+        for field, allowed in ALLOWED_OVERRIDE_VALUES.items():
+            if field in rule and rule[field] not in allowed:
+                raise ValueError(f'route_overrides.json: ערך לא חוקי "{rule[field]}" בשדה {field} '
+                                 f"(מותר: {sorted(allowed)})")
+    return rules
+
+
+def find_override(file_name: str, rules: list) -> dict:
+    override = {}
+    for rule in rules:
+        if fnmatch.fnmatch(file_name.lower(), rule["pattern"].lower()):
+            override.update({k: rule[k] for k in ALLOWED_OVERRIDE_VALUES if k in rule})
+    return override
+
+
+def build_catalog_record(path: Path, info: dict, points: list, settlements_db, route_id: int,
+                         override: dict = None):
     source = normalize_source_guess(info["source_guess"])  # "הקלטה" / "תכנון מסלול" / "לא ברור"
+    override = override or {}
+    source = override.get("source", source)  # תיקון ידני, ראו load_route_overrides()
     is_planned = source == "תכנון מסלול"
 
     # ניקוי קפיצות GPS מבוסס על מהירות/הפרש-גובה **מרומזים מחותמות הזמן** בין
@@ -549,7 +589,7 @@ def build_catalog_record(path: Path, info: dict, points: list, settlements_db, r
         "gpx_path": f"GPX_files/{path.name}",
         "date": date_obj.isoformat(),
         "date_source": date_source,
-        "activity": info["activity_guess"],
+        "activity": override.get("activity", info["activity_guess"]),
         "source": source,
         "distance_km": calc_distance_km(coords),
         "elevation_gain_m": elevation_gain,
@@ -704,6 +744,7 @@ def main():
 
     route_ids = load_route_ids(support_data_dir)
     build_cache = load_build_cache(support_data_dir)
+    overrides = load_route_overrides(support_data_dir)
     new_build_cache = {}
     records = []
     reused_count = 0
@@ -711,7 +752,10 @@ def main():
     for i, path in enumerate(files, 1):
         stat = path.stat()
         cached = build_cache.get(path.name)
-        if cached and cached.get("size") == stat.st_size and cached.get("mtime") == stat.st_mtime:
+        override = find_override(path.name, overrides)
+        # שינוי בכלל תיקון (הוספה/הסרה/שינוי ערך) מנתח מחדש את הקובץ, גם בלי שינוי בקובץ עצמו
+        if (cached and cached.get("size") == stat.st_size and cached.get("mtime") == stat.st_mtime
+                and cached.get("override", {}) == override):
             records.append(cached["record"])
             new_build_cache[path.name] = cached
             reused_count += 1
@@ -723,9 +767,10 @@ def main():
         if sig is not None and sig not in route_ids:
             route_ids = assign_route_ids([sig], route_ids)
         route_id = route_ids.get(sig, 0)  # 0 = קובץ בלי נקודות בכלל, לא אמור לקרות בפועל
-        record = build_catalog_record(path, info, points, settlements_db, route_id)
+        record = build_catalog_record(path, info, points, settlements_db, route_id, override)
         records.append(record)
-        new_build_cache[path.name] = {"size": stat.st_size, "mtime": stat.st_mtime, "record": record}
+        new_build_cache[path.name] = {"size": stat.st_size, "mtime": stat.st_mtime, "record": record,
+                                      "override": override}
         freshly_analyzed_names.add(path.name)
     save_route_ids(route_ids, support_data_dir)
     save_build_cache(new_build_cache, support_data_dir)
