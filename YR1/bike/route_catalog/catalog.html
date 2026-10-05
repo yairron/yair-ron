@@ -28,6 +28,10 @@ h1{font-family:'Varela Round',sans-serif;font-size:2.6rem;font-weight:800;color:
 .control-field input,.control-field select{font-size:.95rem;padding:9px 12px;border:1px solid #CFE0D3;border-radius:10px;background:var(--light);color:var(--text);font-family:'Assistant',sans-serif}
 .control-field input:focus,.control-field select:focus{outline:2px solid var(--secondary)}
 .result-count{font-size:.9rem;color:var(--dark);font-weight:600;margin-top:4px}
+.radius-field{display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin-top:6px;font-size:.8rem;color:#5C7A6B}
+.radius-field label{font-size:.8rem}
+.control-field .radius-field input{width:90px;padding:5px 10px;font-size:.9rem}
+.radius-field.inactive{opacity:.5}
 
 .select-all-toggle{display:flex;align-items:center;gap:8px;margin-bottom:10px;padding-inline-start:6px}
 .select-all-toggle input[type="checkbox"]{width:20px;height:20px;cursor:pointer;accent-color:var(--primary);background:white;border-radius:4px}
@@ -112,6 +116,7 @@ footer a{color:white;text-decoration:underline;font-weight:600}
 .edit-mode-curtain button:hover{background:var(--secondary);color:white}
 .edit-mode-curtain button.finish-option{border-top:1px solid #E3ECE6;margin-top:4px;padding-top:12px}
 .edit-mode-curtain button.merge-option{border-bottom:1px solid #E3ECE6;margin-bottom:4px;padding-bottom:12px}
+.edit-mode-curtain button.external-option{border-top:1px solid #E3ECE6;margin-top:4px;padding-top:12px}
 .mode-check{color:#2E7D32;font-weight:800;visibility:hidden;flex-shrink:0}
 .mode-check.active{visibility:visible}
 .map-cutter-toolbar{display:none;align-items:center;gap:10px;padding:10px 20px;background:var(--light);border-bottom:1px solid #CFE0D3;flex-shrink:0;flex-wrap:wrap}
@@ -166,6 +171,11 @@ footer a{color:white;text-decoration:underline;font-weight:600}
           <div class="recent-searches-dropdown" id="recentSearchesDropdown" style="display:none"></div>
         </div>
         <span style="font-size:.75rem;color:#5C7A6B">קורדינטות נתמכות: מעלות עשרוניות (33.005, 35.215) &middot; מעלות/דקות/שניות (33°0'18&quot;N 35°12'54&quot;E) &middot; רשת ישראל החדשה/ITM (220581/767992)</span>
+        <div class="radius-field" id="radiusField" title="בחיפוש לפי קורדינטות: מסלולים שקו המסלול שלהם עובר במרחק הזה מהנקודה">
+          <label for="radiusInput">רדיוס חיפוש:</label>
+          <input type="number" id="radiusInput" min="50" max="9999" step="50" value="500">
+          <span>מ' (50–9999)</span>
+        </div>
       </div>
       <div class="control-field">
         <label>סוג פעילות</label>
@@ -228,7 +238,6 @@ footer a{color:white;text-decoration:underline;font-weight:600}
   <span class="sel-count" id="selCount">נבחרו 0 מסלולים</span>
   <button class="btn-primary" id="btnDownload" onclick="downloadSelected()">📥 הורדה</button>
   <button class="btn-primary" onclick="showOnMap()">🗺️ הצג על מפה</button>
-  <button class="btn-primary" onclick="mergeSelectedRoutes()">🔗 עריכת מסלולים</button>
   <button class="btn-primary" onclick="cleanSelectedRoute()">🧹 ניקוי קובץ</button>
   <button class="btn-clear" onclick="clearSelection()">נקה בחירה</button>
 </div>
@@ -248,6 +257,7 @@ footer a{color:white;text-decoration:underline;font-weight:600}
         <button onclick="selectEditMode('osm')">📍 הוספת נקודות עם הצמדה לנתיב מפה<span class="mode-check" id="checkOsm">✓</span></button>
         <button onclick="selectEditMode('freehand')">✏️ הוספת נקודות חופשי (בלי הצמדה)<span class="mode-check" id="checkFreehand">✓</span></button>
         <button class="finish-option" onclick="stopEditMode()">⏹️ סיום עריכה</button>
+        <button class="external-option" onclick="openInGpxStudio()">🌐 פתיחה ב-gpx.studio (עורך מתקדם)</button>
       </div>
       <button class="map-close-btn" onclick="downloadNewRoute()">⬇️ הורדת מסלול חדש</button>
       <button class="map-close-btn" onclick="deleteNewSegment()">🗑️ מחיקת מסלול חדש</button>
@@ -328,7 +338,7 @@ function getFiltered() {
     if (regionFilter && r.regions.indexOf(regionFilter) === -1) return false;
     if (coord) {
       var d = routeDistanceKm(r, coord);
-      if (d === null || d > COORD_SEARCH_RADIUS_KM) return false;
+      if (d === null || d > getSearchRadiusM() / 1000) return false;
     } else if (q) {
       // תמיכה בכמה יישובים/מילות חיפוש בפסיקים - "געתון, כברי" מוצא מסלולים
       // שמכילים את **כל** המונחים (לא רק אחד מהם), בכל אחד מהשדות בנפרד.
@@ -382,7 +392,7 @@ function buildRouteCard(r, idx) {
   var coordDistanceBadge = '';
   if (lastCoordSearch) {
     var d = routeDistanceKm(r, lastCoordSearch);
-    if (d !== null) coordDistanceBadge = ' &nbsp;<span class="badge">📍 ' + d.toFixed(2) + ' ק"מ מנקודת החיפוש</span>';
+    if (d !== null) coordDistanceBadge = ' &nbsp;<span class="badge">📍 ' + formatDistance(d) + ' מנקודת החיפוש</span>';
   }
 
   var el = document.createElement('div');
@@ -514,6 +524,16 @@ function selectRecentSearch(term) {
 }
 
 function render() {
+  // חיפוש לפי קורדינטות צריך את קווי המסלולים (routes-tracks.json) - נטענים רק
+  // בפעם הראשונה שבאמת מחפשים לפי קורדינטות, ואז הרינדור חוזר על עצמו.
+  var isCoordQuery = !!parseCoordinateQuery(document.getElementById('searchInput').value.trim());
+  document.getElementById('radiusField').classList.toggle('inactive', !isCoordQuery);
+  if (isCoordQuery && ROUTE_TRACKS === null) {
+    document.getElementById('resultCount').textContent = 'טוען את קווי המסלולים לחיפוש לפי קורדינטות...';
+    loadRouteTracks().then(render);
+    return;
+  }
+
   var filtered = getFiltered();
   var totalPages = Math.max(1, Math.ceil(filtered.length / PAGE_SIZE));
   if (currentPage > totalPages) currentPage = totalPages;
@@ -719,15 +739,77 @@ function parseCoordinateQuery(text) {
   return null;
 }
 
-// המרחק (ק"מ) הקצר ביותר בין נקודת החיפוש לבין נקודת ההתחלה או הסיום של
-// המסלול - null אם אין למסלול קורדינטות בכלל (למשל קובץ בלי נקודות).
-var COORD_SEARCH_RADIUS_KM = 3;
+// --- רדיוס חיפוש לפי קורדינטות (עודכן 05.10.2026) ---
+// עד התאריך הזה: רדיוס קבוע של 3 ק"מ, נמדד רק לנקודות ההתחלה/סיום של המסלול -
+// כלומר "מסלולים שמתחילים/נגמרים ליד הנקודה", לא "מסלולים שעוברים בה". עכשיו:
+// רדיוס שהמשתמש קובע (radiusInput, 50-9999 מ', ברירת מחדל 500), והמרחק נמדד
+// לקו המסלול כולו - מתוך data/routes-tracks.json (קווים מפושטים, סבולת 15 מ',
+// נבנה ע"י build_routes_catalog.py).
+var SEARCH_RADIUS_MIN_M = 50, SEARCH_RADIUS_MAX_M = 9999, SEARCH_RADIUS_DEFAULT_M = 500;
+
+function getSearchRadiusM() {
+  var v = parseInt(document.getElementById('radiusInput').value, 10);
+  if (isNaN(v)) return SEARCH_RADIUS_DEFAULT_M;
+  return Math.max(SEARCH_RADIUS_MIN_M, Math.min(SEARCH_RADIUS_MAX_M, v));
+}
+
+function formatDistance(km) {
+  return km < 1 ? Math.round(km * 1000) + ' מ\'' : km.toFixed(2) + ' ק"מ';
+}
+
+// null = עוד לא נטען; {} = הטעינה נכשלה (נופלים לנקודות התחלה/סיום בלבד)
+var ROUTE_TRACKS = null;
+var routeTracksPromise = null;
+function loadRouteTracks() {
+  if (!routeTracksPromise) {
+    routeTracksPromise = fetch('data/routes-tracks.json')
+      .then(function (r) { if (!r.ok) throw new Error('HTTP ' + r.status); return r.json(); })
+      .then(function (data) { ROUTE_TRACKS = data; })
+      .catch(function (err) { console.error('routes-tracks.json:', err); ROUTE_TRACKS = {}; });
+  }
+  return routeTracksPromise;
+}
+
+// מרחק (מטרים) מנקודה לקו שבור, בהקרנה מקומית שוות-מרחקים סביב הנקודה - מדויק
+// מספיק בטווח של עד כ-10 ק"מ שבו פועל החיפוש. flat = [lat,lon,lat,lon,...]
+function distanceToTrackM(coord, flat) {
+  var kx = 111320 * Math.cos(coord.lat * Math.PI / 180), ky = 110540;
+  var best = Infinity;
+  var ax = (flat[1] - coord.lon) * kx, ay = (flat[0] - coord.lat) * ky;
+  if (flat.length === 2) return Math.sqrt(ax * ax + ay * ay);
+  for (var i = 2; i < flat.length; i += 2) {
+    var bx = (flat[i + 1] - coord.lon) * kx, by = (flat[i] - coord.lat) * ky;
+    var dx = bx - ax, dy = by - ay, seg2 = dx * dx + dy * dy;
+    var t = seg2 ? Math.max(0, Math.min(1, -(ax * dx + ay * dy) / seg2)) : 0;
+    var px = ax + t * dx, py = ay + t * dy;
+    var d2 = px * px + py * py;
+    if (d2 < best) best = d2;
+    ax = bx; ay = by;
+  }
+  return Math.sqrt(best);
+}
+
+// המרחק (ק"מ) הקצר ביותר בין נקודת החיפוש לקו המסלול - או, למסלול שאין לו קו
+// בקובץ הקווים, לנקודת ההתחלה/סיום. null אם אין למסלול קורדינטות בכלל.
+// ממוטמן לכל נקודת חיפוש: נקרא שוב ושוב מתוך הסינון, המיון והכרטיסים.
+var distanceMemo = { key: null, map: {} };
 function routeDistanceKm(r, coord) {
-  var dists = [];
-  if (r.start_lat != null && r.start_lon != null) dists.push(haversineM([coord.lat, coord.lon], [r.start_lat, r.start_lon]) / 1000);
-  if (r.end_lat != null && r.end_lon != null) dists.push(haversineM([coord.lat, coord.lon], [r.end_lat, r.end_lon]) / 1000);
-  if (!dists.length) return null;
-  return Math.min.apply(null, dists);
+  var key = coord.lat + ',' + coord.lon;
+  if (distanceMemo.key !== key) distanceMemo = { key: key, map: {} };
+  if (r.id in distanceMemo.map) return distanceMemo.map[r.id];
+
+  var result = null;
+  var flat = ROUTE_TRACKS && ROUTE_TRACKS[r.id];
+  if (flat && flat.length >= 2) {
+    result = distanceToTrackM(coord, flat) / 1000;
+  } else {
+    var dists = [];
+    if (r.start_lat != null && r.start_lon != null) dists.push(haversineM([coord.lat, coord.lon], [r.start_lat, r.start_lon]) / 1000);
+    if (r.end_lat != null && r.end_lon != null) dists.push(haversineM([coord.lat, coord.lon], [r.end_lat, r.end_lon]) / 1000);
+    if (dists.length) result = Math.min.apply(null, dists);
+  }
+  distanceMemo.map[r.id] = result;
+  return result;
 }
 
 function parseGpxPoints(gpxText) {
@@ -1140,7 +1222,13 @@ function copyCoordFallback(text, onSuccess) {
 // הבית. עמוד האפליקציה האמיתי (gpx.studio/app) קורא פרמטר שונה לגמרי -
 // ?files=["url1","url2"] (מערך JSON פשוט של כתובות, לא עטוף ב-{"urls":...}) -
 // מאומת ישירות מול קוד המקור (+page.svelte של /app), לא ניחוש.
-function mergeSelectedRoutes() {
+//
+// עודכן 05.10.2026: עד התאריך הזה הופעל מכפתור "🔗 עריכת מסלולים" בפס הבחירה
+// התחתון - שם מבלבל ליד "🖊️ עריכת מסלול" שבתצוגת המפה (העורך הפנימי). הועבר
+// לוילון העריכה בתצוגת המפה, כאפשרות נפרדת לעורך החיצוני. המסלולים שנפתחים הם
+// אלה שנבחרו בקטלוג - אותם מסלולים שמוצגים במפה (showOnMap קורא מאותה בחירה).
+function openInGpxStudio() {
+  closeEditCurtain();
   var files = ALL_ROUTES.filter(function (r) { return selectedFiles.has(r.file_name); });
   if (!files.length) return;
   var urls = files.map(function (r) { return new URL(r.gpx_path, window.location.href).href; });
@@ -1208,6 +1296,16 @@ document.getElementById('searchInput').addEventListener('blur', function () {
   saveRecentSearch(this.value);
   // עיכוב קצר - כדי ש-onmousedown על פריט ברשימה יספיק להירשם לפני שהיא נסגרת
   setTimeout(hideRecentSearchesDropdown, 150);
+});
+// רדיוס: רינדור מחדש בכל הקלדה (רק אם יש חיפוש קורדינטות פעיל), ותיקון לטווח
+// המותר כשיוצאים מהשדה - כדי שהערך המוצג תמיד יהיה זה שבפועל בשימוש.
+document.getElementById('radiusInput').addEventListener('input', function () {
+  if (parseCoordinateQuery(document.getElementById('searchInput').value.trim())) { currentPage = 1; render(); }
+});
+document.getElementById('radiusInput').addEventListener('change', function () {
+  this.value = getSearchRadiusM();
+  currentPage = 1;
+  render();
 });
 ['activityFilter', 'sourceFilter', 'regionFilter', 'sortSelect'].forEach(function (id) {
   document.getElementById(id).addEventListener('change', function () { currentPage = 1; render(); });

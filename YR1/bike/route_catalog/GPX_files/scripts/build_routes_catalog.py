@@ -45,6 +45,7 @@ import argparse
 import fnmatch
 import http.server
 import json
+import math
 import sys
 import time
 import xml.etree.ElementTree as ET
@@ -616,6 +617,70 @@ def build_catalog_record(path: Path, info: dict, points: list, settlements_db, r
     }
 
 
+# מסלולים מפושטים לחיפוש לפי קורדינטות (נוסף 05.10.2026) - data/routes-tracks.json.
+# catalog.html מודד בחיפוש לפי קורדינטות את המרחק הקצר ביותר **לקו המסלול כולו**
+# (לא רק לנקודות התחלה/סיום), עם רדיוס שהמשתמש קובע (50-9999 מ'). לשם כך הוא צריך
+# את קו המסלול - אבל לא בכל הצפיפות של קובץ ה-GPX: Douglas-Peucker עם סבולת
+# TRACK_SIMPLIFY_TOLERANCE_M שומר כל נקודה שהשמטתה הייתה מזיזה את הקו ביותר מזה,
+# כך שהשגיאה המקסימלית במרחק המחושב חסומה בסבולת (קטנה בהרבה מהרדיוס המינימלי).
+# קובץ נפרד מהקטלוג כדי שהדף יטען אותו רק בחיפוש הראשון לפי קורדינטות.
+TRACK_SIMPLIFY_TOLERANCE_M = 15
+
+
+def simplify_track(coords, tolerance_m=TRACK_SIMPLIFY_TOLERANCE_M):
+    """Douglas-Peucker איטרטיבי (לא רקורסיבי - מסלולים של עשרות אלפי נקודות היו
+    חורגים מעומק הרקורסיה של פייתון), על הקרנה מקומית שוות-מרחקים במטרים."""
+    n = len(coords)
+    if n <= 2:
+        return list(coords)
+    lat0 = math.radians(sum(c[0] for c in coords) / n)
+    kx, ky = 111320.0 * math.cos(lat0), 110540.0
+    xy = [(c[1] * kx, c[0] * ky) for c in coords]
+    keep = [False] * n
+    keep[0] = keep[-1] = True
+    stack = [(0, n - 1)]
+    tol2 = tolerance_m * tolerance_m
+    while stack:
+        a, b = stack.pop()
+        ax, ay = xy[a]
+        bx, by = xy[b]
+        dx, dy = bx - ax, by - ay
+        seg2 = dx * dx + dy * dy
+        worst, worst_d2 = -1, tol2
+        for i in range(a + 1, b):
+            px, py = xy[i]
+            if seg2 == 0:
+                d2 = (px - ax) ** 2 + (py - ay) ** 2
+            else:
+                t = max(0.0, min(1.0, ((px - ax) * dx + (py - ay) * dy) / seg2))
+                d2 = (px - ax - t * dx) ** 2 + (py - ay - t * dy) ** 2
+            if d2 > worst_d2:
+                worst, worst_d2 = i, d2
+        if worst != -1:
+            keep[worst] = True
+            stack.append((a, worst))
+            stack.append((worst, b))
+    return [coords[i] for i in range(n) if keep[i]]
+
+
+def write_tracks_file(records, out_path: Path):
+    """שורה אחת לכל מסלול (ממוין לפי id) - כדי שמסלול חדש/שהשתנה יופיע ב-diff
+    של גיט כשורה בודדת, לא כשינוי בקובץ ענק בשורה אחת. הנקודות שטוחות
+    [lat,lon,lat,lon,...] בעיגול ל-5 ספרות (~1 מ') - חוסך כמחצית מהנפח."""
+    lines = []
+    for r in sorted(records, key=lambda r: r["id"]):
+        coords = r.get("_coords") or []
+        if not coords:
+            continue
+        flat = []
+        for lat, lon in simplify_track(coords):
+            flat.extend((round(lat, 5), round(lon, 5)))
+        lines.append(f'"{r["id"]}":' + json.dumps(flat, separators=(",", ":")))
+    with open(out_path, "w", encoding="utf-8", newline="\n") as f:
+        f.write("{\n" + ",\n".join(lines) + "\n}\n")
+    return len(lines)
+
+
 def generate_thumbnails(records, thumbnails_dir: Path, scripts_dir: Path, force=False):
     thumbnails_dir.mkdir(parents=True, exist_ok=True)
 
@@ -809,6 +874,10 @@ def main():
     no_thumbnail = sum(1 for r in records if r["thumbnail"] is None)
     invalid_count = sum(1 for r in records if r["invalid"])
 
+    tracks_path = catalog_data_dir / "routes-tracks.json"
+    catalog_data_dir.mkdir(parents=True, exist_ok=True)
+    track_count = write_tracks_file(records, tracks_path)
+
     for r in records:
         r.pop("_coords", None)
 
@@ -832,6 +901,7 @@ def main():
 
     print(f"\nהושלם. קובץ הקטלוג נשמר ב: {out_path}")
     print(f"  סה\"כ מסלולים: {len(records)}")
+    print(f"  מסלולים מפושטים לחיפוש לפי קורדינטות: {track_count} ({tracks_path.stat().st_size / 1024:.0f}KB)")
     print(f"  בלי נתוני גובה: {no_elevation}")
     print(f"  בלי ישוב קרוב שנמצא: {no_settlements}")
     print(f"  בלי תמונה ממוזערת: {no_thumbnail}")
