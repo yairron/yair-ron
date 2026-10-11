@@ -1,6 +1,6 @@
 {
-  "generated_at": "2026-10-07T13:26:57",
-  "route_count": 599,
+  "generated_at": "2026-10-11T16:21:14",
+  "route_count": 601,
   "routes": [
     {
       "id": 698,
@@ -16080,6 +16080,64 @@
       "invalid": false,
       "removed_points": 1,
       "thumbnail": "thumbnails/2026-10-06 געתון סינגל כברי ראש הנקרה קורן.jpg"
+    },
+    {
+      "id": 744,
+      "file_name": "2026-10-10 מהגושרים לאתר החרמון וחזרה.gpx",
+      "gpx_path": "GPX_files/2026-10-10 מהגושרים לאתר החרמון וחזרה.gpx",
+      "date": "2026-10-10",
+      "date_source": "שם קובץ",
+      "activity": "רכיבת אופניים",
+      "source": "הקלטה",
+      "distance_km": 61.62,
+      "elevation_gain_m": 2280,
+      "elevation_loss_m": 2277,
+      "point_count": 2425,
+      "start_lat": 33.22426,
+      "start_lon": 35.61544,
+      "end_lat": 33.22367,
+      "end_lon": 35.61514,
+      "regions": [
+        "רמת הגולן והחרמון"
+      ],
+      "settlements": [
+        "דפנה",
+        "נווה אטי\"ב",
+        "דן"
+      ],
+      "settlements_found": true,
+      "invalid": false,
+      "removed_points": 0,
+      "thumbnail": "thumbnails/2026-10-10 מהגושרים לאתר החרמון וחזרה.jpg"
+    },
+    {
+      "id": 745,
+      "file_name": "2026-10-11 מיחיעם סינגל יחיעם אתר השיירה עליה בסינגל עד המחצבה.gpx",
+      "gpx_path": "GPX_files/2026-10-11 מיחיעם סינגל יחיעם אתר השיירה עליה בסינגל עד המחצבה.gpx",
+      "date": "2026-10-11",
+      "date_source": "שם קובץ",
+      "activity": "רכיבת אופניים",
+      "source": "הקלטה",
+      "distance_km": 22.44,
+      "elevation_gain_m": 553,
+      "elevation_loss_m": 528,
+      "point_count": 1010,
+      "start_lat": 33.00489,
+      "start_lon": 35.21541,
+      "end_lat": 33.00501,
+      "end_lon": 35.21551,
+      "regions": [
+        "צפון"
+      ],
+      "settlements": [
+        "געתון",
+        "יחיעם",
+        "שייח' דנון"
+      ],
+      "settlements_found": true,
+      "invalid": false,
+      "removed_points": 0,
+      "thumbnail": "thumbnails/2026-10-11 מיחיעם סינגל יחיעם אתר השיירה עליה בסינגל עד המחצבה.jpg"
     },
     {
       "id": 728,
