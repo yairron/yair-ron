@@ -130,6 +130,7 @@
   .file-row { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; }
   .file-btn { background: var(--accent); color: white; border-radius: var(--radius); font-family: 'Assistant', sans-serif; font-size: 15px; font-weight: 700; padding: 10px 20px; cursor: pointer; white-space: nowrap; display: inline-block; border: none; transition: all 0.2s; }
   .file-btn:hover { filter: brightness(0.92); }
+  .file-btn.secondary-file-btn { background: transparent; color: var(--accent); border: 2px solid var(--accent); padding: 8px 18px; }
   .file-name { font-size: 14px; color: var(--text-muted); font-family: 'JetBrains Mono', monospace; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
 
   /* ── PAGE: CLEAN MAP ── */
@@ -393,7 +394,7 @@ let glitchRemovedCount  = 0;
 let glitchZones         = [];
 let cleanGpxContent  = null;
 let originalFilename = 'track_clean.gpx';
-let rawGpxText       = null;   // טקסט הקובץ הגולמי (נשלף מהקטלוג, לא מהדיסק המקומי)
+let rawGpxText       = null;   // טקסט הקובץ הגולמי (נשלף מהקטלוג, או נבחר מהמחשב)
 let manualGpxText    = null;   // working copy after manual rounds
 let manualRound      = 1;
 let rawPoints        = [];     // parsed from manualGpxText (current round)
@@ -607,9 +608,14 @@ async function correctElevations(gpxText) {
   }
 }
 
-// ── File load - נוסף 22.08.2026: הקובץ מגיע רק מ-route_catalog/catalog.html
-// (כפתור "ניקוי קובץ" שם), לא יותר מהדיסק המקומי. אם אין פרמטרי URL (מישהו
-// נכנס ישירות לדף) - מוצג כפתור "בחר קובץ" שמעביר לקטלוג לבחירה. ──
+// ── File load - נוסף 22.08.2026: הקובץ מגיע מ-route_catalog/catalog.html
+// (כפתור "ניקוי קובץ" שם). אם אין פרמטרי URL (מישהו נכנס ישירות לדף) - מוצג
+// כפתור "בחר קובץ" שמעביר לקטלוג לבחירה. עודכן 11.10.2026: נוסף גם כפתור
+// "קובץ מהמחשב" לבחירת קובץ GPX מקומי שאינו בקטלוג (בשני המצבים). ──
+const LOCAL_FILE_BTN =
+  '<button class="file-btn secondary-file-btn" onclick="pickLocalFile()">💻 קובץ מהמחשב</button>' +
+  '<input type="file" id="localFileInput" accept=".gpx,application/gpx+xml,application/xml,text/xml" style="display:none" onchange="onLocalFileChosen(this)">';
+
 function initFileState() {
   const params = new URLSearchParams(window.location.search);
   incomingGpxUrl = params.get('gpx');
@@ -618,22 +624,60 @@ function initFileState() {
 
   if (!incomingGpxUrl) {
     row.innerHTML =
-      '<button class="file-btn" onclick="goToCatalog()">📂 בחר קובץ</button>' +
-      '<span class="file-name">לא נבחר קובץ - יש לבחור מסלול מהקטלוג</span>';
+      '<button class="file-btn" onclick="goToCatalog()">📂 בחר מהקטלוג</button>' +
+      LOCAL_FILE_BTN +
+      '<span class="file-name">לא נבחר קובץ - יש לבחור מסלול מהקטלוג או קובץ מהמחשב</span>';
     return;
   }
 
+  renderLoadedRow(incomingFileName || incomingGpxUrl);
   originalFilename = (incomingFileName || 'track.gpx').replace(/\.gpx$/i, '_FIXED.gpx');
-  row.innerHTML =
+  fetchIncomingFile();
+}
+
+function renderLoadedRow(label) {
+  document.getElementById('fileRow').innerHTML =
     '<button class="file-btn" id="cleanBtn" onclick="startCleaning()" disabled>⏳ טוען...</button>' +
     '<span id="fileNameLabel" class="file-name"></span>' +
+    LOCAL_FILE_BTN +
     '<button id="backToManualBtn" class="secondary" style="display:none;white-space:nowrap" onclick="showManualPage()">↩ חזור לעריכת נקודות</button>';
-  document.getElementById('fileNameLabel').textContent = incomingFileName || incomingGpxUrl;
-  fetchIncomingFile();
+  document.getElementById('fileNameLabel').textContent = label;
 }
 
 function goToCatalog() {
   window.location.href = '../route_catalog/catalog.html';
+}
+
+function pickLocalFile() {
+  document.getElementById('localFileInput').click();
+}
+
+function onLocalFileChosen(input) {
+  const file = input.files && input.files[0];
+  if (!file) return;
+  document.getElementById('results').style.display = 'none';
+  setStatus('info', 'טוען קובץ מהמחשב...', true);
+  const reader = new FileReader();
+  reader.onload = () => {
+    const text = String(reader.result || '');
+    const doc = new DOMParser().parseFromString(text, 'application/xml');
+    if (doc.querySelector('parsererror') || !doc.querySelector('trkpt')) {
+      setStatus('error', 'הקובץ שנבחר אינו קובץ GPX תקין (לא נמצאו נקודות מסלול)');
+      input.value = '';
+      return;
+    }
+    // קובץ מקומי מחליף כל קובץ שנטען קודם (מהקטלוג או מהמחשב)
+    incomingGpxUrl   = null;
+    incomingFileName = file.name;
+    originalFilename = file.name.replace(/\.gpx$/i, '') + '_FIXED.gpx';
+    rawGpxText       = text;
+    renderLoadedRow(file.name);
+    hideStatus();
+    const btn = document.getElementById('cleanBtn');
+    btn.disabled = false; btn.textContent = 'נקה';
+  };
+  reader.onerror = () => setStatus('error', 'שגיאה בקריאת הקובץ מהמחשב');
+  reader.readAsText(file);
 }
 
 async function fetchIncomingFile() {
