@@ -1,6 +1,6 @@
 {
-  "generated_at": "2026-10-11T16:21:14",
-  "route_count": 601,
+  "generated_at": "2026-10-17T19:38:06",
+  "route_count": 606,
   "routes": [
     {
       "id": 698,
@@ -16140,6 +16140,122 @@
       "thumbnail": "thumbnails/2026-10-11 מיחיעם סינגל יחיעם אתר השיירה עליה בסינגל עד המחצבה.jpg"
     },
     {
+      "id": 746,
+      "file_name": "2026-10-15 אפיק 2026 שלב 1.gpx",
+      "gpx_path": "GPX_files/2026-10-15 אפיק 2026 שלב 1.gpx",
+      "date": "2026-10-15",
+      "date_source": "שם קובץ",
+      "activity": "רכיבת אופניים",
+      "source": "הקלטה",
+      "distance_km": 82.08,
+      "elevation_gain_m": 991,
+      "elevation_loss_m": 991,
+      "point_count": 2447,
+      "start_lat": 32.97112,
+      "start_lon": 35.09466,
+      "end_lat": 32.97112,
+      "end_lon": 35.09367,
+      "regions": [
+        "צפון"
+      ],
+      "settlements": [
+        "לוחמי הגיטאות",
+        "נווה זיו",
+        "מעונה"
+      ],
+      "settlements_found": true,
+      "invalid": false,
+      "removed_points": 0,
+      "thumbnail": "thumbnails/2026-10-15 אפיק 2026 שלב 1.jpg"
+    },
+    {
+      "id": 747,
+      "file_name": "2026-10-16 אפיק 2026 שלב 2.gpx",
+      "gpx_path": "GPX_files/2026-10-16 אפיק 2026 שלב 2.gpx",
+      "date": "2026-10-16",
+      "date_source": "שם קובץ",
+      "activity": "רכיבת אופניים",
+      "source": "הקלטה",
+      "distance_km": 88.85,
+      "elevation_gain_m": 1478,
+      "elevation_loss_m": 1479,
+      "point_count": 2762,
+      "start_lat": 32.9712,
+      "start_lon": 35.09367,
+      "end_lat": 32.97103,
+      "end_lon": 35.09367,
+      "regions": [
+        "צפון"
+      ],
+      "settlements": [
+        "יחיעם",
+        "מצובה",
+        "יערה"
+      ],
+      "settlements_found": true,
+      "invalid": false,
+      "removed_points": 0,
+      "thumbnail": "thumbnails/2026-10-16 אפיק 2026 שלב 2.jpg"
+    },
+    {
+      "id": 748,
+      "file_name": "2026-10-16 געתון בני סינגל כברי דרדרת כזיב.gpx",
+      "gpx_path": "GPX_files/2026-10-16 געתון בני סינגל כברי דרדרת כזיב.gpx",
+      "date": "2026-10-16",
+      "date_source": "שם קובץ",
+      "activity": "רכיבת אופניים",
+      "source": "הקלטה",
+      "distance_km": 39.98,
+      "elevation_gain_m": 624,
+      "elevation_loss_m": 634,
+      "point_count": 13658,
+      "start_lat": 33.005,
+      "start_lon": 35.21547,
+      "end_lat": 33.00505,
+      "end_lon": 35.21548,
+      "regions": [
+        "צפון"
+      ],
+      "settlements": [
+        "מעיליא",
+        "עין יעקב",
+        "מנות"
+      ],
+      "settlements_found": true,
+      "invalid": false,
+      "removed_points": 0,
+      "thumbnail": "thumbnails/2026-10-16 געתון בני סינגל כברי דרדרת כזיב.jpg"
+    },
+    {
+      "id": 749,
+      "file_name": "2026-10-17 אפיק 2026 שלב 3.gpx",
+      "gpx_path": "GPX_files/2026-10-17 אפיק 2026 שלב 3.gpx",
+      "date": "2026-10-17",
+      "date_source": "שם קובץ",
+      "activity": "רכיבת אופניים",
+      "source": "הקלטה",
+      "distance_km": 74.53,
+      "elevation_gain_m": 737,
+      "elevation_loss_m": 738,
+      "point_count": 1941,
+      "start_lat": 32.97126,
+      "start_lon": 35.09367,
+      "end_lat": 32.97095,
+      "end_lon": 35.09367,
+      "regions": [
+        "צפון"
+      ],
+      "settlements": [
+        "חניתה",
+        "מצובה",
+        "כפר ראש הנקרה"
+      ],
+      "settlements_found": true,
+      "invalid": false,
+      "removed_points": 0,
+      "thumbnail": "thumbnails/2026-10-17 אפיק 2026 שלב 3.jpg"
+    },
+    {
       "id": 728,
       "file_name": "ibt10_smadar shaharut_2022.gpx",
       "gpx_path": "GPX_files/ibt10_smadar shaharut_2022.gpx",
@@ -16711,6 +16827,35 @@
       "invalid": false,
       "removed_points": 1,
       "thumbnail": "thumbnails/דימונה הרי דימונה הר שרף תיכנון .jpg"
+    },
+    {
+      "id": 750,
+      "file_name": "וילה סינגל כברי בירידה קיצור לסינגל כברי בקצה העליה.gpx",
+      "gpx_path": "GPX_files/וילה סינגל כברי בירידה קיצור לסינגל כברי בקצה העליה.gpx",
+      "date": "2026-10-16",
+      "date_source": "תאריך שינוי הקובץ (גיבוי)",
+      "activity": "לא ברור",
+      "source": "תכנון מסלול",
+      "distance_km": 3.75,
+      "elevation_gain_m": 14,
+      "elevation_loss_m": 179,
+      "point_count": 213,
+      "start_lat": 33.02046,
+      "start_lon": 35.19871,
+      "end_lat": 33.02204,
+      "end_lon": 35.16595,
+      "regions": [
+        "צפון"
+      ],
+      "settlements": [
+        "נווה זיו",
+        "געתון",
+        "מנות"
+      ],
+      "settlements_found": true,
+      "invalid": false,
+      "removed_points": 0,
+      "thumbnail": "thumbnails/וילה סינגל כברי בירידה קיצור לסינגל כברי בקצה העליה.jpg"
     },
     {
       "id": 718,
