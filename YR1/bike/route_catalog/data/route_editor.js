@@ -389,24 +389,42 @@ var RouteEditor = (function () {
   // GPX תקני מרשימת נקודות - **בלי** תגי <time> בכלל (פעולת תכנון, לא
   // הקלטה - ראו הסבר למעלה). כולל <ele> אם קיים ותקין.
   function buildGpxText(points, trackName) {
+    return buildGpxTextSegments([points], trackName);
+  }
+
+  // כמו buildGpxText, אבל עם כמה מקטעים (<trkseg>) נפרדים בתוך אותו <trk> - כל
+  // מקטע קו רציף משלו, בלי חיבור בין מקטעים. בשימוש ל"רשת מסלולים באזור"
+  // ב-gps_upload.html (נוסף 22.10.2026), שם כל קטע רציף של מסלול קיים בתוך
+  // האזור שנבחר הוא מקטע נפרד, בלי כיוון תנועה ובלי סדר ביניהם.
+  function buildGpxTextSegments(segments, trackName) {
     var esc = function (s) {
       return String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
     };
-    var trkpts = points.map(function (p) {
-      var eleTag = (p.ele !== null && p.ele !== undefined && !isNaN(p.ele)) ? ('<ele>' + Number(p.ele).toFixed(1) + '</ele>') : '';
-      return '<trkpt lat="' + p.lat.toFixed(6) + '" lon="' + p.lon.toFixed(6) + '">' + eleTag + '</trkpt>';
-    }).join('\n      ');
+    var trksegs = segments.map(function (points) {
+      var trkpts = points.map(function (p) {
+        var eleTag = (p.ele !== null && p.ele !== undefined && !isNaN(p.ele)) ? ('<ele>' + Number(p.ele).toFixed(1) + '</ele>') : '';
+        return '<trkpt lat="' + p.lat.toFixed(6) + '" lon="' + p.lon.toFixed(6) + '">' + eleTag + '</trkpt>';
+      }).join('\n      ');
+      return '    <trkseg>\n      ' + trkpts + '\n    </trkseg>\n';
+    }).join('');
     return '<?xml version="1.0" encoding="UTF-8"?>\n' +
       '<gpx version="1.1" creator="yairron.com route editor" xmlns="http://www.topografix.com/GPX/1/1">\n' +
       '  <trk>\n' +
       '    <name>' + esc(trackName || 'מסלול מתוכנן') + '</name>\n' +
-      '    <trkseg>\n      ' + trkpts + '\n    </trkseg>\n' +
+      trksegs +
       '  </trk>\n' +
       '</gpx>\n';
   }
 
   function downloadGpx(points, fileName, trackName) {
-    var text = buildGpxText(points, trackName);
+    downloadGpxText(buildGpxText(points, trackName), fileName);
+  }
+
+  function downloadGpxSegments(segments, fileName, trackName) {
+    downloadGpxText(buildGpxTextSegments(segments, trackName), fileName);
+  }
+
+  function downloadGpxText(text, fileName) {
     var blob = new Blob([text], { type: 'application/gpx+xml' });
     var a = document.createElement('a');
     a.href = URL.createObjectURL(blob);
@@ -423,6 +441,8 @@ var RouteEditor = (function () {
     createRouteBuilder: createRouteBuilder,
     computeStats: computeStats,
     buildGpxText: buildGpxText,
-    downloadGpx: downloadGpx
+    buildGpxTextSegments: buildGpxTextSegments,
+    downloadGpx: downloadGpx,
+    downloadGpxSegments: downloadGpxSegments
   };
 })();
