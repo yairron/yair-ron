@@ -217,9 +217,10 @@ function parseGpx(text) {
   // כל <trkseg> הוא קו נפרד (נוסף 22.10.2026) - קובץ עם כמה מקטעים (למשל
   // "רשת מסלולים באזור") צויר קודם כקו רציף אחד, עם קווים ישרים בין סוף מקטע
   // לתחילת המקטע הבא. rtept/wpt (אין להם מקטעים) - מקטע יחיד, כמו קודם.
-  var segments = Array.from(doc.querySelectorAll('trkseg')).map(function (seg) {
+  // מקטעים סמוכים (הקלטה עם השהיה) מאוחדים לקו אחד - ראו joinCloseSegments.
+  var segments = RouteEditor.joinCloseSegments(Array.from(doc.querySelectorAll('trkseg')).map(function (seg) {
     return toPoints(Array.from(seg.querySelectorAll('trkpt')));
-  }).filter(function (pts) { return pts.length > 0; });
+  }));
   if (!segments.length) {
     var els = Array.from(doc.querySelectorAll('rtept'));
     if (!els.length) els = Array.from(doc.querySelectorAll('wpt'));
@@ -782,25 +783,28 @@ function clipSegmentToBox(lat0, lon0, lat1, lon1, box) {
   };
 }
 
-// tracks: {"<id>": [lat,lon,lat,lon,...]} (פורמט routes-tracks.json). כל ריצה
-// רציפה של קטעים בתוך המלבן הופכת למקטע נפרד; יציאה מהמלבן סוגרת את המקטע.
+// tracks: {"<id>": [lat,lon,lat,lon,...]} (פורמט routes-tracks.json; מסלול עם
+// כמה מקטעים נפרדים: [[lat,lon,...],[lat,lon,...]]). כל ריצה רציפה של קטעים בתוך
+// המלבן הופכת למקטע נפרד; יציאה מהמלבן (או סוף מקטע) סוגרת את המקטע.
 function clipTracksToBox(tracks, box) {
   var segments = [], routeIds = {};
   Object.keys(tracks).forEach(function (id) {
-    var flat = tracks[id];
+    var lines = Array.isArray(tracks[id][0]) ? tracks[id] : [tracks[id]];
     var run = null;
     function closeRun() {
       if (run && run.length >= 2) { segments.push(run); routeIds[id] = true; }
       run = null;
     }
-    for (var i = 0; i + 3 < flat.length; i += 2) {
-      var c = clipSegmentToBox(flat[i], flat[i + 1], flat[i + 2], flat[i + 3], box);
-      if (!c) { closeRun(); continue; }
-      if (!run || c.t0 > 0) { closeRun(); run = [c.from]; }
-      run.push(c.to);
-      if (c.t1 < 1) closeRun();
-    }
-    closeRun();
+    lines.forEach(function (flat) {
+      for (var i = 0; i + 3 < flat.length; i += 2) {
+        var c = clipSegmentToBox(flat[i], flat[i + 1], flat[i + 2], flat[i + 3], box);
+        if (!c) { closeRun(); continue; }
+        if (!run || c.t0 > 0) { closeRun(); run = [c.from]; }
+        run.push(c.to);
+        if (c.t1 < 1) closeRun();
+      }
+      closeRun();
+    });
   });
   return { segments: segments, routeCount: Object.keys(routeIds).length };
 }

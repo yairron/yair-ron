@@ -799,9 +799,13 @@ function routeDistanceKm(r, coord) {
   if (r.id in distanceMemo.map) return distanceMemo.map[r.id];
 
   var result = null;
-  var flat = ROUTE_TRACKS && ROUTE_TRACKS[r.id];
-  if (flat && flat.length >= 2) {
-    result = distanceToTrackM(coord, flat) / 1000;
+  var track = ROUTE_TRACKS && ROUTE_TRACKS[r.id];
+  // מסלול עם כמה מקטעים נפרדים נשמר כמערך של מערכים שטוחים (22.10.2026) -
+  // המרחק הוא לקרוב מבין המקטעים, בלי "קו" בין סוף מקטע לתחילת הבא
+  var lines = !track ? [] : Array.isArray(track[0]) ? track : [track];
+  lines = lines.filter(function (flat) { return flat.length >= 2; });
+  if (lines.length) {
+    result = Math.min.apply(null, lines.map(function (flat) { return distanceToTrackM(coord, flat); })) / 1000;
   } else {
     var dists = [];
     if (r.start_lat != null && r.start_lon != null) dists.push(haversineM([coord.lat, coord.lon], [r.start_lat, r.start_lon]) / 1000);
@@ -812,33 +816,32 @@ function routeDistanceKm(r, coord) {
   return result;
 }
 
-function parseGpxPoints(gpxText) {
+// מקטעי הקובץ כמערך של מערכי {lat,lon,ele} - כל <trkseg> קו נפרד (22.10.2026;
+// קודם כל הנקודות נקראו כקו אחד, וקובץ עם כמה מקטעים רחוקים - כמו "רשת מסלולים
+// באזור" - צויר עם קווים ישרים ביניהם). מקטעים סמוכים (הקלטה עם השהיה) מאוחדים
+// לקו אחד - ראו RouteEditor.joinCloseSegments. rtept/wpt - מקטע יחיד.
+function parseGpxSegments(gpxText) {
   var doc = new DOMParser().parseFromString(gpxText, 'application/xml');
-  var pts = Array.from(doc.querySelectorAll('trkpt'));
-  if (!pts.length) pts = Array.from(doc.querySelectorAll('rtept'));
-  if (!pts.length) pts = Array.from(doc.querySelectorAll('wpt'));
-  return pts.map(function (el) {
-    return [parseFloat(el.getAttribute('lat')), parseFloat(el.getAttribute('lon'))];
-  }).filter(function (p) { return !isNaN(p[0]) && !isNaN(p[1]); });
-}
-
-// כמו parseGpxPoints, אבל מחזיר {lat,lon,ele} (לא זוגות [lat,lon] בלבד) -
-// דרוש למיזוג/חיתוך (route_editor.js) כדי לשמר גובה בקובץ הפלט. נשאר נפרד
-// מ-parseGpxPoints הקיים כדי לא לגעת בקוד ציור המסלולים העובד (Leaflet מצפה
-// לזוגות [lat,lon] שם, לא לאובייקטים).
-function parseGpxPointsFull(gpxText) {
-  var doc = new DOMParser().parseFromString(gpxText, 'application/xml');
-  var pts = Array.from(doc.querySelectorAll('trkpt'));
-  if (!pts.length) pts = Array.from(doc.querySelectorAll('rtept'));
-  if (!pts.length) pts = Array.from(doc.querySelectorAll('wpt'));
-  return pts.map(function (el) {
-    var eleEl = el.querySelector('ele');
-    return {
-      lat: parseFloat(el.getAttribute('lat')),
-      lon: parseFloat(el.getAttribute('lon')),
-      ele: eleEl ? parseFloat(eleEl.textContent) : null
-    };
-  }).filter(function (p) { return !isNaN(p.lat) && !isNaN(p.lon); });
+  var toPoints = function (els) {
+    return els.map(function (el) {
+      var eleEl = el.querySelector('ele');
+      return {
+        lat: parseFloat(el.getAttribute('lat')),
+        lon: parseFloat(el.getAttribute('lon')),
+        ele: eleEl ? parseFloat(eleEl.textContent) : null
+      };
+    }).filter(function (p) { return !isNaN(p.lat) && !isNaN(p.lon); });
+  };
+  var segments = RouteEditor.joinCloseSegments(Array.from(doc.querySelectorAll('trkseg')).map(function (seg) {
+    return toPoints(Array.from(seg.querySelectorAll('trkpt')));
+  }));
+  if (!segments.length) {
+    var els = Array.from(doc.querySelectorAll('rtept'));
+    if (!els.length) els = Array.from(doc.querySelectorAll('wpt'));
+    var pts = toPoints(els);
+    if (pts.length) segments = [pts];
+  }
+  return segments;
 }
 
 function showOnMap() {
@@ -905,8 +908,8 @@ function showOnMap() {
   Promise.all(files.map(function (r, i) {
     return fetch(encodeURI(r.gpx_path))
       .then(function (resp) { return resp.text(); })
-      .then(function (text) { return { route: r, points: parseGpxPoints(text), fullPoints: parseGpxPointsFull(text), color: ROUTE_MAP_COLORS[i % ROUTE_MAP_COLORS.length] }; })
-      .catch(function () { return { route: r, points: [], fullPoints: [], color: ROUTE_MAP_COLORS[i % ROUTE_MAP_COLORS.length] }; });
+      .then(function (text) { return { route: r, segments: parseGpxSegments(text), color: ROUTE_MAP_COLORS[i % ROUTE_MAP_COLORS.length] }; })
+      .catch(function () { return { route: r, segments: [], color: ROUTE_MAP_COLORS[i % ROUTE_MAP_COLORS.length] }; });
   })).then(function (results) {
     document.getElementById('mapLoading').style.display = 'none';
     var allBounds = [];
@@ -915,13 +918,15 @@ function showOnMap() {
     // נשמר ברמת העמוד - בשימוש ע"י מיזוג/חיתוך (route_editor.js), לא רק
     // בתוך ה-closure הזה. מתעדכן מחדש בכל showOnMap (כל פעם שנבחרים מסלולים
     // אחרים) - ראו גם resetCutterUI() שמאפס מצב חיתוך פעיל קודם, אם היה.
-    currentMapRoutesFullPoints = results.map(function (res) { return res.fullPoints; }).filter(function (pts) { return pts.length; });
+    // כל מקטע הוא מסלול נפרד בבריכה (routeIdx נפרד), כך שהחיתוך לא "הולך" בקו
+    // ישר מסוף מקטע אחד לתחילת המקטע הבא
+    currentMapRoutesFullPoints = [].concat.apply([], results.map(function (res) { return res.segments; }));
     resetCutterUI();
 
     results.forEach(function (res) {
       var legendItem = document.createElement('div');
       legendItem.className = 'map-legend-item';
-      var statsText = res.points.length
+      var statsText = res.segments.length
         ? ('📏 ' + res.route.distance_km + ' ק"מ &nbsp;·&nbsp; ' + elevationText(res.route))
         : 'שגיאה בטעינה';
       legendItem.innerHTML =
@@ -932,21 +937,28 @@ function showOnMap() {
         '</div>';
       legend.appendChild(legendItem);
 
-      if (res.points.length) {
-        var line = L.polyline(res.points, { color: res.color, weight: 4 }).addTo(routeMapInstance);
-        var rStart = res.points[0], rEnd = res.points[res.points.length - 1];
-        var rCoincide = haversineM(rStart, rEnd) < 30;
-        var startMarker = L.marker(rStart, { icon: routeStartIcon(res.color, rCoincide ? 'translate(-5px,-5px)' : '') }).addTo(routeMapInstance);
-        var endMarker = L.marker(rEnd, { icon: routeEndIcon(res.color, rCoincide ? 'translate(5px,5px)' : '') }).addTo(routeMapInstance);
-        routeMapLayers.push(line, startMarker, endMarker);
-        allBounds = allBounds.concat(res.points);
+      if (res.segments.length) {
+        var latlngSegs = res.segments.map(function (seg) { return seg.map(function (p) { return [p.lat, p.lon]; }); });
+        var line = L.polyline(latlngSegs, { color: res.color, weight: 4 }).addTo(routeMapInstance);
+        var routeLayers = [line];
+        // סימוני התחלה/סיום רק למסלול עם מקטע אחד - לכמה מקטעים נפרדים אין כיוון אחד
+        if (latlngSegs.length === 1) {
+          var pts = latlngSegs[0];
+          var rStart = pts[0], rEnd = pts[pts.length - 1];
+          var rCoincide = haversineM(rStart, rEnd) < 30;
+          routeLayers.push(
+            L.marker(rStart, { icon: routeStartIcon(res.color, rCoincide ? 'translate(-5px,-5px)' : '') }).addTo(routeMapInstance),
+            L.marker(rEnd, { icon: routeEndIcon(res.color, rCoincide ? 'translate(5px,5px)' : '') }).addTo(routeMapInstance));
+        }
+        routeMapLayers = routeMapLayers.concat(routeLayers);
+        latlngSegs.forEach(function (seg) { allBounds = allBounds.concat(seg); });
 
         // לחיצה על שם המסלול ברשימת המקרא - מסתירה/מציגה אותו לחילופין (קו +
         // סמני התחלה/סיום), בלי לגעת בשאר המסלולים המוצגים.
         var nameEl = legendItem.querySelector('.map-legend-name');
         nameEl.addEventListener('click', function () {
           var hidden = legendItem.classList.toggle('map-legend-hidden');
-          [line, startMarker, endMarker].forEach(function (layer) {
+          routeLayers.forEach(function (layer) {
             if (hidden) routeMapInstance.removeLayer(layer);
             else layer.addTo(routeMapInstance);
           });

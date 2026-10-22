@@ -125,10 +125,16 @@ def extract_track_points(path: Path):
     def findall(tag_path):
         return root.findall(tag_path.replace("g:", "{" + ns_uri + "}") if ns_uri else tag_path.replace("g:", ""))
 
-    points_el = findall(".//g:trk//g:trkpt") or findall(".//g:rte//g:rtept") or findall(".//g:wpt")
+    # כל נקודה מתויגת ב-"seg" - אינדקס ה-<trkseg> שלה (נוסף 22.10.2026, ראו
+    # split_segments). rtept/wpt אין להם מקטעים - כולם seg 0.
+    trkpt_tag = "{" + ns_uri + "}trkpt" if ns_uri else "trkpt"
+    points_el = [(seg_idx, pt) for seg_idx, seg in enumerate(findall(".//g:trk//g:trkseg"))
+                 for pt in seg.findall(trkpt_tag)]
+    if not points_el:
+        points_el = [(0, pt) for pt in (findall(".//g:rte//g:rtept") or findall(".//g:wpt"))]
 
     points = []
-    for pt in points_el:
+    for seg_idx, pt in points_el:
         try:
             lat = float(pt.attrib["lat"])
             lon = float(pt.attrib["lon"])
@@ -143,8 +149,35 @@ def extract_track_points(path: Path):
                 ele = None
         time_el = pt.find("g:time" if ns_uri else "time", ns) if ns_uri else pt.find("time")
         t = renamer.parse_gpx_time(time_el.text) if time_el is not None else None
-        points.append({"lat": lat, "lon": lon, "ele": ele, "time": t})
+        points.append({"lat": lat, "lon": lon, "ele": ele, "time": t, "seg": seg_idx})
     return points
+
+
+# מקטעים (<trkseg>) נפרדים, נוסף 22.10.2026: עד אז כל הנקודות נקראו כקו רציף
+# אחד, וקובץ עם כמה מקטעים רחוקים זה מזה (למשל "רשת מסלולים באזור" מ-gps_upload)
+# קיבל קווים ישרים בין סוף מקטע לתחילת הבא - בתמונה הממוזערת, במרחק ובקו של
+# routes-tracks.json. מקטעים סמוכים (פער עד SEGMENT_JOIN_MAX_GAP_M) מאוחדים
+# בחזרה לקו אחד: כך נראים כמעט כל הקבצים עם כמה מקטעים בקטלוג (הקלטה עם
+# השהיה/המשך - נבדק: הפער הגדול ביניהם 20 מ'), והם נשארים בדיוק כמו קודם.
+# אותו סף בדיוק ב-joinCloseSegments() ב-data/route_editor.js (צד הדפדפן).
+SEGMENT_JOIN_MAX_GAP_M = 25
+
+
+def split_segments(points):
+    """מחזיר את אינדקסי ההתחלה של המקטעים ברשימת points (ללא 0) - רשימה ריקה =
+    קו רציף אחד. גבול מקטע נשמר רק כשה-seg משתנה **וגם** הפער גדול מהסף."""
+    starts = []
+    for i in range(1, len(points)):
+        a, b = points[i - 1], points[i]
+        if a.get("seg", 0) != b.get("seg", 0) and \
+                renamer.haversine_km(a["lat"], a["lon"], b["lat"], b["lon"]) * 1000 > SEGMENT_JOIN_MAX_GAP_M:
+            starts.append(i)
+    return starts
+
+
+def coords_by_segment(coords, segment_starts):
+    bounds = [0] + list(segment_starts) + [len(coords)]
+    return [coords[bounds[i]:bounds[i + 1]] for i in range(len(bounds) - 1)]
 
 
 ELEVATION_NOISE_THRESHOLD_M = 4.0
@@ -567,6 +600,7 @@ def build_catalog_record(path: Path, info: dict, points: list, settlements_db, r
         points, removed_count = clean_track_points(points)
 
     coords = [(p["lat"], p["lon"]) for p in points]
+    segment_starts = split_segments(points)
     elevations = [p["ele"] for p in points]
     times = [p["time"] for p in points]
 
@@ -592,7 +626,7 @@ def build_catalog_record(path: Path, info: dict, points: list, settlements_db, r
         "date_source": date_source,
         "activity": override.get("activity", info["activity_guess"]),
         "source": source,
-        "distance_km": calc_distance_km(coords),
+        "distance_km": round(sum(calc_distance_km(seg) for seg in coords_by_segment(coords, segment_starts)), 2),
         "elevation_gain_m": elevation_gain,
         "elevation_loss_m": elevation_loss,
         "point_count": len(points),
@@ -614,6 +648,7 @@ def build_catalog_record(path: Path, info: dict, points: list, settlements_db, r
         "removed_points": removed_count,
         "thumbnail": None,  # ימולא ב-generate_thumbnails, או יישאר None אם אין נקודות
         "_coords": [[lat, lon] for lat, lon in coords],  # שדה עבודה זמני - מוסר לפני הכתיבה לקובץ
+        "_segment_starts": segment_starts,  # שדה עבודה זמני (ראו split_segments) - מוסר לפני הכתיבה לקובץ
     }
 
 
@@ -666,16 +701,23 @@ def simplify_track(coords, tolerance_m=TRACK_SIMPLIFY_TOLERANCE_M):
 def write_tracks_file(records, out_path: Path):
     """שורה אחת לכל מסלול (ממוין לפי id) - כדי שמסלול חדש/שהשתנה יופיע ב-diff
     של גיט כשורה בודדת, לא כשינוי בקובץ ענק בשורה אחת. הנקודות שטוחות
-    [lat,lon,lat,lon,...] בעיגול ל-5 ספרות (~1 מ') - חוסך כמחצית מהנפח."""
+    [lat,lon,lat,lon,...] בעיגול ל-5 ספרות (~1 מ') - חוסך כמחצית מהנפח.
+    מסלול עם כמה מקטעים נפרדים (ראו split_segments) נכתב כמערך של מערכים
+    שטוחים, [[lat,lon,...],[lat,lon,...]] - כל מקטע מפושט בנפרד, בלי קו ביניהם."""
+    def flatten(coords):
+        flat = []
+        for lat, lon in simplify_track(coords):
+            flat.extend((round(lat, 5), round(lon, 5)))
+        return flat
+
     lines = []
     for r in sorted(records, key=lambda r: r["id"]):
         coords = r.get("_coords") or []
         if not coords:
             continue
-        flat = []
-        for lat, lon in simplify_track(coords):
-            flat.extend((round(lat, 5), round(lon, 5)))
-        lines.append(f'"{r["id"]}":' + json.dumps(flat, separators=(",", ":")))
+        segments = coords_by_segment(coords, r.get("_segment_starts") or [])
+        data = flatten(coords) if len(segments) == 1 else [flatten(seg) for seg in segments]
+        lines.append(f'"{r["id"]}":' + json.dumps(data, separators=(",", ":")))
     with open(out_path, "w", encoding="utf-8", newline="\n") as f:
         f.write("{\n" + ",\n".join(lines) + "\n}\n")
     return len(lines)
@@ -718,7 +760,8 @@ def generate_thumbnails(records, thumbnails_dir: Path, scripts_dir: Path, force=
                     continue
 
                 print(f"  [{i}/{total}] {record['file_name']}")
-                page.evaluate("(coords) => window.renderTrack(coords)", coords)
+                page.evaluate("([coords, starts]) => window.renderTrack(coords, starts)",
+                              [coords, record.get("_segment_starts") or []])
                 try:
                     page.wait_for_function("window.__tilesLoaded === true", timeout=8000)
                 except Exception:
@@ -753,6 +796,23 @@ def invalidate_thumbnails_for_cleaned_routes(records, thumbnails_dir: Path) -> i
     removed = 0
     for r in records:
         if r["removed_points"] <= 0:
+            continue
+        thumb_path = thumbnails_dir / (path_stem_from_filename(r["file_name"]) + ".jpg")
+        if thumb_path.exists():
+            thumb_path.unlink()
+            removed += 1
+    return removed
+
+
+def invalidate_thumbnails_for_segmented_routes(records, thumbnails_dir: Path) -> int:
+    """כמו invalidate_thumbnails_for_cleaned_routes, למסלולים עם כמה מקטעים נפרדים
+    (ראו split_segments) - תמונה שנוצרה לפני 22.10.2026 מציגה קווים ישרים בין
+    המקטעים. נקראת רק עם רשומות שנותחו מחדש בהרצה הנוכחית."""
+    if not thumbnails_dir.exists():
+        return 0
+    removed = 0
+    for r in records:
+        if not r.get("_segment_starts"):
             continue
         thumb_path = thumbnails_dir / (path_stem_from_filename(r["file_name"]) + ".jpg")
         if thumb_path.exists():
@@ -818,9 +878,10 @@ def main():
         stat = path.stat()
         cached = build_cache.get(path.name)
         override = find_override(path.name, overrides)
-        # שינוי בכלל תיקון (הוספה/הסרה/שינוי ערך) מנתח מחדש את הקובץ, גם בלי שינוי בקובץ עצמו
+        # שינוי בכלל תיקון (הוספה/הסרה/שינוי ערך) מנתח מחדש את הקובץ, גם בלי שינוי בקובץ עצמו.
+        # רשומה מלפני תמיכת המקטעים (22.10.2026, אין בה "_segment_starts") - מנותחת מחדש פעם אחת.
         if (cached and cached.get("size") == stat.st_size and cached.get("mtime") == stat.st_mtime
-                and cached.get("override", {}) == override):
+                and cached.get("override", {}) == override and "_segment_starts" in cached["record"]):
             records.append(cached["record"])
             new_build_cache[path.name] = cached
             reused_count += 1
@@ -857,6 +918,12 @@ def main():
             if stale:
                 print(f"  נמחקו {stale} תמונות ממוזערות ישנות (נוצרו לפני הניקוי, מציגות את הקפיצה)")
 
+    freshly_segmented = [r for r in records if r.get("_segment_starts") and r["file_name"] in freshly_analyzed_names]
+    if freshly_segmented:
+        stale = invalidate_thumbnails_for_segmented_routes(freshly_segmented, thumbnails_dir)
+        if stale:
+            print(f"\nנמחקו {stale} תמונות ממוזערות של מסלולים עם כמה מקטעים (ייווצרו מחדש בלי קווים בין המקטעים)")
+
     if args.skip_thumbnails:
         print("\nשלב 4: דולג (--skip-thumbnails)")
     else:
@@ -880,6 +947,7 @@ def main():
 
     for r in records:
         r.pop("_coords", None)
+        r.pop("_segment_starts", None)
 
     catalog = {
         "generated_at": datetime.now().isoformat(timespec="seconds"),

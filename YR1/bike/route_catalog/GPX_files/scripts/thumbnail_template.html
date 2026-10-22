@@ -49,12 +49,23 @@
   // כשהמרחק ביניהן קטן מ-30 מ' ("אותה נקודה" בפועל), מזיזים כל אחת פיקסלים
   // בודדים לכיוון מנוגד - היסט פיקסלים קבוע (לא גאוגרפי), כדי שההיסט הוויזואלי
   // יישאר עקבי בכל רמת זום, לא כמו היסט בקואורדינטות שהיה משתנה בגודלו על המסך.
-  window.renderTrack = function (coords) {
+  // segmentStarts (נוסף 22.10.2026): אינדקסי ההתחלה של מקטעים נפרדים בתוך coords
+  // (split_segments ב-build_routes_catalog.py) - כל מקטע קו נפרד, בלי קו ישר בין
+  // סוף מקטע לתחילת הבא, ובלי סימוני התחלה/סיום (לכמה מקטעים אין כיוון אחד).
+  window.renderTrack = function (coords, segmentStarts) {
     window.__tilesLoaded = false;
     if (currentLine) { map.removeLayer(currentLine); currentLine = null; }
     if (currentStartMarker) { map.removeLayer(currentStartMarker); currentStartMarker = null; }
     if (currentEndMarker) { map.removeLayer(currentEndMarker); currentEndMarker = null; }
     var latlngs = coords.map(function (c) { return [c[0], c[1]]; });
+    var bounds = [0].concat(segmentStarts || [], [latlngs.length]);
+    if (bounds.length > 2) {
+      var parts = [];
+      for (var s = 0; s < bounds.length - 1; s++) parts.push(latlngs.slice(bounds[s], bounds[s + 1]));
+      currentLine = L.polyline(parts, { color: '#E91E8C', weight: 4 }).addTo(map);
+      map.fitBounds(currentLine.getBounds(), { padding: [14, 14], animate: false });
+      return;
+    }
     currentLine = L.polyline(latlngs, { color: '#E91E8C', weight: 4 }).addTo(map);
 
     var start = latlngs[0], end = latlngs[latlngs.length - 1];

@@ -237,6 +237,29 @@ var RouteEditor = (function () {
   }
 
   // מוצא בתוך הבריכה את הנקודה הקרובה ביותר גיאוגרפית ל-(refLat,refLon) מתוך
+  // מאחד מקטעים (<trkseg>) עוקבים שהפער ביניהם עד SEGMENT_JOIN_MAX_GAP_M לקו
+  // אחד, ומשאיר נפרדים רק מקטעים עם פער אמיתי (נוסף 22.10.2026). כמעט כל הקבצים
+  // עם כמה מקטעים בקטלוג הם הקלטה עם השהיה/המשך (פער של עד 20 מ') - הם נשארים
+  // קו אחד עם סימוני התחלה/סיום, כמו קודם. אותו סף בדיוק כמו
+  // SEGMENT_JOIN_MAX_GAP_M ב-build_routes_catalog.py (התמונות הממוזערות והקטלוג).
+  var SEGMENT_JOIN_MAX_GAP_M = 25;
+  function joinCloseSegments(segments) {
+    var out = [];
+    segments.forEach(function (seg) {
+      if (!seg.length) return;
+      var last = out[out.length - 1];
+      if (last) {
+        var a = last[last.length - 1], b = seg[0];
+        if (haversineKm(a.lat, a.lon, b.lat, b.lon) * 1000 <= SEGMENT_JOIN_MAX_GAP_M) {
+          out[out.length - 1] = last.concat(seg);
+          return;
+        }
+      }
+      out.push(seg.slice());
+    });
+    return out;
+  }
+
   // הנקודות ששייכות ל-routeIdx נתון בלבד - "נקודת הכניסה" למסלול חדש בזמן
   // מעבר בין מסלול למסלול (ראו addPoint למטה). null אם למסלול הזה אין נקודות
   // כלל בבריכה (לא אמור לקרות בפועל).
@@ -440,6 +463,7 @@ var RouteEditor = (function () {
     isNearPool: isNearPool,
     createRouteBuilder: createRouteBuilder,
     computeStats: computeStats,
+    joinCloseSegments: joinCloseSegments,
     buildGpxText: buildGpxText,
     buildGpxTextSegments: buildGpxTextSegments,
     downloadGpx: downloadGpx,
