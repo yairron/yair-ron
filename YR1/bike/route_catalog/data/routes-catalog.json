@@ -1,6 +1,6 @@
 {
-  "generated_at": "2026-10-22T15:29:34",
-  "route_count": 607,
+  "generated_at": "2026-10-23T14:03:05",
+  "route_count": 608,
   "routes": [
     {
       "id": 698,
@@ -16254,6 +16254,35 @@
       "invalid": false,
       "removed_points": 0,
       "thumbnail": "thumbnails/2026-10-17 אפיק 2026 שלב 3.jpg"
+    },
+    {
+      "id": 752,
+      "file_name": "2026-10-23 כברי גשר הזיו עכו מזרחית לכביש 70 בן עמי.gpx",
+      "gpx_path": "GPX_files/2026-10-23 כברי גשר הזיו עכו מזרחית לכביש 70 בן עמי.gpx",
+      "date": "2026-10-23",
+      "date_source": "שם קובץ",
+      "activity": "רכיבת אופניים",
+      "source": "הקלטה",
+      "distance_km": 51.54,
+      "elevation_gain_m": 105,
+      "elevation_loss_m": 113,
+      "point_count": 13491,
+      "start_lat": 33.01793,
+      "start_lon": 35.14377,
+      "end_lat": 33.01794,
+      "end_lon": 35.14382,
+      "regions": [
+        "צפון"
+      ],
+      "settlements": [
+        "שבי ציון",
+        "בן עמי",
+        "נס עמים"
+      ],
+      "settlements_found": true,
+      "invalid": false,
+      "removed_points": 0,
+      "thumbnail": "thumbnails/2026-10-23 כברי גשר הזיו עכו מזרחית לכביש 70 בן עמי.jpg"
     },
     {
       "id": 728,
