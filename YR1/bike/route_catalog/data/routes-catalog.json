@@ -1,6 +1,6 @@
 {
-  "generated_at": "2026-10-23T14:18:33",
-  "route_count": 610,
+  "generated_at": "2026-10-23T18:37:35",
+  "route_count": 611,
   "routes": [
     {
       "id": 698,
@@ -17257,6 +17257,35 @@
       "invalid": false,
       "removed_points": 1,
       "thumbnail": "thumbnails/סינגלים דימונה.jpg"
+    },
+    {
+      "id": 755,
+      "file_name": "רשת_מסלולים_נהריה_עכו_נתיב השיירה_כברי.gpx",
+      "gpx_path": "GPX_files/רשת_מסלולים_נהריה_עכו_נתיב השיירה_כברי.gpx",
+      "date": "2026-10-23",
+      "date_source": "תאריך שינוי הקובץ (גיבוי)",
+      "activity": "לא ברור",
+      "source": "תכנון מסלול",
+      "distance_km": 176.58,
+      "elevation_gain_m": null,
+      "elevation_loss_m": null,
+      "point_count": 1320,
+      "start_lat": 33.00721,
+      "start_lon": 35.08832,
+      "end_lat": 33.01771,
+      "end_lon": 35.14482,
+      "regions": [
+        "צפון"
+      ],
+      "settlements": [
+        "שבי ציון",
+        "בן עמי",
+        "בוסתן הגליל"
+      ],
+      "settlements_found": true,
+      "invalid": false,
+      "removed_points": 0,
+      "thumbnail": "thumbnails/רשת_מסלולים_נהריה_עכו_נתיב השיירה_כברי.jpg"
     },
     {
       "id": 751,
