@@ -257,6 +257,15 @@ function ensureMap() {
     if (editMode === 'cut') { handleModeClick(e.containerPoint, cutPool, cutPoolScreenPoints()); return; }
     if (editMode === 'osm') { handleModeClick(e.containerPoint, osmPool, osmPoolScreenPoints()); return; }
     if (editMode === 'freehand') { handleFreehandClick(e.latlng); return; }
+    // אין מצב ציור/בחירת אזור פעיל - חלונית קורדינטות, כמו ב-catalog.html
+    showCoordPopup(e.latlng);
+  });
+
+  // לחיצה ימנית (בנייד: לחיצה ארוכה) - חלונית קורדינטות תמיד, גם באמצע ציור
+  // מסלול או בחירת אזור, בלי להוסיף נקודה/פינה. תפריט הדפדפן נחסם רק מעל המפה.
+  mapInstance.on('contextmenu', function (e) {
+    e.originalEvent.preventDefault();
+    showCoordPopup(e.latlng);
   });
 
   // בזמן עריכה פעילה - הסמן הופך ל"אצבע" (pointer) כשהוא מספיק קרוב לבריכה
@@ -660,6 +669,42 @@ function cutterUndo() {
   redrawCutterPreview();
   setCutterStatus(routeBuilder.getPoints().length + ' נקודות במסלול');
   updateCutterStats();
+}
+
+// --- קריאת קורדינטות מהמפה (הועתק מ-catalog.html) ---
+
+function showCoordPopup(latlng) {
+  var text = latlng.lat.toFixed(6) + ', ' + latlng.lng.toFixed(6);
+  var popupHtml =
+    '<div style="text-align:center;font-family:\'Assistant\',sans-serif">' +
+      '<div style="font-family:monospace;margin-bottom:8px;direction:ltr">' + text + '</div>' +
+      '<button onclick="copyCoordToClipboard(\'' + text + '\', this)" style="padding:5px 12px;border-radius:8px;border:none;background:var(--primary);color:white;cursor:pointer;font-family:\'Assistant\',sans-serif;font-size:.85rem">📋 העתקת קורדינטות</button>' +
+    '</div>';
+  L.popup().setLatLng(latlng).setContent(popupHtml).openOn(mapInstance);
+}
+
+function copyCoordToClipboard(text, btn) {
+  function showCopiedThenClose() {
+    btn.textContent = '✓ הועתק';
+    setTimeout(function () { mapInstance.closePopup(); }, 900);
+  }
+  if (navigator.clipboard && navigator.clipboard.writeText) {
+    navigator.clipboard.writeText(text).then(showCopiedThenClose).catch(function () { copyCoordFallback(text, showCopiedThenClose); });
+  } else {
+    copyCoordFallback(text, showCopiedThenClose);
+  }
+}
+
+// גיבוי ל-navigator.clipboard - נחוץ בהקשרים שבהם ה-API החדש לא זמין (http)
+function copyCoordFallback(text, onSuccess) {
+  var ta = document.createElement('textarea');
+  ta.value = text;
+  ta.style.position = 'fixed';
+  ta.style.opacity = '0';
+  document.body.appendChild(ta);
+  ta.select();
+  try { document.execCommand('copy'); onSuccess(); } catch (e) {}
+  document.body.removeChild(ta);
 }
 
 // --- רשת מסלולים קיימים באזור (ראו הסבר ליד המשתנים בראש הסקריפט) ---
