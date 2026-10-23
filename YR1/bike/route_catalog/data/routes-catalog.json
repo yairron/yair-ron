@@ -1,6 +1,6 @@
 {
-  "generated_at": "2026-10-23T14:03:05",
-  "route_count": 608,
+  "generated_at": "2026-10-23T14:18:33",
+  "route_count": 610,
   "routes": [
     {
       "id": 698,
@@ -16625,6 +16625,64 @@
       "invalid": false,
       "removed_points": 0,
       "thumbnail": "thumbnails/ibt9_yahel-smadar_2024.jpg"
+    },
+    {
+      "id": 753,
+      "file_name": "אפיק 2026-2 ממצובה דרך השיירה לאגם מעלות - תכנון.gpx",
+      "gpx_path": "GPX_files/אפיק 2026-2 ממצובה דרך השיירה לאגם מעלות - תכנון.gpx",
+      "date": "2026-10-23",
+      "date_source": "תאריך שינוי הקובץ (גיבוי)",
+      "activity": "רכיבת אופניים",
+      "source": "תכנון מסלול",
+      "distance_km": 37.61,
+      "elevation_gain_m": 833,
+      "elevation_loss_m": 503,
+      "point_count": 1279,
+      "start_lat": 33.06314,
+      "start_lon": 35.16408,
+      "end_lat": 33.00446,
+      "end_lon": 35.29351,
+      "regions": [
+        "צפון"
+      ],
+      "settlements": [
+        "מצובה",
+        "יחיעם",
+        "כפר ורדים"
+      ],
+      "settlements_found": true,
+      "invalid": false,
+      "removed_points": 0,
+      "thumbnail": "thumbnails/אפיק 2026-2 ממצובה דרך השיירה לאגם מעלות - תכנון.jpg"
+    },
+    {
+      "id": 754,
+      "file_name": "אפיק 2026-2 ממצובה דרך פסוטה לאגם מעלות - תכנון.gpx",
+      "gpx_path": "GPX_files/אפיק 2026-2 ממצובה דרך פסוטה לאגם מעלות - תכנון.gpx",
+      "date": "2026-10-23",
+      "date_source": "תאריך שינוי הקובץ (גיבוי)",
+      "activity": "רכיבת אופניים",
+      "source": "תכנון מסלול",
+      "distance_km": 30.2,
+      "elevation_gain_m": 934,
+      "elevation_loss_m": 603,
+      "point_count": 1048,
+      "start_lat": 33.06314,
+      "start_lon": 35.16408,
+      "end_lat": 33.00418,
+      "end_lon": 35.29428,
+      "regions": [
+        "צפון"
+      ],
+      "settlements": [
+        "גורן",
+        "יערה",
+        "צוריאל"
+      ],
+      "settlements_found": true,
+      "invalid": false,
+      "removed_points": 0,
+      "thumbnail": "thumbnails/אפיק 2026-2 ממצובה דרך פסוטה לאגם מעלות - תכנון.jpg"
     },
     {
       "id": 715,
