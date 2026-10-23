@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
+<title>מי נמצא - קבוצה</title>
+<link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+<div id="app-header"></div>
+
+<div class="page">
+  <div id="not-found" class="card" hidden>
+    <p class="error-msg">הקבוצה לא נמצאה, או שאין לך גישה אליה.</p>
+  </div>
+
+  <div id="group-card" class="card" hidden>
+    <h2 id="group-name"></h2>
+
+    <div id="add-member-section" hidden>
+      <label for="member-search">הוספת חבר (חיפוש לפי שם/אימייל)</label>
+      <input type="text" id="member-search" placeholder="הקלידו שם או אימייל...">
+      <div class="search-results" id="member-search-results" hidden></div>
+    </div>
+
+    <h3 style="margin-top: 20px;">חברים</h3>
+    <table>
+      <thead><tr><th>שם</th><th>אימייל</th><th></th></tr></thead>
+      <tbody id="members-table-body"></tbody>
+    </table>
+
+    <div style="margin-top: 16px;" id="delete-group-section" hidden>
+      <button type="button" class="btn btn-danger" id="delete-group-btn">מחיקת קבוצה</button>
+    </div>
+  </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="assets/supabase-client.js"></script>
+<script src="assets/header.js"></script>
+<script>
+  const params = new URLSearchParams(window.location.search);
+  const groupId = params.get('id');
+  let myProfile = null;
+  let isCreator = false;
+
+  async function loadMembers() {
+    const { data: memberRows } = await supabaseClient
+      .from('group_members')
+      .select('user_id')
+      .eq('group_id', groupId);
+    const ids = (memberRows || []).map((r) => r.user_id);
+    const profilesMap = await fetchProfilesByIds(ids);
+
+    const tbody = document.getElementById('members-table-body');
+    tbody.innerHTML = '';
+    if (!ids.length) {
+      tbody.innerHTML = `<tr><td colspan="3" class="muted">אין עדיין חברים בקבוצה.</td></tr>`;
+      return;
+    }
+    ids.forEach((uid) => {
+      const p = profilesMap.get(uid);
+      const tr = document.createElement('tr');
+      const removeCell = isCreator
+        ? `<button type="button" class="btn btn-danger btn-small" data-remove="${uid}">הסרה</button>`
+        : '';
+      tr.innerHTML = `
+        <td>${p ? escapeHtml(p.display_name) : '(לא ידוע)'}</td>
+        <td>${p ? escapeHtml(p.email) : ''}</td>
+        <td>${removeCell}</td>
+      `;
+      tbody.appendChild(tr);
+    });
+
+    if (isCreator) {
+      tbody.querySelectorAll('[data-remove]').forEach((btn) => {
+        btn.addEventListener('click', async () => {
+          await supabaseClient
+            .from('group_members')
+            .delete()
+            .eq('group_id', groupId)
+            .eq('user_id', btn.dataset.remove);
+          loadMembers();
+        });
+      });
+    }
+  }
+
+  function wireMemberSearch() {
+    const input = document.getElementById('member-search');
+    const resultsEl = document.getElementById('member-search-results');
+    let timer = null;
+    input.addEventListener('input', () => {
+      clearTimeout(timer);
+      const q = input.value;
+      timer = setTimeout(async () => {
+        if (!q.trim()) {
+          resultsEl.hidden = true;
+          resultsEl.innerHTML = '';
+          return;
+        }
+        const { data: existingRows } = await supabaseClient
+          .from('group_members')
+          .select('user_id')
+          .eq('group_id', groupId);
+        const existingIds = (existingRows || []).map((r) => r.user_id);
+        const results = await searchProfiles(q, existingIds);
+        resultsEl.hidden = !results.length;
+        resultsEl.innerHTML = '';
+        results.forEach((p) => {
+          const item = document.createElement('div');
+          item.className = 'search-result-item';
+          item.textContent = `${p.display_name} (${p.email})`;
+          item.addEventListener('click', async () => {
+            await supabaseClient.from('group_members').insert({ group_id: groupId, user_id: p.id });
+            input.value = '';
+            resultsEl.hidden = true;
+            resultsEl.innerHTML = '';
+            loadMembers();
+          });
+          resultsEl.appendChild(item);
+        });
+      }, 250);
+    });
+  }
+
+  (async () => {
+    const session = await requireAuth();
+    if (!session) return;
+    myProfile = await renderHeader('groups');
+    if (!myProfile) return;
+
+    const { data: group, error } = await supabaseClient
+      .from('groups')
+      .select('*')
+      .eq('id', groupId)
+      .maybeSingle();
+
+    if (error || !group) {
+      document.getElementById('not-found').hidden = false;
+      return;
+    }
+
+    isCreator = group.creator_id === myProfile.id;
+    document.getElementById('group-card').hidden = false;
+    document.getElementById('group-name').textContent = group.name;
+
+    if (isCreator) {
+      document.getElementById('add-member-section').hidden = false;
+      document.getElementById('delete-group-section').hidden = false;
+      wireMemberSearch();
+      document.getElementById('delete-group-btn').addEventListener('click', async () => {
+        if (!confirm('למחוק את הקבוצה? הפעולה בלתי הפיכה.')) return;
+        const { error: delErr } = await supabaseClient.from('groups').delete().eq('id', groupId);
+        if (delErr) {
+          alert('מחיקה נכשלה: ' + delErr.message);
+          return;
+        }
+        window.location.href = 'groups.html';
+      });
+    }
+
+    await loadMembers();
+  })();
+</script>
+</body>
+</html>

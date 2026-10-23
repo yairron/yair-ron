@@ -1,0 +1,469 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
+<title>מי נמצא - אירוע</title>
+<link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+<div id="app-header"></div>
+
+<div class="page">
+  <div id="not-found" class="card" hidden>
+    <p class="error-msg">האירוע לא נמצא, או שאין לך גישה אליו.</p>
+  </div>
+
+  <div id="event-card" class="card" hidden>
+    <h2 id="form-title">אירוע חדש</h2>
+    <p id="created-by" class="muted" hidden></p>
+
+    <div id="edit-fields">
+      <label for="event-title">כותרת האירוע</label>
+      <input type="text" id="event-title" placeholder="לדוגמה: ארוחת שבת">
+
+      <label>
+        <input type="checkbox" id="whole-day-toggle">
+        אירוע ליום/ימים שלמים (בלי שעות ספציפיות)
+      </label>
+
+      <div id="datetime-fields">
+        <label for="start-datetime">התחלה</label>
+        <input type="datetime-local" id="start-datetime">
+        <label for="end-datetime">סיום</label>
+        <input type="datetime-local" id="end-datetime">
+      </div>
+
+      <div id="date-only-fields" hidden>
+        <label for="start-date">מתאריך</label>
+        <input type="date" id="start-date">
+        <label for="end-date">עד תאריך</label>
+        <input type="date" id="end-date">
+      </div>
+
+      <label for="participant-search">הוספת משתתפים (חיפוש לפי שם/אימייל)</label>
+      <input type="text" id="participant-search" placeholder="הקלידו שם או אימייל...">
+      <div class="search-results" id="participant-search-results" hidden></div>
+
+      <div id="my-groups-shortcuts"></div>
+
+      <div class="chip-list" id="participant-chips"></div>
+
+      <div style="margin-top: 16px; display: flex; gap: 10px;">
+        <button type="button" class="btn btn-primary" id="save-btn">שמירה</button>
+        <button type="button" class="btn btn-danger" id="delete-btn" hidden>מחיקת אירוע</button>
+      </div>
+      <div class="error-msg" id="form-error"></div>
+      <div class="success-msg" id="form-success"></div>
+    </div>
+
+    <div id="readonly-fields" hidden>
+      <p class="event-row-dates" id="readonly-dates"></p>
+    </div>
+  </div>
+
+  <div id="response-card" class="card" hidden>
+    <h2>הנוכחות שלי</h2>
+    <div class="status-buttons">
+      <button type="button" class="status-btn" data-status="in">נמצא</button>
+      <button type="button" class="status-btn" data-status="partial">נמצא חלקית</button>
+      <button type="button" class="status-btn" data-status="out">לא נמצא</button>
+      <button type="button" class="status-btn" data-status="unknown">לא יודע עדיין</button>
+    </div>
+    <div class="success-msg" id="response-success"></div>
+  </div>
+
+  <div id="responses-table-card" class="card" hidden>
+    <h2>מי עונה מה</h2>
+    <table>
+      <thead><tr><th>שם</th><th>סטטוס</th></tr></thead>
+      <tbody id="responses-table-body"></tbody>
+    </table>
+  </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="assets/supabase-client.js"></script>
+<script src="assets/header.js"></script>
+<script>
+  const params = new URLSearchParams(window.location.search);
+  const eventId = params.get('id');
+
+  const selectedParticipants = new Map(); // id -> {id, display_name, email}
+  const selectedGroups = new Set(); // group ids added via shortcut, for event_invited_groups
+  let originalParticipantIds = new Set();
+  let myProfile = null;
+  let currentEvent = null;
+
+  function toDatetimeLocalValue(iso) {
+    const d = new Date(iso);
+    const pad = (n) => String(n).padStart(2, '0');
+    return `${d.getFullYear()}-${pad(d.getMonth() + 1)}-${pad(d.getDate())}T${pad(d.getHours())}:${pad(d.getMinutes())}`;
+  }
+
+  function toDateValue(iso) {
+    const d = new Date(iso);
+    const pad = (n) => String(n).padStart(2, '0');
+    return `${d.getFullYear()}-${pad(d.getMonth() + 1)}-${pad(d.getDate())}`;
+  }
+
+  function renderChips() {
+    const container = document.getElementById('participant-chips');
+    container.innerHTML = '';
+    selectedParticipants.forEach((p) => {
+      const chip = document.createElement('span');
+      chip.className = 'chip';
+      chip.innerHTML = `${escapeHtml(p.display_name)} <button type="button" aria-label="הסרה">×</button>`;
+      chip.querySelector('button').addEventListener('click', () => {
+        selectedParticipants.delete(p.id);
+        renderChips();
+      });
+      container.appendChild(chip);
+    });
+  }
+
+  function wireParticipantSearch() {
+    const input = document.getElementById('participant-search');
+    const resultsEl = document.getElementById('participant-search-results');
+    let timer = null;
+    input.addEventListener('input', () => {
+      clearTimeout(timer);
+      const q = input.value;
+      timer = setTimeout(async () => {
+        if (!q.trim()) {
+          resultsEl.hidden = true;
+          resultsEl.innerHTML = '';
+          return;
+        }
+        const results = await searchProfiles(q, [...selectedParticipants.keys()]);
+        if (!results.length) {
+          resultsEl.hidden = true;
+          resultsEl.innerHTML = '';
+          return;
+        }
+        resultsEl.hidden = false;
+        resultsEl.innerHTML = '';
+        results.forEach((p) => {
+          const item = document.createElement('div');
+          item.className = 'search-result-item';
+          item.textContent = `${p.display_name} (${p.email})`;
+          item.addEventListener('click', () => {
+            selectedParticipants.set(p.id, p);
+            renderChips();
+            input.value = '';
+            resultsEl.hidden = true;
+            resultsEl.innerHTML = '';
+          });
+          resultsEl.appendChild(item);
+        });
+      }, 250);
+    });
+  }
+
+  async function wireGroupShortcuts() {
+    const container = document.getElementById('my-groups-shortcuts');
+    const { data: groups, error } = await supabaseClient
+      .from('groups')
+      .select('id, name')
+      .eq('creator_id', myProfile.id);
+    if (error || !groups.length) return;
+
+    container.innerHTML = '<p class="muted">הוספה מהירה של קבוצה שלמה:</p>';
+    groups.forEach((g) => {
+      const btn = document.createElement('button');
+      btn.type = 'button';
+      btn.className = 'btn btn-secondary btn-small';
+      btn.style.marginLeft = '6px';
+      btn.style.marginBottom = '6px';
+      btn.textContent = g.name + ' +';
+      btn.addEventListener('click', async () => {
+        const { data: members } = await supabaseClient
+          .from('group_members')
+          .select('user_id')
+          .eq('group_id', g.id);
+        const ids = (members || []).map((m) => m.user_id);
+        const profilesMap = await fetchProfilesByIds(ids);
+        profilesMap.forEach((p) => selectedParticipants.set(p.id, p));
+        selectedGroups.add(g.id);
+        renderChips();
+      });
+      container.appendChild(btn);
+    });
+  }
+
+  function wireWholeDayToggle() {
+    const toggle = document.getElementById('whole-day-toggle');
+    toggle.addEventListener('change', () => {
+      document.getElementById('datetime-fields').hidden = toggle.checked;
+      document.getElementById('date-only-fields').hidden = !toggle.checked;
+    });
+  }
+
+  function readDatesFromForm() {
+    const wholeDay = document.getElementById('whole-day-toggle').checked;
+    if (wholeDay) {
+      const startDate = document.getElementById('start-date').value;
+      const endDate = document.getElementById('end-date').value;
+      if (!startDate || !endDate) return null;
+      return {
+        start_at: new Date(startDate + 'T00:00:00').toISOString(),
+        end_at: new Date(endDate + 'T23:59:59').toISOString(),
+      };
+    }
+    const startDt = document.getElementById('start-datetime').value;
+    const endDt = document.getElementById('end-datetime').value;
+    if (!startDt || !endDt) return null;
+    return {
+      start_at: new Date(startDt).toISOString(),
+      end_at: new Date(endDt).toISOString(),
+    };
+  }
+
+  async function saveEvent() {
+    const errorEl = document.getElementById('form-error');
+    const successEl = document.getElementById('form-success');
+    errorEl.textContent = '';
+    successEl.textContent = '';
+
+    const title = document.getElementById('event-title').value.trim();
+    if (!title) {
+      errorEl.textContent = 'יש להזין כותרת.';
+      return;
+    }
+    const dates = readDatesFromForm();
+    if (!dates) {
+      errorEl.textContent = 'יש להזין תאריכים תקינים.';
+      return;
+    }
+    if (dates.end_at < dates.start_at) {
+      errorEl.textContent = 'תאריך הסיום חייב להיות אחרי תאריך ההתחלה.';
+      return;
+    }
+
+    if (!eventId) {
+      const { data: inserted, error } = await supabaseClient
+        .from('events')
+        .insert({ creator_id: myProfile.id, title, ...dates })
+        .select()
+        .single();
+      if (error) {
+        errorEl.textContent = 'שמירה נכשלה: ' + error.message;
+        return;
+      }
+      const newEventId = inserted.id;
+      const participantIds = [...selectedParticipants.keys()];
+      if (participantIds.length) {
+        await supabaseClient.from('event_invitees').insert(
+          participantIds.map((uid) => ({ event_id: newEventId, user_id: uid }))
+        );
+      }
+      if (selectedGroups.size) {
+        await supabaseClient.from('event_invited_groups').insert(
+          [...selectedGroups].map((gid) => ({ event_id: newEventId, group_id: gid }))
+        );
+      }
+      window.location.href = `event.html?id=${newEventId}`;
+      return;
+    }
+
+    const { error: updateErr } = await supabaseClient
+      .from('events')
+      .update({ title, ...dates })
+      .eq('id', eventId);
+    if (updateErr) {
+      errorEl.textContent = 'שמירה נכשלה: ' + updateErr.message;
+      return;
+    }
+
+    const currentIds = new Set(selectedParticipants.keys());
+    const toAdd = [...currentIds].filter((id) => !originalParticipantIds.has(id));
+    const toRemove = [...originalParticipantIds].filter((id) => !currentIds.has(id));
+
+    if (toAdd.length) {
+      await supabaseClient.from('event_invitees').insert(
+        toAdd.map((uid) => ({ event_id: eventId, user_id: uid }))
+      );
+    }
+    if (toRemove.length) {
+      await supabaseClient.from('event_invitees').delete().eq('event_id', eventId).in('user_id', toRemove);
+    }
+
+    await supabaseClient.from('event_invited_groups').delete().eq('event_id', eventId);
+    if (selectedGroups.size) {
+      await supabaseClient.from('event_invited_groups').insert(
+        [...selectedGroups].map((gid) => ({ event_id: eventId, group_id: gid }))
+      );
+    }
+
+    originalParticipantIds = new Set(currentIds);
+    successEl.textContent = 'נשמר בהצלחה.';
+    loadResponsesTable();
+  }
+
+  async function deleteEvent() {
+    if (!confirm('למחוק את האירוע? הפעולה בלתי הפיכה.')) return;
+    const { error } = await supabaseClient.from('events').delete().eq('id', eventId);
+    if (error) {
+      alert('מחיקה נכשלה: ' + error.message);
+      return;
+    }
+    window.location.href = 'index.html';
+  }
+
+  async function loadMyResponseAndWireButtons(isInvited) {
+    const card = document.getElementById('response-card');
+    if (!isInvited) {
+      card.hidden = true;
+      return;
+    }
+    card.hidden = false;
+    const { data: existing } = await supabaseClient
+      .from('responses')
+      .select('status')
+      .eq('event_id', eventId)
+      .eq('user_id', myProfile.id)
+      .maybeSingle();
+
+    const buttons = card.querySelectorAll('.status-btn');
+    buttons.forEach((btn) => {
+      btn.classList.toggle('selected', existing && existing.status === btn.dataset.status);
+      btn.addEventListener('click', async () => {
+        const status = btn.dataset.status;
+        const { error } = await supabaseClient
+          .from('responses')
+          .upsert({ event_id: eventId, user_id: myProfile.id, status }, { onConflict: 'event_id,user_id' });
+        if (error) {
+          alert('שמירת התגובה נכשלה: ' + error.message);
+          return;
+        }
+        buttons.forEach((b) => b.classList.toggle('selected', b === btn));
+        document.getElementById('response-success').textContent = 'התגובה נשמרה.';
+        loadResponsesTable();
+      });
+    });
+  }
+
+  async function loadResponsesTable() {
+    const card = document.getElementById('responses-table-card');
+    const { data: invitees } = await supabaseClient
+      .from('event_invitees')
+      .select('user_id')
+      .eq('event_id', eventId);
+
+    if (!invitees || !invitees.length) {
+      card.hidden = true;
+      return;
+    }
+    card.hidden = false;
+
+    const ids = invitees.map((i) => i.user_id);
+    const [profilesMap, { data: responses }] = await Promise.all([
+      fetchProfilesByIds(ids),
+      supabaseClient.from('responses').select('user_id, status').eq('event_id', eventId),
+    ]);
+    const statusByUser = new Map((responses || []).map((r) => [r.user_id, r.status]));
+
+    const tbody = document.getElementById('responses-table-body');
+    tbody.innerHTML = '';
+    ids.forEach((uid) => {
+      const p = profilesMap.get(uid);
+      const status = statusByUser.get(uid);
+      const tr = document.createElement('tr');
+      const name = p ? escapeHtml(p.display_name) : '(משתמש לא ידוע)';
+      const statusHtml = status
+        ? `<span class="status-pill ${status}">${STATUS_LABELS[status]}</span>`
+        : `<span class="muted">טרם השיב</span>`;
+      tr.innerHTML = `<td>${name}</td><td>${statusHtml}</td>`;
+      tbody.appendChild(tr);
+    });
+  }
+
+  async function initCreateMode() {
+    document.getElementById('event-card').hidden = false;
+    document.getElementById('form-title').textContent = 'אירוע חדש';
+    document.getElementById('edit-fields').hidden = false;
+    wireWholeDayToggle();
+    wireParticipantSearch();
+    await wireGroupShortcuts();
+    renderChips();
+    document.getElementById('save-btn').addEventListener('click', saveEvent);
+  }
+
+  async function initViewEditMode() {
+    const { data: ev, error } = await supabaseClient
+      .from('events')
+      .select('*')
+      .eq('id', eventId)
+      .maybeSingle();
+
+    if (error || !ev) {
+      document.getElementById('not-found').hidden = false;
+      return;
+    }
+    currentEvent = ev;
+    const isCreator = ev.creator_id === myProfile.id;
+    const canEdit = isCreator || myProfile.is_admin;
+
+    const { data: inviteeRows } = await supabaseClient
+      .from('event_invitees')
+      .select('user_id')
+      .eq('event_id', eventId);
+    const inviteeIds = (inviteeRows || []).map((r) => r.user_id);
+    originalParticipantIds = new Set(inviteeIds);
+    const isInvited = inviteeIds.includes(myProfile.id);
+
+    document.getElementById('event-card').hidden = false;
+    document.getElementById('form-title').textContent = ev.title;
+
+    const creatorMap = await fetchProfilesByIds([ev.creator_id]);
+    const creatorProfile = creatorMap.get(ev.creator_id);
+    const createdByEl = document.getElementById('created-by');
+    createdByEl.hidden = false;
+    createdByEl.textContent = `נפתח ע"י ${creatorProfile ? creatorProfile.display_name : '?'}`;
+
+    if (canEdit) {
+      document.getElementById('edit-fields').hidden = false;
+      document.getElementById('event-title').value = ev.title;
+      document.getElementById('start-datetime').value = toDatetimeLocalValue(ev.start_at);
+      document.getElementById('end-datetime').value = toDatetimeLocalValue(ev.end_at);
+      document.getElementById('start-date').value = toDateValue(ev.start_at);
+      document.getElementById('end-date').value = toDateValue(ev.end_at);
+
+      const profilesMap = await fetchProfilesByIds(inviteeIds);
+      profilesMap.forEach((p) => selectedParticipants.set(p.id, p));
+
+      wireWholeDayToggle();
+      wireParticipantSearch();
+      await wireGroupShortcuts();
+      renderChips();
+      document.getElementById('save-btn').addEventListener('click', saveEvent);
+      const deleteBtn = document.getElementById('delete-btn');
+      deleteBtn.hidden = false;
+      deleteBtn.addEventListener('click', deleteEvent);
+    } else {
+      document.getElementById('edit-fields').hidden = true;
+      document.getElementById('readonly-fields').hidden = false;
+      document.getElementById('readonly-dates').textContent =
+        `${formatDateTime(ev.start_at)} — ${formatDateTime(ev.end_at)}`;
+    }
+
+    await loadMyResponseAndWireButtons(isInvited);
+    await loadResponsesTable();
+  }
+
+  (async () => {
+    const session = await requireAuth();
+    if (!session) return;
+    myProfile = await renderHeader(null);
+    if (!myProfile) return;
+
+    if (eventId) {
+      await initViewEditMode();
+    } else {
+      await initCreateMode();
+    }
+  })();
+</script>
+</body>
+</html>

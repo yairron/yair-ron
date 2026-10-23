@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
+<title>מי נמצא - מנהל מערכת</title>
+<link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+<div id="app-header"></div>
+
+<div class="page">
+  <div class="tabs">
+    <button type="button" class="tab-btn active" id="tab-users">משתמשים</button>
+    <button type="button" class="tab-btn" id="tab-events">אירועים</button>
+  </div>
+
+  <div id="users-panel" class="card">
+    <h2>ניהול משתמשים</h2>
+    <div id="admin-error" class="error-msg"></div>
+    <table>
+      <thead>
+        <tr><th>שם</th><th>אימייל</th><th>נרשם</th><th>סטטוס</th><th></th></tr>
+      </thead>
+      <tbody id="users-table-body"></tbody>
+    </table>
+  </div>
+
+  <div id="events-panel" class="card" hidden>
+    <h2>ניהול אירועים</h2>
+    <table>
+      <thead>
+        <tr><th>כותרת</th><th>יוצר</th><th>התחלה</th><th>סיום</th><th></th></tr>
+      </thead>
+      <tbody id="events-table-body"></tbody>
+    </table>
+  </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="assets/supabase-client.js"></script>
+<script src="assets/header.js"></script>
+<script>
+  let myProfile = null;
+
+  document.getElementById('tab-users').addEventListener('click', () => {
+    document.getElementById('tab-users').classList.add('active');
+    document.getElementById('tab-events').classList.remove('active');
+    document.getElementById('users-panel').hidden = false;
+    document.getElementById('events-panel').hidden = true;
+  });
+  document.getElementById('tab-events').addEventListener('click', () => {
+    document.getElementById('tab-events').classList.add('active');
+    document.getElementById('tab-users').classList.remove('active');
+    document.getElementById('events-panel').hidden = false;
+    document.getElementById('users-panel').hidden = true;
+    loadEvents();
+  });
+
+  async function callAdminApi(action, userId) {
+    const { data: { session } } = await supabaseClient.auth.getSession();
+    const res = await fetch('/api/whoin-admin', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': 'Bearer ' + session.access_token,
+      },
+      body: JSON.stringify({ action, userId }),
+    });
+    const json = await res.json().catch(() => ({}));
+    if (!res.ok || !json.ok) {
+      throw new Error(json.error || 'הפעולה נכשלה.');
+    }
+    return json;
+  }
+
+  async function loadUsers() {
+    const errorEl = document.getElementById('admin-error');
+    errorEl.textContent = '';
+    const { data: users, error } = await supabaseClient
+      .from('profiles')
+      .select('*')
+      .order('created_at', { ascending: false });
+
+    if (error) {
+      errorEl.textContent = 'שגיאה בטעינת משתמשים: ' + error.message;
+      return;
+    }
+
+    const tbody = document.getElementById('users-table-body');
+    tbody.innerHTML = '';
+    users.forEach((u) => {
+      const isSelf = u.id === myProfile.id;
+      const tr = document.createElement('tr');
+      const statusText = u.is_blocked ? '<span class="status-pill out">חסום</span>' : '<span class="status-pill in">פעיל</span>';
+      const adminBadge = u.is_admin ? ' <span class="muted">(מנהל)</span>' : '';
+      const actions = isSelf
+        ? '<span class="muted">(אתה)</span>'
+        : `
+          <button type="button" class="btn btn-small ${u.is_blocked ? 'btn-secondary' : 'btn-danger'}" data-action="${u.is_blocked ? 'unblock' : 'block'}" data-id="${u.id}">
+            ${u.is_blocked ? 'ביטול חסימה' : 'חסימה'}
+          </button>
+          <button type="button" class="btn btn-small btn-danger" data-action="delete" data-id="${u.id}">מחיקה</button>
+        `;
+      tr.innerHTML = `
+        <td>${escapeHtml(u.display_name)}${adminBadge}</td>
+        <td>${escapeHtml(u.email)}</td>
+        <td>${formatDateTime(u.created_at)}</td>
+        <td>${statusText}</td>
+        <td>${actions}</td>
+      `;
+      tbody.appendChild(tr);
+    });
+
+    tbody.querySelectorAll('button[data-action]').forEach((btn) => {
+      btn.addEventListener('click', async () => {
+        const action = btn.dataset.action;
+        const userId = btn.dataset.id;
+        if (action === 'delete' && !confirm('למחוק את המשתמש לצמיתות? הפעולה בלתי הפיכה.')) return;
+        if (action === 'block' && !confirm('לחסום את המשתמש?')) return;
+        try {
+          await callAdminApi(action, userId);
+          await loadUsers();
+        } catch (err) {
+          errorEl.textContent = err.message;
+        }
+      });
+    });
+  }
+
+  async function loadEvents() {
+    const { data: events, error } = await supabaseClient
+      .from('events')
+      .select('*, profiles(display_name)')
+      .order('start_at', { ascending: false });
+
+    const tbody = document.getElementById('events-table-body');
+    if (error) {
+      tbody.innerHTML = `<tr><td colspan="5" class="error-msg">שגיאה בטעינת אירועים.</td></tr>`;
+      return;
+    }
+
+    tbody.innerHTML = '';
+    events.forEach((ev) => {
+      const tr = document.createElement('tr');
+      tr.innerHTML = `
+        <td><a href="event.html?id=${ev.id}">${escapeHtml(ev.title)}</a></td>
+        <td>${ev.profiles ? escapeHtml(ev.profiles.display_name) : '?'}</td>
+        <td>${formatDateTime(ev.start_at)}</td>
+        <td>${formatDateTime(ev.end_at)}</td>
+        <td><button type="button" class="btn btn-small btn-danger" data-delete-event="${ev.id}">מחיקה</button></td>
+      `;
+      tbody.appendChild(tr);
+    });
+
+    tbody.querySelectorAll('[data-delete-event]').forEach((btn) => {
+      btn.addEventListener('click', async () => {
+        if (!confirm('למחוק את האירוע? הפעולה בלתי הפיכה.')) return;
+        const { error: delErr } = await supabaseClient.from('events').delete().eq('id', btn.dataset.deleteEvent);
+        if (delErr) {
+          alert('מחיקה נכשלה: ' + delErr.message);
+          return;
+        }
+        loadEvents();
+      });
+    });
+  }
+
+  (async () => {
+    const session = await requireAuth();
+    if (!session) return;
+    myProfile = await renderHeader('admin');
+    if (!myProfile) return;
+    if (!myProfile.is_admin) {
+      window.location.href = 'index.html';
+      return;
+    }
+    await loadUsers();
+  })();
+</script>
+</body>
+</html>

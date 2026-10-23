@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
+<title>מי נמצא - בית</title>
+<link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+<div id="app-header"></div>
+
+<div class="page">
+  <div class="card">
+    <div style="display: flex; justify-content: space-between; align-items: center;">
+      <h2>האירועים שלי</h2>
+      <a href="event.html" class="btn btn-primary btn-small">אירוע חדש +</a>
+    </div>
+    <div id="my-events">טוען...</div>
+  </div>
+
+  <div class="card">
+    <h2>אירועים שהוזמנתי אליהם</h2>
+    <div id="invited-events">טוען...</div>
+  </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="assets/supabase-client.js"></script>
+<script src="assets/header.js"></script>
+<script>
+  function activeCutoffIso() {
+    return new Date(Date.now() - 24 * 60 * 60 * 1000).toISOString();
+  }
+
+  async function eventStats(eventId) {
+    const [{ count: total }, { count: inCount }] = await Promise.all([
+      supabaseClient.from('event_invitees').select('user_id', { count: 'exact', head: true }).eq('event_id', eventId),
+      supabaseClient.from('responses').select('user_id', { count: 'exact', head: true }).eq('event_id', eventId).eq('status', 'in'),
+    ]);
+    return { total: total || 0, inCount: inCount || 0 };
+  }
+
+  function renderEventList(container, events, emptyText) {
+    if (!events.length) {
+      container.innerHTML = `<p class="muted">${emptyText}</p>`;
+      return;
+    }
+    container.innerHTML = '';
+    events.forEach((ev) => {
+      const row = document.createElement('a');
+      row.className = 'event-row';
+      row.href = `event.html?id=${ev.id}`;
+      row.innerHTML = `
+        <div>
+          <div class="event-row-title">${escapeHtml(ev.title)}</div>
+          <div class="event-row-dates">${formatDateTime(ev.start_at)} — ${formatDateTime(ev.end_at)}</div>
+        </div>
+        <div class="muted" data-stats-for="${ev.id}">...</div>
+      `;
+      container.appendChild(row);
+      eventStats(ev.id).then(({ total, inCount }) => {
+        const el = row.querySelector(`[data-stats-for="${ev.id}"]`);
+        if (el) el.textContent = `${inCount} / ${total} נמצאים`;
+      });
+    });
+  }
+
+  (async () => {
+    const session = await requireAuth();
+    if (!session) return;
+    const profile = await renderHeader('home');
+    if (!profile) return;
+
+    const cutoff = activeCutoffIso();
+
+    const myEventsEl = document.getElementById('my-events');
+    const invitedEventsEl = document.getElementById('invited-events');
+
+    const { data: myEvents, error: myErr } = await supabaseClient
+      .from('events')
+      .select('*')
+      .eq('creator_id', profile.id)
+      .gte('end_at', cutoff)
+      .order('start_at', { ascending: true });
+
+    if (myErr) {
+      myEventsEl.innerHTML = `<p class="error-msg">שגיאה בטעינת אירועים.</p>`;
+    } else {
+      renderEventList(myEventsEl, myEvents, 'לא פתחת אירועים פעילים.');
+    }
+
+    const { data: invitedRows, error: invErr } = await supabaseClient
+      .from('event_invitees')
+      .select('event_id, events(*)')
+      .eq('user_id', profile.id);
+
+    if (invErr) {
+      invitedEventsEl.innerHTML = `<p class="error-msg">שגיאה בטעינת אירועים.</p>`;
+    } else {
+      const invitedEvents = invitedRows
+        .map((r) => r.events)
+        .filter((ev) => ev && ev.creator_id !== profile.id && ev.end_at >= cutoff)
+        .sort((a, b) => new Date(a.start_at) - new Date(b.start_at));
+      renderEventList(invitedEventsEl, invitedEvents, 'לא הוזמנת לאף אירוע פעיל.');
+    }
+  })();
+</script>
+</body>
+</html>

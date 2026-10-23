@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
+<title>מי נמצא - התחברות</title>
+<link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+<div class="app-header">
+  <div class="app-header-top">
+    <h1 class="app-title">מי נמצא</h1>
+  </div>
+</div>
+
+<div class="page">
+  <div class="card">
+    <div class="tabs">
+      <button type="button" class="tab-btn active" id="tab-login">התחברות</button>
+      <button type="button" class="tab-btn" id="tab-register">הרשמה</button>
+    </div>
+
+    <form id="login-form">
+      <label for="login-email">אימייל</label>
+      <input type="email" id="login-email" required autocomplete="email">
+      <label for="login-password">סיסמה (מספר הנייד שלך)</label>
+      <input type="password" id="login-password" required autocomplete="current-password">
+      <div style="margin-top: 16px;">
+        <button type="submit" class="btn btn-primary">התחברות</button>
+      </div>
+      <div class="error-msg" id="login-error"></div>
+    </form>
+
+    <form id="register-form" hidden>
+      <label for="register-name">שם מלא</label>
+      <input type="text" id="register-name" required autocomplete="name">
+      <label for="register-email">אימייל</label>
+      <input type="email" id="register-email" required autocomplete="email">
+      <label for="register-phone">מספר נייד (ישמש כסיסמה)</label>
+      <input type="tel" id="register-phone" required autocomplete="tel" placeholder="0501234567">
+      <p class="muted">מספר הנייד ישמש כסיסמת ההתחברות הראשונית שלך. שמרו אותו בזיכרון.</p>
+      <div style="margin-top: 16px;">
+        <button type="submit" class="btn btn-primary">הרשמה</button>
+      </div>
+      <div class="error-msg" id="register-error"></div>
+      <div class="success-msg" id="register-success"></div>
+    </form>
+  </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="assets/supabase-client.js"></script>
+<script>
+  const tabLogin = document.getElementById('tab-login');
+  const tabRegister = document.getElementById('tab-register');
+  const loginForm = document.getElementById('login-form');
+  const registerForm = document.getElementById('register-form');
+
+  tabLogin.addEventListener('click', () => {
+    tabLogin.classList.add('active');
+    tabRegister.classList.remove('active');
+    loginForm.hidden = false;
+    registerForm.hidden = true;
+  });
+
+  tabRegister.addEventListener('click', () => {
+    tabRegister.classList.add('active');
+    tabLogin.classList.remove('active');
+    registerForm.hidden = false;
+    loginForm.hidden = true;
+  });
+
+  // אם כבר יש session פעיל, לדלג ישר לדשבורד.
+  (async () => {
+    const { data: { session } } = await supabaseClient.auth.getSession();
+    if (session) window.location.href = 'index.html';
+  })();
+
+  loginForm.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const errorEl = document.getElementById('login-error');
+    errorEl.textContent = '';
+    const email = document.getElementById('login-email').value.trim();
+    const password = document.getElementById('login-password').value;
+
+    const { error } = await supabaseClient.auth.signInWithPassword({ email, password });
+    if (error) {
+      if (/banned|blocked/i.test(error.message)) {
+        errorEl.textContent = 'המשתמש חסום. פנו למנהל המערכת.';
+      } else {
+        errorEl.textContent = 'אימייל או סיסמה שגויים.';
+      }
+      return;
+    }
+    window.location.href = 'index.html';
+  });
+
+  registerForm.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const errorEl = document.getElementById('register-error');
+    const successEl = document.getElementById('register-success');
+    errorEl.textContent = '';
+    successEl.textContent = '';
+
+    const display_name = document.getElementById('register-name').value.trim();
+    const email = document.getElementById('register-email').value.trim();
+    const phone = document.getElementById('register-phone').value.trim();
+
+    if (phone.length < 6) {
+      errorEl.textContent = 'מספר הנייד קצר מדי.';
+      return;
+    }
+
+    const { data, error } = await supabaseClient.auth.signUp({
+      email,
+      password: phone,
+      options: { data: { display_name, phone } },
+    });
+
+    if (error) {
+      errorEl.textContent = 'ההרשמה נכשלה: ' + error.message;
+      return;
+    }
+
+    if (data.session) {
+      window.location.href = 'index.html';
+      return;
+    }
+
+    successEl.textContent = 'ההרשמה בוצעה. אפשר להתחבר עכשיו עם האימייל ומספר הנייד.';
+    registerForm.reset();
+  });
+</script>
+</body>
+</html>

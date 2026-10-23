@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
+<title>מי נמצא - קבוצות</title>
+<link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+<div id="app-header"></div>
+
+<div class="page">
+  <div class="card">
+    <h2>קבוצה חדשה</h2>
+    <label for="new-group-name">שם הקבוצה</label>
+    <input type="text" id="new-group-name" placeholder="לדוגמה: חיילים">
+    <div style="margin-top: 12px;">
+      <button type="button" class="btn btn-primary" id="create-group-btn">יצירת קבוצה</button>
+    </div>
+    <div class="error-msg" id="create-group-error"></div>
+  </div>
+
+  <div class="card">
+    <h2>הקבוצות שלי</h2>
+    <div id="groups-list">טוען...</div>
+  </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="assets/supabase-client.js"></script>
+<script src="assets/header.js"></script>
+<script>
+  let myProfile = null;
+
+  async function loadGroups() {
+    const listEl = document.getElementById('groups-list');
+    const { data: groups, error } = await supabaseClient
+      .from('groups')
+      .select('id, name')
+      .eq('creator_id', myProfile.id)
+      .order('name');
+
+    if (error) {
+      listEl.innerHTML = `<p class="error-msg">שגיאה בטעינת קבוצות.</p>`;
+      return;
+    }
+    if (!groups.length) {
+      listEl.innerHTML = `<p class="muted">עדיין לא יצרת קבוצות.</p>`;
+      return;
+    }
+
+    listEl.innerHTML = '';
+    for (const g of groups) {
+      const { count } = await supabaseClient
+        .from('group_members')
+        .select('user_id', { count: 'exact', head: true })
+        .eq('group_id', g.id);
+      const row = document.createElement('a');
+      row.className = 'event-row';
+      row.href = `group.html?id=${g.id}`;
+      row.innerHTML = `
+        <div class="event-row-title">${escapeHtml(g.name)}</div>
+        <div class="muted">${count || 0} חברים</div>
+      `;
+      listEl.appendChild(row);
+    }
+  }
+
+  document.getElementById('create-group-btn').addEventListener('click', async () => {
+    const errorEl = document.getElementById('create-group-error');
+    errorEl.textContent = '';
+    const name = document.getElementById('new-group-name').value.trim();
+    if (!name) {
+      errorEl.textContent = 'יש להזין שם קבוצה.';
+      return;
+    }
+    const { data, error } = await supabaseClient
+      .from('groups')
+      .insert({ name, creator_id: myProfile.id })
+      .select()
+      .single();
+    if (error) {
+      errorEl.textContent = 'יצירה נכשלה: ' + error.message;
+      return;
+    }
+    window.location.href = `group.html?id=${data.id}`;
+  });
+
+  (async () => {
+    const session = await requireAuth();
+    if (!session) return;
+    myProfile = await renderHeader('groups');
+    if (!myProfile) return;
+    await loadGroups();
+  })();
+</script>
+</body>
+</html>

@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
+<title>מי נמצא - ארכיון</title>
+<link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+<div id="app-header"></div>
+
+<div class="page">
+  <div class="card">
+    <h2>אירועים בארכיון</h2>
+    <p class="muted">אירועים שעברו 24 שעות מסיומם.</p>
+    <div id="archived-events">טוען...</div>
+  </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="assets/supabase-client.js"></script>
+<script src="assets/header.js"></script>
+<script>
+  function archiveCutoffIso() {
+    return new Date(Date.now() - 24 * 60 * 60 * 1000).toISOString();
+  }
+
+  function renderEventList(container, events, emptyText) {
+    if (!events.length) {
+      container.innerHTML = `<p class="muted">${emptyText}</p>`;
+      return;
+    }
+    container.innerHTML = '';
+    events.forEach((ev) => {
+      const row = document.createElement('a');
+      row.className = 'event-row';
+      row.href = `event.html?id=${ev.id}`;
+      row.innerHTML = `
+        <div>
+          <div class="event-row-title">${escapeHtml(ev.title)}</div>
+          <div class="event-row-dates">${formatDateTime(ev.start_at)} — ${formatDateTime(ev.end_at)}</div>
+        </div>
+      `;
+      container.appendChild(row);
+    });
+  }
+
+  (async () => {
+    const session = await requireAuth();
+    if (!session) return;
+    const profile = await renderHeader('archive');
+    if (!profile) return;
+
+    const cutoff = archiveCutoffIso();
+    const container = document.getElementById('archived-events');
+
+    const [{ data: myEvents }, { data: invitedRows }] = await Promise.all([
+      supabaseClient.from('events').select('*').eq('creator_id', profile.id).lt('end_at', cutoff),
+      supabaseClient.from('event_invitees').select('event_id, events(*)').eq('user_id', profile.id),
+    ]);
+
+    const invitedArchived = (invitedRows || [])
+      .map((r) => r.events)
+      .filter((ev) => ev && ev.creator_id !== profile.id && ev.end_at < cutoff);
+
+    const all = [...(myEvents || []), ...invitedArchived].sort(
+      (a, b) => new Date(b.end_at) - new Date(a.end_at)
+    );
+
+    renderEventList(container, all, 'אין עדיין אירועים בארכיון.');
+  })();
+</script>
+</body>
+</html>
