@@ -135,6 +135,13 @@ footer a{color:white;text-decoration:underline;font-weight:600}
 .map-legend-swatch{width:16px;height:4px;border-radius:2px;flex-shrink:0;margin-top:8px}
 .map-legend-text{min-width:0;flex:1}
 .map-legend-name{white-space:nowrap;overflow:hidden;text-overflow:ellipsis;font-weight:700;cursor:pointer;user-select:none}
+.point-routes{margin-top:10px;border-top:1px solid #E3ECE6;padding-top:8px;text-align:right}
+.point-routes-title{font-weight:800;color:var(--primary);font-size:.85rem;margin-bottom:6px}
+.point-routes-list{max-height:220px;overflow-y:auto;display:flex;flex-direction:column;gap:4px;font-size:.85rem}
+.point-route-item{display:block;width:100%;text-align:right;background:var(--light);border:1px solid #CFE0D3;border-radius:8px;padding:5px 8px;font-family:'Assistant',sans-serif;font-size:.85rem;font-weight:700;color:var(--dark);cursor:pointer}
+.point-route-item:hover:not(:disabled){background:var(--secondary);color:white}
+.point-route-item:disabled{cursor:default;opacity:.75}
+.point-route-meta{font-weight:400;opacity:.8;white-space:nowrap}
 .map-legend-name:hover{text-decoration:underline}
 .map-legend-item.map-legend-hidden{opacity:.45}
 .map-legend-item.map-legend-hidden .map-legend-name{text-decoration:line-through}
@@ -868,13 +875,7 @@ function showOnMap() {
       if (editMode === 'cut') { handleModeClick(e.containerPoint, cutPool, cutPoolScreenPoints()); return; }
       if (editMode === 'osm') { handleModeClick(e.containerPoint, osmPool, osmPoolScreenPoints()); return; }
       if (editMode === 'freehand') { handleFreehandClick(e.latlng); return; }
-      var text = e.latlng.lat.toFixed(6) + ', ' + e.latlng.lng.toFixed(6);
-      var popupHtml =
-        '<div style="text-align:center;font-family:\'Assistant\',sans-serif">' +
-          '<div style="font-family:monospace;margin-bottom:8px;direction:ltr">' + text + '</div>' +
-          '<button onclick="copyCoordToClipboard(\'' + text + '\', this)" style="padding:5px 12px;border-radius:8px;border:none;background:var(--primary);color:white;cursor:pointer;font-family:\'Assistant\',sans-serif;font-size:.85rem">📋 העתקת קורדינטות</button>' +
-        '</div>';
-      L.popup().setLatLng(e.latlng).setContent(popupHtml).openOn(routeMapInstance);
+      showCoordPopup(e.latlng, false);
     });
 
     // בזמן עריכה פעילה - הסמן הופך ל"אצבע" (pointer) כשהוא מספיק קרוב לבריכה
@@ -904,6 +905,8 @@ function showOnMap() {
 
   routeMapLayers.forEach(function (l) { routeMapInstance.removeLayer(l); });
   routeMapLayers = [];
+  mapShownRouteIds = new Set(files.map(function (r) { return r.id; }));
+  mapColorCount = files.length;
 
   Promise.all(files.map(function (r, i) {
     return fetch(encodeURI(r.gpx_path))
@@ -924,52 +927,141 @@ function showOnMap() {
     resetCutterUI();
 
     results.forEach(function (res) {
-      var legendItem = document.createElement('div');
-      legendItem.className = 'map-legend-item';
-      var statsText = res.segments.length
-        ? ('📏 ' + res.route.distance_km + ' ק"מ &nbsp;·&nbsp; ' + elevationText(res.route))
-        : 'שגיאה בטעינה';
-      legendItem.innerHTML =
-        '<span class="map-legend-swatch" style="background:' + res.color + '"></span>' +
-        '<div class="map-legend-text">' +
-          '<div class="map-legend-name">#' + res.route.id + ' ' + escapeHtml(routeNameOnly(res.route.file_name)) + '</div>' +
-          '<div class="map-legend-stats">' + statsText + '</div>' +
-        '</div>';
-      legend.appendChild(legendItem);
-
-      if (res.segments.length) {
-        var latlngSegs = res.segments.map(function (seg) { return seg.map(function (p) { return [p.lat, p.lon]; }); });
-        var line = L.polyline(latlngSegs, { color: res.color, weight: 4 }).addTo(routeMapInstance);
-        var routeLayers = [line];
-        // סימוני התחלה/סיום רק למסלול עם מקטע אחד - לכמה מקטעים נפרדים אין כיוון אחד
-        if (latlngSegs.length === 1) {
-          var pts = latlngSegs[0];
-          var rStart = pts[0], rEnd = pts[pts.length - 1];
-          var rCoincide = haversineM(rStart, rEnd) < 30;
-          routeLayers.push(
-            L.marker(rStart, { icon: routeStartIcon(res.color, rCoincide ? 'translate(-5px,-5px)' : '') }).addTo(routeMapInstance),
-            L.marker(rEnd, { icon: routeEndIcon(res.color, rCoincide ? 'translate(5px,5px)' : '') }).addTo(routeMapInstance));
-        }
-        routeMapLayers = routeMapLayers.concat(routeLayers);
-        latlngSegs.forEach(function (seg) { allBounds = allBounds.concat(seg); });
-
-        // לחיצה על שם המסלול ברשימת המקרא - מסתירה/מציגה אותו לחילופין (קו +
-        // סמני התחלה/סיום), בלי לגעת בשאר המסלולים המוצגים.
-        var nameEl = legendItem.querySelector('.map-legend-name');
-        nameEl.addEventListener('click', function () {
-          var hidden = legendItem.classList.toggle('map-legend-hidden');
-          routeLayers.forEach(function (layer) {
-            if (hidden) routeMapInstance.removeLayer(layer);
-            else layer.addTo(routeMapInstance);
-          });
-        });
-      }
+      allBounds = allBounds.concat(drawRouteOnMap(res, legend));
     });
 
     if (allBounds.length) {
       routeMapInstance.fitBounds(allBounds, { padding: [30, 30] });
     }
   });
+}
+
+// מצייר מסלול טעון אחד על המפה + שורה במקרא - משותף ל-showOnMap ולהוספת מסלול
+// מתוך חלונית הרשת (addRouteToMap). מחזיר את כל הנקודות (לחישוב גבולות התצוגה).
+function drawRouteOnMap(res, legend) {
+  var legendItem = document.createElement('div');
+  legendItem.className = 'map-legend-item';
+  var statsText = res.segments.length
+    ? ('📏 ' + res.route.distance_km + ' ק"מ &nbsp;·&nbsp; ' + elevationText(res.route))
+    : 'שגיאה בטעינה';
+  legendItem.innerHTML =
+    '<span class="map-legend-swatch" style="background:' + res.color + '"></span>' +
+    '<div class="map-legend-text">' +
+      '<div class="map-legend-name">#' + res.route.id + ' ' + escapeHtml(routeNameOnly(res.route.file_name)) + '</div>' +
+      '<div class="map-legend-stats">' + statsText + '</div>' +
+    '</div>';
+  legend.appendChild(legendItem);
+
+  var allPts = [];
+  if (res.segments.length) {
+    var latlngSegs = res.segments.map(function (seg) { return seg.map(function (p) { return [p.lat, p.lon]; }); });
+    var line = L.polyline(latlngSegs, { color: res.color, weight: 4 }).addTo(routeMapInstance);
+    var routeLayers = [line];
+    // לחיצה על קו של קובץ רשת (לא במצב עריכה) - חלונית קורדינטות + רשימת
+    // המסלולים שעוברים בנקודה. עוצר את המשך האירוע כדי שמאזין הלחיצה הכללי של
+    // המפה לא יפתח מעליה חלונית קורדינטות רגילה.
+    if (isNetworkRoute(res.route)) {
+      line.on('click', function (e) {
+        if (editMode) return;
+        L.DomEvent.stopPropagation(e);
+        showCoordPopup(e.latlng, true);
+      });
+    }
+    // סימוני התחלה/סיום רק למסלול עם מקטע אחד - לכמה מקטעים נפרדים אין כיוון אחד
+    if (latlngSegs.length === 1) {
+      var pts = latlngSegs[0];
+      var rStart = pts[0], rEnd = pts[pts.length - 1];
+      var rCoincide = haversineM(rStart, rEnd) < 30;
+      routeLayers.push(
+        L.marker(rStart, { icon: routeStartIcon(res.color, rCoincide ? 'translate(-5px,-5px)' : '') }).addTo(routeMapInstance),
+        L.marker(rEnd, { icon: routeEndIcon(res.color, rCoincide ? 'translate(5px,5px)' : '') }).addTo(routeMapInstance));
+    }
+    routeMapLayers = routeMapLayers.concat(routeLayers);
+    latlngSegs.forEach(function (seg) { allPts = allPts.concat(seg); });
+
+    // לחיצה על שם המסלול ברשימת המקרא - מסתירה/מציגה אותו לחילופין (קו +
+    // סמני התחלה/סיום), בלי לגעת בשאר המסלולים המוצגים.
+    var nameEl = legendItem.querySelector('.map-legend-name');
+    nameEl.addEventListener('click', function () {
+      var hidden = legendItem.classList.toggle('map-legend-hidden');
+      routeLayers.forEach(function (layer) {
+        if (hidden) routeMapInstance.removeLayer(layer);
+        else layer.addTo(routeMapInstance);
+      });
+    });
+  }
+  return allPts;
+}
+
+// --- מסלולים שעוברים בנקודה על קו רשת (נוסף 23.10.2026) ---
+// קובץ "רשת מסלולים באזור" (ייצוא מ-gps_upload) הוא איחוד של הקלטות רבות - לחיצה
+// על הקו שלו מציגה מתחת לקורדינטות את המסלולים המקוריים שעוברים בנקודה (בלי
+// קובצי רשת), ולחיצה על מסלול ברשימה מוסיפה אותו למפה בצבע משלו.
+var NETWORK_PICK_MIN_M = 26; // מרחק חיפוש מינימלי מהקו (מ')
+var NETWORK_PICK_PX = 10;    // מרחק חיפוש בפיקסלים - מתורגם למטרים לפי הזום
+var mapShownRouteIds = new Set(); // מסלולים שמוצגים כרגע על המפה
+var mapColorCount = 0;            // לבחירת הצבע הבא למסלול שנוסף
+
+function isNetworkRoute(r) {
+  return r.file_name.indexOf('רשת_מסלולים_') === 0;
+}
+
+function showCoordPopup(latlng, withRoutes) {
+  var text = latlng.lat.toFixed(6) + ', ' + latlng.lng.toFixed(6);
+  var popupHtml =
+    '<div style="text-align:center;font-family:\'Assistant\',sans-serif">' +
+      '<div style="font-family:monospace;margin-bottom:8px;direction:ltr">' + text + '</div>' +
+      '<button onclick="copyCoordToClipboard(\'' + text + '\', this)" style="padding:5px 12px;border-radius:8px;border:none;background:var(--primary);color:white;cursor:pointer;font-family:\'Assistant\',sans-serif;font-size:.85rem">📋 העתקת קורדינטות</button>' +
+      (withRoutes ? '<div class="point-routes"><div class="point-routes-title">מסלולים שעוברים בנקודה</div><div class="point-routes-list">טוען...</div></div>' : '') +
+    '</div>';
+  var popup = L.popup({ maxWidth: 320 }).setLatLng(latlng).setContent(popupHtml).openOn(routeMapInstance);
+  if (withRoutes) fillPointRoutes(popup, latlng);
+}
+
+function fillPointRoutes(popup, latlng) {
+  var coord = { lat: latlng.lat, lon: latlng.lng };
+  var mPerPx = 40075016.686 * Math.cos(coord.lat * Math.PI / 180) / Math.pow(2, routeMapInstance.getZoom() + 8);
+  var maxM = Math.max(NETWORK_PICK_MIN_M, NETWORK_PICK_PX * mPerPx);
+  loadRouteTracks().then(function () {
+    var listEl = popup.getElement() && popup.getElement().querySelector('.point-routes-list');
+    if (!listEl) return; // החלונית נסגרה בינתיים
+    var found = ALL_ROUTES
+      .filter(function (r) { return !isNetworkRoute(r); })
+      .map(function (r) { var km = routeDistanceKm(r, coord); return { route: r, m: km === null ? Infinity : km * 1000 }; })
+      .filter(function (x) { return x.m <= maxM; })
+      .sort(function (a, b) { return a.m - b.m; });
+    if (!found.length) { listEl.textContent = 'לא נמצא מסלול (עד ' + Math.round(maxM) + ' מ\' מהנקודה)'; return; }
+    listEl.innerHTML = found.map(function (x) {
+      var shown = mapShownRouteIds.has(x.route.id);
+      return '<button class="point-route-item" data-id="' + x.route.id + '"' + (shown ? ' disabled' : '') +
+        ' title="' + (shown ? 'מוצג כבר על המפה' : 'הוספה למפה') + '">' +
+        '<span class="point-route-icon">' + (shown ? '✓' : '➕') + '</span> #' + x.route.id + ' ' + escapeHtml(routeNameOnly(x.route.file_name)) +
+        ' <span class="point-route-meta">' + x.route.date + ' · ' + Math.round(x.m) + ' מ\'</span></button>';
+    }).join('');
+    listEl.querySelectorAll('.point-route-item').forEach(function (btn) {
+      btn.addEventListener('click', function () { addRouteToMap(parseInt(btn.dataset.id, 10), btn); });
+    });
+  });
+}
+
+// מוסיף מסלול למפה הפתוחה בצבע הבא ברשימה, בלי לשנות את הבחירה בקטלוג ובלי
+// להזיז את התצוגה
+function addRouteToMap(routeId, btn) {
+  var r = ALL_ROUTES.find(function (x) { return x.id === routeId; });
+  if (!r || mapShownRouteIds.has(r.id)) return;
+  mapShownRouteIds.add(r.id);
+  var color = ROUTE_MAP_COLORS[mapColorCount++ % ROUTE_MAP_COLORS.length];
+  btn.disabled = true;
+  btn.querySelector('.point-route-icon').textContent = '⏳';
+  fetch(encodeURI(r.gpx_path))
+    .then(function (resp) { return resp.text(); })
+    .then(function (text) { return parseGpxSegments(text); })
+    .catch(function () { return []; })
+    .then(function (segments) {
+      drawRouteOnMap({ route: r, segments: segments, color: color }, document.getElementById('mapLegend'));
+      currentMapRoutesFullPoints = currentMapRoutesFullPoints.concat(segments);
+      btn.querySelector('.point-route-icon').textContent = segments.length ? '✓' : '⚠';
+    });
 }
 
 function closeMapOverlay() {
