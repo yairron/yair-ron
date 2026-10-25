@@ -42,6 +42,7 @@ route_catalog/data/thumbnails/. זו כרגע התיקייה היחידה באת
 """
 
 import argparse
+import bisect
 import fnmatch
 import http.server
 import json
@@ -414,6 +415,72 @@ def clean_track_points(points):
     return kept, removed_count
 
 
+# זיהוי נסיעה ברכב בתוך הקלטה (נוסף 25.10.2026) - הקלטה שנשארה דולקת ברכב היא
+# טעות: מסלול "רכיבה-נסיעה-רכיבה" צריך להתחלק לשני מסלולים, ונסיעה בהתחלה/בסוף
+# צריכה להיחתך. כאן רק מזהים ומסמנים (שדה "driving" ברשומה, ותגית בקטלוג) - לא
+# מתקנים את הקובץ. ההבחנה: רכב מהיר גם במישור ובעלייה, אופניים מהירים רק בירידה.
+# לכן חלון של DRIVE_WINDOW_S שניות סביב כל נקודה נחשב נסיעה אם המהירות הממוצעת בו
+# מעל סף ה"מישור" בלי ירידה של יותר מ-DRIVE_DESCENT_TOL_M, או מעל סף ה"כל מצב".
+# נבדק על כל ההקלטות בקטלוג: סף ממוצע פשוט (45 קמ"ש, בלי תנאי הירידה) סימן 73
+# מסלולים - כמעט כולם הירידה המהירה מגעתון באופניים, לא נסיעה. עם תנאי הירידה - 9.
+DRIVE_WINDOW_S = 120
+DRIVE_MIN_DURATION_S = 60     # נסיעה קצרה מזה לא מסומנת (רמזור/האצה רגעית)
+DRIVE_DESCENT_TOL_M = 5       # ירידה קטנה מזה בחלון נחשבת "מישור"
+DRIVE_FLAT_KMH = 40.0         # ממוצע במישור/עלייה מעל זה - נסיעה
+DRIVE_ANY_KMH = 70.0          # ממוצע בכל מצב מעל זה - נסיעה
+# קטע שזוהה נשמר רק אם גם **החציון** של המהירות בין נקודות עוקבות בתוכו מעל
+# DRIVE_FLAT_KMH: בנסיעה אמיתית המהירות יציבה (נמדד: חציון 44-71 קמ"ש), ואילו
+# שאריות של קפיצות GPS (ראו MAX_RESYNC_JUMP_KM ב-clean_track_points) הן כמה צעדים
+# ענקיים בודדים (190-307 קמ"ש) בתוך תנועה איטית (חציון 7-23) שמנפחים את הממוצע.
+# סף אחד לכל המסלולים, לא לפי activity - בדיוק כמו CLEAN_MAX_SPEED_KMH למעלה: הסיווג
+# הליכה/רכיבה לא אמין (נמצא: רכיבות של 30-44 ק"מ מסווגות "הליכה"), וסף הליכה (נבדק
+# 15 קמ"ש) סימן בהן רכיבה רגילה כנסיעה - 22 מסלולים שגויים.
+
+
+def detect_driving(points):
+    """מחזיר רשימת קטעי נסיעה ברכב: [{"start", "end" (ISO, UTC), "km"}], ריקה אם אין.
+    points - נקודות אחרי clean_track_points (קפיצות GPS כבר הוסרו). נקודות בלי זמן
+    לא נבדקות."""
+    pts = [p for p in points if p["time"] is not None]
+    if len(pts) < 2:
+        return []
+    times = [p["time"].timestamp() for p in pts]
+    cum = [0.0]
+    for i in range(1, len(pts)):
+        cum.append(cum[-1] + renamer.haversine_km(pts[i - 1]["lat"], pts[i - 1]["lon"], pts[i]["lat"], pts[i]["lon"]))
+
+    driving = []
+    for i in range(len(pts)):
+        j = bisect.bisect_left(times, times[i] - DRIVE_WINDOW_S / 2)
+        k = bisect.bisect_right(times, times[i] + DRIVE_WINDOW_S / 2) - 1
+        span = times[k] - times[j] if j < k else 0
+        if span < 30:
+            driving.append(False)
+            continue
+        kmh = (cum[k] - cum[j]) / span * 3600
+        ele_j, ele_k = pts[j]["ele"], pts[k]["ele"]
+        not_descending = ele_j is not None and ele_k is not None and ele_k - ele_j > -DRIVE_DESCENT_TOL_M
+        driving.append((kmh > DRIVE_FLAT_KMH and not_descending) or kmh > DRIVE_ANY_KMH)
+
+    blocks = []
+    i = 0
+    while i < len(pts):
+        if not driving[i]:
+            i += 1
+            continue
+        j = i
+        while j + 1 < len(pts) and driving[j + 1]:
+            j += 1
+        steps = sorted((cum[m + 1] - cum[m]) / (times[m + 1] - times[m]) * 3600
+                       for m in range(i, j) if times[m + 1] > times[m])
+        steady = bool(steps) and steps[len(steps) // 2] > DRIVE_FLAT_KMH
+        if times[j] - times[i] >= DRIVE_MIN_DURATION_S and steady:
+            blocks.append({"start": pts[i]["time"].isoformat(), "end": pts[j]["time"].isoformat(),
+                           "km": round(cum[j] - cum[i], 1)})
+        i = j + 1
+    return blocks
+
+
 def calc_distance_km(coords):
     """מרחק מצטבר מהנקודות שנשמרו אחרי ניקוי - **לא** משתמשים ב-distance_km
     שמחזיר analyze_file() הקיים, כי הוא מחושב מהנקודות הגולמיות (כולל קפיצות),
@@ -594,10 +661,13 @@ def build_catalog_record(path: Path, info: dict, points: list, settlements_db, r
     # לגמרי על הניקוי ועל הדגל "לא תקין" למסלולים מתוכננים - נשמרות כל הנקודות
     # כמו שהן, נסמכים על הקואורדינטות הגולמיות בלבד.
     original_count = len(points)
+    activity = override.get("activity", info["activity_guess"])
     if is_planned:
         removed_count = 0
+        driving = []  # אין זמנים אמיתיים במסלול מתוכנן - אין ממה לזהות נסיעה
     else:
         points, removed_count = clean_track_points(points)
+        driving = detect_driving(points)
 
     coords = [(p["lat"], p["lon"]) for p in points]
     segment_starts = split_segments(points)
@@ -624,7 +694,7 @@ def build_catalog_record(path: Path, info: dict, points: list, settlements_db, r
         "gpx_path": f"GPX_files/{path.name}",
         "date": date_obj.isoformat(),
         "date_source": date_source,
-        "activity": override.get("activity", info["activity_guess"]),
+        "activity": activity,
         "source": source,
         "distance_km": round(sum(calc_distance_km(seg) for seg in coords_by_segment(coords, segment_starts)), 2),
         "elevation_gain_m": elevation_gain,
@@ -646,6 +716,9 @@ def build_catalog_record(path: Path, info: dict, points: list, settlements_db, r
         # לתחתית הרשימה בדף עצמו.
         "invalid": invalid,
         "removed_points": removed_count,
+        # קטעי נסיעה ברכב בתוך ההקלטה (ראו detect_driving) - רשימה ריקה = תקין.
+        # מסלול עם נסיעה מסומן בקטלוג כטעות ונדחק לתחתית, כמו "לא תקין".
+        "driving": driving,
         "thumbnail": None,  # ימולא ב-generate_thumbnails, או יישאר None אם אין נקודות
         "_coords": [[lat, lon] for lat, lon in coords],  # שדה עבודה זמני - מוסר לפני הכתיבה לקובץ
         "_segment_starts": segment_starts,  # שדה עבודה זמני (ראו split_segments) - מוסר לפני הכתיבה לקובץ
@@ -840,6 +913,13 @@ def cleanup_orphan_thumbnails(records, thumbnails_dir: Path) -> int:
     return removed
 
 
+def driving_for_cached_record(path: Path, record: dict):
+    if record["source"] == "תכנון מסלול":
+        return []
+    points, _ = clean_track_points(extract_track_points(path))
+    return detect_driving(points)
+
+
 def main():
     parser = argparse.ArgumentParser(description="בונה את קובץ הקטלוג המרוכז של מסלולי ה-GPX")
     parser.add_argument("--skip-thumbnails", action="store_true", help="לדלג על יצירת תמונות ממוזערות (מהיר יותר לבדיקות)")
@@ -882,6 +962,11 @@ def main():
         # רשומה מלפני תמיכת המקטעים (22.10.2026, אין בה "_segment_starts") - מנותחת מחדש פעם אחת.
         if (cached and cached.get("size") == stat.st_size and cached.get("mtime") == stat.st_mtime
                 and cached.get("override", {}) == override and "_segment_starts" in cached["record"]):
+            if "driving" not in cached["record"]:
+                # רשומה מלפני זיהוי הנסיעה (25.10.2026) - מחשבים רק את השדה החדש, בלי
+                # ניתוח מלא: ניתוח מלא היה מסמן את הקובץ "נותח עכשיו" ומוחק בלי צורך
+                # את התמונה הממוזערת של כל מסלול עם ניקוי קפיצות/כמה מקטעים.
+                cached["record"]["driving"] = driving_for_cached_record(path, cached["record"])
             records.append(cached["record"])
             new_build_cache[path.name] = cached
             reused_count += 1
@@ -940,6 +1025,7 @@ def main():
     no_settlements = sum(1 for r in records if not r["settlements"])
     no_thumbnail = sum(1 for r in records if r["thumbnail"] is None)
     invalid_count = sum(1 for r in records if r["invalid"])
+    driving_records = sorted((r for r in records if r.get("driving")), key=lambda r: r["id"])
 
     tracks_path = catalog_data_dir / "routes-tracks.json"
     catalog_data_dir.mkdir(parents=True, exist_ok=True)
@@ -975,6 +1061,10 @@ def main():
     print(f"  בלי תמונה ממוזערת: {no_thumbnail}")
     print(f"  מסומנים 'לא תקין' (קפיצת GPS משמעותית): {invalid_count}")
     print(f"  בלי אזור מזוהה (בלי נקודות בכלל): {no_region}")
+    print(f"  מסומנים 'כולל נסיעה ברכב' (טעות הקלטה - לחלק/לחתוך את הקובץ): {len(driving_records)}")
+    for r in driving_records:
+        parts = ", ".join(f"{d['start'][11:16]}-{d['end'][11:16]} UTC ({d['km']} ק\"מ)" for d in r["driving"])
+        print(f"    #{r['id']} {r['file_name']}: {parts}")
     print("  פילוח לפי אזור (מסלול שחוצה כמה אזורים נספר בכל אחד מהם):")
     for reg in REGION_ORDER:
         print(f"    {reg}: {region_counts[reg]}")

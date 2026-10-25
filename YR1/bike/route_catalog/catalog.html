@@ -56,10 +56,12 @@ h1{font-family:'Varela Round',sans-serif;font-size:2.6rem;font-weight:800;color:
 .badge{display:inline-block;padding:2px 9px;border-radius:10px;font-size:.75rem;font-weight:700;background:rgba(255,255,255,.22)}
 .badge-planning{background:var(--accent)}
 .badge-invalid{background:#B03A2E}
+.badge-driving{background:#8E3B1F}
 .accordion-invalid{opacity:.72}
 .accordion-invalid .accordion-header{background:linear-gradient(135deg,#5a5a5a,#7a7a7a)}
 .accordion-invalid .accordion-header:hover{background:linear-gradient(135deg,#7a7a7a,#5a5a5a)}
 .invalid-note{background:#FDECEA;color:#7A2E22;border-right:4px solid #B03A2E;border-radius:8px;padding:10px 14px;margin-bottom:10px;font-size:.9rem}
+.driving-note{background:#FBEFE6;color:#6B2E15;border-right:4px solid #8E3B1F;border-radius:8px;padding:10px 14px;margin-bottom:10px;font-size:.9rem}
 .accordion-arrow{font-size:1.1rem;transition:transform .3s;color:white;flex-shrink:0}
 .accordion.active .accordion-arrow{transform:rotate(180deg)}
 .accordion-content{max-height:0;overflow:hidden;transition:max-height .35s ease}
@@ -162,6 +164,7 @@ footer a{color:white;text-decoration:underline;font-weight:600}
 <div class="container">
   <div class="nav-bar">
     <a href="../gpx_cleaner/gpx_cleaner.html" class="btn-nav">🧹 ניקוי GPX</a>
+    <a href="../user_guide/user_guide.html" class="btn-nav">📖 מדריך למשתמש</a>
     <a href="../gps_upload/gps_upload.html" class="btn-nav">🔎 בדיקת קובץ חדש</a>
   </div>
   <header>
@@ -362,8 +365,8 @@ function getFiltered() {
 
   var sortMode = document.getElementById('sortSelect').value;
   list.sort(function (a, b) {
-    // מסלולים "לא תקינים" (קפיצת GPS) תמיד בתחתית, לא משנה איזה מיון נבחר
-    if (a.invalid !== b.invalid) return a.invalid ? 1 : -1;
+    // מסלולים "לא תקינים" (קפיצת GPS) ומסלולים עם נסיעה ברכב תמיד בתחתית, לא משנה איזה מיון נבחר
+    if (isFaulty(a) !== isFaulty(b)) return isFaulty(a) ? 1 : -1;
     // בחיפוש לפי קורדינטות - תמיד ממויין לפי קרבה, בלי קשר לבחירת "מיון"
     if (coord) return routeDistanceKm(a, coord) - routeDistanceKm(b, coord);
     switch (sortMode) {
@@ -376,6 +379,30 @@ function getFiltered() {
     }
   });
   return list;
+}
+
+// הקלטה עם נסיעה ברכב (שדה driving, נוסף 25.10.2026 ב-build_routes_catalog.py) היא
+// טעות הקלטה, ומוצגת כמו מסלול "לא תקין": אפורה, עם תגית ובתחתית הרשימה.
+function hasDriving(r) {
+  return !!(r.driving && r.driving.length);
+}
+
+function isFaulty(r) {
+  return r.invalid || hasDriving(r);
+}
+
+function formatClock(iso) {
+  var d = new Date(iso);
+  return isNaN(d) ? '' : d.toLocaleTimeString('he-IL', { hour: '2-digit', minute: '2-digit' });
+}
+
+function drivingNoteHtml(r) {
+  var parts = r.driving.map(function (d) {
+    return 'בין ' + formatClock(d.start) + ' ל-' + formatClock(d.end) + ' (' + d.km + ' ק"מ)';
+  }).join(', ');
+  return '<p class="driving-note">🚗 ההקלטה כוללת נסיעה ברכב ' + parts +
+    '. זו טעות בהקלטה: הנסיעה צריכה להיחתך מהקובץ, ואם יש רכיבה גם לפניה וגם אחריה - לחלק אותה לשני מסלולים נפרדים. ' +
+    'המרחק, הגובה והמפה כאן כוללים את הנסיעה.</p>';
 }
 
 function routeNameOnly(fileName) {
@@ -393,7 +420,8 @@ function buildRouteCard(r, idx) {
   var elevText = elevationText(r);
   var settlementsText = r.settlements_found ? r.settlements.join(', ') : '📍 מיקום לא זוהה';
   var sourceBadge = r.source === 'תכנון מסלול' ? '<span class="badge badge-planning">🗺️ תכנון</span>' : '<span class="badge">📹 הקלטה</span>';
-  var invalidBadge = r.invalid ? ' <span class="badge badge-invalid">⚠️ מסלול לא תקין</span>' : '';
+  var invalidBadge = (r.invalid ? ' <span class="badge badge-invalid">⚠️ מסלול לא תקין</span>' : '') +
+    (hasDriving(r) ? ' <span class="badge badge-driving">🚗 כולל נסיעה ברכב</span>' : '');
   var thumbSrc = r.thumbnail ? ('data/' + r.thumbnail) : '';
   var checked = selectedFiles.has(r.file_name) ? 'checked' : '';
   var coordDistanceBadge = '';
@@ -403,7 +431,7 @@ function buildRouteCard(r, idx) {
   }
 
   var el = document.createElement('div');
-  el.className = 'accordion' + (r.invalid ? ' accordion-invalid' : '');
+  el.className = 'accordion' + (isFaulty(r) ? ' accordion-invalid' : '');
   el.innerHTML =
     '<div class="accordion-header" onclick="toggleAcc(this)">' +
       '<input type="checkbox" class="route-check" ' + checked + ' onclick="event.stopPropagation(); onCheckToggle(\'' + escapeAttr(r.file_name) + '\', this.checked)">' +
@@ -419,6 +447,7 @@ function buildRouteCard(r, idx) {
     '<div class="accordion-content"><div class="accordion-body">' +
       '<div class="body-details">' +
         (r.invalid ? '<p class="invalid-note">⚠️ נמצאה קפיצת GPS בלתי-אפשרית בקובץ המקורי (כנראה שיבוש/ריגול אות) - ' + r.removed_points + ' נקודות הוסרו לפני החישוב. המרחק/הגובה/המפה כאן מבוססים רק על הנקודות התקינות שנשארו.</p>' : '') +
+        (hasDriving(r) ? drivingNoteHtml(r) : '') +
         '<p><strong>אזור גיאוגרפי:</strong> ' + escapeHtml(r.regions.length ? r.regions.join(', ') : 'לא זוהה') + '</p>' +
         '<p><strong>ישובים סמוכים:</strong> ' + escapeHtml(settlementsText) + '</p>' +
         '<p><strong>מספר נקודות במסלול:</strong> ' + r.point_count + '</p>' +
