@@ -75,15 +75,25 @@ export default async (req) => {
       headers: { 'Content-Type': 'text/plain;charset=utf-8' },
       body: JSON.stringify(payload),
     });
-    const result = await resp.json();
+    const text = await resp.text();
+    let result;
+    try {
+      result = JSON.parse(text);
+    } catch {
+      // תשובה שאינה JSON היא כמעט תמיד דף התחברות של גוגל - ה-Web App לא פורסם עם
+      // "Who has access: Anyone"
+      console.error('apps script non-JSON response:', resp.status, text.slice(0, 300));
+      return json(502, { error: 'השליחה נכשלה. אפשר לנסות שוב מאוחר יותר.', detail: `non-JSON response (HTTP ${resp.status})` });
+    }
     if (result.ok) return json(200, { ok: true });
     if (String(result.error || '').startsWith('rate limit')) {
       return json(429, { error: 'נשלחו יותר מדי מסלולים בזמן קצר. אפשר לנסות שוב מאוחר יותר.' });
     }
     console.error('apps script error:', result.error);
-    return json(502, { error: 'השליחה נכשלה. אפשר לנסות שוב מאוחר יותר.' });
+    // detail - קוד השגיאה מה-Apps Script (למשל unauthorized), לאבחון; לא מכיל סודות
+    return json(502, { error: 'השליחה נכשלה. אפשר לנסות שוב מאוחר יותר.', detail: String(result.error || '').slice(0, 200) });
   } catch (err) {
     console.error('apps script fetch failed:', err);
-    return json(502, { error: 'השליחה נכשלה. אפשר לנסות שוב מאוחר יותר.' });
+    return json(502, { error: 'השליחה נכשלה. אפשר לנסות שוב מאוחר יותר.', detail: 'fetch failed' });
   }
 };
