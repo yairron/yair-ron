@@ -34,7 +34,11 @@ export default async (req) => {
 
   const url = process.env.BIKE_ROUTE_SUBMIT_URL;
   const secret = process.env.BIKE_ROUTE_SUBMIT_SECRET;
-  if (!url || !secret) return json(503, { error: 'שליחת הטופס עדיין לא הוגדרה באתר' });
+  if (!url || !secret) {
+    // שמות המשתנים לא סודיים - מוצגים כדי שיהיה ברור מה חסר בהגדרות Netlify
+    const missing = [!url && 'BIKE_ROUTE_SUBMIT_URL', !secret && 'BIKE_ROUTE_SUBMIT_SECRET'].filter(Boolean).join(', ');
+    return json(503, { error: 'שליחת הטופס עדיין לא הוגדרה באתר', missing });
+  }
 
   let body;
   try {
