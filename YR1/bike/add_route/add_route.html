@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>הוספת מסלול</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Assistant:wght@400;600;700;800&family=Varela+Round&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<style>
+:root{--primary:#1F6B4C;--secondary:#4E9B6B;--accent:#E0923F;--light:#F2F8F3;--dark:#123A29;--text:#243A2E}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Assistant','Segoe UI',Tahoma,sans-serif;background:linear-gradient(135deg,#123A29 0%,#3F7D52 50%,#E0A24E 100%);min-height:100vh;padding:20px 16px;direction:rtl;color:var(--text)}
+.container{max-width:760px;margin:0 auto}
+.nav-bar{display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap;margin-bottom:18px}
+.btn-nav{background:rgba(255,255,255,.25);padding:10px 20px;border-radius:20px;color:white;text-decoration:none;font-weight:700;box-shadow:0 4px 12px rgba(0,0,0,.2)}
+.btn-nav:hover{background:rgba(255,255,255,.4)}
+header{text-align:center;margin-bottom:22px;color:white}
+h1{font-family:'Varela Round',sans-serif;font-size:2.3rem;text-shadow:2px 3px 10px rgba(0,0,0,.3)}
+header p{opacity:.92;margin-top:6px}
+.card{background:rgba(255,255,255,.96);border-radius:20px;padding:22px 24px;margin-bottom:20px;box-shadow:0 10px 30px rgba(0,0,0,.15);border-right:4px solid var(--accent)}
+.field{display:flex;flex-direction:column;gap:5px;margin-bottom:16px}
+.field label{font-size:.9rem;font-weight:700;color:var(--primary)}
+.field .hint{font-size:.8rem;color:#5C7A6B}
+.req{color:#B03A2E}
+input[type=text],input[type=email],textarea{font:inherit;font-size:1rem;padding:10px 12px;border:1px solid #CFE0D3;border-radius:10px;background:var(--light);color:var(--text);width:100%}
+textarea{min-height:110px;resize:vertical}
+input:focus,textarea:focus{outline:2px solid var(--secondary)}
+.row{display:flex;gap:14px;flex-wrap:wrap}
+.row .field{flex:1;min-width:200px}
+.field label.file-btn,.file-btn{color:white;font-size:1rem;display:inline-block;background:linear-gradient(135deg,var(--primary),var(--secondary));color:white;border-radius:14px;font-weight:700;padding:11px 22px;cursor:pointer;box-shadow:0 4px 12px rgba(0,0,0,.15)}
+#gpxInput{display:none}
+.file-line{display:flex;align-items:center;gap:12px;flex-wrap:wrap}
+.file-name{font-weight:600;color:var(--dark);word-break:break-all}
+#preview{display:none;margin-top:14px}
+#map{height:320px;border-radius:14px;overflow:hidden}
+.stats{display:flex;gap:16px;flex-wrap:wrap;margin-top:10px;font-weight:700;color:var(--dark)}
+.msg{border-radius:12px;padding:10px 14px;margin-top:12px;font-size:.95rem;display:none}
+.msg.show{display:block}
+.msg.error{background:#FDECEA;color:#7A2E22;border-right:4px solid #B03A2E}
+.msg.warn{background:#FBEFE6;color:#6B2E15;border-right:4px solid #8E3B1F}
+.msg.ok{background:#EAF5EE;color:#1F4D36;border-right:4px solid var(--secondary)}
+/* מוסתר בלי להזיז אותו מחוץ למסך - left שלילי בעמוד RTL יוצר גלילה אופקית ענקית */
+.hp{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%);white-space:nowrap}
+#submitBtn{font:inherit;font-size:1.1rem;font-weight:800;color:white;background:var(--accent);border:none;border-radius:14px;padding:13px 34px;cursor:pointer;box-shadow:0 4px 12px rgba(0,0,0,.15)}
+#submitBtn:hover{background:#c97a2c}
+#submitBtn:disabled{background:#B9B9B9;cursor:default}
+footer{text-align:center;color:rgba(255,255,255,.85);font-size:.9rem;padding:10px}
+footer a{color:white}
+@media(max-width:600px){h1{font-size:1.8rem}.card{padding:18px 16px}}
+</style>
+</head>
+<body>
+<div class="container">
+  <div class="nav-bar">
+    <a href="../route_catalog/catalog.html" class="btn-nav">🗺️ קטלוג מסלולים</a>
+    <a href="../user_guide/user_guide.html#add-route" class="btn-nav">📖 מדריך למשתמש</a>
+  </div>
+  <header>
+    <h1>➕ הוספת מסלול</h1>
+    <p>שלחו מסלול שרכבתם או הלכתם בו, והוא ייבדק ויתווסף לקטלוג</p>
+  </header>
+
+  <form id="routeForm" novalidate>
+    <div class="card">
+      <div class="field">
+        <label>קובץ GPX <span class="req">*</span></label>
+        <div class="file-line">
+          <label class="file-btn" for="gpxInput">📂 בחירת קובץ</label>
+          <input type="file" id="gpxInput" accept=".gpx,application/gpx+xml,application/xml,text/xml">
+          <span class="file-name" id="fileName">לא נבחר קובץ</span>
+        </div>
+        <span class="hint">גודל קובץ מקסימלי: 5MB. הקובץ נשלח רק אחרי לחיצה על "שליחה".</span>
+      </div>
+      <div id="preview">
+        <div id="map"></div>
+        <div class="stats" id="stats"></div>
+      </div>
+      <div class="msg warn" id="drivingMsg"></div>
+    </div>
+
+    <div class="card">
+      <div class="field">
+        <label for="routeName">שם המסלול <span class="req">*</span></label>
+        <input type="text" id="routeName" maxlength="120" placeholder="למשל: כברי - גשר הזיו - עכו">
+      </div>
+      <div class="field">
+        <label for="notes">הערות</label>
+        <textarea id="notes" maxlength="3000" placeholder="מאיפה לאן, דרך איפה, מצב השבילים, דברים שכדאי לדעת..."></textarea>
+      </div>
+      <div class="field">
+        <label for="places">מקומות עניין</label>
+        <input type="text" id="places" maxlength="500" placeholder="למשל: גשר הזיו, שפך נעמן, נמל עכו">
+        <span class="hint">מופרדים בפסיק. אלה יהיו התגיות של המסלול בקטלוג.</span>
+      </div>
+      <div class="row">
+        <div class="field">
+          <label for="senderName">השם שלך</label>
+          <input type="text" id="senderName" maxlength="100">
+        </div>
+        <div class="field">
+          <label for="senderEmail">המייל שלך</label>
+          <input type="email" id="senderEmail" maxlength="200" dir="ltr">
+          <span class="hint">לא חובה. רק כדי שיהיה אפשר לחזור אליך בשאלות על המסלול.</span>
+        </div>
+      </div>
+      <!-- מלכודת לבוטים: מוסתר מהעין, אדם לא ממלא אותו -->
+      <div class="hp" aria-hidden="true"><label for="website">אתר</label><input type="text" id="website" tabindex="-1" autocomplete="off"></div>
+      <button type="submit" id="submitBtn">📨 שליחה</button>
+      <div class="msg" id="resultMsg"></div>
+    </div>
+  </form>
+</div>
+
+<footer>🤖 פותח עם ❤️ על ידי <a href="mailto:yairron@gmail.com">יאיר רון</a></footer>
+
+<script>
+var MAX_FILE_BYTES = 5 * 1024 * 1024;
+// דפדפן בלי CompressionStream שולח את הקובץ לא דחוס - ואז base64 שלו חייב להיכנס במגבלת
+// 6MB של Netlify Functions (ראו netlify/functions/bike-route-submit.js)
+var MAX_UNCOMPRESSED_BYTES = 4 * 1024 * 1024;
+var gpxFile = null;
+var gpxInfo = null;
+var map = null, mapLayer = null;
+
+function haversineM(a, b) {
+  var R = 6371000, toRad = function (d) { return d * Math.PI / 180; };
+  var dLat = toRad(b.lat - a.lat), dLon = toRad(b.lon - a.lon);
+  var h = Math.sin(dLat / 2) ** 2 + Math.cos(toRad(a.lat)) * Math.cos(toRad(b.lat)) * Math.sin(dLon / 2) ** 2;
+  return 2 * R * Math.asin(Math.sqrt(h));
+}
+
+// מקטעי הקובץ: כל <trkseg> מקטע נפרד; rtept/wpt - מקטע יחיד
+function parseGpx(text) {
+  var doc = new DOMParser().parseFromString(text, 'application/xml');
+  if (doc.querySelector('parsererror')) return null;
+  var toPoints = function (els) {
+    return els.map(function (el) {
+      var ele = el.querySelector('ele'), time = el.querySelector('time');
+      return {
+        lat: parseFloat(el.getAttribute('lat')), lon: parseFloat(el.getAttribute('lon')),
+        ele: ele ? parseFloat(ele.textContent) : null,
+        time: time ? new Date(time.textContent.trim()).getTime() : null
+      };
+    }).filter(function (p) { return !isNaN(p.lat) && !isNaN(p.lon); });
+  };
+  var segments = Array.from(doc.querySelectorAll('trkseg')).map(function (s) { return toPoints(Array.from(s.querySelectorAll('trkpt'))); })
+    .filter(function (s) { return s.length; });
+  if (!segments.length) {
+    var els = Array.from(doc.querySelectorAll('rtept'));
+    if (!els.length) els = Array.from(doc.querySelectorAll('wpt'));
+    var pts = toPoints(els);
+    if (pts.length) segments = [pts];
+  }
+  return segments.length ? segments : null;
+}
+
+// טיפוס/ירידה עם סף רעש של 4 מ' - אותו עיקרון כמו calc_elevation_gain_loss בבניית הקטלוג
+function climbDescent(points) {
+  var up = 0, down = 0, ref = null;
+  points.forEach(function (p) {
+    if (p.ele === null || isNaN(p.ele)) return;
+    if (ref === null) { ref = p.ele; return; }
+    if (p.ele - ref >= 4) { up += p.ele - ref; ref = p.ele; }
+    else if (ref - p.ele >= 4) { down += ref - p.ele; ref = p.ele; }
+  });
+  return { up: Math.round(up), down: Math.round(down), hasEle: ref !== null };
+}
+
+// זיהוי נסיעה ברכב - אותו כלל כמו detect_driving ב-build_routes_catalog.py: חלון של 2 דקות
+// עם ממוצע מעל 40 קמ"ש בלי ירידה (או מעל 70 בכל מצב), לפחות דקה, וחציון יציב מעל 40
+function detectDriving(points) {
+  var pts = points.filter(function (p) { return p.time !== null && !isNaN(p.time); });
+  if (pts.length < 2) return [];
+  var cum = [0];
+  for (var i = 1; i < pts.length; i++) cum.push(cum[i - 1] + haversineM(pts[i - 1], pts[i]));
+  var j = 0, k = 0, flags = [];
+  for (i = 0; i < pts.length; i++) {
+    while (pts[j].time < pts[i].time - 60000) j++;
+    if (k < i) k = i;
+    while (k + 1 < pts.length && pts[k + 1].time <= pts[i].time + 60000) k++;
+    var span = (pts[k].time - pts[j].time) / 1000;
+    if (j >= k || span < 30) { flags.push(false); continue; }
+    var kmh = (cum[k] - cum[j]) / span * 3.6;
+    var notDesc = pts[j].ele !== null && pts[k].ele !== null && pts[k].ele - pts[j].ele > -5;
+    flags.push((kmh > 40 && notDesc) || kmh > 70);
+  }
+  var blocks = [];
+  for (i = 0; i < pts.length; i++) {
+    if (!flags[i]) continue;
+    j = i;
+    while (j + 1 < pts.length && flags[j + 1]) j++;
+    var steps = [];
+    for (var m = i; m < j; m++) {
+      var dt = (pts[m + 1].time - pts[m].time) / 1000;
+      if (dt > 0) steps.push((cum[m + 1] - cum[m]) / dt * 3.6);
+    }
+    steps.sort(function (a, b) { return a - b; });
+    if ((pts[j].time - pts[i].time) / 1000 >= 60 && steps.length && steps[Math.floor(steps.length / 2)] > 40) {
+      blocks.push({ start: pts[i].time, end: pts[j].time, km: (cum[j] - cum[i]) / 1000 });
+    }
+    i = j;
+  }
+  return blocks;
+}
+
+function clock(t) {
+  return new Date(t).toLocaleTimeString('he-IL', { hour: '2-digit', minute: '2-digit' });
+}
+
+function showMsg(id, cls, text) {
+  var el = document.getElementById(id);
+  el.className = 'msg' + (text ? ' show ' + cls : '');
+  el.textContent = text || '';
+}
+
+function resetFile(message) {
+  gpxFile = null;
+  gpxInfo = null;
+  document.getElementById('gpxInput').value = '';
+  document.getElementById('fileName').textContent = 'לא נבחר קובץ';
+  document.getElementById('preview').style.display = 'none';
+  showMsg('drivingMsg', '', '');
+  if (message) showMsg('resultMsg', 'error', message);
+}
+
+document.getElementById('gpxInput').addEventListener('change', function () {
+  var file = this.files && this.files[0];
+  showMsg('resultMsg', '', '');
+  if (!file) return;
+  if (file.size > MAX_FILE_BYTES) { resetFile('הקובץ גדול מ-5MB (' + (file.size / 1048576).toFixed(1) + 'MB) ולא ניתן לשלוח אותו.'); return; }
+  var reader = new FileReader();
+  reader.onload = function () {
+    var segments = parseGpx(String(reader.result || ''));
+    if (!segments) { resetFile('הקובץ שנבחר אינו קובץ GPX תקין (לא נמצאו בו נקודות מסלול).'); return; }
+    gpxFile = file;
+    document.getElementById('fileName').textContent = file.name;
+    if (!document.getElementById('routeName').value.trim()) {
+      document.getElementById('routeName').value = file.name.replace(/\.gpx$/i, '');
+    }
+    var all = [].concat.apply([], segments);
+    var distKm = segments.reduce(function (sum, s) {
+      for (var i = 1; i < s.length; i++) sum += haversineM(s[i - 1], s[i]) / 1000;
+      return sum;
+    }, 0);
+    var cd = climbDescent(all);
+    var firstTime = all.find(function (p) { return p.time; });
+    var driving = detectDriving(all);
+    gpxInfo = {
+      distanceKm: Math.round(distKm * 100) / 100,
+      climbM: cd.hasEle ? cd.up : null, descentM: cd.hasEle ? cd.down : null,
+      startLat: all[0].lat, startLon: all[0].lon,
+      recordedDate: firstTime ? new Date(firstTime.time).toISOString().slice(0, 10) : '',
+      drivingNote: driving.map(function (d) { return clock(d.start) + '-' + clock(d.end) + ' (' + d.km.toFixed(1) + ' ק"מ)'; }).join(', ')
+    };
+    document.getElementById('stats').innerHTML =
+      '<span>📏 ' + gpxInfo.distanceKm.toFixed(1) + ' ק"מ</span>' +
+      '<span>' + (cd.hasEle ? '↗' + cd.up + ' ↘' + cd.down + ' מ\'' : 'אין נתוני גובה') + '</span>' +
+      (gpxInfo.recordedDate ? '<span>📅 ' + gpxInfo.recordedDate.split('-').reverse().join('.') + '</span>' : '');
+    showMsg('drivingMsg', 'warn', driving.length
+      ? '🚗 נראה שההקלטה כוללת נסיעה ברכב (' + gpxInfo.drivingNote + '). כדאי לחתוך אותה לפני השליחה, למשל בדף "עריכת מסלול חדש". אפשר גם לשלוח כמו שהוא.'
+      : '');
+    drawPreview(segments);
+  };
+  reader.onerror = function () { resetFile('שגיאה בקריאת הקובץ.'); };
+  reader.readAsText(file);
+});
+
+function drawPreview(segments) {
+  document.getElementById('preview').style.display = 'block';
+  if (!map) {
+    map = L.map('map');
+    L.tileLayer('https://israelhiking.osm.org.il/Tiles/{z}/{x}/{y}.png', {
+      attribution: '© Israel Hiking Map', maxZoom: 16, minNativeZoom: 7
+    }).addTo(map);
+  }
+  if (mapLayer) map.removeLayer(mapLayer);
+  mapLayer = L.polyline(segments.map(function (s) { return s.map(function (p) { return [p.lat, p.lon]; }); }),
+    { color: '#E91E8C', weight: 4 }).addTo(map);
+  setTimeout(function () { map.invalidateSize(); map.fitBounds(mapLayer.getBounds(), { padding: [20, 20] }); }, 50);
+}
+
+function bytesToBase64(bytes) {
+  var s = '';
+  for (var i = 0; i < bytes.length; i += 0x8000) s += String.fromCharCode.apply(null, bytes.subarray(i, i + 0x8000));
+  return btoa(s);
+}
+
+function prepareFile(file) {
+  return file.arrayBuffer().then(function (buf) {
+    if (typeof CompressionStream === 'undefined') {
+      if (file.size > MAX_UNCOMPRESSED_BYTES) throw new Error('הדפדפן הזה לא יכול לשלוח קובץ גדול מ-4MB. אפשר לנסות בדפדפן מעודכן (כרום, אדג\', פיירפוקס או ספארי).');
+      return { base64: bytesToBase64(new Uint8Array(buf)), gzip: false };
+    }
+    var stream = new Blob([buf]).stream().pipeThrough(new CompressionStream('gzip'));
+    return new Response(stream).arrayBuffer().then(function (gz) {
+      return { base64: bytesToBase64(new Uint8Array(gz)), gzip: true };
+    });
+  });
+}
+
+document.getElementById('routeForm').addEventListener('submit', function (e) {
+  e.preventDefault();
+  var routeName = document.getElementById('routeName').value.trim();
+  var email = document.getElementById('senderEmail').value.trim();
+  if (!gpxFile) { showMsg('resultMsg', 'error', 'יש לבחור קובץ GPX.'); return; }
+  if (!routeName) { showMsg('resultMsg', 'error', 'יש למלא שם מסלול.'); return; }
+  if (email && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) { showMsg('resultMsg', 'error', 'כתובת המייל לא תקינה.'); return; }
+
+  var btn = document.getElementById('submitBtn');
+  btn.disabled = true;
+  btn.textContent = '⏳ שולח...';
+  showMsg('resultMsg', '', '');
+  prepareFile(gpxFile).then(function (packed) {
+    var body = Object.assign({
+      routeName: routeName,
+      fileName: gpxFile.name,
+      notes: document.getElementById('notes').value,
+      places: document.getElementById('places').value,
+      senderName: document.getElementById('senderName').value,
+      senderEmail: email,
+      website: document.getElementById('website').value,
+      gpxBase64: packed.base64,
+      gzip: packed.gzip
+    }, gpxInfo);
+    return fetch('/api/bike-route-submit', {
+      method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(body)
+    }).then(function (resp) {
+      return resp.json().catch(function () { return {}; }).then(function (data) {
+        if (!resp.ok || !data.ok) throw new Error(data.error || 'השליחה נכשלה. אפשר לנסות שוב מאוחר יותר.');
+      });
+    });
+  }).then(function () {
+    document.getElementById('routeForm').reset();
+    resetFile();
+    showMsg('resultMsg', 'ok', '✅ המסלול נשלח, תודה! הוא ייבדק ויתווסף לקטלוג.');
+  }).catch(function (err) {
+    showMsg('resultMsg', 'error', err.message || 'השליחה נכשלה. אפשר לנסות שוב מאוחר יותר.');
+  }).then(function () {
+    btn.disabled = false;
+    btn.textContent = '📨 שליחה';
+  });
+});
+</script>
+</body>
+</html>

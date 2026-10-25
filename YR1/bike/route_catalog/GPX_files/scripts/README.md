@@ -550,3 +550,49 @@ commit). מה שנשאר ממנו: `.vscode/settings.json` עדיין מגדיר
   לתחתית הרשימה בכל מיון.
 - **שימו לב:** הרצה עם `--skip-thumbnails` כותבת `"thumbnail": null` לכל המסלולים בקטלוג. אחרי
   בדיקה כזו יש להריץ שוב בלי הדגל לפני commit.
+
+## טופס הוספת מסלול - `YR1/bike/add_route/add_route.html` (25.10.2026)
+
+טופס ציבורי (קישור "➕ הוספת מסלול" בראש הקטלוג) שבו רוכב שולח קובץ GPX עם שם, הערות, מקומות
+עניין ופרטי קשר. ההגשה מגיעה **במייל, עם קובץ ה-GPX המקורי מצורף**. שום דבר לא נכנס לקטלוג
+אוטומטית - מוסיפים ידנית: הקובץ ל-`GPX_files/`, וההערות והמקומות לגיליון `route-notes`.
+
+**הזרימה:** הדף -> `netlify/functions/bike-route-submit.js` (בודק מקור, גודל ושדות, מוסיף טוקן סודי
+ו-IP) -> Google Apps Script (`netlify/bike-route-submit-apps-script.gs.js`: בודק טוקן, מגביל קצב
+5 בשעה לכתובת IP ו-40 ביום, ושולח מייל מהחשבון שלך אליו).
+
+- **בדפדפן, לפני השליחה:** בדיקה שהקובץ עד 5MB ושהוא GPX עם נקודות, תצוגה על מפה עם מרחק, טיפוס
+  ותאריך, ואזהרה על נסיעה ברכב - אותו כלל כמו `detect_driving()` כאן, מועתק ל-JS (לא משותף).
+- **דחיסה:** הדף דוחס את הקובץ ב-gzip (`CompressionStream`) לפני השליחה, כי Netlify מגביל גוף בקשה
+  לפונקציה ל-6MB ו-base64 של קובץ 5MB הוא כ-6.7MB. נבדק: 3.8MB -> 231KB, ואחרי פריסה בצד ה-Apps
+  Script הקובץ זהה בייט-לבייט למקור. דפדפן בלי `CompressionStream` שולח לא דחוס, עד 4MB.
+- **ספאם:** שדה מלכודת מוסתר (`website`) - הגשה שבה הוא מלא מקבלת "הצלחה" ולא נשלחת; והגבלת הקצב
+  ב-Apps Script (`CacheService`).
+
+### הקמה - פעם אחת
+
+1. **יצירת הסקריפט:** [script.google.com](https://script.google.com) (מחובר לחשבון שאליו יגיעו
+   המיילים) -> **New project**. מוחקים את התוכן ההתחלתי ומדביקים את **כל** התוכן של
+   `netlify/bike-route-submit-apps-script.gs.js`. נותנים שם לפרויקט (למעלה, "Untitled project"),
+   למשל "טופס הוספת מסלול", ושומרים (Ctrl+S).
+2. **הטוקן הסודי:** בתפריט השמאלי ⚙️ **Project Settings** -> בתחתית **Script Properties** ->
+   **Add script property**. Property: `SECRET`, Value: מחרוזת אקראית ארוכה -> **Save script properties**.
+3. **אישור הרשאות ומייל בדיקה:** חוזרים לעורך (<>), בוחרים בשורת הכלים למעלה את הפונקציה
+   `testSetup` ולוחצים **Run**. נפתח חלון הרשאות: **Review permissions** -> בוחרים את החשבון ->
+   "Google hasn't verified this app" -> **Advanced** -> **Go to … (unsafe)** -> **Allow**. אמור
+   להגיע מייל "בדיקת טופס הוספת מסלול". (האזהרה רגילה לסקריפט פרטי שכתבת בעצמך.)
+4. **פרסום:** **Deploy** -> **New deployment** -> ⚙️ ליד "Select type" -> **Web app**.
+   Execute as: **Me**. Who has access: **Anyone** (חובה - הפונקציה ב-Netlify קוראת לו בלי התחברות;
+   הטוקן הוא שמגן עליו). **Deploy** -> מעתיקים את **Web app URL** (מסתיים ב-`/exec`).
+5. **Netlify:** Site configuration -> **Environment variables** -> **Add a variable**, פעמיים:
+   - `BIKE_ROUTE_SUBMIT_URL` = הכתובת מסעיף 4
+   - `BIKE_ROUTE_SUBMIT_SECRET` = אותו ערך של `SECRET` מסעיף 2 (לסמן "Contains secret values")
+6. **פריסה מחדש:** משתני סביבה נכנסים לתוקף רק בפריסה הבאה - Deploys -> **Trigger deploy** ->
+   **Deploy site** (או כל push).
+7. **בדיקה:** לשלוח מסלול קטן מהטופס באתר החי ולוודא שהגיע מייל עם הקובץ מצורף.
+
+**עדכון הסקריפט בעתיד:** אחרי עריכה בעורך: Deploy -> **Manage deployments** -> ✏️ -> Version:
+**New version** -> Deploy. כך הכתובת נשארת אותה כתובת (New deployment יוצר כתובת חדשה, ואז צריך
+לעדכן גם את `BIKE_ROUTE_SUBMIT_URL`).
+
+**לפני ההקמה** הטופס מחזיר "שליחת הטופס עדיין לא הוגדרה באתר" (503) - בלי שגיאה אחרת.

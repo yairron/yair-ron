@@ -8,6 +8,9 @@
 /api/gps-temp   /.netlify/functions/gps-upload-temp-store   200
 /api/gps-temp/*   /.netlify/functions/gps-upload-temp-store   200
 
+# bike-route-submit.js: טופס "הוספת מסלול" (YR1/bike/add_route) - מעביר ל-Apps Script ששולח מייל.
+/api/bike-route-submit   /.netlify/functions/bike-route-submit   200
+
 # additional_guides/html/index.html הוא רק עמוד הפניה (בלי תוכן) ל-additional_guides_index.html.
 # היה מטופל עד כה ע"י meta refresh בצד הלקוח בלבד - גוגל דיווח על כך כ-"Redirect error" ב-Search
 # Console, כנראה כי צירוף של הפניית 301 של Netlify (מ-/index ל-/, ראו בדיקת curl) יחד עם הפניית
