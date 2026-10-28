@@ -1,6 +1,6 @@
 {
-  "generated_at": "2026-10-25T15:36:48",
-  "route_count": 612,
+  "generated_at": "2026-10-28T15:41:34",
+  "route_count": 613,
   "routes": [
     {
       "id": 698,
@@ -17330,6 +17330,36 @@
       "removed_points": 0,
       "thumbnail": "thumbnails/ביריה סינגל ביריה מבת יער תכנון.jpg",
       "driving": []
+    },
+    {
+      "id": 757,
+      "file_name": "בית קשת להר תבור 2026-10-26.gpx",
+      "gpx_path": "GPX_files/בית קשת להר תבור 2026-10-26.gpx",
+      "date": "2026-10-26",
+      "date_source": "שם קובץ",
+      "activity": "רכיבת אופניים",
+      "source": "הקלטה",
+      "distance_km": 28.3,
+      "elevation_gain_m": 836,
+      "elevation_loss_m": 835,
+      "point_count": 262,
+      "start_lat": 32.72138,
+      "start_lon": 35.39749,
+      "end_lat": 32.72141,
+      "end_lon": 35.39759,
+      "regions": [
+        "צפון"
+      ],
+      "settlements": [
+        "דבורייה",
+        "שבלי - אום אל-גנם",
+        "בית קשת"
+      ],
+      "settlements_found": true,
+      "invalid": false,
+      "removed_points": 0,
+      "driving": [],
+      "thumbnail": "thumbnails/בית קשת להר תבור 2026-10-26.jpg"
     },
     {
       "id": 716,
