@@ -27,7 +27,7 @@
       html: '<svg width="' + SIZE_PX + '" height="' + SIZE_PX + '" viewBox="0 0 10 10" ' +
             'style="display:block;transform:rotate(' + angleDeg.toFixed(1) + 'deg)">' +
             '<path d="' + path + '" fill="none" stroke="' + color + '" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"/>' +
-            '<path d="' + path + '" fill="none" stroke="#fff" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>' +
+            '<path d="' + path + '" fill="none" stroke="#000" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>' +
             '</svg>'
     });
   }
