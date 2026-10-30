@@ -260,7 +260,14 @@ JORDAN_VALLEY_LON_MAX = 35.65
 JORDAN_VALLEY_LAT_MIN = 31.75   # ~יריחו/צפון ים המלח
 JORDAN_VALLEY_LAT_MAX = 32.75   # ~דרום הכנרת
 
-REGION_ORDER = ["רמת הגולן והחרמון", "בקעת הירדן", "צפון", "מרכז", "ירושלים ומדבר יהודה", "נגב וערבה"]
+# חו"ל (נוסף 30.10.2026): נקודה מחוץ למלבן שתוחם את ישראל (אילת-חרמון, חוף עזה-רמת
+# הגולן). עד אז מסלולים בחו"ל קיבלו אזור ישראלי לפי המשך הקווים מעבר לגבולות -
+# בודפשט/וינה "צפון", לאוס/נפאל "רמת הגולן" או "נגב". מלבן גס מספיק: בפינות שלו
+# יש קצת סיני/ירדן/לבנון, ושם אין מסלולים.
+ISRAEL_LAT_MIN, ISRAEL_LAT_MAX = 29.4, 33.45
+ISRAEL_LON_MIN, ISRAEL_LON_MAX = 34.15, 35.95
+
+REGION_ORDER = ["רמת הגולן והחרמון", "בקעת הירדן", "צפון", "מרכז", "ירושלים ומדבר יהודה", "נגב וערבה", "חו״ל"]
 
 
 def _side_of_line(lat, lon, p1, p2):
@@ -270,6 +277,8 @@ def _side_of_line(lat, lon, p1, p2):
 
 
 def classify_point_region(lat, lon):
+    if not (ISRAEL_LAT_MIN <= lat <= ISRAEL_LAT_MAX and ISRAEL_LON_MIN <= lon <= ISRAEL_LON_MAX):
+        return "חו״ל"
     if lon >= GOLAN_LON_CUTOFF and _side_of_line(lat, lon, ASHKELON, BEIT_GUVRIN) > 0:
         return "רמת הגולן והחרמון"
     if JORDAN_VALLEY_LON_MIN <= lon <= JORDAN_VALLEY_LON_MAX and JORDAN_VALLEY_LAT_MIN <= lat <= JORDAN_VALLEY_LAT_MAX:
