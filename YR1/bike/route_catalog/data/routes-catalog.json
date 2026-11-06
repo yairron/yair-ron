@@ -1,6 +1,6 @@
 {
-  "generated_at": "2026-10-30T08:43:44",
-  "route_count": 615,
+  "generated_at": "2026-11-06T10:36:57",
+  "route_count": 617,
   "routes": [
     {
       "id": 698,
@@ -17740,6 +17740,66 @@
       "removed_points": 0,
       "driving": [],
       "thumbnail": "thumbnails/כניסה לפארק רמות מנשה כחול צהוב משודרג.jpg"
+    },
+    {
+      "id": 760,
+      "file_name": "כפר יהושע סוללים אלוני אבא.gpx",
+      "gpx_path": "GPX_files/כפר יהושע סוללים אלוני אבא.gpx",
+      "date": "2026-11-02",
+      "date_source": "תאריך שינוי הקובץ (גיבוי)",
+      "activity": "לא ברור",
+      "source": "הקלטה",
+      "distance_km": 51.41,
+      "elevation_gain_m": 655,
+      "elevation_loss_m": 653,
+      "point_count": 1507,
+      "start_lat": 32.68149,
+      "start_lon": 35.1249,
+      "end_lat": 32.68153,
+      "end_lon": 35.12479,
+      "regions": [
+        "צפון"
+      ],
+      "settlements": [
+        "אלוני אבא",
+        "כפר יהושע",
+        "אלונים"
+      ],
+      "settlements_found": true,
+      "invalid": false,
+      "removed_points": 0,
+      "driving": [],
+      "thumbnail": "thumbnails/כפר יהושע סוללים אלוני אבא.jpg"
+    },
+    {
+      "id": 761,
+      "file_name": "מ197 צוריאל אלקוש.gpx",
+      "gpx_path": "GPX_files/מ197 צוריאל אלקוש.gpx",
+      "date": "2026-11-03",
+      "date_source": "תאריך שינוי הקובץ (גיבוי)",
+      "activity": "לא ברור",
+      "source": "תכנון מסלול",
+      "distance_km": 23.81,
+      "elevation_gain_m": 1718,
+      "elevation_loss_m": 1722,
+      "point_count": 428,
+      "start_lat": 33.0222,
+      "start_lon": 35.32606,
+      "end_lat": 33.02222,
+      "end_lon": 35.32613,
+      "regions": [
+        "צפון"
+      ],
+      "settlements": [
+        "צוריאל",
+        "חורפיש",
+        "אלקוש"
+      ],
+      "settlements_found": true,
+      "invalid": false,
+      "removed_points": 0,
+      "driving": [],
+      "thumbnail": "thumbnails/מ197 צוריאל אלקוש.jpg"
     },
     {
       "id": 743,
