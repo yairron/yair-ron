@@ -68,6 +68,13 @@ input[type="file"]{display:none}
 .cutter-stats span{font-size:.85rem;color:var(--dark);white-space:nowrap}
 .cutter-stats b{color:var(--primary)}
 .area-dedup{display:flex;align-items:center;gap:6px;font-size:.9rem;font-weight:600;color:var(--dark);cursor:pointer}
+.area-route-list{display:none;background:white;border-radius:16px;margin-bottom:20px;box-shadow:0 6px 18px rgba(0,0,0,.12);padding:12px 16px}
+.area-route-title{font-size:.9rem;font-weight:700;color:var(--dark);margin-bottom:8px}
+.area-route-items{max-height:320px;overflow-y:auto}
+.area-route-item{display:flex;justify-content:space-between;gap:12px;padding:7px 10px;border-radius:8px;cursor:pointer;font-size:.92rem;color:var(--text)}
+.area-route-item:hover{background:var(--light)}
+.area-route-item.selected{background:#FFE7D1;font-weight:700;box-shadow:inset -4px 0 0 #FF6D00}
+.area-route-km{color:var(--primary);white-space:nowrap}
 
 footer{text-align:center;margin-top:20px;padding:20px;color:rgba(255,255,255,.85);font-size:.9rem}
 footer a{color:white;text-decoration:underline;font-weight:600}
@@ -124,20 +131,6 @@ footer a{color:white;text-decoration:underline;font-weight:600}
     <a href="../route_catalog/catalog.html" class="btn-nav" style="background:rgba(255,255,255,.9);color:var(--primary)">🏠 חזרה לראשי</a>
   </div>
 
-  <div class="map-wrap" id="mapWrap">
-    <div id="uploadMap"></div>
-  </div>
-
-  <div class="cutter-toolbar" id="cutterToolbar">
-    <button onclick="cutterUndo()">↩ UNDO</button>
-    <span id="cutterStatus"></span>
-    <div class="cutter-stats">
-      <span>📏 <b id="cutterDist">0.0</b> ק"מ</span>
-      <span>↗ <b id="cutterClimb">0</b> מ'</span>
-      <span>↘ <b id="cutterDescent">0</b> מ'</span>
-    </div>
-  </div>
-
   <div class="cutter-toolbar" id="areaToolbar">
     <span id="areaStatus"></span>
     <div class="cutter-stats" id="areaStats" style="display:none">
@@ -148,6 +141,22 @@ footer a{color:white;text-decoration:underline;font-weight:600}
     <label class="area-dedup"><input type="checkbox" id="areaDedup" checked onchange="refreshAreaNet(false)"> הסרת חפיפות</label>
     <button onclick="downloadAreaNet()">⬇️ הורדת הרשת כ-GPX</button>
     <button onclick="clearArea()">🗑️ ניקוי אזור</button>
+  </div>
+
+  <div class="map-wrap" id="mapWrap">
+    <div id="uploadMap"></div>
+  </div>
+
+  <div class="area-route-list" id="areaRouteList"></div>
+
+  <div class="cutter-toolbar" id="cutterToolbar">
+    <button onclick="cutterUndo()">↩ UNDO</button>
+    <span id="cutterStatus"></span>
+    <div class="cutter-stats">
+      <span>📏 <b id="cutterDist">0.0</b> ק"מ</span>
+      <span>↗ <b id="cutterClimb">0</b> מ'</span>
+      <span>↘ <b id="cutterDescent">0</b> מ'</span>
+    </div>
   </div>
 </div>
 
@@ -186,7 +195,15 @@ var areaCornerMarker = null;
 var areaRect = null;         // L.rectangle - תצוגה מקדימה בזמן הבחירה, ואחר כך גבול האזור
 var areaNetLayer = null;     // L.layerGroup של קווי הרשת
 var areaSegments = null;     // [[{lat,lon}, ...], ...] - המקטעים המוצגים/להורדה (אחרי הסרת חפיפות, אם מסומנת)
-var areaRawResult = null;    // {segments, routeCount} - לפני הסרת חפיפות, כדי שהחלפת תיבת הסימון לא תדרוש בחירה מחדש
+var areaRawResult = null;    // {segments, routeCount, byRoute} - לפני הסרת חפיפות, כדי שהחלפת תיבת הסימון לא תדרוש בחירה מחדש
+// רשימת המסלולים שמתחת למפה (נוסף 07.11.2026): לחיצה על מסלול מסמנת בצבע בולט את
+// **כל** החלק שלו באזור - מתוך byRoute, לפני הסרת חפיפות - גם קטעים שהוסתרו ברשת
+// כי מסלול אחר עובר באותו שביל. הסימון לא משנה את הזום.
+var ROUTE_CATALOG_URL = '../route_catalog/data/routes-catalog.json';
+var routeNamesPromise = null;
+var areaHighlightLayer = null;
+var areaSelectedRouteId = null;
+var AREA_HIGHLIGHT_COLOR = '#FF6D00';
 // הסרת חפיפות: קטע שעובר במרחק עד AREA_DEDUP_TOL_M מקטע שכבר נשמר - נחשב אותו
 // שביל ומושמט. 15 מ' = סבולת הפישוט של routes-tracks.json; נבדק על רשת אמיתית
 // (אזור קורן-כברי, 430 ק"מ / 209 מקטעים) מול 10 ו-5 מ' - בספים הנמוכים אותו
@@ -783,10 +800,13 @@ function finishAreaSelection(bounds) {
   setAreaStatus('טוען את קווי המסלולים...');
 
   var box = { south: bounds.getSouth(), west: bounds.getWest(), north: bounds.getNorth(), east: bounds.getEast() };
-  loadRouteTracks().then(function (tracks) {
+  // שמות המסלולים לרשימה - כישלון בטעינתם לא מפיל את הרשת, הרשימה תציג רק מספרים
+  var namesPromise = loadRouteNames().catch(function () { return {}; });
+  Promise.all([loadRouteTracks(), namesPromise]).then(function (res) {
     if (!areaRect) return; // האזור נוקה בזמן הטעינה
-    areaRawResult = clipTracksToBox(tracks, box);
+    areaRawResult = clipTracksToBox(res[0], box);
     refreshAreaNet(true);
+    renderAreaRouteList(res[1]);
     updateActionsRowVisibility();
   }).catch(function (err) {
     setAreaStatus('⚠ שגיאה בטעינת קווי המסלולים (' + (err.message || err) + ')');
@@ -801,6 +821,21 @@ function loadRouteTracks() {
       .catch(function (err) { routeTracksPromise = null; throw err; });
   }
   return routeTracksPromise;
+}
+
+// {"<id>": "<שם הקובץ בלי .gpx>"} מתוך קטלוג המסלולים - נטען פעם אחת לכל העמוד
+function loadRouteNames() {
+  if (!routeNamesPromise) {
+    routeNamesPromise = fetch(ROUTE_CATALOG_URL)
+      .then(function (r) { if (!r.ok) throw new Error('HTTP ' + r.status); return r.json(); })
+      .then(function (catalog) {
+        var names = {};
+        catalog.routes.forEach(function (r) { names[r.id] = r.file_name.replace(/\.gpx$/i, ''); });
+        return names;
+      })
+      .catch(function (err) { routeNamesPromise = null; throw err; });
+  }
+  return routeNamesPromise;
 }
 
 // חיתוך קטע (Liang-Barsky) למלבן, עם lon/lat כקואורדינטות מישוריות (מספיק
@@ -833,12 +868,12 @@ function clipSegmentToBox(lat0, lon0, lat1, lon1, box) {
 // כמה מקטעים נפרדים: [[lat,lon,...],[lat,lon,...]]). כל ריצה רציפה של קטעים בתוך
 // המלבן הופכת למקטע נפרד; יציאה מהמלבן (או סוף מקטע) סוגרת את המקטע.
 function clipTracksToBox(tracks, box) {
-  var segments = [], routeIds = {};
+  var segments = [], byRoute = {};
   Object.keys(tracks).forEach(function (id) {
     var lines = Array.isArray(tracks[id][0]) ? tracks[id] : [tracks[id]];
     var run = null;
     function closeRun() {
-      if (run && run.length >= 2) { segments.push(run); routeIds[id] = true; }
+      if (run && run.length >= 2) { segments.push(run); (byRoute[id] = byRoute[id] || []).push(run); }
       run = null;
     }
     lines.forEach(function (flat) {
@@ -852,7 +887,40 @@ function clipTracksToBox(tracks, box) {
       closeRun();
     });
   });
-  return { segments: segments, routeCount: Object.keys(routeIds).length };
+  return { segments: segments, routeCount: Object.keys(byRoute).length, byRoute: byRoute };
+}
+
+// רשימת המסלולים שעוברים באזור, מהארוך לקצר לפי אורך החלק שלהם בתוך האזור
+function renderAreaRouteList(names) {
+  var box = document.getElementById('areaRouteList');
+  var byRoute = areaRawResult.byRoute;
+  var items = Object.keys(byRoute).map(function (id) {
+    var km = 0;
+    byRoute[id].forEach(function (seg) { km += RouteEditor.computeStats(seg).distanceKm; });
+    return { id: id, km: km, name: names[id] || '' };
+  }).sort(function (a, b) { return b.km - a.km; });
+  if (!items.length) { box.innerHTML = ''; box.style.display = 'none'; return; }
+  box.innerHTML =
+    '<div class="area-route-title">🚲 המסלולים ברשת (' + items.length + ') - לחיצה על מסלול מסמנת אותו במפה</div>' +
+    '<div class="area-route-items">' + items.map(function (it) {
+      return '<div class="area-route-item" data-id="' + escapeHtml(it.id) + '" onclick="toggleAreaRoute(this.dataset.id)">' +
+        '<span>#' + escapeHtml(it.id) + ' ' + escapeHtml(it.name) + '</span>' +
+        '<span class="area-route-km">' + it.km.toFixed(1) + ' ק"מ באזור</span></div>';
+    }).join('') + '</div>';
+  box.style.display = 'block';
+}
+
+// לחיצה על מסלול ברשימה: מסמנת אותו (ומבטלת סימון קודם); לחיצה חוזרת מבטלת
+function toggleAreaRoute(id) {
+  if (areaHighlightLayer) { mapInstance.removeLayer(areaHighlightLayer); areaHighlightLayer = null; }
+  areaSelectedRouteId = areaSelectedRouteId === id ? null : id;
+  document.querySelectorAll('#areaRouteList .area-route-item').forEach(function (el) {
+    el.classList.toggle('selected', el.dataset.id === areaSelectedRouteId);
+  });
+  if (!areaSelectedRouteId) return;
+  areaHighlightLayer = L.polyline(areaRawResult.byRoute[id].map(function (seg) {
+    return seg.map(function (p) { return [p.lat, p.lon]; });
+  }), { color: AREA_HIGHLIGHT_COLOR, weight: 6, opacity: 1 }).addTo(mapInstance);
 }
 
 // מציג את הרשת לפי מצב תיבת "הסרת חפיפות" - נקראת גם בסיום בחירת אזור וגם
@@ -956,6 +1024,7 @@ function drawAreaNet(result, fit) {
     L.polyline(seg.map(function (p) { return [p.lat, p.lon]; }), { color: '#7C4DFF', weight: 3, opacity: 0.85 }).addTo(areaNetLayer);
     totalKm += RouteEditor.computeStats(seg).distanceKm;
   });
+  if (areaHighlightLayer) areaHighlightLayer.bringToFront(); // הרשת צוירה מחדש (הסרת חפיפות) - הסימון נשאר מעליה
   if (fit) mapInstance.fitBounds(areaRect.getBounds(), { padding: [20, 20] });
 
   document.getElementById('areaSegCount').textContent = result.segments.length;
@@ -984,11 +1053,14 @@ function clearArea() {
   if (mapInstance) {
     mapInstance.doubleClickZoom.enable();
     mapInstance.getContainer().style.cursor = '';
-    [areaCornerMarker, areaRect, areaNetLayer].forEach(function (l) { if (l) mapInstance.removeLayer(l); });
+    [areaCornerMarker, areaRect, areaNetLayer, areaHighlightLayer].forEach(function (l) { if (l) mapInstance.removeLayer(l); });
   }
-  areaCornerMarker = areaRect = areaNetLayer = null;
+  areaCornerMarker = areaRect = areaNetLayer = areaHighlightLayer = null;
+  areaSelectedRouteId = null;
   document.getElementById('areaToolbar').style.display = 'none';
   document.getElementById('areaStats').style.display = 'none';
+  document.getElementById('areaRouteList').style.display = 'none';
+  document.getElementById('areaRouteList').innerHTML = '';
 }
 
 async function downloadRouteFile(id) {
