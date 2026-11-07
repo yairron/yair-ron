@@ -12,10 +12,18 @@
 //
 // המייל נשלח **מהחשבון שמריץ את הסקריפט אל אותו חשבון** (Execute as: Me) - לכן אין כאן
 // כתובת מייל קשיחה. הטוקן הסודי נשמר ב-Script Properties בשם SECRET, לא בקוד.
+//
+// גיליון route-notes (נוסף 07.11.2026): ההערות והמקומות מההגשה נכתבים כשורה בלשונית
+// התגובות של גיליון route-notes (המקושר לטופס Google של הערות המסלולים), והקובץ המצורף
+// במייל נקרא בשם המסלול - אותו מפתח שנכתב לגיליון. כך שמירת הקובץ כמו שהוא ב-GPX_files
+// מספיקה כדי ש-sync_route_notes.py יתאים את ההערות למסלול (ההתאמה לפי שם קובץ מדויק).
+// ההערות מופיעות באתר רק אחרי שהקובץ נוסף לקטלוג - עד אז השורה רק יושבת בגיליון.
 
 const MAX_GPX_BYTES = 5 * 1024 * 1024;   // אותו מקסימום כמו בטופס (5MB)
 const MAX_PER_IP_PER_HOUR = 5;          // הגנה מספאם - מאותה כתובת IP
 const MAX_PER_DAY = 40;                 // תקרה כוללת, הרבה מתחת למכסת Gmail (100 מיילים ביום)
+const ROUTE_NOTES_SHEET_ID = '15Qwh3dBu-TIcuiyIzyUREnpfVEUcB2d4o9liY3gmBgg';
+const ROUTE_NOTES_TAB = 'Form Responses 1';   // אם שמה ישתנה - נופלים ללשונית הראשונה
 
 function doPost(e) {
   try {
@@ -46,8 +54,11 @@ function doPost(e) {
     if (gpxBlob.getBytes().length > MAX_GPX_BYTES) {
       return jsonResponse({ ok: false, error: 'file too large' });
     }
-    gpxBlob.setName(/\.gpx$/i.test(fileName) ? fileName : fileName + '.gpx');
+    const routeKey = routeFileKey(routeName);
+    gpxBlob.setName(routeKey + '.gpx');
     gpxBlob.setContentType('application/gpx+xml');
+
+    const notesStatus = appendRouteNotes(routeKey, clean(body.notes, 3000), clean(body.places, 500));
 
     const senderEmail = clean(body.senderEmail, 200);
     const validSender = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(senderEmail);
@@ -56,7 +67,7 @@ function doPost(e) {
     const mail = {
       to: owner,
       subject: '🚵 מסלול חדש לקטלוג: ' + routeName,
-      htmlBody: buildHtml(body, routeName, fileName),
+      htmlBody: buildHtml(body, routeName, fileName, routeKey, notesStatus),
       attachments: [gpxBlob],
       name: 'קטלוג מסלולים - טופס הוספה',
     };
@@ -84,10 +95,42 @@ function checkRateLimit(ip) {
   return null;
 }
 
-function buildHtml(body, routeName, fileName) {
+// שם קובץ ה-GPX (בלי .gpx) שנגזר משם המסלול - משמש גם כמפתח השורה בגיליון route-notes.
+// תווים שאסורים בשם קובץ מוחלפים ב-_, ונקודות/רווחים בסוף מוסרים (Windows לא מרשה).
+// שם שכולו מספר מקבל תחילית - sync_route_notes.py היה מפרש אותו כמספר מסלול בקטלוג.
+function routeFileKey(routeName) {
+  let key = routeName.replace(/[\\/:*?"<>|]/g, '_').replace(/[. ]+$/, '').trim();
+  if (/^#?\d+$/.test(key)) key = 'מסלול ' + key;
+  return key || 'route';
+}
+
+// מוסיף שורה ללשונית התגובות: חותמת זמן, שם קובץ, הערה, מקומות - אותו סדר עמודות כמו
+// בטופס. מחזיר תיאור קצר למייל. כישלון לא מפיל את ההגשה - המייל עדיין נשלח, עם ציון שהשורה
+// לא נוספה, כדי להוסיף אותה ידנית.
+function appendRouteNotes(routeKey, notes, places) {
+  if (!notes && !places) return 'אין הערות או מקומות - לא נוספה שורה לגיליון route-notes.';
+  try {
+    const ss = SpreadsheetApp.openById(ROUTE_NOTES_SHEET_ID);
+    const sheet = ss.getSheetByName(ROUTE_NOTES_TAB) || ss.getSheets()[0];
+    sheet.appendRow([new Date(), asText(routeKey), asText(notes), asText(places)]);
+    return 'ההערות והמקומות נוספו לגיליון route-notes.';
+  } catch (err) {
+    return 'שגיאה בהוספה לגיליון route-notes (' + String(err && err.message || err) +
+      ') - יש להוסיף את ההערות והמקומות ידנית.';
+  }
+}
+
+// טקסט שמתחיל ב-= + - @ היה מתפרש בגיליון כנוסחה. גרש בהתחלה שומר אותו כטקסט רגיל
+// (הגרש לא מוצג בגיליון ולא נכלל בייצוא ה-CSV ש-sync_route_notes.py קורא).
+function asText(s) {
+  return /^[=+\-@]/.test(s) ? "'" + s : s;
+}
+
+function buildHtml(body, routeName, fileName, routeKey, notesStatus) {
   const rows = [
     ['שם המסלול', esc(routeName)],
-    ['קובץ', esc(fileName)],
+    ['קובץ מצורף', esc(routeKey + '.gpx')],
+    ['שם הקובץ המקורי', esc(fileName)],
     ['מרחק', body.distanceKm != null ? esc(String(body.distanceKm)) + ' ק"מ' : ''],
     ['טיפוס / ירידה', body.climbM != null ? '↗' + esc(String(body.climbM)) + ' ↘' + esc(String(body.descentM)) + ' מ\'' : ''],
     ['תאריך ההקלטה', esc(clean(body.recordedDate, 20))],
@@ -107,8 +150,9 @@ function buildHtml(body, routeName, fileName) {
   return '<div dir="rtl" style="font-family:Arial,sans-serif;font-size:14px">' +
     '<h2 style="color:#1F6B4C">מסלול חדש הוגש בטופס "הוספת מסלול"</h2>' +
     '<table style="border-collapse:collapse;border:1px solid #CFE0D3">' + tr + '</table>' +
-    '<p style="color:#5C7A6B">קובץ ה-GPX מצורף. להוספה לקטלוג: לשמור אותו בתיקיית GPX_files, ' +
-    'ולהוסיף את ההערות והמקומות לגיליון route-notes.</p></div>';
+    '<p style="color:#5C7A6B">' + esc(notesStatus) + '</p>' +
+    '<p style="color:#5C7A6B">להוספה לקטלוג: לשמור את קובץ ה-GPX המצורף בתיקיית GPX_files ' +
+    '<strong>בלי לשנות את שמו</strong> - השם זהה לשורה בגיליון, וכך ההערות מתחברות למסלול.</p></div>';
 }
 
 function startLink(lat, lon) {
@@ -131,8 +175,11 @@ function jsonResponse(obj) {
   return ContentService.createTextOutput(JSON.stringify(obj)).setMimeType(ContentService.MimeType.JSON);
 }
 
-// להרצה ידנית מהעורך (בחירת testSetup ולחיצה על Run) - מבקש את הרשאת שליחת המייל
-// ושולח אליך מייל בדיקה קצר, בלי לעבור דרך האתר.
+// להרצה ידנית מהעורך (בחירת testSetup ולחיצה על Run) - מבקש את ההרשאות (שליחת מייל וגישה
+// לגיליון route-notes) ושולח אליך מייל בדיקה קצר, בלי לעבור דרך האתר. לא כותב לגיליון.
 function testSetup() {
-  MailApp.sendEmail(Session.getEffectiveUser().getEmail(), 'בדיקת טופס הוספת מסלול', 'הסקריפט מורשה לשלוח מיילים.');
+  const ss = SpreadsheetApp.openById(ROUTE_NOTES_SHEET_ID);
+  const sheet = ss.getSheetByName(ROUTE_NOTES_TAB) || ss.getSheets()[0];
+  MailApp.sendEmail(Session.getEffectiveUser().getEmail(), 'בדיקת טופס הוספת מסלול',
+    'הסקריפט מורשה לשלוח מיילים ולגשת לגיליון "' + ss.getName() + '" (לשונית "' + sheet.getName() + '").');
 }
