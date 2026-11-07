@@ -38,7 +38,7 @@ import urllib.request
 from pathlib import Path
 
 # אותו מזהה גם ב-NOTES_SHEET_URL בתוך catalog.html (קישור העריכה) - לעדכן בשניהם
-SHEET_ID = "1zbwalOSD41pD131tzPATiq2xUdXIe1IYPecbddzQNPg"
+SHEET_ID = "15Qwh3dBu-TIcuiyIzyUREnpfVEUcB2d4o9liY3gmBgg"
 SHEET_CSV_URL = f"https://docs.google.com/spreadsheets/d/{SHEET_ID}/export?format=csv"
 
 DATA_DIR = Path(__file__).resolve().parent.parent.parent / "data"
