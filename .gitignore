@@ -20,6 +20,7 @@ YR1/bike/route_catalog/GPX_files/scripts/support_data/catalog_build_cache.json
 # Drive יוצר לכל Google Sheet/Doc/Slides בתיקייה. מכילים רק מזהה ומצביע לקובץ
 # בענן, לא את התוכן עצמו - אין טעם לגרסן אותם.
 *.gsheet
+*.gform
 *.gdoc
 *.gslides
 
