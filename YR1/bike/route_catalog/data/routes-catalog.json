@@ -1,6 +1,6 @@
 {
-  "generated_at": "2026-11-07T14:47:02",
-  "route_count": 617,
+  "generated_at": "2026-11-09T07:44:13",
+  "route_count": 616,
   "routes": [
     {
       "id": 698,
@@ -14754,36 +14754,6 @@
       "driving": []
     },
     {
-      "id": 494,
-      "file_name": "2026-04-11_געתון_כברי_געתון.gpx",
-      "gpx_path": "GPX_files/2026-04-11_געתון_כברי_געתון.gpx",
-      "date": "2026-04-11",
-      "date_source": "שם קובץ",
-      "activity": "לא ברור (מהירות חריגה: 221.6 קמ״ש)",
-      "source": "הקלטה",
-      "distance_km": 23.69,
-      "elevation_gain_m": 448,
-      "elevation_loss_m": 455,
-      "point_count": 5247,
-      "start_lat": 33.00513,
-      "start_lon": 35.21519,
-      "end_lat": 33.00509,
-      "end_lon": 35.21543,
-      "regions": [
-        "צפון"
-      ],
-      "settlements": [
-        "געתון",
-        "יחיעם",
-        "כברי"
-      ],
-      "settlements_found": true,
-      "invalid": false,
-      "removed_points": 190,
-      "thumbnail": "thumbnails/2026-04-11_געתון_כברי_געתון.jpg",
-      "driving": []
-    },
-    {
       "id": 495,
       "file_name": "2026-04-15_געתון_יחיעם.gpx",
       "gpx_path": "GPX_files/2026-04-15_געתון_יחיעם.gpx",
@@ -15080,36 +15050,6 @@
       "invalid": false,
       "removed_points": 0,
       "thumbnail": "thumbnails/2026-05-19_כברי_גשר הזיו_שבי ציון_שייח' דנון.jpg",
-      "driving": []
-    },
-    {
-      "id": 510,
-      "file_name": "2026-05-23_געתון_נווה זיו_כברי_מעונה_געתון.gpx",
-      "gpx_path": "GPX_files/2026-05-23_געתון_נווה זיו_כברי_מעונה_געתון.gpx",
-      "date": "2026-05-23",
-      "date_source": "שם קובץ",
-      "activity": "לא ברור (מהירות חריגה: 571.8 קמ״ש)",
-      "source": "הקלטה",
-      "distance_km": 43.0,
-      "elevation_gain_m": 1873,
-      "elevation_loss_m": 1840,
-      "point_count": 10775,
-      "start_lat": 33.0051,
-      "start_lon": 35.21544,
-      "end_lat": 33.00506,
-      "end_lon": 35.21543,
-      "regions": [
-        "צפון"
-      ],
-      "settlements": [
-        "עין יעקב",
-        "געתון",
-        "מעונה"
-      ],
-      "settlements_found": true,
-      "invalid": false,
-      "removed_points": 2252,
-      "thumbnail": "thumbnails/2026-05-23_געתון_נווה זיו_כברי_מעונה_געתון.jpg",
       "driving": []
     },
     {
@@ -18036,6 +17976,35 @@
       "removed_points": 0,
       "driving": [],
       "thumbnail": "thumbnails/סינגל יחיעם עליון-מחצבת אשרת-סינגל בני.jpg"
+    },
+    {
+      "id": 764,
+      "file_name": "סינגל כפר-ורדים_יחיעם.gpx",
+      "gpx_path": "GPX_files/סינגל כפר-ורדים_יחיעם.gpx",
+      "date": "2026-11-07",
+      "date_source": "תאריך שינוי הקובץ (גיבוי)",
+      "activity": "לא ברור",
+      "source": "תכנון מסלול",
+      "distance_km": 1.85,
+      "elevation_gain_m": 34,
+      "elevation_loss_m": 102,
+      "point_count": 170,
+      "start_lat": 33.00355,
+      "start_lon": 35.24506,
+      "end_lat": 32.99852,
+      "end_lon": 35.2293,
+      "regions": [
+        "צפון"
+      ],
+      "settlements": [
+        "יחיעם",
+        "עין יעקב"
+      ],
+      "settlements_found": true,
+      "invalid": false,
+      "removed_points": 0,
+      "driving": [],
+      "thumbnail": "thumbnails/סינגל כפר-ורדים_יחיעם.jpg"
     },
     {
       "id": 714,
