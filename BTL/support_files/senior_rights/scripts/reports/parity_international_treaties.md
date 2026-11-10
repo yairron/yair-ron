@@ -8,24 +8,16 @@
 
 | מצב | טקסט זהה | מבנה DOM | הבדל חזותי (מידע בלבד) |
 |---|---|---|---|
-| accordion_0_open | ✅ | ❌ | 0.0325% |
-| accordion_1_open | ✅ | ❌ | 0.0278% |
-| accordion_2_open | ✅ | ❌ | 0.0139% |
-| accordion_3_open | ✅ | ❌ | 0.0388% |
-| accordion_4_open | ✅ | ❌ | 0.0864% |
-| accordion_5_open | ✅ | ❌ | 0.0693% |
-| accordion_6_open | ✅ | ❌ | 0.0143% |
-| closed | ✅ | ❌ | 0.0191% |
-| sub_accordion_0_open | ✅ | ❌ | 7.6477% |
+| accordion_0_open | ✅ | ✅ | 0.1076% |
+| accordion_1_open | ✅ | ✅ | 0.0271% |
+| accordion_2_open | ✅ | ✅ | 0.0809% |
+| accordion_3_open | ✅ | ✅ | 0.222% |
+| accordion_4_open | ✅ | ✅ | 0.123% |
+| accordion_5_open | ✅ | ✅ | 0.051% |
+| accordion_6_open | ✅ | ✅ | 0.1932% |
+| closed | ✅ | ✅ | 0.1507% |
+| sub_accordion_0_open | ✅ | ✅ | 0.2334% |
 
-## ממצאים / כשלים
+## ממצאים
 
-- [accordion_0_open] מבנה ה-DOM (בתוך ['#content', '.container', 'body']) שונה (outerHTML לא זהה, ולא רק הוספת span data-nii)
-- [accordion_1_open] מבנה ה-DOM (בתוך ['#content', '.container', 'body']) שונה (outerHTML לא זהה, ולא רק הוספת span data-nii)
-- [accordion_2_open] מבנה ה-DOM (בתוך ['#content', '.container', 'body']) שונה (outerHTML לא זהה, ולא רק הוספת span data-nii)
-- [accordion_3_open] מבנה ה-DOM (בתוך ['#content', '.container', 'body']) שונה (outerHTML לא זהה, ולא רק הוספת span data-nii)
-- [accordion_4_open] מבנה ה-DOM (בתוך ['#content', '.container', 'body']) שונה (outerHTML לא זהה, ולא רק הוספת span data-nii)
-- [accordion_5_open] מבנה ה-DOM (בתוך ['#content', '.container', 'body']) שונה (outerHTML לא זהה, ולא רק הוספת span data-nii)
-- [accordion_6_open] מבנה ה-DOM (בתוך ['#content', '.container', 'body']) שונה (outerHTML לא זהה, ולא רק הוספת span data-nii)
-- [closed] מבנה ה-DOM (בתוך ['#content', '.container', 'body']) שונה (outerHTML לא זהה, ולא רק הוספת span data-nii)
-- [sub_accordion_0_open] מבנה ה-DOM (בתוך ['#content', '.container', 'body']) שונה (outerHTML לא זהה, ולא רק הוספת span data-nii)
+הטקסט ומבנה ה-DOM זהים לחלוטין בכל המצבים שנבדקו (הקריטריון הקובע). ראו טבלה למידע חזותי בלבד.

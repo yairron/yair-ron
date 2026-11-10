@@ -440,15 +440,15 @@
 <div class="sub-accordion" data-level="2"><div class="sub-accordion-header"><div class="sub-accordion-title">מבחן נכסים ורכב</div></div><div class="sub-accordion-content"><div class="sub-accordion-body"><table class="data-table">
   <thead><tr><th>פריט</th><th>ערך (₪)</th></tr></thead>
   <tbody>
-    <tr><td>תקרת שווי רכב לגימלה מלאה</td><td class="amount">46,138</td></tr>
-    <tr><td>תקרת  שווי רכב לגימלה חלקית</td><td class="amount">65,343</td></tr>
-    <tr><td>שווי רכב פטור לעובד לפני גיל פרישה עם הכנסה חודשית מעל 3,442 ₪</td><td class="amount">19,610</td></tr>
-    <tr><td>שווי רכב פטור לעובד מגיל פרישה (אתה או בן/בת זוגך בגיל פרישה) עם הכנסה חודשית מעל 2,341 ₪</td><td class="amount">19,610</td></tr>
-    <tr><td>שווי רכב פטור לאינו עובד, או עובד לפני גיל פרישה עם הכנסה חודשית עד 3,442 ₪</td><td class="amount">11,227</td></tr>
-    <tr><td>שווי רכב פטור לעובד מגיל פרישה (אתה או בן/בת זוגך בגיל פרישה) עם הכנסה חודשית עד 2,341 ₪</td><td class="amount">11,227</td></tr>
+    <tr><td>תקרת שווי רכב שוללת זכאות</td><td class="amount">65,343</td></tr>
+    <tr><td>קיזוז משווי רכב לעובד לפני גיל פרישה עם הכנסה חודשית מעל 3,442 ₪</td><td class="amount">19,610</td></tr>
+    <tr><td>קיזוז משווי רכב לעובד מגיל פרישה (אתה או בן/בת זוגך בגיל פרישה) עם הכנסה חודשית מעל 2,341 ₪</td><td class="amount">19,610</td></tr>
+    <tr><td>קיזוז משווי רכב לאינו עובד, או עובד לפני גיל פרישה עם הכנסה חודשית עד 3,442 ₪</td><td class="amount">11,227</td></tr>
+    <tr><td>קיזוז משווי רכב לעובד מגיל פרישה (אתה או בן/בת זוגך בגיל פרישה) עם הכנסה חודשית עד 2,341 ₪</td><td class="amount">11,227</td></tr>
     <tr><td>שיעור חישוב שווי הרכב להפחתה</td><td class="pct">3%</td></tr>
   </tbody>
-</table><p class="note"><strong>אם אתה עובד ומשתכר בחודש יותר מ-3,442 ש"ח ועדיין לא הגעת לגיל הפרישה; או שאתה או בת זוגך הגעתם לגיל פרישה ואתה עובד ומשתכר יותר מ-2,341 ש"ח בחודש - יופחתו מערך הרכב סכום הזיכוי בסך 19,610 ש"ח.</strong></p><p class="note"><strong>אם אינך עובד, או שאתה עובד ומשתכר בחודש פחות מ-3,442 ש"ח, ועדיין לא הגעת לגיל הפרישה; או שאתה או בת זוגך הגעתם לגיל פרישה ומשתכרים בחודש פחות מ-2,341 ש"ח - יופחתו מערך הרכב סכום הזיכוי בסך 11,227 ש"ח.</strong></p></div></div></div>
+</table><p class="note"><strong>נחשב כעובד — הכנסה מעבודה מעל 3,442 ש"ח בחודש לפני גיל פרישה, או מעל 2,341 ש"ח בחודש מגיל פרישה (אתה או בן/בת זוגך): יופחת משווי הרכב קיזוז בסך 19,610 ש"ח.</strong></p><p class="note"><strong>נחשב כלא עובד — הכנסה מעבודה עד הסכומים האלה, או ללא הכנסה מעבודה: יופחת משווי הרכב קיזוז בסך 11,227 ש"ח.</strong></p><p class="note"><strong>שווי רכב עד סכום הקיזוז — אין השפעה על הקצבה. מעל סכום הקיזוז — 3% מהיתרה יורדים מקצבת השלמת ההכנסה החודשית. שווי רכב מעל 65,343 ש"ח שולל זכאות.</strong></p></div></div></div>
+
 
 
 
@@ -1044,17 +1044,17 @@ function contentIncomeSupplement() {
 <table class="data-table">
   <thead><tr><th>פריט</th><th>ערך (₪)</th></tr></thead>
   <tbody>
-    <tr><td>תקרת שווי רכב לגימלה מלאה</td><td class="amount">${fmt(g('vehicle_threshold_base'))}</td></tr>
-    <tr><td>תקרת  שווי רכב לגימלה חלקית</td><td class="amount">${fmt(g('vehicle_threshold_extended'))}</td></tr>
-    <tr><td>שווי רכב פטור לעובד לפני גיל פרישה עם הכנסה חודשית מעל ${fmt(g('housing_allowance_worker_before_retirement'))} ₪</td><td class="amount">${fmt(g('vehicle_exempt_worker'))}</td></tr>
-    <tr><td>שווי רכב פטור לעובד מגיל פרישה (אתה או בן/בת זוגך בגיל פרישה) עם הכנסה חודשית מעל ${fmt(g('housing_allowance_worker_after_retirement'))} ₪</td><td class="amount">${fmt(g('vehicle_exempt_worker'))}</td></tr>
-    <tr><td>שווי רכב פטור לאינו עובד, או עובד לפני גיל פרישה עם הכנסה חודשית עד ${fmt(g('housing_allowance_worker_before_retirement'))} ₪</td><td class="amount">${fmt(g('vehicle_exempt_non_worker'))}</td></tr>
-    <tr><td>שווי רכב פטור לעובד מגיל פרישה (אתה או בן/בת זוגך בגיל פרישה) עם הכנסה חודשית עד ${fmt(g('housing_allowance_worker_after_retirement'))} ₪</td><td class="amount">${fmt(g('vehicle_exempt_non_worker'))}</td></tr>
+    <tr><td>תקרת שווי רכב שוללת זכאות</td><td class="amount">${fmt(g('vehicle_threshold_extended'))}</td></tr>
+    <tr><td>קיזוז משווי רכב לעובד לפני גיל פרישה עם הכנסה חודשית מעל ${fmt(g('housing_allowance_worker_before_retirement'))} ₪</td><td class="amount">${fmt(g('vehicle_exempt_worker'))}</td></tr>
+    <tr><td>קיזוז משווי רכב לעובד מגיל פרישה (אתה או בן/בת זוגך בגיל פרישה) עם הכנסה חודשית מעל ${fmt(g('housing_allowance_worker_after_retirement'))} ₪</td><td class="amount">${fmt(g('vehicle_exempt_worker'))}</td></tr>
+    <tr><td>קיזוז משווי רכב לאינו עובד, או עובד לפני גיל פרישה עם הכנסה חודשית עד ${fmt(g('housing_allowance_worker_before_retirement'))} ₪</td><td class="amount">${fmt(g('vehicle_exempt_non_worker'))}</td></tr>
+    <tr><td>קיזוז משווי רכב לעובד מגיל פרישה (אתה או בן/בת זוגך בגיל פרישה) עם הכנסה חודשית עד ${fmt(g('housing_allowance_worker_after_retirement'))} ₪</td><td class="amount">${fmt(g('vehicle_exempt_non_worker'))}</td></tr>
     <tr><td>שיעור חישוב שווי הרכב להפחתה</td><td class="pct">${g('vehicle_deduction_rate') * 100}%</td></tr>
   </tbody>
 </table>
-<p class="note"><strong>אם אתה עובד ומשתכר בחודש יותר מ-3,442 ש"ח ועדיין לא הגעת לגיל הפרישה; או שאתה או בת זוגך הגעתם לגיל פרישה ואתה עובד ומשתכר יותר מ-2,341 ש"ח בחודש - יופחתו מערך הרכב סכום הזיכוי בסך 19,610 ש"ח.</strong></p>
-<p class="note"><strong>אם אינך עובד, או שאתה עובד ומשתכר בחודש פחות מ-3,442 ש"ח, ועדיין לא הגעת לגיל הפרישה; או שאתה או בת זוגך הגעתם לגיל פרישה ומשתכרים בחודש פחות מ-2,341 ש"ח - יופחתו מערך הרכב סכום הזיכוי בסך 11,227 ש"ח.</strong></p>
+<p class="note"><strong>נחשב כעובד — הכנסה מעבודה מעל ${fmt(g('housing_allowance_worker_before_retirement'))} ש"ח בחודש לפני גיל פרישה, או מעל ${fmt(g('housing_allowance_worker_after_retirement'))} ש"ח בחודש מגיל פרישה (אתה או בן/בת זוגך): יופחת משווי הרכב קיזוז בסך ${fmt(g('vehicle_exempt_worker'))} ש"ח.</strong></p>
+<p class="note"><strong>נחשב כלא עובד — הכנסה מעבודה עד הסכומים האלה, או ללא הכנסה מעבודה: יופחת משווי הרכב קיזוז בסך ${fmt(g('vehicle_exempt_non_worker'))} ש"ח.</strong></p>
+<p class="note"><strong>שווי רכב עד סכום הקיזוז — אין השפעה על הקצבה. מעל סכום הקיזוז — ${g('vehicle_deduction_rate') * 100}% מהיתרה יורדים מקצבת השלמת ההכנסה החודשית. שווי רכב מעל ${fmt(g('vehicle_threshold_extended'))} ש"ח שולל זכאות.</strong></p>
 
 <h2>תשלומים נלווים</h2>
 <table class="data-table">

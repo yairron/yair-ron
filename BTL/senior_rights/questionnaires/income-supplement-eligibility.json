@@ -225,25 +225,19 @@
       }
     },
     "vehicleRules": {
-      "baseThreshold": 46138,
       "extendedThreshold": 65343,
-      "extendedThresholdConditions": ["retirement_age", "survivors_benefit", "work_injury_dependents"],
       "deductionRate": 0.03,
       "deductions": {
         "high_income_worker": 19610,
-        "low_income_worker": 10380,
-        "non_worker_regular": 10380,
-        "non_worker_extended": 11227
+        "other": 11227
       },
       "workIncomeThreshold": {
         "regular": 3442,
         "retirement": 2341
       },
       "descriptions": {
-        "high_income_worker": "עובד (שכיר/עצמאי) שהכנסתו מהעבודה עולה על 3,442 ₪/חודש (או 2,341 ₪ לעובד בגיל פרישה)",
-        "low_income_worker": "עובד שהכנסתו מהעבודה אינה עולה על 3,442 ₪/חודש (או 2,341 ₪ לעובד בגיל פרישה)",
-        "non_worker_regular": "לא עובד — לא בגיל פרישה ואינו מקבל קצבת שאירים/תלויים בנפגע עבודה",
-        "non_worker_extended": "לא עובד — הגיע לגיל פרישה, מקבל קצבת שאירים, או מקבל קצבת תלויים בנפגע עבודה"
+        "high_income_worker": "נחשב כעובד: הכנסה מעבודה מעל 3,442 ₪/חודש לפני גיל פרישה, או מעל 2,341 ₪/חודש מגיל פרישה (אתה או בן/בת הזוג)",
+        "other": "נחשב כלא עובד: הכנסה מעבודה עד הסף, או ללא הכנסה מעבודה"
       }
     },
     "assetRules": {
@@ -288,6 +282,12 @@
     "notes": "חישוב משוער בלבד. נוסחאות קיזוז אלו עשויות להשתנות. לבדיקה מדויקת, יש לפנות לביטוח הלאומי."
   },
   "niiMapping": {
-    "assetRules.baseRate": "imputed_income_rate_decimal"
+    "assetRules.baseRate": "imputed_income_rate_decimal",
+    "vehicleRules.extendedThreshold":              "vehicle_threshold_extended",
+    "vehicleRules.deductions.high_income_worker":  "vehicle_exempt_worker",
+    "vehicleRules.deductions.other":               "vehicle_exempt_non_worker",
+    "vehicleRules.workIncomeThreshold.regular":    "housing_allowance_worker_before_retirement",
+    "vehicleRules.workIncomeThreshold.retirement": "housing_allowance_worker_after_retirement",
+    "vehicleRules.deductionRate":                  "vehicle_deduction_rate"
   }
 }

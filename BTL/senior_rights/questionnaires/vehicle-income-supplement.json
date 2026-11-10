@@ -213,7 +213,6 @@
   "calculationRules": {
     "vehicleRules": {
       "extendedThreshold": 65343,
-      "baseThreshold": 46138,
       "deductionRate": 0.03,
       "deductions": {
         "high_income_worker": 19610,
@@ -227,7 +226,6 @@
   },
   "niiMapping": {
     "vehicleRules.extendedThreshold":           "vehicle_threshold_extended",
-    "vehicleRules.baseThreshold":               "vehicle_threshold_base",
     "vehicleRules.deductions.high_income_worker":"vehicle_exempt_worker",
     "vehicleRules.deductions.other":            "vehicle_exempt_non_worker",
     "vehicleRules.workIncomeThreshold.regular":  "housing_allowance_worker_before_retirement",

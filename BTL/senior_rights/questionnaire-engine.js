@@ -1029,16 +1029,19 @@ class QuestionnaireEngine {
                     ? { value: 'couple', label: 'זוג (נשוי/אה)', storeAs: {} }
                     : { value: 'single', label: 'יחיד/ה (לא נשוי/אה)', storeAs: {} };
             },
-            // family_composition → retirement age (70+ = yes)
+            // family_composition → retirement age.
+            // 70+ is certainly past retirement age → pre-answer "yes".
+            // "under70" may or may not be (67 for men, 62-65 for women, or a spouse
+            // at retirement age) → don't pre-answer, so the vehicle questionnaire asks.
             retirement_age: (src) => {
                 if (!src) return null;
                 const val = src.value || '';
                 const isRetired = val.includes('70_80') || val.includes('over80');
-                const ansVal = isRetired ? 'yes' : 'no';
+                if (!isRetired) return null;
                 return {
-                    value: ansVal,
-                    label: isRetired ? 'כן' : 'לא',
-                    storeAs: { retirement_age: { question: 'גיל פרישה', value: ansVal, label: isRetired ? 'כן' : 'לא', _hidden: true } }
+                    value: 'yes',
+                    label: 'כן',
+                    storeAs: { retirement_age: { question: 'גיל פרישה', value: 'yes', label: 'כן', _hidden: true } }
                 };
             },
             // parent work status (not_working / employed / self_employed) → vehicle's working/not_working
@@ -1149,7 +1152,7 @@ class QuestionnaireEngine {
     /**
      * Return from sub-questionnaire to parent questionnaire
      */
-    async returnFromSubQuestionnaire(calculatedValue, resultKey) {
+    async returnFromSubQuestionnaire(calculatedValue, resultKey, extraAnswers = null) {
         if (!this.parentState) return;
 
         const triggerQuestionId = this.parentState.triggerQuestionId;
@@ -1168,6 +1171,12 @@ class QuestionnaireEngine {
                 value: calculatedValue,
                 label: `${calculatedValue.toLocaleString('he-IL')}₪`
             };
+        }
+
+        // Extra (usually hidden) answers computed by the sub-questionnaire,
+        // e.g. the full vehicle deduction result (q7_vehicle_calc)
+        if (extraAnswers) {
+            Object.assign(this.answers, extraAnswers);
         }
 
         // Clear parent state
@@ -1348,18 +1357,17 @@ class QuestionnaireEngine {
                         <td class="calc-value">${calculation.incomes.vehicleValue.toLocaleString('he-IL')}₪</td>
                     </tr>
                     <tr>
-                        <td class="calc-label">${calculation.deductions.employmentStatus ? calculation.deductions.employmentStatus : 'סכום ההפחתה משווי רכב'} (הפחתה: ${calculation.deductions.vehicleDeductionBase.toLocaleString('he-IL')}₪):</td>
-                        <td class="calc-value">${calculation.deductions.vehicleDeductionBase.toLocaleString('he-IL')}₪</td>
+                        <td class="calc-label">קטגוריה:</td>
+                        <td class="calc-value">${calculation.deductions.vehicleCategory}</td>
                     </tr>
                     <tr>
-                        <td class="calc-label">קיזוז רכב (${(calculation.deductions.vehicleDeductionRate * 100).toFixed(0)}% מהערך לאחר הפחתה):</td>
+                        <td class="calc-label">קיזוז משווי הרכב:</td>
+                        <td class="calc-value">− ${calculation.deductions.vehicleDeductionBase.toLocaleString('he-IL')}₪</td>
+                    </tr>
+                    <tr>
+                        <td class="calc-label">הפחתה חודשית בשל הרכב (${(calculation.deductions.vehicleDeductionRate * 100).toFixed(0)}% מהשווי לאחר הקיזוז):</td>
                         <td class="calc-value">-${calculation.deductions.vehicleDeduction.toLocaleString('he-IL')}₪</td>
                     </tr>
-                    ${calculation.deductions.vehicleNote ? `
-                    <tr>
-                        <td class="calc-label">הערה לגבי רכב:</td>
-                        <td class="calc-value">${calculation.deductions.vehicleNote}</td>
-                    </tr>` : ''}
                     ` : ''}
                     <tr class="calculation-row-supplement">
                         <td class="calc-label"><strong>השלמה משוערת (אחרי קיזוז רכב):</strong></td>
@@ -1390,59 +1398,21 @@ class QuestionnaireEngine {
     showVehicleDeductionResult(result) {
         const rules = this.data.calculationRules?.vehicleRules || {};
 
-        const vehicleValue    = parseFloat(this.answers['vehicle_value']?.value) || 0;
-        const retirementAge   = this.answers['retirement_age']?.value === 'yes';
-        const workStatus      = this.answers['work_status']?.value || 'not_working';
-        const workIncome      = parseFloat(this.answers['work_income']?.value) || 0;
         const childWorkIncome = parseFloat(this.answers['child_work_income']?.value) || 0;
         const childHasVehicle = this.answers['child_has_vehicle']?.value === 'yes';
-        const specialStatus   = this.answers['special_status']?.value === 'special';
-        const dismissedGrace  = this.answers['dismissed_grace']?.value === 'yes';
-        const incomeDropGrace = this.answers['income_drop_grace']?.value === 'yes';
 
-        const deductionRate   = rules.deductionRate || 0.03;
-        const incomeThreshold = retirementAge
-            ? (rules.workIncomeThreshold?.retirement || 2341)
-            : (rules.workIncomeThreshold?.regular    || 3442);
-
-        // Grace period overrides: treat as "working" with adjusted income
-        let effectiveWorkStatus = workStatus;
-        let effectiveWorkIncome = workIncome;
-        let graceNote = '';
-        if (dismissedGrace) {
-            effectiveWorkStatus = 'working';
-            graceNote = 'חישוב זה מתבסס על תקופת מעבר של עד 3 חודשים לאחר הפיטורין/ההתפטרות. לאחר מכן יש לפנות לביטוח הלאומי לעדכון.';
-        } else if (incomeDropGrace) {
-            effectiveWorkStatus = 'working';
-            effectiveWorkIncome = rules.workIncomeThreshold?.regular || 3442; // 25% מהשכר הממוצע
-            graceNote = 'חישוב זה מתבסס על תקופת מעבר של עד 3 חודשים לאחר ירידת ההכנסה — ההכנסה המיוחסת: 25% מהשכר הממוצע. לאחר מכן יש לפנות לביטוח הלאומי לעדכון.';
-        }
-
-        // Child income is counted only if child has no vehicle.
-        const effectiveChildWorkIncome = childHasVehicle ? 0 : childWorkIncome;
-        const totalCountedWorkIncome = effectiveWorkIncome + effectiveChildWorkIncome;
-
-        let deductionBase, categoryLabel;
-        if (totalCountedWorkIncome > incomeThreshold) {
-            deductionBase = rules.deductions?.high_income_worker || 19610;
-            if (retirementAge) {
-                categoryLabel = `עובד מגיל פרישה (אתה או בן/בת זוגך בגיל פרישה) עם הכנסה חודשית מעל ${incomeThreshold.toLocaleString('he-IL')} ₪`;
-            } else {
-                categoryLabel = `עובד לפני גיל פרישה עם הכנסה חודשית מעל ${incomeThreshold.toLocaleString('he-IL')} ₪`;
-            }
-        } else {
-            deductionBase = rules.deductions?.other || 11227;
-            if (retirementAge) {
-                categoryLabel = `עובד מגיל פרישה (אתה או בן/בת זוגך בגיל פרישה) עם הכנסה חודשית עד ${incomeThreshold.toLocaleString('he-IL')} ₪`;
-            } else {
-                categoryLabel = `אינו עובד, או עובד לפני גיל פרישה עם הכנסה חודשית עד ${incomeThreshold.toLocaleString('he-IL')} ₪`;
-            }
-        }
-        if (dismissedGrace)  categoryLabel += ' (תקופת מעבר — פוטר/ה או התפטר/ה)';
-        if (incomeDropGrace) categoryLabel += ' (תקופת מעבר — ירידת הכנסה)';
-
-        const adjustedValue    = Math.max(0, vehicleValue - deductionBase);
-        const monthlyDeduction = Math.round(adjustedValue * deductionRate);
+        const calc = this.computeVehicleDeduction({
+            vehicleValue:    parseFloat(this.answers['vehicle_value']?.value) || 0,
+            retirementAge:   this.answers['retirement_age']?.value === 'yes',
+            workIncome:      parseFloat(this.answers['work_income']?.value) || 0,
+            childWorkIncome: childWorkIncome,
+            childHasVehicle: childHasVehicle,
+            dismissedGrace:  this.answers['dismissed_grace']?.value === 'yes',
+            incomeDropGrace: this.answers['income_drop_grace']?.value === 'yes'
+        }, rules);
+        const { vehicleValue, deductionRate, effectiveWorkIncome, effectiveChildWorkIncome,
+                totalCountedWorkIncome, deductionBase, categoryLabel, adjustedValue,
+                monthlyDeduction, graceNote } = calc;
 
         let statusClass, statusTitle;
         if (monthlyDeduction === 0) {
@@ -1483,7 +1453,7 @@ class QuestionnaireEngine {
                         <td class="calc-value">${totalCountedWorkIncome.toLocaleString('he-IL')} ₪</td>
                     </tr>
                     <tr>
-                        <td class="calc-label">ניכוי בסיסי — שלב 1:</td>
+                        <td class="calc-label">קיזוז משווי הרכב — שלב 1:</td>
                         <td class="calc-value">− ${deductionBase.toLocaleString('he-IL')} ₪</td>
                     </tr>
                     <tr>
@@ -1523,7 +1493,11 @@ class QuestionnaireEngine {
             const returnBtn = this.resultEl.querySelector('#btn-return-to-parent');
             if (returnBtn) {
                 returnBtn.addEventListener('click', () => {
-                    this.returnFromSubQuestionnaire(vehicleValue);
+                    // Pass back the full calculation so the eligibility summary
+                    // shows exactly the same deduction as this screen.
+                    this.returnFromSubQuestionnaire(vehicleValue, undefined, {
+                        q7_vehicle_calc: { question: 'חישוב רכב', value: calc, label: '', _hidden: true }
+                    });
                 });
             }
         }
@@ -1547,7 +1521,6 @@ class QuestionnaireEngine {
 
         // Determine family/age context
         const isCoupleFamily = !!familyCompositionValue?.includes('couple');
-        const isRetirementAge = familyCompositionValue && (familyCompositionValue.includes('70_80') || familyCompositionValue.includes('over80'));
 
         // Extract income amounts
         const oldAgePension = parseFloat(this.answers['q1_old_age_pension_amount']?.value) || 0;
@@ -1556,7 +1529,6 @@ class QuestionnaireEngine {
         const imputedIncome = parseFloat(this.answers['q4_imputed_income_amount']?.value) || 0;
         const vehicleValue = parseFloat(this.answers['q7_vehicle_value']?.value) || 0;
         const workStatus = this.answers['q6_work_status']?.value || this.answers['q6_work_status']?.label || 'not_working';
-        const isSpecialStatus = this.answers['q8_special_status']?.value === 'special';
 
         // Get exemption amounts for display
         const pensionExemption = isCoupleFamily ? (rules.incomeDeductions.pensionIncome.exemption_couple || 2823) : (rules.incomeDeductions.pensionIncome.exemption_single || rules.incomeDeductions.pensionIncome.exemption || 1790);
@@ -1571,9 +1543,19 @@ class QuestionnaireEngine {
         const pensionDeduction = this.calculatePensionDeduction(pensionIncome, rules, isCoupleFamily);
         const workDeduction = this.calculateWorkDeduction(workIncome, rules, isCoupleFamily, workStatus, effectivePension);
         const imputedDeduction = Math.round(imputedIncome * rules.incomeDeductions.imputedIncome.deductionRate);
-        const vehicleDeductionInfo = this.calculateVehicleDeduction(vehicleValue, workIncome, workStatus, isRetirementAge, isSpecialStatus, rules.vehicleRules);
-        const vehicleDeduction = vehicleDeductionInfo.deduction;
-        const vehicleDeductionBase = vehicleDeductionInfo.deductionBase || 0;
+        // Vehicle: use the calculation returned by the vehicle sub-questionnaire, so the
+        // summary shows exactly what the vehicle screen showed. Fallback (no stored calc):
+        // compute with the same function from the answers available here.
+        let vehicleCalc = null;
+        if (vehicleValue > 0) {
+            vehicleCalc = this.answers['q7_vehicle_calc']?.value || this.computeVehicleDeduction({
+                vehicleValue: vehicleValue,
+                retirementAge: !!familyCompositionValue && (familyCompositionValue.includes('70_80') || familyCompositionValue.includes('over80')),
+                workIncome: workIncome
+            }, rules.vehicleRules);
+        }
+        const vehicleDeduction = vehicleCalc ? vehicleCalc.monthlyDeduction : 0;
+        const vehicleDeductionBase = vehicleCalc ? vehicleCalc.deductionBase : 0;
 
         // Calculate total counted income without vehicle deduction
         const netIncomeWithoutVehicle = oldAgePension + pensionDeduction + workDeduction + imputedDeduction;
@@ -1612,7 +1594,7 @@ class QuestionnaireEngine {
                 vehicleDeduction: vehicleDeduction,
                 vehicleDeductionBase: vehicleDeductionBase,
                 vehicleDeductionRate: rules.vehicleRules?.deductionRate || 0.03,
-                vehicleNote: vehicleDeductionInfo.note
+                vehicleCategory: vehicleCalc ? vehicleCalc.categoryLabel : ''
             },
             netIncome: netIncome,
             estimatedSupplementBeforeVehicle: estimatedSupplementBeforeVehicle,
@@ -1648,79 +1630,68 @@ class QuestionnaireEngine {
     }
 
     /**
-     * Calculate vehicle-related deduction as imputed income
-     * Logic:
-     * 1. Up to 46,138 ₪ = no deduction
-     * 2. 46,138 to 65,343 ₪ = subtract deduction base (depends on work/retirement age), then 3% of remainder
-     * 3. Above 65,343 ₪ = no eligibility (special cases only)
+     * Vehicle deduction from the income supplement — single source of truth,
+     * used by both the standalone vehicle questionnaire and the eligibility summary.
+     *
+     * Rule (NII, 2026):
+     *  - Vehicle value above vehicleRules.extendedThreshold (65,343) disqualifies
+     *    (handled by the vehicle questionnaire's exception questions).
+     *  - Income threshold: workIncomeThreshold.regular (3,442) before retirement age,
+     *    workIncomeThreshold.retirement (2,341) from retirement age (applicant or spouse).
+     *  - Counted work income above the threshold → "considered a worker" → deduction
+     *    deductions.high_income_worker (19,610). Otherwise (income up to the threshold,
+     *    or no work income) → "considered a non-worker" → deductions.other (11,227).
+     *  - Monthly reduction = max(0, vehicleValue − deduction) × deductionRate (3%).
      */
-    calculateVehicleDeduction(vehicleValue, workIncome, workStatus, isRetirementAge, isSpecialStatus, vehicleRules) {
-        if (!vehicleValue || vehicleValue <= 0 || !vehicleRules) {
-            return { deduction: 0, note: '', deductionBase: 0 };
+    computeVehicleDeduction(input, rules) {
+        rules = rules || {};
+        const vehicleValue    = Number(input.vehicleValue) || 0;
+        const retirementAge   = !!input.retirementAge;
+        const workIncome      = Number(input.workIncome) || 0;
+        const childWorkIncome = Number(input.childWorkIncome) || 0;
+        const childHasVehicle = !!input.childHasVehicle;
+        const dismissedGrace  = !!input.dismissedGrace;
+        const incomeDropGrace = !!input.incomeDropGrace;
+
+        const deductionRate   = rules.deductionRate || 0.03;
+        const incomeThreshold = retirementAge
+            ? (rules.workIncomeThreshold?.retirement || 2341)
+            : (rules.workIncomeThreshold?.regular    || 3442);
+
+        // Grace periods: dismissed → counted with the pre-dismissal income (entered by the user);
+        // income drop → counted with 25% of the average wage (= the pre-retirement threshold).
+        let effectiveWorkIncome = workIncome;
+        let graceNote = '';
+        if (dismissedGrace) {
+            graceNote = 'חישוב זה מתבסס על תקופת מעבר של עד 3 חודשים לאחר הפיטורין/ההתפטרות. לאחר מכן יש לפנות לביטוח הלאומי לעדכון.';
+        } else if (incomeDropGrace) {
+            effectiveWorkIncome = rules.workIncomeThreshold?.regular || 3442; // 25% מהשכר הממוצע
+            graceNote = 'חישוב זה מתבסס על תקופת מעבר של עד 3 חודשים לאחר ירידת ההכנסה — ההכנסה המיוחסת: 25% מהשכר הממוצע. לאחר מכן יש לפנות לביטוח הלאומי לעדכון.';
         }
 
-        // Base threshold - no deduction up to 46,138
-        const baseThreshold = vehicleRules.baseThreshold; // 46,138
+        // Child income is counted only if the child has no vehicle.
+        const effectiveChildWorkIncome = childHasVehicle ? 0 : childWorkIncome;
+        const totalCountedWorkIncome   = effectiveWorkIncome + effectiveChildWorkIncome;
 
-        // Extended threshold - 65,343
-        const extendedThreshold = vehicleRules.extendedThreshold; // 65,343
+        const isWorker  = totalCountedWorkIncome > incomeThreshold;
+        const ageLabel  = retirementAge ? 'מגיל פרישה' : 'לפני גיל פרישה';
+        const threshTxt = `${incomeThreshold.toLocaleString('he-IL')} ₪`;
+        const deductionBase = isWorker
+            ? (rules.deductions?.high_income_worker || 19610)
+            : (rules.deductions?.other || 11227);
+        let categoryLabel = isWorker
+            ? `נחשב כעובד — ${ageLabel}, הכנסה מעבודה מעל ${threshTxt}`
+            : `נחשב כלא עובד — ${ageLabel}, הכנסה מעבודה עד ${threshTxt}`;
+        if (dismissedGrace)  categoryLabel += ' (תקופת מעבר — פוטר/ה או התפטר/ה)';
+        if (incomeDropGrace) categoryLabel += ' (תקופת מעבר — ירידת הכנסה)';
 
-        // If below base threshold, no deduction at all
-        if (vehicleValue <= baseThreshold) {
-            return { deduction: 0, note: '', deductionBase: 0 };
-        }
-
-        // If above extended threshold, cannot be eligible (special case warning)
-        if (vehicleValue > extendedThreshold) {
-            return {
-                deduction: 0,
-                note: `שווי הרכב גבוה מ-${extendedThreshold.toLocaleString('he-IL')} ₪ - אין זכאות לקצבה (אלא במקרים מיוחדים בלבד). יש לפנות לביטוח הלאומי לבדיקה ידנית.`,
-                deductionBase: 0
-            };
-        }
-
-        // Between baseThreshold and extendedThreshold - apply deduction logic
-        const normalizedStatus = (workStatus || '').toString().toLowerCase();
-        const isWorking = normalizedStatus.includes('employed') || normalizedStatus.includes('self');
-
-        let deductionBase = 0;
-        let employmentStatus = ''; // For display purposes
-
-        if (isWorking) {
-            // Worker: check income thresholds
-            const incomeThreshold = isRetirementAge ? vehicleRules.workIncomeThreshold.retirement : vehicleRules.workIncomeThreshold.regular;
-            // High income: 19,610 ₪
-            // Low income: 10,380 ₪
-            if (workIncome > incomeThreshold) {
-                deductionBase = vehicleRules.deductions.high_income_worker;    // 19,610
-                employmentStatus = `עובד/ת עם הכנסה מעל ${incomeThreshold.toLocaleString('he-IL')}₪`;
-            } else {
-                deductionBase = vehicleRules.deductions.low_income_worker;     // 10,380
-                employmentStatus = `עובד/ת עם הכנסה מתחת ${incomeThreshold.toLocaleString('he-IL')}₪`;
-            }
-        } else {
-            // Non-worker
-            if (isRetirementAge || isSpecialStatus) {
-                // Retirement age / survivors benefit / work injury dependents: 11,227 ₪
-                deductionBase = vehicleRules.deductions.non_worker_extended; // 11,227
-                employmentStatus = isRetirementAge ? 'לא עובד/ת - גיל פרישה' : 'לא עובד/ת - מקבל/ת קצבת שאירים/תלויים';
-            } else {
-                // Regular non-worker: 10,380 ₪
-                deductionBase = vehicleRules.deductions.non_worker_regular;  // 10,380
-                employmentStatus = 'לא עובד/ת';
-            }
-        }
-
-        // Calculate: (vehicle value - deduction base) * 3%
-        const adjustedValue = vehicleValue - deductionBase;
-        const deduction = adjustedValue > 0 ? adjustedValue * vehicleRules.deductionRate : 0;
+        const adjustedValue    = Math.max(0, vehicleValue - deductionBase);
+        const monthlyDeduction = Math.round(adjustedValue * deductionRate);
 
         return {
-            deduction: deduction,
-            note: '',
-            adjustedValue: adjustedValue,
-            deductionBase: deductionBase,
-            employmentStatus: employmentStatus
+            vehicleValue, retirementAge, deductionRate, incomeThreshold, isWorker,
+            effectiveWorkIncome, effectiveChildWorkIncome, totalCountedWorkIncome,
+            deductionBase, categoryLabel, adjustedValue, monthlyDeduction, graceNote
         };
     }
 

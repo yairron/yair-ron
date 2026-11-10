@@ -462,7 +462,7 @@ const PAGE_DATA = {
                     <li><strong>קבלת קצבת אזרח ותיק:</strong> המבקש מקבל קצבה מהביטוח הלאומי.</li>
                     <li><strong>תושבות:</strong> תושב ישראל ב-24 החודשים האחרונים.</li>
                     <li><strong>מבחן הכנסות:</strong> סך ההכנסות (מפנסיה, עבודה, נכסים וכו') אינו עולה על התקרה המזכה.</li>
-                    <li><strong>מבחן נכסים ורכב:</strong> בבעלות המבקש אין נכסים (מלבד דירת מגורים) או רכב מעל שווי (${c('vehicle_threshold_base')}).</li>
+                    <li><strong>מבחן נכסים ורכב:</strong> בבעלות המבקש אין נכסים (מלבד דירת מגורים), ואין לו רכב ששוויו עולה על ${c('vehicle_threshold_extended')} (תקרת שווי רכב שוללת זכאות). רכב בשווי נמוך יותר אינו שולל זכאות, אך עשוי להפחית את סכום ההשלמה (ראו "בעלות על רכב").</li>
                 </ol>
                 <p style="color:#666;font-size:0.93em;">⚠️ הכנסות או נכסים מעל התקרה עשויים לאפשר השלמת הכנסה חלקית.</p>
 
@@ -471,7 +471,7 @@ const PAGE_DATA = {
                     <li><strong>קבלת גמלת שאירים:</strong> המבקש/ת מקבל/ת גמלת שאירים מהביטוח הלאומי.</li>
                     <li><strong>תושבות:</strong> תושב ישראל ב-24 החודשים האחרונים.</li>
                     <li><strong>מבחן הכנסות:</strong> סך ההכנסות (מפנסיה, עבודה, נכסים וכו') אינו עולה על התקרה המזכה.</li>
-                    <li><strong>מבחן נכסים ורכב:</strong> אין נכסים (מלבד דירת מגורים) או רכב מעל שווי (${c('vehicle_threshold_base')}).</li>
+                    <li><strong>מבחן נכסים ורכב:</strong> אין נכסים (מלבד דירת מגורים), ואין רכב ששוויו עולה על ${c('vehicle_threshold_extended')} (תקרת שווי רכב שוללת זכאות). רכב בשווי נמוך יותר אינו שולל זכאות, אך עשוי להפחית את סכום ההשלמה (ראו "בעלות על רכב").</li>
                     <li><strong>רישום בלשכת התעסוקה:</strong> אלמן/ה ללא ילדים מתחת לגיל 18 — חייב/ת להיות רשומ/ה בלשכת התעסוקה כמחפש/ת עבודה.</li>
                     <li><strong>ילד בלימודים:</strong> ילד מעל גיל 18 הלומד במוסד חינוכי <strong>אינו</strong> נספר לצורך חישוב ההשלמה.</li>
                 </ol>
@@ -663,11 +663,11 @@ const PAGE_DATA = {
         <p><a href="imputed_income_guide.html" style="color: #9c27b0; text-decoration: none; font-weight: 600;">📖 מדריך מפורט: חישוב הכנסה רעיונית מנכסים פיננסיים</a></p>
 
         <h4 id="is-vehicle">בעלות על רכב</h4>
-                <p>בעלות על רכב עלולה לשלול זכאות, אלא אם מתקיים אחד מהתנאים הבאים:</p>
+                <p>בעלות על רכב משפיעה על הזכאות ועל סכום ההשלמה כך:</p>
                 <ul>
-                    <li>שווי הרכב נמוך מ-${c('vehicle_threshold_base')} (והוא הרכב היחיד).</li>
-                    <li>הרכב משמש לצרכים רפואיים (נכות של המבוטח או בן משפחה).</li>
-                    <li>המבוטח עובד ומשתכר מעל סכום מסוים וזקוק לרכב כדי להגיע לעבודה.</li>
+                    <li><strong>שווי רכב מעל ${c('vehicle_threshold_extended')}</strong> — שולל זכאות, למעט חריגים (למשל רכב לצרכים רפואיים: נכות של המבוטח או בן משפחה).</li>
+                    <li><strong>שווי רכב עד סכום הקיזוז</strong> — לרכב אין השפעה על הקצבה. סכום הקיזוז הוא ${c('vehicle_exempt_worker')} למי שנחשב כעובד (הכנסה מעבודה מעל ${c('housing_allowance_worker_before_retirement')} לפני גיל פרישה, או מעל ${c('housing_allowance_worker_after_retirement')} מגיל פרישה — אתה או בן/בת הזוג), ו-${c('vehicle_exempt_non_worker')} לכל השאר (הכנסה מעבודה עד הסף, או ללא הכנסה מעבודה).</li>
+                    <li><strong>שווי רכב מעל סכום הקיזוז</strong> — מפחיתים משווי הרכב את סכום הקיזוז, ו-${v('vehicle_deduction_rate') * 100}% מהיתרה יורדים מקצבת השלמת ההכנסה החודשית.</li>
                 </ul>
         <a href="questionnaire.html?id=vehicle-income-supplement" class="link-item" style="display:inline-block; margin-top:10px; font-size:1.1rem; font-weight:700; background: linear-gradient(135deg, #667eea, #764ba2); color:white; border-radius:12px; padding:12px 20px; text-decoration:none;">🚗 מחשבון להשפעת רכב על זכאות השלמת הכנסה</a>
 

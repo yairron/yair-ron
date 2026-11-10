@@ -780,28 +780,21 @@
     "id": "NII-076",
     "value": 65343,
     "type": "currency",
-    "label": "שווי רכב השולל זכאות להשלמת הכנסה (תקרה מורחבת)",
-    "updated": "2026-01"
-  },
-  "vehicle_threshold_base": {
-    "id": "NII-077",
-    "value": 46138,
-    "type": "currency",
-    "label": "שווי רכב בסיסי לשלילת זכאות להשלמת הכנסה",
+    "label": "תקרת שווי רכב שוללת זכאות להשלמת הכנסה",
     "updated": "2026-01"
   },
   "vehicle_exempt_worker": {
     "id": "NII-078",
     "value": 19610,
     "type": "currency",
-    "label": "שווי רכב פטור מחישוב הכנסה — עובד",
+    "label": "קיזוז משווי רכב — נחשב כעובד (הכנסה מעבודה מעל הסף)",
     "updated": "2026-01"
   },
   "vehicle_exempt_non_worker": {
     "id": "NII-079",
     "value": 11227,
     "type": "currency",
-    "label": "שווי רכב פטור מחישוב הכנסה — לא עובד",
+    "label": "קיזוז משווי רכב — נחשב כלא עובד (הכנסה מעבודה עד הסף או ללא הכנסה)",
     "updated": "2026-01"
   },
   "housing_allowance_worker_before_retirement": {

@@ -8,15 +8,15 @@
 
 | מצב | טקסט זהה | מבנה DOM | הבדל חזותי (מידע בלבד) |
 |---|---|---|---|
-| accordion_0_open | ✅ | ✅ | 0.0149% |
-| accordion_1_open | ✅ | ✅ | 0.0% |
-| accordion_2_open | ✅ | ✅ | 0.0% |
-| accordion_3_open | ✅ | ✅ | 0.023% |
-| accordion_4_open | ✅ | ✅ | 0.0529% |
-| accordion_5_open | ✅ | ✅ | 0.0264% |
-| accordion_6_open | ✅ | ✅ | 0.0% |
-| closed | ✅ | ✅ | 0.0% |
-| sub_accordion_0_open | ✅ | ✅ | 0.0852% |
+| accordion_0_open | ✅ | ✅ | 0.2117% |
+| accordion_1_open | ✅ | ✅ | 0.1512% |
+| accordion_2_open | ✅ | ✅ | 0.1454% |
+| accordion_3_open | ✅ | ✅ | 0.4782% |
+| accordion_4_open | ✅ | ✅ | 0.4488% |
+| accordion_5_open | ✅ | ✅ | 0.114% |
+| accordion_6_open | ✅ | ✅ | 0.06% |
+| closed | ✅ | ✅ | 0.7159% |
+| sub_accordion_0_open | ✅ | ✅ | 0.5297% |
 
 ## ממצאים
 
