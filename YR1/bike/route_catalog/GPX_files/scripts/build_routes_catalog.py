@@ -809,6 +809,48 @@ def write_tracks_file(records, out_path: Path):
     return len(lines)
 
 
+# קישורים קצרים לשיתוף מסלול (נוסף 10.11.2026) - /r/<id>.gpx בקובץ _redirects שבשורש
+# הריפו. כלל rewrite (סטטוס 200): Netlify מגיש את הקובץ בכתובת הקצרה עצמה, כך שהנתיב
+# האמיתי (/YR1/bike/route_catalog/GPX_files/...) לא מופיע בהודעה המשותפת ולא בדפדפן.
+# הבלוק בין שני הסימונים נכתב מחדש במלואו בכל בנייה - לא לערוך אותו ידנית.
+SHORT_LINK_BEGIN = "# BEGIN bike-route-short-links (נוצר אוטומטית ע\"י build_routes_catalog.py - לא לערוך ידנית)"
+SHORT_LINK_END = "# END bike-route-short-links"
+
+
+def get_repo_root() -> Path:
+    # scripts -> GPX_files -> route_catalog -> bike -> YR1 -> שורש הריפו
+    return get_script_dir().parents[4]
+
+
+def write_short_link_redirects(records, redirects_path: Path) -> int:
+    """מעדכן את בלוק הקישורים הקצרים בתוך _redirects. הבלוק נכנס לפני כלל ה-404
+    הכללי בסוף הקובץ (Netlify עוצר בכלל התואם הראשון), ושאר הקובץ לא משתנה."""
+    from urllib.parse import quote
+    rules = [
+        f'/r/{r["id"]}.gpx   /YR1/bike/route_catalog/GPX_files/{quote(r["file_name"])}   200'
+        for r in sorted(records, key=lambda r: r["id"])
+    ]
+    block = [SHORT_LINK_BEGIN] + rules + [SHORT_LINK_END]
+
+    raw = redirects_path.read_bytes().decode("utf-8")
+    newline = "\r\n" if "\r\n" in raw else "\n"
+    lines = raw.splitlines()
+
+    if SHORT_LINK_BEGIN in lines and SHORT_LINK_END in lines:
+        start, end = lines.index(SHORT_LINK_BEGIN), lines.index(SHORT_LINK_END)
+        lines = lines[:start] + block + lines[end + 1:]
+    else:
+        # מקום ההכנסה: לפני כלל ה-404 הכללי (השורה האחרונה שמסתיימת ב-404)
+        idx = next((i for i in range(len(lines) - 1, -1, -1) if lines[i].split()[-1:] == ["404"]), len(lines))
+        lines = lines[:idx] + block + [""] + lines[idx:]
+
+    new_text = newline.join(lines) + newline
+    if new_text != raw:
+        with open(redirects_path, "w", encoding="utf-8", newline="") as f:
+            f.write(new_text)
+    return len(rules)
+
+
 def generate_thumbnails(records, thumbnails_dir: Path, scripts_dir: Path, force=False):
     thumbnails_dir.mkdir(parents=True, exist_ok=True)
 
@@ -1046,6 +1088,7 @@ def main():
     tracks_path = catalog_data_dir / "routes-tracks.json"
     catalog_data_dir.mkdir(parents=True, exist_ok=True)
     track_count = write_tracks_file(records, tracks_path)
+    short_link_count = write_short_link_redirects(records, get_repo_root() / "_redirects")
 
     for r in records:
         r.pop("_coords", None)
@@ -1072,6 +1115,7 @@ def main():
     print(f"\nהושלם. קובץ הקטלוג נשמר ב: {out_path}")
     print(f"  סה\"כ מסלולים: {len(records)}")
     print(f"  מסלולים מפושטים לחיפוש לפי קורדינטות: {track_count} ({tracks_path.stat().st_size / 1024:.0f}KB)")
+    print(f"  קישורים קצרים לשיתוף (/r/<id>.gpx ב-_redirects): {short_link_count}")
     print(f"  בלי נתוני גובה: {no_elevation}")
     print(f"  בלי ישוב קרוב שנמצא: {no_settlements}")
     print(f"  בלי תמונה ממוזערת: {no_thumbnail}")

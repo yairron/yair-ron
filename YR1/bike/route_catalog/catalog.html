@@ -98,6 +98,23 @@ h1{font-family:'Varela Round',sans-serif;font-size:2.6rem;font-weight:800;color:
 .selection-bar .btn-disabled{background:rgba(255,255,255,.15);color:rgba(255,255,255,.5);cursor:not-allowed}
 .selection-bar .btn-clear{background:rgba(255,255,255,.2);color:white}
 
+.share-overlay{position:fixed;inset:0;background:rgba(0,0,0,.6);display:none;align-items:center;justify-content:center;z-index:300;padding:16px}
+.share-overlay.show{display:flex}
+.share-box{background:white;color:var(--text);border-radius:18px;padding:22px 22px 16px;width:min(460px,100%);max-height:90vh;overflow:auto;box-shadow:0 10px 40px rgba(0,0,0,.4);border-top:5px solid var(--accent)}
+.share-box h3{font-size:1.15rem;font-weight:800;color:var(--dark);margin-bottom:10px}
+.share-list{list-style:none;margin:0 0 14px;padding:0;font-size:.92rem;max-height:30vh;overflow:auto}
+.share-list li{padding:6px 0;border-bottom:1px solid #e5eee8;overflow-wrap:anywhere}
+.share-list a{color:var(--primary);font-size:.85rem;direction:ltr;unicode-bidi:embed}
+.share-actions{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.share-btn{display:flex;align-items:center;justify-content:center;gap:6px;padding:11px 10px;border-radius:12px;border:none;background:var(--light);color:var(--dark);font-weight:700;font-size:.92rem;cursor:pointer;text-decoration:none;font-family:'Assistant',sans-serif}
+.share-btn:hover{filter:brightness(.95)}
+.share-files{grid-column:1/-1;background:var(--accent);color:white;display:none}
+.share-files.show{display:flex}
+.share-wa{background:#25D366;color:white}
+.share-mail{background:var(--primary);color:white}
+.share-note{font-size:.8rem;color:#5b6b62;margin:12px 0 8px;line-height:1.4}
+.share-close{width:100%;padding:9px;border-radius:12px;border:1px solid #ccd9d0;background:white;color:var(--text);font-weight:700;cursor:pointer;font-family:'Assistant',sans-serif}
+
 footer{text-align:center;margin-top:20px;padding:20px 20px 90px;color:rgba(255,255,255,.85);font-size:.9rem}
 footer a{color:white;text-decoration:underline;font-weight:600}
 
@@ -252,7 +269,24 @@ footer a{color:white;text-decoration:underline;font-weight:600}
   <button class="btn-primary" id="btnDownload" onclick="downloadSelected()">📥 הורדה</button>
   <button class="btn-primary" onclick="showOnMap()">🗺️ הצג על מפה</button>
   <button class="btn-primary" onclick="cleanSelectedRoute()">🧹 ניקוי קובץ</button>
+  <button class="btn-primary" id="btnShare" onclick="shareSelected()">🔗 שתף מסלול</button>
   <button class="btn-clear" onclick="clearSelection()">נקה בחירה</button>
+</div>
+
+<div class="share-overlay" id="shareOverlay" onclick="if (event.target === this) closeShareDialog()">
+  <div class="share-box" role="dialog" aria-modal="true" aria-labelledby="shareTitle">
+    <h3 id="shareTitle">שיתוף מסלול</h3>
+    <ul class="share-list" id="shareList"></ul>
+    <div class="share-actions">
+      <button class="share-btn share-files" id="shareFilesBtn" onclick="shareFilesFromDialog()">📤 שליחת הקבצים</button>
+      <a class="share-btn share-wa" id="shareWa" target="_blank" rel="noopener">💬 ווטסאפ</a>
+      <a class="share-btn share-mail" id="shareMail">✉️ דוא"ל</a>
+      <button class="share-btn" id="shareCopyBtn" onclick="copyShareText()">📋 העתקת קישור</button>
+      <button class="share-btn" onclick="downloadSelected()">📥 הורדה לצירוף ידני</button>
+    </div>
+    <p class="share-note">בווטסאפ ובדוא"ל נשלח קישור לקובץ - לחיצה עליו מורידה את הקובץ ומאפשרת לפתוח אותו באפליקציה מתאימה.</p>
+    <button class="share-close" onclick="closeShareDialog()">סגירה</button>
+  </div>
 </div>
 
 <div class="lightbox-overlay" id="lightboxOverlay">
@@ -670,6 +704,146 @@ function downloadSelected() {
     }, i * 300);
   });
 }
+
+// ===== שיתוף מסלול (10.11.2026) =====
+// 1. אם הדפדפן מאפשר לשתף קבצי GPX (Web Share API עם קבצים - בעיקר Safari באייפון):
+//    חלון השיתוף של המכשיר נפתח עם הקבצים עצמם (ווטסאפ, דוא"ל, אפליקציית ניווט...).
+// 2. אחרת, אם יש חלון שיתוף (למשל Chrome באנדרואיד, שלא מתיר לשתף קבצי GPX):
+//    משתפים הודעה עם שם המסלול וקישור קצר לקובץ.
+// 3. אחרת (למשל Firefox במחשב), או אם השיתוף נכשל: חלון משלנו - ווטסאפ, דוא"ל,
+//    העתקת קישור, הורדה לצירוף ידני.
+// הקישור הקצר /r/<id>.gpx מוגש ע"י Netlify בכתובת עצמה (rewrite 200 ב-_redirects, בלוק
+// שנבנה אוטומטית ע"י build_routes_catalog.py) - הנתיב האמיתי לקובץ לא נחשף.
+var SHARE_SITE_ORIGIN = 'https://yairron.com'; // קבוע - כדי שגם שיתוף מהרצה מקומית ייתן קישור עובד
+var SHARE_MAX_FILES = 10;                     // מעל זה משתפים קישורים בלבד (קבצים כבדים מדי לשיתוף)
+var shareState = { routes: [], text: '', files: null };
+
+function shareRouteUrl(r) { return SHARE_SITE_ORIGIN + '/r/' + r.id + '.gpx'; }
+function shareRouteTitle(r) { return r.file_name.replace(/\.gpx$/i, '').replace(/_/g, ' ').trim(); }
+
+function buildShareText(routes) {
+  var lines = [routes.length === 1 ? 'מסלול:' : routes.length + ' מסלולים:'];
+  routes.forEach(function (r) {
+    lines.push('');
+    lines.push(shareRouteTitle(r) + (r.distance_km ? ' (' + r.distance_km + ' ק"מ)' : ''));
+    lines.push(shareRouteUrl(r));
+  });
+  return lines.join('\n');
+}
+
+function shareTitleFor(routes) {
+  return routes.length === 1 ? shareRouteTitle(routes[0]) : routes.length + ' מסלולים';
+}
+
+function canShareGpxFiles() {
+  try {
+    return !!(navigator.canShare && navigator.canShare({
+      files: [new File(['<gpx/>'], 'test.gpx', { type: 'application/gpx+xml' })]
+    }));
+  } catch (e) { return false; }
+}
+
+function fetchRouteFiles(routes) {
+  return Promise.all(routes.map(function (r) {
+    return fetch(encodeURI(r.gpx_path)).then(function (res) {
+      if (!res.ok) throw new Error('HTTP ' + res.status);
+      return res.blob();
+    }).then(function (blob) {
+      return new File([blob], r.file_name, { type: 'application/gpx+xml' });
+    });
+  }));
+}
+
+function isShareCancel(e) { return e && e.name === 'AbortError'; }
+
+function shareSelected() {
+  var routes = ALL_ROUTES.filter(function (r) { return selectedFiles.has(r.file_name); });
+  if (!routes.length) return;
+  shareState = { routes: routes, text: buildShareText(routes), files: null };
+  var title = shareTitleFor(routes);
+
+  var shareLinks = function () {
+    if (!navigator.share) { openShareDialog(); return; }
+    navigator.share({ title: title, text: shareState.text })
+      .catch(function (e) { if (!isShareCancel(e)) openShareDialog(); });
+  };
+
+  if (!canShareGpxFiles() || routes.length > SHARE_MAX_FILES) { shareLinks(); return; }
+
+  var btn = document.getElementById('btnShare');
+  var label = btn.textContent;
+  btn.textContent = '⏳ מכין קבצים...';
+  fetchRouteFiles(routes).then(function (files) {
+    btn.textContent = label;
+    shareState.files = files;
+    if (!navigator.canShare({ files: files })) { shareLinks(); return; }
+    return navigator.share({ files: files, title: title, text: shareState.text }).catch(function (e) {
+      // NotAllowedError = פג תוקף לחיצת המשתמש בזמן הורדת הקבצים - החלון שלנו
+      // מציע כפתור "שליחת הקבצים" (לחיצה חדשה), כשהקבצים כבר מוכנים.
+      if (!isShareCancel(e)) openShareDialog();
+    });
+  }).catch(function () {
+    btn.textContent = label;
+    shareLinks();
+  });
+}
+
+function openShareDialog() {
+  var routes = shareState.routes;
+  document.getElementById('shareTitle').textContent =
+    routes.length === 1 ? 'שיתוף מסלול' : 'שיתוף ' + routes.length + ' מסלולים';
+
+  var list = document.getElementById('shareList');
+  list.innerHTML = '';
+  routes.forEach(function (r) {
+    var li = document.createElement('li');
+    li.appendChild(document.createTextNode(shareRouteTitle(r) + ' '));
+    var a = document.createElement('a');
+    a.href = shareRouteUrl(r);
+    a.target = '_blank';
+    a.rel = 'noopener';
+    a.textContent = shareRouteUrl(r).replace(/^https:\/\//, '');
+    li.appendChild(a);
+    list.appendChild(li);
+  });
+
+  document.getElementById('shareWa').href = 'https://wa.me/?text=' + encodeURIComponent(shareState.text);
+  document.getElementById('shareMail').href = 'mailto:?subject=' + encodeURIComponent(shareTitleFor(routes)) +
+    '&body=' + encodeURIComponent(shareState.text);
+  document.getElementById('shareCopyBtn').textContent = routes.length === 1 ? '📋 העתקת קישור' : '📋 העתקת קישורים';
+  document.getElementById('shareFilesBtn').classList.toggle('show', !!shareState.files);
+  document.getElementById('shareOverlay').classList.add('show');
+}
+
+function closeShareDialog() {
+  document.getElementById('shareOverlay').classList.remove('show');
+}
+
+function shareFilesFromDialog() {
+  if (!shareState.files) return;
+  navigator.share({ files: shareState.files, title: shareTitleFor(shareState.routes), text: shareState.text })
+    .then(closeShareDialog)
+    .catch(function () {});
+}
+
+function copyShareText() {
+  var btn = document.getElementById('shareCopyBtn');
+  var done = function () {
+    btn.textContent = '✓ הועתק';
+    setTimeout(function () {
+      btn.textContent = shareState.routes.length === 1 ? '📋 העתקת קישור' : '📋 העתקת קישורים';
+    }, 1500);
+  };
+  if (navigator.clipboard && navigator.clipboard.writeText) {
+    navigator.clipboard.writeText(shareState.text).then(done).catch(function () { copyCoordFallback(shareState.text, done); });
+  } else {
+    copyCoordFallback(shareState.text, done);
+  }
+}
+
+document.addEventListener('keydown', function (e) {
+  if (e.key === 'Escape') closeShareDialog();
+});
 
 // נבחרו במכוון בלי אדום/כחול/ירוק/שחור - אלה כבר צבעי הכבישים ותגי הסימון הרשמיים
 // של שבילי ישראל על גבי מפת הרקע (Israel Hiking Map) עצמה, ולכן מסלול בצבע כזה נבלע בתוכה.

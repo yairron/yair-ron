@@ -45,6 +45,8 @@ PYTHONIOENCODING=utf-8 "$PYTHON_BIN" "$REPO_ROOT/$GPX_DIR/scripts/sync_route_not
 
 git add "$REPO_ROOT/YR1/bike/route_catalog/data"
 git add "$REPO_ROOT/$GPX_DIR"
+# קישורים קצרים לשיתוף מסלול (/r/<id>.gpx) - בלוק שהסקריפט כותב בתוך _redirects
+git add "$REPO_ROOT/_redirects"
 
 echo "pre-commit: הקטלוג עודכן ונוסף אוטומטית ל-commit הנוכחי."
 exit 0
