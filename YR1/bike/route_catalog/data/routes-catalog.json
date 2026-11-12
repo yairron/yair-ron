@@ -1,6 +1,6 @@
 {
-  "generated_at": "2026-11-10T20:04:59",
-  "route_count": 617,
+  "generated_at": "2026-11-12T18:49:18",
+  "route_count": 619,
   "routes": [
     {
       "id": 698,
@@ -18035,6 +18035,65 @@
       "removed_points": 0,
       "driving": [],
       "thumbnail": "thumbnails/סינגל כפר-ורדים_יחיעם.jpg"
+    },
+    {
+      "id": 766,
+      "file_name": "סינגל תימנע המכרות ארוך.gpx",
+      "gpx_path": "GPX_files/סינגל תימנע המכרות ארוך.gpx",
+      "date": "2020-12-21",
+      "date_source": "timestamps בקובץ",
+      "activity": "רכיבת אופניים",
+      "source": "הקלטה",
+      "distance_km": 33.95,
+      "elevation_gain_m": 643,
+      "elevation_loss_m": 630,
+      "point_count": 7114,
+      "start_lat": 29.76081,
+      "start_lon": 34.96881,
+      "end_lat": 29.76024,
+      "end_lon": 34.96898,
+      "regions": [
+        "נגב וערבה"
+      ],
+      "settlements": [
+        "אליפז",
+        "סמר"
+      ],
+      "settlements_found": true,
+      "invalid": false,
+      "removed_points": 0,
+      "driving": [],
+      "thumbnail": "thumbnails/סינגל תימנע המכרות ארוך.jpg"
+    },
+    {
+      "id": 767,
+      "file_name": "סינגל תמנע קצר.gpx",
+      "gpx_path": "GPX_files/סינגל תמנע קצר.gpx",
+      "date": "2017-05-05",
+      "date_source": "timestamps בקובץ",
+      "activity": "רכיבת אופניים",
+      "source": "הקלטה",
+      "distance_km": 13.98,
+      "elevation_gain_m": 184,
+      "elevation_loss_m": 176,
+      "point_count": 1173,
+      "start_lat": 29.76093,
+      "start_lon": 34.96896,
+      "end_lat": 29.76137,
+      "end_lon": 34.96908,
+      "regions": [
+        "נגב וערבה"
+      ],
+      "settlements": [
+        "אליפז",
+        "סמר",
+        "שחרות"
+      ],
+      "settlements_found": true,
+      "invalid": false,
+      "removed_points": 0,
+      "driving": [],
+      "thumbnail": "thumbnails/סינגל תמנע קצר.jpg"
     },
     {
       "id": 714,
