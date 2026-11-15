@@ -101,6 +101,7 @@
                         { text: '👨‍👩‍👧 בעת שינוי אישי/משפחתי',                      href: bp + 'senior_rights/senior_rights_full.html#is-report-personal' },
                         { text: '📩 דרישת החזר — חובת דיווח',                    href: bp + 'senior_rights/senior_rights_full.html#is-report-repayment' },
                     ]},
+                    { text: '💼 חובת התייצבות בלשכת התעסוקה',                     href: bp + 'additional_guides/html/chovaat_hitatzbut.html' },
                     { text: '🎁 הטבות נלוות להשלמת הכנסה',                        href: bp + 'senior_rights/senior_rights_full.html#is-benefits' },
                 ]},
                 { text: '❤️ גמלת סיעוד', children: [
@@ -188,6 +189,7 @@
                         { text: 'י.1 — ערעור על החלטת הביטוח הלאומי',               href: bp + 'senior_rights/senior_rights_full.html#su-j1' },
                         { text: 'י.2 — נקודות בדיקה לאנשי מקצוע',                  href: bp + 'senior_rights/senior_rights_full.html#su-j2' },
                     ]},
+                    { text: '💼 חובת התייצבות בלשכת התעסוקה (השלמת הכנסה לשאירים)', href: bp + 'additional_guides/html/chovaat_hitatzbut.html?openPath=' + encodeURIComponent('פרק 3: חובת התייצבות בהשלמת הכנסה לקצבת שאירים') },
                 ]},
                 { text: '🎁 מענק מעבר לנשים בגיל 62', children: [
                     { text: '6.1 משך התשלום',                                      href: bp + 'senior_rights/senior_rights_full.html#tg-61' },
@@ -485,7 +487,7 @@
                 { text: '🏠 גמלת זיקנה מיוחדת לעולים ותושבים חוזרים',        href: bp + 'additional_guides/html/additional_guides_index.html#gamlay_zikna' },
                 { text: '👨‍👩‍👧 הגדרת תלויים בקצבת זקנה וקצבת שאירים',           href: bp + 'additional_guides/html/additional_guides_index.html#hagdarat_tluim' },
                 { text: '🎓 דמי מחיה לשאירים בביטוח לאומי',                    href: bp + 'additional_guides/html/additional_guides_index.html#dmei_michya_leshairim' },
-                { text: '💼 השלמת הכנסה וחובת ההתייצבות בשירות התעסוקה',     href: bp + 'additional_guides/html/additional_guides_index.html#chovaat_hitatzbut' },
+                { text: '💼 חובת התייצבות בלשכת התעסוקה להשלמת הכנסה בקצבת זיקנה וקצבת שאירים',     href: bp + 'additional_guides/html/additional_guides_index.html#chovaat_hitatzbut' },
                 { text: '✈️ יציאה לחו"ל והשפעתה על קצבת זיקנה והשלמת הכנסה', href: bp + 'additional_guides/html/additional_guides_index.html#yetzia_lachul' },
                 { text: '📅 תקופת אכשרה לקצבת אזרח ותיק',                     href: bp + 'additional_guides/html/additional_guides_index.html#tkufat_achshara' },
                 { text: '⚖️ בחירה בין קצבת נכות לקצבת שאירים',                href: bp + 'additional_guides/html/additional_guides_index.html#nechut_mul_shairim' },

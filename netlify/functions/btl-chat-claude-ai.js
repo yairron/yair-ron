@@ -43,7 +43,7 @@ const PATH_DESCRIPTIONS = {
   'additional_guides/html/amnot_binleumiot.html':
     'סיכום מפורט על אמנות בינלאומיות לביטחון סוציאלי: רשימת מדינות החתומות עם ישראל, עקרונות מניעת כפל תשלום וצירוף תקופות ביטוח.',
   'additional_guides/html/chovaat_hitatzbut.html':
-    'מדריך לחובת התייצבות בלשכת שירות התעסוקה כתנאי לקבלת תוספת השלמת הכנסה בגיל זקנה.',
+    'מדריך מקיף לחובת ההתייצבות בלשכת שירות התעסוקה כתנאי לתוספת השלמת הכנסה בקצבת זיקנה ובקצבת שאירים: מי חייב, טבלת פטורים ואישורים נדרשים, הבחנה מגדרית בין בני זוג ופטורים לאלמנים ויתומים.',
   'additional_guides/html/gamlay_zikna.html':
     'מדריך לגמלת זקנה מיוחדת לעולים חדשים ותושבים חוזרים שאינם זכאים לקצבת זקנה רגילה, כולל השוואה מול קצבה חלקית דרך אמנה.',
   'additional_guides/html/hagdarat_tluim.html':
@@ -111,7 +111,7 @@ const PATH_DESCRIPTIONS = {
 const PATH_TITLES = {
   'additional_guides/html/additional_guides_index.html': '📚 סיכומים ומסמכי מידע מפורט',
   'additional_guides/html/amnot_binleumiot.html': '🌍 אמנות בינלאומיות לביטחון סוציאלי',
-  'additional_guides/html/chovaat_hitatzbut.html': '💼 השלמת הכנסה וחובת ההתייצבות בשירות התעסוקה',
+  'additional_guides/html/chovaat_hitatzbut.html': '💼 חובת התייצבות בלשכת התעסוקה להשלמת הכנסה בקצבת זיקנה וקצבת שאירים',
   'additional_guides/html/gamlay_zikna.html': '🏠 גמלת זיקנה מיוחדת לעולים ותושבים חוזרים',
   'additional_guides/html/hagdarat_tluim.html': '👨‍👩‍👧 הגדרת תלויים בקצבת זקנה וקצבת שאירים',
   'additional_guides/html/mekarim_meyuchadim.html': '⚠️ מקרים מיוחדים בגמלאות ביטוח לאומי',
@@ -159,7 +159,7 @@ const ADDITIONAL_GUIDES_PDF_URLS = {
   'additional_guides/html/gamlay_zikna.html': 'https://yairron.com/btl/additional_guides/data/%D7%92%D7%9E%D7%9C%D7%AA%20%D7%96%D7%99%D7%A7%D7%A0%D7%94%20%D7%9E%D7%99%D7%95%D7%97%D7%93%D7%AA.pdf',
   'additional_guides/html/hagdarat_tluim.html': 'https://yairron.com/btl/additional_guides/data/%D7%94%D7%92%D7%93%D7%A8%D7%AA_%D7%AA%D7%9C%D7%95%D7%99%D7%99%D7%9D_%D7%91%D7%A7%D7%A6%D7%91%D7%AA_%D7%96%D7%99%D7%A7%D7%A0%D7%94_%D7%95%D7%A7%D7%A6%D7%91%D7%AA_%D7%A9%D7%90%D7%99%D7%A8%D7%99%D7%9D.pdf',
   'additional_guides/html/dmei_michya_leshairim.html': 'https://yairron.com/btl/data/%D7%93%D7%9E%D7%99_%D7%9E%D7%97%D7%99%D7%94_%D7%9C%D7%A9%D7%90%D7%99%D7%A8%D7%99%D7%9D_%D7%91%D7%91%D7%99%D7%98%D7%95%D7%97_%D7%9C%D7%90%D7%95%D7%9E%D7%99.pdf',
-  'additional_guides/html/chovaat_hitatzbut.html': 'https://yairron.com/btl/additional_guides/data/%D7%97%D7%95%D7%91%D7%AA%20%D7%94%D7%AA%D7%99%D7%99%D7%A6%D7%91%D7%95%D7%AA%20%D7%91%D7%9C%D7%A9%D7%9B%D7%AA%20%D7%94%D7%AA%D7%A2%D7%A1%D7%95%D7%A7%D7%94%20%D7%9C%D7%94%D7%A9%D7%9C%D7%9E%D7%AA%20%D7%94%D7%9B%D7%A0%D7%A1%D7%94.pdf',
+  'additional_guides/html/chovaat_hitatzbut.html': 'https://yairron.com/btl/additional_guides/data/%D7%97%D7%95%D7%91%D7%AA%20%D7%94%D7%AA%D7%99%D7%99%D7%A6%D7%91%D7%95%D7%AA%20%D7%91%D7%9C%D7%A9%D7%9B%D7%AA%20%D7%94%D7%AA%D7%A2%D7%A1%D7%95%D7%A7%D7%94%20%D7%9C%D7%94%D7%A9%D7%9C%D7%9E%D7%AA%20%D7%94%D7%9B%D7%A0%D7%A1%D7%94%20%D7%91%D7%A7%D7%A6%D7%91%D7%AA%20%D7%96%D7%99%D7%A7%D7%A0%D7%94%20%D7%95%D7%A7%D7%A6%D7%91%D7%AA%20%D7%A9%D7%90%D7%99%D7%A8%D7%99%D7%9D.pdf',
   'additional_guides/html/yetzia_lachul.html': 'https://yairron.com/btl/additional_guides/data/%D7%99%D7%A6%D7%99%D7%90%D7%94%20%D7%9C%D7%97%D7%95%D7%9C%20%D7%95%D7%A7%D7%A6%D7%91%D7%AA%20%D7%96%D7%99%D7%A7%D7%A0%D7%94%20%D7%95%D7%94%D7%A9%D7%9C%D7%9E%20%D7%94%D7%9B%D7%A0%D7%A1%D7%94.pdf',
   'additional_guides/html/tkufat_achshara.html': 'https://yairron.com/btl/additional_guides/data/%D7%9E%D7%93%D7%A8%D7%99%D7%9A%20%D7%94%D7%92%D7%93%D7%A8%D7%AA%20%D7%AA%D7%A7%D7%95%D7%A4%D7%AA%20%D7%90%D7%9B%D7%A9%D7%A8%D7%94%20%D7%9C%D7%90%D7%96%D7%A8%D7%97%20%D7%95%D7%AA%D7%99%D7%A7.pdf',
   'additional_guides/html/nechut_mul_shairim.html': 'https://yairron.com/btl/additional_guides/data/%D7%A0%D7%9B%D7%95%D7%AA%20%D7%9E%D7%95%D7%9C%20%D7%A9%D7%90%D7%99%D7%A8%D7%99%D7%9D_2026.pdf',
