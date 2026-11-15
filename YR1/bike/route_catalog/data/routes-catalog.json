@@ -1,6 +1,6 @@
 {
-  "generated_at": "2026-11-12T19:45:43",
-  "route_count": 619,
+  "generated_at": "2026-11-15T15:48:59",
+  "route_count": 620,
   "routes": [
     {
       "id": 698,
@@ -3875,8 +3875,8 @@
     },
     {
       "id": 5,
-      "file_name": "2013-04-19_בר יוחאי_ברעם.gpx",
-      "gpx_path": "GPX_files/2013-04-19_בר יוחאי_ברעם.gpx",
+      "file_name": "2013-04-19_שביל הפסגה_מירון.gpx",
+      "gpx_path": "GPX_files/2013-04-19_שביל הפסגה_מירון.gpx",
       "date": "2013-04-19",
       "date_source": "שם קובץ",
       "activity": "הליכה רגלית",
@@ -3900,7 +3900,7 @@
       "settlements_found": true,
       "invalid": false,
       "removed_points": 0,
-      "thumbnail": "thumbnails/2013-04-19_בר יוחאי_ברעם.jpg",
+      "thumbnail": "thumbnails/2013-04-19_שביל הפסגה_מירון.jpg",
       "driving": []
     },
     {
@@ -17560,6 +17560,36 @@
       "removed_points": 0,
       "thumbnail": "thumbnails/וילה סינגל כברי בירידה קיצור לסינגל כברי בקצה העליה.jpg",
       "driving": []
+    },
+    {
+      "id": 768,
+      "file_name": "חורפיש בית גאן.gpx",
+      "gpx_path": "GPX_files/חורפיש בית גאן.gpx",
+      "date": "2026-11-15",
+      "date_source": "תאריך שינוי הקובץ (גיבוי)",
+      "activity": "לא ברור",
+      "source": "הקלטה",
+      "distance_km": 31.89,
+      "elevation_gain_m": 900,
+      "elevation_loss_m": 901,
+      "point_count": 815,
+      "start_lat": 33.01092,
+      "start_lon": 35.35638,
+      "end_lat": 33.01351,
+      "end_lon": 35.35575,
+      "regions": [
+        "צפון"
+      ],
+      "settlements": [
+        "בית ג'ן",
+        "חורפיש",
+        "שפר"
+      ],
+      "settlements_found": true,
+      "invalid": false,
+      "removed_points": 0,
+      "driving": [],
+      "thumbnail": "thumbnails/חורפיש בית גאן.jpg"
     },
     {
       "id": 718,

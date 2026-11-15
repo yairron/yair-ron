@@ -196,11 +196,13 @@ var areaRect = null;         // L.rectangle - תצוגה מקדימה בזמן �
 var areaNetLayer = null;     // L.layerGroup של קווי הרשת
 var areaSegments = null;     // [[{lat,lon}, ...], ...] - המקטעים המוצגים/להורדה (אחרי הסרת חפיפות, אם מסומנת)
 var areaRawResult = null;    // {segments, routeCount, byRoute} - לפני הסרת חפיפות, כדי שהחלפת תיבת הסימון לא תדרוש בחירה מחדש
-// רשימת המסלולים שמתחת למפה (נוסף 07.11.2026): לחיצה על מסלול מסמנת בצבע בולט את
-// **כל** החלק שלו באזור - מתוך byRoute, לפני הסרת חפיפות - גם קטעים שהוסתרו ברשת
-// כי מסלול אחר עובר באותו שביל. הסימון לא משנה את הזום.
+// רשימת המסלולים שמתחת למפה (נוסף 07.11.2026, עודכן 15.11.2026): לחיצה על מסלול
+// מציגה את המסלול **במלואו** (גם החלקים שמחוץ לאזור) בצבע כתום אחד, מעל הרשת
+// שנשארת ברקע, ומזיזה את המפה כך שכל המסלול נראה. לחיצה על מסלול אחר מחליפה את המסלול המוצג; לחיצה חוזרת על המסלול
+// הנבחר מחזירה לתצוגת הרשת (וזום לאזור).
 var ROUTE_CATALOG_URL = '../route_catalog/data/routes-catalog.json';
 var routeNamesPromise = null;
+var routeTracksData = null;  // תוכן routes-tracks.json אחרי הטעינה - לציור מסלול מלא
 var areaHighlightLayer = null;
 var areaSelectedRouteId = null;
 var AREA_HIGHLIGHT_COLOR = '#FF6D00';
@@ -804,6 +806,7 @@ function finishAreaSelection(bounds) {
   var namesPromise = loadRouteNames().catch(function () { return {}; });
   Promise.all([loadRouteTracks(), namesPromise]).then(function (res) {
     if (!areaRect) return; // האזור נוקה בזמן הטעינה
+    routeTracksData = res[0];
     areaRawResult = clipTracksToBox(res[0], box);
     refreshAreaNet(true);
     renderAreaRouteList(res[1]);
@@ -901,7 +904,7 @@ function renderAreaRouteList(names) {
   }).sort(function (a, b) { return b.km - a.km; });
   if (!items.length) { box.innerHTML = ''; box.style.display = 'none'; return; }
   box.innerHTML =
-    '<div class="area-route-title">🚲 המסלולים ברשת (' + items.length + ') - לחיצה על מסלול מסמנת אותו במפה</div>' +
+    '<div class="area-route-title">🚲 המסלולים ברשת (' + items.length + ') - לחיצה על מסלול מציגה אותו במלואו, לחיצה נוספת מחזירה לרשת</div>' +
     '<div class="area-route-items">' + items.map(function (it) {
       return '<div class="area-route-item" data-id="' + escapeHtml(it.id) + '" onclick="toggleAreaRoute(this.dataset.id)">' +
         '<span>#' + escapeHtml(it.id) + ' ' + escapeHtml(it.name) + '</span>' +
@@ -910,17 +913,36 @@ function renderAreaRouteList(names) {
   box.style.display = 'block';
 }
 
-// לחיצה על מסלול ברשימה: מסמנת אותו (ומבטלת סימון קודם); לחיצה חוזרת מבטלת
+// כל קווי המסלול המלא מ-routes-tracks.json, כ-[[[lat,lon],...], ...]
+function fullRouteLines(id) {
+  var t = routeTracksData && routeTracksData[id];
+  if (!t) return [];
+  return (Array.isArray(t[0]) ? t : [t]).map(function (flat) {
+    var pts = [];
+    for (var i = 0; i + 1 < flat.length; i += 2) pts.push([flat[i], flat[i + 1]]);
+    return pts;
+  });
+}
+
+// לחיצה על מסלול ברשימה: מציגה את המסלול במלואו מעל הרשת (מחליפה מסלול
+// שהוצג קודם); לחיצה חוזרת על המסלול הנבחר מחזירה לתצוגת הרשת
 function toggleAreaRoute(id) {
   if (areaHighlightLayer) { mapInstance.removeLayer(areaHighlightLayer); areaHighlightLayer = null; }
   areaSelectedRouteId = areaSelectedRouteId === id ? null : id;
   document.querySelectorAll('#areaRouteList .area-route-item').forEach(function (el) {
     el.classList.toggle('selected', el.dataset.id === areaSelectedRouteId);
   });
-  if (!areaSelectedRouteId) return;
-  areaHighlightLayer = L.polyline(areaRawResult.byRoute[id].map(function (seg) {
-    return seg.map(function (p) { return [p.lat, p.lon]; });
-  }), { color: AREA_HIGHLIGHT_COLOR, weight: 6, opacity: 1 }).addTo(mapInstance);
+  if (!areaSelectedRouteId) {
+    if (areaRect) mapInstance.fitBounds(areaRect.getBounds(), { padding: [20, 20] });
+    return;
+  }
+  // המסלול המלא בצבע אחד, מעל הרשת שנשארת ברקע
+  areaHighlightLayer = L.featureGroup([
+    L.polyline(fullRouteLines(id), { color: AREA_HIGHLIGHT_COLOR, weight: 6, opacity: 1 })
+  ]).addTo(mapInstance);
+  var bounds = areaHighlightLayer.getBounds();
+  if (areaRect) bounds.extend(areaRect.getBounds());
+  mapInstance.fitBounds(bounds, { padding: [20, 20] });
 }
 
 // מציג את הרשת לפי מצב תיבת "הסרת חפיפות" - נקראת גם בסיום בחירת אזור וגם
