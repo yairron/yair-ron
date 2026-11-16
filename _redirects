@@ -24,6 +24,18 @@
 /btl/additional_guides/html/index.html   /btl/additional_guides/html/additional_guides_index   301!
 /btl/additional_guides/html/             /btl/additional_guides/html/additional_guides_index   301!
 
+# קובצי הריכוז לכלי AI היו .txt עד 22.07.2026 ואז הוחלפו ב-HTML באותו שם (ראו CLAUDE.md) -
+# הכתובות הישנות נשארו מוכרות לגוגל ולכלי AI והחזירו 404 (דווח ב-Search Console, 16.11.2026).
+# שורה מפורשת לכל קובץ: placeholder של Netlify חייב להיות רכיב נתיב שלם, ":slug.txt" לא נתמך.
+/btl/ai-summary.txt                            /btl/ai-summary                            301
+/btl/ai-content/btl-care-transitions.txt       /btl/ai-content/btl-care-transitions       301
+/btl/ai-content/btl-faq.txt                    /btl/ai-content/btl-faq                    301
+/btl/ai-content/btl-immigrants-treaties.txt    /btl/ai-content/btl-immigrants-treaties    301
+/btl/ai-content/btl-income-test.txt            /btl/ai-content/btl-income-test            301
+/btl/ai-content/btl-pension-overview.txt       /btl/ai-content/btl-pension-overview       301
+/btl/ai-content/btl-special-cases.txt          /btl/ai-content/btl-special-cases          301
+/btl/ai-content/btl-survivors-disability.txt   /btl/ai-content/btl-survivors-disability   301
+
 # קישורי-קיצור באנגלית לקבצי ה-PDF תחת additional_guides_index.html (כפתור 📥 "קישור להורדת המסמך") -
 # שמות הקבצים המקוריים בעברית עם רווחים נהפכים ל-percent-encoding ארוך ומכוער כשמשתפים אותם ישירות
 # (למשל בוואטסאפ). המפתח בכל שורה זהה בדיוק ל-id של האקורדיון המתאים ב-additional_guides_index.html.
