@@ -1,6 +1,6 @@
 {
-  "generated_at": "2026-11-15T15:48:59",
-  "route_count": 620,
+  "generated_at": "2026-11-17T17:37:28",
+  "route_count": 622,
   "routes": [
     {
       "id": 698,
@@ -17562,6 +17562,36 @@
       "driving": []
     },
     {
+      "id": 769,
+      "file_name": "חוף הצוק_יקום_הדר יוסף.gpx",
+      "gpx_path": "GPX_files/חוף הצוק_יקום_הדר יוסף.gpx",
+      "date": "2021-01-26",
+      "date_source": "timestamps בקובץ",
+      "activity": "רכיבת אופניים",
+      "source": "הקלטה",
+      "distance_km": 53.38,
+      "elevation_gain_m": 239,
+      "elevation_loss_m": 199,
+      "point_count": 8127,
+      "start_lat": 32.10558,
+      "start_lon": 34.81853,
+      "end_lat": 32.10563,
+      "end_lon": 34.81854,
+      "regions": [
+        "מרכז"
+      ],
+      "settlements": [
+        "ארסוף",
+        "יקום",
+        "כפר שמריהו"
+      ],
+      "settlements_found": true,
+      "invalid": false,
+      "removed_points": 0,
+      "driving": [],
+      "thumbnail": "thumbnails/חוף הצוק_יקום_הדר יוסף.jpg"
+    },
+    {
       "id": 768,
       "file_name": "חורפיש בית גאן.gpx",
       "gpx_path": "GPX_files/חורפיש בית גאן.gpx",
@@ -18307,6 +18337,36 @@
       "removed_points": 0,
       "thumbnail": "thumbnails/תחנת אלונים - עין ריחניה .jpg",
       "driving": []
+    },
+    {
+      "id": 770,
+      "file_name": "תל יצחק_וינגיט_ארסוף_רשפון_בצרה.gpx",
+      "gpx_path": "GPX_files/תל יצחק_וינגיט_ארסוף_רשפון_בצרה.gpx",
+      "date": "2018-02-10",
+      "date_source": "timestamps בקובץ",
+      "activity": "רכיבת אופניים",
+      "source": "הקלטה",
+      "distance_km": 33.53,
+      "elevation_gain_m": 242,
+      "elevation_loss_m": 274,
+      "point_count": 2823,
+      "start_lat": 32.2529,
+      "start_lon": 34.87095,
+      "end_lat": 32.25285,
+      "end_lon": 34.87089,
+      "regions": [
+        "מרכז"
+      ],
+      "settlements": [
+        "כפר שמריהו",
+        "ארסוף",
+        "חרוצים"
+      ],
+      "settlements_found": true,
+      "invalid": false,
+      "removed_points": 0,
+      "driving": [],
+      "thumbnail": "thumbnails/תל יצחק_וינגיט_ארסוף_רשפון_בצרה.jpg"
     }
   ]
 }
