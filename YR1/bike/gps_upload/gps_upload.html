@@ -29,12 +29,43 @@ input[type="file"]{display:none}
 .file-btn{background:linear-gradient(135deg,var(--primary),var(--secondary));color:white;border-radius:14px;font-size:1rem;font-weight:700;padding:12px 24px;cursor:pointer;white-space:nowrap;transition:all .2s;box-shadow:0 4px 12px rgba(0,0,0,.15)}
 .file-btn:hover{transform:translateY(-2px);box-shadow:0 6px 16px rgba(0,0,0,.2)}
 .upload-hint{font-size:.85rem;color:#5C7A6B}
+/* כרטיס הכפתורים מוקטן (18.11.2026) כדי לפנות גובה למפה */
+.card-compact{padding:8px 12px;margin-bottom:10px;border-radius:14px}
+.card-compact .upload-row{gap:8px;justify-content:center}
+.card-compact .file-btn{font-size:.9rem;padding:6px 14px;border-radius:10px;border:none;font-family:'Assistant',sans-serif}
+
+/* חלון בחירת מסלולים מהקטלוג */
+.picker-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.45);z-index:2000;align-items:center;justify-content:center;padding:16px}
+.picker-overlay.show{display:flex}
+.picker-box{background:white;border-radius:16px;width:100%;max-width:560px;max-height:85vh;display:flex;flex-direction:column;box-shadow:0 12px 40px rgba(0,0,0,.35);overflow:hidden}
+.picker-head{display:flex;justify-content:space-between;align-items:center;padding:12px 16px;color:var(--dark);border-bottom:1px solid #E3ECE6}
+.picker-x{background:none;border:none;font-size:1.1rem;cursor:pointer;color:#5C7A6B}
+.picker-search{margin:10px 16px;padding:8px 12px;border:1px solid #C9D9CF;border-radius:10px;font-family:'Assistant',sans-serif;font-size:.95rem}
+.picker-list{flex:1;overflow-y:auto;padding:0 10px}
+.picker-item{display:flex;align-items:center;gap:8px;padding:6px 8px;border-radius:8px;cursor:pointer;font-size:.92rem;color:var(--text)}
+.picker-item:hover{background:var(--light)}
+.picker-name{flex:1;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.picker-km{color:var(--primary);white-space:nowrap;font-size:.85rem}
+.picker-msg{text-align:center;color:#5C7A6B;padding:12px;font-size:.9rem}
+.picker-foot{display:flex;justify-content:space-between;align-items:center;gap:10px;padding:10px 16px;border-top:1px solid #E3ECE6;font-size:.9rem;color:var(--dark)}
+.picker-foot .file-btn{border:none;font-family:'Assistant',sans-serif;font-size:.9rem;padding:7px 16px}
+.picker-foot .file-btn:disabled{opacity:.5;cursor:default;transform:none}
+#discardDialog{z-index:2100} /* מעל חלון הקטלוג */
+.discard-box{max-width:420px}
+.discard-info{padding:12px 16px 4px;font-size:.95rem;color:var(--text);line-height:1.5}
+.discard-actions{display:flex;flex-direction:column;gap:8px;padding:12px 16px 16px}
+.discard-actions .file-btn{border:none;font-family:'Assistant',sans-serif;font-size:.95rem;padding:9px 14px;text-align:center}
+.discard-actions .discard-delete{background:#B03A2E}
+.discard-cancel{background:none;border:1px solid #C9D9CF;border-radius:10px;padding:8px;font-family:'Assistant',sans-serif;font-size:.95rem;cursor:pointer;color:var(--dark)}
 .empty-state{text-align:center;padding:30px 10px;color:#5C7A6B}
 
 .map-wrap{background:white;border-radius:20px;overflow:hidden;box-shadow:0 10px 30px rgba(0,0,0,.15);margin-bottom:20px;display:none}
-#uploadMap{width:100%;height:480px}
+/* גובה המפה לפי גובה המסך (18.11.2026, קודם 480px קבוע) - משאיר רצועה קטנה
+   לגלילת העמוד, כי גרירה על המפה עצמה מזיזה את המפה ולא את העמוד */
+#uploadMap{width:100%;height:calc(100vh - 70px);height:calc(100dvh - 70px);min-height:400px}
 
 .routes-list{display:flex;flex-direction:column;gap:14px;margin-bottom:20px}
+.routes-list:empty{display:none}
 .route-card{background:white;border-radius:16px;box-shadow:0 6px 18px rgba(0,0,0,.12);padding:16px 20px;display:flex;align-items:center;gap:16px;flex-wrap:wrap}
 .route-swatch{width:16px;height:16px;border-radius:50%;flex-shrink:0;border:2px solid white;box-shadow:0 0 0 2px rgba(0,0,0,.15)}
 .route-name{font-weight:700;color:var(--dark);flex:1;min-width:160px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
@@ -48,8 +79,9 @@ input[type="file"]{display:none}
 .btn-close{background:#B03A2E}
 .btn-close:hover{background:#8E2E24}
 
-.actions-row{display:flex;justify-content:center;gap:14px;flex-wrap:wrap;margin-bottom:10px;position:relative}
-.actions-row button{background:rgba(255,255,255,.9);color:var(--primary);border:none;border-radius:16px;padding:12px 22px;font-size:1rem;font-weight:700;cursor:pointer;font-family:'Assistant',sans-serif;box-shadow:0 4px 12px rgba(0,0,0,.15);transition:all .2s}
+.actions-row{display:flex;justify-content:center;gap:10px;flex-wrap:wrap;margin-bottom:10px;position:relative}
+.actions-row .btn-nav{padding:7px 16px;font-size:.95rem;border-radius:12px}
+.actions-row button{background:rgba(255,255,255,.9);color:var(--primary);border:none;border-radius:12px;padding:7px 16px;font-size:.95rem;font-weight:700;cursor:pointer;font-family:'Assistant',sans-serif;box-shadow:0 4px 12px rgba(0,0,0,.15);transition:all .2s}
 .actions-row button:hover{transform:translateY(-2px);box-shadow:0 6px 16px rgba(0,0,0,.2)}
 .edit-mode-curtain{display:none;position:absolute;top:calc(100% + 6px);right:0;background:white;border-radius:12px;box-shadow:0 8px 24px rgba(0,0,0,.35);padding:8px;min-width:260px;z-index:1002;flex-direction:column;gap:4px}
 .edit-mode-curtain.show{display:flex}
@@ -60,7 +92,7 @@ input[type="file"]{display:none}
 .mode-check{color:#2E7D32;font-weight:800;visibility:hidden;flex-shrink:0}
 .mode-check.active{visibility:visible}
 
-.cutter-toolbar{display:none;align-items:center;gap:10px;padding:12px 20px;background:white;border-radius:16px;margin-bottom:20px;box-shadow:0 6px 18px rgba(0,0,0,.12);flex-wrap:wrap}
+.cutter-toolbar{display:none;align-items:center;gap:10px;padding:8px 16px;background:white;border-radius:16px;margin-bottom:10px;box-shadow:0 6px 18px rgba(0,0,0,.12);flex-wrap:wrap}
 .cutter-toolbar button{padding:8px 16px;border-radius:10px;border:none;font-weight:700;cursor:pointer;font-family:'Assistant',sans-serif;font-size:.9rem;background:var(--primary);color:white}
 .cutter-toolbar button:hover{background:var(--dark)}
 .cutter-toolbar #cutterStatus{font-size:.9rem;color:var(--dark);font-weight:600}
@@ -81,7 +113,7 @@ footer a{color:white;text-decoration:underline;font-weight:600}
 
 @media(max-width:768px){
   h1{font-size:1.8rem}
-  #uploadMap{height:340px}
+  #uploadMap{height:calc(100vh - 90px);height:calc(100dvh - 90px);min-height:340px}
   .route-card{flex-direction:column;align-items:flex-start}
   .route-stats{width:100%}
 }
@@ -98,16 +130,12 @@ footer a{color:white;text-decoration:underline;font-weight:600}
     <p class="subtitle">העלאת קובץ GPX, הצגה על מפה ועריכה</p>
   </header>
 
-  <div class="card">
-    <div class="card-title">קובץ GPX</div>
+  <div class="card card-compact">
     <div class="upload-row">
-      <label class="file-btn" for="gpxInput">📂 בחר קובץ GPX</label>
+      <label class="file-btn" for="gpxInput" title="ניתן לבחור קובץ נוסף כדי להציג כמה מסלולים יחד על אותה מפה">📂 בחר קובץ GPX חדש</label>
       <input type="file" id="gpxInput" accept=".gpx" onchange="handleFile(this)">
-      <span class="upload-hint">ניתן לבחור קובץ נוסף כדי להציג כמה מסלולים יחד על אותה מפה</span>
-    </div>
-    <div class="upload-row" style="margin-top:14px">
-      <button type="button" class="file-btn" onclick="startFromScratch()">🖊️ עריכת מסלול חדש</button>
-      <span class="upload-hint">בניית מסלול חדש מאפס על המפה, בלי להעלות קובץ</span>
+      <button type="button" class="file-btn" onclick="openCatalogPicker()" title="בחירת מסלול אחד או יותר מקטלוג המסלולים">🗂️ בחר קובץ מהקטלוג</button>
+      <button type="button" class="file-btn" onclick="startFromScratch()" title="בניית מסלול חדש מאפס על המפה, בלי להעלות קובץ">🖊️ עריכת מסלול חדש</button>
     </div>
   </div>
 
@@ -120,15 +148,27 @@ footer a{color:white;text-decoration:underline;font-weight:600}
     <button id="editRouteBtn" onclick="toggleEditCurtain()">🖊️ עריכת מסלול</button>
     <div class="edit-mode-curtain" id="editModeCurtain">
       <button class="merge-option" id="mergeOption" onclick="mergeAllRoutesDownload()">🔗 מזג את כל המסלולים</button>
-      <button id="cutOption" onclick="selectEditMode('cut')">✂️ חיתוך מקטע (מתוך מסלול טעון)<span class="mode-check" id="checkCut">✓</span></button>
+      <button id="cutOption" onclick="selectEditMode('cut')">✂️ חיתוך מסלול לפי מסלולים קיימים<span class="mode-check" id="checkCut">✓</span></button>
       <button onclick="selectEditMode('osm')">📍 הוספת נקודות עם הצמדה לנתיב מפה<span class="mode-check" id="checkOsm">✓</span></button>
       <button onclick="selectEditMode('freehand')">✏️ הוספת נקודות חופשי (בלי הצמדה)<span class="mode-check" id="checkFreehand">✓</span></button>
       <button class="finish-option" onclick="stopEditMode()">⏹️ סיום עריכה</button>
     </div>
     <button onclick="selectAreaMode()">🔲 רשת מסלולים קיימים באזור</button>
     <button onclick="downloadNewRoute()">⬇️ הורדת מסלול חדש</button>
-    <button onclick="deleteNewSegment()">🗑️ מחיקת מסלול חדש</button>
+    <button onclick="deleteNewSegmentAsk()">🗑️ מחיקת מסלול חדש</button>
     <a href="../route_catalog/catalog.html" class="btn-nav" style="background:rgba(255,255,255,.9);color:var(--primary)">🏠 חזרה לראשי</a>
+  </div>
+
+  <!-- UNDO ונתוני המסלול החדש מיד מתחת לתפריט (18.11.2026) - קודם היו מתחת לרשימת
+       המסלולים ברשת, שבאזור צפוף דוחפת אותם אל מחוץ למסך -->
+  <div class="cutter-toolbar" id="cutterToolbar">
+    <button onclick="cutterUndo()">↩ UNDO</button>
+    <span id="cutterStatus"></span>
+    <div class="cutter-stats">
+      <span>📏 <b id="cutterDist">0.0</b> ק"מ</span>
+      <span>↗ <b id="cutterClimb">0</b> מ'</span>
+      <span>↘ <b id="cutterDescent">0</b> מ'</span>
+    </div>
   </div>
 
   <div class="cutter-toolbar" id="areaToolbar">
@@ -149,13 +189,32 @@ footer a{color:white;text-decoration:underline;font-weight:600}
 
   <div class="area-route-list" id="areaRouteList"></div>
 
-  <div class="cutter-toolbar" id="cutterToolbar">
-    <button onclick="cutterUndo()">↩ UNDO</button>
-    <span id="cutterStatus"></span>
-    <div class="cutter-stats">
-      <span>📏 <b id="cutterDist">0.0</b> ק"מ</span>
-      <span>↗ <b id="cutterClimb">0</b> מ'</span>
-      <span>↘ <b id="cutterDescent">0</b> מ'</span>
+</div>
+
+<div class="picker-overlay" id="discardDialog">
+  <div class="picker-box discard-box">
+    <div class="picker-head"><b>⚠️ המסלול שנערך יימחק</b></div>
+    <p class="discard-info" id="discardInfo"></p>
+    <div class="discard-actions">
+      <button type="button" class="file-btn" onclick="resolveDiscard('keep')">📌 שמור את המסלול על המסך</button>
+      <button type="button" class="file-btn" onclick="resolveDiscard('download')">⬇️ שמור לדיסק</button>
+      <button type="button" class="file-btn discard-delete" onclick="resolveDiscard('delete')">🗑️ המשך ומחק</button>
+      <button type="button" class="discard-cancel" onclick="resolveDiscard('cancel')">ביטול</button>
+    </div>
+  </div>
+</div>
+
+<div class="picker-overlay" id="catalogPicker" onclick="if (event.target === this) closeCatalogPicker()">
+  <div class="picker-box">
+    <div class="picker-head">
+      <b>🗂️ בחירת מסלולים מהקטלוג</b>
+      <button type="button" class="picker-x" onclick="closeCatalogPicker()" aria-label="סגירה">✕</button>
+    </div>
+    <input type="text" id="pickerSearch" class="picker-search" placeholder="חיפוש לפי שם, יישוב או מספר מסלול..." oninput="renderCatalogPicker()" autocomplete="off">
+    <div class="picker-list" id="pickerList"><div class="picker-msg">טוען את הקטלוג...</div></div>
+    <div class="picker-foot">
+      <span id="pickerCount">לא נבחרו מסלולים</span>
+      <button type="button" class="file-btn" id="pickerLoadBtn" onclick="loadPickedRoutes()" disabled>הצגה על המפה</button>
     </div>
   </div>
 </div>
@@ -175,6 +234,9 @@ var mapInstance = null;
 var editMode = null; // null | 'cut' | 'osm' | 'freehand' - מצב העריכה הפעיל כרגע
 var routeBuilder = null; // RouteEditor.createRouteBuilder() - נוצר עם בחירת מצב ראשון, נשמר לאורך כל ההחלפות
 var cutPool = null; // בריכת GPX (RouteEditor.buildPool) למצב 'cut' - נבנית מחדש בכל בחירה במצב הזה
+// גרף ניתוב על cutPool (RouteEditor.buildPoolGraph, נוסף 18.11.2026) - לחיצה על מסלול אחר מהקודמת
+// עוברת אליו בדרך הקצרה לאורך המסלולים/הרשת; לחיצה על אותו מסלול נשארת עליו.
+var cutGraph = null;
 var osmPool = null; // בריכת OSM/Overpass (RouteEditor.fetchOsmPathsPool) למצב 'osm' - נשלפת בכל בחירה במצב הזה
 var osmFetchInFlight = false;
 var cutterMarkers = [];
@@ -197,9 +259,12 @@ var areaNetLayer = null;     // L.layerGroup של קווי הרשת
 var areaSegments = null;     // [[{lat,lon}, ...], ...] - המקטעים המוצגים/להורדה (אחרי הסרת חפיפות, אם מסומנת)
 var areaRawResult = null;    // {segments, routeCount, byRoute} - לפני הסרת חפיפות, כדי שהחלפת תיבת הסימון לא תדרוש בחירה מחדש
 // רשימת המסלולים שמתחת למפה (נוסף 07.11.2026, עודכן 15.11.2026): לחיצה על מסלול
-// מציגה את המסלול **במלואו** (גם החלקים שמחוץ לאזור) בצבע כתום אחד, מעל הרשת
+// מציגה את המסלול **במלואו** (גם החלקים שמחוץ לאזור) בצבע אחד, מעל הרשת
 // שנשארת ברקע, ומזיזה את המפה כך שכל המסלול נראה. לחיצה על מסלול אחר מחליפה את המסלול המוצג; לחיצה חוזרת על המסלול
 // הנבחר מחזירה לתצוגת הרשת (וזום לאזור).
+// בחירה מרובה (נוסף 18.11.2026): Ctrl+לחיצה (Cmd במק) מוסיפה/מסירה מסלול בלי לבטל
+// את האחרים. כל מסלול נבחר מקבל צבע משלו מ-AREA_ROUTE_COLORS, וזהו גם צבע הפס
+// בשורה שלו ברשימה, כדי שאפשר יהיה לזהות איזה קו שייך לאיזה מסלול.
 var ROUTE_CATALOG_URL = '../route_catalog/data/routes-catalog.json';
 var routeNamesPromise = null;
 var routeTracksData = null;  // תוכן routes-tracks.json אחרי הטעינה - לציור מסלול מלא
@@ -207,8 +272,10 @@ var routeTracksData = null;  // תוכן routes-tracks.json אחרי הטעינ�
 // הנבחר במקום אורך החלק שבאזור; ביטול הבחירה מחזיר את אורך החלק שבאזור
 var routeFullStats = {};
 var areaHighlightLayer = null;
-var areaSelectedRouteId = null;
-var AREA_HIGHLIGHT_COLOR = '#FF6D00';
+var areaSelectedRouteIds = [];  // לפי סדר הבחירה
+var areaRouteColors = {};       // {"<id>": צבע} למסלולים הנבחרים
+// בלי סגול - צבע הרשת עצמה (#7C4DFF)
+var AREA_ROUTE_COLORS = ['#FF6D00', '#1565C0', '#2E7D32', '#C62828', '#00838F', '#AD1457', '#6D4C41', '#9E9D24'];
 // הסרת חפיפות: קטע שעובר במרחק עד AREA_DEDUP_TOL_M מקטע שכבר נשמר - נחשב אותו
 // שביל ומושמט. 15 מ' = סבולת הפישוט של routes-tracks.json; נבדק על רשת אמיתית
 // (אזור קורן-כברי, 430 ק"מ / 209 מקטעים) מול 10 ו-5 מ' - בספים הנמוכים אותו
@@ -330,42 +397,50 @@ function routeEndIcon(color, shift) {
 
 function handleFile(input) {
   var file = input.files[0];
+  input.value = '';
   if (!file) return;
+  confirmDiscardNewRoute(function () { readGpxFile(file); });
+}
+
+function readGpxFile(file) {
   var reader = new FileReader();
   reader.onload = function (e) {
-    var text = e.target.result;
-    var segments = parseGpx(text);
-    var points = segments ? [].concat.apply([], segments) : [];
-    if (points.length < 2) {
+    if (!addRouteFromText(e.target.result, file.name)) {
       alert('לא נמצאו נקודות מסלול תקינות בקובץ "' + file.name + '"');
-      input.value = '';
-      return;
     }
-    var stats = { distanceKm: 0, climbM: 0, descentM: 0 };
-    segments.forEach(function (seg) {
-      var st = computeStats(seg);
-      stats.distanceKm += st.distanceKm; stats.climbM += st.climbM; stats.descentM += st.descentM;
-    });
-    var route = {
-      id: nextRouteId++,
-      fileName: file.name,
-      rawText: text,
-      points: points,
-      segments: segments,
-      color: ROUTE_COLORS[(routes.length) % ROUTE_COLORS.length],
-      distanceKm: stats.distanceKm,
-      climbM: Math.round(stats.climbM),
-      descentM: Math.round(stats.descentM)
-    };
-    routes.push(route);
-    addRouteToMap(route);
-    renderRoutesList();
-    fitAllBounds();
-    resetCutterUI(); // בריכת הנקודות של החיתוך כבר לא תואמת את הרשימה - לבטל מצב פעיל
   };
   reader.onerror = function () { alert('שגיאה בקריאת הקובץ'); };
   reader.readAsText(file);
-  input.value = '';
+}
+
+// מוסיף מסלול לרשימה ולמפה מתוך תוכן GPX - משותף לקובץ מהמחשב ולקובץ מהקטלוג.
+// מחזיר false אם אין בקובץ לפחות שתי נקודות תקינות.
+function addRouteFromText(text, fileName) {
+  var segments = parseGpx(text);
+  var points = segments ? [].concat.apply([], segments) : [];
+  if (points.length < 2) return false;
+  var stats = { distanceKm: 0, climbM: 0, descentM: 0 };
+  segments.forEach(function (seg) {
+    var st = computeStats(seg);
+    stats.distanceKm += st.distanceKm; stats.climbM += st.climbM; stats.descentM += st.descentM;
+  });
+  var route = {
+    id: nextRouteId++,
+    fileName: fileName,
+    rawText: text,
+    points: points,
+    segments: segments,
+    color: ROUTE_COLORS[(routes.length) % ROUTE_COLORS.length],
+    distanceKm: stats.distanceKm,
+    climbM: Math.round(stats.climbM),
+    descentM: Math.round(stats.descentM)
+  };
+  routes.push(route);
+  addRouteToMap(route);
+  renderRoutesList();
+  fitAllBounds();
+  resetCutterUI(); // בריכת הנקודות של החיתוך כבר לא תואמת את הרשימה - לבטל מצב פעיל
+  return true;
 }
 
 function addRouteToMap(route) {
@@ -384,6 +459,24 @@ function addRouteToMap(route) {
 
 // כל המקטעים של כל המסלולים הטעונים, כל מקטע כמסלול נפרד בבריכה (routeIdx
 // נפרד) - כך החיתוך לא "הולך" בקו ישר מסוף מקטע אחד לתחילת המקטע הבא.
+// הקווים שמצב 'cut' נצמד אליהם: המסלולים הטעונים, רשת המסלולים באזור, והמסלולים
+// המלאים שנבחרו מרשימת האזור. נבנה מחדש בכל בחירה במצב (שינוי ברשת/בבחירה אחר
+// כך לא משפיע עד אז).
+// הרשת תמיד אחרי הסרת חפיפות, גם אם התיבה לא מסומנת: אותם שבילים בדיוק (כל קו
+// מקורי עד 15 מ' ממנה), אבל בלי צרורות של עשרות קווים מקבילים - שבהם גרף הניתוב
+// מתנפח (נבדק: 775 קווים בלי הסרה - 874 אלף צמתים ו-18 שניות; עם הסרה - 0.1 שנ').
+function cutSourceLines() {
+  var lines = allRouteSegments().slice();
+  if (areaRawResult) {
+    var dedup = document.getElementById('areaDedup').checked ? areaSegments : dedupSegments(areaRawResult.segments);
+    (dedup || []).forEach(function (seg) { lines.push(seg); });
+  }
+  areaSelectedRouteIds.forEach(function (id) {
+    fullRouteLines(id).forEach(function (l) { lines.push(l.map(function (p) { return { lat: p[0], lon: p[1], ele: null }; })); });
+  });
+  return lines.filter(function (l) { return l.length >= 2; });
+}
+
 function allRouteSegments() {
   return [].concat.apply([], routes.map(function (r) { return r.segments; }));
 }
@@ -428,6 +521,10 @@ function escapeHtml(s) {
 }
 
 function closeRoute(id) {
+  confirmDiscardNewRoute(function () { doCloseRoute(id); });
+}
+
+function doCloseRoute(id) {
   var idx = routes.findIndex(function (r) { return r.id === id; });
   if (idx === -1) return;
   var r = routes[idx];
@@ -469,6 +566,8 @@ function updateCurtainChecks() {
   document.getElementById('checkFreehand').classList.toggle('active', editMode === 'freehand');
 }
 
+// "חיתוך מסלול לפי מסלולים קיימים" מוצג גם כשיש רשת מסלולים באזור בלי קובץ טעון
+// (18.11.2026) - הוא נצמד גם לרשת, ראו cutSourceLines.
 // מסתיר את אפשרויות "חיתוך מקטע" ו"מיזוג" מהוילון כשאין מסלולים טעונים בכלל
 // (routes.length===0) - שתי הפעולות דורשות מסלול/ים קיימים, ובלעדיהם היו רק
 // מציגות שגיאה. נחוץ בפרט לזרימת "עריכת מסלול חדש" (startFromScratch) - שם
@@ -476,14 +575,17 @@ function updateCurtainChecks() {
 function updateCurtainAvailability() {
   var hasRoutes = routes.length > 0;
   document.getElementById('mergeOption').style.display = hasRoutes ? 'flex' : 'none';
-  document.getElementById('cutOption').style.display = hasRoutes ? 'flex' : 'none';
+  document.getElementById('cutOption').style.display = (hasRoutes || (areaSegments && areaSegments.length)) ? 'flex' : 'none';
 }
 
 // שורת הכפתורים גלויה אם יש מסלולים טעונים, או שכבר יש מסלול-בבנייה
 // (routeBuilder) - כדי שלא תיעלם באמצע עריכה. routeBuilder לא תלוי ב-routes
 // בכלל (startFromScratch בונה מסלול בלי להעלות GPX).
 function updateActionsRowVisibility() {
-  document.getElementById('actionsRow').style.display = (routes.length || routeBuilder || areaSegments) ? 'flex' : 'none';
+  var show = routes.length || routeBuilder || areaSegments;
+  document.getElementById('actionsRow').style.display = show ? 'flex' : 'none';
+  // "עדיין לא הועלה קובץ" רק כשאין שום דבר על המסך - אחרת הוא סתם תופס גובה
+  document.getElementById('emptyState').style.display = show ? 'none' : 'block';
 }
 
 // כפתור "עריכת מסלול חדש" מתחת לכפתור העלאת קובץ - מתחיל מסלול לגמרי מאפס,
@@ -498,6 +600,7 @@ function startFromScratch() {
     }, function () { /* מיקום נדחה/נכשל - נשארים בתצוגת ברירת המחדל */ }, { timeout: 8000 });
   }
   document.getElementById('actionsRow').style.display = 'flex';
+  document.getElementById('emptyState').style.display = 'none';
   document.getElementById('editModeCurtain').classList.add('show');
   updateCurtainChecks();
   updateCurtainAvailability();
@@ -519,8 +622,10 @@ function selectEditMode(mode) {
   closeEditCurtain();
 
   if (mode === 'cut') {
-    if (!routes.length) { alert('אין מסלולים טעונים לחיתוך'); return; }
-    cutPool = RouteEditor.buildPool(allRouteSegments());
+    var lines = cutSourceLines();
+    if (!lines.length) { alert('אין מסלולים או רשת מסלולים על המפה'); return; }
+    cutPool = RouteEditor.buildPool(lines);
+    cutGraph = RouteEditor.buildPoolGraph(cutPool);
     activateEditMode('cut');
     return;
   }
@@ -571,16 +676,55 @@ function stopEditMode() {
   if (mapInstance) mapInstance.getContainer().style.cursor = '';
 }
 
-// מוריד את הקובץ הנוכחי **ואז מוחק את המסלול החדש** (קורא ל-deleteNewSegment) -
-// לא נוגע ב-editMode, כדי שאם מצב עריכה עדיין פעיל אפשר להתחיל לבנות מסלול
-// נוסף מיד באותו מצב.
+// מוריד את הקובץ הנוכחי. עד 18.11.2026 המסלול נמחק מיד אחרי ההורדה - עכשיו הוא
+// נשאר על המסך כדי שאפשר יהיה להמשיך לערוך אותו (מחיקה רק בכפתור המחיקה).
 function downloadNewRoute() {
   if (!routeBuilder || !routeBuilder.hasStarted()) { alert('לא נבחרה אף נקודה'); return; }
   var pts = routeBuilder.getPoints();
   if (pts.length < 2) { alert('יש לבחור לפחות שתי נקודות'); return; }
   RouteEditor.downloadGpx(pts, 'מסלול_חדש.gpx', 'מסלול חדש');
-  deleteNewSegment();
 }
+
+// --- שאלה לפני מחיקת מסלול שנערך (נוסף 18.11.2026) ---
+// כל פעולה שמוחקת את המסלול שבבנייה (טעינת/סגירת מסלול, מחיקה) עוברת דרך כאן.
+// אם יש מסלול של לפחות שתי נקודות - חלון עם שלוש אפשרויות: לשמור אותו על
+// המסך כמסלול רגיל ברשימה, להוריד אותו לדיסק, או להמשיך ולמחוק; וגם ביטול.
+// בשתי האפשרויות הראשונות הפעולה המקורית ממשיכה אחרי השמירה.
+var pendingDiscardAction = null;
+var keptRouteCounter = 0;
+
+function confirmDiscardNewRoute(proceed) {
+  if (!routeBuilder || routeBuilder.getPoints().length < 2) { proceed(); return; }
+  pendingDiscardAction = proceed;
+  var st = RouteEditor.computeStats(routeBuilder.getPoints());
+  document.getElementById('discardInfo').textContent =
+    'יש מסלול שנערך ועדיין לא נשמר (' + st.distanceKm.toFixed(2) + ' ק"מ). הפעולה הזו תמחק אותו. מה לעשות?';
+  document.getElementById('discardDialog').classList.add('show');
+}
+
+function resolveDiscard(choice) {
+  document.getElementById('discardDialog').classList.remove('show');
+  var proceed = pendingDiscardAction;
+  pendingDiscardAction = null;
+  if (choice === 'cancel' || !proceed) return;
+  var pts = routeBuilder ? routeBuilder.getPoints() : [];
+  if (choice === 'keep' && pts.length >= 2) {
+    keptRouteCounter++;
+    var name = 'מסלול_חדש' + (keptRouteCounter > 1 ? '_' + keptRouteCounter : '') + '.gpx';
+    addRouteFromText(RouteEditor.buildGpxText(pts, 'מסלול חדש'), name); // מאפס גם את העריכה
+  } else if (choice === 'download' && pts.length >= 2) {
+    RouteEditor.downloadGpx(pts, 'מסלול_חדש.gpx', 'מסלול חדש');
+  }
+  proceed();
+}
+document.addEventListener('keydown', function (e) {
+  if (e.key === 'Escape' && pendingDiscardAction) resolveDiscard('cancel');
+});
+// יציאה מהעמוד ("🏠 חזרה לראשי", "← חזרה", סגירת לשונית) - אי אפשר להציג שם את
+// החלון שלנו, רק את אזהרת הדפדפן הרגילה "לעזוב את האתר?"
+window.addEventListener('beforeunload', function (e) {
+  if (routeBuilder && routeBuilder.getPoints().length >= 2) { e.preventDefault(); e.returnValue = ''; }
+});
 
 // איפוס קשיח מלא (routeBuilder/cutPool/osmPool כולם null) - בשימוש רק ע"י
 // resetCutterUI כשמסלולים נטענים/נסגרים מחדש (ראו שם) - בניגוד ל-stopEditMode
@@ -589,6 +733,7 @@ function deactivateEditMode() {
   editMode = null;
   routeBuilder = null;
   cutPool = null;
+  cutGraph = null;
   osmPool = null;
   updateCurtainChecks();
   updateActionsRowVisibility();
@@ -608,6 +753,11 @@ function resetCutterUI() {
 // בנייה) - כפתור נפרד "מחיקת מקטע חדש", לא קשור לביטול מצב העריכה עצמו. אם
 // מצב עריכה עדיין פעיל, מאפס גם את היסטוריית הבחירה כדי שאפשר להתחיל מחדש
 // בלי לצאת ולהיכנס מחדש למצב עריכה.
+// כפתור "🗑️ מחיקת מסלול חדש" - שואל קודם (confirmDiscardNewRoute)
+function deleteNewSegmentAsk() {
+  confirmDiscardNewRoute(deleteNewSegment);
+}
+
 function deleteNewSegment() {
   clearCutterVisuals();
   if (routeBuilder) {
@@ -651,12 +801,14 @@ function osmPoolScreenPoints() {
 
 function handleModeClick(containerPoint, pool, poolScreenPoints) {
   if (!routeBuilder || !pool) return;
-  var result = routeBuilder.addFromPool(containerPoint.x, containerPoint.y, poolScreenPoints, pool, RouteEditor.SNAP_THRESHOLD_PX);
+  var result = routeBuilder.addFromPool(containerPoint.x, containerPoint.y, poolScreenPoints, pool, RouteEditor.SNAP_THRESHOLD_PX,
+    pool === cutPool ? cutGraph : null);
   if (!result.ok) {
     setCutterStatus('⚠ ' + result.error);
     return;
   }
   addPointMarkerAndRefresh(result.point);
+  if (result.warning) setCutterStatus('⚠ ' + result.warning + ' · ' + routeBuilder.getPoints().length + ' נקודות במסלול');
 }
 
 function handleFreehandClick(latlng) {
@@ -728,6 +880,98 @@ function copyCoordFallback(text, onSuccess) {
   ta.select();
   try { document.execCommand('copy'); onSuccess(); } catch (e) {}
   document.body.removeChild(ta);
+}
+
+// --- בחירת מסלולים מהקטלוג (נוסף 18.11.2026) ---
+// חלון עם חיפוש ותיבות סימון על כל מסלולי routes-catalog.json; המסלולים
+// הנבחרים נשלפים מ-GPX_files ונוספים בדיוק כמו קובץ שנבחר מהמחשב (addRouteFromText).
+var CATALOG_BASE = '../route_catalog/';
+var PICKER_MAX_SHOWN = 200; // יותר מזה - מבקשים לצמצם בחיפוש, כדי שהרשימה תישאר מהירה
+var pickerChecked = {};     // {"<id>": true}
+
+function openCatalogPicker() {
+  pickerChecked = {};
+  document.getElementById('pickerSearch').value = '';
+  document.getElementById('catalogPicker').classList.add('show');
+  updatePickerCount();
+  loadCatalog().then(function () {
+    renderCatalogPicker();
+    document.getElementById('pickerSearch').focus();
+  }).catch(function (err) {
+    document.getElementById('pickerList').innerHTML = '<div class="picker-msg">⚠ שגיאה בטעינת הקטלוג (' + escapeHtml(err.message || String(err)) + ')</div>';
+  });
+}
+
+function closeCatalogPicker() {
+  document.getElementById('catalogPicker').classList.remove('show');
+}
+document.addEventListener('keydown', function (e) {
+  if (e.key === 'Escape' && !pendingDiscardAction && document.getElementById('catalogPicker').classList.contains('show')) closeCatalogPicker();
+});
+
+function renderCatalogPicker() {
+  loadCatalog().then(function (catalog) {
+    var terms = document.getElementById('pickerSearch').value.trim().toLowerCase().split(/\s+/).filter(Boolean);
+    var matches = catalog.routes.filter(function (r) {
+      var hay = ('#' + r.id + ' ' + r.id + ' ' + r.file_name + ' ' + (r.settlements || []).join(' ') + ' ' + (r.regions || []).join(' ')).toLowerCase();
+      return terms.every(function (t) { return hay.indexOf(t) >= 0; });
+    }).sort(function (a, b) { return b.id - a.id; });
+    var shown = matches.slice(0, PICKER_MAX_SHOWN);
+    var html = shown.map(function (r) {
+      return '<label class="picker-item"><input type="checkbox" data-id="' + r.id + '"' + (pickerChecked[r.id] ? ' checked' : '') +
+        ' onchange="togglePickerItem(this)"><span class="picker-name">#' + r.id + ' ' + escapeHtml(r.file_name.replace(/\.gpx$/i, '')) + '</span>' +
+        '<span class="picker-km">' + (r.distance_km != null ? Number(r.distance_km).toFixed(1) + ' ק"מ' : '') + '</span></label>';
+    }).join('');
+    if (!matches.length) html = '<div class="picker-msg">לא נמצאו מסלולים</div>';
+    else if (matches.length > shown.length) html += '<div class="picker-msg">מוצגים ' + shown.length + ' מתוך ' + matches.length + ' - אפשר לצמצם בחיפוש</div>';
+    document.getElementById('pickerList').innerHTML = html;
+  });
+}
+
+function togglePickerItem(cb) {
+  if (cb.checked) pickerChecked[cb.dataset.id] = true; else delete pickerChecked[cb.dataset.id];
+  updatePickerCount();
+}
+
+function updatePickerCount() {
+  var n = Object.keys(pickerChecked).length;
+  document.getElementById('pickerCount').textContent = n ? 'נבחרו ' + n + ' מסלולים' : 'לא נבחרו מסלולים';
+  document.getElementById('pickerLoadBtn').disabled = !n;
+}
+
+// שולף את קובצי ה-GPX של המסלולים הנבחרים ומוסיף אותם לפי סדר הבחירה ברשימה
+// החלון נשאר פתוח בזמן השאלה - ביטול בשאלה משאיר את הבחירה בחלון כמו שהיא
+function loadPickedRoutes() {
+  confirmDiscardNewRoute(fetchPickedRoutes);
+}
+
+function fetchPickedRoutes() {
+  var btn = document.getElementById('pickerLoadBtn');
+  loadCatalog().then(function (catalog) {
+    var byId = {};
+    catalog.routes.forEach(function (r) { byId[r.id] = r; });
+    var picked = Object.keys(pickerChecked).map(function (id) { return byId[id]; }).filter(Boolean);
+    btn.disabled = true;
+    btn.textContent = 'טוען...';
+    return Promise.all(picked.map(function (r) {
+      return fetch(CATALOG_BASE + encodeURI(r.gpx_path))
+        .then(function (res) { if (!res.ok) throw new Error('HTTP ' + res.status); return res.text(); })
+        .then(function (text) { return { r: r, text: text }; })
+        .catch(function () { return { r: r, text: null }; });
+    }));
+  }).then(function (results) {
+    var failed = [];
+    results.forEach(function (x) {
+      if (x.text === null || !addRouteFromText(x.text, x.r.file_name)) failed.push('#' + x.r.id + ' ' + x.r.file_name);
+    });
+    btn.textContent = 'הצגה על המפה';
+    closeCatalogPicker();
+    if (failed.length) alert('לא ניתן היה לטעון:\n' + failed.join('\n'));
+  }).catch(function (err) {
+    btn.textContent = 'הצגה על המפה';
+    btn.disabled = false;
+    alert('שגיאה בטעינת המסלולים (' + (err.message || err) + ')');
+  });
 }
 
 // --- רשת מסלולים קיימים באזור (ראו הסבר ליד המשתנים בראש הסקריפט) ---
@@ -830,10 +1074,20 @@ function loadRouteTracks() {
 }
 
 // {"<id>": "<שם הקובץ בלי .gpx>"} מתוך קטלוג המסלולים - נטען פעם אחת לכל העמוד
+// routes-catalog.json - נטען פעם אחת לכל העמוד, משותף לשמות ברשימת האזור ולבוחר הקטלוג
+var catalogPromise = null;
+function loadCatalog() {
+  if (!catalogPromise) {
+    catalogPromise = fetch(ROUTE_CATALOG_URL)
+      .then(function (r) { if (!r.ok) throw new Error('HTTP ' + r.status); return r.json(); })
+      .catch(function (err) { catalogPromise = null; throw err; });
+  }
+  return catalogPromise;
+}
+
 function loadRouteNames() {
   if (!routeNamesPromise) {
-    routeNamesPromise = fetch(ROUTE_CATALOG_URL)
-      .then(function (r) { if (!r.ok) throw new Error('HTTP ' + r.status); return r.json(); })
+    routeNamesPromise = loadCatalog()
       .then(function (catalog) {
         var names = {};
         catalog.routes.forEach(function (r) {
@@ -910,9 +1164,9 @@ function renderAreaRouteList(names) {
   }).sort(function (a, b) { return b.km - a.km; });
   if (!items.length) { box.innerHTML = ''; box.style.display = 'none'; return; }
   box.innerHTML =
-    '<div class="area-route-title">🚲 המסלולים ברשת (' + items.length + ') - לחיצה על מסלול מציגה אותו במלואו, לחיצה נוספת מחזירה לרשת</div>' +
+    '<div class="area-route-title">🚲 המסלולים ברשת (' + items.length + ') - לחיצה על מסלול מציגה אותו במלואו, Ctrl+לחיצה מוסיפה מסלול נוסף, לחיצה נוספת מחזירה לרשת</div>' +
     '<div class="area-route-items">' + items.map(function (it) {
-      return '<div class="area-route-item" data-id="' + escapeHtml(it.id) + '" onclick="toggleAreaRoute(this.dataset.id)">' +
+      return '<div class="area-route-item" data-id="' + escapeHtml(it.id) + '" onclick="toggleAreaRoute(this.dataset.id, event)">' +
         '<span>#' + escapeHtml(it.id) + ' ' + escapeHtml(it.name) + '</span>' +
         '<span class="area-route-km" data-area-text="' + it.km.toFixed(1) + ' ק&quot;מ באזור">' + it.km.toFixed(1) + ' ק"מ באזור</span></div>';
     }).join('') + '</div>';
@@ -930,28 +1184,46 @@ function fullRouteLines(id) {
   });
 }
 
-// לחיצה על מסלול ברשימה: מציגה את המסלול במלואו מעל הרשת (מחליפה מסלול
-// שהוצג קודם); לחיצה חוזרת על המסלול הנבחר מחזירה לתצוגת הרשת
-function toggleAreaRoute(id) {
+// לחיצה על מסלול ברשימה: מציגה רק אותו, במלואו, מעל הרשת (מחליפה את מה שהוצג);
+// לחיצה על המסלול כשהוא הנבחר היחיד מחזירה לתצוגת הרשת. Ctrl/Cmd+לחיצה מוסיפה
+// את המסלול לנבחרים, או מסירה אותו אם כבר נבחר.
+function toggleAreaRoute(id, ev) {
+  var multi = ev && (ev.ctrlKey || ev.metaKey);
+  var idx = areaSelectedRouteIds.indexOf(id);
+  if (multi) {
+    if (idx >= 0) areaSelectedRouteIds.splice(idx, 1); else areaSelectedRouteIds.push(id);
+  } else {
+    areaSelectedRouteIds = (idx >= 0 && areaSelectedRouteIds.length === 1) ? [] : [id];
+  }
+  // צבע קבוע למסלול כל עוד הוא נבחר; מסלול חדש מקבל את הצבע הפנוי הראשון
+  var colors = {};
+  areaSelectedRouteIds.forEach(function (rid) { if (areaRouteColors[rid]) colors[rid] = areaRouteColors[rid]; });
+  areaSelectedRouteIds.forEach(function (rid, i) {
+    if (colors[rid]) return;
+    var used = Object.keys(colors).map(function (k) { return colors[k]; });
+    colors[rid] = AREA_ROUTE_COLORS.filter(function (c) { return used.indexOf(c) < 0; })[0] || AREA_ROUTE_COLORS[i % AREA_ROUTE_COLORS.length];
+  });
+  areaRouteColors = colors;
+
   if (areaHighlightLayer) { mapInstance.removeLayer(areaHighlightLayer); areaHighlightLayer = null; }
-  areaSelectedRouteId = areaSelectedRouteId === id ? null : id;
   document.querySelectorAll('#areaRouteList .area-route-item').forEach(function (el) {
-    var sel = el.dataset.id === areaSelectedRouteId;
-    el.classList.toggle('selected', sel);
+    var color = areaRouteColors[el.dataset.id];
+    el.classList.toggle('selected', !!color);
+    el.style.boxShadow = color ? 'inset -4px 0 0 ' + color : '';
     var statsEl = el.querySelector('.area-route-km');
     var full = routeFullStats[el.dataset.id];
-    statsEl.textContent = sel && full
+    statsEl.textContent = color && full
       ? 'מסלול מלא: ' + Number(full.km).toFixed(1) + ' ק"מ · ↗ ' + Math.round(full.up) + ' מ\' · ↘ ' + Math.round(full.down) + ' מ\''
       : statsEl.dataset.areaText;
   });
-  if (!areaSelectedRouteId) {
+  if (!areaSelectedRouteIds.length) {
     if (areaRect) mapInstance.fitBounds(areaRect.getBounds(), { padding: [20, 20] });
     return;
   }
-  // המסלול המלא בצבע אחד, מעל הרשת שנשארת ברקע
-  areaHighlightLayer = L.featureGroup([
-    L.polyline(fullRouteLines(id), { color: AREA_HIGHLIGHT_COLOR, weight: 6, opacity: 1 })
-  ]).addTo(mapInstance);
+  // כל מסלול נבחר במלואו בצבע משלו, מעל הרשת שנשארת ברקע
+  areaHighlightLayer = L.featureGroup(areaSelectedRouteIds.map(function (rid) {
+    return L.polyline(fullRouteLines(rid), { color: areaRouteColors[rid], weight: 6, opacity: 1 });
+  })).addTo(mapInstance);
   var bounds = areaHighlightLayer.getBounds();
   if (areaRect) bounds.extend(areaRect.getBounds());
   mapInstance.fitBounds(bounds, { padding: [20, 20] });
@@ -1090,7 +1362,8 @@ function clearArea() {
     [areaCornerMarker, areaRect, areaNetLayer, areaHighlightLayer].forEach(function (l) { if (l) mapInstance.removeLayer(l); });
   }
   areaCornerMarker = areaRect = areaNetLayer = areaHighlightLayer = null;
-  areaSelectedRouteId = null;
+  areaSelectedRouteIds = [];
+  areaRouteColors = {};
   document.getElementById('areaToolbar').style.display = 'none';
   document.getElementById('areaStats').style.display = 'none';
   document.getElementById('areaRouteList').style.display = 'none';

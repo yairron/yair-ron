@@ -317,6 +317,204 @@ var RouteEditor = (function () {
     return { distanceKm: distanceKm, climbM: Math.round(climbM), descentM: Math.round(descentM) };
   }
 
+  // --- ניתוב על רשת המסלולים שבבריכה (נוסף 18.11.2026) ---
+  // גרף שקודקודיו נקודות הבריכה, וקשתותיו: 1) נקודות עוקבות באותו קו; 2) צמתים
+  // בין קווים שונים - נקודה שנמצאת עד tolM מקטע של קו אחר (מחוברת לנקודה
+  // חדשה על הקטע, בהטלה), וקטעים של קווים שונים שחוצים זה את זה (נקודה חדשה
+  // בנקודת החיתוך). נקודות חדשות על קטע מחוברות בשרשרת לפי סדרן לאורכו, כדי
+  // שמסלול שנכנס בצומת אחד ויוצא בצומת אחר על אותו קטע לא "יקפוץ" לקצה הקטע
+  // ויחזור. משמש את addFromPool (פרמטר graph) למעבר בין מסלולים בדרך הקצרה.
+  // nodes[i] = pool[i] עבור i < pool.length; אחריהם הנקודות שנוספו.
+  var GRAPH_JOIN_TOL_M = 20;
+  var GRAPH_MAX_NEAR_LINES = 4;
+  function buildPoolGraph(pool, tolM) {
+    tolM = tolM || GRAPH_JOIN_TOL_M;
+    var n0 = pool.length;
+    if (n0 < 2) return null;
+    var latSum = 0;
+    for (var q = 0; q < n0; q++) latSum += pool[q].lat;
+    var KX = 111320 * Math.cos((latSum / n0) * Math.PI / 180), KY = 110540;
+    var nodes = [], xs = [], ys = [], adj = [];
+    function addNode(p) {
+      nodes.push(p); xs.push(p.lon * KX); ys.push(p.lat * KY); adj.push([]);
+      return nodes.length - 1;
+    }
+    function addEdge(a, b) {
+      if (a === b) return;
+      var w = Math.hypot(xs[a] - xs[b], ys[a] - ys[b]);
+      adj[a].push(b, w); adj[b].push(a, w);
+    }
+    function isNum(v) { return v !== null && v !== undefined && !isNaN(v); }
+    function pointOnSeg(j, t) {
+      var a = pool[j], b = pool[j + 1];
+      return { lat: a.lat + (b.lat - a.lat) * t, lon: a.lon + (b.lon - a.lon) * t,
+        ele: isNum(a.ele) && isNum(b.ele) ? a.ele + (b.ele - a.ele) * t : null, routeIdx: a.routeIdx };
+    }
+    for (var i = 0; i < n0; i++) addNode(pool[i]);
+
+    // קטעים (j = אינדקס תחילת הקטע) ורשת תאים לחיפוש קרבה
+    var CELL = Math.max(60, tolM * 3), grid = {}, segs = [];
+    for (var j = 0; j < n0 - 1; j++) {
+      if (pool[j].routeIdx !== pool[j + 1].routeIdx) continue;
+      segs.push(j);
+      var x0 = Math.floor((Math.min(xs[j], xs[j + 1]) - tolM) / CELL), x1 = Math.floor((Math.max(xs[j], xs[j + 1]) + tolM) / CELL);
+      var y0 = Math.floor((Math.min(ys[j], ys[j + 1]) - tolM) / CELL), y1 = Math.floor((Math.max(ys[j], ys[j + 1]) + tolM) / CELL);
+      for (var cx = x0; cx <= x1; cx++) for (var cy = y0; cy <= y1; cy++) (grid[cx + ',' + cy] = grid[cx + ',' + cy] || []).push(j);
+    }
+    var splits = {}; // {j: [{t, node}]} - נקודות חדשות על קטע j
+    function splitAt(j, t) {
+      if (t <= 1e-6) return j;
+      if (t >= 1 - 1e-6) return j + 1;
+      var node = addNode(pointOnSeg(j, t));
+      (splits[j] = splits[j] || []).push({ t: t, node: node });
+      return node;
+    }
+
+    // 1) נקודה קרובה לקטע של קו אחר. לכל נקודה - רק הקטע הקרוב ביותר מכל קו
+    // אחר, ומחברים רק בתחילת ובסוף קטע חפיפה (הנקודה הקודמת או הבאה באותו קו
+    // כבר לא קרובה לקו האחר). בלי זה, במקום שבו עשרות מסלולים עוברים באותו
+    // שביל כל נקודה מתחברת לכל הקווים המקבילים - נבדק על רשת אמיתית (775
+    // קווים, בלי הסרת חפיפות): 5.3 מיליון צמתים ו-29 שניות בנייה.
+    var near = new Array(n0); // near[v] = {routeIdx: {s, t}} או undefined
+    for (var v = 0; v < n0; v++) {
+      var cell = grid[Math.floor(xs[v] / CELL) + ',' + Math.floor(ys[v] / CELL)];
+      if (!cell) continue;
+      var best = null;
+      for (var k = 0; k < cell.length; k++) {
+        var s = cell[k], L = pool[s].routeIdx;
+        if (L === pool[v].routeIdx) continue;
+        var proj = projectOnSegment(xs[v], ys[v], xs[s], ys[s], xs[s + 1], ys[s + 1]);
+        if (proj.dist > tolM) continue;
+        best = best || {};
+        if (!best[L] || proj.dist < best[L].dist) best[L] = { s: s, t: proj.t, dist: proj.dist };
+      }
+      // רק GRAPH_MAX_NEAR_LINES הקווים הקרובים ביותר - בצרור של עשרות קווים
+      // מקבילים זה מספיק כדי שכולם יהיו מחוברים זה לזה דרך שכניהם
+      if (best) {
+        var keys = Object.keys(best);
+        if (keys.length > GRAPH_MAX_NEAR_LINES) {
+          keys.sort(function (a, b) { return best[a].dist - best[b].dist; });
+          var trimmed = {};
+          keys.slice(0, GRAPH_MAX_NEAR_LINES).forEach(function (key) { trimmed[key] = best[key]; });
+          best = trimmed;
+        }
+      }
+      near[v] = best;
+    }
+    for (var v2 = 0; v2 < n0; v2++) {
+      if (!near[v2]) continue;
+      var R0 = pool[v2].routeIdx;
+      var prevNear = v2 > 0 && pool[v2 - 1].routeIdx === R0 ? near[v2 - 1] : null;
+      var nextNear = v2 < n0 - 1 && pool[v2 + 1].routeIdx === R0 ? near[v2 + 1] : null;
+      Object.keys(near[v2]).forEach(function (L) {
+        if (prevNear && prevNear[L] && nextNear && nextNear[L]) return; // באמצע חפיפה
+        var m = near[v2][L];
+        addEdge(v2, splitAt(m.s, m.t));
+      });
+    }
+    // 2) קטעים של קווים שונים שחוצים זה את זה - רק כששני הקטעים ארוכים מ-2*tolM:
+    // אם אחד מהם קצר, אחת מנקודות הקצה שלו קרובה עד tolM לקו השני וכבר חוברה בשלב 1.
+    var seen = {}, longSeg = function (j) { return Math.hypot(xs[j + 1] - xs[j], ys[j + 1] - ys[j]) > 2 * tolM; };
+    Object.keys(grid).forEach(function (key) {
+      var list = grid[key].filter(longSeg);
+      for (var a = 0; a < list.length; a++) {
+        for (var b = a + 1; b < list.length; b++) {
+          var p = list[a], r = list[b];
+          if (pool[p].routeIdx === pool[r].routeIdx) continue;
+          var dx1 = xs[p + 1] - xs[p], dy1 = ys[p + 1] - ys[p], dx2 = xs[r + 1] - xs[r], dy2 = ys[r + 1] - ys[r];
+          var den = dx1 * dy2 - dy1 * dx2;
+          // זווית חיתוך מתחת ל-20° = קווים כמעט מקבילים (אותו שביל בצרור) - כבר
+          // מחוברים בשלב 1, וחיתוכים חוזרים ביניהם רק מנפחים את הגרף
+          if (Math.abs(den) < 0.34 * Math.hypot(dx1, dy1) * Math.hypot(dx2, dy2)) continue;
+          var t1 = ((xs[r] - xs[p]) * dy2 - (ys[r] - ys[p]) * dx2) / den;
+          var t2 = ((xs[r] - xs[p]) * dy1 - (ys[r] - ys[p]) * dx1) / den;
+          if (t1 < 0 || t1 > 1 || t2 < 0 || t2 > 1) continue;
+          var pk = p < r ? p + ',' + r : r + ',' + p; // אותו זוג מופיע בכמה תאים
+          if (seen[pk]) continue;
+          seen[pk] = true;
+          addEdge(splitAt(p, t1), splitAt(r, t2));
+        }
+      }
+    });
+    // 3) קשתות לאורך כל קטע: A - נקודות חדשות לפי סדרן - B
+    segs.forEach(function (j) {
+      var chain = [j].concat((splits[j] || []).sort(function (a, b) { return a.t - b.t; }).map(function (x) { return x.node; })).concat([j + 1]);
+      for (var c = 1; c < chain.length; c++) addEdge(chain[c - 1], chain[c]);
+    });
+    return { nodes: nodes, adj: adj, xs: xs, ys: ys, splits: splits, n0: n0 };
+  }
+
+  // נקודות הכניסה של עוגן (ראו resolveClick) לגרף, עם המרחק מהעוגן אליהן:
+  // עוגן אמיתי - הנקודה עצמה; סינתטי - קצות הקטע שלו וכל נקודה חדשה על אותו קטע.
+  function anchorGraphEntries(graph, anchor) {
+    if (anchor.real) return [{ node: anchor.index, cost: 0 }];
+    var j = anchor.segStart;
+    var len = Math.hypot(graph.xs[j + 1] - graph.xs[j], graph.ys[j + 1] - graph.ys[j]);
+    var out = [{ node: j, cost: anchor.t * len }, { node: j + 1, cost: (1 - anchor.t) * len }];
+    (graph.splits[j] || []).forEach(function (x) { out.push({ node: x.node, cost: Math.abs(x.t - anchor.t) * len }); });
+    return out;
+  }
+
+  // הדרך הקצרה בגרף בין שני עוגנים (Dijkstra עם ערימה בינארית). מחזיר את
+  // הנקודות להוספה אחרי fromAnchor (לא כולל אותו, כולל את toAnchor בסוף), או
+  // null אם אין חיבור ביניהם ברשת.
+  function graphPathBetweenAnchors(graph, fromAnchor, toAnchor) {
+    var n = graph.nodes.length, dist = new Float64Array(n).fill(Infinity), prev = new Int32Array(n).fill(-1);
+    var heap = [];
+    function push(node, d) {
+      heap.push([d, node]);
+      var i = heap.length - 1;
+      while (i > 0) { var pi = (i - 1) >> 1; if (heap[pi][0] <= heap[i][0]) break; var tmp = heap[pi]; heap[pi] = heap[i]; heap[i] = tmp; i = pi; }
+    }
+    function pop() {
+      var top = heap[0], last = heap.pop();
+      if (heap.length) {
+        heap[0] = last;
+        var i = 0;
+        for (;;) {
+          var l = 2 * i + 1, r = l + 1, m = i;
+          if (l < heap.length && heap[l][0] < heap[m][0]) m = l;
+          if (r < heap.length && heap[r][0] < heap[m][0]) m = r;
+          if (m === i) break;
+          var tmp = heap[m]; heap[m] = heap[i]; heap[i] = tmp; i = m;
+        }
+      }
+      return top;
+    }
+    anchorGraphEntries(graph, fromAnchor).forEach(function (e) {
+      if (e.cost < dist[e.node]) { dist[e.node] = e.cost; push(e.node, e.cost); }
+    });
+    var targetExtra = {};
+    anchorGraphEntries(graph, toAnchor).forEach(function (e) {
+      if (!(e.node in targetExtra) || e.cost < targetExtra[e.node]) targetExtra[e.node] = e.cost;
+    });
+    var best = Infinity, bestNode = -1;
+    while (heap.length) {
+      var top = pop(), d = top[0], u = top[1];
+      if (d > dist[u]) continue;
+      if (d >= best) break;
+      if (u in targetExtra && d + targetExtra[u] < best) { best = d + targetExtra[u]; bestNode = u; }
+      var nb = graph.adj[u];
+      for (var k = 0; k < nb.length; k += 2) {
+        var w = nb[k], nd = d + nb[k + 1];
+        if (nd < dist[w]) { dist[w] = nd; prev[w] = u; push(w, nd); }
+      }
+    }
+    if (bestNode < 0) return null;
+    var path = [];
+    for (var x = bestNode; x >= 0; x = prev[x]) path.push(x);
+    path.reverse();
+    if (fromAnchor.real && path[0] === fromAnchor.index) path.shift(); // הנקודה כבר במסלול
+    // צומת חיתוך יוצר שתי נקודות באותו מיקום (אחת על כל קו) - בלי כפילות בפלט
+    var pts = [], prevPt = fromAnchor.point;
+    path.map(function (i) { return graph.nodes[i]; }).concat(toAnchor.real ? [] : [toAnchor.point]).forEach(function (p) {
+      if (Math.abs(p.lat - prevPt.lat) < 1e-9 && Math.abs(p.lon - prevPt.lon) < 1e-9) return;
+      pts.push(p); prevPt = p;
+    });
+    if (!pts.length) pts.push(toAnchor.point);
+    return pts;
+  }
+
   // מנהל מצב אינטראקטיבי לבניית מסלול חדש בקליקים עוקבים על המפה, **בלי
   // תלות בבריכה בודדת** - נבנה 23.08.2026 כדי לתמוך בהחלפת "מצב עריכה" תוך
   // כדי בניית אותו מסלול (כפתור "עריכת מסלול" בעמוד הקורא): 1) חיתוך מקטע
@@ -344,7 +542,11 @@ var RouteEditor = (function () {
       return anchor.real ? pool[anchor.index].routeIdx : pool[anchor.segStart].routeIdx;
     }
 
-    function addFromPool(clickX, clickY, poolScreenPoints, pool, thresholdPx) {
+    // graph (אופציונלי, buildPoolGraph על אותה בריכה): כשהלחיצה על מסלול אחר
+    // מהקודמת - הולכים בדרך הקצרה ברשת במקום קפיצה לנקודת הכניסה הקרובה; אם
+    // אין חיבור ברשת - קו ישר, ומוחזר warning. בלי graph - ההתנהגות הקודמת.
+    function addFromPool(clickX, clickY, poolScreenPoints, pool, thresholdPx, graph) {
+      var warning = null;
       var sameSourceAsLast = lastPool === pool;
       var anchor = resolveClick(pool, poolScreenPoints, clickX, clickY, sameSourceAsLast ? lastAnchor : null, thresholdPx);
       if (anchor === null) {
@@ -356,6 +558,14 @@ var RouteEditor = (function () {
         newPoints = [anchor.point];
       } else if (sameSourceAsLast && routeIdxOf(pool, anchor) === routeIdxOf(pool, lastAnchor)) {
         newPoints = newPoints.concat(pointsBetweenAnchors(pool, lastAnchor, anchor));
+      } else if (sameSourceAsLast && graph) {
+        var routed = graphPathBetweenAnchors(graph, lastAnchor, anchor);
+        if (routed) {
+          newPoints = newPoints.concat(routed);
+        } else {
+          newPoints = newPoints.concat([anchor.point]);
+          warning = 'אין חיבור ברשת בין המסלולים - חובר בקו ישר';
+        }
       } else if (sameSourceAsLast) {
         // מעבר בין מסלול/דרך למסלול/דרך אחרים **בתוך אותה בריכה** (למשל
         // בצומת) - לא חותכים "ישר" בבריכה השטוחה, ראו הסבר מפורט בהיסטוריה
@@ -375,7 +585,7 @@ var RouteEditor = (function () {
       }
       lastAnchor = anchor;
       lastPool = pool;
-      return { ok: true, point: anchor.point };
+      return { ok: true, point: anchor.point, warning: warning };
     }
 
     function addFreehand(lat, lon) {
@@ -458,6 +668,7 @@ var RouteEditor = (function () {
   return {
     SNAP_THRESHOLD_PX: SNAP_THRESHOLD_PX,
     buildPool: buildPool,
+    buildPoolGraph: buildPoolGraph,
     fetchOsmPathsPool: fetchOsmPathsPool,
     resolveClick: resolveClick,
     isNearPool: isNearPool,
