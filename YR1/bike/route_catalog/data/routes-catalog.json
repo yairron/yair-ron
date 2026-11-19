@@ -1,6 +1,6 @@
 {
-  "generated_at": "2026-11-19T16:18:45",
-  "route_count": 627,
+  "generated_at": "2026-11-19T16:21:12",
+  "route_count": 626,
   "routes": [
     {
       "id": 698,
@@ -18362,36 +18362,6 @@
       "invalid": false,
       "removed_points": 1,
       "thumbnail": "thumbnails/סינגלים דימונה.jpg",
-      "driving": []
-    },
-    {
-      "id": 751,
-      "file_name": "רשת_מסלולים_קורן2.gpx",
-      "gpx_path": "GPX_files/רשת_מסלולים_קורן2.gpx",
-      "date": "2026-10-22",
-      "date_source": "תאריך שינוי הקובץ (גיבוי)",
-      "activity": "רכיבת אופניים",
-      "source": "תכנון מסלול",
-      "distance_km": 48.48,
-      "elevation_gain_m": null,
-      "elevation_loss_m": null,
-      "point_count": 374,
-      "start_lat": 33.01839,
-      "start_lon": 35.14268,
-      "end_lat": 33.05469,
-      "end_lon": 35.11516,
-      "regions": [
-        "צפון"
-      ],
-      "settlements": [
-        "גשר הזיו",
-        "כברי",
-        "נהרייה"
-      ],
-      "settlements_found": true,
-      "invalid": false,
-      "removed_points": 0,
-      "thumbnail": "thumbnails/רשת_מסלולים_קורן2.jpg",
       "driving": []
     },
     {
