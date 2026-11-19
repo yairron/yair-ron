@@ -47,6 +47,7 @@ import fnmatch
 import http.server
 import json
 import math
+import re
 import sys
 import time
 import xml.etree.ElementTree as ET
@@ -628,6 +629,9 @@ def save_build_cache(cache: dict, support_data_dir: Path):
 # עם timestamps של מי שהקליט אותם במקור, וקצב שנראה כמו הליכה. כלל = תבנית שם
 # קובץ (fnmatch, לא תלוי אותיות גדולות/קטנות) + השדות לכפות. כמה כללים תואמים -
 # מתמזגים לפי הסדר (המאוחר גובר).
+# שדה אופציונלי "creator" (נוסף 19.11.2026): הכלל חל רק על קבצים שתכונת creator
+# בתג <gpx> שלהם שווה לערך הזה (לא תלוי אותיות גדולות/קטנות) - למשל "StravaGPX"
+# לכל מה שהורד מסטרבה, בלי תלות בשם הקובץ.
 ALLOWED_OVERRIDE_VALUES = {
     "activity": {"רכיבת אופניים", "הליכה רגלית"},
     "source": {"הקלטה", "תכנון מסלול"},
@@ -643,6 +647,8 @@ def load_route_overrides(support_data_dir: Path) -> list:
     for rule in rules:
         if "pattern" not in rule:
             raise ValueError(f"route_overrides.json: כלל בלי pattern: {rule}")
+        if "creator" in rule and not isinstance(rule["creator"], str):
+            raise ValueError(f"route_overrides.json: creator חייב להיות מחרוזת: {rule}")
         for field, allowed in ALLOWED_OVERRIDE_VALUES.items():
             if field in rule and rule[field] not in allowed:
                 raise ValueError(f'route_overrides.json: ערך לא חוקי "{rule[field]}" בשדה {field} '
@@ -650,9 +656,24 @@ def load_route_overrides(support_data_dir: Path) -> list:
     return rules
 
 
-def find_override(file_name: str, rules: list) -> dict:
+GPX_CREATOR_RE = re.compile(r'<gpx\b[^>]*?\bcreator\s*=\s*["\']([^"\']*)["\']', re.IGNORECASE | re.DOTALL)
+
+
+def gpx_creator(path: Path) -> str:
+    """ערך התכונה creator של תג <gpx> (מתחילת הקובץ בלבד), או "" אם אין."""
+    try:
+        with open(path, encoding="utf-8", errors="ignore") as f:
+            m = GPX_CREATOR_RE.search(f.read(4096))
+    except OSError:
+        return ""
+    return m.group(1).strip() if m else ""
+
+
+def find_override(file_name: str, rules: list, creator: str = "") -> dict:
     override = {}
     for rule in rules:
+        if "creator" in rule and rule["creator"].strip().lower() != (creator or "").strip().lower():
+            continue
         if fnmatch.fnmatch(file_name.lower(), rule["pattern"].lower()):
             override.update({k: rule[k] for k in ALLOWED_OVERRIDE_VALUES if k in rule})
     return override
@@ -1012,7 +1033,7 @@ def main():
     for i, path in enumerate(files, 1):
         stat = path.stat()
         cached = build_cache.get(path.name)
-        override = find_override(path.name, overrides)
+        override = find_override(path.name, overrides, gpx_creator(path))
         # שינוי בכלל תיקון (הוספה/הסרה/שינוי ערך) מנתח מחדש את הקובץ, גם בלי שינוי בקובץ עצמו.
         # רשומה מלפני תמיכת המקטעים (22.10.2026, אין בה "_segment_starts") - מנותחת מחדש פעם אחת.
         if (cached and cached.get("size") == stat.st_size and cached.get("mtime") == stat.st_mtime

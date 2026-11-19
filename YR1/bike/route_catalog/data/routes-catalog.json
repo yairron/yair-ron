@@ -1,6 +1,6 @@
 {
-  "generated_at": "2026-11-18T17:55:14",
-  "route_count": 623,
+  "generated_at": "2026-11-19T12:40:37",
+  "route_count": 628,
   "routes": [
     {
       "id": 698,
@@ -16848,6 +16848,156 @@
       "thumbnail": "thumbnails/2026-11-18_כברי גורן מצובה שבי ציון בן עמי.jpg"
     },
     {
+      "id": 772,
+      "file_name": "2026-11-19_געתון_לסינגל_אחיהוד_דרך_נס_עמים_אייל.gpx",
+      "gpx_path": "GPX_files/2026-11-19_געתון_לסינגל_אחיהוד_דרך_נס_עמים_אייל.gpx",
+      "date": "2026-11-19",
+      "date_source": "שם קובץ",
+      "activity": "רכיבת אופניים",
+      "source": "הקלטה",
+      "distance_km": 85.12,
+      "elevation_gain_m": 831,
+      "elevation_loss_m": 832,
+      "point_count": 13741,
+      "start_lat": 33.00644,
+      "start_lon": 35.21618,
+      "end_lat": 33.00736,
+      "end_lon": 35.21612,
+      "regions": [
+        "צפון"
+      ],
+      "settlements": [
+        "ג'דיידה-מכר",
+        "געתון",
+        "טל-אל"
+      ],
+      "settlements_found": true,
+      "invalid": false,
+      "removed_points": 0,
+      "driving": [],
+      "thumbnail": "thumbnails/2026-11-19_געתון_לסינגל_אחיהוד_דרך_נס_עמים_אייל.jpg"
+    },
+    {
+      "id": 773,
+      "file_name": "2026-11-19_געתון_סינגל כברי_עבדון_סינגל מצובה_פארק_גורן_אייל.gpx",
+      "gpx_path": "GPX_files/2026-11-19_געתון_סינגל כברי_עבדון_סינגל מצובה_פארק_גורן_אייל.gpx",
+      "date": "2026-11-19",
+      "date_source": "שם קובץ",
+      "activity": "רכיבת אופניים",
+      "source": "הקלטה",
+      "distance_km": 55.61,
+      "elevation_gain_m": 993,
+      "elevation_loss_m": 989,
+      "point_count": 10707,
+      "start_lat": 33.00663,
+      "start_lon": 35.21637,
+      "end_lat": 33.00678,
+      "end_lon": 35.21647,
+      "regions": [
+        "צפון"
+      ],
+      "settlements": [
+        "מצובה",
+        "כברי",
+        "געתון"
+      ],
+      "settlements_found": true,
+      "invalid": false,
+      "removed_points": 0,
+      "driving": [],
+      "thumbnail": "thumbnails/2026-11-19_געתון_סינגל כברי_עבדון_סינגל מצובה_פארק_גורן_אייל.jpg"
+    },
+    {
+      "id": 774,
+      "file_name": "2026-11-19_געתון_סער_נחל כזיב_מעונה_יחיעם_אייל.gpx",
+      "gpx_path": "GPX_files/2026-11-19_געתון_סער_נחל כזיב_מעונה_יחיעם_אייל.gpx",
+      "date": "2026-11-19",
+      "date_source": "שם קובץ",
+      "activity": "רכיבת אופניים",
+      "source": "הקלטה",
+      "distance_km": 50.69,
+      "elevation_gain_m": 669,
+      "elevation_loss_m": 680,
+      "point_count": 7349,
+      "start_lat": 33.0065,
+      "start_lon": 35.21626,
+      "end_lat": 33.00737,
+      "end_lon": 35.21613,
+      "regions": [
+        "צפון"
+      ],
+      "settlements": [
+        "יחיעם",
+        "סער",
+        "מעונה"
+      ],
+      "settlements_found": true,
+      "invalid": false,
+      "removed_points": 0,
+      "driving": [],
+      "thumbnail": "thumbnails/2026-11-19_געתון_סער_נחל כזיב_מעונה_יחיעם_אייל.jpg"
+    },
+    {
+      "id": 775,
+      "file_name": "2026-11-19_געתון_שיירה_סינגל יחיעם בעליה_כפר ורדים_אגם_צוריאל.gpx",
+      "gpx_path": "GPX_files/2026-11-19_געתון_שיירה_סינגל יחיעם בעליה_כפר ורדים_אגם_צוריאל.gpx",
+      "date": "2026-11-19",
+      "date_source": "שם קובץ",
+      "activity": "רכיבת אופניים",
+      "source": "הקלטה",
+      "distance_km": 44.53,
+      "elevation_gain_m": 880,
+      "elevation_loss_m": 859,
+      "point_count": 8924,
+      "start_lat": 33.00666,
+      "start_lon": 35.21639,
+      "end_lat": 33.00861,
+      "end_lon": 35.22027,
+      "regions": [
+        "צפון"
+      ],
+      "settlements": [
+        "יחיעם",
+        "מעונה",
+        "כפר ורדים"
+      ],
+      "settlements_found": true,
+      "invalid": false,
+      "removed_points": 0,
+      "driving": [],
+      "thumbnail": "thumbnails/2026-11-19_געתון_שיירה_סינגל יחיעם בעליה_כפר ורדים_אגם_צוריאל.jpg"
+    },
+    {
+      "id": 776,
+      "file_name": "2026-11-19_קרית טבעון_רמת דוד_רמת ישי_אייל.gpx",
+      "gpx_path": "GPX_files/2026-11-19_קרית טבעון_רמת דוד_רמת ישי_אייל.gpx",
+      "date": "2026-11-19",
+      "date_source": "שם קובץ",
+      "activity": "רכיבת אופניים",
+      "source": "הקלטה",
+      "distance_km": 36.61,
+      "elevation_gain_m": 219,
+      "elevation_loss_m": 228,
+      "point_count": 4199,
+      "start_lat": 32.71722,
+      "start_lon": 35.12558,
+      "end_lat": 32.71797,
+      "end_lon": 35.12583,
+      "regions": [
+        "צפון"
+      ],
+      "settlements": [
+        "קריית טבעון",
+        "בית שערים",
+        "רמת דוד"
+      ],
+      "settlements_found": true,
+      "invalid": false,
+      "removed_points": 0,
+      "driving": [],
+      "thumbnail": "thumbnails/2026-11-19_קרית טבעון_רמת דוד_רמת ישי_אייל.jpg"
+    },
+    {
       "id": 728,
       "file_name": "ibt10_smadar shaharut_2022.gpx",
       "gpx_path": "GPX_files/ibt10_smadar shaharut_2022.gpx",
@@ -17627,7 +17777,7 @@
       "gpx_path": "GPX_files/חורפיש בית גאן.gpx",
       "date": "2026-11-15",
       "date_source": "תאריך שינוי הקובץ (גיבוי)",
-      "activity": "לא ברור",
+      "activity": "רכיבת אופניים",
       "source": "הקלטה",
       "distance_km": 31.89,
       "elevation_gain_m": 900,
@@ -17777,7 +17927,7 @@
       "gpx_path": "GPX_files/כפר יהושע סוללים אלוני אבא.gpx",
       "date": "2026-11-02",
       "date_source": "תאריך שינוי הקובץ (גיבוי)",
-      "activity": "לא ברור",
+      "activity": "רכיבת אופניים",
       "source": "הקלטה",
       "distance_km": 51.41,
       "elevation_gain_m": 655,
