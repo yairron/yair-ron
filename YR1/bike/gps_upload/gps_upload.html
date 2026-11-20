@@ -223,7 +223,19 @@ footer a{color:white;text-decoration:underline;font-weight:600}
 </footer>
 
 <script>
-var ROUTE_COLORS = ['#E91E8C', '#7C4DFF', '#FF6F00', '#00BCD4', '#AA00FF', '#FFAB00', '#F50057', '#6200EA', '#FF80AB', '#00E5FF'];
+// צבעי המסלולים הטעונים (עודכן 20.11.2026): קודם היו ברשימה שלושה סגולים
+// (#7C4DFF, #AA00FF, #6200EA), שני ורודים ושני תכלת - מסלולים סמוכים ברשימה
+// קיבלו צבעים שכמעט אי אפשר להבדיל ביניהם. עכשיו 10 גוונים שונים זה מזה, בלי
+// הסגול של רשת האזור (#7C4DFF). הצבע נבחר ב-nextRouteColor().
+var ROUTE_COLORS = ['#E6194B', '#1E88E5', '#F57C00', '#8E24AA', '#00ACC1', '#2E7D32', '#F032E6', '#6D4C41', '#FBC02D', '#1A237E'];
+
+// הצבע הראשון ברשימה שאף מסלול טעון לא משתמש בו. קודם הצבע נקבע לפי מספר
+// המסלולים הטעונים, ולכן אחרי סגירת מסלול המסלול הבא קיבל צבע שכבר בשימוש.
+function nextRouteColor() {
+  var used = routes.map(function (r) { return r.color; });
+  var free = ROUTE_COLORS.filter(function (c) { return used.indexOf(c) < 0; });
+  return free.length ? free[0] : ROUTE_COLORS[routes.length % ROUTE_COLORS.length];
+}
 var routes = [];       // [{id, fileName, rawText, points:[{lat,lon,ele}] (כל המקטעים ברצף), segments:[[...],...], color, distanceKm, climbM, descentM, polyline, startMarker, endMarker}]
 var nextRouteId = 1;
 var mapInstance = null;
@@ -429,7 +441,7 @@ function addRouteFromText(text, fileName) {
     rawText: text,
     points: points,
     segments: segments,
-    color: ROUTE_COLORS[(routes.length) % ROUTE_COLORS.length],
+    color: nextRouteColor(),
     distanceKm: stats.distanceKm,
     climbM: Math.round(stats.climbM),
     descentM: Math.round(stats.descentM)
