@@ -1,6 +1,6 @@
 {
-  "generated_at": "2026-11-19T16:21:12",
-  "route_count": 626,
+  "generated_at": "2026-11-20T18:55:56",
+  "route_count": 627,
   "routes": [
     {
       "id": 698,
@@ -16996,6 +16996,36 @@
       "removed_points": 0,
       "driving": [],
       "thumbnail": "thumbnails/2026-11-19_קרית טבעון_רמת דוד_רמת ישי_אייל.jpg"
+    },
+    {
+      "id": 777,
+      "file_name": "2026-11-20 כברי_פרק גורן_סינגל מצובה_קורן_אכזיב_שבי ציון_בן מי.gpx",
+      "gpx_path": "GPX_files/2026-11-20 כברי_פרק גורן_סינגל מצובה_קורן_אכזיב_שבי ציון_בן מי.gpx",
+      "date": "2026-11-20",
+      "date_source": "שם קובץ",
+      "activity": "רכיבת אופניים",
+      "source": "הקלטה",
+      "distance_km": 55.07,
+      "elevation_gain_m": 449,
+      "elevation_loss_m": 462,
+      "point_count": 18817,
+      "start_lat": 33.01792,
+      "start_lon": 35.14388,
+      "end_lat": 33.01803,
+      "end_lon": 35.14383,
+      "regions": [
+        "צפון"
+      ],
+      "settlements": [
+        "שבי ציון",
+        "עבדון",
+        "כברי"
+      ],
+      "settlements_found": true,
+      "invalid": false,
+      "removed_points": 0,
+      "driving": [],
+      "thumbnail": "thumbnails/2026-11-20 כברי_פרק גורן_סינגל מצובה_קורן_אכזיב_שבי ציון_בן מי.jpg"
     },
     {
       "id": 728,
