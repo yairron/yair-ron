@@ -8,6 +8,7 @@
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 <script src="../route_catalog/data/route_arrows.js"></script>
+<script src="../route_catalog/data/base_maps.js"></script>
 <style>
   /* פלטת הצבעים והמראה זהים במכוון ל-YR1/bike/route_catalog/catalog.html - ראו
      ההנחיה "תשנה את המסכים...שיראו באותו מבנה של route_catalog" (22.08.2026).
@@ -766,9 +767,7 @@ function showManualPage() {
 
   if (!manualMapInstance) {
     manualMapInstance = L.map('manual-map');
-    L.tileLayer('https://israelhiking.osm.org.il/Tiles/{z}/{x}/{y}.png', {
-      attribution: '© Israel Hiking Map', maxZoom: 16
-    }).addTo(manualMapInstance);
+    BikeBaseMaps.addTo(manualMapInstance); // מפת רקע + כפתור בחירה - ../route_catalog/data/base_maps.js
   }
 
   renderManualMap();
@@ -1135,9 +1134,7 @@ function showMap() {
 
   if (!mapInstance) {
     mapInstance = L.map('map');
-    L.tileLayer('https://israelhiking.osm.org.il/Tiles/{z}/{x}/{y}.png', {
-      attribution: '© <a href="https://israelhiking.osm.org.il">Israel Hiking Map</a>', maxZoom: 16
-    }).addTo(mapInstance);
+    BikeBaseMaps.addTo(mapInstance); // מפת רקע + כפתור בחירה - ../route_catalog/data/base_maps.js
   }
 
   trackLayers.forEach(l => mapInstance.removeLayer(l));

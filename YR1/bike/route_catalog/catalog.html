@@ -9,6 +9,7 @@
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 <script src="data/route_arrows.js"></script>
 <script src="data/route_editor.js"></script>
+<script src="data/base_maps.js"></script>
 <style>
 :root{--primary:#1F6B4C;--secondary:#4E9B6B;--accent:#E0923F;--success:#3F7D4E;--light:#F2F8F3;--dark:#123A29;--text:#243A2E}
 *{margin:0;padding:0;box-sizing:border-box}
@@ -1068,11 +1069,8 @@ function showOnMap() {
 
   if (!routeMapInstance) {
     routeMapInstance = L.map('routeMap');
-    L.tileLayer('https://israelhiking.osm.org.il/Tiles/{z}/{x}/{y}.png', {
-      // minNativeZoom: השרת מגיש אריחים רק מזום 7 ומעלה - בלי זה מסלול ארוך
-      // (כל הארץ) מוצג על רקע אפור, כי fitBounds מתרחק לזום 5-6
-      attribution: '© Israel Hiking Map', maxZoom: 16, minNativeZoom: 7
-    }).addTo(routeMapInstance);
+    // מפת רקע + כפתור בחירה - data/base_maps.js (minNativeZoom של Israel Hiking Map מוגדר שם)
+    BikeBaseMaps.addTo(routeMapInstance);
 
     // לחיצה על נקודה כלשהי במפה - חלונית עם הקורדינטות של הנקודה הזו + כפתור
     // העתקה (לא לחיצה על מסלול/סמן ספציפי - כל נקודה על המפה). מחובר פעם אחת

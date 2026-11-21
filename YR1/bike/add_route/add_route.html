@@ -8,6 +8,7 @@
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 <script src="../route_catalog/data/route_arrows.js"></script>
+<script src="../route_catalog/data/base_maps.js"></script>
 <style>
 :root{--primary:#1F6B4C;--secondary:#4E9B6B;--accent:#E0923F;--light:#F2F8F3;--dark:#123A29;--text:#243A2E}
 *{margin:0;padding:0;box-sizing:border-box}
@@ -271,9 +272,7 @@ function drawPreview(segments) {
   document.getElementById('preview').style.display = 'block';
   if (!map) {
     map = L.map('map');
-    L.tileLayer('https://israelhiking.osm.org.il/Tiles/{z}/{x}/{y}.png', {
-      attribution: '© Israel Hiking Map', maxZoom: 16, minNativeZoom: 7
-    }).addTo(map);
+    BikeBaseMaps.addTo(map); // מפת רקע + כפתור בחירה - ../route_catalog/data/base_maps.js
   }
   if (mapLayer) map.removeLayer(mapLayer);
   mapLayer = L.polyline(segments.map(function (s) { return s.map(function (p) { return [p.lat, p.lon]; }); }),
