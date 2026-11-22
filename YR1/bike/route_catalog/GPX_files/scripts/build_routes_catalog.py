@@ -684,6 +684,14 @@ def build_catalog_record(path: Path, info: dict, points: list, settlements_db, r
     source = normalize_source_guess(info["source_guess"])  # "הקלטה" / "תכנון מסלול" / "לא ברור"
     override = override or {}
     source = override.get("source", source)  # תיקון ידני, ראו load_route_overrides()
+    activity = override.get("activity", info["activity_guess"])
+    # כלל גורף (אושר ע"י יאיר 22.11.2026): קובץ בלי חותמות זמן (עד 10% מהנקודות,
+    # PLANNED_MAX_TIME_RATIO) הוא תמיד תכנון מסלול עם סוג פעילות "לא ברור" - גובר
+    # גם על route_overrides.json (למשל ייצוא סטרבה בלי זמנים, שקודם סווג כהקלטת
+    # רכיבה). בלי זמנים אי אפשר לדעת אם זו הקלטה, ולא באיזו מהירות נעשתה.
+    if info.get("points_with_time_pct", 0) <= analyzer.PLANNED_MAX_TIME_RATIO * 100:
+        source = "תכנון מסלול"
+        activity = "לא ברור"
     is_planned = source == "תכנון מסלול"
 
     # ניקוי קפיצות GPS מבוסס על מהירות/הפרש-גובה **מרומזים מחותמות הזמן** בין
@@ -695,7 +703,6 @@ def build_catalog_record(path: Path, info: dict, points: list, settlements_db, r
     # לגמרי על הניקוי ועל הדגל "לא תקין" למסלולים מתוכננים - נשמרות כל הנקודות
     # כמו שהן, נסמכים על הקואורדינטות הגולמיות בלבד.
     original_count = len(points)
-    activity = override.get("activity", info["activity_guess"])
     if is_planned:
         removed_count = 0
         driving = []  # אין זמנים אמיתיים במסלול מתוכנן - אין ממה לזהות נסיעה

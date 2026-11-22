@@ -71,6 +71,12 @@ h1{font-family:'Varela Round',sans-serif;font-size:2.6rem;font-weight:800;color:
 .accordion-body{padding:18px 24px;font-size:.95rem;line-height:1.8;color:#3A4F42;display:flex;gap:20px;flex-wrap:wrap;align-items:center}
 .accordion-body .body-details{flex:1;min-width:200px}
 .accordion-body .body-details p{margin:4px 0}
+.gpx-info{margin-top:8px;padding-top:6px;border-top:1px dashed #DCE8E0}
+.gpx-info:empty{display:none}
+.gpx-info-title{font-weight:700;color:var(--primary)}
+.gpx-desc summary{cursor:pointer}
+.gpx-desc p{font-size:.9rem;line-height:1.6}
+.gpx-info-loading,.gpx-info-note{color:#5C7A6B}
 .route-actions{display:flex;gap:10px;flex-wrap:wrap}
 .btn-action{display:inline-block;padding:9px 18px;border-radius:12px;text-decoration:none;font-size:.9rem;font-weight:700;color:white;background:var(--primary);border:none;cursor:pointer;transition:all .2s}
 .btn-action:hover{background:var(--dark)}
@@ -470,6 +476,7 @@ function buildRouteCard(r, idx) {
 
   var el = document.createElement('div');
   el.className = 'accordion' + (isFaulty(r) ? ' accordion-invalid' : '');
+  el.dataset.routeId = r.id;
   el.innerHTML =
     '<div class="accordion-header" onclick="toggleAcc(this)">' +
       '<input type="checkbox" class="route-check" ' + checked + ' onclick="event.stopPropagation(); onCheckToggle(\'' + escapeAttr(r.file_name) + '\', this.checked)">' +
@@ -489,6 +496,7 @@ function buildRouteCard(r, idx) {
         '<p><strong>אזור גיאוגרפי:</strong> ' + escapeHtml(r.regions.length ? r.regions.join(', ') : 'לא זוהה') + '</p>' +
         '<p><strong>ישובים סמוכים:</strong> ' + escapeHtml(settlementsText) + '</p>' +
         '<p><strong>מספר נקודות במסלול:</strong> ' + r.point_count + '</p>' +
+        '<div class="gpx-info" id="gpxinfo-' + r.id + '">' + (GPX_INFO_CACHE[r.id] || '') + '</div>' +
       '</div>' +
       '<div class="route-actions">' +
         '<a class="btn-action" href="' + encodeURI(r.gpx_path) + '" download>📥 הורדת קובץ GPX</a>' +
@@ -1573,6 +1581,178 @@ function toggleAcc(header) {
   container.querySelectorAll(':scope>.accordion.active').forEach(function (a) { if (a !== acc) { a.classList.remove('active'); refreshAccHeight(a); } });
   acc.classList.toggle('active', !wasActive);
   refreshAccHeight(acc);
+  if (!wasActive && acc.dataset.routeId) loadGpxInfo(Number(acc.dataset.routeId), acc);
+}
+
+// --- מידע מתוך קובץ ה-GPX (נוסף 22.11.2026) ---
+// בפתיחת כרטיס נשלף קובץ ה-GPX עצמו ומוצגים ממנו: התוכנה/המכשיר שיצרו אותו,
+// שם/תיאור/סוג פעילות אם רשומים בו, ובהקלטה - שעות התחלה וסיום, משך כולל,
+// זמן בתנועה ומהירות ממוצעת, ודופק/קצב/טמפרטורה/הספק אם נשמרו. נשלף רק כשפותחים
+// כרטיס (לא בבניית הקטלוג) ונשמר בזיכרון, כדי שפתיחה חוזרת לא תוריד שוב.
+var GPX_INFO_CACHE = {};
+var MOVING_MIN_KMH = 1.5; // מתחת לזה - עמידה, לא נספר בזמן בתנועה
+var MOVING_WINDOW_S = 30; // אורך חלון מדידת המהירות
+var MOVING_MAX_GAP_S = 900; // הפרש גדול יותר בין נקודות = הפסקה/כיבוי, לא נספר (הקלטות דלילות - נקודה כל כמה דקות - כן נספרות)
+
+function loadGpxInfo(id, acc) {
+  var box = document.getElementById('gpxinfo-' + id);
+  if (!box || GPX_INFO_CACHE[id]) return;
+  var r = ALL_ROUTES.find(function (x) { return x.id === id; });
+  if (!r) return;
+  box.innerHTML = '<p class="gpx-info-loading">⏳ קורא את קובץ ה-GPX...</p>';
+  refreshAccHeight(acc);
+  fetch(encodeURI(r.gpx_path))
+    .then(function (res) { if (!res.ok) throw new Error(res.status); return res.text(); })
+    .then(function (text) {
+      GPX_INFO_CACHE[id] = gpxInfoHtml(analyzeGpxText(text), r);
+    })
+    .catch(function () { GPX_INFO_CACHE[id] = '<p class="gpx-info-loading">לא ניתן היה לקרוא את קובץ ה-GPX</p>'; })
+    .then(function () {
+      var b = document.getElementById('gpxinfo-' + id);
+      if (b) { b.innerHTML = GPX_INFO_CACHE[id]; refreshAccHeight(b.closest('.accordion')); }
+    });
+}
+
+function gpxText(el, tag) {
+  var n = el && el.getElementsByTagNameNS('*', tag)[0];
+  return n ? n.textContent.trim() : '';
+}
+
+function analyzeGpxText(text) {
+  var doc = new DOMParser().parseFromString(text, 'application/xml');
+  var gpx = doc.documentElement;
+  var meta = doc.getElementsByTagNameNS('*', 'metadata')[0];
+  var trk = doc.getElementsByTagNameNS('*', 'trk')[0];
+  var info = {
+    creator: gpx.getAttribute('creator') || '',
+    metaName: gpxText(meta, 'name'),
+    metaDesc: gpxText(meta, 'desc'),
+    author: meta ? gpxText(meta.getElementsByTagNameNS('*', 'author')[0], 'name') : '',
+    metaTime: gpxText(meta, 'time'),
+    trkName: trk ? gpxText(trk, 'name') : '',
+    trkDesc: trk ? gpxText(trk, 'desc') : '',
+    trkType: trk ? gpxText(trk, 'type') : '',
+    segments: doc.getElementsByTagNameNS('*', 'trkseg').length,
+    waypoints: doc.getElementsByTagNameNS('*', 'wpt').length
+  };
+  var pts = doc.getElementsByTagNameNS('*', 'trkpt');
+  if (!pts.length) pts = doc.getElementsByTagNameNS('*', 'rtept');
+  var times = [], moving = 0, movingKm = 0, prev = null, timed = 0, winSec = 0, winKm = 0;
+  var sensors = { hr: [], cad: [], atemp: [], power: [] };
+  for (var i = 0; i < pts.length; i++) {
+    var p = pts[i];
+    var t = Date.parse(gpxText(p, 'time'));
+    var cur = { lat: parseFloat(p.getAttribute('lat')), lon: parseFloat(p.getAttribute('lon')), t: isNaN(t) ? null : t, seg: p.parentNode };
+    if (cur.t !== null) { timed++; times.push(cur.t); }
+    Object.keys(sensors).forEach(function (k) {
+      var v = parseFloat(gpxText(p, k));
+      if (!isNaN(v)) sensors[k].push(v);
+    });
+    // זמן בתנועה: המהירות נמדדת על חלונות של לפחות MOVING_WINDOW_S שניות ולא בין
+    // כל שתי נקודות סמוכות - בדגימה צפופה רעש ה-GPS בעמידה נראה כתנועה, ובהליכה
+    // איטית קפיצות קטנות נראות כעמידה
+    if (prev && prev.seg === cur.seg && prev.t !== null && cur.t !== null) {
+      var dt = (cur.t - prev.t) / 1000;
+      if (dt > 0 && dt <= MOVING_MAX_GAP_S) {
+        winSec += dt; winKm += haversineKm(prev, cur);
+        if (winSec >= MOVING_WINDOW_S) {
+          if (winKm / (winSec / 3600) >= MOVING_MIN_KMH) { moving += winSec; movingKm += winKm; }
+          winSec = 0; winKm = 0;
+        }
+      } else { winSec = 0; winKm = 0; }
+    } else { winSec = 0; winKm = 0; }
+    prev = cur;
+  }
+  info.pointCount = pts.length;
+  info.hasTimes = pts.length > 0 && timed / pts.length > 0.1;
+  if (info.hasTimes) {
+    info.start = Math.min.apply(null, times);
+    info.end = Math.max.apply(null, times);
+    info.movingSec = moving;
+    info.movingKm = movingKm;
+  }
+  info.sensors = {};
+  Object.keys(sensors).forEach(function (k) {
+    var a = sensors[k];
+    if (a.length) info.sensors[k] = { avg: a.reduce(function (x, y) { return x + y; }, 0) / a.length, max: Math.max.apply(null, a), min: Math.min.apply(null, a) };
+  });
+  return info;
+}
+
+function haversineKm(a, b) {
+  var R = 6371, toRad = Math.PI / 180;
+  var dLat = (b.lat - a.lat) * toRad, dLon = (b.lon - a.lon) * toRad;
+  var h = Math.sin(dLat / 2) * Math.sin(dLat / 2) +
+          Math.cos(a.lat * toRad) * Math.cos(b.lat * toRad) * Math.sin(dLon / 2) * Math.sin(dLon / 2);
+  return 2 * R * Math.asin(Math.sqrt(h));
+}
+
+function formatDuration(sec) {
+  var m = Math.round(sec / 60), h = Math.floor(m / 60);
+  return h ? (h + ' ש׳ ' + (m % 60) + ' ד׳') : (m + ' ד׳');
+}
+
+function formatIlTime(ms, withDate) {
+  var opts = { timeZone: 'Asia/Jerusalem', hour: '2-digit', minute: '2-digit' };
+  if (withDate) { opts.day = '2-digit'; opts.month = '2-digit'; opts.year = 'numeric'; }
+  return new Date(ms).toLocaleString('he-IL', opts);
+}
+
+// שמות ידועים של תוכנות/מכשירים לפי תכונת creator בקובץ
+function describeCreator(creator) {
+  var c = creator.toLowerCase();
+  var known = [['stravagpx', 'סטרבה (Strava)'], ['strava', 'סטרבה (Strava)'], ['oruxmaps', 'OruxMaps'], ['garmin', 'גרמין (Garmin)'],
+    ['suunto', 'Suunto'], ['polar', 'Polar'], ['wahoo', 'Wahoo'], ['komoot', 'Komoot'], ['yairron.com', 'עורך המסלולים באתר'],
+    ['israel hiking', 'Israel Hiking Map'], ['gpx.studio', 'gpx.studio'], ['caltopo', 'CalTopo'], ['gpsvisualizer', 'GPS Visualizer'],
+    ['wikiloc', 'Wikiloc'], ['ridewithgps', 'Ride with GPS'], ['basecamp', 'Garmin BaseCamp']];
+  for (var i = 0; i < known.length; i++) if (c.indexOf(known[i][0]) !== -1) return known[i][1] + (known[i][1].toLowerCase() === c ? '' : ' (' + creator + ')');
+  return creator;
+}
+
+// תיאור שנשמר כ-HTML (למשל OruxMaps) - לטקסט נקי, שורה לכל <br>/<p>
+function descToText(desc) {
+  if (!desc) return '';
+  if (desc.indexOf('<') === -1) return desc;
+  var d = new DOMParser().parseFromString(desc.replace(/<br\s*\/?>/gi, '\n').replace(/<\/p>/gi, '\n'), 'text/html');
+  return d.body.textContent.split('\n').map(function (l) { return l.trim(); }).filter(Boolean).join('\n');
+}
+
+function gpxInfoHtml(info, r) {
+  var rows = [];
+  function row(label, value) { if (value !== '' && value !== null && value !== undefined) rows.push('<p><strong>' + label + ':</strong> ' + escapeHtml(String(value)) + '</p>'); }
+  row('נוצר ב', info.creator ? describeCreator(info.creator) : 'לא רשום בקובץ');
+  row('יוצר', info.author);
+  var name = info.trkName || info.metaName;
+  if (name && name !== routeNameOnly(r.file_name)) row('שם בקובץ', name);
+  var desc = descToText(info.trkDesc || info.metaDesc);
+  if (desc) rows.push('<details class="gpx-desc"><summary><strong>תיאור בקובץ</strong></summary><p>' + escapeHtml(desc).replace(/\n/g, '<br>') + '</p></details>');
+  row('סוג פעילות בקובץ', info.trkType);
+  if (info.hasTimes && r.source !== 'תכנון מסלול') {
+    var total = (info.end - info.start) / 1000;
+    var sameDay = formatIlTime(info.start, true).split(',')[0] === formatIlTime(info.end, true).split(',')[0];
+    row('התחלה', formatIlTime(info.start, true));
+    row('סיום', sameDay ? formatIlTime(info.end, false) : formatIlTime(info.end, true));
+    row('משך כולל', formatDuration(total));
+    if (info.movingSec > 0) {
+      row('זמן בתנועה', formatDuration(info.movingSec) + ' (עצירות: ' + formatDuration(Math.max(0, total - info.movingSec)) + ')');
+      row('מהירות ממוצעת בתנועה', (info.movingKm / (info.movingSec / 3600)).toFixed(1) + ' קמ"ש');
+    }
+    if (total > 0) row('מהירות ממוצעת כוללת', (r.distance_km / (total / 3600)).toFixed(1) + ' קמ"ש');
+  } else if (r.source === 'תכנון מסלול') {
+    rows.push('<p class="gpx-info-note">🗺️ מסלול מתוכנן - אין בקובץ זמני רכיבה.</p>');
+  }
+  var s = info.sensors;
+  if (s.hr) row('דופק', 'ממוצע ' + Math.round(s.hr.avg) + ', מקסימום ' + Math.round(s.hr.max));
+  if (s.cad) row('קצב דיווש', 'ממוצע ' + Math.round(s.cad.avg) + ' סל״ד');
+  if (s.power) row('הספק', 'ממוצע ' + Math.round(s.power.avg) + ' W, מקסימום ' + Math.round(s.power.max) + ' W');
+  if (s.atemp) {
+    // יש תוכנות (למשל CompeGPS) שכותבות קלווין
+    var k = s.atemp.max > 150 ? 273.15 : 0;
+    row('טמפרטורה', Math.round(s.atemp.min - k) + '°–' + Math.round(s.atemp.max - k) + '°');
+  }
+  if (info.segments > 1) row('מקטעים בקובץ', info.segments);
+  if (info.waypoints) row('נקודות ציון (waypoints)', info.waypoints);
+  return '<p class="gpx-info-title">📄 מתוך קובץ ה-GPX</p>' + rows.join('');
 }
 
 // גובה פתוח לפי התוכן בפועל (נוסף 02.10.2026, עם ההערות) - במקום תקרת 600px
