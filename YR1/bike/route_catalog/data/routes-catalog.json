@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-11-21T21:18:21",
+  "generated_at": "2026-11-22T12:27:01",
   "route_count": 627,
   "routes": [
     {
@@ -887,36 +887,6 @@
       "invalid": false,
       "removed_points": 0,
       "thumbnail": "thumbnails/0000-00-00_געתון_אל -רום.jpg",
-      "driving": []
-    },
-    {
-      "id": 669,
-      "file_name": "0000-00-00_געתון_גבע כרמל.gpx",
-      "gpx_path": "GPX_files/0000-00-00_געתון_גבע כרמל.gpx",
-      "date": "2025-10-14",
-      "date_source": "תאריך שינוי הקובץ (גיבוי)",
-      "activity": "לא ברור",
-      "source": "תכנון מסלול",
-      "distance_km": 8.46,
-      "elevation_gain_m": 294,
-      "elevation_loss_m": 302,
-      "point_count": 552,
-      "start_lat": 32.70238,
-      "start_lon": 34.98174,
-      "end_lat": 32.65053,
-      "end_lon": 34.96606,
-      "regions": [
-        "צפון"
-      ],
-      "settlements": [
-        "עין הוד",
-        "גבע כרמל",
-        "עין כרמל"
-      ],
-      "settlements_found": true,
-      "invalid": false,
-      "removed_points": 0,
-      "thumbnail": "thumbnails/0000-00-00_געתון_גבע כרמל.jpg",
       "driving": []
     },
     {
@@ -13808,8 +13778,8 @@
     },
     {
       "id": 459,
-      "file_name": "2025-10-25_געתון_גבע כרמל.gpx",
-      "gpx_path": "GPX_files/2025-10-25_געתון_גבע כרמל.gpx",
+      "file_name": "2025-10-25_עין הוד_יער עופר_הליכה.gpx",
+      "gpx_path": "GPX_files/2025-10-25_עין הוד_יער עופר_הליכה.gpx",
       "date": "2025-10-25",
       "date_source": "שם קובץ",
       "activity": "הליכה רגלית",
@@ -13833,8 +13803,8 @@
       "settlements_found": true,
       "invalid": false,
       "removed_points": 0,
-      "thumbnail": "thumbnails/2025-10-25_געתון_גבע כרמל.jpg",
-      "driving": []
+      "driving": [],
+      "thumbnail": "thumbnails/2025-10-25_עין הוד_יער עופר_הליכה.jpg"
     },
     {
       "id": 460,
@@ -17026,6 +16996,37 @@
       "removed_points": 0,
       "driving": [],
       "thumbnail": "thumbnails/2026-11-20 כברי_פרק גורן_סינגל מצובה_קורן_אכזיב_שבי ציון_בן עמי.jpg"
+    },
+    {
+      "id": 778,
+      "file_name": "2026-11-22 חוף הכרמל_לתחנת אוניברסיטה.gpx",
+      "gpx_path": "GPX_files/2026-11-22 חוף הכרמל_לתחנת אוניברסיטה.gpx",
+      "date": "2026-11-22",
+      "date_source": "שם קובץ",
+      "activity": "לא ברור",
+      "source": "תכנון מסלול",
+      "distance_km": 107.1,
+      "elevation_gain_m": 377,
+      "elevation_loss_m": 380,
+      "point_count": 25769,
+      "start_lat": 32.79204,
+      "start_lon": 34.95676,
+      "end_lat": 32.10353,
+      "end_lon": 34.80484,
+      "regions": [
+        "צפון",
+        "מרכז"
+      ],
+      "settlements": [
+        "שפיים",
+        "בית ינאי",
+        "מעיין צבי"
+      ],
+      "settlements_found": true,
+      "invalid": false,
+      "removed_points": 0,
+      "driving": [],
+      "thumbnail": "thumbnails/2026-11-22 חוף הכרמל_לתחנת אוניברסיטה.jpg"
     },
     {
       "id": 728,
