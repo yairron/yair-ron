@@ -1,6 +1,6 @@
 {
-  "generated_at": "2026-11-22T21:11:26",
-  "route_count": 627,
+  "generated_at": "2026-11-22T21:20:41",
+  "route_count": 626,
   "routes": [
     {
       "id": 698,
@@ -861,35 +861,6 @@
       "thumbnail": "thumbnails/0000-00-00_געתון_3.jpg"
     },
     {
-      "id": 571,
-      "file_name": "0000-00-00_געתון_אל -רום.gpx",
-      "gpx_path": "GPX_files/0000-00-00_געתון_אל -רום.gpx",
-      "date": "2026-01-27",
-      "date_source": "תאריך שינוי הקובץ (גיבוי)",
-      "activity": "לא ברור",
-      "source": "תכנון מסלול",
-      "distance_km": 6.97,
-      "elevation_gain_m": null,
-      "elevation_loss_m": null,
-      "point_count": 20,
-      "start_lat": 33.1417,
-      "start_lon": 35.7717,
-      "end_lat": 33.1417,
-      "end_lon": 35.7717,
-      "regions": [
-        "רמת הגולן והחרמון"
-      ],
-      "settlements": [
-        "מרום גולן",
-        "אל -רום"
-      ],
-      "settlements_found": true,
-      "invalid": false,
-      "removed_points": 0,
-      "driving": [],
-      "thumbnail": "thumbnails/0000-00-00_געתון_אל -רום.jpg"
-    },
-    {
       "id": 595,
       "file_name": "0000-00-00_געתון_גשר הזיו.gpx",
       "gpx_path": "GPX_files/0000-00-00_געתון_גשר הזיו.gpx",
@@ -948,36 +919,6 @@
       "removed_points": 0,
       "driving": [],
       "thumbnail": "thumbnails/0000-00-00_געתון_כברי_געתון.jpg"
-    },
-    {
-      "id": 679,
-      "file_name": "0000-00-00_געתון_כרמי יוסף_בית גוברין.GPX",
-      "gpx_path": "GPX_files/0000-00-00_געתון_כרמי יוסף_בית גוברין.GPX",
-      "date": "2015-10-30",
-      "date_source": "timestamps בקובץ",
-      "activity": "לא ברור",
-      "source": "תכנון מסלול",
-      "distance_km": 84.6,
-      "elevation_gain_m": 1377,
-      "elevation_loss_m": 1168,
-      "point_count": 878,
-      "start_lat": 32.08906,
-      "start_lon": 34.94282,
-      "end_lat": 31.61006,
-      "end_lon": 34.89621,
-      "regions": [
-        "מרכז"
-      ],
-      "settlements": [
-        "כפר בן נון",
-        "בית נחמיה",
-        "עינת"
-      ],
-      "settlements_found": true,
-      "invalid": false,
-      "removed_points": 0,
-      "driving": [],
-      "thumbnail": "thumbnails/0000-00-00_געתון_כרמי יוסף_בית גוברין.jpg"
     },
     {
       "id": 606,
@@ -1095,36 +1036,6 @@
       "removed_points": 0,
       "driving": [],
       "thumbnail": "thumbnails/0000-00-00_געתון_עין יעקב_1.jpg"
-    },
-    {
-      "id": 683,
-      "file_name": "0000-00-00_געתון_קשת_תל קציר.gpx",
-      "gpx_path": "GPX_files/0000-00-00_געתון_קשת_תל קציר.gpx",
-      "date": "2025-02-21",
-      "date_source": "תאריך שינוי הקובץ (גיבוי)",
-      "activity": "לא ברור",
-      "source": "תכנון מסלול",
-      "distance_km": 123.52,
-      "elevation_gain_m": 2622,
-      "elevation_loss_m": 3885,
-      "point_count": 3294,
-      "start_lat": 33.28947,
-      "start_lon": 35.7609,
-      "end_lat": 32.69903,
-      "end_lon": 35.64788,
-      "regions": [
-        "רמת הגולן והחרמון"
-      ],
-      "settlements": [
-        "מרום גולן",
-        "אודם",
-        "עין זיוון"
-      ],
-      "settlements_found": true,
-      "invalid": false,
-      "removed_points": 0,
-      "driving": [],
-      "thumbnail": "thumbnails/0000-00-00_געתון_קשת_תל קציר.jpg"
     },
     {
       "id": 562,
@@ -2338,6 +2249,36 @@
       "thumbnail": "thumbnails/0000-00-00_מאיר שפיה_ג'סר א-זרקא.jpg"
     },
     {
+      "id": 683,
+      "file_name": "0000-00-00_מג'דל שמס_תל קציר_שביל הגולן.gpx",
+      "gpx_path": "GPX_files/0000-00-00_מג'דל שמס_תל קציר_שביל הגולן.gpx",
+      "date": "2025-02-21",
+      "date_source": "תאריך שינוי הקובץ (גיבוי)",
+      "activity": "לא ברור",
+      "source": "תכנון מסלול",
+      "distance_km": 123.52,
+      "elevation_gain_m": 2622,
+      "elevation_loss_m": 3885,
+      "point_count": 3294,
+      "start_lat": 33.28947,
+      "start_lon": 35.7609,
+      "end_lat": 32.69903,
+      "end_lon": 35.64788,
+      "regions": [
+        "רמת הגולן והחרמון"
+      ],
+      "settlements": [
+        "מרום גולן",
+        "אודם",
+        "עין זיוון"
+      ],
+      "settlements_found": true,
+      "invalid": false,
+      "removed_points": 0,
+      "driving": [],
+      "thumbnail": "thumbnails/0000-00-00_מג'דל שמס_תל קציר_שביל הגולן.jpg"
+    },
+    {
       "id": 692,
       "file_name": "0000-00-00_מירון_קדרים.gpx",
       "gpx_path": "GPX_files/0000-00-00_מירון_קדרים.gpx",
@@ -3458,6 +3399,36 @@
       "removed_points": 0,
       "driving": [],
       "thumbnail": "thumbnails/0000-00-00_צפת_כפר שמאי.jpg"
+    },
+    {
+      "id": 679,
+      "file_name": "0000-00-00_ראש העין_בית גוברין.GPX",
+      "gpx_path": "GPX_files/0000-00-00_ראש העין_בית גוברין.GPX",
+      "date": "2015-10-30",
+      "date_source": "timestamps בקובץ",
+      "activity": "לא ברור",
+      "source": "תכנון מסלול",
+      "distance_km": 84.6,
+      "elevation_gain_m": 1377,
+      "elevation_loss_m": 1168,
+      "point_count": 878,
+      "start_lat": 32.08906,
+      "start_lon": 34.94282,
+      "end_lat": 31.61006,
+      "end_lon": 34.89621,
+      "regions": [
+        "מרכז"
+      ],
+      "settlements": [
+        "כפר בן נון",
+        "בית נחמיה",
+        "עינת"
+      ],
+      "settlements_found": true,
+      "invalid": false,
+      "removed_points": 0,
+      "driving": [],
+      "thumbnail": "thumbnails/0000-00-00_ראש העין_בית גוברין.jpg"
     },
     {
       "id": 654,
