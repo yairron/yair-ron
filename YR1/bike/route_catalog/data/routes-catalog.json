@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-11-22T12:37:25",
+  "generated_at": "2026-11-22T21:11:26",
   "route_count": 627,
   "routes": [
     {
@@ -1008,35 +1008,6 @@
       "removed_points": 0,
       "driving": [],
       "thumbnail": "thumbnails/0000-00-00_געתון_מתת.jpg"
-    },
-    {
-      "id": 674,
-      "file_name": "0000-00-00_געתון_נווה ירק_גבעת השלושה.gpx",
-      "gpx_path": "GPX_files/0000-00-00_געתון_נווה ירק_גבעת השלושה.gpx",
-      "date": "2024-05-13",
-      "date_source": "תאריך שינוי הקובץ (גיבוי)",
-      "activity": "לא ברור",
-      "source": "תכנון מסלול",
-      "distance_km": 17.03,
-      "elevation_gain_m": 28,
-      "elevation_loss_m": 20,
-      "point_count": 779,
-      "start_lat": 32.1106,
-      "start_lon": 34.84669,
-      "end_lat": 32.11244,
-      "end_lon": 34.91419,
-      "regions": [
-        "מרכז"
-      ],
-      "settlements": [
-        "עדנים",
-        "נווה ירק"
-      ],
-      "settlements_found": true,
-      "invalid": false,
-      "removed_points": 0,
-      "driving": [],
-      "thumbnail": "thumbnails/0000-00-00_געתון_נווה ירק_גבעת השלושה.jpg"
     },
     {
       "id": 688,
@@ -3287,6 +3258,35 @@
       "removed_points": 0,
       "driving": [],
       "thumbnail": "thumbnails/0000-00-00_ערד_נווה זוהר_1.jpg"
+    },
+    {
+      "id": 674,
+      "file_name": "0000-00-00_עתידים_מקורות הירדן_שביל ישראל.gpx",
+      "gpx_path": "GPX_files/0000-00-00_עתידים_מקורות הירדן_שביל ישראל.gpx",
+      "date": "2024-05-13",
+      "date_source": "תאריך שינוי הקובץ (גיבוי)",
+      "activity": "לא ברור",
+      "source": "תכנון מסלול",
+      "distance_km": 17.03,
+      "elevation_gain_m": 28,
+      "elevation_loss_m": 20,
+      "point_count": 779,
+      "start_lat": 32.1106,
+      "start_lon": 34.84669,
+      "end_lat": 32.11244,
+      "end_lon": 34.91419,
+      "regions": [
+        "מרכז"
+      ],
+      "settlements": [
+        "עדנים",
+        "נווה ירק"
+      ],
+      "settlements_found": true,
+      "invalid": false,
+      "removed_points": 0,
+      "driving": [],
+      "thumbnail": "thumbnails/0000-00-00_עתידים_מקורות הירדן_שביל ישראל.jpg"
     },
     {
       "id": 675,
