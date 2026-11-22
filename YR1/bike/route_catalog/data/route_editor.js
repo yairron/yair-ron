@@ -613,10 +613,19 @@ var RouteEditor = (function () {
       history = [];
     }
 
+    // מחליף את כל המסלול בנקודות נתונות (מיזוג מסלולים ב-gps_upload, 22.11.2026).
+    // ההיסטוריה מתאפסת - UNDO לא חוזר אל לפני המיזוג, רק מבטל נקודות שנוספו אחריו.
+    function loadPoints(points) {
+      newPoints = points.slice();
+      lastAnchor = null;
+      lastPool = null;
+      history = [];
+    }
+
     function getPoints() { return newPoints.slice(); }
     function hasStarted() { return newPoints.length > 0; }
 
-    return { addFromPool: addFromPool, addFreehand: addFreehand, undo: undo, reset: reset, getPoints: getPoints, hasStarted: hasStarted };
+    return { addFromPool: addFromPool, addFreehand: addFreehand, undo: undo, reset: reset, loadPoints: loadPoints, getPoints: getPoints, hasStarted: hasStarted };
   }
 
   // GPX תקני מרשימת נקודות - **בלי** תגי <time> בכלל (פעולת תכנון, לא

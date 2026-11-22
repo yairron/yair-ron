@@ -244,6 +244,7 @@ var mapInstance = null;
 // --- מיזוג/עריכת מסלול (route_editor.js), נוסף 22.08.2026, עודכן 23.08.2026
 // למצבי-עריכה מתחלפים (חיתוך/הצמדה-לנתיב-מפה/חופשי) ---
 var editMode = null; // null | 'cut' | 'osm' | 'freehand' - מצב העריכה הפעיל כרגע
+var mergedRouteActive = false; // המסלול שבעריכה נוצר במיזוג (mergeAllRoutesDownload) - ראו selectEditMode('cut')
 var routeBuilder = null; // RouteEditor.createRouteBuilder() - נוצר עם בחירת מצב ראשון, נשמר לאורך כל ההחלפות
 var cutPool = null; // בריכת GPX (RouteEditor.buildPool) למצב 'cut' - נבנית מחדש בכל בחירה במצב הזה
 // גרף ניתוב על cutPool (RouteEditor.buildPoolGraph, נוסף 18.11.2026) - לחיצה על מסלול אחר מהקודמת
@@ -551,11 +552,89 @@ function doCloseRoute(id) {
 // למצבי-עריכה מתחלפים (חיתוך מקטע / הצמדה לנתיב מפה (OSM) / חופשי) שאפשר
 // להחליף ביניהם תוך כדי בניית אותו מסלול - ראו RouteEditor.createRouteBuilder. ---
 
+// מיזוג (עודכן 22.11.2026): כולל גם את המסלול שנבנה בעריכה (routeBuilder), ומחבר
+// את החלקים לפי הקצוות הקרובים ולא לפי סדר הרשימה - למשל קטע שהמשתמש צייר לפני
+// תחילת הקובץ נכנס לפניו, וקטע שמסתיים בסוף הקובץ נכנס הפוך אם צריך.
+// התוצאה **הופכת למסלול שבעריכה** (בצבע העריכה) במקום הורדה מיידית: הקבצים
+// שמוזגו יורדים מהרשימה ומהמפה, "🗑️ מחיקת מסלול חדש" מוחקת את כל המסלול הממוזג,
+// ו"⬇️ הורדת מסלול חדש" מורידה אותו. אפשר להמשיך להוסיף לו נקודות.
+// קודם: שירשר רק את הקבצים הטעונים, בסדר הטעינה, והוריד מיד קובץ מיזוג_מסלולים.gpx.
 function mergeAllRoutesDownload() {
   closeEditCurtain();
-  if (!routes.length) { alert('אין מסלולים טעונים למיזוג'); return; }
-  var pool = RouteEditor.buildPool(allRouteSegments());
-  RouteEditor.downloadGpx(pool, 'מיזוג_מסלולים.gpx', 'מיזוג מסלולים');
+  var pieces = allRouteSegments().filter(function (s) { return s && s.length; });
+  if (routeBuilder && routeBuilder.getPoints().length >= 2) pieces.push(routeBuilder.getPoints());
+  if (pieces.length < 1 || (pieces.length === 1 && pieces[0].length < 2)) { alert('אין מסלולים למיזוג'); return; }
+  var merged = chainPieces(pieces);
+
+  // הקבצים שמוזגו יורדים מהמפה ומהרשימה - בלי resetCutterUI (doCloseRoute),
+  // שהיה מוחק גם את המסלול שבעריכה
+  routes.forEach(function (r) {
+    if (r.polyline) mapInstance.removeLayer(r.polyline);
+    if (r.startMarker) mapInstance.removeLayer(r.startMarker);
+    if (r.endMarker) mapInstance.removeLayer(r.endMarker);
+  });
+  routes = [];
+
+  if (!routeBuilder) routeBuilder = RouteEditor.createRouteBuilder();
+  routeBuilder.loadPoints(merged);
+  mergedRouteActive = true;
+  // בריכת החיתוך נבנתה גם מהקבצים שירדו - נבנית מחדש בבחירת מצב הבא
+  editMode = null;
+  cutPool = null;
+  cutGraph = null;
+  updateCurtainChecks();
+  if (mapInstance) mapInstance.getContainer().style.cursor = '';
+
+  clearCutterVisuals();
+  [merged[0], merged[merged.length - 1]].forEach(function (p) {
+    cutterMarkers.push(L.circleMarker([p.lat, p.lon], {
+      radius: 6, color: '#fff', weight: 2, fillColor: '#E0923F', fillOpacity: 1
+    }).addTo(mapInstance));
+  });
+  redrawCutterPreview();
+  renderRoutesList();
+  document.getElementById('cutterToolbar').style.display = 'flex';
+  setCutterStatus('🔗 המסלולים מוזגו למסלול החדש (' + merged.length + ' נקודות)');
+  updateCutterStats();
+  mapInstance.fitBounds(L.latLngBounds(merged.map(function (p) { return [p.lat, p.lon]; })), { padding: [30, 30] });
+}
+
+function distM(a, b) {
+  var R = 6371000, toRad = Math.PI / 180;
+  var dLat = (b.lat - a.lat) * toRad, dLon = (b.lon - a.lon) * toRad;
+  var h = Math.sin(dLat / 2) * Math.sin(dLat / 2) +
+          Math.cos(a.lat * toRad) * Math.cos(b.lat * toRad) * Math.sin(dLon / 2) * Math.sin(dLon / 2);
+  return 2 * R * Math.asin(Math.sqrt(h));
+}
+
+// משרשר חלקי מסלול לקו אחד: מתחיל מהחלק הארוך ביותר (בדרך כלל הקובץ), ובכל צעד
+// מצרף את החלק שאחד מקצותיו הכי קרוב לתחילת או לסוף השרשרת - בכיוון הנכון
+// (הפוך אם צריך). נקודת חיבור כפולה (פחות מ-5 מ') מושמטת. חלקים רחוקים זה מזה
+// מתחברים בקו ישר, כמו קודם.
+function chainPieces(pieces) {
+  var rest = pieces.map(function (p) { return p.slice(); });
+  var startIdx = 0;
+  rest.forEach(function (p, i) { if (p.length > rest[startIdx].length) startIdx = i; });
+  var chain = rest.splice(startIdx, 1)[0];
+  while (rest.length) {
+    var best = null;
+    rest.forEach(function (p, i) {
+      var head = chain[0], tail = chain[chain.length - 1], ps = p[0], pe = p[p.length - 1];
+      [[distM(tail, ps), i, 'append', false], [distM(tail, pe), i, 'append', true],
+       [distM(head, pe), i, 'prepend', false], [distM(head, ps), i, 'prepend', true]]
+        .forEach(function (c) { if (!best || c[0] < best[0]) best = c; });
+    });
+    var piece = rest.splice(best[1], 1)[0];
+    if (best[3]) piece.reverse();
+    if (best[2] === 'append') {
+      if (distM(chain[chain.length - 1], piece[0]) < 5) piece = piece.slice(1);
+      chain = chain.concat(piece);
+    } else {
+      if (distM(piece[piece.length - 1], chain[0]) < 5) piece = piece.slice(0, -1);
+      chain = piece.concat(chain);
+    }
+  }
+  return chain;
 }
 
 function toggleEditCurtain() {
@@ -584,8 +663,11 @@ function updateCurtainChecks() {
 // אין שום מסלול טעון מלכתחילה.
 function updateCurtainAvailability() {
   var hasRoutes = routes.length > 0;
-  document.getElementById('mergeOption').style.display = hasRoutes ? 'flex' : 'none';
-  document.getElementById('cutOption').style.display = (hasRoutes || (areaSegments && areaSegments.length)) ? 'flex' : 'none';
+  // אחרי מיזוג (22.11.2026) אין קבצים ברשימה, אבל המסלול הממוזג הוא המסלול
+  // שעורכים - כל האפשרויות נשארות זמינות
+  var hasEdited = !!(routeBuilder && routeBuilder.getPoints().length >= 2);
+  document.getElementById('mergeOption').style.display = (hasRoutes || hasEdited) ? 'flex' : 'none';
+  document.getElementById('cutOption').style.display = (hasRoutes || mergedRouteActive || (areaSegments && areaSegments.length)) ? 'flex' : 'none';
 }
 
 // שורת הכפתורים גלויה אם יש מסלולים טעונים, או שכבר יש מסלול-בבנייה
@@ -632,6 +714,13 @@ function selectEditMode(mode) {
   closeEditCurtain();
 
   if (mode === 'cut') {
+    // חיתוך אחרי מיזוג: המסלול הממוזג הופך למסלול-מקור טעון ברשימה (כמו קובץ
+    // שנפתח), והחיתוך בונה ממנו מסלול חדש - לוחצים על נקודת ההתחלה והסיום הרצויות
+    if (mergedRouteActive && routeBuilder && routeBuilder.getPoints().length >= 2) {
+      var mergedPts = routeBuilder.getPoints();
+      mergedRouteActive = false;
+      addRouteFromText(RouteEditor.buildGpxText(mergedPts, 'מסלול ממוזג'), 'מסלול_ממוזג.gpx'); // מאפס גם את העריכה
+    }
     var lines = cutSourceLines();
     if (!lines.length) { alert('אין מסלולים או רשת מסלולים על המפה'); return; }
     cutPool = RouteEditor.buildPool(lines);
@@ -742,6 +831,7 @@ window.addEventListener('beforeunload', function (e) {
 function deactivateEditMode() {
   editMode = null;
   routeBuilder = null;
+  mergedRouteActive = false;
   cutPool = null;
   cutGraph = null;
   osmPool = null;
@@ -769,6 +859,7 @@ function deleteNewSegmentAsk() {
 }
 
 function deleteNewSegment() {
+  mergedRouteActive = false;
   clearCutterVisuals();
   if (routeBuilder) {
     routeBuilder.reset();
@@ -848,7 +939,8 @@ function redrawCutterPreview() {
 
 function cutterUndo() {
   if (!routeBuilder) return;
-  routeBuilder.undo();
+  // אחרי מיזוג אין היסטוריה - לא להסיר את סמני ההתחלה/סוף של המסלול הממוזג
+  if (!routeBuilder.undo()) return;
   var m = cutterMarkers.pop();
   if (m) mapInstance.removeLayer(m);
   redrawCutterPreview();

@@ -26,7 +26,10 @@ li{margin:4px 0}
 a{color:var(--primary);font-weight:600}
 code,.mono{font-family:Consolas,monospace;background:var(--light);border-radius:6px;padding:1px 6px;font-size:.92rem;direction:ltr;unicode-bidi:embed;white-space:nowrap}
 .toc{columns:2;column-gap:30px}
-.toc ol{margin-top:0}
+.toc ol{margin:4px 22px 0 0}
+.toc-group{break-inside:avoid;margin-bottom:14px}
+.toc .toc-page{display:block;font-family:'Varela Round',sans-serif;font-size:1.12rem;color:var(--dark);border-bottom:1px solid #DCE8E0;padding-bottom:3px}
+.toc-file{font-family:Consolas,monospace;font-size:.78rem;color:#5C7A6B;font-weight:400;direction:ltr;unicode-bidi:embed}
 .toc a{text-decoration:none}
 .toc a:hover{text-decoration:underline}
 .tools{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:14px;margin-top:12px}
@@ -77,22 +80,53 @@ footer{text-align:center;color:#5C7A6B;font-size:.9rem;padding:10px 16px 30px}
 <section id="toc">
   <h2>תוכן העניינים</h2>
   <div class="toc">
-    <ol>
-      <li><a href="#intro">מה יש כאן</a></li>
-      <li><a href="#catalog">קטלוג מסלולים</a></li>
-      <li><a href="#catalog-search">חיפוש, סינון ומיון</a></li>
-      <li><a href="#catalog-card">כרטיס מסלול</a></li>
-      <li><a href="#catalog-select">בחירת מסלולים והורדה</a></li>
-      <li><a href="#catalog-map">תצוגת מסלולים על המפה</a></li>
-      <li><a href="#catalog-edit">עריכת מסלול מתוך המפה</a></li>
-      <li><a href="#catalog-network">רשת מסלולים: אילו מסלולים עוברים בנקודה</a></li>
-      <li><a href="#upload">עריכת מסלול חדש (קובץ מהמחשב)</a></li>
-      <li><a href="#upload-edit">עריכה בדף "עריכת מסלול חדש"</a></li>
-      <li><a href="#upload-area">רשת מסלולים קיימים באזור</a></li>
-      <li><a href="#cleaner">ניקוי קובץ GPX</a></li>
-      <li><a href="#add-route">הוספת מסלול לקטלוג</a></li>
-      <li><a href="#faq">טיפים ושאלות נפוצות</a></li>
-    </ol>
+    <div class="toc-group">
+      <a class="toc-page" href="#intro">📖 כללי</a>
+      <ol>
+        <li><a href="#intro">מה יש כאן</a></li>
+      </ol>
+    </div>
+    <div class="toc-group">
+      <a class="toc-page" href="#catalog">🗺️ קטלוג מסלולים <span class="toc-file">catalog.html</span></a>
+      <ol>
+        <li><a href="#catalog">מסך הקטלוג</a></li>
+        <li><a href="#catalog-search">חיפוש, סינון ומיון</a></li>
+        <li><a href="#catalog-card">כרטיס מסלול</a></li>
+        <li><a href="#catalog-select">בחירת מסלולים והורדה</a></li>
+        <li><a href="#catalog-map">תצוגת מסלולים על המפה</a></li>
+        <li><a href="#catalog-edit">עריכת מסלול מתוך המפה</a></li>
+        <li><a href="#catalog-network">רשת מסלולים: אילו מסלולים עוברים בנקודה</a></li>
+      </ol>
+    </div>
+    <div class="toc-group">
+      <a class="toc-page" href="#upload">🔎 תכנון מסלול חדש <span class="toc-file">gps_upload.html</span></a>
+      <ol>
+        <li><a href="#upload">מסך הפתיחה וטעינת קבצים</a></li>
+        <li><a href="#upload-picker">בחירת מסלולים מהקטלוג</a></li>
+        <li><a href="#upload-edit">עריכה בדף "עריכת מסלול חדש"</a></li>
+        <li><a href="#upload-area">רשת מסלולים קיימים באזור</a></li>
+      </ol>
+    </div>
+    <div class="toc-group">
+      <a class="toc-page" href="#cleaner">🧹 ניקוי קובץ GPX <span class="toc-file">gpx_cleaner.html</span></a>
+      <ol>
+        <li><a href="#cleaner-file">בחירת קובץ</a></li>
+        <li><a href="#cleaner-settings">הגדרות</a></li>
+        <li><a href="#cleaner-manual">בדיקה ידנית</a></li>
+        <li><a href="#cleaner-next">מה הלאה?</a></li>
+        <li><a href="#cleaner-results">תוצאות</a></li>
+        <li><a href="#cleaner-map">מפה והורדה</a></li>
+      </ol>
+    </div>
+    <div class="toc-group">
+      <a class="toc-page" href="#add-route">➕ הוספת מסלול לקטלוג <span class="toc-file">add_route.html</span></a>
+      <ol>
+        <li><a href="#add-route">שליחת מסלול לקטלוג</a></li>
+      </ol>
+    </div>
+    <div class="toc-group">
+      <a class="toc-page" href="#faq">💬 טיפים ושאלות נפוצות</a>
+    </div>
   </div>
 </section>
 
@@ -119,7 +153,7 @@ footer{text-align:center;color:#5C7A6B;font-size:.9rem;padding:10px 16px 30px}
     <tr><td><span class="n">1</span></td><td>🧹 ניקוי GPX</td><td>מעבר לדף <a href="#cleaner">ניקוי קובץ GPX</a>.</td></tr>
     <tr><td><span class="n">2</span></td><td>📖 מדריך למשתמש</td><td>פותח את המדריך הזה.</td></tr>
     <tr><td><span class="n">3</span></td><td>➕ הוספת מסלול לקטלוג</td><td>פותח את <a href="#add-route">טופס הוספת מסלול</a>, לשליחת מסלול שלכם לקטלוג.</td></tr>
-    <tr><td><span class="n">4</span></td><td>🔎 בדיקת קובץ חדש</td><td>מעבר לדף <a href="#upload">עריכת מסלול חדש</a>, לפתיחת קובץ GPX מהמחשב.</td></tr>
+    <tr><td><span class="n">4</span></td><td>🔎 תכנון מסלול חדש</td><td>מעבר לדף <a href="#upload">עריכת מסלול חדש</a>, לפתיחת קובץ GPX מהמחשב.</td></tr>
     <tr><td><span class="n">5</span></td><td>תיבת החיפוש</td><td>חיפוש לפי שם מסלול, ישוב, מקום עניין, מספר מסלול או קורדינטות. התוצאות מתעדכנות תוך כדי הקלדה. ראו <a href="#catalog-search">חיפוש, סינון ומיון</a>.</td></tr>
     <tr><td><span class="n">6</span></td><td>רדיוס חיפוש</td><td>פעיל רק בחיפוש לפי קורדינטות: מציג מסלולים שעוברים במרחק הזה מהנקודה. בין 50 ל-9999 מטר, ברירת המחדל 500.</td></tr>
     <tr><td><span class="n">7</span></td><td>סוג פעילות</td><td>הכול / 🚶 הליכה רגלית / 🚵 רכיבת אופניים.</td></tr>
@@ -282,20 +316,30 @@ footer{text-align:center;color:#5C7A6B;font-size:.9rem;padding:10px 16px 30px}
 
 <!-- ============ עריכת מסלול חדש ============ -->
 <section id="upload">
-  <h2>🔎 עריכת מסלול חדש (קובץ מהמחשב)</h2>
-  <p>בדף הזה עובדים עם קובצי GPX שלכם, כאלה שלא נמצאים בקטלוג: מהשעון, מאפליקציה או מחבר. נכנסים אליו מכפתור <b>🔎 בדיקת קובץ חדש</b> בקטלוג.</p>
-  <div class="tip">🔒 הקובץ שאתם בוחרים נקרא בתוך הדפדפן שלכם בלבד. הוא לא נשלח לאתר ולא נשמר בו.</div>
+  <h2>🔎 עריכת מסלול חדש</h2>
+  <p>בדף הזה פותחים קובצי GPX ומציגים אותם על מפה: קבצים שלכם מהשעון, מאפליקציה או מחבר, או מסלולים מהקטלוג. אפשר גם לבנות בו מסלול חדש מאפס. נכנסים אליו מכפתור <b>🔎 תכנון מסלול חדש</b> בקטלוג.</p>
+  <div class="tip">🔒 קובץ שאתם בוחרים מהמחשב נקרא בתוך הדפדפן שלכם בלבד. הוא לא נשלח לאתר ולא נשמר בו.</div>
   <figure><img src="img/upload-start.jpg" alt="דף עריכת מסלול חדש" loading="lazy"><figcaption>הדף לפני שנבחר קובץ</figcaption></figure>
   <table>
     <tr><th>#</th><th>כפתור</th><th>מה הוא עושה</th></tr>
     <tr><td><span class="n">1</span></td><td>🏠 דף ראשי</td><td>חזרה לקטלוג המסלולים.</td></tr>
     <tr><td><span class="n">2</span></td><td>← חזרה</td><td>חזרה לדף הקודם בדפדפן.</td></tr>
-    <tr><td><span class="n">3</span></td><td>📂 בחר קובץ GPX חדש<br>🗂️ בחר קובץ מהקטלוג</td><td>הראשון פותח קובץ GPX מהמחשב או מהטלפון. השני פותח חלון עם כל מסלולי הקטלוג: מחפשים לפי שם, יישוב או מספר מסלול, מסמנים מסלול אחד או יותר ולוחצים <b>הצגה על המפה</b>. אפשר לחזור על כל אחד מהם, וכל המסלולים יוצגו יחד.</td></tr>
-    <tr><td><span class="n">4</span></td><td>🖊️ עריכת מסלול חדש</td><td>מתחיל מסלול חדש מאפס, בלי קובץ. המפה נפתחת במיקום שלכם (אם תאשרו לדפדפן לגשת למיקום), ותפריט העריכה נפתח מיד.</td></tr>
+    <tr><td><span class="n">3</span></td><td>📂 בחר קובץ GPX חדש</td><td>פותח קובץ GPX מהמחשב או מהטלפון. אפשר לחזור על זה כמה פעמים, וכל הקבצים יוצגו יחד על המפה.</td></tr>
+    <tr><td><span class="n">4</span></td><td>🗂️ בחר קובץ מהקטלוג</td><td>פותח חלון עם כל מסלולי הקטלוג (ראו למטה).</td></tr>
+    <tr><td><span class="n">5</span></td><td>🖊️ עריכת מסלול חדש</td><td>מתחיל מסלול חדש מאפס, בלי קובץ. המפה נפתחת במיקום שלכם (אם תאשרו לדפדפן לגשת למיקום), ותפריט העריכה נפתח מיד.</td></tr>
   </table>
 
+  <h3 id="upload-picker">בחירת מסלולים מהקטלוג</h3>
+  <figure><img src="img/upload-catalog-picker.jpg" alt="חלון בחירת מסלולים מהקטלוג" loading="lazy"><figcaption>החלון שנפתח בלחיצה על 🗂️ בחר קובץ מהקטלוג</figcaption></figure>
+  <ul>
+    <li>מקלידים בשורת החיפוש שם, יישוב או מספר מסלול. הרשימה מסתננת תוך כדי הקלדה, ולכל מסלול מוצגים המספר והאורך שלו.</li>
+    <li>מסמנים מסלול אחד או יותר. בתחתית החלון מופיע כמה מסלולים נבחרו.</li>
+    <li>לוחצים <b>הצגה על המפה</b>. המסלולים נפתחים כמו קבצים שבחרתם מהמחשב, כל אחד בצבע משלו, ואפשר להוסיף אליהם עוד קבצים.</li>
+    <li>✕ או לחיצה מחוץ לחלון סוגרים אותו בלי לפתוח מסלולים.</li>
+  </ul>
+
   <h3>אחרי שנבחר קובץ</h3>
-  <p>לכל קובץ מופיע כרטיס עם השם, הצבע שלו על המפה, המרחק והטיפוס והירידה. מתחת לכרטיסים יש שורת כפתורים, ומתחתיה המפה.</p>
+  <p>הכפתורים בראש הדף נשארים, כדי שאפשר יהיה להוסיף עוד קבצים. לכל קובץ מופיע כרטיס עם השם, הצבע שלו על המפה, המרחק והטיפוס והירידה. מתחת לכרטיסים יש שורת כפתורים, ומתחתיה המפה, שתופסת את רוב גובה המסך.</p>
   <figure><img src="img/upload-loaded.jpg" alt="קובץ שנטען" loading="lazy"><figcaption>קובץ אחד טעון, עם שורת הכפתורים</figcaption></figure>
   <table>
     <tr><th>#</th><th>כפתור</th><th>מה הוא עושה</th></tr>
@@ -321,7 +365,7 @@ footer{text-align:center;color:#5C7A6B;font-size:.9rem;padding:10px 16px 30px}
   <figure><img src="img/upload-edit-menu.jpg" alt="תפריט העריכה" loading="lazy"><figcaption>תפריט "עריכת מסלול" בדף עריכת מסלול חדש</figcaption></figure>
   <table>
     <tr><th></th><th>אפשרות</th><th>מה היא עושה</th></tr>
-    <tr><td>🔗</td><td>מזג את כל המסלולים</td><td>מוריד מיד קובץ אחד, <code>מיזוג_מסלולים.gpx</code>, עם כל הקבצים שפתחתם. מופיע רק כשיש לפחות קובץ אחד פתוח.</td></tr>
+    <tr><td>🔗</td><td>מזג את כל המסלולים</td><td>מחבר את כל הקבצים שפתחתם, וגם את המסלול שבניתם בעריכה, למסלול אחד, והוא הופך למסלול החדש שבעריכה: הוא מוצג בצבע העריכה, והקבצים שמוזגו יורדים מהרשימה ומהמפה (הקבצים במחשב לא משתנים). מכאן אפשר להמשיך להוסיף לו נקודות, להוריד אותו ב-<b>⬇️ הורדת מסלול חדש</b>, או למחוק את כולו ב-<b>🗑️ מחיקת מסלול חדש</b>. החלקים מתחברים לפי הקצוות הקרובים: קטע שציירתם עד תחילת הקובץ נכנס לפניו, וקטע שמתחיל בסוף הקובץ נכנס אחריו, גם אם ציירתם אותו בכיוון ההפוך. חלקים רחוקים זה מזה מתחברים בקו ישר. UNDO לא מבטל את המיזוג עצמו, רק נקודות שהוספתם אחריו. כל אפשרויות התפריט נשארות זמינות גם אחרי המיזוג. בחירה ב-<b>✂️ חיתוך</b> הופכת את המסלול הממוזג לקובץ ברשימה (<code>מסלול_ממוזג.gpx</code>), ואז לוחצים עליו על נקודת ההתחלה והסיום הרצויות, כמו בכל קובץ. מופיע רק כשיש לפחות קובץ אחד פתוח.</td></tr>
     <tr><td>✂️</td><td>חיתוך מסלול לפי מסלולים קיימים</td><td>לוחצים על נקודות לאורך הקווים שעל המפה: הקבצים שפתחתם, רשת המסלולים באזור והמסלולים שבחרתם מרשימת האזור. כשלוחצים שוב על אותו מסלול, המסלול החדש נשאר עליו ועוקב אחריו. כשלוחצים על מסלול אחר, המסלול החדש עובר אליו בדרך הקצרה ביותר לאורך הקווים שעל המפה, גם דרך מסלולים נוספים. אם אין שום חיבור בין שני המסלולים, הנקודות מחוברות בקו ישר ומופיעה אזהרה. מופיע כשיש קובץ פתוח או רשת מסלולים.</td></tr>
     <tr><td>📍</td><td>הוספת נקודות עם הצמדה לנתיב מפה</td><td>הנקודות נצמדות לשבילים ולדרכים של המפה (OpenStreetMap), והמסלול עוקב אחריהם. צריך להתקרב לאזור לפני הבחירה.</td></tr>
     <tr><td>✏️</td><td>הוספת נקודות חופשי (בלי הצמדה)</td><td>כל לחיצה מוסיפה נקודה במקום שלחצתם, עם קו ישר מהנקודה הקודמת.</td></tr>
@@ -380,7 +424,7 @@ footer{text-align:center;color:#5C7A6B;font-size:.9rem;padding:10px 16px 30px}
 <section id="cleaner">
   <h2>🧹 ניקוי קובץ GPX</h2>
   <p>לפעמים ה-GPS "קופץ": נקודה בודדת רחוקה מהמסלול, קטע שנרשם כשהמכשיר נשאר דלוק ברכב, או גובה שגוי. הכלי הזה מתקן את הגובה, מסיר קפיצות, נותן לכם לסמן קטעים למחיקה, ומוריד קובץ נקי.</p>
-  <h3>1. בחירת קובץ</h3>
+  <h3 id="cleaner-file">1. בחירת קובץ</h3>
   <p>יש שתי דרכים: מהקטלוג (בוחרים מסלול ולוחצים <b>🧹 ניקוי קובץ</b> בפס הפעולות), או ישירות מהדף.</p>
   <figure><img src="img/cleaner-empty.jpg" alt="ניקוי GPX לפני בחירת קובץ" loading="lazy"><figcaption>הדף כשנכנסים אליו ישירות</figcaption></figure>
   <ul>
@@ -389,7 +433,7 @@ footer{text-align:center;color:#5C7A6B;font-size:.9rem;padding:10px 16px 30px}
   </ul>
   <div class="warn">⚠️ הכלי מיועד ל<b>הקלטות</b>, כלומר קבצים עם שעה לכל נקודה. במסלול מתוכנן אין שעות, ולכן אי אפשר לבדוק בו מהירות.</div>
 
-  <h3>2. הגדרות</h3>
+  <h3 id="cleaner-settings">2. הגדרות</h3>
   <figure><img src="img/cleaner-main.jpg" alt="הגדרות הניקוי" loading="lazy"><figcaption>קובץ נבחר, וההגדרות לפני הניקוי</figcaption></figure>
   <table>
     <tr><th>#</th><th>כפתור / שדה</th><th>מה הוא עושה</th></tr>
@@ -418,14 +462,14 @@ footer{text-align:center;color:#5C7A6B;font-size:.9rem;padding:10px 16px 30px}
   </table>
   <p>לחיצה על שורה ברשימה מקרבת את המפה לנקודת הציון הזו.</p>
 
-  <h3>4. מה הלאה?</h3>
+  <h3 id="cleaner-next">4. מה הלאה?</h3>
   <figure><img src="img/cleaner-decision.jpg" alt="חלון מה הלאה" loading="lazy"></figure>
   <ul>
     <li><b>🔄 סבוב נוסף</b>: מוחק את הקטעים שסימנתם ב-✗ ומחלק את מה שנשאר לנקודות ציון חדשות, לבדיקה מדויקת יותר. מספר הסבב בראש המסך עולה.</li>
     <li><b>⚡ הפעל פילטר אוטומטי</b>: מוחק את הקטעים שסימנתם, מפעיל את הסינון לפי ההגדרות (גובה, מהירות, מרחק) ומציג תוצאות.</li>
   </ul>
 
-  <h3>5. תוצאות</h3>
+  <h3 id="cleaner-results">5. תוצאות</h3>
   <figure><img src="img/cleaner-results.jpg" alt="תוצאות הניקוי" loading="lazy"><figcaption>תוצאות: נקודות מקוריות, שנשמרו ושנמחקו</figcaption></figure>
   <table>
     <tr><th>#</th><th>כפתור / אזור</th><th>מה הוא עושה</th></tr>
@@ -434,7 +478,7 @@ footer{text-align:center;color:#5C7A6B;font-size:.9rem;padding:10px 16px 30px}
   </table>
   <div class="tip">💡 נמחקו יותר נקודות ממה שציפיתם? שנו את ההגדרות במסך הזה: הגדילו את הפרש הגובה או את המהירות. התוצאות מחושבות מחדש מיד, בלי להתחיל מההתחלה.</div>
 
-  <h3>6. מפה והורדה</h3>
+  <h3 id="cleaner-map">6. מפה והורדה</h3>
   <figure><img src="img/cleaner-map.jpg" alt="המסלול הנקי על המפה" loading="lazy"><figcaption>המסלול הנקי, עם זמן, מרחק וטיפוס</figcaption></figure>
   <table>
     <tr><th>#</th><th>כפתור / שדה</th><th>מה הוא עושה</th></tr>
