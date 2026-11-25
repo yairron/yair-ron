@@ -220,6 +220,9 @@
 
   @media (max-width: 600px) {
     .params-grid { grid-template-columns: 1fr; }
+    /* שדות קלט 16px - מונע הגדלת עמוד אוטומטית באייפון; יחידות קריאות יותר */
+    input[type="number"], input[type="text"], select, textarea { font-size: 16px; }
+    .unit { font-size: 13px; }
     .stat-row { grid-template-columns: 1fr 1fr; }
     .manual-layout { flex-direction: column; }
     .manual-sidebar { width: 100%; height: 200px; border-right: none; border-top: 1px solid var(--border); }
