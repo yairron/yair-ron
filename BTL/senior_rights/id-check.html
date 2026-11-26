@@ -444,6 +444,18 @@
                 flex-direction: column;
             }
 
+            /* במסך קטן: לא להשתמש ב-flex:1 בעמודה (גובה לא יציב כשהמקלדת נפתחת),
+               ולהשאיר מרווח מתחת לכפתורים הקבועים בראש המסך כשהדפדפן גולל לתיבה */
+            .input-group input {
+                flex: none;
+                width: 100%;
+                font-size: 1.2rem;
+            }
+
+            .input-group {
+                scroll-margin-top: 80px;
+            }
+
             .buttons-row {
                 flex-direction: column;
             }
@@ -752,6 +764,37 @@
         document.getElementById('idInput').addEventListener('keypress', function(e) {
             if (e.key === 'Enter') checkId();
         });
+
+        // מסך קטן: כשהמקלדת נפתחת הדפדפן גולל את התיבה לראש המסך, מתחת לכפתורים הקבועים
+        // (תפריט/חזרה) — מיישרים מחדש כך שהתווית והתיבה יוצגו במלואן מתחתיהם
+        (function () {
+            var inputEl = document.getElementById('idInput');
+            var group = inputEl.closest('.input-group');
+            var TOP_OFFSET = 80;
+
+            function alignGroup() {
+                if (window.innerWidth > 768 || document.activeElement !== inputEl) return;
+                var vv = window.visualViewport;
+                var viewTop = vv ? vv.offsetTop : 0;
+                var rect = group.getBoundingClientRect();
+                var delta = rect.top - viewTop - TOP_OFFSET;
+                if (Math.abs(delta) > 4) {
+                    window.scrollBy({ top: delta, behavior: 'smooth' });
+                }
+            }
+
+            inputEl.addEventListener('focus', function () {
+                if (window.innerWidth > 768) return;
+                setTimeout(alignGroup, 350);
+                if (window.visualViewport) {
+                    var onResize = function () {
+                        window.visualViewport.removeEventListener('resize', onResize);
+                        setTimeout(alignGroup, 100);
+                    };
+                    window.visualViewport.addEventListener('resize', onResize);
+                }
+            });
+        })();
     </script>
     <script src="data/hamburger-nav.js"></script>
     <script src="data/btl-chat-widget.js"></script>
