@@ -8,6 +8,7 @@
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 <script src="../route_catalog/data/route_arrows.js"></script>
+<script src="../route_catalog/data/route_km_markers.js"></script>
 <script src="../route_catalog/data/base_maps.js"></script>
 <style>
   /* פלטת הצבעים והמראה זהים במכוון ל-YR1/bike/route_catalog/catalog.html - ראו
@@ -151,6 +152,9 @@
   .map-stat { flex: 1; display: flex; flex-direction: column; align-items: center; padding: 8px 12px; background: var(--surface); }
   .map-stat-label { font-size: 11px; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.8px; }
   .map-stat-val { font-family: 'JetBrains Mono', monospace; font-size: 18px; font-weight: 600; color: var(--primary); margin-top: 2px; }
+  /* "מרחק" = כפתור הדלקה/כיבוי של סימוני הק"מ במפה (route_km_markers.js) */
+  .km-toggle-stat { cursor: pointer; user-select: none; text-decoration: underline dotted; text-underline-offset: 3px; }
+  .km-toggle-stat.km-off { color: #8FA79A; text-decoration: line-through; }
   #map { flex: 1; }
   button.back { background: rgba(255,255,255,.25); color: white; border: 1px solid rgba(255,255,255,.5); }
   button.back:hover { background: rgba(255,255,255,.4); }
@@ -283,7 +287,7 @@
     </div>
     <div class="map-stat">
       <span class="map-stat-label">מרחק</span>
-      <span class="map-stat-val" id="statDist">—</span>
+      <span class="map-stat-val km-toggle-stat" id="statDist" role="button" onclick="toggleTrackKm()" title="הסתרת סימוני הקילומטרים במפה">—</span>
     </div>
     <div class="map-stat">
       <span class="map-stat-label">גובה מצטבר</span>
@@ -1144,13 +1148,30 @@ function showMap() {
   trackLayers = [];
 
   if (keptPoints.length > 0) {
-    const poly = L.polyline(keptPoints, { color: '#1F6B4C', weight: 4, opacity: 0.85 }).addTo(mapInstance);
+    // סימוני ק"מ (../route_catalog/data/route_km_markers.js) - מוצגים כברירת מחדל,
+    // לחיצה על "מרחק" בסרגל שמעל המפה מדליקה/מכבה (toggleTrackKm)
+    const poly = L.polyline(keptPoints, { color: '#1F6B4C', weight: 4, opacity: 0.85, kmMarkers: true }).addTo(mapInstance);
+    trackPolyline = poly;
+    updateKmToggleStat();
     const m1 = L.marker(keptPoints[0]).addTo(mapInstance).bindPopup('התחלה');
     const m2 = L.marker(keptPoints[keptPoints.length-1]).addTo(mapInstance).bindPopup('סיום');
     trackLayers = [poly, m1, m2];
     mapInstance.fitBounds(poly.getBounds(), { padding: [30,30] });
   }
   setTimeout(() => mapInstance.invalidateSize(), 100);
+}
+
+let trackPolyline = null;
+function updateKmToggleStat() {
+  const el = document.getElementById('statDist');
+  const on = RouteKmMarkers.isOn(trackPolyline);
+  el.classList.toggle('km-off', !on);
+  el.title = on ? 'הסתרת סימוני הקילומטרים במפה' : 'הצגת סימון לכל קילומטר מתחילת המסלול';
+}
+function toggleTrackKm() {
+  if (!trackPolyline) return;
+  RouteKmMarkers.toggle(trackPolyline);
+  updateKmToggleStat();
 }
 
 function goBack() {

@@ -8,6 +8,7 @@
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 <script src="data/route_arrows.js"></script>
+<script src="data/route_km_markers.js"></script>
 <script src="data/route_editor.js"></script>
 <script src="data/base_maps.js"></script>
 <style>
@@ -174,6 +175,9 @@ footer a{color:white;text-decoration:underline;font-weight:600}
 .map-legend-item.map-legend-hidden{opacity:.45}
 .map-legend-item.map-legend-hidden .map-legend-name{text-decoration:line-through}
 .map-legend-stats{font-size:.78rem;color:#5C7A6B;margin-top:2px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+/* אורך המסלול במקרא = כפתור הדלקה/כיבוי של סימוני הק"מ (data/route_km_markers.js) */
+.map-legend-km{cursor:pointer;user-select:none;color:var(--primary);text-decoration:underline dotted;text-underline-offset:2px}
+.map-legend-km.km-off{color:#8FA79A;text-decoration:line-through}
 
 @media(max-width:768px){
   h1{font-size:1.9rem}
@@ -1247,8 +1251,12 @@ function showOnMap() {
 function drawRouteOnMap(res, legend) {
   var legendItem = document.createElement('div');
   legendItem.className = 'map-legend-item';
+  // אורך המסלול לחיץ (מדליק/מכבה סימוני ק"מ) - רק כשיש לקו סימוני ק"מ (לא קובץ רשת)
+  var kmClickable = res.segments.length && !isNetworkRoute(res.route);
+  var distText = '📏 ' + res.route.distance_km + ' ק"מ';
   var statsText = res.segments.length
-    ? ('📏 ' + res.route.distance_km + ' ק"מ &nbsp;·&nbsp; ' + elevationText(res.route))
+    ? ((kmClickable ? '<span class="map-legend-km" role="button" title="הסתרת סימוני הקילומטרים במפה">' + distText + '</span>' : distText) +
+       ' &nbsp;·&nbsp; ' + elevationText(res.route))
     : 'שגיאה בטעינה';
   legendItem.innerHTML =
     '<span class="map-legend-swatch" style="background:' + res.color + '"></span>' +
@@ -1261,7 +1269,8 @@ function drawRouteOnMap(res, legend) {
   var allPts = [];
   if (res.segments.length) {
     var latlngSegs = res.segments.map(function (seg) { return seg.map(function (p) { return [p.lat, p.lon]; }); });
-    var line = L.polyline(latlngSegs, { color: res.color, weight: 4 }).addTo(routeMapInstance);
+    // סימוני ק"מ - לא לקובצי רשת (עשרות קטעים נפרדים, "מרחק מההתחלה" חסר משמעות)
+    var line = L.polyline(latlngSegs, { color: res.color, weight: 4, kmMarkers: !isNetworkRoute(res.route) }).addTo(routeMapInstance);
     var routeLayers = [line];
     // לחיצה על קו של קובץ רשת (לא במצב עריכה) - חלונית קורדינטות + רשימת
     // המסלולים שעוברים בנקודה. עוצר את המשך האירוע כדי שמאזין הלחיצה הכללי של
@@ -1287,6 +1296,15 @@ function drawRouteOnMap(res, legend) {
 
     // לחיצה על שם המסלול ברשימת המקרא - מסתירה/מציגה אותו לחילופין (קו +
     // סמני התחלה/סיום), בלי לגעת בשאר המסלולים המוצגים.
+    var kmEl = legendItem.querySelector('.map-legend-km');
+    if (kmEl) {
+      kmEl.addEventListener('click', function () {
+        var on = RouteKmMarkers.toggle(line);
+        kmEl.classList.toggle('km-off', !on);
+        kmEl.title = on ? 'הסתרת סימוני הקילומטרים במפה' : 'הצגת סימון לכל קילומטר מתחילת המסלול';
+      });
+    }
+
     var nameEl = legendItem.querySelector('.map-legend-name');
     nameEl.addEventListener('click', function () {
       var hidden = legendItem.classList.toggle('map-legend-hidden');
@@ -1581,7 +1599,7 @@ function redrawCutterPreview() {
   var pts = routeBuilder.getPoints();
   if (pts.length < 2) return;
   cutterPreviewLine = L.polyline(pts.map(function (p) { return [p.lat, p.lon]; }), {
-    color: '#E0923F', weight: 5, dashArray: '8,6'
+    color: '#E0923F', weight: 5, dashArray: '8,6', kmMarkers: true
   }).addTo(routeMapInstance);
 }
 
