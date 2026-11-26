@@ -1,6 +1,6 @@
 {
-  "generated_at": "2026-11-22T21:20:41",
-  "route_count": 626,
+  "generated_at": "2026-11-26T09:06:34",
+  "route_count": 628,
   "routes": [
     {
       "id": 698,
@@ -16369,6 +16369,37 @@
       "thumbnail": "thumbnails/2026-08-22_06-26-28 כברי כזיב נהריה סובב כברי צרעות.jpg"
     },
     {
+      "id": 779,
+      "file_name": "2026-09-03_נמל_לנמל חוף כרמל לתל אביב.gpx",
+      "gpx_path": "GPX_files/2026-09-03_נמל_לנמל חוף כרמל לתל אביב.gpx",
+      "date": "2026-09-03",
+      "date_source": "שם קובץ",
+      "activity": "רכיבת אופניים",
+      "source": "הקלטה",
+      "distance_km": 106.79,
+      "elevation_gain_m": 381,
+      "elevation_loss_m": 380,
+      "point_count": 25072,
+      "start_lat": 32.79469,
+      "start_lon": 34.9579,
+      "end_lat": 32.10313,
+      "end_lon": 34.8041,
+      "regions": [
+        "צפון",
+        "מרכז"
+      ],
+      "settlements": [
+        "שפיים",
+        "מעיין צבי",
+        "בית חירות"
+      ],
+      "settlements_found": true,
+      "invalid": false,
+      "removed_points": 0,
+      "driving": [],
+      "thumbnail": "thumbnails/2026-09-03_נמל_לנמל חוף כרמל לתל אביב.jpg"
+    },
+    {
       "id": 725,
       "file_name": "2026-09-27 סינגל יחיעם מגעתון לשיירה וחזרה.gpx",
       "gpx_path": "GPX_files/2026-09-27 סינגל יחיעם מגעתון לשיירה וחזרה.gpx",
@@ -16998,6 +17029,36 @@
       "removed_points": 0,
       "driving": [],
       "thumbnail": "thumbnails/2026-11-22 חוף הכרמל_לתחנת אוניברסיטה.jpg"
+    },
+    {
+      "id": 780,
+      "file_name": "2026-11-24_כברי_נהריה_חצרות יסף_בוסתן_רגבה.gpx",
+      "gpx_path": "GPX_files/2026-11-24_כברי_נהריה_חצרות יסף_בוסתן_רגבה.gpx",
+      "date": "2026-11-24",
+      "date_source": "שם קובץ",
+      "activity": "רכיבת אופניים",
+      "source": "הקלטה",
+      "distance_km": 26.6,
+      "elevation_gain_m": 72,
+      "elevation_loss_m": 76,
+      "point_count": 6136,
+      "start_lat": 33.01796,
+      "start_lon": 35.14374,
+      "end_lat": 33.01796,
+      "end_lon": 35.14384,
+      "regions": [
+        "צפון"
+      ],
+      "settlements": [
+        "שבי ציון",
+        "כברי",
+        "לוחמי הגיטאות"
+      ],
+      "settlements_found": true,
+      "invalid": false,
+      "removed_points": 0,
+      "driving": [],
+      "thumbnail": "thumbnails/2026-11-24_כברי_נהריה_חצרות יסף_בוסתן_רגבה.jpg"
     },
     {
       "id": 728,
