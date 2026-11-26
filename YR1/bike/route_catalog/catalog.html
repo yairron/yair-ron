@@ -230,8 +230,18 @@ footer a{color:white;text-decoration:underline;font-weight:600}
   .selection-bar .sel-count{font-size:.9rem;white-space:nowrap;margin-inline-end:auto}
   .selection-bar .lbl{display:none}
   .selection-bar .ico{display:inline}
-  .selection-bar button{min-width:44px;min-height:44px;padding:6px 10px;font-size:1.05rem;white-space:nowrap}
+  .selection-bar button{min-width:44px;min-height:44px;padding:6px 10px;font-size:1.05rem;white-space:nowrap;flex-shrink:0}
   body.sel-open{padding-bottom:76px}
+}
+/* מסך צר מאוד (320px): גם "מפה" נשאר אייקון בלבד */
+@media(max-width:359px){
+  .selection-bar .lbl-map{display:none}
+  .selection-bar{gap:4px;padding-inline:6px}
+}
+/* טלפון לרוחב (גובה נמוך): סרגל בחירה נמוך יותר */
+@media(max-height:500px) and (min-width:601px){
+  .selection-bar{padding:5px 14px calc(5px + env(safe-area-inset-bottom));gap:10px}
+  .selection-bar button{padding:6px 12px}
 }
 </style>
 </head>
@@ -325,7 +335,7 @@ footer a{color:white;text-decoration:underline;font-weight:600}
 <div class="selection-bar" id="selectionBar">
   <span class="sel-count" id="selCount">נבחרו 0 מסלולים</span>
   <button class="btn-primary" id="btnDownload" onclick="downloadSelected()" title="הורדה" aria-label="הורדה">📥<span class="lbl"> הורדה</span></button>
-  <button class="btn-primary" onclick="showOnMap()" title="הצג על מפה" aria-label="הצג על מפה">🗺️ <span class="lbl">הצג על </span>מפה</button>
+  <button class="btn-primary" onclick="showOnMap()" title="הצג על מפה" aria-label="הצג על מפה">🗺️ <span class="lbl">הצג על </span><span class="lbl-map">מפה</span></button>
   <button class="btn-primary" onclick="cleanSelectedRoute()" title="ניקוי קובץ" aria-label="ניקוי קובץ">🧹<span class="lbl"> ניקוי קובץ</span></button>
   <button class="btn-primary" id="btnShare" onclick="shareSelected()" title="שתף מסלול" aria-label="שתף מסלול">🔗<span class="lbl"> שתף מסלול</span></button>
   <button class="btn-clear" onclick="clearSelection()" title="נקה בחירה" aria-label="נקה בחירה"><span class="lbl">נקה בחירה</span><span class="ico">✕</span></button>
