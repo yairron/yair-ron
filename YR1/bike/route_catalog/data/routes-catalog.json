@@ -1,6 +1,6 @@
 {
-  "generated_at": "2026-11-26T09:06:34",
-  "route_count": 628,
+  "generated_at": "2026-11-28T11:49:39",
+  "route_count": 629,
   "routes": [
     {
       "id": 698,
@@ -16370,8 +16370,8 @@
     },
     {
       "id": 779,
-      "file_name": "2026-09-03_נמל_לנמל חוף כרמל לתל אביב.gpx",
-      "gpx_path": "GPX_files/2026-09-03_נמל_לנמל חוף כרמל לתל אביב.gpx",
+      "file_name": "2026-09-03_נמל_לנמל חוף כרמל לתל אביב_תכנון.gpx",
+      "gpx_path": "GPX_files/2026-09-03_נמל_לנמל חוף כרמל לתל אביב_תכנון.gpx",
       "date": "2026-09-03",
       "date_source": "שם קובץ",
       "activity": "רכיבת אופניים",
@@ -16397,7 +16397,7 @@
       "invalid": false,
       "removed_points": 0,
       "driving": [],
-      "thumbnail": "thumbnails/2026-09-03_נמל_לנמל חוף כרמל לתל אביב.jpg"
+      "thumbnail": "thumbnails/2026-09-03_נמל_לנמל חוף כרמל לתל אביב_תכנון.jpg"
     },
     {
       "id": 725,
@@ -17001,8 +17001,8 @@
     },
     {
       "id": 778,
-      "file_name": "2026-11-22 חוף הכרמל_לתחנת אוניברסיטה.gpx",
-      "gpx_path": "GPX_files/2026-11-22 חוף הכרמל_לתחנת אוניברסיטה.gpx",
+      "file_name": "2026-11-22 חוף הכרמל_לתחנת אוניברסיטה_תכנון.gpx",
+      "gpx_path": "GPX_files/2026-11-22 חוף הכרמל_לתחנת אוניברסיטה_תכנון.gpx",
       "date": "2026-11-22",
       "date_source": "שם קובץ",
       "activity": "לא ברור",
@@ -17028,7 +17028,7 @@
       "invalid": false,
       "removed_points": 0,
       "driving": [],
-      "thumbnail": "thumbnails/2026-11-22 חוף הכרמל_לתחנת אוניברסיטה.jpg"
+      "thumbnail": "thumbnails/2026-11-22 חוף הכרמל_לתחנת אוניברסיטה_תכנון.jpg"
     },
     {
       "id": 780,
@@ -17059,6 +17059,37 @@
       "removed_points": 0,
       "driving": [],
       "thumbnail": "thumbnails/2026-11-24_כברי_נהריה_חצרות יסף_בוסתן_רגבה.jpg"
+    },
+    {
+      "id": 781,
+      "file_name": "2026-11-27_חוף הכרמל_לתחנת אוניברסיטה_הקלטה.gpx",
+      "gpx_path": "GPX_files/2026-11-27_חוף הכרמל_לתחנת אוניברסיטה_הקלטה.gpx",
+      "date": "2026-11-27",
+      "date_source": "שם קובץ",
+      "activity": "רכיבת אופניים",
+      "source": "הקלטה",
+      "distance_km": 104.79,
+      "elevation_gain_m": 171,
+      "elevation_loss_m": 185,
+      "point_count": 27755,
+      "start_lat": 32.79383,
+      "start_lon": 34.95778,
+      "end_lat": 32.10327,
+      "end_lon": 34.80421,
+      "regions": [
+        "צפון",
+        "מרכז"
+      ],
+      "settlements": [
+        "בית ינאי",
+        "געש",
+        "ביתן אהרן"
+      ],
+      "settlements_found": true,
+      "invalid": false,
+      "removed_points": 0,
+      "driving": [],
+      "thumbnail": "thumbnails/2026-11-27_חוף הכרמל_לתחנת אוניברסיטה_הקלטה.jpg"
     },
     {
       "id": 728,

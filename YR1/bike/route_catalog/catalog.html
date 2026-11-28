@@ -476,6 +476,9 @@ function getFiltered() {
   list.sort(function (a, b) {
     // מסלולים "לא תקינים" (קפיצת GPS) ומסלולים עם נסיעה ברכב תמיד בתחתית, לא משנה איזה מיון נבחר
     if (isFaulty(a) !== isFaulty(b)) return isFaulty(a) ? 1 : -1;
+    // בתוך כל מיון: הקלטות לפני תכנוני מסלול (נוסף 28.11.2026, לבקשת יאיר)
+    var aRec = a.source === 'הקלטה', bRec = b.source === 'הקלטה';
+    if (aRec !== bRec) return aRec ? -1 : 1;
     // בחיפוש לפי קורדינטות - תמיד ממויין לפי קרבה, בלי קשר לבחירת "מיון"
     if (coord) return routeDistanceKm(a, coord) - routeDistanceKm(b, coord);
     switch (sortMode) {
